@@ -1,0 +1,99 @@
+description: Cotisations pour la structure financière ASF (1984-2001)
+tranche:
+  description: Tranche A
+  salarie:
+    description: Salarié
+    values:
+      2001-04-01:
+        value: null
+      1994-01-01:
+        value: 0.008
+      1990-10-01:
+        value: 0.0072
+      1984-01-01:
+        value: 0.008
+    metadata:
+      ipp_csv_id: asf_s_0_1
+      unit: /1
+  employeur:
+    description: Employeur
+    values:
+      2001-04-01:
+        value: null
+      1994-01-01:
+        value: 0.0116
+      1990-10-01:
+        value: 0.0108
+      1984-01-01:
+        value: 0.012
+    metadata:
+      ipp_csv_id: asf_p_0_1
+      unit: /1
+  metadata:
+    order:
+    - salarie
+    - employeur
+tranche_b:
+  description: Tranche B
+  salarie:
+    description: Salarié
+    values:
+      2001-04-01:
+        value: null
+      1994-01-01:
+        value: 0.0089
+      1984-04-01:
+        value: 0.008
+      1984-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: asf_s_1_4
+      unit: /1
+  employeur:
+    description: Employeur
+    values:
+      2001-04-01:
+        value: null
+      1994-01-01:
+        value: 0.0129
+      1984-04-01:
+        value: 0.012
+      1984-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: asf_p_1_4
+      unit: /1
+  metadata:
+    order:
+    - salarie
+    - employeur
+metadata:
+  order:
+  - tranche
+  - tranche_b
+  reference:
+    2001-04-01: Accord Arrco-Agirc du 10/02/2001, ch. III
+    1994-01-01: Convention et règlement UNEDIC du 01/01/94 agréés par arrêté du 04/01/94
+    1992-01-01: Protocole d'accord du 5/12/1991 (avenants n° 1 et 8 du 13/12/91, agréés)
+    1990-10-01: Compromis du 25/06/1990 (Dupeyroux 1993, p. 791)
+    1984-04-01: Convention et règlement Unedic du 24/02/84 agréés par arrêté du 28/03/84
+    1984-01-01: Accord du 10/01/1984
+  date_parution_jo:
+    1994-01-01: 1994-01-08
+    1992-01-01: 1992-01-07
+    1984-04-01: 1984-04-04
+  notes:
+    2001-04-01: Le taux AGFF se substitute à l'ASF.
+  description_en: Contributions to the financial structure ASF (1984-2001)
+documentation: |
+  Notes :
+  (i) L'Association pour la gestion de la structure financière (ASF) a eu pour mission:
+  - le financement des garanties de ressources
+  - le financement de l'abaissement de l'âge de la retraite des régimes compl. AGIRC - ARCCO
+  => 1,8 - 2 points de cotisation assurance chômage
+  La cotisation ASF était perçu par l'UNEDIC et était souvent incluse dans la cotisation chômage sur les fiches de paie (avant 2001).
+  (ii) L'Association pour la Gestion du Fonds de Financement de l'AGIRC et de l'ARRCO (AGFF) remplace depuis le 1er avril 2001, l'Association pour la structure Financière (ASF).
+  La collecte de la cotisation afférente a été transférée aux régimes de retraite complémentaire AGIRC-ARRCO.
+  (Voir feuille
+  "AGFF")
+  (iii) La tranche A correspond au salaire en-dessous du PSS et tranche B le salaire de 1 à 4 plafonds.

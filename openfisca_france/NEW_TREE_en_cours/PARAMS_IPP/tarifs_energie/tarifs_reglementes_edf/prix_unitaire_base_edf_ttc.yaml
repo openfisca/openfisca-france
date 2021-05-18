@@ -1,0 +1,281 @@
+description: Prix unitaire tarif de base EDF (toutes taxes comprises)
+prix_kwh_3_kva:
+  description: Prix du kWh - 3 kVA
+  values:
+    2020-08-01:
+      value: 0.1557
+    2020-02-01:
+      value: 0.1546
+    2019-08-01:
+      value: 0.1524
+    2019-06-01:
+      value: 0.1531
+    2018-08-01:
+      value: 0.145
+    2018-02-01:
+      value: 0.1555
+    2017-08-01:
+      value: 0.1546
+    2016-08-01:
+      value: 0.1503 
+    2015-08-01:
+      value: 0.1437
+    2014-11-01:
+      value: 0.1401
+    2013-08-01:
+      value: 0.1329
+    2012-07-23:
+      value: 0.1256
+    2012-01-01:
+      value: 0.1218
+    2011-01-01:
+      value: 0.1161
+    2010-01-01:
+      value: 0.1084
+    2009-01-01:
+      value: 0.1159
+    2008-01-01:
+      value: 0.1335
+    2007-01-01:
+      value: 0.1317
+    2006-01-01:
+      value: 0.1299
+    2004-01-01:
+      value: 0.129
+    2003-01-01:
+      value: 0.1273
+    2002-01-01:
+      value: 0.1258
+    2001-01-01:
+      value: 0.1247
+    2000-01-01:
+      value: 0.1251
+    1999-01-01:
+      value: 0.1276
+    1998-01-01:
+      value: 0.1305
+    1997-01-01:
+      value: 0.1332
+    1996-01-01:
+      value: 0.1356
+    1995-01-01:
+      value: 0.1343
+    1994-01-01:
+      value: 0.1332
+    1993-01-01:
+      value: 0.1328
+    1992-01-01:
+      value: 0.1315
+    1991-01-01:
+      value: 0.1288
+    1990-01-01:
+      value: 0.1253
+    1989-01-01:
+      value: 0.1206
+    1988-01-01:
+      value: 0.1181
+    1987-01-01:
+      value: 0.1169
+    1986-01-01:
+      value: 0.1177
+    1985-01-01:
+      value: 0.1186
+    1984-01-01:
+      value: 0.1055
+    1983-01-01:
+      value: 0.0891
+  metadata:
+    ipp_csv_id: prix_unitaire_3kva_ttc
+    unit: currency-EUR
+prix_kwh_6_kva:
+  description: Prix du kWh - 6 kVA
+  values:
+    2020-08-01:
+      value: 0.1557
+    2020-02-01:
+      value: 0.1546
+    2019-08-01:
+      value: 0.1524
+    2019-06-01:
+      value: 0.1531
+    2018-08-01:
+      value: 0.145
+    2018-02-01:
+      value: 0.1467
+    2017-08-01:
+      value: 0.1466
+    2016-08-01:
+      value: 0.1503 
+    2015-08-01:
+      value: 0.1437
+    2014-11-01:
+      value: 0.1401
+    2013-08-01:
+      value: 0.1329
+    2012-07-23:
+      value: 0.1263
+    2012-01-01:
+      value: 0.1225
+    2011-01-01:
+      value: 0.1168
+    2010-01-01:
+      value: 0.1089
+    2009-01-01:
+      value: 0.1096
+    2008-01-01:
+      value: 0.1094
+    2007-01-01:
+      value: 0.1079
+    2006-01-01:
+      value: 0.1064
+    2004-01-01:
+      value: 0.1057
+    2003-01-01:
+      value: 0.1043
+    2002-01-01:
+      value: 0.1032
+    2001-01-01:
+      value: 0.1023
+    2000-01-01:
+      value: 0.1028
+    1999-01-01:
+      value: 0.1053
+    1998-01-01:
+      value: 0.108
+    1997-01-01:
+      value: 0.1122
+    1996-01-01:
+      value: 0.1164
+    1995-01-01:
+      value: 0.1153
+    1994-01-01:
+      value: 0.1144
+    1993-01-01:
+      value: 0.114
+    1992-01-01:
+      value: 0.1124
+    1991-01-01:
+      value: 0.1096
+    1990-01-01:
+      value: 0.106
+    1989-01-01:
+      value: 0.1005
+    1988-01-01:
+      value: 0.0981
+    1987-01-01:
+      value: 0.0969
+    1986-01-01:
+      value: 0.0973
+    1985-01-01:
+      value: 0.09849999999999999
+    1984-01-01:
+      value: 0.0934
+    1983-01-01:
+      value: 0.084
+  metadata:
+    ipp_csv_id: prix_unitaire_6kva_ttc
+    unit: currency-EUR
+prix_kwh_9_kva:
+  description: Prix du kWh - 9 kVA
+  values:
+    2020-08-01:
+      value: 0.1597
+    2020-02-01:
+      value: 0.1587
+    2019-08-01:
+      value: 0.1555
+    2019-06-01:
+      value: 0.1562
+    2018-08-01:
+      value: 0.1467
+    2018-02-01:
+      value: 0.1483
+    2017-08-01:
+      value: 0.1483
+    2016-08-01:
+      value: 0.1503 
+    2015-08-01:
+      value: 0.1437
+    2014-11-01:
+      value: 0.1401
+    2013-08-01:
+      value: 0.1329
+    2012-07-23:
+      value: 0.1287
+  metadata:
+    ipp_csv_id: prix_unitaire_9kva_ttc
+    unit: currency-EUR
+prix_kwh_12_kva:
+  description: Prix du kWh - 12 kVA
+  values:
+    2020-08-01:
+      value: 0.1597
+    2020-02-01:
+      value: 0.1587
+    2019-08-01:
+      value: 0.1555
+    2019-06-01:
+      value: 0.1562
+    2018-08-01:
+      value: 0.1467
+    2018-02-01:
+      value: 0.1483
+    2017-08-01:
+      value: 0.1483
+    2016-08-01:
+      value: 0.1503 
+    2015-08-01:
+      value: 0.1437
+    2014-11-01:
+      value: 0.1401
+    2013-08-01:
+      value: 0.1329
+    2012-07-23:
+      value: 0.1287
+  metadata:
+    ipp_csv_id: prix_unitaire_12kva_ttc
+    unit: currency-EUR
+prix_kwh_15_kva:
+  description: Prix du kWh - 15 kVA
+  values:
+    2020-08-01:
+      value: 0.1597
+    2020-02-01:
+      value: 0.1587
+    2019-08-01:
+      value: 0.1555
+    2019-06-01:
+      value: 0.1562
+    2018-08-01:
+      value: 0.1467
+    2018-02-01:
+      value: 0.1483
+    2017-08-01:
+      value: 0.1483
+    2016-08-01:
+      value: 0.1503 
+    2015-08-01:
+      value: 0.1437
+    2014-11-01:
+      value: 0.1401
+    2013-08-01:
+      value: 0.1329
+    2012-07-23:
+      value: 0.1287
+  metadata:
+    ipp_csv_id: prix_unitaire_15kva_ttc
+    unit: currency-EUR
+metadata:
+  order:
+  - prix_kwh_3_kva
+  - prix_kwh_6_kva
+  - prix_kwh_9_kva
+  - prix_kwh_12_kva
+  - prix_kwh_15_kva
+  description_en: Unitary price base tariff EDF (including taxes)
+documentation: |
+  Source : 
+  de 1983 à 2012: base Pégase, prix pour un ménage, tarif bleu option base, en euros TTC, données annuelles
+  depuis 2012 : source CRE historique : "https://www.cre.fr/Pages-annexes/open-data"
+
+

@@ -1,0 +1,25 @@
+description: Garantie minimale de points (GMP) à l'Agirc (1947 - 2018)
+garantie_minimale_points:
+  description: Garantie minimale de points
+  values:
+    2018-01-12:
+      value: null
+    1997-01-01:
+      value: 120.0
+    1947-01-01:
+      value: 144.0
+  metadata:
+    ipp_csv_id: gmp
+metadata:
+  order:
+  - garantie_minimale_points
+  reference:
+    2018-01-12: Les droits acquis sont conservés. 
+    1997-01-01: BSP n° 36 du 31/01/1997 et BSP n°40 du 31/01/1998
+    1947-01-01: CCN des Cadres du 14/03/1947, art. 6 (§2, F.)
+  description_en: Minimum points guaranteed
+documentation: |
+  Voir le Barème IPP: prélèvements sociaux pour le détail du calcul de la GMP et des versement de cotisations afférents.
+  Sources : Site de l'AGIRC-ARRCO; § V.2.1.2 du Guide réglementaire AGIRC et ARRCO.
+  Les valeurs des paramètres pour les années 2005 et antérieures sont tirées de barèmes communiqués par l'AGIRC-ARRCO. Voir notamment le fichier disponible à l'adresse suivante: http://www.agirc-arrco.fr/fileadmin/agircarrco/documents/Doc_specif_page/Historique_valeur_du_point_salaire_de_reference.pdf
+  Principe de la GMP : La Garantie Minimale de Points (GMP) vise à garantir à chaque participant du régime AGIRC (cadre) un minimum de points de retraite pour une année donnée. Un montant minimum de cotisations doit être versé en contrepartie de cette garantie. Cette garantie est prévue par la convention collective nationale du 14 mars 1947 (art. 6 et art. 36 de l'annexe I.). L'arrêté d'agrément et d'extension du 24/02/1989 relatif à l'accord du 08/12/1988 rend la GMP obligatoire pour toutes les entreprises adhérentes au régime de retraite complémentaire des cadres.

@@ -1,0 +1,128 @@
+description: Prestation spécifique dépendance (PSD, 1997-2001)
+seuil_ressources_en_fr_an:
+  description: Seuil de ressources (en Fr/an)
+  personne_seule:
+    description: Personne seule
+    values:
+      2002-01-01:
+        value: null
+      2001-01-01:
+        value: 76640.0
+      2000-01-01:
+        value: 74990.0
+      1999-01-01:
+        value: 74248.0
+      1998-01-01:
+        value: 72792.0
+      1997-05-01:
+        value: 72000.0
+    metadata:
+      unit: currency-FRF
+  personne_en_couple:
+    description: Personne en couple
+    values:
+      2002-01-01:
+        value: null
+      2001-01-01:
+        value: 127733.0
+      2000-01-01:
+        value: 124983.0
+      1999-01-01:
+        value: 123746.0
+      1998-01-01:
+        value: 121320.0
+      1997-05-01:
+        value: 120000.0
+    metadata:
+      unit: currency-FRF
+  metadata:
+    order:
+    - personne_seule
+    - personne_en_couple
+plafond_cumul_ressources:
+  description: Plafond pour cumul des ressources
+  values:
+    2002-01-01:
+      value: null
+    2001-01-01:
+      value: 2000.0
+    2000-01-01:
+      value: 2022.0
+    1999-01-01:
+      value: 2062.0
+    1998-01-01:
+      value: 2083.0
+    1997-05-01:
+      value: 2129.0
+  metadata:
+    unit: currency-FRF
+montant_psd:
+  description: Montant mensuel versé
+  maximal:
+    description: Montant maximal versé
+    values:
+      2002-01-01:
+        value: null
+      2001-01-01:
+        value: 5881.0
+      2000-01-01:
+        value: 5755.0
+      1999-01-01:
+        value: 5726.0
+      1998-01-01:
+        value: 5658.0
+      1997-05-01:
+        value: 5596.0
+    metadata:
+      unit: currency-FRF
+  seuil:
+    description: Montant versé pour un contribuable au seuil de ressources
+    values:
+      2002-01-01:
+        value: null
+      2001-01-01:
+        value: 4705.0
+      2000-01-01:
+        value: 4604.0
+      1999-01-01:
+        value: 4581.0
+      1998-01-01:
+        value: 4526.0
+      1997-05-01:
+        value: 4477.0
+    metadata:
+      unit: currency-FRF
+  metadata:
+    order:
+    - maximal
+    - seuil
+seuil_versement_psd_en_part_salaire_horaire_brut_minimum_croissance:
+  description: Seuil minimal de versement de la PSD (en part du salaire horaire brut minimum de croissance)
+  values:
+    2002-01-01:
+      value: null
+    1997-05-01:
+      value: 3.0
+metadata:
+  order:
+  - seuil_ressources_en_fr_an
+  - plafond_cumul_ressources
+  - montant_psd
+  - seuil_versement_psd_en_part_salaire_horaire_brut_minimum_croissance
+  reference:
+    2001-01-01: Arrêté du 01/08/2001
+    2000-01-01: Arrêté du 13/03/2000
+    1999-01-01: Arrêté du 06/04/1999
+    1998-01-01: Arrêté du 02/03/1998
+    1997-05-01: Arrêté du 28/04/1997
+  date_parution_jo:
+    2001-01-01: 2001-08-14
+    2000-01-01: 2000-03-22
+    1999-01-01: 1999-04-16
+    1998-01-01: 1998-03-18
+    1997-05-01: 1997-04-30
+  description_en: Attendance allowance (PSD, 1997-2001))
+documentation: |
+  Notes:
+  (1) Les personnes éligibles à la PSD doivent être âgées d'au moins 60 ans et faire partie des groupes iso-ressources 1, 2 ou 3.
+  (2) La PSD attribuable comprend les dépenses d'aide à la personne engagées par le contribuable, dans la limite de la majoration pour aide constante d'une tierce personne (qui équivaut au montant maximal de PSD pouvant être versé). Le montant effectivement versé dépend des ressources du bénéficiaire. Le bénéfice pour un contribuable au seuil de ressources est de 80% du MTP. Le plafond de l'allocation est réduit d'un franc pour tout franc de revenu au-delà de ce seuil. Dans l'autre sens (les contribuables en-deça du seuil de ressources), le plafond de PSD versée est augmenté de un euro pour chaque euro de différence entre les ressources du bénéficiaire et le seuil de ressources, dans la limite de 100% du MTP. On parle d'allocation différentielle.  

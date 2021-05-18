@@ -1,0 +1,17 @@
+description: Petite enfance
+metadata:
+  order:
+  - apn_t_maj
+  - aprn_t
+  - apje_cm
+  - apje_plaf
+  - aa_m
+  - aa_plaf
+  - paje_cm
+  - paje_cm2
+  - paje_plaf
+  - paje_cmg
+  - plaf_cmg
+  - paje_clca
+  - paje_prepare
+  description_en: Early childhood

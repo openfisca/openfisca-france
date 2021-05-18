@@ -1,0 +1,326 @@
+description: Cotisations SS des artistes du spectacle (1960-1974)
+assurance_maladie:
+  description: Assurance maladie
+  tout_salaire:
+    description: Sur tout salaire
+    employeurs:
+      description: Employeurs
+      values:
+        1967-10-01:
+          value: 0.014
+        1960-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: mmid_a_p_0_
+        unit: /1
+    employe:
+      description: Employé
+      values:
+        1967-10-01:
+          value: 0.007
+        1960-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: mmid_a_s_0_
+        unit: /1
+    metadata:
+      order:
+      - employeurs
+      - employe
+  sous_pss:
+    description: Sous PSS
+    employe_hors_am:
+      description: Employé (hors AM)
+      moins_65_ans:
+        description: Moins de 65 ans
+        values:
+          1969-01-01:
+            value: 0.0175
+          1967-10-01:
+            value: 0.0145
+          1960-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: mmid_a_am_i65_s_0_1
+          unit: /1
+      plus_65_ans:
+        description: Plus de 65 ans
+        values:
+          1969-01-01:
+            value: 0.0105
+          1967-10-01:
+            value: 0.0145
+          1960-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: mmid_a_am_s65_s_0_1
+          unit: /1
+      metadata:
+        order:
+        - moins_65_ans
+        - plus_65_ans
+    employe_am:
+      description: Employé AM
+      moins_65_ans:
+        description: Moins de 65 ans
+        values:
+          1969-01-01:
+            value: 0.028
+          1967-10-01:
+            value: 0.018
+          1960-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: mmid_a_i65_s_0_1
+          unit: /1
+      plus_65_ans:
+        description: Plus de 65 ans
+        values:
+          1969-01-01:
+            value: 0.021
+          1967-10-01:
+            value: 0.018
+          1960-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: mmid_a_s65_s_0_1
+          unit: /1
+      metadata:
+        order:
+        - moins_65_ans
+        - plus_65_ans
+    employeur:
+      description: Employeur
+      values:
+        1971-01-01:
+          value: 0.0732
+        1969-01-01:
+          value: 0.0665
+        1967-10-01:
+          value: 0.0605
+        1960-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: mmid_a_p_0_1
+        unit: /1
+    metadata:
+      order:
+      - employe_hors_am
+      - employe_am
+      - employeur
+  metadata:
+    order:
+    - tout_salaire
+    - sous_pss
+assurance_vieillesse:
+  description: Assurance vieillesse
+  sous_pss:
+    description: Sous PSS
+    employeurs:
+      description: Employeurs
+      values:
+        1974-01-01:
+          value: 0.0508
+        1971-01-01:
+          value: 0.0403
+        1967-10-01:
+          value: 0.0385
+        1960-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: ret_a_p_0_1
+        unit: /1
+    employes:
+      description: Employés
+      values:
+        1967-10-01:
+          value: 0.021
+        1960-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: ret_a_s_0_1
+        unit: /1
+    metadata:
+      order:
+      - employeurs
+      - employes
+  metadata:
+    order:
+    - sous_pss
+accidents_travail:
+  description: Accidents du travail
+  sous_pss:
+    description: Sous PSS
+    employeurs_france_hors_am:
+      description: Employeurs France (Hors AM)
+      values:
+        1973-03-01:
+          value: 0.0315
+        1972-01-01:
+          value: 0.0273
+        1971-01-01:
+          value: 0.0294
+        1970-01-01:
+          value: 0.0273
+        1969-01-01:
+          value: 0.026
+        1967-10-01:
+          value: 0.0225
+        1966-10-01:
+          value: 0.021
+        1960-01-01:
+          value: 0.018
+      metadata:
+        ipp_csv_id: acc_a_p_0_1
+        unit: /1
+    metadata:
+      order:
+      - employeurs_france_hors_am
+  metadata:
+    order:
+    - sous_pss
+allocations_familiales:
+  description: Allocations familiales
+  sous_pss:
+    description: Sous PSS
+    employeurs:
+      description: Employeurs
+      values:
+        1974-01-01:
+          value: 0.063
+        1971-01-01:
+          value: 0.0735
+        1967-10-01:
+          value: 0.0805
+        1962-04-01:
+          value: 0.095
+        1960-01-01:
+          value: 0.1
+      metadata:
+        ipp_csv_id: fam_a_p_0_1
+        unit: /1
+    metadata:
+      order:
+      - employeurs
+  metadata:
+    order:
+    - sous_pss
+assurances_sociales_avant_1967:
+  description: Assurances sociales (avant 1967)
+  sous_pss:
+    description: Sous PSS
+    employe_hors_am:
+      description: Employé (hors AM)
+      moins_65_ans:
+        description: Moins de 65 ans
+        values:
+          1967-10-01:
+            value: null
+          1960-01-01:
+            value: 0.042
+        metadata:
+          ipp_csv_id: css_a_am_i65_s_0_1
+          unit: /1
+      plus_65_ans:
+        description: Plus de 65 ans
+        values:
+          1967-10-01:
+            value: null
+          1960-01-01:
+            value: 0.014
+        metadata:
+          ipp_csv_id: css_a_am_s65_s_0_1
+          unit: /1
+      metadata:
+        order:
+        - moins_65_ans
+        - plus_65_ans
+    employe_am:
+      description: Employé AM
+      moins_65_ans:
+        description: Moins de 65 ans
+        values:
+          1967-10-01:
+            value: null
+          1960-01-01:
+            value: 0.049
+        metadata:
+          ipp_csv_id: css_a_i65_s_0_1
+          unit: /1
+      plus_65_ans:
+        description: Plus de 65 ans
+        values:
+          1967-10-01:
+            value: null
+          1960-01-01:
+            value: 0.021
+        metadata:
+          ipp_csv_id: css_a_s65_s_0_1
+          unit: /1
+      metadata:
+        order:
+        - moins_65_ans
+        - plus_65_ans
+    employeur:
+      description: Employeur
+      values:
+        1967-10-01:
+          value: null
+        1966-10-01:
+          value: 0.105
+        1962-04-01:
+          value: 0.0995
+        1961-01-01:
+          value: 0.0945
+        1960-01-01:
+          value: 0.0875
+      metadata:
+        ipp_csv_id: css_a_p_0_1
+        unit: /1
+    metadata:
+      order:
+      - employe_hors_am
+      - employe_am
+      - employeur
+  metadata:
+    order:
+    - sous_pss
+metadata:
+  order:
+  - assurance_maladie
+  - assurance_vieillesse
+  - accidents_travail
+  - allocations_familiales
+  - assurances_sociales_avant_1967
+  reference:
+    1974-01-01: Arrêté du 15/01/1974
+    1973-03-01: Arrêté du 31/01/1973
+    1972-01-01: Arrêté du 24/02/1972
+    1971-01-01: Arrêté du 30/12/1970
+    1970-01-01: Arrêté du 31/12/1969
+    1969-01-01: Arrêté du 31/12/1968
+    1967-10-01: Arrêté du 29/09/1967
+    1966-10-01: Arrêté du 15/09/1966
+    1962-04-01: Arrêté du 23/02/1962
+    1961-01-01: Arrêté du 20/01/1961
+    1960-01-01: Arrêté du 27/01/1960
+  date_parution_jo:
+    1974-01-01: 1974-02-07
+    1973-03-01: 1973-03-17
+    1972-01-01: 1972-03-16
+    1971-01-01: 1971-01-15
+    1970-01-01: 1970-01-01
+    1969-01-01: 1969-01-01
+    1967-10-01: 1967-10-01
+    1966-10-01: 1966-09-27
+    1962-04-01: 1962-02-23
+    1961-01-01: 1961-02-02
+    1960-01-01: 1960-02-09
+  notes:
+    1972-01-01: Modification de la cotisation accident du travail.
+  description_en: SSCs for artists (1960-1974)
+documentation: |
+  Note générale :
+  Les artistes et musiciens du spectacle bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1960 et 1974. A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.
+  Notes :
+  L'arrêté du 31/01/1973 ne précise pas de date d'effet, impliquant une date d'effet à la date de publication du JO. On note le début du mois comme date d'effet pour prendre en compte les versements mensualisés de la paie.

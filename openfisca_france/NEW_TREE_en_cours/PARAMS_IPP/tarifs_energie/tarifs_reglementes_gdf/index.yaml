@@ -1,0 +1,8 @@
+description: Tarifs réglementés GDF
+metadata:
+  order:
+  - tarif_fixe_gdf_ht
+  - prix_unitaire_gdf_par_zone_ht
+  - tarif_fixe_gdf_ttc
+  - prix_unitaire_gdf_ttc
+  description_en: Regulated tariffs GDF

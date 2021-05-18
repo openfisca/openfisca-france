@@ -1,0 +1,226 @@
+description: Autres alcools (rhum, bouilleurs de cru, etc.)
+rhum_dom:
+  description: Rhum des DOM
+  values:
+    2021-01-01:
+      value: 901.84
+    2020-01-01:
+      value: 893.30
+    2019-01-01:
+      value: 879.72
+    2018-01-01:
+      value: 871.01
+    2016-01-01:
+      value: 869.27
+    2015-06-06:
+      value: 865.81
+    2014-01-01:
+      value: 859.79
+    2013-06-07:
+      value: 845.0
+    2013-01-01:
+      value: 918.8
+    2012-05-01:
+      value: 903.0
+    2012-01-01:
+      value: 872.13
+    2010-11-21:
+      value: 859.24
+    2010-05-01:
+      value: 858.38
+    2002-03-31:
+      value: 835.0
+    1997-01-01:
+      value: 5474.0
+    1993-08-18:
+      value: 5215.0
+    1987-02-01:
+      value: 4495.0
+    1982-01-01:
+      value: 4405.0
+    1981-02-01:
+      value: 4150.0
+  metadata:
+    ipp_csv_id: taxe_rhum_dom
+    unit:
+      2002-03-31: currency-EUR
+      1981-02-01: currency-FRF
+autres_alcools:
+  description: Autres alcools
+  values:
+    2021-01-01:
+      value: 1802.67
+    2020-01-01:
+      value: 1786.59
+    2019-01-01:
+      value: 1758.45
+    2018-01-01:
+      value: 1741.04
+    2016-01-01:
+      value: 1737.56
+    2015-06-06:
+      value: 1730.64
+    2014-01-01:
+      value: 1718.61
+    2013-01-01:
+      value: 1689.05
+    2011-12-23:
+      value: 1660.0
+    2010-11-21:
+      value: 1514.47
+    2010-05-01:
+      value: 1512.96
+    2009-04-10:
+      value: 1471.75
+    2002-03-31:
+      value: 1450.0
+    1997-01-01:
+      value: 9510.0
+    1993-08-18:
+      value: 9060.0
+    1987-02-01:
+      value: 7810.0
+    1982-01-01:
+      value: 7655.0
+    1981-02-01:
+      value: 8220.0
+  metadata:
+    ipp_csv_id: taxe_autres_alcools
+    unit:
+      2002-03-31: currency-EUR
+      1981-02-01: currency-FRF
+bouilleurs_cru_t_q_definis_art_317:
+  description: Bouilleurs de cru (1)
+  values:
+    2021-01-01:
+      value: 901.33
+    2020-01-01:
+      value: 893.80
+    2019-01-01:
+      value: 879.24
+    2018-01-01:
+      value: 870.53
+    2016-01-01:
+      value: 868.79
+    2015-06-06:
+      value: null
+    2014-01-01:
+      value: 859.31
+    2013-01-01:
+      value: 844.53
+    2011-12-23:
+      value: 830.0
+    2010-11-21:
+      value: 757.24
+    2010-05-01:
+      value: 756.48
+    2009-04-10:
+      value: 735.88
+    2002-03-31:
+      value: 725.0
+    1981-02-01:
+      value: null
+  metadata:
+    ipp_csv_id: taxe_bouilleurs_cru
+    unit: currency-EUR
+quantites_ajoutees_preparation_vins_mousseux_vins_doux_naturels_mentionnes_article_417:
+  description: Quantités ajoutées pour la préparation de vins (2)
+  values:
+    1993-02-01:
+      value: null
+    1987-02-01:
+      value: 2595.0
+    1982-01-01:
+      value: 2545.0
+    1981-02-01:
+      value: 2395.0
+  metadata:
+    ipp_csv_id: taxe_ajout_vins
+    unit: currency-FRF
+aperitifs_base_vin_cidre_poire_vermouth_vins_liqueurs_assimiles:
+  description: Apéritifs (3)
+  values:
+    1993-02-01:
+      value: null
+    1987-02-01:
+      value: 6930.0
+    1982-01-01:
+      value: 6795.0
+    1981-02-01:
+      value: 6400.0
+  metadata:
+    ipp_csv_id: taxe_aperitifs_base_divers_alcools
+    unit: currency-FRF
+metadata:
+  order:
+  - rhum_dom
+  - autres_alcools
+  - bouilleurs_cru_t_q_definis_art_317
+  - quantites_ajoutees_preparation_vins_mousseux_vins_doux_naturels_mentionnes_article_417
+  - aperitifs_base_vin_cidre_poire_vermouth_vins_liqueurs_assimiles
+  reference:
+    2021-01-01:
+      title: Arrêté du 28/12/2020
+      href:  https://www.legifrance.gouv.fr/eli/arrete/2020/12/28/CCPD2036946A/jo/texte
+    2020-01-01:
+      title: Arrêté du 19/12/2019
+      href:  https://www.legifrance.gouv.fr/eli/arrete/2019/12/19/CPAD1935243A/jo/texte
+    2019-01-01:
+      title: Circulaire du 10/12/2018
+      href: http://circulaire.legifrance.gouv.fr/pdf/2018/12/cir_44175.pdf
+    2018-01-01: Arrêté du 22/12/2017 (tarifs accises alcools 2018)
+    2016-01-01: Arrêté du 18/12/2015
+    2015-06-06:
+      title: Décret 2015-608 du 03/06/2015
+      href: https://www.legifrance.gouv.fr/eli/decret/2015/6/3/2015-608/jo/texte
+    2014-01-01: Arrêté du 29/12/2013
+    2013-01-01: Arrêté du 15/12/2012 (tarifs accises alcools 2013)
+    2012-05-01:
+      title: Loi 2012-354 du 14/03/2012 (LFR pour 2012)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025509584
+    2012-01-01: Arrêté du 22/12/2011 (tarifs accises alcools 2012)
+    2011-12-23:
+      title: Loi 2011-1906 du 21/12/2011 (LFSS pour 2012)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025005833
+    2010-11-21: Arrêté du 12/10/2010
+    2010-05-01:
+      title: Décret 2010-421 du 27/04/2010
+      href: https://www.legifrance.gouv.fr/eli/decret/2010/4/27/2010-421/jo/texte
+    2009-04-10:
+      title: Décret 2009-389 du 07/04/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/4/7/2009-389/jo/texte
+    1997-01-01:
+      title: Loi 96-1160 du 27/12/1996 (LFSS pour 1997)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000198309
+    1993-02-01:
+      title: Loi 92-1476 du 31/12/1992 (LFR pour 1992), art. 32
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006318703&cidTexte=JORFTEXT000000179313
+    1982-01-01:
+      title: Loi 81-1160 du 30/12/1981 (LF pour 1982)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000515870
+    1981-02-01:
+      title: Loi 80-1094 du 30/12/1980 (LF pour 1981)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000339460
+  date_parution_jo:
+    2018-01-01: 2017-12-27
+    2016-01-01: 2015-12-24
+    2015-06-06: 2015-06-05
+    2014-01-01: 2013-12-31
+    2013-01-01: 2012-12-23
+    2012-05-01: 2012-03-15
+    2012-01-01: 2011-12-30
+    2011-12-23: 2011-12-22
+    2010-11-21: 2010-11-20
+    2010-05-01: 2010-04-30
+    2009-04-10: 2009-04-09
+    1997-01-01: 1996-12-29
+    1993-02-01: 1993-01-04
+    1982-01-01: 1981-12-31
+    1981-02-01: 1980-12-31
+  description_en: Other alcohols (specific rhums, etc.)
+documentation: |
+  Notes :
+  Données renseignées dans l'article 403 du code général des impôts.
+  (1) : Tels que définis dans l'article 317 du CGI.
+  (2) : De vins mousseux et de vins doux naturels mentionnés à l'article 417 du CGI.
+  (3) : À base de vin, cidre, poiré, vermouth, vins de liqueurs et assimilés.

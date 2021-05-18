@@ -1,0 +1,379 @@
+description: Montant du minimum contributif
+minimum_contributif:
+  description: Minimum contributif
+  annuel:
+    description: Annuel
+    values:
+      2020-01-01: 
+        value: 7715.16
+      2019-10-01:
+        value: 7638.78
+      2017-10-01:
+        value: 7615.94
+      2015-10-01:
+        value: 7555.5
+      2013-04-01:
+        value: 7547.96
+      2012-04-01:
+        value: 7451.1
+      2011-04-01:
+        value: 7297.85
+      2010-04-01:
+        value: 7147.75
+      2009-04-01:
+        value: 7084.0
+      2008-09-01:
+        value: 7013.87
+      2008-01-01:
+        value: 6958.21
+      2007-01-01:
+        value: 6882.51
+      2006-01-01:
+        value: 6760.82
+      2005-01-01:
+        value: 6641.28
+      2004-01-01:
+        value: 6511.06
+      2003-01-01:
+        value: 6402.23
+      2002-01-01:
+        value: 6307.62
+      2001-01-01:
+        value: 40484.61
+      2000-01-01:
+        value: 39613.13
+      1999-01-01:
+        value: 39416.05
+      1998-01-01:
+        value: 38948.67
+      1997-01-01:
+        value: 38524.9
+      1996-01-01:
+        value: 38068.09
+      1995-07-01:
+        value: 37321.66
+      1995-01-01:
+        value: 37135.99
+      1994-01-01:
+        value: 36695.65
+      1993-01-01:
+        value: 35976.13
+      1992-07-01:
+        value: 35514.45
+      1992-01-01:
+        value: 34886.5
+      1991-07-01:
+        value: 34541.09
+      1991-01-01:
+        value: 34266.96
+      1990-07-01:
+        value: 33694.16
+      1990-01-01:
+        value: 33261.76
+      1989-07-01:
+        value: 32561.69
+      1989-01-01:
+        value: 32175.59
+      1988-07-01:
+        value: 31762.68
+      1988-01-01:
+        value: 31355.07
+      1987-07-01:
+        value: 30560.5
+      1987-01-01:
+        value: 30257.93
+      1986-10-01:
+        value: 29722.92
+      1986-01-01:
+        value: 29575.04
+      1985-07-01:
+        value: 29195.48
+      1985-01-01:
+        value: 28400.28
+      1984-07-01:
+        value: 27466.44
+      1984-01-01:
+        value: 26875.2
+    metadata:
+      ipp_csv_id: min_cont
+      unit:
+        2002-01-01: currency-EUR
+        1984-01-01: currency-FRF
+  mensuel:
+    description: Mensuel
+    values:
+      2020-01-01:
+        value: 642.93    
+      2019-10-01:
+        value: 636.56
+      2017-10-01:
+        value: 634.66
+      2015-10-01:
+        value: 629.62
+      2013-04-01:
+        value: 628.99
+      2012-04-01:
+        value: 620.9250000000001
+      2011-04-01:
+        value: 608.15
+      2010-04-01:
+        value: 595.64
+      2009-04-01:
+        value: 590.33
+      2008-09-01:
+        value: 584.48
+      2008-01-01:
+        value: 579.85
+      2007-01-01:
+        value: 573.54
+      2006-01-01:
+        value: 563.4
+      2005-01-01:
+        value: 553.44
+      2004-01-01:
+        value: 542.58
+      2003-01-01:
+        value: 533.51
+      2002-01-01:
+        value: 525.63
+      2001-01-01:
+        value: 3373.71
+      2000-01-01:
+        value: 3301.09
+      1999-01-01:
+        value: 3284.67
+      1998-01-01:
+        value: 3245.72
+      1997-01-01:
+        value: 3210.4
+      1996-01-01:
+        value: 3172.34
+      1995-07-01:
+        value: 3110.13
+      1995-01-01:
+        value: 3094.66
+      1994-01-01:
+        value: 3057.97
+      1993-01-01:
+        value: 2998.01
+      1992-07-01:
+        value: 2959.53
+      1992-01-01:
+        value: 2907.2
+      1991-07-01:
+        value: 2878.42
+      1991-01-01:
+        value: 2855.58
+      1990-07-01:
+        value: 2807.84
+      1990-01-01:
+        value: 2771.81
+      1989-07-01:
+        value: 2713.47
+      1989-01-01:
+        value: 2681.29
+      1988-07-01:
+        value: 2646.89
+      1988-01-01:
+        value: 2612.92
+      1987-07-01:
+        value: 2546.7
+      1987-01-01:
+        value: 2521.49
+      1986-10-01:
+        value: 2476.91
+      1986-01-01:
+        value: 2464.58
+      1985-07-01:
+        value: 2432.95
+      1985-01-01:
+        value: 2366.69
+      1984-07-01:
+        value: 2288.87
+      1984-01-01:
+        value: 2239.6
+    metadata:
+      ipp_csv_id: min_cont_mensuel
+      unit:
+        2002-01-01: currency-EUR
+        1984-01-01: currency-FRF
+  metadata:
+    order:
+    - annuel
+    - mensuel
+minimum_contributif_majore:
+  description: Minimum contributif majoré
+  annuel:
+    description: Annuel
+    values:
+      2020-01-01:
+        value: 8430.56    
+      2019-10-01:
+        value: 8347.09
+      2017-10-01:
+        value: 8322.13
+      2015-10-01:
+        value: 8256.09
+      2013-04-01:
+        value: 8247.85
+      2012-04-01:
+        value: 8142.01
+      2011-04-01:
+        value: 7974.55
+      2010-04-01:
+        value: 7810.53
+      2009-04-01:
+        value: 7740.87
+      2008-09-01:
+        value: 7664.23
+      2008-01-01:
+        value: 7603.41
+      2007-01-01:
+        value: 7301.64
+      2006-01-01:
+        value: 7172.54
+      2005-01-01:
+        value: 6840.51
+      2004-01-01:
+        value: 6706.39
+      1984-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: min_cont_maj
+      unit: currency-EUR
+  mensuel:
+    description: Mensuel
+    values:
+      2020-01-01:
+        value: 702.54  
+      2019-10-01:
+        value: 695.59
+      2017-10-01:
+        value: 693.51
+      2015-10-01:
+        value: 688.0
+      2013-04-01:
+        value: 687.32
+      2012-04-01:
+        value: 678.5
+      2011-04-01:
+        value: 664.54
+      2010-04-01:
+        value: 650.87
+      2009-04-01:
+        value: 645.07
+      2008-09-01:
+        value: 638.68
+      2008-01-01:
+        value: 633.61
+      2007-01-01:
+        value: 608.47
+      2006-01-01:
+        value: 597.71
+      2005-01-01:
+        value: 570.04
+      2004-01-01:
+        value: 558.86
+      1984-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: min_cont_maj_mensuel
+      unit: currency-EUR
+  metadata:
+    order:
+    - annuel
+    - mensuel
+metadata:
+  order:
+  - minimum_contributif
+  - minimum_contributif_majore
+  reference:
+    2020-01-01:
+      title: Circulaire CNAV 2020/5 du 09/01/2020
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2020_05_09012020.pdf
+    2019-10-01:
+      title: Circulaire CNAV 2019/4 du 09/01/2019
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2019_04_09012019.pdf
+    2017-10-01:
+      title: Circulaire CNAV 2017/32 du 26/09/2017
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_32_26092017.pdf
+    2015-10-01:
+      title: Circulaire CNAV 2016/13 du 16/02/2016
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_13_16022016.pdf
+    2013-04-01:
+      title: Circulaire CNAV 2013/29 du 18/04/2013
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2013_29_18042013
+    2012-04-01:
+      title: Circulaire CNAV 2012/35 du 17/04/2012
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2012_35_17042012
+    2011-04-01:
+      title: Circulaire CNAV 2011/30 du 14/04/2011
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2011030_14042011
+    2010-04-01:
+      title: Circulaire CNAV 2010/43 du 23/04/2010
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2010043_23042010
+    2009-04-01:
+      title: Circulaire CNAV 2009/31 du 16/04/2009
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2009031_16042009
+    2008-09-01:
+      title: Circulaire CNAV 2008/45 du 12/08/2008
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2008045_12082008
+    2008-01-01:
+      title: Décret 2007-1899 du 26/12/2007
+      href: https://www.legifrance.gouv.fr/eli/decret/2007/12/26/2007-1899/jo/texte
+    2007-01-01:
+      title: Circulaire CNAV 2006/75 du 20/12/2006
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2006075_20122006
+    2006-01-01:
+      title: Décret 2005-1770 du 30/12/2005
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000265456
+    2005-01-01:
+      title: Circulaire CNAV 2003/56 du 30/12/2003
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2003056_30122003
+    2004-01-01:
+      title: Circulaire CNAV 2003/56 du 30/12/2003
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2003056_30122003
+    2003-01-01: Arrêté du 31/12/2002
+    2002-01-01: Arrêté du 25/01/2002
+    2001-01-01:
+      title: Circulaire CNAV 2000/78 du 22/12/2000
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_200078_22122000
+    2000-01-01: Circulaire CNAV 78/99 du 20/12/1999
+    1999-01-01: Circulaire CNAV 78/98 du 30/12/1998
+    1998-01-01: Circulaire CNAV 83/97 du 30/12/1997
+    1997-01-01: Circulaire CNAV 90/96 du 30/12/1996
+    1996-01-01: Circulaire CNAV 6/96 du 16/01/1998
+    1995-07-01: Circulaire CNAV 57/95 du 20/07/1995
+    1995-01-01: Circulaire CNAV 20/95 du 08/02/1995
+    1994-01-01: Circulaire CNAV 22/94 du 31/01/1994
+    1993-01-01: Circulaire CNAV 17/93 du 05/02/1993
+    1992-07-01: Circulaire CNAV 56/92 du 01/06/1992
+    1992-01-01: Circulaire CNAV 8/92 du 06/01/1992
+    1991-07-01: Circulaire CNAV 62/91 du 10/07/1991
+    1991-01-01: Circulaire CNAV 2/91 du 04/01/1991
+    1990-07-01: Circulaire CNAV 62/90 du 13/06/1990
+    1990-01-01: Circulaire CNAV 125/89 du 29/12/1989
+    1989-07-01: Circulaire CNAV 36/89 du 17/03/1989
+    1989-01-01: Circulaire CNAV 138/88 du 15/12/1988
+    1988-07-01: Circulaire CNAV 67/88 du 01/06/1988
+    1988-01-01: Circulaire CNAV 121/87 du 23/12/1987
+    1987-07-01: Circulaire CNAV 51/87 du 05/05/1987
+    1987-01-01: Circulaire CNAV 89/86 du 18/12/1986
+    1986-10-01: Circulaire CNAV 68/86 du 23/09/1986
+    1986-01-01: Circulaire CNAV 1/86 du 02/01/1986
+    1985-07-01: Circulaire CNAV 61/85 du 10/06/1985
+    1985-01-01: Circulaire CNAV 130/84 du 27/12/1984
+    1984-07-01: Circulaire CNAV 62/84 du 06/06/1984
+    1984-01-01: Circulaire CNAV 4/84 du 05/01/1984
+  date_parution_jo:
+    2020-01-01: 2019-12-24
+    2008-01-01: 2007-12-03
+    2006-01-01: 2005-12-31
+    2003-01-01: 2003-01-01
+    2002-01-01: 2002-01-29
+  description_en: Amont of the"minimum contributif"
+documentation: |
+  Note :
+  Le premier montant pour 2004 est celui en vigueur pour les pensions liquidées à partir de 2004.
+  Sources :
+  CNAV, site web de législation - barèmes ; légifrance.

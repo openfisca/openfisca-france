@@ -1,0 +1,120 @@
+description: Souscription de parts de fonds communs de placement dans l'innovation (1997 -)
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2020-08-10:
+        value: 2021.0
+      2013-01-01:
+        value: 2014.0
+      2012-01-01:
+        value: 2013.0
+      2011-01-01:
+        value: 2012.0
+      2007-01-01:
+        value: 2008.0
+      2002-01-01:
+        value: 2003.0
+      2001-01-01:
+        value: 2002.0
+      1997-01-01:
+        value: 1998.0
+      1996-01-01:
+        value: 1997.0
+  metadata:
+    order:
+    - annee_ir
+reduction_impot_souscriptions_parts_fcpi_fip:
+  description: Réduction d'impôt pour souscriptions de parts de FCPI ou FIP
+  taux:
+    description: Taux
+    values:
+      2020-08-10:
+        value: 0.25
+      2012-01-01:
+        value: 0.18
+      2011-01-01:
+        value: 0.22
+      1997-01-01:
+        value: 0.25
+      1996-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: txfcp_1
+      unit: /1
+  taux_corse_fip:
+    description: Taux (Corse - FIP)
+    values:
+      2020-08-10:
+        value: 0.3
+      2012-01-01:
+        value: 0.38
+      2011-01-01:
+        value: 0.45
+      2007-01-01:
+        value: 0.5
+      1996-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: txfcp_2
+      unit: /1
+  plafond_celibataire:
+    description: Plafond célibataire
+    values:
+      2002-01-01:
+        value: 12000.0
+      2001-01-01:
+        value: 11434.0
+      1997-01-01:
+        value: 75000.0
+      1996-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaffcp_celib
+      unit:
+        2001-01-01: currency-EUR
+        1997-01-01: currency-FRF
+  plafond_couple_fcpi:
+    description: Plafond couple (FCPI)
+    values:
+      2002-01-01:
+        value: 24000.0
+      2001-01-01:
+        value: 22868.0
+      1997-01-01:
+        value: 150000.0
+      1996-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaffcp_couple
+      unit:
+        2001-01-01: currency-EUR
+        1997-01-01: currency-FRF
+  metadata:
+    order:
+    - taux
+    - taux_corse_fip
+    - plafond_celibataire
+    - plafond_couple_fcpi
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - reduction_impot_souscriptions_parts_fcpi_fip
+  reference:
+    2020-08-10:
+    - title: Décret 2020-1014 du 07/08/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042220908
+    - title: Loi 2020-1721 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753590
+    2012-01-01: BOI-IR-RICI-110
+  notes:
+    2020-08-10:
+    - Le taux de 25 % (30 %) s'applique aux versements effectués entre le 10 août et le 31 décembre 2020. Avant le 10 août c'est le taux de 18 % (38 %) qui s'applique. La loi de finances pour 2021 proroge le taux majoré de 25 % pour les versements effectués au titre d'une souscription aux parts de FCPI et FIP, jusqu'au 31 décembre 2021.
+    2013-01-01: Concerne les versements jusqu'au 31 décembre 2012 (et non 2013)
+  description_en: Innovation Mutual Funds Shares Subscription (1997 -)
+documentation: |
+  Notes :
+  (1) Souscriptions de parts de fonds communs de placement dans l'innovation (FCPI) ou de fonds d'investissements de proximité (FIP)
+  (2) Art. 199 terdecies-0-A CGI. Pour les FIP en Corse voir BOI-IR-RICI-120
+  (3) Plafond à doubler pour couples mariés ou pacsés pour fonds d'investissement de proximité (FIP)

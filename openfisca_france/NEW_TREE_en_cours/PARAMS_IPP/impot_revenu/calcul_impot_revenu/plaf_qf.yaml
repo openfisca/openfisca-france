@@ -1,0 +1,977 @@
+description: Plafonnement du quotient familial et décote (1951 - )
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2020-01-01:
+        value: 2021.0
+      2019-01-01:
+        value: 2020.0
+      2018-01-01:
+        value: 2019.0
+      2017-01-01:
+        value: 2018.0
+      2016-01-01:
+        value: 2017.0
+      2015-01-01:
+        value: 2016.0
+      2014-01-01:
+        value: 2015.0
+      2013-01-01:
+        value: 2014.0
+      2012-01-01:
+        value: 2013.0
+      2011-01-01:
+        value: 2012.0
+      2010-01-01:
+        value: 2011.0
+      2009-01-01:
+        value: 2010.0
+      2008-01-01:
+        value: 2009.0
+      2007-01-01:
+        value: 2008.0
+      2006-01-01:
+        value: 2007.0
+      2005-01-01:
+        value: 2006.0
+      2004-01-01:
+        value: 2005.0
+      2003-01-01:
+        value: 2004.0
+      2002-01-01:
+        value: 2003.0
+      2001-01-01:
+        value: 2002.0
+      2000-01-01:
+        value: 2001.0
+      1999-01-01:
+        value: 2000.0
+      1998-01-01:
+        value: 1999.0
+      1997-01-01:
+        value: 1998.0
+      1996-01-01:
+        value: 1997.0
+      1995-01-01:
+        value: 1996.0
+      1994-01-01:
+        value: 1995.0
+      1993-01-01:
+        value: 1994.0
+      1992-01-01:
+        value: 1993.0
+      1991-01-01:
+        value: 1992.0
+      1990-01-01:
+        value: 1991.0
+      1989-01-01:
+        value: 1990.0
+      1988-01-01:
+        value: 1989.0
+      1987-01-01:
+        value: 1988.0
+      1986-01-01:
+        value: 1987.0
+      1985-01-01:
+        value: 1986.0
+      1984-01-01:
+        value: 1985.0
+      1983-01-01:
+        value: 1984.0
+      1982-01-01:
+        value: 1983.0
+      1981-01-01:
+        value: 1982.0
+      1980-01-01:
+        value: 1981.0
+      1979-01-01:
+        value: 1980.0
+      1978-01-01:
+        value: 1979.0
+      1977-01-01:
+        value: 1978.0
+      1976-01-01:
+        value: 1977.0
+      1975-01-01:
+        value: 1976.0
+      1974-01-01:
+        value: 1975.0
+      1973-01-01:
+        value: 1974.0
+      1969-01-01:
+        value: 1970.0
+      1967-01-01:
+        value: 1968.0
+      1966-01-01:
+        value: 1967.0
+      1965-01-01:
+        value: 1966.0
+      1964-01-01:
+        value: 1965.0
+      1962-01-01:
+        value: 1963.0
+      1961-01-01:
+        value: 1962.0
+      1959-01-01:
+        value: 1960.0
+      1958-01-01:
+        value: 1959.0
+      1957-01-01:
+        value: 1958.0
+      1953-01-01:
+        value: 1954.0
+      1951-01-01:
+        value: 1952.0
+      1950-01-01:
+        value: 1951.0
+  metadata:
+    order:
+    - annee_ir
+plafond_avantages_procures_par_demi_part_qf:
+  description: Plafond des avantages procurés par demi-part de QF
+  enfant_majeur_celibataire:
+    description: Enfant majeur célibataire
+    values:
+      1981-01-01:
+        value: null
+      1980-01-01:
+        value: 10800.0
+      1979-01-01:
+        value: 9500.0
+      1978-01-01:
+        value: 8600.0
+      1977-01-01:
+        value: 7900.0
+      1976-01-01:
+        value: 7300.0
+      1975-01-01:
+        value: 6700.0
+      1974-01-01:
+        value: 6000.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_qf_foy_maj
+      unit: currency-FRF
+  general:
+    description: Général
+    values:
+      2020-01-01:
+        value: 1570.0
+      2019-01-01:
+        value: 1567.0
+      2018-01-01:
+        value: 1551.0
+      2017-01-01:
+        value: 1527.0
+      2016-01-01:
+        value: 1512.0
+      2015-01-01:
+        value: 1510.0
+      2014-01-01:
+        value: 1508.0
+      2013-01-01:
+        value: 1500.0
+      2012-01-01:
+        value: 2000.0
+      2010-01-01:
+        value: 2336.0
+      2009-01-01:
+        value: 2301.0
+      2008-01-01:
+        value: 2292.0
+      2007-01-01:
+        value: 2227.0
+      2006-01-01:
+        value: 2198.0
+      2005-01-01:
+        value: 2159.0
+      2004-01-01:
+        value: 2121.0
+      2003-01-01:
+        value: 2086.0
+      2002-01-01:
+        value: 2051.0
+      2001-01-01:
+        value: 2017.0
+      2000-01-01:
+        value: 12440.0
+      1999-01-01:
+        value: 11060.0
+      1998-01-01:
+        value: 11000.0
+      1997-01-01:
+        value: 16380.0
+      1996-01-01:
+        value: 16200.0
+      1995-01-01:
+        value: 15900.0
+      1994-01-01:
+        value: 15620.0
+      1993-01-01:
+        value: 15400.0
+      1992-01-01:
+        value: 12910.0
+      1991-01-01:
+        value: 12550.0
+      1990-01-01:
+        value: 12180.0
+      1989-01-01:
+        value: 11800.0
+      1988-01-01:
+        value: 11420.0
+      1987-01-01:
+        value: 11130.0
+      1986-01-01:
+        value: 10770.0
+      1985-01-01:
+        value: 10520.0
+      1984-01-01:
+        value: 9960.0
+      1983-01-01:
+        value: 9250.0
+      1982-01-01:
+        value: 8450.0
+      1981-01-01:
+        value: 7500.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_qf
+      unit:
+        2001-01-01: currency-EUR
+        1981-01-01: currency-FRF
+  celib_enf:
+    description: Part pour le 1er enfant des parents isolés
+    values:
+      2020-01-01:
+        value: 3704.0
+      2019-01-01:
+        value: 3697.0
+      2018-01-01:
+        value: 3660.0
+      2017-01-01:
+        value: 3602.0
+      2016-01-01:
+        value: 3566.0
+      2015-01-01:
+        value: 3562.0
+      2014-01-01:
+        value: 3558.0
+      2013-01-01:
+        value: 3540.0
+      2010-01-01:
+        value: 4040.0
+      2009-01-01:
+        value: 3980.0
+      2008-01-01:
+        value: 3964.0
+      2007-01-01:
+        value: 3852.0
+      2006-01-01:
+        value: 3803.0
+      2005-01-01:
+        value: 3736.0
+      2004-01-01:
+        value: 3670.0
+      2003-01-01:
+        value: 3609.0
+      2002-01-01:
+        value: 3549.0
+      2001-01-01:
+        value: 3490.0
+      2000-01-01:
+        value: 21930.0
+      1999-01-01:
+        value: 20370.0
+      1997-01-01:
+        value: 20270.0
+      1996-01-01:
+        value: 20050.0
+      1995-01-01:
+        value: 19680.0
+      1994-01-01:
+        value: 19330.0
+      1993-01-01:
+        value: 19060.0
+      1992-01-01:
+        value: 16500.0
+      1991-01-01:
+        value: 16050.0
+      1990-01-01:
+        value: 15580.0
+      1989-01-01:
+        value: 15090.0
+      1988-01-01:
+        value: 14600.0
+      1987-01-01:
+        value: 14230.0
+      1986-01-01:
+        value: 13770.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_qf_parentisole
+      unit:
+        2001-01-01: currency-EUR
+        1986-01-01: currency-FRF
+  celib:
+    description: Personnes seules ayant eus des enfants
+    values:
+      2020-01-01:
+        value: 938.0
+      2019-01-01:
+        value: 936.0
+      2018-01-01:
+        value: 927.0
+      2017-01-01:
+        value: 912.0
+      2016-01-01:
+        value: 903.0
+      2015-01-01:
+        value: 902.0
+      2014-01-01:
+        value: 901.0
+      2010-01-01:
+        value: 897.0
+      2009-01-01:
+        value: 884.0
+      2008-01-01:
+        value: 880.0
+      2007-01-01:
+        value: 855.0
+      2006-01-01:
+        value: 844.0
+      2005-01-01:
+        value: 829.0
+      2004-01-01:
+        value: 814.0
+      2003-01-01:
+        value: 800.0
+      2002-01-01:
+        value: 980.0
+      2001-01-01:
+        value: 964.0
+      2000-01-01:
+        value: 6220.0
+      1999-01-01:
+        value: 6130.0
+      1997-01-01:
+        value: 6100.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_qf_persseule
+      unit:
+        2001-01-01: currency-EUR
+        1997-01-01: currency-FRF
+  reduc_postplafond:
+    description: Réduction supplémentaire pour invalides, anciens combattants etc.
+    values:
+      2020-01-01:
+        value: 1565.0
+      2019-01-01:
+        value: 1562.0
+      2018-01-01:
+        value: 1547.0
+      2017-01-01:
+        value: 1523.0
+      2016-01-01:
+        value: 1508.0
+      2015-01-01:
+        value: 1506.0
+      2014-01-01:
+        value: 1504.0
+      2013-01-01:
+        value: 1497.0
+      2012-01-01:
+        value: 997.0
+      2009-01-01:
+        value: 661.0
+      2008-01-01:
+        value: 648.0
+      2007-01-01:
+        value: 630.0
+      2006-01-01:
+        value: 622.0
+      2005-01-01:
+        value: 611.0
+      2004-01-01:
+        value: 600.0
+      2003-01-01:
+        value: 590.0
+      2002-01-01:
+        value: 580.0
+      2001-01-01:
+        value: 570.0
+      1998-01-01:
+        value: 4336.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_qf_inv
+      unit:
+        2001-01-01: currency-EUR
+        1998-01-01: currency-FRF
+  reduc_postplafond_veuf:
+    description: Réduction supplémentaire pour veuf avec enfants à charge
+    values:
+      2020-01-01:
+        value: 1748.0
+      2019-01-01:
+        value: 1745.0
+      2018-01-01:
+        value: 1728.0
+      2017-01-01:
+        value: 1701.0
+      2016-01-01:
+        value: 1684.0
+      2015-01-01:
+        value: 1682.0
+      2014-01-01:
+        value: 1680.0
+      2013-01-01:
+        value: 1672.0
+      2012-01-01:
+        value: 672.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_qf_veuf
+      unit:
+        2001-01-01: currency-EUR
+        1998-01-01: currency-FRF
+  metadata:
+    order:
+    - enfant_majeur_celibataire
+    - general
+    - celib_enf
+    - celib
+    - reduc_postplafond
+    - reduc_postplafond_veuf
+decote:
+  description: Décote
+  seuil1:
+    description: Seuil - Célibataire
+    values:
+      2020-01-01:
+        value: 779.0
+      2019-01-01:
+        value: 777.0
+      2018-01-01:
+        value: 1196.0
+      2017-01-01:
+        value: 1177.0
+      2015-01-01:
+        value: 1165.0
+      2014-01-01:
+        value: 1135.0
+      2013-01-01:
+        value: 508.0
+      2012-01-01:
+        value: 480.0
+      2010-01-01:
+        value: 439.0
+      2009-01-01:
+        value: 433.0
+      2008-01-01:
+        value: 431.0
+      2007-01-01:
+        value: 419.0
+      2006-01-01:
+        value: 414.0
+      2005-01-01:
+        value: 407.0
+      2004-01-01:
+        value: 400.0
+      2003-01-01:
+        value: 393.0
+      2002-01-01:
+        value: 386.0
+      2001-01-01:
+        value: 380.0
+      2000-01-01:
+        value: 2450.0
+      1999-01-01:
+        value: 3350.0
+      1998-01-01:
+        value: 3330.0
+      1997-01-01:
+        value: 3300.0
+      1996-01-01:
+        value: 3260.0
+      1995-01-01:
+        value: 4320.0
+      1994-01-01:
+        value: 4240.0
+      1993-01-01:
+        value: 4180.0
+      1992-01-01:
+        value: 5110.0
+      1991-01-01:
+        value: 4970.0
+      1990-01-01:
+        value: 4820.0
+      1989-01-01:
+        value: 4670.0
+      1987-01-01:
+        value: 4520.0
+      1986-01-01:
+        value: 4400.0
+      1973-01-01:
+        value: null
+      1969-01-01:
+        value: 100.0
+      1962-01-01:
+        value: 80.0
+      1961-01-01:
+        value: 70.0
+      1959-01-01:
+        value: 7000.0
+      1958-01-01:
+        value: 8000.0
+      1957-01-01:
+        value: 5000.0
+      1953-01-01:
+        value: null
+      1951-01-01:
+        value: 4000.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: param_decote
+      unit:
+        2001-01-01: currency-EUR
+        1951-01-01: currency-FRF
+  seuil2:
+    description: Seuil - Couple
+    values:
+      2020-01-01:
+        value: 1289.0
+      2019-01-01:
+        value: 1286.0
+      2018-01-01:
+        value: 1970.0
+      2017-01-01:
+        value: 1939.0
+      2015-01-01:
+        value: 1920.0
+      2014-01-01:
+        value: 1870.0
+      1973-01-01:
+        value: null
+      1969-01-01:
+        value: 300.0
+      1962-01-01:
+        value: 240.0
+      1961-01-01:
+        value: 210.0
+      1959-01-01:
+        value: 14000.0
+      1958-01-01:
+        value: 12000.0
+      1957-01-01:
+        value: 10000.0
+      1953-01-01:
+        value: null
+      1951-01-01:
+        value: 8000.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: param_decote_b
+      unit:
+        2014-01-01: currency-EUR
+        1951-01-01: currency-FRF
+  seuil_1_1_part:
+    description: Seuil (QF = 1)
+    values:
+      1986-01-01:
+        value: null
+      1985-01-01:
+        value: 4300.0
+      1984-01-01:
+        value: 4000.0
+      1983-01-01:
+        value: 3700.0
+      1982-01-01:
+        value: 3200.0
+      1981-01-01:
+        value: 2600.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: decote_np1
+      unit: currency-FRF
+  seuil_1_15_part:
+    description: Seuil (QF = 1,5)
+    values:
+      1986-01-01:
+        value: null
+      1985-01-01:
+        value: 1700.0
+      1984-01-01:
+        value: 1600.0
+      1983-01-01:
+        value: 1400.0
+      1982-01-01:
+        value: 1100.0
+      1981-01-01:
+        value: 800.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: decote_np1_5
+      unit: currency-FRF
+  seuil_1_faible_nombre_part:
+    description: Seuil 1 pour faible nombre de part
+    values:
+      1973-01-01:
+        value: null
+      1969-01-01:
+        value: 230.0
+      1967-01-01:
+        value: null
+      1966-01-01:
+        value: 190.0
+      1965-01-01:
+        value: 160.0
+      1964-01-01:
+        value: 120.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: decote_x_qf
+      unit: currency-FRF
+  seuil_2_faible_nombre_part:
+    description: Seuil 2 pour faible nombre de part
+    values:
+      1973-01-01:
+        value: null
+      1969-01-01:
+        value: 690.0
+      1967-01-01:
+        value: null
+      1966-01-01:
+        value: 570.0
+      1965-01-01:
+        value: 480.0
+      1964-01-01:
+        value: 240.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: decote_y_qf
+      unit: currency-FRF
+  nombre_part_limite:
+    description: Nombre de part limite
+    values:
+      1973-01-01:
+        value: null
+      1969-01-01:
+        value: 2.0
+      1967-01-01:
+        value: null
+      1964-01-01:
+        value: 1.5
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbp_dec
+  metadata:
+    order:
+    - seuil1
+    - seuil2
+    - seuil_1_1_part
+    - seuil_1_15_part
+    - seuil_1_faible_nombre_part
+    - seuil_2_faible_nombre_part
+    - nombre_part_limite
+reduction_impot_sous_condition_revenus:
+  description: Réduction d'impôt sous condition de revenus
+  taux:
+    description: Taux
+    values:
+      2019-01-01:
+        value: null
+      2016-01-01:
+        value: 0.2
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: reduc_bas_revenus_tx
+      unit: /1
+  plafond_rfr_1:
+    description: Plafond RFR 1
+    values:
+      2019-01-01:
+        value: null
+      2018-01-01:
+        value: 18985.0
+      2017-01-01:
+        value: 18685.0
+      2016-01-01:
+        value: 18500.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: reduc_bas_revenus_plaf1
+      unit: currency-EUR
+  plafond_rfr_2:
+    description: Plafond RFR 2
+    values:
+      2019-01-01:
+        value: null
+      2018-01-01:
+        value: 21037.0
+      2017-01-01:
+        value: 20705.0
+      2016-01-01:
+        value: 20500.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: reduc_bas_revenus_plaf2
+      unit: currency-EUR
+  majoration_plafond_par_demi_parts_supplementaires:
+    description: Majoration du plafond par demi-parts supplémentaires
+    values:
+      2019-01-01:
+        value: null
+      2018-01-01:
+        value: 3797.0
+      2017-01-01:
+        value: 3737.0
+      2016-01-01:
+        value: 3700.0
+      1950-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: reduc_bas_revenus_plaf_enf
+      unit: currency-EUR
+  metadata:
+    order:
+    - taux
+    - plafond_rfr_1
+    - plafond_rfr_2
+    - majoration_plafond_par_demi_parts_supplementaires
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - plafond_avantages_procures_par_demi_part_qf
+  - decote
+  - reduction_impot_sous_condition_revenus
+  reference:
+    2020-01-01:
+    - title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593  
+    2019-01-01:
+    - title: Loi 2019-1479 du 28/12/2019 (LF pour 2020)
+      href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte 
+    2018-01-01:
+    - title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037935215&cidTexte=JORFTEXT000037882341
+    - title: Décret 2019-559, art. 1 du 06/06/2019
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000038559363&categorieLien=id
+    2017-01-01:
+    - title: Loi 2017-1837, art. 2 du 31/12/2017 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377702&cidTexte=JORFTEXT000036339197
+    - BOI-IR-LIQ-20-20-30 du 26/01/2018
+    2016-01-01:
+    - title: Loi 2016-1917, art. 2 du 29/12/2016 (LF pour 2017)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000033760564&cidTexte=JORFTEXT000033734169
+    - BOI-IR-LIQ-20-20-30 du 06/04/2017
+    2015-01-01:
+      title: Loi 2015-1785 du 29/12/2015 (LF pour 2016)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000031732865
+    2014-01-01:
+      title: Loi 2014-1654 du 29/12/2014 (LF pour 2015)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029988857
+    2013-01-01:
+    - title: Loi 2013-1278 du 29/12/2013 (LF pour 2014)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028399511
+    - BOI-IR-LIQ-20 du 13/06/2013
+    2012-01-01:
+      title: Loi 2012-1509 du 29/12/2012 (LF pour 2013)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026856853
+    2011-01-01:
+      title: Loi 2011-1977 du 28/12/2011 (LF pour 2012)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025044460
+    2010-01-01:
+    - title: Loi 2010-1657 du 29/12/2010 (LF pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000023314376
+    - BOI 5 B-7-11 ; n°26 du 28/03/2011
+    2009-01-01:
+    - title: Loi 2009-1673 du 30/12/2009 (LF pour 2010)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021557902
+    - BOI 5 B-13-10;n°22 du 16/02/2010
+    2008-01-01:
+    - title: Loi 2008-1425 du 27/12/2008 (LF pour 2009)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019995721
+    - BOI 5 B-9-09 n°35 du 31/03/2009
+    2007-01-01:
+    - title: Loi 2007-1822 du 24/12/2007 (LF pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000017853368
+    - BOI 5 B-11-08 n°28 du 04/03/2008
+    2006-01-01:
+    - title: Loi 2006-1666 du 21/12/2006 (LF pour 2007)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615000
+    - BOI 5 B-10-07 n°47 du 29/03/2007
+    2005-01-01:
+    - title: Loi 2005-1719 du 30/12/2005 (LF pour 2006)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000634802
+    - BOI 5 B-6-06 n°8 du 18/01/2006
+    2004-01-01:
+    - title: Loi 2004-1484 du 30/12/2004 (LF pour 2005)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000789373
+    - BOI 5 B-9-05 n°33 du 18/02/2005
+    2003-01-01:
+    - title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000612133
+    - BOI 5 B-8-04 n°37 du 25/02/2004
+    2002-01-01:
+    - title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
+    - BOI 5 B-6-03 n°16 du 27/01/2003
+    2001-01-01:
+    - title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+    - BOI 5 B-3-02 n°18 du 25/01/2002
+    2000-01-01:
+    - title: Loi 2000-1352 du 30/12/2000 (LF pour 2001)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000220595
+    - BOI 5 B-9-01 n°44 du 02/03/2001
+    1999-01-01:
+    - title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
+    - BOI 5 B-5-00; n°11 du 17/01/2000
+    1998-01-01:
+    - title: Loi 98-1266 du 30/12/1998 (LF pour 1999)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209044
+    - BOI 5 B-9-01 n°44 du 02/03/2001
+    1997-01-01:
+      title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
+    1996-01-01:
+      title: Loi 96-1181 du 30/12/1996 (LF pour 1997)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000380034
+    1995-01-01:
+      title: Loi 95-1346 du 30/12/1995 (LF pour 1996)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000191068
+    1994-01-01:
+      title: Loi 94-1162 du 29/12/1994 (LF pour 1995)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000367398
+    1993-01-01:
+      title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509319
+    1992-01-01:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    1991-01-01:
+      title: Loi 91-1322 du 30/12/1991 (LF pour 1992)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000356342
+    1990-01-01:
+      title: Loi 90-1168 du 29/12/1990 (LF pour 1991)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000717191
+    1989-01-01:
+      title: Loi 89-935 du 29/12/1989 (LF pour 1990)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000018687845
+    1988-01-01:
+      title: Loi 88-1149 du 23/12/1988 (LF pour 1989)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000508832
+    1987-01-01:
+      title: Loi 87-1060 du 30/12/1987 (LF pour 1988)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000317543
+    1986-01-01:
+      title: Loi 86-1317 du 30/12/1986 (LF pour 1987)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000317305
+    1985-01-01:
+      title: Loi 85-1403 du 30/12/1985 (LF pour 1986)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000878230
+    1984-01-01:
+      title: Loi 84-1208 du 29/12/1984 (LF pour 1985)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880778
+    1983-01-01:
+      title: Loi 83-1179 du 29/12/1983 (LF pour 1984)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000319977
+    1982-01-01:
+      title: Loi 82-1126 du 29/12/1982 (LF pour 1983)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000503959
+    1981-01-01:
+      title: Loi 81-1160 du 30/12/1981 (LF pour 1982)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000515870
+    1980-01-01:
+      title: Loi 80-1094 du 30/12/1980 (LF pour 1981)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000339460
+  date_parution_jo:
+    2020-01-01: 2020-12-30
+    2019-01-01: 2019-12-29
+    2018-01-01: 2018-12-30
+    2017-01-01: 2017-12-31
+    2016-01-01: 2016-12-30
+    2015-01-01: 2015-12-30
+    2014-01-01: 2014-12-30
+    2013-01-01: 2013-12-30
+    2012-01-01: 2012-12-29
+    2011-01-01: 2011-12-28
+    2010-01-01: 2010-12-30
+    2009-01-01: 2009-12-31
+    2008-01-01: 2008-12-28
+    2007-01-01: 2007-12-27
+    2006-01-01: 2006-12-27
+    2005-01-01: 2005-12-31
+    2004-01-01: 2004-12-31
+    2003-01-01: 2003-12-31
+    2002-01-01: 2002-12-31
+    2001-01-01: 2001-12-29
+    2000-01-01: 2000-12-31
+    1999-01-01: 1999-12-31
+    1998-01-01: 1998-12-31
+    1997-01-01: 1997-12-31
+    1996-01-01: 1996-12-31
+    1995-01-01: 1995-12-31
+    1994-01-01: 1994-12-31
+    1993-01-01: 1993-12-31
+    1992-01-01: 1992-12-31
+    1991-01-01: 1991-12-31
+    1990-01-01: 1990-12-30
+    1989-01-01: 1989-12-30
+    1988-01-01: 1988-12-28
+    1987-01-01: 1987-12-31
+    1986-01-01: 1986-12-31
+    1985-01-01: 1985-12-31
+    1984-01-01: 1984-12-30
+    1983-01-01: 1983-12-30
+    1982-01-01: 1982-12-30
+    1981-01-01: 1981-12-31
+    1980-01-01: 1980-12-31
+  notes:
+    2019-01-01: La réduction d'impôt sous condition de revenus est supprimée. La décote est étendue à l'ensemble des contribuables de la première tranche.
+    2016-01-01: Introduction d'une réduction d'impôt sous conditon de revenus qui s'impute après la décote mais avant les réductions d'impôt classiques (art. 197-I-4 (b) du CGI)
+    2014-01-01: La formule de calcul de la décote change
+    2013-01-01: Voir notes (1) et (2) pour la fin du régime transitoire pour certains contribuables
+    2012-01-01: Création de la réduction d'impôt complémentaire pour veuf avec un ou plusieurs enfants à charge. Cette réduction ne s'applique qu'aux veufs concernés par le plafonnement du quotient familial.
+    2000-01-01: Changement de calcul de la décote
+    1998-01-01: Création de la catégorie "invalidité" (art. 3 de la loi de finances pour 1999)
+    1997-01-01: Création de la catégorie "personne seule" (art. 2 de la loi de finances pour 1998)
+    1986-01-01: La décote s'applique uniquement aux contribuables ayant 1 ou 1,5 part avant 1986, c'est généralisé à tous après 1986. Demi-part généralisée à tous les enfants après le 3ème (loi 30/12/1986).
+    1980-01-01: Avant 1981, le plafond se calcule en multipliant le nombre d'enfant par le montant de la colonne C
+    1979-01-01: Demi-part supplémentaire pour 5ème enfant à charge sur revenus 1979 (loi 18/01/1980) et pour 3ème enfant à charge sur revenus 1980 (loi 30/12/1980).
+    1978-01-01: Si la personne rattachée est elle-même chef de famille, l'avantage fiscal prend la forme d'un abattement. Les plafonds sont revalorisés chaque année dans la même proportion que la limite de la première tranche du barème prévu à l'article 197 du CGI. La loi de 1974 abaissant l'âge de la majorité de 21 à 18 ans a entraîné une modification importante de la prise en compte des enfants à charge.
+  description_en: Family quotient ceiling and "decote" (1978 - )
+documentation: |
+  Notes :
+  > Création du quotient familial en 1945 (Loi 45-0195 du 31/02/1945).
+  (1) Les montants des plafonnements de quotient familial et de la décote se trouvent à l'article 197-2 du CGI.
+  (2) Dispositif transitoire entre 2008 et 2010 : pour les personnes vivant seules qui n'ont pas élevé seules leurs enfants pendant 5 ans et qui ont bénéficié de la demi-part
+  > Voir B.O.I. N° 27 DU 25/02/2010 [BOI 5B-15-10]
+  Entre 1915 et 1947, des réductions d'impôt pour charges de famille ont été appliquées pour le calcul de l'imposition des revenus.
+  > Voir Annexes C-2 et C-7 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001)
+  Entre 1951 et 1981, la décote est décrite à l'aide de deux paramètres quand elle existe : un montant d'impôt seuil en dessous duquel les contribuables sont exonérés (décote qui sera conservée) et une réduction d'impôt jusqu'à un certain montant d'impôt (égale à la différence entre ce montant seuil et l'impôt par part).
+  Lors de l'imposition des revenus des années 1964-1966 et 1969-1972, les pramètres x-y sont plus élevés pour les contribuables ayant un faible nombre de parts.
+  Lorsqu'il n'y a qu'un seul paramètre, les contribuables dont l'impôt est inférieur à x bénéficient d'une réduction d'impôt égale à la différence entre x et leur impôt (les contribuables dont l'impôt est inférieur à x/2 sont donc exonérés).
+  Lors de l'imposition des revenus des années 1981-1985, la décote s'applique uniquement aux contribuables ayant 1 part ou 1,5 parts, avant d'être généralisée à tous les contribuables à compter de l'imposition des revenus de 1986.
+  > Voir Annexe C-4 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset 2001)
+  Pour la définition de la notion d'"enfant majeur", voir art. 6-II bis du CGI (en vigueur au 01/01/1982).

@@ -1,0 +1,209 @@
+description: Valeur du point ARRCO, PRO-BTP (1960-1998)
+valeur_point_cnro_en_nominal:
+  description: Valeur du point CNRO (en nominal)
+  values:
+    1998-04-01:
+      value: 2.6976
+    1997-04-01:
+      value: 2.6652
+    1996-01-01:
+      value: 2.6448
+    1995-04-01:
+      value: 2.6052
+    1994-04-01:
+      value: 2.592
+    1993-01-01:
+      value: 2.5656
+    1992-01-01:
+      value: 2.4432
+    1991-01-01:
+      value: 2.316
+    1990-01-01:
+      value: 2.1948
+    1989-01-01:
+      value: 2.1108
+    1988-01-01:
+      value: 2.0388
+    1987-01-01:
+      value: 1.9884
+    1986-01-01:
+      value: 1.926
+    1985-07-01:
+      value: 1.8804
+    1985-01-01:
+      value: 1.8432
+    1984-07-01:
+      value: 1.7892
+    1984-01-01:
+      value: 1.746
+    1983-07-01:
+      value: 1.6788
+    1983-01-01:
+      value: 1.626
+    1982-07-01:
+      value: 1.556
+    1982-01-01:
+      value: 1.5096
+    1981-07-01:
+      value: 1.3844
+    1981-01-01:
+      value: 1.236
+    1979-07-01:
+      value: 1.1276
+    1978-04-01:
+      value: 1.0192
+    1977-01-01:
+      value: 0.9348
+    1976-10-01:
+      value: 0.8736
+    1976-01-01:
+      value: 0.8
+    1975-07-01:
+      value: 0.758
+    1975-01-01:
+      value: 0.6628
+    1974-07-01:
+      value: 0.5912
+    1973-10-01:
+      value: 0.5524
+    1972-10-01:
+      value: 0.5092
+    1971-10-01:
+      value: 0.4636
+    1970-10-01:
+      value: 0.418
+    1969-10-01:
+      value: 0.3664
+    1968-10-01:
+      value: 0.332
+    1967-07-01:
+      value: 0.3104
+    1966-07-01:
+      value: 0.2916
+    1965-07-01:
+      value: 0.2768
+    1964-07-01:
+      value: 0.2608
+    1963-10-01:
+      value: 0.2388
+    1962-10-01:
+      value: 0.2184
+    1961-10-01:
+      value: 0.2056
+    1960-10-01:
+      value: 0.1932
+    1960-01-01:
+      value: 0.1824
+  metadata:
+    ipp_csv_id: val_point_arcco_nom
+    unit: currency-FRF
+valeur_point_cnro_en_euros:
+  description: Valeur du point CNRO (en euros)
+  values:
+    1998-04-01:
+      value: 0.41124646889963823
+    1997-04-01:
+      value: 0.40630712074114617
+    1996-01-01:
+      value: 0.40319716078950296
+    1995-04-01:
+      value: 0.39716017970690154
+    1994-04-01:
+      value: 0.3951478526793677
+    1993-01-01:
+      value: 0.39112319862430006
+    1992-01-01:
+      value: 0.37246343891444106
+    1991-01-01:
+      value: 0.35307192392184245
+    1990-01-01:
+      value: 0.33459510303266826
+    1989-01-01:
+      value: 0.3217893855847258
+    1988-01-01:
+      value: 0.3108130563436323
+    1987-01-01:
+      value: 0.3031296258748668
+    1986-01-01:
+      value: 0.29361680719925237
+    1985-07-01:
+      value: 0.28666513201322646
+    1985-01-01:
+      value: 0.2809940285719948
+    1984-07-01:
+      value: 0.27276178164117465
+    1984-01-01:
+      value: 0.26617598409651855
+    1983-07-01:
+      value: 0.25593141013816456
+    1983-01-01:
+      value: 0.24788210202802927
+    1982-07-01:
+      value: 0.23721067082141056
+    1982-01-01:
+      value: 0.23013703642159472
+    1981-07-01:
+      value: 0.21105041946347095
+    1981-01-01:
+      value: 0.18842698530543922
+    1979-07-01:
+      value: 0.17190151183690394
+    1978-04-01:
+      value: 0.15537603836836866
+    1977-01-01:
+      value: 0.1425093413135312
+    1976-10-01:
+      value: 0.1331794614586017
+    1976-01-01:
+      value: 0.12195921378992831
+    1975-07-01:
+      value: 0.11555635506595707
+    1975-01-01:
+      value: 0.1010432086249556
+    1974-07-01:
+      value: 0.09012785899075701
+    1973-10-01:
+      value: 0.0842128371219455
+    1972-10-01:
+      value: 0.07762703957728936
+    1971-10-01:
+      value: 0.07067536439126346
+    1970-10-01:
+      value: 0.06372368920523754
+    1969-10-01:
+      value: 0.055857319915787164
+    1968-10-01:
+      value: 0.05061307372282025
+    1967-07-01:
+      value: 0.047320174950492185
+    1966-07-01:
+      value: 0.04445413342642887
+    1965-07-01:
+      value: 0.04219788797131519
+    1964-07-01:
+      value: 0.03975870369551662
+    1963-10-01:
+      value: 0.036404825316293604
+    1962-10-01:
+      value: 0.03329486536465043
+    1961-10-01:
+      value: 0.03134351794401158
+    1960-10-01:
+      value: 0.029453150130267686
+    1960-01-01:
+      value: 0.027806700744103654
+  metadata:
+    ipp_csv_id: val_point_arrco
+    unit: currency-FRF
+metadata:
+  order:
+  - valeur_point_cnro_en_nominal
+  - valeur_point_cnro_en_euros
+  description_en: Point value ARRCO, PRO-BTP
+documentation: |+
+  Sources : Centre de documentation Arrco depuis 1961; Manuel de l'employeur entre 1957 et 1960.
+  Note législative : Pour 1957-60, le Manuel de l'employeur ne donne que la valeur au 1er janvier.
+  Au 1er janvier 1999, l'unification des régimes ARRCO donne lieu à une évolution des valeurs des paramètres.
+  Pour BTP RETRAITE, section CBTPR, le coefficient de transformation est de 0,245625.
+  Pour BTP RETRAITE, section CNRO, le coefficient de transformation est de 0,411245.
+

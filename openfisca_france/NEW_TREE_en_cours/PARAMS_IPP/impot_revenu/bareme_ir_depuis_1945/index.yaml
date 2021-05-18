@@ -1,0 +1,5 @@
+description: Barème de l'impôt sur le revenu (depuis 1945)
+metadata:
+  order:
+  - bareme_ir
+  - bareme_taux_neutre

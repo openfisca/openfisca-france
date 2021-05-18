@@ -1,0 +1,190 @@
+description: Crédit d'impôt sur les intérêts d'emprunt pour l'habitation principale (2007 - )
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2010-01-01:
+        value: 2011.0
+      2009-01-01:
+        value: 2010.0
+      2008-01-01:
+        value: 2009.0
+      2007-01-01:
+        value: 2008.0
+  metadata:
+    order:
+    - annee_revenus
+credit_impot_interets_emprunt_habitation_principale_reforme_sarkozy:
+  description: Crédit d'impôt - intérêts d'emprunt pour l'habitation principale (réforme Sarkozy)
+  cas_base:
+    description: Cas de base
+    taux_2:
+      description: Taux (2)
+      values:
+        2007-01-01:
+          value: 0.2
+      metadata:
+        unit: /1
+    taux_applique_premiere_annuite_remboursement:
+      description: Taux appliqué à la première annuité de remboursement
+      values:
+        2007-01-01:
+          value: 0.4
+      metadata:
+        unit: /1
+    metadata:
+      order:
+      - taux_2
+      - taux_applique_premiere_annuite_remboursement
+  logements_performance_energetique_globale_elevee_3:
+    description: Logements à performance énergétique globale élevée (3)
+    taux_unique:
+      description: Taux unique
+      values:
+        2008-01-01:
+          value: 0.4
+        2007-01-01:
+          value: null
+      metadata:
+        unit: /1
+    metadata:
+      order:
+      - taux_unique
+  taux_appliques_logements_neufs_construits_acquis_en_2010:
+    description: Taux appliqués pour les logements neufs construits ou acquis en 2010
+    taux_2:
+      description: Taux (2)
+      values:
+        2009-01-01:
+          value: 0.15
+        2007-01-01:
+          value: null
+      metadata:
+        unit: /1
+    taux_applique_premiere_annuite_remboursement:
+      description: Taux appliqué à la première annuité de remboursement
+      values:
+        2009-01-01:
+          value: 0.3
+        2007-01-01:
+          value: null
+      metadata:
+        unit: /1
+    metadata:
+      order:
+      - taux_2
+      - taux_applique_premiere_annuite_remboursement
+  taux_appliques_logements_neufs_construits_acquis_en_2011:
+    description: Taux appliqués pour les logements neufs construits ou acquis en 2011
+    taux_2:
+      description: Taux (2)
+      values:
+        2009-01-01:
+          value: 0.1
+        2007-01-01:
+          value: null
+      metadata:
+        unit: /1
+    taux_applique_premiere_annuite_remboursement:
+      description: Taux appliqué à la première annuité de remboursement
+      values:
+        2009-01-01:
+          value: 0.25
+        2007-01-01:
+          value: null
+      metadata:
+        unit: /1
+    metadata:
+      order:
+      - taux_2
+      - taux_applique_premiere_annuite_remboursement
+  taux_appliques_logements_neufs_construits_acquis_en_2012:
+    description: Taux appliqués pour les logements neufs construits ou acquis en 2012
+    taux_2:
+      description: Taux (2)
+      values:
+        2010-01-01:
+          value: null
+        2009-01-01:
+          value: 0.05
+        2007-01-01:
+          value: null
+      metadata:
+        unit: /1
+    taux_applique_premiere_annuite_remboursement:
+      description: Taux appliqué à la première annuité de remboursement
+      values:
+        2010-01-01:
+          value: null
+        2009-01-01:
+          value: 0.15
+        2007-01-01:
+          value: null
+      metadata:
+        unit: /1
+    metadata:
+      order:
+      - taux_2
+      - taux_applique_premiere_annuite_remboursement
+  plafond_base:
+    description: Plafond de base
+    values:
+      2007-01-01:
+        value: 3750.0
+    metadata:
+      unit: currency-EUR
+  plafond_handicap:
+    description: Plafond handicap
+    values:
+      2007-01-01:
+        value: 7500.0
+    metadata:
+      unit: currency-EUR
+  majoration_plafond_par_enfant_charge:
+    description: Majoration du plafond par enfant à charge
+    values:
+      2007-01-01:
+        value: 500.0
+    metadata:
+      unit: currency-EUR
+  metadata:
+    order:
+    - cas_base
+    - logements_performance_energetique_globale_elevee_3
+    - taux_appliques_logements_neufs_construits_acquis_en_2010
+    - taux_appliques_logements_neufs_construits_acquis_en_2011
+    - taux_appliques_logements_neufs_construits_acquis_en_2012
+    - plafond_base
+    - plafond_handicap
+    - majoration_plafond_par_enfant_charge
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - credit_impot_interets_emprunt_habitation_principale_reforme_sarkozy
+  reference:
+    2010-01-01:
+      title: Loi 2010-1657, art. 90 du 29/12/2010 (LF pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023347519&cidTexte=JORFTEXT000023314376
+    2009-01-01:
+      title: Loi 2009-1673, art. 84 du 30/12/2009 (LF pour 2010)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000021575889&cidTexte=JORFTEXT000021557902
+    2008-01-01:
+      title: Loi 2008-1425, art. 103 du 27/12/2008 (LF pour 2009)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020000256&cidTexte=JORFTEXT000019995721
+    2007-01-01:
+    - title: Loi 2007-1223, art. 5 du 21/08/2007
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006267445&cidTexte=JORFTEXT000000278649
+    - title: Loi 2007-1822, art. 13 du 24/12/2007 (LF pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017856263&cidTexte=JORFTEXT000017853368
+  date_parution_jo:
+    2010-01-01: 2010-12-30
+    2009-01-01: 2009-12-31
+    2008-01-01: 2008-12-28
+    2007-01-01: 2007-12-27
+  description_en: Tax credits on loan interests for households' main accomodation
+documentation: |
+  (1) Référence législative : art. 200 quaterdecies du CGI
+  (2) Taux appliqué aux intérêts payés au titre des cinq premières annuités de remboursement, à l'exclusion des frais d'emprunt et des cotisations d'assurances contractées en vue de garantir le remboursement des prêts.
+  (3) Dans le cas de logement à performance énergétique globale élevée, les intérêts ouvrants droit au crédit d'impôt sont ceux des sept premières années d'annuité
+  (4) Les plafonds (plafonds de base et handicap) sont ceux appliqués aux célibataires, veufs, divorcés. Ils sont multipliés par deux pour les couples

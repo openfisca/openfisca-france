@@ -1,0 +1,213 @@
+description: Limite d'âge FP active
+age_limite_fonction_publique_active_selon_annee_naissance:
+  description: Age limite fonction publique active selon l'année de naissance
+  ne_avant_1956_07_01:
+    description: Né avant le 01/07/1956
+    annee:
+      description: Année
+      values:
+        1985-01-01:
+          value: 60.0
+        1976-01-01:
+          value: 65.0
+        1937-01-01:
+          value: 67.0
+      metadata:
+        ipp_csv_id: agelimfp_base
+    mois:
+      description: Mois
+      values:
+        1937-01-01:
+          value: 0.0
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1956_07_01:
+    description: Né après le 01/07/1956
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 60.0
+        1937-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: agelimfp_0756
+    mois:
+      description: Mois
+      values:
+        2011-07-01:
+          value: 4.0
+        1937-01-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1957_01_01:
+    description: Né après le 01/01/1957
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 60.0
+        1937-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: agelimfp_0157
+    mois:
+      description: Mois
+      values:
+        2012-01-01:
+          value: 9.0
+        2011-07-01:
+          value: 8.0
+        1937-01-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1958_01_01:
+    description: Né après le 01/01/1958
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 61.0
+        1937-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: agelimfp_0158
+    mois:
+      description: Mois
+      values:
+        2012-01-01:
+          value: 2.0
+        2011-07-01:
+          value: 0.0
+        1937-01-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1959_01_01:
+    description: Né après le 01/01/1959
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 61.0
+        1937-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: agelimfp_0159
+    mois:
+      description: Mois
+      values:
+        2012-01-01:
+          value: 7.0
+        2011-07-01:
+          value: 4.0
+        1937-01-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1960_01_01:
+    description: Né après le 01/01/1960
+    annee:
+      description: Année
+      values:
+        2012-01-01:
+          value: 62.0
+        2011-07-01:
+          value: 61.0
+        1937-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: agelimfp_0160
+    mois:
+      description: Mois
+      values:
+        2012-01-01:
+          value: 0.0
+        2011-07-01:
+          value: 8.0
+        1937-01-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1961_01_01:
+    description: Né après le 01/01/1961
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 62.0
+        1937-01-01:
+          value: null
+    mois:
+      description: Mois
+      values:
+        2011-07-01:
+          value: 0.0
+        1937-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: agelimfp_0161
+    metadata:
+      order:
+      - annee
+      - mois
+  metadata:
+    order:
+    - ne_avant_1956_07_01
+    - ne_apres_1956_07_01
+    - ne_apres_1957_01_01
+    - ne_apres_1958_01_01
+    - ne_apres_1959_01_01
+    - ne_apres_1960_01_01
+    - ne_apres_1961_01_01
+metadata:
+  order:
+  - age_limite_fonction_publique_active_selon_annee_naissance
+  reference:
+    2012-01-01:
+      title: Loi 2011-1906 du 21/12/2011, art. 88 (III, 2°)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025007734&cidTexte=JORFTEXT000025005833
+    2011-07-01:
+    - title: Loi 2010-1330 du 09/11/2010, art. 31 (I, 5°)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023023861&cidTexte=JORFTEXT000023022127
+    - title: Décret 2011-754 du 28/06/2011, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000024272415&cidTexte=JORFTEXT000024270406
+    1985-01-01: Loi 84-834 du 13/09/ 1984
+    1976-01-01:
+      title: Loi 75-1280 du 30/12/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699206
+    1937-01-01: Loi du 18/08/1936
+  date_parution_jo:
+    2012-01-01: 2011-11-22
+    2011-07-01: 10/11/2010 ; 29/06/2011
+    1985-01-01: 1984-09-14
+    1976-01-01: 1975-12-31
+    1937-01-01: 1936-08-20
+  notes:
+    1976-01-01: La réforme prévoit une montée en régime progressive, avec un âge limite de 67 ans jusqu'au 31/12/1976, 66 ans et six mois du 01/01 au 30/12/1977,et 67 ans à partir de cette date.Toutefois, la limite d'âge des professeurs titulaires du Collège de France reste fixée à soixante-dix ans.
+    1937-01-01: Voir note (2).
+  description_en: Age limit - "active"
+documentation: |
+  Lecture :
+  Ce tableau renseigne, pour une date de législation donnée (la date d'entrée en vigueur, en ligne), le paramètre en fonction de la date de naissance (en ordonnée).
+  La valeur renseignée est valable à partir de la date de naissance, jusqu'à la date suivante. Quand une date de naissance est la dernière renseignée, la valeur du paramètre est considérée comme constante à partir de cette date.
+  Notes :
+  (1) La limite d'âge dans la fonction publique du type de fonction publique (civil/militaire). Pour les militaires, la limite d'âge est spécifique au grade et au corps. Pour les civils actifs, la limite normale est celle donnée ci-contre
+  mais il existe des différences en fonction du type de la catégorie d'actif (par exemple, 55ans pour le personnel surveillant des établissements pénitenciaires et 62 ans pour les controleurs des affaires maritimes). Pour la fonction
+  publique sédentaire, la limite d'âge peut être plus élevé pour certaines catégories de fonctionnaires (par exemple 70 ans pour les professeurs au Collège de France).
+  (2) La distinction se fait selon les catégories (A et B dans le texte) et, au sein de ces catégories, selon les échelons. 67 ans s'applique au premier échelon de la catégorie B. 2ème = 65 ans (Police = 59 ans), 3ème= 62 ans (Police = 56 ans), 4ème = 60 ans (Police = 55 ans). Voir également la Loi 46-195 1946-02-15 art. 1 (JORF 16 février 1946), le Décret 53-711 du 9 août 1953 - art. 1 JORF 10 août 1953), le Décret 54-597 1954-06-09 art. 1 ( JORF 12 juin 1954).
+  (3) Pas de modification entre 2012 et 2019.

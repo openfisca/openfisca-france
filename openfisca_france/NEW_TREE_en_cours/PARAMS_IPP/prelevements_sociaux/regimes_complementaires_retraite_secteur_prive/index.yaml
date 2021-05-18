@@ -1,0 +1,12 @@
+description: Régimes complémentaires de retraite (secteur privé)
+metadata:
+  order:
+  - agirc_arrco_cet_ceg
+  - apec
+  - prevoyance_deces_cadres
+  - arrco
+  - agirc
+  - agff
+  - gmp
+  - cet
+  description_en: Complementary pension schemes (private sector)

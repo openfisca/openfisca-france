@@ -1,0 +1,75 @@
+description: Sommes versées sur un compte épargne codéveloppement (2010 - 2011)
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2011-01-01:
+        value: 2012.0
+      2010-01-01:
+        value: 2011.0
+      2009-01-01:
+        value: 2010.0
+  metadata:
+    order:
+    - annee_ir
+compte_epargne_co_developpement:
+  description: Compte épargne co-developpement
+  taux:
+    description: Taux
+    values:
+      2011-01-01:
+        value: null
+      2009-01-01:
+        value: 0.4
+    metadata:
+      ipp_csv_id: tx_codev
+      unit: /1
+  plafond_par_personne:
+    description: Plafond par personne
+    values:
+      2011-01-01:
+        value: null
+      2009-01-01:
+        value: 20000.0
+    metadata:
+      ipp_csv_id: plaf_codev
+      unit: currency-EUR
+  plafond_en_revenu_net_global:
+    description: Plafond en % du revenu net global
+    values:
+      2011-01-01:
+        value: null
+      2009-01-01:
+        value: 0.25
+    metadata:
+      ipp_csv_id: base_codev
+      unit: /1
+  metadata:
+    order:
+    - taux
+    - plafond_par_personne
+    - plafond_en_revenu_net_global
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - compte_epargne_co_developpement
+  reference:
+    2011-01-01: Loi n°2010-1657 du 29/12/2010 (LF pour 2011) - art. 107
+    2010-01-01: Loi n°2010-1657 du 29/12/2010 (LF pour 2011) - art. 107
+    2009-01-01: Loi n°2009-1673 du 30/12/2009 (LF pour 2010) - art. 89
+  date_parution_jo:
+    2010-01-01: 2010-12-30
+    2009-01-01: 2009-12-31
+  notes:
+    2011-01-01: Les comptes existants deviennent de simples comptes épargne.
+    2010-01-01: Dispositif abrogé de façon anticipée à compter de l'imposition des revenus de 2010. ; B.O.I. N° 8 du 15/01/2010 [BOI 5B-5-10]
+    2009-01-01: Avant les revenus 2009, les versements sur le compte étaient déductibles du revenu global.
+  description_en: Co-development Savings Account (2010 - 2011)
+documentation: |
+  Notes :
+  (1) Réduction d'impôt pour sommes versées sur un compte épargne codéveloppement; art. 163 quinvicies CGI et art. L. 221-33 du code monétaire et financier
+  (2) Le plafonnement par foyer fiscal (art. 199 sexvicies CGI) s'applique dans la limite des deux plafonds.
+  (4) Modalités de création : décret n° 2007-218 du 19 février 2007 relatif au compte épargne codéveloppement en vigueur 01/03/2007
+  Loi 2007-1631 du 20/11/2007 (art. 52 et 53) relative à la maîtrise de l'immigration, à l'intégration et à l'asile - JORF n°270 du 21/11/2007
+  Loi 2006-911 du 24/07/2006 - art. 1 relative à l'immigration et à l'intégration - JORF n°170 du 25 juillet 2006 

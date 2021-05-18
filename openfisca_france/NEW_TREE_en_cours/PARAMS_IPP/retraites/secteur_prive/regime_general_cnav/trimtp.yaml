@@ -1,0 +1,272 @@
+description: Durée d'assurance cible pour le taux plein
+nombre_trimestres_cibles_par_generation:
+  description: Nombre de trimestres cibles par génération
+  ne_avant_1934_01_01:
+    description: Avant 1934
+    values:
+      1983-01-01:
+        value: 150.0
+    metadata:
+      ipp_csv_id: trimplein_base
+  ne_apres_1934_01_01:
+    description: '1934-01-01'
+    values:
+      1994-01-01:
+        value: 151.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0134
+  ne_apres_1935_01_01:
+    description: '1935-01-01'
+    values:
+      1994-01-01:
+        value: 152.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0135
+  ne_apres_1936_01_01:
+    description: '1936-01-01'
+    values:
+      1994-01-01:
+        value: 153.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0136
+  ne_apres_1937_01_01:
+    description: '1937-01-01'
+    values:
+      1994-01-01:
+        value: 154.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0137
+  ne_apres_1938_01_01:
+    description: '1938-01-01'
+    values:
+      1994-01-01:
+        value: 155.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0138
+  ne_apres_1939_01_01:
+    description: '1939-01-01'
+    values:
+      1994-01-01:
+        value: 156.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0139
+  ne_apres_1940_01_01:
+    description: '1940-01-01'
+    values:
+      1994-01-01:
+        value: 157.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0140
+  ne_apres_1941_01_01:
+    description: '1941-01-01'
+    values:
+      1994-01-01:
+        value: 158.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0141
+  ne_apres_1942_01_01:
+    description: '1942-01-01'
+    values:
+      1994-01-01:
+        value: 159.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0142
+  ne_apres_1943_01_01:
+    description: '1943-01-01'
+    values:
+      1994-01-01:
+        value: 160.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0143
+  ne_apres_1949_01_01:
+    description: '1949-01-01'
+    values:
+      2009-01-01:
+        value: 161.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0149
+  ne_apres_1950_01_01:
+    description: '1950-01-01'
+    values:
+      2009-01-01:
+        value: 162.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0150
+  ne_apres_1951_01_01:
+    description: '1951-01-01'
+    values:
+      2009-01-01:
+        value: 163.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0151
+  ne_apres_1952_01_01:
+    description: '1952-01-01'
+    values:
+      2009-01-01:
+        value: 164.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0152
+  ne_apres_1953_01_01:
+    description: '1953-01-01'
+    values:
+      2012-01-01:
+        value: 165.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0153
+  ne_apres_1955_01_01:
+    description: '1955-01-01'
+    values:
+      2013-01-01:
+        value: 166.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0155
+  ne_apres_1958_01_01:
+    description: '1958-01-01'
+    values:
+      2015-01-01:
+        value: 167.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0158
+  ne_apres_1961_01_01:
+    description: '1961-01-01'
+    values:
+      2015-01-01:
+        value: 168.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0161
+  ne_apres_1964_01_01:
+    description: '1964-01-01'
+    values:
+      2015-01-01:
+        value: 169.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0164
+  ne_apres_1967_01_01:
+    description: '1967-01-01'
+    values:
+      2015-01-01:
+        value: 170.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0167
+  ne_apres_1970_01_01:
+    description: '1970-01-01'
+    values:
+      2015-01-01:
+        value: 171.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0170
+  ne_apres_1973_01_01:
+    description: '1973-01-01'
+    values:
+      2015-01-01:
+        value: 172.0
+      1983-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimplein_0173
+  metadata:
+    order:
+    - ne_avant_1934_01_01
+    - ne_apres_1934_01_01
+    - ne_apres_1935_01_01
+    - ne_apres_1936_01_01
+    - ne_apres_1937_01_01
+    - ne_apres_1938_01_01
+    - ne_apres_1939_01_01
+    - ne_apres_1940_01_01
+    - ne_apres_1941_01_01
+    - ne_apres_1942_01_01
+    - ne_apres_1943_01_01
+    - ne_apres_1949_01_01
+    - ne_apres_1950_01_01
+    - ne_apres_1951_01_01
+    - ne_apres_1952_01_01
+    - ne_apres_1953_01_01
+    - ne_apres_1955_01_01
+    - ne_apres_1958_01_01
+    - ne_apres_1961_01_01
+    - ne_apres_1964_01_01
+    - ne_apres_1967_01_01
+    - ne_apres_1970_01_01
+    - ne_apres_1973_01_01
+metadata:
+  order:
+  - nombre_trimestres_cibles_par_generation
+
+  reference:
+    2015-01-01:
+      title: Loi 2014-40 du 20/01/2014, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000028494570&cidTexte=JORFTEXT000028493476
+    2013-01-01:
+      title: Décret 2012-1487 du 27/12/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/12/27/2012-1487/jo/texte
+    2012-01-01:
+    - title: Loi 2010-1330 du 9/11/2010, art. 17
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023024239&cidTexte=JORFTEXT000023022127
+    - title: Décret 2010-1734 du 30/12/2010, art. 9
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023383430&cidTexte=JORFTEXT000023334246
+    2009-01-01:
+      title: Circulaire CNAV 2008/41 du 25/07/2008
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2008041_25072008
+    1994-01-01: Circulaire CNAV 103/93 du 30/12/1993
+    1983-01-01:
+      title: Décret 82-628 du 21/07/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699275&categorieLien=id
+  date_parution_jo:
+    2015-01-01: 2014-01-21
+    2013-01-01: 2012-12-29
+    2012-01-01: 10/11/2010 ; 31/12/2010
+    1983-01-01: 1982-07-23
+  notes:
+    2015-01-01: Circulaire CNAV 2014-20 du 27/02/2014 de mise en application de l’article 2 de la loi du 20/01/2014 revient sur cette procédure et définit par une disposition législative, en insérant l’article L. 161-17-3 CSS
+    2013-01-01: Circulaire CNAV 2013-14 du 25/02/2013 pour les modalités de mise en application du décret 2012-1487.
+    2012-01-01: Circulaire CNAV 2011/20 du 01/03/2011 transcrivant l'application de l'art. 17 de la loi 2010-1330 du 09/11/2010.
+    1994-01-01: Article L351-1 du code de la sécurité sociale
+    1983-01-01: Voir également la circulaire n°22/83 du 16/02/1983 relative à l'application dans le régime général de la sécurité sociale des ordonnances n° 82-270  du 26/03/1982 et n° 82-290 du 30/03/1982 et du décret n°82-628 du 21/07/1982
+  description_en: Required contribution duration for full rate
+documentation: |
+  Lecture :
+  Ce tableau renseigne, pour une date de législation donnée (la date d'effet, en ligne), le paramètre en fonction de la date de naissance (en ordonnée).
+  La valeur renseignée est valable à partir de la date de naissance, jusqu'à la date suivante. Quand une date de naissance est la dernière renseignée, la valeur du paramètre est considérée comme constante à partir de cette date.

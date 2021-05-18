@@ -1,0 +1,7 @@
+description: Allocations chômage de solidarité
+metadata:
+  order:
+  - aide_pu
+  - ai
+  - ata
+  description_en: Unemployment benefits (means-tested)

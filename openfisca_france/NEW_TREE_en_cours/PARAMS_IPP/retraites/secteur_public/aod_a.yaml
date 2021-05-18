@@ -1,0 +1,207 @@
+description: Age légal de départ en retraite FP active
+age_ouverture_droits_fonction_publique_active_selon_annee_naissance:
+  description: Age d'ouverture des droits pour la fonction publique active, selon l'année de naissance
+  ne_avant_1956_07_01:
+    description: Né avant le 01/07/1956
+    annee:
+      description: Année
+      values:
+        1985-01-01:
+          value: 55.0
+        1976-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageleg_base
+    mois:
+      description: Mois
+      values:
+        1985-01-01:
+          value: 0.0
+        1976-01-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1956_07_01:
+    description: Né après le 01/07/1956
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 55.0
+        1976-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageleg_0756
+    mois:
+      description: Mois
+      values:
+        2011-07-01:
+          value: 4.0
+        1976-01-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1957_01_01:
+    description: Né après le 01/01/1957
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 55.0
+        1976-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageleg_0157
+    mois:
+      description: Mois
+      values:
+        2012-01-01:
+          value: 9.0
+        2011-07-01:
+          value: 8.0
+        1976-01-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1958_01_01:
+    description: Né après le 01/01/1958
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 56.0
+        1976-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageleg_0158
+    mois:
+      description: Mois
+      values:
+        2012-01-01:
+          value: 2.0
+        2011-07-01:
+          value: 0.0
+        1976-01-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1959_01_01:
+    description: Né après le 01/01/1959
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 56.0
+        1976-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageleg_0159
+    mois:
+      description: Mois
+      values:
+        2012-01-01:
+          value: 7.0
+        2011-07-01:
+          value: 4.0
+        1976-01-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1960_01_01:
+    description: Né après le 01/01/1960
+    annee:
+      description: Année
+      values:
+        2012-01-01:
+          value: 57.0
+        2011-07-01:
+          value: 56.0
+        1976-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageleg_0160
+    mois:
+      description: Mois
+      values:
+        2012-01-01:
+          value: 0.0
+        2011-07-01:
+          value: 8.0
+        1976-01-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1961_01_01:
+    description: Né après le 01/01/1961
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 57.0
+        1976-01-01:
+          value: null
+    mois:
+      description: Mois
+      values:
+        2011-07-01:
+          value: 0.0
+        1976-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageleg_0161
+    metadata:
+      order:
+      - annee
+      - mois
+  metadata:
+    order:
+    - ne_avant_1956_07_01
+    - ne_apres_1956_07_01
+    - ne_apres_1957_01_01
+    - ne_apres_1958_01_01
+    - ne_apres_1959_01_01
+    - ne_apres_1960_01_01
+    - ne_apres_1961_01_01
+metadata:
+  order:
+  - age_ouverture_droits_fonction_publique_active_selon_annee_naissance
+  reference:
+    2012-01-01:
+      title: Décret 2011-2103 du 30/12/2011, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025100416&cidTexte=JORFTEXT000025061534
+    2011-07-01:
+    - title: Loi 2010-1330 du 09/11/2010, art. 22
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023023845&cidTexte=JORFTEXT000023022127
+    - title: Décret 2011-754 du 28/06/2011, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000024272407&cidTexte=JORFTEXT000024270406
+    1985-01-01: Loi 84-834 du 13/09/ 1984
+    1976-01-01:
+      title: Loi 75-1280 du 30/12/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699206
+  date_parution_jo:
+    2012-01-01: 2011-12-31
+    2011-07-01: 10/11/2010 ; 29/06/2011
+    1985-01-01: 1984-09-14
+    1976-01-01: 1975-12-31
+  notes:
+    2012-01-01: En application de la loi 2010-1330 du 09/11/2010, art. 22 (modifié par loi 2011-1906 du 21/12/2011, art. 88)
+  description_en: Minimum pension age ("Age légal") - "active"
+documentation: |
+  Lecture :
+  Ce tableau renseigne, pour une date de législation donnée (la date d'entrée en vigueur, en ligne), le paramètre en fonction de la date de naissance (en ordonnée).
+  La valeur renseignée est valable à partir de la date de naissance, jusqu'à la date suivante. Quand une date de naissance est la dernière renseignée, la valeur du paramètre est considérée comme constante à partir de cette date.
+  Notes :
+  (1) L'âge d'ouverture des droits peut être inférieur à 55 ans pour certains grades des actifs (les "super actifs", par exemple les fonctionnaires de polices), et pour les militaires,pour qui la condition d'ouverture des droits
+  n'est pas une condition d'âge mais de durée de service : 25 ans pour les officiers et non officiers, 15 pour les militaires du rangs (respectivement 27 et 17 après la réforme de 2010).

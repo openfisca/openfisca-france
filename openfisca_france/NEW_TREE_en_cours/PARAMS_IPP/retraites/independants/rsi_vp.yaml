@@ -1,0 +1,123 @@
+description: "Régime social des indépendants : valeur du point retraite"
+valeur_annuelle_point_retraite:
+  description: Valeur annuelle du point retraite
+  retraite_base:
+    description: Retraite de base
+    artisans:
+      description: Artisans
+      values:
+        2019-01-01:
+          value: 9.2238
+        2017-10-01:
+          value: 9.1963
+        2015-10-01:
+          value: 9.1234
+      metadata:
+        unit: currency-EUR
+    commercants:
+      description: Commerçants
+      values:
+        2019-01-01:
+          value: 12.719
+        2017-10-01:
+          value: 12.68096
+        2015-10-01:
+          value: 12.58032
+      metadata:
+        unit: currency-EUR
+    metadata:
+      order:
+      - artisans
+      - commercants
+  retraite_complementaire:
+    description: Retraite complémentaire
+    independants_rci_depuis_2013:
+      description: Indépendants, RCI (depuis 2013)
+      values:
+        2019-01-01:
+          value: 1.187
+        2017-10-01:
+          value: 1.187
+        2015-10-01:
+          value: 1.178
+      metadata:
+        unit: currency-EUR
+    commercants_nrco_2004_2012:
+      description: Commerçants, NRCO (2004-2012)
+      values:
+        2017-10-01:
+          value: 1.187
+        2015-10-01:
+          value: 1.178
+      metadata:
+        unit: currency-EUR
+    commercants_rc_1973_2004:
+      description: Commerçants, RC (1973-2004)
+      values:
+        2017-10-01:
+          value: 1.187
+        2015-10-01:
+          value: 1.178
+      metadata:
+        unit: currency-EUR
+    artisans_rco_1996_2012:
+      description: Artisans, RCO (1996-2012)
+      values:
+        2017-10-01:
+          value: 1.187
+        2015-10-01:
+          value: 1.178
+      metadata:
+        unit: currency-EUR
+    artisans_rco_1979_1996:
+      description: Artisans, RCO (1979-1996)
+      values:
+        2017-10-01:
+          value: 1.13
+        2015-10-01:
+          value: 1.125
+      metadata:
+        unit: currency-EUR
+    reconstitution_carriere_rco_avant_1979:
+      description: Reconstitution de carrière, RCO (avant 1979)
+      values:
+        2017-10-01:
+          value: 1.111
+        2015-10-01:
+          value: 1.108
+      metadata:
+        unit: currency-EUR
+    metadata:
+      order:
+      - independants_rci_depuis_2013
+      - commercants_nrco_2004_2012
+      - commercants_rc_1973_2004
+      - artisans_rco_1996_2012
+      - artisans_rco_1979_1996
+      - reconstitution_carriere_rco_avant_1979
+  metadata:
+    order:
+    - retraite_base
+    - retraite_complementaire
+valeur_acquisition_point:
+  description: Valeur d'acquisition du point
+  artisans_commercants:
+    description: Artisans et commerçants
+    values:
+      2017-10-01:
+        value: 17.456
+      2015-10-01:
+        value: 17.34
+    metadata:
+      unit: currency-EUR
+  metadata:
+    order:
+    - artisans_commercants
+metadata:
+  order:
+  - valeur_annuelle_point_retraite
+  - valeur_acquisition_point
+  description_en: "Social scheme for independent workers: annual value of the pension point"
+documentation: |
+  Sources:
+  https://www.rsi.fr/baremes/prestations-vieillesse-et-invalidite-deces.html

@@ -1,0 +1,12 @@
+description: Réductions de cotisations sociales
+metadata:
+  order:
+  - alleg_gen
+  - robien
+  - aubryi
+  - aubryii
+  - fillon
+  - cice
+  - cits
+  - reduc_famille
+  description_en: SSCs reductions

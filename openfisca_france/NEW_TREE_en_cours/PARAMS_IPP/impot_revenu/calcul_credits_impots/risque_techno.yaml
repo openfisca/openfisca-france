@@ -1,0 +1,124 @@
+description: Crédit d'impôt pour les dépenses de prévention des risques technologiques (2005-)
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2020-01-01:
+        value: 2020.0
+      2017-01-01:
+        value: 2018.0
+      2015-01-01:
+        value: 2016.0
+      2013-01-01:
+        value: 2014.0
+      2010-01-01:
+        value: 2011.0
+      2005-01-01:
+        value: 2006.0
+  metadata:
+    order:
+    - annee_ir
+taux:
+  description: Taux du crédit d'impôt
+  values:
+    2013-01-01:
+      value: 0.4
+    2010-01-01:
+      value: 0.3
+    2005-01-01:
+      value: 0.15
+  metadata:
+    unit: /1
+    ipp_csv_id: tx_risques_techno
+plafond:
+  description: Plafond de dépenses par logement sur 5 années consécutives
+  plafond_1:
+    description: Pour les dépenses engagées avant le 31/12/2014
+    celib:
+      description: Pour une personne célibataire
+      values:
+        2015-01-01:
+          value: null
+        2005-01-01:
+          value: 5000.0
+      metadata:
+        unit: currency-EUR
+        ipp_csv_id: plaf_risques_techno_pre_celib
+    couple:
+      description: Pour un couple
+      values:
+        2015-01-01:
+          value: null
+        2005-01-01:
+          value: 10000.0
+      metadata:
+        unit: currency-EUR
+        ipp_csv_id: plaf_risques_techno_pre_couple
+    majoration:
+      description: Majoration par enfant à charge
+      values:
+        2015-01-01:
+          value: null
+        2005-01-01:
+          value: 400.0
+      metadata:
+        unit: currency-EUR
+        ipp_csv_id: plaf_risques_techno_pre_majoration
+    metadata:
+      order:
+      - celib
+      - couple
+      - majoration
+  plafond_2:
+    description: Pour les dépenses engagées depuis le 01/01/2015 (4)
+    values:
+      2015-01-01:
+        value: 20000.0
+      2005-01-01:
+        value: null
+    metadata:
+      unit: currency-EUR
+      ipp_csv_id: plaf_risques_techno_post
+  metadata:
+    order:
+    - plafond_1
+    - plafond_2
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - taux
+  - plafond
+  notes:
+    2020-01-01: Le dispositif est prolongé jusqu'au 31 décembre 2023
+    2017-01-01: Le dispositif est prolongé jusqu'au 31 décembre 2020
+    2015-01-01: Le double plafond est supprimé et remplacé par un plafond unique indépendant de la composition du foyer fiscal de 20000 euros. De plus, le crédit d'impôt est ouvert aux logements loués pendant une durée de cinq ans, à titre d'habitation principale.
+    2013-01-01: Le taux du crédit d'impôt passe à 40%.
+    2010-01-01: Le taux du crédit d'impôt passe à 30%.
+    2005-01-01: Création du crédit d'impôt par la LF pour 2005.
+  reference:
+    2020-01-01: 
+      title: Loi n°2020-1721 du 29 décemblre 2020 (LF 2021), art.117
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042753713
+
+    2017-01-01:
+      title: Loi n° 2017-1837 du 30 décembre 2017 (LF 2018), art.81
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=F42616D9F250A10672A973FF7330F0CE.tplgfr24s_2?cidTexte=JORFTEXT000036339197&idArticle=LEGIARTI000036377536&dateTexte=20200722&categorieLien=id#LEGIARTI000036377536
+    2015-01-01:
+      title: Loi n° 2014-1654 du 29 décembre 2014 (LF 2015), art. 73
+      href: https://beta.legifrance.gouv.fr/loda/id/LEGIARTI000029994940/2015-10-23
+    2013-01-01:
+      title: Loi n° 2012-1509 du 29 décembre 2012 (LF 2013), art. 7
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=F42616D9F250A10672A973FF7330F0CE.tplgfr24s_2?cidTexte=JORFTEXT000026856853&idArticle=LEGIARTI000026872649&dateTexte=20130606&categorieLien=id#LEGIARTI000026872649
+    2010-01-01:
+      title: Loi n° 2010-1657 du 29 décembre 2010  (LF 2011), art. 99
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=F42616D9F250A10672A973FF7330F0CE.tplgfr24s_2?cidTexte=JORFTEXT000023314376&idArticle=LEGIARTI000023347489&dateTexte=20111231&categorieLien=id#LEGIARTI000023347489
+    2005-01-01:
+      title: Loi n° 2004-1484 du 30 décembre 2004 (LF 2005), art. 91
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=F42616D9F250A10672A973FF7330F0CE.tplgfr24s_2?cidTexte=JORFTEXT000000789373&idArticle=LEGIARTI000006322194&dateTexte=20051230&categorieLien=id#LEGIARTI000006322194
+documentation: |
+  Notes :
+  (1) Article 200 quater A
+  (2) Le logement doit être situé en France, affecté à l'habitation principale, situé dans un périmètre couvert par un plan de prévention des risques technologiques et achevé avant l'approbation du plan de prévention des risques technologiques (PPRT).
+  (3) Le crédit d'impôt s'applique aux travaux prescrits par le PPRT. Les dépenses de diagnostics préalables sont aussi concernées. Les travaux doivent être réalisés par la même entreprise qui fournit les équipements.
+  (4) Suite à la prorogation du dispositif jusqu'à la fin de l'année 2020, le plafond ne s'estime pas sur une durée de 5 ans mais de 6, à savoir du 1er Janvier 2015 au 31 Décembre 2020.

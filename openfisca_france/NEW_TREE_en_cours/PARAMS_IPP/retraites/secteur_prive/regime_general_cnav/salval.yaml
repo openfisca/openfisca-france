@@ -1,0 +1,496 @@
+description: Salaire validant un trimestre d'assurance
+salaire_validant_trimestre:
+  description: Salaire validant un trimestre
+  metropole:
+    description: Métropole
+    values:
+      2020-01-01:
+        value: 1522.50
+      2019-01-01:
+        value: 1504.5
+      2018-01-01:
+        value: 1482.0
+      2017-01-01:
+        value: 1464.0
+      2016-01-01:
+        value: 1450.5
+      2015-01-01:
+        value: 1441.5
+      2014-01-01:
+        value: 1429.5
+      2013-01-01:
+        value: 1886.0
+      2012-01-01:
+        value: 1844.0
+      2011-01-01:
+        value: 1800.0
+      2010-01-01:
+        value: 1772.0
+      2009-01-01:
+        value: 1742.0
+      2008-01-01:
+        value: 1688.0
+      2007-01-01:
+        value: 1654.0
+      2006-01-01:
+        value: 1606.0
+      2005-01-01:
+        value: 1522.0
+      2004-01-01:
+        value: 1438.0
+      2003-01-01:
+        value: 1366.0
+      2002-01-01:
+        value: 1334.0
+      2001-01-01:
+        value: 8404.0
+      2000-01-01:
+        value: 8144.0
+      1999-01-01:
+        value: 8044.0
+      1998-01-01:
+        value: 7886.0
+      1997-01-01:
+        value: 7582.0
+      1996-01-01:
+        value: 7396.0
+      1995-01-01:
+        value: 7112.0
+      1994-01-01:
+        value: 6966.0
+      1993-01-01:
+        value: 6812.0
+      1992-01-01:
+        value: 6532.0
+      1991-01-01:
+        value: 6388.0
+      1990-01-01:
+        value: 5982.0
+      1989-01-01:
+        value: 5752.0
+      1988-01-01:
+        value: 5568.0
+      1987-01-01:
+        value: 5384.0
+      1986-01-01:
+        value: 5208.0
+      1985-01-01:
+        value: 4872.0
+      1984-01-01:
+        value: 4556.0
+      1983-01-01:
+        value: 4058.0
+      1982-01-01:
+        value: 3630.0
+      1981-01-01:
+        value: 2958.0
+      1980-01-01:
+        value: 2586.0
+      1979-01-01:
+        value: 2262.0
+      1978-01-01:
+        value: 2012.0
+      1977-01-01:
+        value: 1788.0
+      1976-01-01:
+        value: 1578.0
+      1975-01-01:
+        value: 1350.0
+      1974-01-01:
+        value: 1086.0
+      1973-01-01:
+        value: 910.0
+      1972-01-01:
+        value: 788.0
+      1971-01-01:
+        value: 437.5
+      1970-01-01:
+        value: 412.5
+      1969-01-01:
+        value: 387.5
+      1968-01-01:
+        value: 362.5
+      1967-01-01:
+        value: 325.0
+      1966-01-01:
+        value: 287.5
+      1965-01-01:
+        value: 250.0
+      1964-01-01:
+        value: 225.0
+      1963-01-01:
+        value: 200.0
+      1960-01-01:
+        value: 180.95
+      1956-01-01:
+        value: 18095.0
+      1954-01-01:
+        value: 16450.0
+      1952-01-01:
+        value: 14950.0
+      1951-01-01:
+        value: 13000.0
+      1950-01-01:
+        value: 11250.0
+      1949-01-01:
+        value: 8500.0
+      1946-01-01:
+        value: 1800.0
+      1942-01-01:
+        value: 60.0
+      1936-01-01:
+        value: 15.0
+      1930-01-01:
+        value: 60.0
+    metadata:
+      ipp_csv_id: saltrim_metro
+      unit:
+        2002-01-01: currency-EUR
+        1936-01-01: currency-FRF
+        1930-01-01: cotisations
+  guadeloupe_guyane_martinique:
+    description: Guadeloupe Guyane Martinique
+    values:
+      2020-01-01:
+        value: 1522.50
+      2019-01-01:
+        value: 1504.5
+      2018-01-01:
+        value: 1482.0
+      2017-01-01:
+        value: 1464.0
+      2016-01-01:
+        value: 1450.5
+      2015-01-01:
+        value: 1441.5
+      2014-01-01:
+        value: 1429.5
+      2013-01-01:
+        value: 1886.0
+      2012-01-01:
+        value: 1844.0
+      2011-01-01:
+        value: 1800.0
+      2010-01-01:
+        value: 1772.0
+      2009-01-01:
+        value: 1742.0
+      2008-01-01:
+        value: 1688.0
+      2007-01-01:
+        value: 1654.0
+      2006-01-01:
+        value: 1606.0
+      2005-01-01:
+        value: 1522.0
+      2004-01-01:
+        value: 1438.0
+      2003-01-01:
+        value: 1366.0
+      2002-01-01:
+        value: 1334.0
+      2001-01-01:
+        value: 8404.0
+      2000-01-01:
+        value: 8144.0
+      1999-01-01:
+        value: 8044.0
+      1998-01-01:
+        value: 7886.0
+      1997-01-01:
+        value: 7582.0
+      1996-01-01:
+        value: 7396.0
+      1995-01-01:
+        value: 6484.0
+      1994-01-01:
+        value: 6226.0
+      1993-01-01:
+        value: 6090.0
+      1992-01-01:
+        value: 5612.15
+      1991-01-01:
+        value: 5379.07
+      1990-01-01:
+        value: 4987.02
+      1989-01-01:
+        value: 4795.17
+      1988-01-01:
+        value: 4641.43
+      1987-01-01:
+        value: 4448.82
+      1986-01-01:
+        value: 4341.64
+      1985-01-01:
+        value: 4062.51
+      1984-01-01:
+        value: 3797.89
+      1983-01-01:
+        value: 3382.97
+      1982-01-01:
+        value: 2966.8
+      1981-01-01:
+        value: 2417.55
+      1980-01-01:
+        value: 2112.0
+      1979-01-01:
+        value: 1847.3
+      1978-01-01:
+        value: 1641.65
+      1977-01-01:
+        value: 1459.65
+      1976-01-01:
+        value: 1288.85
+      1975-01-01:
+        value: 1103.7
+      1974-01-01:
+        value: 886.5
+      1973-01-01:
+        value: 743.15
+      1972-01-01:
+        value: 661.65
+      1971-01-01:
+        value: 437.5
+      1970-01-01:
+        value: 412.5
+      1969-01-01:
+        value: 387.5
+      1968-01-01:
+        value: 362.5
+      1967-01-01:
+        value: 325.0
+      1966-01-01:
+        value: 287.5
+      1965-01-01:
+        value: 250.0
+      1964-01-01:
+        value: 225.0
+      1963-01-01:
+        value: 200.0
+      1960-01-01:
+        value: 180.95
+      1956-01-01:
+        value: 18095.0
+      1954-01-01:
+        value: 16450.0
+      1952-01-01:
+        value: 14950.0
+      1951-01-01:
+        value: 8000.0
+      1950-01-01:
+        value: 5625.0
+      1949-01-01:
+        value: 3750.0
+      1948-01-01:
+        value: 1800.0
+      1930-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: saltrim_ggm
+      unit:
+        2002-01-01: currency-EUR
+        1948-01-01: currency-FRF
+  reunion:
+    description: Réunion
+    values:
+      2020-01-01:
+        value: 1522.50
+      2019-01-01:
+        value: 1504.5
+      2018-01-01:
+        value: 1482.0
+      2017-01-01:
+        value: 1464.0
+      2016-01-01:
+        value: 1450.5
+      2015-01-01:
+        value: 1441.5
+      2014-01-01:
+        value: 1429.5
+      2013-01-01:
+        value: 1886.0
+      2012-01-01:
+        value: 1844.0
+      2011-01-01:
+        value: 1800.0
+      2010-01-01:
+        value: 1772.0
+      2009-01-01:
+        value: 1742.0
+      2008-01-01:
+        value: 1688.0
+      2007-01-01:
+        value: 1654.0
+      2006-01-01:
+        value: 1606.0
+      2005-01-01:
+        value: 1522.0
+      2004-01-01:
+        value: 1438.0
+      2003-01-01:
+        value: 1366.0
+      2002-01-01:
+        value: 1334.0
+      2001-01-01:
+        value: 8404.0
+      2000-01-01:
+        value: 8144.0
+      1999-01-01:
+        value: 8044.0
+      1998-01-01:
+        value: 7886.0
+      1997-01-01:
+        value: 7582.0
+      1996-01-01:
+        value: 7396.0
+      1995-01-01:
+        value: 6484.0
+      1994-01-01:
+        value: 6226.0
+      1993-01-01:
+        value: 6090.0
+      1992-01-01:
+        value: 5612.15
+      1991-01-01:
+        value: 5190.1
+      1990-01-01:
+        value: 4563.28
+      1989-01-01:
+        value: 4474.25
+      1988-01-01:
+        value: 4330.82
+      1987-01-01:
+        value: 4188.41
+      1986-01-01:
+        value: 4051.07
+      1985-01-01:
+        value: 3790.61
+      1984-01-01:
+        value: 3543.69
+      1983-01-01:
+        value: 3156.56
+      1982-01-01:
+        value: 2768.2
+      1981-01-01:
+        value: 2215.4
+      1980-01-01:
+        value: 1897.5
+      1979-01-01:
+        value: 1627.1
+      1978-01-01:
+        value: 1417.5
+      1977-01-01:
+        value: 1236.25
+      1976-01-01:
+        value: 1071.4
+      1975-01-01:
+        value: 900.56
+      1974-01-01:
+        value: 723.74
+      1973-01-01:
+        value: 606.29
+      1972-01-01:
+        value: 540.77
+      1971-01-01:
+        value: 437.5
+      1970-01-01:
+        value: 412.5
+      1969-01-01:
+        value: 387.5
+      1968-01-01:
+        value: 362.5
+      1967-01-01:
+        value: 325.0
+      1966-01-01:
+        value: 287.5
+      1965-01-01:
+        value: 250.0
+      1964-01-01:
+        value: 225.0
+      1963-01-01:
+        value: 200.0
+      1960-01-01:
+        value: 180.95
+      1956-01-01:
+        value: 18095.0
+      1954-01-01:
+        value: 16450.0
+      1952-01-01:
+        value: 14950.0
+      1951-01-01:
+        value: 8000.0
+      1950-01-01:
+        value: 5625.0
+      1949-01-01:
+        value: 3750.0
+      1948-01-01:
+        value: 900.0
+      1930-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: saltrim_reu
+      unit:
+        2002-01-01: currency-EUR
+        1949-01-01: currency-FRF
+        1948-01-01: CFA
+  metadata:
+    order:
+    - metropole
+    - guadeloupe_guyane_martinique
+    - reunion
+metadata:
+  order:
+  - salaire_validant_trimestre
+  reference:
+    2020-01-01:
+      title: ​Circulaire CNAV 2019/34 du 30/12/2019
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2019_34_30122019.pdf
+    2019-01-01:
+      title: ​Circulaire CNAV 2018/32 du 27/12/2018
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2018_32_27122018.pdf
+    2018-01-01:
+      title: Circulaire CNAV 2017/44 du 27/12/2017
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_44_27122017.pdf
+    2017-01-01:
+      title: ​​Circulaire CNAV 2016/55 du 30/12/2016
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_55_30122016.pdf
+    2016-01-01:
+      title: Circulaire CNAV 2015/64 du 18/12/2015
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2015_64_18122015.pdf
+    2015-01-01:
+      title: Circulaire CNAV 2015/4 du 26/01/2015
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2015_04_26012015.pdf
+    2014-01-01:
+      title: Décret 2014-349 du 19/03/2014
+      href: https://www.legifrance.gouv.fr/eli/decret/2014/3/19/2014-349/jo/texte
+    1986-01-01: Décret 85-1353 du 17/12/1985, art. 1
+    1972-01-01: Décret 72-78 du 28/01/1972, art. 2
+    1949-01-01: Décret 49-328 du 07/03/1949
+    1946-01-01:
+      title: Décret 45-0179 du 29/12/1945, art. 71, §2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006760608&cidTexte=JORFTEXT000000682675
+    1930-01-01:
+      title: Décret 45-0179 du 29/12/1945, art. 71, §2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006760608&cidTexte=JORFTEXT000000682675
+  date_parution_jo:
+    2020-01-01: 2019-12-18 
+    2019-01-01: 2018-12-20
+    2014-01-01: 2014-03-20
+    1986-01-01: 1985-12-21
+    1972-01-01: 1972-01-29
+    1949-01-01: 1949-03-12
+  notes:
+    2014-01-01: Modification de l'art. R351-9 du CSS. Validation d'un trimestre pour 150 heures SMIC.
+    1996-01-01: A partir de cette date, même montant pour la métropole, la Réunion et les Antilles.
+    1986-01-01: "Codification: création de l'article R351-9 du CSS. Validation d'un trimestre pour 200 heures de SMIC."
+    1972-01-01: Un trimestre correspond à 200 heures SMIC
+    1960-01-01: Passage aux nouveaux Francs.
+    1949-01-01: Un trimestre correspond à l'AVTS trimestrielle (jusqu'au 31/12/1962, ce montant est celui des villes de plus de 5 000 habitants)
+    1930-01-01: 60 cotisations journalières donnent droit à un trimestre, dans la limite de 22 sur la période 1930 à 1935.
+  description_en: Earnings necessary for one quarter of insurance
+documentation: |
+  Notes :
+  Le montant permettant une validation d'un trimestre est fonction de l'AVTS jusqu'en 1971, puis d'un multiple du SMIC.
+  De façon importante, c'est la rémunération annuelle divisée par ce montant qui donne le nombre de trimestres validés, sans considération de la durée effective d'emploi.
+  Sources :
+  Assurances sociales. Régime applicable aux assurés des professions non agricoles (1956).

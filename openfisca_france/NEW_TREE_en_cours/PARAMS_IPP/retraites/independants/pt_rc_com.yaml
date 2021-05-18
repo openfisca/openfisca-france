@@ -1,0 +1,38 @@
+description: "Régime complémentaire des commerçants : valeur de service du point (2004-2012)"
+valeur_points_acquis_depuis_1973:
+  description: Valeur des points acquis depuis 1973
+  values:
+    2013-01-01:
+      value: null
+    2012-01-01:
+      value: 1.162
+    2011-01-01:
+      value: 1.138
+    2010-01-01:
+      value: 1.11
+    2009-01-01:
+      value: 1.102
+    2008-01-01:
+      value: 1.067
+    2007-01-01:
+      value: 1.055
+    2006-01-01:
+      value: 1.036
+    2005-01-01:
+      value: 1.016
+    2004-01-01:
+      value: 1.0
+  metadata:
+    unit: currency-EUR
+metadata:
+  order:
+  - valeur_points_acquis_depuis_1973
+  notes:
+    2013-01-01: A partir de 2013, les valeurs du points sont alignées avec le régime complémentaire des artisans, au sein d'un régime complémentaire des indépendants (RCI)
+  description_en: "Complementary scheme of storekeeper : point value"
+documentation: |
+  Sources :
+  Capital.fr
+  http://www.capital.fr/retraite/regimes-de-retraite/commercant/regimes-complementaires/a-compter-de-2013-la-valeur-du-point-pourra-etre-differente-selon-la-date-d-acquisition
+  rsi.fr
+  http://www.rsi.fr/baremes/prestations-vieillesse-et-invalidite-deces.html#c5206

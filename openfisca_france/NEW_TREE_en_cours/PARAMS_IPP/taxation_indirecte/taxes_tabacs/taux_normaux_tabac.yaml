@@ -1,0 +1,316 @@
+description: Taux normaux tabac
+taux_normal:
+  description: Taux normal
+  cigarettes:
+    description: Cigarettes
+    values:
+      2020-11-01:
+        value: 0.55
+      2020-03-01:
+        value: 0.54
+      2019-11-01:
+        value: 0.527
+      2019-03-01:
+        value: 0.517
+      2018-03-01:
+        value: 0.508
+      2015-01-01:
+        value: 0.497
+      2013-07-01:
+        value: 0.647
+      2011-01-01:
+        value: 0.6425
+      2004-01-05:
+        value: 0.64
+      2003-08-31:
+        value: 0.62
+      2000-04-01:
+        value: 0.5899
+      1995-08-01:
+        value: 0.583
+      1993-05-24:
+        value: 0.5870000000000001
+      1993-01-18:
+        value: 0.57
+      1992-04-20:
+        value: 0.5328
+      1991-09-30:
+        value: 0.5413
+      1991-01-01:
+        value: 0.523
+    metadata:
+      ipp_csv_id: tx_cigarettes
+      unit: /1
+  cigares:
+    description: Cigares
+    values:
+      2020-11-01:
+        value: 0.363
+      2020-03-01:
+        value: 0.345
+      2019-11-01:
+        value: 0.323
+      2019-03-01:
+        value: 0.30
+      2018-03-01:
+        value: 0.269
+      2015-01-01:
+        value: 0.23
+      2013-07-01:
+        value: 0.28
+      2004-01-05:
+        value: 0.2757
+      2002-01-01:
+        value: 0.2
+      2001-01-08:
+        value: 0.25
+      2000-04-01:
+        value: 0.2955
+      1995-08-01:
+        value: 0.2886
+      1993-01-18:
+        value: 0.2926
+      1992-04-20:
+        value: 0.2992
+      1991-09-30:
+        value: 0.2995
+      1991-01-01:
+        value: 0.2692
+    metadata:
+      ipp_csv_id: tx_cigares
+      unit: /1
+  tabac_a_rouler:
+    description: Tabac à rouler
+    values:
+      2020-11-01:
+        value: 0.491
+      2020-03-01:
+        value: 0.481
+      2019-11-01:
+        value: 0.467
+      2019-03-01:
+        value: 0.456
+      2018-03-01:
+        value: 0.445
+      2017-01-01:
+        value: 0.377
+      2015-01-01:
+        value: 0.32
+      2013-07-01:
+        value: 0.62
+      2004-01-05:
+        value: 0.5857
+      2003-08-31:
+        value: 0.5159
+      2000-04-01:
+        value: 0.5169
+      1995-08-01:
+        value: 0.51
+      1993-05-24:
+        value: 0.514
+      1993-01-18:
+        value: 0.494
+      1992-04-20:
+        value: 0.448
+      1991-09-30:
+        value: 0.4614
+      1991-01-01:
+        value: 0.4355
+    metadata:
+      ipp_csv_id: tx_tabac_rouler
+      unit: /1
+  autres_tabacs:
+    description: Autres tabacs
+    values:
+      2020-11-01:
+        value: 0.514
+      2020-03-01:
+        value: 0.507
+      2019-11-01:
+        value: 0.499
+      2019-03-01:
+        value: 0.490
+      2018-03-01:
+        value: 0.481
+      2015-01-01:
+        value: 0.45
+      2013-07-01:
+        value: 0.55
+      2004-01-05:
+        value: 0.5242
+      2000-04-01:
+        value: 0.4743
+      1995-08-01:
+        value: 0.4674
+      1993-01-18:
+        value: 0.4714
+      1992-04-20:
+        value: 0.448
+      1991-09-30:
+        value: 0.4614
+      1991-01-01:
+        value: 0.4355
+    metadata:
+      ipp_csv_id: tx_autres_tabac
+      unit: /1
+  tabacs_priser:
+    description: Tabacs à priser
+    values:
+      2020-11-01:
+        value: 0.581
+      2020-03-01:
+        value: 0.572
+      2019-11-01:
+        value: 0.562
+      2019-03-01:
+        value: 0.550
+      2018-03-01:
+        value: 0.538
+      2013-07-01:
+        value: 0.5
+      2004-01-05:
+        value: 0.4557
+      2000-04-01:
+        value: 0.4089
+      1995-08-01:
+        value: 0.402
+      1993-01-18:
+        value: 0.406
+      1992-04-20:
+        value: 0.3826
+      1991-09-30:
+        value: 0.3999
+      1991-01-01:
+        value: 0.3681
+    metadata:
+      ipp_csv_id: tx_tabac_priser
+      unit: /1
+  tabacs_chiquer:
+    description: Tabacs à chiquer
+    values:
+      2020-11-01:
+        value: 0.407
+      2020-03-01:
+        value: 0.401
+      2019-11-01:
+        value: 0.393
+      2019-03-01:
+        value: 0.385
+      2018-03-01:
+        value: 0.376
+      2013-07-01:
+        value: 0.35
+      2004-01-05:
+        value: 0.3217
+      2000-04-01:
+        value: 0.2816
+      1995-08-01:
+        value: 0.2747
+      1993-01-18:
+        value: 0.2787
+      1992-04-20:
+        value: 0.2553
+      1991-09-30:
+        value: 0.2803
+      1991-01-01:
+        value: 0.2371
+    metadata:
+      ipp_csv_id: tx_tabac_chiquer
+      unit: /1
+  metadata:
+    order:
+    - cigarettes
+    - cigares
+    - tabac_rouler
+    - autres_tabacs
+    - tabacs_priser
+    - tabacs_chiquer
+metadata:
+  order:
+  - taux_normal
+  reference:
+    2020-11-01:
+      title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+    2020-03-01:
+      title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+    2019-11-01:
+      title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 207
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/article_207
+    2019-03-01:
+      title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 207
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/article_207
+    2018-03-01:
+      title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018) - art. 17
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358470&cidTexte=JORFTEXT000036339090
+    2017-01-01:
+      title: Loi 2016-1827 du 23/12/2016 - art. 29 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000033685384&cidTexte=JORFTEXT000033680665
+    2015-01-01:
+      title: Loi 2014-1655 du 29/12/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029990432
+    2013-07-01:
+      title: Loi 2012-1404 du 17/12/2012, art. 23 (LFSS pour 2013)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026787281&cidTexte=JORFTEXT000026785322
+    2011-01-01:
+      title: Loi 2010-1658 du 29/12/2010
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000023316044
+    2004-01-05:
+      title: Loi 2003-1311 du 30/12/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000612133
+    2003-08-31:
+      title: Loi 2003-715 du 31/07/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000606479
+    2002-01-01:
+      title: Loi 2001-1246 du 21/12/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000396224
+    2001-01-08:
+      title: Loi 2000-1353 du 30/12/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000767907
+    2000-04-01:
+      title: Loi 2000-656 du 13/07/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000400546
+    1995-08-01:
+      title: Loi 95-858 du 28/07/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000370300
+    1993-05-24:
+      title: Loi 92-1376 du 30/12/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    1993-01-18:
+      title: Loi 92-1376 du 30/12/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    1992-04-20:
+      title: Loi 91-1322 du 30/12/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000356342
+    1991-09-30:
+      title: Loi 90-1168 du 29/12/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000717191
+    1991-01-01:
+      title: Loi 90-1168 du 29/12/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000717191
+  date_parution_jo:
+    2020-11-01: 2020-12-30
+    2020-03-01: 2020-12-30
+    2019-11-01: 2018-12-30
+    2019-03-01: 2018-12-30
+    2018-03-01: 2017-12-31
+    2017-01-01: 2016-01-27
+    2015-01-01: 2014-12-30
+    2013-07-01: 2012-12-18
+    2011-01-01: 2010-12-30
+    2004-01-05: 2003-12-31
+    2003-08-31: 2003-08-03
+    2002-01-01: 2001-12-26
+    2001-01-08: 2000-12-31
+    2000-04-01: 2000-07-14
+    1995-08-01: 1995-07-29
+    1993-05-24: 1992-12-31
+    1993-01-18: 1992-12-31
+    1992-04-20: 1991-12-31
+    1991-09-30: 1990-12-30
+    1991-01-01: 1990-12-30
+  description_en: Tobacco usual rates
+documentation: |
+  Notes :
+  Voir aussi article 575 A du code général des impôts.

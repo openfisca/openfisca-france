@@ -1,0 +1,176 @@
+description: Montant du supplément familial de traitement (SFT) (1985-)
+part_fixe_1:
+  description: Part fixe 1
+  values:
+    2002-01-01:
+      value: 2.29
+    1985-11-01:
+      value: 180.0
+  metadata:
+    ipp_csv_id: enf1
+    unit:
+      2002-01-01: currency-EUR
+      1985-11-01: currency-FRF
+part_fixe_2:
+  description: Part fixe 2
+  values:
+    2002-01-01:
+      value: 10.67
+    1988-02-07:
+      value: 840.0
+    1985-11-01:
+      value: 480.0
+  metadata:
+    ipp_csv_id: enf2
+    unit:
+      2002-01-01: currency-EUR
+      1985-11-01: currency-FRF
+part_fixe_3:
+  description: Part fixe 3
+  values:
+    2002-01-01:
+      value: 15.24
+    1988-02-07:
+      value: 1200.0
+    1985-11-01:
+      value: 720.0
+  metadata:
+    ipp_csv_id: enf3
+    unit:
+      2002-01-01: currency-EUR
+      1985-11-01: currency-FRF
+part_fixe_4:
+  description: Part fixe 4
+  values:
+    2002-01-01:
+      value: 4.57
+    1988-02-07:
+      value: 360.0
+    1985-11-01:
+      value: 240.0
+  metadata:
+    ipp_csv_id: enf4
+    unit:
+      2002-01-01: currency-EUR
+      1985-11-01: currency-FRF
+taux_2:
+  description: Taux 2
+  values:
+    1985-11-01:
+      value: 0.03
+  metadata:
+    ipp_csv_id: txenf2
+    unit: /1
+taux_3:
+  description: Taux 3
+  values:
+    1985-11-01:
+      value: 0.08
+  metadata:
+    ipp_csv_id: txenf3
+    unit: /1
+taux_4:
+  description: Taux 4
+  values:
+    1985-11-01:
+      value: 0.06
+  metadata:
+    ipp_csv_id: txenf4
+    unit: /1
+im_plancher:
+  description: IM Plancher
+  values:
+    2006-11-01:
+      value: 449.0
+    2002-01-01:
+      value: 448.0
+    1999-03-20:
+      value: 447.0
+    1991-08-01:
+      value: 446.0
+    1990-02-01:
+      value: 443.0
+    1990-01-01:
+      value: 444.0
+    1988-10-01:
+      value: 442.0
+    1988-03-01:
+      value: 440.0
+    1988-02-07:
+      value: 382.0
+    1985-11-01:
+      value: 380.0
+  metadata:
+    ipp_csv_id: im_plancher
+im_plafond:
+  description: IM Plafond
+  values:
+    2006-11-01:
+      value: 717.0
+    1988-03-01:
+      value: 716.0
+    1988-02-07:
+      value: 623.0
+    1985-11-01:
+      value: 621.0
+  metadata:
+    ipp_csv_id: im_plafond
+metadata:
+  order:
+  - part_fixe_1
+  - part_fixe_2
+  - part_fixe_3
+  - part_fixe_4
+  - taux_2
+  - taux_3
+  - taux_4
+  - im_plancher
+  - im_plafond
+  reference:
+    2006-11-01:
+      title: Décret 2006-1283 du 19/10/2006
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615828
+    2002-01-01:
+      title: Décret 2001-895 du 26/09/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000773694&categorieLien=id
+    1999-07-01:
+      title: Décret 99-491 du 10/06/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000394805
+    1999-03-20:
+      title: Décret 99-491 du 10/06/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000394805
+    1991-08-01:
+      title: Décret 91-1191 du 18/11/1991, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006467308&cidTexte=JORFTEXT000000538342
+    1990-01-01:
+      title: Décret 90-321 du 05/04/1990, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006458283&cidTexte=JORFTEXT000000166950
+    1990-02-01: Décret 89-64 du 04/02/1989, art. 2
+    1988-10-01: Décret 88-1067 du 23/11/1988, art. 2
+    1988-03-01:
+      title: Décret 88-229 du 09/03/1988, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006455867&cidTexte=JORFTEXT000000315254
+    1988-02-07: Décret 86-167 du 31/01/1986, art. 1 VI
+    1985-11-01:
+      title: Décret 85-1148 du 24/10/1985 - art. 10
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006454594&cidTexte=JORFTEXT000000872483
+  date_parution_jo:
+    2006-11-01: 2006-10-20
+    2002-01-01: 2001-09-29
+    1999-07-01: 1999-06-13
+    1999-03-20: 1999-06-13
+    1991-08-01: 1991-11-27
+    1990-01-01: 1990-04-11
+    1990-02-01: 1989-02-05
+    1988-10-01: 1988-11-29
+    1988-03-01: 13/031988
+    1988-02-07: 1986-02-07
+    1985-11-01: 1985-11-05
+  description_en: Family income supplement (SFT) (1985-2017)
+documentation: |
+  Notes:
+  SFT =supplément familial de traitement (concerne les fonctionaires)
+  (1) Les montants en euros sont mensuels tandis que les montants en FRF sont annuels.
+  (2) Le montant du SFT varie en fonction du nombre d'enfants à charge: part fixe par enfant et versement proportionnel au traitement brut de l'agent à partir du deuxième enfant
+  (3) Les montants mensuels sont limités par le plancher et le plafond à partir d'un certain indice majoré (IM)
+  (4) Les part fixe et taux 1, 2 et 3 sont attribués aux fonctionnaires ayant 1, 2 ou 3 enfants à charge. Les PF et taux 4 par enfant additionnels

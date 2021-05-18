@@ -1,0 +1,10 @@
+description: Préretraites
+metadata:
+  order:
+  - ats
+  - pts
+  - aer
+  - gr
+  - sr_fne
+  - fne_arpe
+  description_en: Early retirement benefits

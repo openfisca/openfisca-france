@@ -1,0 +1,22 @@
+description: Contribution patronale au financement des organisations syndicales
+taux:
+  description: Taux
+  values:
+    2015-01-01:
+      value: 0.00016
+  metadata:
+    ipp_csv_id: taux
+    unit: /1
+metadata:
+  order:
+  - taux
+  reference:
+    2015-01-01:
+      title: Décret 2014-1718 du 30/12/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030005593
+  date_parution_jo:
+    2015-01-01: 2014-12-31
+  description_en: Employer's contributions to the funding of trade unions
+documentation: |
+  Références législatives :
+  Article D2135-34 du Code du travail

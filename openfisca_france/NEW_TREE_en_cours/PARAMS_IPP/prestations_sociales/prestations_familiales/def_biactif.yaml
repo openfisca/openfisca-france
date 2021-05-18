@@ -1,0 +1,35 @@
+description: Définition d'un couple bi-actif
+revenu_professionnel_plancher_couples_biactifs:
+  description: Revenu professionnel plancher pour les couples biactifs
+  en_pourcentage_pss:
+    description: En pourcentage du PSS
+    values:
+      2011-11-01:
+        value: 0.136
+      1979-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: facteur_yamin_biact_pss
+      unit: /1
+  en_nombre_fois_bmaf:
+    description: En nombre de fois de la BMAF
+    values:
+      2011-11-01:
+        value: null
+      1979-01-01:
+        value: 12.0
+    metadata:
+      ipp_csv_id: facteur_yamin_biact_bmaf
+  metadata:
+    order:
+    - en_pourcentage_pss
+    - en_nombre_fois_bmaf
+metadata:
+  order:
+  - revenu_professionnel_plancher_couples_biactifs
+  reference:
+    2011-11-01: Circulaire DSS/2B/2011/447 du 01/12/2011
+    1979-01-01: Références manquantes
+  notes:
+    2011-11-01: Les revenus professionnels pris en compte sont ceux de l'année N-2 jusqu'au 01/01/2012, puis ceux de l'année N à partir de cette date.
+  description_en: Definition of a biactive couple

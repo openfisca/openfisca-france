@@ -1,0 +1,135 @@
+description: Coefficient de minoration ARRCO
+coefficient_minoration_en_fonction_distance_age_annulation_decote_en_annee:
+  description: Coefficient de minoration à l'Arrco en fonction de la distance à l'âge d'annulation de la décote (en année)
+  '-10':
+    description: '-10'
+    values:
+      1965-01-01:
+        value: 0.43
+      1957-05-15:
+        value: null
+  '-9':
+    description: '-9'
+    values:
+      1965-01-01:
+        value: 0.5
+      1957-05-15:
+        value: null
+  '-8':
+    description: '-8'
+    values:
+      1965-01-01:
+        value: 0.57
+      1957-05-15:
+        value: null
+  '-7':
+    description: '-7'
+    values:
+      1965-01-01:
+        value: 0.64
+      1957-05-15:
+        value: null
+  '-6':
+    description: '-6'
+    values:
+      1965-01-01:
+        value: 0.71
+      1957-05-15:
+        value: null
+  '-5':
+    description: '-5'
+    values:
+      1965-01-01:
+        value: 0.78
+      1957-05-15:
+        value: 0.75
+  '-4':
+    description: '-4'
+    values:
+      1965-01-01:
+        value: 0.83
+      1957-05-15:
+        value: 0.8
+  '-3':
+    description: '-3'
+    values:
+      1965-01-01:
+        value: 0.88
+      1957-05-15:
+        value: 0.85
+  '-2':
+    description: '-2'
+    values:
+      1965-01-01:
+        value: 0.92
+      1957-05-15:
+        value: 0.9
+  '-1':
+    description: '-1'
+    values:
+      1965-01-01:
+        value: 0.96
+      1957-05-15:
+        value: 0.95
+  '0':
+    description: '0'
+    values:
+      1965-01-01:
+        value: 1.0
+      1957-05-15:
+        value: 1.05
+  '1':
+    description: '1'
+    values:
+      1965-01-01:
+        value: null
+      1957-05-15:
+        value: 1.1
+  '2':
+    description: '2'
+    values:
+      1965-01-01:
+        value: null
+      1957-05-15:
+        value: 1.15
+  '3':
+    description: '3'
+    values:
+      1965-01-01:
+        value: null
+      1957-05-15:
+        value: 1.2
+  '4':
+    description: '4'
+    values:
+      1965-01-01:
+        value: null
+      1957-05-15:
+        value: 1.25
+  metadata:
+    order:
+    - '-10'
+    - '-9'
+    - '-8'
+    - '-7'
+    - '-6'
+    - '-5'
+    - '-4'
+    - '-3'
+    - '-2'
+    - '-1'
+    - '0'
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+metadata:
+  order:
+  - coefficient_minoration_en_fonction_distance_age_annulation_decote_en_annee
+  reference:
+    1965-01-01: Article 18 de l'annexe A de l'Accord national interprofessionnel de retraite complémentaire du 8 décembre 1961
+    1957-05-15: Accord du 15/05/1957 pour la création de l'UNIRS
+  description_en: Penalty for early retirement ARRCO
+documentation: |
+  Note: Le coefficient d'abattement (ou de majoration avant 1965) constitue une multiplication des droits de pension à l'arrco par le coefficient en question. Par exemple, un individu partant en retraite à 60 ans en 1960 touchait 75% de sa pension. A partir de 1983, une double condition d'âge et de durée d'assurance est instaurée: un individu ayant validé une durée égale à la durée d'assurance cible(voir onglet Trim_tx_plein_RG) partira sans abbattement, même s'il n'a pas atteint l'âge d'annulation de la décôte dans le régime général (voir onglet Age_ann_dec_RG).
+  Note : le coefficient de minoration est linéaire en nombre de trimestres, e.g. il est de 0,43 à AAD - 10 ans, de 0,4475 à AAD - 9 ans et 3 trimestres, de 0,465 à AAD - 9 ans et 2 trimestres, etc.

@@ -1,0 +1,522 @@
+description: Cotisations retraites des non-cadres (ARRCO) (1962-2018)
+taux_appel:
+  description: Taux d'appel
+  values:
+    2019-01-01:
+      value: null
+    1992-01-01:
+      value: 1.25
+    1991-01-01:
+      value: 1.23
+    1988-01-01:
+      value: 1.2
+    1987-01-01:
+      value: 1.175
+    1983-01-01:
+      value: 1.15
+    1974-01-01:
+      value: 1.1
+    1973-01-01:
+      value: 1.075
+    1972-01-01:
+      value: 1.05
+    1971-01-01:
+      value: 1.025
+    1962-01-01:
+      value: 1.0
+  metadata:
+    unit: /1
+taux_contractuels:
+  description: Taux contractuels
+  tranche_1:
+    description: Tranche 1
+    values:
+      2019-01-01:
+        value: null
+      2015-01-01:
+        value: 0.062
+      2014-01-01:
+        value: 0.061
+      1999-01-01:
+        value: 0.06
+      1998-01-01:
+        value: 0.055
+      1997-01-01:
+        value: 0.05
+      1996-01-01:
+        value: 0.045
+      1967-01-01:
+        value: 0.04
+      1962-01-01:
+        value: 0.025
+    metadata:
+      unit: /1
+  tranche_2:
+    description: Tranche 2
+    entreprises_avant_01_01_1997:
+      description: Entreprises avant 01/01/1997
+      values:
+        2019-01-01:
+          value: null
+        2015-01-01:
+          value: 0.162
+        2014-01-01:
+          value: 0.161
+        2005-01-01:
+          value: 0.16
+        2004-01-01:
+          value: 0.14
+        2002-01-01:
+          value: 0.12
+        2000-01-01:
+          value: 0.1
+        1999-01-01:
+          value: 0.06
+        1998-01-01:
+          value: 0.055
+        1997-01-01:
+          value: 0.05
+        1996-01-01:
+          value: 0.045
+        1967-01-01:
+          value: 0.04
+        1962-01-01:
+         value: 0.025  
+      metadata:
+        unit: /1
+    entreprises_apres_01_01_1997:
+      description: Entreprises après 01/01/1997
+      values:
+        2019-01-01:
+          value: null
+        2015-01-01:
+          value: 0.162
+        2014-01-01:
+          value: 0.161
+        2000-01-01:
+          value: 0.16
+        1999-01-01:
+          value: 0.15
+        1997-01-01:
+          value: 0.14
+        1962-01-01:
+          value: null
+      metadata:
+        unit: /1
+    metadata:
+      order:
+      - entreprises_avant_01_01_1997
+      - entreprises_apres_01_01_1997
+  metadata:
+    order:
+    - tranche_1
+    - tranche_2
+taux_effectifs:
+  description: Taux effectifs
+  tranche_1:
+    description: Tranche 1
+    values:
+      2019-01-01:
+        value: null
+      2015-01-01:
+        value: 0.0775
+      2014-01-01:
+        value: 0.07625
+      1999-01-01:
+        value: 0.075
+      1998-01-01:
+        value: 0.06875
+      1997-01-01:
+        value: 0.0625
+      1996-01-01:
+        value: 0.056249999999999994
+      1992-01-01:
+        value: 0.05
+      1991-01-01:
+        value: 0.0492
+      1988-01-01:
+        value: 0.048
+      1987-01-01:
+        value: 0.047
+      1983-01-01:
+        value: 0.046
+      1974-01-01:
+        value: 0.044000000000000004
+      1973-01-01:
+        value: 0.043
+      1972-01-01:
+        value: 0.042
+      1971-01-01:
+        value: 0.040999999999999995
+      1967-01-01:
+        value: 0.04
+      1962-01-01:
+        value: 0.025
+    metadata:
+      unit: /1
+  tranche_2:
+    description: Tranche 2
+    entreprises_avant_01_01_1997:
+      description: Entreprises avant 01/01/1997
+      values:
+        2019-01-01:
+          value: null
+        2015-01-01:
+          value: 0.2025
+        2014-01-01:
+          value: 0.20125
+        2005-01-01:
+          value: 0.2
+        2004-01-01:
+          value: 0.17500000000000002
+        2002-01-01:
+          value: 0.15
+        2000-01-01:
+          value: 0.125
+        1999-01-01:
+          value: 0.075
+        1998-01-01:
+          value: 0.06875
+        1997-01-01:
+          value: 0.0625
+        1996-01-01:
+          value: 0.056249999999999994
+        1992-01-01:
+          value: 0.05
+        1991-01-01:
+          value: 0.0492
+        1988-01-01:
+          value: 0.048
+        1987-01-01:
+          value: 0.047
+        1983-01-01:
+          value: 0.046
+        1974-01-01:
+          value: 0.044000000000000004
+        1973-01-01:
+          value: 0.043
+        1972-01-01:
+          value: 0.042
+        1971-01-01:
+          value: 0.040999999999999995
+        1967-01-01:
+          value: 0.04
+        1962-01-01:
+          value: 0.025
+      metadata:
+        unit: /1
+    entreprises_apres_01_01_1997:
+      description: Entreprises après 01/01/1997
+      values:
+        2019-01-01:
+          value: null
+        2015-01-01:
+          value: 0.2025
+        2014-01-01:
+          value: 0.20125
+        2000-01-01:
+          value: 0.2
+        1999-01-01:
+          value: 0.1875
+        1997-01-01:
+          value: 0.17500000000000002
+        1962-01-01:
+          value: null
+      metadata:
+        unit: /1
+    metadata:
+      order:
+      - entreprises_avant_01_01_1997
+      - entreprises_apres_01_01_1997
+  metadata:
+    order:
+    - tranche_1
+    - tranche_2
+taux_effectifs_salaries_employeurs:
+  description: Taux effectifs (salariés/employeurs)
+  tranche_1:
+    description: Tranche 1
+    salarie:
+      description: Salarié
+      values:
+        2019-01-01:
+          value: null
+        2015-01-01:
+          value: 0.031
+        2014-01-01:
+          value: 0.0305
+        1999-01-01:
+          value: 0.03
+        1998-01-01:
+          value: 0.027500000000000004
+        1997-01-01:
+          value: 0.025
+        1996-01-01:
+          value: 0.0225
+        1992-01-01:
+          value: 0.020000000000000004
+        1991-01-01:
+          value: 0.019680000000000003
+        1988-01-01:
+          value: 0.019200000000000002
+        1987-01-01:
+          value: 0.0188
+        1983-01-01:
+          value: 0.0184
+        1974-01-01:
+          value: 0.0176
+        1973-01-01:
+          value: 0.0172
+        1972-01-01:
+          value: 0.016800000000000002
+        1971-01-01:
+          value: 0.016399999999999998
+        1967-01-01:
+          value: 0.016
+        1962-01-01:
+          value: 0.010000000000000002
+      metadata:
+        ipp_csv_id: arrco_s_0_1
+        unit: /1
+    employeur:
+      description: Employeur
+      values:
+        2019-01-01:
+          value: null
+        2015-01-01:
+          value: 0.0465
+        2014-01-01:
+          value: 0.04575
+        1999-01-01:
+          value: 0.045
+        1998-01-01:
+          value: 0.04125
+        1997-01-01:
+          value: 0.0375
+        1996-01-01:
+          value: 0.033749999999999995
+        1992-01-01:
+          value: 0.03
+        1991-01-01:
+          value: 0.029519999999999998
+        1988-01-01:
+          value: 0.0288
+        1987-01-01:
+          value: 0.0282
+        1983-01-01:
+          value: 0.0276
+        1974-01-01:
+          value: 0.026400000000000003
+        1973-01-01:
+          value: 0.025799999999999997
+        1972-01-01:
+          value: 0.0252
+        1971-01-01:
+          value: 0.024599999999999997
+        1967-01-01:
+          value: 0.024
+        1962-01-01:
+          value: 0.015
+      metadata:
+        ipp_csv_id: arrco_p_0_1
+        unit: /1
+    metadata:
+      order:
+      - salarie
+      - employeur
+  tranche_2_avant_1997:
+    description: Tranche 2 (avant 1997)
+    salarie:
+      description: Salarié
+      values:
+        2019-01-01:
+          value: null
+        2015-01-01:
+          value: 0.08100000000000002
+        2014-01-01:
+          value: 0.08050000000000002
+        2005-01-01:
+          value: 0.08000000000000002
+        2004-01-01:
+          value: 0.07
+        2002-01-01:
+          value: 0.06
+        2000-01-01:
+          value: 0.05
+        1999-01-01:
+          value: 0.03
+        1998-01-01:
+          value: 0.027500000000000004
+        1997-01-01:
+          value: 0.025
+        1996-01-01:
+          value: 0.0225
+        1992-01-01:
+          value: 0.020000000000000004
+        1991-01-01:
+          value: 0.019680000000000003
+        1988-01-01:
+          value: 0.019200000000000002
+        1987-01-01:
+          value: 0.0188
+        1983-01-01:
+          value: 0.0184
+        1974-01-01:
+          value: 0.0176
+        1973-01-01:
+          value: 0.0172
+        1972-01-01:
+          value: 0.016800000000000002
+        1971-01-01:
+          value: 0.016399999999999998
+        1967-01-01:
+          value: 0.016
+        1962-01-01:
+          value: 0.010000000000000002
+      metadata:
+        ipp_csv_id: arrco_s_1_3
+        unit: /1
+    employeur:
+      description: Employeur
+      values:
+        2019-01-01:
+          value: null
+        2015-01-01:
+          value: 0.1215
+        2014-01-01:
+          value: 0.12075
+        2005-01-01:
+          value: 0.12
+        2004-01-01:
+          value: 0.10500000000000001
+        2002-01-01:
+          value: 0.09
+        2000-01-01:
+          value: 0.075
+        1999-01-01:
+          value: 0.045
+        1998-01-01:
+          value: 0.04125
+        1997-01-01:
+          value: 0.0375
+        1996-01-01:
+          value: 0.033749999999999995
+        1992-01-01:
+          value: 0.03
+        1991-01-01:
+          value: 0.029519999999999998
+        1988-01-01:
+          value: 0.0288
+        1987-01-01:
+          value: 0.0282
+        1983-01-01:
+          value: 0.0276
+        1974-01-01:
+          value: 0.026400000000000003
+        1973-01-01:
+          value: 0.025799999999999997
+        1972-01-01:
+          value: 0.0252
+        1971-01-01:
+          value: 0.024599999999999997
+        1967-01-01:
+          value: 0.024
+        1962-01-01:
+          value: 0.015
+      metadata:
+        ipp_csv_id: arrco_p_1_3
+        unit: /1
+    metadata:
+      order:
+      - salarie
+      - employeur
+  tranche_2_apres_1997:
+    description: Tranche 2 (après 1997)
+    salarie:
+      description: Salarié
+      values:
+        2019-01-01:
+          value: null
+        2015-01-01:
+          value: 0.08100000000000002
+        2014-01-01:
+          value: 0.08050000000000002
+        2000-01-01:
+          value: 0.08000000000000002
+        1999-01-01:
+          value: 0.07500000000000001
+        1997-01-01:
+          value: 0.07
+        1962-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: arrco_ap97_s_1_3
+        unit: /1
+    employeur:
+      description: Employeur
+      values:
+        2019-01-01:
+          value: null
+        2015-01-01:
+          value: 0.1215
+        2014-01-01:
+          value: 0.12075
+        2000-01-01:
+          value: 0.12
+        1999-01-01:
+          value: 0.11249999999999999
+        1997-01-01:
+          value: 0.10500000000000001
+        1962-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: arrco_ap97_p_1_3
+        unit: /1
+    metadata:
+      order:
+      - salarie
+      - employeur
+  metadata:
+    order:
+    - tranche_1
+    - tranche_2_avant_1997
+    - tranche_2_apres_1997
+metadata:
+  order:
+  - taux_appel
+  - taux_contractuels
+  - taux_effectifs
+  - taux_effectifs_salaries_employeurs
+  reference:
+    2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+    2015-01-01: Accord AGIRC-ARRCO du 13/03/2013
+    2014-01-01: Accord AGIRC-ARRCO du 13/03/2013
+    2005-01-01: Accord ARRCO du 25/04/1996, art. 26
+    2004-01-01: Accord ARRCO du 25/04/1996, art. 26
+    2002-01-01: Accord ARRCO du 25/04/1996, art. 26
+    2000-01-01: Accord ARRCO du 25/04/1996, art. 26
+    1999-01-01: Accord ARRCO du 25/04/1996, art. 26
+    1998-01-01: Accord ARRCO du 25/04/1996, art. 26
+    1997-01-01: Accords du 9/02/94 et du 25/04/1996
+    1996-01-01: Accord ARRCO du 10/02/1993
+    1992-01-01: Accords ARRCO du 12/11/86 et du 01/12/89
+    1991-01-01: Accords ARRCO du 12/11/86 et du 01/12/89
+    1988-01-01: Accords ARRCO du 12/11/86
+    1987-01-01: Accords ARRCO du 12/11/86
+    1983-01-01: Lettre-circulaire ARRCO 82-28 du 09/07/82
+    1982-01-01: (pas de référence)
+  notes:
+    2019-01-01: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
+    1982-01-01: "BSP : \"Le plus souvent, répartition employeur/salarié = 60/40 comme à l'UNIRS\""
+  description_en: Pension contributions for non-executives (ARRCO)
+documentation: |
+  Notes :
+  Tranche 1: Sous PSS
+  Tranche 2: Entre 1 et 3 PSS.
+  Taux contractuels: taux qui servent à calculer les points de retraite des salariés.
+  Taux d'appel: taux appliqué au taux contractuels pour obtenir le taux effectif de cotisation.
+  Champ :
+  Tous les salariés (cadres et non-cadres) cotisent à l'Arrco sur la tranche 1, mais seuls les non-cadres cotisent sur la tranche 2.
+  Sources :
+  Document faxé par l'ARRCO "Paramètres de fonctionnement pratique depuis la création de l'Arrco au titre des opérations obligatoires (1962-1999)"
+  Site web de l'Arrco depuis 1999.

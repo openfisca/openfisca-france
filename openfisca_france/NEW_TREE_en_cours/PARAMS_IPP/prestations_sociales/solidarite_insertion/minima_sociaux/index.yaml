@@ -1,0 +1,17 @@
+description: Minima sociaux
+metadata:
+  order:
+  - rmi_cond
+  - rmi_m
+  - rmi_maj
+  - rmi_fl
+  - api_cond
+  - api_m
+  - api_fl
+  - rsa_cond
+  - rsa_m
+  - rsa_maj
+  - rsa_fl
+  - pa_m
+  - pa_fl
+  description_en: Social minima

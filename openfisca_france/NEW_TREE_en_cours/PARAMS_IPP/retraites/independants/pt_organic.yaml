@@ -1,0 +1,327 @@
+description: Valeur des points acquis avant 1973 - ORGANIC
+valeur_point_retraite_organic_regime_base_droits_acquis_avant_1973:
+  description: Valeur du point retraite ORGANIC - régime de base, droits acquis avant 1973
+  valeur_point_acquis_par_cotisations:
+    description: Valeur du point acquis par cotisations
+    values:
+      2019-01-01:
+        value: 12.719
+      2017-10-01:
+        value: 12.68096
+      2015-10-01:
+        value: 12.58032
+      2013-04-01:
+        value: null
+      2012-04-01:
+        value: 12.4048
+      2011-04-01:
+        value: 8.8124
+      2009-04-01:
+        value: 11.90139
+      2008-09-01:
+        value: 11.67846
+      2008-01-01:
+        value: 11.58577
+      2007-01-01:
+        value: 11.45971
+      2006-01-01:
+        value: 11.25708
+      2005-01-01:
+        value: 11.05804
+      2004-01-01:
+        value: 10.84122
+      2003-01-01:
+        value: 10.66
+      2002-01-01:
+        value: 10.51
+      2001-01-01:
+        value: 67.51
+      2000-01-01:
+        value: 66.06
+      1999-01-01:
+        value: 65.74
+      1998-01-01:
+        value: 64.97
+      1997-01-01:
+        value: 64.27
+      1996-01-01:
+        value: 63.51
+      1995-07-01:
+        value: 62.27
+      1995-01-01:
+        value: 61.97
+      1994-01-01:
+        value: 61.24
+      1993-01-01:
+        value: 60.04
+      1992-07-01:
+        value: 59.27
+      1992-01-01:
+        value: 58.22
+      1991-07-01:
+        value: 57.64
+      1991-01-01:
+        value: 57.18
+      1990-07-01:
+        value: 56.22
+      1990-01-01:
+        value: 55.5
+      1989-07-01:
+        value: 54.33
+      1989-01-01:
+        value: 53.69
+      1988-07-01:
+        value: 53.0
+      1988-01-01:
+        value: 52.33
+      1987-07-01:
+        value: 51.0
+      1987-01-01:
+        value: 50.5
+      1986-07-01:
+        value: 49.61
+      1986-01-01:
+        value: 49.36
+      1985-07-01:
+        value: 48.73
+      1985-01-01:
+        value: 47.4
+      1984-07-01:
+        value: 45.84
+      1984-01-01:
+        value: 44.85
+      1983-07-01:
+        value: 44.06
+      1983-01-01:
+        value: 42.37
+      1982-07-01:
+        value: 40.74
+      1982-01-01:
+        value: 37.94
+      1981-07-01:
+        value: 35.55
+      1981-01-01:
+        value: 33.38
+      1980-07-01:
+        value: 31.37
+      1980-01-01:
+        value: 29.49
+      1979-07-01:
+        value: 27.98
+      1979-01-01:
+        value: 26.9
+      1978-07-01:
+        value: 25.26
+      1978-01-01:
+        value: 24.2
+      1977-07-01:
+        value: 22.37
+      1977-01-01:
+        value: 20.58
+      1976-07-01:
+        value: 18.44
+      1976-01-01:
+        value: 16.58
+      1975-07-01:
+        value: 14.9
+      1975-01-01:
+        value: 13.22
+      1974-07-01:
+        value: 12.1
+      1974-01-01:
+        value: 11.34
+      1972-10-01:
+        value: 9.84
+      1972-04-01:
+        value: 8.56
+      1971-04-01:
+        value: 8.12
+      1970-04-01:
+        value: 7.72
+      1968-10-01:
+        value: 7.16
+      1967-10-01:
+        value: 6.96
+      1966-07-01:
+        value: 6.8
+      1963-01-01:
+        value: 5.5
+      1960-10-01:
+        value: 4.76
+      1958-07-01:
+        value: 4.1
+      1956-10-01:
+        value: 3.85
+      1955-01-01:
+        value: 3.5
+      1952-10-01:
+        value: 3.05
+      1951-07-01:
+        value: 2.8
+      1949-10-01:
+        value: 2.5
+    metadata:
+      ipp_csv_id: organic_base
+      unit:
+        2002-01-01: currency-EUR
+        1949-10-01: currency-FRF
+  valeur_point_acquis_par_rachat_global:
+    description: Valeur du point acquis par rachat global
+    values:
+      2008-01-01:
+        value: null
+      2007-01-01:
+        value: 10.7072
+      2006-01-01:
+        value: 10.51788
+      2005-01-01:
+        value: 10.33191
+      2004-01-01:
+        value: 10.12932
+      2003-01-01:
+        value: 9.96
+      2002-01-01:
+        value: 9.82
+      2001-01-01:
+        value: 63.07
+      2000-01-01:
+        value: 61.72
+      1999-01-01:
+        value: 61.42
+      1998-01-01:
+        value: 60.7
+      1997-01-01:
+        value: 60.04
+      1996-01-01:
+        value: 59.33
+      1995-07-01:
+        value: 58.17
+      1995-01-01:
+        value: 57.89
+      1994-01-01:
+        value: 57.21
+      1993-01-01:
+        value: 56.09
+      1992-07-01:
+        value: 55.37
+      1992-01-01:
+        value: 54.39
+      1991-07-01:
+        value: 53.85
+      1991-01-01:
+        value: 53.42
+      1990-07-01:
+        value: 52.53
+      1990-01-01:
+        value: 51.86
+      1989-07-01:
+        value: 50.77
+      1989-01-01:
+        value: 50.17
+      1988-07-01:
+        value: 49.53
+      1988-01-01:
+        value: 48.9
+      1987-07-01:
+        value: 47.66
+      1987-01-01:
+        value: 47.19
+      1986-07-01:
+        value: 46.36
+      1986-01-01:
+        value: 46.13
+      1985-07-01:
+        value: 45.54
+      1985-01-01:
+        value: 44.3
+      1984-07-01:
+        value: 42.84
+      1984-01-01:
+        value: 41.92
+      1983-07-01:
+        value: 41.18
+      1983-01-01:
+        value: 39.6
+      1982-07-01:
+        value: 38.08
+      1982-01-01:
+        value: 35.46
+      1981-07-01:
+        value: 33.24
+      1981-01-01:
+        value: 31.3
+      1980-07-01:
+        value: 29.33
+      1980-01-01:
+        value: 27.57
+      1979-07-01:
+        value: 26.16
+      1979-01-01:
+        value: 25.16
+      1978-07-01:
+        value: 23.62
+      1978-01-01:
+        value: 22.62
+      1977-07-01:
+        value: 20.91
+      1977-01-01:
+        value: 19.24
+      1976-07-01:
+        value: 17.24
+      1976-01-01:
+        value: 15.5
+      1975-07-01:
+        value: 13.94
+      1975-01-01:
+        value: 12.38
+      1974-07-01:
+        value: 11.34
+      1974-01-01:
+        value: 10.64
+      1972-10-01:
+        value: 9.24
+      1972-04-01:
+        value: 8.04
+      1971-04-01:
+        value: 7.64
+      1970-04-01:
+        value: 7.28
+      1968-10-01:
+        value: 6.76
+      1967-10-01:
+        value: 6.56
+      1966-07-01:
+        value: 6.4
+      1963-01-01:
+        value: 5.5
+      1960-10-01:
+        value: 4.76
+      1958-07-01:
+        value: 4.1
+      1956-10-01:
+        value: 3.85
+      1955-01-01:
+        value: 3.5
+      1952-10-01:
+        value: 3.05
+      1951-07-01:
+        value: 2.8
+      1949-10-01:
+        value: 2.5
+    metadata:
+      ipp_csv_id: organic_rachat
+      unit:
+        2002-01-01: currency-EUR
+        1949-10-01: currency-FRF
+  metadata:
+    order:
+    - valeur_point_acquis_par_cotisations
+    - valeur_point_acquis_par_rachat_global
+metadata:
+  order:
+  - valeur_point_retraite_organic_regime_base_droits_acquis_avant_1973
+  description_en: Point value before 1973 - ORGANIC
+documentation: |
+  Notes :
+  En 1973, la retraite de base s'aligne sur le régime général (retraite calculée selon les mêmes règles que la CNAV).
+  Les valeurs présentées ici sont les points acquis dans le cadre du régime de base des commerçants avant 1973, convertis en droits à la retraite.

@@ -1,0 +1,53 @@
+description: Taxe exceptionnelle de solidarité sur les hautes rémunérations versées par les entreprises ("taxe à 75%") (2013-2015)
+taux:
+  description: Taux
+  values:
+    2015-01-01:
+      value: null
+    2013-01-01:
+      value: 0.5
+  metadata:
+    ipp_csv_id: tehr_tx
+    unit: /1
+seuil:
+  description: Seuil
+  values:
+    2015-01-01:
+      value: null
+    2013-01-01:
+      value: 1000000.0
+  metadata:
+    ipp_csv_id: tehr_seuil
+    unit: currency-EUR
+plafond_en_chiffre_affaire_entreprises:
+  description: Plafond (en % du chiffre d'affaire de l'entreprises)
+  values:
+    2015-01-01:
+      value: null
+    2013-01-01:
+      value: 0.05
+  metadata:
+    ipp_csv_id: tehr_plaf
+    unit: /1
+metadata:
+  order:
+  - taux
+  - seuil
+  - plafond_en_chiffre_affaire_entreprises
+  reference:
+    2015-01-01:
+      title: Loi 2013-1278 du 29/12/2013 (LF pour 2014), art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000028402680&cidTexte=JORFTEXT000028399511
+    2013-01-01:
+      title: Loi 2013-1278 du 29/12/2013 (LF pour 2014), art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000028402680&cidTexte=JORFTEXT000028399511
+  date_parution_jo:
+    2015-01-01: 2013-12-30
+    2013-01-01: 2013-12-30
+  description_en: Exceptional solidarity tax on high wages ("75% tax")
+documentation: |
+  Note :
+  Cette taxe correspond à la nouvelle version de la "taxe à 75%" proposée par F. Hollande durant la campagne présidentielle.
+  La TEHR a vocation a être temporaire (prélevée seulement sur les rémunérations versées en 2013 et 2014).
+  Assiette :
+  Il s'agit des montants bruts de rémunération individuelle. Voir art. 15(II.) de la Loi 2013-1278

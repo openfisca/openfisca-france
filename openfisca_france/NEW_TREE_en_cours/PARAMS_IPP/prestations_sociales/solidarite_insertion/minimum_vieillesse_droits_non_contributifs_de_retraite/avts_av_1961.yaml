@@ -1,0 +1,271 @@
+description: Allocation aux vieux travailleurs salariés, AVTS (1941-1961)
+villes_plus_5000_ha:
+  description: Villes de plus de 5000 habitants
+  allocation_base:
+    description: Allocation de base
+    values:
+      1960-01-01:
+        value: 723.8
+      1956-01-01:
+        value: 72380.0
+      1954-01-01:
+        value: 65800.0
+      1951-10-01:
+        value: 59800.0
+      1951-01-01:
+        value: 52000.0
+      1950-01-01:
+        value: 45000.0
+      1949-04-01:
+        value: 39000.0
+      1948-10-01:
+        value: 34000.0
+      1948-07-01:
+        value: 29000.0
+      1948-01-01:
+        value: 22000.0
+      1947-08-01:
+        value: 18000.0
+      1946-07-01:
+        value: 15000.0
+      1946-01-01:
+        value: 10800.0
+      1945-01-01:
+        value: 7200.0
+      1941-01-01:
+        value: 3600.0
+    metadata:
+      ipp_csv_id: allocbase_sup5000
+      unit:
+        1960-01-01: currency-FRF
+        1941-01-01: currency-AFRF
+  bonification_enfants:
+    description: Bonification pour enfants
+    values:
+      1960-01-01:
+        value: 72.37
+      1956-01-01:
+        value: 7238.0
+      1954-01-01:
+        value: 6580.0
+      1951-10-01:
+        value: 5980.0
+      1951-01-01:
+        value: 5200.0
+      1950-01-01:
+        value: 4500.0
+      1949-04-01:
+        value: 3900.0
+      1948-10-01:
+        value: 3400.0
+      1948-07-01:
+        value: 2900.0
+      1946-07-01:
+        value: 2000.0
+      1946-01-01:
+        value: 1500.0
+      1945-01-01:
+        value: 1000.0
+      1941-01-01:
+        value: 500.0
+    metadata:
+      ipp_csv_id: bonif_sup5000
+      unit:
+        1960-01-01: currency-FRF
+        1941-01-01: currency-AFRF
+  metadata:
+    order:
+    - allocation_base
+    - bonification_enfants
+villes_moins_5000_ha:
+  description: Villes de moins de 5000 habitants
+  allocation_base:
+    description: Allocation de base
+    values:
+      1960-01-01:
+        value: 686.4
+      1956-01-01:
+        value: 68640.0
+      1954-01-01:
+        value: 62400.0
+      1951-10-01:
+        value: 56400.0
+      1951-01-01:
+        value: 49000.0
+      1950-01-01:
+        value: 42000.0
+      1949-04-01:
+        value: 36000.0
+      1948-10-01:
+        value: 31000.0
+      1948-07-01:
+        value: 26000.0
+      1948-01-01:
+        value: 19000.0
+      1947-08-01:
+        value: 15000.0
+      1946-07-01:
+        value: 12000.0
+      1946-01-01:
+        value: 8200.0
+      1945-01-01:
+        value: 5400.0
+      1941-01-01:
+        value: 3600.0
+    metadata:
+      ipp_csv_id: allocbase_inf5000
+      unit:
+        1960-01-01: currency-FRF
+        1941-01-01: currency-AFRF
+  bonification_enfants:
+    description: Bonification pour enfants
+    values:
+      1960-01-01:
+        value: 68.64
+      1956-01-01:
+        value: 6864.0
+      1954-01-01:
+        value: 6240.0
+      1951-10-01:
+        value: 5640.0
+      1951-01-01:
+        value: 4900.0
+      1950-01-01:
+        value: 4200.0
+      1949-04-01:
+        value: 3600.0
+      1948-10-01:
+        value: 3100.0
+      1948-07-01:
+        value: 2600.0
+      1946-07-01:
+        value: 2000.0
+      1946-01-01:
+        value: 1500.0
+      1945-01-01:
+        value: 1000.0
+      1941-01-01:
+        value: 500.0
+    metadata:
+      ipp_csv_id: bonif_inf5000
+      unit:
+        1960-01-01: currency-FRF
+        1941-01-01: currency-AFRF
+  metadata:
+    order:
+    - allocation_base
+    - bonification_enfants
+majoration_conjoint:
+  description: Majoration pour conjoint
+  values:
+    1960-01-01:
+      value: 361.9
+    1956-01-01:
+      value: 36190.0
+    1954-01-01:
+      value: 32900.0
+    1951-10-01:
+      value: 29900.0
+    1951-01-01:
+      value: 26000.0
+    1950-01-01:
+      value: 22500.0
+    1949-04-01:
+      value: 19500.0
+    1948-10-01:
+      value: 17000.0
+    1948-07-01:
+      value: 14500.0
+    1947-08-01:
+      value: 5000.0
+    1946-07-01:
+      value: 4000.0
+    1946-01-01:
+      value: 3000.0
+    1945-01-01:
+      value: 2000.0
+    1941-01-01:
+      value: 1000.0
+  metadata:
+    ipp_csv_id: majconj
+    unit:
+      1960-01-01: currency-FRF
+      1941-01-01: currency-AFRF
+region_parisienne:
+  description: Région parisienne
+  values:
+    1960-01-01:
+      value: 34.0
+    1951-10-01:
+      value: 3400.0
+    1946-07-01:
+      value: 3000.0
+    1946-01-01:
+      value: 2400.0
+    1941-01-01:
+      value: 1600.0
+  metadata:
+    ipp_csv_id: ildf
+    unit:
+      1960-01-01: currency-FRF
+      1941-01-01: currency-AFRF
+metadata:
+  order:
+  - villes_plus_5000_ha
+  - villes_moins_5000_ha
+  - majoration_conjoint
+  - region_parisienne
+  reference:
+    1960-01-01:
+      title: Loi 56-331 du 27/03/1956
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
+    1956-01-01:
+      title: Loi 56-331 du 27/03/1956
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
+    1954-01-01: Loi 54-301 du 20/03/1954
+    1951-10-01: Loi 15-1126 du 26/09/1951
+    1951-01-01:
+      title: Loi 51-374 du 27/03/1951
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336226
+    1950-01-01:
+      title: Loi 50-147 du 03/02/1950
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000878353
+    1949-04-01: Loi 49-922 du 13/07/1949
+    1948-10-01: Loi 49-244 du 24/02/1949
+    1948-07-01:
+      title: Loi 48-1306 du 23/08/1948
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684490
+    1948-01-01: Loi 48-35 du 07/01/1948
+    1947-08-01: Loi 47-1127 du 25/06/1947, art. 19
+    1946-07-01: Loi 46-2153 du 07/10/1946
+    1946-01-01: Loi 46-1 du 03/01/1946
+    1945-01-01: Ordonnance 45-170 du 02/02/1945 mise en application par l'arrêté du 01/06/1945.
+    1941-01-01: Loi du 14/03/1941
+  date_parution_jo:
+    1960-01-01: 1956-03-31
+    1956-01-01: 1956-03-31
+    1954-01-01: 1954-03-21
+    1951-10-01: 1951-09-27
+    1951-01-01: 1951-03-29
+    1950-01-01: 1950-02-04
+    1949-04-01: 1949-07-14
+    1948-10-01: 1949-02-25
+    1948-07-01: 1948-08-24
+    1948-01-01: 1948-01-08
+    1947-08-01: 1947-06-26
+    1946-07-01: 1946-10-08
+    1946-01-01: 1946-01-04
+    1945-01-01: 1945-06-03
+    1941-01-01: 1941-03-15
+  notes:
+    1960-01-01: "Un décret du 14 avril 1962 supprime les différences pour la France. Sources: site législation CNAV depuis 1956, Sécurité sociales - son histoire à travers les textes p 242 avant."
+  description_en: Allowance for elderly workers (AVTS, 1941-1961)
+documentation: |
+  Condition d'attribution de l'AVTS : Le bénéficiaire doit être âgé de plus de 65 ans (de plus de 60 ans en cas d'invalidité ou de résidence dans un département d'outre-mer). Il doit également avoir été salarié pendant 15 ans après l'âge de 50 ans ou 25 années au cours de son activité, sachant que pour être comptabilisées, les périodes d'activité salariées doivent avoir été exercées en France (ou en Algérie ou à Monaco selon certaines conditions) et avoir procuré au demandeurune rémunération annuelle minimum.
+  Condition d'attribution de l'allocation spéciale : Elle est égale au montant de l'AVTS et vise les personnes de plus de 65 ans qui n'ont droit à aucune prestation vieillesse. Elle peut ainsi être attribuée aux personnes ne relevant d'aucun
+  régime de vieillesse de base (toutes les dépenses qui se rattachent au service de cette allocation sont également prises en charge par le FSV).
+  Condition d'attribution de l'AMF : l'Allocation aux mères de famille est attribuée selon les mêmes montants et plafonds que l'AVTS. Elle est destinée aux femmes de salariés qui ont élevé au moins 5 enfants. (Voir aussi secours viagier, alligné sur ATVS).
+  Condition d'attribution de l'allocation aux vieux travailleurs non salariés (AVTNS): Elle correspond à l'extension de l'AVTS aux personnes relevant des régimes de non salariés des professions artisanales, industrielles et commerciales.
+  Attention : Ces conditions sont celles en vigueur à partir de 1956. Pour les évolutions législatives, notamment pour l'allongement progressif de la durée de travail salarié apmrès 50 ans, se référer à la loi du 14 mars 1941 qui créé l'allocation puis à l'ordonnance 45/170 du 2/02/1945.
+  Sources:
+  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe A.

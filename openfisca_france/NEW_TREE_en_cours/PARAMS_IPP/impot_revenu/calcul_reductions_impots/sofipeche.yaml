@@ -1,0 +1,96 @@
+description: Souscription au capital de SOFIPECHE (1999 - 2012)
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2012-01-01:
+        value: 2013.0
+      2011-01-01:
+        value: 2012.0
+      2009-01-01:
+        value: 2010.0
+      2007-01-01:
+        value: 2008.0
+      2001-01-01:
+        value: 2002.0
+      1998-01-01:
+        value: 1999.0
+      1997-01-01:
+        value: 1998.0
+  metadata:
+    order:
+    - annee_ir
+reduction_souscriptions_parts_sofipeche:
+  description: Réduction pour souscriptions de parts de SOFIPECHE
+  taux:
+    description: Taux
+    values:
+      2012-01-01:
+        value: null
+      2011-01-01:
+        value: 0.36
+      2009-01-01:
+        value: 0.4
+      1997-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: txsofipeche
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      2012-01-01:
+        value: null
+      2009-01-01:
+        value: 19000.0
+      2007-01-01:
+        value: null
+      2001-01-01:
+        value: 19000.0
+      1998-01-01:
+        value: 125000.0
+      1997-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_sofipeche
+      unit:
+        2001-01-01: currency-EUR
+        1998-01-01: currency-FRF
+  plafond_en_rev_net_global:
+    description: Plafond en % du rev net global
+    values:
+      2012-01-01:
+        value: null
+      2009-01-01:
+        value: 0.25
+      2007-01-01:
+        value: null
+      1998-01-01:
+        value: 0.25
+      1997-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: base_sofipeche
+      unit: /1
+  metadata:
+    order:
+    - taux
+    - plafond
+    - plafond_en_rev_net_global
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - reduction_souscriptions_parts_sofipeche
+  reference:
+    2011-01-01: BOI-IR-DOMIC-40
+    2009-01-01: Loi de finances pour 2011 2010-1657 du 29/12/2010 art. 105
+  date_parution_jo:
+    2009-01-01: 2010-12-30
+  notes:
+    2011-01-01: Le taux de la réduction d'impôt était fixé, pour les investissements réalisés jusqu'au 31 décembre 2010, à 40 % des sommes versées. Le taux de la réduction d'impôt a été diminué les investissements réalisés à compter du 1er janvier 2011
+    1998-01-01: Création sous forme de charge déductible du revenu global
+  description_en: Capital Subscription in SOFIPECHE (fishing firms) (1999 - 2012)
+documentation: |
+  Notes :
+  (1) Souscription au capital d'une SOFIPECHE : plafonnement à doubler pour couple

@@ -1,0 +1,232 @@
+description: Durée de service maximale pour le coefficient de proratisation FP
+nombre_trimestres_cibles_maximal_pris_en_compte_proratisation_par_generation:
+  description: Nombre de trimestres cibles maximal pris en compte pour la proratisation, par génération
+  avant_1944:
+    description: Avant 1944
+    values:
+      1948-01-01:
+        value: 150.0
+    metadata:
+      ipp_csv_id: trimmaxfp_base
+  '1944_01_01':
+    description: 1944-01-01
+    values:
+      2014-01-01:
+        value: 151.0
+      2003-01-01:
+        value: 152.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0144
+  '1945_01_01':
+    description: 1945-01-01
+    values:
+      2014-01-01:
+        value: 152.0
+      2003-01-01:
+        value: 154.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0145
+  '1946_01_01':
+    description: 1946-01-01
+    values:
+      2014-01-01:
+        value: 153.0
+      2003-01-01:
+        value: 156.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0146
+  '1947_01_01':
+    description: 1947-01-01
+    values:
+      2014-01-01:
+        value: 154.0
+      2003-01-01:
+        value: 158.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmawfp_0147
+  '1948_01_01':
+    description: 1948-01-01
+    values:
+      2014-01-01:
+        value: 155.0
+      2003-01-01:
+        value: 160.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0148
+  '1949_01_01':
+    description: 1949-01-01
+    values:
+      2003-01-01:
+        value: 161.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0149
+  '1950_01_01':
+    description: 1950-01-01
+    values:
+      2014-01-01:
+        value: 162.0
+      2003-01-01:
+        value: 162.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0150
+  '1951_01_01':
+    description: 1951-01-01
+    values:
+      2003-01-01:
+        value: 163.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0151
+  '1952_01_01':
+    description: 1952-01-01
+    values:
+      2003-01-01:
+        value: 164.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0152
+  '1953_01_01':
+    description: 1953-01-01
+    values:
+      2011-01-01:
+        value: 165.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0153
+  '1955_01_01':
+    description: 1955-01-01
+    values:
+      2011-08-01:
+        value: 166.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0155
+  '1958_01_01':
+    description: 1958-01-01
+    values:
+      2014-01-01:
+        value: 167.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0158
+  '1961_01_01':
+    description: 1961-01-01
+    values:
+      2014-01-01:
+        value: 168.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0161
+  '1964_01_01':
+    description: 1964-01-01
+    values:
+      2014-01-01:
+        value: 169.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0164
+  '1967_01_01':
+    description: 1967-01-01
+    values:
+      2014-01-01:
+        value: 170.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0167
+  '1970_01_01':
+    description: 1970-01-01
+    values:
+      2014-01-01:
+        value: 171.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0170
+  '1973_01_01':
+    description: 1973-01-01
+    values:
+      2014-01-01:
+        value: 172.0
+      1948-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: trimmaxfp_0173
+  metadata:
+    order:
+    - avant_1944
+    - '1944_01_01'
+    - '1945_01_01'
+    - '1946_01_01'
+    - '1947_01_01'
+    - '1948_01_01'
+    - '1949_01_01'
+    - '1950_01_01'
+    - '1951_01_01'
+    - '1952_01_01'
+    - '1953_01_01'
+    - '1955_01_01'
+    - '1958_01_01'
+    - '1961_01_01'
+    - '1964_01_01'
+    - '1967_01_01'
+    - '1970_01_01'
+    - '1973_01_01'
+metadata:
+  order:
+  - nombre_trimestres_cibles_maximal_pris_en_compte_proratisation_par_generation
+  reference:
+    2014-01-01:
+      title: Loi 2014-40 du 20/01/2014, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000028494570&cidTexte=JORFTEXT000028493476
+    2011-08-01:
+      title: Décret 2011-916 du 01/08/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/8/1/2011-916/jo/texte
+    2011-01-01:
+      title: Décret 2010-1734 du 30/12/2010, art. 9
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023383430&cidTexte=JORFTEXT000023334246
+    2003-01-01:
+      title: Loi 2003-775 du 21/08/2003, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758542&cidTexte=JORFTEXT000000781627
+    1948-01-01: Loi 48-1450 du 20/09/1948
+  date_parution_jo:
+    2014-01-01: 2014-01-21
+    2011-08-01: 2011-08-02
+    2011-01-01: 2010-12-31
+    2003-01-01: 2003-08-22
+    1948-01-01: 1948-09-21
+  notes:
+    2014-01-01: La loi de 2014 crée l'art. L161-17-3 du CSS décrivant l'évolution de la durée d'assurance par génération.
+    2011-08-01: Plus précisément, le décret cité précise le nombre de trimestres pour les assurés nés en 1955. Le Décret 2012-1487 du 27/12/2012 (JO 29/12/2012) étend ce nombre de trimestres aux assurés nés en 1956, et le Décret 2013-1155 du 13/12/2013 (JO 15/12/2013) étend ce nombre à la génération née en 1957..
+    2003-01-01: Voir note (1)
+  description_en: Working life in the public sector for full pension
+documentation: |
+  Lecture :
+  Ce tableau renseigne, pour une date de législation donnée (la date d'entrée en vigueur, en ligne), le paramètre en fonction de la date de naissance (en ordonnée).
+  La valeur renseignée est valable à partir de la date de naissance, jusqu'à la date suivante. Quand une date de naissance est la dernière renseignée, la valeur du paramètre est considérée comme constante à partir de cette date.
+  Notes :
+  (1) La loi de 2003 prévoit une augmentation de la durée cible pour l'obtention du taux plein, pour le régime général (et les régimes alignés) et la fonction publique. La durée est fixée par génération.
+  Après une convergence entre les durées du régime général et du privé pour les générations 1943-1948, la durée est fixée chaque année jusqu'à 2020 en fonction des gains d'espérance de vie.
+  (2) Pour un fonctionnaire ayant un âge d'ouverture des droits inférieur à 60 ans (actifs ou militaires), la durée maximale de prorisatisation est celle qui a cours pour les fonctionnaires qui atteignent 60 ans à l'année
+   de l'ouverture de ses droits (Code des pensions civiles et militaires de retraite- Article L13).

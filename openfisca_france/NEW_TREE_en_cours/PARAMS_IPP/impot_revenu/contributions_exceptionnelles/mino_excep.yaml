@@ -1,0 +1,345 @@
+description: Minorations exceptionnelles (1965-1992)
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      1993-01-01:
+        value: 1994.0
+      1992-01-01:
+        value: 1993.0
+      1991-01-01:
+        value: 1992.0
+      1990-01-01:
+        value: 1991.0
+      1989-01-01:
+        value: 1990.0
+      1988-01-01:
+        value: 1989.0
+      1987-01-01:
+        value: 1988.0
+      1986-01-01:
+        value: 1987.0
+      1985-01-01:
+        value: 1986.0
+      1984-01-01:
+        value: 1985.0
+      1973-01-01:
+        value: 1974.0
+      1968-01-01:
+        value: 1969.0
+      1967-01-01:
+        value: 1968.0
+      1966-01-01:
+        value: 1967.0
+      1965-01-01:
+        value: 1966.0
+  metadata:
+    order:
+    - annee_ir
+minorations_exceptionnelles_impot:
+  description: Minorations exceptionnelles d'impôt
+  taux_1:
+    description: Taux 1
+    values:
+      1993-01-01:
+        value: null
+      1986-01-01:
+        value: 0.11
+      1985-01-01:
+        value: 0.08
+      1984-01-01:
+        value: 0.05
+      1973-01-01:
+        value: null
+      1968-01-01:
+        value: 0.15
+      1967-01-01:
+        value: 0.1
+      1966-01-01:
+        value: 0.05
+      1965-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_min1
+      unit: /1
+  taux_3:
+    description: Taux 3
+    values:
+      1993-01-01:
+        value: null
+      1986-01-01:
+        value: 0.06
+      1985-01-01:
+        value: 0.03
+      1965-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_min3
+      unit: /1
+  taux_5:
+    description: Taux 5
+    values:
+      1993-01-01:
+        value: null
+      1986-01-01:
+        value: 0.03
+      1973-01-01:
+        value: null
+      1968-01-01:
+        value: 0.02
+      1967-01-01:
+        value: 0.05
+      1966-01-01:
+        value: 0.02
+      1965-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_min5
+      unit: /1
+  formule_calcul_seuil_2:
+    description: "Formule de calcul: Seuil 2"
+    values:
+      1993-01-01:
+        value: null
+      1992-01-01:
+        value: 6745.0
+      1991-01-01:
+        value: 6560.0
+      1990-01-01:
+        value: 6370.0
+      1989-01-01:
+        value: 6170.0
+      1988-01-01:
+        value: 5970.0
+      1986-01-01:
+        value: 5820.0
+      1985-01-01:
+        value: 5680.0
+      1965-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: param_mins2
+      unit: currency-FRF
+  formule_calcul_seuil_4:
+    description: "Formule de calcul: Seuil 4"
+    values:
+      1993-01-01:
+        value: null
+      1992-01-01:
+        value: 8090.0
+      1991-01-01:
+        value: 7870.0
+      1990-01-01:
+        value: 7640.0
+      1989-01-01:
+        value: 7400.0
+      1988-01-01:
+        value: 7160.0
+      1986-01-01:
+        value: 6980.0
+      1965-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: param_mins4
+      unit: currency-FRF
+  formule_calcul_taux_en_impot:
+    description: "Formule de calcul: taux (en % de l'impot)"
+    values:
+      1993-01-01:
+        value: null
+      1986-01-01:
+        value: 0.14
+      1985-01-01:
+        value: 0.17
+      1965-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: param_mintx
+      unit: /1
+  seuil_impot_1:
+    description: Seuil d'impot 1
+    values:
+      1993-01-01:
+        value: null
+      1984-01-01:
+        value: 0.0
+      1973-01-01:
+        value: null
+      1966-01-01:
+        value: 0.0
+      1965-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: seuil_min1
+      unit: currency-FRF
+  seuil_impot_2:
+    description: Seuil d'impot 2
+    values:
+      1993-01-01:
+        value: null
+      1992-01-01:
+        value: 26990.0
+      1991-01-01:
+        value: 26250.0
+      1990-01-01:
+        value: 25480.0
+      1989-01-01:
+        value: 24680.0
+      1988-01-01:
+        value: 23890.0
+      1986-01-01:
+        value: 23280.0
+      1985-01-01:
+        value: 22730.0
+      1984-01-01:
+        value: 21520.0
+      1973-01-01:
+        value: null
+      1968-01-01:
+        value: 1000.0
+      1966-01-01:
+        value: 45000.0
+      1965-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: seuil_min2
+      unit: currency-FRF
+  seuil_impot_3:
+    description: Seuil d'impot 3
+    values:
+      1993-01-01:
+        value: null
+      1992-01-01:
+        value: 33710.0
+      1991-01-01:
+        value: 32790.0
+      1990-01-01:
+        value: 31830.0
+      1989-01-01:
+        value: 30840.0
+      1988-01-01:
+        value: 29850.0
+      1986-01-01:
+        value: 29090.0
+      1985-01-01:
+        value: 28410.0
+      1973-01-01:
+        value: null
+      1968-01-01:
+        value: 3500.0
+      1966-01-01:
+        value: 50000.0
+      1965-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: seuil_min3
+      unit: currency-FRF
+  seuil_impot_4:
+    description: Seuil d'impot 4
+    values:
+      1993-01-01:
+        value: null
+      1992-01-01:
+        value: 40460.0
+      1991-01-01:
+        value: 39350.0
+      1990-01-01:
+        value: 38200.0
+      1989-01-01:
+        value: 37010.0
+      1988-01-01:
+        value: 35820.0
+      1986-01-01:
+        value: 34910.0
+      1985-01-01:
+        value: 34090.0
+      1973-01-01:
+        value: null
+      1968-01-01:
+        value: 5000.0
+      1966-01-01:
+        value: 55000.0
+      1965-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: seuil_min4
+      unit: currency-FRF
+  seuil_impot_5:
+    description: Seuil d'impot 5
+    values:
+      1993-01-01:
+        value: null
+      1992-01-01:
+        value: 47560.0
+      1991-01-01:
+        value: 46260.0
+      1990-01-01:
+        value: 44910.0
+      1989-01-01:
+        value: 43510.0
+      1988-01-01:
+        value: 42120.0
+      1986-01-01:
+        value: 41060.0
+      1965-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: seuil_min5
+      unit: currency-FRF
+  seuil_superieur_revenu_imposable_par_part:
+    description: Seuil superieur (revenu imposable par part)
+    values:
+      1993-01-01:
+        value: null
+      1992-01-01:
+        value: 341670.0
+      1991-01-01:
+        value: 332360.0
+      1990-01-01:
+        value: 322670.0
+      1988-01-01:
+        value: 312660.0
+      1987-01-01:
+        value: 304740.0
+      1986-01-01:
+        value: 295000.0
+      1965-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: seuil_rimpmax
+      unit: currency-FRF
+  metadata:
+    order:
+    - taux_1
+    - taux_3
+    - taux_5
+    - formule_calcul_seuil_2
+    - formule_calcul_seuil_4
+    - formule_calcul_taux_en_impot
+    - seuil_impot_1
+    - seuil_impot_2
+    - seuil_impot_3
+    - seuil_impot_4
+    - seuil_impot_5
+    - seuil_superieur_revenu_imposable_par_part
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - minorations_exceptionnelles_impot
+  reference:
+    1993-01-01: Loi 93-1352 du 30/12/1993 (LF pour 1994)
+  date_parution_jo:
+    1993-01-01: 1993-12-31
+  notes:
+    1992-01-01: "Application de la formule des minorations de 1986 à 1992 (année revenus); Exemple pour 1989: ; 11 % si l'impot est inférieur ou égal à 26 480 Fr; Entre 11 et 6 % si l'impot est supérieur à 26 480 Fr et inférieur ou égal à 30 840 Fr = Difference entre 6 170 Fr et 14 % de l'impôt; 6 % si l'impot est supérieur à 30 840 Fr et inférieur ou égal à 37 010 FR; Entre 6 % et 3 % si l'impot est supérieur à 37 010 Fr et inférieur ou égal à 43 510 Fr = Difference entre 7 400 Fr et 14% de l'impôt; 3 % si l'impot est supérieur à 43 510 Fr et si le revenu imposable par part est inferieur ou egal a 312 660 Fr"
+    1985-01-01: En 1985, quand l'impot est compris entre 22730 FRF et 28410 FRF, la minoration est égale à 4 fois la différence entre 1420 FRF et 4.25 % de l'impot. Pour rester coherent avec les années suivantes, j'ai directement multiplié par 4 les deux paramètres.
+    1984-01-01: 5 % si impôt < 21520
+    1968-01-01: de 15 % si impôt < 1000 à 2 % si impôt > 3500 mais < 5000
+    1967-01-01: de 10 % si revenu < 45000 à 5 % si revenu > 50000 mais < 55000
+    1966-01-01: de 5 % si revenu < 45000 à 2 % si revenu > 50000 mais < 55000
+  description_en: Exceptional tax cuts (1965-1992)
+documentation: |
+  Notes:
+  Sources : Tableau C-4, p.650, dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001)
+

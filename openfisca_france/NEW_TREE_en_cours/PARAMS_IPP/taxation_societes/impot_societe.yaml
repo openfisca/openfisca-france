@@ -1,0 +1,132 @@
+description: Seuils et taux d'imposition au titre de l'impôt sur les sociétés (1977 - 2022)
+taux_normal:
+  description: Taux normal
+  values:
+    2022-01-01:
+      value: 0.25
+    2021-01-01:
+      value: 0.265
+    2020-01-01:
+      value: 0.28
+    2019-01-01:
+      value: 0.31
+    1993-01-01:
+      value: 0.3333
+    1991-06-24:
+      value: 0.34
+    1990-06-15:
+      value: 0.37
+    1989-07-14:
+      value: 0.39
+    1988-01-01:
+      value: 0.42
+    1986-07-12:
+      value: 0.45
+    1977-12-31:
+      value: 0.5
+  metadata:
+    unit:
+      1977-01-01: /1
+taux_reduit:
+  description: Taux réduit
+  values:
+    2020-01-01:
+      value: null
+    2002-01-01:
+      value: 0.15
+    2001-01-01:
+      value: 0.25
+  metadata:
+    unit:
+      2001-01-01: /1
+taux_intermediaire:
+  description: Taux intermédiaire
+  values:
+    2020-01-01:
+      value: null
+    2002-01-01:
+      value: 0.28
+  metadata:
+    unit:
+      2001-01-01: /1
+plafond_ca_taux_reduit:
+  description: Plafond de chiffre d'affaires (HT) pour bénéficier des taux réduit et intermédiaire
+  values:
+    2002-03-31:
+      value: 7630000
+    2001-01-01:
+      value: 50000000
+  metadata:
+    ipp_csv_id: is_pfca_txred
+    unit:
+      2002-03-31: currency-EUR
+      2001-01-01: currency-FRF
+seuil_superieur_benefices_taux_reduit:
+  description: Seuil supérieur de bénéfices sur lesquels le taux réduit d'IS est applicable (si CAHT < plafond CA)
+  values:
+    2002-03-31:
+      value: 38120
+    2001-01-01:
+      value: 250000
+  metadata:
+    unit:
+      2002-03-31: currency-EUR
+      2001-01-01: currency-FRF
+seuil_superieur_benefices_taux_intermediaire:
+  description: Seuil supérieur de bénéfices sur lesquels le taux intermédiaire d'IS est applicable
+  values:
+    2018-01-01:
+      value: 500000
+    2017-01-01:
+      value: 75000
+  metadata:
+    unit:
+      2017-01-01: currency-EUR
+metadata:
+  order:
+  - taux_normal
+  - taux_reduit
+  - taux_intermediaire
+  - plafond_ca_taux_reduit
+  - seuil_superieur_benefices_taux_reduit
+  - seuil_superieur_benefices_taux_intermediaire
+  reference:
+    2022-01-01: Article 219 CGI modifié par Loi 2017-1837 du 30/12/2017 - art. 84
+    2021-01-01: Article 219 CGI modifié par Loi 2016-1918 du 29/12/2016 - art. 91 & Loi 2017-1837 du 30/12/2017 - art. 84
+    2020-01-01: Article 219 CGI modifié par Loi 2016-1918 du 29/12/2016 - art. 91 & Loi 2017-1837 du 30/12/2017 - art. 84
+    2019-01-01: Article 219 CGI modifié par Loi 2016-1918 du 29/12/2016 - art. 91 & Loi 2017-1837 du 30/12/2017 - art. 84
+    2017-01-01: Article 219 CGI modifié par Loi 2016-1918 du 29/12/2016 - art. 91
+    2002-03-31: Règlement CE 974-98 1998-05-03 - art. 14
+    2002-01-01: Article 219 CGI modifié par Loi 2000-1352 du 30/12/2000 - art. 7-9 de Finances pour 2001
+    2001-01-01: Article 219 CGI modifié par Loi 2000-1352 du 30/12/2000 - art. 7-9 de Finances pour 2001
+    1993-01-01: Article 219 CGI modifié par Loi 92-1376 du 30/12/1992 - art. 11 de Finances pour 1993
+    1991-06-24: Article 219 CGI modifié par Loi 90-1168 du 29/12/1990 - art. 17 Finances pour 1991
+    1990-06-15: Article 219 CGI modifié par Loi 89-935 1989-12-29 art. 18, art. 19 Finances pour 1990
+    1989-07-14: Article 219 CGI modifié par Loi 88-1149 du 23/12/1988 - art. 12
+    1988-01-01: Article 219 CGI modifié par Loi 88-1149 du 23/12/1988 - art. 12
+    1986-07-12: Article 219 CGI modifié par Loi 86-824 du 11/07/1986 - art. 1
+    1977-12-31: Article 219 CGI modifié par Loi 77-1467 du 30/12/1977 - art. 70
+  date_parution_jo:
+    2022-01-01: 2017-12-31
+    2021-01-01: 2017-12-31
+    2020-01-01: 2017-12-31
+    2019-01-01: 2017-12-31
+    2017-01-01: 2016-12-31
+    2002-03-31: 1998-05-11
+    2002-01-01: 2000-12-31
+    2001-01-01: 2000-12-31
+    1993-01-01: 1992-12-31
+    1991-06-24: 1990-12-30
+    1990-06-15: 1989-12-30
+    1989-07-14: 1988-12-28
+    1988-01-01: 1988-12-28
+    1986-07-12: 1986-07-12
+    1977-12-31: 1977-12-31
+  notes:
+    2002-03-31: Référence 2002-03-31 parue dans JOCE et non JORF.
+  description_en: Thresholds and tax rates for corporate income tax (1977 - 2022)
+documentation: |
+  Notes :
+  Baisse prévue du taux normal pour les exercices fiscaux à venir par la Loi 2017-1837 du 30/12/2017 - art. 84.
+  Sources:
+  Légifrance

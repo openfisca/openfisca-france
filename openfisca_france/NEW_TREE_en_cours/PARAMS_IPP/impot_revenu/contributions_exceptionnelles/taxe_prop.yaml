@@ -1,0 +1,245 @@
+description: Taxes proportionnelles et taxes complémentaires (1948-1969)
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      1970-01-01:
+        value: 1971.0
+      1969-01-01:
+        value: 1970.0
+      1964-01-01:
+        value: 1965.0
+      1961-01-01:
+        value: 1962.0
+      1960-01-01:
+        value: 1961.0
+      1959-01-01:
+        value: 1960.0
+      1958-01-01:
+        value: 1959.0
+      1954-01-01:
+        value: 1955.0
+      1952-01-01:
+        value: 1953.0
+      1948-01-01:
+        value: 1949.0
+      1947-01-01:
+        value: 1948.0
+  metadata:
+    order:
+    - annee_ir
+taux:
+  description: Taux
+  values:
+    1970-01-01:
+      value: null
+    1961-01-01:
+      value: 0.06
+    1960-01-01:
+      value: 0.08
+    1959-01-01:
+      value: 0.09
+    1958-01-01:
+      value: 0.22
+    1948-01-01:
+      value: 0.18
+    1947-01-01:
+      value: null
+  metadata:
+    ipp_csv_id: tp_taux
+    unit: /1
+taux_reduit:
+  description: Taux réduit
+  values:
+    1970-01-01:
+      value: null
+    1964-01-01:
+      value: 0.03
+    1954-01-01:
+      value: 0.05
+    1948-01-01:
+      value: 0.09
+    1947-01-01:
+      value: null
+  metadata:
+    ipp_csv_id: tp_taux_reduit
+    unit: /1
+abattement_general:
+  description: Abattement général
+  values:
+    1970-01-01:
+      value: null
+    1969-01-01:
+      value: 30000.0
+    1947-01-01:
+      value: null
+  metadata:
+    ipp_csv_id: tp_abat
+autres_revenus_non_salariaux:
+  description: Autres revenus non salariaux
+  abattement:
+    description: abattement
+    values:
+      1969-01-01:
+        value: null
+      1964-01-01:
+        value: 3000.0
+      1947-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tp_abat_nonsal
+  metadata:
+    order:
+    - abattement
+bnc_autres_produits_charges_offices_bic_artisans_assimiles:
+  description: BNC "autres produits des charges et offices" BIC "artisans et assimilés"
+  abattement:
+    description: abattement
+    values:
+      1969-01-01:
+        value: null
+      1964-01-01:
+        value: 4400.0
+      1947-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tp_abat_nonsal_autre
+  seuil:
+    description: seuil
+    values:
+      1959-01-01:
+        value: null
+      1952-01-01:
+        value: 440000.0
+      1948-01-01:
+        value: 200000.0
+      1947-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tp_seuil_nonsal_autre
+  metadata:
+    order:
+    - abattement
+    - seuil
+bnc_produits_charges_offices_bic_autres_que_artisans_assimiles_ba:
+  description: BNC produits des charges et offices" BIC autres que"artisans et assimilés" BA
+  seuil:
+    description: seuil
+    values:
+      1959-01-01:
+        value: null
+      1954-01-01:
+        value: 300000.0
+      1947-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tp_seuil_nonsal
+  metadata:
+    order:
+    - seuil
+reduction_impot_charge_famille:
+  description: Réduction d'impôt pour charge de famille
+  1_pac:
+    description: 1 pac
+    values:
+      1959-01-01:
+        value: null
+      1948-01-01:
+        value: 0.1
+      1947-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tp_reduc1
+  2_pac:
+    description: 2 pac
+    values:
+      1959-01-01:
+        value: null
+      1948-01-01:
+        value: 0.3
+      1947-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tp_reduc2
+  3_pac:
+    description: 3 pac
+    values:
+      1959-01-01:
+        value: null
+      1948-01-01:
+        value: 0.75
+      1947-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tp_reduc3
+  4_pac:
+    description: 4 pac
+    values:
+      1959-01-01:
+        value: null
+      1948-01-01:
+        value: 1.0
+      1947-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tp_reduc4
+  metadata:
+    order:
+    - 1_pac
+    - 2_pac
+    - 3_pac
+    - 4_pac
+plafond_maximum_reduction_par_pac:
+  description: "plafond: maximum de la réduction par pac"
+  jusqu_2_pacs:
+    description: Jusqu'à 2 pacs
+    values:
+      1959-01-01:
+        value: null
+      1948-01-01:
+        value: 5000.0
+      1947-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tp_plaf_2
+      unit: currency-FRF
+  plus_3_pacs:
+    description: Plus de 3 pacs
+    values:
+      1959-01-01:
+        value: null
+      1948-01-01:
+        value: 15000.0
+      1947-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tp_plaf_3
+      unit: currency-FRF
+  metadata:
+    order:
+    - jusqu_2_pacs
+    - plus_3_pacs
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - taux
+  - taux_reduit
+  - abattement_general
+  - autres_revenus_non_salariaux
+  - bnc_autres_produits_charges_offices_bic_artisans_assimiles
+  - bnc_produits_charges_offices_bic_autres_que_artisans_assimiles_ba
+  - reduction_impot_charge_famille
+  - plafond_maximum_reduction_par_pac
+  description_en: Flat taxes and other taxes (1948-1969)
+documentation: |
+  Source:
+  Tableau C-9: Les règles de calcul de la taxe proportionnelle (imposition des revenus des années 1948-1958) et de la taxe complémentaire (imposition des revenus des années 1959-1969)
+  Notes
+  (i) En principe, le taux de la taxe proportionnelle est de 18% pour l'imposition des revenus des années 1948-1957 et de 22% pour l'imposition des revenus de 1958.
+   En pratique, ce système "proportionnel" admettait de nombreuses exceptions:
+  (ii) Les salaires et pensions de retraite ont toujours été exemptés de la "taxe proportionnelle" (les employeurs sont simplement tenus d'acquitter un versement forfaitaire égal à 5% de la masse salariale).
+  (iii) Les bénéfices des "artisans et assimilés", ainsi que les bénéfices des professions non commmerciales "autres que les produits des charges et offices", sont soumis à un taux réduit à 9% sur la fraction des bénéfices inférieure à 200000 francs lors de l'imposition des bénéfices des années 1948-1952 et sur la fraction des bénéfices inférieure à 440000 francs lors de l'imposition des bénéfices de 1953, puis à un taux réduit à 5% sur la fraction des bénéfices inférieure à 440000 francs lors de l'imposition des bénéfices des années 1954-1958 (les BIC (autres que les bénéfices des "artisans et assimilés"), les BA et les BNC correspondant aux "produits des charges et offices" ont également bénéficié du taux réduit à 5% lors de l'imposition des bénéfices des années 1954-1958, mais uniquement sur la fraction inférieure à 300000 francs)
+  (iv) A l'exception des revenus de valeurs mobilières (dividendes, intérêts, etc.), qui sont soumis au taux proportionnel dès le premier franc (pour les revenus des obligations négociables, le taux proportionnel est cependant abaissé à 10% ou 15% suivant les caractéristiques des obligations), tous les revenus soumis à la taxe proportionnelle (BA, BIC, BNC, revenus fonciers, revenus des créances, dépôts et cautionnements) ont toujours bénéficié d'un mécanisme de décôte destiné à exempter les revenus les plus faibles et à réduire le montant de la taxe proportionnelle dû par les revenus immédiatement supérieurs (ces mécanismes de décote sont décrits de façon détaillée dans S&EF n°122 (février 1959), pp.190-193), ainsi que d'un mécanisme de réductions d'impôts pour charges de familles (10% de réduction d'impôt pour 1 personne à charge, 30% pour 2, 75% pour 3 et 100% pour 4 (avec un maximum de 5000 francs de réduction d'impôt pour chacune des deux premières personnes à charges et de 15000 francs par personne à charge à partir de la troisième))
+  (v) Le taux de la taxe complémentaire est de 9% lors de l'imposition des revenus de 1959, de 8% lors de l'imposition des revenus de 1960 puis de 6% lors de l'imposition des revenus des années 1961-1969; mais les "artisans et assimilés" et les BNC "autres que les produits des charges et offices" bénéficient d'un abattement de 4400 nouveauxfrancs (3000 nouveaux francs pour les autres bénéfices des professions non-salariés), ainsi que d'un taux réduit à 3% à partir de l'imposition des revenus de 1964; puis l'abattement général fut porté à 30000 francs lors de l'imposition des revenus de 1969, et la taxe complémentaire fut définitivement supprimée en 1970 (elle fut prélevée pour la dernière fois au titre de l'imposition des revenus de 1969)
+  (vi) Décote : voir S&EF n°122 (février 1959), pp.190-193)

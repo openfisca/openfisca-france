@@ -1,0 +1,113 @@
+description: Decote FP
+taux_decote_selon_annee_age_ouverture_droits:
+  description: Taux de décote selon l'année de l'âge d'ouverture des droits
+  taux_minore_taux_plein_1_decote_nombre_trimestres_manquants:
+    description: taux minoré = taux plein * (1 - decote * (nombre de trimestres manquants))
+    '2006':
+      description: '2006'
+      values:
+        2006-01-01:
+          value: 0.00125
+      metadata:
+        ipp_csv_id: decotefp_06
+        unit: /1
+    '2007':
+      description: '2007'
+      values:
+        2006-01-01:
+          value: 0.0025
+      metadata:
+        ipp_csv_id: decotefp_07
+        unit: /1
+    '2008':
+      description: '2008'
+      values:
+        2006-01-01:
+          value: 0.00375
+      metadata:
+        ipp_csv_id: decotefp_08
+        unit: /1
+    '2009':
+      description: '2009'
+      values:
+        2006-01-01:
+          value: 0.005
+      metadata:
+        ipp_csv_id: decotefp_09
+        unit: /1
+    '2010':
+      description: '2010'
+      values:
+        2006-01-01:
+          value: 0.0065
+      metadata:
+        ipp_csv_id: decotefp_10
+        unit: /1
+    '2011':
+      description: '2011'
+      values:
+        2006-01-01:
+          value: 0.0075
+      metadata:
+        ipp_csv_id: decotefp_11
+        unit: /1
+    '2012':
+      description: '2012'
+      values:
+        2006-01-01:
+          value: 0.00875
+      metadata:
+        ipp_csv_id: decotefp_12
+        unit: /1
+    '2013':
+      description: '2013'
+      values:
+        2006-01-01:
+          value: 0.01
+      metadata:
+        ipp_csv_id: decotefp_13
+        unit: /1
+    '2014':
+      description: '2014'
+      values:
+        2006-01-01:
+          value: 0.01125
+      metadata:
+        ipp_csv_id: decotefp_14
+        unit: /1
+    '2015':
+      description: '2015'
+      values:
+        2006-01-01:
+          value: 0.0125
+      metadata:
+        ipp_csv_id: decotefp_15
+        unit: /1
+    metadata:
+      order:
+      - '2006'
+      - '2007'
+      - '2008'
+      - '2009'
+      - '2010'
+      - '2011'
+      - '2012'
+      - '2013'
+      - '2014'
+      - '2015'
+  metadata:
+    order:
+    - taux_minore_taux_plein_1_decote_nombre_trimestres_manquants
+metadata:
+  order:
+  - taux_decote_selon_annee_age_ouverture_droits
+  reference:
+    2006-01-01:
+      title: Loi 2003-775 du 21/08/2003, art. 66
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758610&cidTexte=JORFTEXT000000781627
+  date_parution_jo:
+    2006-01-01: 2003-08-22
+  description_en: Penalty for early retirement
+documentation: |
+  Lecture : Ce tableau renseigne, pour une date de légilsation donnée (la date d'effet, en ligne), le paramètre en fonction de l'année d'ouverture des droits (en ordonnée).
+  La valeur renseignée est valable à partir de la date de naissance, jusqu'à la date suivante. Quand une date de naissance est la dernière renseignée, la valeur du paramètre est considérée comme constante à partir de cette date.

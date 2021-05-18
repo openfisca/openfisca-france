@@ -1,0 +1,213 @@
+description: "Allocation supplémentaire d'invalidité (ASI): montants et plafonds de ressources"
+montant:
+  description: Montant maximal
+  1_allocataire:
+    description: 1 allocataire
+    values:
+      2020-04-01:
+        value: 5036.74
+      2019-04-01:
+        value: 4991.81
+      2018-04-01:
+        value: 4913.2
+      2017-04-01:
+        value: 4864.56
+      2016-04-01:
+        value: 4850.01
+      2014-04-01:
+        value: 4845.17
+      2013-04-01:
+        value: 4816.28
+      2012-04-01:
+        value: 4754.48
+      2011-04-01:
+        value: 4656.69
+      2010-04-01:
+        value: 4560.92
+      2009-04-01:
+        value: 4520.24
+      2008-09-01:
+        value: 4475.49
+      2008-01-01:
+        value: 4439.98
+      2007-01-01:
+        value: 4391.68
+      2006-01-01:
+        value: 4314.03
+    metadata:
+      ipp_csv_id: asi1
+      unit: currency-EUR
+  2_allocataires:
+    description: 2 allocataires
+    values:
+      2020-04-01:
+        value: 8311.32
+      2019-04-01:
+        value: 8237.26
+      2017-04-01:
+        value: 8027.27
+      2016-04-01:
+        value: 8003.27
+      2014-04-01:
+        value: 7995.28
+      2013-04-01:
+        value: 7947.6
+      2012-04-01:
+        value: 7845.61
+      2011-04-01:
+        value: 7684.25
+      2010-04-01:
+        value: 7526.2
+      2009-04-01:
+        value: 7459.07
+      2008-09-01:
+        value: 7385.22
+      2008-01-01:
+        value: 7326.61
+      2007-01-01:
+        value: 7246.9
+      2006-01-01:
+        value: 7118.77
+    metadata:
+      ipp_csv_id: asi2
+      unit: currency-EUR
+  metadata:
+    order:
+    - 1_allocataire
+    - 2_allocataires
+plafond_ressources:
+  description: Plafond de ressources
+  personnes_seules:
+    description: Personnes seules
+    values:
+      2020-04-01:
+        value: 9000.0
+      2019-04-01:
+        value: 8679.00
+      2018-04-01:
+        value: 8542.33
+      2017-04-01:
+        value: 8457.76
+      2016-04-01:
+        value: 8432.47
+      2014-04-01:
+        value: 8424.05
+      2013-04-01:
+        value: 8373.81
+      2012-04-01:
+        value: 8266.35
+      2011-04-01:
+        value: 8096.33
+      2010-04-01:
+        value: 7929.81
+      2009-04-01:
+        value: 7859.08
+      2008-09-01:
+        value: 7781.27
+      2008-01-01:
+        value: 7719.52
+      2007-01-01:
+        value: 7635.53
+      2006-01-01:
+        value: 7500.53
+    metadata:
+      ipp_csv_id: plaf_ressource_seul
+      unit: currency-EUR
+  couples:
+    description: Couples
+    values:
+      2020-04-01:
+        value: 15750.0
+      2019-04-01:
+        value: 15201.92
+      2018-04-01:
+        value: 14962.52
+      2017-04-01:
+        value: 14814.38
+      2016-04-01:
+        value: 14770.07
+      2014-04-01:
+        value: 14755.32
+      2013-04-01:
+        value: 14667.32
+      2012-04-01:
+        value: 14479.1
+      2011-04-01:
+        value: 14181.3
+      2010-04-01:
+        value: 13889.62
+      2009-04-01:
+        value: 13765.73
+      2008-09-01:
+        value: 13629.44
+      2008-01-01:
+        value: 13521.27
+      2007-01-01:
+        value: 13374.16
+      2006-01-01:
+        value: 13137.69
+    metadata:
+      ipp_csv_id: plaf_ressource_couple
+      unit: currency-EUR
+  metadata:
+    order:
+    - personnes_seules
+    - couples
+metadata:
+  order:
+  - montant
+  - plafond_ressources
+  reference:
+    2020-04-01:
+      title: Instruction interministérielle no DSS/2A/2C/2020/51 du 12 mars 2020
+      href: https://solidarites-sante.gouv.fr/IMG/pdf/ste_20200004_0000_p000.pdf
+    2019-04-01:
+      title: Décret 2019-15 du 05/04/2019
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2019_15_05042019.pdf
+    2018-04-01:
+      title: Décret 2018-227 du 30/04/2018
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036756121
+    2017-04-01:
+      title: Circulaire CNAV 2017/13 du 04/04/2017
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
+    2016-04-01:
+      title: Circulaire CNAV 2016/18 du 29/03/2016
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_18_29032016.pdf
+    2014-04-01:
+      title: Circulaire CNAV 2014/29 du 09/04/2014
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2014_029_09042014
+    2013-04-01:
+      title: Circulaire CNAV 2013-29 du 18/04/2013
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2013_29_18042013
+    2012-04-01:
+      title: Circulaire CNAV 2012/35 du 17/04/2012
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2012_35_17042012
+    2011-04-01:
+      title: Circulaire CNAV 2011/30 du 14/04/2011
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2011030_14042011
+    2010-04-01:
+      title: Circulaire CNAV 2010/43 du 23/04/2010
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2010043_23042010
+    2009-04-01:
+      title: Circulaire CNAV 2009/31 du 16/04/2009
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2009031_16042009
+    2008-09-01:
+      title: Circulaire CNAV 2008/45 du 12/08/2008
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2008045_12082008
+    2008-01-01:
+    - title: Circulaire CNAV 2007/76 du 07/12/2007
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2007076_07122007
+    - Arrêté du 21/12/2007
+    2007-01-01:
+      title: Circulaire CNAV 2006/75 du 20/12/2006
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2006075_20122006
+    2006-01-01:
+      title: Décret 2007-57 du 12/01/2007
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000613344
+  date_parution_jo:
+    2008-01-01: 2007-12-28
+    2006-01-01: 2007-01-13
+  notes:
+    2008-09-01: La circulaire Cnav 2009/9 du 03/02/2009 met en œuvre de l'article 73 de la loi 2008-1330 du 17/12/2008 concernant la déconnexion de la revalorisation des montants et des plafonds de ressources de l'ASI de ceux de l'ASPA.
+    2006-01-01: Création du dispositif qui simplifie le minimum vieillesse
+  description_en: "Supplementary disability allowance (ASI): Amount"

@@ -1,0 +1,463 @@
+description: Prix unitaire tarif de base EDF (hors taxes)
+prix_kwh_3_kva:
+  description: Prix du kWh - 3 kVA
+  values:
+    2020-08-01:
+      value: 0.0974
+    2020-02-01:
+      value: 0.0965
+    2019-08-01:
+      value: 0.0948
+    2019-06-01:
+      value: 0.0954
+    2018-08-01:
+      value: 0.0888
+    2018-02-01:
+      value: 0.0975
+    2017-08-01:
+      value: 0.0968
+    2016-08-01:
+      value: 0.0932
+    2015-08-01:
+      value: 0.0909
+    2014-11-01:
+      value: 0.0909
+    2013-08-01:
+      value: 0.0883
+    2012-08-01:
+      value: 0.0822
+    2011-07-01:
+      value: 0.0806
+    2010-08-15:
+      value: 0.0793
+    2009-08-15:
+      value: 0.0781
+    2008-08-15:
+      value: 0.0989
+    2007-08-16:
+      value: 0.097
+    2006-08-15:
+      value: 0.0959
+    2004-01-01:
+      value: 0.0943
+    2003-07-04:
+      value: 0.0955
+    2003-01-01:
+      value: 0.0927
+    2001-11-12:
+      value: 0.096
+    2001-05-01:
+      value: 0.095
+  metadata:
+    ipp_csv_id: prix_unitaire_3kva_ht
+    unit: currency-EUR
+prix_kwh_6_kva:
+  description: Prix du kWh - 6 kVA
+  values:
+    2020-08-01:
+      value: 0.0974
+    2020-02-01:
+      value: 0.0965
+    2019-08-01:
+      value: 0.0948
+    2019-06-01:
+      value: 0.0954
+    2018-08-01:
+      value: 0.0888
+    2018-02-01:
+      value: 0.0902
+    2017-08-01:
+      value: 0.0901
+    2016-08-01:
+      value: 0.0932
+    2015-08-01:
+      value: 0.0909
+    2014-11-01:
+      value: 0.0909
+    2013-08-01:
+      value: 0.0883
+    2012-08-01:
+      value: 0.0828
+    2011-07-01:
+      value: 0.0812
+    2010-08-15:
+      value: 0.0798
+    2009-08-15:
+      value: 0.0784
+    2008-08-15:
+      value: 0.0803
+    2007-08-16:
+      value: 0.0787
+    2006-08-15:
+      value: 0.0778
+    2004-01-01:
+      value: 0.0765
+    2003-07-04:
+      value: 0.0777
+    2003-01-01:
+      value: 0.0754
+    2001-11-12:
+      value: 0.0787
+    2001-05-01:
+      value: 0.0779
+  metadata:
+    ipp_csv_id: prix_unitaire_6kva_ht
+    unit: currency-EUR
+prix_kwh_9_kva:
+  description: Prix du kWh - 9 kVA
+  values:
+    2020-08-01:
+      value: 0.1008
+    2020-02-01:
+      value: 0.0999
+    2019-08-01:
+      value: 0.0974
+    2019-06-01:
+      value: 0.098
+    2018-08-01:
+      value: 0.0902
+    2018-02-01:
+      value: 0.0915
+    2017-08-01:
+      value: 0.0915
+    2016-08-01:
+      value: 0.0932
+    2015-08-01:
+      value: 0.0909
+    2014-11-01:
+      value: 0.0909
+    2013-08-01:
+      value: 0.0883
+    2012-08-01:
+      value: 0.0848
+    2011-07-01:
+      value: 0.0831
+    2009-08-15:
+      value: 0.0817
+    2008-08-15:
+      value: 0.0803
+    2007-08-16:
+      value: 0.0787
+    2006-08-15:
+      value: 0.0778
+    2004-01-01:
+      value: 0.0765
+    2003-07-04:
+      value: 0.0777
+    2003-01-01:
+      value: 0.0754
+    2001-11-12:
+      value: 0.0787
+    2001-05-01:
+      value: 0.0779
+  metadata:
+    ipp_csv_id: prix_unitaire_9kva_ht
+    unit: currency-EUR
+prix_kwh_12_kva:
+  description: Prix du kWh - 12 kVA
+  values:
+    2020-08-01:
+      value: 0.1008
+    2020-02-01:
+      value: 0.0999
+    2019-08-01:
+      value: 0.0974
+    2019-06-01:
+      value: 0.098
+    2018-08-01:
+      value: 0.0902
+    2018-02-01:
+      value: 0.0915
+    2017-08-01:
+      value: 0.0915
+    2016-08-01:
+      value: 0.0932
+    2015-08-01:
+      value: 0.0909
+    2014-11-01:
+      value: 0.0909
+    2013-08-01:
+      value: 0.0883
+    2012-08-01:
+      value: 0.0848
+    2011-07-01:
+      value: 0.0831
+    2009-08-15:
+      value: 0.0817
+    2008-08-15:
+      value: 0.0803
+    2007-08-16:
+      value: 0.0787
+    2006-08-15:
+      value: 0.0778
+    2004-01-01:
+      value: 0.0765
+    2003-07-04:
+      value: 0.0777
+    2003-01-01:
+      value: 0.0754
+    2001-11-12:
+      value: 0.0787
+    2001-05-01:
+      value: 0.0779
+  metadata:
+    ipp_csv_id: prix_unitaire_12kva_ht
+    unit: currency-EUR
+prix_kwh_15_kva:
+  description: Prix du kWh - 15 kVA
+  values:
+    2020-08-01:
+      value: 0.1008
+    2020-02-01:
+      value: 0.0999
+    2019-08-01:
+      value: 0.0974
+    2019-06-01:
+      value: 0.098
+    2018-08-01:
+      value: 0.0902
+    2018-02-01:
+      value: 0.0915
+    2017-08-01:
+      value: 0.0915
+    2016-08-01:
+      value: 0.0932
+    2015-08-01:
+      value: 0.0909
+    2014-11-01:
+      value: 0.0909
+    2013-08-01:
+      value: 0.0883
+    2012-08-01:
+      value: 0.0848
+    2011-07-01:
+      value: 0.0831
+    2009-08-15:
+      value: 0.0817
+    2008-08-15:
+      value: 0.0803
+    2007-08-16:
+      value: 0.0787
+    2006-08-15:
+      value: 0.0778
+    2004-01-01:
+      value: 0.0765
+    2003-07-04:
+      value: 0.0777
+    2003-01-01:
+      value: 0.0754
+    2001-11-12:
+      value: 0.0787
+    2001-05-01:
+      value: 0.0779
+  metadata:
+    ipp_csv_id: prix_unitaire_15kva_ht
+    unit: currency-EUR
+prix_kwh_18_kva:
+  description: Prix du kWh - 18 kVA
+  values:
+    2020-08-01:
+      value: 0.1008
+    2020-02-01:
+      value: 0.0999
+    2019-08-01:
+      value: 0.0974
+    2018-08-01:
+      value: 0.0902
+    2018-02-01:
+      value: 0.0915
+    2017-08-01:
+      value: 0.0915
+    2016-08-01:
+      value: 0.0898
+    2015-08-01:
+      value: 0.0932
+    2014-11-01:
+      value: 0.0909
+    2013-08-01:
+      value: 0.0883
+    2012-08-01:
+      value: 0.0848
+    2011-07-01:
+      value: 0.0831
+    2009-08-15:
+      value: 0.0817
+    2008-08-15:
+      value: 0.0803
+    2007-08-16:
+      value: 0.0787
+    2006-08-15:
+      value: 0.0778
+    2004-01-01:
+      value: 0.0765
+    2003-07-04:
+      value: 0.0777
+    2003-01-01:
+      value: 0.0754
+    2001-11-12:
+      value: 0.0787
+    2001-05-01:
+      value: 0.0779
+  metadata:
+    ipp_csv_id: prix_unitaire_18kva_ht
+    unit: currency-EUR
+prix_kwh_24_kva:
+  description: Prix du kWh - 24 kVA
+  values:
+    2020-08-01:
+      value: 0.1008
+    2020-02-01:
+      value: 0.0999
+    2019-08-01:
+      value: 0.0974
+    2018-08-01:
+      value: 0.0902
+    2018-02-01:
+      value: 0.0915
+    2017-08-01:
+      value: 0.0915
+    2016-08-01:
+      value: 0.0898
+    2015-08-01:
+      value: 0.0932
+    2014-11-01:
+      value: 0.0909
+    2013-08-01:
+      value: 0.0883
+    2012-08-01:
+      value: 0.0848
+    2011-07-01:
+      value: 0.0831
+    2009-08-15:
+      value: 0.0817
+    2008-08-15:
+      value: 0.0803
+    2007-08-16:
+      value: 0.0787
+    2006-08-15:
+      value: 0.0778
+    2004-01-01:
+      value: 0.0765
+    2003-07-04:
+      value: 0.0777
+    2003-01-01:
+      value: 0.0754
+    2001-11-12:
+      value: 0.0787
+    2001-05-01:
+      value: 0.0779
+  metadata:
+    ipp_csv_id: prix_unitaire_24kva_ht
+    unit: currency-EUR
+prix_kwh_30_kva:
+  description: Prix du kWh - 30 kVA
+  values:
+    2020-08-01:
+      value: 0.1008
+    2020-02-01:
+      value: 0.0999
+    2019-08-01:
+      value: 0.0974
+    2018-08-01:
+      value: 0.0902
+    2018-02-01:
+      value: 0.0915
+    2017-08-01:
+      value: 0.0915
+    2016-08-01:
+      value: 0.0898
+    2015-08-01:
+      value: 0.0932
+    2014-11-01:
+      value: 0.0909
+    2013-08-01:
+      value: 0.0883
+    2012-08-01:
+      value: 0.0848
+    2011-07-01:
+      value: 0.0831
+    2009-08-15:
+      value: 0.0817
+    2008-08-15:
+      value: 0.0803
+    2007-08-16:
+      value: 0.0787
+    2006-08-15:
+      value: 0.0778
+    2004-01-01:
+      value: 0.0765
+    2003-07-04:
+      value: 0.0777
+    2003-01-01:
+      value: 0.0754
+    2001-11-12:
+      value: 0.0787
+    2001-05-01:
+      value: 0.0779
+  metadata:
+    ipp_csv_id: prix_unitaire_30kva_ht
+    unit: currency-EUR
+prix_kwh_36_kva:
+  description: Prix du kWh - 36 kVA
+  values:
+    2020-08-01:
+      value: 0.1008
+    2020-02-01:
+      value: 0.0999
+    2019-08-01:
+      value: 0.0974
+    2018-08-01:
+      value: 0.0902
+    2018-02-01:
+      value: 0.0915
+    2017-08-01:
+      value: 0.0915
+    2016-08-01:
+      value: 0.0898
+    2015-08-01:
+      value: 0.0932
+    2014-11-01:
+      value: 0.0909
+    2013-08-01:
+      value: 0.0883
+    2012-08-01:
+      value: 0.0848
+    2011-07-01:
+      value: 0.0831
+    2009-08-15:
+      value: 0.0817
+    2008-08-15:
+      value: 0.0803
+    2007-08-16:
+      value: 0.0787
+    2006-08-15:
+      value: 0.0778
+    2004-01-01:
+      value: 0.0765
+    2003-07-04:
+      value: 0.0777
+    2003-01-01:
+      value: 0.0754
+    2001-11-12:
+      value: 0.0787
+    2001-05-01:
+      value: 0.0779
+  metadata:
+    ipp_csv_id: prix_unitaire_36kva_ht
+    unit: currency-EUR
+metadata:
+  order:
+  - prix_kwh_3_kva
+  - prix_kwh_6_kva
+  - prix_kwh_9_kva
+  - prix_kwh_12_kva
+  - prix_kwh_15_kva
+  - prix_kwh_18_kva
+  - prix_kwh_24_kva
+  - prix_kwh_30_kva
+  - prix_kwh_36_kva
+  description_en: Unitary price base tariff EDF (without taxes)
+documentation: |
+  Source : http://www.cre.fr/marches/marche-de-detail/marche-de-l-electricite#section2
+  CRE
+  https://particulier.edf.fr/content/dam/2-Actifs/Documents/Offres/Grille_prix_Tarif_Bleu.pdf

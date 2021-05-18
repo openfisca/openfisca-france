@@ -1,0 +1,51 @@
+description: "Allocation parent isolé (API, 1976-2009) : conditions générales"
+duree_droit_en_mois:
+  description: Durée du droit (en mois)
+  values:
+    2009-06-01:
+      value: null
+    1976-10-01:
+      value: 12.0
+  metadata:
+    ipp_csv_id: duree_droit_api
+limite_duree_en_mois_1:
+  description: Limite de durée (en mois) (1)
+  values:
+    2009-06-01:
+      value: null
+    1976-10-01:
+      value: 18.0
+  metadata:
+    ipp_csv_id: limite_duree_api
+age_limite_enfant_en_annee_2:
+  description: Âge limite de l'enfant(en année) (2)
+  values:
+    2009-06-01:
+      value: null
+    1976-10-01:
+      value: 3.0
+  metadata:
+    ipp_csv_id: api_ageenf_max
+metadata:
+  order:
+  - duree_droit_en_mois
+  - limite_duree_en_mois_1
+  - age_limite_enfant_en_annee_2
+  reference:
+    2009-06-01:
+      title: Décret 2009-404 du 15/04/2009, art. 4 (abroge art. R524-18 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020522721&cidTexte=JORFTEXT000020521930
+    1976-10-01:
+      title: Décret 76-893 du 28/09/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000689445&categorieLien=id
+  date_parution_jo:
+    2009-06-01: 2009-04-16
+    1976-10-01: 1976-09-30
+  notes:
+    2009-06-01: Abrogation de l'API
+    1976-10-01: API créée par la loi 76-617, en insérant un chapitre V-3 au CSS
+  description_en: "Single parent allowance (API): General conditions"
+documentation: |
+  Notes :
+  (1) Par rapport au moment où le droit aurait pu être ouvert.
+  (2) Pour prolongation du droit.

@@ -1,0 +1,25 @@
+description: "Régime complémentaire des indépendants : valeur d'achat du point"
+valeur_annuelle_acquisition_point_rsi:
+  description: Valeur annuelle d'acquisition du point RSI
+  values:
+    2019-01-01:
+      value: 17.515 
+    2017-10-01:
+      value: 17.456
+    2015-10-01:
+      value: 17.324
+    2013-01-01:
+      value: 17.309
+  metadata:
+    ipp_csv_id: sal_ref_ircantec
+    unit: currency-EUR
+metadata:
+  order:
+  - valeur_annuelle_acquisition_point_rsi
+  notes:
+    2013-01-01: "A partir du 1er janvier 2013, les artisans et commerçants bénéficient d'un régime complémentaire unique commun : le Régime Complémentaire des Indépendants (RCI)."
+  description_en: "Complementary scheme of self-employed : reference wage"
+documentation: |
+  Sources :
+  rsi.fr
+  http://www.rsi.fr/baremes/prestations-vieillesse-et-invalidite-deces.html#c5206

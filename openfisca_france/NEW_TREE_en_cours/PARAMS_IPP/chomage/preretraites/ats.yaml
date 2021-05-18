@@ -1,0 +1,95 @@
+description: Allocation transitoire de solidarité (ATS) (2011-2015)
+montant_journalier:
+  description: Montant journalier
+  values:
+    2015-03-01:
+      value: null
+    2015-01-01:
+      value: 35.09
+    2014-01-01:
+      value: 34.78
+    2013-01-01:
+      value: 34.33
+    2012-01-01:
+      value: 33.74
+    2011-07-01:
+      value: 33.18
+  metadata:
+    ipp_csv_id: solid_fixe
+    unit: currency-EUR
+plafond_ressources:
+  description: Plafond de ressources
+  personne_seule:
+    description: Personne seule
+    values:
+      2015-03-01:
+        value: null
+      2015-01-01:
+        value: 1684.3200000000002
+      2014-01-01:
+        value: 1669.44
+      2013-01-01:
+        value: 1647.84
+      2012-01-01:
+        value: 1619.52
+      2011-07-01:
+        value: 1592.6399999999999
+    metadata:
+      ipp_csv_id: solid_plaf_seul
+      unit: currency-EUR
+  couple:
+    description: Couple
+    values:
+      2015-03-01:
+        value: null
+      2015-01-01:
+        value: 2421.21
+      2014-01-01:
+        value: 2399.82
+      2013-01-01:
+        value: 2368.77
+      2012-01-01:
+        value: 2328.06
+      2011-07-01:
+        value: 2289.42
+    metadata:
+      ipp_csv_id: solid_plaf_couple
+      unit: currency-EUR
+  metadata:
+    order:
+    - personne_seule
+    - couple
+metadata:
+  order:
+  - montant_journalier
+  - plafond_ressources
+  reference:
+    2015-01-01:
+      title: Décret 2014-1719 du 31/12/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030005607
+    2014-01-01:
+      title: Décret 2013-1274 du 27/12/2013
+      href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1274/jo/texte
+    2013-01-01:
+      title: Décret 2012-1496 du 28/12/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/12/28/2012-1496/jo/texte
+    2012-01-01:
+      title: Décret 2012-196 du 09/02/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/2/9/2012-196/jo/texte
+    2011-07-01:
+      title: Décret 2011-1421 du 02/11/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/11/2/2011-1421/jo/texte
+  date_parution_jo:
+    2015-01-01: 2014-12-31
+    2014-01-01: 2013-12-29
+    2013-01-01: 29/12/2012
+    2012-01-01: 2012-10-02
+    2011-07-01: 2011-11-03
+  notes:
+    2015-03-01: "L'ATS n'existe plus : au 01/03/2015, tous les demandeurs d'emploi justifiant des trimestres pour bénéficier d'une retraite à taux plein nés 1953 l'ont atteint au 1er mars 2015 (61 ans et 2 mois)."
+  description_en: Transitional solidarity allowance (ATS) (2011-2015)
+documentation: |
+  Notes :
+  Remplace l'AER en juillet 2011.
+  Sources:
+  Légifrance

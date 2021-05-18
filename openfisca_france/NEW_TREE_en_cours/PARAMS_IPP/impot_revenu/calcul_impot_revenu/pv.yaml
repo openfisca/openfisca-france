@@ -1,0 +1,492 @@
+description: Imposition des plus-values (1979 -)
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2019-01-01:
+        value: 2020.0
+      2018-01-01:
+        value: 2019.0
+      2014-01-01:
+        value: 2015.0
+      2013-01-01:
+        value: 2014.0
+      2012-01-01:
+        value: 2013.0
+      2011-01-01:
+        value: 2012.0
+      2010-01-01:
+        value: 2011.0
+      2009-01-01:
+        value: 2010.0
+      2008-01-01:
+        value: 2009.0
+      2007-01-01:
+        value: 2008.0
+      2006-01-01:
+        value: 2007.0
+      2005-01-01:
+        value: 2006.0
+      2002-01-01:
+        value: 2003.0
+      2001-01-01:
+        value: 2002.0
+      2000-01-01:
+        value: 2001.0
+      1998-01-01:
+        value: 1999.0
+      1997-01-01:
+        value: 1998.0
+      1996-01-01:
+        value: 1997.0
+      1995-01-01:
+        value: 1996.0
+      1994-01-01:
+        value: 1995.0
+      1992-01-01:
+        value: 1993.0
+      1991-01-01:
+        value: 1992.0
+      1990-01-01:
+        value: 1991.0
+      1989-01-01:
+        value: 1990.0
+      1988-01-01:
+        value: 1989.0
+      1987-01-01:
+        value: 1988.0
+      1986-01-01:
+        value: 1987.0
+      1985-01-01:
+        value: 1986.0
+      1984-01-01:
+        value: 1985.0
+      1982-01-01:
+        value: 1983.0
+      1981-01-01:
+        value: 1982.0
+      1980-01-01:
+        value: 1981.0
+      1978-01-01:
+        value: 1979.0
+      1977-01-01:
+        value: 1978.0
+  metadata:
+    order:
+    - annee_ir
+imposition_plus_values_cession_valeurs_mobilieres_plus_values_professionnelles:
+  description: Imposition des plus-values de cession de valeurs mobilières et des plus-values professionnelles
+  taux:
+    description: Taux
+    values:
+      2018-01-01:
+        value: 0.128
+      2013-01-01:
+        value: null
+      2012-01-01:
+        value: 0.24
+      2011-01-01:
+        value: 0.19
+      2008-01-01:
+        value: 0.18
+      1984-01-01:
+        value: 0.16
+      1978-01-01:
+        value: 0.15
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_pv
+      unit: /1
+  seuil_imposition:
+    description: Seuil d'imposition
+    values:
+      2011-01-01:
+        value: null
+      2010-01-01:
+        value: 25830.0
+      2009-01-01:
+        value: 25730.0
+      2008-01-01:
+        value: 25000.0
+      2007-01-01:
+        value: 20000.0
+      2002-01-01:
+        value: 15000.0
+      2001-01-01:
+        value: 7650.0
+      1998-01-01:
+        value: 50000.0
+      1997-01-01:
+        value: 100000.0
+      1996-01-01:
+        value: 200000.0
+      1995-01-01:
+        value: 342800.0
+      1994-01-01:
+        value: 336700.0
+      1992-01-01:
+        value: null
+      1991-01-01:
+        value: 325800.0
+      1990-01-01:
+        value: 316900.0
+      1989-01-01:
+        value: 307600.0
+      1988-01-01:
+        value: 298000.0
+      1986-01-01:
+        value: 281000.0
+      1985-01-01:
+        value: 272000.0
+      1984-01-01:
+        value: 265000.0
+      1982-01-01:
+        value: null
+      1981-01-01:
+        value: 190700.0
+      1980-01-01:
+        value: 168000.0
+      1978-01-01:
+        value: 150000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: seuil_pv
+      unit:
+        2001-01-01: currency-EUR
+        1978-01-01: currency-FRF
+  metadata:
+    order:
+    - taux
+    - seuil_imposition
+imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012:
+  description: Imposition des gains de levées d'options sur titre attribuées avant le 28/09/2012 (3)
+  cession_moins_2:
+    description: Cession durant le délai de portage de 2 ans (après le délai d'indisponibilité)
+    taux_tranche_superieure:
+      description: Taux tranche supérieure
+      values:
+        2010-01-01:
+          value: 0.41
+        2000-01-01:
+          value: 0.4
+        1977-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: tx_stockoptions1
+        unit: /1
+    taux_tranche_inferieure:
+      description: Taux tranche inférieure
+      values:
+        1995-01-01:
+          value: 0.3
+        1977-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: tx_stockoptions2
+        unit: /1
+    metadata:
+      order:
+      - taux_tranche_superieure
+      - taux_tranche_inferieure
+  cession_plus_2:
+    description: Cession après le délai de portage de 2 ans pour les options attribuées à compter du 27/04/2000
+    taux_tranche_superieure:
+      description: Taux tranche supérieure
+      values:
+        2006-01-01:
+          value: 0.3
+        1977-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: tx_stockoptions3
+        unit: /1
+    taux_tranche_inferieure:
+      description: Taux tranche inférieure
+      values:
+        2008-01-01:
+          value: 0.18
+        2006-01-01:
+          value: 0.16
+        1977-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: tx_stockoptions4
+        unit: /1
+    metadata:
+      order:
+      - taux_tranche_superieure
+      - taux_tranche_inferieure
+  seuil_tranche_superieure:
+    description: Seuil tranche supérieure
+    values:
+      2009-01-01:
+        value: 152500.0
+      2001-01-01:
+        value: 152000.0
+      2000-01-01:
+        value: 1000000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: seuil_pv1
+      unit:
+        2001-01-01: currency-EUR
+        2000-01-01: currency-FRF
+  metadata:
+    order:
+    - seuil_tranche_superieure
+    - cession_moins_2
+    - cession_plus_2
+actions_gratuites:
+  description: Imposition des gains d'acquisition d'actions gratuites attribuées avant le 28 septembre 2012 (4)
+  values:
+    2005-01-01:
+      value: 0.3
+  metadata:
+    unit: /1
+    ipp_csv_id: tx_actions_gratuites
+pea:
+  description: PEA
+  taux_avant_2_ans:
+    description: Taux avant 2 ans
+    values:
+      2019-01-01:
+        value: 0.128
+      1991-01-01:
+        value: 0.225
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_pea
+      unit: /1
+  taux_posterieur:
+    description: Taux entre 2 et 5 ans
+    values:
+      2019-01-01:
+        value: 0.128
+      2013-01-01:
+        value: 0.19
+      1984-01-01:
+        value: 0.16
+      1978-01-01:
+        value: 0.15
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_pea_post
+      unit: /1
+  metadata:
+    order:
+    - taux_avant_2_ans
+    - taux_posterieur
+bspce:
+  description: Imposition des gains de cession de titres souscrits en exercice de bons de souscription de parts de créateur d’entreprise (BSPCE)
+  plus_3ans:
+    description:  Activité exercée dans la société depuis plus de 3 ans
+    pre_2018:
+      description: Bons attribués avant 2018
+      values:
+        2012-01-01:
+          value: 0.19
+        1998-01-01:
+          value: 0.30
+        1977-01-01:
+          value: null
+      metadata:
+        unit: /1
+        ipp_csv_id: tx_bspce_plus_avant_2018
+    post_2018:
+      description: Bons attribués depuis 2018
+      values:
+        2018-01-01:
+          value: 0.128
+        1977-01-01:
+          value: null
+      metadata:
+        unit: /1
+        ipp_csv_id: tx_bspce_plus_apres_2018
+    metadata:
+      order:
+      - pre_2018
+      - post_2018
+  moins_3ans:
+    description: Activité exercée dans la société depuis moins de 3 ans
+    values:
+      1998-01-01:
+        value: 0.3
+      1977-01-01:
+        value: null
+    metadata:
+      unit: /1
+      ipp_csv_id: tx_bspce_moins
+  metadata:
+    order:
+    - moins_3ans
+    - plus_3ans
+actifs_numeriques:
+  description: Imposition de la plus-value tirée d'une cession d’actifs numériques
+  plancher:
+    description: Plancher à partir duquel sont imposés les actifs cédés
+    values:
+      2019-01-01:
+        value: 305.0
+      1977-01-01:
+        value: null
+    metadata:
+      unit: currency-EUR
+      ipp_csv_id: plancher_pv_actifs_numeriques
+  taux:
+    description: Taux d'imposition
+    values:
+      2019-01-01:
+        value: 0.128
+      1977-01-01:
+        value: null
+    metadata:
+      unit: /1
+      ipp_csv_id: tx_pv_actifs_numeriques
+  metadata:
+    order:
+    - plancher
+    - taux
+abattement_option:
+  description: Abattement si choix d'imposition des plus-values sur titres acquis ou souscrits avant le 1er janvier 2018 au barème progressif
+  droit_commun:
+    description: Abattement pour durée de détention de droit commun
+    2ans:
+      description: Actions, parts, droits ou titres détenus depuis 2 à 4 ans
+      values:
+        2014-01-01:
+          value: 0.5
+        2013-01-01:
+          value: 0.2
+        1977-01-01:
+          value: null
+      metadata:
+        unit: /1
+        ipp_csv_id: abat_pv_2ans
+    4ans:
+      description: Actions, parts, droits ou titres détenus depuis 4 à 6 ans
+      values:
+        2014-01-01:
+          value: 0.5
+        2013-01-01:
+          value: 0.3
+        1977-01-01:
+          value: null
+      metadata:
+        unit: /1
+        ipp_csv_id: abat_pv_4ans
+    6ans:
+      description: Actions, parts, droits ou titres détenus depuis 6 à 8 ans
+      values:
+        2014-01-01:
+          value: 0.5
+        2013-01-01:
+          value: 0.4
+        1977-01-01:
+          value: null
+      metadata:
+        unit: /1
+        ipp_csv_id: abat_pv_6ans
+    8ans:
+      description: Actions, parts, droits ou titres détenus depuis plus de 8 ans
+      values:
+        2014-01-01:
+          value: 0.65
+        2013-01-01:
+          value: 0.4
+        1977-01-01:
+          value: null
+      metadata:
+        unit: /1
+        ipp_csv_id: abat_pv_8ans
+    metadata:
+      order:
+      - 2ans
+      - 4ans
+      - 6ans
+      - 8ans
+  majoration:
+    description: Abattement majoré (6)
+    1an:
+      description: Actions, parts, droits ou titres détenus depuis 1 à 4 ans
+      values:
+        2014-01-01:
+          value: 0.5
+        1977-01-01:
+          value: null
+      metadata:
+        unit: /1
+        ipp_csv_id: abat_pv_majore_1
+    4ans:
+      description: Actions, parts, droits ou titres détenus depuis 4 à 8 ans
+      values:
+        2014-01-01:
+          value: 0.65
+        1977-01-01:
+          value: null
+      metadata:
+        unit: /1
+        ipp_csv_id: abat_pv_majore_4
+    8ans:
+      description: Actions, parts, droits ou titres détenus depuis plus de 8 ans
+      values:
+        2014-01-01:
+          value: 0.85
+        1977-01-01:
+          value: null
+      metadata:
+        unit: /1
+        ipp_csv_id: abat_pv_majore_8
+    metadata:
+      order:
+      - 1an
+      - 4ans
+      - 8ans
+  metadata:
+    order:
+    - droit_commun
+    - majoration
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - imposition_plus_values_cession_valeurs_mobilieres_plus_values_professionnelles
+  - imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012
+  - actions_gratuites
+  - pea
+  - bspce
+  - actifs_numeriques
+  - abattement_option
+  reference:
+    2019-01-01:
+      title: Loi n° 2018-1317 du 28/12/2018 (LF 2019) - art.44
+      href: https://beta.legifrance.gouv.fr/loda/id/LEGIARTI000037935520/2020-07-01
+    2018-01-01:
+      title: Loi n° 2017-1837 du 30 décembre 2017 (LF 2018), art. 28
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=FB4A3D38224E68EB81D8ADE6347D360D.tplgfr38s_2?cidTexte=JORFTEXT000036339197&idArticle=LEGIARTI000036377422&dateTexte=20181230&categorieLien=id#LEGIARTI000036377422
+    2008-01-01: BOI 5 C-1-09 n°9 du 23/01/2009
+    2007-01-01: BOI 5 C-2-08; n°50 du 14/05/2008
+    2006-01-01: BOI 5 C-2-08; n°36 du 14/03/2007
+    2002-01-01: BOI 5 C-1-03; n°51 du 18/03/2003
+  notes:
+    2019-01-01: Pour les opérations survenues après le 1er Janvier 2019, les plus-values mobilières issues de clôture de PEA avant 5 ans de détention sont taxées au nouveau régime du prélèvement forfaitaire unique (PFU)
+    2013-01-01: "Les plus-values mobilières sont intégrées à l'assiette de l'IR et donc imposées au barème avec des abattements dépendant de la durée de détention: 20 % (détention 2 à 4 ans), 30 % (4-6 ans), 40% (au-delà)"
+    2012-01-01: Taux d'imposition des plus-values mobilières de 2012 (imposées en 2013) majoré à 24% par la loi de finances pour 2013 (Loi 2012-1509 du 29/12/2012 de finances pour 2013 art. 10)
+    2011-01-01: "Seuil d'imposition des plus-values : art 150-0 A du CGI supprimé par LF 2011"
+    2008-01-01: À compter du 1er janvier 2009, le seuil de cession est actualisé chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l’impôt sur le revenu de l’année précédant celle de la cession.
+    2001-01-01: "Avant 2001 : art 92 B du CGI"
+    2000-01-01: Pour les options attribuées à compter du 27/04/2000, création des variables tx_stockoptions1 et tx_stockoptions2
+    1995-01-01: Pour les options attribuées à compter du 20/09/95, création de la variable tx_pv2
+  description_en: Taxation of capital gains (1979 -)
+documentation: |
+  Notes :
+  (1) Taux d'imposition des plus-values, gain de levée d'options, gain d'acquisition d'actions gratuites et des PEA à l'article 200-A du CGI.
+  (2) Les plus-values réalisées suite à un retrait d'un PEA ancien de plus de 5 ans sont exonérées d'imposition sur le revenu.
+  (3) Les options sur titres (ou stock-options) sont imposées sur la différence entre la valeur réelle de l’action à la date de la levée de l'option et le prix de souscription ou d’achat de l’action aux taux du barème si les options ont été attribuées avant le 28/09/2012. Si elles ont été attribuées à une date postérieure, le gain est imposé selon le régime du barème progressif.
+  (4) Le gain d’acquisition d'actions gratuites est égal à la valeur des actions à la date de leur acquisition définitive. Il est imposé au taux du barème si les actions ont été attribuées avant le 28/09/2012 et sur le barème progressif si attribuées à une date postérieure.
+  (5) Les plus-values de cession de valeurs mobilières (y compris options sur titres et actions gratuites) ont été intégrées à l'assiette de l'IR pour imposition selon le barème progressif en 2013 jusqu'en 2018, date depuis laquelle elles sont désormais imposées aux taux de prélèvement forfaitaire unique de 12,8%.
+  (6) L'abattement majoré est prévu au 1-quater de l'article 150-0 D du CGI et s'applique aux gains de cession de titres de PME de moins de 10 ans à la date de souscription ou d'acquisition des titres et les titres de dirigeants de PME prenant leur retraite ne bénéficiant pas de l'abattement fixe lorsque l'option au barème progressif est exercée. 

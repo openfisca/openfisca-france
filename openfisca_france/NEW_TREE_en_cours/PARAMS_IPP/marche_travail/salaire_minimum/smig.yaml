@@ -1,0 +1,217 @@
+description: Salaire minimum garanti - SMIG (1950-1969)
+smig_brut_horaire:
+  description: Smig brut (horaire)
+  zone_sans_abattement:
+    description: Zone sans abattement
+    values:
+      1970-01-01:
+        value: null
+      1969-10-01:
+        value: 3.27
+      1969-04-01:
+        value: 3.15
+      1968-12-01:
+        value: 3.08
+      1968-06-01:
+        value: 3.0
+      1968-01-01:
+        value: 2.22
+      1967-07-01:
+        value: 2.15
+      1966-10-01:
+        value: 2.1
+      1966-03-01:
+        value: 2.05
+      1965-09-01:
+        value: 2.0075
+      1965-03-01:
+        value: 1.968
+      1964-10-01:
+        value: 1.9295
+      1963-07-01:
+        value: 1.882
+      1962-11-01:
+        value: 1.806
+      1962-06-01:
+        value: 1.728
+      1961-12-01:
+        value: 1.6865
+      1960-10-01:
+        value: 1.6385
+      1959-11-01:
+        value: 160.15
+      1959-02-01:
+        value: 156.0
+      1958-06-01:
+        value: 149.25
+      1958-03-01:
+        value: 144.8
+      1958-01-01:
+        value: 139.2
+      1957-08-01:
+        value: 133.45
+      1955-04-01:
+        value: 126.0
+      1954-10-01:
+        value: 121.5
+      1954-02-01:
+        value: 115.0
+      1951-09-01:
+        value: 100.0
+      1951-04-01:
+        value: 87.0
+      1950-09-01:
+        value: 78.0
+    metadata:
+      ipp_csv_id: smig_h_sans_ab
+      unit:
+        1960-10-01: currency-FRF
+        1950-09-01: currency-AFRF
+  zone_abattement_maximale:
+    description: Zone abattement maximale
+    values:
+      1966-10-01:
+        value: null
+      1966-03-01:
+        value: 1.927
+      1965-09-01:
+        value: 1.887
+      1965-03-01:
+        value: 1.85
+      1964-10-01:
+        value: 1.8135
+      1963-07-01:
+        value: 1.769
+      1963-01-01:
+        value: 1.6975
+      1962-11-01:
+        value: 1.6615
+      1962-06-01:
+        value: 1.59
+      1961-12-01:
+        value: 1.5515
+      1960-10-01:
+        value: 1.5075
+      1959-11-01:
+        value: 147.35
+      1959-02-01:
+        value: 143.5
+      1958-06-01:
+        value: 137.3
+      1958-03-01:
+        value: 133.25
+      1958-01-01:
+        value: 128.05
+      1957-08-01:
+        value: 122.75
+      1956-04-01:
+        value: 115.9
+      1955-04-01:
+        value: 110.9
+      1954-10-01:
+        value: 105.1
+      1954-02-01:
+        value: 99.48
+      1951-09-01:
+        value: 86.5
+      1951-06-01:
+        value: 75.25
+      1951-04-01:
+        value: 74.0
+      1950-09-01:
+        value: 64.0
+    metadata:
+      ipp_csv_id: smig_h_ab_max
+      unit:
+        1960-10-01: currency-FRF
+        1950-09-01: currency-AFRF
+  metadata:
+    order:
+    - zone_sans_abattement
+    - zone_abattement_maximale
+smig_brut_mensuel:
+  description: Smig brut (mensuel)
+  17333h_travail:
+    description: pour 173,33h de travail
+    values:
+      1970-01-01:
+        value: null
+      1969-10-01:
+        value: 566.7891000000001
+      1969-04-01:
+        value: 545.9895
+      1968-12-01:
+        value: 533.8564
+      1968-06-01:
+        value: 519.99
+      1968-01-01:
+        value: 384.79260000000005
+      1967-07-01:
+        value: 372.65950000000004
+      1966-10-01:
+        value: 363.99300000000005
+      1966-03-01:
+        value: 355.3265
+      1965-09-01:
+        value: 347.959975
+      1965-03-01:
+        value: 341.11344
+      1964-10-01:
+        value: 334.44023500000003
+      1963-07-01:
+        value: 326.20706
+      1962-11-01:
+        value: 313.03398000000004
+      1962-06-01:
+        value: 299.51424000000003
+      1961-12-01:
+        value: 292.321045
+      1960-10-01:
+        value: 284.001205
+      1959-11-01:
+        value: 27758.799500000005
+      1959-02-01:
+        value: 27039.480000000003
+      1958-06-01:
+        value: 25869.502500000002
+      1958-03-01:
+        value: 25098.184000000005
+      1958-01-01:
+        value: 24127.536
+      1957-08-01:
+        value: 23130.8885
+      1955-04-01:
+        value: 21839.58
+      1954-10-01:
+        value: 21059.595
+      1954-02-01:
+        value: 19932.95
+      1951-09-01:
+        value: 17333.0
+      1951-04-01:
+        value: 15079.710000000001
+      1950-09-01:
+        value: 13519.740000000002
+    metadata:
+      ipp_csv_id: smig_brut
+      unit:
+        1960-10-01: currency-FRF
+        1950-09-01: currency-AFRF
+  metadata:
+    order:
+    - 17333h_travail
+metadata:
+  order:
+  - smig_brut_horaire
+  - smig_brut_mensuel
+  notes:
+    1970-01-01: Remplacé par le SMIC
+    1959-11-01: Les montants sont exprimés en anciens Francs de 1950 à 1959.
+  description_en: Minimum wage - SMIG (1950-1969)
+documentation: |
+  Sources de la législation:
+  Annuaire Statistique de la France 1971 de 1966 à 1970; Annuaire Statistique de la France 1966 de 1950 à 1966
+  Notes:
+  Entre 1950 et 1968 il existe des abattements par zone géographique (20 zones, Paris 0 abattement);
+  Entre 1950 et 1968, il existe un SMAG qui est limité à l'agriculture et dont le montant est inférieur au SMIG.
+  Les montants des DOM-TOM ne sont pas indiqués
