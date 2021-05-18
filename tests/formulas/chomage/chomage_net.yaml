@@ -2,80 +2,70 @@
   description: ARE nette lorsque tous les seuils d'exonération sont franchis 
   period: 2019-04
   input:
-    salaire_de_reference_mensuel: 2800
-    contrat_de_travail_fin: 2019-04
-    are: 1596
-    csg_imposable_chomage: 
-      2019-04: -37.63368
-    csg_deductible_chomage: 
-      2019-04: -37.11622 
-    crds_chomage: -0.03345541
-    retraite_complementaire_chomage: 84
-  output: 
-    are_nette: 1437.2167
-    
-    
-- name: Allocation chômage nette des retenues sociales - Cas n°2
-  description: ARE nette lorsque tous les seuils d'exonération sont franchis (proche des seuils)
-  period: 2019-04
-  input:
-    salaire_de_reference_mensuel: 2600
-    contrat_de_travail_fin: 2019-04
-    are: 1539
-    csg_imposable_chomage: 
-      2019-04: -17.783333 #cela ne représente pas 2.4% de l'ARE
-    csg_deductible_chomage: 
-      2019-04: -8.138021e-06 #cela ne représente pas 3.8% de l'ARE
-    crds_chomage: -8.138021e-06  #cela ne représente pas 0.05% de l'ARE
-    retraite_complementaire_chomage: 78 #représente 3% du SMR 
-  output: 
-    are_nette: 1443.2167
-
-- name: Allocation chômage nette des retenues sociales - Cas n°3
-  description: ARE nette lorsque tous les seuils d'exonération sont franchis (moins proche des seuils)
-  period: 2019-04
-  input:
     salaire_de_reference_mensuel: 3000
     contrat_de_travail_fin: 2019-04
     are: 1710
-    csg_imposable_chomage: 
-      2019-04: -40.32168 #cela représente 2.4% de l'ARE
-    csg_deductible_chomage: 
-      2019-04: -63.84266 #cela représente 3.8% de l'ARE
-    crds_chomage: -8.40035 #cela représente 0,5% de l'ARE
-    retraite_complementaire_chomage: 90 #cela réprésente 3% du SMR
-  output:
-    are_nette: 1507.4353
+  output: 
+    csg_chomage_deductible: -63.84285
+    csg_chomage_imposable: -40.3218
+    csg_are: -104.16465
+    are_nette_csg: 1605.8353
+    crds_are: -8.400374
+    are_nette_crds: 1701.5996
+    are_nette_contributions_sociales: 1597.4349
+    retraite_complementaire_chomage: -90
+    are_nette: 1507.4349
 
-- name: Allocation chômage nette des retenues sociales - Cas n°4
-  description: ARE nette lorsque tous les seuils d'exonération sont franchis (loin des seuils)
+- name: Allocation chômage nette des retenues sociales - Cas n°2
+  description: ARE nette lorsque le seuil d'exonération de la CSG n'est pas franchi 
   period: 2019-04
   input:
-    salaire_de_reference_mensuel: 4500
+    salaire_de_reference_mensuel: 2800
     contrat_de_travail_fin: 2019-04
-    are: 2565
-    csg_imposable_chomage: 
-      2019-04: -60.48264
-    csg_deductible_chomage: 
-      2019-04: -95.76418 
-    crds_chomage: -12.60055 
-    retraite_complementaire_chomage: 135
-  output:
-     are_nette: 2261.1526
+    are: 1596
+  output: 
+    csg_chomage_deductible: -59.586662
+    csg_chomage_imposable: -37.63368
+    csg_are: 0
+    are_nette_csg: 1596
+    crds_are: -7.8403497
+    are_nette_crds: 1588.1597
+    are_nette_contributions_sociales: 1588.1597
+    retraite_complementaire_chomage: -84
+    are_nette: 1504.1597
 
+- name: Allocation chômage nette des retenues sociales - Cas n°3
+  description: ARE nette lorsque le seuil d'exonération de la CSG et de la CRDS ne sont pas franchis
+  period: 2019-04
+  input:
+    salaire_de_reference_mensuel: 2650
+    contrat_de_travail_fin: 2019-04
+    are: 1510.5
+  output: 
+    csg_chomage_deductible: -56.39452
+    csg_chomage_imposable: -35.617588
+    csg_are: 0
+    are_nette_csg: 1510.5
+    crds_are: -7.420331
+    are_nette_crds: 0
+    are_nette_contributions_sociales: 1510.5
+    retraite_complementaire_chomage:
+    are_nette: 
 
-- name: Allocation chômage nette des retenues sociales - Cas n°5
-  description: ARE nette lorsque certains seuils d'exonération sont franchis et pas d'autres 
+- name: Allocation chômage nette des retenues sociales - Cas n°4
+  description: ARE nette lorsque les seuils d'exonération ne sont tous pas franchis 
   period: 2019-04
   input:
     salaire_de_reference_mensuel: 1500
     contrat_de_travail_fin: 2019-04
-    are: 963.6
-    csg_imposable_chomage: 
-      2019-04: 0 #le seuil du SMIC journalier est dépassé 
-    csg_deductible_chomage: 
-      2019-04: 0 #le seuil du SMIC journalier est dépassé 
-    crds_chomage: 0 #le seuil du SMIC journalier est dépassé 
-    retraite_complementaire_chomage: 45 #le seuil minimal de l'ARE n'est pas franchi 
-  output:
-    are_nette: 918.6
+    are: 1510.5
+  output: 
+    csg_chomage_deductible: -56.3945175
+    csg_chomage_imposable: -40.3218
+    csg_are: -104.16465
+    are_nette_csg:
+    crds_are: 
+    are_nette_crds: 
+    are_nette_contributions_sociales: 
+    retraite_complementaire_chomage:
+    are_nette: 
