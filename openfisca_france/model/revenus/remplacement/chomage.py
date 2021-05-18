@@ -285,6 +285,7 @@ class duree_versement_are(Variable):
     entity = Individu
     label = "Nombre  de jours indemnisés par l'ARE"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         are = individu('are', period)

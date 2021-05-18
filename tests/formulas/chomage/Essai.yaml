@@ -2,7 +2,7 @@
   period: 2019-01
   max_spiral_loops: 60
   neutralized_variables:
-    - chomage_net
+    # - chomage_net
     - categorie_salarie
     # Ass base ressources
     - revenus_stage_formation_pro
@@ -19,10 +19,7 @@
     - tns_autres_revenus
     - pensions_alimentaires_versees_individu
   input:
-    contrat_de_travail_debut: 2015-01-01
-    # contrat_de_travail_fin:
-    #   month:2015:120: 2019-01
-    age: 40
+
     famille:
       parents: [parent1]
       # ass_base_ressources:
@@ -37,6 +34,15 @@
       personne_de_reference: parent1
     individus:
       parent1:
+        contrat_de_travail_debut:
+          year:2005:20: 2005-01-01
+        contrat_de_travail_fin:
+          year:2015:10: 2019-01-01
+        age: 40
+        chomage_net:
+          year:1999:20: 0
+        duree_versement_are:
+          year:1999:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2019-01: 6
           2019-02: 6
@@ -62,9 +68,6 @@
           2019-05: 105
 
   output:
-    contrat_de_travail_debut: '2015-01-01'
-    contrat_de_travail_fin:
-      2019-01: 2019-01
     are:
       2019-01: 750
       2019-02: 750
@@ -78,16 +81,11 @@
       2019-03: 90
       2019-04: 120
       2019-05: 151
-    # ass:
-    #   2019-01: 0
-    #   2019-02: 0
-    #   2019-03: 0
-    #   2019-04: 0
-    #   2019-05: 0
-    #   2019-06: 0
-
-
-
-
-
+    ass:
+      2019-01: 0
+      2019-02: 0
+      2019-03: 0
+      2019-04: 0
+      2019-05: 0
+      2019-06: 0
 
