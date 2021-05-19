@@ -1,0 +1,119 @@
+description: Salaire de référence ARRCO
+salaire_reference_en_nominal:
+  description: Salaire de référence (en nominal)
+  values:
+    2019-11-01:
+      value: 17.3982
+    2018-01-01:
+      value: 16.7226
+    2017-01-01:
+      value: 16.1879
+    2016-01-01:
+      value: 15.6556
+    2014-01-01:
+      value: 15.2589
+    2013-01-01:
+      value: 15.2284
+    2012-01-01:
+      value: 15.0528
+    2011-01-01:
+      value: 14.7216
+    2010-01-01:
+      value: 14.4047
+    2009-01-01:
+      value: 14.2198
+    2008-01-01:
+      value: 13.9684
+    2007-01-01:
+      value: 13.5091
+    2006-01-01:
+      value: 13.0271
+    2005-01-01:
+      value: 12.66
+    2004-01-01:
+      value: 12.3632
+    2003-01-01:
+      value: 12.0852
+    2002-01-01:
+      value: 11.8949
+    2001-01-01:
+      value: 11.7076
+    2000-01-01:
+      value: 75.6616
+    1999-01-01:
+      value: 71.8534
+  metadata:
+    ipp_csv_id: sal_ref_arrco_nom
+    unit:
+      2001-01-01: currency-EUR
+      1999-01-01: currency-FRF
+salaire_reference_en_euros:
+  description: Salaire de référence (en euros)
+  values:
+    2019-11-01:
+      value: 17.3982
+    2018-01-01:
+      value: 16.7226
+    2017-01-01:
+      value: 16.1879
+    2016-01-01:
+      value: 15.6556
+    2014-01-01:
+      value: 15.2589
+    2013-01-01:
+      value: 15.2284
+    2012-01-01:
+      value: 15.0528
+    2011-01-01:
+      value: 14.7216
+    2010-01-01:
+      value: 14.4047
+    2009-01-01:
+      value: 14.2198
+    2008-01-01:
+      value: 13.9684
+    2007-01-01:
+      value: 13.5091
+    2006-01-01:
+      value: 13.0271
+    2005-01-01:
+      value: 12.66
+    2004-01-01:
+      value: 12.3632
+    2003-01-01:
+      value: 12.0852
+    2002-01-01:
+      value: 11.8949
+    2001-01-01:
+      value: 11.7076
+    2000-01-01:
+      value: 11.5345
+    1999-01-01:
+      value: 10.9540
+  metadata:
+    ipp_csv_id: sal_ref_arrco_euros
+    unit: currency-EUR
+metadata:
+  order:
+  - salaire_reference_en_nominal
+  - salaire_reference_en_euros
+  reference:
+    2019-11-01: Circ. Arrco 2019-14-DT du 16/10/2019
+    2018-01-01: Circ. Arrco 2017-07-DT du 16/10/2017
+    2017-01-01: Circ. Arrco 2016-02-DT du 10/10/2016
+    2016-01-01: Circ. Agirc-Arrco 2015-10-DC
+    2014-01-01: Circ. Arrco 2014-01-DT du 20/03/2014
+    2013-01-01: Circ. Agirc-Arrco 2013-6-DT du 02/04/2013
+    2012-01-01: Circ. Agirc-Arrco 2012-09-DT du 20/03/2012
+    2011-01-01: Circ. Arrco 2011-01-DT du 14/04/2011
+    2010-01-01: Circ. Arrco 2010-01-DT du 18/03/2010
+    2009-01-01: Circ. Arrco 2009-01-DT du 18/03/2009
+    2008-01-01: Circ. Arrco 2008-02-DT du 14/03/2008
+    2007-01-01: Circ. Arrco 2007-02-DT du 14/03/2007
+    2006-01-01: Circ. Arrco 2006-01-DRE du 19/05/2006
+    2005-01-01: Circ. Arrco 2005-02-DT du 21/03/2005
+  notes:
+    2019-11-01: Fusion des régimes Agirc et Arrco le 1er janvier 2019. Salaire de référence Arrco = salaire de référence Agirc-Arrco.
+    2014-01-01: Pas d'évolution en 2015.
+    1999-01-01: Unification des régimes ARRCO en 1999.
+  description_en: Reference wage ARRCO

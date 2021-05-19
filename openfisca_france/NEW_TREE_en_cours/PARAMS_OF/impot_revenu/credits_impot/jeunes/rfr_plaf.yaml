@@ -1,0 +1,7 @@
+description: Revenu fiscal de référence plafond (personne seule)
+unit: currency
+values:
+  2005-01-01:
+    value: 25000.0
+  2009-01-01:
+    value: null

@@ -1,0 +1,6 @@
+description: Secteur privé
+metadata:
+  order:
+  - regime_general_cnav
+  - regimes_complementaires
+  description_en: Private sector

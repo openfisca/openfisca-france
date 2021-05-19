@@ -1,0 +1,36 @@
+description: Maximum par personne
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
+  - https://www.service-public.fr/particuliers/vosdroits/F10259
+unit: currency
+values:
+  2004-01-01:
+    value: 24153.6
+  2005-01-01:
+    value: 24854.4
+  2006-01-01:
+    value: 25747.2
+  2007-01-01:
+    value: 26620.8
+  2008-01-01:
+    value: 27446.4
+  2009-01-01:
+    value: 27696.0
+  2010-01-01:
+    value: 28281.6
+  2011-01-01:
+    value: 29097.0
+  2013-01-01:
+    value: 29098.0
+  2014-01-01:
+    value: 29626.0
+  2015-01-01:
+    value: 30038.0
+  2016-01-01:
+    value: 30432.0
+  2017-01-01:
+    value: 30893.0
+  2018-01-01:
+    value: 31382.0
+  2019-01-01:
+    value: 31786.0

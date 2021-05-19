@@ -1,0 +1,43 @@
+description: Zone 1 - 2 adultes
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2001-01-01:
+    value: 1902.0
+  2001-07-01:
+    value: 1925.0
+  2002-01-01:
+    value: 293.46
+  2002-07-01:
+    value: 299.33
+  2003-07-01:
+    value: 302.92
+  2005-09-01:
+    value: 308.37
+  2007-01-01:
+    value: 317.0
+  2008-01-01:
+    value: 325.75
+  2009-01-01:
+    value: 335.36
+  2010-01-01:
+    value: 336.43
+  2011-01-01:
+    value: 340.13
+  2012-01-01:
+    value: 343.53
+  2013-01-01:
+    value: 350.92
+  2014-10-01:
+    value: 352.92
+  2015-10-01:
+    value: 353.2
+  2017-10-01:
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_1
+    value: 355.85
+  2019-10-01:
+    reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&dateTexte=20191008
+    value: 356.92
+  2020-10-01:
+    value: 357.99
+    reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042378448/2021-01-02

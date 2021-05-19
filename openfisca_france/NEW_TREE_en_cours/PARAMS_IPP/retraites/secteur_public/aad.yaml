@@ -1,0 +1,103 @@
+description: Age d'annulation de la décote FP
+age_annulation_decote_selon_annee_ouverture_droits_en_nombre_trimestres_par_rapport_limite_age:
+  description: Age d'annulation de la décôte selon l'année d'ouverture des droits (en nombre de trimestres par rapport à la limite d'âge)
+  '2006':
+    description: '2006'
+    values:
+      2006-01-01:
+        value: -16.0
+  '2007':
+    description: '2007'
+    values:
+      2006-01-01:
+        value: -14.0
+  '2008':
+    description: '2008'
+    values:
+      2006-01-01:
+        value: -12.0
+  '2009':
+    description: '2009'
+    values:
+      2006-01-01:
+        value: -11.0
+  '2010':
+    description: '2010'
+    values:
+      2006-01-01:
+        value: -10.0
+  '2011':
+    description: '2011'
+    values:
+      2006-01-01:
+        value: -9.0
+  '2012':
+    description: '2012'
+    values:
+      2006-01-01:
+        value: -8.0
+  '2013':
+    description: '2013'
+    values:
+      2006-01-01:
+        value: -7.0
+  '2014':
+    description: '2014'
+    values:
+      2006-01-01:
+        value: -6.0
+  '2015':
+    description: '2015'
+    values:
+      2006-01-01:
+        value: -5.0
+  '2016':
+    description: '2016'
+    values:
+      2006-01-01:
+        value: -4.0
+  '2017':
+    description: '2017'
+    values:
+      2006-01-01:
+        value: -3.0
+  '2018':
+    description: '2018'
+    values:
+      2006-01-01:
+        value: -2.0
+  '2019':
+    description: '2019'
+    values:
+      2006-01-01:
+        value: -1.0
+  metadata:
+    order:
+    - '2006'
+    - '2007'
+    - '2008'
+    - '2009'
+    - '2010'
+    - '2011'
+    - '2012'
+    - '2013'
+    - '2014'
+    - '2015'
+    - '2016'
+    - '2017'
+    - '2018'
+    - '2019'
+metadata:
+  order:
+  - age_annulation_decote_selon_annee_ouverture_droits_en_nombre_trimestres_par_rapport_limite_age
+  reference:
+    2006-01-01:
+      title: Loi 2003-775 du 21/08/2003, art. 66
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758610&cidTexte=JORFTEXT000000781627
+  date_parution_jo:
+    2006-01-01: 2003-08-22
+  description_en: Full rate age
+documentation: |
+  NB: Pour certaines catégories (parents de trois enfants, handicapés, aidants familiaux, parents d'enfants handicapés) l'âge limite est maintenu à 65 ans.
+  Lecture : Ce tableau renseigne, pour une date de légilsation donnée (la date d'effet, en ligne), le paramètre en fonction de l'année d'ouverture des droits (en ordonnée).
+  La valeur renseignée est valable à partir de la date de naissance, jusqu'à la date suivante. Quand une date de naissance est la dernière renseignée, la valeur du paramètre est considérée comme constante à partir de cette date.

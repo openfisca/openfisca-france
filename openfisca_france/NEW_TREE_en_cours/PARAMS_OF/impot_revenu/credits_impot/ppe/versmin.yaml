@@ -1,0 +1,12 @@
+description: Versement minimum
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2000-01-01:
+    value: 160.0
+  2001-01-01:
+    value: 25.0
+  2005-01-01:
+    value: 30.0
+  2016-01-01:
+    value: null

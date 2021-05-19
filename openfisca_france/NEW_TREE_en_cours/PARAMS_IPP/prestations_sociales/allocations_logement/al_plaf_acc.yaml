@@ -1,0 +1,1345 @@
+description: Plafonds d'annuités de remboursement pour les accédants à la propriété
+plafond_accession_propriete_zone_1:
+  description: Plafond pour accession à la propriété - Zone 1
+  personne_isolee_sans_enfant:
+    description: Personne isolée sans enfant
+    values:
+      2019-10-01:
+        value: 314.76
+      2017-10-01:
+        value: 313.82
+      2015-10-01:
+        value: 311.48
+      2014-09-01:
+        value: 311.23
+      2013-01-01:
+        value: 309.47
+      2012-01-01:
+        value: 302.96
+      2011-01-01:
+        value: 299.96
+      2010-01-01:
+        value: 296.7
+      2009-01-01:
+        value: 297.75
+      2008-01-01:
+        value: 287.28
+      2007-01-01:
+        value: 279.56
+      2005-09-01:
+        value: 271.95
+      2003-07-01:
+        value: 267.14
+      2002-07-01:
+        value: 263.97
+      2001-07-01:
+        value: 260.84
+      1990-07-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_remb_isol_z1_al
+      unit: currency-EUR
+  menage_seul:
+    description: Ménage seul
+    values:
+      2019-10-01:
+        value: 379.33
+      2017-10-01:
+        value: 378.2
+      2015-10-01:
+        value: 375.38
+      2014-09-01:
+        value: 375.08
+      2013-01-01:
+        value: 372.95
+      2012-01-01:
+        value: 365.1
+      2011-01-01:
+        value: 361.49
+      2010-01-01:
+        value: 357.56
+      2009-01-01:
+        value: 356.42
+      2008-01-01:
+        value: 346.21
+      2007-01-01:
+        value: 336.91
+      2005-09-01:
+        value: 327.73
+      2003-07-01:
+        value: 321.94
+      2002-07-01:
+        value: 318.12
+      2001-07-01:
+        value: 314.35
+      2000-07-01:
+        value: 2038.0
+      1999-07-01:
+        value: 2018.0
+      1998-07-01:
+        value: 2016.0
+      1997-07-01:
+        value: 1969.0
+      1994-07-01:
+        value: 1934.0
+      1992-07-01:
+        value: 1913.0
+      1991-07-01:
+        value: 1862.0
+      1990-07-01:
+        value: 1817.0
+    metadata:
+      ipp_csv_id: plaf_remb_coup_z1_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_1_enfant:
+    description: Ménage ou isolé avec 1 enfant
+    values:
+      2019-10-01:
+        value: 407.87
+      2017-10-01:
+        value: 406.65
+      2015-10-01:
+        value: 403.62
+      2014-09-01:
+        value: 403.3
+      2013-01-01:
+        value: 401.01
+      2012-01-01:
+        value: 392.57
+      2011-01-01:
+        value: 388.68
+      2010-01-01:
+        value: 384.45
+      2009-01-01:
+        value: 383.22
+      2008-01-01:
+        value: 372.24
+      2007-01-01:
+        value: 362.24
+      2005-09-01:
+        value: 352.37
+      2003-07-01:
+        value: 346.14
+      2002-07-01:
+        value: 342.04
+      2001-07-01:
+        value: 337.98
+      2000-07-01:
+        value: 2191.0
+      1999-07-01:
+        value: 2169.0
+      1998-07-01:
+        value: 2167.0
+      1997-07-01:
+        value: 2116.0
+      1994-07-01:
+        value: 2078.0
+      1992-07-01:
+        value: 2055.0
+      1991-07-01:
+        value: 1955.0
+      1990-07-01:
+        value: 1870.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf1_z1_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_2_enfants:
+    description: Ménage ou isolé avec 2 enfants
+    values:
+      2019-10-01:
+        value: 419.27
+      2017-10-01:
+        value: 418.01
+      2015-10-01:
+        value: 414.9
+      2014-09-01:
+        value: 414.57
+      2013-01-01:
+        value: 412.22
+      2012-01-01:
+        value: 403.54
+      2011-01-01:
+        value: 399.54
+      2010-01-01:
+        value: 395.19
+      2009-01-01:
+        value: 393.93
+      2008-01-01:
+        value: 382.64
+      2007-01-01:
+        value: 372.36
+      2005-09-01:
+        value: 362.22
+      2003-07-01:
+        value: 355.82
+      2002-07-01:
+        value: 351.6
+      2001-07-01:
+        value: 347.43
+      2000-07-01:
+        value: 2252.0
+      1999-07-01:
+        value: 2230.0
+      1998-07-01:
+        value: 2228.0
+      1997-07-01:
+        value: 2176.0
+      1994-07-01:
+        value: 2137.0
+      1992-07-01:
+        value: 2113.0
+      1991-07-01:
+        value: 2009.0
+      1990-07-01:
+        value: 1923.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf2_z1_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_3_enfants:
+    description: Ménage ou isolé avec 3 enfants
+    values:
+      2019-10-01:
+        value: 431.06
+      2017-10-01:
+        value: 429.77
+      2015-10-01:
+        value: 426.57
+      2014-09-01:
+        value: 426.23
+      2013-01-01:
+        value: 423.81
+      2012-01-01:
+        value: 414.89
+      2011-01-01:
+        value: 410.78
+      2010-01-01:
+        value: 406.31
+      2009-01-01:
+        value: 405.01
+      2008-01-01:
+        value: 393.4
+      2007-01-01:
+        value: 382.83
+      2005-09-01:
+        value: 372.4
+      2003-07-01:
+        value: 365.82
+      2002-07-01:
+        value: 361.48
+      2001-07-01:
+        value: 357.19
+      2000-07-01:
+        value: 2315.0
+      1999-07-01:
+        value: 2292.0
+      1998-07-01:
+        value: 2290.0
+      1997-07-01:
+        value: 2236.0
+      1994-07-01:
+        value: 2196.0
+      1992-07-01:
+        value: 2171.0
+      1991-07-01:
+        value: 2063.0
+      1990-07-01:
+        value: 1976.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf3_z1_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_4_enfants:
+    description: Ménage ou isolé avec 4 enfants
+    values:
+      2019-10-01:
+        value: 442.62
+      2017-10-01:
+        value: 441.3
+      2015-10-01:
+        value: 438.01
+      2014-09-01:
+        value: 437.66
+      2013-01-01:
+        value: 435.18
+      2012-01-01:
+        value: 426.02
+      2011-01-01:
+        value: 421.8
+      2010-01-01:
+        value: 417.21
+      2009-01-01:
+        value: 415.88
+      2008-01-01:
+        value: 403.96
+      2007-01-01:
+        value: 393.11
+      2005-09-01:
+        value: 382.4
+      2003-07-01:
+        value: 375.64
+      2002-07-01:
+        value: 371.19
+      2001-07-01:
+        value: 366.79
+      2000-07-01:
+        value: 2377.0
+      1999-07-01:
+        value: 2353.0
+      1998-07-01:
+        value: 2351.0
+      1997-07-01:
+        value: 2296.0
+      1994-07-01:
+        value: 2255.0
+      1992-07-01:
+        value: 2229.0
+      1991-07-01:
+        value: 2117.0
+      1990-07-01:
+        value: 2029.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf4_z1_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_5_enfants:
+    description: Ménage ou isolé avec 5 enfants
+    values:
+      2019-10-01:
+        value: 452.0
+      2017-10-01:
+        value: 450.64
+      2015-10-01:
+        value: 447.29
+      2014-09-01:
+        value: 446.93
+      2013-01-01:
+        value: 444.4
+      2012-01-01:
+        value: 435.05
+      2011-01-01:
+        value: 430.74
+      2010-01-01:
+        value: 426.05
+      2009-01-01:
+        value: 424.69
+      2008-01-01:
+        value: 412.52
+      2007-01-01:
+        value: 401.44
+      2005-09-01:
+        value: 390.51
+      2003-07-01:
+        value: 383.61
+      2002-07-01:
+        value: 379.06
+      2001-07-01:
+        value: 374.57
+      2000-07-01:
+        value: 2428.0
+      1999-07-01:
+        value: 2404.0
+      1998-07-01:
+        value: 2402.0
+      1997-07-01:
+        value: 2346.0
+      1994-07-01:
+        value: 2305.0
+      1992-07-01:
+        value: 2280.0
+      1991-07-01:
+        value: 2168.0
+      1990-07-01:
+        value: 2075.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf5_z1_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_par_enfant_en_plus:
+    description: Ménage ou isolé - par enfant en plus
+    values:
+      2019-10-01:
+        value: 39.36
+      2017-10-01:
+        value: 39.24
+      2015-10-01:
+        value: 38.95
+      2014-09-01:
+        value: 38.92
+      2013-01-01:
+        value: 38.7
+      2012-01-01:
+        value: 37.89
+      2011-01-01:
+        value: 37.51
+      2010-01-01:
+        value: 37.1
+      2009-01-01:
+        value: 36.98
+      2008-01-01:
+        value: 35.92
+      2007-01-01:
+        value: 34.96
+      2005-09-01:
+        value: 34.01
+      2003-07-01:
+        value: 33.41
+      2002-07-01:
+        value: 33.01
+      2001-07-01:
+        value: 32.62
+      2000-07-01:
+        value: 211.0
+      1998-07-01:
+        value: 209.0
+      1997-07-01:
+        value: 204.0
+      1994-07-01:
+        value: 200.0
+      1992-07-01:
+        value: 198.0
+      1991-07-01:
+        value: 188.0
+      1990-07-01:
+        value: 180.0
+    metadata:
+      ipp_csv_id: plaf_remb_enfsupp_z1_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  metadata:
+    order:
+    - personne_isolee_sans_enfant
+    - menage_seul
+    - menage_isole_avec_1_enfant
+    - menage_isole_avec_2_enfants
+    - menage_isole_avec_3_enfants
+    - menage_isole_avec_4_enfants
+    - menage_isole_avec_5_enfants
+    - menage_isole_par_enfant_en_plus
+plafond_accession_propriete_zone_2:
+  description: Plafond pour accession à la propriété - Zone 2
+  personne_isolee_sans_enfant:
+    description: Personne isolée sans enfant
+    values:
+      2019-10-01:
+        value: 276.14
+      2017-10-01:
+        value: 275.31
+      2015-10-01:
+        value: 273.26
+      2014-09-01:
+        value: 273.04
+      2013-01-01:
+        value: 271.49
+      2012-01-01:
+        value: 265.78
+      2011-01-01:
+        value: 263.15
+      2010-01-01:
+        value: 260.29
+      2009-01-01:
+        value: 259.46
+      2008-01-01:
+        value: 252.03
+      2007-01-01:
+        value: 245.26
+      2005-09-01:
+        value: 238.58
+      2003-07-01:
+        value: 234.36
+      2002-07-01:
+        value: 231.58
+      2001-07-01:
+        value: 228.83
+      1990-07-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_remb_isol_z2_al
+      unit: currency-EUR
+  menage_seul:
+    description: Ménage seul
+    values:
+      2019-10-01:
+        value: 338.53
+      2017-10-01:
+        value: 337.51
+      2015-10-01:
+        value: 335.0
+      2014-09-01:
+        value: 334.73
+      2013-01-01:
+        value: 332.83
+      2012-01-01:
+        value: 325.82
+      2011-01-01:
+        value: 322.59
+      2010-01-01:
+        value: 319.08
+      2009-01-01:
+        value: 318.06
+      2008-01-01:
+        value: 308.95
+      2007-01-01:
+        value: 300.65
+      2005-09-01:
+        value: 292.46
+      2003-07-01:
+        value: 287.29
+      2002-07-01:
+        value: 283.88
+      2001-07-01:
+        value: 280.51
+      2000-07-01:
+        value: 1818.0
+      1999-07-01:
+        value: 1800.0
+      1998-07-01:
+        value: 1798.0
+      1997-07-01:
+        value: 1756.0
+      1994-07-01:
+        value: 1725.0
+      1992-07-01:
+        value: 1706.0
+      1991-07-01:
+        value: 1661.0
+      1990-07-01:
+        value: 1620.0
+    metadata:
+      ipp_csv_id: plaf_remb_coup_z2_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_1_enfant:
+    description: Ménage ou isolé avec 1 enfant
+    values:
+      2019-10-01:
+        value: 366.46
+      2017-10-01:
+        value: 365.36
+      2015-10-01:
+        value: 362.64
+      2014-09-01:
+        value: 362.35
+      2013-01-01:
+        value: 360.3
+      2012-01-01:
+        value: 352.72
+      2011-01-01:
+        value: 349.23
+      2010-01-01:
+        value: 345.43
+      2009-01-01:
+        value: 344.33
+      2008-01-01:
+        value: 334.46
+      2007-01-01:
+        value: 325.48
+      2005-09-01:
+        value: 316.61
+      2003-07-01:
+        value: 311.01
+      2002-07-01:
+        value: 307.32
+      2001-07-01:
+        value: 303.68
+      2000-07-01:
+        value: 1968.0
+      1999-07-01:
+        value: 1949.0
+      1998-07-01:
+        value: 1947.0
+      1997-07-01:
+        value: 1901.0
+      1994-07-01:
+        value: 1867.0
+      1992-07-01:
+        value: 1847.0
+      1991-07-01:
+        value: 1756.0
+      1990-07-01:
+        value: 1679.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf1_z2_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_2_enfants:
+    description: Ménage ou isolé avec 2 enfants
+    values:
+      2019-10-01:
+        value: 379.15
+      2017-10-01:
+        value: 378.01
+      2015-10-01:
+        value: 375.2
+      2014-09-01:
+        value: 374.9
+      2013-01-01:
+        value: 372.78
+      2012-01-01:
+        value: 364.93
+      2011-01-01:
+        value: 361.32
+      2010-01-01:
+        value: 357.39
+      2009-01-01:
+        value: 356.25
+      2008-01-01:
+        value: 346.04
+      2007-01-01:
+        value: 336.75
+      2005-09-01:
+        value: 327.58
+      2003-07-01:
+        value: 321.79
+      2002-07-01:
+        value: 317.97
+      2001-07-01:
+        value: 314.2
+      2000-07-01:
+        value: 2037.0
+      1999-07-01:
+        value: 2017.0
+      1998-07-01:
+        value: 2015.0
+      1997-07-01:
+        value: 1968.0
+      1994-07-01:
+        value: 1933.0
+      1992-07-01:
+        value: 1912.0
+      1991-07-01:
+        value: 1818.0
+      1990-07-01:
+        value: 1738.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf2_z2_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_3_enfants:
+    description: Ménage ou isolé avec 3 enfants
+    values:
+      2019-10-01:
+        value: 392.22
+      2017-10-01:
+        value: 391.05
+      2015-10-01:
+        value: 388.14
+      2014-09-01:
+        value: 387.83
+      2013-01-01:
+        value: 385.63
+      2012-01-01:
+        value: 377.51
+      2011-01-01:
+        value: 373.77
+      2010-01-01:
+        value: 369.7
+      2009-01-01:
+        value: 368.52
+      2008-01-01:
+        value: 357.96
+      2007-01-01:
+        value: 348.35
+      2005-09-01:
+        value: 338.86
+      2003-07-01:
+        value: 332.87
+      2002-07-01:
+        value: 328.92
+      2001-07-01:
+        value: 325.02
+      2000-07-01:
+        value: 2107.0
+      1999-07-01:
+        value: 2086.0
+      1998-07-01:
+        value: 2084.0
+      1997-07-01:
+        value: 2035.0
+      1994-07-01:
+        value: 1999.0
+      1992-07-01:
+        value: 1977.0
+      1991-07-01:
+        value: 1880.0
+      1990-07-01:
+        value: 1797.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf3_z2_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_4_enfants:
+    description: Ménage ou isolé avec 4 enfants
+    values:
+      2019-10-01:
+        value: 405.10
+      2017-10-01:
+        value: 403.89
+      2015-10-01:
+        value: 400.88
+      2014-09-01:
+        value: 400.56
+      2013-01-01:
+        value: 398.29
+      2012-01-01:
+        value: 389.91
+      2011-01-01:
+        value: 386.05
+      2010-01-01:
+        value: 381.85
+      2009-01-01:
+        value: 380.63
+      2008-01-01:
+        value: 369.72
+      2007-01-01:
+        value: 359.79
+      2005-09-01:
+        value: 349.99
+      2003-07-01:
+        value: 343.8
+      2002-07-01:
+        value: 339.72
+      2001-07-01:
+        value: 335.69
+      2000-07-01:
+        value: 2176.0
+      1999-07-01:
+        value: 2154.0
+      1998-07-01:
+        value: 2152.0
+      1997-07-01:
+        value: 2102.0
+      1994-07-01:
+        value: 2065.0
+      1992-07-01:
+        value: 2042.0
+      1991-07-01:
+        value: 1942.0
+      1990-07-01:
+        value: 1856.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf4_z2_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_5_enfants:
+    description: Ménage ou isolé avec 5 enfants
+    values:
+      2019-10-01:
+        value: 433.78
+      2017-10-01:
+        value: 432.48
+      2015-10-01:
+        value: 429.26
+      2014-09-01:
+        value: 428.92
+      2013-01-01:
+        value: 426.49
+      2012-01-01:
+        value: 417.51
+      2011-01-01:
+        value: 413.38
+      2010-01-01:
+        value: 408.88
+      2009-01-01:
+        value: 407.58
+      2008-01-01:
+        value: 395.9
+      2007-01-01:
+        value: 385.27
+      2005-09-01:
+        value: 374.78
+      2003-07-01:
+        value: 368.15
+      2002-07-01:
+        value: 363.78
+      2001-07-01:
+        value: 359.47
+      2000-07-01:
+        value: 2330.0
+      1999-07-01:
+        value: 2307.0
+      1998-07-01:
+        value: 2305.0
+      1997-07-01:
+        value: 2251.0
+      1994-07-01:
+        value: 2211.0
+      1992-07-01:
+        value: 2187.0
+      1991-07-01:
+        value: 2079.0
+      1990-07-01:
+        value: 1990.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf5_z2_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_par_enfant_en_plus:
+    description: Ménage ou isolé - par enfant en plus
+    values:
+      2019-10-01:
+        value: 37.71
+      2017-10-01:
+        value: 37.6
+      2015-10-01:
+        value: 37.32
+      2014-09-01:
+        value: 37.29
+      2013-01-01:
+        value: 37.08
+      2012-01-01:
+        value: 36.3
+      2011-01-01:
+        value: 35.94
+      2010-01-01:
+        value: 35.55
+      2009-01-01:
+        value: 35.44
+      2008-01-01:
+        value: 34.42
+      2007-01-01:
+        value: 33.5
+      2005-09-01:
+        value: 32.59
+      2003-07-01:
+        value: 32.01
+      2002-07-01:
+        value: 31.63
+      2001-07-01:
+        value: 31.25
+      2000-07-01:
+        value: 203.0
+      1998-07-01:
+        value: 201.0
+      1997-07-01:
+        value: 196.0
+      1994-07-01:
+        value: 193.0
+      1992-07-01:
+        value: 191.0
+      1991-07-01:
+        value: 182.0
+      1990-07-01:
+        value: 174.0
+    metadata:
+      ipp_csv_id: plaf_remb_enfsupp_z2_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  metadata:
+    order:
+    - personne_isolee_sans_enfant
+    - menage_seul
+    - menage_isole_avec_1_enfant
+    - menage_isole_avec_2_enfants
+    - menage_isole_avec_3_enfants
+    - menage_isole_avec_4_enfants
+    - menage_isole_avec_5_enfants
+    - menage_isole_par_enfant_en_plus
+plafond_accession_propriete_zone_3:
+  description: Plafond pour accession à la propriété - Zone 3
+  personne_isolee_sans_enfant:
+    description: Personne isolée sans enfant
+    values:
+      2019-10-01:
+        value: 259.04
+      2017-10-01:
+        value: 258.26
+      2015-10-01:
+        value: 256.34
+      2014-09-01:
+        value: 256.14
+      2013-01-01:
+        value: 254.69
+      2012-01-01:
+        value: 249.33
+      2011-01-01:
+        value: 246.86
+      2010-01-01:
+        value: 244.17
+      2009-01-01:
+        value: 243.39
+      2008-01-01:
+        value: 236.42
+      2007-01-01:
+        value: 230.07
+      2005-09-01:
+        value: 223.8
+      2003-07-01:
+        value: 219.84
+      2002-07-01:
+        value: 217.23
+      2001-07-01:
+        value: 214.65
+      1990-07-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_remb_isol_z3_al
+      unit: currency-EUR
+  menage_seul:
+    description: Ménage seul
+    values:
+      2019-10-01:
+        value: 314.19
+      2017-10-01:
+        value: 313.25
+      2015-10-01:
+        value: 310.92
+      2014-09-01:
+        value: 310.67
+      2013-01-01:
+        value: 308.91
+      2012-01-01:
+        value: 302.41
+      2011-01-01:
+        value: 299.42
+      2010-01-01:
+        value: 296.16
+      2009-01-01:
+        value: 295.22
+      2008-01-01:
+        value: 286.76
+      2007-01-01:
+        value: 279.06
+      2005-09-01:
+        value: 271.46
+      2003-07-01:
+        value: 266.66
+      2002-07-01:
+        value: 263.5
+      2001-07-01:
+        value: 260.38
+      2000-07-01:
+        value: 1688.0
+      1999-07-01:
+        value: 1671.0
+      1998-07-01:
+        value: 1669.0
+      1997-07-01:
+        value: 1630.0
+      1994-07-01:
+        value: 1601.0
+      1992-07-01:
+        value: 1584.0
+      1991-07-01:
+        value: 1542.0
+      1990-07-01:
+        value: 1505.0
+    metadata:
+      ipp_csv_id: plaf_remb_coup_z3_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_1_enfant:
+    description: Ménage ou isolé avec 1 enfant
+    values:
+      2019-10-01:
+        value: 342.55
+      2017-10-01:
+        value: 341.52
+      2015-10-01:
+        value: 338.98
+      2014-09-01:
+        value: 338.71
+      2013-01-01:
+        value: 336.79
+      2012-01-01:
+        value: 329.7
+      2011-01-01:
+        value: 326.44
+      2010-01-01:
+        value: 322.89
+      2009-01-01:
+        value: 321.86
+      2008-01-01:
+        value: 312.64
+      2007-01-01:
+        value: 304.24
+      2005-09-01:
+        value: 295.95
+      2003-07-01:
+        value: 290.72
+      2002-07-01:
+        value: 287.27
+      2001-07-01:
+        value: 283.86
+      2000-07-01:
+        value: 1840.0
+      1999-07-01:
+        value: 1822.0
+      1998-07-01:
+        value: 1820.0
+      1997-07-01:
+        value: 1777.0
+      1994-07-01:
+        value: 1745.0
+      1992-07-01:
+        value: 1726.0
+      1991-07-01:
+        value: 1640.0
+      1990-07-01:
+        value: 1570.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf1_z3_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_2_enfants:
+    description: Ménage ou isolé avec 2 enfants
+    values:
+      2019-10-01:
+        value: 356.70
+      2017-10-01:
+        value: 355.64
+      2015-10-01:
+        value: 352.99
+      2014-09-01:
+        value: 352.71
+      2013-01-01:
+        value: 350.71
+      2012-01-01:
+        value: 343.33
+      2011-01-01:
+        value: 339.93
+      2010-01-01:
+        value: 336.23
+      2009-01-01:
+        value: 335.16
+      2008-01-01:
+        value: 325.56
+      2007-01-01:
+        value: 316.82
+      2005-09-01:
+        value: 308.19
+      2003-07-01:
+        value: 302.74
+      2002-07-01:
+        value: 299.15
+      2001-07-01:
+        value: 295.6
+      2000-07-01:
+        value: 1916.0
+      1999-07-01:
+        value: 1897.0
+      1998-07-01:
+        value: 1895.0
+      1997-07-01:
+        value: 1851.0
+      1994-07-01:
+        value: 1818.0
+      1992-07-01:
+        value: 1798.0
+      1991-07-01:
+        value: 1708.0
+      1990-07-01:
+        value: 1635.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf2_z3_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_3_enfants:
+    description: Ménage ou isolé avec 3 enfants
+    values:
+      2019-10-01:
+        value: 371.07
+      2017-10-01:
+        value: 369.96
+      2015-10-01:
+        value: 367.21
+      2014-09-01:
+        value: 366.92
+      2013-01-01:
+        value: 364.84
+      2012-01-01:
+        value: 357.16
+      2011-01-01:
+        value: 353.62
+      2010-01-01:
+        value: 349.77
+      2009-01-01:
+        value: 348.65
+      2008-01-01:
+        value: 338.66
+      2007-01-01:
+        value: 329.56
+      2005-09-01:
+        value: 320.58
+      2003-07-01:
+        value: 314.91
+      2002-07-01:
+        value: 311.18
+      2001-07-01:
+        value: 307.49
+      2000-07-01:
+        value: 1993.0
+      1999-07-01:
+        value: 1973.0
+      1998-07-01:
+        value: 1971.0
+      1997-07-01:
+        value: 1925.0
+      1994-07-01:
+        value: 1891.0
+      1992-07-01:
+        value: 1870.0
+      1991-07-01:
+        value: 1776.0
+      1990-07-01:
+        value: 1700.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf3_z3_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_4_enfants:
+    description: Ménage ou isolé avec 4 enfants
+    values:
+      2019-10-01:
+        value: 385.21
+      2017-10-01:
+        value: 384.06
+      2015-10-01:
+        value: 381.2
+      2014-09-01:
+        value: 380.9
+      2013-01-01:
+        value: 378.74
+      2012-01-01:
+        value: 370.77
+      2011-01-01:
+        value: 367.1
+      2010-01-01:
+        value: 363.11
+      2009-01-01:
+        value: 361.95
+      2008-01-01:
+        value: 351.58
+      2007-01-01:
+        value: 342.14
+      2005-09-01:
+        value: 332.82
+      2003-07-01:
+        value: 326.94
+      2002-07-01:
+        value: 323.06
+      2001-07-01:
+        value: 319.23
+      2000-07-01:
+        value: 2069.0
+      1999-07-01:
+        value: 2049.0
+      1998-07-01:
+        value: 2047.0
+      1997-07-01:
+        value: 1999.0
+      1994-07-01:
+        value: 1964.0
+      1992-07-01:
+        value: 1942.0
+      1991-07-01:
+        value: 1844.0
+      1990-07-01:
+        value: 1765.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf4_z3_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_avec_5_enfants:
+    description: Ménage ou isolé avec 5 enfants
+    values:
+      2019-10-01:
+        value: 413.92
+      2017-10-01:
+        value: 412.68
+      2015-10-01:
+        value: 409.61
+      2014-09-01:
+        value: 409.28
+      2013-01-01:
+        value: 406.96
+      2012-01-01:
+        value: 398.39
+      2011-01-01:
+        value: 394.45
+      2010-01-01:
+        value: 390.16
+      2009-01-01:
+        value: 388.92
+      2008-01-01:
+        value: 377.78
+      2007-01-01:
+        value: 367.63
+      2005-09-01:
+        value: 357.62
+      2003-07-01:
+        value: 351.3
+      2002-07-01:
+        value: 347.13
+      2001-07-01:
+        value: 343.01
+      2000-07-01:
+        value: 2223.0
+      1999-07-01:
+        value: 2201.0
+      1998-07-01:
+        value: 2199.0
+      1997-07-01:
+        value: 2147.0
+      1994-07-01:
+        value: 2109.0
+      1992-07-01:
+        value: 2086.0
+      1991-07-01:
+        value: 1982.0
+      1990-07-01:
+        value: 1896.0
+    metadata:
+      ipp_csv_id: plaf_remb_enf5_z3_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  menage_isole_par_enfant_en_plus:
+    description: Ménage ou isolé - par enfant en plus
+    values:
+      2019-10-01:
+        value: 35.88
+      2017-10-01:
+        value: 35.78
+      2015-10-01:
+        value: 35.51
+      2014-09-01:
+        value: 35.48
+      2013-01-01:
+        value: 35.28
+      2012-01-01:
+        value: 34.54
+      2011-01-01:
+        value: 34.2
+      2010-01-01:
+        value: 33.83
+      2009-01-01:
+        value: 33.72
+      2008-01-01:
+        value: 32.75
+      2007-01-01:
+        value: 31.87
+      2005-09-01:
+        value: 31.0
+      2003-07-01:
+        value: 30.45
+      2002-07-01:
+        value: 30.09
+      2001-07-01:
+        value: 29.73
+      2000-07-01:
+        value: 193.0
+      1998-07-01:
+        value: 191.0
+      1997-07-01:
+        value: 187.0
+      1994-07-01:
+        value: 184.0
+      1992-07-01:
+        value: 182.0
+      1991-07-01:
+        value: 173.0
+      1990-07-01:
+        value: 165.0
+    metadata:
+      ipp_csv_id: plaf_remb_enfsupp_z3_al
+      unit:
+        2001-07-01: currency-EUR
+        1990-07-01: currency-FRF
+  metadata:
+    order:
+    - personne_isolee_sans_enfant
+    - menage_seul
+    - menage_isole_avec_1_enfant
+    - menage_isole_avec_2_enfants
+    - menage_isole_avec_3_enfants
+    - menage_isole_avec_4_enfants
+    - menage_isole_avec_5_enfants
+    - menage_isole_par_enfant_en_plus
+metadata:
+  order:
+  - plafond_accession_propriete_zone_1
+  - plafond_accession_propriete_zone_2
+  - plafond_accession_propriete_zone_3
+  reference:
+    2019-10-01:
+    - title: Arrêté du 27/09/2019, art. 33
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&categorieLien=id
+    2017-10-01: Arrêté du 28/09/2017, art. 14
+    2015-10-01: Arrêté du 16/10/2015, art. 2
+    2014-09-01: Arrêté du 28/10/2014, art. 3
+    2013-01-01:
+    - title: Décret 2013-49 du 14/01/2013
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026942322
+    - Arrêté du 14/01/2013
+    2012-01-01: Arrêté du 30/12/2011, art. 2
+    2011-01-01: Arrêté du 30/12/2010, art. 2
+    2010-01-01: Arrêté du 30/12/2009, art. 2
+    2009-01-01: Arrêté du 31/12/2008, art. 2
+    2008-01-01: Arrêté du 26/12/2007, art. 2
+    2007-01-01: Arrêté du 23/12/2006, art. 2
+    2005-09-01: Arrêté du 19/12/2005, art. 2
+    2003-07-01: Arrêté du 28/05/2004, art. 2
+    2002-07-01: Arrêté du 20/12/2002, art. 2
+    2001-07-01: Arrêté du 31/07/2001, art. 2
+    2000-07-01: Arrêté du 01/08/2000, art. 1
+    1999-07-01: Arrêté du 28/06/1999, art. 1
+    1998-07-01: Arrêté du 11/09/1998, art. 1
+    1997-07-01: Arrêté du 10/09/1997, art. 1
+    1994-07-01: Arrêté du 14/11/1994, art. 1
+    1992-07-01: Arrêté du 23/09/1992, art. 1
+    1991-07-01: Arrêté du 08/11/1991, art. 1
+    1990-07-01: Arrêté du 24/10/1990, art. 1
+  date_parution_jo:
+    2019-10-01: 2019-10-01
+    2017-10-01: 2017-09-29
+    2015-10-01: 2015-10-27
+    2014-09-01: 2014-10-28
+    2013-01-01: 2013-01-16
+    2012-01-01: 2011-12-31
+    2011-01-01: 2010-12-31
+    2010-01-01: 2009-12-31
+    2009-01-01: 2009-01-01
+    2008-01-01: 2007-12-30
+    2007-01-01: 2006-12-31
+    2005-09-01: 2005-12-22
+    2003-07-01: 2004-05-29
+    2002-07-01: 2002-12-22
+    2001-07-01: 2001-08-02
+    2000-07-01: 2000-08-05
+    1999-07-01: 1999-06-29
+    1998-07-01: 1998-09-13
+    1997-07-01: 1997-09-11
+    1994-07-01: 1994-11-16
+    1992-07-01: 1992-09-24
+    1991-07-01: 1991-11-10
+    1990-07-01: 1990-10-26
+  notes:
+    2015-10-01: Idem en 2016
+  description_en: Annual ceiling of reimbursement for new homebuyers
+documentation: |
+  Notes :
+  Il s'agit du montant des mensualités plafonds en AL pour des contrats de prêts signés à compter du 1e janvier 2013.
+  Les ALF, APL et ALS ne sont plus révisées au 1 janvier de chaque année N mais au 1 octobre de l'année N.
+  APL accession créée en 1977.

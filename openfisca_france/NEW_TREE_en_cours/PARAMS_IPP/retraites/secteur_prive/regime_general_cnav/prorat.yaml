@@ -1,0 +1,228 @@
+description: Durée d'assurance maximale pour le coefficient de proratisation
+nombre_trimestres_maximal_pris_en_compte_proratisation_par_generation:
+  description: Nombre de trimestres maximal pris en compte pour la proratisation, par génération
+  ne_avant_1944_01_01:
+    description: Avant 1944
+    values:
+      1972-01-01:
+        value: 150.0
+      1946-01-01:
+        value: 120.0
+    metadata:
+      ipp_csv_id: nbtrim_base
+  ne_apres_1944_01_01:
+    description: 1944-01-01
+    values:
+      2004-01-01:
+        value: 152.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0144
+  ne_apres_1945_01_01:
+    description: 1945-01-01
+    values:
+      2004-01-01:
+        value: 154.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0145
+  ne_apres_1946_01_01:
+    description: 1946-01-01
+    values:
+      2004-01-01:
+        value: 156.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0146
+  ne_apres_1947_01_01:
+    description: 1947-01-01
+    values:
+      2004-01-01:
+        value: 158.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0147
+  ne_apres_1948_01_01:
+    description: 1948-01-01
+    values:
+      2004-01-01:
+        value: 160.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0148
+  ne_apres_1949_01_01:
+    description: 1949-01-01
+    values:
+      2009-01-01:
+        value: 161.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0149
+  ne_apres_1950_01_01:
+    description: 1950-01-01
+    values:
+      2009-01-01:
+        value: 162.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0150
+  ne_apres_1951_01_01:
+    description: 1951-01-01
+    values:
+      2009-01-01:
+        value: 163.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0151
+  ne_apres_1952_01_01:
+    description: 1952-01-01
+    values:
+      2009-01-01:
+        value: 164.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0152
+  ne_apres_1953_01_01:
+    description: 1953-01-01
+    values:
+      2012-01-01:
+        value: 165.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0153
+  ne_apres_1955_01_01:
+    description: 1955-01-01
+    values:
+      2013-01-01:
+        value: 166.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0155
+  ne_apres_1958_01_01:
+    description: 1958-01-01
+    values:
+      2015-01-01:
+        value: 167.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0158
+  ne_apres_1961_01_01:
+    description: 1961-01-01
+    values:
+      2015-01-01:
+        value: 168.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0161
+  ne_apres_1964_01_01:
+    description: 1964-01-01
+    values:
+      2015-01-01:
+        value: 169.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0164
+  ne_apres_1967_01_01:
+    description: 1967-01-01
+    values:
+      2015-01-01:
+        value: 170.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0167
+  ne_apres_1970_01_01:
+    description: 1970-01-01
+    values:
+      2015-01-01:
+        value: 171.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0170
+  ne_apres_1973_01_01:
+    description: 1973-01-01
+    values:
+      2015-01-01:
+        value: 172.0
+      1946-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: nbtrim_0173
+  metadata:
+    order:
+    - ne_avant_1944_01_01
+    - ne_apres_1944_01_01
+    - ne_apres_1945_01_01
+    - ne_apres_1946_01_01
+    - ne_apres_1947_01_01
+    - ne_apres_1948_01_01
+    - ne_apres_1949_01_01
+    - ne_apres_1950_01_01
+    - ne_apres_1951_01_01
+    - ne_apres_1952_01_01
+    - ne_apres_1953_01_01
+    - ne_apres_1955_01_01
+    - ne_apres_1958_01_01
+    - ne_apres_1961_01_01
+    - ne_apres_1964_01_01
+    - ne_apres_1967_01_01
+    - ne_apres_1970_01_01
+    - ne_apres_1973_01_01
+metadata:
+  order:
+  - nombre_trimestres_maximal_pris_en_compte_proratisation_par_generation
+  reference:
+    2015-01-01: Loi 2017-40 du 20/01/2014, art. 2
+    2013-01-01:
+      title: Décret 2012-1487 du 27/12/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/12/27/2012-1487/jo/texte
+    2012-01-01:
+      title: Loi 2010-1330 du 09/11/2010, art. 17
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023024239&cidTexte=JORFTEXT000023022127
+    2009-01-01:
+      title: Circulaire CNAV 2008/41 du 25/07/2008
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2008041_25072008
+    2004-01-01:
+    - title: Loi 2003-775 du 21/08/2003.
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000781627
+    - title: Décret 2004-144 du 13/02/2004, art. 2.
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006228690&cidTexte=JORFTEXT000000432559
+    1972-01-01:
+    - title: Loi 71-1132 du 31/12/1971.
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000508794
+    - Décret 72-78 du 28/01/1972
+    1946-01-01: Ordonnance 45-2454 du 19/10/1945. Décret 45-0179 du 29/12/1945.
+  date_parution_jo:
+    2015-01-01: 2014-01-21
+    2013-01-01: 2012-12-29
+    2012-01-01: 2010-11-10
+    2004-01-01: 2004-02-15
+    1972-01-01: 1972-01-29
+  notes:
+    2015-01-01: Circulaire CNAV 2014-20 du 27/02/2014 d'application de l’art. 2 de la loi du 20/01/2014 revient sur cette procédure et définit par une disposition législative, en insérant l’article L. 161-17-3 CSS
+    2013-01-01: Circulaire CNAV 2013-14 du 25/02/2013 pour l'application du décret 2012-1487.
+    2012-01-01: Circulaire CNAV 2011/20 du 01/03/2011 transcrivant l'application de l'art. 17 de la loi 2010-1330 du 09/11/2010.
+    2004-01-01: Circulaire CNAV 2004/31 du 01/07/2004 transcrivant la loi 2003-775 du 21/08/2003. Fin du parallélisme entre durée d’assurance pour le taux plein et pour la proratisation.
+    1972-01-01: Voir point législatif ci-dessous. Voir également la circulaire n°22/83 du 16/02/1983 relative à l'application dans le régime général de la sécurité sociale des ordonnances n° 82-270  du 26/03/1982 et n° 82-290 du 30/03/1982 et du décret n°82-628 du 21/07/1982
+  description_en: Required contribution duration for full pension
+documentation: |
+  Lecture :
+  Ce tableau renseigne, pour une date de législation donnée (la date d'effet, en ligne), le paramètre en fonction de la date de naissance (en ordonnée).
+  La valeur renseignée est valable à partir de la date de naissance, jusqu'à la date suivante. Quand une date de naissance est la dernière renseignée, la valeur du paramètre est considérée comme constante à partir de cette date.
+  Note sur l' application de la loi Boulin (1971) : La hausse de 25% des taux de liquidation par âge s'est fait de manière progressive, par l'intermédiaire d'un plafonnement de la durée d'assurance prise en compte dans le coefficient de proratisation.
+  Ainsi, les durées d'assurance ne peuvent excédées 128 pour les pensions dont l'entrée en jouissance se situe en 1972 , 136 pour une entrée en jouissance en 1973, 144 pour une entrée en jouissance en 1974.

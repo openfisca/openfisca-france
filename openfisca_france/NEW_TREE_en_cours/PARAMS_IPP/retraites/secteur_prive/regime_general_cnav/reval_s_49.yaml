@@ -1,0 +1,174 @@
+description: Revalorisation des salaires (1949-1952)
+coefficient_par_lequel_est_multiplie_salaire_resultant_cotisations_passees:
+  description: Coefficient par lequel est multiplié le salaire résultant des cotisations passées
+  arrete_23_06_1949_jo_29_06_1949:
+    description: Arrêté du 23/06/1949(JO 29/06/1949 )
+    values:
+      1948-01-01:
+        value: null
+      1947-01-01:
+        value: 1.6
+      1946-01-01:
+        value: 2.1
+      1945-01-01:
+        value: 2.5
+      1944-01-01:
+        value: 5.1
+      1942-01-01:
+        value: 6.3
+      1941-01-01:
+        value: 9.8
+      1939-01-01:
+        value: 14.7
+      1938-01-01:
+        value: 16.0
+      1937-01-01:
+        value: 17.6
+      1936-01-01:
+        value: 22.0
+      1930-01-01:
+        value: 24.5
+  arrete_02_10_1952_jo_03_10_1952:
+    description: Arrêté du 02/10/1952 (JO 03/10/1952)
+    values:
+      1952-01-01:
+        value: null
+      1951-01-01:
+        value: 1.1
+      1950-01-01:
+        value: 1.4
+      1949-01-01:
+        value: 1.6
+      1948-01-01:
+        value: 1.9
+      1947-01-01:
+        value: 2.72
+      1946-01-01:
+        value: 4.23
+      1945-01-01:
+        value: 8.53
+      1944-01-01:
+        value: 10.56
+      1942-01-01:
+        value: 16.43
+      1939-01-01:
+        value: 24.64
+      1938-01-01:
+        value: 26.84
+      1937-01-01:
+        value: 29.59
+      1936-01-01:
+        value: 36.96
+      1930-01-01:
+        value: 41.14
+    metadata:
+      ipp_csv_id: coeff_revalo_initial
+  arrete_24_01_1994_jo_27_01_1994:
+    description: Arrêté du 24/01/1994 (JO 27/01/1994)
+    values:
+      1992-01-01:
+        value: 1.02
+      1991-01-01:
+        value: 1.051
+      1990-01-01:
+        value: 1.069
+      1989-01-01:
+        value: 1.1
+      1988-01-01:
+        value: 1.137
+      1987-01-01:
+        value: 1.166
+      1986-01-01:
+        value: 1.209
+      1985-01-01:
+        value: 1.238
+      1984-01-01:
+        value: 1.29
+      1983-01-01:
+        value: 1.362
+      1982-01-01:
+        value: 1.442
+      1981-01-01:
+        value: 1.612
+      1980-01-01:
+        value: 1.826
+      1979-01-01:
+        value: 2.074
+      1978-01-01:
+        value: 2.273
+      1977-01-01:
+        value: 2.527
+      1976-01-01:
+        value: 2.929
+      1975-01-01:
+        value: 3.443
+      1974-01-01:
+        value: 4.088
+      1973-01-01:
+        value: 4.637
+      1972-01-01:
+        value: 5.018
+      1971-01-01:
+        value: 5.566
+      1970-01-01:
+        value: 6.206
+      1969-01-01:
+        value: 6.832
+      1968-01-01:
+        value: 7.876
+      1967-01-01:
+        value: 8.547
+      1966-01-01:
+        value: 9.025
+      1965-01-01:
+        value: 9.551
+      1964-01-01:
+        value: 10.21
+      1963-01-01:
+        value: 11.332
+      1962-01-01:
+        value: 12.693
+      1961-01-01:
+        value: 14.725
+      1960-01-01:
+        value: 16.935
+      1959-01-01:
+        value: 18.238
+      1958-01-01:
+        value: 20.153
+      1957-01-01:
+        value: 11.875
+      1956-01-01:
+        value: 24.59
+      1955-01-01:
+        value: 27.542
+      1954-01-01:
+        value: 29.883
+      1953-01-01:
+        value: 31.977
+      1952-01-01:
+        value: 32.423
+      1951-01-01:
+        value: 38.908
+      1950-01-01:
+        value: 54.823
+      1949-01-01:
+        value: 62.495
+      1948-01-01:
+        value: 73.934
+      1947-01-01:
+        value: 105.891
+      1930-01-01:
+        value: null
+  metadata:
+    order:
+    - arrete_23_06_1949_jo_29_06_1949
+    - arrete_02_10_1952_jo_03_10_1952
+    - arrete_24_01_1994_jo_27_01_1994
+metadata:
+  order:
+  - coefficient_par_lequel_est_multiplie_salaire_resultant_cotisations_passees
+  description_en: Initial values for reference wage indexation
+documentation: |
+  Notes :
+  A partir de la série de coefficients publiés par l'arrêté du 24/01/1994, il est possible de reconstituer toutes les séries postérieures.

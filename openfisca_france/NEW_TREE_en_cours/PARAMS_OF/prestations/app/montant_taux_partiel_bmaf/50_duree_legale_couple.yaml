@@ -1,0 +1,9 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2001-01-01:
+    value: 0.9427
+  2002-04-01:
+    value: 1.1701
+  2006-06-04:
+    value: null

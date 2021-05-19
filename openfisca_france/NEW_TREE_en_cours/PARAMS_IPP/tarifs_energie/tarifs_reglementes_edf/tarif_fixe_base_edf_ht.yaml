@@ -1,0 +1,431 @@
+description: Part fixe tarif de base EDF (hors taxes)
+tarif_fixe_3_kva:
+  description: Tarif fixe - 3 kVA
+  values:
+    2020-08-01:
+      value: 83.52
+    2020-02-01:
+      value: 80.64
+    2019-08-01:
+      value: 79.20
+    2018-08-01:
+      value: 74.64
+    2018-02-01:
+      value: 53.16
+    2017-08-01:
+      value: 52.80
+    2016-08-01:
+      value: 42.6
+    2015-08-01:
+      value: 41.16
+    2014-11-01:
+      value: 40.08
+    2013-08-01:
+      value: 38.88
+    2012-08-01:
+      value: 55.56
+    2011-07-01:
+      value: 54.48
+    2010-08-15:
+      value: 53.52
+    2009-08-15:
+      value: 51.24
+    2008-08-15:
+      value: 21.48
+    2007-08-16:
+      value: 21.0
+    2006-08-15:
+      value: 20.76
+    2004-01-01:
+      value: 20.4
+    2003-01-01:
+      value: 19.8
+    2001-05-01:
+      value: 19.68
+  metadata:
+    ipp_csv_id: tarif_fixe_base_3kva_ht
+    unit: currency-EUR
+tarif_fixe_6_kva:
+  description: Tarif fixe - 6 kVA
+  values:
+    2020-08-01:
+      value: 102.24
+    2020-02-01:
+      value: 97.20
+    2019-08-01:
+      value: 95.76
+    2018-08-01:
+      value: 88.44
+    2018-02-01:
+      value: 85.92
+    2017-08-01:
+      value: 81.24
+    2016-08-01:
+      value: 78.0
+    2015-08-01:
+      value: 70.44
+    2014-11-01:
+      value: 68.64
+    2013-08-01:
+      value: 66.72
+    2012-08-01:
+      value: 65.64
+    2011-07-01:
+      value: 64.32
+    2010-08-15:
+      value: 63.24
+    2009-08-15:
+      value: 58.32
+    2008-08-15:
+      value: 54.48
+    2007-08-16:
+      value: 53.4
+    2006-08-15:
+      value: 52.8
+    2004-01-01:
+      value: 51.96
+    2003-01-01:
+      value: 50.4
+    2001-05-01:
+      value: 49.92
+  metadata:
+    ipp_csv_id: tarif_fixe_base_6kva_ht
+    unit: currency-EUR
+tarif_fixe_9_kva:
+  description: Tarif fixe - 9 kVA
+  values:
+    2020-08-01:
+      value: 120.84
+    2020-02-01:
+      value: 114.00
+    2019-08-01:
+      value: 112.56
+    2018-08-01:
+      value: 103.32
+    2018-02-01:
+      value: 99.48
+    2017-08-01:
+      value: 94.8
+    2016-08-01:
+      value: 89.16
+    2015-08-01:
+      value: 94.8
+    2014-11-01:
+      value: 92.4
+    2013-08-01:
+      value: 89.76
+    2012-08-01:
+      value: 76.08
+    2011-07-01:
+      value: 74.52
+    2010-08-15:
+      value: 73.32
+    2009-08-15:
+      value: 73.56
+    2008-08-15:
+      value: 107.4
+    2007-08-16:
+      value: 105.36
+    2006-08-15:
+      value: 104.28
+    2004-01-01:
+      value: 102.48
+    2003-01-01:
+      value: 99.36
+    2001-05-01:
+      value: 98.88
+  metadata:
+    ipp_csv_id: tarif_fixe_base_9kva_ht
+    unit: currency-EUR
+tarif_fixe_12_kva:
+  description: Tarif fixe - 12 kVA
+  values:
+    2020-08-01:
+      value: 139.44
+    2020-02-01:
+      value: 131.04
+    2019-08-01:
+      value: 129.72
+    2018-08-01:
+      value: 118.92
+    2018-02-01:
+      value: 113.4
+    2017-08-01:
+      value: 108.72
+    2016-08-01:
+      value: 135.12
+    2015-08-01:
+      value: 142.56
+    2014-11-01:
+      value: 138.96
+    2013-08-01:
+      value: 135.0
+    2012-08-01:
+      value: 118.08
+    2011-07-01:
+      value: 115.8
+    2010-08-15:
+      value: 113.88
+    2009-08-15:
+      value: 127.68
+    2008-08-15:
+      value: 153.84
+    2007-08-16:
+      value: 151.08
+    2006-08-15:
+      value: 149.64
+    2004-01-01:
+      value: 147.12
+    2003-01-01:
+      value: 142.56
+    2001-05-01:
+      value: 141.96
+  metadata:
+    ipp_csv_id: tarif_fixe_base_12kva_ht
+    unit: currency-EUR
+tarif_fixe_15_kva:
+  description: Tarif fixe - 15 kVA
+  values:
+    2020-08-01:
+      value: 157.32
+    2020-02-01:
+      value: 146.76
+    2019-08-01:
+      value: 145.32
+    2018-08-01:
+      value: 133.92
+    2018-02-01:
+      value: 127.44
+    2017-08-01:
+      value: 122.76
+    2016-08-01:
+      value: 155.28
+    2015-08-01:
+      value: 162.48
+    2014-11-01:
+      value: 158.4
+    2013-08-01:
+      value: 153.84
+    2012-08-01:
+      value: 135.72
+    2011-07-01:
+      value: 133.08
+    2010-08-15:
+      value: 130.8
+    2009-08-15:
+      value: 156.12
+    2008-08-15:
+      value: 200.28
+    2007-08-16:
+      value: 196.8
+    2006-08-15:
+      value: 195.0
+    2004-01-01:
+      value: 191.76
+    2003-01-01:
+      value: 185.76
+    2001-05-01:
+      value: 185.04
+  metadata:
+    ipp_csv_id: tarif_fixe_base_15kva_ht
+    unit: currency-EUR
+tarif_fixe_18_kva:
+  description: Tarif fixe - 18 kVA
+  values:
+    2020-08-01:
+      value: 175.80
+    2020-02-01:
+      value: 164.52
+    2019-08-01:
+      value: 163.20
+    2018-08-01:
+      value: 149.64
+    2018-02-01:
+      value: 144.12
+    2017-08-01:
+      value: 139.44
+    2016-08-01:
+      value: 177.48
+    2015-08-01:
+      value: 186.72
+    2014-11-01:
+      value: 182.04
+    2013-08-01:
+      value: 176.76
+    2012-08-01:
+      value: 184.92
+    2011-07-01:
+      value: 181.2
+    2010-08-15:
+      value: 178.2
+    2009-08-15:
+      value: 184.56
+    2008-08-15:
+      value: 246.72
+    2007-08-16:
+      value: 242.52
+    2006-08-15:
+      value: 240.36
+    2004-01-01:
+      value: 236.4
+    2003-01-01:
+      value: 228.96
+    2001-05-01:
+      value: 228.12
+  metadata:
+    ipp_csv_id: tarif_fixe_base_18kva_ht
+    unit: currency-EUR
+tarif_fixe_24_kva:
+  description: Tarif fixe - 24 kVA
+  values:
+    2020-08-01:
+      value: 216.84
+    2020-02-01:
+      value: 204.36
+    2019-08-01:
+      value: 203.04
+    2018-08-01:
+      value: 185.64
+    2018-02-01:
+      value: 182.8
+    2017-08-01:
+      value: 168.12
+    2016-08-01:
+      value: 373.44
+    2015-08-01:
+      value: 387.24
+    2014-11-01:
+      value: 377.52
+    2013-08-01:
+      value: 366.72
+    2012-08-01:
+      value: 299.52
+    2011-07-01:
+      value: 293.64
+    2010-08-15:
+      value: 288.72
+    2009-08-15:
+      value: 299.04
+    2008-08-15:
+      value: 412.32
+    2007-08-16:
+      value: 405.24
+    2006-08-15:
+      value: 401.64
+    2004-01-01:
+      value: 394.8
+    2003-01-01:
+      value: 382.32
+    2001-05-01:
+      value: 380.52
+  metadata:
+    ipp_csv_id: tarif_fixe_base_24kva_ht
+    unit: currency-EUR
+tarif_fixe_30_kva:
+  description: Tarif fixe - 30 kVA
+  values:
+    2020-08-01:
+      value: 260.28
+    2020-02-01:
+      value: 241.80
+    2019-08-01:
+      value: 240.36
+    2018-08-01:
+      value: 221.52
+    2018-02-01:
+      value: 204.24
+    2017-08-01:
+      value: 199.56
+    2016-08-01:
+      value: 449.52
+    2015-08-01:
+      value: 479.4
+    2014-11-01:
+      value: 467.4
+    2013-08-01:
+      value: 453.96
+    2012-08-01:
+      value: 414.24
+    2011-07-01:
+      value: 406.08
+    2010-08-15:
+      value: 399.24
+    2009-08-15:
+      value: 413.52
+    2008-08-15:
+      value: 577.92
+    2007-08-16:
+      value: 567.96
+    2006-08-15:
+      value: 562.92
+    2004-01-01:
+      value: 553.2
+    2003-01-01:
+      value: 535.68
+    2001-05-01:
+      value: 532.92
+  metadata:
+    ipp_csv_id: tarif_fixe_base_30kva_ht
+    unit: currency-EUR
+tarif_fixe_36_kva:
+  description: Tarif fixe - 36 kVA
+  values:
+    2020-08-01:
+      value: 289.80
+    2020-02-01:
+      value: 275.88
+    2019-08-01:
+      value: 274.56
+    2018-08-01:
+      value: 248.28
+    2018-02-01:
+      value: 227.64
+    2017-08-01:
+      value: 222.96
+    2016-08-01:
+      value: 527.4
+    2015-08-01:
+      value: 552.12
+    2014-11-01:
+      value: 538.32
+    2013-08-01:
+      value: 522.84
+    2012-08-01:
+      value: 528.84
+    2011-07-01:
+      value: 518.4
+    2010-08-15:
+      value: 509.76
+    2009-08-15:
+      value: 528.0
+    2008-08-15:
+      value: 743.52
+    2007-08-16:
+      value: 730.68
+    2006-08-15:
+      value: 724.2
+    2004-01-01:
+      value: 711.6
+    2003-01-01:
+      value: 689.04
+    2001-05-01:
+      value: 685.32
+  metadata:
+    ipp_csv_id: tarif_fixe_base_36kva_ht
+    unit: currency-EUR
+metadata:
+  order:
+  - tarif_fixe_3_kva
+  - tarif_fixe_6_kva
+  - tarif_fixe_9_kva
+  - tarif_fixe_12_kva
+  - tarif_fixe_15_kva
+  - tarif_fixe_18_kva
+  - tarif_fixe_24_kva
+  - tarif_fixe_30_kva
+  - tarif_fixe_36_kva
+  description_en: Fix fee base tariff EDF (without taxes)
+documentation: |
+  Source : http://www.cre.fr/marches/marche-de-detail/marche-de-l-electricite#section2
+  Commission de régulation de l'énergie (CRE)
+  Article 2 de l'arrêté du 12/08/2010 : pour les nouvelles souscriptions de compteurs de puissance supérieure ou égale à 18 kva, les tarifs base ne sont plus proposés (JORF n°0186 du 13 août 2010)

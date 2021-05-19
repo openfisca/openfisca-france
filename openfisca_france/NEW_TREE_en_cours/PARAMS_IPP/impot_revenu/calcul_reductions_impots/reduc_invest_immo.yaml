@@ -1,0 +1,685 @@
+description: Réduction d'impôt des dispositifs d'encouragement à l'investissement locatif (1984 -)
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_invst:
+    description: Année de l'investissement (ou de son engagement)
+    values:
+      2019-01-01:
+        value: 2020.0
+      2018-01-01:
+        value: 2019.0
+      2017-01-01:
+        value: 2018.0
+      2016-01-01:
+        value: 2017.0
+      2015-01-01:
+        value: 2016.0
+      2014-01-01:
+        value: 2015.0
+      2013-01-01:
+        value: 2014.0
+      2012-01-01:
+        value: 2013.0
+      2011-01-01:
+        value: 2012.0
+      2010-01-01:
+        value: 2011.0
+      2009-01-01:
+        value: 2010.0
+      2008-01-01:
+        value: 2009.0
+      2007-01-01:
+        value: 2008.0
+      2006-01-01:
+        value: 2007.0
+      2005-01-01:
+        value: 2006.0
+      2004-01-01:
+        value: 2005.0
+      2003-01-01:
+        value: 2004.0
+      2002-01-01:
+        value: 2003.0
+      2001-01-01:
+        value: 2002.0
+      2000-01-01:
+        value: 2001.0
+      1999-01-01:
+        value: 2000.0
+      1998-01-01:
+        value: 1999.0
+      1997-01-01:
+        value: 1998.0
+      1996-01-01:
+        value: 1997.0
+      1995-01-01:
+        value: 1996.0
+      1994-01-01:
+        value: 1995.0
+      1993-01-01:
+        value: 1994.0
+      1992-01-01:
+        value: 1993.0
+      1991-01-01:
+        value: 1992.0
+      1990-01-01:
+        value: 1991.0
+      1989-01-01:
+        value: 1990.0
+      1988-01-01:
+        value: 1989.0
+      1987-01-01:
+        value: 1988.0
+      1986-01-01:
+        value: 1987.0
+      1985-01-01:
+        value: 1986.0
+      1984-01-01:
+        value: 1985.0
+  metadata:
+    order:
+    - annee_invst
+plafond:
+  description: Plafond des déficits fonciers déductibles des revenus
+  values:
+    2001-01-01:
+      value: 10700.0
+    1999-01-01:
+      value: 70000.0
+    1996-01-01:
+      value: 100000.0
+    1993-01-01:
+      value: 70000.0
+    1984-01-01:
+      value: null
+  metadata:
+    ipp_csv_id: plaf_deficits_fonciers
+    unit:
+      2001-01-01: currency-EUR
+      1984-01-01: currency-FRF
+logements_neufs:
+  description: Logements neufs ou réhabilités
+  dispositif_mehaignerie:
+    description: Dispositifs Méhaignerie et Quilès-Méhaignerie
+    plafond:
+      description: Plafond de la réduction d'impôt
+      plaf_personne_seule:
+        description: Pour une personne seule
+        values:
+          1997-01-01:
+            value: null
+          1993-01-01:
+            value: 400000.0
+          1990-01-01:
+            value: 300000.0
+          1984-01-01:
+            value: 200000.0
+        metadata:
+          ipp_csv_id: plaf_investissement_mehaignerie_seul
+          unit: currency-FRF
+      plaf_couple:
+        description: Pour un couple
+        values:
+          1997-01-01:
+            value: null
+          1993-01-01:
+            value: 800000.0
+          1990-01-01:
+            value: 600000.0
+          1984-01-01:
+            value: 300000.0
+        metadata:
+          ipp_csv_id: plaf_investissement_mehaignerie_couple
+          unit: currency-FRF
+      metadata:
+        order:
+        - plaf_personne_seule
+        - plaf_couple
+    taux:
+      description: Taux de l'investissement déduit de l'impôt à payer
+      values:
+        1997-01-01:
+          value: null
+        1993-01-01:
+          value: 0.15
+        1986-01-01:
+          value: 0.10
+        1984-01-01:
+          value: 0.5
+      metadata:
+        ipp_csv_id: taux_mehaignerie
+        unit: /1
+    duree:
+      description: Nombre d'années sur lesquelles se répartit la réduction
+      values:
+        1997-01-01:
+          value: null
+        1993-01-01:
+          value: 4.0
+        1984-01-01:
+          value: 2.0
+      metadata:
+        ipp_csv_id: duree_reduction_mehaignerie
+    metadata:
+      order:
+      - plafond
+      - taux
+      - duree
+  dispositif_scellier:
+    description: Dispositif Scellier
+    plafond:
+      description: Plafond de la valeur d'achat du logement 
+      values:
+        2013-01-01:
+          value: null
+        2009-01-01:
+          value: 300000.0
+        1984-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: plafond_Scellier
+        unit: currency-EUR
+    logement_BBC:
+      description: Logements Bâtiment Basse Consommation (BBC)
+      taux:
+        description: Taux de réduction
+        values:
+          2013-01-01:
+            value: null
+          2012-01-01:
+            value: 0.13
+          2011-01-01:
+            value: 0.22
+          2009-01-01:
+            value: 0.25
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_Scellier_BBC
+          unit: /1
+      duree_reduction:
+        description: Nombre d'années de répartition de la réduction
+        values:
+          2013-01-01:
+            value: null
+          2009-01-01:
+            value: 9.0
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: duree_scellier_initial
+      metadata:
+        order:
+        - taux
+        - duree_reduction
+    logement_non_BBC:
+      description: Logements non-BBC
+      taux:
+        description: Taux de réduction
+        values:
+          2013-01-01:
+            value: null
+          2012-01-01:
+            value: 0.06
+          2011-01-01:
+            value: 0.13
+          2009-01-01:
+            value: 0.25
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_Scellier_nonBBC
+          unit: /1
+      duree_reduction:
+        description: Durée de répartition de la réduction
+        values:
+          2013-01-01:
+            value: null
+          2009-01-01:
+            value: 9.0
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: duree_scellier_initial
+      metadata:
+        order:
+        - taux
+        - duree_reduction
+    scellier_outremer:
+      description: Logements en Outre-Mer (9)
+      taux:
+        description: Taux de réduction
+        values:
+          2013-01-01:
+            value: null
+          2012-01-01:
+            value: 0.24
+          2011-01-01:
+            value: 0.36
+          2009-01-01:
+            value: 0.4
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_Scellier_outremer
+          unit: /1
+      duree_reduction:
+        description: Durée de répartition de la réduction
+        values:
+          2013-01-01:
+            value: null
+          2009-01-01:
+            value: 9.0
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: duree_scellier_initial
+      metadata:
+        order:
+        - taux
+        - duree_reduction
+    scellier_outremer_bis:
+      description: Logements en Nouvelle-Calédonie, Polynésie et Wallis & Futuna
+      taux:
+        description: Taux de réduction
+        values:
+          2013-01-01:
+            value: null
+          2012-01-01:
+            value: 0.24
+          2011-01-01:
+            value: 0.36
+          2009-01-01:
+            value: 0.4
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_Scellier_outremer_bis
+          unit: /1
+      duree_reduction:
+        description: Durée de répartition de la réduction
+        values:
+          2013-01-01:
+            value: null
+          2009-01-01:
+            value: 5.0
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: duree_scellier_initial_bis
+      metadata:
+        order:
+        - taux
+        - duree_reduction
+    scellier_intermediaire:
+      description: Taux additionnel les 3 années suivantes en cas d'éligibilité au dispositif Scellier intermédiaire (renouvelable une fois)
+      values:
+        2013-01-01:
+          value: null
+        2012-01-01:
+          value: 0.04
+        2011-01-01:
+          value: 0.05
+        2009-01-01:
+          value: 0.06
+        1984-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: taux_scellier_intermediaire
+        unit: /1
+    metadata:
+      order:
+      - plafond
+      - logement_BBC
+      - logement_non_BBC
+      - scellier_outremer
+      - scellier_outremer_bis
+      - scellier_intermediaire
+  dispositif_duflot:
+    description: Dispositif Duflot
+    plafond:
+      description: Plafond de la valeur du logement
+      values:
+        2015-01-01:
+          value: null
+        2013-01-01:
+          value: 300000.0
+        1984-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: plafond_duflot
+        unit: currency-EUR
+    taux_metropole:
+      description: Taux de la réduction d'impôt pour la métropole
+      values:
+        2015-01-01:
+          value: null
+        2013-01-01:
+          value: 0.18
+        1984-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: taux_duflot_metropole
+        unit: /1
+    taux_outre_mer:
+      description: Taux de la réduction d'impôt pour l'Outre-Mer
+      values:
+        2015-01-01:
+          value: null
+        2013-01-01:
+          value: 0.29
+        1984-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: taux_duflot_outre_mer
+        unit: /1
+    duree:
+      description: Nombre d'années de répartition de la réduction
+      values:
+        2015-01-01:
+          value: null
+        2013-01-01:
+          value: 9.0
+        1984-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: duree_duflot
+    metadata:
+      order:
+      - plafond
+      - taux_metropole
+      - taux_outre_mer
+      - duree
+  dispositif_pinel:
+    description: Dispositif Pinel
+    plafond:
+      description: Plafond de la valeur du logement
+      values:
+        2014-01-01:
+          value: 300000.0
+        1984-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: plafond_pinel
+        unit: currency-EUR
+    location_9_ans:
+      description: Le propriétaire s'engage à louer pour 9 ans minimum
+      taux_9_ans_metropole:
+        description: Taux de la réduction totale répartie sur les 9 années suivant l'achat du logement en métropole
+        values:
+          2014-01-01:
+            value: 0.18
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_pinel_9_ans
+          unit: /1
+      taux_9_ans_outre_mer:
+        description: Taux de la réduction totale répartie sur les 9 années suivant l'achat du logement en Outre-Mer
+        values:
+          2014-01-01:
+            value: 0.29
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_pinel_9_ans_outre_mer
+          unit: /1
+      taux_3_ans:
+        description: Réduction additionnelle totale les 3 années suivantes si prolongation de la location (métropole ou Outre-Mer)
+        values:
+          2014-01-01:
+            value: 0.03
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_pinel_addition_3_ans
+          unit: /1
+      metadata:
+        order:
+        - taux_9_ans_metropole
+        - taux_9_ans_outre_mer
+        - taux_3_ans
+    location_6_ans:
+      description: Le propriétaire s'engage à louer pour 6 ans minimum
+      taux_6_ans_metropole:
+        description: Taux de la réduction totale répartie sur les 6 années suivant l'achat du logement en métropole
+        values:
+          2014-01-01:
+            value: 0.12
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_pinel_6_ans_metropole
+          unit: /1
+      taux_6_ans_outre_mer:
+        description: Taux de la réduction totale répartie sur les 6 années suivant l'achat du logement en Outre-Mer
+        values:
+          2014-01-01:
+            value: 0.23
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_pinel_6_ans_outre_mer
+          unit: /1
+      taux_addition_3_ans:
+        description: Taux de la réduction totale répartie sur les 3 années suivantes si prolongation de la location (métropole ou Outre-Mer)
+        values:
+          2014-01-01:
+            value: 0.06
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_pinel_addition_3_ans
+          unit: /1
+      taux_addition_bis_3_ans:
+        description: Taux de la réduction totale répartie sur les 3 années suivantes si nouvelle prolongation de la location (métropole ou Outre-Mer)
+        values:
+          2014-01-01:
+            value: 0.03
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_pinel_addition_bis_3_ans
+          unit: /1
+      metadata:
+        order:
+        - taux_6_ans_metropole
+        - taux_6_ans_outre_mer
+        - taux_addition_3_ans
+        - taux_addition_bis_3_ans
+    metadata:
+      order:
+      - plafond
+      - location_9_ans
+      - location_6_ans
+  metadata:
+    order:
+    - dispositif_méhaignerie
+    - dispositif_Scellier
+    - dispositif_duflot
+    - dispositif_pinel
+logements_anciens:
+  description: Investissement locatif dans l'immobilier ancien
+  dispositif_denormandie:
+    description: Dispositif Denormandie
+    plafond:
+      description: Plafond de la valeur du bien
+      values:
+        2019-01-01:
+          value: 300000.0
+        1984-01-01:
+          value: null
+      metadata:
+        ipp_csv_id: plafond_denormandie
+        unit: currency-EUR
+    location_9_ans:
+      description: Le propriétaire s'engage à louer pour 9 ans minimum
+      taux_9_ans_metropole:
+        description: Taux de la réduction totale répartie sur les 9 années suivant l'achat du logement en métropole
+        values:
+          2019-01-01:
+            value: 0.18
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_denormandie_9_ans_metropole
+          unit: /1
+      taux_9_ans_outre_mer:
+        description: Taux de la réduction totale répartie sur les 9 années suivant l'achat du logement en Outre-Mer
+        values:
+          2019-01-01:
+            value: 0.29
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_denormandie_9_ans_outre_mer
+          unit: /1
+      taux_3_ans:
+        description: Taux de la réduction totale répartie sur les 3 années suivantes si prolongation de la location (métropole ou Outre-Mer)
+        values:
+          2019-01-01:
+            value: 0.03
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_denormandie_addition_3_ans
+          unit: /1
+      metadata:
+        order:
+        - taux_9_ans_metropole
+        - taux_9_ans_outre_mer
+        - taux_3_ans
+    location_6_ans:
+      description: Le propriétaire s'engage à louer pour 6 ans minimum
+      taux_6_ans_metropole:
+        description: Taux de la réduction totale répartie sur les 6 années suivant l'achat du logement en métropole
+        values:
+          2019-01-01:
+            value: 0.12
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_denormandie_6_ans_metropole
+          unit: /1
+      taux_6_ans_outre_mer:
+        description: Taux de la réduction totale répartie sur les 6 années suivant l'achat du logement en Outre-Mer
+        values:
+          2019-01-01:
+            value: 0.23
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_denormandie_6_ans_outre_mer
+          unit: /1
+      taux_addition_3_ans:
+        description: Taux de la réduction totale répartie sur les 3 années suivantes si prolongation de la location (métropole ou Outre-Mer)
+        values:
+          2019-01-01:
+            value: 0.06
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_denormandie_addition_3_ans
+          unit: /1
+      taux_addition_bis_3_ans:
+        description: Taux de la réduction totale répartie sur les 3 années suivantes si nouvelle prolongation de la location (métropole ou Outre-Mer)
+        values:
+          2019-01-01:
+            value: 0.03
+          1984-01-01:
+            value: null
+        metadata:
+          ipp_csv_id: taux_denormandie_bis_3_ans
+          unit: /1
+      metadata:
+        order:
+        - taux_6_ans_metropole
+        - taux_6_ans_outre_mer
+        - taux_addition_3_ans
+        - taux_addition_bis_3_ans
+    metadata:
+      order:
+      - plafond
+      - location_9_ans
+      - location_6_ans
+  metadata:
+    order:
+    - dispositif_denormandie
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - plafond
+  - logements_neufs
+  - logements_anciens
+  reference:
+    2019-01-01:
+      title: Loi n° 2018-1317 du 28 décembre 2018 (LF pour 2019), art.226
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=JORFARTI000037882587&cidTexte=JORFTEXT000037882341&categorieLien=id
+    2014-01-01:
+      title: Loi n° 2014-1655 du 29 décembre 2014  (LF pour 2015), art. 26
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=AF236935A4C953DA9AA24E68F2DB06A1.tplgfr37s_1?cidTexte=JORFTEXT000029990432&idArticle=LEGIARTI000030009391&dateTexte=20151231&categorieLien=id#LEGIARTI000030009391
+    2013-01-01:
+      title: Loi n° 2012-1509 du 29 décembre 2012 (LF pour 2013), art. 80
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=AF236935A4C953DA9AA24E68F2DB06A1.tplgfr37s_1?idArticle=LEGIARTI000026872833&cidTexte=LEGITEXT000026872634&dateTexte=20200618
+    2012-01-01:
+      title: Loi n° 2011-1977 du 28 décembre 2011 (LF pour 2012), art. 75
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=1DECB5CBFAA869E01DE43EEF93B13FF3.tplgfr34s_2?cidTexte=JORFTEXT000025044460&idArticle=LEGIARTI000025048554&dateTexte=20120425&categorieLien=id#LEGIARTI000025048554
+    2011-01-01:
+      title: Loi n° 2010-1657 du 29 décembre 2010 (LF pour 2011), art. 105
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=1DECB5CBFAA869E01DE43EEF93B13FF3.tplgfr34s_2?cidTexte=JORFTEXT000023314376&idArticle=LEGIARTI000023347537&dateTexte=20110515&categorieLien=id#LEGIARTI000023347537
+    2009-01-01:
+      title: Loi n° 2008-1443 du 30 décembre 2008 (LF rectificative pour 2008), art. 31 
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=AF236935A4C953DA9AA24E68F2DB06A1.tplgfr37s_1?cidTexte=JORFTEXT000020014790&idArticle=LEGIARTI000020042277&dateTexte=20090327&categorieLien=id#LEGIARTI000020042277
+    1997-01-01:
+      title: Loi n° 91-1322 du 30 décembre 1991 (LF pour 1992), art. 7
+      href: https://www.legifrance.gouv.fr/affichTexte.do;jsessionid=1DECB5CBFAA869E01DE43EEF93B13FF3.tplgfr34s_2?cidTexte=JORFTEXT000000356342&dateTexte=19951026
+    1993-01-01:
+      title: Loi n° 92-1376 du 30 décembre 1992 (LF pour 1993), art. 5
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406&categorieLien=id
+    1990-01-01:
+      title: Loi n° 89-935 du 29 décembre 1989 (LF pour 1990) art. 113
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=1DECB5CBFAA869E01DE43EEF93B13FF3.tplgfr34s_2?cidTexte=JORFTEXT000018687845&idArticle=LEGIARTI000006317741&dateTexte=19910718&categorieLien=id#LEGIARTI000006317741
+    1986-01-01: 
+      title: Loi n° 86-1317 du 30 décembre 1986 (LF pour 1987), art.23
+      href: https://www.legifrance.gouv.fr/affichTexte.do;jsessionid=1DECB5CBFAA869E01DE43EEF93B13FF3.tplgfr34s_2?cidTexte=JORFTEXT000000317305&dateTexte=19871230#LEGIARTI000006274791
+    1984-01-01: 
+      title: Loi n° 84-1208 du 29 décembre 1984 (LF pour 1985), art. 82
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=1DECB5CBFAA869E01DE43EEF93B13FF3.tplgfr34s_2?cidTexte=JORFTEXT000000880778&idArticle=LEGIARTI000006274284&dateTexte=19861231&categorieLien=id#LEGIARTI000006274284
+  date_parution_jo:
+    2019-01-01: 2018-12-29
+    2014-01-01: 2014-12-30
+    2013-01-01: 2012-12-30
+    2012-01-01: 2011-12-29
+    2011-01-01: 2010-12-30
+    2009-01-01: 2008-12-31
+    1997-01-01: 1991-12-31
+    1993-01-01: 1993-12-31
+    1990-01-01: 1990-12-30
+    1986-01-01: 1986-12-31
+    1984-01-01: 1984-12-30
+  notes:
+    2019-01-01: La réduction d'impôt avec le dispositif Denormandie est de 12% du prix d'achat pour un engagement de six ans, de 18% pour un engagement de neuf ans et de 21% pour un engagement de douze ans.En Outre-Mer, elle est de respectivement 23%, 29% et 32% en 6, 9 et 12 ans.
+    2017-01-01: Le I-1°a) de l'article 68 de la loi n° 2017-1837 du 30 décembre 2017 (LF pour 2018) proroge de quatre années, soit jusqu'au 31 décembre 2021, la période d'application de la réduction d'impôt Pinel.
+    2014-01-01: La réduction d'impôt avec le dispositif Pinel en métropole est de 12% du prix d'achat pour un engagement de six ans, de 18% pour un engagement de neuf ans et de 21% pour un engagement de douze ans. En Outre-Mer, elle est de respectivement 23%, 29% et 32% en 6, 9 et 12 ans.
+    2013-01-01: La réduction d'impôt avec le dispositif Duflot est de 18% du prix d'achat en 9 ans pour les logements en métropole et 29% en Outre-Mer.
+    2012-01-01: En Scellier, la réduction d'impôt totale suite à l'investissement dans un bien construit au cours de l'année 2012 est de 13% en 9 ans pour les logements BBC et 6% pour les logements non BBC. En cas d'éligibilité au dispositif Scellier intermédiaire, elle est de 17% en 12 ans et 21% en 15 ans pour les logements BBC et de 10% en 12 ans et 14% en 15 ans pour les logements non BBC, si le propriétaire reconduit son engagement de location. Pour les biens situés en Outre-Mer, la réduction est de 24% en 9 ans et en cas d'éligibilité au Scellier intermédiaire de 28% en 12 ans et 32% en 15 ans.
+    2011-01-01: En Scellier, suite à un rabot homothétique sur les mécanismes de réduction fiscale de la LF pour 2011, la réduction d'impôt totale suite à l'investissement dans un bien construit au cours de l'année 2011 est de 22% en 9 ans pour les logements BBC et 13% pour les logements non BBC. En cas d'éligibilité au dispositif Scellier intermédiaire, elle est de 27% en 12 ans et 32% en 15 ans pour les logements BBC et de 18% en 12 ans et 23% en 15 ans pour les logements non BBC, si le propriétaire reconduit son engagement de location. Pour les biens situés en Outre-Mer, la réduction est de 36% en 9 ans et en cas d'éligibilité au Scellier intermédiaire de 41% en 12 ans et 46% en 15 ans.
+    2010-01-01: En Scellier, la réduction d'impôt totale suite à l'investissement dans un bien construit au cours de l'année 2010 est de 25% en 9 ans pour les logements BBC et non BBC. En cas d'éligibilité au dispositif Scellier intermédiaire, elle est de 31% en 12 ans et 37% en 15 ans, si le propriétaire reconduit son engagement de location. Pour les biens situés en Outre-Mer, la réduction est de 40% en 9 ans et en cas d'éligibilité au Scellier intermédiaire de 46% en 12 ans et 52% en 15 ans.
+    2009-01-01: En Scellier, la réduction d'impôt totale suite à l'investissement dans un bien construit au cours de l'année 2009 est de 25% en 9 ans pour les logements BBC et non BBC. En cas d'éligibilité au dispositif Scellier intermédiaire, elle est de 31% en 12 ans et 37% en 15 ans, si le propriétaire reconduit son engagement de location. Pour les biens situés en Outre-Mer, la réduction est de 40% en 9 ans et en cas d'éligibilité au Scellier intermédiaire de 46% en 12 ans et 52% en 15 ans.
+    1997-01-01: Le dispositif Méhaignerie et ses versions ultérieures (appelées Quilès-Méhaignerie et Super Quilès) sont prorogés par la LF pour 1992 jusqu'au 31 Décembre 1997, date de la fin effective des investissements éligibles.
+    1993-01-01: Le renforcement du dispositif désormais dit "Super Quilès" permet de déduire de ses impôts 15% du prix d'investissement sur les 4 ans suivants celui-ci.
+    1990-01-01: Les plafonds du prix de revient des logements sont augmentés.
+    1986-01-01: Le renforcement du dispositif Méhaignerie à partir de 1986 permet désormais de déduire de ses impôts 10% du prix d'investissement sur les 2 ans suivants celui-ci. 
+    1984-01-01: Le dispositif Méhaignerie original permet de déduire de ses impôts 5% du prix d'investissement repartis sur les 2 ans suivants l'investissement.
+  description_en: Tax reductions for new real estate investments (1984 -)
+documentation: |
+  Notes :
+  (1) Le plafond des déficits fonciers imputables aux autres revenus est prévu depuis 1993 et est codifié au 3° du I de l'article 156 du code général des impôts (CGI).
+  (2) Les dispositifs Méhaignerie et Quilès Méhaignerie offraient une réduction d’impôts pour les investissements locatifs réalisés dans le neuf entre 1984 et 1997. En échange de la réduction d'impôt, les bailleurs s'engageaient à louer leur bien pour une durée minimum de 6 ans. A partir de 1993, le dispositif est renforcé mais les bailleurs doivent louer à des locataires dont les revenus sont plafonnés et doivent pratiquer des loyers plafonnés selon la zone géographique et la superficie du bien. Art. 199 nonies, 199 decies A et 199 decies B du CGI.
+  (3) Le dispositif Scellier se décompose entre les logements labellisés Bâtiment Basse Consommation (BBC) et les non-BBC, avec des différences de taux d'amortissement selon l'année de construction ou d'obtention du permis de construire, avec un plafonnement des loyers. De plus, il est doublé d'un dispositif Scellier "intermédiaire" aussi appelé "social" permettant de continuer l'amortissement sur 6 années supplémentaires, avec des contraintes de plafonnement des loyers plus exigeantes ainsi que des revenus des locataires encadrés. Les logements éligibles pour ces 2 versions du dispositif sont des logements neufs du 1er janvier 2009 au 31 décembre 2012 en location nue à usage d’habitation principale du locataire pour une durée minimale fixée à neuf ans, à une personne autre qu'un membre de leur foyer fiscal. CGI - art 199 septvicies
+  (4) Les logements éligibles au dispositif Duflot sont ceux ayant été achetés neufs ou réhabilités entre le 1er Janvier 2013 et le 31 août 2014, à la condition d'être loué nu à titre de résidence principale du locataire pour une durée minimale de 9 ans. L'investissement ne peut avoir lieu que dans les zones géographiques A ou B1, sauf dérogation, et doit satisfaire un niveau de performance énergétique globale en fonction du type d'acquisition. Les revenus des locataires éligibles sont plafonnés, de même que les loyers pratiqués. CGI - art. 199 novovicies
+  (5) Les logements éligibles au dispositif Pinel sont ceux ayant été achetés neufs ou réhabilités entre le 1er Septembre 2014 et le 31 Décembre 2021, à la condition d'être loué nu à titre de résidence principale du locataire pour une durée minimale de 6 ou 9 ans, au choix du propriétaire. L'investissement ne peut avoir lieu que dans les zones géographiques A, A bis ou B1, sauf dérogation, et doit satisfaire un niveau de performance énergétique globale en fonction du type d'acquisition. Les revenus des locataires éligibles sont plafonnés, de même que les loyers pratiqués. CGI - art. 199 novovicies
+  (6) Le dispositif Denormandie est une extension du dispositif Pinel. Il concerne les investissements réalisés entre le 27 Mars 2019 et le 31 Décembre 2022 dans des bâtiments déjà construits pour lesquels les travaux représentent au moins 25 % du coût total de l'opération, et qui sont loués à titre de résidence principale du locataire pour une durée minimale de 6 ou 9 ans, au choix du propriétaire. Le logement doit se trouver dans certaines communes déterminées par arrêté du 26 Mars 2019 et seuls certains types de travaux pemettent au bien d'être éligible. Les revenus des locataires éligibles sont plafonnés, de même que les loyers pratiqués. CGI - art. 199 novovicies I-B 5°
+  (7) Le montant d'investissement maximal utilisé dans le calcul des réductions d'impôts pour les dispositifs Scellier, Duflot, Pinel et Denormandie est de 300,000 euros est doublement plafonné avec un système de plafond du prix d'achat par rapport à la superficie du bien acquis. Par exemple, l'investissement pour un logement de 40 m² en zone A sous le dispositif Scellier ne peut être supérieur à 200,000 euros.
+  (8) Les territoires ultra-marins éligibles aux taux majorés pour les dispositifs Pinel et Duflot sont la Guadeloupe, la Guyane, la Martinique, la Réunion, Mayotte, Saint-Martin, Saint-Pierre-et-Miquelon, laPolynésie française, la Nouvelle-Calédonie et les îles de Wallis et Futuna.
+  (9) Les investissements dans des logements situés dans les départements d'outre-mer, Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon bénéficient d'une réduction d'impôt étalée sur 9 ans contre un étalement de la même réduction sur 5 années pour les logements situés en Polynésie Française, Nouvelle-Calédonie ou dans les îles Wallis et Futuna.

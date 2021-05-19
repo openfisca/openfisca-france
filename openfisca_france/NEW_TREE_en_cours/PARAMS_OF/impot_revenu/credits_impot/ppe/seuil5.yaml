@@ -1,0 +1,22 @@
+description: Point de sortie pour les couples monoactifs
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2000-01-01:
+    value: 146257.0
+  2001-01-01:
+    value: 22654.0
+  2002-01-01:
+    value: 23207.0
+  2003-01-01:
+    value: 23968.0
+  2004-01-01:
+    value: 24927.0
+  2005-01-01:
+    value: 25376.0
+  2006-01-01:
+    value: 26231.0
+  2007-01-01:
+    value: 26572.0
+  2016-01-01:
+    value: null

@@ -1,0 +1,585 @@
+description: Autres réductions d'impôts (1979 -)
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2017-01-01:
+        value: 2018.0
+      2016-01-01:
+        value: 2017.0
+      2015-01-01:
+        value: 2016.0
+      2012-01-01:
+        value: 2013.0
+      2011-01-01:
+        value: 2012.0
+      2010-01-01:
+        value: 2011.0
+      2009-01-01:
+        value: 2010.0
+      2008-01-01:
+        value: 2009.0
+      2006-01-01:
+        value: 2007.0
+      2005-01-01:
+        value: 2006.0
+      2004-01-01:
+        value: 2005.0
+      2001-01-01:
+        value: 2002.0
+      2000-01-01:
+        value: 2001.0
+      1999-01-01:
+        value: 2000.0
+      1998-01-01:
+        value: 1999.0
+      1997-01-01:
+        value: 1998.0
+      1996-01-01:
+        value: 1997.0
+      1994-01-01:
+        value: 1995.0
+      1992-01-01:
+        value: 1993.0
+      1987-01-01:
+        value: 1988.0
+      1983-01-01:
+        value: 1984.0
+      1982-01-01:
+        value: 1983.0
+      1978-01-01:
+        value: 1979.0
+      1977-01-01:
+        value: 1978.0
+  metadata:
+    order:
+    - annee_ir
+depenses_formation_chefs_entreprises:
+  description: Dépenses pour la formation des chefs d'entreprises
+  taux:
+    description: Taux
+    values:
+      1997-01-01:
+        value: null
+      1992-01-01:
+        value: 0.35
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_formachef
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      1997-01-01:
+        value: null
+      1992-01-01:
+        value: 5000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_formachef
+      unit: currency-FRF
+  metadata:
+    order:
+    - taux
+    - plafond
+assurances_vie:
+  description: Assurances-vie
+  taux:
+    description: Taux
+    values:
+      2005-01-01:
+        value: null
+      1987-01-01:
+        value: 0.25
+      1983-01-01:
+        value: 0.2
+      1978-01-01:
+        value: 0.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_avie
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      2005-01-01:
+        value: null
+      2001-01-01:
+        value: 610.0
+      1983-01-01:
+        value: 4000.0
+      1982-01-01:
+        value: 3225.0
+      1978-01-01:
+        value: 3250.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_avie
+      unit:
+        2001-01-01: currency-EUR
+        1978-01-01: currency-FRF
+  increment:
+    description: Incrément
+    values:
+      2005-01-01:
+        value: null
+      2001-01-01:
+        value: 150.0
+      1983-01-01:
+        value: 1000.0
+      1978-01-01:
+        value: 600.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: increment_avie
+      unit:
+        2001-01-01: currency-EUR
+        1978-01-01: currency-FRF
+  metadata:
+    order:
+    - taux
+    - plafond
+    - increment
+frais_comptabilite_cf_3:
+  description: Frais de comptabilité (cf. 3)
+  montant:
+    description: Montant
+    values:
+      2001-01-01:
+        value: 915.0
+      1994-01-01:
+        value: 6000.0
+      1992-01-01:
+        value: 4000.0
+      1982-01-01:
+        value: 2000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: frais_compta
+      unit:
+        2001-01-01: currency-EUR
+        1982-01-01: currency-FRF
+  metadata:
+    order:
+    - montant
+rente_survie_cf_4:
+  description: Rente survie (cf. 4)
+  taux:
+    description: Taux
+    values:
+      1983-01-01:
+        value: 0.25
+      1978-01-01:
+        value: 0.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_survie
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      2004-01-01:
+        value: 1525.0
+      2001-01-01:
+        value: 1070.0
+      1983-01-01:
+        value: 7000.0
+      1982-01-01:
+        value: 3225.0
+      1978-01-01:
+        value: 3250.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_survie
+      unit:
+        2001-01-01: currency-EUR
+        1978-01-01: currency-FRF
+  increment:
+    description: Incrément
+    values:
+      2004-01-01:
+        value: 300.0
+      2001-01-01:
+        value: 230.0
+      1983-01-01:
+        value: 1500.0
+      1978-01-01:
+        value: 600.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: increment_survie
+      unit:
+        2001-01-01: currency-EUR
+        1978-01-01: currency-FRF
+  metadata:
+    order:
+    - taux
+    - plafond
+    - increment
+rachat_entreprise:
+  description: Rachat d'entreprise
+  taux:
+    description: Taux
+    values:
+      2000-01-01:
+        value: null
+      1992-01-01:
+        value: 0.25
+      1987-01-01:
+        value: 0.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_rachat
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      2000-01-01:
+        value: null
+      1992-01-01:
+        value: 40000.0
+      1987-01-01:
+        value: 150000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_rachat
+      unit: currency-FRF
+  metadata:
+    order:
+    - taux
+    - plafond
+versement_fond_salarial:
+  description: Versement fond salarial
+  taux:
+    description: Taux
+    values:
+      1997-01-01:
+        value: null
+      1996-01-01:
+        value: 0.25
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_salarial
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      1998-01-01:
+        value: null
+      1996-01-01:
+        value: 5000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_salarial
+      unit: currency-FRF
+  metadata:
+    order:
+    - taux
+    - plafond
+prets_consommation_cf_7:
+  description: Prêts à la consommation (cf. 7)
+  taux:
+    description: Taux
+    values:
+      2006-01-01:
+        value: null
+      2004-01-01:
+        value: 0.25
+      1998-01-01:
+        value: null
+      1996-01-01:
+        value: 0.25
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: pret_conso
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      2006-01-01:
+        value: null
+      2004-01-01:
+        value: 600.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_conso
+      unit: currency-EUR
+  metadata:
+    order:
+    - taux
+    - plafond
+interets_emprunt_reprise_societe_cf_8:
+  description: Intérêts d'emprunt pour reprise de société (cf. 8)
+  taux:
+    description: Taux
+    values:
+      2004-01-01:
+        value: 0.25
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_repsoc
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      2008-01-01:
+        value: 20000.0
+      2004-01-01:
+        value: 10000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_repsoc
+      unit: currency-EUR
+  metadata:
+    order:
+    - taux
+    - plafond
+interets_paiements_differes_agriculteurs_cf_9:
+  description: Intérêts paiements différés agriculteurs (cf. 9)
+  taux:
+    description: Taux
+    values:
+      2005-01-01:
+        value: 0.5
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: taux_intagri
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      2005-01-01:
+        value: 5000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_intagri
+      unit: currency-EUR
+  metadata:
+    order:
+    - taux
+    - plafond
+aide_aux_repreneurs_entreprise_cf_10:
+  description: Aide aux repreneurs d'entreprise (cf. 10)
+  reduction:
+    description: Réduction
+    values:
+      2006-01-01:
+        value: 1000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: crea_entr
+      unit: currency-EUR
+  surplus_si_invalide:
+    description: Surplus si invalide
+    values:
+      2006-01-01:
+        value: 400.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: crea_entr2
+      unit: currency-EUR
+  metadata:
+    order:
+    - reduction
+    - surplus_si_invalide
+depenses_restauration_monuments_historiques_cf_11:
+  description: Dépenses de restauration des monuments historiques (cf. 11)
+  taux:
+    description: Taux
+    values:
+      2012-01-01:
+        value: 0.18
+      2011-01-01:
+        value: 0.22
+      2008-01-01:
+        value: 0.25
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_monhist
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      2008-01-01:
+        value: 20000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_monhist
+      unit: currency-EUR
+  metadata:
+    order:
+    - taux
+    - plafond
+restauration_patrimoine_bati_cf_12:
+  description: Réstauration du patrimoine bâti (cf. 12)
+  taux_1:
+    description: Taux 1
+    values:
+      2012-01-01:
+        value: 0.22
+      2011-01-01:
+        value: 0.27
+      2009-01-01:
+        value: 0.3
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_restauimmo1
+      unit: /1
+  taux_2:
+    description: Taux 2
+    values:
+      2012-01-01:
+        value: 0.3
+      2011-01-01:
+        value: 0.36
+      2009-01-01:
+        value: 0.4
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_restauimmo2
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      2016-01-01:
+        value: 400000.0
+      2009-01-01:
+        value: 100000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_restauimmo
+      unit: currency-EUR
+  metadata:
+    order:
+    - taux_1
+    - taux_2
+    - plafond
+protection_patrimoine_naturel_cf_13:
+  description: Protection du patrimoine naturel (cf. 13)
+  taux:
+    description: Taux
+    values:
+      2014-01-01:
+        value: null
+      2012-01-01:
+        value: 0.18
+      2011-01-01:
+        value: 0.22
+      2010-01-01:
+        value: 0.25
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_protecpat
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      2010-01-01:
+        value: 10000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_protecpat
+      unit: currency-EUR
+  metadata:
+    order:
+    - taux
+    - plafond
+rehabilitation_residences_touristiques_cf_14:
+  description: Travaux de réhabilitation des résidences de tourisme (cf 14)
+  taux:
+    description: Taux
+    values:
+      2017-01-01:
+        value: 0.2
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_rehab_touristique
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      2017-01-01:
+        value: 22000.0
+      1977-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_rehab_touristique
+      unit: currency-EUR
+  metadata:
+    order:
+    - taux
+    - plafond
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - depenses_formation_chefs_entreprises
+  - assurances_vie
+  - frais_comptabilite_cf_3
+  - rente_survie_cf_4
+  - rachat_entreprise
+  - versement_fond_salarial
+  - prets_consommation_cf_7
+  - interets_emprunt_reprise_societe_cf_8
+  - interets_paiements_differes_agriculteurs_cf_9
+  - aide_aux_repreneurs_entreprise_cf_10
+  - depenses_restauration_monuments_historiques_cf_11
+  - restauration_patrimoine_bati_cf_12
+  - protection_patrimoine_naturel_cf_13
+  - rehabilitation_residences_touristiques_cf_14
+  notes:
+    1996-01-01: tx_formachef n'est à appliquer que sur l'excédent des frais de formation par rapport à ceux de l'année précédente
+    1994-01-01: "plaf_formachef: il existe un plafonement trienal de 10 000 FRF pour les conjoints collaborateurs du chef d'entreprise"
+    1983-01-01: À partir de 1984, les bénéfices liés aux primes d'assurances vie et rentes-survie prennent la forme d'une réduction d'împôt, alors qu'ils consistaient en une déduction du revenu net.
+  description_en: Other tax reductions (1979 -)
+documentation: |
+  Notes : Intitulés précis
+  (1) Dépenses de formation du chef d'entreprise individuelle : ensemble des dépenses effectuées entre le 01/01/1994 et le 31/12/1996
+  (2) Assurance-vie : Le montant reporté case MG de la déclaration ouvre droit à la réduction sans condition, ceux reportés case MH sont sous condition que l'impôt de référence soit inférieur ou égal à 7000 FRF
+  (3) Frais de comptabilité et d'adhésion à un CGA ou AA : recettes ne doivent pas excéder la limite du forfait ou de l'évaluation administrativce. Montant par exploitation
+  Art. 199 quater B du CGI. Loi 2001-1275 du 28/12/2001 - art. 84
+  (4) Rente survie et contrat d'épargne handicap
+  Art. 199 septies du CGI. Loi 95-1346 1995-12-30 art. 4 I a, b Finances pour 1996 JORF 31 décembre 1995
+  (5) Rachat d'entreprise par salarié : plafond à doubler pour couple
+  (6) Versements à un fonds salarial
+  (7) Intérêt des prêts à la consommation
+  Loi 2004-804 du 9 août 2004 - art. 2 JORF 11 août 2004 / Décret 2004-1000 du 21 septembre 2004 - Art. 2
+  (8) Intérêts d'emprunts pour reprise de société : plafond à doubler pour un couple
+  Art. 199 terdecies-0 B du CGI. Loi 2003-721 du 1 août 2003 - art. 42 JORF 5 août 2003
+  (9) Intérêts pour paiement différé accordé aux agriculteurs : plafond à doubler pour couple
+  Art. 199 vicies A du CGI. Loi 2006-11 du 5 janvier 2006 - art. 16 (V) JORF 6 janvier 2006
+  (10) Aide aux créateurs et repreneurs d'entreprise
+  Art. 200 octies du CGI. Loi 2008-1249 du 1er décembre 2008 - art. 12
+  (11) Travaux de conservation et de restauration d'objets classés monuments historiques : art. 199 duovicies du CGI
+  (12) Travaux de restauration complète d’un immeuble bâti (réduction d'impôt « Malraux ») : art. 199 tervicies du CGI. Loi 2016-1918, art. 40 du 29/12/2016 sur le plafond.
+  (13) Dépense de protection du patrimoine naturel : art. 199 octovicies du CGI. Réduction d'impôt étalée sur 6 ans concernant les dépenses survenues entre le 1er janvier 2010 et le 31 décembre 2013. Changement au 16 mai 2011 par Décret 2011-520 du 13 mai 2011 - art. 1. Depuis le 26 avril 2012 Décret 2012-547 du 23 avril 2012 - art. 1.
+  (14) Travaux de réhabilitation des résidences de tourisme : Article 199 decies G bis. Pour les travaux effectués entre le 1er Janvier 2017 et le 31 Décembre 2019 par des propriétaires de logements situés dans une résidence touristique, destiné à la location et achevé depuis au moins 15 ans. La décision d'effectuer les travaux doit être décidée en assemblée générale des copropriétaires. Le plafond correspond au dépenses sur l'ensemble de la période triennale.

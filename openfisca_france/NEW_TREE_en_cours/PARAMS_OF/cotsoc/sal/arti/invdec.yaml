@@ -1,0 +1,16 @@
+brackets:
+- rate:
+    2003-01-01:
+      value: 0.018
+    2013-01-01:
+      value: 0.016
+  threshold:
+    2003-01-01:
+      value: 0.0
+- rate:
+    2003-01-01:
+      value: 0.0
+  threshold:
+    2003-01-01:
+      value: 1.0
+description: Invalidité, décès

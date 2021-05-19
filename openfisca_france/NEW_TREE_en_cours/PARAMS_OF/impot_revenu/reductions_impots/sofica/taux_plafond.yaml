@@ -1,0 +1,5 @@
+description: Plafond (en % du RNG)
+unit: /1
+values:
+  1985-01-01:
+    value: 0.25

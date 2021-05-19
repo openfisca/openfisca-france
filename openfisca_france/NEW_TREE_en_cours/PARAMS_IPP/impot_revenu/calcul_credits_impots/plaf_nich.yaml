@@ -1,0 +1,102 @@
+description: Plafonnement global des niches (2009 - )
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2013-01-01:
+        value: 2014.0
+      2012-01-01:
+        value: 2013.0
+      2011-01-01:
+        value: 2012.0
+      2010-01-01:
+        value: 2011.0
+      2009-01-01:
+        value: 2010.0
+  metadata:
+    order:
+    - annee_ir
+plafonnement_niches:
+  description: Plafonnement des niches
+  taux:
+    description: Taux
+    values:
+      2013-01-01:
+        value: null
+      2012-01-01:
+        value: 0.04
+      2011-01-01:
+        value: 0.06
+      2010-01-01:
+        value: 0.08
+      2009-01-01:
+        value: 0.1
+    metadata:
+      ipp_csv_id: tx_nich
+      unit: /1
+  plafond_1:
+    description: Plafond 1
+    values:
+      2013-01-01:
+        value: 10000.0
+      2011-01-01:
+        value: 18000.0
+      2010-01-01:
+        value: 20000.0
+      2009-01-01:
+        value: 25000.0
+    metadata:
+      ipp_csv_id: plaf_nich
+      unit: currency-EUR
+  majoration:
+    description: Majoration
+    values:
+      2013-01-01:
+        value: 8000.0
+    metadata:
+      ipp_csv_id: majo_nich
+      unit: currency-EUR
+  metadata:
+    order:
+    - taux
+    - plafond_1
+    - majoration
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - plafonnement_niches
+  reference:
+    2013-01-01:
+    - title: Loi 2012-1509 du 29/12/2012 - art. 73 (VD)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026872821&cidTexte=JORFTEXT000026856853
+    - BOI-IR-LIQ-20-20-10-20130704
+    2012-01-01:
+      title: Loi 2011-1977 du 28/12/2011 - art. 84
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=JORFARTI000025045139&cidTexte=JORFTEXT000025044460&dateTexte=29990101&categorieLien=id
+    2011-01-01:
+      title: Loi 2010-1657 du 29/12/2010 - art. 106 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023347063&cidTexte=JORFTEXT000023314376
+    2010-01-01:
+      title: Loi 2009-1673 du 30/12/2009 - art. 81 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000021575871&cidTexte=JORFTEXT000021557902
+    2009-01-01:
+      title: Loi 2009-594 du 27/05/2009 - art. 40
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020672153&cidTexte=JORFTEXT000020671201
+  date_parution_jo:
+    2013-01-01: 2012-12-30
+    2012-01-01: 2011-12-28
+    2011-01-01: 2010-12-30
+    2010-01-01: 2009-12-31
+    2009-01-01: 2008-12-28
+  notes:
+    2013-01-01: Le plafond est majoré de 8 000 € pour les réductions d'impôt en faveur des investissements outre-mer et celles accordées au titre des souscriptions au capital de SOFICA
+  description_en: Global ceiling for tax reductions (2009 - )
+documentation: |
+  Notes :
+  (1) Art. 200-0 A du CGI
+  (2) Plafonnement total des niches = plafonnement des niches + taux de plafonnement * revenu net imposable
+  (3) Exemple de calculs :
+  BOI-IR-LIQ-20-20-10-30-20130704
+  (4) Liste des avantages fiscaux :
+  BOI-IR-LIQ-20-20-10-10-20130704

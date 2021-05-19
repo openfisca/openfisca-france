@@ -1,0 +1,7 @@
+description: Logement et cadre de vie
+metadata:
+  order:
+  - pd
+  - pjm_c_plaf
+  - pjm_prets
+  description_en: Housing and living environment

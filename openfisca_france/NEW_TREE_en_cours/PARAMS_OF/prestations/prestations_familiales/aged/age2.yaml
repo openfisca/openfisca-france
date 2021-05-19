@@ -1,0 +1,7 @@
+description: 'Seconde limite d''âge (stricte) pour bénéficier de l''AGED '
+unit: year
+values:
+  2001-01-01:
+    value: 6.0
+  2007-01-01:
+    value: null

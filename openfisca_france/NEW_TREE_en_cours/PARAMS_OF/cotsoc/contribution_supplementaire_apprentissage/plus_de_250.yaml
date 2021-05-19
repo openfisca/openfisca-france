@@ -1,0 +1,6 @@
+description: Taux pour les entreprises comprenant plus de 250 salariés
+unit: /1
+values:
+  2010-01-01:
+    value: 0.001
+  2013-01-01: expected

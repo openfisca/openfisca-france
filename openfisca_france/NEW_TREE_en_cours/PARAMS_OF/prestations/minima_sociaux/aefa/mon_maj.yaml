@@ -1,0 +1,5 @@
+description: Montant majoré
+unit: currency
+values:
+  2005-01-01:
+    value: 219.53

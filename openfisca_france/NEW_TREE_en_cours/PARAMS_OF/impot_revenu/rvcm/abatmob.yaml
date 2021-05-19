@@ -1,0 +1,16 @@
+description: Abattement capitaux mobiliers - Max
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  1979-01-01:
+    value: 3000.0
+  1984-01-01:
+    value: 5000.0
+  1988-01-01:
+    value: 8000.0
+  2001-01-01:
+    value: 1220.0
+  2006-01-01:
+    value: 1525.0
+  2012-01-01:
+    value: 0.0

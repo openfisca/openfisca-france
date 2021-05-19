@@ -1,0 +1,40 @@
+description: Taxe exceptionnelle sur l'indemnité compensatrice des agents d'assurance
+reference:
+  - http://bofip.impots.gouv.fr/bofip/5883-PGP.html
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000019291809&cidTexte=LEGITEXT000006069577
+metadata:
+  threshold_unit: currency
+  rate_unit: /1
+brackets:
+- rate:
+    2001-01-01:
+      value: 0.0
+  threshold:
+    2001-01-01:
+      value: 0.0
+- rate:
+    2001-01-01:
+      value: 0.04
+    2011-01-01:
+      value: 0.02
+  threshold:
+    2001-01-01:
+      value: 23000.0
+    2011-01-01:
+      value: 23000.0
+- rate:
+    2001-01-01:
+      value: 0.026
+    2011-01-01:
+      value: 0.006
+  threshold:
+    2001-01-01:
+      value: 107000.0
+    2011-01-01:
+      value: 107000.0
+- rate:
+    2011-01-01:
+      value: 0.026
+  threshold:
+    2011-01-01:
+      value: 200000.0

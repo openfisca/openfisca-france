@@ -1,0 +1,5 @@
+description: taux 20%
+unit: /1
+values:
+  2011-01-01:
+    value: 0.2

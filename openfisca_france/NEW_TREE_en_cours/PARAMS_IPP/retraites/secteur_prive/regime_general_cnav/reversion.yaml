@@ -1,0 +1,67 @@
+description: Taux de réversion et âge d'ouverture de la réversion
+taux_reversion:
+  description: Taux de réversion (en %)
+  values:
+    1995-01-01: 
+      value: 54
+    1982-12-01:
+      value: 52
+    1946-01-01:
+      value: 50
+  metadata:
+    ipp_csv_id: tx_rev_rg
+    unit: year 
+age_reversion:
+  description: Âge d'ouverture de la réversion
+  values:
+    2009-01-01: 
+      value: 55
+    2007-07-01:
+      value: 51
+    2005-07-01:
+      value: 52
+    1973-01-01:
+      value: 55
+    1946-01-01:
+      value: 65
+  metadata:
+    ipp_csv_id: age_rev_rg
+    unit: year 
+metadata:
+  order:
+  - reversion_age
+  - reversion_taux
+  reference:
+    2009-01-01:
+      title: Loi n° 2008-1330 du 17 décembre 2008
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000019942966/
+    2007-07-01:
+      title: Loi n° 2003-775 du 21 août 2003
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000781627/2021-02-01/
+    2005-07-01:
+      title: Loi n° 2003-775 du 21 août 2003
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000781627/2021-02-01/
+    1995-01-01:
+      title: Loi n° 94-629 du 25 juillet 1994
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006757923/1994-07-26/
+    1982-12-01:
+      title: Loi n° 82-599 du 13 juillet 1982
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000319970/2021-02-02/
+    1973-01-01:
+      title: Décret n°72-1098 du 11 décembre 1972
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000695760/2018-09-20/
+    1946-01-01:
+      title: Ordonnance n° 45/2454 du 19 octobre 1945
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=ORD_452454_19101945
+  date_parution_jo:
+    2009-01-01: 2008-12-18
+    2007-07-01: 2003-08-22
+    2005-07-01: 2003-08-22
+    1995-01-01: 1994-07-26
+    1982-12-01: 1982-07-14
+    1973-01-01: 1972-12-12
+    1946-01-01: 1945-10-20
+  description_en: Survivors benefits rate and minimum age
+documentation: |
+  Sources :
+    CNAV, site web de législation - barèmes ; légifrance.

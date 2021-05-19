@@ -1,0 +1,5 @@
+description: Aides aux créateurs d'entreprises
+unit: currency
+values:
+  2006-01-01:
+    value: 1000.0

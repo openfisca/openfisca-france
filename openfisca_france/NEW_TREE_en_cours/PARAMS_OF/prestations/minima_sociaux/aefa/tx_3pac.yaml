@@ -1,0 +1,6 @@
+description: Taux au delà de la troisième personne à charge incluse
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2003-01-01:
+    value: 0.4

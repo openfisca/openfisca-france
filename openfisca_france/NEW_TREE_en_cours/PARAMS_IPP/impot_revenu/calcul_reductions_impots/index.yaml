@@ -1,0 +1,23 @@
+description: Calcul des réductions d'impôts
+metadata:
+  order:
+  - dons
+  - deduc_sal
+  - sofipeche
+  - sal_dom
+  - prest_compen
+  - fcp
+  - sofica
+  - pme
+  - foret
+  - enfscol
+  - heberg_sante
+  - habitat_princ_reduc
+  - codev
+  - reduc_invest_immo
+  - locmeu
+  - reduction_ir_domtom
+  - outremer_investissement
+  - divers
+  - reduc_exceptionnelle
+  description_en: Tax reductions

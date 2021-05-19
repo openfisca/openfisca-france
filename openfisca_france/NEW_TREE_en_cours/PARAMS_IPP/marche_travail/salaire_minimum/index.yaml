@@ -1,0 +1,8 @@
+description: Salaire minimum
+metadata:
+  order:
+  - smic
+  - smig
+  - minstage
+  - gmr
+  description_en: Minimum wage

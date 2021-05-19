@@ -1,0 +1,16 @@
+description: Secteur public
+metadata:
+  order:
+  - la_s
+  - la_a
+  - aod_s
+  - aod_a
+  - aad
+  - decote
+  - surcote
+  - prorat
+  - trimtp
+  - pt_ircantec
+  - salref_ircantec
+  - ra
+  description_en: Public sector

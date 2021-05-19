@@ -1,0 +1,5 @@
+description: Taux forfait mobilier
+unit: /1
+values:
+  2002-01-01:
+    value: 0.05

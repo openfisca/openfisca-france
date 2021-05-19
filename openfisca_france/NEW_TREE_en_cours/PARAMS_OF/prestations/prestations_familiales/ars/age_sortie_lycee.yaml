@@ -1,0 +1,8 @@
+description: Âge de sortie du lycée
+reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  1976-08-18:
+    value: 16.0
+  1990-09-06:
+    value: 18.0
+unit: year

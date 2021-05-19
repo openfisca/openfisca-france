@@ -1,0 +1,7 @@
+description: Taux de l'API sans enfant (femme enceinte, en pourcentage de la BMAF)
+unit: /1
+values:
+  1977-01-10:
+    value: 1.5
+  2009-06-01:
+    value: null

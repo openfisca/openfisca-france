@@ -1,0 +1,8 @@
+description: Taux pour 1 enfant
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2001-01-01:
+    value: 1.503
+  2015-01-01:
+    value: null

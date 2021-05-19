@@ -1,0 +1,258 @@
+description: Contribution sur les boissons sucrées (à partir de juillet 2018)
+1_kg_moins_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 1 kg ou moins de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 3.11
+    2020-01-01:
+      value: 3.08
+    2019-01-01:
+      value: 3.03
+    2018-07-01:
+      value: 3.0
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_1kg
+    unit: currency-EUR
+2_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 2 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 3.64
+    2020-01-01:
+      value: 3.6
+    2019-01-01:
+      value: 3.54
+    2018-07-01:
+      value: 3.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_2kg
+    unit: currency-EUR
+3_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 3 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 4.14
+    2020-01-01:
+      value: 4.10
+    2019-01-01:
+      value: 4.04
+    2018-07-01:
+      value: 4.0
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_3kg
+    unit: currency-EUR
+4_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 4 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 4.67
+    2020-01-01:
+      value: 4.62
+    2019-01-01:
+      value: 4.55
+    2018-07-01:
+      value: 4.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_4kg
+    unit: currency-EUR
+5_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 5 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 5.71
+    2020-01-01:
+      value: 5.65
+    2019-01-01:
+      value: 5.56
+    2018-07-01:
+      value: 5.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_5kg
+    unit: currency-EUR
+6_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 6 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 6.75
+    2020-01-01:
+      value: 6.68
+    2019-01-01:
+      value: 6.57
+    2018-07-01:
+      value: 6.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_6kg
+    unit: currency-EUR
+7_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 7 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 7.78
+    2020-01-01:
+      value: 7.70
+    2019-01-01:
+      value: 7.58
+    2018-07-01:
+      value: 7.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_7kg
+    unit: currency-EUR
+8_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 8 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 9.85
+    2020-01-01:
+      value: 9.75
+    2019-01-01:
+      value: 9.60
+    2018-07-01:
+      value: 9.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_8kg
+    unit: currency-EUR
+9_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 9 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 11.93
+    2020-01-01:
+      value: 11.81
+    2019-01-01:
+      value: 11.62
+    2018-07-01:
+      value: 11.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_9kg
+    unit: currency-EUR
+10_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 10 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 14.0
+    2020-01-01:
+      value: 13.86
+    2019-01-01:
+      value: 13.64
+    2018-07-01:
+      value: 13.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_10kg
+    unit: currency-EUR
+11_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 11 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 16.07
+    2020-01-01:
+      value: 15.91
+    2019-01-01:
+      value: 15.66
+    2018-07-01:
+      value: 15.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_11kg
+    unit: currency-EUR
+12_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 12 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 18.14
+    2020-01-01:
+      value: 17.96
+    2019-01-01:
+      value: 17.68
+    2018-07-01:
+      value: 17.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_12kg
+    unit: currency-EUR
+13_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 13 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 20.22
+    2020-01-01:
+      value: 20.02
+    2019-01-01:
+      value: 19.70
+    2018-07-01:
+      value: 19.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_13kg
+    unit: currency-EUR
+14_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 14 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 22.29
+    2020-01-01:
+      value: 22.07
+    2019-01-01:
+      value: 21.72
+    2018-07-01:
+      value: 21.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_14kg
+    unit: currency-EUR
+15_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: 15 kg de sucres ajoutéspar hl de boisson (€ / hl)
+  values:
+    2021-01-01:
+      value: 24.36
+    2020-01-01:
+      value: 24.12
+    2019-01-01:
+      value: 23.74
+    2018-07-01:
+      value: 23.5
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_15kg
+    unit: currency-EUR
+tout_kg_dessus_15_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
+  description: Pour tout kg au-dessus de 15 kg de sucres ajoutés par hl de boisson (€/hl)
+  values:
+    2021-01-01:
+      value: 2.07
+    2020-01-01:
+      value: 2.05
+    2019-01-01:
+      value: 2.02
+    2018-07-01:
+      value: 2.0
+  metadata:
+    ipp_csv_id: taxe_boiss_sucrees_kg_sup_15kg
+    unit: currency-EUR
+metadata:
+  order:
+  - 1_kg_moins_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 2_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 3_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 4_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 5_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 6_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 7_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 8_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 9_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 10_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 11_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 12_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 13_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 14_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - 15_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  - tout_kg_dessus_15_kg_sucres_ajoutes_par_hl_boisson_eur_hl
+  reference:
+    2020-01-01:
+      title: BOI-BAREME-000038-30/12/2019
+      href: https://bofip.impots.gouv.fr/bofip/11575-PGP.html/identifiant=BOI-BAREME-000038-20191230
+    2019-01-01:
+      title: Circulaire du 10/12/2018
+      href: http://circulaire.legifrance.gouv.fr/pdf/2018/12/cir_44175.pdf
+    2018-07-01:
+      title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018), art. 19
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358474&cidTexte=JORFTEXT000036339090
+  date_parution_jo:
+    2018-07-01: 2017-12-31
+  notes:
+    2018-07-01: Article 1613 ter du CGI. Avant juillet 2018, cette contribution faisait partie de la "contribution sur les boissons sucrées ou édulcorées"
+  description_en: Contribution on sweetened beverages (from July, 2018)

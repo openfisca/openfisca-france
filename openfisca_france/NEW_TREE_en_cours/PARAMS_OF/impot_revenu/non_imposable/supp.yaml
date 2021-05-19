@@ -1,0 +1,25 @@
+description: Supplément par part_seuil 1ère tranche
+unit: currency
+values:
+  2001-01-01:
+    value: 4121.0
+  2002-01-01:
+    value: 4191.0
+  2003-01-01:
+    value: 4262.0
+  2004-01-01:
+    value: 4334.0
+  2005-01-01:
+    value: 4412.0
+  2006-01-01:
+    value: 5614.0
+  2007-01-01:
+    value: 5687.0
+  2008-01-01:
+    value: 5852.0
+  2009-01-01:
+    value: 5875.0
+  2010-01-01:
+    value: 5963.0
+  2013-01-01:
+    value: 6011.0

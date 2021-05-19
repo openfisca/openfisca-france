@@ -1,0 +1,5 @@
+description: Majoration (si ouverture du droit) si jugement avant 2006
+unit: /1
+values:
+  2002-01-01:
+    value: 0.25

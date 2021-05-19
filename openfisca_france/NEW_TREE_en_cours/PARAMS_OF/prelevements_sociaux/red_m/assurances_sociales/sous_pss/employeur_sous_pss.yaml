@@ -1,0 +1,11 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1961-05-01:
+    value: 0.0945
+  1962-04-01:
+    value: 0.0995
+  1966-10-01:
+    value: 0.105
+  1967-10-01:
+    value: null

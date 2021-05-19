@@ -1,0 +1,12 @@
+description: Majoration pour la vie autonome
+reference: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006739693&dateTexte=&categorieLien=cid
+unit: currency
+values:
+  2005-07-01:
+    value: 100.0
+  2006-01-01:
+    value: 101.8
+  2007-01-01:
+    value: 103.63
+  2008-01-01:
+    value: 104.77

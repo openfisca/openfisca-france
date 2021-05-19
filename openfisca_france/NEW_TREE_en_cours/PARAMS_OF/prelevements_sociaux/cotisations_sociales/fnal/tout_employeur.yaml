@@ -1,0 +1,14 @@
+brackets:
+- rate:
+    1972-07-01:
+      value: 0.001
+  threshold:
+    1972-07-01:
+      value: 0.0
+- rate:
+    1972-07-01:
+      value: 0.0
+  threshold:
+    1972-07-01:
+      value: 1.0
+reference: https://www.ipp.eu/outils/baremes-ipp/

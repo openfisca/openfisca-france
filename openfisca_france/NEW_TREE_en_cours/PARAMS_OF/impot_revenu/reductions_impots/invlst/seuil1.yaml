@@ -1,0 +1,5 @@
+description: Seuil1
+unit: currency
+values:
+  2004-01-01:
+    value: 50000.0

@@ -1,0 +1,33 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+moyenne_des_produits_de_base_de_l_office_des_3_dernieres_annees_limitee_a_3_moyenne_generale_des_produits_des_offices_de_france:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  colmar_metz:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1951-01-01:
+        value: 0.02
+      1963-01-01:
+        value: 0.04
+      2015-01-01:
+        value: 0.036
+  section_a_allocation_variable:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1949-01-01:
+        value: 0.05
+      1962-01-01:
+        value: 0.025
+      2005-01-01:
+        value: 0.045
+  section_u_allocation_uniforme:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1949-01-01:
+        value: 0.05
+      1962-01-01:
+        value: 0.02
+      2005-01-01:
+        value: 0.045

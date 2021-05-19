@@ -1,0 +1,11 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  1982-01-01:
+    value: 2000.0
+  1992-01-01:
+    value: 4000.0
+  1994-01-01:
+    value: 6000.0
+  2001-01-01:
+    value: 915.0

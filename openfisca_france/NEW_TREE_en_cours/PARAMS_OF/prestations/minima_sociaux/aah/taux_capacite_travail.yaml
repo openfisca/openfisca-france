@@ -1,0 +1,6 @@
+description: Le pourcentage maximal de la capacité de travail pour bénéficier du complément de ressources
+reference: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F095CE10E4FB989CF7E5FFC2249F170A.tplgfr28s_2?idArticle=LEGIARTI000006739703&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte=
+unit: /1
+values:
+  2005-07-01:
+    value: 0.05

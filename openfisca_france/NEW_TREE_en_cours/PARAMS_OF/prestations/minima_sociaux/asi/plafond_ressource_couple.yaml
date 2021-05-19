@@ -1,0 +1,34 @@
+description: Plafond de ressources (allocation comprise) pour un couple pour avoir
+  droit à l'ASI
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2006-01-01:
+    value: 13137.69
+  2007-01-01:
+    value: 13374.16
+  2008-01-01:
+    value: 13521.27
+  2008-09-01:
+    value: 13629.44
+  2009-04-01:
+    value: 13765.73
+  2010-04-01:
+    value: 13889.62
+  2011-04-01:
+    value: 14181.3
+  2012-04-01:
+    value: 14479.1
+  2013-04-01:
+    value: 14667.32
+  2014-04-01:
+    value: 14755.32
+  2016-04-01:
+    value: 14770.07
+  2017-04-01:
+    value: 14814.38
+  2018-04-01:
+    value: 14962.52
+  2019-04-01:
+    value: 15201.92
+    reference: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44460.pdf

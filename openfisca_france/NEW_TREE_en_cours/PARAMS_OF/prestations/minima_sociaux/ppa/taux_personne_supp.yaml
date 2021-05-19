@@ -1,0 +1,6 @@
+description: Taux par personne supplémentaire
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2015-10-01:
+    value: 0.4

@@ -1,0 +1,338 @@
+description: Cotisations SS des professions médicales à temps partiel (1961-1974)
+assurance_maladie:
+  description: Assurance maladie
+  totalite_remuneration:
+    description: Totalité rémunération
+    totalite_remuneration:
+      description: Totalité rémunération
+      employeur:
+        description: Employeur
+        values:
+          1967-10-01:
+            value: 0.014
+          1961-05-01:
+            value: null
+        metadata:
+          ipp_csv_id: mmid_m_p_0_
+          unit: /1
+      employe:
+        description: Employé
+        values:
+          1967-10-01:
+            value: 0.007
+          1961-05-01:
+            value: null
+        metadata:
+          ipp_csv_id: mmid_m_s_0_
+          unit: /1
+      metadata:
+        order:
+        - employeur
+        - employe
+    metadata:
+      order:
+      - totalite_remuneration
+  sous_pss:
+    description: Sous PSS
+    employe_hors_am:
+      description: Employé (hors AM)
+      moins_65_ans:
+        description: Moins de 65 ans
+        values:
+          1969-01-01:
+            value: 0.0175
+          1967-10-01:
+            value: 0.0145
+          1961-05-01:
+            value: null
+        metadata:
+          ipp_csv_id: mmid_m_p_0_1
+          unit: /1
+      plus_65_ans:
+        description: Plus de 65 ans
+        values:
+          1969-01-01:
+            value: 0.0105
+          1967-10-01:
+            value: 0.0145
+          1961-05-01:
+            value: null
+        metadata:
+          ipp_csv_id: mmid_m_am_s65_s_0_1
+          unit: /1
+      metadata:
+        order:
+        - moins_65_ans
+        - plus_65_ans
+    employe_am:
+      description: Employé AM
+      moins_65_ans:
+        description: Moins de 65 ans
+        values:
+          1969-01-01:
+            value: 0.028
+          1967-10-01:
+            value: 0.018
+          1961-05-01:
+            value: null
+        metadata:
+          ipp_csv_id: mmid_m_am_i65_s_0_1
+          unit: /1
+      plus_65_ans:
+        description: Plus de 65 ans
+        values:
+          1969-01-01:
+            value: 0.021
+          1967-10-01:
+            value: 0.018
+          1961-05-01:
+            value: null
+        metadata:
+          ipp_csv_id: mmid_m_s65_s_0_1
+          unit: /1
+      metadata:
+        order:
+        - moins_65_ans
+        - plus_65_ans
+    employeur:
+      description: Employeur
+      values:
+        1971-01-01:
+          value: 0.0732
+        1969-01-01:
+          value: 0.0665
+        1967-10-01:
+          value: 0.0605
+        1961-05-01:
+          value: null
+      metadata:
+        ipp_csv_id: mmid_m_i65_s_0_1
+        unit: /1
+    metadata:
+      order:
+      - employe_hors_am
+      - employe_am
+      - employeur
+  metadata:
+    order:
+    - totalite_remuneration
+    - sous_pss
+assurance_vieillesse:
+  description: Assurance vieillesse
+  sous_pss:
+    description: Sous PSS
+    employeur:
+      description: Employeur
+      values:
+        1974-01-01:
+          value: 0.0508
+        1971-01-01:
+          value: 0.0403
+        1967-10-01:
+          value: 0.0385
+        1961-05-01:
+          value: null
+      metadata:
+        ipp_csv_id: ret_m_p_0_1
+        unit: /1
+    employe:
+      description: Employé
+      moins_65_ans:
+        description: Moins de 65 ans
+        values:
+          1967-10-01:
+            value: 0.021
+          1961-05-01:
+            value: null
+        metadata:
+          ipp_csv_id: ret_m_s_0_1
+          unit: /1
+      plus_65_ans:
+        description: Plus de 65 ans
+        values:
+          1967-10-01:
+            value: 0.0
+          1961-05-01:
+            value: null
+        metadata:
+          ipp_csv_id: ret_m_s_s65_0_1
+          unit: /1
+      metadata:
+        order:
+        - moins_65_ans
+        - plus_65_ans
+    metadata:
+      order:
+      - employeur
+      - employe
+  metadata:
+    order:
+    - sous_pss
+accidents_travail:
+  description: Accidents travail
+  sous_pss:
+    description: Sous PSS
+    employeur:
+      description: Employeur
+      values:
+        1973-01-01:
+          value: 0.0147
+        1972-01-01:
+          value: 0.0108
+        1971-01-01:
+          value: 0.0154
+        1970-01-01:
+          value: 0.0161
+        1969-01-01:
+          value: 0.017
+        1961-05-01:
+          value: 0.018
+      metadata:
+        ipp_csv_id: acc_m_p_0_1
+        unit: /1
+    metadata:
+      order:
+      - employeur
+  metadata:
+    order:
+    - sous_pss
+allocations_familiales:
+  description: Allocations familiales
+  sous_pss:
+    description: Sous PSS
+    employeurs_sous_pss:
+      description: Employeurs (sous PSS)
+      values:
+        1974-01-01:
+          value: 0.063
+        1971-01-01:
+          value: 0.0735
+        1967-10-01:
+          value: 0.0805
+        1962-04-01:
+          value: 0.095
+        1961-05-01:
+          value: 0.1
+      metadata:
+        ipp_csv_id: fam_m_p_0_1
+        unit: /1
+    metadata:
+      order:
+      - employeurs_sous_pss
+  metadata:
+    order:
+    - sous_pss
+assurances_sociales:
+  description: Assurances sociales
+  sous_pss:
+    description: Sous PSS
+    employe_hors_am:
+      description: Employé (hors AM)
+      moins_65_ans:
+        description: Moins de 65 ans
+        values:
+          1967-10-01:
+            value: null
+          1961-05-01:
+            value: 0.014
+        metadata:
+          ipp_csv_id: css_m_am_i65_s_0_1
+          unit: /1
+      plus_65_ans:
+        description: Plus de 65 ans
+        values:
+          1967-10-01:
+            value: null
+          1961-05-01:
+            value: 0.042
+        metadata:
+          ipp_csv_id: css_m_am_s65_s_0_1
+          unit: /1
+      metadata:
+        order:
+        - moins_65_ans
+        - plus_65_ans
+    employe_am_sous_pss:
+      description: Employé AM(sous PSS)
+      moins_65_ans:
+        description: Moins de 65 ans
+        values:
+          1967-10-01:
+            value: null
+          1961-05-01:
+            value: 0.049
+        metadata:
+          ipp_csv_id: css_m_s65_s_0_1
+          unit: /1
+      plus_65_ans:
+        description: Plus de 65 ans
+        values:
+          1967-10-01:
+            value: null
+          1961-05-01:
+            value: 0.021
+        metadata:
+          ipp_csv_id: css_m_i65_s_0_1
+          unit: /1
+      metadata:
+        order:
+        - moins_65_ans
+        - plus_65_ans
+    employeur_sous_pss:
+      description: Employeur (sous PSS)
+      values:
+        1967-10-01:
+          value: null
+        1966-10-01:
+          value: 0.105
+        1962-04-01:
+          value: 0.0995
+        1961-05-01:
+          value: 0.0945
+      metadata:
+        ipp_csv_id: css_m_p_0_1
+        unit: /1
+    metadata:
+      order:
+      - employe_hors_am
+      - employe_am_sous_pss
+      - employeur_sous_pss
+  metadata:
+    order:
+    - sous_pss
+metadata:
+  order:
+  - assurance_maladie
+  - assurance_vieillesse
+  - accidents_travail
+  - allocations_familiales
+  - assurances_sociales
+  reference:
+    1974-01-01: Arrêté du 15/01/1974
+    1973-01-01: Arrêté du 31/01/1973
+    1972-01-01: Arrêté du 24/02/1972
+    1971-01-01: Arrêté du 30/12/1970
+    1970-01-01: Arrêté du 31/12/1969
+    1969-01-01: Arrêté du 31/12/1968
+    1967-10-01: Arrêté du 29/09/1967
+    1966-10-01: Arrêté du 15/09/1966
+    1962-04-01: Arrêté du 26/02/1962
+    1961-05-01: Arrêté du 01/05/1961
+  date_parution_jo:
+    1974-01-01: 1974-02-07
+    1973-01-01: 1973-03-17
+    1972-01-01: 1972-03-16
+    1971-01-01: 1971-01-15
+    1970-01-01: 1970-01-01
+    1969-01-01: 1969-01-01
+    1967-10-01: 1967-10-01
+    1966-10-01: 1966-09-27
+    1962-04-01: 1962-03-18
+    1961-05-01: 1961-05-20
+  notes:
+    1967-10-01: Il n'y a pas de distinctions d'âge pour les cotisations mmid.
+  description_en: SSCs for physicians working part-time (1961-1974)
+documentation: |
+  Note générale :
+  Les membres des professions médicales exerçant à temps partiel pour plusieurs employeurs bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1961 et 1974.
+  A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.

@@ -1,0 +1,8 @@
+description: Collège
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  1992-01-01:
+    value: 400.0
+  2001-01-01:
+    value: 61.0

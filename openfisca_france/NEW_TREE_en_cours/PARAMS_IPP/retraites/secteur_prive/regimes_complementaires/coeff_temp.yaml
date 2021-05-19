@@ -1,0 +1,42 @@
+description: Coefficients de solidarité et majorant temporaires
+coefficient_temporaire_en_fonction_distance_age_taux_plein:
+  description: Coefficient temporaire en fonction de la difference entre âge de départ et âge du taux plein
+  '0':
+    description: '0'
+    values:
+      2019-01-01:
+        value: 0.9
+  '1':
+    description: '1'
+    values:
+      2019-01-01:
+        value: 1.0
+  '2':
+    description: '2'
+    values:
+      2019-01-01:
+        value: 1.1
+  '3':
+    description: '3'
+    values:
+      2019-01-01:
+        value: 1.2
+  '4':
+    description: '4'
+    values:
+      2019-01-01:
+        value: 1.3
+  metadata:
+    order:
+    - '0'
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+metadata:
+  order:
+  - coefficient_temporaire_en_fonction_distance_age_taux_plein
+  reference:
+    2019-01-01: Accord national interprofessionnel du 30 octobre 2015, article 12
+  description_en: Temporary penalties and bonuses
+documentation: "Note: \n(1) La distance est de 0 quand l'âge de départ est égal à l'âge du taux plein. \n(2) La durée d'application est de 3 ans maximum pour le coefficient de solidarité (0.9) et d'un an pour les coefficients majorants.\n(3) Les coefficients s'appliquent à partir de la génération 1957.\n(4) Le coefficient de solidarité ne s’applique pas aux exonérés de CSG, à certainsdéparts au titre du handicap ou de l’inaptitude, aux départs avec décote ou aux départs à 67 ans ou plus\n"

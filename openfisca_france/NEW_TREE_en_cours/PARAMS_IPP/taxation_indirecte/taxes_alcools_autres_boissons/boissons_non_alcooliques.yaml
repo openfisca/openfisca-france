@@ -1,0 +1,24 @@
+description: Boissons non alcooliques
+droit_specifique_boissons_non_alcooliques_eur_hl:
+  description: Droit spécifique sur les boissons non alcooliques (€/hl)
+  values:
+    2002-03-31:
+      value: 0.54
+    1979-07-01:
+      value: 3.5
+  metadata:
+    ipp_csv_id: droit_boiss_non_alcool
+    unit:
+      2002-03-31: currency-EUR
+      1979-07-01: currency-FRF
+metadata:
+  order:
+  - droit_specifique_boissons_non_alcooliques_eur_hl
+  reference:
+    2002-03-31: Ordonnance 2000-916 du 19/09/2000
+  date_parution_jo:
+    2002-03-31: 2000-09-22
+  description_en: Non alcoholic beverages
+documentation: |
+  Notes :
+  Données renseignées dans l'article 520A du code général des impôts

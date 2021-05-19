@@ -1,0 +1,11 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  1985-12-22:
+    value: 17.0
+  1990-07-01:
+    value: 18.0
+  1998-01-01:
+    value: 19.0
+  1999-01-01:
+    value: 20.0
+unit: year

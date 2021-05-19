@@ -1,0 +1,12 @@
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_impot_revenu/plaf_qf/
+  - http://bofip.impots.gouv.fr/bofip/2495-PGP
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
+unit: currency
+values:
+  2016-01-01:
+    value: 3700.0
+  2017-01-01:
+    value: 3737.0
+  2018-01-01:
+    value: 3797.0

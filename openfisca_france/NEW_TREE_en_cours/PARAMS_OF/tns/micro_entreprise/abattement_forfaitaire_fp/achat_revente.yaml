@@ -1,0 +1,7 @@
+description: Activité de type Achat-Revente
+unit: /1
+values:
+  2006-01-01:
+    value: 0.68
+  2007-01-01:
+    value: 0.71

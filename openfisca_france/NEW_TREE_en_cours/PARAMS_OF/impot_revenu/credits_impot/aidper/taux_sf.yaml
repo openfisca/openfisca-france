@@ -1,0 +1,9 @@
+description: Taux (SF)
+unit: /1
+values:
+  2010-01-01:
+    value: 0.3
+  2012-01-01:
+    value: 0.15
+  2013-01-01:
+    value: null

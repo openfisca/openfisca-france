@@ -1,0 +1,417 @@
+description: Prix unitaire tarif réglementé GDF (hors taxes)
+prix_kwh_base_ht:
+  description: Prix kWh Base - HT
+  values:
+    2020-07-01:
+      value: 4.97
+    2019-07-01:
+      value: 5.78
+    2018-07-01:
+      value: 7.15
+    2017-07-01:
+      value: 5.98
+    2016-07-01:
+      value: 6.66
+    2015-07-01:
+      value: 7.84
+    2014-07-01:
+      value: 8.19
+    2013-07-01:
+      value: 8.58
+    2013-01-01:
+      value: 8.59
+    2012-01-01:
+      value: 7.95
+    2010-07-01:
+      value: 7.24
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_base_ht
+    unit: currency-EUR
+prix_kwh_b0_ht:
+  description: Prix kWh B0 - HT
+  values:
+    2020-07-01:
+      value: 4.97
+    2019-07-01:
+      value: 5.78
+    2018-07-01:
+      value: 5.98
+    2017-07-01:
+      value: 5.32
+    2016-07-01:
+      value: 5.26
+    2015-07-01:
+      value: 6.09
+    2014-07-01:
+      value: 6.67
+    2013-07-01:
+      value: 7.26
+    2013-01-01:
+      value: 7.25
+    2012-01-01:
+      value: 6.77
+    2010-07-01:
+      value: 6.2
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_b0_ht
+    unit: currency-EUR
+prix_kwh_b1_zone_1_ht:
+  description: Prix kWh B1 - zone 1 - HT
+  values:
+    2020-07-01:
+      value: 2.91
+    2019-07-01:
+      value: 3.81
+    2018-07-01:
+      value: 4.13
+    2017-07-01:
+      value: 3.49
+    2016-07-01:
+      value: 3.37
+    2015-07-01:
+      value: 4.11
+    2014-07-01:
+      value: 4.4
+    2013-07-01:
+      value: 4.76
+    2013-01-01:
+      value: 4.9
+    2012-01-01:
+      value: 4.58
+    2010-07-01:
+      value: 4.17
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_zone1_b1_ht
+    unit: currency-EUR
+prix_kwh_b1_zone_2_ht:
+  description: Prix kWh B1 - zone 2 - HT
+  values:
+    2020-07-01:
+      value: 2.97
+    2019-07-01:
+      value: 3.87
+    2018-07-01:
+      value: 4.19
+    2017-07-01:
+      value: 3.55
+    2016-07-01:
+      value: 3.43
+    2015-07-01:
+      value: 4.17
+    2014-07-01:
+      value: 4.46
+    2013-07-01:
+      value: 4.82
+    2013-01-01:
+      value: 4.96
+    2012-01-01:
+      value: 4.64
+    2010-07-01:
+      value: 4.23
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_zone2_b1_ht
+    unit: currency-EUR
+prix_kwh_b1_zone_3_ht:
+  description: Prix kWh B1 - zone 3 - HT
+  values:
+    2020-07-01:
+      value: 3.03
+    2019-07-01:
+      value: 3.93
+    2018-07-01:
+      value: 4.25
+    2017-07-01:
+      value: 3.61
+    2016-07-01:
+      value: 3.49
+    2015-07-01:
+      value: 4.23
+    2014-07-01:
+      value: 4.52
+    2013-07-01:
+      value: 4.88
+    2013-01-01:
+      value: 5.02
+    2012-01-01:
+      value: 4.7
+    2010-07-01:
+      value: 4.29
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_zone3_b1_ht
+    unit: currency-EUR
+prix_kwh_b1_zone_4_ht:
+  description: Prix kWh B1 - zone 4 - HT
+  values:
+    2020-07-01:
+      value: 3.09
+    2019-07-01:
+      value: 3.99
+    2018-07-01:
+      value: 4.31
+    2017-07-01:
+      value: 3.67
+    2016-07-01:
+      value: 3.55
+    2015-07-01:
+      value: 4.29
+    2014-07-01:
+      value: 4.58
+    2013-07-01:
+      value: 4.94
+    2013-01-01:
+      value: 5.08
+    2012-01-01:
+      value: 4.76
+    2010-07-01:
+      value: 4.35
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_zone4_b1_ht
+    unit: currency-EUR
+prix_kwh_b1_zone_5_ht:
+  description: Prix kWh B1 - zone 5 - HT
+  values:
+    2020-07-01:
+      value: 3.15
+    2019-07-01:
+      value: 4.05
+    2018-07-01:
+      value: 4.37
+    2017-07-01:
+      value: 3.73
+    2016-07-01:
+      value: 3.61
+    2015-07-01:
+      value: 4.35
+    2014-07-01:
+      value: 4.64
+    2013-07-01:
+      value: 5.0
+    2013-01-01:
+      value: 5.14
+    2012-01-01:
+      value: 4.82
+    2010-07-01:
+      value: 4.41
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_zone5_b1_ht
+    unit: currency-EUR
+prix_kwh_b1_zone_6_ht:
+  description: Prix kWh B1 - zone 6 - HT
+  values:
+    2020-07-01:
+      value: 3.21
+    2019-07-01:
+      value: 4.11
+    2018-07-01:
+      value: 4.43
+    2017-07-01:
+      value: 3.79
+    2016-07-01:
+      value: 3.67
+    2015-07-01:
+      value: 4.41
+    2014-07-01:
+      value: 4.7
+    2013-07-01:
+      value: 5.06
+    2013-01-01:
+      value: 5.2
+    2012-01-01:
+      value: 4.88
+    2010-07-01:
+      value: 4.47
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_zone6_b1_ht
+    unit: currency-EUR
+prix_kwh_b2i_zone_1_ht:
+  description: Prix kWh B2I - zone 1 - HT
+  values:
+    2020-07-01:
+      value: 2.91
+    2019-07-01:
+      value: 3.81
+    2018-07-01:
+      value: 4.13
+    2017-07-01:
+      value: 3.49
+    2016-07-01:
+      value: 3.37
+    2015-07-01:
+      value: 4.11
+    2014-07-01:
+      value: 4.4
+    2013-07-01:
+      value: 4.91
+    2013-01-01:
+      value: 5.09
+    2012-01-01:
+      value: 4.58
+    2010-07-01:
+      value: 4.17
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_zone1_b2i_ht
+    unit: currency-EUR
+prix_kwh_b2i_zone_2_ht:
+  description: Prix kWh B2I - zone 2 - HT
+  values:
+    2020-07-01:
+      value: 2.97
+    2019-07-01:
+      value: 3.87
+    2018-07-01:
+      value: 4.19
+    2017-07-01:
+      value: 3.55
+    2016-07-01:
+      value: 3.43
+    2015-07-01:
+      value: 4.17
+    2014-07-01:
+      value: 4.46
+    2013-07-01:
+      value: 4.97
+    2013-01-01:
+      value: 5.15
+    2012-01-01:
+      value: 4.64
+    2010-07-01:
+      value: 4.23
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_zone2_b2i_ht
+    unit: currency-EUR
+prix_kwh_b2i_zone_3_ht:
+  description: Prix kWh B2I - zone 3 - HT
+  values:
+    2020-07-01:
+      value: 3.03
+    2019-07-01:
+      value: 3.93
+    2018-07-01:
+      value: 4.25
+    2017-07-01:
+      value: 3.61
+    2016-07-01:
+      value: 3.49
+    2015-07-01:
+      value: 4.23
+    2014-07-01:
+      value: 4.52
+    2013-07-01:
+      value: 5.03
+    2013-01-01:
+      value: 5.21
+    2012-01-01:
+      value: 4.7
+    2010-07-01:
+      value: 4.29
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_zone3_b2i_ht
+    unit: currency-EUR
+prix_kwh_b2i_zone_4_ht:
+  description: Prix kWh B2I - zone 4 - HT
+  values:
+    2020-07-01:
+      value: 3.09
+    2019-07-01:
+      value: 3.99
+    2018-07-01:
+      value: 4.31
+    2017-07-01:
+      value: 3.67
+    2016-07-01:
+      value: 3.55
+    2015-07-01:
+      value: 4.29
+    2014-07-01:
+      value: 4.58
+    2013-07-01:
+      value: 5.09
+    2013-01-01:
+      value: 5.27
+    2012-01-01:
+      value: 4.76
+    2010-07-01:
+      value: 4.35
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_zone4_b2i_ht
+    unit: currency-EUR
+prix_kwh_b2i_zone_5_ht:
+  description: Prix kWh B2I - zone 5 - HT
+  values:
+    2020-07-01:
+      value: 3.15
+    2019-07-01:
+      value: 4.05
+    2018-07-01:
+      value: 4.37
+    2017-07-01:
+      value: 3.73
+    2016-07-01:
+      value: 3.61
+    2015-07-01:
+      value: 4.35
+    2014-07-01:
+      value: 4.64
+    2013-07-01:
+      value: 5.15
+    2013-01-01:
+      value: 5.33
+    2012-01-01:
+      value: 4.82
+    2010-07-01:
+      value: 4.41
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_zone5_b2i_ht
+    unit: currency-EUR
+prix_kwh_b2i_zone_6_ht:
+  description: Prix kWh B2I - zone 6 - HT
+  values:
+    2020-07-01:
+      value: 3.21
+    2019-07-01:
+      value: 4.11
+    2018-07-01:
+      value: 4.43
+    2017-07-01:
+      value: 3.79
+    2016-07-01:
+      value: 3.67
+    2015-07-01:
+      value: 4.41
+    2014-07-01:
+      value: 4.7
+    2013-07-01:
+      value: 5.21
+    2013-01-01:
+      value: 5.39
+    2012-01-01:
+      value: 4.88
+    2010-07-01:
+      value: 4.47
+  metadata:
+    ipp_csv_id: prix_unitaire_gdf_zone6_b2i_ht
+    unit: currency-EUR
+metadata:
+  order:
+  - prix_kwh_base_ht
+  - prix_kwh_b0_ht
+  - prix_kwh_b1_zone_1_ht
+  - prix_kwh_b1_zone_2_ht
+  - prix_kwh_b1_zone_3_ht
+  - prix_kwh_b1_zone_4_ht
+  - prix_kwh_b1_zone_5_ht
+  - prix_kwh_b1_zone_6_ht
+  - prix_kwh_b2i_zone_1_ht
+  - prix_kwh_b2i_zone_2_ht
+  - prix_kwh_b2i_zone_3_ht
+  - prix_kwh_b2i_zone_4_ht
+  - prix_kwh_b2i_zone_5_ht
+  - prix_kwh_b2i_zone_6_ht
+  reference:
+    2014-07-01: Arrêté du 30/06/2014
+    2013-07-01: Arrêté du 27/06/2013
+    2013-01-01: Arrêté du 27/06/2013
+    2012-01-01: Arrêté du 22/12/2011
+  description_en: Unitary price regulated tariff GDF (without taxes)
+  source : 
+    CRE "https://www.cre.fr/Pages-annexes/open-data"

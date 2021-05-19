@@ -1,0 +1,6 @@
+description: Plafond de référence pour l'échelon 1, pour une famille avec 8 enfants
+  ou plus, en multiple du SMIC horaire brut
+unit: /1
+values:
+  2016-07-01:
+    value: 4070.0

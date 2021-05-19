@@ -1,0 +1,6 @@
+description: Taux pour 1 adulte
+unit: /1
+values:
+  2002-01-01:
+    reference: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=1B336613D677A8012B5EC663496EFF09.tplgfr31s_3?idArticle=LEGIARTI000035672548&cidTexte=LEGITEXT000005630325&dateTexte=20180829
+    value: 0.0281

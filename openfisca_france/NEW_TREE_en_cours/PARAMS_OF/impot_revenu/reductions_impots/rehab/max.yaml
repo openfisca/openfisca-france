@@ -1,0 +1,5 @@
+description: Plafond de dépenses pour un même logement sur 3 ans
+unit: currency
+values:
+  2017-01-01:
+    value: 22000.0

@@ -1,0 +1,75 @@
+description: "Aide exceptionnelle de solidarité COVID-19"
+aide_exceptionnelle_covid_base:
+  description: Montant (1)
+  values:
+    2020-11-01:
+      value: null
+    2020-10-01:
+      value: 150
+    2020-06-01:
+      value: null
+    2020-05-01:
+      value: 150
+  metadata:
+    ipp_csv_id: aide_exceptionnelle_covid_base
+    unit: currency-EUR
+aide_exceptionnelle_covid_base_jeune:
+  description: Montant moins de 25 ans (2)
+  values:
+    2020-11-01:
+      value: null
+    2020-10-01:
+      value: 150
+    2020-06-01:
+      value: null
+    2020-05-01:
+      value: 200
+  metadata:
+    ipp_csv_id: aide_exceptionnelle_covid_base_jeune
+    unit: currency-EUR
+aide_exceptionnelle_covid_par_enfant:
+  description: Majoration par enfant à charge (3)
+  values:
+    2020-11-01:
+      value: null
+    2020-10-01:
+      value: 100
+    2020-06-01:
+      value: null
+    2020-05-01:
+      value: 100
+  metadata:
+    ipp_csv_id: aide_exceptionnelle_covid_par_enfant
+    unit: currency-EUR
+metadata:
+  order:
+  - aide_exceptionnelle_covid_base
+  - aide_exceptionnelle_covid_base_jeune
+  - aide_exceptionnelle_covid_par_enfant
+  reference:
+    2020-11-01:
+    2020-10-01:
+    - title: Décret n°2020-1453 du 27/11/2020
+      ref: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042574431
+    2020-06-01:
+    2020-05-01:
+    - title: Décret 2020-519 du 05/05/2020
+      ref: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041849630/
+    - title: Décret 2020-769 du 24/06/2020
+      ref: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042032514
+  date_parution_jo:
+    2020-11-01:
+    2020-10-01: 2020-11-28
+    2020-06-01:
+    2020-05-01: "2020-05-06 et 2020-06-25"
+  notes:
+    2020-11-01: L'aide n'est versable qu'une seule fois et n'est donc plus en vigueur le mois suivant son instauration
+    2020-10-01:
+    2020-06-01: L'aide n'est versable qu'une seule fois et n'est donc plus en vigueur le mois suivant son instauration
+    2020-05-01:
+  description_en: "Exceptional benefit - COVID-19 crisis"
+documentation: |
+  Notes :
+  (1) Montant versable aux bénéficiaires d'une des allocations suivantes, au titre du mois courant ou du mois précédent :  Revenu de solidarité active (RSA), Revenu de solidarité (RSO), Allocation de solidarité spécifique (ASS), Prime forfaitaire mensuelle d'activité, Allocation équivalent retraite (AER). Il n'y a pas de majoration pour les couples.
+  (2) Montant versable aux bénéficiaires de moins de 25 ans des aides au logement, à l'exception des étudiants non-salariés et non-signataires d'un contrat d'apprentissage régi par l'article L6221-1 du code du travail.
+  (3) Majoration versable aux bénéficiaires d'un des montants de base ainsi qu'aux bénéficiaires des aides au logement.

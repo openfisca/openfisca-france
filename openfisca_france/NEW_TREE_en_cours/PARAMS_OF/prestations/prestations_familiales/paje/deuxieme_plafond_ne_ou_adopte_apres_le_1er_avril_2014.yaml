@@ -1,0 +1,25 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+un_enfant:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
+  values:
+    2015-01-01:
+      value: 45393.0
+    2016-01-01:
+      value: 45575.0
+deux_enfants:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
+  values:
+    2015-01-01:
+      value: 51836.0
+    2016-01-01:
+      value: 52044.0
+majoration_pour_un_enfant_supplementaire:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
+  values:
+    2015-01-01:
+      value: 6443.0
+    2016-01-01:
+      value: 6469.0

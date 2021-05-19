@@ -1,0 +1,14 @@
+description: Cotisations du secteur public
+metadata:
+  order:
+  - assiette_pu
+  - mmid_etat
+  - mmid_cl
+  - rp
+  - ret_etat
+  - rafp
+  - cnracl
+  - ircantec
+  - sncf
+  - fds
+  description_en: Contributions in the public sector

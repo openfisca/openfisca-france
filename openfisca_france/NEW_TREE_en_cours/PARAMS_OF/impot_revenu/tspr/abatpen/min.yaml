@@ -1,0 +1,55 @@
+description: Abattement minimum par bénéficiaire
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/deductions/
+  - http://bofip.impots.gouv.fr/bofip/7458-PGP#7458-PGP_Plafond_de_labattement_33
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034597100&cidTexte=LEGITEXT000006069577
+unit: currency
+values:
+  1978-01-01:
+    value: 1800.0
+  1992-01-01:
+    value: 1860.0
+  1993-01-01:
+    value: 1900.0
+  1994-01-01:
+    value: 1930.0
+  1995-01-01:
+    value: 1960.0
+  1996-01-01:
+    value: 2000.0
+  1997-01-01:
+    value: 2020.0
+  1998-01-01:
+    value: 2040.0
+  1999-01-01:
+    value: 2050.0
+  2000-01-01:
+    value: 2080.0
+  2001-01-01:
+    value: 323.0
+  2002-01-01:
+    value: 328.0
+  2003-01-01:
+    value: 334.0
+  2004-01-01:
+    value: 340.0
+  2005-01-01:
+    value: 346.0
+  2006-01-01:
+    value: 352.0
+  2007-01-01:
+    value: 357.0
+  2008-01-01:
+    value: 367.0
+  2009-01-01:
+    value: 368.0
+  2010-01-01:
+    value: 374.0
+  2014-01-01:
+    value: 379.0
+  2017-01-01:
+    value: 383.0
+  2018-01-01:
+    value: 389.0
+  2019-01-01:
+    value: 393.0

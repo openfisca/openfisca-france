@@ -1,0 +1,17 @@
+description: Majoration du plafond pour biactifs ou isolé
+unit: currency
+values:
+  2000-07-01:
+    value: 5394.0
+  2001-07-01:
+    value: 5481.0
+  2002-07-01:
+    value: 5568.0
+  2003-07-01:
+    value: 4663.0
+  2004-07-01:
+    value: 5771.0
+  2005-07-01:
+    value: 5599.0
+  2006-07-01:
+    value: null

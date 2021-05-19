@@ -1,0 +1,10 @@
+description: Majoration du plafond à partir du 3ème enfant
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1986-01-01:
+    value: 0.3
+  2009-01-01:
+    value: 0.25
+  2010-01-01:
+    value: 0.3

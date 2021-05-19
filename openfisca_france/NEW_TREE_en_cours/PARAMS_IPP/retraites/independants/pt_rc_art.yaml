@@ -1,0 +1,161 @@
+description: "Régime complémentaire des artisans : valeur de service du point (1980-2012)"
+valeur_points_acquis:
+  description: Valeur des points acquis
+  values:
+    2009-04-01:
+      value: null
+    2008-09-01:
+      value: 0.2977
+    2008-01-01:
+      value: 0.29331
+    2007-01-01:
+      value: 0.29259
+    2006-01-01:
+      value: 0.29012
+    2003-01-01:
+      value: 0.28728
+    2002-07-01:
+      value: 0.2873
+    2002-01-01:
+      value: 0.2845
+    2001-01-01:
+      value: 0.2847
+    2000-01-01:
+      value: 1.83
+    1999-01-01:
+      value: 1.8084
+    1997-01-01:
+      value: 1.803
+    1996-07-01:
+      value: 1.761
+    1995-01-01:
+      value: 1.73
+    1994-01-01:
+      value: 1.71
+    1993-07-01:
+      value: 1.694
+    1993-01-01:
+      value: 1.674
+    1992-07-01:
+      value: 1.652
+    1992-01-01:
+      value: 1.624
+    1991-07-01:
+      value: 1.598
+    1991-01-01:
+      value: 1.568
+    1990-07-01:
+      value: 1.536
+    1990-01-01:
+      value: 1.498
+    1989-07-01:
+      value: 1.466
+    1989-01-01:
+      value: 1.43
+    1988-07-01:
+      value: 1.408
+    1988-01-01:
+      value: 1.382
+    1987-07-01:
+      value: 1.346
+    1987-01-01:
+      value: 1.322
+    1986-07-01:
+      value: 1.296
+    1986-01-01:
+      value: 1.282
+    1985-07-01:
+      value: 1.266
+    1985-01-01:
+      value: 1.232
+    1984-07-01:
+      value: 1.196
+    1984-01-01:
+      value: 1.134
+    1983-07-01:
+      value: 1.085
+    1983-01-01:
+      value: 1.043
+    1982-07-01:
+      value: 0.996
+    1982-01-01:
+      value: 0.94
+    1981-07-01:
+      value: 0.88
+    1981-01-01:
+      value: 0.836
+    1980-07-01:
+      value: 0.786
+    1980-01-01:
+      value: 0.728
+  metadata:
+    unit:
+      2001-01-01: currency-EUR
+      1980-01-01: currency-FRF
+valeur_points_acquis_avant_1979:
+  description: Valeur des points acquis avant 1979
+  values:
+    2013-01-01:
+      value: null
+    2012-04-01:
+      value: 0.30582
+    2011-04-01:
+      value: 0.30372
+    2010-04-01:
+      value: 0.30163
+    2009-04-01:
+      value: 0.30045
+    1980-01-01:
+      value: null
+  metadata:
+    unit: currency-EUR
+valeur_points_acquis_entre_1979_1996:
+  description: Valeur des points acquis entre 1979 et 1996
+  values:
+    2013-01-01:
+      value: null
+    2012-04-01:
+      value: 0.31008
+    2011-04-01:
+      value: 0.30686
+    2010-04-01:
+      value: 0.30367
+    2009-04-01:
+      value: 0.30186
+    1980-01-01:
+      value: null
+  metadata:
+    unit: currency-EUR
+valeur_points_acquis_entre_1997_2012:
+  description: Valeur des points acquis entre 1997 et 2012
+  values:
+    2013-01-01:
+      value: null
+    2012-04-01:
+      value: 0.32284
+    2011-04-01:
+      value: 0.3162
+    2010-04-01:
+      value: 0.3097
+    2009-04-01:
+      value: 0.30603
+    1980-01-01:
+      value: null
+  metadata:
+    unit: currency-EUR
+metadata:
+  order:
+  - valeur_points_acquis
+  - valeur_points_acquis_avant_1979
+  - valeur_points_acquis_entre_1979_1996
+  - valeur_points_acquis_entre_1997_2012
+  notes:
+    2013-01-01: A partir de 2013, les valeurs des points sont alignées avec le régime complémentaire des commerçants, au sein d'un régime complémentaire des indépendants (RCI)
+    2009-04-01: A partir de 2009, la valeur du point est différenciée selon l'année d'acquisition du points.
+  description_en: "Complementary scheme of craftmen : point value (1980-2012)"
+documentation: |
+  Sources :
+  Capital.fr
+  http://www.capital.fr/retraite/regimes-de-retraite/artisan/regimes-complementaires/depuis-2009-les-revalorisations-des-points-sont-differentes-selon-leur-date-d-acquisition
+  rsi.fr
+  http://www.rsi.fr/baremes/prestations-vieillesse-et-invalidite-deces.html#c5206

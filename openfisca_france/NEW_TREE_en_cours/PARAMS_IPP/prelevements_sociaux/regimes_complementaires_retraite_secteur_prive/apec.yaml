@@ -1,0 +1,265 @@
+description: Cotisations pour l'Association pour l'emploi des cadres (APEC)
+tranche_b_1_4_pss:
+  description: Tranche B (1 à 4 PSS)
+  salarie:
+    description: Salarié
+    values:
+      2011-01-01:
+        value: null
+      1975-01-01:
+        value: 0.00024
+      1971-01-01:
+        value: 0.00016
+      1967-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: apec_s_1_4
+      unit: /1
+  employeur:
+    description: Employeur
+    values:
+      2011-01-01:
+        value: null
+      1975-01-01:
+        value: 0.00036
+      1971-01-01:
+        value: 0.00024
+      1967-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: apec_p_1_4
+      unit: /1
+  metadata:
+    order:
+    - salarie
+    - employeur
+forfait_annuel:
+  description: Tranche A (sous PSS) - Forfait annuel 
+  salarie:
+    description: Salarié
+    values:
+      2011-01-01:
+        value: null
+      2010-01-01:
+        value: 8.31
+      2009-01-01:
+        value: 8.23
+      2008-01-01:
+        value: 7.99
+      2007-01-01:
+        value: 7.72
+      2006-01-01:
+        value: 7.46
+      2005-01-01:
+        value: 7.25
+      2004-01-01:
+        value: 7.13
+      2003-01-01:
+        value: 7.0
+      2002-01-01:
+        value: 6.772
+      2001-01-01:
+        value: 43.04
+      2000-01-01:
+        value: 42.32
+      1999-01-01:
+        value: 41.68
+      1998-01-01:
+        value: 40.56
+      1997-01-01:
+        value: 39.52
+      1996-01-01:
+        value: 38.68
+      1995-01-01:
+        value: 37.44
+      1994-01-01:
+        value: 36.76
+      1993-01-01:
+        value: 35.96
+      1992-01-01:
+        value: 34.6
+      1991-01-01:
+        value: 33.08
+      1990-01-01:
+        value: 31.44
+      1989-01-01:
+        value: 30.08
+      1988-01-01:
+        value: 28.88
+      1987-01-01:
+        value: 28.04
+      1986-01-01:
+        value: 26.92
+      1985-01-01:
+        value: 25.6
+      1984-01-01:
+        value: 23.92
+      1983-01-01:
+        value: 22.0
+      1982-01-01:
+        value: 19.68
+      1981-01-01:
+        value: 16.52
+      1980-01-01:
+        value: 14.44
+      1979-01-01:
+        value: 12.88
+      1978-01-01:
+        value: 11.52
+      1977-01-01:
+        value: 10.4
+      1976-01-01:
+        value: 9.12
+    metadata:
+      ipp_csv_id: apec_s_f
+      unit:
+        2002-01-01: currency-EUR
+        1976-01-01: currency-FRF
+  employeur:
+    description: Employeur
+    values:
+      2011-01-01:
+        value: null
+      2010-01-01:
+        value: 12.46
+      2009-01-01:
+        value: 12.35
+      2008-01-01:
+        value: 11.98
+      2007-01-01:
+        value: 11.59
+      2006-01-01:
+        value: 11.18
+      2005-01-01:
+        value: 10.87
+      2004-01-01:
+        value: 10.7
+      2003-01-01:
+        value: 10.51
+      2002-01-01:
+        value: 10.158
+      2001-01-01:
+        value: 64.56
+      2000-01-01:
+        value: 63.48
+      1999-01-01:
+        value: 62.52
+      1998-01-01:
+        value: 60.84
+      1997-01-01:
+        value: 59.28
+      1996-01-01:
+        value: 58.02
+      1995-01-01:
+        value: 56.16
+      1994-01-01:
+        value: 55.14
+      1993-01-01:
+        value: 53.94
+      1992-01-01:
+        value: 51.9
+      1991-01-01:
+        value: 49.62
+      1990-01-01:
+        value: 47.16
+      1989-01-01:
+        value: 45.12
+      1988-01-01:
+        value: 43.32
+      1987-01-01:
+        value: 42.06
+      1986-01-01:
+        value: 40.38
+      1985-01-01:
+        value: 38.4
+      1984-01-01:
+        value: 35.88
+      1983-01-01:
+        value: 33.0
+      1982-01-01:
+        value: 29.52
+      1981-01-01:
+        value: 24.78
+      1980-01-01:
+        value: 21.66
+      1979-01-01:
+        value: 19.32
+      1978-01-01:
+        value: 17.28
+      1977-01-01:
+        value: 15.6
+      1976-01-01:
+        value: 13.68
+    metadata:
+      ipp_csv_id: apec_p_f
+      unit:
+        2002-01-01: currency-EUR
+        1976-01-01: currency-FRF
+sous_4_pss:
+  description: Sous 4 PSS
+  salarie:
+    description: Salarié
+    values:
+      2011-01-01:
+        value: 0.00024
+      1967-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: apec_s_0_4
+      unit: /1
+  employeur:
+    description: Employeur
+    values:
+      2011-01-01:
+        value: 0.00036
+      1967-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: apec_p_0_4
+      unit: /1
+  metadata:
+    order:
+    - salarie
+    - employeur
+metadata:
+  order:
+  - tranche_b_1_4_pss
+  - forfait_annuel
+  - sous_4_pss
+  reference:
+    2011-01-01: Circulaire AGIRC 2010-5-DF du 29/07/2010
+    2010-01-01: Circulaire AGIRC-ARRCO 2009-30- DRE du 16/12/2009
+    2009-01-01: Circulaire AGIRC-ARRCO 2009-1-DRE du 05/01/2009
+    2008-01-01: Circulaire AGIRC-ARRCO 2007-27-DRE du 14/12/2007
+    2007-01-01: Circulaire AGIRC-ARRCO 2006-17-DRE du 18/12/2006
+    2006-01-01: Circulaire AGIRC-ARRCO 2005-19-DRE du 13/12/2005
+    1976-01-01: 
+     - Protocole d'accord Agirc-Apec du 30/12/1975. 
+     - title: Avenant n°5 du 17/11/1975
+       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000668581&categorieLien=id
+    1975-01-01:
+    - Avenant A 56 du 05/02/1974
+    - Avenant n°4 du 21/11/1973
+    1971-01-01: Avenant n° 2 du 09/06/1969
+    1967-01-01: Convention APEC du 18/11/1966, art. 3
+  date_parution_jo:
+    1976-01-01: 1976-02-26
+  notes:
+    2011-01-01: Remplacement de la cotisation forfaitaire par un taux proportionnel sous plafond.
+    1976-01-01: Cotisation proportionnelle "à comper du 1er franc" (tranche A).
+    1975-01-01: Augmentation du taux de 0,04 % à 0,06 % pour la tranche B. Incertitude pour la référence législative.
+    1971-01-01: Passage d'une cotisation forfaitaire à une cotisation proportionnelle.
+    1967-01-01: Cotisation forfaitaire d'un montant de 2 FF par cadre.
+  description_en: Contributions for the Association for the employment of executives (APEC)
+documentation: |
+  Note :
+  L'Association pour l'emploi des cadres (APEC) a été mise en place par la convention du 18/11/1966.
+  La cotisation APEC est recouvrée par l'AGIRC.
+  Le forfait annuel est dû pour les salaires en-dessous du PSS (tranche A).
+  Le forfait annuel dépend du PSS annuel (0,0006*PSS partagé en 40/60) mais la règle des arrondis semble variable dans le temps.
+  En pratique, l'Agirc a calculé la cotisation comme un forfait plutôt que comme une cotisation proportionnelle au salaire sous plafond.
+  Références contractuelles et législatives :
+  La convention du 18/11/1966 et ses avenants n°1 du 03/01/1969, n°2 du 09/06/1969, n°3 du 10/04/1973 et n°4 du 21/12/1973 ont été étendus,
+  en application de l'article L. 133-8, par l'arrêté du 13/08/1974 (JO 29/08/1974).
+  L'avenant n°5, qui étend la cotisation aux salaires sous plafond, est institué par l'arrêté du 16/02/1976 (JO 26/02/1976).
+  Protocole d'accord Agirc-Apec du 30/12/1975.

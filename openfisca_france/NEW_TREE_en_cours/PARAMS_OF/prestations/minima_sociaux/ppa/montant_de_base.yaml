@@ -1,0 +1,21 @@
+description: Montant forfaitaire de base
+unit: currency
+values:
+  2015-10-01:
+    value: 524.16
+    reference: https://www.legifrance.gouv.fr/eli/decret/2015/12/21/AFSA1521306D/jo/article_1
+  2016-04-01:
+    value: 524.68
+    reference: https://www.legifrance.gouv.fr/eli/decret/2017/5/4/AFSA1710709D/jo/article_1
+  2017-04-01:
+    value: 526.25
+    reference: https://www.legifrance.gouv.fr/affichTexte.do;jsessionid=F0C7F140213C6E7F350E4D08F8ABCC7E.tplgfr21s_3?cidTexte=LEGITEXT000034780395&dateTexte=20170505&categorieLien=cid#LEGITEXT000034780395
+  2018-04-01:
+    value: 531.51
+    reference: https://www.legifrance.gouv.fr/eli/decret/2018/5/3/SSAA1805962D/jo/texte
+  2018-08-01:
+    value: 551.51
+    reference: https://www.legifrance.gouv.fr/eli/decret/2018/10/3/SSAA1822062D/jo/texte
+  2020-04-01:
+    value: 553.16
+    reference: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000041835204

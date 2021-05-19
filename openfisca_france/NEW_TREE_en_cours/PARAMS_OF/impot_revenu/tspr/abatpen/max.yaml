@@ -1,0 +1,89 @@
+description: Abattement maximum pour l'ensemble du foyer
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/deductions/
+  - http://bofip.impots.gouv.fr/bofip/7458-PGP#7458-PGP_Plafond_de_labattement_33
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034597100&cidTexte=LEGITEXT000006069577
+unit: currency
+values:
+  1977-01-01:
+    value: 5000.0
+  1978-01-01:
+    value: 6000.0
+  1979-01-01:
+    value: 6700.0
+  1980-01-01:
+    value: 7600.0
+  1981-01-01:
+    value: 8700.0
+  1982-01-01:
+    value: 9800.0
+  1983-01-01:
+    value: 21400.0
+  1984-01-01:
+    value: 23100.0
+  1985-01-01:
+    value: 24400.0
+  1986-01-01:
+    value: 25000.0
+  1987-01-01:
+    value: 25900.0
+  1988-01-01:
+    value: 26600.0
+  1989-01-01:
+    value: 27500.0
+  1990-01-01:
+    value: 28400.0
+  1991-01-01:
+    value: 29300.0
+  1992-01-01:
+    value: 30200.0
+  1993-01-01:
+    value: 30800.0
+  1994-01-01:
+    value: 31300.0
+  1995-01-01:
+    value: 31900.0
+  1996-01-01:
+    value: 28000.0
+  1997-01-01:
+    value: 24000.0
+  1998-01-01:
+    value: 20000.0
+  1999-01-01:
+    value: 20100.0
+  2000-01-01:
+    value: 20400.0
+  2001-01-01:
+    value: 3160.0
+  2002-01-01:
+    value: 3214.0
+  2003-01-01:
+    value: 3269.0
+  2004-01-01:
+    value: 3325.0
+  2005-01-01:
+    value: 3385.0
+  2006-01-01:
+    value: 3446.0
+  2007-01-01:
+    value: 3491.0
+  2008-01-01:
+    value: 3592.0
+  2009-01-01:
+    value: 3606.0
+  2010-01-01:
+    value: 3660.0
+  2013-01-01:
+    value: 3689.0
+  2014-01-01:
+    value: 3707.0
+  2015-01-01:
+    value: 3711.0
+  2016-01-01:
+    value: 3715.0
+  2017-01-01:
+    value: 3752.0
+  2018-01-01:
+    value: 3812.0
+  2019-01-01:
+    value: 3850.0

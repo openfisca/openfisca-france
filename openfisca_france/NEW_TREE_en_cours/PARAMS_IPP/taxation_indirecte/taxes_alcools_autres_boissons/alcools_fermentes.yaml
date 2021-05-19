@@ -1,0 +1,224 @@
+description: Alcools fermentés (vins, cidre, etc.)
+vins_mousseux_eur_hl:
+  description: Vins mousseux (€/hl)
+  values:
+    2021-01-01:
+      value: 9.68
+    2020-01-01:
+      value: 9.59
+    2019-01-01:
+      value: 9.44
+    2018-01-01:
+      value: 9.35
+    2017-01-01:
+      value: 9.33
+    2015-06-06:
+      value: 9.29
+    2014-05-30:
+      value: 9.23
+    2013-01-01:
+      value: 9.07
+    2012-01-01:
+      value: 8.91
+    2010-11-21:
+      value: 8.78
+    2010-05-01:
+      value: 8.77
+    2009-04-10:
+      value: 8.53
+    2002-03-31:
+      value: 8.4
+    2002-01-01:
+      value: null
+    1982-01-01:
+      value: 54.8
+  metadata:
+    ipp_csv_id: taxe_vins_mousseux
+    unit:
+      2002-03-31: currency-EUR
+      1982-01-01: currency-FRF
+vins_tranquilles_eur_hl:
+  description: Vins tranquilles (€/hl)
+  values:
+    2021-01-01:
+      value: 3.91
+    2020-01-01:
+      value: 3.88
+    2019-01-01:
+      value: 3.82
+    2018-01-01:
+      value: 3.78
+    2017-01-01:
+      value: 3.77
+    2015-06-06:
+      value: 3.75
+    2014-05-30:
+      value: 3.72
+    2013-01-01:
+      value: 3.66
+    2012-01-01:
+      value: 3.6
+    2010-05-01:
+      value: 3.55
+    2009-04-10:
+      value: 3.45
+    2002-03-31:
+      value: 3.4
+    2002-01-01:
+      value: null
+    1982-01-01:
+      value: 22.0
+  metadata:
+    ipp_csv_id: taxe_vins_tranquilles
+    unit:
+      2002-03-31: currency-EUR
+      1982-01-01: currency-FRF
+boissons_fermentees_autres_que_vin_biere_eur_hl:
+  description: Boissons fermentées autres que vin et bière (€/hl)
+  values:
+    2021-01-01:
+      value: 3.91
+    2020-01-01:
+      value: 3.88
+    2019-01-01:
+      value: 3.82
+    2018-01-01:
+      value: 3.78
+    2017-01-01:
+      value: 3.77
+    2015-06-06:
+      value: 3.75
+    2014-05-30:
+      value: 3.72
+    2013-01-01:
+      value: 3.66
+    2012-01-01:
+      value: 3.6
+    2010-05-01:
+      value: 3.55
+    2009-04-10:
+      value: 3.45
+    2002-03-31:
+      value: 3.4
+    2002-01-01:
+      value: null
+    1982-01-01:
+      value: 22.0
+  metadata:
+    ipp_csv_id: taxe_boiss_fermen_sauf_vin_biere
+    unit:
+      2002-03-31: currency-EUR
+      1982-01-01: currency-FRF
+cidres_poires_hydromels_eur_hl:
+  description: Cidres / Poirés / Hydromels (€/hl)
+  values:
+    2021-01-01:
+      value: 1.37
+    2020-01-01:
+      value: 1.36
+    2019-01-01:
+      value: 1.34
+    2017-01-01:
+      value: 1.33
+    2015-06-06:
+      value: 1.32
+    2014-05-30:
+      value: 1.31
+    2013-01-01:
+      value: 1.29
+    2012-01-01:
+      value: 1.27
+    2010-05-01:
+      value: 1.25
+    2009-04-10:
+      value: 1.22
+    2002-03-31:
+      value: 1.2
+    2002-01-01:
+      value: null
+    1982-01-01:
+      value: 7.6
+  metadata:
+    ipp_csv_id: taxe_cidre_poire_hydromel
+    unit:
+      2002-03-31: currency-EUR
+      1982-01-01: currency-FRF
+exoneration_ensemble_vins_eur_hl:
+  description: Exonération pour l'ensemble des vins (€/hl)
+  values:
+    1993-02-01:
+      value: null
+    1982-01-01:
+      value: 12.7
+  metadata:
+    ipp_csv_id: exoneration_taxe_vins
+    unit: currency-FRF
+exoneration_petillants_voir_conditions_eur_hl:
+  description: Exonération des pétillants (voir conditions) (€/hl)
+  values:
+    1993-02-01:
+      value: null
+    1982-01-01:
+      value: 5.4
+  metadata:
+    ipp_csv_id: exoneration_taxe_petillants
+    unit: currency-FRF
+metadata:
+  order:
+  - vins_mousseux_eur_hl
+  - vins_tranquilles_eur_hl
+  - boissons_fermentees_autres_que_vin_biere_eur_hl
+  - cidres_poires_hydromels_eur_hl
+  - exoneration_ensemble_vins_eur_hl
+  - exoneration_petillants_voir_conditions_eur_hl
+  reference:
+    2021-01-01:
+      title: Arrêté du 28/12/2020
+      href:  https://www.legifrance.gouv.fr/eli/arrete/2020/12/28/CCPD2036946A/jo/texte
+    2020-01-01:
+      title: Arrêté du 19/12/2019
+      href:  https://www.legifrance.gouv.fr/eli/arrete/2019/12/19/CPAD1935243A/jo/texte
+    2019-01-01:
+      title: Circulaire du 10/12/2018
+      href: http://circulaire.legifrance.gouv.fr/pdf/2018/12/cir_44175.pdf
+    2018-01-01: Arrêté du 22/12/2017 (tarifs accises alcools 2018)
+    2017-01-01: Arrêté du 27/12/2016 (tarifs accises alcools 2017)
+    2015-06-06:
+      title: Décret 2015-608 du 03/06/2015
+      href: https://www.legifrance.gouv.fr/eli/decret/2015/6/3/2015-608/jo/texte
+    2014-05-30:
+      title: Décret 2014-549 du 26/05/2014
+      href: https://www.legifrance.gouv.fr/eli/decret/2014/5/26/2014-549/jo/texte
+    2013-01-01: Arrêté du 15/12/2012 (tarifs accises alcools 2013)
+    2012-01-01:
+      title: Décret 2012-653 du 04/05/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/5/4/2012-653/jo/texte
+    2010-11-21: Arrêté du 12/11/2010
+    2010-05-01:
+      title: Décret 2010-421 du 27/04/2010
+      href: https://www.legifrance.gouv.fr/eli/decret/2010/4/27/2010-421/jo/texte
+    2009-04-10:
+      title: Décret 2009-389 du 7/04/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/4/7/2009-389/jo/texte
+    1993-02-01:
+      title: Loi 92-1476 du 31/12/1992 (LFR pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000179313
+    1982-01-01:
+      title: Loi 81-1160 du 30/12/1981 (LF pour 1982)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000515870
+  date_parution_jo:
+    2018-01-01: 2017-12-27
+    2017-01-01: 2016-12-31
+    2015-06-06: 2015-06-05
+    2014-05-30: 2014-05-29
+    2013-01-01: 2012-12-23
+    2012-01-01: 2012-05-06
+    2010-11-21: 2010-11-20
+    2010-05-01: 2010-04-30
+    2009-04-10: 2009-04-09
+    1993-02-01: 1993-01-04
+    1982-01-01: 1981-12-31
+  description_en: Fermented alcohols (wine, cider, etc.)
+documentation: |
+  Notes :
+  Données renseignées dans l'article 438 du code général des impôts

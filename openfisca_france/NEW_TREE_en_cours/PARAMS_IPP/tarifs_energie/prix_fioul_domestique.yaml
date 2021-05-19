@@ -1,0 +1,145 @@
+description: Prix du fioul domestique
+prix_annuel_moyen_fioul_domestique_ttc_livraisons_2000_4999_litres_en_euro_par_litre:
+  description: Prix annuel moyen du fioul domestique TTC - Livraisons de 2000 à 4999 litres - en euro par litre
+  values:
+    2020-01-01:
+      value: 0.763
+    2019-01-01: 
+      value: 0.931
+    2018-01-01:
+      value: 0.912
+    2017-01-01:
+      value: 0.741
+    2016-01-01:
+      value: 0.6376
+    2015-01-01:
+      value: 0.7058
+    2014-01-01:
+      value: 0.8599
+    2013-01-01:
+      value: 0.9272
+    2012-01-01:
+      value: 0.9688
+    2011-01-01:
+      value: 0.8879
+    2010-01-01:
+      value: 0.716
+    2009-01-01:
+      value: 0.5756
+    2008-01-01:
+      value: 0.8332
+    2007-01-01:
+      value: 0.651
+    2006-01-01:
+      value: 0.6487
+    2005-01-01:
+      value: 0.5874
+    2004-01-01:
+      value: 0.45
+    2003-01-01:
+      value: 0.3896
+    2002-01-01:
+      value: 0.3659
+    2001-01-01:
+      value: 0.3934
+    2000-01-01:
+      value: 0.4628
+    1999-01-01:
+      value: 0.3285
+    1998-01-01:
+      value: 0.3011
+    1997-01-01:
+      value: 0.3513
+    1996-01-01:
+      value: 0.3344
+    1995-01-01:
+      value: 0.3047
+    1994-01-01:
+      value: 0.3106
+    1993-01-01:
+      value: 0.3189
+    1992-01-01:
+      value: 0.3121
+    1991-01-01:
+      value: 0.3499
+    1990-01-01:
+      value: 0.3399
+  metadata:
+    ipp_csv_id: prix_fuel_domestique_ttc
+    unit: currency-EUR
+prix_annuel_moyen_fioul_domestique_ht_livraisons_2000_4999_litres_en_euro_par_litre:
+  description: Prix annuel moyen du fioul domestique HT - Livraisons de 2000 à 4999 litres - en euro par litre
+  values:
+    2020-01-01:
+      value: 0.480
+    2019-01-01:
+      value: 0.619
+    2018-01-01:
+      value: 0.603
+    2017-01-01:
+      value: 0.499
+    2016-01-01:
+      value: 0.4351
+    2015-01-01:
+      value: 0.5118
+    2014-01-01:
+      value: 0.66
+    2013-01-01:
+      value: 0.7187
+    2012-01-01:
+      value: 0.7535
+    2011-01-01:
+      value: 0.6858
+    2010-01-01:
+      value: 0.542
+    2009-01-01:
+      value: 0.4246
+    2008-01-01:
+      value: 0.64
+    2007-01-01:
+      value: 0.4877
+    2006-01-01:
+      value: 0.4858
+    2005-01-01:
+      value: 0.4346
+    2004-01-01:
+      value: 0.3196
+    2003-01-01:
+      value: 0.2692
+    2002-01-01:
+      value: 0.2572
+    2001-01-01:
+      value: 0.2889
+    2000-01-01:
+      value: 0.319
+    1999-01-01:
+      value: 0.1923
+    1998-01-01:
+      value: 0.1703
+    1997-01-01:
+      value: 0.2128
+    1996-01-01:
+      value: 0.2005
+    1995-01-01:
+      value: 0.1797
+    1994-01-01:
+      value: 0.1877
+    1993-01-01:
+      value: 0.1993
+    1992-01-01:
+      value: 0.1979
+    1991-01-01:
+      value: 0.2307
+    1990-01-01:
+      value: 0.2232
+  metadata:
+    ipp_csv_id: prix_fuel_domestique_ht
+    unit: currency-EUR
+metadata:
+  order:
+  - prix_annuel_moyen_fioul_domestique_ttc_livraisons_2000_4999_litres_en_euro_par_litre
+  - prix_annuel_moyen_fioul_domestique_ht_livraisons_2000_4999_litres_en_euro_par_litre
+  description_en: Domestic fuel price
+documentation: |
+  Source : http://www.prix-carburants.developpement-durable.gouv.fr/petrole/se_cons_fr.htm
+  Moyenne annuelle

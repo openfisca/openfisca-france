@@ -1,0 +1,8 @@
+description: Coefficient multiplicateur pour l'appel des taux de 2000 pour la réduction du dégrèvement de la taxe d'habitation
+unit: /1
+reference: art. 1414 A du CGI
+values:
+  2017-01-01:
+    value: 1.034
+  2020-01-01:
+    value: null

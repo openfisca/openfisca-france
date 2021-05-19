@@ -1,0 +1,9 @@
+description: Case UQ
+unit: currency
+values:
+  2002-01-01:
+    value: 2300.0
+  2006-01-01:
+    value: 3000.0
+  2008-01-01:
+    value: null

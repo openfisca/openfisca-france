@@ -1,0 +1,8 @@
+description: Seuil en nombre de salariés
+reference: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=9A0DD751081EBD0182A9DEFC36BF9E89.tplgfr41s_2?idArticle=JORFARTI000001679859&cidTexte=JORFTEXT000000632642&dateTexte=29990101&categorieLien=id
+unit: /1
+values:
+  1943-01-01:
+    value: 10
+  2005-02-08:
+    value: 20

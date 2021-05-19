@@ -1,0 +1,8 @@
+description: Âge minimal pour bénéficier du revenu de solidarité active Jeune
+unit: year
+values:
+  2009-06-01:
+    value: 0
+  2010-01-01:
+    value: 18.0
+    reference: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074069&idArticle=LEGIARTI000021636574&dateTexte=&categorieLien=cid

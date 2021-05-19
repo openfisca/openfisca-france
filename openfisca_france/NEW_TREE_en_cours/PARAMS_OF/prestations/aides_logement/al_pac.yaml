@@ -1,0 +1,39 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+age_limite_pour_les_enfants_a_charge:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: year
+  values:
+    1991-11-11:
+      value: 18.0
+    2000-01-01:
+      value: 21.0
+age_minimal:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  pour_les_ascendants_et_leur_conjoint:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: year
+    values:
+      1991-11-11:
+        value: 65.0
+  pour_les_ascendants_et_leur_conjoints_qui_sont_invalides_ou_anciens_deportes_ou_internes:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: year
+    values:
+      1991-11-11:
+        value: 60.0
+plafonds_de_ressources_que_les_potentiels_personnes_a_charge_autre_que_les_enfants_doivent_respecter_1:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
+  values:
+    1991-11-11:
+      value: 6997.0
+    2007-07-01:
+      value: 9600.0
+    2018-01-01:
+      value: 9609.6
+pourcentage_minimal_de_handicap_pour_les_ascendants_ou_descendants_du_3eme_degre_maximum:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    2000-01-01:
+      value: 0.8

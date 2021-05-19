@@ -1,0 +1,5 @@
+description: Montant mensuel de la bourse de lycée échelon 3, en multiple de la base mensuelle des allocations familiales (BMAF)
+unit: currency
+values:
+  2016-07-01:
+    value: 1.5435

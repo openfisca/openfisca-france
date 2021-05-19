@@ -1,0 +1,7 @@
+description: Abattement R. 351-6 (double activité)
+unit: currency
+values:
+  2002-01-01:
+    value: 76.0
+  2007-07-01:
+    value: 95.0

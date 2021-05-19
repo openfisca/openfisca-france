@@ -1,0 +1,21 @@
+description: Plafond annuel de ressources n°1
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2015-07-01:
+    value: 55950.0
+  2016-01-01:
+    value: 56174.0
+    reference: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=A255A658F13C8E33683829D842D23613.tplgfr38s_1?cidTexte=JORFTEXT000031632853&idArticle=LEGIARTI000031634884&dateTexte=20151217&categorieLien=cid#LEGIARTI000031634884
+  2018-01-01:
+    value: 56286.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2017/12/27/SSAS1736592A/jo/article_1
+  2019-01-01:
+    value: 56849.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2018/12/21/SSAS1835267A/jo/article_1
+  2020-01-01:
+    value: 57759.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2019/12/20/SSAS1934813A/jo/article_1
+  2021-01-01:
+    value: 58279.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2020/12/14/SSAS2032692A/jo/article_1

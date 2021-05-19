@@ -1,0 +1,10 @@
+description: Impôt sur la fortune immobilière (IFI) - à partir de 2018
+metadata:
+  order:
+  - bareme_ifi
+  - decote_ifi
+  - plaf_ifi
+  - reduc_impot_ifi
+  - reduc_exo_ifi
+  - forfait_mobilier_ifi
+  description_en: Real estate tax computation

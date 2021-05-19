@@ -1,0 +1,40 @@
+description: Loyer minimum lo
+reference: https://www.legifrance.gouv.fr/eli/arrete/2007/11/8/MLVU0759263A/jo/article_2
+unit: currency
+brackets:
+- rate:
+    2007-11-01:
+      value: 0.04
+  threshold:
+    2007-11-01:
+      value: 0
+- rate:
+    2007-11-01:
+      value: 0.104
+  threshold:
+    2007-07-01:
+      value: 1948.10
+- rate:
+    2007-11-01:
+      value: 0.216
+  threshold:
+    2007-11-01:
+      value: 2678.71
+- rate:
+    2007-11-01:
+      value: 0.264
+  threshold:
+    2007-11-01:
+      value: 3896.18
+- rate:
+    2007-11-01:
+      value: 0.32
+  threshold:
+    2007-11-01:
+      value: 5357.44
+- rate:
+    2007-11-01:
+      value: 0.48
+  threshold:
+    2007-11-01:
+      value: 6331.29

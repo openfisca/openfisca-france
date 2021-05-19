@@ -1,0 +1,192 @@
+description: Age d'annulation de la décote
+age_annulation_decote_en_fonction_date_naissance:
+  description: Age d'annulation de la décote en fonction de la date de naissance
+  ne_avant_1951_07_01:
+    description: Né avant le 01/07/1951
+    annee:
+      description: Année
+      values:
+        1983-04-01:
+          value: 65.0
+      metadata:
+        ipp_csv_id: ageplein_base
+    mois:
+      description: Mois
+      values:
+        1983-04-01:
+          value: 0.0
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1951_07_01:
+    description: Né après le 01/07/1951
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 65.0
+        1983-04-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageplein_0751
+    mois:
+      description: Mois
+      values:
+        2011-07-01:
+          value: 4.0
+        1983-04-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1952_01_01:
+    description: Né après le 01/01/1952
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 65.0
+        1983-04-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageplein_0152
+    mois:
+      description: Mois
+      values:
+        2012-01-01:
+          value: 9.0
+        2011-07-01:
+          value: 8.0
+        1983-04-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1953_01_01:
+    description: Né après le 01/01/1953
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 66.0
+        1983-04-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageplein_0153
+    mois:
+      description: Mois
+      values:
+        2012-01-01:
+          value: 2.0
+        2011-07-01:
+          value: 0.0
+        1983-04-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1954_01_01:
+    description: Né après le 01/01/1954
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 66.0
+        1983-04-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageplein_0154
+    mois:
+      description: Mois
+      values:
+        2012-01-01:
+          value: 7.0
+        2011-07-01:
+          value: 4.0
+        1983-04-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1955_01_01:
+    description: Né après le 01/01/1955
+    annee:
+      description: Année
+      values:
+        2012-01-01:
+          value: 67.0
+        2011-07-01:
+          value: 66.0
+        1983-04-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageplein_0155
+    mois:
+      description: Mois
+      values:
+        2012-01-01:
+          value: 0.0
+        2011-07-01:
+          value: 8.0
+        1983-04-01:
+          value: null
+    metadata:
+      order:
+      - annee
+      - mois
+  ne_apres_1956_01_01:
+    description: Né après le 01/01/1956
+    annee:
+      description: Année
+      values:
+        2011-07-01:
+          value: 67.0
+        1983-04-01:
+          value: null
+    mois:
+      description: Mois
+      values:
+        2011-07-01:
+          value: 0.0
+        1983-04-01:
+          value: null
+      metadata:
+        ipp_csv_id: ageplein_0156
+    metadata:
+      order:
+      - annee
+      - mois
+  metadata:
+    order:
+    - ne_avant_1951_07_01
+    - ne_apres_1951_07_01
+    - ne_apres_1952_01_01
+    - ne_apres_1953_01_01
+    - ne_apres_1954_01_01
+    - ne_apres_1955_01_01
+    - ne_apres_1956_01_01
+metadata:
+  order:
+  - age_annulation_decote_en_fonction_date_naissance
+  reference:
+    2012-01-01: Article L351-8 du Code de la sécurité sociale
+    2011-07-01:
+      title: Loi 2010-1330 du 9/11/2010, art. 20
+      href: https://www.legifrance.gouv.fr/eli/loi/2010/11/9/2010-1330/jo/article_20
+    1983-04-01: Ordonnance 82-270 du 26/03/1982, art. 9
+  date_parution_jo:
+    2011-07-01: 2010-11-10
+    1983-04-01: 1982-03-28
+  notes:
+    2012-01-01: Augmentation mécanique, prévue dans cet article de loi, suite à l'augmentation de l'âge d'ouverture des droits (Loi 2011-1906 du 21/12/2011, art. 88).
+    2011-07-01: "Modification de l'art.L351-8 du CSS : âge d'obtention du taux plein = AOD + 5 ans"
+  description_en: Full rate age
+documentation: |
+  Lecture :
+  La valeur renseignée est valable à partir de la date de naissance, jusqu'à la date suivante. Quand une date de naissance est la dernière renseignée, la valeur du paramètre est considérée comme constante à partir de cette date.
+  Ce tableau renseigne, pour une date de législation donnée (la date d'effet, en ligne), le paramètre en fonction de la date de naissance (en ordonnée).

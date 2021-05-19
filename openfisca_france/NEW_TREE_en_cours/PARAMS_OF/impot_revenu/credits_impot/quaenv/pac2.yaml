@@ -1,0 +1,7 @@
+description: Majoration du plafond pour le 2nd enfant
+unit: currency
+values:
+  2002-01-01:
+    value: 500.0
+  2008-01-01:
+    value: 400.0

@@ -1,0 +1,324 @@
+description: Salaire de référence AGIRC
+salaire_reference_prix_achat_valeur_nominale:
+  description: Salaire de référence AGIRC (prix d'achat) valeur nominale
+  values:
+    2018-01-01:
+      value: 5.8166
+    2017-01-01:
+      value: 5.6306
+    2016-01-01:
+      value: 5.4455
+    2014-04-01:
+      value: 5.3075
+    2013-04-01:
+      value: 5.3006
+    2012-04-01:
+      value: 5.2509
+    2011-04-01:
+      value: 5.1354
+    2010-04-01:
+      value: 5.0249
+    2009-04-01:
+      value: 4.9604
+    2008-04-01:
+      value: 4.8727
+    2007-04-01:
+      value: 47125.0
+    2006-04-01:
+      value: 4.5444
+    2005-04-01:
+      value: 4.4163
+    2004-04-01:
+      value: 4.3128
+    2003-01-01:
+      value: 4.2158
+    2002-01-01:
+      value: 4.1494
+    2001-01-01:
+      value: 26.79
+    2000-01-01:
+      value: 26.39
+    1999-01-01:
+      value: 24.69
+    1998-01-01:
+      value: 23.1
+    1997-01-01:
+      value: 22.26
+    1996-01-01:
+      value: 21.16
+    1995-01-01:
+      value: 20.03
+    1994-01-01:
+      value: 19.52
+    1993-01-01:
+      value: 19.28
+    1992-01-01:
+      value: 19.23
+    1991-01-01:
+      value: 18.8
+    1990-01-01:
+      value: 18.21
+    1989-01-01:
+      value: 17.41
+    1988-01-01:
+      value: 16.68
+    1987-01-01:
+      value: 16.02
+    1986-01-01:
+      value: 15.6
+    1985-01-01:
+      value: 14.82
+    1984-01-01:
+      value: 13.88
+    1983-01-01:
+      value: 13.07
+    1982-01-01:
+      value: 11.78
+    1981-01-01:
+      value: 10.6
+    1980-01-01:
+      value: 9.42
+    1979-01-01:
+      value: 8.29
+    1978-01-01:
+      value: 7.42
+    1977-01-01:
+      value: 6.74
+    1976-01-01:
+      value: 6.12
+    1975-01-01:
+      value: 5.54
+    1974-01-01:
+      value: 4.81
+    1973-01-01:
+      value: 4.25
+    1972-01-01:
+      value: 3.88
+    1971-01-01:
+      value: 3.55
+    1970-01-01:
+      value: 3.26
+    1969-01-01:
+      value: 3.0
+    1968-01-01:
+      value: 2.77
+    1967-01-01:
+      value: 2.55
+    1966-01-01:
+      value: 2.41
+    1965-01-01:
+      value: 2.28
+    1964-01-01:
+      value: 2.17
+    1963-01-01:
+      value: 1.99
+    1962-01-01:
+      value: 1.86
+    1961-01-01:
+      value: 1.69
+    1960-01-01:
+      value: 1.52
+    1959-01-01:
+      value: 142.0
+    1958-01-01:
+      value: 130.0
+    1957-01-01:
+      value: 116.0
+    1956-01-01:
+      value: 107.0
+    1955-01-01:
+      value: 98.0
+    1954-01-01:
+      value: 87.0
+    1953-01-01:
+      value: 78.0
+    1952-01-01:
+      value: 76.0
+    1951-01-01:
+      value: 63.0
+    1950-01-01:
+      value: 52.0
+    1949-01-01:
+      value: 42.0
+    1948-01-01:
+      value: 37.0
+    1947-04-01:
+      value: 26.0
+  metadata:
+    ipp_csv_id: sal_ref_agirc_nominal
+    unit:
+      2002-01-01: currency-EUR
+      1960-01-01: currency-FRF
+      1947-04-01: currency-AFRF
+salaire_reference_prix_achat_en_euros:
+  description: Salaire de référence AGIRC (prix d'achat) en euros
+  values:
+    2018-01-01:
+      value: 5.8166
+    2017-01-01:
+      value: 5.6306
+    2016-01-01:
+      value: 5.4455
+    2014-04-01:
+      value: 5.3075
+    2013-04-01:
+      value: 5.3006
+    2012-04-01:
+      value: 5.2509
+    2011-04-01:
+      value: 5.1354
+    2010-04-01:
+      value: 5.0249
+    2009-04-01:
+      value: 4.9604
+    2008-04-01:
+      value: 4.8727
+    2007-04-01:
+      value: 4.7125
+    2006-04-01:
+      value: 4.5444
+    2005-04-01:
+      value: 4.4163
+    2004-04-01:
+      value: 4.3128
+    2003-01-01:
+      value: 4.2158
+    2002-01-01:
+      value: 4.1494
+    2001-01-01:
+      value: 4.0841
+    2000-01-01:
+      value: 4.0231
+    1999-01-01:
+      value: 3.764
+    1998-01-01:
+      value: 3.5216
+    1997-01-01:
+      value: 3.3935
+    1996-01-01:
+      value: 3.2258
+    1995-01-01:
+      value: 3.0536
+    1994-01-01:
+      value: 2.9758
+    1993-01-01:
+      value: 2.9392
+    1992-01-01:
+      value: 2.9316
+    1991-01-01:
+      value: 2.866
+    1990-01-01:
+      value: 2.7761
+    1989-01-01:
+      value: 2.6541
+    1988-01-01:
+      value: 2.5428
+    1987-01-01:
+      value: 2.4422
+    1986-01-01:
+      value: 2.3782
+    1985-01-01:
+      value: 2.2593
+    1984-01-01:
+      value: 2.116
+    1983-01-01:
+      value: 1.9925
+    1982-01-01:
+      value: 1.7958
+    1981-01-01:
+      value: 1.616
+    1980-01-01:
+      value: 1.4361
+    1979-01-01:
+      value: 1.2638
+    1978-01-01:
+      value: 1.1312
+    1977-01-01:
+      value: 1.0275
+    1976-01-01:
+      value: 0.933
+    1975-01-01:
+      value: 0.8446
+    1974-01-01:
+      value: 0.7333
+    1973-01-01:
+      value: 0.6479
+    1972-01-01:
+      value: 0.5915
+    1971-01-01:
+      value: 0.5412
+    1970-01-01:
+      value: 0.497
+    1969-01-01:
+      value: 0.4573
+    1968-01-01:
+      value: 0.4223
+    1967-01-01:
+      value: 0.3887
+    1966-01-01:
+      value: 0.3674
+    1965-01-01:
+      value: 0.3476
+    1964-01-01:
+      value: 0.3308
+    1963-01-01:
+      value: 0.3034
+    1962-01-01:
+      value: 0.2836
+    1961-01-01:
+      value: 0.2576
+    1960-01-01:
+      value: 0.2317
+    1959-01-01:
+      value: 0.2165
+    1958-01-01:
+      value: 0.1982
+    1957-01-01:
+      value: 0.1768
+    1956-01-01:
+      value: 0.1631
+    1955-01-01:
+      value: 0.1494
+    1954-01-01:
+      value: 0.1326
+    1953-01-01:
+      value: 0.1189
+    1952-01-01:
+      value: 0.1159
+    1951-01-01:
+      value: 0.096
+    1950-01-01:
+      value: 0.0793
+    1949-01-01:
+      value: 0.064
+    1948-01-01:
+      value: 0.0564
+    1947-04-01:
+      value: 0.0396
+  metadata:
+    ipp_csv_id: sal_ref_agirc_euros
+    unit: currency-EUR
+metadata:
+  order:
+  - salaire_reference_prix_achat_valeur_nominale
+  - salaire_reference_prix_achat_en_euros
+  reference:
+    2018-01-01: Circ. Arrco 2017-07-DT du 16/10/2017
+    2017-01-01: Circ. Arrco 2016-02-DT du 10/10/2016
+    2016-01-01: Circ. Agirc-Arrco 2015-10-DC
+    2014-04-01: Circ. Agirc 2014-2-DT. Décision CA Agirc du 13/03/2014.
+    2013-04-01: Circ. Agirc-Arrco 2013-6-DT du 02/04/2014
+    2012-04-01: Circ. Agirc-Arrco 2012-09-DT du 20/03/2012
+    2011-04-01: Circ. Agirc 2011-02-DT du 14/04/2011
+    2010-04-01: Circ. Agirc 2010-02-DT du 18/03/2010
+    2009-04-01: Circ. Agirc 2009-01-DT du 18/03/2009
+    2008-04-01: Circ. Agirc 2008-04-DT du 15/02/2008
+    2007-04-01: Circ. Agirc 2007-01-DT du 14/03/2007
+    2006-04-01: Circ. Agirc 2006-02-DRE du 19/05/2006
+    2005-04-01: Circ. Agirc 2005-02-DT du 21/03/2005
+  notes:
+    2014-04-01: Pas d'évolution en 2015.
+  description_en: Reference wage AGIRC
+documentation: |
+  Sources :
+  site Agirc depuis 2002, site Pro BTP

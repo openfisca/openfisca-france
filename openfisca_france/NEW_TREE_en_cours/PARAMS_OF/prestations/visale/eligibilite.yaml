@@ -1,0 +1,13 @@
+age_max:
+  description: Âge jusqu'auquel une personne est éligible à la caution Visale.
+  reference: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#1
+  unit: year
+  values:
+    2016-01-01: 30
+
+residence_hors_eee:
+  description: Pays de résidence qui ouvrent éligibilité à la caution Visale, hors pays de l'EEE.
+  reference: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#5
+  unit: ISO 3166-1 alpha-2
+  values:
+    2016-01-01: [ AD, CH, MC, SM ]

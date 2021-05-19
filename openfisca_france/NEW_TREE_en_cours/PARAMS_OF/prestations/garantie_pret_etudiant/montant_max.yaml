@@ -1,0 +1,10 @@
+description: Montant maximum du prêt garanti par l'État dans le cadre d'un prêt étudiant.
+reference: https://www.service-public.fr/particuliers/vosdroits/F986
+unit: currency
+values:
+  2020-06-08:
+    value: 15000
+    reference: https://www.service-public.fr/particuliers/vosdroits/F986
+  2021-02-16:  # la date est indiquée comme « début 2021 » par une source interne, mais la seule source publique à jour est BPIFrance, qui ne mentionne des banques conventionnées qu'à partir de cette date ; on aligne donc cette revalorisation sur la date de conventionnement.
+    value: 20000
+    reference: https://www.bpifrance.fr/Toutes-nos-solutions/Garanties-et-assurances/Garanties-aux-banques/Garantie-des-prets-etudiants

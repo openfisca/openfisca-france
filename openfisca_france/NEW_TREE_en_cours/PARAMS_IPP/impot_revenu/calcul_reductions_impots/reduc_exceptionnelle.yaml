@@ -1,0 +1,70 @@
+description: Réduction exceptionnelle (2013)
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2014-01-01:
+        value: 2015.0
+      2013-01-01:
+        value: 2014.0
+      2012-01-01:
+        value: 2013.0
+  metadata:
+    order:
+    - annee_ir
+reduction_impot_exceptionnelle:
+  description: Réduction d'impôt exceptionnelle
+  seuil_revenu_fiscal_reference:
+    description: Seuil du revenu fiscal de référence
+    values:
+      2014-01-01:
+        value: null
+      2013-01-01:
+        value: 14145.0
+      2012-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: reduc_except_rfr_seuil
+  majoration_seuil_par_demi_part_supplementaire:
+    description: Majoration du seuil par demi-part supplémentaire
+    values:
+      2014-01-01:
+        value: null
+      2013-01-01:
+        value: 3536.0
+      2012-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: reduc_except_rfr_seuil_majo
+  montant:
+    description: Montant
+    values:
+      2014-01-01:
+        value: null
+      2013-01-01:
+        value: 350.0
+      2012-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: reduc_except_montant
+  metadata:
+    order:
+    - seuil_revenu_fiscal_reference
+    - majoration_seuil_par_demi_part_supplementaire
+    - montant
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - reduction_impot_exceptionnelle
+  reference:
+    2013-01-01: 
+      title: Loi 2014-891 du 08/08/2014 (LFR pour 2014), art. 1
+  date_parution_jo:
+    2013-01-01: 2014-08-09
+  description_en: Temporary tax reduction (2013)
+documentation: |
+  Notes: Réduction d'impôt exceptionnelle forfaitaire sous condition que le revenu fiscal de référence soit inférieur à un certain seuil.
+  Montant maximum: 350 pour les célibataires, veufs ou divorcés, 700 si imposition commune
+  Plafond: 14145 * min(nombre de parts, 2)
+  Majoration du plafond: 3536 * max(nombre de parts - 2, 0)

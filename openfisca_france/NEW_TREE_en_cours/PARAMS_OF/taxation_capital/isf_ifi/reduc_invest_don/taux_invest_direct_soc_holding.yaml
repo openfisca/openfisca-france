@@ -1,0 +1,6 @@
+description: Taux pour investissement direct soc, holdings, fip, fcpi
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2008-01-01:
+    value: 0.5

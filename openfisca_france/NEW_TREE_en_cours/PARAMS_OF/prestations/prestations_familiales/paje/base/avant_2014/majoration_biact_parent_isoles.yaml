@@ -1,0 +1,30 @@
+description: Majoration pour biactifs et isolés
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2004-01-01:
+    value: 7758.0
+  2004-07-01:
+    value: 7905.0
+  2005-07-01:
+    value: 8039.0
+  2006-07-01:
+    value: 8176.0
+  2007-07-01:
+    value: 10394.0
+  2009-01-01:
+    value: 10550.0
+  2010-01-01:
+    value: 10845.0
+  2011-01-01:
+    value: 10856.0
+  2012-01-01:
+    value: 10965.0
+  2013-01-01:
+    value: 11195.0
+  2014-01-01:
+    value: 11408.0
+  2015-01-01:
+    value: 11488.0
+  2016-01-01:
+    value: 11534.0

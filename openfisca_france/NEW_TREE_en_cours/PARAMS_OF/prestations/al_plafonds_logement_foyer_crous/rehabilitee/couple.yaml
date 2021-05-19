@@ -1,0 +1,9 @@
+reference: ipp
+unit: currency
+values:
+  2017-10-01:
+    reference:  https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11
+    value: 261.72
+  2019-10-01:
+    reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&dateTexte=20191008
+    value: 262.50

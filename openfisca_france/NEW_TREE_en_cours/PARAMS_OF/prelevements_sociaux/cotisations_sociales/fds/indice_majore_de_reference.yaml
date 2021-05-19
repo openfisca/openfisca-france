@@ -1,0 +1,37 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  1989-09-01:
+    value: 254.0
+  1991-02-01:
+    value: 259.0
+  1991-08-01:
+    value: 261.0
+  1998-01-01:
+    value: 280.0
+  1998-07-01:
+    value: 282.0
+  1999-04-01:
+    value: 283.0
+  1999-07-01:
+    value: 285.0
+  1999-12-01:
+    value: 286.0
+  2001-05-01:
+    value: 288.0
+  2006-11-01:
+    value: 289.0
+  2008-07-01:
+    value: 290.0
+  2009-07-01:
+    value: 292.0
+  2011-01-01:
+    value: 295.0
+  2012-01-01:
+    value: 302.0
+  2012-07-01:
+    value: 308.0
+  2013-01-01:
+    value: 309.0
+  2017-03-01:
+    reference: https://www.legifrance.gouv.fr/eli/decret/2017/2/24/RDFF1703537D/jo/texte
+    value: 313.0

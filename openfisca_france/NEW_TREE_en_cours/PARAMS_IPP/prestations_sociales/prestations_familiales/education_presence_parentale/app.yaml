@@ -1,0 +1,115 @@
+description: "Allocation de présence parentale (APP, 2001-2005) : montants"
+montant_taux_plein_bmaf:
+  description: Montant taux plein (% BMAF)
+  couple:
+    description: Couple
+    values:
+      2006-06-04:
+        value: null
+      2002-04-01:
+        value: 2.3401
+      2001-01-01:
+        value: 1.4257
+    metadata:
+      ipp_csv_id: app_tx_plein_couple
+      unit: /1
+  seul:
+    description: Seul
+    values:
+      2006-06-04:
+        value: null
+      2002-04-01:
+        value: 2.7789
+      2001-01-01:
+        value: 1.8854
+    metadata:
+      ipp_csv_id: app_tx_plein_seul
+      unit: /1
+  metadata:
+    order:
+    - couple
+    - seul
+montant_taux_partiel_bmaf:
+  description: Montant taux partiel (% BMAF)
+  80_duree_legale_couple:
+    description: 80% durée légale, Couple
+    values:
+      2006-06-04:
+        value: null
+      2001-01-01:
+        value: 0.7129
+    metadata:
+      ipp_csv_id: app_tx_partiel1_couple
+      unit: /1
+  80_duree_legale_seul:
+    description: 80% durée légale, Seul
+    values:
+      2006-06-04:
+        value: null
+      2001-01-01:
+        value: 0.9427
+    metadata:
+      ipp_csv_id: app_tx_partiel1_seul
+      unit: /1
+  50_duree_legale_couple:
+    description: 50% durée légale, Couple
+    values:
+      2006-06-04:
+        value: null
+      2002-04-01:
+        value: 1.1701
+      2001-01-01:
+        value: 0.9427
+    metadata:
+      ipp_csv_id: app_tx_partiel2_couple
+      unit: /1
+  50_duree_legale_seul:
+    description: 50% durée légale, Seul
+    values:
+      2006-06-04:
+        value: null
+      2002-04-01:
+        value: 1.4626
+      2001-01-01:
+        value: 1.2444
+    metadata:
+      ipp_csv_id: app_tx_partiel2_seul
+      unit: /1
+  metadata:
+    order:
+    - 80_duree_legale_couple
+    - 80_duree_legale_seul
+    - 50_duree_legale_couple
+    - 50_duree_legale_seul
+duree_maximale_allocation_annee:
+  description: Durée maximale de l'allocation (année)
+  values:
+    2006-06-04:
+      value: null
+    2001-01-01:
+      value: 1.0
+  metadata:
+    ipp_csv_id: app_duree_max
+metadata:
+  order:
+  - montant_taux_plein_bmaf
+  - montant_taux_partiel_bmaf
+  - duree_maximale_allocation_annee
+  reference:
+    2006-06-04:
+      title: Décret 2006-659 du 02/06/2006
+      href: https://www.legifrance.gouv.fr/eli/decret/2006/6/2/2006-659/jo/texte
+    2002-04-01:
+      title: Décret 2002-373 du 19/03/2002, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006209264&cidTexte=JORFTEXT000000586461
+    2001-01-01:
+      title: Décret 2001-106 du 05/02/2001, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006779967&cidTexte=JORFTEXT000000769254
+  date_parution_jo:
+    2006-06-04: 2006-06-04
+    2002-04-01: 2002-03-21
+    2001-01-01: 2001-02-07
+  notes:
+    2006-06-04: APP devient AJPP
+    2001-01-01: Création de l'Allocation de Présence Parentale
+  description_en: "Parental presence allowance (AA): Amounts"

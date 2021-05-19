@@ -1,0 +1,160 @@
+description: Cotisations retraite complémentaire des salariés Agirc-Arrco (depuis 2019)
+agirc_arrco:
+  description: Cotisation Agirc-Arrco
+  tx_calcul:
+    description: Taux de calcul de points
+    tranche_1:
+      description: Tranche 1 (sous 1 PSS)
+      values:
+        2019-01-01:
+          value: 0.062
+      metadata:
+        unit: /1
+    tranche_2:
+      description: Tranche 2 (entre 1 et 8 PSS)
+      values:
+        2019-01-01:
+          value: 0.17
+      metadata:
+        unit: /1
+  tx_appel:
+    description: Taux d'appel
+    values:
+      2019-01-01:
+        value: 1.27
+    metadata:
+      unit: /1
+  tx_tranche_1:
+    description: Taux de cotisation, tranche 1 (sous 1 PSS)
+    sal:
+      description: Salarié
+      values:
+        2019-01-01:
+          value: 0.0315
+      metadata:
+        unit: /1
+    empl:
+      description: Employeur
+      values:
+        2019-01-01:
+          value: 0.0472
+      metadata:
+        unit: /1
+    tot:
+      description: Total
+      values:
+        2019-01-01:
+          value: 0.0787
+      metadata:
+        unit: /1
+  tx_tranche_2:
+    description: Taux de cotisation, tranche 2 (entre 1 et 8 PSS)
+    sal:
+      description: Salarié
+      values:
+        2019-01-01:
+          value: 0.0864
+      metadata:
+        unit: /1
+    empl:
+      description: Employeur
+      values:
+        2019-01-01:
+          value: 0.1295
+      metadata:
+        unit: /1
+    tot:
+      description: Total
+      values:
+        2019-01-01:
+          value: 0.2159
+      metadata:
+        unit: /1
+ceg:
+  description: Contribution d'équilibre général (CEG)
+  tx_tranche_1:
+    description: Taux de cotisation, tranche 1 (sous 1 PSS)
+    sal:
+      description: Salarié
+      values:
+        2019-01-01:
+          value: 0.0086
+      metadata:
+        unit: /1
+    empl:
+      description: Employeur
+      values:
+        2019-01-01:
+          value: 0.0129
+      metadata:
+        unit: /1
+    tot:
+      description: Total
+      values:
+        2019-01-01:
+          value: 0.0215
+      metadata:
+        unit: /1
+  tx_tranche_2:
+    description: Taux de cotisation, tranche 2 (entre 1 et 8 PSS)
+    sal:
+      description: Salarié
+      values:
+        2019-01-01:
+          value: 0.0108
+      metadata:
+        unit: /1
+    empl:
+      description: Employeur
+      values:
+        2019-01-01:
+          value: 0.0162
+      metadata:
+        unit: /1
+    tot:
+      description: Total
+      values:
+        2019-01-01:
+          value: 0.027
+      metadata:
+        unit: /1
+cet:
+  description: Contribution d'équilibre technique (CET) sur tout salaire, si salaire > T1
+  sal:
+    description: Salarié
+    values:
+      2019-01-01:
+        value: 0.0014
+    metadata:
+      unit: /1
+  empl:
+    description: Employeur
+    values:
+      2019-01-01:
+        value: 0.0021
+    metadata:
+      unit: /1
+  tot:
+    description: Total
+    values:
+      2019-01-01:
+        value: 0.0035
+    metadata:
+      unit: /1
+metadata:
+  order:
+  - agirc_arrco
+  - ceg
+  - cet
+  reference:
+    2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+  date_parution_jo:
+    2019-01-01: 2017-11-19
+  notes:
+    2019-01-01: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
+  description_en: Complementary pension contributions
+documentation: |
+  Notes :
+  Le taux de cotisation est égal au taux de calcul des points multiplié par le taux d'appel.
+  La répartition du taux de cotisation total entre la part salarié et la part employeur se fait le plus souvent selon la règle de répartition "40/60", mais il existe des dérogations.
+  Les taux de cotisation CET s'appliquent à l'ensemble du salaire, mais uniquement pour les salariés dont la rémunération est supérieure à T1 (1 PSS).

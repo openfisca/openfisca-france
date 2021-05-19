@@ -1,0 +1,6 @@
+description: Âge limite DOM
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: year
+values:
+  2002-01-01:
+    value: 5.0

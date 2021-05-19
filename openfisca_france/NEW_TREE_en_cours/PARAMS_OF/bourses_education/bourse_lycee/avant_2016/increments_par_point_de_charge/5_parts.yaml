@@ -1,0 +1,5 @@
+description: Incrément pour 5 parts
+unit: currency
+values:
+  2014-01-01:
+    value: 1169.47

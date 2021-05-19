@@ -1,0 +1,45 @@
+description: Réduction post plafond
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_impot_revenu/plaf_qf/
+  - http://bofip.impots.gouv.fr/bofip/2494-PGP
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
+unit: currency
+values:
+  1998-01-01:
+    value: 4336.0
+  2001-01-01:
+    value: 570.0
+  2002-01-01:
+    value: 580.0
+  2003-01-01:
+    value: 590.0
+  2004-01-01:
+    value: 600.0
+  2005-01-01:
+    value: 611.0
+  2006-01-01:
+    value: 622.0
+  2007-01-01:
+    value: 630.0
+  2008-01-01:
+    value: 648.0
+  2009-01-01:
+    value: 661.0
+  2012-01-01:
+    value: 997.0
+  2013-01-01:
+    value: 1497.0
+  2014-01-01:
+    value: 1504.0
+  2015-01-01:
+    value: 1506.0
+  2016-01-01:
+    value: 1508.0
+  2017-01-01:
+    value: 1523.0
+  2018-01-01:
+    value: 1547.0
+  2019-01-01:
+    value: 1562.0
+  2021-01-01:
+    value: 1565.0

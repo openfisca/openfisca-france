@@ -1,0 +1,7 @@
+description: Abattement forfaitaire
+unit: currency
+values:
+  2016-07-01:
+    value: 0
+  2017-10-01:
+    value: 5

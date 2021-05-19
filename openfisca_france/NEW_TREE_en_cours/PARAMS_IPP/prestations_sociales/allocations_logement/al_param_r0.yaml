@@ -1,0 +1,323 @@
+description: Paramètres de calcul du montant forfaitaire R0 (que l'on déduit des ressources) - secteur locatif (après 2001)
+r0:
+  description: R0 (en euros) (2)
+  personnes_isolees:
+    description: Personne seule sans personne à charge
+    values:
+      2020-01-01:
+        value: 4588
+      2019-01-01:
+        value: 4575
+      2016-01-01:
+        value: 4562
+      2015-01-01:
+        value: 4544
+    metadata:
+      ipp_csv_id: r0_seul
+      unit: currency-EUR
+  couples:
+    description: Couple sans personne à charge
+    values:
+      2020-01-01:
+        value: 6572
+      2019-01-01:
+        value: 6553
+      2016-01-01:
+        value: 6534
+      2015-01-01:
+        value: 6508
+    metadata:
+      ipp_csv_id: r0_couple
+      unit: currency-EUR
+  personnes_seules_couples_avec_1_personne_a_charge:
+    description: Personne seule ou couple ayant une personne à charge
+    values:
+      2020-01-01:
+        value: 7839
+      2019-01-01:
+        value: 7816
+      2016-01-01:
+        value: 7793
+      2015-01-01:
+        value: 7762
+    metadata:
+      ipp_csv_id: r0_1pac
+      unit: currency-EUR
+  personnes_seules_couples_avec_2_personnes_a_charge:
+    description: Personne seule ou couple ayant deux personnes à charge
+    values:
+      2020-01-01:
+        value: 8015
+      2019-01-01:
+        value: 7992
+      2016-01-01:
+        value: 7969
+      2015-01-01:
+        value: 7938
+    metadata:
+      ipp_csv_id: r0_2pac
+      unit: currency-EUR
+  personnes_seules_couples_avec_3_personnes_a_charge:
+    description: Personne seule ou couple ayant trois personnes à charge
+    values:
+      2020-01-01:
+        value: 8322
+      2019-01-01:
+        value: 8298
+      2016-01-01:
+        value: 8274
+      2015-01-01:
+        value: 8242
+    metadata:
+      ipp_csv_id: r0_3pac
+      unit: currency-EUR
+  personnes_seules_couples_avec_4_personnes_a_charge:
+    description: Personne seule ou couple ayant quatre personnes à charge
+    values:
+      2020-01-01:
+        value: 8631
+      2019-01-01:
+        value: 8606
+      2016-01-01:
+        value: 8581
+      2015-01-01:
+        value: 8547
+    metadata:
+      ipp_csv_id: r0_4pac
+      unit: currency-EUR
+  personnes_seules_couples_avec_5_personnes_a_charge:
+    description: Personne seule ou couple ayant cinq personnes à charge
+    values:
+      2020-01-01:
+        value: 8938
+      2019-01-01:
+        value: 8912
+      2016-01-01:
+        value: 8886
+      2015-01-01:
+        value: 8851
+    metadata:
+      ipp_csv_id: r0_5pac
+      unit: currency-EUR
+  personnes_seules_couples_avec_6_personnes_a_charge:
+    description: Personne seule ou couple ayant six personnes à charge
+    values:
+      2020-01-01:
+        value: 9246
+      2019-01-01:
+        value: 9219
+      2016-01-01:
+        value: 9192
+      2015-01-01:
+        value: 9156
+    metadata:
+      ipp_csv_id: r0_6pac
+      unit: currency-EUR
+  majoration_par_personne_a_charge_supplementaire:
+    description: Majoration par personne à charge supplémentaire
+    values:
+      2020-01-01:
+        value: 305
+      2019-01-01:
+        value: 305
+      2016-01-01:
+        value: 305
+      2015-01-01:
+        value: 304
+    metadata:
+      ipp_csv_id: r0_majoration_par_pac
+      unit: currency-EUR
+  metadata:
+    order:
+    - personnes_isolees
+    - couples_en_rmi
+    - personnes_seules_couples_avec_1_personne_a_charge
+    - personnes_seules_couples_avec_2_personnes_a_charge
+    - personnes_seules_couples_avec_3_personnes_a_charge
+    - personnes_seules_couples_avec_4_personnes_a_charge
+    - personnes_seules_couples_avec_5_personnes_a_charge
+    - personnes_seules_couples_avec_6_personnes_a_charge
+    - majoration_par_personne_a_charge_supplementaire
+r1_en_rsa_socle_1:
+  description: R1 (en % du RSA socle) (1)
+  personnes_isolees_en_rmi_base:
+    description: Personnes isolées(en % du RMI de base)
+    values:
+      2015-01-01:
+        value: null
+      2001-01-01:
+        value: 0.88
+    metadata:
+      ipp_csv_id: r1_isol
+      unit: /1
+  couples_en_rmi_base:
+    description: Couples(en % du RMI de base)
+    values:
+      2015-01-01:
+        value: null
+      2001-01-01:
+        value: 1.26
+    metadata:
+      ipp_csv_id: r1_coup
+      unit: /1
+  personnes_isolees_couples_avec_1_enfant_en_rmi_base:
+    description: Personnes isolées ou couples avec 1 enfant (en % du RMI de base)
+    values:
+      2015-01-01:
+        value: null
+      2001-01-01:
+        value: 1.503
+    metadata:
+      ipp_csv_id: r1_enf1
+      unit: /1
+  personnes_isolees_couples_avec_2_enfants_en_rmi_base:
+    description: Personnes isolées ou couples avec 2 enfants (en % du RMI de base)
+    values:
+      2015-01-01:
+        value: null
+      2001-01-01:
+        value: 1.803
+    metadata:
+      ipp_csv_id: r1_enf2
+      unit: /1
+  majoration_par_enfant_charge_supplementaire_en_rmi_base:
+    description: Majoration par enfant à charge supplémentaire (en % du RMI de base)
+    values:
+      2015-01-01:
+        value: null
+      2001-01-01:
+        value: 0.4
+    metadata:
+      ipp_csv_id: r1_enfsupp
+      unit: /1
+  metadata:
+    order:
+    - personnes_isolees_en_rmi_base
+    - couples_en_rmi_base
+    - personnes_isolees_couples_avec_1_enfant_en_rmi_base
+    - personnes_isolees_couples_avec_2_enfants_en_rmi_base
+    - majoration_par_enfant_charge_supplementaire_en_rmi_base
+r2_en_bmaf_1:
+  description: R2 (en % de la BMAF) (1)
+  personnes_isolees_couples_avec_2_enfants_en_bmaf_01_01_n_2:
+    description: Personnes isolées ou couples avec 2 enfants (en % de la BMAF au 01/01/N-2)
+    values:
+      2015-01-01:
+        value: null
+      2001-01-01:
+        value: 0.32
+    metadata:
+      ipp_csv_id: r2_enf2
+      unit: /1
+  majoration_par_enfant_charge_supplementaire_en_bmaf_01_01_n_2:
+    description: Majoration par enfant à charge supplémentaire (en % de la BMAF au 01/01/N-2)
+    values:
+      2015-01-01:
+        value: null
+      2001-01-01:
+        value: 0.41
+    metadata:
+      ipp_csv_id: r2_enfsupp
+      unit: /1
+  metadata:
+    order:
+    - personnes_isolees_couples_avec_2_enfants_en_bmaf_01_01_n_2
+    - majoration_par_enfant_charge_supplementaire_en_bmaf_01_01_n_2
+plafond_r0:
+  description: Plafond de R0
+  foyers_sans_personne_charge_en_r0:
+    description: Foyers sans personne à charge (en % du R0 )
+    values:
+      2015-01-01:
+        value: null
+      2002-01-01:
+        value: 1.0
+      2001-01-01:
+        value: 0.75
+    metadata:
+      ipp_csv_id: tx_plaf_r0_enf0
+      unit: /1
+  foyers_avec_1_personne_charge_en_r0:
+    description: Foyers avec 1 personne à charge (en % du R0)
+    values:
+      2015-01-01:
+        value: null
+      2002-01-01:
+        value: 1.0
+      2001-01-01:
+        value: 0.69
+    metadata:
+      ipp_csv_id: tx_plaf_r0_enf1
+      unit: /1
+  foyers_avec_2_personnes_charge_en_r0:
+    description: Foyers avec 2 personnes à charge (en % du R0)
+    values:
+      2015-01-01:
+        value: null
+      2002-01-01:
+        value: 1.0
+      2001-01-01:
+        value: 0.72
+    metadata:
+      ipp_csv_id: tx_plaf_r0_enf2
+      unit: /1
+  foyers_avec_3_personnes_charge_en_r0:
+    description: Foyers avec 3 personnes à charge (en % du R0 )
+    values:
+      2015-01-01:
+        value: null
+      2002-01-01:
+        value: 1.0
+      2001-01-01:
+        value: 0.75
+    metadata:
+      ipp_csv_id: tx_plaf_r0_enf3
+      unit: /1
+  foyers_avec_4_personnes_charge_plus_en_r0:
+    description: Foyers avec 4 personnes à charge et plus (en % du R0 )
+    values:
+      2015-01-01:
+        value: null
+      2002-01-01:
+        value: 1.0
+      2001-01-01:
+        value: 0.83
+    metadata:
+      ipp_csv_id: tx_plaf_r0_enf4pl
+      unit: /1
+  metadata:
+    order:
+    - foyers_sans_personne_charge_en_r0
+    - foyers_avec_1_personne_charge_en_r0
+    - foyers_avec_2_personnes_charge_en_r0
+    - foyers_avec_3_personnes_charge_en_r0
+    - foyers_avec_4_personnes_charge_plus_en_r0
+metadata:
+  order:
+  - r0
+  - r1_en_rsa_socle_1
+  - r2_en_bmaf_1
+  - plafond_r0
+  reference:
+    2020-01-01:
+      - title: Décret n° 2020-6 du 3 janvier 2020, art. 1
+        href: https://www.legifrance.gouv.fr/eli/decret/2020/1/3/LOGL1934005D/jo/texte
+      - title: Arrêté du 3 janvier 2020, art. 1
+        href: https://www.legifrance.gouv.fr/eli/arrete/2020/1/3/LOGL1934006A/jo/texte
+    2019-01-01: Décret n° 2018-1316 du 27/12/2018 relatif au calcul des aides au logement, art. 1
+    2016-01-01: Arrêté du 21/01/2016 relatif au calcul des aides personnelles au logement, art. 5
+    2015-01-01: Arrêté du 29/12/2014 fixant les montants du paramètre R0 pour le calcul des aides personnelles au logement, art. 2
+    2001-01-01: Arrêté du 26/12/2000, art. 2
+  date_parution_jo:
+    2020-01-01: 2020-01-04
+    2019-01-01: 2018-12-29
+    2016-01-01: 2016-01-22
+    2015-01-01: 2014-12-31
+    2001-01-01: 2000-12-28
+  notes:
+    2002-01-01: Paramètres toutefois disponibles dans "Eléments de calcul des aides personnelles au logement", Ministère de l'égalité des territoires et du logement, 2013, p 13.
+  description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
+documentation: |
+  Notes :
+  (1) Les abattements appliqués aux traitements et salaires mentionnés dans le code général des impôts s'appliquent à R1-R2.
+  (2) À partir de 2015, le forfait R0 n'est plus calculé à partir de R1 et R2 mais directement défini en euros par la loi.

@@ -1,0 +1,7 @@
+description: Plafond si présence d'un invalide
+unit: currency
+values:
+  2001-01-01:
+    value: 13800.0
+  2005-01-01:
+    value: 20000.0

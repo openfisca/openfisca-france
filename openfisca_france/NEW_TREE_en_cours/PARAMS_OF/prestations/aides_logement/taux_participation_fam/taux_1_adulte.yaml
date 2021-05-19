@@ -1,0 +1,10 @@
+description: Taux pour 1 adulte
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2001-01-01:
+    value: 0.0308
+  2002-01-01:
+    value: 0.0354
+  2007-07-01:
+    value: 0.0283

@@ -1,0 +1,33 @@
+description: Montant annuel maximal de l'ASI pour une personne seule
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2006-01-01:
+    value: 4314.03
+  2007-01-01:
+    value: 4391.68
+  2008-01-01:
+    value: 4439.98
+  2008-09-01:
+    value: 4475.49
+  2009-04-01:
+    value: 4520.24
+  2010-04-01:
+    value: 4560.92
+  2011-04-01:
+    value: 4656.69
+  2012-04-01:
+    value: 4754.48
+  2013-04-01:
+    value: 4816.28
+  2014-04-01:
+    value: 4845.17
+  2016-04-01:
+    value: 4850.01
+  2017-04-01:
+    value: 4864.56
+  2018-04-01:
+    value: 4913.20
+  2019-04-01:
+    value: 4991.81
+    reference: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44460.pdf

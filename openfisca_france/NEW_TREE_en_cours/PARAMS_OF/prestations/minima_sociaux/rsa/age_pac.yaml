@@ -1,0 +1,5 @@
+description: Limite d'âge des enfants comptés à charge
+unit: year
+values:
+  1977-10-01:
+    value: 24.0

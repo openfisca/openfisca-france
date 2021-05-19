@@ -1,0 +1,5 @@
+description: 2ème majoration pour âge (14 ans pour les enfants né après le 30/04/97)
+unit: /1
+values:
+  2002-01-01:
+    value: 0.16

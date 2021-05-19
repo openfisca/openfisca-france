@@ -1,0 +1,95 @@
+description: Réductions pour dons ou investissement
+reduction_investissements_capital_pme:
+  description: Réduction pour investissements au capital de PME
+  plafond_investissement_dans_pme:
+    description: Plafond
+    values:
+      2018-01-01:
+        value: 45000.0
+    metadata:
+      ipp_csv_id: plaf_taux_imp_ifi
+      unit: currency-EUR
+  taux_investissement_direct_soc_holdings_fip_fcpi:
+    description: Taux
+    values:
+      2018-01-01:
+        value: 0.5
+    metadata:
+      ipp_csv_id: plaf_plaf_ifi
+      unit: /1
+  metadata:
+    order:
+    - plafond_investissement_dans_pme
+    - taux_investissement_direct_soc_holdings_fip_fcpi
+reduction_investissements_dans_fcpi_1_fip_2_dans_pme:
+  description: Réduction pour investissements dans FCPI (1) ou FIP (2) dans les PME
+  plafond:
+    description: Plafond
+    values:
+      2018-01-01:
+        value: 18000.0
+    metadata:
+      unit: currency-EUR
+  taux_investissement:
+    description: Taux
+    values:
+      2018-01-01:
+        value: 0.5
+    metadata:
+      unit: /1
+  metadata:
+    order:
+    - plafond
+    - taux_investissement
+plafond_somme_reduction_pme_fcip_fip_pme:
+  description: Plafond pour la somme de la réduction pour PME et pour les FCIP et FIP des PME
+  values:
+    2018-01-01:
+      value: 45000.0
+  metadata:
+    unit: currency-EUR
+reduction_dons_certains_organismes_interet_general:
+  description: Réduction pour dons à certains organismes d'intérêt général
+  taux_dons_certains_organismes_interet_general:
+    description: Taux
+    values:
+      2018-01-01:
+        value: 0.75
+    metadata:
+      unit: /1
+  limite_reduction_ifi_lie_aux_dons_realises:
+    description: Limite de la réduction
+    values:
+      2018-01-01:
+        value: 50000.0
+    metadata:
+      unit: currency-EUR
+  metadata:
+    order:
+    - taux_dons_certains_organismes_interet_general
+    - limite_reduction_ifi_lie_aux_dons_realises
+plafond_somme_trois_reductions_pme_fcip_fip_pme_dons:
+  description: Plafond pour la somme des trois réductions (PME, FCIP/FIP sur PME et dons)
+  values:
+    2018-01-01:
+      value: 45000.0
+  metadata:
+    unit: currency-EUR
+metadata:
+  order:
+  - reduction_investissements_capital_pme
+  - reduction_investissements_dans_fcpi_1_fip_2_dans_pme
+  - plafond_somme_reduction_pme_fcip_fip_pme
+  - reduction_dons_certains_organismes_interet_general
+  - plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
+  reference:
+    2018-01-01: "Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (crée art. 978 du CGI) : Cf. note en bas de la feuille."
+  date_parution_jo:
+    2018-01-01: 2017-12-31
+  notes:
+    2018-01-01: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
+  description_en: Tax reductions for investment and donations
+documentation: |
+  (1) Fonds commun de placement dans l'innovation
+  (2) Fonds d'investissement de proximité
+  Note : Les réductions d'impôt pour investissement dans les PME, les FCPI et les FIP sont supprimées avec le passage à l'IFI. Néanmoins, à titre dérogatoire et exceptionnel, ces dépenses d'investissement réalisées avant le 31/12/2017 peuvent donner lieu à ces mêmes réductions pour l'IFI 2018 : cf. art. 31 de la loi 2017-1837, fin de l'article : "Par dérogation au B du présent IX, le 34° du B du I est applicable à compter du 1er janvier 2018. Par exception, les dons et versements ouvrant droit aux avantages fiscaux prévus aux articles 885-0 V bis, 885-0 V bis A et 885-0 V bis B du code général des impôts, dans leur rédaction en vigueur au 31 décembre 2017, effectués entre la date limite de dépôt des déclarations mentionnées à l'article 885 W du même code, dans sa rédaction en vigueur au 31 décembre 2017, au titre de l'impôt de solidarité sur la fortune dû au titre de l'année 2017, et le 31 décembre 2017, sont imputables, dans les conditions prévues aux articles 885-0 V bis, 885-0 V bis A et 885-0 V bis B précités dans leur rédaction en vigueur au 31 décembre 2017, sur l'impôt sur la fortune immobilière dû au titre de l'année 2018."

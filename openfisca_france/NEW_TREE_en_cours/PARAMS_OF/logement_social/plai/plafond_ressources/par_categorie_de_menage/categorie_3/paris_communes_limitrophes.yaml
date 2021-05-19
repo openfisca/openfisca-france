@@ -1,0 +1,6 @@
+description: Catégorie 3 / Paris et communes limitrophes - Plafonds de ressources annuelles imposables
+unit: currency
+values:
+  2017-01-01:
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2016/12/22/LHAL1629455A/jo/texte
+    value: 27207

@@ -1,0 +1,25 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2007-07-01:
+    value: 201.0
+  2009-01-01:
+    value: 204.0
+  2010-01-01:
+    value: 210.0
+  2012-01-01:
+    value: 213.0
+  2013-01-01:
+    value: 217.0
+  2014-01-01:
+    value: 221.0
+  2015-01-01:
+    value: 223.0
+  2016-01-01:
+    value: 224.0
+  2019-01-01:
+    value: 226.0
+  2020-01-01:
+    value: 230.0
+  2021-01-01:
+    value: 232.0

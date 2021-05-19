@@ -1,0 +1,231 @@
+description: Dépenses de gros travaux et intérêts d'emprunt et ravalement (1980 - 2004)
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2003-01-01:
+        value: 2004.0
+      2002-01-01:
+        value: 2003.0
+      2001-01-01:
+        value: 2002.0
+      2000-01-01:
+        value: 2001.0
+      1999-01-01:
+        value: 2000.0
+      1997-01-01:
+        value: 1998.0
+      1995-01-01:
+        value: 1996.0
+      1991-01-01:
+        value: 1992.0
+      1986-01-01:
+        value: 1987.0
+      1985-01-01:
+        value: 1986.0
+      1984-01-01:
+        value: 1985.0
+      1979-01-01:
+        value: 1980.0
+      1978-01-01:
+        value: 1979.0
+  metadata:
+    order:
+    - annee_ir
+reduction_impot_interets_emprunt_habitat:
+  description: Réduction d'impôt pour intérêts d'emprunt habitat
+  taux:
+    description: Taux
+    values:
+      2003-01-01:
+        value: null
+      1984-01-01:
+        value: 0.25
+      1978-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_habitat
+      unit: /1
+  plafond_1:
+    description: Plafond 1
+    values:
+      2003-01-01:
+        value: null
+      2001-01-01:
+        value: 2287.0
+      1985-01-01:
+        value: 15000.0
+      1978-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_habitat1
+      unit:
+        2001-01-01: currency-EUR
+        1985-01-01: currency-FRF
+  plafond_2:
+    description: Plafond 2
+    values:
+      1997-01-01:
+        value: null
+      1986-01-01:
+        value: 30000.0
+      1978-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_habitat2
+      unit: currency-FRF
+  plafond_3:
+    description: Plafond 3
+    values:
+      2002-01-01:
+        value: null
+      2001-01-01:
+        value: 3049.0
+      1991-01-01:
+        value: 20000.0
+      1978-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_habitat3
+      unit:
+        2001-01-01: currency-EUR
+        1991-01-01: currency-FRF
+  increment_plafond:
+    description: Incrément du plafond
+    values:
+      2003-01-01:
+        value: null
+      2001-01-01:
+        value: 305.0
+      1985-01-01:
+        value: 2000.0
+      1978-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: increment_habitat
+      unit:
+        2001-01-01: currency-EUR
+        1985-01-01: currency-FRF
+  metadata:
+    order:
+    - taux
+    - plafond_1
+    - plafond_2
+    - plafond_3
+    - increment_plafond
+reduction_impot_gros_travaux:
+  description: Réduction d'impôt pour gros travaux
+  taux:
+    description: Taux
+    values:
+      2000-01-01:
+        value: null
+      1997-01-01:
+        value: 0.2
+      1984-01-01:
+        value: 0.25
+      1978-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_grostravaux
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      2000-01-01:
+        value: null
+      1997-01-01:
+        value: 20000.0
+      1995-01-01:
+        value: 15000.0
+      1984-01-01:
+        value: 8000.0
+      1978-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_grostravaux
+      unit: currency-FRF
+  metadata:
+    order:
+    - taux
+    - plafond
+interets_emprunts:
+  description: Intérêts d'emprunts
+  plafond:
+    description: Plafond
+    values:
+      2001-01-01:
+        value: null
+      1984-01-01:
+        value: 9000.0
+      1978-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_int_emp
+      unit: currency-FRF
+  increment:
+    description: Incrément
+    values:
+      2001-01-01:
+        value: null
+      1984-01-01:
+        value: 1500.0
+      1978-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: inc_int_emp
+      unit: currency-FRF
+  metadata:
+    order:
+    - plafond
+    - increment
+deduction_charges:
+  description: Déduction des charges
+  plafond:
+    description: Plafond
+    values:
+      1984-01-01:
+        value: null
+      1979-01-01:
+        value: 7000.0
+      1978-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_deduc
+      unit: currency-FRF
+  increment:
+    description: Incrément
+    values:
+      1984-01-01:
+        value: null
+      1979-01-01:
+        value: 1000.0
+      1978-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: inc_deduc
+      unit: currency-FRF
+  metadata:
+    order:
+    - plafond
+    - increment
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - reduction_impot_interets_emprunt_habitat
+  - reduction_impot_gros_travaux
+  - interets_emprunts
+  - deduction_charges
+  notes:
+    2001-01-01: "Majoration sur les revenus 2001 : 381 euros pour le 2° enfant et 457 à partir du 3°"
+    1999-01-01: Attention plafond réel = la moitié du plafond + incrément
+    1997-01-01: Dépenses de gros travaux avec même incrément que habitat et majoration comme dans 2 et 3
+  description_en: Expenditures for big works and loan interests (1980 - 2004)
+documentation: |
+  Notes :
+  (1) Les plafonds de 1, 2 et 3 ne se cumulent pas.
+  (2) Le plafond 3 pour les intérêts d'emprunt est à doubler pour couple (mais pas les plafonds 1 et 2)
+  (3) Intérêts d'emprunt et ravalement :
+  incrément par personne à charge pour cas 1
+  incrément par personne à charge majoré de 500 Fr pour le 2° enfantet de 1000 Fr à partir du 3° pour 2 et 3

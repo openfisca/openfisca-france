@@ -1,0 +1,7 @@
+description: Taux
+unit: /1
+values:
+  2010-01-01:
+    value: 0.19
+  2011-01-01:
+    value: null

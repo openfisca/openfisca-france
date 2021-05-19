@@ -1,0 +1,5 @@
+description: Taux (VV)
+unit: /1
+values:
+  2013-01-01:
+    value: 0.15

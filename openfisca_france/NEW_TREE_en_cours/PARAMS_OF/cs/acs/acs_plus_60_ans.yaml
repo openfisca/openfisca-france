@@ -1,0 +1,7 @@
+description: ACS pour une personne âgée de plus de 60 ans
+unit: currency
+values:
+  2009-08-01:
+    value: 500.0
+  2014-01-01:
+    value: 550.0

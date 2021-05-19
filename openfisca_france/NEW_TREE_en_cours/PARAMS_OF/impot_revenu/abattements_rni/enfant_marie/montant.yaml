@@ -1,0 +1,87 @@
+description: Enfants à charge (par personne rattachée)
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/abat_rni/
+  - http://bofip.impots.gouv.fr/bofip/2036-PGP.html
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000037985596
+unit: currency
+values:
+  1977-01-01:
+    value: 7900.0
+  1978-01-01:
+    value: 8600.0
+  1979-01-01:
+    value: 9500.0
+  1980-01-01:
+    value: 10800.0
+  1981-01-01:
+    value: 12500.0
+  1982-01-01:
+    value: 13000.0
+  1983-01-01:
+    value: 14230.0
+  1984-01-01:
+    value: 15330.0
+  1985-01-01:
+    value: 16190.0
+  1986-01-01:
+    value: 18570.0
+  1987-01-01:
+    value: 19600.0
+  1988-01-01:
+    value: 20110.0
+  1989-01-01:
+    value: 20780.0
+  1990-01-01:
+    value: 21450.0
+  1991-01-01:
+    value: 22100.0
+  1992-01-01:
+    value: 22730.0
+  1993-01-01:
+    value: 27120.0
+  1994-01-01:
+    value: 27500.0
+  1995-01-01:
+    value: 27990.0
+  1996-01-01:
+    value: 30000.0
+  1997-01-01:
+    value: 30330.0
+  1998-01-01:
+    value: 20370.0
+  1999-01-01:
+    value: 20480.0
+  2000-01-01:
+    value: 23360.0
+  2001-01-01:
+    value: 3824.0
+  2002-01-01:
+    value: 4137.0
+  2003-01-01:
+    value: 4338.0
+  2004-01-01:
+    value: 4410.0
+  2005-01-01:
+    value: 4489.0
+  2006-01-01:
+    value: 5495.0
+  2007-01-01:
+    value: 5568.0
+  2008-01-01:
+    value: 5729.0
+  2009-01-01:
+    value: 5753.0
+  2010-01-01:
+    value: 5698.0
+  2013-01-01:
+    value: 5753.0
+  2014-01-01:
+    value: 5726.0
+  2015-01-01:
+    value: 5732.0
+  2016-01-01:
+    value: 5738.0
+  2017-01-01:
+    value: 5795.0
+  2018-01-01:
+    value: 5888.0

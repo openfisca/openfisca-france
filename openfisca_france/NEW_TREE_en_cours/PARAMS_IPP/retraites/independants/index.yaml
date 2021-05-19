@@ -1,0 +1,14 @@
+description: Indépendants
+metadata:
+  order:
+  - ram
+  - pt_organic
+  - pt_cancava
+  - pt_rci
+  - salref_rci
+  - pt_rc_art
+  - salref_rc_art
+  - pt_rc_com
+  - salref_rc_com
+  - rsi_vp
+  description_en: Self-employed

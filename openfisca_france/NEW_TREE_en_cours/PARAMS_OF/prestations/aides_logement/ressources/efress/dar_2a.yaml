@@ -1,0 +1,34 @@
+description: Évaluation forfaitaire des ressources pour un salarié R. 351-7
+unit: currency
+values:
+  2003-01-01:
+    value: 6770.05
+  2004-01-01:
+    value: 6932.45
+  2005-01-01:
+    value: 7297.85
+  2006-01-01:
+    value: 7724.15
+  2007-01-01:
+    value: 8150.45
+  2008-01-01:
+    value: 8394.05
+  2009-01-01:
+    value: 8566.6
+  2010-01-01:
+    value: 8840.65
+  2011-01-01:
+    value: 8952.3
+  2012-01-01:
+    value: 8992.9
+  2013-01-01:
+    value: 9327.85
+  2014-01-01:
+    value: 9541.0
+  2015-01-01:
+    value: 9571.45
+  2016-01-01:
+    reference: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694502&cidTexte=LEGITEXT000006073189&dateTexte=20181012&oldAction=rechCodeArticle&fastReqId=1024869826&nbResultRech=1
+    value: 9672.95
+  2017-10-01:
+    value: 9754.15

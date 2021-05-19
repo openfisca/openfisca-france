@@ -1,0 +1,22 @@
+brackets:
+- rate:
+    1997-01-01:
+      value: 0.00044
+    1998-01-01:
+      value: 0.0009
+    1999-01-01:
+      value: 0.0013
+    2000-01-01:
+      value: 0.0017
+    2001-01-01:
+      value: 0.0022
+  threshold:
+    1997-01-01:
+      value: 0.0
+- rate:
+    1997-01-01:
+      value: 0.0
+  threshold:
+    1997-01-01:
+      value: 8.0
+description: Cotisation exceptionnelle temporaire

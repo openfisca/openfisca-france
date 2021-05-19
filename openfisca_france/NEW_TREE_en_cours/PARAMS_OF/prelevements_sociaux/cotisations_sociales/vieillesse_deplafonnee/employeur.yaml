@@ -1,0 +1,16 @@
+brackets:
+- rate:
+    1991-02-01:
+      value: 0.016
+    2014-01-01:
+      value: 0.0175
+    2015-01-01:
+      value: 0.018
+    2016-01-01:
+      value: 0.0185
+    2017-01-01:
+      value: 0.019
+  threshold:
+    1967-10-01:
+      value: 0.0
+reference: https://www.ipp.eu/outils/baremes-ipp/

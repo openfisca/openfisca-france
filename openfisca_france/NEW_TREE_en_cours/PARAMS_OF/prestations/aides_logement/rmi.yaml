@@ -1,0 +1,30 @@
+description: Revenu minimum d'insertion puis rsa socle n-2 pour le calcul de R0 (avant
+  2015)
+unit: currency
+values:
+  2002-01-01:
+    value: 397.6
+  2003-07-01:
+    value: 405.62
+  2004-07-01:
+    value: 411.7
+  2005-09-01:
+    value: 417.88
+  2007-01-01:
+    value: 425.4
+  2008-01-01:
+    value: 433.06
+  2009-01-01:
+    value: 440.86
+  2010-01-01:
+    value: 447.91
+  2011-01-01:
+    value: 454.63
+  2012-01-01:
+    value: 460.09
+  2013-01-01:
+    value: 466.99
+  2014-01-01:
+    value: 474.93
+  2015-01-01:
+    value: null

@@ -1,0 +1,25 @@
+description: Veuf avec enfants à charge
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_impot_revenu/plaf_qf/
+  - http://bofip.impots.gouv.fr/bofip/2494-PGP
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
+unit: currency
+values:
+  2012-01-01:
+    value: 672.0
+  2013-01-01:
+    value: 1672.0
+  2014-01-01:
+    value: 1680.0
+  2015-01-01:
+    value: 1682.0
+  2016-01-01:
+    value: 1684.0
+  2017-01-01:
+    value: 1701.0
+  2018-01-01:
+    value: 1728.0
+  2019-01-01:
+    value: 1745.0
+  2021-01-01:
+    value: 1748.0

@@ -1,0 +1,281 @@
+description: Majoration régionale TICPE gazole
+alsace:
+  description: Alsace
+  values:
+    2011-01-01:
+      value: 2.5
+    2007-01-01:
+      value: 1.15
+  metadata:
+    ipp_csv_id: maj_ticpe_die_als
+    unit: currency-EUR
+aquitaine:
+  description: Aquitaine
+  values:
+    2011-01-01:
+      value: 2.5
+    2008-01-01:
+      value: 1.15
+    2007-01-01:
+      value: 0.78
+  metadata:
+    ipp_csv_id: maj_ticpe_die_aqui
+    unit: currency-EUR
+auvergne:
+  description: Auvergne
+  values:
+    2011-01-01:
+      value: 2.5
+    2008-01-01:
+      value: 1.15
+    2007-01-01:
+      value: 0.85
+  metadata:
+    ipp_csv_id: maj_ticpe_die_auv
+    unit: currency-EUR
+basse_normandie:
+  description: Basse Normandie
+  values:
+    2011-01-01:
+      value: 2.5
+    2008-01-01:
+      value: 1.15
+    2007-01-01:
+      value: 0.97
+  metadata:
+    ipp_csv_id: maj_ticpe_die_b_n
+    unit: currency-EUR
+bourgogne:
+  description: Bourgogne
+  values:
+    2011-01-01:
+      value: 2.5
+    2008-01-01:
+      value: 1.15
+    2007-01-01:
+      value: 0.6
+  metadata:
+    ipp_csv_id: maj_ticpe_die_bourg
+    unit: currency-EUR
+bretagne:
+  description: Bretagne
+  values:
+    2011-01-01:
+      value: 2.5
+    2008-01-01:
+      value: 1.15
+    2007-01-01:
+      value: 0.78
+  metadata:
+    ipp_csv_id: maj_ticpe_die_bre
+    unit: currency-EUR
+centre:
+  description: Centre
+  values:
+    2011-01-01:
+      value: 2.5
+    2007-01-01:
+      value: 1.15
+  metadata:
+    ipp_csv_id: maj_ticpe_die_cen
+    unit: currency-EUR
+champagne_ardennes:
+  description: Champagne Ardennes
+  values:
+    2011-01-01:
+      value: 2.5
+    2008-01-01:
+      value: 1.15
+    2007-01-01:
+      value: 0.83
+  metadata:
+    ipp_csv_id: maj_ticpe_die_ch_ar
+    unit: currency-EUR
+corse:
+  description: Corse
+  values:
+    2017-01-01:
+      value: 1.15
+    2010-01-01:
+      value: 0.0
+    2009-01-01:
+      value: 0.6
+    2007-01-01:
+      value: 0.0
+  metadata:
+    ipp_csv_id: maj_ticpe_die_cor
+    unit: currency-EUR
+franche_comte:
+  description: Franche Comté
+  values:
+    2011-01-01:
+      value: 2.5
+    2009-01-01:
+      value: 1.15
+    2007-01-01:
+      value: 0.95
+  metadata:
+    ipp_csv_id: maj_ticpe_die_f_c
+    unit: currency-EUR
+haute_normandie:
+  description: Haute Normandie
+  values:
+    2011-01-01:
+      value: 2.5
+    2007-01-01:
+      value: 1.15
+  metadata:
+    ipp_csv_id: maj_ticpe_die_h_n
+    unit: currency-EUR
+ile_france:
+  description: Ile de France
+  values:
+    2017-01-01:
+      value: 4.39
+    2012-01-01:
+      value: 2.5
+    2007-01-01:
+      value: 1.15
+  metadata:
+    ipp_csv_id: maj_ticpe_die_idf
+    unit: currency-EUR
+languedoc_roussillon:
+  description: Languedoc Roussillon
+  values:
+    2011-01-01:
+      value: 2.5
+    2008-01-01:
+      value: 1.15
+    2007-01-01:
+      value: 0.9
+  metadata:
+    ipp_csv_id: maj_ticpe_die_l_r
+    unit: currency-EUR
+limousin:
+  description: Limousin
+  values:
+    2011-01-01:
+      value: 2.5
+    2007-01-01:
+      value: 1.15
+  metadata:
+    ipp_csv_id: maj_ticpe_die_lim
+    unit: currency-EUR
+lorraine:
+  description: Lorraine
+  values:
+    2011-01-01:
+      value: 2.5
+    2007-01-01:
+      value: 1.15
+  metadata:
+    ipp_csv_id: maj_ticpe_die_lor
+    unit: currency-EUR
+midi_pyrenees:
+  description: Midi Pyrénées
+  values:
+    2011-01-01:
+      value: 2.5
+    2008-01-01:
+      value: 1.15
+    2007-01-01:
+      value: 0.79
+  metadata:
+    ipp_csv_id: maj_ticpe_die_m_p
+    unit: currency-EUR
+nord_pas_calais:
+  description: Nord Pas de Calais
+  values:
+    2011-01-01:
+      value: 2.5
+    2007-01-01:
+      value: 1.15
+  metadata:
+    ipp_csv_id: maj_ticpe_die_n_cal
+    unit: currency-EUR
+pays_loire:
+  description: Pays de la Loire
+  values:
+    2011-01-01:
+      value: 2.5
+    2008-01-01:
+      value: 1.15
+    2007-01-01:
+      value: 0.71
+  metadata:
+    ipp_csv_id: maj_ticpe_die_p_loi
+    unit: currency-EUR
+picardie:
+  description: Picardie
+  values:
+    2011-01-01:
+      value: 2.5
+    2007-01-01:
+      value: 1.15
+  metadata:
+    ipp_csv_id: maj_ticpe_die_pic
+    unit: currency-EUR
+poitou_charentes:
+  description: Poitou Charentes
+  values:
+    2016-07-01:
+      value: 2.5
+    2007-01-01:
+      value: 0.0
+  metadata:
+    ipp_csv_id: maj_ticpe_die_p_c
+    unit: currency-EUR
+rhone_alpes:
+  description: Rhône Alpes
+  values:
+    2014-01-01:
+      value: 2.5
+    2008-01-01:
+      value: 1.15
+    2007-01-01:
+      value: 0.83
+  metadata:
+    ipp_csv_id: maj_ticpe_die_r_a
+    unit: currency-EUR
+paca:
+  description: PACA
+  values:
+    2012-01-01:
+      value: 2.5
+    2008-01-01:
+      value: 1.15
+    2007-01-01:
+      value: 0.68
+  metadata:
+    ipp_csv_id: maj_ticpe_die_paca
+    unit: currency-EUR
+metadata:
+  order:
+  - alsace
+  - aquitaine
+  - auvergne
+  - basse_normandie
+  - bourgogne
+  - bretagne
+  - centre
+  - champagne_ardennes
+  - corse
+  - franche_comte
+  - haute_normandie
+  - ile_france
+  - languedoc_roussillon
+  - limousin
+  - lorraine
+  - midi_pyrenees
+  - nord_pas_calais
+  - pays_loire
+  - picardie
+  - poitou_charentes
+  - rhone_alpes
+  - paca
+  description_en: Regional surcharge - diesel
+documentation: |
+  Notes :
+  À partir de 2017, la région Île-de-France est autorisée à augmenter sa majoration de 1,89€ pour financer le dézonage du Pass Navigo.
+  Au 1er juillet 2016, la majoration plafond est mise en application en Poitou-Charentes du fait de l'harmonisation avec l'Aquitaine et le Limousin avec lesquelles elle a fusionné.
+  Pour l'augmentation en Corse en 2017, voir la circulaire du 30/12/2016 fixant les Taux de la Taxe Intérieure de Consommation régionalisés pour les supercarburants et les gazoles applicables au 1er janvier 2017.

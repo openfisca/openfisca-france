@@ -1,0 +1,5 @@
+description: Plafond de référence pour 4 parts
+unit: currency
+values:
+  2014-01-01:
+    value: 11319.0

@@ -1,0 +1,863 @@
+description: Plafonds de loyer (après la réforme de 2001)
+plafond_loyers_zone_1:
+  description: Plafond de loyers - Zone 1
+  personnes_seules:
+    description: Personnes seules
+    values:
+      2019-10-01:
+        value: 295.93
+      2017-10-01:
+        value: 295.05
+      2015-10-01:
+        value: 292.85
+      2014-10-01:
+        value: 292.62
+      2013-01-01:
+        value: 290.96
+      2012-01-01:
+        value: 284.84
+      2011-01-01:
+        value: 282.02
+      2010-01-01:
+        value: 278.95
+      2009-01-01:
+        value: 278.06
+      2008-01-01:
+        value: 270.09
+      2007-01-01:
+        value: 262.84
+      2005-09-01:
+        value: 255.68
+      2003-07-01:
+        value: 251.16
+      2002-07-01:
+        value: 248.18
+      2002-01-01:
+        value: 243.31
+      2001-07-01:
+        value: 1596.0
+      2001-01-01:
+        value: 1577.0
+    metadata:
+      ipp_csv_id: plaf_loy_isol_z1
+      unit:
+        2002-01-01: currency-EUR
+        2001-01-01: currency-FRF
+  couples:
+    description: Couples
+    values:
+      2019-10-01:
+        value: 356.92
+      2017-10-01:
+        value: 355.85
+      2015-10-01:
+        value: 353.2
+      2014-10-01:
+        value: 352.92
+      2013-01-01:
+        value: 350.92
+      2012-01-01:
+        value: 343.53
+      2011-01-01:
+        value: 340.13
+      2010-01-01:
+        value: 336.43
+      2009-01-01:
+        value: 335.36
+      2008-01-01:
+        value: 325.75
+      2007-01-01:
+        value: 317.0
+      2005-09-01:
+        value: 308.37
+      2003-07-01:
+        value: 302.92
+      2002-07-01:
+        value: 299.33
+      2002-01-01:
+        value: 293.46
+      2001-07-01:
+        value: 1925.0
+      2001-01-01:
+        value: 1902.0
+    metadata:
+      ipp_csv_id: plaf_loy_coup_z1
+      unit:
+        2002-01-01: currency-EUR
+        2001-01-01: currency-FRF
+  personnes_seules_couples_avec_1_enfant:
+    description: Personnes seules ou couples avec 1 enfant
+    values:
+      2019-10-01:
+        value: 403.39
+      2017-10-01:
+        value: 402.18
+      2015-10-01:
+        value: 399.19
+      2014-10-01:
+        value: 398.87
+      2013-01-01:
+        value: 396.61
+      2012-01-01:
+        value: 388.26
+      2011-01-01:
+        value: 384.42
+      2010-01-01:
+        value: 380.24
+      2009-01-01:
+        value: 379.03
+      2008-01-01:
+        value: 368.17
+      2007-01-01:
+        value: 358.28
+      2005-09-01:
+        value: 348.52
+      2003-07-01:
+        value: 342.36
+      2002-07-01:
+        value: 334.01
+      2002-01-01:
+        value: 330.05
+      2001-07-01:
+        value: 2165.0
+      2001-01-01:
+        value: 2139.0
+    metadata:
+      ipp_csv_id: plaf_loy_enf1_z1
+      unit:
+        2002-01-01: currency-EUR
+        2001-01-01: currency-FRF
+  majoration_par_enfant_supplementaire:
+    description: Majoration par enfant supplémentaire
+    values:
+      2019-10-01:
+        value: 58.52
+      2017-10-01:
+        value: 58.34
+      2015-10-01:
+        value: 57.91
+      2014-10-01:
+        value: 57.86
+      2013-01-01:
+        value: 57.53
+      2012-01-01:
+        value: 56.32
+      2011-01-01:
+        value: 55.76
+      2010-01-01:
+        value: 55.15
+      2009-01-01:
+        value: 54.97
+      2008-01-01:
+        value: 53.39
+      2007-01-01:
+        value: 51.96
+      2005-09-01:
+        value: 50.54
+      2003-07-01:
+        value: 49.65
+      2002-07-01:
+        value: 48.44
+      2002-01-01:
+        value: 47.87
+      2001-07-01:
+        value: 314.0
+      2001-01-01:
+        value: 310.0
+    metadata:
+      ipp_csv_id: plaf_loy_enfsupp_z1
+      unit:
+        2002-01-01: currency-EUR
+        2001-01-01: currency-FRF
+  metadata:
+    order:
+    - personnes_seules
+    - couples
+    - personnes_seules_couples_avec_1_enfant
+    - majoration_par_enfant_supplementaire
+plafond_loyers_zone_2:
+  description: Plafond de loyers - Zone 2
+  personnes_seules:
+    description: Personnes seules
+    values:
+      2019-10-01:
+        value: 257.92
+      2017-10-01:
+        value: 257.14
+      2015-10-01:
+        value: 255.23
+      2014-10-01:
+        value: 255.03
+      2013-01-01:
+        value: 253.58
+      2012-01-01:
+        value: 248.24
+      2011-01-01:
+        value: 245.78
+      2010-01-01:
+        value: 243.11
+      2009-01-01:
+        value: 242.33
+      2008-01-01:
+        value: 235.39
+      2007-01-01:
+        value: 229.07
+      2005-09-01:
+        value: 222.83
+      2003-07-01:
+        value: 218.89
+      2002-07-01:
+        value: 216.29
+      2002-01-01:
+        value: 213.73
+      2001-07-01:
+        value: 1402.0
+      2001-01-01:
+        value: 1385.0
+    metadata:
+      ipp_csv_id: plaf_loy_isol_z2
+      unit:
+        2002-01-01: currency-EUR
+        2001-01-01: currency-FRF
+  couples:
+    description: Couples
+    values:
+      2019-10-01:
+        value: 315.69
+      2017-10-01:
+        value: 314.74
+      2015-10-01:
+        value: 312.4
+      2014-10-01:
+        value: 312.15
+      2013-01-01:
+        value: 310.38
+      2012-01-01:
+        value: 303.85
+      2011-01-01:
+        value: 300.84
+      2010-01-01:
+        value: 297.57
+      2009-01-01:
+        value: 296.62
+      2008-01-01:
+        value: 288.12
+      2007-01-01:
+        value: 280.38
+      2005-09-01:
+        value: 272.74
+      2003-07-01:
+        value: 267.92
+      2002-07-01:
+        value: 264.74
+      2002-01-01:
+        value: 261.6
+      2001-07-01:
+        value: 1716.0
+      2001-01-01:
+        value: 1696.0
+    metadata:
+      ipp_csv_id: plaf_loy_coup_z2
+      unit:
+        2002-01-01: currency-EUR
+        2001-01-01: currency-FRF
+  personnes_seules_couples_avec_1_enfant:
+    description: Personnes seules ou couples avec 1 enfant
+    values:
+      2019-10-01:
+        value: 355.23
+      2017-10-01:
+        value: 354.17
+      2015-10-01:
+        value: 351.53
+      2014-10-01:
+        value: 351.25
+      2013-01-01:
+        value: 349.26
+      2012-01-01:
+        value: 341.91
+      2011-01-01:
+        value: 338.52
+      2010-01-01:
+        value: 334.84
+      2009-01-01:
+        value: 333.77
+      2008-01-01:
+        value: 324.21
+      2007-01-01:
+        value: 315.5
+      2005-09-01:
+        value: 306.91
+      2003-07-01:
+        value: 301.48
+      2002-07-01:
+        value: 297.91
+      2002-01-01:
+        value: 294.38
+      2001-07-01:
+        value: 1931.0
+      2001-01-01:
+        value: 1908.0
+    metadata:
+      ipp_csv_id: plaf_loy_enf1_z2
+      unit:
+        2002-01-01: currency-EUR
+        2001-01-01: currency-FRF
+  majoration_par_enfant_supplementaire:
+    description: Majoration par enfant supplémentaire
+    values:
+      2019-10-01:
+        value: 51.70
+      2017-10-01:
+        value: 51.54
+      2015-10-01:
+        value: 51.16
+      2014-10-01:
+        value: 51.12
+      2013-01-01:
+        value: 50.83
+      2012-01-01:
+        value: 49.76
+      2011-01-01:
+        value: 49.27
+      2010-01-01:
+        value: 48.73
+      2009-01-01:
+        value: 48.57
+      2008-01-01:
+        value: 47.18
+      2007-01-01:
+        value: 45.91
+      2005-09-01:
+        value: 44.66
+      2003-07-01:
+        value: 43.87
+      2002-07-01:
+        value: 43.35
+      2002-01-01:
+        value: 42.84
+      2001-07-01:
+        value: 281.0
+      2001-01-01:
+        value: 278.0
+    metadata:
+      ipp_csv_id: plaf_loy_enfsupp_z2
+      unit:
+        2002-01-01: currency-EUR
+        2001-01-01: currency-FRF
+  metadata:
+    order:
+    - personnes_seules
+    - couples
+    - personnes_seules_couples_avec_1_enfant
+    - majoration_par_enfant_supplementaire
+plafond_loyers_zone_3:
+  description: Plafond de loyers - Zone 3
+  personnes_seules:
+    description: Personnes seules
+    values:
+      2019-10-01:
+        value: 241.73
+      2017-10-01:
+        value: 241.0
+      2015-10-01:
+        value: 239.21
+      2014-10-01:
+        value: 239.02
+      2013-01-01:
+        value: 237.67
+      2012-01-01:
+        value: 232.67
+      2011-01-01:
+        value: 230.37
+      2010-01-01:
+        value: 227.86
+      2009-01-01:
+        value: 227.13
+      2008-01-01:
+        value: 220.62
+      2007-01-01:
+        value: 214.69
+      2005-09-01:
+        value: 208.84
+      2003-07-01:
+        value: 205.15
+      2002-07-01:
+        value: 202.72
+      2002-01-01:
+        value: 200.32
+      2001-07-01:
+        value: 1314.0
+      2001-01-01:
+        value: 1298.0
+    metadata:
+      ipp_csv_id: plaf_loy_isol_z3
+      unit:
+        2002-01-01: currency-EUR
+        2001-01-01: currency-FRF
+  couples:
+    description: Couples
+    values:
+      2019-10-01:
+        value: 293.04
+      2017-10-01:
+        value: 292.16
+      2015-10-01:
+        value: 289.99
+      2014-10-01:
+        value: 289.76
+      2013-01-01:
+        value: 288.12
+      2012-01-01:
+        value: 282.06
+      2011-01-01:
+        value: 279.27
+      2010-01-01:
+        value: 276.23
+      2009-01-01:
+        value: 275.35
+      2008-01-01:
+        value: 267.46
+      2007-01-01:
+        value: 260.28
+      2005-09-01:
+        value: 253.19
+      2003-07-01:
+        value: 248.71
+      2002-07-01:
+        value: 245.76
+      2002-01-01:
+        value: 242.85
+      2001-07-01:
+        value: 1593.0
+      2001-01-01:
+        value: 1574.0
+    metadata:
+      ipp_csv_id: plaf_loy_coup_z3
+      unit:
+        2002-01-01: currency-EUR
+        2001-01-01: currency-FRF
+  personnes_seules_couples_avec_1_enfant:
+    description: Personnes seules ou couples avec 1 enfant
+    values:
+      2019-10-01:
+        value: 328.57
+      2017-10-01:
+        value: 327.59
+      2015-10-01:
+        value: 325.15
+      2014-10-01:
+        value: 324.89
+      2013-01-01:
+        value: 323.05
+      2012-01-01:
+        value: 316.25
+      2011-01-01:
+        value: 313.12
+      2010-01-01:
+        value: 309.71
+      2009-01-01:
+        value: 308.72
+      2008-01-01:
+        value: 299.87
+      2007-01-01:
+        value: 291.82
+      2005-09-01:
+        value: 283.87
+      2003-07-01:
+        value: 278.85
+      2002-07-01:
+        value: 275.54
+      2002-01-01:
+        value: 272.27
+      2001-07-01:
+        value: 1786.0
+      2001-01-01:
+        value: 1765.0
+    metadata:
+      ipp_csv_id: plaf_loy_enf1_z3
+      unit:
+        2002-01-01: currency-EUR
+        2001-01-01: currency-FRF
+  majoration_par_enfant_supplementaire:
+    description: Majoration par enfant supplémentaire
+    values:
+      2019-10-01:
+        value: 47.09
+      2017-10-01:
+        value: 46.95
+      2015-10-01:
+        value: 46.6
+      2014-10-01:
+        value: 46.56
+      2013-01-01:
+        value: 46.3
+      2012-01-01:
+        value: 45.33
+      2011-01-01:
+        value: 44.88
+      2010-01-01:
+        value: 44.39
+      2009-01-01:
+        value: 44.25
+      2008-01-01:
+        value: 42.98
+      2007-01-01:
+        value: 41.83
+      2005-09-01:
+        value: 40.69
+      2003-07-01:
+        value: 39.97
+      2002-07-01:
+        value: 39.5
+      2002-01-01:
+        value: 39.03
+      2001-07-01:
+        value: 256.0
+      2001-01-01:
+        value: 253.0
+    metadata:
+      ipp_csv_id: plaf_loy_enfsupp_z3
+      unit:
+        2002-01-01: currency-EUR
+        2001-01-01: currency-FRF
+  metadata:
+    order:
+    - personnes_seules
+    - couples
+    - personnes_seules_couples_avec_1_enfant
+    - majoration_par_enfant_supplementaire
+montant_forfaitaire_participation_minimale_po:
+  description: Montant forfaitaire de la participation minimale (Po)
+  values:
+    2019-10-01:
+      value: 35.13
+    2017-10-01:
+      value: 35.02
+    2015-10-01:
+      value: 34.76
+    2014-10-01:
+      value: 34.73
+    2013-01-01:
+      value: 34.53
+    2012-01-01:
+      value: 33.8
+    2011-01-01:
+      value: 33.47
+    2010-01-01:
+      value: 33.11
+    2009-01-01:
+      value: 33.0
+    2008-01-01:
+      value: 31.0
+    2007-01-01:
+      value: 30.0
+    2004-06-01:
+      value: 29.0
+    2002-07-01:
+      value: 28.0
+    2002-01-01:
+      value: 26.68
+    2001-01-01:
+      value: 175.0
+  metadata:
+    ipp_csv_id: p0_cons
+    unit:
+      2002-01-01: currency-EUR
+      2001-01-01: currency-FRF
+montant_proportionnel_participation_minimale_po:
+  description: Montant proportionnel de la participation minimale (Po)
+  values:
+    2001-01-01:
+      value: 0.085
+  metadata:
+    ipp_csv_id: p0_tx
+    unit: /1
+tf:
+  description: Taux de participation personnel familial (TF)
+  personnes_isolees:
+    description: Personnes isolées
+    values:
+      2007-07-01:
+        value: 0.0283
+      2002-01-01:
+        value: 0.0354
+      2001-01-01:
+        value: 0.0308
+    metadata:
+      ipp_csv_id: tf_isol
+      unit: /1
+  couples_sans_enfant:
+    description: Couples sans enfant
+    values:
+      2007-07-01:
+        value: 0.0315
+      2002-01-01:
+        value: 0.0394
+      2001-01-01:
+        value: 0.0331
+    metadata:
+      ipp_csv_id: tf_coup
+      unit: /1
+  personnes_seules_couples_avec_1_enfant:
+    description: Personnes seules et couples avec 1 enfant
+    values:
+      2007-07-01:
+        value: 0.027
+      2002-01-01:
+        value: 0.0338
+      2001-01-01:
+        value: 0.0278
+    metadata:
+      ipp_csv_id: tf_enf1
+      unit: /1
+  personnes_seules_couples_avec_2_enfants:
+    description: Personnes seules et couples avec 2 enfants
+    values:
+      2007-07-01:
+        value: 0.0238
+      2002-01-01:
+        value: 0.0297
+      2001-01-01:
+        value: 0.0257
+    metadata:
+      ipp_csv_id: tf_enf2
+      unit: /1
+  personnes_seules_couples_avec_3_enfants:
+    description: Personnes seules et couples avec 3 enfants
+    values:
+      2007-07-01:
+        value: 0.0201
+      2002-01-01:
+        value: 0.0251
+      2001-01-01:
+        value: 0.0228
+    metadata:
+      ipp_csv_id: tf_enf3
+      unit: /1
+  personnes_seules_couples_avec_4_enfants:
+    description: Personnes seules et couples avec 4 enfants
+    values:
+      2007-07-01:
+        value: 0.0185
+      2002-01-01:
+        value: 0.0231
+      2001-01-01:
+        value: 0.0217
+    metadata:
+      ipp_csv_id: tf_enf4
+      unit: /1
+  variation_tf_par_enfant_supplementaire:
+    description: Variation de TF par enfant supplémentaire
+    values:
+      2007-07-01:
+        value: -0.0006
+      2002-01-01:
+        value: -0.0007
+      2001-01-01:
+        value: -0.0006
+    metadata:
+      ipp_csv_id: tf_enfsupp
+      unit: /1
+  metadata:
+    order:
+    - personnes_isolees
+    - couples_sans_enfant
+    - personnes_seules_couples_avec_1_enfant
+    - personnes_seules_couples_avec_2_enfants
+    - personnes_seules_couples_avec_3_enfants
+    - personnes_seules_couples_avec_4_enfants
+    - variation_tf_par_enfant_supplementaire
+tl:
+  description: Taux de participation personnel complémentaire (TL)
+  tl_1ere_tranche:
+    description: TL pour la 1ère tranche
+    values:
+      2001-01-01:
+        value: 0.0
+    metadata:
+      ipp_csv_id: tl_0
+      unit: /1
+  tl_2eme_tranche:
+    description: TL pour la 2ème tranche
+    values:
+      2007-07-01:
+        value: 0.0045
+      2001-01-01:
+        value: 0.0056
+    metadata:
+      ipp_csv_id: tl_1
+      unit: /1
+  tl_3eme_tranche:
+    description: TL pour la 3ème tranche
+    values:
+      2007-07-01:
+        value: 0.0068
+      2001-01-01:
+        value: 0.0085
+    metadata:
+      ipp_csv_id: tl_2
+      unit: /1
+  debut_2eme_tranche_calcul_tl_fin_1ere_tranche:
+    description: Début de la 2ème tranche pour le calcul de TL (et fin de la 1ère tranche)
+    values:
+      2001-01-01:
+        value: 0.45
+    metadata:
+      ipp_csv_id: tl_tr1
+      unit: /1
+  debut_3eme_tranche_calcul_tl:
+    description: Début de la 3ème tranche pour le calcul de TL
+    values:
+      2001-01-01:
+        value: 0.75
+    metadata:
+      ipp_csv_id: tl_tr2
+      unit: /1
+  minorant_1e_tranche:
+    description: Minorant pour la 1e tranche
+    values:
+      2013-01-01:
+        value: 0.0
+      2001-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tl_min_tr0
+  minorant_2e_tranche:
+    description: Minorant pour la 2e tranche
+    values:
+      2013-01-01:
+        value: 20.25
+      2001-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tl_min_tr1
+  minorant_3e_tranche:
+    description: Minorant pour la 3e tranche
+    values:
+      2013-01-01:
+        value: 37.5
+      2001-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tl_min_tr2
+  metadata:
+    order:
+    - tl_1ere_tranche
+    - tl_2eme_tranche
+    - tl_3eme_tranche
+    - debut_2eme_tranche_calcul_tl_fin_1ere_tranche
+    - debut_3eme_tranche_calcul_tl
+    - minorant_1e_tranche
+    - minorant_2e_tranche
+    - minorant_3e_tranche
+montant_forfaitaire:
+  description: Montant forfaitaire
+  values:
+    2017-10-01:
+      value: 5.0
+    2001-01-01:
+      value: null
+  metadata:
+    unit: currency-EUR
+metadata:
+  order:
+  - plafond_loyers_zone_1
+  - plafond_loyers_zone_2
+  - plafond_loyers_zone_3
+  - montant_forfaitaire_participation_minimale_po
+  - montant_proportionnel_participation_minimale_po
+  - tf
+  - tl
+  - montant_forfaitaire
+  reference:
+    2019-10-01:
+    - title: Arrêté du 27/09/2019, art. 7, art.13.
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&categorieLien=id
+    2017-10-01:
+    - title: Décret 2017-1413 du 28/09/2017 (modif art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000035665790
+    - Arrêté du 28/09/2017
+    2015-10-01: Arrêté du 16/10/2015
+    2014-10-01: Arrêté du 27/10/2014
+    2013-01-01: Arrêté du 28/12/2012
+    2012-01-01:
+    - title: Décret 2011-2099, art. 1 du 30/12/2011 (modif art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025101122&cidTexte=JORFTEXT000025061407
+    - Arrêté du 30/12/2011
+    2011-01-01:
+    - title: Décret 2010-1765, art. 1 du 30/12/2010 (modif art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023386269&cidTexte=JORFTEXT000023335470
+    - Arrêté du 30/12/2010
+    2010-01-01:
+    - title: Décret 2009-1740, art. 1 du 30/12/2009 (modif art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000021637835&cidTexte=JORFTEXT000021572101
+    - Arrêté du 30/12/2009
+    2009-01-01:
+    - title: Décret 2008-1557, art. 1 du 31/12/2008 (modif art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020081003&cidTexte=JORFTEXT000020021192
+    - Arrêté du 31/12/2008
+    2008-01-01:
+    - title: Décret 2007-1906, art. 1 du 26/12/2007 (modif art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017854262&cidTexte=JORFTEXT000017765977
+    - Arrêté du 26/12/2007
+    2007-01-01:
+    - title: Décret 2006-1817, art. 2 du 23/12/2006 (modif art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006258877&cidTexte=JORFTEXT000000462553
+    - Arrêté du 23/12/2006
+    2004-06-01:
+      title: Décret 2004-463, art. 2 du 28/05/2004 (modif art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006231022&cidTexte=JORFTEXT000000438122
+    2002-07-01:
+    - title: Décret 2002-1485, art. 3 du 20/12/2002 (modif art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006215746&cidTexte=JORFTEXT000000235054
+    - Arrêté du 20/12/2002
+    2002-01-01:
+    - title: Décret 2001-698, art. 6 du 31/07/2001 (modif art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006780031&cidTexte=JORFTEXT000000393997
+    - Arrêté du 31/07/2001
+    2001-01-01:
+    - title: Décret 2000-1269, art. 2 du 26/12/2000 (crée art. D542-5-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006779920&cidTexte=JORFTEXT000000578227
+    - Arrêté du 26/12/2000
+    2007-07-01: Arrêté du 10/07/2007
+    2005-09-01: Arrêté du 19/12/2005
+    2003-07-01: Arrêté du 28/05/2004
+    2001-07-01: Arrêté du 31/07/2001
+  date_parution_jo:
+    2019-10-01: 2019-10-01
+    2017-10-01: 2017-09-29
+    2015-10-01: 2015-10-21
+    2014-10-01: 2014-10-28
+    2013-01-01: 2012-12-30
+    2012-01-01: 2011-12-31
+    2011-01-01: 2010-12-31
+    2010-01-01: 2009-12-31
+    2009-01-01: 2009-01-01
+    2008-01-01: 2007-12-30
+    2007-01-01: 2006-12-31
+    2004-06-01: 2004-05-29
+    2002-07-01: 2002-12-22
+    2002-01-01: 2001-08-02
+    2001-01-01: 2000-12-28
+    2007-07-01: 2007-07-12
+    2005-09-01: 2005-12-22
+    2003-07-01: 2004-05-29
+    2001-07-01: 2001-08-02
+  notes:
+    2017-10-01: Actualisation paramètres + baisse de 5 euros des aides au logement
+    2015-10-01: Idem en 2017
+    2014-10-01: Taux TL et TF disponibles pages 14 et 15 du document "Elément de calcul des aides personnelles au logement"
+    2012-01-01: Changement de la participation minimale forfaitaire (composante de Po)
+    2011-01-01: Changement de la participation minimale forfaitaire (composante de Po)
+    2010-01-01: Changement de la participation minimale forfaitaire (composante de Po)
+    2009-01-01: Changement de la participation minimale forfaitaire (composante de Po)
+    2008-01-01: Changement de la participation minimale forfaitaire (composante de Po)
+    2007-01-01: Changement de la participation minimale forfaitaire (composante de Po)
+    2004-06-01: Changement de la participation minimale forfaitaire (composante de Po)
+    2002-07-01: Changement de la participation minimale forfaitaire (composante de Po)
+    2002-01-01: Changement de la participation minimale forfaitaire (composante de Po)
+    2001-01-01: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
+  description_en: Parameters for the rental sector (after the 2001 reform)
+documentation: |
+  Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2

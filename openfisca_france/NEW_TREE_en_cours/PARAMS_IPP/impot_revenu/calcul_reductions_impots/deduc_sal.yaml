@@ -1,0 +1,83 @@
+description: Cotisations syndicales (1989 - )
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2012-01-01:
+        value: 2013.0
+      2007-01-01:
+        value: 2008.0
+      2005-01-01:
+        value: 2006.0
+      2004-01-01:
+        value: 2005.0
+      2001-01-01:
+        value: 2002.0
+      1991-01-01:
+        value: 1992.0
+      1988-01-01:
+        value: 1989.0
+      1987-01-01:
+        value: 1988.0
+  metadata:
+    order:
+    - annee_ir
+reduction_impot_cotisations_syndicales:
+  description: Réduction d'impôt pour cotisations syndicales
+  taux:
+    description: Taux
+    values:
+      2005-01-01:
+        value: 0.66
+      2001-01-01:
+        value: 0.5
+      1991-01-01:
+        value: 0.3
+      1988-01-01:
+        value: 0.2
+      1987-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_cotsynd
+      unit: /1
+  plafond:
+    description: Plafond
+    values:
+      1988-01-01:
+        value: 0.01
+      1987-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plafcotsynd
+      unit: /1
+  metadata:
+    order:
+    - taux
+    - plafond
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - reduction_impot_cotisations_syndicales
+  reference:
+    2012-01-01:
+      title: Loi 2012-1510 du 29/12/2012
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026857857
+    2007-01-01:
+      title: Décret 2008-294 du 01/04/2008 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000018559051&cidTexte=JORFTEXT000018557013
+    2004-01-01: Loi 2004-1485 du 30/12/2004- art. 31 et 35 (V)
+    2001-01-01:
+      title: Décret 2002-923 du 06/06/2002 - art. 4
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006212781&cidTexte=JORFTEXT000000596281
+    1988-01-01: Loi 1988-1149 du 28/12/1988, art. 8-I, II (LF pour 1989)
+  date_parution_jo:
+    2007-01-01: 2008-04-02
+    2004-01-01: 2004-12-31
+    2001-01-01: 2002-06-08
+  notes:
+    2012-01-01: La réduction d'impôt devient un crédit d'impôt à compter de l'imposition des revenus 2012
+  description_en: Union dues (1989 - 2016)
+documentation: |
+  Notes :
+  (1) Cotisations syndicales : art. 199 quater C du CGI

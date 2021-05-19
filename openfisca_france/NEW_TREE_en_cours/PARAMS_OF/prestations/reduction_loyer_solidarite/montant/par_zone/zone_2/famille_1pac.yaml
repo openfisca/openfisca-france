@@ -1,0 +1,15 @@
+description: Zone 2 - Famille avec 1 personne à charge
+unit: currency
+values:
+  2018-01-01:
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801551A/jo/article_2
+    value: 38.2
+  2019-01-01:
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2018/12/27/LOGL1831321A/jo/texte
+    value: 38.8
+  2020-01-01:
+    value: 59.40
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2019/12/31/LOGL1934007A/jo/article_1
+  2020-10-01:
+    value: 40.92
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2020/9/30/LOGL2020748A/jo/article_1

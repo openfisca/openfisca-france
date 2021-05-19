@@ -1,0 +1,7 @@
+description: Taux (XN)
+unit: /1
+values:
+  2004-01-01:
+    value: 0.0
+  2007-01-01:
+    value: 0.25

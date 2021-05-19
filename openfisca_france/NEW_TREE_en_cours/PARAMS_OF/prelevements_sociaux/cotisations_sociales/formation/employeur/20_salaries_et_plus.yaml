@@ -1,0 +1,24 @@
+brackets:
+- rate:
+    1972-01-01:
+      value: 0.008
+    1974-01-01:
+      value: 0.01
+    1978-01-01:
+      value: 0.011
+    1987-01-01:
+      value: 0.012
+    1992-01-01:
+      value: 0.014
+    1993-01-01:
+      value: 0.015
+    2004-01-01:
+      value: 0.016
+    2015-01-01:
+      value: 0.01
+    2016-01-01:
+      value: null
+  threshold:
+    1972-01-01:
+      value: 0.0
+reference: https://www.ipp.eu/outils/baremes-ipp/

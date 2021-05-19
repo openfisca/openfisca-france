@@ -1,0 +1,14 @@
+description: Prélèvement social (revenus du patrimoine)
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1997-01-01:
+    value: 0.02
+  2010-01-01:
+    value: 0.022
+  2011-10-01:
+    value: 0.034
+  2012-01-01:
+    value: 0.054
+  2013-01-01:
+    value: 0.045

@@ -1,0 +1,232 @@
+description: Déduction de l'investissement locatif dans l'immobilier neuf au revenu imposable (1996-2009)
+date_entree_en_vigueur:
+  description: Date d'entrée en vigueur
+  annee_ir:
+    description: Année IR
+    values:
+      2009-01-01:
+        value: 2010.0
+      2006-01-01:
+        value: 2007.0
+      2003-01-01:
+        value: 2004.0
+      2001-01-01:
+        value: 2002.0
+      1999-01-01:
+        value: 2000.0
+      1998-01-01:
+        value: 1999.0
+      1996-01-01:
+        value: 1997.0
+  metadata:
+    order:
+    - annee_ir
+plafond:
+  description: Plafond des déficits fonciers déductibles des revenus
+  values:
+    2001-01-01: 
+      value: 10700.0
+    1999-01-01:
+      value: 70000.0
+    1996-01-01:
+      value: 100000.0
+  metadata:
+    ipp_csv_id: plaf_deficits_fonciers_amortissement
+    unit:
+      2001-01-01: currency-EUR
+      1996-01-01: currency-FRF
+amortissement_perissol:
+  description: Amortissement Périssol
+  seuil:
+    description: Seuil minimum d'imposition sur le revenu pour être éligible
+    values:
+      1999-01-01:
+        value: null
+      1996-01-01: 
+        value: 0.3
+    metadata: 
+      ipp_csv_id: seuil_eligibilite_perissol
+      unit: /1
+  taux_4_ans:
+    description: Taux de déduction de l'investissement les 4 premières années
+    values:
+      1999-01-01:
+        value: null
+      1996-01-01:
+        value: 0.1
+    metadata:
+      ipp_csv_id: tx_deduction_4_ans_perissol
+      unit: /1
+  taux_20_ans:
+    description: Taux de déduction de l'investissment les 20 années suivantes
+    values:
+      1999-01-01:
+        value: null
+      1996-01-01:
+        value: 0.02
+    metadata:
+      ipp_csv_id: tx_deduction_20_ans_perissol
+      unit: /1
+  metadata:
+    order:
+    - seuil
+    - taux_4_ans
+    - taux_20_ans
+dispositif_besson_neuf:
+  description: Dispositif Besson neuf
+  seuil:
+    description: Seuil minimum d'imposition pour être éligible
+    values:
+      2003-01-01: null
+      1999-01-01:
+        value: 0.3
+      1996-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: seuil_eligibilite_besson_neuf
+      unit: /1
+  taux_5_ans:
+    description: Taux de déduction de l'investissement les 5 premières années
+    values:
+      2003-01-01: 
+        value: null
+      1999-01-01:
+        value: 0.08
+      1996-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_deduction_5_ans_besson_neuf
+      unit: /1
+  taux_10_ans:
+    description: Taux de déduction de l'investissement les 10 années suivantes
+    values:
+      2003-01-01:
+        value: null
+      1999-01-01:
+        value: 0.025
+      1996-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_deduction_10_ans_besson_neuf
+      unit: /1
+  metadata:
+    order:
+    - seuil
+    - taux_5_ans
+    - taux_10_ans
+dispositif_robien:
+  description: Dispositif Robien "classique"
+  taux_5_ans:
+    description: Taux de déduction de l'investissement les 5 premières années
+    values:
+      2006-01-01:
+        value: null
+      2003-01-01:
+        value: 0.08
+      1996-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_deduction_5_ans_robien
+      unit: /1
+  taux_10_ans:
+    description: Taux de déduction de l'investissement les 10 années suivantes
+    values:
+      2006-01-01:
+        value: null
+      2003-01-01:
+        value: 0.025
+      1996-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_deduction_10_ans_robien
+      unit: /1
+  metadata:
+    order:
+    - taux_5_ans
+    - taux_10_ans
+dispositif_robien_recentre:
+  description: Dispositif Robien "recentré" assorti du dispositif Borloo neuf
+  taux_7_ans:
+    description: Taux de déduction de l'investissement les 7 premières années
+    values:
+      2009-01-01:
+        value: null
+      2006-01-01:
+        value: 0.06
+      1996-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_deduction_7_ans_robien_recentre
+      unit: /1
+  taux_2_ans:
+    description: Taux de déduction de l'investissement les 2 années suivantes
+    values:
+      2009-01-01:
+        value: null
+      2006-01-01:
+        value: 0.04
+      1996-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_deduction_2_ans_robien_recentre
+      unit: /1
+  taux_6_ans_borloo:
+    description: Taux de déduction de l'investissement les 6 années suivantes en cas d'éligibilité au dispositif Borloo neuf
+    values:
+      2009-01-01:
+        value: null
+      2006-01-01:
+        value: 0.025
+      1996-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: tx_deduction_6_ans_borloo_neuf
+      unit: /1
+  metadata:
+    order:
+    - taux_7_ans
+    - taux_2_ans
+    - taux_6_ans_borloo
+metadata:
+  order:
+  - date_entree_en_vigueur
+  - plafond
+  - amortissement_perissol
+  - dispositif_besson_neuf
+  - dispositif_robien
+  - dispositif_robien_recentre
+  reference:
+    2009-01-01:
+      title: Loi n° 2009-1674 du 30 décembre 2009, art. 95
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=12D758D9EFB58071357DE9A384F339B0.tplgfr38s_2?cidTexte=JORFTEXT000021559075&idArticle=LEGIARTI000021579958&dateTexte=20100310&categorieLien=id#LEGIARTI000021579958
+    2006-01-01:
+      title: Loi n° 2006-872 du 13 juillet 2006, art. 39, 40 et 46
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000238980#LEGIARTI000006826032
+    2003-01-01:
+      title: Loi n° 2003-590 du 2 juillet 2003 urbanisme et habitat, art. 91
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=AF236935A4C953DA9AA24E68F2DB06A1.tplgfr37s_1?idArticle=LEGIARTI000006826490&cidTexte=LEGITEXT000005634649&dateTexte=20031230
+    1999-01-01:
+      title: Loi n° 98-1266 du 30 décembre 1998 (LF pour 1999), art.38
+      href: https://www.legifrance.gouv.fr/affichTexte.do;jsessionid=AF236935A4C953DA9AA24E68F2DB06A1.tplgfr37s_1?cidTexte=JORFTEXT000000209044&dateTexte=20000330&categorieLien=id#JORFTEXT000000209044
+    1996-01-01: 
+      title: Loi n° 96-314 du 12 avril 1996 (DDOEF), art. 29
+  date_parution_jo:
+    2009-01-01: 2009-12-31
+    2006-01-01: 2006-07-16
+    2003-01-01: 2003-07-03
+    1999-01-01: 1998-12-31
+    1996-01-01: 1996-04-13
+  notes:
+    2006-01-01: La déduction totale du coût de l'investissement du revenu imposable avec le dispositif Robien "recentré" est de 50% en 9 ans comme le Robien "classique" mais la poursuite de l'amortissement sur les 6 années suivantes pour atteindre 65% d'amortissement en 15 ans est conditionné à l'éligibilité au dispositif Borloo. 
+    2003-01-01: La déduction totale du coût de l'investissement du revenu imposable avec le dispositif Robien "classique" est de 50% sur 9 ans, 57.5% sur 12 ans et 65% sur 15 ans. 
+    1999-01-01: La déduction totale du coût de l'investissement du revenu imposable avec le dispositif Besson neuf est de 50% sur 9 ans, 57.5% sur 12 ans et 65% sur 15 ans. 
+    1998-01-01: Prévu initialement jusqu'au 31 Décembre 1998, le dispositif Périssol a été prorogé jusqu'au 31 Août 1999.
+    1996-01-01: Pour le dispositif Périssol, le plafond de déficit foncier imputable sur le revenu imposable est relevé de 70,000 F (10,700 E) à 100,000 F (15,300 E). Avec ce dispositif, 80% de l'investissement est déduit des revenus imposables au bout de 24 ans. 
+  description_en: Deductions for real estate investments (1996-)
+documentation: |
+  Notes:
+    (1) Le plafond des déficits fonciers imputables aux autres revenus est prévu depuis 1993 et est codifié au 3° du I de l'article 156 du code général des impôts (CGI).
+    (2) Les logements éligibles au disposiif Périssol sont ceux ayant été achetés neufs ou réhabilités entre le 1er Janvier 1996 et le 31 août 1999, à la condition d'être loué nu (non-meublé) à titre de résidence principale du locataire pour une durée minimale de 9 ans. Il n'y a pas de contraintes de loyer ou de ressources des locataires. CGI - art. 31 I-1° f
+    (3) Les logements éligibles au dispositif Besson neuf sont ceux ayant été achetés neufs ou réhabilités entre le 1er Janvier 1999 et le 02 avril 2003, à la condition d'être loué nu à titre de résidence principale du locataire pour une durée minimale de 9 ans, avec des plafonnements de loyer en fonction de la zone géographique et de la superficie du bien. Les particuliers éligibles à ces locations doivent avoir des revenus en dessous d'un certain plafond et ne peuvent être des ascendants ou descendants du propriétaire. CGI - art 31 I-1° g 
+    (4) Les logements éligibles au dispositif Robien "classique" sont ceux ayant été achetés neufs ou réhabilités entre le 03 avril 2003 et le 31 août 2006, à la condition d'être loué nu à titre de résidence principale du locataire pour une durée minimale de 9 ans, avec des plafonnements de loyer en fonction de la zone géographique et de la superficie du bien. Tous les contribuables sont éligibles à l'amortissement, indépendamment de leur taux d'imposition. CGI - art.31 I-1° h
+    (5) Le dispositif Robien "recentré" s'applique pour les opérations survenues entre le 1er Septembre 2006 et le 31 Décembre 2009 selon les mêmes conditions que le Robien "classique". Le dispositif additionnel Borloo neuf permet s'applique si les conditions de plafonnement des loyers sont plus restrictives et avec des locataires éligibles selon leurs revenus. CGI - art. 31 I-1° h et CGI - art. 31 I-1° l pour l'application du dispositif Borloo neuf.

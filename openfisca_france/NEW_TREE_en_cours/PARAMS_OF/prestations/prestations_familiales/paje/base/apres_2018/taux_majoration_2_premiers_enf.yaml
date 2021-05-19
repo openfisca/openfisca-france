@@ -1,0 +1,5 @@
+description: Majoration du plafond pour les 2 premiers enfants
+unit: /1
+values:
+  2004-01-01:
+    value: 0.25

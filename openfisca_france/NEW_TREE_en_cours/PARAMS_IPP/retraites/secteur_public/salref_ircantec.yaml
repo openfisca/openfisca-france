@@ -1,0 +1,281 @@
+description: Salaire de référence IRCANTEC
+salaire_reference_ircantec:
+  description: Salaire de référence IRCANTEC
+  values:
+    2019-01-01:
+      value: 4.958
+    2017-01-01:
+      value: 4.904
+    2016-01-01:
+      value: 4.766
+    2015-01-01:
+      value: 4.616
+    2014-01-01:
+      value: 4.415
+    2013-01-01:
+      value: 4.172
+    2012-01-01:
+      value: 3.904
+    2011-01-01:
+      value: 3.617
+    2010-01-01:
+      value: 3.345
+    2009-01-01:
+      value: 3.126
+    2008-01-01:
+      value: 2.896
+    2007-01-01:
+      value: 2.864
+    2006-01-01:
+      value: 2.813
+    2005-01-01:
+      value: 2.763
+    2004-01-01:
+      value: 2.709
+    2003-01-01:
+      value: 2.664
+    2002-01-01:
+      value: 2.64
+    2001-01-01:
+      value: 2.552
+    2000-01-01:
+      value: 2.503
+    1999-01-01:
+      value: 2.451
+    1998-01-01:
+      value: 2.4
+    1997-01-01:
+      value: 2.368
+    1996-01-01:
+      value: 2.358
+    1995-01-01:
+      value: 2.314
+    1994-01-01:
+      value: 2.268
+    1993-01-01:
+      value: 2.238
+    1992-01-01:
+      value: 2.172
+    1991-01-01:
+      value: 2.107
+    1990-01-01:
+      value: 2.063
+    1989-01-01:
+      value: 2.003
+    1988-01-01:
+      value: 1.941
+    1987-01-01:
+      value: 1.904
+    1986-01-01:
+      value: 1.886
+    1985-01-01:
+      value: 1.825
+    1984-01-01:
+      value: 1.738
+    1983-01-01:
+      value: 1.624
+    1982-01-01:
+      value: 1.47
+    1981-01-01:
+      value: 1.276
+    1980-01-01:
+      value: 1.133
+    1979-01-01:
+      value: 1.005
+    1978-01-01:
+      value: 0.902
+    1977-01-01:
+      value: 0.825
+    1976-01-01:
+      value: 0.741
+    1975-01-01:
+      value: 0.642
+    1974-01-01:
+      value: 0.566
+    1973-01-01:
+      value: 0.495
+    1972-01-01:
+      value: 0.454
+    1971-01-01:
+      value: 0.421
+    1925-01-01:
+      value: null
+  metadata:
+    ipp_csv_id: sal_ref_ircantec
+    unit: currency-EUR
+salaire_reference_igrante:
+  description: Salaire de référence IGRANTE
+  values:
+    1971-01-01:
+      value: null
+    1970-01-01:
+      value: 0.395
+    1969-01-01:
+      value: 0.369
+    1968-01-01:
+      value: 0.345
+    1967-01-01:
+      value: 0.3
+    1966-01-01:
+      value: 0.288
+    1965-01-01:
+      value: 0.277
+    1964-01-01:
+      value: 0.265
+    1963-01-01:
+      value: 0.25
+    1962-01-01:
+      value: 0.227
+    1961-01-01:
+      value: 0.207
+    1960-01-01:
+      value: 0.197
+    1959-01-01:
+      value: 0.191
+    1958-01-01:
+      value: 0.177
+    1957-01-01:
+      value: 0.148
+    1956-01-01:
+      value: 0.122
+    1955-01-01:
+      value: 0.113
+    1954-01-01:
+      value: 0.099
+    1951-01-01:
+      value: 0.096
+    1950-01-01:
+      value: 0.079
+    1949-01-01:
+      value: 0.064
+    1948-01-01:
+      value: 0.56
+    1947-01-01:
+      value: 0.04
+    1946-01-01:
+      value: 0.02744
+    1945-01-01:
+      value: 0.01524
+    1944-01-01:
+      value: 0.01067
+    1943-01-01:
+      value: 0.00945
+    1942-01-01:
+      value: 0.00854
+    1941-01-01:
+      value: 0.00762
+    1940-01-01:
+      value: 0.00717
+    1939-01-01:
+      value: 0.00686
+    1938-01-01:
+      value: 0.00656
+    1935-01-01:
+      value: 0.00579
+    1930-01-01:
+      value: 0.00534
+    1928-01-01:
+      value: 0.00488
+    1927-01-01:
+      value: 0.00457
+    1926-01-01:
+      value: 0.00335
+    1925-01-01:
+      value: 0.00305
+  metadata:
+    ipp_csv_id: sal_ref_igrante
+    unit: currency-EUR
+salaire_reference_ipacte:
+  description: Salaire de référence IPACTE
+  values:
+    1971-01-01:
+      value: null
+    1970-01-01:
+      value: 0.395
+    1969-01-01:
+      value: 0.369
+    1968-01-01:
+      value: 0.345
+    1967-01-01:
+      value: 0.3
+    1966-01-01:
+      value: 0.288
+    1965-01-01:
+      value: 0.277
+    1964-01-01:
+      value: 0.265
+    1963-01-01:
+      value: 0.25
+    1962-01-01:
+      value: 0.227
+    1961-01-01:
+      value: 0.207
+    1960-01-01:
+      value: 0.197
+    1959-01-01:
+      value: 0.191
+    1958-01-01:
+      value: 0.177
+    1957-01-01:
+      value: 0.148
+    1956-01-01:
+      value: 0.122
+    1955-01-01:
+      value: 0.13
+    1954-01-01:
+      value: 0.099
+    1951-01-01:
+      value: 0.096
+    1950-01-01:
+      value: 0.079
+    1949-01-01:
+      value: 0.064
+    1948-01-01:
+      value: 0.56
+    1947-01-01:
+      value: 0.04
+    1946-01-01:
+      value: 0.03049
+    1945-01-01:
+      value: 0.01829
+    1943-01-01:
+      value: 0.0122
+    1941-01-01:
+      value: 0.01067
+    1940-01-01:
+      value: 0.00915
+    1939-01-01:
+      value: 0.00838
+    1938-01-01:
+      value: 0.00686
+    1935-01-01:
+      value: 0.0061
+    1930-01-01:
+      value: 0.00686
+    1929-01-01:
+      value: 0.0061
+    1928-01-01:
+      value: 0.00572
+    1927-01-01:
+      value: 0.00534
+    1926-01-01:
+      value: 0.00457
+    1925-01-01:
+      value: 0.00419
+  metadata:
+    ipp_csv_id: sal_ref_ipacte
+    unit: currency-EUR
+metadata:
+  order:
+  - salaire_reference_ircantec
+  - salaire_reference_igrante
+  - salaire_reference_ipacte
+  reference:
+    2017-01-01: Ircantec - Notes juridiques n°2144 du 26/03/2015
+  notes:
+    1971-01-01: "1971: Création de l'IRCANTEC"
+    1947-01-01: A partir de cette date, les salaires de références sont identiques pour les deux catégories.
+  description_en: Reference wage IRCANTEC
+documentation: |
+  Sources :
+  Barèmes fournis par l'Ircantec.

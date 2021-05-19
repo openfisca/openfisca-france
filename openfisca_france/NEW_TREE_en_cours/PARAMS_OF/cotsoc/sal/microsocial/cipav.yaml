@@ -1,0 +1,11 @@
+description: Taux professions libérales relevant du  CIPAV
+unit: /1
+values:
+  2009-01-01:
+    value: 0.183
+  2013-01-01:
+    value: 0.213
+  2014-01-01:
+    value: 0.233
+  2015-01-01:
+    value: 0.252

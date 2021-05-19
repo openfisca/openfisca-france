@@ -1,0 +1,497 @@
+description: Allocations aux adultes handicapés (AAH)
+age_minimal:
+  description: Age minimal
+  values:
+    2000-01-01:
+      value: 20.0
+  metadata:
+    ipp_csv_id: age_min_aah
+age_maximal:
+  description: Âge maximal pour un taux d'incapacité compris entre 50 et 79% (2) (3)
+  values:
+    2000-01-01: 60.0
+  metadata:
+    ipp_csv_id: agemax_incapacite50_aah
+montant:
+  description: Montant
+  values:
+    2020-04-01:
+      value: 902.70
+    2019-11-01:
+      value: 900.0
+    2018-11-01:
+      value: 860.0
+    2018-04-01:
+      value: 819.0
+    2017-04-01:
+      value: 810.89
+    2016-04-01:
+      value: 808.46
+    2015-09-01:
+      value: 807.65
+    2014-09-01:
+      value: 800.45
+    2013-09-01:
+      value: 790.18
+    2012-09-01:
+      value: 776.59
+    2012-04-01:
+      value: 759.98
+    2011-09-01:
+      value: 743.62
+    2011-04-01:
+      value: 727.61
+    2010-09-01:
+      value: 711.95
+    2010-04-01:
+      value: 696.63
+    2009-09-01:
+      value: 681.63
+    2009-04-01:
+      value: 666.96
+    2008-09-01:
+      value: 652.6
+    2008-01-01:
+      value: 628.1
+    2007-01-01:
+      value: 621.27
+    2006-01-01:
+      value: 610.28
+    2005-07-01:
+      value: 599.49
+    2004-01-01:
+      value: 587.74
+    2003-01-01:
+      value: 577.92
+    2002-01-01:
+      value: 569.38
+    2001-01-01:
+      value: 557.12
+    2000-01-01:
+      value: 545.13
+  metadata:
+    ipp_csv_id: montant_80_aah
+    unit: currency-EUR
+plafond_ressources_en_multiple_montant_base:
+  description: Plafond de ressources (en multiple du montant de base)
+  values:
+    2000-01-01:
+      value: 12.0
+  metadata:
+    ipp_csv_id: plaf_ressources_aah
+majoration_plafond_couple:
+  description: Majoration du plafond pour un couple
+  values:
+    2019-11-01:
+      value: 0.81
+    2018-11-01:
+      value: 0.89
+    2000-01-01:
+      value: 1.0
+  metadata:
+    ipp_csv_id: maj_couple_aah
+    unit: /1
+majoration_par_enfant_supplementaire:
+  description: Majoration par enfant supplémentaire
+  values:
+    2000-01-01:
+      value: 0.5
+  metadata:
+    ipp_csv_id: maj_enf_aah
+    unit: /1
+pourcentage_aah:
+  description: Pourcentage de l'AAH perçu
+  normal:
+    description: Sans ressources
+    values:
+      2000-01-01:
+        value: 1.0
+    metadata:
+      unit: /1
+      ipp_csv_id: pourcentage_aah_normal
+  prison_hospitalisation:
+    description: A partir du 60ème jour d'hospitalisation ou d'incarcération (4)
+    values:
+      2005-07-01:
+        value: 0.3
+      2000-01-01:
+        value: 0.65
+    metadata:
+      unit: /1
+      ipp_csv_id: pourcentage_aah_prison_hopital
+  metadata:
+    order:
+    - normal
+    - prison_hospitalisation
+rente_pension:
+  description: Montant maximal AAH + pension/rente (5)
+  values:
+    2020-04-01:
+      value: 902.70
+    2019-11-01:
+      value: 900.0
+    2018-11-01:
+      value: 860.0
+    2018-04-01:
+      value: 819.0
+    2017-04-01:
+      value: 810.89
+    2016-04-01:
+      value: 808.46
+    2015-09-01:
+      value: 807.65
+    2014-09-01:
+      value: 800.45
+    2013-09-01:
+      value: 790.18
+    2012-09-01:
+      value: 776.59
+    2012-04-01:
+      value: 759.98
+    2011-09-01:
+      value: 743.62
+    2011-04-01:
+      value: 727.61
+    2010-09-01:
+      value: 711.95
+    2010-04-01:
+      value: 696.63
+    2009-09-01:
+      value: 681.63
+    2009-04-01:
+      value: 666.96
+    2008-09-01:
+      value: 652.6
+    2008-01-01:
+      value: 628.1
+    2007-01-01:
+      value: 621.27
+    2006-01-01:
+      value: 610.28
+    2005-07-01:
+      value: 599.49
+    2004-01-01:
+      value: 587.74
+    2003-01-01:
+      value: 577.92
+    2002-01-01:
+      value: 569.38
+    2001-01-01:
+      value: 557.12
+    2000-01-01:
+      value: 545.13
+  metadata:
+    ipp_csv_id: max_rentepension_aah
+    unit: currency-EUR
+abattement_invalidite:
+  description: Abattement sur les revenus du conjoint ou les rentes/pensiosn pour les titulaires d'une carte d'invalidité (voir notes)
+  values:
+    2018-04-01:
+      value: 2416.0
+    2017-04-01:
+      value: 2376.0
+    2016-04-01:
+      value: 2352.0
+    2015-09-01:
+      value: 2348.0
+    2014-09-01:
+      value: 2344.0
+    2013-09-01:
+      value: 2332.0
+    2010-09-01:
+      value: 2312.0
+    2009-04-01:
+      value: 2276.0
+    2008-09-01:
+      value: 2266.0
+    2007-01-01:
+      value: 2202.0
+    2006-01-01:
+      value: 2172.0
+    2005-07-01:
+      value: 1706.0
+    2004-01-01:
+      value: 1674.0
+    2003-01-01:
+      value: 1646.0
+    2002-01-01:
+      value: 1618.0
+    2001-01-01:
+      value: 1590.0
+    2000-01-01:
+      value: 10260.0
+  metadata:
+    ipp_csv_id: abattement_invalide_aah
+    unit:
+      2001-01-01: currency-EUR
+      2000-01-01: currency-FRF
+aah_revenus:
+  description: Base de calcul pour les bénéficiaires percevant des revenus
+  abattement_special:
+    description: Abattement automatique sur les revenus imposables
+    values:
+      2000-01-01:
+        value: 0.2
+    metadata:
+      value: /1
+      ipp_csv_id: abattement_aah_invalidite
+  travail_esat:
+    description: Travail dans un établissement et service d'aide par le travail (Esat) (6)
+    plafond:
+      description: Plafond du cumul AAH et rémunération par l'Esat (en part du SMIC)
+      seul:
+        description: Pour un bénéficiaire seul
+        values:
+          2000-01-01:
+            value: 1.0
+        metadata:
+          unit: /1
+          ipp_csv_id: plaf_aah_esat_seul
+      couple:
+        description: Pour un bénéficiaire en couple
+        values:
+          2000-01-01:
+            value: 1.3
+        metadata:
+          unit: /1
+          ipp_csv_id: plaf_aah_esat_couple
+      majoration:
+        description: Majoration par enfant ou ascendant à charge
+        values:
+          2000-01-01:
+            value: 0.15
+        metadata:
+          unit: /1
+          ipp_csv_id: plaf_aah_esat_maj
+      metadata:
+        order:
+        - seul
+        - couple
+        - majoration
+    abattement_esat:
+      description: Abattement sur la rémunération garantie nette perçue
+      esat_5_10:
+        description: La rémunération garantie financée par l'Esat est > 5 % et < 10 % du Smic
+        values:
+          2000-01-01:
+            value: 0.035
+        metadata:
+          unit: /1
+          ipp_csv_id: abattement_esat_5_10
+      esat_10_15:
+        description: La rémunération garantie financée par l'Esat est > 10 % et < 15 % du Smic
+        values:
+          2000-01-01:
+            value: 0.04
+        metadata:
+          unit: /1
+          ipp_csv_id: abattement_esat_10_15
+      esat_15_20:
+        description: La rémunération garantie financée par l'Esat est > 15 % et < 20 % du Smic
+        values:
+          2000-01-01:
+            value: 0.045
+        metadata:
+          unit: /1
+          ipp_csv_id: abattement_esat_15_20
+      esat_20_50:
+        description: La rémunération garantie financée par l'Esat est > 20 % et < 50 % du Smic
+        values:
+          2000-01-01:
+            value: 0.05
+        metadata:
+          unit: /1
+          ipp_csv_id: abattement_esat_20_50
+      metadata:
+        order:
+        - esat_5_10
+        - esat_10_15
+        - esat_15_20
+        - esat_20_50
+    metadata:
+      order:
+      - plafond
+      - abattement_esat
+  travail_ordinaire:
+    description: Revenus professionnels dans le milieu ordinaire (6)
+    abattement_30:
+      description: Abattement sur les revenus inférieurs à 30% du SMIC
+      values:
+        2010-09-01:
+          value: 0.8
+        2000-01-01:
+          value: null
+      metadata:
+        unit: /1
+        ipp_csv_id: abattement_ordinaire_30
+    abattement_sup:
+      description: Abattement sur les revenus supérieurs à 30% du SMIC
+      values:
+        2010-09-01:
+          value: 0.4
+        2000-01-01:
+          value: null
+      metadata:
+        unit: /1
+        ipp_csv_id: abattement_ordinaire_sup
+    abattement_300:
+      description: Abattement sur les revenus annuels inférieurs à 300 SMIC horaires
+      values:
+        2010-09-01:
+          value: null
+        2000-01-01:
+          value: 0.4
+      metadata:
+        unit: /1
+        ipp_csv_id: abattement_ordinaire_300
+    abattement_700:
+      description: Abattement sur les revenus annuels entre 300 et 700 SMIC horaires
+      values:
+        2010-09-01:
+          value: null
+        2000-01-01:
+          value: 0.3
+      metadata:
+        unit: /1
+        ipp_csv_id: abattement_ordinaire_700
+    abattement_1100:
+      description: Abattement sur les revenus annuels entre 700 et 1100 SMIC horaires
+      values:
+        2010-09-01:
+          value: null
+        2000-01-01:
+          value: 0.2
+      metadata:
+        unit: /1
+        ipp_csv_id: abattement_ordinaire_1100
+    abattement_1500:
+      description: Abattement sur les revenus annuels entre 1100 et 1500 SMIC horaires
+      values:
+        2010-09-01:
+          value: null
+        2000-01-01:
+          value: 0.1
+      metadata:
+        unit: /1
+        ipp_csv_id: abattement_ordinaire_1500
+    metadata:
+      order:
+      - abattement_30
+      - abattement_sup
+      - abattement_300
+      - abattement_700
+      - abattement_1100
+      - abattement_1500
+  abattement_frais_pro:
+    description: Abattement au titre des frais professionnels
+    values:
+      2000-01-01:
+        value: 0.1
+    metadata:
+      unit: /1
+      ipp_csv_id: abattement_pro_aah
+  metadata:
+    order:
+    - abattement_frais_pro
+    - abattement_special
+    - travail_esat
+    - travail_ordinaire
+metadata:
+  order:
+  - age_minimal
+  - age_maximal
+  - montant
+  - pourcentage_aah
+  - rente_pension
+  - abattement_invalidite
+  - aah_revenus
+  - plafond_ressources_en_multiple_montant_base
+  - majoration_plafond_couple
+  - majoration_par_enfant_supplementaire
+  reference:
+    2020-04-01:
+      title: Décret n° 2020-492 du 29 avril 2020 - art. 1 et 2.
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000041835211
+    2019-11-01:
+      title: Décret 2019-1047 du 11/10/2019 - art. 1 et 2
+      href: https://www.legifrance.gouv.fr/affichTexte.do;jsessionid=481D3959F882FE91C75AB12AEB821D74.tplgfr26s_2?cidTexte=JORFTEXT000039207638&dateTexte=20191219
+    2018-11-01:
+      title: Décret 2018-948 du 31/10/2018 - art. 1 et 2
+      href: https://www.legifrance.gouv.fr/affichTexte.do;jsessionid=018CC00F38F6020EAC583526D156CF26.tplgfr26s_2?cidTexte=JORFTEXT000037552841&dateTexte=20190513
+    2018-04-01:
+      title: Décret 2018-328 du 04/05/2017 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036880058&cidTexte=JORFTEXT000036876078
+    2017-04-01:
+      title: Décret 2017-710 du 03/05/2017 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000034576389&cidTexte=JORFTEXT000034567036
+    2016-04-01:
+      title: Décret 2016-535 du 27/04/2016 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000032483498&cidTexte=JORFTEXT000032482318
+    2015-09-01:
+      title: Décret 2015-1233 du 6/10/2015 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000031277466&cidTexte=JORFTEXT000031276443
+    2014-09-01:
+      title: Décret 2014-1129 du 3/10/2014 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029537057&cidTexte=JORFTEXT000029535265
+    2013-09-01:
+      title: Décret 2013-831 du 17/09/2013 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000027973506&cidTexte=JORFTEXT000027972698
+    2012-09-01:
+      title: Décret 2012-486 du 13/04/2012 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025693677&cidTexte=JORFTEXT000025688737
+    2012-04-01:
+      title: Décret 2012-486 du 13/04/2012 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025693677&cidTexte=JORFTEXT000025688737
+    2011-09-01:
+      title: Décret 2011-658 du 10/06/2011 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000024167671&cidTexte=JORFTEXT000024153713
+    2011-04-01:
+      title: Décret 2011-658 du 10/06/2011 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000024167671&cidTexte=JORFTEXT000024153713
+    2010-09-01:
+      title: Décret 2010-307 du 22/03/2010 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000022012740&cidTexte=JORFTEXT000022009472
+    2010-04-01:
+      title: Décret 2010-307 du 22/03/2010 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000022012740&cidTexte=JORFTEXT000022009472
+    2009-09-01:
+      title: Décret 2009-353 du 31/03/2009 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020468895&cidTexte=JORFTEXT000020467482
+    2009-04-01:
+      title: Décret 2009-353 du 31/03/2009 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020468895&cidTexte=JORFTEXT000020467482
+    2008-09-01:
+      title: Décret 2008-988 du 18/09/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/9/18/2008-988/jo/texte
+    2005-07-01: Circulaire DGAS/1C 2005-411 du 07/09/2005
+    2004-01-01: Circulaire DGAS/1C 2003-630 du 30/12/2004
+  date_parution_jo:
+    2020-04-01: 2020-04-30
+    2018-11-01: 2018-11-03
+    2018-04-01: 2017-05-04
+    2017-04-01: 2017-05-04
+    2016-04-01: 2016-05-03
+    2015-09-01: 2015-10-07
+    2014-09-01: 2014-10-05
+    2013-09-01: 2013-09-19
+    2012-09-01: 2012-04-15
+    2012-04-01: 2012-04-15
+    2011-09-01: 2011-06-12
+    2011-04-01: 2011-06-12
+    2010-09-01: 2010-03-24
+    2010-04-01: 2010-03-24
+    2009-09-01: 2009-04-01
+    2009-04-01: 2009-04-01
+    2008-09-01: 2008-09-21
+  notes:
+    2016-04-01: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000020037365&dateTexte=29990101&categorieLien=cid
+  description_en: Adult disability allowance (AAH)
+documentation: |
+  Notes :
+  Dispositif créé par la loi 75-534 du 30 juin 1975
+  (1) L'âge minimal ouvrant droit à l'AAH est abaissé à 16 ans lorsque le bénéficiaire n'est plus considéré à la charge de vos parents pour le bénéfice des prestations familiales.
+  (2) L'AAH est ouverte sans conditions d'âge maximal, pour une durée de 1 à 10 ans renouvelables, aux personnes dont le taux d'incapacité déterminé CDAPH est au moins égal à 80 %.
+  (3) L'AAH est aussi ouverte jusqu'à l'âge de 60 ans, pour une durée de 1 à 5 ans renouvelables, aux personnes dont le taux d'incapacité est compris entre 50% et 79%, si la CDAPH reconnaît en plus que le handicap entraîne une restriction substantielle et durable pour l’accès à l’emploi.
+  (4) Les droits à l'AAH sont réduits à partir du 61ème jour consécutif en incarcération, hospitalisation ou hébergement en maison d'accueil spécialisé (MAS). Durant les 60 premiers jours, les droits sont conservés dans leur intégralité.
+  (5) Si le bénéficiaire touche une pension ou une rente (invalidité, retraite, accident du travail), le montant d'AAH reçu équivaut à la différence entre le montant de l'AAH en vigueur et le montant de la pension/rente perçu. Si le bénéficiaire est titulaire d'une carte d'invalidité, l'abattement s'applique sur le montant perçu au cours de l'année au tite de sa rente ou de sa pension.
+  (6) Les ressources pris en compte dans le calcul de l'AAH pour les ayant-droits touchant des revenus d'un ESAT sont calculés à partir des revenus imposables de l'année N-2 auxquels on abat 30% (10% de droit commun et 20% spécifique à l'AAH) ainsi que l'abattement propre à la rémunération garatie de l'Esat (de 3,5% à 5%). Jusqu'en 2010, les titulaires d'une carte d'invalidité bénéficiaient en plus de l'abattement pour invalides mentionné à l'article 157 bis du CGI. Les ressources pris en compte dans le calcul de l'AAH pour les ayant-droits touchant des revenus professionnels ordinaires sont calculés à partir des revenus déclarés trimestriellement auquel est appliqué la réduction d'impôt spécifique à ces revenus (80% puis 40%) puis le montant obtenu est abattu de 30%. Jusqu'en 2010, les titulaires d'une carte d'invalidité bénéficiaient en plus de l'abattement pour invalides. Les revenus du conjoint sont aussi pris en compte, de la même manière pour les ayants-droits tirant des revenus d'un ESAT que du monde professionnel ordinaire, en prenant les revenus imposables auxquels on abat 30%. Si le bénéficiaire de l'AAH est titulaire de la carte d'invalidité, les revenus de son conjoint sont abattus du montant précédement mentionné. Une fois l'assiette de revenus déterminée, le montant de l'AAH versée est égale à la différence entre le plafond de ressources et l'assiette de revenus prise en compte (divisée par 12 pour obtenir l'allocation mensuelle).

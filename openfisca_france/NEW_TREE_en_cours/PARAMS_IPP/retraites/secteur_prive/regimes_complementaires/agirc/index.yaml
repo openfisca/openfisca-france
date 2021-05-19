@@ -1,0 +1,8 @@
+description: Régime complémentaire Agirc
+metadata:
+  order:
+  - point
+  - salaire_de_reference
+  - coefficient_de_minoration
+  - gmp
+  description_en: Complementary scheme Agirc

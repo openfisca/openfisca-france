@@ -1,0 +1,10 @@
+description: Déficit foncier art 156-I-3 du CGI
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  1992-01-01:
+    value: 50000.0
+  1995-01-01:
+    value: 70000.0
+  2001-01-01:
+    value: 10700.0

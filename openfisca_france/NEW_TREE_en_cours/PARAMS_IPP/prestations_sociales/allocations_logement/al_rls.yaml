@@ -1,0 +1,456 @@
+description: Réduction de loyer de solidarité (RLS)
+baisse_apl_rsl:
+  description: Baisse de l'aide personnalisée au logement (en % de la RLS)
+  values:
+    2018-01-01:
+      value: 0.98
+  metadata:
+    ipp_csv_id: baisse_apl_rsl
+    unit:
+      2018-01-01: /1
+reduction_loyer_solidarite_zone_1_montant:
+  description: Réduction du loyer de solidarité en zone 1
+  couple:
+    description: Couple
+    values:
+      2020-01-02:
+        value: 59.70
+      2019-01-01:
+        value: 38.99
+      2018-01-01:
+        value: 38.99
+    metadata:
+      ipp_csv_id: rls_z1_couple
+      unit: currency-EUR
+  famille_1_pac:
+    description: Famille avec 1 personne à charge
+    values:
+      2020-01-02:
+        value: 67.46
+      2019-01-01:
+        value: 44.06
+      2018-01-01:
+        value: 43.38
+    metadata:
+      ipp_csv_id: rls_z1_famille_1pac
+      unit: currency-EUR
+  personne_isolee:
+    description: Personne isolée
+    values:
+      2020-01-02:
+        value: 49.50
+      2019-01-01:
+        value: 32.33
+      2018-01-01:
+        value: 31.83
+    metadata:
+      ipp_csv_id: rls_z1_personne_isolee
+      unit: currency-EUR
+  majoration_pac_supplementaire:
+    description: Majoration par personne à charge supplémentaire
+    values:
+      2020-01-02:
+        value: 9.78
+      2019-01-01:
+        value: 6.39
+      2018-01-01:
+        value: 6.29
+    metadata:
+      ipp_csv_id: rls_z1_pac_supplementaire
+      unit: currency-EUR
+reduction_loyer_solidarite_zone_2_montant:
+  description: Réduction du loyer de solidarité en zone 2
+  couple:
+    description: Couple
+    values:
+      2020-01-02:
+        value: 52.79
+      2019-01-01:
+        value: 34.48
+      2018-01-01:
+        value: 33.95
+    metadata:
+      ipp_csv_id: rls_z2_couple
+      unit: currency-EUR
+  famille_1_pac:
+    description: Famille avec 1 personne à charge
+    values:
+      2020-01-02:
+        value: 59.40
+      2019-01-01:
+        value: 38.8
+      2018-01-01:
+        value: 38.2
+    metadata:
+      ipp_csv_id: rls_z2_famille_1pac
+      unit: currency-EUR
+  personne_isolee:
+    description: Personne isolée
+    values:
+      2020-01-02:
+        value: 43.14
+      2019-01-01:
+        value: 28.18
+      2018-01-01:
+        value: 27.74
+    metadata:
+      ipp_csv_id: rls_z2_personne_isolee
+      unit: currency-EUR
+  majoration_pac_supplementaire:
+    description: Majoration par personne à charge supplémentaire
+    values:
+      2020-01-02:
+        value: 8.65
+      2019-01-01:
+        value: 5.65
+      2018-01-01:
+        value: 5.56
+    metadata:
+      ipp_csv_id: rls_z2_pac_supplementaire
+      unit: currency-EUR
+reduction_loyer_solidarite_zone_3_montant:
+  description: Réduction du loyer de solidarité en zone 3
+  couple:
+    description: Couple
+    values:
+      2020-01-02:
+        value: 49.01
+      2019-01-01:
+        value: 32.01
+      2018-01-01:
+        value: 31.52
+    metadata:
+      ipp_csv_id: rls_z3_couple
+      unit: currency-EUR
+  famille_1_pac:
+    description: Famille avec 1 personne à charge
+    values:
+      2020-01-02:
+        value: 54.95
+      2019-01-01:
+        value: 35.89
+      2018-01-01:
+        value: 35.34
+    metadata:
+      ipp_csv_id: rls_z3_famille_1pac
+      unit: currency-EUR
+  personne_isolee:
+    description: Personne isolée
+    values:
+      2020-01-02:
+        value: 40.43
+      2019-01-01:
+        value: 26.41
+      2018-01-01:
+        value: 26.0
+    metadata:
+      ipp_csv_id: rls_z2_personne_isolee
+      unit: currency-EUR
+  majoration_pac_supplementaire:
+    description: Majoration par personne à charge supplémentaire
+    values:
+      2020-01-02:
+        value: 7.87
+      2019-01-01:
+        value: 5.14
+      2018-01-01:
+        value: 5.06
+    metadata:
+      ipp_csv_id: rls_z3_pac_supplementaire
+      unit: currency-EUR
+reduction_loyer_solidarite_zone_1_plafond_ressources:
+  description: Plafonds de ressources pour la réduction du loyer de solidarité en zone 1
+  couple:
+    description: Couple
+    values:
+      2019-01-01:
+        value: 1102.0
+      2018-01-01:
+        value: 1091.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z1_couple
+      unit: currency-EUR
+  famille_1_pac:
+    description: Famille avec 1 personne à charge
+    values:
+      2019-01-01:
+        value: 1403.0
+      2018-01-01:
+        value: 1389.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z1_famille_1pac
+      unit: currency-EUR
+  famille_2_pac:
+    description: Famille avec 2 personnes à charge
+    values:
+      2019-01-01:
+        value: 1669.0
+      2018-01-01:
+        value: 1653.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z1_famille_2pac
+      unit: currency-EUR
+  famille_3_pac:
+    description: Famille avec 3 personnes à charge
+    values:
+      2019-01-01:
+        value: 2043.0
+      2018-01-01:
+        value: 2023.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z1_famille_3pac
+      unit: currency-EUR
+  famille_4_pac:
+    description: Famille avec 4 personnes à charge
+    values:
+      2019-01-01:
+        value: 2357.0
+      2018-01-01:
+        value: 2334.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z1_famille_4pac
+      unit: currency-EUR
+  famille_5_pac:
+    description: Famille avec 5 personnes à charge
+    values:
+      2019-01-01:
+        value: 2624.0
+      2018-01-01:
+        value: 2598.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z1_famille_5pac
+      unit: currency-EUR
+  famille_6_pac:
+    description: Famille avec 6 personnes à charge
+    values:
+      2019-01-01:
+        value: 2905.0
+      2018-01-01:
+        value: 2876.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z1_famille_6pac
+      unit: currency-EUR
+  personne_isolee:
+    description: Personne isolée
+    values:
+      2019-01-01:
+        value: 915.0
+      2018-01-01:
+        value: 906.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z1_personne_isolee
+      unit: currency-EUR
+  majoration_pac_supplementaire:
+    description: Majoration par personne à charge supplémentaire
+    values:
+      2019-01-01:
+        value: 283.0
+      2018-01-01:
+        value: 280.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z1_pac_supplementaire
+      unit: currency-EUR
+reduction_loyer_solidarite_zone_2_plafond_ressources:
+  description: Plafonds de ressources pour la réduction du loyer de solidarité en zone 2
+  couple:
+    description: Couple
+    values:
+      2019-01-01:
+        value: 1042.0
+      2018-01-01:
+        value: 1032.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z2_couple
+      unit: currency-EUR
+  famille_1_pac:
+    description: Famille avec 1 personne à charge
+    values:
+      2019-01-01:
+        value: 1329.0
+      2018-01-01:
+        value: 1316.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z2_famille_1pac
+      unit: currency-EUR
+  famille_2_pac:
+    description: Famille avec 2 personnes à charge
+    values:
+      2019-01-01:
+        value: 1583.0
+      2018-01-01:
+        value: 1567.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z2_famille_2pac
+      unit: currency-EUR
+  famille_3_pac:
+    description: Famille avec 3 personnes à charge
+    values:
+      2019-01-01:
+        value: 1943.0
+      2018-01-01:
+        value: 1924.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z2_famille_3pac
+      unit: currency-EUR
+  famille_4_pac:
+    description: Famille avec 4 personnes à charge
+    values:
+      2019-01-01:
+        value: 2243.0
+      2018-01-01:
+        value: 2221.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z2_famille_4pac
+      unit: currency-EUR
+  famille_5_pac:
+    description: Famille avec 5 personnes à charge
+    values:
+      2019-01-01:
+        value: 2497.0
+      2018-01-01:
+        value: 2472.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z2_famille_5pac
+      unit: currency-EUR
+  famille_6_pac:
+    description: Famille avec 6 personnes à charge
+    values:
+      2019-01-01:
+        value: 2764.0
+      2018-01-01:
+        value: 2737.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z2_famille_6pac
+      unit: currency-EUR
+  personne_isolee:
+    description: Personne isolée
+    values:
+      2019-01-01:
+        value: 854.0
+      2018-01-01:
+        value: 846.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z2_personne_isolee
+      unit: currency-EUR
+  majoration_pac_supplementaire:
+    description: Majoration par personne à charge supplémentaire
+    values:
+      2019-01-01:
+        value: 263.0
+      2018-01-01:
+        value: 266.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z2_pac_supplementaire
+      unit: currency-EUR
+reduction_loyer_solidarite_zone_3_plafond_ressources:
+  description: Plafonds de ressources pour la réduction du loyer de solidarité en zone 3
+  couple:
+    description: Couple
+    values:
+      2019-01-01:
+        value: 1008.0
+      2018-01-01:
+        value: 998.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z3_couple
+      unit: currency-EUR
+  famille_1_pac:
+    description: Famille avec 1 personne à charge
+    values:
+      2019-01-01:
+        value: 1289.0
+      2018-01-01:
+        value: 1276.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z3_famille_1pac
+      unit: currency-EUR
+  famille_2_pac:
+    description: Famille avec 2 personnes à charge
+    values:
+      2019-01-01:
+        value: 1536.0
+      2018-01-01:
+        value: 1521.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z3_famille_2pac
+      unit: currency-EUR
+  famille_3_pac:
+    description: Famille avec 3 personnes à charge
+    values:
+      2019-01-01:
+        value: 1877.0
+      2018-01-01:
+        value: 1858.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z3_famille_3pac
+      unit: currency-EUR
+  famille_4_pac:
+    description: Famille avec 4 personnes à charge
+    values:
+      2019-01-01:
+        value: 2169.0
+      2018-01-01:
+        value: 2148.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z3_famille_4pac
+      unit: currency-EUR
+  famille_5_pac:
+    description: Famille avec 5 personnes à charge
+    values:
+      2019-01-01:
+        value: 2411.0
+      2018-01-01:
+        value: 2387.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z3_famille_5pac
+      unit: currency-EUR
+  famille_6_pac:
+    description: Famille avec 6 personnes à charge
+    values:
+      2019-01-01:
+        value: 2671.0
+      2018-01-01:
+        value: 2645.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z3_famille_6pac
+      unit: currency-EUR
+  personne_isolee:
+    description: Personne isolée
+    values:
+      2019-01-01:
+        value: 828.0
+      2018-01-01:
+        value: 820.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z3_personne_isolee
+      unit: currency-EUR
+  majoration_pac_supplementaire:
+    description: Majoration par personne à charge supplémentaire
+    values:
+      2019-01-01:
+        value: 247.0
+      2018-01-01:
+        value: 245.0
+    metadata:
+      ipp_csv_id: plafond_ressources_rls_z3_pac_supplementaire
+      unit: currency-EUR
+metadata:
+  order:
+  - baisse_apl_rsl
+  - reduction_loyer_solidarite_zone_1_montant
+  - reduction_loyer_solidarite_zone_2_montant
+  - reduction_loyer_solidarite_zone_3_montant
+  - reduction_loyer_solidarite_zone_1_plafond_ressources
+  - reduction_loyer_solidarite_zone_2_plafond_ressources
+  - reduction_loyer_solidarite_zone_3_plafond_ressources
+  reference:
+    2018-01-01:
+    - Décret n° 2018-136 du 27/02/2018, art. 1
+    - Arrêté du 27 février 2018 relatif à la réduction de loyer de solidarité
+    2019-01-01:  Arrêté du 27 décembre 2018
+  date_parution_jo:
+    2018-01-01: 2018-02-28
+    2019-01-01: 2018-12-29
+  notes:
+    2018-01-01: Création de la réduction de loyer de solidarité par la loi de finances pour 2018. Elle entre en vigueur le 01/02/2018.
+

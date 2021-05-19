@@ -1,0 +1,10 @@
+description: Contribution additionnelle solidarité autonomie (revenus du patrimoine)
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1945-01-01:
+    value: 0.0
+  2003-01-01:
+    value: 0.0015
+  2004-07-01:
+    value: 0.003

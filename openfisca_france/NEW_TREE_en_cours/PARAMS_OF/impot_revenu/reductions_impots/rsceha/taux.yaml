@@ -1,0 +1,5 @@
+description: Taux
+unit: /1
+values:
+  1983-01-01:
+    value: 0.25

@@ -1,0 +1,874 @@
+description: Allocation aux vieux travailleurs salariés (AVTS)
+montants_annuels:
+  description: Montants annuels
+  values:
+    2020-01-01:
+      value: 3513.58
+    2019-01-01:
+      value: 3478.8
+    2018-04-01:
+      value: 3427.39
+    2017-04-01:
+      value: 3393.46
+    2016-04-01:
+      value: 3383.32
+    2014-04-01:
+      value: 3379.95
+    2013-04-01:
+      value: 3359.8
+    2012-04-01:
+      value: 3316.69
+    2011-04-01:
+      value: 3248.48
+    2010-04-01:
+      value: 3181.67
+    2009-04-01:
+      value: 3153.3
+    2008-09-01:
+      value: 3122.08
+    2008-01-01:
+      value: 3097.31
+    2007-01-01:
+      value: 3063.62
+    2006-01-01:
+      value: 3009.45
+    2005-01-01:
+      value: 2956.24
+    2004-01-01:
+      value: 2898.28
+    2003-01-01:
+      value: 2849.84
+    2002-01-01:
+      value: 2807.72
+    2001-01-01:
+      value: 18021.0
+    2000-01-01:
+      value: 17633.0
+    1999-01-01:
+      value: 17545.0
+    1998-01-01:
+      value: 17336.0
+    1997-01-01:
+      value: 17147.0
+    1996-01-01:
+      value: 16943.0
+    1995-07-01:
+      value: 16610.0
+    1995-01-01:
+      value: 16527.0
+    1994-01-01:
+      value: 16331.0
+    1993-01-01:
+      value: 16010.0
+    1992-07-01:
+      value: 15800.0
+    1992-01-01:
+      value: 15520.0
+    1991-07-01:
+      value: 15365.0
+    1991-01-01:
+      value: 15245.0
+    1990-07-01:
+      value: 14990.0
+    1990-01-01:
+      value: 14800.0
+    1989-07-01:
+      value: 14490.0
+    1989-01-01:
+      value: 14310.0
+    1988-07-01:
+      value: 14130.0
+    1988-01-01:
+      value: 13950.0
+    1987-07-01:
+      value: 13600.0
+    1987-01-01:
+      value: 13470.0
+    1986-10-01:
+      value: 13230.0
+    1986-01-01:
+      value: 13160.0
+    1985-07-01:
+      value: 12990.0
+    1985-01-01:
+      value: 12640.0
+    1984-07-01:
+      value: 12220.0
+    1984-01-01:
+      value: 11960.0
+    1983-07-01:
+      value: 11750.0
+    1983-01-01:
+      value: 11300.0
+    1982-07-01:
+      value: 10900.0
+    1982-01-01:
+      value: 10100.0
+    1981-07-01:
+      value: 9400.0
+    1981-01-01:
+      value: 8500.0
+    1980-06-01:
+      value: 7900.0
+    1979-12-01:
+      value: 7400.0
+    1979-07-01:
+      value: 7000.0
+    1979-01-01:
+      value: 6400.0
+    1978-07-01:
+      value: 5800.0
+    1977-12-01:
+      value: 5250.0
+    1977-07-01:
+      value: 4750.0
+    1977-01-01:
+      value: 4300.0
+    1976-07-01:
+      value: 4000.0
+    1976-01-01:
+      value: 3750.0
+    1975-04-01:
+      value: 3500.0
+    1975-01-01:
+      value: 3250.0
+    1974-07-01:
+      value: 3000.0
+    1974-01-01:
+      value: 2450.0
+    1973-07-01:
+      value: 2250.0
+    1972-10-01:
+      value: 2100.0
+    1971-10-01:
+      value: 1850.0
+    1970-10-01:
+      value: 1750.0
+    1969-10-01:
+      value: 1650.0
+    1968-07-01:
+      value: 1550.0
+    1968-01-01:
+      value: 1450.0
+    1967-10-01:
+      value: 1400.0
+    1967-01-01:
+      value: 1300.0
+    1966-07-01:
+      value: 1250.0
+    1966-01-01:
+      value: 1150.0
+    1965-07-01:
+      value: 1100.0
+    1964-11-01:
+      value: 1000.0
+    1964-01-01:
+      value: 900.0
+    1962-04-01:
+      value: 800.0
+  metadata:
+    ipp_csv_id: avts
+    unit:
+      2002-01-01: currency-EUR
+      1962-04-01: currency-FRF
+plafonds_ressources_personnes_seules:
+  description: Plafonds de ressources - personnes seules
+  values:
+    2020-01-01:
+      value: 10838.40
+    2019-01-01:
+      value: 10418.4
+    2018-04-01:
+      value: 9998.4
+    2017-04-01:
+      value: 9638.42
+    2016-04-01:
+      value: 9609.6
+    2014-10-01:
+      value: 9600.0
+    2014-04-01:
+      value: 9503.89
+    2013-04-01:
+      value: 9447.21
+    2012-04-01:
+      value: 9325.98
+    2011-04-01:
+      value: 8907.34
+    2010-04-01:
+      value: 8507.49
+    2009-04-01:
+      value: 8309.27
+    2008-09-01:
+      value: 7781.27
+    2008-01-01:
+      value: 7719.52
+    2007-01-01:
+      value: 7635.53
+    2006-01-01:
+      value: 7500.53
+    2005-01-01:
+      value: 7367.92
+    2004-01-01:
+      value: 7223.45
+    2003-01-01:
+      value: 7102.71
+    2002-01-01:
+      value: 6997.74
+    2001-01-01:
+      value: 44914.0
+    2000-01-01:
+      value: 43947.0
+    1999-01-01:
+      value: 43512.0
+    1998-01-01:
+      value: 42658.0
+    1997-01-01:
+      value: 42193.0
+    1996-01-01:
+      value: 41692.0
+    1995-07-01:
+      value: 40834.0
+    1995-01-01:
+      value: 39721.0
+    1994-01-01:
+      value: 39250.0
+    1993-01-01:
+      value: 38480.0
+    1992-07-01:
+      value: 37980.0
+    1992-01-01:
+      value: 37320.0
+    1991-07-01:
+      value: 36955.0
+    1991-01-01:
+      value: 36670.0
+    1990-07-01:
+      value: 36070.0
+    1990-01-01:
+      value: 35620.0
+    1989-07-01:
+      value: 34890.0
+    1989-01-01:
+      value: 34480.0
+    1988-07-01:
+      value: 34050.0
+    1988-01-01:
+      value: 33630.0
+    1987-07-01:
+      value: 32800.0
+    1987-01-01:
+      value: 32490.0
+    1986-10-01:
+      value: 31930.0
+    1986-01-01:
+      value: 31770.0
+    1985-07-01:
+      value: 31370.0
+    1985-01-01:
+      value: 30540.0
+    1984-07-01:
+      value: 29560.0
+    1984-01-01:
+      value: 28950.0
+    1983-07-01:
+      value: 28460.0
+    1983-01-01:
+      value: 27400.0
+    1982-07-01:
+      value: 26400.0
+    1982-01-01:
+      value: 24900.0
+    1981-07-01:
+      value: 21300.0
+    1981-01-01:
+      value: 17900.0
+    1980-06-01:
+      value: 16500.0
+    1979-12-01:
+      value: 15500.0
+    1979-07-01:
+      value: 14700.0
+    1979-01-01:
+      value: 13800.0
+    1978-07-01:
+      value: 12900.0
+    1977-12-01:
+      value: 11900.0
+    1977-07-01:
+      value: 10900.0
+    1977-01-01:
+      value: 9900.0
+    1976-07-01:
+      value: 9400.0
+    1976-01-01:
+      value: 8950.0
+    1975-04-01:
+      value: 8200.0
+    1975-01-01:
+      value: 7700.0
+    1974-07-01:
+      value: 7200.0
+    1974-01-01:
+      value: 6400.0
+    1973-07-01:
+      value: 6100.0
+    1972-10-01:
+      value: 6000.0
+    1972-01-01:
+      value: 5150.0
+    1971-10-01:
+      value: 4900.0
+    1971-01-01:
+      value: 4750.0
+    1970-10-01:
+      value: 4500.0
+    1970-01-01:
+      value: 4400.0
+    1969-10-01:
+      value: 4200.0
+    1969-01-01:
+      value: 4100.0
+    1968-07-01:
+      value: 4000.0
+    1968-02-01:
+      value: 3900.0
+    1968-01-01:
+      value: 3800.0
+    1967-10-01:
+      value: 3700.0
+    1967-01-01:
+      value: 3600.0
+    1966-07-01:
+      value: 3500.0
+    1966-01-01:
+      value: 3400.0
+    1965-07-01:
+      value: 3300.0
+    1964-11-01:
+      value: 3200.0
+    1964-01-01:
+      value: 3100.0
+    1963-07-01:
+      value: 2900.0
+    1962-04-01:
+      value: 2300.0
+  metadata:
+    ipp_csv_id: plaf_mv_seul_avts
+    unit:
+      2002-01-01: currency-EUR
+      1962-04-01: currency-FRF
+plafonds_ressources_menages:
+  description: Plafonds de ressources - ménages
+  values:
+    2020-01-01:
+      value: 16826.64
+    2019-01-01:
+      value: 16174.59
+    2018-04-01:
+      value: 15522.54
+    2017-04-01:
+      value: 14963.65
+    2016-04-01:
+      value: 14918.9
+    2014-10-01:
+      value: 14904.0
+    2014-04-01:
+      value: 14755.32
+    2013-04-01:
+      value: 14667.32
+    2012-04-01:
+      value: 14479.1
+    2011-04-01:
+      value: 14181.3
+    2010-04-01:
+      value: 13889.62
+    2009-04-01:
+      value: 13765.73
+    2008-09-01:
+      value: 13629.44
+    2008-01-01:
+      value: 13521.27
+    2007-01-01:
+      value: 13374.16
+    2006-01-01:
+      value: 13137.69
+    2005-01-01:
+      value: 12905.41
+    2004-01-01:
+      value: 12652.36
+    2003-01-01:
+      value: 12440.87
+    2002-01-01:
+      value: 12257.01
+    2001-01-01:
+      value: 78670.0
+    2000-01-01:
+      value: 76977.0
+    1999-01-01:
+      value: 76215.0
+    1998-01-01:
+      value: 74720.0
+    1997-01-01:
+      value: 73906.0
+    1996-01-01:
+      value: 73028.0
+    1995-07-01:
+      value: 71525.0
+    1995-01-01:
+      value: 69576.0
+    1994-01-01:
+      value: 68750.0
+    1993-01-01:
+      value: 67400.0
+    1992-07-01:
+      value: 66520.0
+    1992-01-01:
+      value: 65340.0
+    1991-07-01:
+      value: 64690.0
+    1991-01-01:
+      value: 64180.0
+    1990-07-01:
+      value: 63110.0
+    1990-01-01:
+      value: 62300.0
+    1989-07-01:
+      value: 60990.0
+    1989-01-01:
+      value: 60260.0
+    1988-07-01:
+      value: 59490.0
+    1988-01-01:
+      value: 58730.0
+    1987-07-01:
+      value: 57240.0
+    1987-01-01:
+      value: 56670.0
+    1986-01-01:
+      value: 55940.0
+    1985-07-01:
+      value: 55220.0
+    1985-01-01:
+      value: 53870.0
+    1984-07-01:
+      value: 52300.0
+    1984-01-01:
+      value: 51380.0
+    1983-07-01:
+      value: 50470.0
+    1983-01-01:
+      value: 49000.0
+    1982-07-01:
+      value: 47200.0
+    1982-01-01:
+      value: 44400.0
+    1981-07-01:
+      value: 40800.0
+    1981-01-01:
+      value: 34000.0
+    1980-06-01:
+      value: 31200.0
+    1979-12-01:
+      value: 29200.0
+    1979-07-01:
+      value: 27600.0
+    1979-01-01:
+      value: 25800.0
+    1978-07-01:
+      value: 24000.0
+    1977-12-01:
+      value: 22000.0
+    1977-07-01:
+      value: 20000.0
+    1977-01-01:
+      value: 18000.0
+    1976-07-01:
+      value: 17000.0
+    1976-01-01:
+      value: 16100.0
+    1975-04-01:
+      value: 14600.0
+    1975-01-01:
+      value: 13600.0
+    1974-07-01:
+      value: 12600.0
+    1974-01-01:
+      value: 10400.0
+    1973-07-01:
+      value: 9600.0
+    1972-10-01:
+      value: 9000.0
+    1972-01-01:
+      value: 7725.0
+    1971-10-01:
+      value: 7350.0
+    1971-01-01:
+      value: 7125.0
+    1970-10-01:
+      value: 6750.0
+    1970-01-01:
+      value: 6600.0
+    1969-10-01:
+      value: 6300.0
+    1969-01-01:
+      value: 6150.0
+    1968-07-01:
+      value: 6000.0
+    1968-02-01:
+      value: 5850.0
+    1968-01-01:
+      value: 5700.0
+    1967-10-01:
+      value: 5550.0
+    1967-01-01:
+      value: 5400.0
+    1966-07-01:
+      value: 5250.0
+    1966-01-01:
+      value: 5100.0
+    1965-07-01:
+      value: 5000.0
+    1964-11-01:
+      value: 4800.0
+    1964-01-01:
+      value: 4700.0
+    1963-07-01:
+      value: 4400.0
+    1962-04-01:
+      value: 3200.0
+  metadata:
+    ipp_csv_id: plaf_mv_men_avts
+    unit:
+      2002-01-01: currency-EUR
+      1962-04-01: currency-FRF
+metadata:
+  order:
+  - montants_annuels
+  - plafonds_ressources_personnes_seules
+  - plafonds_ressources_menages
+  reference:
+    2020-01-01:
+      title: Circulaire CNAV 2020/9 du 04/02/2019
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2020_09_04022020.pdf
+    2019-01-01:
+      title: Circulaire CNAV 2019/4 du 09/01/2019
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2019_04_09012019.pdf
+    2018-04-01:
+      title: Circulaire CNAV 2018/10 du 05/04/2018
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2018_10_05042018.pdf
+    2017-04-01:
+      title: Circulaire CNAV 2017/13 du 04/04/2017
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
+    2016-04-01:
+      title: Circulaire CNAV 2016/21 du 04/04/2016
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_21_04042016.pdf
+    2014-10-01:
+      title: Circulaire CNAV 2014/53 du 29/10/2014
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2014_53_29102014.pdf
+    2014-04-01:
+      title: Circulaire CNAV 2014/28 du 09/04/2014
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2014_028_09042014
+    2013-04-01:
+      title: Circulaire CNAV 2013/29 du 18/04/2013
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2013_29_18042013
+    2012-04-01:
+      title: Circulaire CNAV 2012/35 du 17/04/2012
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2012_35_17042012
+    2011-04-01:
+      title: Circulaire CNAV 2011/30 du 14/04/2011
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2011030_14042011
+    2010-04-01:
+      title: Circulaire CNAV 2010/43 du 23/04/2010
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2010043_23042010
+    2009-04-01:
+    - title: Circulaire CNAV 2009/31 du 16/04/2009
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2009031_16042009
+    - Lettre Ministérielle du 25/03/2009
+    2008-09-01:
+      title: Circulaire CNAV 2008/45 du 12/08/2008
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2008045_12082008
+    2008-01-01: Arrêté du 21/12/2007
+    2007-01-01: Arrêté du 19/12/2006
+    2006-01-01: Arrêté du 23/12/2005
+    2005-01-01: Arrêté du 16/12/2004
+    2004-01-01: Arrêté du 23/12/2003
+    2003-01-01:
+      title: Décret 2002-1619 du 31/12/2002
+      href: https://www.legifrance.gouv.fr/eli/decret/2002/12/31/2002-1619/jo/texte
+    2002-01-01:
+      title: Décret 2002-115 du 25/01/2002
+      href: https://www.legifrance.gouv.fr/eli/decret/2002/1/25/2002-115/jo/texte
+    2001-01-01:
+      title: Décret 2000-1324 du 26/12/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000402877&categorieLien=id
+    2000-01-01:
+      title: Décret 99-1146 du 29/12/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000214051&categorieLien=id
+    1999-01-01:
+      title: Décret 98-1224 du 29/12/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000574503&categorieLien=id
+    1998-01-01:
+      title: Décret 97-1246 du 29/12/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000753404&categorieLien=id
+    1997-01-01:
+      title: Décret 96-1185 du 30/12/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000747564
+    1996-01-01:
+      title: Décret 96-86 du 02/02/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000171665
+    1995-07-01:
+      title: Décret 95-864 du 31/07/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000371148&categorieLien=id
+    1995-01-01:
+      title: Décret 95-254 du 06/03/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000735212
+    1994-01-01:
+      title: Décret 93-1357 du 30/12/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699751
+    1993-01-01:
+      title: Décret 93-202 du 11/02/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178653&categorieLien=id
+    1992-07-01:
+      title: Décret 92-50 du 16/01/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000527208&categorieLien=id
+    1992-01-01:
+      title: Décret 92-50 du 16/01/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000527208&categorieLien=id
+    1991-07-01:
+      title: Décret 91-751 du 31/07/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000866713&categorieLien=id
+    1991-01-01:
+      title: Décret 90-1241 du 31/12/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000717678&categorieLien=id
+    1990-07-01:
+      title: Décret 90-265 du 23/03/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000531673&categorieLien=id
+    1990-01-01:
+      title: Décret 90-265 du 23/03/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000531673&categorieLien=id
+    1989-07-01:
+      title: Décret 88-1238 du 30/12/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684192
+    1989-01-01:
+      title: Décret 88-1238 du 30/12/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684192
+    1988-07-01:
+      title: Décret 87-1176 du 24/12/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000885207&categorieLien=id
+    1988-01-01:
+      title: Décret 87-1176 du 24/12/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000885207&categorieLien=id
+    1987-07-01:
+      title: Décret 87-77 du 06/02/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000501407
+    1987-01-01:
+      title: Décret 87-77 du 06/02/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000501407
+    1986-10-01:
+      title: Décret 86-1101 du 09/10/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000312603
+    1986-01-01:
+      title: Décret 85-1490 du 31/12/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000884659&categorieLien=id
+    1985-07-01:
+      title: Décret 85-784 du 24/07/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886987&categorieLien=id
+    1985-01-01:
+      title: Décret 84-1288 du 31/12/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000519701&categorieLien=id
+    1984-07-01:
+      title: Décret 84-643 du 17/07/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516025&categorieLien=id
+    1984-01-01:
+      title: Décret 84-92 du 08/02/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000324733
+    1983-07-01:
+      title: Décret 83-551 du 30/06/1983
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000503753
+    1983-01-01:
+      title: Décret 82-1142 du 29/12/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000334845&categorieLien=id
+    1982-07-01:
+      title: Décret 82-561 du 29/06/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336522&categorieLien=id
+    1982-01-01:
+      title: Décret 81-1166 du 30/12/1981
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000308868
+    1981-07-01:
+      title: Décret 81-681 du 30/06/1981
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000884504
+    1981-01-01:
+      title: Décret 80-1159 du 31/12/1980
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517402
+    1980-06-01:
+      title: Décret 80-498 du 01/07/1980
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000338396
+    1979-12-01:
+      title: Décret 79-1057 du 07/12/1979
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000501022
+    1979-07-01:
+      title: Décret 79-567 du 03/07/1979
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000696406
+    1979-01-01: Décret 78-1241 du 29/12/1978
+    1978-07-01:
+      title: Décret 78-719 du 10/07/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000696393
+    1977-12-01:
+      title: Décret 77-1291 du 24/11/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000519046
+    1977-07-01:
+      title: Décret 77-615 du 15/06/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000863650
+    1977-01-01:
+      title: Décret 76-1242 du 29/12/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000307560
+    1976-07-01:
+      title: Décret 76-559 du 25/06/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000856065
+    1976-01-01:
+      title: Décret 75-1341 du 31/12/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000858480
+    1975-04-01:
+      title: Décret 75-209 du 28/03/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000337391
+    1975-01-01:
+      title: Décret 74-1126 du 26/12/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000304597
+    1974-07-01:
+      title: Décret 74-611 du 27/06/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000694472
+    1974-01-01:
+      title: Décret 73-1137 du 21/12/1973
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000331873
+    1973-07-01:
+      title: Décret 73-691 du 18/07/1973
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000500400
+    1972-10-01:
+      title: Décret 72-929 du 11/10/1972
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000506112
+    1972-01-01:
+      title: Décret 71-1106 du 30/12/1971
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880824
+    1971-10-01:
+      title: Décret 71-705 du 27/08/1971
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000305823
+    1971-01-01:
+      title: Décret 70-1004 du 30/10/1970
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000674361
+    1970-10-01:
+      title: Décret 70-879 du 29/09/1970
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000518679
+    1970-01-01: Décret 69-879 du 26/09/1969
+    1969-10-01:
+      title: Décret 69-878 du 26/09/1969
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000676699
+    1969-01-01:
+      title: Décret 69-60 du 20/01/1969
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000334294
+    1968-07-01: Décret 68-585 du 29/06/1968
+    1968-02-01:
+      title: Décret 68-101 du 31/01/1968
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000511365
+    1968-01-01:
+      title: Décret 67-1168 du 22/12/1967
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000499371
+    1967-10-01: Décret 67-969 du 27/10/1967
+    1967-01-01: Décret 67-35 du 11/01/1967
+    1966-07-01:
+      title: Décret 66-452 du 30/06/1966
+      href: https://www.legifrance.gouv.fr/jo_pdf.do?numJO=0&dateJO=19660701&pageDebut=05544&pageFin=&pageCourante=05547
+    1966-01-01:
+      title: Décret 65-1153 du 24/12/1965
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000851178
+    1965-07-01: Décret 65-12 du 08/01/1965
+    1964-11-01: Décret 65-12 du 08/01/1965
+    1964-01-01: Décret 63-921 du 06/09/1963
+    1963-07-01: Décret 63-921 du 06/09/1963
+    1962-04-01: Décret 62-440 du 14/04/1962
+  date_parution_jo:
+    2016-04-01: 2009-04-29
+    2008-01-01: 2007-12-28
+    2007-01-01: 2006-12-30
+    2006-01-01: 2005-12-31
+    2005-01-01: 2004-12-24
+    2004-01-01: 2003-12-30
+    2003-01-01: 2002-12-31
+    2002-01-01: 2002-01-29
+    2001-01-01: 2000-12-30
+    2000-01-01: 1999-12-30
+    1999-01-01: 1998-12-30
+    1998-01-01: 1997-12-30
+    1997-01-01: 1996-12-31
+    1996-01-01: 1996-02-04
+    1995-07-01: 1995-08-01
+    1995-01-01: 1995-03-09
+    1994-01-01: 1993-12-31
+    1993-01-01: 1993-02-11
+    1992-07-01: 1992-02-17
+    1992-01-01: 1992-02-17
+    1991-07-01: 1991-08-02
+    1991-01-01: 1991-01-01
+    1990-07-01: 1990-03-25
+    1990-01-01: 1990-03-25
+    1989-07-01: 1988-12-31
+    1989-01-01: 1988-12-31
+    1988-07-01: 1988-01-09
+    1988-01-01: 1988-01-09
+    1987-07-01: 1987-02-08
+    1987-01-01: 1987-02-08
+    1986-10-01: 1986-10-11
+    1986-01-01: 1986-01-01
+    1985-07-01: 1985-07-27
+    1985-01-01: 1985-01-01
+    1984-07-01: 1984-07-20
+    1984-01-01: 1984-02-10
+    1983-07-01: 1983-07-01
+    1983-01-01: 1982-12-30
+    1982-07-01: 1982-07-02
+    1982-01-01: 1981-12-31
+    1981-07-01: 1981-07-01
+    1981-01-01: 1981-01-10
+    1980-06-01: 1980-07-03
+    1979-12-01: 1979-12-08
+    1979-07-01: 1979-07-07
+    1979-01-01: 1978-12-30
+    1978-07-01: 1978-07-11
+    1977-12-01: 1977-11-26
+    1977-07-01: 1977-06-16
+    1977-01-01: 1976-12-30
+    1976-07-01: 1976-06-27
+    1976-01-01: 1975-01-03
+    1975-04-01: 1975-04-02
+    1975-01-01: 1974-12-29
+    1974-07-01: 1974-07-30
+    1974-01-01: 1973-12-23
+    1973-07-01: 1973-07-19
+    1972-10-01: 1972-10-12
+    1972-01-01: 1971-12-31
+    1971-10-01: 1972-08-29
+    1971-01-01: 1970-11-01
+    1970-10-01: 1970-10-01
+    1970-01-01: 1969-09-27
+    1969-10-01: 1969-09-27
+    1969-01-01: 1969-01-21
+    1968-07-01: 1968-07-03
+    1968-02-01: 1968-02-01
+    1968-01-01: 1967-12-28
+    1967-10-01: 1967-11-04
+    1967-01-01: 1967-01-12
+    1966-07-01: 1966-07-01
+    1966-01-01: 1965-12-30
+    1965-07-01: 1965-01-10
+    1964-11-01: 1965-01-10
+    1964-01-01: 1963-09-08
+    1963-07-01: 1963-09-08
+    1962-04-01: 1962-04-15
+  notes:
+    2014-10-01: Pas de revalorisation du montant mais revalorisation du plafond
+    2012-04-01: L'AVTS est remplacé par l'ASPA en 2007 par le décret 2007-57. Cependant, comme le mentionne l'ordonnance 2004-605,les personnes qui bénéficiaient au moment de l'entrée en vigueur de l'ASPA des anciens dispositifs de mimimum vieillesse continuent à percevoir ces anciennes prestations selon les règles applicables avant cette entrée en vigueur. D'où le fait qu'on garde les barèmes de l'AVTS après 2007.; ; Décret 2009-473, art. 1 du 28/04/2009 (modif art. D815-1 et D815-2 du CSS). Ce décret fixe les montants jusqu'à celui en vigueur à partir du 01/04/2012
+    1963-07-01: Les allocataires âgés d'au moins 75 ans bénéficient d'un montant de 900,00 F.
+  description_en: Allowance for elderly workers (AVTS)
+documentation: |
+  Sources:
+  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe A.
+  Site législation CNAV depuis 1956, Sécurité sociale - son histoire à travers les textes p 242 avant; légifrance pour les références exactes.

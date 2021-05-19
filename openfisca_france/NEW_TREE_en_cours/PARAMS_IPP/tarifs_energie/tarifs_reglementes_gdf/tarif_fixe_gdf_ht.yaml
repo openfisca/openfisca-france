@@ -1,0 +1,123 @@
+description: Part fixe tarif réglementé GDF (hors taxes)
+base_0_1000_ht:
+  description: Base (0-1000) - HT
+  values:
+    2020-07-01:
+      value: 86.64
+    2019-07-01:
+      value: 92.52 
+    2018-07-01:
+      value: 83.04
+    2017-07-01:
+      value: 73.32
+    2016-07-02:
+      value: 68.52
+    2015-07-01:
+      value: 62.52
+    2014-07-01:
+      value: 54.96
+    2013-07-01:
+      value: 47.52
+    2013-01-01:
+      value: 39.72
+    2012-01-01:
+      value: 37.8
+    2010-07-01:
+      value: 33.0
+  metadata:
+    ipp_csv_id: tarif_fixe_gdf_base_ht
+    unit: currency-EUR
+b0_1000_6000_ht:
+  description: B0 (1000-6000) - HT
+  values:
+    2020-07-01:
+      value: 86.64
+    2019-07-01:
+      value: 92.52
+    2018-07-01:
+      value: 94.56
+    2017-07-01:
+      value: 79.8
+    2016-07-01:
+      value: 82.32
+    2015-07-01:
+      value: 76.44
+    2014-07-01:
+      value: 66.24
+    2013-07-01:
+      value: 58.8
+    2013-01-01:
+      value: 54.36
+    2012-01-01:
+      value: 51.96
+    2010-07-01:
+      value: 45.84
+  metadata:
+    ipp_csv_id: tarif_fixe_gdf_b0_ht
+    unit: currency-EUR
+b1_6_30000_ht:
+  description: B1 (6-30000) - HT
+  values:
+    2019-07-01:
+      value: 202.32
+    2018-07-01:
+      value: 203.88 
+    2017-07-01:
+      value: 186.84
+    2016-07-01:
+      value: 193.32
+    2015-07-01:
+      value: 189.84
+    2014-07-01:
+      value: 183.84
+    2013-07-01:
+      value: 173.76
+    2013-01-01:
+      value: 166.44
+    2012-01-01:
+      value: 159.24
+    2010-07-01:
+      value: 146.4
+  metadata:
+    ipp_csv_id: tarif_fixe_gdf_b1_ht
+    unit: currency-EUR
+b2i_30000_ht:
+  description: B2I (>30000) - HT
+  values:
+    2019-07-01:
+      value: 202.32
+    2018-07-01:
+      value: 203.88 
+    2017-07-01:
+      value: 186.84
+    2016-07-01:
+      value: 193.32
+    2015-07-01:
+      value: 189.84
+    2014-07-01:
+      value: 183.84
+    2013-07-01:
+      value: 173.76
+    2013-01-01:
+      value: 166.44
+    2012-01-01:
+      value: 159.24
+    2010-07-01:
+      value: 146.4
+  metadata:
+    ipp_csv_id: tarif_fixe_gdf_b2i_ht
+    unit: currency-EUR
+metadata:
+  order:
+  - base_0_1000_ht
+  - b0_1000_6000_ht
+  - b1_6_30000_ht
+  - b2i_30000_ht
+  reference:
+    2014-07-01: Arrêté du 30/06/2014
+    2013-07-01: Arrêté du 27/06/2013
+    2013-01-01: Arrêté du 21/12/2012
+    2012-01-01: Arrêté du 22/12/2011
+  description_en: Fix fee regulated tariff GDF (without taxes)
+  source: 
+    CRE "https://www.cre.fr/Pages-annexes/open-data"

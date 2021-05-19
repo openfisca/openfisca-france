@@ -1,0 +1,15 @@
+description: Tranches de taux d'accident du travail
+unit: currency
+brackets:
+- rate:
+    2018-01-01:
+      value: 0.5
+  threshold:
+    2018-01-01:
+      value: 0
+- rate:
+    2018-01-01:
+      value: 1.5
+  threshold:
+    2018-01-01:
+      value: 0.5

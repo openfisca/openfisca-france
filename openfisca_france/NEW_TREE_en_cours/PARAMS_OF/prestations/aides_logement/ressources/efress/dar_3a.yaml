@@ -1,0 +1,7 @@
+description: Coefficient multiplicateur du smic horaire brut au 31/12/n-2 (R. 351-7)
+  pour un salarié
+values:
+  2007-07-01:
+    value: 1015.0
+  2013-01-01:
+    value: null

@@ -1,0 +1,9 @@
+description: Pente appliquée aux revenus d'activité pour la prime d'activité
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2015-10-01:
+    value: 0.62
+  2018-08-01:
+    value: 0.61
+    reference: Décret n° 2018-836 - https://www.legifrance.gouv.fr/eli/decret/2018/10/3/SSAA1822062D/jo/texte

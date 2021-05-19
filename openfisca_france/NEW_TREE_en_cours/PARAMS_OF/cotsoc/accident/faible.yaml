@@ -1,0 +1,6 @@
+description: Accident du travail (taux bureau)
+values:
+  1996-01-01:
+    value: 0.01
+  2013-01-01:
+    value: 0.011

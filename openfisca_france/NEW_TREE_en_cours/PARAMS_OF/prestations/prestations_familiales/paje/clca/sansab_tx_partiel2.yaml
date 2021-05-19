@@ -1,0 +1,11 @@
+description: Taux pour les personnes à temps partiel 50%-80% ne percevant pas l'allocation
+  de base de la PAJE
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2004-01-01:
+    value: 0.8198
+  2014-04-01:
+    value: 0.3603
+  2018-01-01:
+    value: null

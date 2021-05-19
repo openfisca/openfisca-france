@@ -1,0 +1,14 @@
+brackets:
+- rate:
+    2003-01-01:
+      value: 0.007
+  threshold:
+    2003-01-01:
+      value: 0.0
+- rate:
+    2003-01-01:
+      value: 0.0
+  threshold:
+    2003-01-01:
+      value: 5.0
+description: Sécurité sociale/ Indemnités journalières

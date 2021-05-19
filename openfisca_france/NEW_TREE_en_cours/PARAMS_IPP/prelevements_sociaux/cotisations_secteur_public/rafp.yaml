@@ -1,0 +1,39 @@
+description: Cotisations au régime de Retraite additionnelle de la fonction publique (RAFP)
+taux_cotisation:
+  description: Taux de cotisation
+  agent:
+    description: Agent
+    values:
+      2005-01-01:
+        value: 0.05
+    metadata:
+      ipp_csv_id: rafp_s
+      unit: /1
+  etat:
+    description: Etat
+    values:
+      2005-01-01:
+        value: 0.05
+    metadata:
+      ipp_csv_id: rafp_p
+      unit: /1
+  metadata:
+    order:
+    - agent
+    - etat
+metadata:
+  order:
+  - taux_cotisation
+  reference:
+    2005-01-01:
+      title: Décret 2004-569 du 18/06/2004
+      href: https://www.legifrance.gouv.fr/eli/decret/2004/6/18/2004-569/jo/texte
+  date_parution_jo:
+    2005-01-01: 2004-06-19
+  description_en: Contributions to the scheme of Additional pension of the public sector (RAFP)
+documentation: |
+  Note :
+  Le RAFP est un régime obligatoire à points permettant aux fonctionnaires d'acquérir une retraite additionnelle.
+  Assiette :
+  Ensemble des rémunérations soumises à CSG mais non soumises à la cotisation vieillesse du régime de base,
+  (i.e. primes et indemnités) sous plafond de 20% du traitement indicaire brut de l'année.

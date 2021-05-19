@@ -1,0 +1,39 @@
+description: "Allocation de rentrée scolaire (ARS) : condition d'âge des personnes à charge"
+age_minimal_enfant_1:
+  description: Âge minimal de l'enfant (1)
+  values:
+    1974-08-14:
+      value: 6.0
+  metadata:
+    ipp_csv_id: ars_enf_agemin
+age_maximal_enfant_2:
+  description: Âge maximal de l'enfant (2)
+  values:
+    1990-09-05:
+      value: 18.0
+    1974-08-14:
+      value: 16.0
+  metadata:
+    ipp_csv_id: ars_enf_agemax
+metadata:
+  order:
+  - age_minimal_enfant_1
+  - age_maximal_enfant_2
+  reference:
+    1990-09-05:
+      title: Décret 90-776 du 03/09/1990, art. 1 (modif R543-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006774940&cidTexte=JORFTEXT000000534901
+    1974-08-14:
+      title: Décret 74-706 du 13/08/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000857489&categorieLien=id
+  date_parution_jo:
+    1990-09-05: 1990-09-05
+    1974-08-14: 1974-08-14
+  notes:
+    1990-09-05: Extension de l'ARS par la loi 90-590 du06/07/1990
+    1974-08-14: L'article 14 de la LFR 74-644 du 16/07/1974 (JO 17/07/1974)crée l'Allocation de rentrée scolaire (ARS)
+  description_en: "Back-to-school allowance (ARS): Age conditions of dependants"
+documentation: |
+  Notes :
+  (1) Age de l'enfant à charge avant le 1er février de l'année suivant celle la rentrée scolaire.
+  (2) Age de l'enfant à charge au 15 septembre de l'année de la rentrée scolaire.

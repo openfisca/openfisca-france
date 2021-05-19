@@ -1,0 +1,11 @@
+description: Âge maximal pour toucher les AF (hors forfait)
+unit: year
+values:
+  1985-12-22:
+    value: 17
+  1990-07-01:
+    value: 18
+  1998-01-01:
+    value: 19
+  2000-02-01:
+    value: 20

@@ -1,0 +1,6 @@
+description: 'Plafond de la contribution exceptionnelle de solidarité '
+unit: currency
+values:
+  2002-01-01:
+    value: 12516.0
+  2015-01-01: expected

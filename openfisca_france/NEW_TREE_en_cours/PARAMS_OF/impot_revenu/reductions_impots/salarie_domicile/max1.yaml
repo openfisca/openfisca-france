@@ -1,0 +1,11 @@
+description: Plafond cas général
+unit: currency
+values:
+  2001-01-01:
+    value: 6900.0
+  2002-01-01:
+    value: 7400.0
+  2003-01-01:
+    value: 10000.0
+  2005-01-01:
+    value: 12000.0

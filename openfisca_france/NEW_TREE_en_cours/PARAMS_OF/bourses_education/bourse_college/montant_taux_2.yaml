@@ -1,0 +1,8 @@
+description: Montant mensuel échelon 2, en multiple de la base mensuelle des allocations familiales (BMAF)
+unit: currency
+values:
+  2009-05-15:
+    value: 0.5673
+  2017-05-07:
+    value: 0.7091
+    reference: https://www.legifrance.gouv.fr/eli/decret/2017/5/5/MENE1711101D/jo/texte

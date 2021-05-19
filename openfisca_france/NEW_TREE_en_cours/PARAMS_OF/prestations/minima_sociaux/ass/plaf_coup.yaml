@@ -1,0 +1,6 @@
+description: Plafond de ressources pour un couple (mensuel), en multiple du montant
+  journalier à taux plein
+unit: currency
+values:
+  2005-01-01:
+    value: 110.0

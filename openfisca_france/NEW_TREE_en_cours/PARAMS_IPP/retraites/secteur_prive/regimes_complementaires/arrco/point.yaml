@@ -1,0 +1,109 @@
+description: Valeur du point ARRCO
+valeur_point_en_nominal:
+  description: Valeur du point ARRCO (en nominal)
+  values:
+    2019-11-01:
+      value: 1.2714
+    2018-11-01:
+      value: 1.2588
+    2013-04-01:
+      value: 1.2513
+    2012-04-01:
+      value: 1.2414
+    2011-04-01:
+      value: 1.2135
+    2010-04-01:
+      value: 1.1884
+    2009-04-01:
+      value: 1.1799
+    2008-04-01:
+      value: 1.1648
+    2007-04-01:
+      value: 1.148
+    2006-04-01:
+      value: 1.1287
+    2005-04-01:
+      value: 1.1104
+    2004-04-01:
+      value: 1.0886
+    2003-04-01:
+      value: 1.0698
+    2002-04-01:
+      value: 1.053
+    2001-04-01:
+      value: 1.0364
+    2000-04-01:
+      value: 6.6717
+    1999-04-01:
+      value: 6.6186
+    1999-01-01:
+      value: 6.5596
+  metadata:
+    ipp_csv_id: val_point_nom
+valeur_point_en_euros:
+  description: Valeur du point ARRCO (en euros)
+  values:
+    2019-11-01:
+      value: 1.2714
+    2018-11-01:
+      value: 1.2588
+    2013-04-01:
+      value: 1.2513
+    2012-04-01:
+      value: 1.2414
+    2011-04-01:
+      value: 1.2135
+    2010-04-01:
+      value: 1.1884
+    2009-04-01:
+      value: 1.1799
+    2008-04-01:
+      value: 1.1648
+    2007-04-01:
+      value: 1.148
+    2006-04-01:
+      value: 1.1287
+    2005-04-01:
+      value: 1.1104
+    2004-04-01:
+      value: 1.0886
+    2003-04-01:
+      value: 1.0698
+    2002-04-01:
+      value: 1.053
+    2001-04-01:
+      value: 1.0364
+    2000-04-01:
+      value: 1.0171
+    1999-04-01:
+      value: 1.0090
+    1999-01-01:
+      value: 1.0
+  metadata:
+    ipp_csv_id: val_point_eur
+    unit: currency-EUR
+metadata:
+  order:
+  - valeur_point_en_nominal
+  - valeur_point_en_euros
+  reference:
+    2019-11-01: Circ. Agirc-Arrco 2019-14-DT du 16/10/2019
+    2018-11-01: Circ. Agirc-Arrco 2018-7-DT du 11/10/2018
+    2013-04-01: Circ. Agirc-Arrco 2013-6-DT du 02/04/2013
+    2012-04-01: Circ. Agirc-Arrco 2012-09-DT du 20/03/2012
+    2011-04-01: Circ. Arrco 2011-01-DT du 14/04/2011
+    2010-04-01: Circ. Arrco 2010-01-DT du 18/03/2010
+    2009-04-01: Circ. Arrco 2009-01-DT du 18/03/2009
+    2008-04-01: Circ. Arrco 2008-02-DT du 14/03/2008
+    2007-04-01: Circ. Arrco 2007-02-DT du 14/03/2007
+    2006-04-01: Circ. Arrco 2006-01-DRE du 19/05/2006
+    2005-04-01: Circ. Arrco 2005-02-DT du 21/03/2005
+  notes:
+    2018-11-01: Fusion des régimes Agirc et Arrco en 2019. 1 point de retraite Arrco = 1 point de retraite Agirc-Arrco
+    2013-04-01: Pas de modification en 2014, 2015, 2016, 2017 et 2018
+  description_en: Point value ARRCO
+documentation: |
+  Note :
+  Avant l'unification du point Arrco en 1999, il existait autant de valeurs du point que de régimes Arrco. Voir par exemple les feuilles UNIRS et PRO-BTP.
+  Sources :
+  Site web Agirc-Arrco, http://www.agirc-arrco.fr/.

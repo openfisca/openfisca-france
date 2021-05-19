@@ -1,0 +1,418 @@
+description: Cotisations pour la Garantie Minimale de Points (GMP) - cadres (1989-2018)
+salaire_charniere_annuel:
+  description: Salaire charnière annuel
+  values:
+    2019-01-01:
+      value: null
+    2018-01-01:
+      value: 43977.84
+    2017-01-01:
+      value: 43337.76
+    2016-01-01:
+      value: 42590.88
+    2015-01-01:
+      value: 41913.84
+    2014-01-01:
+      value: 41444.64
+    2013-01-01:
+      value: 40948.7
+    2012-01-01:
+      value: 40251.98
+    2011-01-01:
+      value: 39146.63
+    2010-01-01:
+      value: 38332.92
+    2009-01-01:
+      value: 37973.0
+    2008-01-01:
+      value: 36877.0
+    2007-01-01:
+      value: 35666.0
+    2006-01-01:
+      value: 34428.0
+    2005-01-01:
+      value: 33512.0
+    2004-01-01:
+      value: 32952.0
+    2003-01-01:
+      value: 32349.0
+    2002-01-01:
+      value: 31337.0
+    2001-01-01:
+      value: 200093.12328
+    2000-01-01:
+      value: 194916.0
+    1999-01-01:
+      value: 192158.0
+    1998-01-01:
+      value: 186405.0
+    1997-01-01:
+      value: 183718.64743
+    1996-01-01:
+      value: 184659.8806907692
+    1995-01-01:
+      value: 179976.65761
+    1994-01-01:
+      value: 181228.84251
+    1993-01-01:
+      value: 184524.5788
+    1992-01-01:
+      value: 178734.31247
+    1991-01-01:
+      value: 171597.52957
+    1990-01-01:
+      value: 163818.52989
+    1989-01-01:
+      value: 156619.22743
+  metadata:
+    ipp_csv_id: gmp_sal_char
+    unit:
+      2002-01-01: currency-EUR
+      1989-01-01: currency-FRF
+cotisation_forfaitaire_annuelle_en_euros:
+  description: Cotisation forfaitaire annuelle (en euros)
+  values:
+    2019-01-01:
+      value: null
+    2018-01-01:
+      value: 872.52
+    2017-01-01:
+      value: 844.56
+    2016-01-01:
+      value: 816.8399999999999
+    2014-01-01:
+      value: 796.08
+    2013-01-01:
+      value: 795.1200000000001
+    2012-01-01:
+      value: 787.6800000000001
+    2011-01-01:
+      value: 770.28
+    2010-01-01:
+      value: 753.72
+    2009-01-01:
+      value: 744.0
+    2008-01-01:
+      value: 731.0
+    2007-01-01:
+      value: 707.0
+    2006-01-01:
+      value: 682.0
+    2005-01-01:
+      value: 663.96
+    2004-01-01:
+      value: 648.0
+    2003-01-01:
+      value: 633.0
+    2002-01-01:
+      value: 622.5
+    2001-01-01:
+      value: 4018.5
+    2000-01-01:
+      value: 3958.5
+    1999-01-01:
+      value: 3703.5
+    1998-01-01:
+      value: 3465.0
+    1997-01-01:
+      value: 3339.0
+    1996-01-01:
+      value: 3605.4
+    1995-01-01:
+      value: 3612.6
+    1994-01-01:
+      value: 3364.6
+    1993-01-01:
+      value: 3307.3
+    1992-01-01:
+      value: 3276.9
+    1991-01-01:
+      value: 3196.1
+    1990-01-01:
+      value: 3068.0
+    1989-01-01:
+      value: 2843.0
+  metadata:
+    ipp_csv_id: gmp_cot_f_a
+    unit:
+      2002-01-01: currency-EUR
+      1989-01-01: currency-FRF
+cotisation_forfaitaire_mensuelle_en_euros:
+  description: Cotisation forfaitaire mensuelle (en euros)
+  cotisation_totale:
+    description: Cotisation totale
+    values:
+      2019-01-01:
+        value: null
+      2018-01-01:
+        value: 72.71
+      2017-01-01:
+        value: 70.38
+      2016-01-01:
+        value: 68.07
+      2014-01-01:
+        value: 66.34
+      2013-01-01:
+        value: 66.26
+      2012-01-01:
+        value: 65.64
+      2011-01-01:
+        value: 64.19
+      2010-01-01:
+        value: 62.81
+      2009-01-01:
+        value: 62.0
+      2008-01-01:
+        value: 60.92
+      2007-01-01:
+        value: 58.92
+      2006-01-01:
+        value: 56.83
+      2005-01-01:
+        value: 55.33
+      2004-01-01:
+        value: 54.0
+      2003-01-01:
+        value: 52.75
+      2002-01-01:
+        value: 51.875
+      2001-01-01:
+        value: 334.8660485
+      2000-01-01:
+        value: 329.8749999999999
+      1999-01-01:
+        value: 308.63
+      1998-01-01:
+        value: 288.75
+      1997-01-01:
+        value: 278.25
+      1996-01-01:
+        value: 300.45
+      1995-01-01:
+        value: 301.05
+      1994-01-01:
+        value: 280.3833333333333
+      1993-01-01:
+        value: 275.6083333333333
+      1992-01-01:
+        value: 273.075
+      1991-01-01:
+        value: 266.3416666666666
+      1990-01-01:
+        value: 255.6666666666667
+      1989-01-01:
+        value: 236.9166666666667
+    metadata:
+      ipp_csv_id: gmp_cot_f_m
+      unit:
+        2002-01-01: currency-EUR
+        1989-01-01: currency-FRF
+  part_salariale:
+    description: Part salariale
+    values:
+      2019-01-01:
+        value: null
+      2018-01-01:
+        value: 27.6
+      2017-01-01:
+        value: 26.71
+      2016-01-01:
+        value: 25.84
+      2014-01-01:
+        value: 25.17
+      2013-01-01:
+        value: 25.13
+      2012-01-01:
+        value: 24.9
+      2011-01-01:
+        value: 24.35
+      2010-01-01:
+        value: 23.82
+      2009-01-01:
+        value: 23.52
+      2008-01-01:
+        value: 23.11
+      2007-01-01:
+        value: 22.35
+      2006-01-01:
+        value: 21.56
+      2005-01-01:
+        value: 20.75
+      2004-01-01:
+        value: 20.25
+      2003-01-01:
+        value: 19.78125
+      2002-01-01:
+        value: 19.453125
+      2001-01-01:
+        value: 125.5747681875
+      2000-01-01:
+        value: 123.703125
+      1999-01-01:
+        value: 115.74
+      1998-01-01:
+        value: 108.28125
+      1997-01-01:
+        value: 102.025
+      1996-01-01:
+        value: 107.3035714285714
+      1995-01-01:
+        value: 104.2096153846154
+      1994-01-01:
+        value: 93.46111111111111
+      1993-01-01:
+        value: 68.90208333333332
+      1992-01-01:
+        value: 68.26875
+      1991-01-01:
+        value: 66.58541666666666
+      1990-01-01:
+        value: 63.91666666666666
+      1989-01-01:
+        value: 59.22916666666666
+    metadata:
+      ipp_csv_id: gmp_cot_f_m_s
+      unit:
+        2002-01-01: currency-EUR
+        1989-01-01: currency-FRF
+  part_patronale:
+    description: Part patronale
+    values:
+      2019-01-01:
+        value: null
+      2018-01-01:
+        value: 45.11
+      2017-01-01:
+        value: 43.67
+      2016-01-01:
+        value: 42.23
+      2014-01-01:
+        value: 41.17
+      2013-01-01:
+        value: 41.13
+      2012-01-01:
+        value: 40.74
+      2011-01-01:
+        value: 39.84
+      2010-01-01:
+        value: 38.99
+      2009-01-01:
+        value: 38.48
+      2008-01-01:
+        value: 37.81
+      2007-01-01:
+        value: 36.57
+      2006-01-01:
+        value: 35.27
+      2005-01-01:
+        value: 34.58333333333334
+      2004-01-01:
+        value: 33.75
+      2003-01-01:
+        value: 32.96875
+      2002-01-01:
+        value: 32.421875
+      2001-01-01:
+        value: 209.2912803125
+      2000-01-01:
+        value: 206.171875
+      1999-01-01:
+        value: 192.89
+      1998-01-01:
+        value: 180.46875
+      1997-01-01:
+        value: 176.225
+      1996-01-01:
+        value: 193.1464285714285
+      1995-01-01:
+        value: 196.8403846153846
+      1994-01-01:
+        value: 186.9222222222222
+      1993-01-01:
+        value: 206.70625
+      1992-01-01:
+        value: 204.80625
+      1991-01-01:
+        value: 199.75625
+      1990-01-01:
+        value: 191.75
+      1989-01-01:
+        value: 177.6875
+    metadata:
+      ipp_csv_id: gmp_cot_f_m_p
+      unit:
+        2002-01-01: currency-EUR
+        1989-01-01: currency-FRF
+  metadata:
+    order:
+    - cotisation_totale
+    - part_salariale
+    - part_patronale
+metadata:
+  order:
+  - salaire_charniere_annuel
+  - cotisation_forfaitaire_annuelle_en_euros
+  - cotisation_forfaitaire_mensuelle_en_euros
+  reference:
+    2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+    2018-01-01: Circulaire 2017-07-DT du 16/10/2017
+    2017-01-01: Circulaire 2016-4-DT du 10/10/2016
+    2016-01-01: Circulaire 2015-15-DRJ du 28/12/2015
+    2015-01-01: Circulaire 2014-16-DRJ du 18/12/2014
+    2014-01-01: Circulaire 2014-2-DT du 20/03/2014
+    2013-01-01: Circulaire 2013-6-DT du 02/04/2013
+    2012-01-01: Circulaire 2012-09-DT du 20/03/2012
+    2011-01-01: Circulaire 2011-02-DT du 18/03/2011
+    2010-01-01: Circulaire 2010-2-DT du 18/03/2010
+    2009-01-01: Circulaire 2009-1-DT du 18/03/2009
+    2008-01-01: Circulaire 2008-4-DT du 14/03/2008
+    2007-01-01: Circulaire 2007-1-DT du 14/03/2007
+    2006-01-01: Circulaire 2006-2-DRE du 19/05/2006
+    2005-01-01: Circulaires 2005-2-DT du 21/03/2005 et 2005-9-DRE du 09/12/2005
+    2004-01-01: Référence non trouvée
+    2003-01-01: Référence non trouvée
+    2002-01-01: Référence non trouvée
+    2001-01-01: Référence non trouvée
+    2000-01-01: Référence non trouvée
+    1999-01-01: Référence non trouvée
+    1998-01-01: Référence non trouvée
+    1997-01-01: Référence non trouvée
+    1996-01-01: Référence non trouvée
+    1995-01-01: Référence non trouvée
+    1994-01-01: Référence non trouvée
+    1993-01-01: Référence non trouvée
+    1992-01-01: Référence non trouvée
+    1991-01-01: Référence non trouvée
+    1990-01-01: Référence non trouvée
+    1989-01-01: CCN des Cadres du 14/03/1947, art. 6 (§2, F.)
+  notes:
+    2019-01-01: Suppression de la GMP avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et CET, voir barème AGIRC-ARRCO)
+    2004-01-01: Les valeurs des paramètres pour les années 2005 et antérieures sont tirées de barèmes communiqués par l'AGIRC-ARRCO.
+    2000-01-01: BSP n° 48 du 31/01/2000
+    1999-01-01: BSP n° 44 du 31/01/1999
+    1998-01-01: BSP n° 40 du 31/01/1998 et BSP n°44 du 31/01/1999
+    1997-01-01: BSP n° 36 du 31/01/1997 et BSP n°40 du 31/01/1998
+    1996-01-01: BSP n° 36 du 31/01/1997
+    1995-01-01: BSP n° 32 du 31/01/1996
+  description_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
+documentation: |
+  Notes :
+  Certains montants n'ont pas été trouvés dans les textes officiels, mais ont été recalculés à partir de la formule de la GMP (voir note ci-dessous).
+  Sources :
+  Site de l'AGIRC-ARRCO; § V.2.1.2 du Guide réglementaire AGIRC et ARRCO.
+  Les valeurs des paramètres pour les années 2005 et antérieures sont tirées de barèmes communiqués par l'AGIRC-ARRCO. Voir notamment le fichier disponible à l'adresse suivante:
+  http://www.agirc-arrco.fr/fileadmin/agircarrco/documents/Doc_specif_page/Historique_valeur_du_point_salaire_de_reference.pdf
+  Principe de la GMP :
+  La Garantie Minimale de Points (GMP) vise à garantir à chaque participant du régime AGIRC (cadre) un minimum de points de retraite pour une année donnée. Un montant minimum de cotisations doit être versé en contrepartie de cette garantie.
+  Cette garantie est prévue par la convention collective nationale du 14/03/1947 (art. 6 et art. 36 de l'annexe I.).
+  L'arrêté d'agrément et d'extension du 24/02/1989 relatif à l'accord du 08/12/1988 rend la GMP obligatoire pour toutes les entreprises adhérentes au régime de retraite complémentaire des cadres.
+  Mode de calcul de la cotisation GMP :
+  La GMP est une cotisation versée à titre éventuelle, dans le cas où la cotisation AGIRC sur la tranche B est inférieure à la cotisation forfaitaire fixée chaque année par l'AGIRC.
+  La cotisation GMP est calculée comme la différence entre la cotisation forfaitaire et la cotisation AGIRC versée sur la tranche B.
+  La cotisation forfaitaire est fixée de telle manière que lorsque le salaire est supérieur au salaire charnière, la cotisation sur tranche B permet d'atteindre les 120 points sans surcotisation.
+  La répartition cotisation employeur/cotisation employé est la même que pour la cotisation AGIRC en tranche B (cf. feuille "AGIRC" du présent fichier).
+  La cotisation forfaitaire annuelle peut-être calculée à partir de la formule de calcul des points AGIRC:
+  Nombre de points de retraite par année = assiette de cotisation x taux de cotisation / salaire de référence
+  Attention cependant!
+  C'est sur le taux effectif que sont calculées les cotisations (taux contractuel * taux d'appel). Mais c'est à partir du taux contractuel que sont calculés les points.
+  Le taux d'appel de 125 signifie que c'est sur une base de 125 que sont calculées les cotisations, mais que c'est sur une base 100 que sont calculés les points AGIRC.

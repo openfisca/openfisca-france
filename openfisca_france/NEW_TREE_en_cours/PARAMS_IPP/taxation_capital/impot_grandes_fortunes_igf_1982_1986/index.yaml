@@ -1,0 +1,6 @@
+description: Impôt sur les grandes fortunes (IGF) - (1982-1986)
+metadata:
+  order:
+  - bareme_igf
+  - forfait_mobilier_igf
+  description_en: Wealth tax computation

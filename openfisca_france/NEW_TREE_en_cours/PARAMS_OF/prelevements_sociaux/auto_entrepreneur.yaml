@@ -1,0 +1,67 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+achat_vente_vente_a_consommer_sur_place_prestations_d_hebergement_sauf_location_hebergement_meuble:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  chiffre_d_affaires:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      2009-01-01:
+        value: 0.12
+      2013-01-01:
+        value: 0.14
+      2014-01-01:
+        value: 0.141
+      2015-01-01:
+        value: 0.133
+activites_liberales_relevant_de_la_cipav:
+  chiffre_d_affaires:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      2009-01-01:
+        value: 0.183
+      2013-01-01:
+        value: 0.213
+      2014-01-01:
+        value: 0.233
+      2015-01-01:
+        value: 0.229
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+formation_professionnelle:
+  artisans_alsace:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      2011-01-01:
+        value: 0.00176
+  artisans_hors_alsace:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      2011-01-01:
+        value: 0.003
+  commercants_chiffre_d_affaires:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      2011-01-01:
+        value: 0.001
+  professions_liberales:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      2011-01-01:
+        value: 0.002
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+prestations_de_service:
+  chiffre_d_affaires:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      2009-01-01:
+        value: 0.213
+      2013-01-01:
+        value: 0.246
+      2015-01-01:
+        value: 0.229
+  reference: https://www.ipp.eu/outils/baremes-ipp/

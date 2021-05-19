@@ -1,0 +1,9 @@
+description: Plafond de référence pour le taux 2
+unit: currency
+values:
+  2014-01-01:
+    value: 6083.0
+  2015-07-01:
+    value: 6102.0
+  2016-07-01:
+    value: null

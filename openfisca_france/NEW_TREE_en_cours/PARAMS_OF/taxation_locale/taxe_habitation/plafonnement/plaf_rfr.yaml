@@ -1,0 +1,38 @@
+description: Plafond de revenu fiscal de référence pour le plafonnement de la taxe d'habitation
+reference: II de l'art. 1417 du CGI
+premiere_part:
+  description: Plafond de revenu fiscal de référence pour le plafonnement de la taxe d'habitation - 1ère part
+  unit: currency
+  values:
+    2017-01-01:
+      value: 25180.0
+    2018-01-01:
+      value: 25432.0
+    2019-01-01:
+        value: 25839.0
+    2020-01-01:
+      value: null
+premiere_demi_part_supp:
+  description: Majoration pour la première demi-part supplémentaire du plafond de revenu fiscal de référence pour le plafonnement de la taxe d'habitation
+  unit: currency
+  values:
+    2017-01-01:
+      value: 5883.0
+    2018-01-01:
+      value: 5942.0
+    2019-01-01:
+      value: 6037.0
+    2020-01-01:
+      value: null
+autres_demi_parts_supp:
+  description: Majoration pour les autres demi-parts supplémentaires du plafond de revenu fiscal de référence pour le plafonnement de la taxe d'habitation
+  unit: currency
+  values:
+    2017-01-01:
+      value: 4631.0
+    2018-01-01:
+      value: 4677.0
+    2019-01-01:
+      value: 4752.0
+    2020-01-01:
+      value: null

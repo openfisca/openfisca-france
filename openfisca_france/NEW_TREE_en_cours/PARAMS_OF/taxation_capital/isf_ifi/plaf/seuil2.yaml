@@ -1,0 +1,21 @@
+description: Second seuil pour calcul du plafonnement
+unit: currency
+values:
+  2004-01-01:
+    value: 21940.0
+  2005-01-01:
+    value: 22314.0
+  2006-01-01:
+    value: 22650.0
+  2007-01-01:
+    value: 23060.0
+  2008-01-01:
+    value: 23320.0
+  2009-01-01:
+    value: 23990.0
+  2010-01-01:
+    value: 24100.0
+  2011-01-01:
+    value: 24510.0
+  2012-01-01:
+    value: null

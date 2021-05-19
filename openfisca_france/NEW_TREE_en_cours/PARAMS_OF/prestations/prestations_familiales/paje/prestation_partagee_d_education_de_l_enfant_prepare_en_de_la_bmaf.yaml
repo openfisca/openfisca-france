@@ -1,0 +1,19 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+prestation_partagee_d_education_de_l_enfant_prepare:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    2015-01-01:
+      value: 0.9662
+taux_partiel_50:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    2015-01-01:
+      value: 0.6246
+taux_partiel_entre_50_et_80:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    2015-01-01:
+      value: 0.3603

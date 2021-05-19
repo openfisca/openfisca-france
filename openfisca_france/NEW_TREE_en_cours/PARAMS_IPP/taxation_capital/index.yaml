@@ -1,0 +1,7 @@
+metadata:
+  order:
+  - prelevement_forfaitaire_revenus_capital
+  - prelevements_sociaux
+  - impot_grandes_fortunes_igf_1982_1986
+  - impot_solidarite_fortune_isf_1989_2017
+  - impot_fortune_immobiliere_ifi_partir_2018

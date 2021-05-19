@@ -1,0 +1,20 @@
+description: Plafond
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  1978-01-01:
+    value: 3000.0
+  1983-01-01:
+    value: 4000.0
+  1984-01-01:
+    value: 4310.0
+  1985-01-01:
+    value: 5000.0
+  1986-01-01:
+    value: 10000.0
+  1988-01-01:
+    value: 13000.0
+  1991-01-01:
+    value: 15000.0
+  2001-01-01:
+    value: 2300.0

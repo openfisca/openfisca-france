@@ -1,0 +1,13 @@
+description: Plafond des remboursements trimestriels (sous conditions de resources)
+unit: /1
+values:
+  2001-07-01:
+    value: 9997.0
+  2002-01-01:
+    value: 1524.03
+  2002-07-01:
+    value: 1548.0
+  2003-07-01:
+    value: 1574.0
+  2004-07-01:
+    value: null

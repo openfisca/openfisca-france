@@ -1,0 +1,13 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+deux_enfants_ou_plus:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: year
+  values:
+    2015-01-01:
+      value: 3.0
+un_enfant:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: year
+  values:
+    2015-01-01:
+      value: 1.0

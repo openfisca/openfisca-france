@@ -1,0 +1,415 @@
+description: Valeur des points acquis avant 1973 - CANCAVA
+valeur_point_retraite_cancava_regime_base_droits_acquis_avant_1973:
+  description: Valeur du point retraite CANCAVA - régime de base, droits acquis avant 1973
+  valeur_annuelle:
+    description: Valeur annuelle
+    values:
+      2019-01-01:
+        value: 9.2238
+      2017-10-01:
+        value: 9.1963
+      2015-10-01:
+        value: 9.1234
+      2013-04-01:
+        value: null
+      2012-04-01:
+        value: 8.9974
+      2011-04-01:
+        value: 8.8124
+      2010-04-01:
+        value: 8.6312
+      2009-04-01:
+        value: 8.5543
+      2008-09-01:
+        value: 8.4697
+      2008-01-01:
+        value: 8.4025
+      2007-01-01:
+        value: 8.3111
+      2006-01-01:
+        value: 8.1642
+      2005-01-01:
+        value: 8.0199
+      2003-07-01:
+        value: 7.8627
+      2003-01-01:
+        value: 7.7313
+      2002-01-01:
+        value: 7.6171
+      2001-01-01:
+        value: 48.8904
+      2000-01-01:
+        value: 47.838
+      1999-01-01:
+        value: 47.6004
+      1998-01-01:
+        value: 47.036
+      1997-01-01:
+        value: 46.524
+      1996-01-01:
+        value: 45.972
+      1995-07-01:
+        value: 45.071
+      1995-01-01:
+        value: 44.847
+      1994-01-01:
+        value: 44.315
+      1993-01-01:
+        value: 43.446
+      1992-07-01:
+        value: 42.888
+      1992-01-01:
+        value: 42.13
+      1991-07-01:
+        value: 41.713
+      1991-01-01:
+        value: 41.382
+      1990-07-01:
+        value: 40.69
+      1990-01-01:
+        value: 40.17
+      1989-07-01:
+        value: 39.32
+      1989-01-01:
+        value: 38.85
+      1988-07-01:
+        value: 38.35
+      1988-01-01:
+        value: 37.86
+      1987-07-01:
+        value: 36.9
+      1987-01-01:
+        value: 36.54
+      1986-01-01:
+        value: 35.71
+      1985-07-01:
+        value: 35.25
+      1985-01-01:
+        value: 34.29
+      1984-07-01:
+        value: 33.16
+      1984-01-01:
+        value: 32.45
+      1983-07-01:
+        value: 31.88
+      1983-01-01:
+        value: 30.65
+      1982-07-01:
+        value: 29.47
+      1982-01-01:
+        value: 27.44
+      1981-07-01:
+        value: 25.72
+      1981-01-01:
+        value: 24.22
+      1980-07-01:
+        value: 22.7
+      1980-01-01:
+        value: 21.34
+      1979-07-01:
+        value: 20.25
+      1979-01-01:
+        value: 19.47
+      1978-07-01:
+        value: 18.28
+      1978-01-01:
+        value: 17.51
+      1976-07-01:
+        value: 16.18
+      1976-01-01:
+        value: 14.89
+      1975-07-01:
+        value: 13.34
+      1975-01-01:
+        value: 12.0
+      1974-07-01:
+        value: 8.76
+      1974-01-01:
+        value: 8.21
+      1973-01-01:
+        value: 7.13
+    metadata:
+      ipp_csv_id: point_cancava_base
+      unit:
+        2002-01-01: currency-EUR
+        1973-01-01: currency-FRF
+  valeur_trimestrielle:
+    description: Valeur trimestrielle
+    values:
+      2019-01-01:
+        value: 2.30595
+      2017-10-01:
+        value: 2.299075
+      2015-10-01:
+        value: 2.28085
+      2013-04-01:
+        value: null
+      2012-04-01:
+        value: 2.24935
+      2011-04-01:
+        value: 2.2031
+      2010-04-01:
+        value: 2.1578
+      2009-04-01:
+        value: 2.138575
+      2008-09-01:
+        value: 2.117425
+      2008-01-01:
+        value: 2.100625
+      2007-01-01:
+        value: 2.077775
+      2006-01-01:
+        value: 2.04105
+      2005-01-01:
+        value: 2.004975
+      2003-07-01:
+        value: 1.965675
+      2003-01-01:
+        value: 1.932825
+      2002-01-01:
+        value: 1.904275
+      2001-01-01:
+        value: 12.2226
+      2000-01-01:
+        value: 11.9595
+      1999-01-01:
+        value: 11.9001
+      1998-01-01:
+        value: 11.759
+      1997-01-01:
+        value: 11.631
+      1996-01-01:
+        value: 11.493
+      1995-07-01:
+        value: 11.26775
+      1995-01-01:
+        value: 11.21175
+      1994-01-01:
+        value: 11.07875
+      1993-01-01:
+        value: 10.8615
+      1992-07-01:
+        value: 10.722
+      1992-01-01:
+        value: 10.5325
+      1991-07-01:
+        value: 10.42825
+      1991-01-01:
+        value: 10.3455
+      1990-07-01:
+        value: 10.1725
+      1990-01-01:
+        value: 10.0425
+      1989-07-01:
+        value: 9.83
+      1989-01-01:
+        value: 9.7125
+      1988-07-01:
+        value: 9.5875
+      1988-01-01:
+        value: 9.465
+      1987-07-01:
+        value: 9.225
+      1987-01-01:
+        value: 9.135
+      1986-01-01:
+        value: 8.9275
+      1985-07-01:
+        value: 8.8125
+      1985-01-01:
+        value: 8.5725
+      1984-07-01:
+        value: 8.29
+      1984-01-01:
+        value: 8.1125
+      1983-07-01:
+        value: 7.97
+      1983-01-01:
+        value: 7.6625
+      1982-07-01:
+        value: 7.3675
+      1982-01-01:
+        value: 6.86
+      1981-07-01:
+        value: 6.43
+      1981-01-01:
+        value: 6.055
+      1980-07-01:
+        value: 5.675
+      1980-01-01:
+        value: 5.335
+      1979-07-01:
+        value: 5.0625
+      1979-01-01:
+        value: 4.8675
+      1978-07-01:
+        value: 4.57
+      1978-01-01:
+        value: 4.3775
+      1976-07-01:
+        value: 4.045
+      1976-01-01:
+        value: 3.7225
+      1975-07-01:
+        value: 3.335
+      1975-01-01:
+        value: 3.0
+      1974-07-01:
+        value: 2.19
+      1974-01-01:
+        value: 2.0525
+      1973-01-01:
+        value: 1.7825
+    metadata:
+      ipp_csv_id: point_cancava_base_trim
+      unit:
+        2002-01-01: currency-EUR
+        1973-01-01: currency-FRF
+  valeur_mensuelle:
+    description: Valeur mensuelle
+    values:
+      2019-01-01:
+        value: 0.768632333
+      2017-10-01:
+        value: 0.76635
+      2015-10-01:
+        value: 0.7602833333333333
+      2013-04-01:
+        value: null
+      2012-04-01:
+        value: 0.7497833333333334
+      2011-04-01:
+        value: 0.7343666666666667
+      2010-04-01:
+        value: 0.7192666666666666
+      2009-04-01:
+        value: 0.7128583333333333
+      2008-09-01:
+        value: 0.7058083333333333
+      2008-01-01:
+        value: 0.7002083333333333
+      2007-01-01:
+        value: 0.6925916666666666
+      2006-01-01:
+        value: 0.6803499999999999
+      2005-01-01:
+        value: 0.668325
+      2003-07-01:
+        value: 0.6552250000000001
+      2003-01-01:
+        value: 0.644275
+      2002-01-01:
+        value: 0.6347583333333333
+      2001-01-01:
+        value: 4.0742
+      2000-01-01:
+        value: 3.9865
+      1999-01-01:
+        value: 3.9667
+      1998-01-01:
+        value: 3.9196666666666666
+      1997-01-01:
+        value: 3.8770000000000002
+      1996-01-01:
+        value: 3.831
+      1995-07-01:
+        value: 3.7559166666666663
+      1995-01-01:
+        value: 3.73725
+      1994-01-01:
+        value: 3.6929166666666666
+      1993-01-01:
+        value: 3.6205
+      1992-07-01:
+        value: 3.574
+      1992-01-01:
+        value: 3.5108333333333337
+      1991-07-01:
+        value: 3.4760833333333334
+      1991-01-01:
+        value: 3.4484999999999997
+      1990-07-01:
+        value: 3.390833333333333
+      1990-01-01:
+        value: 3.3475
+      1989-07-01:
+        value: 3.276666666666667
+      1989-01-01:
+        value: 3.2375000000000003
+      1988-07-01:
+        value: 3.1958333333333333
+      1988-01-01:
+        value: 3.155
+      1987-07-01:
+        value: 3.0749999999999997
+      1987-01-01:
+        value: 3.045
+      1986-01-01:
+        value: 2.9758333333333336
+      1985-07-01:
+        value: 2.9375
+      1985-01-01:
+        value: 2.8575
+      1984-07-01:
+        value: 2.763333333333333
+      1984-01-01:
+        value: 2.704166666666667
+      1983-07-01:
+        value: 2.6566666666666667
+      1983-01-01:
+        value: 2.5541666666666667
+      1982-07-01:
+        value: 2.455833333333333
+      1982-01-01:
+        value: 2.2866666666666666
+      1981-07-01:
+        value: 2.143333333333333
+      1981-01-01:
+        value: 2.018333333333333
+      1980-07-01:
+        value: 1.8916666666666666
+      1980-01-01:
+        value: 1.7783333333333333
+      1979-07-01:
+        value: 1.6875
+      1979-01-01:
+        value: 1.6224999999999998
+      1978-07-01:
+        value: 1.5233333333333334
+      1978-01-01:
+        value: 1.4591666666666667
+      1976-07-01:
+        value: 1.3483333333333334
+      1976-01-01:
+        value: 1.2408333333333335
+      1975-07-01:
+        value: 1.1116666666666666
+      1975-01-01:
+        value: 1.0
+      1974-07-01:
+        value: 0.73
+      1974-01-01:
+        value: 0.6841666666666667
+      1973-01-01:
+        value: 0.5941666666666666
+    metadata:
+      unit:
+        2002-01-01: currency-EUR
+        1973-01-01: currency-FRF
+  metadata:
+    order:
+    - valeur_annuelle
+    - valeur_trimestrielle
+    - valeur_mensuelle
+metadata:
+  order:
+  - valeur_point_retraite_cancava_regime_base_droits_acquis_avant_1973
+  notes:
+    2019-01-01: Source secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces. Pas de revalorisation en 2018 car la date est désormais fixée en janvier.
+    2017-10-01: Source secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces.
+  description_en: Point value before 1973 - CANCAVA
+documentation: |
+  Sources : Documentation CANCAVA et RSI.
+  Notes :
+  En 1973, la retraite de base s'aligne sur le régime général (retraite calculée selon les mêmes règles que la CNAV).
+  Les valeurs présentées ici sont les points acquis dans le cadre du régime de base des commerçants avant 1973, convertis en droits à la retraite.

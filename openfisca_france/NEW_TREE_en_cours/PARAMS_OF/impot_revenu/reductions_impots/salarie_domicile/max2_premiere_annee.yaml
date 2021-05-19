@@ -1,0 +1,5 @@
+description: Plafond du plafond 1ère année
+unit: currency
+values:
+  2009-01-01:
+    value: 18000.0

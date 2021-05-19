@@ -1,0 +1,9 @@
+description: Taux (WK)
+unit: /1
+values:
+  2009-01-01:
+    value: 0.4
+  2011-01-01:
+    value: 0.36
+  2012-01-01:
+    value: null

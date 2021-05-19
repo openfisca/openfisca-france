@@ -1,0 +1,29 @@
+description: Loyer minimum lo
+metadata:
+  threshold_unit: currency
+  rate_unit: /1
+brackets:
+- rate:
+    2007-07-01:
+      value: 0.024
+  threshold:
+    2007-07-01:
+      value: 1423.03
+- rate:
+    2007-07-01:
+      value: 0.208
+  threshold:
+    2007-07-01:
+      value: 2047.61
+- rate:
+    2007-07-01:
+      value: 0.232
+  threshold:
+    2007-07-01:
+      value: 2629.85
+- rate:
+    2007-07-01:
+      value: 0.328
+  threshold:
+    2007-07-01:
+      value: 4095.05

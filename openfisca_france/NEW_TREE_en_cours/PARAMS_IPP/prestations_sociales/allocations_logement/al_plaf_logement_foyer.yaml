@@ -1,0 +1,258 @@
+description: Plafonds d'équivalence de loyer et de charges locatives pour les personnes résidant dans un logement-foyer
+plafond_zone_1:
+  description: Équivalence de loyer pour les foyers en zone 1
+  personne_isolee_sans_enfant:
+    description: Personne isolée sans enfant
+    values:
+      2019-10-01:
+        value: 443.10
+      2017-10-01:
+        value: 441.78
+    metadata:
+      ipp_csv_id: plaf_foy_z1_al_personne_isolee
+      unit: currency-EUR
+  menage_seul:
+    description: Ménage seul
+    values:
+      2019-10-01:
+        value: 519.46
+      2017-10-01:
+        value: 517.91
+    metadata:
+      ipp_csv_id: plaf_foy_z1_al_menage_seul
+      unit: currency-EUR
+  menage_isole_avec_1_enfant:
+    description: Ménage ou isolé avec 1 enfant
+    values:
+      2019-10-01:
+        value: 553.89
+      2017-10-01:
+        value: 552.23
+    metadata:
+      ipp_csv_id: plaf_foy_z1_al_menage_1_enfant
+      unit: currency-EUR
+  menage_isole_avec_2_enfants:
+    description: Ménage ou isolé avec 2 enfants
+    values:
+      2019-10-01:
+        value: 592.76
+      2017-10-01:
+        value: 590.99
+    metadata:
+      ipp_csv_id: plaf_foy_z1_al_menage_2_enfants
+      unit: currency-EUR
+  menage_isole_avec_3_enfants:
+    description: Ménage ou isolé avec 3 enfants
+    values:
+      2019-10-01:
+        value: 631.79
+      2017-10-01:
+        value: 629.90
+    metadata:
+      ipp_csv_id: plaf_foy_z1_al_menage_3_enfants
+      unit: currency-EUR
+  menage_isole_avec_4_enfants:
+    description: Ménage ou isolé avec 4 enfants
+    values:
+      2019-10-01:
+        value: 681.46
+      2017-10-01:
+        value: 679.42
+    metadata:
+      ipp_csv_id: plaf_foy_z1_al_menage_4_enfants
+      unit: currency-EUR
+  menage_isole_par_enfant_en_plus:
+    description: Ménage ou isolé - par enfant en plus
+    values:
+      2019-10-01:
+        value: 70.68
+      2017-10-01:
+        value: 70.46
+    metadata:
+      ipp_csv_id: plaf_foy_z1_al_par_enfant
+      unit: currency-EUR
+  metadata:
+    order:
+    - personne_isolee_sans_enfant
+    - menage_seul
+    - menage_isole_avec_1_enfant
+    - menage_isole_avec_2_enfants
+    - menage_isole_avec_3_enfants
+    - menage_isole_avec_4_enfants
+    - menage_isole_avec_5_enfants
+    - menage_isole_par_enfant_en_plus
+plafond_zone_2:
+  description: Équivalence de loyer pour les foyers en zone 2
+  personne_isolee_sans_enfant:
+    description: Personne isolée sans enfant
+    values:
+      2019-10-01:
+        value: 405.21
+      2017-10-01:
+        value: 404.00
+    metadata:
+      ipp_csv_id: plaf_foy_z2_al_personne_isolee
+      unit: currency-EUR
+  menage_seul:
+    description: Ménage seul
+    values:
+      2019-10-01:
+        value: 472.91
+      2017-10-01:
+        value: 471.50
+    metadata:
+      ipp_csv_id: plaf_foy_z2_al_menage_seul
+      unit: currency-EUR
+  menage_isole_avec_1_enfant:
+    description: Ménage ou isolé avec 1 enfant
+    values:
+      2019-10-01:
+        value: 504.24
+      2017-10-01:
+        value: 502.73
+    metadata:
+      ipp_csv_id: plaf_foy_z2_al_menage_1_enfant
+      unit: currency-EUR
+  menage_isole_avec_2_enfants:
+    description: Ménage ou isolé avec 2 enfants
+    values:
+      2019-10-01:
+        value: 539.76
+      2017-10-01:
+        value: 538.15
+    metadata:
+      ipp_csv_id: plaf_foy_z2_al_menage_2_enfants
+      unit: currency-EUR
+  menage_isole_avec_3_enfants:
+    description: Ménage ou isolé avec 3 enfants
+    values:
+      2019-10-01:
+        value: 575.14
+      2017-10-01:
+        value: 573.42
+    metadata:
+      ipp_csv_id: plaf_foy_z2_al_menage_3_enfants
+      unit: currency-EUR
+  menage_isole_avec_4_enfants:
+    description: Ménage ou isolé avec 4 enfants
+    values:
+      2019-10-01:
+        value: 612.85
+      2017-10-01:
+        value: 611.02
+    metadata:
+      ipp_csv_id: plaf_foy_z2_al_menage_4_enfants
+      unit: currency-EUR
+  menage_isole_par_enfant_en_plus:
+    description: Ménage ou isolé - par enfant en plus
+    values:
+      2019-10-01:
+        value: 63.88
+      2017-10-01:
+        value: 63.68
+    metadata:
+      ipp_csv_id: plaf_foy_z2_al_par_enfant
+      unit: currency-EUR
+  metadata:
+    order:
+    - personne_isolee_sans_enfant
+    - menage_seul
+    - menage_isole_avec_1_enfant
+    - menage_isole_avec_2_enfants
+    - menage_isole_avec_3_enfants
+    - menage_isole_avec_4_enfants
+    - menage_isole_avec_5_enfants
+    - menage_isole_par_enfant_en_plus
+plafond_zone_3:
+  description: Équivalence de loyer pour les foyers en zone 3
+  personne_isolee_sans_enfant:
+    description: Personne isolée sans enfant
+    values:
+      2019-10-01:
+        value: 384.63
+      2017-10-01:
+        value: 383.47
+    metadata:
+      ipp_csv_id: plaf_foy_z3_al_personne_isolee
+      unit: currency-EUR
+  menage_seul:
+    description: Ménage seul
+    values:
+      2019-10-01:
+        value: 447.35
+      2017-10-01:
+        value: 446.01
+    metadata:
+      ipp_csv_id: plaf_foy_z3_al_menage_seul
+      unit: currency-EUR
+  menage_isole_avec_1_enfant:
+    description: Ménage ou isolé avec 1 enfant
+    values:
+      2019-10-01:
+        value: 474.60
+      2017-10-01:
+        value: 473.18
+    metadata:
+      ipp_csv_id: plaf_foy_z3_al_menage_1_enfant
+      unit: currency-EUR
+  menage_isole_avec_2_enfants:
+    description: Ménage ou isolé avec 2 enfants
+    values:
+      2019-10-01:
+        value: 505.92
+      2017-10-01:
+        value: 504.40
+    metadata:
+      ipp_csv_id: plaf_foy_z3_al_menage_2_enfants
+      unit: currency-EUR
+  menage_isole_avec_3_enfants:
+    description: Ménage ou isolé avec 3 enfants
+    values:
+      2019-10-01:
+        value: 537.23
+      2017-10-01:
+        value: 535.63
+    metadata:
+      ipp_csv_id: plaf_foy_z3_al_menage_3_enfants
+      unit: currency-EUR
+  menage_isole_avec_4_enfants:
+    description: Ménage ou isolé avec 4 enfants
+    values:
+      2019-10-01:
+        value: 572.44
+      2017-10-01:
+        value: 570.73
+    metadata:
+      ipp_csv_id: plaf_foy_z3_al_menage_4_enfants
+      unit: currency-EUR
+  menage_isole_par_enfant_en_plus:
+    description: Ménage ou isolé - par enfant en plus
+    values:
+      2019-10-01:
+        value: 59.28
+      2017-10-01:
+        value: 59.10
+    metadata:
+      ipp_csv_id: plaf_foy_z3_al_par_enfant
+      unit: currency-EUR
+  metadata:
+    order:
+    - personne_isolee_sans_enfant
+    - menage_seul
+    - menage_isole_avec_1_enfant
+    - menage_isole_avec_2_enfants
+    - menage_isole_avec_3_enfants
+    - menage_isole_avec_4_enfants
+    - menage_isole_avec_5_enfants
+    - menage_isole_par_enfant_en_plus
+metadata:
+  order:
+  - plafond_zone_1
+  - plafond_zone_2
+  - plafond_zone_3
+  reference:
+    2019-10-01: Arrêté du 27/09/2019, art. 27
+    2017-10-01: Arrêté du 28/09/2017, art. 6
+  date_parution_jo:
+    2019-10-01: 2019-10-01
+    2017-10-01: 2017-09-29

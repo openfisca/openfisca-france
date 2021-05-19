@@ -1,0 +1,121 @@
+description: Allocation personnalisée d'autonomie à domicile (APA)
+plafond_apa_domicile_en_part_mtp:
+  description: Plafond de l'APA à domicile (en part du MTP)
+  gir_1:
+    description: GIR 1
+    values:
+      2016-04-01:
+        value: 1.553
+      2002-01-01:
+        value: 1.19
+  gir_2:
+    description: GIR 2
+    values:
+      2016-04-01:
+        value: 1.247
+      2002-01-01:
+        value: 1.02
+  gir_3:
+    description: GIR 3
+    values:
+      2016-04-01:
+        value: 0.901
+      2002-01-01:
+        value: 0.765
+  gir_4:
+    description: GIR 4
+    values:
+      2016-04-01:
+        value: 0.601
+      2002-01-01:
+        value: 0.51
+  metadata:
+    order:
+    - gir_1
+    - gir_2
+    - gir_3
+    - gir_4
+seuil_revenu_en_part_mtp:
+  description: Seuil de revenu (en part du MTP)
+  seuil_inferieur:
+    description: Seuil inférieur
+    values:
+      2016-04-01:
+        value: 0.725
+      2004-10-26:
+        value: 0.67
+      2002-01-01:
+        value: 1.02
+  seuil_superieur:
+    description: Seuil supérieur
+    values:
+      2004-10-26:
+        value: 2.67
+      2002-01-01:
+        value: 3.4
+  metadata:
+    order:
+    - seuil_inferieur
+    - seuil_superieur
+part_plafond_apa_domicile:
+  description: Part du plafond de l'APA à domicile
+  values:
+    2002-01-01:
+      value: 0.5
+divison_ressources_menage_couples:
+  description: Divison des ressources du ménage pour les couples
+  values:
+    2002-01-01:
+      value: 1.7
+taux_participation:
+  description: Taux de participation
+  minimum:
+    description: minimum
+    values:
+      2002-01-01:
+        value: 0.0
+  maximum:
+    description: maximum
+    values:
+      2004-10-26:
+        value: 0.9
+      2002-01-01:
+        value: 0.8
+  metadata:
+    order:
+    - minimum
+    - maximum
+condition_age:
+  description: Condition d'âge
+  values:
+    2002-01-01:
+      value: 60.0
+seuil_versement_en_part_smic_brut_horaire:
+  description: Seuil de versement (en part du SMIC brut horaire)
+  values:
+    2002-01-01:
+      value: 3.0
+metadata:
+  order:
+  - plafond_apa_domicile_en_part_mtp
+  - seuil_revenu_en_part_mtp
+  - part_plafond_apa_domicile
+  - divison_ressources_menage_couples
+  - taux_participation
+  - condition_age
+  - seuil_versement_en_part_smic_brut_horaire
+  reference:
+    2016-04-01:
+      title: Décret 2016-210 du 26/02/2016
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/2/26/2016-210/jo/texte
+    2004-10-26:
+      title: Décret 2004-1136 du 21/10/2004
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000441044
+    2002-01-01:
+      title: Décret 2001-1084 du 20/11/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000588742
+  date_parution_jo:
+    2016-04-01: 2016-02-28
+    2004-10-26: 2004-10-26
+    2002-01-01: 2001-11-21
+  description_en: Attendance allowance for individuals living at home (APA)

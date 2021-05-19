@@ -1,0 +1,6 @@
+description: Montant de l'aide pour une personne seule
+reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000005745247
+unit: currency
+values:
+  2003-01-01:
+    value: 152.45

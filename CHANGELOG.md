@@ -1,5 +1,13 @@
 # Changelog
 
+## 53.0.0 [#1537](https://github.com/openfisca/openfisca-france/pull/1537)
+
+* Changement majeur.
+* Zones impactées :
+  - Toutes
+* Détails :
+  - Harmonisation des paramètres OpenFisca-France et IPP
+
 ### 52.1.4 [#1526](https://github.com/openfisca/openfisca-france/pull/1526) et [#1529](https://github.com/openfisca/openfisca-france/pull/1529)
 
 * Changement mineur.

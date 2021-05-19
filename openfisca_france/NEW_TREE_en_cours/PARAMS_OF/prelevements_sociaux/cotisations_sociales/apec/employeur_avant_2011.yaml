@@ -1,0 +1,24 @@
+brackets:
+- rate:
+    1971-01-01:
+      value: 0.0
+  threshold:
+    1971-01-01:
+      value: 0.0
+- rate:
+    1971-01-01:
+      value: 0.00024
+    1975-01-01:
+      value: 0.00036
+    2011-01-01:
+      value: 0.0
+  threshold:
+    1971-01-01:
+      value: 1.0
+- rate:
+    1971-01-01:
+      value: 0.0
+  threshold:
+    1971-01-01:
+      value: 4.0
+reference: https://www.ipp.eu/outils/baremes-ipp/

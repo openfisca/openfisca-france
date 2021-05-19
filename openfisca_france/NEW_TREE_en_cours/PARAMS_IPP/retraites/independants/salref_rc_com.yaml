@@ -1,0 +1,39 @@
+description: "Régime complémentaire des commerçants : valeur d'achat du point (2005-2012)"
+salaire_reference_rsi_commercants:
+  description: Salaire de référence RSI commerçants
+  values:
+    2013-01-01:
+      value: null
+    2012-01-01:
+      value: 16.14
+    2011-01-01:
+      value: 15.808
+    2010-01-01:
+      value: 15.483
+    2009-01-01:
+      value: 15.3
+    2008-09-01:
+      value: 14.809
+    2008-01-01:
+      value: 14.648
+    2007-01-01:
+      value: 14.389
+    2006-01-01:
+      value: 14.112
+    2005-01-01:
+      value: 13.89
+  metadata:
+    ipp_csv_id: sal_ref_igrante
+    unit: currency-EUR
+metadata:
+  order:
+  - salaire_reference_rsi_commercants
+  notes:
+    2013-01-01: A partir de 2013, les valeurs du points sont alignées avec le régime complémentaire des commerçants, au sein d'un régime complémentaire des indépendants (RCI)
+  description_en: "Complementary scheme of storekeeper : reference wage"
+documentation: |
+  Sources :
+  Capital.fr
+  http://www.capital.fr/retraite/regimes-de-retraite/commercant/regimes-complementaires/a-compter-de-2013-la-valeur-du-point-pourra-etre-differente-selon-la-date-d-acquisition
+  rsi.fr
+  http://www.rsi.fr/baremes/prestations-vieillesse-et-invalidite-deces.html#c5206

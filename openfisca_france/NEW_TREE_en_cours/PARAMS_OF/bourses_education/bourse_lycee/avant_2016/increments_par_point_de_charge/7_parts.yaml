@@ -1,0 +1,5 @@
+description: Incrément pour 7 parts
+unit: currency
+values:
+  2014-01-01:
+    value: 945.92

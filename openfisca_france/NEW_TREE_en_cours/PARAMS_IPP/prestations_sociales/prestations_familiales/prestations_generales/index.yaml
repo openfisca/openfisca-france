@@ -1,0 +1,21 @@
+description: Prestations générales
+metadata:
+  order:
+  - af_cm
+  - af_cond_ress
+  - af_cond_ress_ancien
+  - af_maj
+  - af_maj_dom
+  - icaf
+  - asu_plaf
+  - asu_m
+  - afg_c
+  - afg_plaf
+  - amf_plaf
+  - amf_m
+  - amf_maj
+  - cf_cm
+  - cf_plaf_nouveau
+  - cf_plaf_ancien
+  - cf_cm_dom
+  description_en: General benefits

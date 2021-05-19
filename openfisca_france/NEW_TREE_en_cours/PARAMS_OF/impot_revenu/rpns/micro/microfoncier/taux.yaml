@@ -1,0 +1,10 @@
+description: Abattemment
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1997-01-01:
+    value: 0.333333333333
+  1999-01-01:
+    value: 0.4
+  2006-01-01:
+    value: 0.3

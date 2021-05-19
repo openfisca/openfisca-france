@@ -1,0 +1,9 @@
+description: Maximum
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
+  - http://bofip.impots.gouv.fr/bofip/1371-PGP.html
+  - https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000022508674&cidTexte=LEGITEXT000006069577
+unit: currency
+values:
+  2001-01-01:
+    value: 18000.0

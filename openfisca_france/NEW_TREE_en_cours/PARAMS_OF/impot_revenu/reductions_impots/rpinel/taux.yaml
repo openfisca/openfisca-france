@@ -1,0 +1,18 @@
+outremer:
+  reference: https://www.legifrance.gouv.fr/affichCodeArticle.do;3?idArticle=LEGIARTI000026876425&cidTexte=LEGITEXT000006069577
+  description: Taux de la réduction Pinel en métropole selon la durée d'engagement de location
+  6_ans:
+    2014-01:
+      value: 0.23
+  9_ans:
+    2014-01:
+      value: 0.29
+metropole:
+  reference: https://www.legifrance.gouv.fr/affichCodeArticle.do;3?idArticle=LEGIARTI000026876425&cidTexte=LEGITEXT000006069577
+  description: Taux de la réduction Pinel en outre-mer selon la durée d'engagement de location
+  6_ans:
+    2014-01:
+      value: 0.12
+  9_ans:
+    2014-01:
+      value: 0.18

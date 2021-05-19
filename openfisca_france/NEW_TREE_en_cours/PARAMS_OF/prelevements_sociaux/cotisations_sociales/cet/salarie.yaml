@@ -1,0 +1,22 @@
+brackets:
+- rate:
+    1997-01-01:
+      value: 0.00025
+    1998-01-01:
+      value: 0.0005
+    1999-01-01:
+      value: 0.0008
+    2000-01-01:
+      value: 0.0011
+    2001-01-01:
+      value: 0.0013
+  threshold:
+    1997-01-01:
+      value: 0.0
+- rate:
+    1997-01-01:
+      value: 0.0
+  threshold:
+    1997-01-01:
+      value: 8.0
+reference: https://www.ipp.eu/outils/baremes-ipp/

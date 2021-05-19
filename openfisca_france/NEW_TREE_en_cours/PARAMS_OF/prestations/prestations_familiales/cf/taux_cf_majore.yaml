@@ -1,0 +1,14 @@
+description: Taux du complément familial majoré
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2014-04-01:
+    value: 0.4582
+  2015-04-01:
+    value: 0.4999
+  2016-04-01:
+    value: 0.5416
+  2017-04-01:
+    value: 0.5833
+  2018-04-01:
+    value: 0.6248

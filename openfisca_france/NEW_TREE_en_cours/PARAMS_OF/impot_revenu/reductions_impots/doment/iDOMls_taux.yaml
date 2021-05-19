@@ -1,0 +1,9 @@
+description: Investissements dans les DOM-TOM dans le logement social
+unit: /1
+values:
+  2003-01-01:
+    value: 0.0
+  2009-01-01:
+    value: 0.5
+  2010-01-01:
+    value: null

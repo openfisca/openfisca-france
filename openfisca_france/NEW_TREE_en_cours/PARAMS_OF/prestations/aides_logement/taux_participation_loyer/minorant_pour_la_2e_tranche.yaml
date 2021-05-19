@@ -1,0 +1,5 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2013-01-01:
+    value: 20.25

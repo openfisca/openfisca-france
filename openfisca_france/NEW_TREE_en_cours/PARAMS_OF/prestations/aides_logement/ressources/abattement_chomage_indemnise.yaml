@@ -1,0 +1,5 @@
+description: Abattement pour chômage indemnisé (R351-13)
+unit: /1
+values:
+  2002-01-01:
+    value: 0.3

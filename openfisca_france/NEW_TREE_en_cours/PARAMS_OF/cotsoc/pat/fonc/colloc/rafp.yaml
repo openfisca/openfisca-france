@@ -1,0 +1,9 @@
+brackets:
+- rate:
+    2005-01-01:
+      value: 0.05
+  threshold:
+    1993-01-01:
+      value: 0.0
+description: Régime additionnel de retraite (RAFP, totalité sauf TI et NBI, min 20%
+  TI )
