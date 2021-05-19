@@ -5,6 +5,20 @@
     # RSA TODO base ressources
     - aide_logement
     - taux_csg_remplacement
+    # - Minimas sociaux
+    - aspa
+    - asi
+    - caah
+    # individu
+    - allocation_securisation_professionnelle
+    - dedommagement_victime_amiante
+    - gains_exceptionnels
+    - pensions_alimentaires_percues
+    - pensions_invalidite
+    - prestation_compensatoire
+    - prime_forfaitaire_mensuelle_reprise_activite
+    - rsa_base_ressources_patrimoine_individu
+    - rsa_indemnites_journalieres_hors_activite
     # ASS
     # - chomage_net
     - categorie_salarie
@@ -25,20 +39,12 @@
   input:
     famille:
       parents: [parent1]
-      # ass_base_ressources:
-      #    2019-06: 0
-      #    2019-07: 0
-      #    2019-08: 0
-      #    2019-09: 0
-      #    2019-10: 0
     foyer_fiscal:
       declarants: [parent1]
     menage:
       personne_de_reference: parent1
     individus:
       parent1:
-        contrat_de_travail_debut:
-          year:1995:30: 1995-01-01
         contrat_de_travail_fin:
           year:1995:30: 2019-01-01
         age: 40
@@ -48,7 +54,7 @@
           year:1999:20: 0
         ass:
           year:1999:20: 0
-          duree_versement_are:
+        duree_versement_are:
           year:1999:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2019-01: 6
@@ -98,4 +104,4 @@
         #   2019-05: 0
         #   2019-06: 0
         rsa:
-          2019-01: 0
+           2019-01: 0
