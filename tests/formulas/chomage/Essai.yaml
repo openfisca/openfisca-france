@@ -1,6 +1,7 @@
 - name: Test pour debug taxipp
   period: 2019-01
   max_spiral_loops: 60
+  absolute_error_margin: 0.01
   neutralized_variables:
     # RSA TODO base ressources
     - aide_logement
@@ -19,6 +20,7 @@
     - prime_forfaitaire_mensuelle_reprise_activite
     - rsa_base_ressources_patrimoine_individu
     - rsa_indemnites_journalieres_hors_activite
+    - rente_viagere_titre_onereux
     # ASS
     # - chomage_net
     - categorie_salarie
@@ -26,6 +28,8 @@
     - revenus_stage_formation_pro
     - aah
     - retraite_nette
+    - retraite_brute
+    - retraite_imposable
     - pensions_alimentaires_percues
     - indemnites_stage
     - pensions_invalidite
@@ -36,6 +40,9 @@
     - tns_benefice_exploitant_agricole
     - tns_autres_revenus
     - pensions_alimentaires_versees_individu
+    # PF
+    - revenu_categoriel_capital
+
   input:
     famille:
       parents: [parent1]
@@ -45,6 +52,11 @@
       personne_de_reference: parent1
     individus:
       parent1:
+        activite:
+          year:2005:15: actif
+          year:2019:20: chomeur
+        contrat_de_travail_debut:
+          year:1995:30: 2005-01-01
         contrat_de_travail_fin:
           year:1995:30: 2019-01-01
         age: 40
@@ -96,12 +108,19 @@
           2019-03: 90
           2019-04: 120
           2019-05: 151
-        # ass:
-        #   2019-01: 0
-        #   2019-02: 0
-        #   2019-03: 0
-        #   2019-04: 0
-        #   2019-05: 0
-        #   2019-06: 0
+        ass:
+          2019-01: 0
+          2019-06: 502.2
+        rsa_base_ressources_minima_sociaux:
+          2019-01: 0
+        rsa_base_ressources_individu:
+          2019-01: 0
+          2019-02: 250
+          2019-03: 500
+          2019-04: 750
         rsa:
-           2019-01: 0
+          2019-04: 0
+          # 2019-03: 0
+          # 2019-02: 0
+          # 2019-01: 0
+          2019-06: 57.54
