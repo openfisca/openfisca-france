@@ -20,7 +20,7 @@ class aide_formation_gen_eligibilite(Variable):
         eligibilite_formation = individu('scolarite', period) == TypesScolarite.grande_ecole_du_numerique
         eligibilite_nationalite = individu('bourse_criteres_sociaux_eligibilite_nationalite', period)
 
-        non_cumul = individu('apprenti', period) + (
+        non_cumul = individu('alternant', period) + (
             individu.famille('rsa', period) * not_(individu.famille('rsa_majore_eligibilite', period))
             )
 
@@ -58,7 +58,7 @@ class aide_formation_gen(Variable):
                 base_ressources <= plafond_echelon_1,
                 base_ressources <= plafond_echelon_0bis,
                 ],
-            [7, 6, 5, 4, 3, 2, 1, 0])
+            [7, 6, 5, 4, 3, 2, 1, 0], default=-1)
 
         montants = parameters(period).bourses_enseignement_superieur.criteres_sociaux.montants
 
