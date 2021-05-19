@@ -447,11 +447,11 @@ class crds_are(Variable):
         smic_mensuel = [(smic_horaire * 35 / 7) * 30]
         
         crds_montant = select(
-            [(are - crds) > smic_mensuel , (are - crds) <= smic_mensuel],
+            [are - crds > smic_mensuel , are - crds <= smic_mensuel],
             [crds, 0],
             )
 
-        return - crds
+        return - crds_montant
 
 class are_nette_crds(Variable):
     value_type = float
@@ -488,11 +488,12 @@ class retraite_complementaire_chomage(Variable):
         salaire_de_reference_mensuel = individu('salaire_de_reference_mensuel', period)
         seuil_exoneration_retraite_complementaire = parameters(period).are.are_min
         are = individu('are', period)
+        retraite_complementaire = 0.03 * salaire_de_reference_mensuel
 
 
         montant_retenue_retraite_complementaire = select(
-            [are > (seuil_exoneration_retraite_complementaire * 30), are <= (seuil_exoneration_retraite_complementaire * 30)],
-            [(0.03 * salaire_de_reference_mensuel) , 0],
+            [are - retraite_complementaire > (seuil_exoneration_retraite_complementaire * 30), are - retraite_complementaire <= (seuil_exoneration_retraite_complementaire * 30)],
+            [retraite_complementaire , 0],
             )
 
         return - montant_retenue_retraite_complementaire
@@ -511,3 +512,17 @@ class are_nette(Variable):
         retraite_complementaire_chomage = individu('retraite_complementaire_chomage', period)
 
         return are + csg_are + crds_are + retraite_complementaire_chomage
+
+class are_imposable(Variable):
+    value_type = float
+    entity = Individu
+    label = "Allocation de retour à l'emploi imposable"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        are = individu('are', period)
+        csg_chomage_deductible = individu('csg_chomage_deductible', period)
+
+        return are + csg_chomage_deductible
+
+

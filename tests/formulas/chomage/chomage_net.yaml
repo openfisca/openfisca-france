@@ -46,26 +46,26 @@
     csg_chomage_imposable: -35.617588
     csg_are: 0
     are_nette_csg: 1510.5
-    crds_are: -7.420331
-    are_nette_crds: 0
+    crds_are: 0
+    are_nette_crds: 1510.5
     are_nette_contributions_sociales: 1510.5
-    retraite_complementaire_chomage:
-    are_nette: 
+    retraite_complementaire_chomage: -79.5
+    are_nette: 1431.
 
 - name: Allocation chômage nette des retenues sociales - Cas n°4
   description: ARE nette lorsque les seuils d'exonération ne sont tous pas franchis 
   period: 2019-04
   input:
-    salaire_de_reference_mensuel: 1500
+    salaire_de_reference_mensuel: 1300
     contrat_de_travail_fin: 2019-04
-    are: 1510.5
+    are: 882.80005
   output: 
-    csg_chomage_deductible: -56.3945175
-    csg_chomage_imposable: -40.3218
-    csg_are: -104.16465
-    are_nette_csg:
-    crds_are: 
-    are_nette_crds: 
-    are_nette_contributions_sociales: 
-    retraite_complementaire_chomage:
-    are_nette: 
+    csg_chomage_deductible: -32.95934
+    csg_chomage_imposable: -20.816425
+    csg_are: 0
+    are_nette_csg: 882.80005
+    crds_are: 0
+    are_nette_crds: 882.80005
+    are_nette_contributions_sociales: 882.80005
+    retraite_complementaire_chomage: 0
+    are_nette: 882.80005
