@@ -2,6 +2,10 @@
   period: 2019-01
   max_spiral_loops: 60
   neutralized_variables:
+    # RSA TODO base ressources
+    - aide_logement
+    - taux_csg_remplacement
+    # ASS
     # - chomage_net
     - categorie_salarie
     # Ass base ressources
@@ -18,7 +22,6 @@
     - tns_benefice_exploitant_agricole
     - tns_autres_revenus
     - pensions_alimentaires_versees_individu
-  
   input:
     famille:
       parents: [parent1]
@@ -35,13 +38,17 @@
     individus:
       parent1:
         contrat_de_travail_debut:
-          year:2005:20: 2005-01-01
+          year:1995:30: 1995-01-01
         contrat_de_travail_fin:
-          year:2015:10: 2019-01-01
+          year:1995:30: 2019-01-01
         age: 40
         chomage_net:
           year:1999:20: 0
-        duree_versement_are:
+        chomage_brut:
+          year:1999:20: 0
+        ass:
+          year:1999:20: 0
+          duree_versement_are:
           year:1999:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2019-01: 6
@@ -68,26 +75,27 @@
           2019-05: 105
 
   output:
-    are:
-      2019-01: 750
-      2019-02: 750
-      2019-03: 750
-      2019-04: 750
-      2019-05: 675
-      2019-06: 0
-    duree_versement_are:
-      2019-01: 31
-      2019-02: 59
-      2019-03: 90
-      2019-04: 120
-      2019-05: 151
-    ass:
-      2019-01: 0
-      2019-02: 0
-      2019-03: 0
-      2019-04: 0
-      2019-05: 0
-      2019-06: 0
-      
-      
-
+    individus:
+      parent1:
+        are:
+          2019-01: 750
+          2019-02: 750
+          2019-03: 750
+          2019-04: 750
+          2019-05: 675
+          2019-06: 0
+        duree_versement_are:
+          2019-01: 31
+          2019-02: 59
+          2019-03: 90
+          2019-04: 120
+          2019-05: 151
+        # ass:
+        #   2019-01: 0
+        #   2019-02: 0
+        #   2019-03: 0
+        #   2019-04: 0
+        #   2019-05: 0
+        #   2019-06: 0
+        rsa:
+          2019-01: 0
