@@ -1,0 +1,110 @@
+- name: Test pour debug taxipp
+  period: 2019-01
+  max_spiral_loops: 60
+  neutralized_variables:
+    # RSA TODO base ressources
+    - aide_logement
+    - taux_csg_remplacement
+    # - Minimas sociaux
+    - aspa
+    - asi
+    - caah
+    # individu
+    - allocation_securisation_professionnelle
+    - dedommagement_victime_amiante
+    - gains_exceptionnels
+    - pensions_alimentaires_percues
+    - pensions_invalidite
+    - prestation_compensatoire
+    - prime_forfaitaire_mensuelle_reprise_activite
+    - rsa_base_ressources_patrimoine_individu
+    - rsa_indemnites_journalieres_hors_activite
+    # ASS
+    # - chomage_net
+    - categorie_salarie
+    # Ass base ressources
+    - revenus_stage_formation_pro
+    - aah
+    - retraite_nette
+    - pensions_alimentaires_percues
+    - indemnites_stage
+    - pensions_invalidite
+    - revenus_locatifs
+    - revenus_capital
+    - tns_auto_entrepreneur_benefice
+    - tns_micro_entreprise_benefice
+    - tns_benefice_exploitant_agricole
+    - tns_autres_revenus
+    - pensions_alimentaires_versees_individu
+  input:
+    famille:
+      parents: [parent1]
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+    individus:
+      parent1:
+        contrat_de_travail_fin:
+          year:1995:30: 2019-01-01
+        age: 40
+        nombre_annees_travaillees_les_10_dernieres_annees:
+          2019-01: 6
+          2019-02: 6
+          2019-03: 6
+          2019-04: 6
+          2019-05: 6
+          2019-06: 6
+          2019-07: 6
+          2019-08: 6
+          2019-09: 6
+          2019-10: 6
+        salaire_de_reference_mensuel:
+          2019-01: 1000
+          2019-02: 1000
+          2019-03: 1000
+          2019-04: 1000
+          2019-05: 1000
+        nombre_jours_travailles_dans_les_x_derniers_mois:
+          2019-01: 5 * 21
+          2019-02: 105
+          2019-03: 105
+          2019-04: 105
+          2019-05: 105
+
+  output:
+    individus:
+      parent1:
+        are:
+          2019-01: 750
+          2019-02: 750
+          2019-03: 750
+          2019-04: 750
+          2019-05: 675
+          2019-06: 0
+        duree_versement_are:
+          2019-01: 31
+          2019-02: 59
+          2019-03: 90
+          2019-04: 120
+          2019-05: 151
+        ass:
+          2019-01: 0
+          2019-02: 0
+          2019-03: 0
+          2019-04: 0
+          2019-05: 0
+          2019-06: 502.20001220703125
+          2019-07: 502.20001220703125
+          2019-08: 502.20001220703125
+          2019-09: 502.20001220703125
+          2019-10: 502.20001220703125
+          2019-11: 502.20001220703125
+          2019-12: 502.20001220703125
+          2020-01: 502.20001220703125
+          2020-02: 502.20001220703125
+          2020-03: 502.20001220703125
+          2020-04: 506.70001220703125
+          2020-05: 506.70001220703125
+          2020-06: 506.70001220703125
+          2020-07: 506.70001220703125
