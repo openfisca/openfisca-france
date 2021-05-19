@@ -1,0 +1,16 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+deux_enfants:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  values:
+    2004-01-01:
+      value: 4.0
+trois_enfants_ou_plus:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  values:
+    2004-01-01:
+      value: 5.0
+un_enfant:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  values:
+    2004-01-01:
+      value: 2.0

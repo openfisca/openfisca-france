@@ -1,0 +1,11 @@
+brackets:
+- rate:
+    1984-01-01:
+      value: 0.115
+    2018-01-01:
+      reference: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1731249D/jo/texte
+      value: 0.0988
+  threshold:
+    1984-01-01:
+      value: 0.0
+description: Maladie

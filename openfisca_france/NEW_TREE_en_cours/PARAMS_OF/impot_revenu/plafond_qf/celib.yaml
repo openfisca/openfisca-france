@@ -1,0 +1,47 @@
+description: Non mariés ou non PACS
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_impot_revenu/plaf_qf/
+  - http://bofip.impots.gouv.fr/bofip/2494-PGP
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
+unit: currency
+values:
+  1997-01-01:
+    value: 6100.0
+  1999-01-01:
+    value: 6130.0
+  2000-01-01:
+    value: 6220.0
+  2001-01-01:
+    value: 964.0
+  2002-01-01:
+    value: 980.0
+  2003-01-01:
+    value: 800.0
+  2004-01-01:
+    value: 814.0
+  2005-01-01:
+    value: 829.0
+  2006-01-01:
+    value: 844.0
+  2007-01-01:
+    value: 855.0
+  2008-01-01:
+    value: 880.0
+  2009-01-01:
+    value: 884.0
+  2010-01-01:
+    value: 897.0
+  2014-01-01:
+    value: 901.0
+  2015-01-01:
+    value: 902.0
+  2016-01-01:
+    value: 903.0
+  2017-01-01:
+    value: 912.0
+  2018-01-01:
+    value: 927.0
+  2019-01-01:
+    value: 936.0
+  2021-01-01:
+    value: 938.0

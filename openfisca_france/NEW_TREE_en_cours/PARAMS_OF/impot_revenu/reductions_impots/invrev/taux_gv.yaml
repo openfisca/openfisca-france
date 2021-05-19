@@ -1,0 +1,7 @@
+description: Case GV
+unit: /1
+values:
+  2002-01-01:
+    value: 0.1
+  2004-01-01:
+    value: null

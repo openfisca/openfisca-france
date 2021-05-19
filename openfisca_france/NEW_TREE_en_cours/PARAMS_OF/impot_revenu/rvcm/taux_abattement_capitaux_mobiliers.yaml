@@ -1,0 +1,8 @@
+description: Abattement capitaux mobiliers - Taux
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1979-01-01:
+    value: 0.5
+  2010-01-01:
+    value: 0.4

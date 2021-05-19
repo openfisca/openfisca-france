@@ -1,0 +1,26 @@
+description: Maximum
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  1991-01-01:
+    value: 70000.0
+  1996-01-01:
+    value: 100000.0
+  1999-01-01:
+    value: 175000.0
+  2001-01-01:
+    value: 26678.58
+  2002-01-01:
+    value: 27000.0
+  2009-01-01:
+    value: 32000.0
+  2010-01-01:
+    value: 32100.0
+  2011-01-01:
+    value: 32600.0
+  2013-01-01:
+    value: 32900.0
+  2017-01-01:
+    value: 70000.0
+  2020-01-01:
+    value: 72600.0

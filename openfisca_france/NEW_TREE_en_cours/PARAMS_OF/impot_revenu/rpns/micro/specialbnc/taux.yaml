@@ -1,0 +1,12 @@
+description: Taux
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1991-01-01:
+    value: 0.25
+  1999-01-01:
+    value: 0.35
+  2002-01-01:
+    value: 0.37
+  2006-01-01:
+    value: 0.34

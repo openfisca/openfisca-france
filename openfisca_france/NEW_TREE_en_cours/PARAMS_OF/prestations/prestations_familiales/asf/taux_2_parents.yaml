@@ -1,0 +1,18 @@
+description: Montant de l'ASF, en pourcentage de la base mensuelle des allocations familiales (BMAF), 
+  pour un enfant orphelin (de père et de mère), ou situation assimilée.
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1970-12-26:
+    value: 0.3
+  2014-04-01:
+    value: 0.315
+  2015-04-01:
+    value: 0.33
+  2016-04-01:
+    value: 0.345
+  2017-04-01:
+    value: 0.36
+  2018-04-01:
+    value: 0.375
+    reference : http://circulaires.legifrance.gouv.fr/pdf/2018/03/cir_43190.pdf

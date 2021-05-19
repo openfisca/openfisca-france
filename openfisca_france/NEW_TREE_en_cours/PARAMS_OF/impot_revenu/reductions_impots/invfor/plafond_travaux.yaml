@@ -1,0 +1,5 @@
+description: Plafond de dépenses de travaux et assurances
+unit: currency
+values:
+  2009-01-01:
+    value: 6250.0

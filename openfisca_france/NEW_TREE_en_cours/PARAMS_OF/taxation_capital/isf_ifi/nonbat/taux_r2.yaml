@@ -1,0 +1,5 @@
+description: Taux biens ruraux
+unit: /1
+values:
+  2002-01-01:
+    value: 0.5

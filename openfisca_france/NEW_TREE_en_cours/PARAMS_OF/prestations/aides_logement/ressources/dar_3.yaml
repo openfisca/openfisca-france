@@ -1,0 +1,8 @@
+description: Coefficient R. 351-7-1
+values:
+  2002-01-01:
+    reference: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=?idArticle=LEGIARTI000006832022&cidTexte=JORFTEXT000000838203&categorieLien=id&dateTexte=20010730
+    value: 13.0
+  2007-07-01:
+    reference: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=?idArticle=LEGIARTI000006832026&cidTexte=LEGITEXT000006074213&dateTexte=20180725
+    value: 16.25

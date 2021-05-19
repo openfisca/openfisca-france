@@ -1,0 +1,22 @@
+description: Seuil troisième tranche
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2000-01-01:
+    value: 96016.0
+  2001-01-01:
+    value: 14872.0
+  2002-01-01:
+    value: 15235.0
+  2003-01-01:
+    value: 15735.0
+  2004-01-01:
+    value: 16364.0
+  2005-01-01:
+    value: 16659.0
+  2006-01-01:
+    value: 17227.0
+  2007-01-01:
+    value: 17451.0
+  2016-01-01:
+    value: null

@@ -1,0 +1,8 @@
+description: Taux du montant mensuel du complément aux adultes handicapés (avant 2005)
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2002-01-01:
+    value: 0.16
+  2008-09-01:
+    value: null

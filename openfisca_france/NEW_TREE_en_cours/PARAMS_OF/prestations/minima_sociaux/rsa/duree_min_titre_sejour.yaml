@@ -1,0 +1,14 @@
+non_eee:
+  description: Durée minimale de titre du séjour permettant de bénéficier du RSA
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: year
+  values:
+    2009-06-01:
+      value: 5.0
+eee:
+  description: Durée minimale de titre du séjour permettant de bénéficier du RSA pour un ressortissant de l'EEE
+  reference: https://www.service-public.fr/particuliers/vosdroits/F19778
+  unit: year
+  values:
+    2009-06-01:
+      value: 0.25 # 3/12 (3 mois)

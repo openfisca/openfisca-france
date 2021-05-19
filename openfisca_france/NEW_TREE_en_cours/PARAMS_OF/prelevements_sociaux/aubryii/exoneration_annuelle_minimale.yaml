@@ -1,0 +1,13 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2000-02-01:
+    value: 4000.0
+  2000-07-01:
+    value: 4058.0
+  2001-07-01:
+    value: 636.32
+  2002-07-01:
+    value: 647.77
+  2003-07-01:
+    value: null

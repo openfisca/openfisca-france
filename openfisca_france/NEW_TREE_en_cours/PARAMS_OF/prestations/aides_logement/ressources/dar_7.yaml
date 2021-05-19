@@ -1,0 +1,9 @@
+description: Majoration si 2 étudiants
+unit: currency
+values:
+  2002-01-01:
+    value: 0.0
+  2002-07-01:
+    value: 2000.0
+  2005-09-01:
+    value: 0.0

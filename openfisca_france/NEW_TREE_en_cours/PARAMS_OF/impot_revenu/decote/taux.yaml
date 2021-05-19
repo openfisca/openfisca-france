@@ -1,0 +1,14 @@
+description: Taux de la décote
+reference:
+  - http://bofip.impots.gouv.fr/bofip/2495-PGP
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037985566&cidTexte=LEGITEXT000006069577
+unit: /1
+values:
+  2001-01-01:
+    value: 0.5
+  2014-01-01:
+    value: 1.0
+  2015-01-01:
+    value: 0.75
+  2020-01-01:
+    value: 0.4525

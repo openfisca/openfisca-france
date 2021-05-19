@@ -1,0 +1,29 @@
+description: Plafond annuel de ressources n°2 précalculé à partir de 2 enfants
+metadata:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
+  documentation: |
+    Précalcul du plafond annuel de ressources pour la deuxième tranche
+    applicable pour l'attribution du montant modulé des allocations familiales.
+
+    La deuxième tranche est celle dont les revenus sont supérieurs à un plafond de base
+    de la 1ère tranche majoré d'un montant par enfant à charge mais inférieurs ou égaux
+    au plafond de base de cette 2ème tranche majoré d'un montant par enfant à charge.
+
+    2018 : 90026 = 78770 + 5628 * 2
+    2019 : 90926 = 79558 + 5684 * 2
+    2020 : 92381 = 80831 + 5775 * 2
+values:
+  2015-07-01:
+    value: 89490.0
+  2016-01-01:
+    value: 89847.0
+  2018-01-01:
+    value: 90026.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2017/12/27/SSAS1736592A/jo/article_1
+  2019-01-01:
+    value: 90926.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2018/12/21/SSAS1835267A/jo/article_1
+  2020-04-01:
+    value: 92381.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2019/12/20/SSAS1934813A/jo/article_1

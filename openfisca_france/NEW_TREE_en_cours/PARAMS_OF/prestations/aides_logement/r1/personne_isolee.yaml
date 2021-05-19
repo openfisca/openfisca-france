@@ -1,0 +1,8 @@
+description: Taux pour 1 adulte
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2001-01-01:
+    value: 0.88
+  2015-01-01:
+    value: null

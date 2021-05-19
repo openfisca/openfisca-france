@@ -1,0 +1,5 @@
+description: Quote-part retenue sur les simulations d'aides fournies par la CAF pour le logement pour lequel la caution Visale est demandée
+reference: https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page7
+unit: /1
+values:
+  2020-03-25: .67

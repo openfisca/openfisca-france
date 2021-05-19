@@ -1,0 +1,7 @@
+description: Majoration pour 3 enfants
+unit: /1
+values:
+  1986-01-01:
+    value: 0.1
+  2007-02-01:
+    value: 0.0

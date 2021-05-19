@@ -1,0 +1,20 @@
+description: Majoration du plafond de ressources par enfant à charge
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1978-07-13:
+    value: 0.3
+  1986-07-01:
+    value: 0.230763896594
+  1997-07-01:
+    value: 0.3
+  2008-10-10:
+    value: 0.29999472212
+  2009-01-01:
+    value: 0.3
+  2011-01-01:
+    value: 0.30001697889
+  2012-01-01:
+    value: 0.300011206993
+  2014-01-01:
+    value: 0.3

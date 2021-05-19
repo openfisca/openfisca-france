@@ -1,0 +1,11 @@
+description: Plancher ressources APL en secteur accession R. 351-7-1
+unit: currency
+values:
+  2002-01-01:
+    value: 6173.82
+  2002-07-01:
+    value: 6300.0
+  2003-07-01:
+    value: 6400.0
+  2007-07-01:
+    value: 8000.0

@@ -1,0 +1,50 @@
+aide_exceptionnelle_tpe:
+  plafond:
+    values:
+      2020-03-01:
+        value: 1500
+aide_exceptionnelle_famille:
+  reference:
+    - "Décret n°2020-519 du 5 mai 2020: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041849630/"
+    - "Décret n°2020-769 du 24 juin 2020: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042032514"
+    - "Décret n°2020-1453 du 27 novembre 2020: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042574431"
+  base:
+    values:
+      2020-05-01:
+        value: 150
+      2020-06-01:
+        value: null
+      2020-10-01:
+        value: 150
+      2020-11-01:
+        value: null
+  base_jeune:
+    values:
+      2020-05-01:
+        value: 200
+      2020-06-01:
+        value: null
+      2020-10-01:
+        value: 150
+      2020-11-01:
+        value: null
+  par_enfant:
+    values:
+      2020-05-01:
+        value: 100
+      2020-06-01:
+        value: null
+      2020-10-01:
+        value: 100
+      2020-11-01:
+        value: null
+indemnite_ap :
+   taux : 
+     2020-03-01:
+       0.70   
+   plancher :
+     2020-03-01:
+       8.03
+   plafond_smic :
+     2020-03-01: 
+       4.5

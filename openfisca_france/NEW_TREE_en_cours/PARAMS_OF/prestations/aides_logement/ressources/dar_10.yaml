@@ -1,0 +1,11 @@
+description: Abattement forfaitaire R351-11
+unit: currency
+values:
+  2002-01-01:
+    value: 0.0
+  2002-07-01:
+    value: 2034.0
+  2003-07-01:
+    value: 2071.0
+  2007-07-01:
+    value: 2589.0

@@ -1,0 +1,5 @@
+description: Taux 30%
+unit: /1
+values:
+  2014-01-01:
+    value: 0.3

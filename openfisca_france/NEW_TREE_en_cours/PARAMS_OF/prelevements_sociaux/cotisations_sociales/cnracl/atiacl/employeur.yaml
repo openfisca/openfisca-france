@@ -1,0 +1,18 @@
+brackets:
+- rate:
+    1964-07-01:
+      value: 0.006
+    1967-05-01:
+      value: 0.003
+    1972-10-01:
+      value: 0.002
+    1980-07-01:
+      value: 0.004
+    1982-01-01:
+      value: 0.005
+    2013-01-01:
+      value: 0.004
+  threshold:
+    1947-09-19:
+      value: 0.0
+reference: https://www.ipp.eu/outils/baremes-ipp/

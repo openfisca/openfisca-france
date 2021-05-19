@@ -1,0 +1,8 @@
+description: Taux
+reference:
+  - http://bofip.impots.gouv.fr/bofip/805-PGP.html
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000019202997&cidTexte=LEGITEXT000006069577
+unit: /1
+values:
+  2002-01-01:
+    value: 0.4

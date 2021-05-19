@@ -1,0 +1,8 @@
+description: Abbatement appliqué aux revenus interompus et substitués du conjoint,
+  en cas de licenciement, départ en retraite, etc.
+unit: /1
+values:
+  2005-01-01:
+    value: 0.0
+  2008-05-01:
+    value: 0.3

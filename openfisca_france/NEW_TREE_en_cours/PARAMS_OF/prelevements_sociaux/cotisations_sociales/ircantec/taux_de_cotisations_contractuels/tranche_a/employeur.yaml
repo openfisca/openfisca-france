@@ -1,0 +1,21 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1971-01-01:
+    value: 0.021
+  1989-01-01:
+    value: 0.027
+  2011-01-01:
+    value: 0.0273
+  2012-01-01:
+    value: 0.0282
+  2013-01-01:
+    value: 0.0294
+  2014-01-01:
+    value: 0.03042
+  2015-01-01:
+    value: 0.03168
+  2016-01-01:
+    value: 0.03264
+  2017-01-01:
+    value: 0.0336

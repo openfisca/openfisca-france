@@ -1,0 +1,62 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  1989-01-01:
+    value: 177.6875
+  1990-01-01:
+    value: 191.75
+  1991-01-01:
+    value: 199.75625
+  1992-01-01:
+    value: 204.80625
+  1993-01-01:
+    value: 206.70625
+  1994-01-01:
+    value: 186.922222222
+  1995-01-01:
+    value: 196.840384615
+  1996-01-01:
+    value: 193.146428571
+  1997-01-01:
+    value: 176.225
+  1998-01-01:
+    value: 180.46875
+  1999-01-01:
+    value: 192.89
+  2000-01-01:
+    value: 206.171875
+  2001-01-01:
+    value: 209.291280312
+  2002-01-01:
+    value: 32.421875
+  2003-01-01:
+    value: 32.96875
+  2004-01-01:
+    value: 33.75
+  2005-01-01:
+    value: 34.5833333333
+  2006-01-01:
+    value: 35.27
+  2007-01-01:
+    value: 36.57
+  2008-01-01:
+    value: 37.81
+  2009-01-01:
+    value: 38.48
+  2010-01-01:
+    value: 38.99
+  2011-01-01:
+    value: 39.84
+  2012-01-01:
+    value: 40.74
+  2013-01-01:
+    value: 41.13
+  2014-01-01:
+    value: 41.17
+  2016-01-01:
+    value: 42.23
+  2017-01-01:
+    value: 43.67
+  2018-01-01:
+    reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2017/201710dt_parametres_Agirc-Arrco.pdf
+    value: 45.11

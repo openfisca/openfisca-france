@@ -1,0 +1,228 @@
+description: Impôt sur les plus values à taux forfaitaires
+reference: https://www.ipp.eu/outils/baremes-ipp/
+imposition_des_plus_values_mobilieres_levees_d_options_attribuees_depuis_27_4_2000_cessions_realisees_moins_de_deux_ans_apres_la_levee:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  seuil_tranche_superieure:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: currency
+    values:
+      2000-01-01:
+        value: 1000000.0
+      2001-01-01:
+        value: 152000.0
+      2009-01-01:
+        value: 152500.0
+      2013-01-01:
+        value: null
+  taux_tranche_inferieure:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1995-01-01:
+        value: 0.3
+      2013-01-01:
+        value: null
+  taux_tranche_superieure:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      2000-01-01:
+        value: 0.4
+      2010-01-01:
+        value: 0.41
+      2013-01-01:
+        value: null
+pea:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  taux_avant_2_ans:
+    description: Clôture PEA avant 2 ans (3VM)
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1991-01-01:
+        value: 0.225
+  taux_posterieur:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1978-01-01:
+        value: 0.15
+      1984-01-01:
+        value: 0.16
+      2012-01-01:
+        value: 0.19
+pea2:
+  description: Clôture PEA ou PEA-PME entre 2 ans et 5 ans (3VT)
+  reference: openfisca
+  unit: /1
+  values:
+    2012-01-01:
+      value: 0.19
+pvce:
+  description: Plus value de cession (RPNS) 16%
+  reference: openfisca
+  unit: /1
+  values:
+    2002-01-01:
+      value: 0.16
+    2017-01-01:
+      value: 0.128
+seuil_d_imposition:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
+  values:
+    1978-01-01:
+      value: 150000.0
+    1980-01-01:
+      value: 168000.0
+    1981-01-01:
+      value: 190700.0
+    1984-01-01:
+      value: 265000.0
+    1985-01-01:
+      value: 272000.0
+    1986-01-01:
+      value: 281000.0
+    1988-01-01:
+      value: 298000.0
+    1989-01-01:
+      value: 307600.0
+    1990-01-01:
+      value: 316900.0
+    1991-01-01:
+      value: 325800.0
+    1994-01-01:
+      value: 336700.0
+    1995-01-01:
+      value: 342800.0
+    1996-01-01:
+      value: 200000.0
+    1997-01-01:
+      value: 100000.0
+    1998-01-01:
+      value: 50000.0
+    2001-01-01:
+      value: 7650.0
+    2002-01-01:
+      value: 15000.0
+    2007-01-01:
+      value: 20000.0
+    2008-01-01:
+      value: 25000.0
+    2009-01-01:
+      value: 25730.0
+    2010-01-01:
+      value: 25830.0
+    2011-01-01:
+      value: null
+taux:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    1978-01-01:
+      value: 0.15
+    1984-01-01:
+      value: 0.16
+    2008-01-01:
+      value: 0.18
+    2011-01-01:
+      value: 0.19
+    2012-01-01:
+      value: 0.24
+    2013-01-01:
+      value: null
+taux1:
+  description: Plus values de cession de valeurs mobilières
+  reference: openfisca
+  unit: /1
+  values:
+    2002-01-01:
+      value: 0.16
+    2008-01-01:
+      value: 0.18
+    2011-01-01:
+      value: 0.19
+    2012-01-01:
+      value: 0.24
+    2013-01-01: expected
+taux2:
+  description: Actions gratuites 18%
+  reference: openfisca
+  unit: /1
+  values:
+    2008-01-01:
+      value: 0.18
+taux3:
+  description: Actions gratuites 30%
+  reference: openfisca
+  unit: /1
+  values:
+    1995-01-01:
+      value: 0.3
+taux4:
+  description: Actions gratuites 40%
+  reference: openfisca
+  unit: /1
+  values:
+    2000-01-01:
+      value: 0.4
+    2010-01-01:
+      value: 0.41
+taux_pv_mob_pro:
+  description: Capital risque (VL)
+  reference: openfisca
+  unit: /1
+  values:
+    2002-01-01:
+      value: 0.16
+    2008-01-01:
+      value: 0.18
+    2011-01-01:
+      value: 0.19
+    2012-01-01:
+      value: 0.24
+    2013-01-01: expected
+taux_pv_entrep:
+  description: Cessions titres réalisées par un entrepreneur
+  reference: openfisca
+  unit: /1
+  values:
+    2012-01-01:
+      value: 0.19
+    2013-01-01:
+      value: null
+taux_plus_values_bspce:
+  description: Taux général de taxation des cessions de bons de souscription de parts de créateur d'entreprise (BSPCE).
+  reference: openfisca
+  unit: /1
+  values:
+    2012-01-01:
+      value: 0.19
+taux_plus_values_bspce_conditionnel:
+  description: Taux spécial de taxation des cessions de bons de souscription de parts de créateur d'entreprise (BSPCE). Ce taux est applicable si, à la date de cession des titres, vous exercez votre activité dans la société depuis moins de trois ans ou si, n’étant plus salarié de la société à la même date, vous y avez exercé votre activité pendant moins de trois ans.
+  reference: openfisca
+  unit: /1
+  values:
+    2012-01-01:
+      value: 0.30
+taux_plus_values_report:
+  description: Taux forfaitaire général appliqué aux plus-values en report d'imposition et dont le report a expiré.
+  reference: openfisca
+  unit: /1
+  values:
+    2016-01-01:
+      value: 0.24
+taux_plus_values_report_conditionnel:
+  description: Taux forfaitaire spécial appliqué sous conditions (article 200 A, 2bis, du CGI) aux plus-values en report d'imposition et dont le report a expiré.
+  reference: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000026946928&dateTexte=&categorieLien=id
+  unit: /1
+  values:
+    2016-01-01:
+      value: 0.19
+taux_plus_values_entc:
+  description: Taux forfaitaire d'imposition sur les profits sur instruments financiers dans des ETNC
+  reference: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=CE740B6D375E31370F15EEF5F40ADFF8.tplgfr27s_2?idArticle=LEGIARTI000037526716&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=
+  unit: /1
+  values:
+    2018-01-01:
+      value: 0.5

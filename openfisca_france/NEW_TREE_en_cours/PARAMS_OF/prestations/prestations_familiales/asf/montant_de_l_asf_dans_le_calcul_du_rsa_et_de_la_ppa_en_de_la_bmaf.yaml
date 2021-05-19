@@ -1,0 +1,13 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+orphelin_ou_assimile_d_un_seul_parent:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    2009-06-01:
+      value: 0.225
+orphelin_ou_assimile_des_deux_parents:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    2009-06-01:
+      value: 0.3

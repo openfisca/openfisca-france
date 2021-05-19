@@ -1,0 +1,37 @@
+description: Montant 2ème alinéa du III de R. 351-7
+unit: currency
+values:
+  2002-01-01:
+    value: 0.0
+  2002-07-01:
+    value: 1085.0
+  2009-01-01:
+    value: 1200.0
+  2010-01-01:
+    value: 1204.8
+  2011-01-01:
+    value: 1222.87
+  2012-01-01:
+    value: 1248.55
+  2013-01-01:
+    value: 1273.52
+  2014-01-01:
+    value: 1283.71
+  2015-01-01:
+    value: 1290.13
+  2016-01-01:
+    value: 1291.42
+  2017-01-01:
+    value: 1292.71
+  2018-01-01:
+    value: 1305.64
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2017/12/29/TERL1732837A/jo/texte
+  2019-01-01:
+    value: 1326.53
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2018/12/27/LOGL1831318A/jo/texte
+  2020-01-01:
+    value: 1339.80
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2019/12/23/SSAS1936646A/jo/article_1
+  2021-01-01:
+    value: 1342.48
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2020/12/14/SSAS2032692A/jo/article_4

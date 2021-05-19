@@ -1,0 +1,10 @@
+description: Taux
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2001-01-01:
+    value: 0.25
+  2011-01-01:
+    value: 0.22
+  2012-01-01:
+    value: 0.18

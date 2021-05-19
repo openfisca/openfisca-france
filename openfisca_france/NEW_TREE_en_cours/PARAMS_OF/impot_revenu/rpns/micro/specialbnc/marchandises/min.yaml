@@ -1,0 +1,5 @@
+description: Minimum
+unit: currency
+values:
+  2001-01-01:
+    value: 305.0

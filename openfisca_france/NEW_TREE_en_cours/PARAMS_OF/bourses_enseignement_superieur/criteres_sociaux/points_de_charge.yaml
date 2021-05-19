@@ -1,0 +1,42 @@
+distance_domicile_familial:
+  description: Nombre de points de charge pour la bourse du supérieur sur critères sociaux \
+    selon le nombre de kilomètres entre le domicile familial et l'institution d'enseignement supérieur
+  reference:
+    - https://www.education.gouv.fr/bo/2006/15/MENS0600981C.htm
+    - https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm
+  metadata:
+    type: single_amount
+  brackets:
+  - threshold:
+      2006-03-31:
+        value: 0
+    amount:
+      2006-03-31:
+        value: 0
+  - threshold:
+      2006-03-31:
+        value: 30
+    amount:
+      2006-03-31:
+        value: 1
+  - threshold:
+      2006-03-31:
+        value: 250
+    amount:
+      2006-03-31:
+        value: 2
+charges_familiales:
+  points_par_enfant_a_charge:
+    description: Nombre de points de charge par enfant à l'exclusion du candidat boursier pour la bourse du supérieur sur critères sociaux
+    values:
+      2006-03-31:
+        value: 1
+      2020-08-06:
+        value: 2
+  points_par_enfant_a_charge_etudiant_enseignement_superieur:
+    description: Nombre de points de charge par enfant dans l'enseignement supérieur à l'exclusion du candidat boursier pour la bourse du supérieur sur critères sociaux
+    values:
+      2006-03-31:
+        value: 3
+      2020-08-06:
+        value: 4

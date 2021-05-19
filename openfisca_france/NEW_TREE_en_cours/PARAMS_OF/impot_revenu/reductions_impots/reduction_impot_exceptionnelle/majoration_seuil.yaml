@@ -1,0 +1,7 @@
+description: Majoration du seuil par demi-part supplémentaire
+unit: currency
+values:
+  2013-01-01:
+    value: 3536.0
+  2016-01-01:
+    value: null

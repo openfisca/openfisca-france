@@ -1,0 +1,13 @@
+description: Demandes antérieures au 1er juillet
+unit: currency
+values:
+  2002-01-01:
+    value: 4420.76
+  2002-07-01:
+    value: 4400.0
+  2007-07-01:
+    value: 5500.0
+  2009-01-01:
+    value: 0.0
+  2011-01-01:
+    value: null

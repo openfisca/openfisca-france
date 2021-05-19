@@ -1,0 +1,5 @@
+description: Age limite (strict) de perception
+unit: year
+values:
+  2004-01-01:
+    value: 1.0

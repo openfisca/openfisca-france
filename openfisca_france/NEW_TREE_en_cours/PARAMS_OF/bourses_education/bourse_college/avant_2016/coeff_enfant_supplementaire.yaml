@@ -1,0 +1,5 @@
+description: Coefficient à rajouter aux plafonds pour chaque enfant à charge
+unit: /1
+values:
+  2014-01-01:
+    value: 0.3

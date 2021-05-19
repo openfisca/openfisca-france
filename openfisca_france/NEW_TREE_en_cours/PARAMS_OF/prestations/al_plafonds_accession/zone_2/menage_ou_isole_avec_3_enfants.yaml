@@ -1,0 +1,52 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  1990-07-01:
+    value: 1797.0
+  1991-07-01:
+    value: 1880.0
+  1992-07-01:
+    value: 1977.0
+  1994-07-01:
+    value: 1999.0
+  1997-07-01:
+    value: 2035.0
+  1998-07-01:
+    value: 2084.0
+  1999-07-01:
+    value: 2086.0
+  2000-07-01:
+    value: 2107.0
+  2001-07-01:
+    value: 325.02
+  2002-07-01:
+    value: 328.92
+  2003-07-01:
+    value: 332.87
+  2005-09-01:
+    value: 338.86
+  2007-01-01:
+    value: 348.35
+  2008-01-01:
+    value: 357.96
+  2009-01-01:
+    value: 368.52
+  2010-01-01:
+    value: 369.7
+  2011-01-01:
+    value: 373.77
+  2012-01-01:
+    value: 377.51
+  2013-01-01:
+    value: 385.63
+  2014-09-01:
+    value: 387.83
+  2015-10-01:
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2015/10/16/AFSS1524789A/jo/article_2
+    value: 388.14
+  2017-10-01:
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_14
+    value: 391.05
+  2019-10-01:
+    reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&dateTexte=20191008
+    value: 392.22

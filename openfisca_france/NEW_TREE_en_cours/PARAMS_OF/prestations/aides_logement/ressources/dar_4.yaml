@@ -1,0 +1,22 @@
+description: Plancher de ressources pour les étudiants (R. 351-7-2)
+unit: currency
+values:
+  2002-01-01:
+    value: 5411.62
+  2002-07-01:
+    value: 5500.0
+  2007-07-01:
+    value: 6900.0
+  2009-01-01:
+    value: 7100.0
+  2011-01-01:
+    value: 7200.0
+  2012-01-01:
+    value: 7300.0
+  2013-01-01:
+    value: 7500.0
+  2014-01-01:
+    value: 7600.0
+  2018-01-01:
+    value: 7700.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2017/12/29/TERL1732837A/jo/texte

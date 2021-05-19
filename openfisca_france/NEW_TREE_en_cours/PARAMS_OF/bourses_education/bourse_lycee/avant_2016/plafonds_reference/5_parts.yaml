@@ -1,0 +1,5 @@
+description: Plafond de référence pour 5 parts
+unit: currency
+values:
+  2014-01-01:
+    value: 10525.0

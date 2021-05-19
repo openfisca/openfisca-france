@@ -1,0 +1,30 @@
+description: Plafond de ressources
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2004-01-01:
+    value: 19303.0
+  2004-07-01:
+    value: 19670.0
+  2005-07-01:
+    value: 20004.0
+  2006-07-01:
+    value: 20344.0
+  2007-07-01:
+    value: 25862.0
+  2009-01-01:
+    value: 26250.0
+  2010-01-01:
+    value: 26985.0
+  2011-01-01:
+    value: 27012.0
+  2012-01-01:
+    value: 27282.0
+  2013-01-01:
+    value: 27855.0
+  2014-01-01:
+    value: 28384.0
+  2015-01-01:
+    value: 28583.0
+  2016-01-01:
+    value: 28697.0

@@ -1,0 +1,13 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1974-10-01:
+    value: 0.025
+  1976-10-01:
+    value: 0.035
+  1977-10-01:
+    value: 0.04
+  1979-04-01:
+    value: 0.07
+  1981-10-01:
+    value: null

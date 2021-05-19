@@ -1,0 +1,11 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2003-04-01:
+    value: 930.05
+  2004-04-01:
+    value: 945.87
+  2005-01-01:
+    value: 964.78
+  2006-01-01:
+    value: null

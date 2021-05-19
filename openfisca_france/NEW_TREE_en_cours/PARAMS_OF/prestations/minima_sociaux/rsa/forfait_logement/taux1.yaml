@@ -1,0 +1,5 @@
+description: Fofait logement pour 1 personne (en % du rsa_socle)
+unit: /1
+values:
+  1998-12-14:
+    value: 0.12

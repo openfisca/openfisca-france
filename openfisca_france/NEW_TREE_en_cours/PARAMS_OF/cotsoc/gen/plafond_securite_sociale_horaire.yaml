@@ -1,0 +1,11 @@
+description: 'Plafond horaire de la sécurité sociale '
+unit: currency
+values:
+  2009-01-01:
+    value: 21.0
+  2010-01-01:
+    value: 22.0
+  2012-01-01:
+    value: 23.0
+  2015-01-01:
+    value: 24.0

@@ -1,0 +1,33 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+taux_contractuel:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    1968-01-01:
+      value: 0.036
+    1971-01-01:
+      value: 0.063
+taux_effectif:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    1968-01-01:
+      value: 0.036
+    1971-01-01:
+      value: 0.063
+    1993-01-01:
+      value: 0.0693
+    1998-01-01:
+      value: 0.080325
+    2002-01-01:
+      value: 0.081585
+    2004-01-01:
+      value: 0.09
+taux_invalidite_deces:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    2004-01-01:
+      value: 0.01
+    2012-01-01:
+      value: 0.007

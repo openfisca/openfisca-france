@@ -1,0 +1,12 @@
+description: Deuxième enfant à charge
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1976-08-01:
+    value: 0.22
+  1978-01-01:
+    value: 0.23
+  1981-07-01:
+    value: 0.255
+  1982-02-01:
+    value: 0.32

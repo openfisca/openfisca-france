@@ -1,0 +1,30 @@
+description: Montant journalier de l'ATA
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2006-11-16:
+    value: 10.04
+  2007-01-01:
+    value: 10.22
+  2008-01-01:
+    value: 10.38
+  2009-01-01:
+    value: 10.54
+  2010-01-01:
+    value: 10.67
+  2011-01-01:
+    value: 10.83
+  2012-01-01:
+    value: 11.01
+  2013-01-01:
+    value: 11.2
+  2014-01-01:
+    value: 11.35
+  2015-01-01:
+    value: 11.45
+  2015-11-01:
+    value: null
+  2016-04-01:
+    value: 11.46
+  2017-04-01:
+    value: 11.49

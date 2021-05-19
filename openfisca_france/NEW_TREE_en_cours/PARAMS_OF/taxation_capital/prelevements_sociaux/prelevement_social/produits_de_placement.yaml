@@ -1,0 +1,14 @@
+description: Prélèvement social (revenus des produits de placement)
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1998-01-01:
+    value: 0.02
+  2011-01-01:
+    value: 0.022
+  2011-10-01:
+    value: 0.034
+  2012-07-01:
+    value: 0.054
+  2013-01-01:
+    value: 0.045

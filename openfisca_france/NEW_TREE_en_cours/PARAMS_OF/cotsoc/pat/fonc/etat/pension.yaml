@@ -1,0 +1,30 @@
+brackets:
+- rate:
+    2006-01-01:
+      value: 0.499
+    2007-01-01:
+      value: 0.5074
+    2008-01-01:
+      value: 0.5571
+    2009-01-01:
+      value: 0.6014
+    2009-12-01:
+      value: 0.4014
+    2010-01-01:
+      value: 0.6214
+    2011-01-01:
+      value: 0.6539
+    2012-01-01:
+      value: 0.6859
+    2013-01-01:
+      value: 0.7428
+    2013-12-01:
+      value: 0.4428
+    2014-01-01:
+      value: 0.7428
+  threshold:
+    1993-01-01:
+      value: 0.0
+    2013-01-01:
+      value: null
+description: Pensions civiles (TI et NBI)

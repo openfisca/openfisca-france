@@ -1,0 +1,6 @@
+description: Durée minimale de titre du séjour permettant de bénéficier de l'ASPA
+  ou de l'ASI
+unit: year
+values:
+  2002-01-01:
+    value: 10.0

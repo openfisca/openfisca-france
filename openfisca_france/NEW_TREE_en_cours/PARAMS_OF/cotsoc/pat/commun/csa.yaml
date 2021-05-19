@@ -1,0 +1,8 @@
+brackets:
+- rate:
+    2004-07-01:
+      value: 0.003
+  threshold:
+    2004-07-01:
+      value: 0.0
+description: Contribution solidarité autonomie (dépendance)

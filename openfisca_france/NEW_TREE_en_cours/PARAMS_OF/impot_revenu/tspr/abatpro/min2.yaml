@@ -1,0 +1,46 @@
+description: Abattement minimum - Demandeur d'emploi
+reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
+unit: currency
+values:
+  1997-01-01:
+    value: 5000.0
+  1998-01-01:
+    value: 5040.0
+  1999-01-01:
+    value: 5070.0
+  2000-01-01:
+    value: 5140.0
+  2001-01-01:
+    value: 797.0
+  2002-01-01:
+    value: 811.0
+  2003-01-01:
+    value: 825.0
+  2004-01-01:
+    value: 839.0
+  2005-01-01:
+    value: 854.0
+  2006-01-01:
+    value: 869.0
+  2007-01-01:
+    value: 880.0
+  2008-01-01:
+    value: 906.0
+  2009-01-01:
+    value: 910.0
+  2010-01-01:
+    value: 924.0
+  2013-01-01:
+    value: 931.0
+  2014-01-01:
+    value: 936.0
+  2015-01-01:
+    value: 937.0
+  2016-01-01:
+    value: 938.0
+  2017-01-01:
+    value: 947.0
+  2018-01-01:
+    value: 437.0
+  2019-01-01:
+    value: 441.0

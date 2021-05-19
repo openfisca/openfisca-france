@@ -1,0 +1,5 @@
+description: Coefficient de majoration pour une troisième ou quatrième personne
+unit: /1
+values:
+  2000-01-01:
+    value: 0.3

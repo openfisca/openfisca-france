@@ -1,0 +1,9 @@
+description: Plafond pour investissement dans les PME
+unit: currency
+values:
+  2009-01-01:
+    value: 50000.0
+  2011-01-01:
+    value: 45000.0
+  2014-01-01:
+    value: 45000.0

@@ -1,0 +1,43 @@
+description: Montant journalier à taux plein de l'ASS
+unit: currency
+values:
+  2001-01-01:
+    value: 13.1
+  2002-01-01:
+    value: 13.36
+  2003-01-01:
+    value: 13.56
+  2004-01-01:
+    value: 13.76
+  2005-01-01:
+    value: 14.0
+  2006-01-01:
+    value: 14.25
+  2007-01-01:
+    value: 14.51
+  2008-01-01:
+    value: 14.74
+  2009-01-01:
+    value: 14.96
+  2010-01-01:
+    value: 15.14
+  2011-01-01:
+    value: 15.37
+  2012-01-01:
+    value: 15.63
+  2013-01-01:
+    value: 15.9
+  2014-01-01:
+    value: 16.11
+  2015-01-01:
+    value: 16.25
+  2016-04-01:
+    value: 16.27
+  2017-04-01:
+    value: 16.32
+  2018-04-01:
+    value: 16.48
+    reference: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031781118&cidTexte=LEGITEXT000006072050&dateTexte=20180420&fastPos=1&fastReqId=505933634&oldAction=rechCodeArticle
+  2019-04-01:
+    value: 16.74
+    reference: https://www.legifrance.gouv.fr/eli/decret/2019/5/16/MTRD1908040D/jo/article_2

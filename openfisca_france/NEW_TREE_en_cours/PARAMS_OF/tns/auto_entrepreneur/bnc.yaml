@@ -1,0 +1,7 @@
+description: Activité de type BNC
+unit: /1
+values:
+  2008-01-01:
+    value: 0.235
+  2015-01-01:
+    value: 0.231

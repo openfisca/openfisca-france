@@ -1,0 +1,11 @@
+description: Plafond maximal d'abattement DOM - Guadeloupe, Martinique, Réunion
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/
+  - http://bofip.impots.gouv.fr/bofip/4618-PGP
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
+unit: currency
+values:
+  2001-01-01:
+    value: 5100.0
+  2018-01-01:
+    value: 2450.0

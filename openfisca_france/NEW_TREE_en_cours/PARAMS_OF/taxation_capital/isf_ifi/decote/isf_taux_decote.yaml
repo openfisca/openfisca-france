@@ -1,0 +1,6 @@
+description: Taux de la décote
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2013-01-01:
+    value: 0.0125

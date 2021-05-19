@@ -1,0 +1,38 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+cas_des_entreprises_2000_salaries_ou_alternants_representent_1_de_l_effectif_i_i_i:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  contribution_supplementaire_a_l_apprentissage_csa:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      2011-01-01:
+        value: 0.002
+      2012-01-01:
+        value: 0.0025
+      2014-01-01:
+        value: 0.004
+entreprises_de_250_salaries_et_plus:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  contribution_supplementaire_a_l_apprentissage_csa:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      2010-01-01:
+        value: 0.001
+      2011-01-01:
+        value: null
+taxe_apprentissage:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  brackets:
+  - rate:
+      1972-07-01:
+        value: 0.005
+      1977-01-01:
+        value: 0.006
+      1993-01-01:
+        value: 0.005
+      2014-01-01:
+        value: 0.0068
+    threshold:
+      1972-07-01:
+        value: 0.0

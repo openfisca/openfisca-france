@@ -1,0 +1,11 @@
+description: Taux (XK)
+unit: /1
+values:
+  2004-01-01:
+    value: 0.0
+  2005-01-01:
+    value: 0.2
+  2008-01-01:
+    value: 0.0
+  2010-01-01:
+    value: 0.25

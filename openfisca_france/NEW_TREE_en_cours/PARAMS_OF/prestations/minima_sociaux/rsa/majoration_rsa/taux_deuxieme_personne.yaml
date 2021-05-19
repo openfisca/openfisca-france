@@ -1,0 +1,6 @@
+description: Taux pour une 2nde personne
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2009-06-01:
+    value: 0.5

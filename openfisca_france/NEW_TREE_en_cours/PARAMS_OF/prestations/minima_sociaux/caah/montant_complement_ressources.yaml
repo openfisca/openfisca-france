@@ -1,0 +1,7 @@
+description: Montant mensuel du complément de ressources aux adultes handicapés (à
+  partir de 2007)
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2006-07-01:
+    value: 179.31

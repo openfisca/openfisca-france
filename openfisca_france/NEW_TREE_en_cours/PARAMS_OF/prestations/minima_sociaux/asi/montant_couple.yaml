@@ -1,0 +1,33 @@
+description: Montant annuel maximal de l'ASI pour un couple
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2006-01-01:
+    value: 7118.77
+  2007-01-01:
+    value: 7246.9
+  2008-01-01:
+    value: 7326.61
+  2008-09-01:
+    value: 7385.22
+  2009-04-01:
+    value: 7459.07
+  2010-04-01:
+    value: 7526.2
+  2011-04-01:
+    value: 7684.25
+  2012-04-01:
+    value: 7845.61
+  2013-04-01:
+    value: 7947.6
+  2014-04-01:
+    value: 7995.28
+  2016-04-01:
+    value: 8003.27
+  2017-04-01:
+    value: 8027.27
+  2018-04-01:
+    value: 8107.54
+  2019-04-01:
+    value: 8237.26
+    reference: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44460.pdf

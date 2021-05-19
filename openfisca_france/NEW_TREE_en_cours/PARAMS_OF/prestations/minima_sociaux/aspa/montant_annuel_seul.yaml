@@ -1,0 +1,38 @@
+description: Montant annuel maximal de l'ASPA pour une personne seule
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2006-01-01:
+    value: 7323.48
+  2007-01-01:
+    value: 7455.3
+  2008-01-01:
+    value: 7537.3
+  2008-09-01:
+    value: 7597.59
+  2009-04-01:
+    value: 8125.59
+  2010-04-01:
+    value: 8507.49
+  2011-04-01:
+    value: 8907.34
+  2012-04-01:
+    value: 9325.98
+  2013-04-01:
+    value: 9447.21
+  2014-04-01:
+    value: 9503.89
+  2014-10-01:
+    value: 9600.0
+  2016-04-01:
+    value: 9609.6
+  2017-04-01:
+    value: 9638.42
+  2018-04-01:
+    value: 9998.40
+  2019-01-01:
+    value: 10418.40
+    reference: https://www.legifrance.gouv.fr/eli/decret/2018/3/30/SSAS1805864D/jo/article_1
+  2020-01-01:
+    value: 10838.40
+    reference: https://www.legifrance.gouv.fr/eli/decret/2018/3/30/SSAS1805864D/jo/article_1

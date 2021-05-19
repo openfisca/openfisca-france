@@ -1,0 +1,41 @@
+cas_general:
+  hors_ile_de_france:
+    description: Montant maximum du loyer éligible à la caution Visale pour les personnes logeant hors Île-de-France.
+    reference: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
+    unit: currency
+    values:
+      2018-06-19:
+        value: 1300
+        reference: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
+  ile_de_france:
+    description: Montant maximum du loyer éligible à la caution Visale pour les personnes logeant en Île-de-France.
+    reference: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
+    unit: currency
+    values:
+      2018-06-19:
+        value: 1500
+        reference: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
+
+etudiant:
+  hors_ile_de_france:
+    description: Montant maximum du loyer pour l'éligibilité automatique à Visale pour les personnes disposant d'un statut étudiant et logeant hors Île-de-France.
+    reference: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
+    unit: currency
+    values:
+      2018-06-19:
+        value: 600
+        reference: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
+      2016-01-01:
+        value: 425
+        reference: https://www.lemonde.fr/campus/article/2018/06/11/logement-le-systeme-de-caution-visale-etendu-a-tous-les-etudiants_5312871_4401467.html  # également https://www.fage.org/idees/idees-social/idees-social-crous-aide-logement/idees-social-garantie-locative-visale.htm pour la date, et https://www.crous-paris.fr/logement/les-aides-au-logement/visale-caution-locative pour le montant (pas encore actualisé à la date d'écriture)
+  ile_de_france:
+    description: Montant maximum du loyer pour l'éligibilité automatique à Visale pour les personnes disposant d'un statut étudiant et logeant en Île-de-France.
+    reference: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
+    unit: currency
+    values:
+      2018-06-19:
+        value: 800
+        reference: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
+      2016-01-01:
+        value: 425
+        reference: https://www.lemonde.fr/campus/article/2018/06/11/logement-le-systeme-de-caution-visale-etendu-a-tous-les-etudiants_5312871_4401467.html  # également https://www.fage.org/idees/idees-social/idees-social-crous-aide-logement/idees-social-garantie-locative-visale.htm pour la date, et https://www.crous-paris.fr/logement/les-aides-au-logement/visale-caution-locative pour le montant (pas encore actualisé à la date d'écriture)

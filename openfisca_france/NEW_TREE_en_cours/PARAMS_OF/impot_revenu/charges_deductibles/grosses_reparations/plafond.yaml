@@ -1,0 +1,8 @@
+description: Plafond des dépenses
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
+  - http://bofip.impots.gouv.fr/bofip/1852-PGP
+unit: currency
+values:
+  2009-01-01:
+    value: 25000.0

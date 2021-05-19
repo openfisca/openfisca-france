@@ -1,0 +1,12 @@
+description: Taux appliqué aux revenus et produits de l'année pour le calcul du plafonnement
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1989-01-01:
+    value: 0.7
+  1991-01-01:
+    value: 0.85
+  2012-01-01:
+    value: 0.0
+  2013-01-01:
+    value: 0.75

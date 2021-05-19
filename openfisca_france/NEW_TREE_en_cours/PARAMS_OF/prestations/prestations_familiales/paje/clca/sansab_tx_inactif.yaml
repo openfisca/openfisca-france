@@ -1,0 +1,11 @@
+description: Taux pour les personnes inactives ne percevant pas l'allocation de base
+  de la PAJE
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2004-01-01:
+    value: 1.4257
+  2014-04-01:
+    value: 0.9662
+  2018-01-01:
+    value: null

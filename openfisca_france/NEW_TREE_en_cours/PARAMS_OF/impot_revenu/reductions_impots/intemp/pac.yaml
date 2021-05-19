@@ -1,0 +1,10 @@
+description: Par personne à charge
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  1985-01-01:
+    value: 2000.0
+  2001-01-01:
+    value: 305.0
+  2003-01-01:
+    value: null

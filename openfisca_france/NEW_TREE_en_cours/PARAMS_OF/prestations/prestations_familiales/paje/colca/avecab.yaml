@@ -1,0 +1,9 @@
+description: Taux de la prestation en cas de perception de l'allocation de base de
+  la PAJE
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2004-01-01:
+    value: 1.5793
+  2018-01-01:
+    value: null

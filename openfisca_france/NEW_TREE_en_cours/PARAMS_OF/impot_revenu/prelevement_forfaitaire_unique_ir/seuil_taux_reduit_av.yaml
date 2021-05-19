@@ -1,0 +1,6 @@
+description: Seuil pour bénéficier du taux réduit sur les produits d'assurance-vie
+reference: https://www.ipp.eu/outils/baremes-ipp/ (hors parser des barèmes)
+unit: /1
+values:
+  2018-01-01:
+    value: 150000

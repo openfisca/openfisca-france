@@ -1,0 +1,6 @@
+description: Plafond
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2013-01-01:
+    value: 7500.0

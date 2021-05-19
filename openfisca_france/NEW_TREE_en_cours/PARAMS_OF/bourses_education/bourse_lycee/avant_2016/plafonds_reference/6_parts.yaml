@@ -1,0 +1,5 @@
+description: Plafond de référence pour 6 parts
+unit: currency
+values:
+  2014-01-01:
+    value: 9612.0

@@ -1,0 +1,5 @@
+description: Forfait logement pour 2 personnes
+unit: /1
+values:
+  2002-01-01:
+    value: 0.24

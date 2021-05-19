@@ -1,0 +1,6 @@
+description: Taux de la prestation en cas de non perception de l'allocation de base
+  de la PAJE
+unit: /1
+values:
+  2004-01-01:
+    value: 2.0388

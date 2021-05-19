@@ -1,0 +1,7 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+regime_supplementaire_pour_les_biologistes_medicaux_conventionnes_uniquement_asv:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    2008-01-01:
+      value: 0.003

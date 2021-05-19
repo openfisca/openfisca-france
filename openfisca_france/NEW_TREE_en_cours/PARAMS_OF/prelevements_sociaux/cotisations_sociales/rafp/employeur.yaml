@@ -1,0 +1,8 @@
+brackets:
+- rate:
+    2005-01-01:
+      value: 0.05
+  threshold:
+    2005-01-01:
+      value: 0.0
+reference: https://www.ipp.eu/outils/baremes-ipp/

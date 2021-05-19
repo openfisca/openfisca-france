@@ -1,0 +1,38 @@
+description: Plafond de ressources annuelles pour un couple pour percevoir l'ASPA, identique au montant annuel (cf référence)
+reference: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=52312F95C78DFC864FEE6DDC3A2F6A8D.tplgfr38s_1?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000020562591&dateTexte=20190221&categorieLien=cid#LEGIARTI000020562591
+unit: currency
+values:
+  2006-01-01:
+    value: 13137.69
+  2007-01-01:
+    value: 13374.16
+  2008-01-01:
+    value: 13521.27
+  2008-09-01:
+    value: 13629.44
+  2009-04-01:
+    value: 13765.73
+  2010-04-01:
+    value: 13889.62
+  2011-04-01:
+    value: 14181.3
+  2012-04-01:
+    value: 14479.1
+  2013-04-01:
+    value: 14667.32
+  2014-04-01:
+    value: 14755.32
+  2014-10-01:
+    value: 14904.0
+  2016-04-01:
+    value: 14918.9
+  2017-04-01:
+    value: 14963.65
+  2018-04-01:
+    value: 15522.54
+  2019-01-01:
+    value: 16174.59
+    reference: https://www.legifrance.gouv.fr/eli/decret/2018/3/30/SSAS1805864D/jo/article_1
+  2020-01-01:
+    value: 16826.64
+    reference: https://www.legifrance.gouv.fr/eli/decret/2018/3/30/SSAS1805864D/jo/article_1

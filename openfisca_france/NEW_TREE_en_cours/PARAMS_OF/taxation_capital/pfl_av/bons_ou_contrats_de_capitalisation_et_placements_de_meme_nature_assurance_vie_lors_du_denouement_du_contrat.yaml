@@ -1,0 +1,73 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+avec_anonymat:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    1983-01-01:
+      value: 0.5
+    1999-04-01:
+      value: 0.6
+souscrits_apres_le_1_1_90_et_le_pour_une_duree_de:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  duree_4_a_8_ans:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1990-01-01:
+        value: 0.15
+  duree_8_ans_et_plus_pour_les_primes_versees_avant_le_01_01_1998_et_les_produits_afferents_acquis_apres_cette_date:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1990-01-01:
+        value: 0.0
+  duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1998-01-01:
+        value: 0.075
+  duree_moins_de_4_ans:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1990-01-01:
+        value: 0.35
+souscrits_entre_le_1_1_83_et_le_31_12_89_pour_une_duree_de:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  duree_2_a_4_ans_3:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1983-01-01:
+        value: 0.25
+      1998-01-01:
+        value: null
+  duree_4_a_6_ans_4:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1983-01-01:
+        value: 0.15
+      1998-01-01:
+        value: null
+  duree_6_ans_et_plus_pour_les_primes_versees_avant_le_01_01_1998_et_les_produits_afferents_acquis_apres_cette_date:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1983-01-01:
+        value: 0.0
+  duree_6_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1998-01-01:
+        value: 0.075
+  duree_moins_de_2_ans_2:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1983-01-01:
+        value: 0.45
+      1998-01-01:
+        value: null

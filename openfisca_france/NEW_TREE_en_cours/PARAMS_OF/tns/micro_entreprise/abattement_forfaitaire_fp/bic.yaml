@@ -1,0 +1,7 @@
+description: Activité de type BIC
+unit: /1
+values:
+  2006-01-01:
+    value: 0.45
+  2007-01-01:
+    value: 0.5

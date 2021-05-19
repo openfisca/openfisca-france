@@ -1,0 +1,5 @@
+description: Par enfant à charge
+unit: currency
+values:
+  2007-01-01:
+    value: 500.0

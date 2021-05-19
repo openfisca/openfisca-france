@@ -1,0 +1,5 @@
+description: La taxe sur les salaires est allégée entre la franchise et ce montant
+unit: currency
+values:
+  2001-01-01:
+    value: 2040.0

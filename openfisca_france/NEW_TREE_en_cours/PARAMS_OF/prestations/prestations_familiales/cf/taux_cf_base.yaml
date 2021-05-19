@@ -1,0 +1,8 @@
+description: Taux du complément familial
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1978-01-01:
+    value: 0.4475
+  1983-01-01:
+    value: 0.4165

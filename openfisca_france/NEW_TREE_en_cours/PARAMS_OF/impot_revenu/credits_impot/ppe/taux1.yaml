@@ -1,0 +1,16 @@
+description: Taux première tranche
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2000-01-01:
+    value: 0.022
+  2001-01-01:
+    value: 0.044
+  2003-01-01:
+    value: 0.046
+  2005-01-01:
+    value: 0.068
+  2006-01-01:
+    value: 0.077
+  2016-01-01:
+    value: null

@@ -1,0 +1,12 @@
+brackets:
+- rate:
+    1993-01-01:
+      value: 0.0015
+    2004-01-01:
+      value: 0.004
+    2005-01-01:
+      value: 0.0055
+  threshold:
+    1993-01-01:
+      value: 0.0
+description: Formation professionnelle (0-9 salaries)

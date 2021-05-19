@@ -1,0 +1,13 @@
+description: Plafond des revenus nets catégoriels annuels
+unit: /1
+values:
+  2001-07-01:
+    value: 224317.0
+  2002-01-01:
+    value: 34196.91
+  2002-07-01:
+    value: 34744.0
+  2003-07-01:
+    value: 35335.0
+  2004-07-01:
+    value: null

@@ -1,0 +1,73 @@
+description: Maximum par personne
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
+  - http://bofip.impots.gouv.fr/bofip/1860-PGP.html#1860-PGP_80_027
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037671023&cidTexte=LEGITEXT000006069577
+unit: currency
+values:
+  1984-01-01:
+    value: 12810.0
+  1985-01-01:
+    value: 13310.0
+  1986-01-01:
+    value: 13620.0
+  1987-01-01:
+    value: 14090.0
+  1988-01-01:
+    value: 14470.0
+  1990-01-01:
+    value: 15730.0
+  1991-01-01:
+    value: 15900.0
+  1992-01-01:
+    value: 16400.0
+  1993-01-01:
+    value: 16660.0
+  1994-01-01:
+    value: 16910.0
+  1995-01-01:
+    value: 17160.0
+  1996-01-01:
+    value: 17550.0
+  1997-01-01:
+    value: 17680.0
+  1998-01-01:
+    value: 17840.0
+  1999-01-01:
+    value: 17910.0
+  2000-01-01:
+    value: 18140.0
+  2001-01-01:
+    value: 2826.0
+  2002-01-01:
+    value: 2862.0
+  2003-01-01:
+    value: 3000.0
+  2004-01-01:
+    value: 3051.0
+  2005-01-01:
+    value: 3106.0
+  2006-01-01:
+    value: 3162.0
+  2007-01-01:
+    value: 3203.0
+  2008-01-01:
+    value: 3296.0
+  2009-01-01:
+    value: 3309.0
+  2010-01-01:
+    value: 3359.0
+  2013-01-01:
+    value: 3386.0
+  2014-01-01:
+    value: 3403.0
+  2015-01-01:
+    value: 3407.0
+  2016-01-01:
+    value: 3411.0
+  2017-01-01:
+    value: 3445.0
+  2018-01-01:
+    value: 3500.0
+  2019-01-01:
+    value: 3535.0

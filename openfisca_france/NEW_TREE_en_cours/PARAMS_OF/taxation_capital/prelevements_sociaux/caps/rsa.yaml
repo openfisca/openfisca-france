@@ -1,0 +1,8 @@
+description: Contribution au financement du revenu de solidarité active
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2009-01-01:
+    value: 0.011
+  2013-01-01:
+    value: null

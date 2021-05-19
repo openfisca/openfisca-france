@@ -1,0 +1,8 @@
+description: Majoration du plafond par enfant
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2004-01-01:
+    value: 0.
+  2014-04-01:
+    value: 0.22

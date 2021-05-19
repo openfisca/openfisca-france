@@ -1,0 +1,27 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  1951-01-01:
+    value: 8000.0
+  1953-01-01:
+    value: 0.0
+  1957-01-01:
+    value: 10000.0
+  1958-01-01:
+    value: 12000.0
+  1959-01-01:
+    value: 14000.0
+  1961-01-01:
+    value: 210.0
+  1962-01-01:
+    value: 240.0
+  1969-01-01:
+    value: 300.0
+  1973-01-01:
+    value: 0.0
+  2014-01-01:
+    value: 1870.0
+  2015-01-01:
+    value: 1920.0
+  2017-01-01:
+    value: 1939.0

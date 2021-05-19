@@ -1,0 +1,7 @@
+description: Pourcentage du RSA socle pour deux personnes (pour deux personnes)
+unit: /1
+values:
+  2000-01-01:
+    value: 0.14
+  2008-02-01:
+    value: 0.16

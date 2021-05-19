@@ -1,0 +1,16 @@
+description: Plafond de ressources de base pour PAJE à taux partiel
+unit: currency
+values:
+  2004-01-01:
+    value: 0.0
+  2018-04-01:
+    value: 25076.0
+  2019-01-01:
+    value: 25327.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2018/12/21/SSAS1835267A/jo/article_3
+  2020-01-01:
+    value: 25732.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2019/12/20/SSAS1934813A/jo/article_3
+  2021-01-01:
+    value: 25964.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2020/12/14/SSAS2032692A/jo/article_3

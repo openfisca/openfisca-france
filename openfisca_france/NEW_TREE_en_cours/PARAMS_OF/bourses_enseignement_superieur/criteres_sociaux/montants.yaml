@@ -1,0 +1,81 @@
+description: Montant mensuel des bourses sur critères sociaux (BCS) de l'enseignement supérieur par échelon de bourse
+reference:
+  2020-07-22:
+    - Arrêté du 22 juillet 2020 relatif aux taux des bourses d'enseignement supérieur du ministère
+      de l'enseignement supérieur, de la recherche et de l'innovation pour l'année universitaire 2020-2021
+    - https://www.legifrance.gouv.fr/eli/arrete/2020/7/22/ESRS2015874A/jo/texte
+metadata:
+  type: single_amount
+brackets:
+- threshold:
+    2020-07-22:
+      value: 0 # ou 0bis
+  amount:
+    2020-07-22:
+      value: 103.2
+    2015-07-15:
+      value: 100.8
+      reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031088328/2015-09-01
+- threshold:
+    2020-07-22:
+      value: 1
+  amount:
+    2020-07-22:
+      value: 170.7
+    2015-07-15:
+      value: 166.7
+      reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031088328/2015-09-01
+- threshold:
+    2020-07-22:
+      value: 2
+  amount:
+    2020-07-22:
+      value: 257.1
+    2015-07-15:
+      value: 251
+      reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031088328/2015-09-01
+- threshold:
+    2020-07-22:
+      value: 3
+  amount:
+    2020-07-22:
+      value: 329.2
+    2015-07-15:
+      value: 321.5
+      reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031088328/2015-09-01
+- threshold:
+    2020-07-22:
+      value: 4
+  amount:
+    2020-07-22:
+      value: 401.5
+    2015-07-15:
+      value: 392
+      reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031088328/2015-09-01
+- threshold:
+    2020-07-22:
+      value: 5
+  amount:
+    2020-07-22:
+      value: 461
+    2015-07-15:
+      value: 450
+      reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031088328/2015-09-01
+- threshold:
+    2020-07-22:
+      value: 6
+  amount:
+    2020-07-22:
+      value: 488.9
+    2015-07-15:
+      value: 477.3
+      reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031088328/2015-09-01
+- threshold:
+    2020-07-22:
+      value: 7
+  amount:
+    2020-07-22:
+      value: 567.9
+    2015-07-15:
+      value: 554.5
+      reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031088328/2015-09-01

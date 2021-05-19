@@ -1,0 +1,7 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  1992-01-01:
+    value: 25000.0
+  1998-01-01:
+    value: null

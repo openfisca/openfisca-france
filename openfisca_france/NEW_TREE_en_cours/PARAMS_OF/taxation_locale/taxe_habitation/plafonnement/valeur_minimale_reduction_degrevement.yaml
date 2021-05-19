@@ -1,0 +1,8 @@
+description: Valeur minimale de la réduction du dégrèvement de la taxe d'habitation
+unit: currency
+reference: art. 1414 A du CGI
+values:
+  2017-01-01:
+    value: 15
+  2020-01-01:
+    value: null

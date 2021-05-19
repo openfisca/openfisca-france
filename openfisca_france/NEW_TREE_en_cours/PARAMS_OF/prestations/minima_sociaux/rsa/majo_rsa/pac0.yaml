@@ -1,0 +1,10 @@
+description: Taux de la majoration du RSA socle pour une femme enceinte sans enfant
+  (en pourcentage du rsa de base pour un célibataire sans personne à charge)
+unit: /1
+values:
+  1997-01-01:
+    value: 0.0
+  2009-06-01:
+    value: 1.284
+  2009-06-20:
+    value: 1.28412

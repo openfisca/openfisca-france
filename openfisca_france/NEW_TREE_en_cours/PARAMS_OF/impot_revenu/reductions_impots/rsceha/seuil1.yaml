@@ -1,0 +1,7 @@
+description: Premier seuil
+unit: currency
+values:
+  2001-01-01:
+    value: 1070.0
+  2004-01-01:
+    value: 1525.0

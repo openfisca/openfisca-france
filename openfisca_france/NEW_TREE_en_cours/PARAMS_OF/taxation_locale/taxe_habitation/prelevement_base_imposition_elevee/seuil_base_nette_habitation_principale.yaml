@@ -1,0 +1,6 @@
+description: Seuil minimal de base nette pour être soumis au prélèvement sur les bases d'imposition élevées pour l'habitation principale
+unit: currency
+reference: 1° du 3. du I. de l'art. 1641 du CGI
+values:
+  2017-01-01:
+    value: 4573.00

@@ -1,0 +1,25 @@
+description: Seuil de non imposabilité
+unit: currency
+values:
+  2002-01-01:
+    value: 7844.0
+  2003-01-01:
+    value: 8106.0
+  2004-01-01:
+    value: 8251.0
+  2005-01-01:
+    value: 8388.0
+  2006-01-01:
+    value: 10642.0
+  2007-01-01:
+    value: 10769.0
+  2008-01-01:
+    value: 11080.0
+  2009-01-01:
+    value: 11139.0
+  2010-01-01:
+    value: 11300.0
+  2012-01-01:
+    value: 11791.0
+  2013-01-01:
+    value: null

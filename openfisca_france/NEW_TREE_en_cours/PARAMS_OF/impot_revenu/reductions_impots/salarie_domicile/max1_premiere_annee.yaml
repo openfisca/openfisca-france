@@ -1,0 +1,5 @@
+description: Plafond 1ère année
+unit: currency
+values:
+  2005-01-01:
+    value: 15000.0

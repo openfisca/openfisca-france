@@ -1,0 +1,7 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2013-01-01:
+    value: 1000000.0
+  2015-01-01:
+    value: null

@@ -1,0 +1,7 @@
+description: Taux de l'abattement CGA-AA
+unit: /1
+values:
+  2002-01-01:
+    value: 0.2
+  2006-01-01:
+    value: 0.0

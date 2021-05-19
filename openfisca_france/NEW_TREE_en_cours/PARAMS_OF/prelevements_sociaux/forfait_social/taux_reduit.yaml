@@ -1,0 +1,5 @@
+description: Taux réduit
+unit: /1
+values:
+  2009-01-01:
+    value: 0.08

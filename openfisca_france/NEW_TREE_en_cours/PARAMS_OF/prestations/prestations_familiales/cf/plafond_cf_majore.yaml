@@ -1,0 +1,5 @@
+description: Plafond de ressources pour avoir droit au CF majoré
+unit: /1
+values:
+  2014-04-01:
+    value: 0.5

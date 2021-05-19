@@ -1,0 +1,22 @@
+description: Seuil d'éligibilité - couple
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2000-01-01:
+    value: 152000.0
+  2001-01-01:
+    value: 23544.0
+  2002-01-01:
+    value: 23944.0
+  2003-01-01:
+    value: 24351.0
+  2004-01-01:
+    value: 24765.0
+  2005-01-01:
+    value: 25211.0
+  2006-01-01:
+    value: 32081.0
+  2007-01-01:
+    value: 32498.0
+  2016-01-01:
+    value: null

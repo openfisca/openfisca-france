@@ -1,0 +1,9 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1996-01-01:
+    value: 0.5
+  2012-01-01:
+    value: 0.0
+  2013-01-01:
+    value: 0.5

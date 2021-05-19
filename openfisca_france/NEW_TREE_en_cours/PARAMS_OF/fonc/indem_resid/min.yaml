@@ -1,0 +1,19 @@
+description: 'Indemnité de résidence : plancher (en indice majoré)'
+values:
+  1999-06-13:
+    value: 294.0
+  1999-11-14:
+    value: 295.0
+  2001-05-01:
+    value: 297.0
+  2006-11-01:
+    value: 298.0
+  2011-01-01:
+    value: 299.0
+  2012-01-01:
+    value: 306.0
+  2012-07-07:
+    value: 312.0
+  2013-01-01:
+    value: 313.0
+  2014-07-01: expected

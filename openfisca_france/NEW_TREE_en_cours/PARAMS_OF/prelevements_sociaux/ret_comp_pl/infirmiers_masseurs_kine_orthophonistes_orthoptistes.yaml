@@ -1,0 +1,19 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+commissions_et_remunerations_brutes_entre_un_seuil_plancher_et_un_seuil_plafond:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  retraite_complementaire:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      1996-01-01:
+        value: 0.03
+sous_5_pss:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  regime_supplementaire_pour_les_auxilliaires_medicaux_conventionnes_asv:
+    reference: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+    values:
+      2010-01-01:
+        value: 0.0025
+      2011-01-01:
+        value: 0.004

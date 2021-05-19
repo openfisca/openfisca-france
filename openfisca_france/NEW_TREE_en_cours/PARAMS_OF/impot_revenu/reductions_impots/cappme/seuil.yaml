@@ -1,0 +1,7 @@
+description: Seuil
+unit: currency
+values:
+  2001-01-01:
+    value: 5717.0
+  2002-01-01:
+    value: 20000.0

@@ -1,0 +1,7 @@
+description: montant
+unit: currency
+values:
+  2005-01-01:
+    value: 1500.0
+  2009-01-01:
+    value: null

@@ -1,0 +1,14 @@
+brackets:
+- rate:
+    1982-11-01:
+      value: 0.0
+  threshold:
+    1982-11-01:
+      value: 4.0
+- rate:
+    1982-11-01:
+      value: 0.01
+  threshold:
+    1982-11-01:
+      value: 0.0
+reference: https://www.ipp.eu/outils/baremes-ipp/

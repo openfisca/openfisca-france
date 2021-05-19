@@ -1,0 +1,38 @@
+description: Abattement du revenu fiscal de référence pour le plafonnement de la taxe d'habitation
+reference: I. de l'art. 1414 A du CGI
+premiere_part:
+  description: Abattement du revenu fiscal de référence pour le plafonnement de la taxe d'habitation - 1ère part
+  unit: currency
+  values:
+    2017-01-01:
+      value: 5461.0
+    2018-01-01:
+      value: 5516.0
+    2019-01-01:
+      value: 5604.0
+    2020-01-01:
+      value: null
+quatre_premieres_demi_parts_supp:
+  description: Majoration pour les quatre premières demi-parts supplémntaires de l'abattement du revenu fiscal de référence pour le plafonnement de la taxe d'habitation
+  unit: currency
+  values:
+    2017-01-01:
+      value: 1580.0
+    2018-01-01:
+      value: 1596.0
+    2019-01-01:
+      value: 1622.0
+    2020-01-01:
+      value: null
+autres_demi_parts_supp:
+  description: Majoration pour les autres demi-parts supplémntaires de l'abattement du revenu fiscal de référence pour le plafonnement de la taxe d'habitation
+  unit: currency
+  values:
+    2017-01-01:
+      value: 2793.0
+    2018-01-01:
+      value: 2821.0
+    2019-01-01:
+      value: 2866.0
+    2020-01-01:
+      value: null

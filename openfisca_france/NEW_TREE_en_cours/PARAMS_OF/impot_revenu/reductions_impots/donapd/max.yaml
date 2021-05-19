@@ -1,0 +1,40 @@
+description: Plafond des dépenses
+reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
+unit: currency
+values:
+  2001-01-01:
+    value: 400.0
+  2002-01-01:
+    value: 407.0
+  2003-01-01:
+    value: 414.0
+  2004-01-01:
+    value: 422.0
+  2005-01-01:
+    value: 470.0
+  2006-01-01:
+    value: 479.0
+  2007-01-01:
+    value: 488.0
+  2008-01-01:
+    value: 495.0
+  2009-01-01:
+    value: 510.0
+  2010-01-01:
+    value: 513.0
+  2011-01-01:
+    value: 521.0
+  2014-01-01:
+    value: 526.0
+  2015-01-01:
+    value: 529.0
+  2016-01-01:
+    value: 530.0
+  2017-01-01:
+    value: 531.0
+  2018-01-01:
+    value: 537.0
+  2019-01-01:
+    value: 546.0
+  2020-01-01:
+    value: 1000.0

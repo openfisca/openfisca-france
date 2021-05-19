@@ -1,0 +1,9 @@
+description: Réduction pac avec garde alternée
+unit: currency
+values:
+  2002-01-01:
+    value: 75.0
+  2012-01-01:
+    value: 150.0
+  2013-01-01:
+    value: 0.0

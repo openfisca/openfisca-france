@@ -1,0 +1,9 @@
+description: Zone 3 - Famille avec 2 personnes à charge
+unit: currency
+values:
+  2018-01-01:
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801551A/jo/article_1
+    value: 1521.0
+  2019-01-01:
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2018/12/27/LOGL1831321A/jo/texte
+    value: 1536.0

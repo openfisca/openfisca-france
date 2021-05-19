@@ -1,0 +1,7 @@
+description: Plancher de revenus
+unit: currency
+values:
+  2005-01-01:
+    value: 2970.0
+  2009-01-01:
+    value: null

@@ -1,0 +1,9 @@
+description: Indice majoré plancher
+values:
+  1999-06-13:
+    value: 447.0
+  1999-11-14:
+    value: 448.0
+  2006-11-01:
+    value: 449.0
+  2014-07-01: expected

@@ -1,0 +1,6 @@
+description: Seuil de revenu pour être considéré comme enfant à charge (en smic)
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1985-12-22:
+    value: 0.55

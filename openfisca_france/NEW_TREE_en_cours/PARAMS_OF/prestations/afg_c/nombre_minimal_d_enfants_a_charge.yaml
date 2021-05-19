@@ -1,0 +1,6 @@
+reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  1976-07-01:
+    value: 3.0
+  1978-01-01:
+    value: null
