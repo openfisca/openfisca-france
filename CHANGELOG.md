@@ -1,5 +1,13 @@
 # Changelog
 
+## 53.1.0 [#1538](https://github.com/openfisca/openfisca-france/pull/1538)
+
+* Changement mineur.
+* Zones impactées :
+  - Toutes
+* Détails :
+  - Initialisation des paramètres cotisations_securite_sociale_regime_general
+
 ## 53.0.0 [#1537](https://github.com/openfisca/openfisca-france/pull/1537)
 
 * Changement majeur.
