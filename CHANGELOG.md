@@ -1,6 +1,6 @@
 # Changelog
 
-# 53.0.0 [#1537](https://github.com/openfisca/openfisca-france/pull/1537)
+## 53.0.0 [#1537](https://github.com/openfisca/openfisca-france/pull/1537)
 
 * Changement majeur.
 * Zones impactées :
