@@ -1,5 +1,13 @@
 # Changelog
 
+### 52.2.0 [#1540](https://github.com/openfisca/openfisca-france/pull/1540) 
+
+* Changement mineur.
+* Zones impactées :
+  - `/prestations/enseignement_superieur/aide_formation_gen.py`
+* Détails :
+  - Corrige les critères d'éligibilité de l'aide aux apprenants dans une formation labellisée "Grande école du numérique".
+  
 ### 52.1.4 [#1526](https://github.com/openfisca/openfisca-france/pull/1526) et [#1529](https://github.com/openfisca/openfisca-france/pull/1529)
 
 * Changement mineur.
