@@ -95,6 +95,9 @@
   output:
     individus:
       parent1:
+        activite:
+          2005-01: "actif"
+          2019-01: "chomeur"
         are:
           2019-01: 750
           2019-02: 750
