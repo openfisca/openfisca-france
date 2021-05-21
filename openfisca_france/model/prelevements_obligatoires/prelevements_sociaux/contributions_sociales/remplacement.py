@@ -207,7 +207,7 @@ class csg_deductible_retraite(Variable):
             base_sans_abattement = retraite_brute,
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
-            law_node = law.prelevements_sociaux.contributions_sociales.csg.retraite.deductible,
+            law_node = law.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.deductible,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         return montant_csg
@@ -227,7 +227,7 @@ class csg_imposable_retraite(Variable):
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            law_node = law.prelevements_sociaux.contributions_sociales.csg.retraite.imposable,
+            law_node = law.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         return montant_csg
