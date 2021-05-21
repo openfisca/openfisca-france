@@ -1046,7 +1046,7 @@ class csg_patrimoine_deductible_ir(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        P = parameters(period).prelevements_sociaux.contributions.csg.capital
+        P = parameters(period).prelevements_sociaux.contributions_sociales.csg.capital
         rbg = foyer_fiscal('rbg', period)
         f6de = foyer_fiscal('f6de', period)
         f2bh = foyer_fiscal('f2bh', period)

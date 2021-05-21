@@ -75,7 +75,7 @@ class csg_deductible_salaire(Variable):
         assiette_csg_non_abattue = individu('assiette_csg_non_abattue', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
 
-        csg = parameters(period).prelevements_sociaux.contributions.csg
+        csg = parameters(period).prelevements_sociaux.contributions_sociales.csg
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
@@ -101,7 +101,7 @@ class csg_imposable_salaire(Variable):
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
-            law_node = parameters.prelevements_sociaux.contributions.csg.activite.imposable,
+            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.activite.imposable,
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
@@ -123,7 +123,7 @@ class crds_salaire(Variable):
         law = parameters(period)
 
         montant_crds = montant_csg_crds(
-            law_node = law.prelevements_sociaux.contributions.crds.activite,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds.activite,
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -328,7 +328,7 @@ class csg_non_salarie(Variable):
 
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
-        csg = parameters(period).prelevements_sociaux.contributions.csg.activite
+        csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
         taux = csg.deductible.taux + csg.imposable.taux
         return - taux * assiette_csg_crds_non_salarie
 
@@ -341,5 +341,5 @@ class crds_non_salarie(Variable):
 
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
-        taux = parameters(period).prelevements_sociaux.contributions.crds.activite.taux
+        taux = parameters(period).prelevements_sociaux.contributions_sociales.crds.activite.taux
         return - taux * assiette_csg_crds_non_salarie
