@@ -27,7 +27,7 @@ class taux_csg_remplacement(Variable):
     def formula_2015(individu, period, parameters):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
-        seuils = parameters(period).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite
+        seuils = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_de_retraite_et_d_invalidite
         seuil_exoneration = seuils.seuil_de_rfr_1 + (nbptr - 1) * seuils.demi_part_suppl
         seuil_reduction = seuils.seuil_de_rfr_2 + (nbptr - 1) * seuils.demi_part_suppl
         taux_csg_remplacement = where(
@@ -61,13 +61,13 @@ class csg_deductible_chomage(Variable):
             base_avec_abattement = chomage_brut,
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
-            law_node = parameters.prelevements_sociaux.contributions.csg.chomage.deductible,
+            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.chomage.deductible,
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
 
         cho_seuil_exo = (
-            parameters.prelevements_sociaux.contributions.csg.chomage.min_exo
+            parameters.prelevements_sociaux.contributions_sociales.csg.chomage.min_exo
             * nbh_travail
             * parameters.cotsoc.gen.smic_h_b
             )
@@ -99,12 +99,12 @@ class csg_imposable_chomage(Variable):
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = chomage_brut,
-            law_node = parameters.prelevements_sociaux.contributions.csg.chomage.imposable,
+            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.chomage.imposable,
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
         cho_seuil_exo = (
-            parameters.prelevements_sociaux.contributions.csg.chomage.min_exo
+            parameters.prelevements_sociaux.contributions_sociales.csg.chomage.min_exo
             * nbh_travail
             * parameters.cotsoc.gen.smic_h_b
             )
@@ -130,14 +130,14 @@ class crds_chomage(Variable):
         # salaire_mensuel_reference = chomage_brut / .7
         # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
         heures_mensuelles = 35 * 52 / 12
-        cho_seuil_exo = law.prelevements_sociaux.contributions.csg.chomage.min_exo * heures_mensuelles * smic_h_b
+        cho_seuil_exo = law.prelevements_sociaux.contributions_sociales.csg.chomage.min_exo * heures_mensuelles * smic_h_b
         eligible = (
             (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit)
             + (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
             )
         montant_crds = montant_csg_crds(
             base_avec_abattement = chomage_brut,
-            law_node = law.prelevements_sociaux.contributions.crds.activite,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds.activite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * eligible
 
@@ -207,7 +207,7 @@ class csg_deductible_retraite(Variable):
             base_sans_abattement = retraite_brute,
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
-            law_node = law.prelevements_sociaux.contributions.csg.retraite.deductible,
+            law_node = law.prelevements_sociaux.contributions_sociales.csg.retraite.deductible,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         return montant_csg
@@ -227,7 +227,7 @@ class csg_imposable_retraite(Variable):
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            law_node = law.prelevements_sociaux.contributions.csg.retraite.imposable,
+            law_node = law.prelevements_sociaux.contributions_sociales.csg.retraite.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         return montant_csg
@@ -248,7 +248,7 @@ class crds_retraite(Variable):
 
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            law_node = law.prelevements_sociaux.contributions.crds.retraite,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds.retraite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (taux_csg_remplacement == TypesTauxCSGRemplacement.exonere)
         return montant_crds
@@ -264,7 +264,7 @@ class casa(Variable):
     def formula_2013_04_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period = period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
-        contributions = parameters(period).prelevements_sociaux.contributions
+        contributions = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general
         casa = (
             (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
             * contributions.casa.calc(retraite_brute)
@@ -327,6 +327,6 @@ class crds_pfam(Variable):
         paje = famille('paje', period, options = [ADD])
         ape = famille('ape', period, options = [ADD])
         apje = famille('apje', period, options = [ADD])
-        taux_crds = parameters(period).prelevements_sociaux.contributions.crds.taux
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
 
         return -(af + cf + asf + ars + paje + ape + apje) * taux_crds
