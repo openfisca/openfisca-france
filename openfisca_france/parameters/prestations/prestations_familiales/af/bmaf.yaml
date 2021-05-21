@@ -112,6 +112,9 @@ values:
     reference: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44472.pdf
   2020-04-01:
     value: 414.40
+<<<<<<< HEAD
     reference: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-02/ste_20200002_0000_0046.pdf
+=======
+>>>>>>> 4ec10dc42 (Revalorisation des prestations familiales et l'ASPA)
   2021-04-01:
     value: 414.81

@@ -21,7 +21,10 @@ values:
   2021-01-01:
     value: 5827.0
     reference: https://www.legifrance.gouv.fr/eli/arrete/2020/12/14/SSAS2032692A/jo/article_1
+<<<<<<< HEAD
 =======
   2021-01-01:
     value: 5827.0
 >>>>>>> 0fcffe140 (Revalorisation des parametres des plafonds de ressources de certaines prestations familiales pour janvier 2021)
+=======
+>>>>>>> 4ec10dc42 (Revalorisation des prestations familiales et l'ASPA)
