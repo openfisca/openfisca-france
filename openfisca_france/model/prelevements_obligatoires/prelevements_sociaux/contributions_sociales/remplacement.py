@@ -327,6 +327,6 @@ class crds_pfam(Variable):
         paje = famille('paje', period, options = [ADD])
         ape = famille('ape', period, options = [ADD])
         apje = famille('apje', period, options = [ADD])
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
 
         return -(af + cf + asf + ars + paje + ape + apje) * taux_crds
