@@ -1,5 +1,14 @@
-description: taux de la CRDS
+description: Taux de la Contribution au Remboursement de la Dette Sociale (CRDS) sur les revenus de retraite 
 unit: /1
 values:
-  1998-01-01:
-    value: 0.005
+    1998-01-01:
+      value: 0.005
+metadata:
+  ux_name: Taux CRDS retraite
+  last_review:
+    1998-01-01 
+  reference:
+  date_parution_jo:
+  notes:
+  description_en: CRDS
+documentation:
