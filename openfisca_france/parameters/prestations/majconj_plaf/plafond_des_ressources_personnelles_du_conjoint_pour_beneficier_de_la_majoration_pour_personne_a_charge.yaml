@@ -169,6 +169,7 @@ values:
     value: 8990.2
   2016-04-01:
     value: 8999.8
+<<<<<<< HEAD
   2017-04-01:
     value: 9028.62
   2018-04-01:
@@ -178,4 +179,7 @@ values:
   2020-01-01:
     value: 10228.60
   2021-01-01:
+=======
+  2021-04-01:
+>>>>>>> 4ec10dc42 (Revalorisation des prestations familiales et l'ASPA)
     value: 10271.95
