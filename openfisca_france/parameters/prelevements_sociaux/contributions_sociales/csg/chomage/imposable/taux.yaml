@@ -1,5 +1,18 @@
-description: taux de la CSG imposable
-unit: /1
+description: Taux de la Contribution Sociale Généralisée imposable sur les allocations chômage
+unit: /1 
 values:
   1997-01-01:
-    value: 0.024
+    value: 0.024 
+metadata:
+  ux_name: CSG imposable chômage
+  last_review:
+    1997-01-01
+  reference:
+    1997-01-01: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
+  date_parution_jo:
+    1997-01-01: 1996-12-29
+  notes:
+  description_en: CSG - rates on unemployment incomes
+documentation: |
+  Référence du Codes général des impôts :
+  La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.
