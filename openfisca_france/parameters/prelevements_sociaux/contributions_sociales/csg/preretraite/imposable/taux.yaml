@@ -1,7 +1,16 @@
-description: taux de la CSG imposable
+description: Taux imposable de la Contribution Sociale Généralisée sur les allocations de préretraite
 unit: /1
 values:
   1998-01-01:
     value: 0.024
   2007-10-11:
     value: 0.033
+metadata:
+  ux_name: Taux imposable préretraite
+  last_review:
+    2007-01-01
+  reference:
+  date_parution_jo:
+  notes:
+  description_en:
+documentation:
