@@ -6,6 +6,7 @@ Il est à utiliser avant de contribuer à l'harmonisation
 import os
 import functools
 import re
+
 # from pprint import pprint
 # import json
 
@@ -30,7 +31,7 @@ def get_directory_structure(rootdir):
                 # Et on ajoute 98 caractères pour le openfisca_france/parameters/par/
                 # (même s'il disparaît après, pour que tous puisse contribuer)
                 if len(path) > 150 + 98:
-                    outfile.write("{} here: {}".format(len(path), path) + '\n \n')
+                    outfile.write("{} here: {}".format(len(path), path) + "\n \n")
                 subdir = dict.fromkeys(files)
                 parent = functools.reduce(dict.get, folders[:-1], dir)
                 parent[folders[-1]] = subdir
