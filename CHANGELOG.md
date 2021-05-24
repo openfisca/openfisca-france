@@ -1,5 +1,16 @@
 # Changelog
 
+## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
+
+* Changement majeur.
+* Amélioration technique.
+* Périodes concernées : toutes. 
+* Zones impactées : toutes
+* Détails : Harmonisation du dossier parameters:
+  -- Arborescence selon le modèle IPP
+  -- Nouveau formatage des fichiers .yaml
+  -- Mise à jour des valeurs et des références (et ajout de nouveaux paramètres) d'après l'IPP
+  
 ### 52.2.0 [#1540](https://github.com/openfisca/openfisca-france/pull/1540) 
 
 * Changement mineur.
