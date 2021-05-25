@@ -1,53 +1,54 @@
-- name: Test pour debug taxipp
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°5
+  description: Personne seule avec 1 enfant et des ressources mensuelles durant les 3 derniers mois à la demande inférieures à 839.61 
   period: 2019-01
-  max_spiral_loops: 60
-  neutralized_variables:
-    # RSA TODO base ressources
-    - aide_logement
-    - taux_csg_remplacement
-    # - Minimas sociaux
-    - aspa
-    - asi
-    - caah
-    # individu
-    - allocation_securisation_professionnelle
-    - dedommagement_victime_amiante
-    - gains_exceptionnels
-    - pensions_alimentaires_percues
-    - pensions_invalidite
-    - prestation_compensatoire
-    - prime_forfaitaire_mensuelle_reprise_activite
-    - rsa_base_ressources_patrimoine_individu
-    - rsa_indemnites_journalieres_hors_activite
-    # ASS
-    # - chomage_net
-    - categorie_salarie
-    # Ass base ressources
-    - revenus_stage_formation_pro
-    - aah
-    - retraite_nette
-    - pensions_alimentaires_percues
-    - indemnites_stage
-    - pensions_invalidite
-    - revenus_locatifs
-    - revenus_capital
-    - tns_auto_entrepreneur_benefice
-    - tns_micro_entreprise_benefice
-    - tns_benefice_exploitant_agricole
-    - tns_autres_revenus
-    - pensions_alimentaires_versees_individu
+  absolute_error_margin: 0.01
   input:
     famille:
-      parents: [parent1]
+      parents: [personne1]
+      enfants: [enfant1]
+      aide_logement:
+        2019-01: 200
+        2019-02: 200
+        2019-03: 200
+        2019-04: 200
+        2019-05: 200
+        2019-06: 200
+        2019-07: 200
+        2019-08: 200
+        2019-09: 200
+        2019-10: 200
+        2019-11: 200
+        2019-12: 200
+      rsa_forfait_asf:
+        2019-07: 92.961
+        2019-06: 92.961
+        2019-05: 92.961
+        2019-04: 92.961
     foyer_fiscal:
-      declarants: [parent1]
+      declarants: [personne1]
+      personnes_a_charge: [enfant1]  
     menage:
-      personne_de_reference: parent1
+      personne_de_reference: personne1
+      enfants: [enfant1]
+      statut_occupation_logement: locataire_vide
     individus:
-      parent1:
+      personne1:
+        activite:
+          year:2005:15: actif
+          year:2019:20: chomeur
+        contrat_de_travail_debut:
+          year:1995:30: 2005-01-01
         contrat_de_travail_fin:
           year:1995:30: 2019-01-01
         age: 40
+        chomage_net:
+          year:1999:20: 0
+        chomage_brut:
+          year:1999:20: 0
+        ass:
+          year:1999:20: 0
+        duree_versement_are:
+          year:1999:20: 0
         nombre_annees_travaillees_les_10_dernieres_annees:
           2019-01: 6
           2019-02: 6
@@ -71,40 +72,42 @@
           2019-03: 105
           2019-04: 105
           2019-05: 105
-
+      enfant1:
+        age: 5 
   output:
     individus:
-      parent1:
+      personne1:  
         are:
           2019-01: 750
           2019-02: 750
-          2019-03: 750
+          2019-03: 750          
           2019-04: 750
           2019-05: 675
           2019-06: 0
-        duree_versement_are:
-          2019-01: 31
-          2019-02: 59
-          2019-03: 90
-          2019-04: 120
-          2019-05: 151
+          2019-07: 0
         ass:
           2019-01: 0
           2019-02: 0
-          2019-03: 0
+          2019-03: 0          
           2019-04: 0
           2019-05: 0
-          2019-06: 502.20001220703125
-          2019-07: 502.20001220703125
-          2019-08: 502.20001220703125
-          2019-09: 502.20001220703125
-          2019-10: 502.20001220703125
-          2019-11: 502.20001220703125
-          2019-12: 502.20001220703125
-          2020-01: 502.20001220703125
-          2020-02: 502.20001220703125
-          2020-03: 502.20001220703125
-          2020-04: 506.70001220703125
-          2020-05: 506.70001220703125
-          2020-06: 506.70001220703125
-          2020-07: 506.70001220703125
+          2019-06: 502.2
+          2019-07: 502.2
+          2019-08: 502.2
+          2019-09: 502.2
+          2019-10: 502.2
+          2019-11: 502.2
+          2019-12: 502.2
+        rsa: 
+          2019-01: 0 # en changement de situation (d'emploi à ARE), les revenus précédents sont neutralisés durant un trimestre et on ne tient compte que des revenus actuels. 
+          2019-02: 0 # en changement de situation (d'emploi à ARE), les revenus précédents sont neutralisés durant un trimestre et on ne tient compte que des revenus actuels. 
+          2019-03: 0 # en changement de situation (d'emploi à ARE), les revenus précédents sont neutralisés durant un trimestre et on ne tient compte que des revenus actuels. 
+          2019-04: 0
+          2019-05: 0
+          2019-06: 110.112 
+          2019-07: 110.112
+          2019-08: 110.112
+          2019-09: 110.112
+          2019-10: 110.112
+          2019-11: 110.112
+          2019-12: 110.112

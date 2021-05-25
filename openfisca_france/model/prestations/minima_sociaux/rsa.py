@@ -87,7 +87,7 @@ class rsa_base_ressources_individu(Variable):
         revenus_pro = sum(
             individu(type_revenu, period.last_3_months, options = [ADD]) * not_(
                 (individu(type_revenu, period) == 0)
-                * (individu(type_revenu, period.last_month) > 0)
+                * (individu(type_revenu, period.last_3_months, options = [ADD]) > 0)
                 * not_(possede_ressources_substitution)
                 )
             for type_revenu in types_revenus_pros
@@ -116,7 +116,7 @@ class rsa_base_ressources_individu(Variable):
                 - (
                     montant_forfaitaire_neutralisation
                     * (individu(type_revenu, period) == 0)
-                    * (individu(type_revenu, period.last_month) > 0)
+                    * (individu(type_revenu, period.last_3_months, options = [ADD]) > 0)
                     )
                 )
             for type_revenu in types_revenus_non_pros
@@ -140,7 +140,7 @@ class rsa_base_ressources_individu(Variable):
         revenus_pro = sum(
             individu(type_revenu, period.last_3_months, options = [ADD]) * not_(
                 (individu(type_revenu, period) == 0)
-                * (individu(type_revenu, period.last_month) > 0)
+                * (individu(type_revenu, period.last_3_months, options = [ADD]) > 0)
                 * not_(possede_ressource_substitution)
                 )
             for type_revenu in types_revenus_pros
@@ -168,7 +168,7 @@ class rsa_base_ressources_individu(Variable):
                 individu(type_revenu, period.last_3_months, options = [ADD])
                 - neutral_max_forfaitaire * (
                     (individu(type_revenu, period) == 0)
-                    * (individu(type_revenu, period.last_month) > 0)
+                    * (individu(type_revenu, period.last_3_months, options = [ADD]) > 0)
                     )
                 )
             for type_revenu in types_revenus_non_pros
@@ -514,7 +514,7 @@ class rsa_revenu_activite_individu(Variable):
         revenus_moyennes = sum(
             individu(type_revenu, last_3_months, options = [ADD]) * not_(
                 (individu(type_revenu, period) == 0)
-                * (individu(type_revenu, period.last_month) > 0)
+                * (individu(type_revenu, period.last_3_months, options = [ADD]) > 0)
                 * not_(possede_ressource_substitution)
                 )
             for type_revenu in types_revenus_activite
