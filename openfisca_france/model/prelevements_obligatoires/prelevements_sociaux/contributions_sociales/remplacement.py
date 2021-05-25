@@ -225,14 +225,6 @@ class casa(Variable):
     definition_period = MONTH
 
     def formula_2013_04_01(individu, period, parameters):
-<<<<<<< HEAD
-        retraite_brute = individu("retraite_brute", period=period)
-        taux_csg_remplacement = individu("taux_csg_remplacement", period)
-        contributions = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general
-        casa = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein) * contributions.casa.calc(retraite_brute)
-        return -casa
-
-=======
         retraite_brute = individu('retraite_brute', period = period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
         cotisations = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general
@@ -242,7 +234,6 @@ class casa(Variable):
             )
         return - casa
 # TODO Mettre à jour la formule pour prendre en compte les seuils d'exonération
->>>>>>> bbf264fdd (Harmonise le fichier parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.casa.yaml)
 
 class retraite_imposable(Variable):
     unit = "currency"
