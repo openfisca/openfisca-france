@@ -314,7 +314,7 @@ class duree_maximale_versement_are(Variable):
         nombre_jours_indemnises = nombre_jours_travailles_dans_la_periode_reference_affiliation * 1.4
 
         return select(
-            [age < 53, 53 <= age <= 54, age >= 55],
+            [age < 53, (53 <= age) & (age <= 54), age >= 55],
             [min_(nombre_jours_indemnises, 730), min_(nombre_jours_indemnises, 913), min_(nombre_jours_indemnises, 1095)],
             )
 
@@ -445,7 +445,7 @@ class crds_are(Variable):
         crds = taux_crds.taux * 0.9825 * are
         smic_horaire = parameters(period).cotsoc.gen.smic_h_b
         smic_mensuel = [(smic_horaire * 35 / 7) * 30]
-        
+
         crds_montant = select(
             [are - crds > smic_mensuel , are - crds <= smic_mensuel],
             [crds, 0],
@@ -477,7 +477,7 @@ class are_nette_contributions_sociales(Variable):
         crds_are = individu('crds_are', period)
 
         return are + csg_are + crds_are
-    
+
 class retraite_complementaire_chomage(Variable):
     value_type = float
     entity = Individu
