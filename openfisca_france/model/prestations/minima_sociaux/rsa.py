@@ -53,8 +53,8 @@ class rsa_base_ressources(Variable):
             )
 
 
-class rsa_has_ressources_substitution(Variable):
-    value_type = bool
+class rsa_ressources_de_substitution(Variable):
+    value_type = float
     label = "Présence de ressources de substitution au mois M, qui désactivent la neutralisation des revenus professionnels interrompus au moins M."
     entity = Individu
     definition_period = MONTH
@@ -64,7 +64,7 @@ class rsa_has_ressources_substitution(Variable):
             individu('chomage_net', period)
             + individu('indemnites_journalieres', period)
             + individu('retraite_nette', period)
-            ) > 0
+            )
 
 
 class rsa_base_ressources_individu(Variable):
@@ -81,7 +81,8 @@ class rsa_base_ressources_individu(Variable):
             'retraite_nette',
             ]
 
-        possede_ressources_substitution = individu('rsa_has_ressources_substitution', period)
+        ressources_de_substitution = individu('rsa_ressources_de_substitution', period)
+        possede_ressources_substitution = ressources_de_substitution > 0
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         revenus_pro = sum(
@@ -124,8 +125,11 @@ class rsa_base_ressources_individu(Variable):
 
         rentes_viageres = individu.foyer_fiscal('rente_viagere_titre_onereux', period.last_3_months, options = [ADD])
         revenus_foyer_fiscal_projetes = rentes_viageres * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
+        return (
+            max_(revenus_pro, 3 * ressources_de_substitution)
+            + revenus_non_pros
+            + revenus_foyer_fiscal_projetes
+            ) / 3
 
     def formula(individu, period, parameters):
         # Revenus professionels
@@ -134,14 +138,15 @@ class rsa_base_ressources_individu(Variable):
             'retraite_nette',
             ]
 
-        possede_ressource_substitution = individu('rsa_has_ressources_substitution', period)
+        ressources_de_substitution = individu('rsa_ressources_de_substitution', period)
+        possede_ressources_substitution = ressources_de_substitution > 0
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         revenus_pro = sum(
             individu(type_revenu, period.last_3_months, options = [ADD]) * not_(
                 (individu(type_revenu, period) == 0)
                 * (individu(type_revenu, period.last_3_months, options = [ADD]) > 0)
-                * not_(possede_ressource_substitution)
+                * not_(possede_ressources_substitution)
                 )
             for type_revenu in types_revenus_pros
             )
@@ -178,7 +183,11 @@ class rsa_base_ressources_individu(Variable):
         rente_viagere_titre_onereux = individu.foyer_fiscal('rente_viagere_titre_onereux', period.last_3_months, options = [ADD])
         revenus_foyer_fiscal_projetes = rente_viagere_titre_onereux * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
+        return (
+            max_(revenus_pro, 3 * ressources_de_substitution)
+            + revenus_non_pros
+            + revenus_foyer_fiscal_projetes
+            ) / 3
 
 
 class rsa_base_ressources_minima_sociaux(Variable):
@@ -508,14 +517,14 @@ class rsa_revenu_activite_individu(Variable):
             'rsa_indemnites_journalieres_activite',
             ]
 
-        possede_ressource_substitution = individu('rsa_has_ressources_substitution', period)
+        possede_ressources_substitution = individu('rsa_ressources_de_substitution', period) > 0
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         revenus_moyennes = sum(
             individu(type_revenu, last_3_months, options = [ADD]) * not_(
                 (individu(type_revenu, period) == 0)
                 * (individu(type_revenu, period.last_3_months, options = [ADD]) > 0)
-                * not_(possede_ressource_substitution)
+                * not_(possede_ressources_substitution)
                 )
             for type_revenu in types_revenus_activite
             ) / 3
