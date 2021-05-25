@@ -1,4 +1,5 @@
 description: Contribution SS additionnelle solidarité autonomie (CASA) pour les pensions de retraite, préretraite et d'invalidité
+unit: /1
 brackets:
 - rate:
     2013-04-01:
@@ -6,7 +7,6 @@ brackets:
   threshold:
     2013-04-01:
       value: 0.0
-unit: /1
 metadata:
   ux_name: CASA Retraite, Préretraite et Invalidité
   last_review:

@@ -1,8 +1,8 @@
 description: Contribution SS additionnelle solidarité autonomie (CASA), Seuil d'exonération (sur l'IRPP payé en N-1)
+unit: currency
 values:
   2013-04-01:
     value: 61.0
-unit: currency
 metadata:
   ux_name: Seuil d'exonération (sur l'IRPP payé en N-1)
   last_review:
