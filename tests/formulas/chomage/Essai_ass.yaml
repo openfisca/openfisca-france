@@ -1,5 +1,5 @@
 - name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°5
-  description: Personne seule avec 1 enfant et des ressources mensuelles durant les 3 derniers mois à la demande inférieures à 839.61 
+  description: Personne seule avec 1 enfant et des ressources mensuelles durant les 3 derniers mois à la demande inférieures à 839.61
   period: 2019-01
   absolute_error_margin: 0.01
   input:
@@ -26,7 +26,7 @@
         2019-04: 92.961
     foyer_fiscal:
       declarants: [personne1]
-      personnes_a_charge: [enfant1]  
+      personnes_a_charge: [enfant1]
     menage:
       personne_de_reference: personne1
       enfants: [enfant1]
@@ -73,14 +73,14 @@
           2019-04: 105
           2019-05: 105
       enfant1:
-        age: 5 
+        age: 5
   output:
     individus:
-      personne1:  
+      personne1:
         are:
           2019-01: 750
           2019-02: 750
-          2019-03: 750          
+          2019-03: 750
           2019-04: 750
           2019-05: 675
           2019-06: 0
@@ -88,7 +88,7 @@
         ass:
           2019-01: 0
           2019-02: 0
-          2019-03: 0          
+          2019-03: 0
           2019-04: 0
           2019-05: 0
           2019-06: 502.2
@@ -98,13 +98,15 @@
           2019-10: 502.2
           2019-11: 502.2
           2019-12: 502.2
-        rsa: 
-          2019-01: 0 # en changement de situation (d'emploi à ARE), les revenus précédents sont neutralisés durant un trimestre et on ne tient compte que des revenus actuels. 
-          2019-02: 0 # en changement de situation (d'emploi à ARE), les revenus précédents sont neutralisés durant un trimestre et on ne tient compte que des revenus actuels. 
-          2019-03: 0 # en changement de situation (d'emploi à ARE), les revenus précédents sont neutralisés durant un trimestre et on ne tient compte que des revenus actuels. 
+        rsa_base_ressources_individu:
+          2019-01: 750
+        rsa:
+          2019-01: 0 # en changement de situation (d'emploi à ARE), les revenus précédents sont neutralisés durant un trimestre et on ne tient compte que des revenus actuels.
+          2019-02: 0 # en changement de situation (d'emploi à ARE), les revenus précédents sont neutralisés durant un trimestre et on ne tient compte que des revenus actuels.
+          2019-03: 0 # en changement de situation (d'emploi à ARE), les revenus précédents sont neutralisés durant un trimestre et on ne tient compte que des revenus actuels.
           2019-04: 0
           2019-05: 0
-          2019-06: 110.112 
+          2019-06: 110.112
           2019-07: 110.112
           2019-08: 110.112
           2019-09: 110.112
