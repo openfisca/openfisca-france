@@ -1,0 +1,10 @@
+description: Montant du pass culture
+reference: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000043518876
+unit: currency
+values:
+  2019-02-01:
+    value: 500
+    reference: https://www.legifrance.gouv.fr/eli/decret/2019/2/1/2019-66/jo/article_1
+  2021-05-20:
+    value: 300
+    reference: https://www.legifrance.gouv.fr/eli/decret/2021/5/20/2021-628/jo/article_3

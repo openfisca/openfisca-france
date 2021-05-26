@@ -1,5 +1,15 @@
 # Changelog
 
+## 53.3.0 [#1543](https://github.com/openfisca/openfisca-france/pull/1543) 
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `/prestations/pass_culture.py`
+  - `/parameters/prestations/pass_culture/*`
+* Détails :
+  -  Ajoute la variable `pass_culture` qui calcule le pass culture.
+  
 ## 53.2.0 [#1511](https://github.com/openfisca/openfisca-france/pull/1511)
 
 * Évolution du système socio-fiscal.
@@ -42,7 +52,7 @@
   - Arborescence selon le modèle IPP
   - Nouveau formatage des fichiers .yaml
   - Mise à jour des valeurs et des références (et ajout de nouveaux paramètres) d'après l'IPP
-  
+
 ### 52.2.0 [#1540](https://github.com/openfisca/openfisca-france/pull/1540) 
 
 * Changement mineur.
