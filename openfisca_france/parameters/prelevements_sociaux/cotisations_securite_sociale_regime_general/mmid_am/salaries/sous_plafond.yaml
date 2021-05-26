@@ -1,4 +1,4 @@
-description: Cotisations du régime local d'assurance maladie d'Alsace et Moselle - Salariés sous plafond
+description: Cotisations des salariés sous plafond du régime local d'assurance maladie d'Alsace et Moselle (depuis 1967)
 unit: /1
 values:
   1946-07-01:
@@ -10,7 +10,7 @@ values:
   1986-01-11:
     value: null
 metadata:
-  ux_name: Cotisations Assurance Maladie Alsace-Moselle salarié sous plafond
+  ux_name: Sous plafond
   last_review:
     1986-01-01
   reference:
