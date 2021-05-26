@@ -1,4 +1,4 @@
-description: Cotisations SS branche assurance vieillesse déplafonnée (CNAV employeurs)
+description: Cotisations employeur déplafonnées de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV) (1967-2016)
 unit: /1
 brackets:
 - rate:
@@ -16,7 +16,7 @@ brackets:
     1967-10-01:
       value: 0.0
 metadata:
-  ux_name: Cotisation Vieillesse Déplafonnée Employeurs
+  ux_name: Employeur
   last_review:
     2017-01-01
   reference:
