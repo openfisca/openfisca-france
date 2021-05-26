@@ -1,10 +1,10 @@
-description: Abattement de cotisations SS pour les journalistes (depuis 1975)
+description: Abattement de Cotisations de sécurité sociale (SS) du régime général pour les journalistes
 values:
   1975-01-01:
     value: 0.2
 unit: /1
 metadata:
-  ux_name: Abattement journalistes
+  ux_name: Abattement
   last_review:
     2016-01-01
   reference:
