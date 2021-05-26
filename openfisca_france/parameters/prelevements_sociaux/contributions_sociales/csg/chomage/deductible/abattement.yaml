@@ -1,4 +1,4 @@
-description: Abattement de la CSG déductible sur les allocations chômage
+description: Abattement de la Contribution Sociale Généralisée (CSG) déductible sur les allocations chômage
 unit: /1 # Unit de l'abattement
 brackets:
   - rate:
