@@ -328,6 +328,10 @@ class csg_revenus_capital(Variable):
 # P.taxation_capital.prelevements_sociaux.csg.revenus_du_patrimoine
 # P.taxation_capital.prelevements_sociaux.csg.produits_de_placement
 
+# Pour les revenus du patrimoine, le changement de CSG se fait à partir des revenus de 2017,
+# mais le taux de CSG déductible se fait à partir des revenus 2018. Pour les revenus de placement le timing est différent,
+# et reste à être pris en compte ici : cf. II.B de l'art. 67 de loi 2017-1837 et 3° et 4° du V.A de l'art. 8 de loi 2017-1836
+
 # revenus du capital soumis au barème
 
 
