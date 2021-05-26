@@ -1,4 +1,4 @@
-description: Cotisations du régime local d'assurance maladie d'Alsace et Moselle - avantages vieillesses
+description: Cotisations sur les avantages vieillesse du régime local d'assurance maladie d'Alsace et Moselle
 unit: /1
 values:
   1989-09-01:
@@ -20,7 +20,7 @@ values:
   2012-01-01:
     value: 0.015
 metadata:
-  ux_name: Cotisations Assurance Maladie Alsace-Moselle - avantages vieillesses
+  ux_name: Cotisations sur les avantages vieillesse
   last_review:
     1986-01-01
   reference:

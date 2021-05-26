@@ -1,4 +1,4 @@
-description: Cotisations du régime local d'assurance maladie d'Alsace et Moselle - Salariés tout salaire
+description: Cotisations des salariés sur tout salaire du régime local d'assurance maladie d'Alsace et Moselle (depuis 1967)
 unit: /1
 values:
   1986-01-11:
@@ -26,7 +26,7 @@ values:
   2012-01-01:
     value: 0.015
 metadata:
-  ux_name: Cotisations Assurance Maladie Alsace-Moselle salarié tout salaire
+  ux_name: Sur tout salaire
   last_review:
     1986-01-01
   reference:
