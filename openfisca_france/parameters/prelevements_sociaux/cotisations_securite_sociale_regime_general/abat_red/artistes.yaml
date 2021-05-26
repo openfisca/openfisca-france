@@ -1,10 +1,10 @@
-description: Abattement de cotisations SS pour les artistes (depuis 1975)
+description: Abattement de Cotisations de sécurité sociale (SS) du régime général pour les artistes
 values:
   1975-01-01:
     value: 0.3
 unit: /1
 metadata:
-  ux_name: Abattement artistes
+  ux_name: Artistes
   last_review:
     2016-01-01
   reference:
