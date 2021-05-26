@@ -235,6 +235,7 @@ class casa(Variable):
         return - casa
 # TODO Mettre à jour la formule pour prendre en compte les seuils d'exonération
 
+
 class retraite_imposable(Variable):
     unit = "currency"
     value_type = float
