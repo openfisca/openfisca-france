@@ -1,4 +1,4 @@
-description: Cotisations SS accidents du travail-maladies professionnelles (AT-MP), taux bureaux
+description: Taux employeur sous le Plafond de la Sécurité sociale (PSS) des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
 unit: /1
 values:
   1976-01-01:
@@ -18,7 +18,7 @@ values:
   1991-01-01:
     value: null
 metadata:
-  ux_name: Taux AT-MP, employeur sous PSS
+  ux_name: Taux employeur sous PSS
   last_review:
     2020-01-01
   reference:
