@@ -1,10 +1,10 @@
-description: Contributions SS solidarité autonomie (CSA)
+description: Taux employeur de la Contribution de solidarité autonomie (CSA) du régime général de la sécurité sociale (SS)
 unit: /1
 values:
   2004-07-01:
     value: 0.003
 metadata:
-  ux_name: CSA employeur tout salaire
+  ux_name: Taux employeur
   last_review:
     2004-07-01
   reference:
