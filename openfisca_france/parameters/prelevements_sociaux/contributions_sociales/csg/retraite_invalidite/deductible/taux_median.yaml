@@ -1,4 +1,4 @@
-description: Taux médian de la Contribution Sociale Généralisée déductible sur les pensions de retraite et d'invalidité
+description: Taux médian de la Contribution Sociale Généralisée (CSG) déductible sur les pensions de retraite et d'invalidité
 unit: /1
 values:
   1991-02-01:   
@@ -6,7 +6,7 @@ values:
   2019-01-01:
     value: 0.042
 metadata:
-  ux_name: Taux médian déductible
+  ux_name: Taux médian
   last_review:
     2019-01-01
   reference:

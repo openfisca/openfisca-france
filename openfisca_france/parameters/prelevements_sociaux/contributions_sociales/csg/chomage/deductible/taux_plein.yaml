@@ -1,4 +1,4 @@
-description: Taux plein de la Contribution Sociale Généralisée déductible sur les allocations chômage
+description: Taux plein de la Contribution Sociale Généralisée (CSG) déductible sur les allocations chômage
 unit: /1
 values:
   1991-02-01:
@@ -10,7 +10,7 @@ values:
   2005-01-01:
     value: 0.042
 metadata:
-  ux_name: CSG déductible - taux plein
+  ux_name: Taux plein
   last_review:
     2005-01-01
   reference:

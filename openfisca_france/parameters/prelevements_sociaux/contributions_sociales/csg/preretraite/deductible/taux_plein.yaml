@@ -1,4 +1,4 @@
-description: Taux plein de la Contribution Sociale Généralisée déductible sur les allocations de préretraite
+description: Taux plein de la Contribution Sociale Généralisée (CSG) déductible sur les allocations de préretraite
 unit: /1
 values:
   1991-02-01:
@@ -12,7 +12,7 @@ values:
   2018-01-01:
     value: 0.068
 metadata:
-  ux_name: Taux plein déductible
+  ux_name: Taux plein
   last_review:
     2018-01-01
   reference:

@@ -1,4 +1,4 @@
-description: Abattement de la CSG sur les revenus d'activité
+description: Abattement de la Contribution Sociale Généralisée (CSG) déductible sur les revenus d'activité
 unit: /1 # Unit de l'abattement
 brackets:
   - rate:

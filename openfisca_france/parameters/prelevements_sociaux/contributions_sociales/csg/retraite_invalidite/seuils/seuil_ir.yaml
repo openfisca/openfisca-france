@@ -1,4 +1,4 @@
-description: Seuil d'impôt sur le revenu de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
+description: Seuil d'impôt sur le revenu (IR) de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
 unit: currency #-EUR
 seuil_ir: 
   values:
@@ -7,7 +7,7 @@ seuil_ir:
     2015-01-01:
       value: null
 metadata:
-  ux_name: Seuil d'IR
+  ux_name: Seuil d'impôt sur le revenu
   last_review:
     2015-01-01
   reference:

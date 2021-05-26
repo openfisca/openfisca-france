@@ -1,4 +1,4 @@
-description: Taux global de la Contribution Sociale Généralisée sur les allocations de préretraite
+description: Taux global de la Contribution Sociale Généralisée (CSG) sur les allocations de préretraite
 unit: /1
 values:
   1991-02-01:
@@ -14,7 +14,7 @@ values:
   2018-01-01:
     value: 0.092
 metadata:
-  ux_name: Taux global préretraite
+  ux_name: Taux global
   last_review:
     2018-01-01
   reference:
