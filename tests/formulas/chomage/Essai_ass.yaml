@@ -1,115 +1,163 @@
-- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°5
-  description: Personne seule avec 1 enfant et des ressources mensuelles durant les 3 derniers mois à la demande inférieures à 839.61
+- name: "Cas 3 AL Reforme 2019"
   period: 2019-01
-  absolute_error_margin: 0.01
+  relative_error_margin: 0.01
   input:
     famille:
       parents: [personne1]
-      enfants: [enfant1]
-      aide_logement:
-        2019-01: 200
-        2019-02: 200
-        2019-03: 200
-        2019-04: 200
-        2019-05: 200
-        2019-06: 200
-        2019-07: 200
-        2019-08: 200
-        2019-09: 200
-        2019-10: 200
-        2019-11: 200
-        2019-12: 200
-      rsa_forfait_asf:
-        2019-07: 92.961
-        2019-06: 92.961
-        2019-05: 92.961
-        2019-04: 92.961
-    foyer_fiscal:
-      declarants: [personne1]
-      personnes_a_charge: [enfant1]
+      rsa: 
+        2019-06: 500
+        2019-07: 500
+        2019-08: 500
     menage:
       personne_de_reference: personne1
-      enfants: [enfant1]
-      statut_occupation_logement: locataire_vide
+      statut_occupation_logement:
+        2019-01: locataire_vide
+        2019-02: locataire_vide
+        2019-03: locataire_vide
+        2019-04: locataire_vide
+        2019-05: locataire_vide
+        2019-06: locataire_vide
+        2019-07: locataire_vide
+        2019-08: locataire_vide
+      logement_conventionne:
+        2019-01: true
+        2019-02: true 
+        2019-03: true 
+        2019-04: true
+        2019-05: true
+        2019-06: true
+        2019-07: true
+        2019-08: true
+      zone_apl: 
+        2019-01: zone_2
+        2019-02: zone_2
+        2019-03: zone_2
+        2019-04: zone_2
+        2019-05: zone_2
+        2019-06: zone_2
+        2019-07: zone_2
+        2019-08: zone_2
+      loyer:
+        2019-02: 500
+        2019-01: 500
+        2019-03: 500
+        2019-04: 500
+        2019-05: 500
+        2019-06: 500
+        2019-07: 500
+        2019-08: 500
     individus:
       personne1:
+        date_debut_chomage: 2019-01-01
         activite:
-          year:2005:15: actif
-          year:2019:20: chomeur
-        contrat_de_travail_debut:
-          year:1995:30: 2005-01-01
-        contrat_de_travail_fin:
-          year:1995:30: 2019-01-01
-        age: 40
-        chomage_net:
-          year:1999:20: 0
-        chomage_brut:
-          year:1999:20: 0
-        ass:
-          year:1999:20: 0
-        duree_versement_are:
-          year:1999:20: 0
-        nombre_annees_travaillees_les_10_dernieres_annees:
-          2019-01: 6
-          2019-02: 6
-          2019-03: 6
-          2019-04: 6
-          2019-05: 6
-          2019-06: 6
-          2019-07: 6
-          2019-08: 6
-          2019-09: 6
-          2019-10: 6
-        salaire_de_reference_mensuel:
-          2019-01: 1000
-          2019-02: 1000
-          2019-03: 1000
-          2019-04: 1000
-          2019-05: 1000
-        nombre_jours_travailles_dans_les_x_derniers_mois:
-          2019-01: 5 * 21
-          2019-02: 105
-          2019-03: 105
-          2019-04: 105
-          2019-05: 105
-      enfant1:
-        age: 5
-  output:
-    individus:
-      personne1:
-        are:
-          2019-01: 750
-          2019-02: 750
-          2019-03: 750
-          2019-04: 750
-          2019-05: 675
+          2019-06: chomeur
+          2019-07: chomeur
+          2019-08: chomeur
+          2019-05: chomeur
+          2019-04: chomeur
+          2019-03: chomeur
+          2019-02: chomeur
+          2019-01: chomeur
+          2018-12: actif
+          2018-11: actif
+          2018-10: actif
+          2018-09: actif
+          2018-08: actif
+          2018-07: actif
+          2018-06: actif
+          2018-05: actif
+          2018-04: actif
+          2018-03: actif
+          2018-02: actif
+          2018-01: actif
+          2017-12: actif
+          2017-11: actif
+          2017-10: actif
+          2017-09: actif
+          2017-08: actif
+          2017-07: actif
+          2017-06: actif
+          2017-05: actif
+          2017-04: actif
+          2017-03: actif
+          2017-02: actif
+          2017-01: actif
+        date_naissance:
+          2019-01: 1986-01-01
+        are: 
+          2019-01: 600
+          2019-02: 600
+          2019-03: 600
+          2019-04: 600
+          2019-05: 600
           2019-06: 0
-          2019-07: 0
-        ass:
-          2019-01: 0
-          2019-02: 0
-          2019-03: 0
-          2019-04: 0
-          2019-05: 0
-          2019-06: 502.2
-          2019-07: 502.2
-          2019-08: 502.2
-          2019-09: 502.2
-          2019-10: 502.2
-          2019-11: 502.2
-          2019-12: 502.2
-        rsa_base_ressources_individu:
-          2019-01: 750
-        rsa:
-          2019-01: 0 # en changement de situation (d'emploi à ARE), les revenus précédents sont neutralisés durant un trimestre et on ne tient compte que des revenus actuels.
-          2019-02: 0 # en changement de situation (d'emploi à ARE), les revenus précédents sont neutralisés durant un trimestre et on ne tient compte que des revenus actuels.
-          2019-03: 0 # en changement de situation (d'emploi à ARE), les revenus précédents sont neutralisés durant un trimestre et on ne tient compte que des revenus actuels.
-          2019-04: 0
-          2019-05: 0
-          2019-06: 110.112
-          2019-07: 110.112
-          2019-08: 110.112
-          2019-09: 110.112
-          2019-10: 110.112
-          2019-11: 110.112
-          2019-12: 110.112
+        salaire_de_base:
+          2018-12: 1000
+          2018-11: 1000
+          2018-10: 1000
+          2018-09: 1000
+          2018-08: 1000
+          2018-07: 1000
+          2018-06: 1000
+          2018-05: 1000
+          2018-04: 1000
+          2018-03: 1000
+          2018-02: 1000
+          2018-01: 1000
+          2017-12: 1000
+          2017-11: 1000
+          2017-10: 1000
+          2017-09: 1000
+          2017-08: 1000
+          2017-07: 1000
+          2017-06: 1000
+          2017-05: 1000
+          2017-04: 1000
+          2017-03: 1000
+          2017-02: 1000
+          2017-01: 1000
+    foyer_fiscal:
+      declarants: [personne1]
+  output:
+   aide_logement_base_ressources: 
+    2019-01: 8900
+    2019-02: 8800
+    2019-03: 8800
+    2019-04: 6100  #abattement de 30% sur les revenus de l'année N-2 pour s'adaptera au changement de situation de l'individu. 
+    2019-05: 6100
+    2019-06: 6100
+    2019-07: 0   # neutralisation des revenus car on passe au RSA
+    2019-08: 0
+   aide_logement_R0: 4575
+   aide_logement_loyer_retenu: 257.14
+   aide_logement_charges: 53.67
+   aide_logement_taux_famille: 0.0283
+   aide_logement_taux_loyer: 0.00305
+   aide_logement_participation_personnelle: 
+    2019-01: 170.60876
+    2019-02: 167.47375
+    2019-03: 167.47375
+    2019-04: 82.82875
+    2019-05: 82.82875
+    2019-06: 82.82875
+    2019-07: 35.02
+    2019-08: 35.02
+   aide_logement: 
+    2019-01: 106.37
+    2019-02: 109.51
+    2019-03: 109.51
+    2019-04: 194.15
+    2019-05: 194.15
+    2019-06: 194.15
+    2019-07: 241.96
+    2019-08: 241.96
+   aide_logement_abattement_chomage_indemnise: 
+    2019-01: 0
+    2019-02: 0
+    2019-03: 0
+    2019-04: 2592
+    2019-05: 2592
+    2019-06: 2592
+    2019-07: 2592
+    2019-08: 2592
+

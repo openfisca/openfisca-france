@@ -526,3 +526,14 @@ class are_imposable(Variable):
         return are + csg_chomage_deductible
 
 
+class cumul_are_nette_rsa(Variable):
+    value_type = float
+    entity = Individu
+    label = "Cumul de l'ARE et du RSA"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        are_nette = individu('are_nette', period)
+        rsa = individu.famille('rsa', period)
+
+        return are_nette + rsa
