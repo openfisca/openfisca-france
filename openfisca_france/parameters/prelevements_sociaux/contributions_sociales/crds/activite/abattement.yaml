@@ -1,4 +1,4 @@
-description: Abattement de la Contribution au remboursement de la dette sociale (CRDS) de la sécurité sociale sur les revenus d'activité
+description: Abattement de la Contribution au remboursement de la dette sociale (CRDS) sur les revenus d'activité
 unit: /1 # Unit de l'abattement 
 brackets:
   - rate:
