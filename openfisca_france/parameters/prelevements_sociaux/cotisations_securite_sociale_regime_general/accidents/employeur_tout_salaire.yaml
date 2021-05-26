@@ -1,4 +1,4 @@
-description: Cotisations SS accidents du travail-maladies professionnelles (AT-MP), taux bureaux
+description: Taux employeur tout salaire des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
 unit: /1
 values:
   1991-01-01:
@@ -12,7 +12,7 @@ values:
   2016-01-01:
     value: 0.01
 metadata:
-  ux_name: Taux AT-MP, employeur tout salaire
+  ux_name: Taux employeur tout salaire
   last_review:
     2020-01-01
   reference:
