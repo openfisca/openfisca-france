@@ -1,4 +1,4 @@
-description: Seuil de RFR3  - 1 Part (taux intermédiaire/médian) de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
+description: Seuil de RFR3  - 1 Part (taux intermédiaire/médian) de la de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
 unit: currency #-EUR
 values:
   2018-01-01:
@@ -8,7 +8,7 @@ values:
   2020-01-01:
     value: 22941.0  
 metadata:
-  ux_name: Seuil RFR3
+  ux_name: Seuil RFR3 - 1 Part
   last_review:
     2020-01-01
   reference:

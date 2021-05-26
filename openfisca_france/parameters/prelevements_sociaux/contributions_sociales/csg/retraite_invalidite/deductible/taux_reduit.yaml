@@ -1,4 +1,4 @@
-description: Taux réduit de la Contribution Sociale Généralisée sur les pensions de retraite et d'invalidité
+description: Taux réduit de la Contribution Sociale Généralisée (CSG) déductible sur les pensions de retraite et d'invalidité
 values:
   1991-02-01:
     value: null
@@ -8,7 +8,7 @@ values:
     value: 0.038
 unit: /1
 metadata:
-  ux_name: Taux réduit déductible
+  ux_name: Taux réduit
   last_review:
     1998-01-01
   reference:
