@@ -1,4 +1,4 @@
-description: Cotisation spéciale assurance maladie sur les avantages retraite (régime général)
+description: Cotisations spéciales assurance maladie sur les avantages retraite (régime général)
 unit: /1
 values:
   1980-07-01:
@@ -12,7 +12,7 @@ values:
   1998-01-01:
     value: null
 metadata:
-  ux_name: Cotisations maladie sur les avantages retraite (régime général)
+  ux_name: Régime général
   last_review:
     1998-01-01
   reference:

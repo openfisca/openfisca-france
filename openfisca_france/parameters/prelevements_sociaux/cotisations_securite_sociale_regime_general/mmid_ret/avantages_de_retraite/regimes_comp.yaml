@@ -1,4 +1,4 @@
-description: Cotisation spéciale assurance maladie sur les avantages retraite (régimes complémentaires)
+description: Cotisations spéciales assurance maladie sur les avantages retraite (régimes complémentaires)
 unit: /1
 values:
   1980-07-01:
@@ -12,7 +12,7 @@ values:
   1998-01-01:
     value: 0.01
 metadata:
-  ux_name: Cotisations maladie sur les avantages retraite (complémentaires)
+  ux_name: Régimes complémentaires
   last_review:
     1998-01-01
   reference:
