@@ -218,6 +218,7 @@ class logement_conventionne(Variable):
     entity = Menage
     label = "Logement conventionné"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class TypeEtatLogement(Enum):
