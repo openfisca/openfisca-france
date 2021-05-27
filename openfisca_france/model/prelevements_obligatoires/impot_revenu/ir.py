@@ -1046,11 +1046,11 @@ class csg_patrimoine_deductible_ir(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        P = parameters(period).taxation_capital.prelevements_sociaux.csg.deductible  # taxation_capital.prelevements_sociaux.csg.deductible
+        csg_deductible = parameters(period).taxation_capital.prelevements_sociaux.csg.deductible.revenus_du_patrimoine
         rbg = foyer_fiscal('rbg', period)
         f6de = foyer_fiscal('f6de', period)
         f2bh = foyer_fiscal('f2bh', period)
-        csg_deduc_patrimoine = max_(f6de, 0) + max_(P.deduc * f2bh, 0)
+        csg_deduc_patrimoine = max_(f6de, 0) + max_(csg_deductible * f2bh, 0)
 
         return min_(csg_deduc_patrimoine, max_(rbg, 0))
 
