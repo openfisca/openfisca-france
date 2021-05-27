@@ -1,13 +1,50 @@
 - name: "Cas 3 AL Reforme 2019"
   period: 2019-01
   relative_error_margin: 0.01
+  max_spiral_loops: 60
+  neutralized_variables:
+    # RSA TODO base ressources
+    - aide_logement
+    - taux_csg_remplacement
+    # - Minimas sociaux
+    - aspa
+    - asi
+    - caah
+    # individu
+    - allocation_securisation_professionnelle
+    - dedommagement_victime_amiante
+    - gains_exceptionnels
+    - pensions_alimentaires_percues
+    - pensions_invalidite
+    - prestation_compensatoire
+    - prime_forfaitaire_mensuelle_reprise_activite
+    - rsa_base_ressources_patrimoine_individu
+    - rsa_indemnites_journalieres_hors_activite
+    - rente_viagere_titre_onereux
+    # ASS
+    # - chomage_net
+    - categorie_salarie
+    # Ass base ressources
+    - revenus_stage_formation_pro
+    - aah
+    - retraite_nette
+    - retraite_brute
+    - retraite_imposable
+    - pensions_alimentaires_percues
+    - indemnites_stage
+    - pensions_invalidite
+    - revenus_locatifs
+    - revenus_capital
+    - tns_auto_entrepreneur_benefice
+    - tns_micro_entreprise_benefice
+    - tns_benefice_exploitant_agricole
+    - tns_autres_revenus
+    - pensions_alimentaires_versees_individu
+    # PF
+    - revenu_categoriel_capital
   input:
     famille:
       parents: [personne1]
-      rsa: 
-        2019-06: 500
-        2019-07: 500
-        2019-08: 500
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
@@ -19,6 +56,11 @@
         2019-06: locataire_vide
         2019-07: locataire_vide
         2019-08: locataire_vide
+        2019-09: locataire_vide
+        2019-10: locataire_vide
+        2019-11: locataire_vide
+        2019-12: locataire_vide
+
       logement_conventionne:
         2019-01: true
         2019-02: true 
@@ -28,6 +70,10 @@
         2019-06: true
         2019-07: true
         2019-08: true
+        2019-09: true
+        2019-10: true
+        2019-11: true
+        2019-12: true
       zone_apl: 
         2019-01: zone_2
         2019-02: zone_2
@@ -37,18 +83,25 @@
         2019-06: zone_2
         2019-07: zone_2
         2019-08: zone_2
+        2019-09: zone_2
+        2019-10: zone_2
+        2019-11: zone_2
+        2019-12: zone_2
       loyer:
-        2019-02: 500
         2019-01: 500
+        2019-02: 500
         2019-03: 500
         2019-04: 500
         2019-05: 500
         2019-06: 500
         2019-07: 500
         2019-08: 500
+        2019-09: 500
+        2019-10: 500
+        2019-11: 500
+        2019-12: 500
     individus:
       personne1:
-        date_debut_chomage: 2019-01-01
         activite:
           2019-06: chomeur
           2019-07: chomeur
@@ -82,15 +135,37 @@
           2017-03: actif
           2017-02: actif
           2017-01: actif
-        date_naissance:
-          2019-01: 1986-01-01
-        are: 
-          2019-01: 600
-          2019-02: 600
-          2019-03: 600
-          2019-04: 600
-          2019-05: 600
-          2019-06: 0
+        age: 40
+        contrat_de_travail_debut:
+          year:1995:30: 2005-01-01
+        contrat_de_travail_fin:
+          year:1995:30: 2019-01-01
+        nombre_annees_travaillees_les_10_dernieres_annees:
+          2019-01: 6
+          2019-02: 6
+          2019-03: 6
+          2019-04: 6
+          2019-05: 6
+          2019-06: 6
+          2019-07: 6
+          2019-08: 6
+          2019-09: 6
+          2019-10: 6
+          2019-11: 6
+          2019-12: 6
+        nombre_jours_travailles_dans_les_x_derniers_mois:
+          2019-01: 160
+          2019-02: 160
+          2019-03: 160
+          2019-04: 160
+          2019-05: 160
+          2019-06: 160
+          2019-07: 160
+          2019-08: 160
+          2019-09: 160
+          2019-10: 160
+          2019-11: 160
+          2019-12: 160
         salaire_de_base:
           2018-12: 1000
           2018-11: 1000
@@ -116,48 +191,92 @@
           2017-03: 1000
           2017-02: 1000
           2017-01: 1000
+        nombre_jours_travailles_12_derniers_mois:
+          2019-01: 80
+          2019-02: 80
+          2019-03: 80
+          2019-04: 80
+          2019-05: 80
+          2019-06: 80
+          2019-07: 80
+          2019-08: 80
+          2019-09: 80
+          2019-10: 80
+          2019-11: 80
+          2019-12: 80
     foyer_fiscal:
       declarants: [personne1]
   output:
-   aide_logement_base_ressources: 
-    2019-01: 8900
-    2019-02: 8800
-    2019-03: 8800
-    2019-04: 6100  #abattement de 30% sur les revenus de l'année N-2 pour s'adaptera au changement de situation de l'individu. 
-    2019-05: 6100
-    2019-06: 6100
-    2019-07: 0   # neutralisation des revenus car on passe au RSA
-    2019-08: 0
-   aide_logement_R0: 4575
-   aide_logement_loyer_retenu: 257.14
-   aide_logement_charges: 53.67
-   aide_logement_taux_famille: 0.0283
-   aide_logement_taux_loyer: 0.00305
-   aide_logement_participation_personnelle: 
-    2019-01: 170.60876
-    2019-02: 167.47375
-    2019-03: 167.47375
-    2019-04: 82.82875
-    2019-05: 82.82875
-    2019-06: 82.82875
-    2019-07: 35.02
-    2019-08: 35.02
-   aide_logement: 
-    2019-01: 106.37
-    2019-02: 109.51
-    2019-03: 109.51
-    2019-04: 194.15
-    2019-05: 194.15
-    2019-06: 194.15
-    2019-07: 241.96
-    2019-08: 241.96
-   aide_logement_abattement_chomage_indemnise: 
-    2019-01: 0
-    2019-02: 0
-    2019-03: 0
-    2019-04: 2592
-    2019-05: 2592
-    2019-06: 2592
-    2019-07: 2592
-    2019-08: 2592
+    individus: 
+      personne1: 
+        are:
+          2019-01: 1832.142822265625
+          2019-02: 1832.142822265625
+          2019-03: 1832.142822265625
+          2019-04: 1832.142822265625
+          2019-05: 1832.142822265625
+          2019-06: 1832.142822265625
+          2019-07: 1832.142822265625
+          2019-08: 732.857116699218
+          2019-09: 0
+          2019-10: 0
+          2019-11: 0
+          2019-12: 0
+        aide_logement_base_ressources: 
+          2019-01: 8900
+          2019-02: 8800
+          2019-03: 8800
+          2019-04: 6100  #ce qu'on devrait avoir : abattement de 30% sur les revenus de l'année N-2 pour s'adaptera au changement de situation de l'individu. 
+          2019-05: 6100
+          2019-06: 6100
+          2019-07: 6100   
+          2019-08: 6100
+          2019-09: 8800 
+          2019-10: 0  # neutralisation des revenus car on passe au RSA
+          2019-11: 0
+          2019-12: 0
+        aide_logement_R0: 4575
+        aide_logement_loyer_retenu: 257.14
+        aide_logement_charges: 53.67
+        aide_logement_taux_famille: 0.0283
+        aide_logement_taux_loyer: 0.00305
+        aide_logement_participation_personnelle: 
+         2019-01: 170.60876
+         2019-02: 167.47375
+         2019-03: 167.47375
+         2019-04: 82.82875
+         2019-05: 82.82875
+         2019-06: 82.82875
+         2019-07: 82.82875
+         2019-08: 82.82875
+         2019-09: 167.47375
+         2019-10: 35.02
+         2019-11: 35.02
+         2019-12: 35.02
+        aide_logement: 
+         2019-01: 106.37
+         2019-02: 109.51
+         2019-03: 109.51
+         2019-04: 194.15
+         2019-05: 194.15
+         2019-06: 194.15
+         2019-07: 194.39
+         2019-08: 194.39
+         2019-09: 110.17
+         2019-10: 242.78
+         2019-11: 242.78
+         2019-12: 242.78
+        aide_logement_abattement_chomage_indemnise: 
+         2019-01: 0
+         2019-02: 0
+         2019-03: 0
+         2019-04: 2592
+         2019-05: 2592
+         2019-06: 2592
+         2019-07: 2592
+         2019-08: 2592
+         2019-09: 0
+         2019-10: 0
+         2019-11: 0
+         2019-12: 0
 
