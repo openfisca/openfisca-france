@@ -970,14 +970,6 @@ class aide_logement_base_ressources(Variable):
 
         demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        abat_spe = (
-            famille.demandeur.foyer_fiscal('abattements_speciaux_prestations_familiales', annee_glissante)
-            * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('abattements_speciaux_prestations_familiales', annee_glissante)
-            * conjoint_declarant_principal
-            )
-
-        base_ressources_parents = max_(0, base_ressources_parents - abat_spe)
 
         # Ressources des douze derniers mois
         indemnites_journalieres_i = famille.members('indemnites_journalieres', annee_glissante, options=[ADD])
