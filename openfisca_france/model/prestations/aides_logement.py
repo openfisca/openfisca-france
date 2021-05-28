@@ -677,6 +677,86 @@ class al_base_ressources_individu(Variable):
 
         return revenus + revenu_assimile_pension_apres_abattements + hsup + glo
 
+class aide_logement_base_revenus_fiscaux(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Revenus fiscaux perçus par le foyer fiscal à prendre en compte dans la base ressource des aides au logement"
+    reference = [
+        "Code de la construction et de l'habitation - Article R351-5",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F039735F667F9271DFB284F78105BDC0.tplgfr31s_3?idArticle=LEGIARTI000021632267&cidTexte=LEGITEXT000006074096&dateTexte=20171123",
+        "Code de la sécurité sociale - Article R831-6",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000020080073&dateTexte=20171222&categorieLien=cid#LEGIARTI000020080073",
+        "Code de la sécurité sociale - Article D542-10",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F1CF3B807CE064C9F518B442EF8C856F.tpdila22v_1?idArticle=LEGIARTI000020986758&cidTexte=LEGITEXT000006073189&dateTexte=20170803&categorieLien=id&oldAction=&nbResultRech="
+        ]
+    definition_period = YEAR
+
+    def formula_2021_01_01(foyer_fiscal, period):
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period.n_2)
+        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period.last_year) 
+       # Supprimée à partir de 2018
+        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period.n_2)
+        # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period.n_2,
+                                                                options=[ADD])
+        # Apparait à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal(
+            'revenus_capitaux_prelevement_forfaitaire_unique_ir', period.n_2, options=[ADD])
+        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period.n_2)
+        f7ga = foyer_fiscal('f7ga', period.n_2)
+        f7gb = foyer_fiscal('f7gb', period.n_2)
+        f7gc = foyer_fiscal('f7gc', period.n_2)
+        # Supprimée à partir de 2018
+        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period.n_2)
+        # Apparait à partir de 2018
+        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir',
+                                                                     period.n_2)
+        return (
+            + rente_viagere_titre_onereux_net
+            + pensions_alimentaires_versees
+            + revenu_categoriel_foncier
+            + rev_cat_rvcm
+            + revenus_capitaux_prelevement_liberatoire
+            + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + rev_cat_pv
+            + plus_values_prelevement_forfaitaire_unique_ir
+            - f7ga
+            - f7gb
+            - f7gc
+            )
+
+    def formula(foyer_fiscal, period):
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period.n_2)
+        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period.n_2)
+        # Supprimée à partir de 2018
+        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period.n_2)
+        # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        # Apparait à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
+        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period.n_2)
+        f7ga = foyer_fiscal('f7ga', period.n_2)
+        f7gb = foyer_fiscal('f7gb', period.n_2)
+        f7gc = foyer_fiscal('f7gc', period.n_2)
+        # Supprimée à partir de 2018
+        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period.n_2)
+        # Apparait à partir de 2018
+        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period.n_2)
+
+        return (
+            + revenu_categoriel_foncier
+            + pensions_alimentaires_versees
+            + rente_viagere_titre_onereux_net
+            + rev_cat_rvcm
+            + revenus_capitaux_prelevement_liberatoire
+            + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + rev_cat_pv
+            + plus_values_prelevement_forfaitaire_unique_ir
+            - f7ga
+            - f7gb
+            - f7gc
+            )
+
 class aide_logement_base_ressources_eval_forfaitaire(Variable):
     value_type = float
     entity = Individu
@@ -863,87 +943,6 @@ class aide_logement_base_ressources_defaut(Variable):
         result = max_(ressources - abattement_double_activite, 0)
 
         return result
-
-
-class aide_logement_base_revenus_fiscaux(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = "Revenus fiscaux perçus par le foyer fiscal à prendre en compte dans la base ressource des aides au logement"
-    reference = [
-        "Code de la construction et de l'habitation - Article R351-5",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F039735F667F9271DFB284F78105BDC0.tplgfr31s_3?idArticle=LEGIARTI000021632267&cidTexte=LEGITEXT000006074096&dateTexte=20171123",
-        "Code de la sécurité sociale - Article R831-6",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000020080073&dateTexte=20171222&categorieLien=cid#LEGIARTI000020080073",
-        "Code de la sécurité sociale - Article D542-10",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F1CF3B807CE064C9F518B442EF8C856F.tpdila22v_1?idArticle=LEGIARTI000020986758&cidTexte=LEGITEXT000006073189&dateTexte=20170803&categorieLien=id&oldAction=&nbResultRech="
-        ]
-    definition_period = YEAR
-
-    def formula_2021_01_01(foyer_fiscal, period):
-        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period.n_2)
-        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period.last_year) 
-       # Supprimée à partir de 2018
-        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period.n_2)
-        # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period.n_2,
-                                                                options=[ADD])
-        # Apparait à partir de 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal(
-            'revenus_capitaux_prelevement_forfaitaire_unique_ir', period.n_2, options=[ADD])
-        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period.n_2)
-        f7ga = foyer_fiscal('f7ga', period.n_2)
-        f7gb = foyer_fiscal('f7gb', period.n_2)
-        f7gc = foyer_fiscal('f7gc', period.n_2)
-        # Supprimée à partir de 2018
-        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period.n_2)
-        # Apparait à partir de 2018
-        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir',
-                                                                     period.n_2)
-        return (
-            + rente_viagere_titre_onereux_net
-            + pensions_alimentaires_versees
-            + revenu_categoriel_foncier
-            + rev_cat_rvcm
-            + revenus_capitaux_prelevement_liberatoire
-            + revenus_capitaux_prelevement_forfaitaire_unique_ir
-            + rev_cat_pv
-            + plus_values_prelevement_forfaitaire_unique_ir
-            - f7ga
-            - f7gb
-            - f7gc
-            )
-
-    def formula(foyer_fiscal, period):
-        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period.n_2)
-        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period.n_2)
-        # Supprimée à partir de 2018
-        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period.n_2)
-        # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
-        # Apparait à partir de 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
-        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period.n_2)
-        f7ga = foyer_fiscal('f7ga', period.n_2)
-        f7gb = foyer_fiscal('f7gb', period.n_2)
-        f7gc = foyer_fiscal('f7gc', period.n_2)
-        # Supprimée à partir de 2018
-        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period.n_2)
-        # Apparait à partir de 2018
-        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period.n_2)
-
-        return (
-            + revenu_categoriel_foncier
-            + pensions_alimentaires_versees
-            + rente_viagere_titre_onereux_net
-            + rev_cat_rvcm
-            + revenus_capitaux_prelevement_liberatoire
-            + revenus_capitaux_prelevement_forfaitaire_unique_ir
-            + rev_cat_pv
-            + plus_values_prelevement_forfaitaire_unique_ir
-            - f7ga
-            - f7gb
-            - f7gc
-            )
 
 
 class aide_logement_base_ressources(Variable):
