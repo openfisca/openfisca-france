@@ -647,13 +647,7 @@ class al_base_ressources_individu(Variable):
 
         rpns = rpns + rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
 
-        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period.n_2, options = [ADD])
-        retraite_imposable = individu('retraite_imposable', period.n_2, options=[ADD])
-        pension_invalidite = individu('pensions_invalidite', period.n_2, options = [ADD])
-        revenu_assimile_pension = pensions_alimentaires_percues + retraite_imposable + pension_invalidite
-        abatpen = parameters(period.n_2).impot_revenu.tspr.abatpen
-        revenu_assimile_pension = max_(0, revenu_assimile_pension - round_(max_(abatpen.taux * revenu_assimile_pension, abatpen.min)))
-
+        revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period.n_2, options = [ADD])
 
         abattement_revenus_activite_professionnelle = individu('aide_logement_abattement_revenus_activite_professionnelle',period)
         abattement_indemnites_chomage = individu('aide_logement_abattement_indemnites_chomage',period)
@@ -670,7 +664,7 @@ class al_base_ressources_individu(Variable):
         hsup = individu('hsup', period.n_2, options = [ADD])
         glo = individu('glo', period.n_2)
 
-        return revenus + revenu_assimile_pension + hsup + glo
+        return revenus + revenu_assimile_pension_apres_abattements + hsup + glo
 
 class aide_logement_base_ressources_eval_forfaitaire(Variable):
     value_type = float
