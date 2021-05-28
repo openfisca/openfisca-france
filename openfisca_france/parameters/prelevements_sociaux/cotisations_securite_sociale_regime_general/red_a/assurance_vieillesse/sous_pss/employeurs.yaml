@@ -1,6 +1,8 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Taux employeur des cotisations de sécurité sociale (SS) des artistes du spectacle (1960-1974) pour l'assurance vieillesse, sous le plafond de la sécurité sociale (PSS)
 unit: /1
 values:
+  1960-01-01:
+    value: null
   1967-10-01:
     value: 0.0385
   1971-01-01:
@@ -8,9 +10,9 @@ values:
   1974-01-01:
     value: 0.0508
 metadata:
-  ux_name: CRDS
+  ux_name: Taux employeur
   last_review:
-    2012-01-01
+    1974-01-01
   reference:
     1974-01-01: Arrêté du 15/01/1974
     1973-03-01: Arrêté du 31/01/1973
@@ -36,7 +38,6 @@ metadata:
     1961-01-01: 1961-02-02
     1960-01-01: 1960-02-09
   notes:
-    1972-01-01: Modification de la cotisation accident du travail.
   description_en: SSCs for artists (1960-1974)
 documentation: |
   Note générale :
