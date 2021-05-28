@@ -28,9 +28,8 @@ def get_directory_structure(rootdir):
                 folders = path[start:].split(os.sep)
                 # On regarde les chemins qui dépassent 150 caractères
                 # Ce nombre vient d'ici: https://github.com/openfisca/openfisca-france/pull/1414
-                # Et on ajoute 98 caractères pour le openfisca_france/parameters/par/
-                # (même s'il disparaît après, pour que tous puisse contribuer)
-                if len(path) > 150 + 98:
+                # Et on ajoute 28 caractères pour le openfisca_france/parameters/
+                if len(path) > 150 + 28:
                     outfile.write("{} here: {}".format(len(path), path) + "\n \n")
                 subdir = dict.fromkeys(files)
                 parent = functools.reduce(dict.get, folders[:-1], dir)
@@ -38,7 +37,7 @@ def get_directory_structure(rootdir):
     return dir
 
 
-startpath = "openfisca_france/parameters/par/"
+startpath = "openfisca_france/parameters/"
 ipp_dir_structure = get_directory_structure(startpath)
 
 # json_file = json.dumps(ipp_dir_structure)
