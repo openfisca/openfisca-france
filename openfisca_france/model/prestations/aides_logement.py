@@ -508,24 +508,25 @@ class aide_logement_condition_neutralisation(Variable):
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878969/"]
     
     def formula(individu, period):
-        activite = individu('activite', period)
-        date_debut_chomage = individu('date_debut_chomage', period)
+        activite_i = individu.famille.members('activite', period)
+        date_debut_chomage_i = individu.famille.members('date_debut_chomage', period)
         two_months_ago = datetime64(period.offset(-2, 'month').start)
 
-        chomage_imposable = individu('chomage_imposable', period)
-        ass = individu('ass', period)
+        chomage_imposable_i = individu.famille.members('chomage_imposable', period)
+        ass_i = individu.famille.members('ass', period)
 
         # chomage non indemnisé ou indemnisé mais donnant lieu au versement de l'ass
-        chomage_non_indemnise = (chomage_imposable == 0) + ((chomage_imposable > 0) * (ass > 0))
-
+        chomage_non_indemnise_i = (activite_i == TypesActivite.chomeur) * (chomage_imposable_i == 0) + ((chomage_imposable_i > 0) * (ass_i > 0))
+        chomage_non_indemnise_i = chomage_non_indemnise_i * (date_debut_chomage_i < two_months_ago)
+        chomage_non_indemnise = individu.famille.sum(chomage_non_indemnise_i,role = Famille.PARENT)
         type_conges = individu('type_conges', period)
         conge_parental = (type_conges == TypesConges.conge_parental)
 
-        rsa_mois_dernier = famille('rsa', period.last_month)
+        rsa_mois_dernier = individu.famille('rsa', period.last_month)
 
-        return (((activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) * chomage_non_indemnise + 
+        return min_((((chomage_non_indemnise > 0) + 
                 conge_parental +
-                (rsa_mois_dernier > 0)) > 0)
+                (rsa_mois_dernier > 0)) * individu.has_role(Famille.PARENT)),1)
 
 
 class aide_logement_abattement_revenus_activite_professionnelle(Variable):
@@ -546,7 +547,7 @@ class aide_logement_abattement_revenus_activite_professionnelle(Variable):
             aah = individu('aah',period)
             salaire_imposable = individu('salaire_imposable',period)
             rpns = individu('rpns',period)
-            return max_(1, (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) + 
+            return min_(1, (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) + 
                             (activite == TypesActivite.retraite) * ((salaire_imposable + rpns) == 0) +
                             (aah > 0) * ((salaire_imposable + rpns) == 0))
 
@@ -567,7 +568,7 @@ class aide_logement_abattement_indemnites_chomage(Variable):
             aah = individu('aah',period)
             salaire_imposable = individu('salaire_imposable',period)
             rpns = individu('rpns',period)
-            return max_(1, (activite == TypesActivite.retraite) * ((salaire_imposable + rpns) == 0) +
+            return min_(1, (activite == TypesActivite.retraite) * ((salaire_imposable + rpns) == 0) +
                             (aah > 0) * ((salaire_imposable + rpns) == 0))
 
 
