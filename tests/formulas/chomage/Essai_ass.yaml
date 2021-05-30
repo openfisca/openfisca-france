@@ -67,6 +67,8 @@
           year:1995:30: 2005-01-01
         contrat_de_travail_fin:
           year:1995:30: 2019-01-01
+        date_debut_chomage:
+          2019-01: 2019-01-01
         nombre_annees_travaillees_les_10_dernieres_annees:
           2019: 6
         nombre_jours_travailles_dans_les_x_derniers_mois:
@@ -94,6 +96,7 @@
           2019-10: 0
           2019-11: 0
           2019-12: 0
+<<<<<<< HEAD
         aide_logement_base_ressources_eval_forfaitaire:
           2019-01: 8869.2802734375
           2019-02: 0
@@ -103,6 +106,19 @@
           2019-06: 0
           2019-07: 0
           2019-08: 0
+=======
+        date_debut_chomage:
+          2019-01: 2019-01-01
+        aide_logement_abattement_chomage_indemnise:
+          2019-01: 0
+          2019-02: 0
+          2019-03: 0
+          2019-04: 2592
+          2019-05: 2592
+          2019-06: 2592
+          2019-07: 2592
+          2019-08: 2592
+>>>>>>> 850018626fa85e61cdabd8c3e794a005c3332883
           2019-09: 0
           2019-10: 0
           2019-11: 0
@@ -176,17 +192,4 @@
          2019-10: 242.78
          2019-11: 242.78
          2019-12: 242.78
-        aide_logement_abattement_chomage_indemnise:
-         2019-01: 0
-         2019-02: 0
-         2019-03: 0
-         2019-04: 2592
-         2019-05: 2592
-         2019-06: 2592
-         2019-07: 2592
-         2019-08: 2592
-         2019-09: 0
-         2019-10: 0
-         2019-11: 0
-         2019-12: 0
 
