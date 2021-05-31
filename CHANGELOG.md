@@ -1,5 +1,15 @@
 # Changelog
 
+### 53.0.1 [#1547](https://github.com/openfisca/openfisca-france/pull/1547) 
+
+* Changement majeur.
+* Amélioration technique.
+* Périodes concernées : toutes. 
+* Zones impactées : toutes
+* Détails : Harmonisation du dossier parameters:
+  -- Mise à jour de parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general
+  -- Mise à jour des valeurs et des références (et ajout de nouveaux paramètres) d'après l'IPP
+
 ## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
 
 * Changement majeur.
