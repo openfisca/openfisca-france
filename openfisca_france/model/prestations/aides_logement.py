@@ -524,10 +524,11 @@ class aide_logement_abattement_chomage_indemnise(Variable):
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189"
 
     def formula(individu, period, parameters):
-        activite = individu('activite', period)
+        # activite = individu('activite', period)
+        are = individu('are', period)
         date_debut_chomage = individu('date_debut_chomage', period)
         two_months_ago = datetime64(period.offset(-2, 'month').start)
-        condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
+        condition_abattement = (are > 0) * (date_debut_chomage < two_months_ago)
         revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period.n_2)
         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
 
