@@ -1,0 +1,14 @@
+description: Taux de la Contribution au remboursement de la dette sociale (CRDS) sur les revenus d'activité
+unit: /1
+values:
+  1998-01-01:
+    value: 0.005
+metadata:
+  ux_name: Taux
+  last_review:
+    1998-01-01
+  reference:
+  date_parution_jo:
+  notes:
+  description_en: CRDS
+documentation:

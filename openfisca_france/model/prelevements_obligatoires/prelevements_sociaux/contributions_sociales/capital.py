@@ -319,13 +319,15 @@ class csg_revenus_capital(Variable):
     def formula(foyer_fiscal, period, parameters):
         '''
         Attention : Pour les années avant 2013, cette formule n'est pas entièrement correcte car le taux de la CSG n'était pas unique (distinction revenus du patrimoine et revenus de placement)
+        et il y a aussi un problème pour les années postérieures à 2017/2018
         '''
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        P = parameters(period)
+        csg = parameters(period).taxation_capital.prelevements_sociaux.csg
 
-        return -assiette_csg_revenus_capital * P.prelevements_sociaux.contributions.csg.capital.glob
-
-# revenus du capital soumis au barème
+        # Pour les revenus du patrimoine, le changement de CSG se fait à partir des revenus de 2017,
+        # mais le taux de CSG déductible se fait à partir des revenus 2018. Pour les revenus de placement le timing est différent,
+        # et reste à être pris en compte ici : cf. II.B de l'art. 67 de loi 2017-1837 et 3° et 4° du V.A de l'art. 8 de loi 2017-1836
+        return -assiette_csg_revenus_capital * csg.revenus_du_patrimoine
 
 
 class crds_revenus_capital(Variable):

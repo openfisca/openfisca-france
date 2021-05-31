@@ -1,0 +1,87 @@
+description: Taux de la Contribution Sociale Généralisée (CSG) sur les revenus du capital (produits de placement)
+unit: /1
+values:
+  1990-01-01:
+    value: null
+  1991-02-01:
+    value: 0.011
+  1993-07-01:
+    value: 0.024
+  1997-01-01:
+    value: 0.034
+  1998-01-01:
+    value: 0.075
+  2005-01-01:
+    value: 0.082
+  2018-01-01:
+    value: 0.099
+  2019-01-01:
+    value: 0.092
+metadata:
+  ux_name: Taux global CSG capital (produits de placement)
+  last_review:
+    2019-01-01 
+  reference:
+    2019-01-01:
+      title: Loi 2018-1203 du 22/12/2018 - art. 26 (modifie l'art. L136-8 du CSS)
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/22/CPAX1824950L/jo/texte
+    2018-01-01:
+    - title: Loi 2017-1836 du 30/12/2017 - art. 8 (V) (modifie l'art. L136-8 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358456&cidTexte=JORFTEXT000036339090
+    - title: Loi 2017-1837 du 30/12/2017 - art. 67 (modifie l'art. 154 quinquies)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377512&cidTexte=JORFTEXT000036339197
+    - LOI 2018-1203 du 22/12/2018, art. 26 (modifie l'art. L136-8 du CSS)
+    2017-01-01:
+    - title: Loi 2017-1836 du 30/12/2017 - art. 8 (V) (modifie l'art. L136-8)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358456&cidTexte=JORFTEXT000036339090
+    - title: Loi 2017-1837 du 30/12/2017 - art. 67 (modifie l'art. 154 quinquies)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377512&cidTexte=JORFTEXT000036339197
+    2012-01-01:
+      title: Loi 2012-1509 du 29/12/2012, art. 9 (LF pour 2013)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026872653&cidTexte=JORFTEXT000026856853
+    2007-01-01:
+      title: Loi 2006-1640 du 21/12/2006, art. 20 (LFSS pour 2007)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006759270&cidTexte=JORFTEXT000000817095
+    2005-01-01:
+      title: Loi 2004-810 du 13/08/2004, art. 72
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006759004&cidTexte=JORFTEXT000000625158
+    2004-01-01:
+    - title: Loi 2004-810 du 13/08/2004, art. 72
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006759004&cidTexte=JORFTEXT000000625158
+    - Loi 2004-1485 du 30/12/2004 d (LFR pour 2004), art. 37
+    1998-01-01:
+      title: Loi 97-1164 du 19/12/1997, art. 5 (LFSS pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757359&cidTexte=JORFTEXT000000569121
+    1997-01-01:
+    - title: Loi 96-1160 du 27/12/1996, art. 17 (LFSS pour 1997)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757295&cidTexte=JORFTEXT000000198309
+    - title: Loi 97-1269 du 30/12/1997, art. 80 (LF pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006320041&cidTexte=JORFTEXT000000569621
+    - title: Loi 97-1164 du 19/12/1997, art. 5 (LFSS pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757359&cidTexte=JORFTEXT000000569121
+    1993-07-01: Loi 93-936 du 22/07/1993, art. 7 et 8
+    1991-02-01: Loi 90-1168 du 29/12/1990, art. 132 à 134 (LF pour 1991)
+    1990-01-01: Loi 90-1168 du 29/12/1990, art. 132 et 134 (LF pour 1991)
+  date_parution_jo:
+    2019-01-01: 2018-12-23
+    2018-01-01: 2017-12-31
+    2005-01-01: 2004-08-17
+    1998-01-01: 1997-12-23
+    1997-01-01: 1996-12-27; 1997-12-31; 1997-12-23
+    1993-07-01: 1993-07-23
+    1991-02-01: 1990-12-30
+    1990-01-01: 1990-12-30
+  notes:
+    1996-01-01: Crée art. 154 quinquies du CGI
+  description_en: CSG on financial income
+documentation: |
+  Notes: Ici (4) et (5)
+  En ce qui concerne l'assiette CSG, l'abattement sur l'impôt sur le revenu est appliqué, jusqu'à sa suppression en 1997.
+  (1) Sauf sur les plus-values taxées à l'impôt sur le revenu à un taux proportionnel.
+  (2) Sauf les revenus mobiliers soumis à prélèvement libératoire ou exonérés d'impôt sur le revenu ainsi que les plus-values mobilières.
+  (3) Le recours au prélèvement forfaitaire libératoire est limité à partir de 2013 à moins de 2000 € d'intérêts annuels pour les revenus de placement: ceux-ci ne bénéficient pasde la CSG déductible, au même titre que les bons détenus anonymement. Le PFL est également maintenu pour les bons ou contrats de capitalisation et placements qui ne bénéficient pas de la CSG déductible.
+  (4) Les variations de taux de CSG associés à un texte en vigueur au début d'une année N concerne en général les revenus du patrimoine de l'année N-1 et les revenus de placement de l'année N. Par exemple, pour les hausses votées fin 2017 et en vigueur début 2018, cf. le 3° et 4° du V.A de l'art. 8 de la loi 2017-1836, et le II.B de l'art. 67 de la loi 2017-1837. Pour le passage du taux de CSG à 9,2% en vigueur début 2019, cf. le XIV de l'art. 26 de la loi 2018-1203.
+  (5) Le passage du taux de CSG à 9,2% s'applique à partir des revenus de placement de 2019, et à partir des revenus du patrimoine de 2018, sauf pour les revenus du patrimoine mentionnés à l'art. L.136-6-1 du CSS qui eux, sont concernés par le nouveau prélèvement à la source. Ces revenus sont soumis au taux de 9,2% à compter des revenus réalisés en 2019. Cf. XIV de l'art. 26 de la loi 2018-1203.
+  Référence dans les codes législatifs :
+  Pour les taux globaux de CSG : les articles L136-6, L136-7 et L136-8 du Code de la Sécurité Sociale (repris aux articles 1600-0 C, 1600-0 D et 1600-0 E du Code général des impôts) régissent respectivement la contribution sociale sur les revenus du patrimoine, la contribution sociale sur les revenus de placement et le taux de ces contributions.
+  Pour les taux de CSG déductible : l'article 154 quinquies du CGI régit ladéductibilité partielle de la contribution sociale généralisée

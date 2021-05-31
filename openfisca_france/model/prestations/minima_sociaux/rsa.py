@@ -297,13 +297,13 @@ class crds_mini(Variable):
 
     def formula_2016_01_01(famille, period, parameters):
         ppa = famille('ppa', period)
-        taux_crds = parameters(period).prelevements_sociaux.contributions.crds.taux
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
 
         return - taux_crds * ppa
 
     def formula_2009_06_01(famille, period, parameters):
         rsa_activite = famille('rsa_activite', period)
-        taux_crds = parameters(period).prelevements_sociaux.contributions.crds.taux
+        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
 
         return - taux_crds * rsa_activite
 

@@ -1,0 +1,23 @@
+description: Abattement de la Contribution au remboursement de la dette sociale (CRDS) sur les revenus d'activité
+unit: /1 # Unit de l'abattement 
+brackets:
+  - rate:
+      1998-01-01:
+        value: 0.05
+      2005-01-01:
+        value: 0.03
+      2012-01-01:
+        value: 0.0175
+    threshold:
+      1998-01-01:
+        value: 0.0
+  - rate:
+      2011-01-01:
+        value: 0.0
+    threshold:
+      2011-01-01:
+        value: 4.0
+metadata:
+    ux_name: Abattement
+    last_review:
+      2011-01-01
