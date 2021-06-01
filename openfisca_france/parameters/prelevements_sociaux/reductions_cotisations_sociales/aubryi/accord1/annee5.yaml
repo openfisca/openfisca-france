@@ -1,0 +1,29 @@
+description: Année 5 de l'accord 1 des aides incitatives à la RTT (Aubry I) (1998-2006) des réductions de cotisation sociales
+unit: currency-FRF
+values:
+  1998-07-01:
+    value: 5000.0
+  2002-01-01:
+    value: null
+metadata:
+  ux_name: Année 5
+  last_review:
+    2002-01-01
+  description_en: Incentives to the reduction of worked time ("RTT") (Aubry I)
+documentation: |
+  Notes :
+  La date d'effet correspond ici à la date de signature de l'accord de réduction du temps de travail.
+  Le dispositif Aubry I accorde des réductions forfaitaires de cotisations, dont le montant annuel par salarié varie selon la présence d'un accord de réduction du temps de travail, l'importance de cette réduction et la nature de l'accord.
+  Incitation financière à la réduction du temps de travail portant application de l'article 3 de la Loi 98-461 du 13/06/1998 d'orientation et d'incitation relative à la réduction du temps de travail
+  Accord1 : Réduction du temps de travail d'au moins 10 % assortie d'une augmentation ou préservation de 6 % des effectifs concernés
+  Accord2 : Réduction du temps de travail d'au moins 15 % assortie d'une augmentation ou préservation de 9 % des effectifs concernés
+  Accord3 : Majoration de l'aide pour les entreprises qui prennent des engagements supplémentaires en termes d'emploi
+  Accord4 : Majoration spécifique pour les entreprises dont l'effectif est constitué d'au moins 60 % d'ouvriers et d'au moins 70 % de salariés de moins de 1,5 Smic
+  Les conventions signées en 2000 et 2001 concernent uniquement les entreprises de 20 salariés et moins, puisque la durée légale de travail est passée à 35h pour les autres entreprises dès 2000.
+  Période d'application du dispositif :
+  Pour la signature de conventions, la période d'application du dispositif Aubry I s'étend du 1er juillet 1998 au 31 décembre 1999 pour les entreprises de plus de 21 salariés ou plus, et jusqu'au 31 décembre 2001 pour les entreprises de 20 salariés et moins.
+  Toutefois, les incitations AubryI bénéficiant à l'employeur pendant 5 années suivant la conclusion d'une convention de RTT, certaines entreprises ont bénéficié des réductions jusque fin 2006.
+  Sources :
+  Loi 98-461 du 13/06/1998 (JORF 14/06/1998), en particulier l'article 3, détermine le principe du dispositif.
+  Annexes des décrets 98-494 du 22/06/1998 et 2000-84 du 31/01/2000, donnent le montant des aides forfaitaires.
+  Mémento pratique Social, Ed. Francis Lefevre, paragraphe 382 pour les éditions 2003 et 2004, paragraphe 302 pour l'édition 2006, stipulent que les entreprises ayant signé une convention Aubry I continuent de bénéficier des allègements même après le 31 décembre 1999 (pour les entreprises de plus de 21 salariés et plus) ou après le 31 décembre 2001 (pour les entreprises 20 salariés ou moins).
