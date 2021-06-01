@@ -415,7 +415,7 @@ def compute_allegement_cotisation_allocations_familiales(individu, period, param
     law = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
 
     # Montant de l'allegment
-    return (assiette < law.plafond_en_nombre_de_smic * smic_proratise) * law.reduction * assiette
+    return (assiette < law.plafond_smic * smic_proratise) * law.reduction * assiette
 
 
 ###############################
