@@ -1,5 +1,15 @@
 # Changelog
 
+# 56.0.0 [#1549](https://github.com/openfisca/openfisca-france/pull/1549) 
+
+* Changement majeur.
+* Amélioration technique.
+* Périodes concernées : toutes. 
+* Zones impactées : toutes
+* Détails : Harmonisation du dossier parameters:
+  -- Mise à jour de parameters.prelevements_sociaux.reductions_cotisations_sociales
+  -- Mise à jour des valeurs et des références (et ajout de nouveaux paramètres) d'après l'IPP
+  
 ### 55.0.1 [#1571](https://github.com/openfisca/openfisca-france/pull/1571)
 
 * Correction d'un bug.
@@ -125,7 +135,8 @@
   - Ajoute l'éligibilité et le calcul du montant de l'aide aux jeunes diplômes et anciens boursiers.
   - L'aide fait partie du dispositif "plan de relance Jeunes" faisant suite à la crise Covid-19.
 
-## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541)
+## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
+>>>>>>> c260ea28a (Bump version)
 
 * Changement majeur.
 * Évolution du système socio-fiscal non rétrocompatible
