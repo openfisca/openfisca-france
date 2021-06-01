@@ -2,7 +2,8 @@
   description: Not in Employement, Education or Training
   period: 2019-01
   input:
-    salaire_net: 1
+    salaire_net: [1, 0, 0, 0, 0]
+    scolarite: [??, college, etudiant, ??, ??]
   output:
     garantie_jeunes_neet: false
 
