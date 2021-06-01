@@ -14,9 +14,8 @@ values:
   1974-01-01:
     value: 0.0248
 metadata:
-  ux_name:
-  last_review: Presse quotidienne
-    1969-01-01
+  ux_name: Presse quotidienne
+  last_review: 1969-01-01
   reference:
     1974-01-01: Arrêté du 15/01/1974
     1973-03-01: Arrêté du 31/01/1973
