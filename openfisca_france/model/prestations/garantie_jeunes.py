@@ -29,21 +29,36 @@ class garantie_jeunes_max(Variable):
     label = "Montant maximal de l'allocation Garantie Jeune"
     reference = [
         "Article D5131-20 du code du travail",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DED54A598193DDE1DF59E0AE16BDE87D.tplgfr21s_3?idArticle=LEGIARTI000033709227&cidTexte=LEGITEXT000006072050"    
-        "https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/",
-        "https://www.service-public.fr/particuliers/vosdroits/F32700"
-    ]
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DED54A598193DDE1DF59E0AE16BDE87D.tplgfr21s_3?idArticle=LEGIARTI000033709227&cidTexte=LEGITEXT000006072050",
+        ]
 
     def formula(individu, period, parameters):
-        """
-       SMIC : désigne le montant du SMIC en net
-       rev_activites_i : désigne les revenus d'activité de l'individu
-       garantie_jeunes_max : désigne le montant de l'allocation maximum
-       point_bascule : désigne le point de bascule où le calcul commence à être dégressif
-       """
-        SMIC = 1243.67
-        garantie_jeunes_max = 497.50
-        point_bascule = 300
+        params = parameters(period).prestations.minima_sociaux.rsa
+        montant_base = params.montant_de_base_du_rsa
+        taux_1_personne = params.forfait_logement.taux_1_personne
+        return montant_base * (1 - taux_1_personne)
+
+
+class garantie_jeunes_montant(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+    label = "Montant maximal de l'allocation Garantie Jeune"
+    reference = [
+        "https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/",
+        "https://www.service-public.fr/particuliers/vosdroits/F32700"
+        ]
+
+    def formula(individu, period, parameters):
+        garantie_jeunes_max = individu("garantie_jeunes_max", period)
+
+        cotsoc = parameters(period).cotsoc
+        smic_mensuel_brut = cotsoc.gen.smic_h_b * cotsoc.gen.nb_heure_travail_mensuel
+
+        degressivite = parameters(period).prestations.garantie_jeunes.degressivite
+        plafond = degressivite.plafond_en_pourcentage_du_smic_brut * smic_mensuel_brut
+        seuil_degressivite = degressivite.seuil
+
         types_revenus_activites = [
             'revenus_stage_formation_pro',
             'indemnites_journalieres',
@@ -55,28 +70,13 @@ class garantie_jeunes_max(Variable):
             'rente_accident_travail',
             'stage_gratification',
             'bourse_enseignement_sup'
-        ]
-        rev_activites_i = (
+            ]
+
+        base_ressource = (
             sum(individu(type_revenu, period) for type_revenu in types_revenus_activites))
 
-        # Si les ressources dépassent le plafond du SMIC,
-        # l'individu ne peut pas bénéficier de l'aide.
-        if rev_activites_i >= SMIC:
-            return 0
+        return garantie_jeunes_max * min_(1, max_(0, (base_ressource - plafond) / (seuil_degressivite - plafond)))
 
-        # Si les revenus d'activités sont inférieures au montant maximum prévu par la garantie jeune,
-        # l'individu bénéficie pleinement de l'aide.
-        if rev_activites_i < point_bascule:
-            return garantie_jeunes_max
-
-
-        # Si les revenus 'activités sont supérieures à 300€ et inférieures au SMIC, le calcul
-        # de la garantie jeune s'effectue de manière dégressive selon la formule suivante :
-        # garantie_jeune = (RevAct - SMIC) x [GJm / (PB - Smic)]
-        if rev_activites_i > 300 and rev_activites_i < SMIC:
-            return (rev_activites_i - SMIC) * (garantie_jeunes_max / (point_bascule - SMIC))
-
-        return garantie_jeunes_max
 
 class garantie_jeunes_eligibilite_age(Variable):
     value_type = bool
@@ -99,7 +99,7 @@ class garantie_jeunes(Variable):
     reference = ["https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/", "https://www.service-public.fr/particuliers/vosdroits/F32700"]
 
     def formula(individu, period, parameters):
-        montant = individu('garantie_jeunes_max', period)
+        montant = individu('garantie_jeunes_montant', period)
         neet = individu('garantie_jeunes_neet', period)
         age_ok = individu('garantie_jeunes_eligibilite_age', period)
-        return montant  * neet * age_ok
+        return montant * neet * age_ok
