@@ -349,7 +349,7 @@ def compute_allegement_fillon(individu, period, parameters):
     # au titre des salariés temporaires pour lesquels elle est tenue à
     # l’obligation d’indemnisation compensatrice de congés payés.
 
-    fillon = parameters(period).prelevements_sociaux.fillon
+    fillon = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.fillon
 
     # Du 2003-07-01 au 2005-06-30
     if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
@@ -412,7 +412,7 @@ def compute_allegement_cotisation_allocations_familiales(individu, period, param
     smic_proratise = individu('smic_proratise', period, options = [ADD])
     # TODO: Ne semble pas dépendre de la taille de l'entreprise mais à vérifier
     # taille_entreprise = individu('taille_entreprise', period)
-    law = parameters(period).prelevements_sociaux.allegement_cotisation_allocations_familiales
+    law = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.allegement_cotisation_allocations_familiales
 
     # Montant de l'allegment
     return (assiette < law.plafond_en_nombre_de_smic * smic_proratise) * law.reduction * assiette
@@ -474,6 +474,6 @@ def compute_allegement_progressif(individu, period, parameters, variable_name, c
 
 
 def taux_exo_cice(assiette_allegement, smic_proratise, parameters):
-    cice = parameters.prelevements_sociaux.cice
+    cice = parameters.prelevements_sociaux.reductions_cotisations_sociales.cice
     taux_cice = ((assiette_allegement / (smic_proratise + 1e-16)) <= cice.plafond_smic) * cice.taux
     return taux_cice
