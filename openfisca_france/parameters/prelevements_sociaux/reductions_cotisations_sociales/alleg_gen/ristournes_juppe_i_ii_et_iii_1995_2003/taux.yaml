@@ -44,7 +44,7 @@ metadata:
     1996-10-01: "Ristourne Juppé II (plafond : 1,33 SMIC)"
     1995-09-01: "Ristourne Juppé I (plafond : 1,2 SMIC). Cumulable avec réduction cotisation famille"
   description_en: Global reduction in SSCs (1993-2003)
-  documentation: |
+documentation: |
   Note :
   Pour les ristournes Juppé, un montant maximal de réduction est fixé par décret. Il correspond à la réduction dont bénéficie un employeur pour un salarié au SMIC à temps plein.
   Le montant de la ristourne se calcule comme suit:
