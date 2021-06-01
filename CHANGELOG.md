@@ -1,12 +1,13 @@
 # Changelog
 
-## 51.17.0 [#1532](https://github.com/openfisca/openfisca-france/pull/1532)
+## [#1532](https://github.com/openfisca/openfisca-france/pull/1532)
 
 * Amélioration technique. 
 * Périodes concernées : toutes. 
-* Zones impactées : `model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/revenus_capitaux_prelevement_forfaitaire_unique_ir`.
+* Zones impactées : 
+  - `model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique`
 * Détails :
-  - Ajout du set_input_divide_by_period sur
+  - Permet la division automatique des `revenus_capitaux_prelevement_forfaitaire_unique_ir` annuels en revenus mensuels
 
 ## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
 
