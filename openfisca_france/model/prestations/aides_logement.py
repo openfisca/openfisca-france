@@ -184,7 +184,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         participation_personnelle = famille('aide_logement_participation_personnelle', period)
 
         montant_accedant_et_foyer = famille('aides_logement_accedant_et_foyer', period)
-        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
+        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle - 5)
 
         montant = select([locataire, accedant + locataire_logement_foyer],
                          [montant_locataire, montant_accedant_et_foyer])
@@ -419,7 +419,8 @@ class aide_logement_base_ressources_patrimoine(Variable):
         valeur_locative_terrains_non_loues_i = famille.members('valeur_locative_terrains_non_loues', period)
         valeur_locative_terrains_non_loues = famille.sum(valeur_locative_terrains_non_loues_i)
 
-        # Les abatements sont les mêmes que pour le RSA
+        # Les abatements sont les mêmes que pour le 
+        
         abattements = parameters(period).prestations.minima_sociaux.rsa.patrimoine
 
         capitaux_non_productifs = livret_a + epargne_revenus_non_imposables
