@@ -1,5 +1,19 @@
 # Changelog
 
+## 53.2.0 [#1511](https://github.com/openfisca/openfisca-france/pull/1511)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `model/base.py`
+  - `model/prestations/jeunes/`
+  - `model/prestations/education.py`
+  - `model/prestations/enseignement_superieur/aide_merite.py`
+  - `parameters/bourses_enseignement_superieur/aide_merite.yaml`
+* Détails :
+  - Ajoute l'éligibilité et le montant annuel de l'aide au mérite.
+  - Rassemble les prestations à destinations des jeunes en un répertoire.
+
 ## 53.1.0 [#1501](https://github.com/openfisca/openfisca-france/pull/1501/)
 
 * Évolution du système socio-fiscal.

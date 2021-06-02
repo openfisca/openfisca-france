@@ -348,3 +348,15 @@ class fin_etudes_etranger(Variable):
     entity = Individu
     label = "Dernier jour de la formation ou stage dans un pays étranger dans le cadre d'un cycle d'études supérieures"
     definition_period = ETERNITY
+
+
+class mention_baccalaureat(Variable):
+    value_type = Enum
+    possible_values = TypesMention
+    default_value = TypesMention.non_renseignee
+    entity = Individu
+    label = "Mention obtenue au baccalauréat (hors mentions honorifiques)"
+    definition_period = ETERNITY
+    documentation = '''
+    En cas de multiples baccalauréats, meilleure mention obtenue.
+    '''
