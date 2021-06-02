@@ -58,7 +58,7 @@ aide_jeunes_diplomes_anciens_boursiers:
         value: 30
   taux_bourse:
     description: Pourcentage du montant net de la bourse perçue la dernière année et reversé par l'aide
-    unit: rate
+    unit: /1
     values:
       2021-02-05:
         value: 0.7
