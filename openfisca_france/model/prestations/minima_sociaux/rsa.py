@@ -533,7 +533,7 @@ class rsa_revenu_activite_individu(Variable):
         if period.start.date >= date(2017, 1, 1):
             revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', period.this_year)
 
-        return revenus_moyennes + revenus_tns_annualises
+        return (revenus_moyennes + revenus_tns_annualises) * not_(possede_ressources_substitution)
 
 
 class rsa_montant(Variable):

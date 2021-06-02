@@ -8,6 +8,7 @@ class autonomie_financiere(Variable):
     entity = Individu
     label = "Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = [
         'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750602&cidTexte=LEGITEXT000006073189',
         'https://www.service-public.fr/particuliers/vosdroits/F16947'

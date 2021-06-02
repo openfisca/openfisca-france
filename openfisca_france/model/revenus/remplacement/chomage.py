@@ -158,6 +158,8 @@ class are(Variable):
     entity = Individu
     label = "Allocation chômage d'aide au retour à l'emploi (ARE)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
+
 
     def formula(individu, period, parameters):
         are_eligibilite_individu = individu('are_eligibilite_individu', period)
