@@ -538,3 +538,16 @@ class cumul_are_nette_rsa(Variable):
         rsa = individu.famille('rsa', period)
 
         return are_nette + rsa
+
+class cumul_are_nette_rsa_apl(Variable):
+    value_type = float
+    entity = Individu
+    label = "Cumul de l'ARE, du RSA et des APL"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        are_nette = individu('are_nette', period)
+        rsa = individu.famille('rsa', period)
+        apl = individu.famille('apl', period)
+
+        return are_nette + rsa + apl
