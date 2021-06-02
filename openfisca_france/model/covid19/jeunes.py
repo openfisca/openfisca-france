@@ -7,14 +7,14 @@ from openfisca_france.model.base import (
     )
 
 
-class aide_jeunes_diplomes_anciens_boursiers_montant_mensuel_reference(Variable):
+class aide_jeunes_diplomes_anciens_boursiers_base_ressources(Variable):
     value_type = float
     entity = Individu
     reference = [
         "Article 3 du décret n° 2020-1789 du 30 décembre 2020 instituant une aide financière à titre exceptionnel à destination des jeunes diplômés en recherche d'emploi anciennement boursiers de l'enseignement supérieur",
         "https://www.legifrance.gouv.fr/eli/decret/2020/12/30/2020-1789/jo/article_3"
         ]
-    label = "Montant mensuel de référence de l'aide perçue au cours de la dernière année d'étude"
+    label = "Ressources mensuelles de référence de l'aide perçue au cours de la dernière année d'étude"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -59,7 +59,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
             ) * (datetime64('2020') <= date_diplome) * (date_diplome < datetime64('2022'))
 
         # bourse au cours de la dernière année de préparation du diplôme
-        condition_bourse = individu("aide_jeunes_diplomes_anciens_boursiers_montant_mensuel_reference", period) > 0
+        condition_bourse = individu("aide_jeunes_diplomes_anciens_boursiers_base_ressources", period) > 0
 
         # être inscrit sur la liste des demandeurs d’emploi
         demandeur_emploi = individu("activite", period) == TypesActivite.chomeur
@@ -89,7 +89,7 @@ class aide_jeunes_diplomes_anciens_boursiers_montant(Variable):
     def formula_2021_02_05(individu, period, parameters):
         aide_jeunes_diplomes_anciens_boursiers_eligibilite = individu("aide_jeunes_diplomes_anciens_boursiers_eligibilite", period)
 
-        bourse_precedente = individu("aide_jeunes_diplomes_anciens_boursiers_montant_mensuel_reference", period)
+        bourse_precedente = individu("aide_jeunes_diplomes_anciens_boursiers_base_ressources", period)
         parameters_aide = parameters(period).covid19.aide_jeunes_diplomes_anciens_boursiers
 
         part_bourse = bourse_precedente * parameters_aide.taux_bourse
