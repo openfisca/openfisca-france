@@ -578,6 +578,25 @@ class aide_logement_neutralisation_rsa(Variable):
 
         return revenus_a_neutraliser * (rsa_mois_dernier > 0)
 
+class aide_logement_neutralisation_ass(Variable):
+    value_type = float
+    entity = Famille
+    label = "Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
+    definition_period = MONTH
+    reference = [
+        # Article R532-7 du Code de la sécurité sociale
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189",
+        # Article R351-14-1 du Code de la construction et de l'habitation
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006897410"
+        ]
+
+    def formula(famille, period, parameters):
+        ass_mois_dernier = famille.members('ass', period.last_month)
+
+        revenus_a_neutraliser_i = famille.members('revenu_assimile_salaire_apres_abattements', period.n_2)
+        revenus_a_neutraliser = famille.sum(revenus_a_neutraliser_i)
+
+        return revenus_a_neutraliser * (ass_mois_dernier > 0)
 
 class aide_logement_base_ressources_defaut(Variable):
     value_type = float
@@ -596,6 +615,7 @@ class aide_logement_base_ressources_defaut(Variable):
         abattement_depart_retraite_i = famille.members('aide_logement_abattement_depart_retraite', period)
         abattement_depart_retraite = famille.sum(abattement_depart_retraite_i, role = Famille.PARENT)
         neutralisation_rsa = famille('aide_logement_neutralisation_rsa', period)
+        neutralisation_ass = famille('aide_logement_neutralisation_ass', period)
         abattement_ressources_enfant = parameters(period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
         base_ressources_enfants = famille.sum(
             max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
@@ -614,7 +634,7 @@ class aide_logement_base_ressources_defaut(Variable):
             + base_ressources_enfants
             + ressources_patrimoine
             + aide_logement_base_revenus_fiscaux
-            - (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
+            - (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa + neutralisation_ass)
             )
 
         # Abattement forfaitaire pour double activité
