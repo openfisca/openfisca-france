@@ -7,10 +7,10 @@
       parents: [parent1, parent2]
       en_couple: true
       af_nbenf: 0
-      aah_base_ressources: 16790.72
     individus:
       parent1:
         aah_eligible: true
+        aah_base_ressources: 16790.72
       parent2:
         aah_eligible: false
     foyers_fiscaux:
@@ -43,10 +43,10 @@
       parents: [parent1, parent2]
       en_couple: true
       af_nbenf: 0
-      aah_base_ressources: 8777.70
     individus:
       parent1:
         aah_eligible: true
+        aah_base_ressources: 8777.70
       parent2:
         aah_eligible: false
     foyers_fiscaux:
@@ -79,12 +79,12 @@
       parents: [parent1, parent2]
       en_couple: true
       af_nbenf: 0
-      aah_base_ressources: 12585.68
     individus:
       parent1:
         aah_eligible: false
       parent2:
         aah_eligible: true
+        aah_base_ressources: 12585.68
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
