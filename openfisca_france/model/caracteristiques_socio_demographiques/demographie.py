@@ -40,9 +40,27 @@ class adoption(Variable):
 class garde_alternee(Variable):
     value_type = bool
     entity = Individu
-    label = 'Enfant en garde alternée'
+    label = "Enfant en garde alternée"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
+
+class plus_haut_diplome_niveau(Variable):
+    value_type = Enum
+    default_value = TypesNiveauDiplome.non_renseigne
+    possible_values = TypesNiveauDiplome  # defined in model/base.py
+    entity = Individu
+    label = "Plus haut niveau de diplôme obtenu"
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+
+
+class plus_haut_diplome_date_obtention(Variable):
+    value_type = date
+    default_value = date.max
+    entity = Individu
+    label = "Date d'obtention du diplôme de plus haut niveau"
+    definition_period = YEAR
 
 
 class alternant(Variable):
@@ -51,6 +69,15 @@ class alternant(Variable):
     entity = Individu
     definition_period = MONTH
     reference = "https://www.service-public.fr/particuliers/vosdroits/N11240"
+
+
+class niveau_diplome_formation(Variable):
+    value_type = Enum
+    default_value = TypesNiveauDiplome.non_renseigne
+    possible_values = TypesNiveauDiplome  # defined in model/base.py
+    entity = Individu
+    label = "Niveau du diplôme en cours de préparation"
+    definition_period = YEAR
 
 
 class activite(Variable):

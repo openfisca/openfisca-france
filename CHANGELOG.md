@@ -1,15 +1,33 @@
 # Changelog
 
-## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
+## 53.1.0 [#1501](https://github.com/openfisca/openfisca-france/pull/1501/)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 05/02/2021 et jusqu'au 30/06/2021.
+* Zones impactées : 
+  - `model/base.py`
+  - `model/caracteristiques_socio_demographiques/demographie.py`
+  - `model/covid19*`
+  - `model/prestations/bourses_superieur.py`
+  - `model/prestations/enseignement_superieur/bourse_criteres_sociaux.py`
+  - `model/revenus/autres.py`
+  - `model/revenus/remplacement/chomage.py`
+  - `parameters/bourses_enseignement_superieur/criteres_sociaux/nombre_mensualites.yaml`
+  - `parameters/covid19.yaml`
+* Détails :
+  - Ajoute l'éligibilité et le calcul du montant de l'aide aux jeunes diplômes et anciens boursiers.
+  - L'aide fait partie du dispositif "plan de relance Jeunes" faisant suite à la crise Covid-19.
+
+# 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
 
 * Changement majeur.
 * Amélioration technique.
 * Périodes concernées : toutes. 
 * Zones impactées : toutes
-* Détails : Harmonisation du dossier parameters:
-  -- Arborescence selon le modèle IPP
-  -- Nouveau formatage des fichiers .yaml
-  -- Mise à jour des valeurs et des références (et ajout de nouveaux paramètres) d'après l'IPP
+* Détails : Harmonisation du dossier parameters :
+  - Arborescence selon le modèle IPP
+  - Nouveau formatage des fichiers .yaml
+  - Mise à jour des valeurs et des références (et ajout de nouveaux paramètres) d'après l'IPP
   
 ### 52.2.0 [#1540](https://github.com/openfisca/openfisca-france/pull/1540) 
 
