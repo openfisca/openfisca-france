@@ -55,7 +55,7 @@ class niveau_plus_haut_diplome(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class date_obtention_plus_haut_diplome(Variable):
+class plus_haut_diplome_date_obtention(Variable):
     value_type = date
     default_value = date.max
     entity = Individu

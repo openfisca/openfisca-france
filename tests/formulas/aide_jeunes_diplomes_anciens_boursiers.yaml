@@ -5,7 +5,7 @@
     age: [29, 29, 29, 29]
     niveau_plus_haut_diplome:
       2021: [niveau_5, niveau_5, niveau_5, niveau_5]
-    date_obtention_plus_haut_diplome:
+    plus_haut_diplome_date_obtention:
       2021: ['2020-01-01', '2021', '2021', '2022-01-01']
     bourse_criteres_sociaux:
       month:2020-01:10: [1000, false, 1000, 1000]
