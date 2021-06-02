@@ -40,7 +40,6 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
     documentation = '''
     Conditions non modélisées :
     Être disponible pour occuper un emploi, le jour de la demande.
-    Ne pas être en formation (de niveau 5 minimum) au moment de la demande.
     Ne pas être inscrit dans une nouvelle formation (de niveau 5 minimum) dans l'année universitaire qui suit l'obtention du diplôme.
     '''
 
@@ -64,6 +63,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
 
         # être inscrit sur la liste des demandeurs d’emploi
         demandeur_emploi = individu("activite", period) == TypesActivite.chomeur
+        # ne pas être en formation (de niveau 5 minimum) au moment de la demande.
         pas_en_formation = individu("niveau_diplome_formation", annee) == TypesNiveauDiplome.non_renseigne
         condition_activite = demandeur_emploi * pas_en_formation
 
