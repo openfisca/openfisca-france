@@ -12,10 +12,10 @@ class TypesNiveauDiplome(Enum):
     non_renseigne = 'Non renseigné'
     niveau_1 = 'Niveau 1 - École maternelle'
     niveau_2 = 'Niveau 2 - École élémentaire'
-    niveau_3 = 'Niveau 3 - CAP DNP CFG'
+    niveau_3 = 'Niveau 3 - CAP, DNP, CFG'
     niveau_4 = 'Niveau 4 - Baccalauréat'
-    niveau_5 = 'Niveau 5 - Bac+2 BTS CPGE'
-    niveau_6 = 'Niveau 6 - Bac+3 Licence BUT'
+    niveau_5 = 'Niveau 5 - Bac+2 BTS, CPGE'
+    niveau_6 = 'Niveau 6 - Bac+3 Licence, BUT'
     niveau_7 = 'Niveau 7 - Bac+5 Master'
     niveau_8 = 'Niveau 8 - Bac+8 Doctorat'
 
