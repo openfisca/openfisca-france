@@ -3,7 +3,7 @@
   absolute_error_margin: 0.01
   input:
     age: [29, 29, 29, 29]
-    niveau_plus_haut_diplome:
+    plus_haut_diplome_niveau:
       2021: [niveau_5, niveau_5, niveau_5, niveau_5]
     plus_haut_diplome_date_obtention:
       2021: ['2020-01-01', '2021', '2021', '2022-01-01']

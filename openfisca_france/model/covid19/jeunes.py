@@ -49,7 +49,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
         condition_age = individu("age", period) < age_limite
 
         annee = period.this_year
-        niveau_diplome = individu("niveau_plus_haut_diplome", annee)
+        niveau_diplome = individu("plus_haut_diplome_niveau", annee)
         date_diplome = individu("plus_haut_diplome_date_obtention", annee)
 
         condition_diplome = (

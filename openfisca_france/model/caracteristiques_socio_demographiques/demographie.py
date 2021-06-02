@@ -45,7 +45,7 @@ class garde_alternee(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class niveau_plus_haut_diplome(Variable):
+class plus_haut_diplome_niveau(Variable):
     value_type = Enum
     default_value = TypesNiveauDiplome.non_renseigne
     possible_values = TypesNiveauDiplome  # defined in model/base.py
