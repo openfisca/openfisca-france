@@ -10,8 +10,8 @@ class TypesNiveauDiplome(Enum):
     # https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037964754/
     __order__ = 'non_renseigne niveau_1 niveau_2 niveau_3 niveau_4 niveau_5 niveau_6 niveau_7 niveau_8'
     non_renseigne = 'Non renseigné'
-    niveau_1 = 'Niveau 1 - École maternelle et élémentaire'
-    niveau_2 = 'Niveau 2 - École maternelle et élémentaire'
+    niveau_1 = 'Niveau 1 - École maternelle'
+    niveau_2 = 'Niveau 2 - École élémentaire'
     niveau_3 = 'Niveau 3 - CAP DNP CFG'
     niveau_4 = 'Niveau 4 - Baccalauréat'
     niveau_5 = 'Niveau 5 - Bac+2 BTS CPGE'
