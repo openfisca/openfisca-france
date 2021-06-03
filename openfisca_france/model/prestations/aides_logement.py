@@ -419,8 +419,8 @@ class aide_logement_base_ressources_patrimoine(Variable):
         valeur_locative_terrains_non_loues_i = famille.members('valeur_locative_terrains_non_loues', period)
         valeur_locative_terrains_non_loues = famille.sum(valeur_locative_terrains_non_loues_i)
 
-        # Les abatements sont les mêmes que pour le 
-        
+        # Les abatements sont les mêmes que pour le
+
         abattements = parameters(period).prestations.minima_sociaux.rsa.patrimoine
 
         capitaux_non_productifs = livret_a + epargne_revenus_non_imposables
@@ -581,7 +581,7 @@ class aide_logement_neutralisation_rsa(Variable):
 class aide_logement_neutralisation_ass(Variable):
     value_type = float
     entity = Famille
-    label = "Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
+    label = "Abattement sur les revenus n-2 pour les bénéficiaires de l'ASS"
     definition_period = MONTH
     reference = [
         # Article R532-7 du Code de la sécurité sociale
@@ -591,11 +591,9 @@ class aide_logement_neutralisation_ass(Variable):
         ]
 
     def formula(famille, period, parameters):
-        ass_mois_dernier = famille.members('ass', period.last_month)
-
+        ass_mois_dernier = famille.sum(famille.members('ass', period.last_month))
         revenus_a_neutraliser_i = famille.members('revenu_assimile_salaire_apres_abattements', period.n_2)
         revenus_a_neutraliser = famille.sum(revenus_a_neutraliser_i)
-
         return revenus_a_neutraliser * (ass_mois_dernier > 0)
 
 class aide_logement_base_ressources_defaut(Variable):
