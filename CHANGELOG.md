@@ -1,5 +1,38 @@
 # Changelog
 
+## 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547) 
+
+* Changement majeur.
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py
+  - parameters/prelevements_sociaux/
+    - abat_red/
+    - accidents/
+    - casa/ 
+    - cnav/           
+    - csa/
+    - css_chom/            
+    - famille/         
+    - mmid_am/
+    - mmid_ret/
+    - penibilite
+    - red_a
+    - red_j/
+    - red_m/
+    - ss/
+    - veuvage/
+  
+* Détails :
+  - Harmonise les paramètres de CSG et CRDS:
+    - Harmonise ces paramètres OpenFisca avec les barèmes IPP
+    - Applique l'arborescence du modèle IPP
+    - Ajoute parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/
+    - Déplace le contenu de parameters/prelevements_sociaux/abat_red...veuvage (cf. ci-dessous) vers parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/abat_red...veuvage  
+    - Ajoute de nouvelles clefs aux metadata: date_of_issue_in_oj, description_en, last_review, notes, ux_name
+    - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
+  
 ## 53.3.0 [#1543](https://github.com/openfisca/openfisca-france/pull/1543) 
 
 * Évolution du système socio-fiscal.
@@ -42,16 +75,31 @@
   - Ajoute l'éligibilité et le calcul du montant de l'aide aux jeunes diplômes et anciens boursiers.
   - L'aide fait partie du dispositif "plan de relance Jeunes" faisant suite à la crise Covid-19.
 
-# 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
+## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
 
 * Changement majeur.
 * Amélioration technique.
-* Périodes concernées : toutes. 
-* Zones impactées : toutes
-* Détails : Harmonisation du dossier parameters :
-  - Arborescence selon le modèle IPP
-  - Nouveau formatage des fichiers .yaml
-  - Mise à jour des valeurs et des références (et ajout de nouveaux paramètres) d'après l'IPP
+* Périodes concernées : toutes.
+* Zones impactées :
+  -model/
+    - prelevements_obligatoires/impot_revenu/ir.py
+    - prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py
+    - prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py
+    - prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py
+    - prestations/minima_sociaux/rsa.py
+    - parameters/
+    - prelevements_sociaux/contributions/ désormais nommé prelevements_sociaux/contributions_sociales/
+    - taxation_capital/prelevements_sociaux/
+    - reforms/inversion_directe_salaires.py
+* Détails :
+  - Harmonise les paramètres de CSG et CRDS:
+    - Harmonise ces paramètres OpenFisca avec les barèmes IPP
+    - Applique l'arborescence du modèle IPP
+    - Ajoute parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/
+    - Déplace le contenu de parameters/prelevements_sociaux/contributions 
+    - Ajoute de nouvelles clefs aux metadata: date_parution_jo, description_en, last_review, notes, ux_name
+    - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
+  - Ajoute le script de vérification openfisca_france/check_longueur_chemins.py
 
 ### 52.2.0 [#1540](https://github.com/openfisca/openfisca-france/pull/1540) 
 
