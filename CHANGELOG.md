@@ -2,13 +2,30 @@
 
 # 56.0.0 [#1549](https://github.com/openfisca/openfisca-france/pull/1549) 
 
-* Changement majeur.
-* Amélioration technique.
-* Périodes concernées : toutes. 
-* Zones impactées : toutes
-* Détails : Harmonisation du dossier parameters:
-  -- Mise à jour de parameters.prelevements_sociaux.reductions_cotisations_sociales
-  -- Mise à jour des valeurs et des références (et ajout de nouveaux paramètres) d'après l'IPP
+* Changement majeur. 
+* Évolution du système socio-fiscal non rétrocompatible
+* Périodes concernées : toutes.
+* Zones impactées :
+  - model/prelevements_obligatoires/
+    -- prelevements_sociaux/cotisations_sociales/allegements.py
+  - parameters/prelevements_sociaux/reductions_cotisations_sociales/
+    -- alleg_gen/
+    -- allegement_cotisation_allocations_familiales/
+    -- aubryi/
+    -- aubryii/
+    -- cice/
+    -- fillon/
+    -- robien/
+* Détails :
+  - Harmonise les paramètres des réductions de cotisations sociales:
+    -- Harmonise ces paramètres OpenFisca avec les barèmes IPP
+    -- Applique l'arborescence du modèle IPP
+    -- Ajoute parameters/prelevements_sociaux/reductions_cotisations_sociales/
+    -- Déplace le contenu de parameters/prelevements_sociaux/ 
+    -- Ajoute de nouvelles clefs aux metadata: date_of_issue_oj, description_en, last_review, notes, ux_name
+    -- Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
+  - Ajoute le script de vérification openfisca_france/check_longueur_chemins.py
+
   
 ### 55.0.1 [#1571](https://github.com/openfisca/openfisca-france/pull/1571)
 
