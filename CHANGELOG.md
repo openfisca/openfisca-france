@@ -7,23 +7,23 @@
 * Périodes concernées : toutes.
 * Zones impactées :
   - model/prelevements_obligatoires/
-    -- prelevements_sociaux/cotisations_sociales/allegements.py
+    - prelevements_sociaux/cotisations_sociales/allegements.py
   - parameters/prelevements_sociaux/reductions_cotisations_sociales/
-    -- alleg_gen/
-    -- allegement_cotisation_allocations_familiales/
-    -- aubryi/
-    -- aubryii/
-    -- cice/
-    -- fillon/
-    -- robien/
+    - alleg_gen/
+    - allegement_cotisation_allocations_familiales/
+    - aubryi/
+    - aubryii/
+    - cice/
+    - fillon/
+    - robien/
 * Détails :
   - Harmonise les paramètres des réductions de cotisations sociales:
-    -- Harmonise ces paramètres OpenFisca avec les barèmes IPP
-    -- Applique l'arborescence du modèle IPP
-    -- Ajoute parameters/prelevements_sociaux/reductions_cotisations_sociales/
-    -- Déplace le contenu de parameters/prelevements_sociaux/ 
-    -- Ajoute de nouvelles clefs aux metadata: date_of_issue_oj, description_en, last_review, notes, ux_name
-    -- Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
+    - Harmonise ces paramètres OpenFisca avec les barèmes IPP
+    - Applique l'arborescence du modèle IPP
+    - Ajoute parameters/prelevements_sociaux/reductions_cotisations_sociales/
+    - Déplace le contenu de parameters/prelevements_sociaux/ 
+    - Ajoute de nouvelles clefs aux metadata: date_of_issue_oj, description_en, last_review, notes, ux_name
+    - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
   - Ajoute le script de vérification openfisca_france/check_longueur_chemins.py
 
   
