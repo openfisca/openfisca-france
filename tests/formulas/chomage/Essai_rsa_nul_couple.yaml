@@ -1,0 +1,151 @@
+- name: "Cas 3 AL Reforme 2019"
+  period: 2019-01
+  relative_error_margin: 0.01
+  max_spiral_loops: 60
+  neutralized_variables:
+    # RSA TODO base ressources
+    - rsa_eligibilite_tns
+    - taux_csg_remplacement
+    # - Minimas sociaux
+    - aspa
+    - asi
+    - caah
+    # individu
+    - allocation_securisation_professionnelle
+    - dedommagement_victime_amiante
+    - gains_exceptionnels
+    - pensions_alimentaires_percues
+    - pensions_invalidite
+    - prestation_compensatoire
+    - prime_forfaitaire_mensuelle_reprise_activite
+    - rsa_base_ressources_patrimoine_individu
+    - rsa_indemnites_journalieres_hors_activite
+    - rente_viagere_titre_onereux
+    # ASS
+    # - chomage_net
+    - categorie_salarie
+    # Ass base ressources
+    - revenus_stage_formation_pro
+    - aah
+    - retraite_nette
+    - retraite_brute
+    - retraite_imposable
+    - pensions_alimentaires_percues
+    - indemnites_stage
+    - pensions_invalidite
+    - revenus_locatifs
+    - revenus_capital
+    - rpns
+    - tns_auto_entrepreneur_benefice
+    - tns_micro_entreprise_benefice
+    - tns_benefice_exploitant_agricole
+    - tns_autres_revenus
+    - pensions_alimentaires_versees_individu
+    # PF
+    - revenu_categoriel_capital
+  input:
+    famille:
+      parents: [personne1, personne2]
+      rsa:
+        year:1999:20: 0
+      aide_logement:
+        year:1999:20: 0
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+    individus:
+      personne1:
+        activite:
+          # month:2019-01:8: chomeur
+          2018: actif
+          2017: actif
+        age: 40
+        contrat_de_travail_debut:
+          year:1995:30: 2005-01-01
+        contrat_de_travail_fin:
+          year:1995:30: 2019-01-01
+        nombre_annees_travaillees_les_10_dernieres_annees:
+          2019: 3
+        nombre_jours_travailles_dans_les_x_derniers_mois:
+          2019: 21.7 * 12
+          2020: 21.7 * 12
+        salaire_de_base:
+          year:2019:3: 0
+          2018: 12 * 101.2666667
+          2017: 12 * 101.2666667
+        nombre_jours_travailles_12_derniers_mois:
+          2019: 21.7 * 12 / 2
+          2020: 21.7 * 12 / 2
+      personne2: 
+        activite:
+          2019: actif
+          2018: actif
+          2017: actif
+        age: 45
+        contrat_de_travail_debut:
+          year:1995:30: 2005-01-01
+        salaire_de_base:
+          2020: 12 * 10000
+          2019: 12 * 10000
+          2018: 12 * 10000
+          2017: 12 * 10000
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    individus:
+      personne1:
+        are:
+          2019-01: 149.60501098632812
+          2019-02: 149.60501098632812
+          2019-03: 149.60501098632812
+          2019-04: 149.60501098632812
+          2019-05: 149.60501098632812
+          2019-06: 149.60501098632812
+          2019-07: 149.60501098632812
+          2019-08: 149.60501098632812
+          2019-09: 149.60501098632812
+          2019-10: 149.60501098632812
+          2019-11: 149.60501098632812
+          2019-12: 149.60501098632812
+          2020-01: 0
+          2020-02: 0
+          2020-03: 0
+          2020-04: 0
+        apl:
+          2019-01: 0
+          2019-02: 0
+          2019-03: 0
+          2019-04: 0
+          2019-05: 0
+          2019-06: 0
+          2019-07: 0
+          2019-08: 0
+          2019-09: 0
+          2019-10: 0
+          2019-11: 0
+          2019-12: 0
+          2020-01: 0
+          2020-02: 0
+          2020-03: 0
+          2020-04: 0
+          2020-05: 0
+          2020-06: 0
+        rsa:
+          2019-01: 0
+          2019-02: 0
+          2019-03: 0
+          2019-04: 0
+          2019-05: 0
+          2019-06: 0
+          2019-07: 0
+          2019-08: 0
+          2019-09: 0
+          2019-10: 0
+          2019-11: 0
+          2019-12: 0
+          2020-01: 0
+          2020-02: 0
+          2020-03: 0
+          2020-04: 0
+        
+      
