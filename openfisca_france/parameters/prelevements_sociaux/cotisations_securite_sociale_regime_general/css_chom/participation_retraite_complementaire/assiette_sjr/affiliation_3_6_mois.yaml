@@ -12,7 +12,7 @@ metadata:
   reference:
     1990-01-01: Arrêté du 14/05/1990 portant agrément de la convention du 01/01/1990
     1988-03-01: Arrêté du 30/01/1988 portant agrément de la convention du 30/12/1987
-  date_parution_jo:
+  date_of_issue_in_oj:
     1990-01-01: 1990-05-15
     1988-03-01: 1988-02-02
   description_en: SSCs on unemployment benefits
