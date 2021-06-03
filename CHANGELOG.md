@@ -6,7 +6,6 @@
 * Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées :
-  - model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py
   - parameters/prelevements_sociaux/
     - abat_red/
     - accidents/
