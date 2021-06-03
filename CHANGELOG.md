@@ -24,7 +24,7 @@
     - veuvage/
   
 * Détails :
-  - Harmonise les paramètres de CSG et CRDS:
+  - Harmonise les paramètres des cotisations sociales:
     - Harmonise ces paramètres OpenFisca avec les barèmes IPP
     - Applique l'arborescence du modèle IPP
     - Ajoute parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/
