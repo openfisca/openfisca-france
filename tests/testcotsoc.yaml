@@ -1,0 +1,16 @@
+- name: Cotsoc
+  period: 2021-01
+  absolute_error_margin: 0.01
+  input:
+    assiette_allegement: 0
+  output:
+    exoneration_cotisations_employeur_zfu: 0
+
+
+- name: Penibilite
+  period: 2021-01
+  absolute_error_margin: 0.01
+  input:
+    assiette_allegement: 0
+  output:
+    penibilite: 0

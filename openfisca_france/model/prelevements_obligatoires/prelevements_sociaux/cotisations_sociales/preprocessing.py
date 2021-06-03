@@ -14,6 +14,7 @@ def build_pat(node_json):
     """Construit le dictionnaire de barèmes des cotisations employeur à partir de node_json.children['cotsoc'].children['pat']"""
     pat = copy.deepcopy(node_json.children['cotsoc'].children['pat'])
     commun = pat.children.pop('commun')
+    print(commun.children)
 
     for bareme in ['apprentissage', 'apprentissage_add', 'apprentissage_alsace_moselle']:
         commun.children[bareme] = commun.children['apprentissage_node'].children[bareme]
@@ -70,7 +71,8 @@ def build_pat(node_json):
         del pat.children['public_titulaire_hospitaliere'].children[category]
 
     pat.children['public_non_titulaire'] = pat.children.pop('contract')
-
+    print('PAT TYPE', type(pat))
+    print('PAT', pat)
     return pat
 
 

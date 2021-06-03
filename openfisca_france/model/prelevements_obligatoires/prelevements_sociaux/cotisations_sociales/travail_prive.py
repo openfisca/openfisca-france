@@ -163,6 +163,12 @@ class penibilite(Variable):
             bareme_name = "penibilite_base",
             variable_name = 'penibilite',
             )
+
+        # TODO : il faut prendre en compte cotisations sociales et mode de recouvrement
+        # bareme = parameters(period).cotsoc.pat.commun.penibilite_base
+        # penibilite = individu('penibilite', period)
+        # cotisation_base = bareme.calc(penibilite)
+    
         cotisation_additionnelle = apply_bareme(
             individu,
             period,
