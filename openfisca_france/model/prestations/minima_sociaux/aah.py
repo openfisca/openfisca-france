@@ -62,7 +62,7 @@ class aah_base_ressources(Variable):
 
             base_ressource_demandeur_conjoint = individu.famille.demandeur('aah_base_ressources_activite_eval_trimestrielle', period) + individu.famille.demandeur('aah_base_ressources_hors_activite_eval_trimestrielle', period)
             base_ressource_conjoint_conjoint = individu.famille.conjoint('aah_base_ressources_activite_eval_trimestrielle', period) + individu.famille.conjoint('aah_base_ressources_hors_activite_eval_trimestrielle', period)
-            base_ressource_conjoint = base_ressource_conjoint_conjoint * individu.has_role(Famille.DEMANDEUR) + base_ressource_demandeur * individu.has_role(Famille.CONJOINT)
+            base_ressource_conjoint = base_ressource_conjoint_conjoint * individu.has_role(Famille.DEMANDEUR) + base_ressource_demandeur_conjoint * individu.has_role(Famille.CONJOINT)
 
             return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
 
