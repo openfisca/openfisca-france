@@ -72,7 +72,7 @@ def build_pat(node_json):
 
     pat.children['public_non_titulaire'] = pat.children.pop('contract')
     print('PAT TYPE', type(pat))
-    print('PAT', pat)
+    # print('PAT', pat)
     return pat
 
 
