@@ -2,8 +2,8 @@
 
 ## 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547) 
 
-* Changement majeur.
-* Amélioration technique.
+* Changement majeur. 
+* Évolution du système socio-fiscal non rétrocompatible
 * Périodes concernées : toutes.
 * Zones impactées :
   - parameters/prelevements_sociaux/
@@ -76,8 +76,8 @@
 
 ## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
 
-* Changement majeur.
-* Amélioration technique.
+* Changement majeur. 
+* Évolution du système socio-fiscal non rétrocompatible
 * Périodes concernées : toutes.
 * Zones impactées :
   -model/
