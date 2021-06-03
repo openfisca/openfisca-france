@@ -275,8 +275,8 @@
   output:
     aah_base_ressources:
       2015-11:
-        - 17134 # (1000 * 12) avec abat. bénéficiaire + 8494 avec abat. conjoint
-        - 8774 # (1000 * 12) avec abat. conjoint  + 8494 avec abat. bénéficiaire
+        - 17132 # 1471 avec abat. bénéficiaire + 1000 avec abat. conjoint
+        - 17811 # 1471 avec abat. conjoint     + 1000 avec abat. bénéficiaire
     aah_base:
       2015-11: [187, 0]
     aah:
