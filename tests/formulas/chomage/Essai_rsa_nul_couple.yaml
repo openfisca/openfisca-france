@@ -76,7 +76,7 @@
         nombre_jours_travailles_12_derniers_mois:
           2019: 21.7 * 12 / 2
           2020: 21.7 * 12 / 2
-      personne2: 
+      personne2:
         activite:
           2019: actif
           2018: actif
@@ -147,5 +147,4 @@
           2020-02: 0
           2020-03: 0
           2020-04: 0
-        
-      
+
