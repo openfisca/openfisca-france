@@ -579,3 +579,31 @@ class cumul_are_nette_rsa_ass_apl(Variable):
         ass = individu('ass', period)
 
         return are_nette + rsa + apl + ass
+
+class cumul_prestations_familiales(Variable):
+    value_type = float
+    entity = Famille
+    label = "Cumul des prestations familiales : AF, ASF, CF"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        af = famille('af', period)
+        asf = famille('asf', period)
+        cf = famille('cf', period)
+    
+        return af + asf + cf
+
+class cumul_are_nette_rsa_ass_apl_prestations_familiales(Variable):
+    value_type = float
+    entity = Individu
+    label = "Cumul de l'ARE, du RSA, de l'ASS, des APL et des prestations familiales"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        are_nette = individu('are_nette', period)
+        rsa = individu.famille('rsa', period)
+        apl = individu.famille('apl', period)
+        ass = individu('ass', period)
+        prestations_familiales = individu.famille('cumul_prestations_familiales', period)
+
+        return are_nette + rsa + apl + ass + prestations_familiales
