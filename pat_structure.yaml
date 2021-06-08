@@ -1,0 +1,66 @@
+pat:
+  cadre:
+    agffc.yaml: null
+    agirc.yaml: null
+    apec.yaml: null
+    arrco.yaml: null
+    cet.yaml: null
+    index.yaml: null
+  commun:
+    apprentissage_node:
+      apprentissage.yaml: null
+      apprentissage_250.yaml: null
+      apprentissage_add.yaml: null
+      apprentissage_alsace_moselle.yaml: null
+      index.yaml: null
+    assedic.yaml: null
+    chomfg.yaml: null
+    construction_node:
+      construction_20.yaml: null
+      index.yaml: null
+      seuil.yaml: null
+    csa.yaml: null
+    famille.yaml: null
+    financement_organisations_syndicales.yaml: null
+    fnal1.yaml: null
+    fnal2.yaml: null
+    formprof_node:
+      formprof_09.yaml: null
+      formprof_1019.yaml: null
+      formprof_20.yaml: null
+      index.yaml: null
+    index.yaml: null
+    maladie.yaml: null
+    penibilite_additionnelle.yaml: null
+    penibilite_base.yaml: null
+    penibilite_multiplicateur_exposition_multiple.yaml: null
+    vieillesse_deplafonnee.yaml: null
+    vieillesse_plafonnee.yaml: null
+  fonc:
+    colloc:
+      atiacl.yaml: null
+      cnracl.yaml: null
+      hospitaliere:
+        feh.yaml: null
+        index.yaml: null
+      index.yaml: null
+      maladie.yaml: null
+      rafp.yaml: null
+      territoriale:
+        fcppa.yaml: null
+        index.yaml: null
+    contract:
+      index.yaml: null
+      ircantec.yaml: null
+    etat:
+      ati.yaml: null
+      index.yaml: null
+      maladie.yaml: null
+      pension.yaml: null
+      rafp.yaml: null
+    index.yaml: null
+  index.yaml: null
+  noncadre:
+    agffnc.yaml: null
+    arrco.yaml: null
+    index.yaml: null

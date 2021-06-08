@@ -1,0 +1,64 @@
+sal:
+  .DS_Store: null
+  arti:
+    famille.yaml: null
+    forprof.yaml: null
+    index.yaml: null
+    indjour.yaml: null
+    invdec.yaml: null
+    maladie.yaml: null
+    retrbase.yaml: null
+    retrcompl.yaml: null
+  cadre:
+    agff.yaml: null
+    agirc.yaml: null
+    apec.yaml: null
+    arrco.yaml: null
+    cet.yaml: null
+    index.yaml: null
+  comind:
+    famille.yaml: null
+    forprofcom.yaml: null
+    index.yaml: null
+    indjour.yaml: null
+    invdec.yaml: null
+    maladie.yaml: null
+    retrbase.yaml: null
+    retrcompl.yaml: null
+  commun:
+    assedic.yaml: null
+    index.yaml: null
+    maladie.yaml: null
+    maladie_alsace_moselle.yaml: null
+    vieillesse.yaml: null
+    vieillesse_deplafonnee.yaml: null
+  fonc:
+    colloc:
+      cnracl1.yaml: null
+      cnracl2.yaml: null
+      index.yaml: null
+    commun:
+      ind_maj_ref.yaml: null
+      index.yaml: null
+      pt_ind.yaml: null
+      solidarite.yaml: null
+    contract:
+      index.yaml: null
+      ircantec.yaml: null
+    etat:
+      index.yaml: null
+      pension.yaml: null
+      rafp.yaml: null
+      rafp_plaf_assiette.yaml: null
+    index.yaml: null
+  index.yaml: null
+  microsocial:
+    cipav.yaml: null
+    index.yaml: null
+    rsi.yaml: null
+    servi.yaml: null
+    vente.yaml: null
+  noncadre:
+    agff.yaml: null
+    arrco.yaml: null
+    index.yaml: null
