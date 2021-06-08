@@ -50,9 +50,3 @@ with open("sal_structure.json", "w") as outfile:
 # Tree    
 # pprint(sal_structure)
 
-
-# Load pat & sal as <class 'openfisca_core.parameters.parameter_node.ParameterNode'>
-print(type(pat_structure))
-pat = ParameterNode(name="pat", directory_path ="openfisca-france/pat_structure.json", data = pat_structure, file_path = "openfisca-france/")
-print(type(pat))
-    
