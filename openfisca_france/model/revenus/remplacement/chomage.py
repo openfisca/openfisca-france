@@ -607,3 +607,80 @@ class cumul_are_nette_rsa_ass_apl_prestations_familiales(Variable):
         prestations_familiales = individu.famille('cumul_prestations_familiales', period)
 
         return are_nette + rsa + apl + ass + prestations_familiales
+
+class revenu_disponible_mensuel(Variable):
+    value_type = float
+    entity = Menage
+    label = "Revenu disponible du ménage"
+    reference = "http://fr.wikipedia.org/wiki/Revenu_disponible"
+    definition_period = MONTH
+
+    def formula(menage, period, parameters):
+        revenu_disponible_month = menage('revenu_disponible', period, options= [DIVIDE])
+
+        return revenu_disponible_month
+
+
+class prestations_familiales_mensuelles(Variable):
+    value_type = float
+    entity = Famille
+    label = "Prestations familiales mensuelles"
+    reference = "http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        prestations_familiales_month = famille('prestations_familiales', period, options= [DIVIDE])
+
+        return prestations_familiales_month
+
+
+class minima_sociaux_mensuel(Variable):
+    value_type = float
+    entity = Famille
+    label = "Minima sociaux mensuel"
+    reference = "http://fr.wikipedia.org/wiki/Minima_sociaux"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        minima_sociaux_month = famille('minima_sociaux', period, options= [DIVIDE])
+
+        return minima_sociaux_month
+
+
+class prestations_sociales_mensuelles(Variable):
+    value_type = float
+    entity = Famille
+    label = "Prestations sociales mensuelles"
+    reference = "http://fr.wikipedia.org/wiki/Prestation_sociale"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        prestations_sociales_month = famille('prestations_sociales', period, options= [DIVIDE])
+
+        return prestations_sociales_month
+
+
+class revenu_disponible_avec_impots(Variable):
+    value_type = float
+    entity = Famille
+    label = "Revenu disponible ne déduisant pas l'impôt sur le revenu"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        revenus_nets_du_travail_i = famille.members('revenus_nets_du_travail', period, options= [DIVIDE])
+        revenus_nets_du_travail = famille.sum(revenus_nets_du_travail_i)
+        revenus_nets_du_capital_i = famille.members('revenus_nets_du_capital', period, options= [DIVIDE])
+        revenus_nets_du_capital = famille.sum(revenus_nets_du_capital_i)
+        pensions_nettes_i = famille.members('pensions_nettes', period, options= [DIVIDE])
+        pensions_nettes = famille.sum(pensions_nettes_i)
+        ppe_i = famille.members.foyer_fiscal('ppe', period, options= [DIVIDE])
+        ppe = famille.sum(ppe_i)
+        prestations_sociales = famille('prestations_sociales', period, options= [DIVIDE])
+
+        return (
+            revenus_nets_du_travail
+            + revenus_nets_du_capital
+            + pensions_nettes
+            + ppe
+            + prestations_sociales
+            )
