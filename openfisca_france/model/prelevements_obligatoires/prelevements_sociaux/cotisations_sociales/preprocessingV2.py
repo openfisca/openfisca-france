@@ -1,5 +1,6 @@
 import copy
 import logging
+import yaml
 
 from openfisca_france.model.base import *
 from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalarie
@@ -10,12 +11,23 @@ log = logging.getLogger(__name__)
 # TODO: contribution patronale de prévoyance complémentaire
 
 
-def build_pat(node_json):
+def build_pat(node_json): # Ici node_json c'est le dossier 'parameters'
     """Construit le dictionnaire de barèmes des cotisations employeur à partir de node_json.children['cotsoc'].children['pat']"""
-    pat = copy.deepcopy(node_json.children['cotsoc'].children['pat'])
-    commun = pat.children.pop('commun')
+    pat = copy.deepcopy(node_json.children['cotsoc'].children['pat']) # Génère une deepcopy du parameters.cotsoc.pat (de l'arbre réel) 
+    #print("LE PREMIER PAT", pat)
+    # Saving Arbre Réel
+    import yaml
+    f = open('openfisca_france/scripts/parameters/pat_children_reel_avant_processing.yaml', 'w+')
+    yaml.dump(pat.children, f, allow_unicode=True)
+
+    # print("MY TYPE 1",type(pat))  # openfisca_core.parameters.parameter_node.ParameterNode
+    # print("MY TYPE 2",type(pat.children)) # Dict
+    # print("Dict pat.children : \n", pat.children) # Ça va jusqu'aux values --> node.node.brackets.rate /threshold.date:value
+    commun = pat.children.pop('commun')  # Removes and returns the key "commun" of pat.children dict
+    # print("Dict commun.children : \n", commun.children)
 
     for bareme in ['apprentissage', 'apprentissage_add', 'apprentissage_alsace_moselle']:
+        # On crée un 
         commun.children[bareme] = commun.children['apprentissage_node'].children[bareme]
     del commun.children['apprentissage_node']
 
@@ -70,13 +82,35 @@ def build_pat(node_json):
         del pat.children['public_titulaire_hospitaliere'].children[category]
 
     pat.children['public_non_titulaire'] = pat.children.pop('contract')
-    print('PAT TYPE', type(pat))
-    print('PAT', pat)
+    #print('PAT TYPE', type(pat.children))
+    #print('PAT', pat.children)
 
-    # Saving virtual pat
+    #my_dict = {}
+    #my_dict = pat.children
+    #print(type(my_dict))
+
+    # # Saving as txt
+    # print( pat.children, file=open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.txt", "a"))
+    # 
+    # # Saving as Json
+    # import json
+    # json_file = json.dumps(pat.children)
+    # with open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.json", "w") as outfile:
+    #     outfile.write(json_file)
+
+    # Saving as txt THEN as yaml
+    print( pat.children, file=open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.txt", "a"))
+    file = open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.txt", 'r')    
+    print(type(file))
     import yaml
-    f = open('pat_virtual.yaml', 'w+')
-    yaml.dump(pat, f, allow_unicode=True, default_flow_style=False)
+    f = open('openfisca_france/scripts/parameters/pat_children_virtual_ESSAI2.yaml', 'w+')
+    yaml.dump(file, f, allow_unicode=True)
+    
+    # Saving as yaml
+    import yaml
+    f = open('openfisca_france/scripts/parameters/pat_children_virtual.yaml', 'w+')
+    yaml.dump(my_dict, f, allow_unicode=True)
+
     return pat
 
 
@@ -86,6 +120,12 @@ def build_sal(node_json):
     à partir des informations contenues dans node_json.children['cotsoc'].children['sal']
     '''
     sal = copy.deepcopy(node_json.children['cotsoc'].children['sal'])
+    # Saving Reel
+    import yaml
+    ff = open('openfisca_france/scripts/parameters/sal_children_reel_avant_processing.yaml', 'w+')
+    yaml.dump(sal.children, ff, allow_unicode=True)
+
+
     sal.children['noncadre'].children.update(sal.children['commun'].children)
     sal.children['cadre'].children.update(sal.children['commun'].children)
 
@@ -121,19 +161,27 @@ def build_sal(node_json):
 
     # Saving virtual SAL
     import yaml
-    f = open('sal_virtual.yaml', 'w+')
-    yaml.dump(sal, f, allow_unicode=True)
+    f = open('openfisca_france/scripts/parameters/sal_children_virtual.yaml', 'w+')
+    yaml.dump(sal.children, f, allow_unicode=True)
     return sal
 
 
-def preprocess_parameters(parameters2):
+def preprocess_parameters(parameters):
     '''
     Preprocess the legislation parameters to build the cotisations sociales taxscales (barèmes)
     '''
-    sal = build_sal(parameters2)
-    pat = build_pat(parameters2)
+    pat = build_pat(parameters)
+    sal = build_sal(parameters)
+    
 
-    cotsoc = parameters2.children["cotsoc"]
+    cotsoc = parameters.children["cotsoc"] # Ici on va chercher l'arbre réel
+
+    # Debug
+    #print(cotsoc)
+    #print(type(cotsoc))
+    f = open('cotsoc_virtual.yaml', 'w+')
+    yaml.dump(cotsoc, f, allow_unicode=True)
+
     cotsoc.children["cotisations_employeur"] = ParameterNode('cotisations_employeur_after_preprocessing', data = {})
     cotsoc.children["cotisations_salarie"] = ParameterNode('cotisations_salarie_after_preprocessing', data = {})
 
@@ -144,5 +192,6 @@ def preprocess_parameters(parameters2):
         for category, bareme in baremes.items():
             if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
-
-    return parameters2
+    # Pour debug            
+    print("On travaille bien dans preprocessingV2.py")
+    return parameters
