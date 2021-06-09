@@ -1,15 +1,15 @@
 description: Taux de la de la Contribution Sociale Généralisée (CSG) imposable sur les allocations chômage
-unit: /1 
+unit: /1
 values:
   1997-01-01:
-    value: 0.024 
+    value: 0.024
 metadata:
   ux_name: Taux
   last_review:
     1997-01-01
   reference:
     1997-01-01: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
-  date_of_issue_in_oj_oj_oj:
+  date_of_issue_in_oj:
     1997-01-01: 1996-12-29
   notes:
   description_en: CSG - rates on unemployment incomes
