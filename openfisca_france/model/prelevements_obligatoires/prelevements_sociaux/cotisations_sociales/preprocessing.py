@@ -1,6 +1,5 @@
 import copy
 import logging
-import yaml
 
 from openfisca_core.parameters import ParameterNode
 from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalarie
@@ -123,6 +122,10 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
         del pat.children['public_titulaire_hospitaliere'].children[category]
 
     pat.children['public_non_titulaire'] = pat.children.pop('contract')
+
+    # TO DO ONLY ONCE, BEFORE CHANGING
+    # print(pat.children, file=open("openfisca_france/scripts/parameters/pat_children_AVANT.txt", "w"))
+
     return pat
 
 
@@ -300,8 +303,8 @@ def preprocess_parameters(parameters):
         for category, bareme in baremes.items():
             if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
-    
+
     # TO DO ONLY ONCE, BEFORE CHANGING V2
-    print( parameters , file=open("openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt", "w"))
+    # print(parameters, file=open("openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt", "w"))
 
     return parameters
