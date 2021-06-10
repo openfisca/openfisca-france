@@ -232,7 +232,7 @@ class casa(Variable):
             (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
             * cotisations.casa.pensions_retraite_preretraite_invalidite.calc(retraite_brute)
             )
-        return - casa # TODO Mettre à jour la formule pour prendre en compte les seuils d'exonération
+        return - casa  # TODO Mettre à jour la formule pour prendre en compte les seuils d'exonération
 
 
 class retraite_imposable(Variable):
