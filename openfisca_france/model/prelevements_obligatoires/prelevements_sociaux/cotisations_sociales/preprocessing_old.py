@@ -1,6 +1,5 @@
 import copy
 import logging
-import yaml
 
 from openfisca_france.model.base import *
 from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalarie
@@ -11,11 +10,10 @@ log = logging.getLogger(__name__)
 # TODO: contribution patronale de prévoyance complémentaire
 
 
-def build_pat(node_json): # Ici node_json c'est le dossier 'parameters'
+def build_pat(node_json):
     """Construit le dictionnaire de barèmes des cotisations employeur à partir de node_json.children['cotsoc'].children['pat']"""
-    pat = copy.deepcopy(node_json.children['cotsoc'].children['pat']) # Génère une deepcopy du parameters.cotsoc.pat (de l'arbre réel) 
-    commun = pat.children.pop('commun')  # Removes and returns the key "commun" of pat.children dict
-    # print("Dict commun.children : \n", commun.children)
+    pat = copy.deepcopy(node_json.children['cotsoc'].children['pat'])
+    commun = pat.children.pop('commun')
 
     for bareme in ['apprentissage', 'apprentissage_add', 'apprentissage_alsace_moselle']:
         commun.children[bareme] = commun.children['apprentissage_node'].children[bareme]
@@ -72,9 +70,6 @@ def build_pat(node_json): # Ici node_json c'est le dossier 'parameters'
         del pat.children['public_titulaire_hospitaliere'].children[category]
 
     pat.children['public_non_titulaire'] = pat.children.pop('contract')
-    
-    # TO DO ONLY ONCE, BEFORE CHANGING V2
-    print( pat.children , file=open("openfisca_france/scripts/parameters/pat_children_AVANT.txt", "w"))
 
     return pat
 
@@ -118,9 +113,6 @@ def build_sal(node_json):
     del sal.children['fonc'].children['colloc']
     del sal.children['fonc'].children['contract']
 
-    # TO DO ONLY ONCE, BEFORE CHANGING V2
-    print( sal.children , file=open("openfisca_france/scripts/parameters/sal_children_AVANT.txt", "w"))
-
     return sal
 
 
@@ -128,11 +120,10 @@ def preprocess_parameters(parameters):
     '''
     Preprocess the legislation parameters to build the cotisations sociales taxscales (barèmes)
     '''
-    pat = build_pat(parameters)
     sal = build_sal(parameters)
-    
-    cotsoc = parameters.children["cotsoc"] # Ici on va chercher l'arbre réel
+    pat = build_pat(parameters)
 
+    cotsoc = parameters.children["cotsoc"]
     cotsoc.children["cotisations_employeur"] = ParameterNode('cotisations_employeur_after_preprocessing', data = {})
     cotsoc.children["cotisations_salarie"] = ParameterNode('cotisations_salarie_after_preprocessing', data = {})
 
@@ -143,8 +134,5 @@ def preprocess_parameters(parameters):
         for category, bareme in baremes.items():
             if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
-    
-    # TO DO ONLY ONCE, BEFORE CHANGING V2
-    print( parameters , file=open("openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt", "w"))
 
     return parameters
