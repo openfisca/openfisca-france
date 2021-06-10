@@ -14,20 +14,10 @@ log = logging.getLogger(__name__)
 def build_pat(node_json): # Ici node_json c'est le dossier 'parameters'
     """Construit le dictionnaire de barèmes des cotisations employeur à partir de node_json.children['cotsoc'].children['pat']"""
     pat = copy.deepcopy(node_json.children['cotsoc'].children['pat']) # Génère une deepcopy du parameters.cotsoc.pat (de l'arbre réel) 
-    #print("LE PREMIER PAT", pat)
-    # Saving Arbre Réel
-    import yaml
-    f = open('openfisca_france/scripts/parameters/pat_children_reel_avant_processing.yaml', 'w+')
-    yaml.dump(pat.children, f, allow_unicode=True)
-
-    # print("MY TYPE 1",type(pat))  # openfisca_core.parameters.parameter_node.ParameterNode
-    # print("MY TYPE 2",type(pat.children)) # Dict
-    # print("Dict pat.children : \n", pat.children) # Ça va jusqu'aux values --> node.node.brackets.rate /threshold.date:value
     commun = pat.children.pop('commun')  # Removes and returns the key "commun" of pat.children dict
     # print("Dict commun.children : \n", commun.children)
 
     for bareme in ['apprentissage', 'apprentissage_add', 'apprentissage_alsace_moselle']:
-        # On crée un 
         commun.children[bareme] = commun.children['apprentissage_node'].children[bareme]
     del commun.children['apprentissage_node']
 
@@ -82,37 +72,9 @@ def build_pat(node_json): # Ici node_json c'est le dossier 'parameters'
         del pat.children['public_titulaire_hospitaliere'].children[category]
 
     pat.children['public_non_titulaire'] = pat.children.pop('contract')
-    #print('PAT TYPE', type(pat.children))
-    #print('PAT', pat.children)
-
-    #my_dict = {}
-    #my_dict = pat.children
-    #print(type(my_dict))
-
-    # # Saving as txt
-    # print( pat.children, file=open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.txt", "a"))
-    # 
-    # # Saving as Json
-    # import json
-    # json_file = json.dumps(pat.children)
-    # with open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.json", "w") as outfile:
-    #     outfile.write(json_file)
-
-    # # Saving as txt THEN as yaml
-    # print( pat.children, file=open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.txt", "a"))
-    # file = open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.txt", 'r')    
-    # print(type(file))
-    # import yaml
-    # f = open('openfisca_france/scripts/parameters/pat_children_virtual_ESSAI2.yaml', 'w+')
-    # yaml.dump(file, f, allow_unicode=True)
     
-    # Saving as yaml
-   # import yaml
-   # f = open('openfisca_france/scripts/parameters/pat_children_virtual.yaml', 'w+')
-   # yaml.dump(pat.children), f, allow_unicode=True)#
-
-    #
-    print( pat.children , file=open("openfisca_france/scripts/parameters/pat_children_virtual_AVANT.txt", "a"))
+    # TO DO ONLY ONCE, BEFORE CHANGING V2
+    # print( pat.children , file=open("openfisca_france/scripts/parameters/pat_children_AVANT.txt", "w"))
 
     return pat
 
@@ -123,12 +85,6 @@ def build_sal(node_json):
     à partir des informations contenues dans node_json.children['cotsoc'].children['sal']
     '''
     sal = copy.deepcopy(node_json.children['cotsoc'].children['sal'])
-    # Saving Reel
-    import yaml
-    ff = open('openfisca_france/scripts/parameters/sal_children_reel_avant_processing.yaml', 'w+')
-    yaml.dump(sal.children, ff, allow_unicode=True)
-
-
     sal.children['noncadre'].children.update(sal.children['commun'].children)
     sal.children['cadre'].children.update(sal.children['commun'].children)
 
@@ -162,10 +118,9 @@ def build_sal(node_json):
     del sal.children['fonc'].children['colloc']
     del sal.children['fonc'].children['contract']
 
-    # Saving virtual SAL
-    import yaml
-    f = open('openfisca_france/scripts/parameters/sal_children_virtual.yaml', 'w+')
-    yaml.dump(sal.children, f, allow_unicode=True)
+    # TO DO ONLY ONCE, BEFORE CHANGING V2
+    # print( sal.children , file=open("openfisca_france/scripts/parameters/sal_children_AVANT.txt", "w"))
+
     return sal
 
 
@@ -195,6 +150,10 @@ def preprocess_parameters(parameters):
         for category, bareme in baremes.items():
             if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
+    
+    # TO DO ONLY ONCE, BEFORE CHANGING V2
+    print( parameters , file=open("openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt", "w"))
+
     # Pour debug            
     print("On travaille bien dans preprocessingV2.py")
     return parameters

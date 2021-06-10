@@ -1,14 +1,10 @@
 import pytest
 import yaml
 import os
+import time
+import difflib
 
-# from openfisca_core import periods, populations, tools
-# from openfisca_core.errors import VariableNameConflictError, VariableNotFoundError
-# from openfisca_core.simulations import SimulationBuilder
-# from openfisca_core.variables import Variable
-# from openfisca_core.rates import average_rate, marginal_rate
-# from openfisca_france.scenarios import init_single_entity
-#from openfisca_core.taxbenefitsystems import TaxBenefitSystem
+
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.preprocessingV2 import *
 from openfisca_core.parameters import ParameterNode
 from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
@@ -32,42 +28,104 @@ def node_json():
     param_dir = os.path.join(COUNTRY_DIR, 'parameters')
     return ParameterNode('', directory_path = param_dir)
 
+
 def test_full_build_pat(node_json):
     # Original preprocessing
-
-    # # Load as txt
-    # file = open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.txt", 'r')
-# 
-    # # Convert to dict
-    # dictionary = {}
-    # with open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.txt", 'r') as file:
-    #     for line in file:
-    #         key, value = line.strip().split(",")
-    #         dictionary[key] = value
-    # print(dictionary)
-    # pat_avant = my_dictionnary
-
-    # Load as json
-    #import json
-    #with open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.json", "w") as json_file:
-    #    pat_avant = json.load(json_file)
-#
-    pat_avant = open ("openfisca_france/scripts/parameters/pat_children_virtual_AVANT.txt", 'r')
-    print(type(pat_avant))
+    path_avant = "openfisca_france/scripts/parameters/pat_children_AVANT.txt"
+    pat_avant = []
+    with open(path_avant) as avant_file :
+        for line in avant_file :
+            pat_avant.append(line)
     
     # Output of preprocessingV2
-    print( build_pat(node_json).children , file=open("openfisca_france/scripts/parameters/pat_children_virtual_with_V2.txt", "a"))
-    pat_apres = open ("openfisca_france/scripts/parameters/pat_children_virtual_with_V2.txt", 'r')
-    print('👹', type(pat_apres))
+    path_apres = 'openfisca_france/scripts/parameters/pat_children_APRES.txt'
+    print( build_pat(node_json).children , file=open(path_apres, "w"))
+    pat_apres = []
+    with open(path_apres) as apres_file :
+        for line in apres_file :
+            pat_apres.append(line)
 
-    #assert 1 == 10
-    #assert type(pat_avant) == type(pat_apres)
+    # If the files are different
+    if pat_avant != pat_apres :
+        with open(path_avant, 'rU') as f1:
+            with open(path_apres, 'rU') as f2:
+                readable_last_modified_time1 = time.ctime(os.path.getmtime(path_avant)) # not required
+                readable_last_modified_time2 = time.ctime(os.path.getmtime(path_apres)) # not required
+                # Save the diff in a file
+                difftext = ''.join(difflib.unified_diff(
+                f1.readlines(), f2.readlines(), fromfile=path_avant, tofile=path_apres, 
+                fromfiledate=readable_last_modified_time1, # not required
+                tofiledate=readable_last_modified_time2, # not required
+                ))
+                with open('openfisca_france/scripts/parameters/pat_diff.txt', 'w') as diff_file:
+                    diff_file.write(difftext)
+
     assert pat_avant == pat_apres
 
-# def test_full_build_sal():
-# def test_preprocess_parameters()
 
-# def test_arbres_avant_preprocessing:
-# with open('openfisca_france/scripts/parameters/pat_children_reel_avant_processing.yaml', 'r') as file:
-#         pat_avant = yaml.safe_load(file)
-#     print(type(pat_avant))
+def test_full_build_sal(node_json):
+    # Original preprocessing
+    path_avant = "openfisca_france/scripts/parameters/sal_children_AVANT.txt"
+    sal_avant = []
+    with open(path_avant) as avant_file :
+        for line in avant_file :
+            sal_avant.append(line)
+    
+    # Output of preprocessingV2
+    path_apres = 'openfisca_france/scripts/parameters/sal_children_APRES.txt'
+    print( build_sal(node_json).children , file=open(path_apres, "w"))
+    sal_apres = []
+    with open(path_apres) as apres_file :
+        for line in apres_file :
+            sal_apres.append(line)
+
+    # If the files are different
+    if sal_avant != sal_apres :
+        with open(path_avant, 'rU') as f1:
+            with open(path_apres, 'rU') as f2:
+                readable_last_modified_time1 = time.ctime(os.path.getmtime(path_avant)) # not required
+                readable_last_modified_time2 = time.ctime(os.path.getmtime(path_apres)) # not required
+                # Save the diff in a file
+                difftext = ''.join(difflib.unified_diff(
+                f1.readlines(), f2.readlines(), fromfile=path_avant, tofile=path_apres, 
+                fromfiledate=readable_last_modified_time1, # not required
+                tofiledate=readable_last_modified_time2, # not required
+                ))
+                with open('openfisca_france/scripts/parameters/sal_diff.txt', 'w') as diff_file:
+                    diff_file.write(difftext)
+
+    assert sal_avant == sal_apres
+    
+
+def test_preprocess_parameters(node_json):
+# Original preprocessing
+    path_avant = "openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt"
+    PP_avant = []
+    with open(path_avant) as avant_file :
+        for line in avant_file :
+            PP_avant.append(line)
+    
+    # Output of preprocessingV2
+    path_apres = 'openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt'
+    print( preprocess_parameters(node_json), file=open(path_apres, "w"))
+    PP_apres = []
+    with open(path_apres) as apres_file :
+        for line in apres_file :
+            PP_apres.append(line)
+
+    # If the files are different
+    if PP_avant != PP_apres :
+        with open(path_avant, 'rU') as f1:
+            with open(path_apres, 'rU') as f2:
+                readable_last_modified_time1 = time.ctime(os.path.getmtime(path_avant)) # not required
+                readable_last_modified_time2 = time.ctime(os.path.getmtime(path_apres)) # not required
+                # Save the diff in a file
+                difftext = ''.join(difflib.unified_diff(
+                f1.readlines(), f2.readlines(), fromfile=path_avant, tofile=path_apres, 
+                fromfiledate=readable_last_modified_time1, # not required
+                tofiledate=readable_last_modified_time2, # not required
+                ))
+                with open('openfisca_france/scripts/parameters/preprocessed_parameters_diff.txt', 'w') as diff_file:
+                    diff_file.write(difftext)
+
+    assert PP_avant == PP_apres
