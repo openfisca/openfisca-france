@@ -1,5 +1,6 @@
 import copy
 import logging
+import yaml
 
 from openfisca_core.parameters import ParameterNode
 from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalarie
@@ -299,5 +300,8 @@ def preprocess_parameters(parameters):
         for category, bareme in baremes.items():
             if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
+    
+    # TO DO ONLY ONCE, BEFORE CHANGING V2
+    print( parameters , file=open("openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt", "w"))
 
     return parameters
