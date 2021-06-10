@@ -1,0 +1,31 @@
+description: Taux employé (de moins de 65 ans, en Alsace-Moselle) des cotisations de sécurité sociale (SS) des journalistes pigistes (1964-1974) pour l'assurance maladie, sous le plafond de la sécurité sociale (PSS)
+unit: /1
+values:
+  1967-10-01:
+    value: 0.022
+  1969-01-01:
+    value: 0.032
+metadata:
+  ux_name: Moins de 65 ans
+  last_review:
+    1969-01-01
+  reference:
+    1969-06-01: Arrêté du 23/05/1969
+    1969-01-01: Arrêté du 31/12/1968
+    1967-10-01: Arrêté du 29/09/1967
+    1966-10-01: Arrêté du 15/09/1966
+    1964-01-01: Arrêté du 09/12/1963
+  official_journal_date:
+    1969-06-01: 1969-06-07
+    1969-01-01: 1969-01-01
+    1967-10-01: 1967-10-01
+    1966-10-01: 1966-09-27
+    1964-01-01: 1963-12-22
+  description_en: SSCs for freelance journalists (1964-1974)
+documentation: |
+  Note générale :
+  Les journalistes pigistes bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1964 et 1974.
+  A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 20%.
+  Notes :
+  Jusqu'au 01/07/1977, les plus de 65 ans sont exonérés de cotisation salariale pour l'assurance vieillesse
+  L'arrêté du 31/01/1973 ne précise pas de date d'effet, impliquant une date d'effet à la date de publication du JO. On note le début du mois comme date d'effet pour prendre en compte les versements mensualisés de la paie.

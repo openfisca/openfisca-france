@@ -1,0 +1,24 @@
+description: Assiette de la participation des Cotisations de retraite complémentaire (affiliation 3-6 mois) des Cotisations de sécurité sociale (SS) du régime général sur les allocations chômage
+unit: /1
+values:
+  1988-03-01:
+    value: 0.4
+  1990-01-01:
+    value: 1.0
+metadata:
+  ux_name: Affiliation 3-6 mois
+  last_review:
+    1990-01-01
+  reference:
+    1990-01-01: Arrêté du 14/05/1990 portant agrément de la convention du 01/01/1990
+    1988-03-01: Arrêté du 30/01/1988 portant agrément de la convention du 30/12/1987
+  official_journal_date:
+    1990-01-01: 1990-05-15
+    1988-03-01: 1988-02-02
+  description_en: SSCs on unemployment benefits
+documentation: |
+  Note :
+  Pour la cotisation d'assurance maladie, l'assiette est égale à l'allocation de base brute. Disparait en décembre 1997.
+  Exonération de cotisation pour la retraite complémentaire si l'ARE est inférieure àl'ARE minimale :
+       cf article 19 de l'arrêté du 25/06/2014 "portant agrément de la convention du 14 mai 2014 relative à l'indemnisation du chômage et les textes qui lui sont associés"
+       cf réglement général de l'Unédic, art. 19

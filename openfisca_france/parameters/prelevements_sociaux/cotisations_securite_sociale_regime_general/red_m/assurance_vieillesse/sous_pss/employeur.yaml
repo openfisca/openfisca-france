@@ -1,0 +1,42 @@
+description: Taux employeur des cotisations de sécurité sociale (SS) des professions médicales à temps partiel (1961-1974), pour l'assurance vieillesse, sous le plafond de la sécurité sociale (PSS)
+unit: /1
+values:
+  1967-10-01:
+    value: 0.0385
+  1971-01-01:
+    value: 0.0403
+  1974-01-01:
+    value: 0.0508
+metadata:
+  ux_name: Taux employeur
+  last_review:
+    1974-01-01
+  reference:
+    1974-01-01: Arrêté du 15/01/1974
+    1973-01-01: Arrêté du 31/01/1973
+    1972-01-01: Arrêté du 24/02/1972
+    1971-01-01: Arrêté du 30/12/1970
+    1970-01-01: Arrêté du 31/12/1969
+    1969-01-01: Arrêté du 31/12/1968
+    1967-10-01: Arrêté du 29/09/1967
+    1966-10-01: Arrêté du 15/09/1966
+    1962-04-01: Arrêté du 26/02/1962
+    1961-05-01: Arrêté du 01/05/1961
+  official_journal_date:
+    1974-01-01: 1974-02-07
+    1973-01-01: 1973-03-17
+    1972-01-01: 1972-03-16
+    1971-01-01: 1971-01-15
+    1970-01-01: 1970-01-01
+    1969-01-01: 1969-01-01
+    1967-10-01: 1967-10-01
+    1966-10-01: 1966-09-27
+    1962-04-01: 1962-03-18
+    1961-05-01: 1961-05-20
+  notes:
+    1967-10-01: Il n'y a pas de distinctions d'âge pour les cotisations mmid.
+  description_en: SSCs for physicians working part-time (1961-1974)
+documentation: |
+  Note générale :
+  Les membres des professions médicales exerçant à temps partiel pour plusieurs employeurs bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1961 et 1974.
+  A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.

@@ -1,0 +1,34 @@
+description: Taux employé (de plus de 65 ans, en Alsace-Moselle) des cotisations de sécurité sociale (SS) des artistes du spectacle (1960-1974) pour l'assurance maladie, sous le plafond de la sécurité sociale (PSS)
+unit: /1
+values:
+  1960-01-01:
+    value: null
+  1967-10-01:
+    value: 0.018
+  1969-01-01:
+    value: 0.021
+metadata:
+  ux_name: Plus de 65 ans
+  last_review:
+    1969-01-01
+  reference:
+    1969-01-01: Arrêté du 31/12/1968
+    1967-10-01: Arrêté du 29/09/1967
+    1966-10-01: Arrêté du 15/09/1966
+    1962-04-01: Arrêté du 23/02/1962
+    1961-01-01: Arrêté du 20/01/1961
+    1960-01-01: Arrêté du 27/01/1960
+  official_journal_date:
+    1969-01-01: 1969-01-01
+    1967-10-01: 1967-10-01
+    1966-10-01: 1966-09-27
+    1962-04-01: 1962-02-23
+    1961-01-01: 1961-02-02
+    1960-01-01: 1960-02-09
+  notes:
+  description_en: SSCs for artists (1960-1974)
+documentation: |
+  Note générale :
+  Les artistes et musiciens du spectacle bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1960 et 1974. A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.
+  Notes :
+  L'arrêté du 31/01/1973 ne précise pas de date d'effet, impliquant une date d'effet à la date de publication du JO. On note le début du mois comme date d'effet pour prendre en compte les versements mensualisés de la paie.

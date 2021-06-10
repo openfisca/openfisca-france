@@ -1,0 +1,71 @@
+description: Cotisations sur les avantages vieillesse du régime local d'assurance maladie d'Alsace et Moselle
+unit: /1
+values:
+  1989-09-01:
+    value: 0.007
+  1994-01-01:
+    value: 0.01
+  1998-07-01:
+    value: 0.0125
+  1999-07-01:
+    value: 0.015
+  2003-01-01:
+    value: 0.017
+  2006-01-01:
+    value: 0.018
+  2007-07-01:
+    value: 0.017
+  2008-01-01:
+    value: 0.016
+  2012-01-01:
+    value: 0.015
+metadata:
+  ux_name: Cotisations sur les avantages vieillesse
+  last_review:
+    1986-01-01
+  reference:
+    2012-01-01: Décision du régime local du 28/11/2011 (Avis publié au JO)
+    2008-01-01: Décision du régime local du 16/04/2007 (Avis publié au JO)
+    2007-07-01: Décision du régime local du 27/11/2007 (Avis publié au JO)
+    2006-01-01: Décision du régime local du 19/12/2005 (Avis publié au JO)
+    2003-01-01: Décision du régime local du 18/11/2002 (Avis publié au JO)
+    2000-07-01: Décision du régime local du 27/03/2000 (Avis publié au JO)
+    1999-07-01: Décision du régime local du 26/10/1998 (Avis publié au JO)
+    1998-07-01: Décision du régime local du 20/10/1997 (Avis publié au JO)
+    1997-01-01: Décision du régime local du 04/11/1996 (Avis publié au JO)
+    1996-01-01: Décision du régime local du 20/11/1995 (Avis publié au JO)
+    1995-01-01:
+      title: Décret 94-1152 du 27/12/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000186097&categorieLien=id
+    1994-01-01:
+      title: Décret 93-1359 du 30/12/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000881274
+    1989-09-01:
+      title: Décret 89-541 du 03/08/1989
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517464
+    1946-07-01:
+      title: Décret 46-1428 du 12/06/1946
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000495973&categorieLien=id
+  official_journal_date:
+    2012-01-01: 2011-12-30
+    2008-01-01: 2007-12-19
+    2007-07-01: 2007-06-09
+    2006-01-01: 2006-01-08
+    2003-01-01: 2002-12-28
+    2000-07-01: 2000-06-24
+    1999-07-01: 1998-12-20
+    1998-07-01: 1997-12-28
+    1994-01-01: 1993-12-31
+    1989-09-01: 1989-08-04
+    1986-01-11: 1986-01-04
+    1946-07-01: 1946-06-14
+  notes:
+    2000-07-01: "Référence de l'avis absent sur légifrance mais disponible ici: http://admi.net/jo/2000/09573.html"
+    1946-07-01: La date de début d'effet est supputée.
+  description_en: SSCs of the local sickness scheme of Alsace-Moselle (1967-2016)
+documentation: |
+  Sources :
+  Historique des cotisations communiqué par le régime local; www.legifrance.gouv.fr.
+  Notes :
+  Il s'agit de cotisations supplémentaires qui s'ajoutent aux cotisations applicables dans le reste de la France.
+  Il existe aussi un régime local agricole (non reporté ici).

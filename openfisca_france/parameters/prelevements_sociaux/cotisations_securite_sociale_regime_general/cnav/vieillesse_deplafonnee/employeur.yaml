@@ -1,0 +1,56 @@
+description: Taux employeur de la Cotisation déplafonnée de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV) (1967-2016)
+unit: /1
+brackets:
+- rate:
+    1991-02-01:
+      value: 0.016
+    2014-01-01:
+      value: 0.0175
+    2015-01-01:
+      value: 0.018
+    2016-01-01:
+      value: 0.0185
+    2017-01-01:
+      value: 0.019
+  threshold:
+    1967-10-01:
+      value: 0.0
+metadata:
+  ux_name: Employeur
+  last_review:
+    2017-01-01
+  reference:
+    2017-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
+    2016-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
+    2015-01-01:
+      title: Décret 2014-1531 du 17/12/2014, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
+    2014-01-01:
+      title: Décret 2013-1290 du 27/12/2013
+      href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1290/jo/texte
+    1991-02-01:
+      title: Décret 91-91 du 23/01/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000718256&categorieLien=id
+    1967-10-01:
+      title: Décret 67-803 du 20/09/1967
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000330826
+  official_journal_date:
+    2017-01-01: 2014-12-19
+    2016-01-01: 2014-12-19
+    2015-01-01: 2014-12-19
+    2014-01-01: 2013-12-31
+    1991-02-01: 1991-01-24
+    1967-10-01: 1967-09-24
+  notes:
+    1991-02-01: Voir note (i).
+  description_en: SSCs for old-age benefits (1967-2016)
+documentation: |
+  Notes :
+  (i) En 1991, la baisse de la cotisation salariale de 7,60% à 6,55% est assortie d'une remise forfaitaire de 42F/mois pour temps complet, proratisée pour temps partiel (Loi 91-73 du 18/01/91, art. 28, JO du 20/01/91; Décret 91-91 du 23/01/91, JO 24/01/91).
+  Des circulaires datant du 16/01/1991 et du 25/01/1991 (JO des 17/01/1991 et 27/01/1991) précisent les modalités de son calcul.
+  En bénéficient les assurés redevables de cotisations vieillesse au régime général à titre obligatoire assises sur leur salaire réel (salariés du régime général), les fonctionnaires et certains non-salariés.
+  Elle disparaît en 1995.

@@ -1,0 +1,28 @@
+description: Cotisations employé (de moins de 65 ans, hors Alsace-Moselle) Cotisations de sécurité sociale (SS) des artistes du spectacle, assurances sociales avant 1967, sous le plafond de la sécurité sociale (PSS)
+unit: /1
+values:
+  1960-01-01:
+    value: 0.042
+  1967-10-01:
+    value: null
+metadata:
+  ux_name: Moins de 65 ans
+  last_review:
+    1967-01-01
+  reference:
+    1967-10-01: Arrêté du 29/09/1967
+    1966-10-01: Arrêté du 15/09/1966
+    1962-04-01: Arrêté du 23/02/1962
+    1961-01-01: Arrêté du 20/01/1961
+    1960-01-01: Arrêté du 27/01/1960
+  official_journal_date:
+    1967-10-01: 1967-10-01
+    1966-10-01: 1966-09-27
+    1962-04-01: 1962-02-23
+    1961-01-01: 1961-02-02
+    1960-01-01: 1960-02-09
+  notes:
+  description_en: SSCs for artists (1960-1974)
+documentation: |
+  Note générale :
+  Les artistes et musiciens du spectacle bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1960 et 1974. A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.

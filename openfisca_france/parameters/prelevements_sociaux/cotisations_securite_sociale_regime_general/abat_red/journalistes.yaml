@@ -1,0 +1,20 @@
+description: Abattement de Cotisations de sécurité sociale (SS) du régime général pour les journalistes
+values:
+  1975-01-01:
+    value: 0.2
+unit: /1
+metadata:
+  ux_name: Abattement
+  last_review:
+    2016-01-01
+  reference:
+  official_journal_date:
+  notes:
+  description_en: SSCs rebate for journalists (1975-2016)
+documentation: |
+  Taux réduit à la fois pour les parts salariés et employeurs et pour les cotisations déplafonnées et plafonnées, mais il ne s'applique pas à la CSA.
+  Notes journalistes professionnels pigistes :
+  L'arrêté du 05/02/1975 (JO 13/02/1975) détermineun abattement de 20 % pour les journalistes sur le taux de cotisation du droit commun des cotisations plafonnées. Les dispositions s'appliquent au 01/01/1975.
+  Une jurisprudence précise ensuite qu'il s'agit des cotisations plafonnées à la date de l'arrêté de 1987 soit les accidents du travail, allocations familiales, vieillesses (plafonnées et déplafonnées), versement transport et 0,1 % FNAL.
+  Sont au taux de droit commun la maladie, solidarité autonomie, cotisation salariale vieillesse déplafonnée et le 0,4 % FNAL.
+  L'arrêté du 26/03/1987 (JO 02/04/1987) modifie l'arrêté de 1975.

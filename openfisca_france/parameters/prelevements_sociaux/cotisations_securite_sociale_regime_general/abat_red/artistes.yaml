@@ -1,0 +1,18 @@
+description: Abattement de Cotisations de sécurité sociale (SS) du régime général pour les artistes
+values:
+  1975-01-01:
+    value: 0.3
+unit: /1
+metadata:
+  ux_name: Artistes
+  last_review:
+    2016-01-01
+  reference:
+  official_journal_date:
+  notes:
+  description_en: SSCs rebate for artists, physicians and journalists (1975-2016)
+documentation: |
+  Notes artistes et musiciens du spectacle :
+  L'arrêté du 24/01/1975 (JO 31/01/1975) détermine un abattement de 30 % pour les artistes sur le taux de cotisation du droit commun pour la maladie, les accidents du travail, allocations familiales, vieillesses, versement transport et FNAL.
+  Modifié par les arrêtés du 30/10/1980 et du 12/12/2006.
+  Taux réduit à la fois pour les parts salariés et employeurs et pour les cotisations déplafonnées et plafonnées, mais il ne s'applique pas à la CSA.

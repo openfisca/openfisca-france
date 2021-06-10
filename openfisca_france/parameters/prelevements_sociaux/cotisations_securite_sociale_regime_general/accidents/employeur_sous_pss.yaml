@@ -1,0 +1,52 @@
+description: Taux employeur sous le Plafond de la Sécurité sociale (PSS) des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
+unit: /1
+values:
+  1976-01-01:
+    value: 0.017
+  1979-01-01:
+    value: 0.018
+  1983-01-01:
+    value: 0.017
+  1984-01-01:
+    value: 0.018
+  1985-01-01:
+    value: 0.017
+  1986-01-01:
+    value: 0.018
+  1989-01-01:
+    value: 0.017
+  1991-01-01:
+    value: null
+metadata:
+  ux_name: Taux employeur sous PSS
+  last_review:
+    2020-01-01
+  reference:
+    1991-01-01:
+      title: Loi 90-86 du 23/01/1990, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006756669&cidTexte=JORFTEXT000000707200
+    1976-01-01: 
+      title: Arrêté du 01/10/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000642719&categorieLien=id
+  official_journal_date:
+    1991-01-01: 1990-01-25
+    1976-01-01: 1976-10-10
+  notes:
+    1991-01-01: Cotisation déplafonnée avec réduction des taux.
+  description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
+documentation: |
+  Notes sur la tarification AT-MP :
+  La tarification des risques accidents du travail et maladies professionnelles (AT-MP) est complexe: il existe un taux propre à chaque entreprise, variant avec la taille et les risques d'AT-MP de l'entreprise.
+  Les taux ici sont ceux des bureaux indépendants et sièges sociaux (code 00.00B); ils sont considérés comme des établissements distincts et sont par suite justiciables des règles générales de tarification.
+  Les règles de tarification en matière d'AT-MP étaient initialement fixées par l'arrêté du 01/10/1976.
+  Le décret 85-1353 du 17/12/1985 (JO du 21/12/1985) a créé l'article L242-5 du CSS qui régit les dispositions relatives à la cotisation due au titre des AT-MP.
+  L'art. L242-5 du CSS prévoit que les règles de calcul des taux soient fixées par arrêté ministériel (jusqu'en 1994)
+  puis par décret (depuis la Loi 94-637 du 25/07/1994, art. 10 (JO du 27/07/1994)).
+  Depuis le 01/01/2012, une nouvelle tarification des taux AT-MP a été instaurée.
+  La tarification dépend notamment de la taille de l'entreprise:
+  19 salariés ou moins : tarification collective
+  Entre 20 et 149 salariés : tarification mixte
+  150 salariés ou plus : tarification individuelle réelle
+  Voir la nomenclature des risques établie par l'arrêté du 17/10/1995 et modifiée par les arrêtés successifs.
+  Le taux applicable à chaque entreprise une année donnée est notifié par la CNAM-TS de la région (ou la CRAM pour les entreprises situées en Ile-de-France).
+  Changement 2020 : le taux bureaux est supprimé et remplacé, pour les entreprises en tarification collective, ainsi que pour celles en tarification mixte qui le demandent, par le taux "Fonctions support" (même taux). Pour les entreprises en tarification individuelle, le taux appliqué est la "fusion" (moyenne ?) du taux Fonctions support et du taux de l'activité principale de l'entreprise.

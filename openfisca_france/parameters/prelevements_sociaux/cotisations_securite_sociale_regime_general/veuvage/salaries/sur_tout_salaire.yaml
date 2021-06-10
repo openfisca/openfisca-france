@@ -1,0 +1,33 @@
+description: Taux salarié (sur tout salaire) des cotisations de sécurité sociale (SS) assurance veuvage (1981-2004)
+unit: /1
+values:
+  1982-01-01:
+    value: 0.001
+  2004-07-01:
+    value: null
+metadata:
+  ux_name: Sur tout salaire
+  last_review: 
+    2004-01-01
+  reference:
+    2004-07-01:
+      title: Décret 2004-858 du 24/08/2004
+      href: https://www.legifrance.gouv.fr/eli/decret/2004/8/24/2004-858/jo/texte
+    1982-01-01:
+      title: Loi 82-1 du 04/01/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000319734
+    1981-01-01:
+      title: Décret 80-1098 du 30/12/1980
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000861526
+  official_journal_date:
+    2004-07-01: 2004-08-25
+    1982-01-01: 1982-01-05
+    1981-01-01: 1980-12-31
+  notes:
+    2004-07-01: La cotisation veuvage est transférée à la Cnav.
+    1982-01-01: La cotisation veuvage est déplafonnée à compter du 1er janvier 1982.
+    1981-01-01: En 1981, la cotisation veuvage nouvellemement créée de 0,1% ne s'applique que sous la partie du salaire sous-plafond.
+  description_en: SSCs for widowhood insurance (1981-2004)
+documentation: |
+  Sources :
+  www.legislation.cnav.fr, Journal Officiel via www.legifrance.gouv.fr

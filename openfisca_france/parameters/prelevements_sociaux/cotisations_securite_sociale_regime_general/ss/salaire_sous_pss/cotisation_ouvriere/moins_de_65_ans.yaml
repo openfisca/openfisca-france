@@ -1,0 +1,58 @@
+description: Taux ouvrier (de moins de 65 ans) des cotisations de sécurité sociale (SS) de 1930-1966, sous le plafond de la sécurité sociale (PSS)
+unit: /1
+values:
+  1930-07-01:
+    value: 0.04
+  1936-01-01:
+    value: 0.035
+  1937-01-01:
+    value: 0.04
+  1945-01-01:
+    value: 0.06
+  1967-09-01:
+    value: null
+metadata:
+  ux_name: Moins de 65 ans
+  last_review:
+    1967-01-01
+  reference:
+    1966-09-01: Arrêté du 29/07/1966
+    1962-01-01: Décret 61-1525 du 30/12/1961
+    1961-01-01: Décret 60-1485 du 30/12/1960
+    1959-01-01: Ordonnance 58-1374 du 30/12/1958, art. 10
+    1948-07-01: Loi 48-1306 du 23/08/1948 art. 18
+    1947-01-01: Arrêté du 24/03/1947
+    1945-01-01: Ordonnance du 30/12/1944
+    1937-01-01: Décret loi du 28/10/1935, art. 2 § 2
+    1936-01-01: Décret loi du 28/10/1935, art. 40
+    1930-07-01:
+    - Loi du 05/04/1928, art. 2 § 2
+    - Loi du 30/04/1930, art. 2 §2
+  official_journal_date:
+    1966-09-01: 1966-08-17
+    1962-01-01: 1961-12-31
+    1961-01-01: 1960-12-31
+    1959-01-01: 1958-12-31
+    1948-07-01: 1948-08-24
+    1937-01-01: 1935-10-31
+    1936-01-01: 1935-10-31
+    1930-07-01: 12-04-1928 ; 01-05-1930
+  notes:
+    1967-09-01: En 1967 la cotisation globale de Sécurité sociale est remplacée par des cotisations différenciées par branches
+    1947-01-01: 4% sont dues au titre de la contribution spéciale instaurée par l'ordonnance du 30/12/1944
+    1937-01-01: L'art. 2-§2 rappelle que les taux sont fixés à 4%, hors les dispositions exceptionnelles de 1936 prévues à l'art. 40
+    1936-01-01: La baisse des taux est prévue comme une mesure provisoire d'un an (destinée à apporter une aide transitoire à la production)
+    1930-07-01: La date d'effet est bien le 01/07/1930.
+  description_en: SSC (1930-1966)
+documentation: |
+  Sources :
+  www.legislation.cnav.fr et Journal Officiel via www.legifrance.gouv.fr
+  Notes :
+  (i) Les cotisations de Sécurité sociale ne sont pas séparées par branche avant 1967.
+  Avant 1945, il s'agit des assurances sociales qui ne sont obligatoires que pour une petite partie de la population.
+  (ii) En 1930, il existait 5 catégories et des montants différents de cotisations pour les catégories 1-4 et 5 (voir barème sur le site de la Bnf:
+  http://gallica.bnf.fr/ark:/12148/bpt6k61493360/f2.image
+  La date à laquelle la cotisation a cessé de prendre la forme d'un montant forfaitaire (entre 1931 et 1935) est incertaine.
+  Références législatives :
+  La loi du 5/04/1928 instaure une cotisation d'assurance sociale (initialement prévue à 5% pour les parts patronale et salariale) mais elle n'entre en application que suite à la loi rectificative du 30/04/1930.
+  A partir de 1945, la double cotisation des assurances sociales est inscrite dans l'ordonnance du 04/10/1945, art. 32, portant organisation de la sécurité sociale.
