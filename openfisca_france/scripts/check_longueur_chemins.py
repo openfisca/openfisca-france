@@ -37,7 +37,8 @@ def get_directory_structure(rootdir):
     return dir
 
 
-startpath = "openfisca_france/parameters/"
+COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
+startpath = "{}/openfisca_france/parameters/".join(COUNTRY_DIR)
 ipp_dir_structure = get_directory_structure(startpath)
 
 # json_file = json.dumps(ipp_dir_structure)
