@@ -48,10 +48,11 @@ def test_full_build_pat(node_json):
     # pat_avant = my_dictionnary
 
     # Load as json
-    import json
-    with open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.json", "w") as json_file:
-        pat_avant = json.load(json_file)
-
+    #import json
+    #with open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.json", "w") as json_file:
+    #    pat_avant = json.load(json_file)
+#
+    pat_avant = open ("openfisca_france/scripts/parameters/pat_children_virtual_AVANT.txt", 'r')
     print(type(pat_avant))
     
     # Output of preprocessingV2

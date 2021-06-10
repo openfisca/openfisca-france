@@ -98,18 +98,21 @@ def build_pat(node_json): # Ici node_json c'est le dossier 'parameters'
     # with open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.json", "w") as outfile:
     #     outfile.write(json_file)
 
-    # Saving as txt THEN as yaml
-    print( pat.children, file=open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.txt", "a"))
-    file = open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.txt", 'r')    
-    print(type(file))
-    import yaml
-    f = open('openfisca_france/scripts/parameters/pat_children_virtual_ESSAI2.yaml', 'w+')
-    yaml.dump(file, f, allow_unicode=True)
+    # # Saving as txt THEN as yaml
+    # print( pat.children, file=open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.txt", "a"))
+    # file = open("openfisca_france/scripts/parameters/pat_children_virtual_ESSAI.txt", 'r')    
+    # print(type(file))
+    # import yaml
+    # f = open('openfisca_france/scripts/parameters/pat_children_virtual_ESSAI2.yaml', 'w+')
+    # yaml.dump(file, f, allow_unicode=True)
     
     # Saving as yaml
-    import yaml
-    f = open('openfisca_france/scripts/parameters/pat_children_virtual.yaml', 'w+')
-    yaml.dump(my_dict, f, allow_unicode=True)
+   # import yaml
+   # f = open('openfisca_france/scripts/parameters/pat_children_virtual.yaml', 'w+')
+   # yaml.dump(pat.children), f, allow_unicode=True)#
+
+    #
+    print( pat.children , file=open("openfisca_france/scripts/parameters/pat_children_virtual_AVANT.txt", "a"))
 
     return pat
 
