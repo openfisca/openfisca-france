@@ -7932,6 +7932,65 @@ prelevements_sociaux:
         2015-01-01: 0.229
         2013-01-01: 0.246
         2009-01-01: 0.213
+  autres_taxes_participations_assises_salaires:
+    apprentissage:
+      apprentissage:
+        brackets:
+          - rate:
+              2014-01-01: 0.0068
+              1993-07-01: 0.005
+            threshold:
+              1993-07-01: 0.0
+      apprentissage_250:
+        brackets:
+          - rate:
+              1993-07-01: 0.005
+            threshold:
+              1993-07-01: 0.0
+      apprentissage_add:
+        brackets:
+          - rate:
+              2014-01-01: 0.0
+              2006-01-01: 0.0018
+              2005-01-01: 0.0012
+              2004-01-01: 0.0006
+            threshold:
+              2004-01-01: 0.0
+      apprentissage_alsace_moselle:
+        brackets:
+          - rate:
+              2014-01-01: 0.0044
+              1993-07-01: 0.005
+            threshold:
+              1993-07-01: 0.0
+    formation:
+      formprof_09:
+        brackets:
+          - rate:
+              2005-01-01: 0.0055
+              2004-01-01: 0.004
+              1993-01-01: 0.0015
+            threshold:
+              1993-01-01: 0.0
+      formprof_1019:
+        brackets:
+          - rate:
+              2015-01-01: 0.01
+              2005-01-01: 0.0105
+              2004-01-01: 0.016
+              1993-01-01: 0.015
+              1992-01-01: 0.014
+            threshold:
+              1992-01-01: 0.0
+      formprof_20:
+        brackets:
+          - rate:
+              2015-01-01: 0.01
+              2004-01-01: 0.016
+              1993-01-01: 0.015
+              1992-01-01: 0.014
+            threshold:
+              1992-01-01: 0.0
   cice:
     plafond_smic:
       2013-01-01: 2.5
