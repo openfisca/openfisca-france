@@ -305,6 +305,6 @@ def preprocess_parameters(parameters):
                 cotsoc.children[cotisation_name].children[category] = bareme
 
     # TO DO ONLY ONCE, BEFORE CHANGING V2
-    # print(parameters, file=open("openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt", "w"))
+    print(cotsoc, file=open("openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt", "w"))
 
     return parameters
