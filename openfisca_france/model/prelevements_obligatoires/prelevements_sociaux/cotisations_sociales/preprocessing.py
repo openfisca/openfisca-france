@@ -26,16 +26,16 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
         commun.children[bareme] = autres.apprentissage.children[bareme]
     del commun.children['apprentissage_node']
     
-    commun.children['formprof_09'] = commun.children['formprof_node'].children['formprof_09']
-    commun.children['formprof_1019'] = commun.children['formprof_node'].children['formprof_1019']
-    commun.children['formprof_20'] = commun.children['formprof_node'].children['formprof_20']
-    del commun.children['formprof_node']
+    #commun.children['formprof_09'] = commun.children['formprof_node'].children['formprof_09']
+    #commun.children['formprof_1019'] = commun.children['formprof_node'].children['formprof_1019']
+    #commun.children['formprof_20'] = commun.children['formprof_node'].children['formprof_20']
+    #del commun.children['formprof_node']
 
     # Réindexation Formation
-    #commun.children['formprof_09'] = autres.formation.children['formprof_09']
-    #commun.children['formprof_1019'] = autres.formation.children['formprof_1019']
-    #commun.children['formprof_20'] = autres.formation.children['formprof_20']
-    #del commun.children['formprof_node']
+    commun.children['formprof_09'] = autres.formation.children['formprof_09']
+    commun.children['formprof_1019'] = autres.formation.children['formprof_1019']
+    commun.children['formprof_20'] = autres.formation.children['formprof_20']
+    del commun.children['formprof_node']
 
     commun.children['construction'] = commun.children['construction_node'].children['construction_20']
     del commun.children['construction_node']
