@@ -29,7 +29,7 @@
     - Applique l'arborescence du modèle IPP
     - Ajoute parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/
     - Déplace le contenu de parameters/prelevements_sociaux/abat_red...veuvage (cf. ci-dessous) vers parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/abat_red...veuvage  
-    - Ajoute de nouvelles clefs aux metadata: date_of_issue_in_oj, description_en, last_review, notes, ux_name
+    - Ajoute de nouvelles clefs aux metadata: official_journal_date, description_en, last_review, notes, ux_name
     - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
   
 ## 53.3.0 [#1543](https://github.com/openfisca/openfisca-france/pull/1543) 
