@@ -16,29 +16,35 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun = pat.children.pop('commun')  # Removes and returns the key "commun" of pat.children dict
     # print("Dict commun.children : \n", commun.children)
 
+    # Réindexation Apprentissage
+
+    for bareme in ['apprentissage', 'apprentissage_add', 'apprentissage_alsace_moselle']:
+        commun.children[bareme] = commun.children['apprentissage_node'].children[bareme]
+    del commun.children['apprentissage_node']
+
+    #autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
     #for bareme in ['apprentissage', 'apprentissage_add', 'apprentissage_alsace_moselle']:
-    #    commun.children[bareme] = commun.children['apprentissage_node'].children[bareme]
+    #    commun.children[bareme] = autres.apprentissage.children[bareme]
     #del commun.children['apprentissage_node']
 
-    # Réindexation Apprentissage
-    autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
-    for bareme in ['apprentissage', 'apprentissage_add', 'apprentissage_alsace_moselle']:
-        commun.children[bareme] = autres.apprentissage.children[bareme]
-    del commun.children['apprentissage_node']
-    
-    #commun.children['formprof_09'] = commun.children['formprof_node'].children['formprof_09']
-    #commun.children['formprof_1019'] = commun.children['formprof_node'].children['formprof_1019']
-    #commun.children['formprof_20'] = commun.children['formprof_node'].children['formprof_20']
-    #del commun.children['formprof_node']
-
     # Réindexation Formation
-    commun.children['formprof_09'] = autres.formation.children['formprof_09']
-    commun.children['formprof_1019'] = autres.formation.children['formprof_1019']
-    commun.children['formprof_20'] = autres.formation.children['formprof_20']
+
+    commun.children['formprof_09'] = commun.children['formprof_node'].children['formprof_09']
+    commun.children['formprof_1019'] = commun.children['formprof_node'].children['formprof_1019']
+    commun.children['formprof_20'] = commun.children['formprof_node'].children['formprof_20']
     del commun.children['formprof_node']
 
+    #commun.children['formprof_09'] = autres.formation.children['formprof_09']
+    #commun.children['formprof_1019'] = autres.formation.children['formprof_1019']
+    #commun.children['formprof_20'] = autres.formation.children['formprof_20']
+    #del commun.children['formprof_node']
+
+    # Réindexation Construction
     commun.children['construction'] = commun.children['construction_node'].children['construction_20']
     del commun.children['construction_node']
+
+    #commun.children['construction'] = autres.construction.children['construction_20']
+    #del commun.children['construction_node']
 
     pat.children['noncadre'].children.update(commun.children)
     pat.children['cadre'].children.update(commun.children)
@@ -156,6 +162,6 @@ def preprocess_parameters(parameters):
                 cotsoc.children[cotisation_name].children[category] = bareme
 
     # TO DO ONLY ONCE, BEFORE CHANGING V2
-    # print(parameters, file=open("openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt", "w"))
+    print(cotsoc, file=open("openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt", "w"))
 
     return parameters

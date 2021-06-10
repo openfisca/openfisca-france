@@ -106,7 +106,7 @@ def test_preprocess_parameters(node_json):
 
     # Output of preprocessing
     path_apres = 'openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt'
-    print(preprocess_parameters(node_json), file=open(path_apres, "w"))  # noqa: T001
+    print(preprocess_parameters(node_json).cotsoc, file=open(path_apres, "w"))  # noqa: T001
     PP_apres = []
     with open(path_apres) as apres_file:
         for line in apres_file:
