@@ -16,19 +16,30 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun = pat.children.pop('commun')  # Removes and returns the key "commun" of pat.children dict
     # print("Dict commun.children : \n", commun.children)
 
-    # Réindexation Apprentissage
+    # Réindexation: nouveaux chemins
+    autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
+    retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
+    chom = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
+    cotiz = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
+    public = node_json.prelevements_sociaux.cotisations_secteur_public
 
+    # Réindexation Apprentissage
     # for bareme in ['apprentissage', 'apprentissage_add', 'apprentissage_alsace_moselle']:
     #     commun.children[bareme] = commun.children['apprentissage_node'].children[bareme]
     # del commun.children['apprentissage_node']
 
-    autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
     for bareme in ['apprentissage', 'apprentissage_add', 'apprentissage_alsace_moselle']:
-        commun.children[bareme] = autres.apprentissage.children[bareme]
-    del commun.children['apprentissage_node']
+        apprentissages = autres.apprentissage.children[bareme]
+    commun.children[bareme] = apprentissages    
+    del commun.children['apprentissage_node'] # Pour debug
+
+    # Si on decide qu'on ne s'en PAS fiche d'avoir plus de variables dans les cotsoc_virtuelles
+    for bareme in ['apprentissage', 'apprentissage_add', 'apprentissage_alsace_moselle']:
+        apprentissages = autres.apprentissage.children[bareme]
+    commun.children[bareme] = apprentissages 
+    # Et apres on remplace dans les formules ci-dessous: ex: pat.children['noncadre'].children.update(apprentissages.children)
 
     # Réindexation Formation
-
     #commun.children['formprof_09'] = commun.children['formprof_node'].children['formprof_09']
     #commun.children['formprof_1019'] = commun.children['formprof_node'].children['formprof_1019']
     #commun.children['formprof_20'] = commun.children['formprof_node'].children['formprof_20']
@@ -46,9 +57,83 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['construction'] = autres.construction.children['construction_20']
     del commun.children['construction_node']
 
-    pat.children['noncadre'].children.update(commun.children)
+    
+    # Réindexation NonCadre
+    # Ici on met tout (dossiers aussi) le contenu de commun dans noncadre (en gardant le previous content) 
+    #pat.children['noncadre'].children.update(commun.children)
+    #print(pat.children['noncadre'].children, file=open("openfisca_france/scripts/parameters/Noncadre_AVANT.txt", "w"))
+
+    # Initialisation
+    #pat.children['noncadre'].children.update(retraites.noncadre.children)
+    # commun.children
+    #pat.children['noncadre'].children.update(autres.apprentissage.children)
+    #pat.children['noncadre'].children.update(autres.construction.children)
+    #pat.children['noncadre'].children.update(autres.formation.children)
+    #pat.children['noncadre'].children.update(chom.assedic.children)
+    #pat.children['noncadre'].children.update(chom.chomfg.children)
+    #pat.children['noncadre'].children.update(cotiz.csa.bareme.children)  # À harmoniser !
+    #pat.children['noncadre'].children.update(cotiz.famille.bareme.children)  # À harmoniser !
+    #pat.children['noncadre'].children.update(autres.fnal.children)  # À harmoniser !
+    #pat.children['noncadre'].children.update(autres.fin_syndic.children)  # À harmoniser !
+    #pat.children['noncadre'].children.update(cotiz.penibilite.bareme.children)  # À harmoniser !
+    #pat.children['noncadre'].children.update(cotiz.cnav.bareme.children)  # À harmoniser !
+    #pat.children['noncadre'].children.update(cotiz.mmid.bareme.children)  # À harmoniser ! + Créer params depuis IPP
+    #print(pat.children['noncadre'].children, file=open("openfisca_france/scripts/parameters/Noncadre_APRES.txt", "w"))
+    
+
+    # Réindexation Cadre
     pat.children['cadre'].children.update(commun.children)
-    pat.children['fonc'].children['contract'].children.update(commun.children)
+    #print(pat.children['cadre'].children, file=open("openfisca_france/scripts/parameters/Cadre_AVANT.txt", "w"))
+
+    # Initialisation
+    pat.children['cadre'].children.update(retraites.cadre.children)
+    # commun.children
+    pat.children['cadre'].children.update(autres.apprentissage.children)
+    pat.children['cadre'].children.update(autres.construction.children)
+    pat.children['cadre'].children.update(autres.formation.children)
+    pat.children['cadre'].children.update(chom.assedic.children)
+    pat.children['cadre'].children.update(chom.chomfg.children)
+    pat.children['cadre'].children.update(cotiz.csa.bareme.children)  # À harmoniser !
+    pat.children['cadre'].children.update(cotiz.famille.bareme.children)  # À harmoniser !
+    pat.children['cadre'].children.update(autres.fnal.children)  # À harmoniser !
+    pat.children['cadre'].children.update(autres.fin_syndic.children)  # À harmoniser !
+    pat.children['cadre'].children.update(cotiz.penibilite.bareme.children)  # À harmoniser !
+    pat.children['cadre'].children.update(cotiz.cnav.bareme.children)  # À harmoniser !
+    pat.children['cadre'].children.update(cotiz.mmid.bareme.children)  # À harmoniser ! + Créer params depuis IPP
+    #print(pat.children['cadre'].children, file=open("openfisca_france/scripts/parameters/Cadre_APRES.txt", "w"))
+    
+    # Réindexation Fonc ??
+    #pat.children['fonc'].children['contract'].children.update(commun.children)
+    #print(pat.children['fonc'].children, file=open("openfisca_france/scripts/parameters/Fonc_AVANT.txt", "w"))
+
+    # Initialisation
+    # Collectivités Locales
+    pat.children['fonc'].children['colloc'].children['hospitaliere'] = public.cnral.hospitaliere
+    pat.children['fonc'].children['colloc'].children['territoriale'] = public.cnral.territoriale
+    pat.children['fonc'].children['colloc'].children.update(public.cnral.children)
+    pat.children['fonc'].children['colloc'].children.update(public.mmid.colloc.children)
+    pat.children['fonc'].children['colloc'].children.update(public.rafp.children)
+    # Contractuel
+    pat.children['fonc'].children['contract'] = public.ircantec
+    # Etat
+    pat.children['fonc'].children['etat'].children.update(public.mmid.etat.children)
+    pat.children['fonc'].children['etat'].children.update(public.retraite.ati.children)
+    pat.children['fonc'].children['etat'].children.update(public.retraite.pension.children)
+    # commun.children
+    pat.children['fonc'].children["contract"].children.update(autres.apprentissage.children)
+    pat.children['fonc'].children["contract"].children.update(autres.construction.children)
+    pat.children['fonc'].children["contract"].children.update(autres.formation.children)
+    pat.children['fonc'].children["contract"].children.update(chom.assedic.children)
+    pat.children['fonc'].children["contract"].children.update(chom.chomfg.children)
+    pat.children['fonc'].children["contract"].children.update(cotiz.csa.bareme.children)  # À harmoniser !
+    pat.children['fonc'].children["contract"].children.update(cotiz.famille.bareme.children)  # À harmoniser !
+    pat.children['fonc'].children["contract"].children.update(autres.fnal.children)  # À harmoniser !
+    pat.children['fonc'].children["contract"].children.update(autres.fin_syndic.children)  # À harmoniser !
+    pat.children['fonc'].children["contract"].children.update(cotiz.penibilite.bareme.children)  # À harmoniser !
+    pat.children['fonc'].children["contract"].children.update(cotiz.cnav.bareme.children)  # À harmoniser !
+    pat.children['fonc'].children["contract"].children.update(cotiz.mmid.bareme.children)  # À harmoniser ! + Créer params depuis IPP
+    print(pat.children['fonc'].children, file=open("openfisca_france/scripts/parameters/Fonc_APRES.txt", "w"))
+
 
     # Renaming
     pat.children['prive_non_cadre'] = pat.children.pop('noncadre')
@@ -91,7 +176,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['public_non_titulaire'] = pat.children.pop('contract')
 
     # TO DO ONLY ONCE, BEFORE CHANGING
-    # print(pat.children, file=open("openfisca_france/scripts/parameters/pat_children_AVANT.txt", "w"))
+    #print(pat.children, file=open("openfisca_france/scripts/parameters/pat_children_AVANT_Sorted.txt", "w"))
 
     return pat
 
