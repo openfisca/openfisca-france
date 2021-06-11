@@ -1,0 +1,24 @@
+brackets:
+- rate:
+    1979-01-01:
+      value: 0.082
+    2006-01-01:
+      value: 0.083
+    2012-11-01:
+      value: 0.084
+    2014-01-01:
+      value: 0.0845
+    2015-01-01:
+      value: 0.085
+    2016-01-01:
+      value: 0.0855
+  threshold:
+    1979-01-01:
+      value: 0.0
+- rate:
+    1979-01-01:
+      value: 0.0
+  threshold:
+    1979-01-01:
+      value: 1.0
+description: Vieillesse plafonnée (régime de base)

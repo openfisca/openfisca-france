@@ -124,7 +124,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['public_non_titulaire'] = pat.children.pop('contract')
 
     # TO DO ONLY ONCE, BEFORE CHANGING
-    # print(pat.children, file=open("openfisca_france/scripts/parameters/pat_children_AVANT.txt", "w"))
+    #print(pat.children, file=open("openfisca_france/scripts/parameters/pat_children_AVANT_Sorted.txt", "w"))
 
     return pat
 

@@ -1,0 +1,37 @@
+brackets:
+- rate:
+    1993-07-01:
+      value: 0.0483
+    1993-08-01:
+      value: 0.0538
+    1994-01-01:
+      value: 0.0547
+    1997-01-01:
+      value: 0.0526
+    2001-01-01:
+      value: 0.0499
+    2001-04-01:
+      value: 0.037
+    2002-01-01:
+      value: 0.036
+    2002-07-01:
+      value: 0.037
+    2003-01-01:
+      value: 0.04
+    2006-01-01:
+      value: 0.0404
+    2007-01-01:
+      value: 0.04
+    2017-10-01:
+      reference: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Ci2017-21.pdf
+      value: 0.0405
+  threshold:
+    1993-07-01:
+      value: 0.0
+- rate:
+    1993-07-01:
+      value: 0.0
+  threshold:
+    1993-07-01:
+      value: 4.0
+description: Chômage ASSEDIC (non cadres et cadres)

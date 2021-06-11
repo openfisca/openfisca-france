@@ -1,0 +1,15 @@
+brackets:
+- rate:
+    1992-07-01:
+      value: 0.128
+    2016-01-01:
+      value: 0.1284
+    2017-01-01:
+      value: 0.1289
+    2018-01-01:
+      reference: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1732212D/jo/texte
+      value: 0.13
+  threshold:
+    1992-07-01:
+      value: 0.0
+description: Maladie, maternité, invalidité, décès
