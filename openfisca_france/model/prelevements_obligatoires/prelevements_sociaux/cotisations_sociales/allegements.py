@@ -128,7 +128,7 @@ class credit_impot_competitivite_emploi(Variable):
         stagiaire = individu('stagiaire', period)
         parameters = parameters(period)
         taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, parameters)
-        credit_impot_competitivite_emploi = taux_cice * assiette_allegement
+        credit_impot_competitivite_emploi = taux_cice * assiette_allegement  # En updatant la formule (>2019) il faudra passer le parametre à null
         non_cumul = not_(stagiaire)
         association = individu('entreprise_est_association_non_lucrative', period)
 
