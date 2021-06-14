@@ -9,8 +9,6 @@ values:
     value: 0.07
   2018-01-01:
     value: 0.06
-  2019-01-01:
-    value: null
 metadata:
   ux_name: Taux
   last_review:

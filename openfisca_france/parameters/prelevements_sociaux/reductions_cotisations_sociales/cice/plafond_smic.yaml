@@ -3,8 +3,6 @@ unit: /1
 values:
   2013-01-01:
     value: 2.5
-  2019-01-01:
-      value: null
 metadata:
   ux_name: Plafond (en nombre de SMIC)
   last_review:
