@@ -506,6 +506,7 @@ class are_nette(Variable):
     value_type = float
     entity = Individu
     label = "Allocation de retour à l'emploi nette déduite des contributions et des cotisations"
+    set_input = set_input_divide_by_period
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -642,9 +643,23 @@ class minima_sociaux_mensuel(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        minima_sociaux_month = famille('minima_sociaux', period, options= [DIVIDE])
+        aah_i = famille.members('aah', period)
+        caah_i = famille.members('caah', period)
+        aah = famille.sum(aah_i)
+        caah = famille.sum(caah_i)
+        aefa = famille('aefa', period, options = [DIVIDE])
+        api = famille('api', period)
+        ass_i = famille.members('ass', period)
+        ass = famille.sum(ass_i)
+        minimum_vieillesse = famille('minimum_vieillesse', period, options = [DIVIDE])
+        # Certaines réformes ayant des effets de bords nécessitent que le rsa soit calculé avant la ppa
+        rsa = famille('rsa', period)
+        ppa = famille('ppa', period)
+        psa = famille('psa', period)
+        crds_mini = famille('crds_mini', period)
 
-        return minima_sociaux_month
+        return aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa + crds_mini
+        
 
 
 class prestations_sociales_mensuelles(Variable):
@@ -655,9 +670,67 @@ class prestations_sociales_mensuelles(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        prestations_sociales_month = famille('prestations_sociales', period, options= [DIVIDE])
+        prestations_familiales = famille('prestations_familiales_mensuelles', period)
+        minima_sociaux = famille('minima_sociaux_mensuel', period)
+        aide_logement = famille('aide_logement', period)
+        reduction_loyer_solidarite = famille('reduction_loyer_solidarite', period)
+        aide_exceptionnelle_covid = famille('covid_aide_exceptionnelle_famille_montant', period)
+        fse_i = famille.members('covid_aide_exceptionnelle_tpe_montant', period)
+        fse = famille.sum(fse_i)
 
-        return prestations_sociales_month
+        return prestations_familiales + minima_sociaux + aide_logement + reduction_loyer_solidarite + aide_exceptionnelle_covid + fse
+
+class aefa_mensuel(Variable):
+    '''
+    Aide exceptionelle de fin d'année (prime de Noël)
+    Instituée en 1998
+    Apparaît sous le nom de complément de rmi dans les ERF
+    Le montant de l’aide mentionnée à l’article 1er versée aux bénéficiaires de l’allocation de solidarité
+    spécifique à taux majoré servie aux allocataires âgés de cinquante-cinq ans ou plus justifiant de vingt années
+    d’activité salariée, aux allocataires âgés de cinquante-sept ans et demi ou plus justifiant de dix années d’activité
+    salariée ainsi qu’aux allocataires justifiant d’au moins 160 trimestres validés dans les régimes d’assurance
+    vieillesse ou de périodes reconnues équivalentes est égal à
+    Pour bénéficier de la Prime de Noël 2011, vous devez être éligible pour le compte du mois de novembre 2011
+    ou au plus de décembre 2011, soit d’une allocation de solidarité spécifique (ASS), de la prime forfaitaire mensuelle
+    de reprise d'activité, de l'allocation équivalent retraite (allocataire AER), du revenu de solidarité active
+    (Bénéficiaires RSA), de l'allocation de parent isolé (API), du revenu minimum d'insertion (RMI), de l’Allocation
+    pour la Création ou la Reprise d'Entreprise (ACCRE-ASS) ou encore allocation chômage.
+    '''
+    value_type = float
+    entity = Famille
+    label = "Aide exceptionelle de fin d'année (prime de Noël)"
+    reference = "https://www.service-public.fr/particuliers/vosdroits/F1325"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        aefa_month = famille('aefa', period, options= [DIVIDE])
+
+        return aefa_month
+
+class minimum_vieillesse_mensuel(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = "Minimum vieillesse (ASI + ASPA)"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        minimum_vieillesse_month = famille('minimum_vieillesse', period, options= [DIVIDE])
+
+        return minimum_vieillesse_month
+
+class pensions_nettes_mensuelles(Variable):
+    value_type = float
+    entity = Individu
+    label = "Pensions et revenus de remplacement"
+    reference = "http://fr.wikipedia.org/wiki/Rente"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        pensions_nettes_month = famille('pensions_nettes', period, options= [DIVIDE])
+
+        return pensions_nettes_month
+
 
 
 class revenu_disponible_avec_impots(Variable):
@@ -667,15 +740,15 @@ class revenu_disponible_avec_impots(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        revenus_nets_du_travail_i = famille.members('revenus_nets_du_travail', period, options= [DIVIDE])
+        revenus_nets_du_travail_i = famille.members('salaire_net', period)
         revenus_nets_du_travail = famille.sum(revenus_nets_du_travail_i)
         revenus_nets_du_capital_i = famille.members('revenus_nets_du_capital', period, options= [DIVIDE])
         revenus_nets_du_capital = famille.sum(revenus_nets_du_capital_i)
-        pensions_nettes_i = famille.members('pensions_nettes', period, options= [DIVIDE])
+        pensions_nettes_i = famille.members('pensions_nettes_mensuelles', period)
         pensions_nettes = famille.sum(pensions_nettes_i)
         ppe_i = famille.members.foyer_fiscal('ppe', period, options= [DIVIDE])
         ppe = famille.sum(ppe_i)
-        prestations_sociales = famille('prestations_sociales', period, options= [DIVIDE])
+        prestations_sociales = famille('prestations_sociales_mensuelles', period)
 
         return (
             revenus_nets_du_travail
@@ -684,3 +757,5 @@ class revenu_disponible_avec_impots(Variable):
             + ppe
             + prestations_sociales
             )
+
+

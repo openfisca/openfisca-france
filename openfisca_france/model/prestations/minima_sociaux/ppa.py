@@ -14,8 +14,10 @@ class ppa_eligibilite(Variable):
         age_min = P.minima_sociaux.ppa.age_min
         condition_age_i = famille.members('age', period) >= age_min
         condition_age = famille.any(condition_age_i)
+        condition_activite_i = (famille.members('activite', period) == TypesActivite.actif)
+        condition_activite = famille.sum(condition_activite_i, role = Famille.PARENT)
 
-        return condition_age
+        return condition_age * condition_activite
 
 
 class ppa_plancher_revenu_activite_etudiant(Variable):
