@@ -1,5 +1,4 @@
 from openfisca_france.model.base import *  # noqa analysis:ignore
-from openfisca_france.model.prestations.education import TypesScolarite
 
 
 class garantie_jeunes_neet(Variable):
@@ -22,35 +21,23 @@ class garantie_jeunes_neet(Variable):
         return not_in_employment * not_in_education * not_in_training
 
 
-class garantie_jeunes_max(Variable):
-    value_type = float
-    entity = Individu
-    definition_period = MONTH
-    label = "Montant maximal de l'allocation Garantie Jeune"
-    reference = [
-        "Article D5131-20 du code du travail",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DED54A598193DDE1DF59E0AE16BDE87D.tplgfr21s_3?idArticle=LEGIARTI000033709227&cidTexte=LEGITEXT000006072050",
-        ]
-
-    def formula(individu, period, parameters):
-        params = parameters(period).prestations.minima_sociaux.rsa
-        montant_base = params.montant_de_base_du_rsa
-        taux_1_personne = params.forfait_logement.taux_1_personne
-        return montant_base * (1 - taux_1_personne)
-
-
 class garantie_jeunes_montant(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
-    label = "Montant maximal de l'allocation Garantie Jeune"
+    label = "Montant de base de l'allocation Garantie Jeunes"
     reference = [
+        "Article D5131-20 du code du travail",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DED54A598193DDE1DF59E0AE16BDE87D.tplgfr21s_3?idArticle=LEGIARTI000033709227&cidTexte=LEGITEXT000006072050",
         "https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/",
         "https://www.service-public.fr/particuliers/vosdroits/F32700"
         ]
 
     def formula(individu, period, parameters):
-        garantie_jeunes_max = individu("garantie_jeunes_max", period)
+        rsa = parameters(period).prestations.minima_sociaux.rsa
+        montant_base = rsa.montant_de_base_du_rsa
+        taux_1_personne = rsa.forfait_logement.taux_1_personne
+        garantie_jeunes_max = montant_base * (1 - taux_1_personne)
 
         cotsoc = parameters(period).cotsoc
         smic_mensuel_brut = cotsoc.gen.smic_h_b * cotsoc.gen.nb_heure_travail_mensuel
@@ -82,7 +69,7 @@ class garantie_jeunes_eligibilite_age(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = "Éligibilité en fonction de l'âge à la Garantie Jeune"
+    label = "Éligibilité en fonction de l'âge à la Garantie Jeunes"
 
     def formula(individu, period, parameters):
         params_age = parameters(period).prestations.garantie_jeunes.critere_age.age
@@ -95,7 +82,7 @@ class garantie_jeunes(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
-    label = "Montant de la Garantie Jeune"
+    label = "Montant de la Garantie Jeunes"
     reference = ["https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/", "https://www.service-public.fr/particuliers/vosdroits/F32700"]
 
     def formula(individu, period, parameters):

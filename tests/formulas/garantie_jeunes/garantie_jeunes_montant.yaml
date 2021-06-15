@@ -1,11 +1,12 @@
 - name: Calcul maximum de la garantie jeune
   period: 2019-01
+  absolute_error_margin: 0.01
   input:
     age:
       - 18
   output:
     garantie_jeunes:
-      - 497.50
+      - 484.82
 
 - name: Non prise en compte du chômage dans le calcul de la garantie jeune
   period: 2019-01
@@ -30,7 +31,7 @@
       - 25
   output:
     garantie_jeunes:
-      - 444.78
+      - 431.94
 
 - name: Prise en compte de revenus d'activitiés équivalent à la valeur du SMIC pour calculer la garantie jeune
   period: 2019-01
@@ -46,7 +47,7 @@
       - 243.67
     age:
       - 24
-  output:
+  output: 
     garantie_jeunes:
       - 0
 
@@ -64,4 +65,4 @@
       - 18
   output:
     garantie_jeunes:
-      - 128
+      - 114.73
