@@ -7,6 +7,7 @@ import difflib
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.preprocessing import *
 from openfisca_core.parameters import ParameterNode
 from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
+from openfisca_france.scripts.parameters.check_keys import check_keys
 
 """
 Etapes du réel au résultat du preprocessing
@@ -31,100 +32,40 @@ def node_json():
 def test_full_build_pat(node_json):
     # Original preprocessing
     path_avant = "openfisca_france/scripts/parameters/pat_children_AVANT.txt"
-    pat_avant = []
-    with open(path_avant,'rU') as avant_file:
-        for line in avant_file:
-            pat_avant.append(line)
 
     # Output of preprocessingV2
     path_apres = 'openfisca_france/scripts/parameters/pat_children_APRES.txt'
     print(build_pat(node_json).children, file=open(path_apres, "w"))  # noqa: T001
-    pat_apres = []
-    with open(path_apres) as apres_file:
-        for line in apres_file:
-            pat_apres.append(line)
 
-    # If the files are different
-    if pat_avant != pat_apres:
-        with open(path_avant, 'rU') as f1:
-            with open(path_apres, 'rU') as f2:
-                readable_last_modified_time1 = time.ctime(os.path.getmtime(path_avant))
-                readable_last_modified_time2 = time.ctime(os.path.getmtime(path_apres))
-                # Save the diff in a file
-                difftext = ''.join(difflib.unified_diff(
-                    f1.readlines(), f2.readlines(), fromfile=path_avant, tofile=path_apres,
-                    fromfiledate=readable_last_modified_time1,
-                    tofiledate=readable_last_modified_time2,
-                    ))
-                with open('openfisca_france/scripts/parameters/pat_diff.txt', 'w') as diff_file:
-                    diff_file.write(difftext)
+    missing, en_trop = check_keys(path_avant, path_apres)
 
-    assert pat_avant == pat_apres
+    assert missing == []
+    assert en_trop == []
 
 
 def test_full_build_sal(node_json):
     # Original preprocessing
     path_avant = "openfisca_france/scripts/parameters/sal_children_AVANT.txt"
-    sal_avant = []
-    with open(path_avant, 'rU') as avant_file:
-        for line in avant_file:
-            sal_avant.append(line)
 
-    # Output of preprocessing
+    # Output of preprocessingV2
     path_apres = 'openfisca_france/scripts/parameters/sal_children_APRES.txt'
     print(build_sal(node_json).children, file=open(path_apres, "w"))  # noqa: T001
-    sal_apres = []
-    with open(path_apres) as apres_file:
-        for line in apres_file:
-            sal_apres.append(line)
 
-    # If the files are different
-    if sal_avant != sal_apres:
-        with open(path_avant, 'rU') as f1:
-            with open(path_apres, 'rU') as f2:
-                readable_last_modified_time1 = time.ctime(os.path.getmtime(path_avant))
-                readable_last_modified_time2 = time.ctime(os.path.getmtime(path_apres))
-                # Save the diff in a file
-                difftext = ''.join(difflib.unified_diff(
-                    f1.readlines(), f2.readlines(), fromfile=path_avant, tofile=path_apres,
-                    fromfiledate=readable_last_modified_time1,
-                    tofiledate=readable_last_modified_time2,
-                    ))
-                with open('openfisca_france/scripts/parameters/sal_diff.txt', 'w') as diff_file:
-                    diff_file.write(difftext)
+    missing, en_trop = check_keys(path_avant, path_apres)
 
-    assert sal_avant == sal_apres
+    assert missing == []
+    assert en_trop == []
 
 
 def test_preprocess_parameters(node_json):
     # Original preprocessing
     path_avant = "openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt"
-    PP_avant = []
-    with open(path_avant, 'rU') as avant_file:
-        for line in avant_file:
-            PP_avant.append(line)
 
-    # Output of preprocessing
+    # Output of preprocessingV2
     path_apres = 'openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt'
     print(preprocess_parameters(node_json).cotsoc, file=open(path_apres, "w"))  # noqa: T001
-    PP_apres = []
-    with open(path_apres) as apres_file:
-        for line in apres_file:
-            PP_apres.append(line)
 
-    # If the files are different
-    if PP_avant != PP_apres:
-        with open(path_avant, 'rU') as f1:
-            with open(path_apres, 'rU') as f2:
-                readable_last_modified_time1 = time.ctime(os.path.getmtime(path_avant))
-                readable_last_modified_time2 = time.ctime(os.path.getmtime(path_apres))
-                # Save the diff in a file
-                difftext = ''.join(difflib.unified_diff(
-                    f1.readlines(), f2.readlines(), fromfile=path_avant, tofile=path_apres,
-                    fromfiledate=readable_last_modified_time1,
-                    tofiledate=readable_last_modified_time2,
-                    ))
-                with open('openfisca_france/scripts/parameters/preprocessed_parameters_diff.txt', 'w') as diff_file:
-                    diff_file.write(difftext)
+    missing, en_trop = check_keys(path_avant, path_apres)
 
-    assert PP_avant == PP_apres
+    assert missing == []
+    assert en_trop == []
