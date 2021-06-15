@@ -88,41 +88,57 @@ print("Sal Nodes 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En 
 # 
 path1 = "openfisca_france/scripts/parameters/SalCadre_AVANT.txt"
 path2 = "openfisca_france/scripts/parameters/SalCadre_APRES.txt"
-print("Cadre 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+print("SalCadre 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
 # #
 path1 = "openfisca_france/scripts/parameters/SalNoncadre_AVANT.txt"
 path2 = "openfisca_france/scripts/parameters/SalNoncadre_APRES.txt"
-print("Non cadre 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+print("SalNon cadre 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
 # 
 # path1 = "openfisca_france/scripts/parameters/Fonc_AVANT.txt"
 # path2 = "openfisca_france/scripts/parameters/Fonc_APRES.txt"
 # print("Fonc 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
 # 
-# path1 = "openfisca_france/scripts/parameters/Fonc_etat_AVANT.txt"
-# path2 = "openfisca_france/scripts/parameters/Fonc_etat_APRES.txt"
-# print("Fonc Etat 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+path1 = "openfisca_france/scripts/parameters/SalFonc_etat_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/SalFonc_etat_APRES.txt"
+print("SalFonc Etat 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
 # 
-# path1 = "openfisca_france/scripts/parameters/Fonc_colloc_AVANT.txt"
-# path2 = "openfisca_france/scripts/parameters/Fonc_colloc_APRES.txt"
-# print("Fonc Colloc 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+path1 = "openfisca_france/scripts/parameters/SalFonc_colloc_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/SalFonc_colloc_APRES.txt"
+print("SalFonc Colloc 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
 # 
-# path1 = "openfisca_france/scripts/parameters/Fonc_contract_AVANT.txt"
-# path2 = "openfisca_france/scripts/parameters/Fonc_contract_APRES.txt"
-# print("Fonc Contract 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
-# 
-# path1 = "openfisca_france/scripts/parameters/Commun_AVANT.txt"
-# path2 = "openfisca_france/scripts/parameters/Commun_APRES.txt"
-# print("COMMUN 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
-# 
-# path1 = "openfisca_france/scripts/parameters/Public_host_AVANT.txt"
-# path2 = "openfisca_france/scripts/parameters/Public_host_APRES.txt"
-# print("HOSPITALIER 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
-# 
-# path1 = "openfisca_france/scripts/parameters/Public_host_AVANT.txt"
-# path2 = "openfisca_france/scripts/parameters/Public_host_APRES.txt"
-# print("TERRITOIRE 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
-# 
-# path1 = "openfisca_france/scripts/parameters/pat_children_AVANT.txt"
-# path2 = "openfisca_france/scripts/parameters/pat_children_APRES.txt"
-# print("PAT CHILDREN 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
-# 
+path1 = "openfisca_france/scripts/parameters/SalFonc_contract_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/SalFonc_contract_APRES.txt"
+print("SalFonc Contract 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+path1 = "openfisca_france/scripts/parameters/SalFonc_commun_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/SalFonc_commun_APRES.txt"
+print("SalFonc Commun 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+#path1 = "openfisca_france/scripts/parameters/Commun_AVANT.txt"
+#path2 = "openfisca_france/scripts/parameters/Commun_APRES.txt"
+#print("COMMUN 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+path1 = "openfisca_france/scripts/parameters/SalPublic_host_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/SalPublic_host_APRES.txt"
+print("SalHOSPITALIER 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+path1 = "openfisca_france/scripts/parameters/SalPublic_host_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/SalPublic_host_APRES.txt"
+print("SalTERRITOIRE 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+path1 = "openfisca_france/scripts/parameters/sal_arti_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/sal_arti_APRES.txt"
+print("Sal ART 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+path1 = "openfisca_france/scripts/parameters/sal_comind_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/sal_comind_APRES.txt"
+print("Sal ART 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+path1 = "openfisca_france/scripts/parameters/sal_microsocial_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/sal_microsocial_APRES.txt"
+print("Sal ART 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+
+path1 = "openfisca_france/scripts/parameters/sal_children_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/sal_children_APRES.txt"
+print("Sal CHILDREN 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"

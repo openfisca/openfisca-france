@@ -63,7 +63,8 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['cadre'].children.update(commun.children)
     # commun.children
     print(pat.children['cadre'].children, file=open("openfisca_france/scripts/parameters/Cadre_APRES.txt", "w"))
-    # Réindexation Fonc ??
+    
+    # Réindexation Fonc
     # Initialisation
     fonc = ParameterNode("fonc", data={})
     pat.add_child('fonc', fonc)
@@ -72,21 +73,21 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     fonc.add_child('contract', ParameterNode("contract", data={}))
 
     # Contractuel
-    pat.children['fonc'].children['contract'] = public.ircantec
+    pat.children['fonc'].children['contract'] = public.ircantec.employeur
     pat.children['fonc'].children['contract'].children.update(commun.children)
     print(pat.children['fonc'].children['contract'].children, file=open("openfisca_france/scripts/parameters/Fonc_contract_APRES.txt", "w"))
 
     # Etat
     pat.children['fonc'].children['etat'].children.update(public.mmid.etat.children)
     pat.children['fonc'].children['etat'].children.update(public.retraite.ati.children)
-    pat.children['fonc'].children['etat'].children.update(public.rafp.children)
-    pat.children['fonc'].children['etat'].children.update(public.retraite.pension.children)
+    pat.children['fonc'].children['etat'].children.update(public.rafp.employeur.children)
+    pat.children['fonc'].children['etat'].children.update(public.retraite.pension.employeur.children)
     print(pat.children['fonc'].children['etat'].children, file=open("openfisca_france/scripts/parameters/Fonc_etat_APRES.txt", "w"))
 
     # Collectivités Locales
-    pat.children['fonc'].children['colloc'].children['hospitaliere'] = public.cnral.hospitaliere
-    pat.children['fonc'].children['colloc'].children['territoriale'] = public.cnral.territoriale
-    pat.children['fonc'].children['colloc'].children.update(public.cnral.children)
+    pat.children['fonc'].children['colloc'].children['hospitaliere'] = public.cnral.employeur.hospitaliere
+    pat.children['fonc'].children['colloc'].children['territoriale'] = public.cnral.employeur.territoriale
+    pat.children['fonc'].children['colloc'].children.update(public.cnral.employeur.children)
     pat.children['fonc'].children['colloc'].children.update(public.mmid.colloc.children)
     pat.children['fonc'].children['colloc'].children.update(public.rafp.children)
     print(pat.children['fonc'].children['colloc'].children, file=open("openfisca_france/scripts/parameters/Fonc_colloc_APRES.txt", "w"))
@@ -148,65 +149,26 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 def build_sal(node_json):
     '''
     Construit le dictionnaire de barèmes des cotisations salariales
-    à partir des informations contenues dans node_json.children['cotsoc'].children['sal']
     '''
-    sal2 = copy.deepcopy(node_json.children['cotsoc'].children['sal'])
-    print(sal2.commun.children, file=open("openfisca_france/scripts/parameters/SalNodes_AVANT.txt", "w"))
-    
-    sal2.children['noncadre'].children.update(sal2.children['commun'].children)
-    sal2.children['cadre'].children.update(sal2.children['commun'].children)
-    print(sal2.children['noncadre'].children, file=open("openfisca_france/scripts/parameters/SalNoncadre_AVANT.txt", "w"))
-    print(sal2.children['cadre'].children, file=open("openfisca_france/scripts/parameters/SalCadre_AVANT.txt", "w"))
-
-    # Renaming
-    sal2.children['prive_non_cadre'] = sal2.children.pop('noncadre')
-    sal2.children['prive_cadre'] = sal2.children.pop('cadre')
-    sal2.children['public_titulaire_etat'] = sal2.children['fonc'].children['etat']
-
-    sal2.children['public_titulaire_territoriale'] = sal2.children['fonc'].children['colloc']
-    sal2.children['public_titulaire_hospitaliere'] = sal2.children['fonc'].children['colloc']
-    sal2.children['public_non_titulaire'] = sal2.children['fonc'].children['contract']
-
-    for type_sal_category in [
-            'public_titulaire_etat',
-            'public_titulaire_territoriale',
-            'public_titulaire_hospitaliere',
-            'public_non_titulaire',
-            ]:
-        sal2.children[type_sal_category].children['excep_solidarite'] = sal2.children['fonc'].children['commun'].children['solidarite']
-
-    # Ajoute le RAFP (Régime additionnel de la fonction publique) pour 'public_titulaire_territoriale' et 'public_titulaire_hospitaliere'
-    for type_sal_category in ['public_titulaire_territoriale', 'public_titulaire_hospitaliere']:
-        sal2.children[type_sal_category].children['rafp'] = sal2.children['fonc'].children['etat'].children['rafp']
-
-    sal2.children['public_non_titulaire'].children.update(sal2.children['commun'].children)
-    del sal2.children['public_non_titulaire'].children['assedic']
-
-    # Cleaning
-    del sal2.children['commun']
-    del sal2.children['fonc'].children['etat']
-    del sal2.children['fonc'].children['colloc']
-    del sal2.children['fonc'].children['contract']
-
-
-    ### REINDEXATION
     sal = ParameterNode("sal", data={}) # Génère sal
     commun = ParameterNode("commun", data={})  # Génère commun
 
-    # Réindexation: nouveaux chemins
+    ## Réindexation: nouveaux chemins
     #autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
     chom = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
     cotiz = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
-    #public = node_json.prelevements_sociaux.cotisations_secteur_public
-    
+    public = node_json.prelevements_sociaux.cotisations_secteur_public
+    indep = node_json.prelevements_sociaux.cotisations_taxes_independants_artisans_commercants
+    liberal = node_json.prelevements_sociaux.cotisations_taxes_professions_liberales
+
     # Création de commun
     commun.children.update(chom.assedic.salarie.children)
     commun.children.update(cotiz.mmid.bareme.salarie.children)  # À harmoniser !
     commun.children.update(cotiz.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(cotiz.cnav.bareme.salarie.children)  # À harmoniser !
     print(commun.children, file=open("openfisca_france/scripts/parameters/SalNodes_APRES.txt", "w"))
-    
+
     # Non Cadre
     # Initialisation
     noncadre = ParameterNode("noncadre", data={})
@@ -221,16 +183,40 @@ def build_sal(node_json):
     sal.children['cadre'].children.update(commun.children)
     print(sal.children['cadre'].children, file=open("openfisca_france/scripts/parameters/SalCadre_APRES.txt", "w"))
 
-
-    1/0
     # Renaming
     sal.children['prive_non_cadre'] = sal.children.pop('noncadre')
     sal.children['prive_cadre'] = sal.children.pop('cadre')
-    sal.children['public_titulaire_etat'] = sal.children['fonc'].children['etat']
 
+    # Réindexation Fonc
+    # Initialisation
+    fonc = ParameterNode("fonc", data={})
+    sal.add_child('fonc', fonc)
+    fonc.add_child('colloc', ParameterNode("colloc", data={}))
+    fonc.add_child('etat', ParameterNode("etat", data={}))
+    fonc.add_child('contract', ParameterNode("contract", data={}))
+    fonc.add_child('commun', ParameterNode("commun", data={}))
+
+    # Etat
+    sal.children['fonc'].children['etat'].children.update(public.rafp.salarie.children)
+    sal.children['fonc'].children['etat'].children.update(public.retraite.pension.salarie.children)
+    sal.children['public_titulaire_etat'] = sal.children['fonc'].children['etat']
+    print(sal.children['fonc'].children['etat'].children, file=open("openfisca_france/scripts/parameters/SalFonc_etat_APRES.txt", "w"))
+
+    # Collectivités Locales
+    sal.children['fonc'].children['colloc'].children.update(public.cnral.salarie.children)
     sal.children['public_titulaire_territoriale'] = sal.children['fonc'].children['colloc']
     sal.children['public_titulaire_hospitaliere'] = sal.children['fonc'].children['colloc']
+    print(sal.children['fonc'].children['colloc'].children, file=open("openfisca_france/scripts/parameters/SalFonc_colloc_APRES.txt", "w"))
+
+    # Contractuel
+    sal.children['fonc'].children['contract'] = public.ircantec.salarie
+    print(sal.children['fonc'].children['contract'].children, file=open("openfisca_france/scripts/parameters/SalFonc_contract_APRES.txt", "w"))
     sal.children['public_non_titulaire'] = sal.children['fonc'].children['contract']
+
+    # Commun
+    sal.children['fonc'].children['commun'].children.update(public.fds.children)  # À harmoniser ! + Créer params depuis IPP
+    print(sal.children['fonc'].children['commun'].children, file=open("openfisca_france/scripts/parameters/SalFonc_commun_APRES.txt", "w"))
+
     for type_sal_category in [
             'public_titulaire_etat',
             'public_titulaire_territoriale',
@@ -242,19 +228,41 @@ def build_sal(node_json):
     # Ajoute le RAFP (Régime additionnel de la fonction publique) pour 'public_titulaire_territoriale' et 'public_titulaire_hospitaliere'
     for type_sal_category in ['public_titulaire_territoriale', 'public_titulaire_hospitaliere']:
         sal.children[type_sal_category].children['rafp'] = sal.children['fonc'].children['etat'].children['rafp']
-
-    sal.children['public_non_titulaire'].children.update(sal.children['commun'].children)
+    sal.children['public_non_titulaire'].children.update(commun.children)
     del sal.children['public_non_titulaire'].children['assedic']
 
     # Cleaning
-    del sal.children['commun']
     del sal.children['fonc'].children['etat']
     del sal.children['fonc'].children['colloc']
     del sal.children['fonc'].children['contract']
 
+    print(sal.children['public_titulaire_hospitaliere'].children, file=open("openfisca_france/scripts/parameters/SalPublic_host_APRES.txt", "w"))
+    print(sal.children['public_titulaire_territoriale'].children, file=open("openfisca_france/scripts/parameters/SalPublic_ter_APRES.txt", "w"))
+
+    # Arti
+    sal.add_child('arti', ParameterNode("arti", data={}))
+    sal.children['arti'].children.update(indep.famille.arti.children)  # À harmoniser ! + Créer params depuis IPP
+    sal.children['arti'].children.update(indep.formation.arti.children)  # À harmoniser ! + Créer params depuis IPP
+    sal.children['arti'].children.update(indep.mmid.arti.children)  # À harmoniser ! + Créer params depuis IPP
+    sal.children['arti'].children.update(indep.deces.arti.children)  # À harmoniser ! + Créer params depuis IPP
+    sal.children['arti'].children.update(indep.retraite.arti.children)  # À harmoniser ! + Créer params depuis IPP
+    print(sal.arti.children, file=open("openfisca_france/scripts/parameters/sal_arti_APRES.txt", "w"))
+    # Comind
+    sal.add_child('comind', ParameterNode("comind", data={}))
+    sal.children['comind'].children.update(indep.famille.comind.children)  # À harmoniser ! + Créer params depuis IPP
+    sal.children['comind'].children.update(indep.formation.comind.children)  # À harmoniser ! + Créer params depuis IPP
+    sal.children['comind'].children.update(indep.mmid.comind.children)  # À harmoniser ! + Créer params depuis IPP
+    sal.children['comind'].children.update(indep.deces.comind.children)  # À harmoniser ! + Créer params depuis IPP
+    sal.children['comind'].children.update(indep.retraite.comind.children)  # À harmoniser ! + Créer params depuis IPP
+    print(sal.comind.children, file=open("openfisca_france/scripts/parameters/sal_comind_APRES.txt", "w"))
+    # Microsocial
+    sal.add_child('microsocial', ParameterNode("microsocial", data={}))
+    sal.children['microsocial'].children.update(liberal.auto_entrepreneur.children)  # À harmoniser ! + Créer params depuis IPP
+
+    print(sal.microsocial.children, file=open("openfisca_france/scripts/parameters/sal_microsocial_APRES.txt", "w"))
+
     # TO DO ONLY ONCE, BEFORE CHANGING V2
-    # print(sal.children, file=open("openfisca_france/scripts/parameters/sal_children_AVANT.txt", "w"))
-    
+    print(sal.children, file=open("openfisca_france/scripts/parameters/sal_children_APRES.txt", "w"))
     return sal
 
 

@@ -1,0 +1,7 @@
+description: Taux pour les activités de prestations et de services
+unit: /1
+values:
+  2009-01-01:
+    value: 0.213
+  2013-01-01:
+    value: 0.246
