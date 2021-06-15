@@ -89,12 +89,12 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['prive_non_cadre'] = pat.children.pop('noncadre')
     pat.children['prive_cadre'] = pat.children.pop('cadre')
     #print(pat.children['fonc'].children, file=open("openfisca_france/scripts/parameters/Fonc_APRES.txt", "w"))
-    
+
     # Rework commun to deal with public employees
     for var in ["apprentissage", "apprentissage_add", "apprentissage_alsace_moselle", "assedic", "chomfg", "construction", "maladie", "formprof_09",
                 "formprof_1019", "formprof_20", "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
         del commun.children[var]
-    print(commun.children, file=open("openfisca_france/scripts/parameters/Commun_APRES.txt", "w")) 
+    #print(commun.children, file=open("openfisca_france/scripts/parameters/Commun_APRES.txt", "w")) 
 
     for var in ["apprentissage", "apprentissage_add", "apprentissage_alsace_moselle", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
                 "construction", "assedic"]:
@@ -110,11 +110,11 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     for var in ['etat', 'colloc', 'contract']:
         del pat.children['fonc'].children[var]
 
-    print(pat.children['contract'].children, file=open("openfisca_france/scripts/parameters/Fonc_contract_APRES.txt", "w"))
-    print(pat.children['etat_t'].children, file=open("openfisca_france/scripts/parameters/Fonc_etat_APRES.txt", "w"))
-    print(pat.children['colloc_t'].children, file=open("openfisca_france/scripts/parameters/Fonc_colloc_APRES.txt", "w"))
-    print(pat.children['fonc'].children, file=open("openfisca_france/scripts/parameters/Fonc_APRES.txt", "w"))
-    
+    #print(pat.children['contract'].children, file=open("openfisca_france/scripts/parameters/Fonc_contract_APRES.txt", "w"))
+    #print(pat.children['etat_t'].children, file=open("openfisca_france/scripts/parameters/Fonc_etat_APRES.txt", "w"))
+    #print(pat.children['colloc_t'].children, file=open("openfisca_france/scripts/parameters/Fonc_colloc_APRES.txt", "w"))
+    #print(pat.children['fonc'].children, file=open("openfisca_france/scripts/parameters/Fonc_APRES.txt", "w"))
+
     # Renaming
     pat.children['public_titulaire_etat'] = pat.children.pop('etat_t')
     # del pat.children['public_titulaire_etat'].children['rafp']
@@ -130,13 +130,12 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     pat.children['public_non_titulaire'] = pat.children.pop('contract')
 
-    print(pat.children['public_titulaire_hospitaliere'].children, file=open("openfisca_france/scripts/parameters/Public_host_APRES.txt", "w"))
-    print(pat.children['public_titulaire_territoriale'].children, file=open("openfisca_france/scripts/parameters/Public_ter_APRES.txt", "w"))
-    print(pat.children, file=open("openfisca_france/scripts/parameters/pat_children_APRES.txt", "w"))
-    
+    #print(pat.children['public_titulaire_hospitaliere'].children, file=open("openfisca_france/scripts/parameters/Public_host_APRES.txt", "w"))
+    #print(pat.children['public_titulaire_territoriale'].children, file=open("openfisca_france/scripts/parameters/Public_ter_APRES.txt", "w"))
+    #print(pat.children, file=open("openfisca_france/scripts/parameters/pat_children_APRES.txt", "w"))
+
     # TO DO ONLY ONCE, BEFORE CHANGING
     #print(pat.children, file=open("openfisca_france/scripts/parameters/pat_children_AVANT_Sorted.txt", "w"))
-    
     return pat
 
 
