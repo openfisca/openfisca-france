@@ -1,0 +1,25 @@
+brackets:
+- rate:
+    1989-09-01:
+      value: 0.0075
+    1994-01-01:
+      value: 0.01
+    1998-07-01:
+      value: 0.0125
+    1999-07-01:
+      value: 0.015
+    2003-01-01:
+      value: 0.017
+    2006-01-01:
+      value: 0.018
+    2007-07-01:
+      value: 0.017
+    2008-01-01:
+      value: 0.016
+    2012-01-01:
+      value: 0.015
+  threshold:
+    1989-09-01:
+      value: 0.0
+description: Assurance maladie, maternité, invalidité, décès pour les salariés du
+  régime Alsace-Moselle

@@ -37,17 +37,62 @@ def check_keys(path1, path2):
     return missing, en_trop
 
 # Pour travailler avec PAT
-# path1 = "openfisca_france/scripts/parameters/Nodes_AVANT.txt"
-# path2 = "openfisca_france/scripts/parameters/Nodes_APRES.txt"
-# print("Nodes 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+path1 = "openfisca_france/scripts/parameters/Nodes_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/Nodes_APRES.txt"
+print("Nodes 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+
+path1 = "openfisca_france/scripts/parameters/Cadre_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/Cadre_APRES.txt"
+print("Cadre 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+#
+path1 = "openfisca_france/scripts/parameters/Noncadre_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/Noncadre_APRES.txt"
+print("Non cadre 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+
+path1 = "openfisca_france/scripts/parameters/Fonc_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/Fonc_APRES.txt"
+print("Fonc 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+
+path1 = "openfisca_france/scripts/parameters/Fonc_etat_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/Fonc_etat_APRES.txt"
+print("Fonc Etat 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+
+path1 = "openfisca_france/scripts/parameters/Fonc_colloc_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/Fonc_colloc_APRES.txt"
+print("Fonc Colloc 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+
+path1 = "openfisca_france/scripts/parameters/Fonc_contract_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/Fonc_contract_APRES.txt"
+print("Fonc Contract 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+path1 = "openfisca_france/scripts/parameters/Commun_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/Commun_APRES.txt"
+print("COMMUN 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+path1 = "openfisca_france/scripts/parameters/Public_host_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/Public_host_APRES.txt"
+print("HOSPITALIER 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+path1 = "openfisca_france/scripts/parameters/Public_host_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/Public_host_APRES.txt"
+print("TERRITOIRE 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+path1 = "openfisca_france/scripts/parameters/pat_children_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/pat_children_APRES.txt"
+print("PAT CHILDREN 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
+
+# Pour travailler avec SAL
+path1 = "openfisca_france/scripts/parameters/SalNodes_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/SalNodes_APRES.txt"
+print("Sal Nodes 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
 # 
-# path1 = "openfisca_france/scripts/parameters/Cadre_AVANT.txt"
-# path2 = "openfisca_france/scripts/parameters/Cadre_APRES.txt"
-# print("Cadre 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+path1 = "openfisca_france/scripts/parameters/SalCadre_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/SalCadre_APRES.txt"
+print("Cadre 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
 # #
-# path1 = "openfisca_france/scripts/parameters/Noncadre_AVANT.txt"
-# path2 = "openfisca_france/scripts/parameters/Noncadre_APRES.txt"
-# print("Non cadre 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+path1 = "openfisca_france/scripts/parameters/SalNoncadre_AVANT.txt"
+path2 = "openfisca_france/scripts/parameters/SalNoncadre_APRES.txt"
+print("Non cadre 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
 # 
 # path1 = "openfisca_france/scripts/parameters/Fonc_AVANT.txt"
 # path2 = "openfisca_france/scripts/parameters/Fonc_APRES.txt"
@@ -81,7 +126,3 @@ def check_keys(path1, path2):
 # path2 = "openfisca_france/scripts/parameters/pat_children_APRES.txt"
 # print("PAT CHILDREN 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
 # 
-# Pour travailler avec PAT
-path1 = "openfisca_france/scripts/parameters/pat_children_AVANT.txt"
-path2 = "openfisca_france/scripts/parameters/pat_children_APRES.txt"
-print("PAT CHILDREN 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"

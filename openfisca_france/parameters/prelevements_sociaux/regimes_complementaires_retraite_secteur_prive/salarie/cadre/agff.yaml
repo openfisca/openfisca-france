@@ -1,0 +1,26 @@
+brackets:
+- rate:
+    2001-04-01:
+      value: 0.008
+  threshold:
+    2001-04-01:
+      value: 0.0
+- rate:
+    2001-04-01:
+      value: 0.009
+  threshold:
+    2001-04-01:
+      value: 1.0
+- rate:
+    2001-04-01:
+      value: 0.0
+    2016-01-01:
+      reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/conventions_accords/2015/Accord-Agirc-Arrco_20151030.pdf
+      value: null
+  threshold:
+    2001-04-01:
+      value: 4.0
+    2016-01-01:
+      reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/conventions_accords/2015/Accord-Agirc-Arrco_20151030.pdf
+      value: null
+description: Cotisation AGFF

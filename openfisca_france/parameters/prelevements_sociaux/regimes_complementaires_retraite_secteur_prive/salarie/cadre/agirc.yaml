@@ -1,0 +1,62 @@
+brackets:
+- rate:
+    1993-07-01:
+      value: 0.0
+  threshold:
+    1993-07-01:
+      value: 0.0
+- rate:
+    1993-07-01:
+      value: 0.0234
+    1994-01-01:
+      value: 0.0363
+    1995-01-01:
+      value: 0.05
+    1996-01-01:
+      value: 0.05625
+    1997-01-01:
+      value: 0.0625
+    1998-01-01:
+      value: 0.06875
+    1999-01-01:
+      value: 0.075
+    2006-01-01:
+      value: 0.077
+    2014-01-01:
+      value: 0.0775
+    2015-01-01:
+      value: 0.078
+  threshold:
+    1993-07-01:
+      value: 1.0
+- rate:
+    1993-07-01:
+      value: 0.0234
+    1994-01-01:
+      value: 0.0363
+    1995-01-01:
+      value: 0.05
+    1996-01-01:
+      value: 0.05625
+    1997-01-01:
+      value: 0.0625
+    1998-01-01:
+      value: 0.06875
+    1999-01-01:
+      value: 0.075
+    2006-01-01:
+      value: 0.077
+    2014-01-01:
+      value: 0.0775
+    2015-01-01:
+      value: 0.078
+  threshold:
+    1993-07-01:
+      value: 4.0
+- rate:
+    1993-07-01:
+      value: 0.0
+  threshold:
+    1993-07-01:
+      value: 8.0
+description: Retraite complémentaire AGIRC (tranches B et C, avant 65 ans)

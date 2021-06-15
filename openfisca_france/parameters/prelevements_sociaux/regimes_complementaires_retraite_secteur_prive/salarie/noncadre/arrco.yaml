@@ -1,0 +1,42 @@
+brackets:
+- rate:
+    1993-01-01:
+      value: 0.01968
+    1996-01-01:
+      value: 0.0225
+    1997-01-01:
+      value: 0.025
+    1998-01-01:
+      value: 0.0275
+    1999-01-01:
+      value: 0.03
+    2014-01-01:
+      value: 0.0305
+    2015-01-01:
+      value: 0.031
+  threshold:
+    1993-01-01:
+      value: 0.0
+- rate:
+    1993-01-01:
+      value: 0.05
+    2002-01-01:
+      value: 0.06
+    2004-01-01:
+      value: 0.07
+    2005-01-01:
+      value: 0.08
+    2014-01-01:
+      value: 0.0805
+    2015-01-01:
+      value: 0.081
+  threshold:
+    1993-01-01:
+      value: 1.0
+- rate:
+    1993-01-01:
+      value: 0.0
+  threshold:
+    1993-01-01:
+      value: 3.0
+description: Retraite complémentaire ARRCO pour les non cadres (Tranches 1 et 2)
