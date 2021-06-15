@@ -59,7 +59,6 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.add_child('cadre', cadre)
     pat.children['cadre'].children.update(retraites.employeur.cadre.children)
     pat.children['cadre'].children.update(commun.children)
-
     # Réindexation Fonc
     # Initialisation
     fonc = ParameterNode("fonc", data={})
@@ -208,20 +207,22 @@ def build_sal(node_json):
     sal = ParameterNode("sal", data={}) # Génère sal
     commun = ParameterNode("commun", data={})  # Génère commun
 
-    # Réindexation: nouveaux chemins
+    ## Réindexation: nouveaux chemins
     #autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
     chom = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
     cotiz = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
-    #public = node_json.prelevements_sociaux.cotisations_secteur_public
-    
+    public = node_json.prelevements_sociaux.cotisations_secteur_public
+    indep = node_json.prelevements_sociaux.cotisations_taxes_independants_artisans_commercants
+    liberal = node_json.prelevements_sociaux.cotisations_taxes_professions_liberales
+
     # Création de commun
     commun.children.update(chom.assedic.salarie.children)
     commun.children.update(cotiz.mmid.bareme.salarie.children)  # À harmoniser !
     commun.children.update(cotiz.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(cotiz.cnav.bareme.salarie.children)  # À harmoniser !
     print(commun.children, file=open("openfisca_france/scripts/parameters/SalNodes_APRES.txt", "w"))
-    
+
     # Non Cadre
     # Initialisation
     noncadre = ParameterNode("noncadre", data={})
@@ -236,8 +237,6 @@ def build_sal(node_json):
     sal.children['cadre'].children.update(commun.children)
     print(sal.children['cadre'].children, file=open("openfisca_france/scripts/parameters/SalCadre_APRES.txt", "w"))
 
-
-    1/0
     # Renaming
     sal.children['prive_non_cadre'] = sal.children.pop('noncadre')
     sal.children['prive_cadre'] = sal.children.pop('cadre')
@@ -255,6 +254,7 @@ def build_sal(node_json):
     sal.children['fonc'].children['etat'].children.update(public.rafp.salarie.children)
     sal.children['fonc'].children['etat'].children.update(public.retraite.pension.salarie.children)
     sal.children['public_titulaire_etat'] = sal.children['fonc'].children['etat']
+    print(sal.children['fonc'].children['etat'].children, file=open("openfisca_france/scripts/parameters/SalFonc_etat_APRES.txt", "w"))
 
     # Collectivités Locales
     sal.children['fonc'].children['colloc'].children.update(public.cnral.salarie.children)
@@ -294,7 +294,6 @@ def build_sal(node_json):
     sal.children['arti'].children.update(indep.mmid.arti.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['arti'].children.update(indep.deces.arti.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['arti'].children.update(indep.retraite.arti.children)  # À harmoniser ! + Créer params depuis IPP
-
     # Comind
     sal.add_child('comind', ParameterNode("comind", data={}))
     sal.children['comind'].children.update(indep.famille.comind.children)  # À harmoniser ! + Créer params depuis IPP
@@ -302,7 +301,6 @@ def build_sal(node_json):
     sal.children['comind'].children.update(indep.mmid.comind.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['comind'].children.update(indep.deces.comind.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['comind'].children.update(indep.retraite.comind.children)  # À harmoniser ! + Créer params depuis IPP
-
     # Microsocial
     sal.add_child('microsocial', ParameterNode("microsocial", data={}))
     sal.children['microsocial'].children.update(liberal.auto_entrepreneur.children)  # À harmoniser ! + Créer params depuis IPP
