@@ -1,13 +1,11 @@
 import pytest
 import os
-import time
-import difflib
 
 
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import preprocessing, preprocessing_old
 from openfisca_core.parameters import ParameterNode
 from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
-from openfisca_france.scripts.parameters.check_keys import check_keys
+from openfisca_france.scripts.parameters.check_keys import check_keys, check_keys2
 
 """
 Etapes du réel au résultat du preprocessing
@@ -32,7 +30,7 @@ def node_json():
 def test_full_build_pat(node_json):
     # Original preprocessing
     path_avant = "openfisca_france/scripts/parameters/pat_children_AVANT.txt"
-
+    print(preprocessing_old.build_pat(node_json).children, file=open(path_avant, "w"))  # noqa: T001
     # Output of preprocessingV2
     path_apres = 'openfisca_france/scripts/parameters/pat_children_APRES.txt'
     print(preprocessing.build_pat(node_json).children, file=open(path_apres, "w"))  # noqa: T001
@@ -42,35 +40,16 @@ def test_full_build_pat(node_json):
     assert missing == []
     assert en_trop == []
 
-    
-def children_build_pat(node_json):
-    children_list = ['arti', 'fonc', 'microsocial', 'comind', 'prive_non_cadre', 'prive_cadre', 'public_titulaire_etat', 'public_titulaire_territoriale', 'public_titulaire_hospitaliere', 'public_non_titulaire']
-    for childname in children_list:
-        print(childname)
-        # Original preprocessing
-        path_avant = "openfisca_france/scripts/parameters/children_AVANT.txt"
-        print((preprocessing_old.build_pat(node_json)).children[childname].children, file=open(path_avant, "w"))  # noqa: T001
-    #
-        # Output of preprocessingV2
-        path_apres = 'openfisca_france/scripts/parameters/children_APRES.txt'
-        print((preprocessing.build_pat(node_json)).children[childname].children,  file=open(path_apres, "w"))  # noqa: T001
-
-        missing, en_trop = check_keys(path_avant, path_apres)
-
-        assert missing == []
-        assert en_trop == []
-
 
 def test_full_build_sal(node_json):
     # Original preprocessing
     path_avant = "openfisca_france/scripts/parameters/sal_children_AVANT.txt"
-
+    print(preprocessing_old.build_sal(node_json).children, file=open(path_avant, "w"))  # noqa: T001
     # Output of preprocessingV2
     path_apres = 'openfisca_france/scripts/parameters/sal_children_APRES.txt'
     print(preprocessing.build_sal(node_json).children, file=open(path_apres, "w"))  # noqa: T001
 
     missing, en_trop = check_keys(path_avant, path_apres)
-
     assert missing == []
     assert en_trop == []
 
@@ -78,12 +57,11 @@ def test_full_build_sal(node_json):
 def test_preprocess_parameters(node_json):
     # Original preprocessing
     path_avant = "openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt"
-
+    print(preprocessing_old.preprocess_parameters(node_json).cotsoc, file=open(path_avant, "w"))  # noqa: T001
     # Output of preprocessingV2
     path_apres = 'openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt'
     print(preprocessing.preprocess_parameters(node_json).cotsoc, file=open(path_apres, "w"))  # noqa: T001
 
-    missing, en_trop = check_keys(path_avant, path_apres)
-
+    missing, en_trop = check_keys2(path_avant, path_apres)
     assert missing == []
     assert en_trop == []

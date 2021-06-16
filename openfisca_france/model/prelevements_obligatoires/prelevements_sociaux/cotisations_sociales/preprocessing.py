@@ -2,7 +2,6 @@ import copy
 import logging
 
 from openfisca_core.parameters import ParameterNode
-from openfisca_france.model.base import *
 from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalarie
 
 DEBUG_SAL_TYPE = 'public_titulaire_etat'
@@ -13,7 +12,7 @@ log = logging.getLogger(__name__)
 
 def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     """Construit le dictionnaire de barèmes des cotisations employeur à partir de RIEN"""
-    pat = ParameterNode("pat", data={}) # Génère pat
+    pat = ParameterNode("pat", data={})  # Génère pat
     commun = ParameterNode("commun", data={})  # Génère commun
 
     # Réindexation: nouveaux chemins
@@ -45,7 +44,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(cotiz.penibilite.bareme.children)  # À harmoniser !
     commun.children.update(cotiz.cnav.bareme.employeur.children)  # À harmoniser !
     commun.children.update(cotiz.mmid.bareme.employeur.children)  # À harmoniser ! + Créer params depuis IPP
-    print(commun.children, file=open("openfisca_france/scripts/parameters/Nodes_APRES.txt", "w"))
+    # print(commun.children, file=open("openfisca_france/scripts/parameters/Nodes_APRES.txt", "w"))
 
     # Réindexation NonCadre
     # Initialisation
@@ -53,7 +52,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.add_child('noncadre', noncadre)
     pat.children['noncadre'].children.update(retraites.employeur.noncadre.children)
     pat.children['noncadre'].children.update(commun.children)
-    print(pat.children['noncadre'].children, file=open("openfisca_france/scripts/parameters/Noncadre_APRES.txt", "w"))
+    # print(pat.children['noncadre'].children, file=open("openfisca_france/scripts/parameters/Noncadre_APRES.txt", "w"))
 
     # Réindexation Cadre
     # Initialisation
@@ -62,8 +61,8 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['cadre'].children.update(retraites.employeur.cadre.children)
     pat.children['cadre'].children.update(commun.children)
     # commun.children
-    print(pat.children['cadre'].children, file=open("openfisca_france/scripts/parameters/Cadre_APRES.txt", "w"))
-    
+    # print(pat.children['cadre'].children, file=open("openfisca_france/scripts/parameters/Cadre_APRES.txt", "w"))
+
     # Réindexation Fonc
     # Initialisation
     fonc = ParameterNode("fonc", data={})
@@ -75,14 +74,14 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     # Contractuel
     pat.children['fonc'].children['contract'] = public.ircantec.employeur
     pat.children['fonc'].children['contract'].children.update(commun.children)
-    print(pat.children['fonc'].children['contract'].children, file=open("openfisca_france/scripts/parameters/Fonc_contract_APRES.txt", "w"))
+    # print(pat.children['fonc'].children['contract'].children, file=open("openfisca_france/scripts/parameters/Fonc_contract_APRES.txt", "w"))
 
     # Etat
     pat.children['fonc'].children['etat'].children.update(public.mmid.etat.children)
     pat.children['fonc'].children['etat'].children.update(public.retraite.ati.children)
     pat.children['fonc'].children['etat'].children.update(public.rafp.employeur.children)
     pat.children['fonc'].children['etat'].children.update(public.retraite.pension.employeur.children)
-    print(pat.children['fonc'].children['etat'].children, file=open("openfisca_france/scripts/parameters/Fonc_etat_APRES.txt", "w"))
+    # print(pat.children['fonc'].children['etat'].children, file=open("openfisca_france/scripts/parameters/Fonc_etat_APRES.txt", "w"))
 
     # Collectivités Locales
     pat.children['fonc'].children['colloc'].children['hospitaliere'] = public.cnral.employeur.hospitaliere
@@ -90,18 +89,18 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['fonc'].children['colloc'].children.update(public.cnral.employeur.children)
     pat.children['fonc'].children['colloc'].children.update(public.mmid.colloc.children)
     pat.children['fonc'].children['colloc'].children.update(public.rafp.children)
-    print(pat.children['fonc'].children['colloc'].children, file=open("openfisca_france/scripts/parameters/Fonc_colloc_APRES.txt", "w"))
+    # print(pat.children['fonc'].children['colloc'].children, file=open("openfisca_france/scripts/parameters/Fonc_colloc_APRES.txt", "w"))
 
     # Renaming
     pat.children['prive_non_cadre'] = pat.children.pop('noncadre')
     pat.children['prive_cadre'] = pat.children.pop('cadre')
-    print(pat.children['fonc'].children, file=open("openfisca_france/scripts/parameters/Fonc_APRES.txt", "w"))
+    # print(pat.children['fonc'].children, file=open("openfisca_france/scripts/parameters/Fonc_APRES.txt", "w"))
 
     # Rework commun to deal with public employees
     for var in ["apprentissage", "apprentissage_add", "apprentissage_alsace_moselle", "assedic", "chomfg", "construction", "maladie", "formprof_09",
                 "formprof_1019", "formprof_20", "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
         del commun.children[var]
-    print(commun.children, file=open("openfisca_france/scripts/parameters/Commun_APRES.txt", "w")) 
+    # print(commun.children, file=open("openfisca_france/scripts/parameters/Commun_APRES.txt", "w"))
 
     for var in ["apprentissage", "apprentissage_add", "apprentissage_alsace_moselle", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
                 "construction", "assedic"]:
@@ -117,10 +116,10 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     for var in ['etat', 'colloc', 'contract']:
         del pat.children['fonc'].children[var]
 
-    print(pat.children['contract'].children, file=open("openfisca_france/scripts/parameters/Fonc_contract_APRES.txt", "w"))
-    print(pat.children['etat_t'].children, file=open("openfisca_france/scripts/parameters/Fonc_etat_APRES.txt", "w"))
-    print(pat.children['colloc_t'].children, file=open("openfisca_france/scripts/parameters/Fonc_colloc_APRES.txt", "w"))
-    print(pat.children['fonc'].children, file=open("openfisca_france/scripts/parameters/Fonc_APRES.txt", "w"))
+    # print(pat.children['contract'].children, file=open("openfisca_france/scripts/parameters/Fonc_contract_APRES.txt", "w"))
+    # print(pat.children['etat_t'].children, file=open("openfisca_france/scripts/parameters/Fonc_etat_APRES.txt", "w"))
+    # print(pat.children['colloc_t'].children, file=open("openfisca_france/scripts/parameters/Fonc_colloc_APRES.txt", "w"))
+    # print(pat.children['fonc'].children, file=open("openfisca_france/scripts/parameters/Fonc_APRES.txt", "w"))
 
     # Renaming
     pat.children['public_titulaire_etat'] = pat.children.pop('etat_t')
@@ -137,12 +136,12 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     pat.children['public_non_titulaire'] = pat.children.pop('contract')
 
-    print(pat.children['public_titulaire_hospitaliere'].children, file=open("openfisca_france/scripts/parameters/Public_host_APRES.txt", "w"))
-    print(pat.children['public_titulaire_territoriale'].children, file=open("openfisca_france/scripts/parameters/Public_ter_APRES.txt", "w"))
-    print(pat.children, file=open("openfisca_france/scripts/parameters/pat_children_APRES.txt", "w"))
+    # print(pat.children['public_titulaire_hospitaliere'].children, file=open("openfisca_france/scripts/parameters/Public_host_APRES.txt", "w"))
+    # print(pat.children['public_titulaire_territoriale'].children, file=open("openfisca_france/scripts/parameters/Public_ter_APRES.txt", "w"))
+    # print(pat.children, file=open("openfisca_france/scripts/parameters/pat_children_APRES.txt", "w"))
 
     # TO DO ONLY ONCE, BEFORE CHANGING
-    #print(pat.children, file=open("openfisca_france/scripts/parameters/pat_children_AVANT_Sorted.txt", "w"))
+    # print(pat.children, file=open("openfisca_france/scripts/parameters/pat_children_AVANT_Sorted.txt", "w"))
     return pat
 
 
@@ -150,11 +149,11 @@ def build_sal(node_json):
     '''
     Construit le dictionnaire de barèmes des cotisations salariales
     '''
-    sal = ParameterNode("sal", data={}) # Génère sal
+    sal = ParameterNode("sal", data={})  # Génère sal
     commun = ParameterNode("commun", data={})  # Génère commun
 
-    ## Réindexation: nouveaux chemins
-    #autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
+    # Réindexation: nouveaux chemins
+    # autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
     chom = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
     cotiz = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
@@ -167,7 +166,7 @@ def build_sal(node_json):
     commun.children.update(cotiz.mmid.bareme.salarie.children)  # À harmoniser !
     commun.children.update(cotiz.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(cotiz.cnav.bareme.salarie.children)  # À harmoniser !
-    print(commun.children, file=open("openfisca_france/scripts/parameters/SalNodes_APRES.txt", "w"))
+    # print(commun.children, file=open("openfisca_france/scripts/parameters/SalNodes_APRES.txt", "w"))
 
     # Non Cadre
     # Initialisation
@@ -175,13 +174,13 @@ def build_sal(node_json):
     sal.add_child('noncadre', noncadre)
     sal.children['noncadre'].children.update(retraites.salarie.noncadre.children)
     sal.children['noncadre'].children.update(commun.children)
-    print(sal.children['noncadre'].children, file=open("openfisca_france/scripts/parameters/SalNoncadre_APRES.txt", "w"))
+    # print(sal.children['noncadre'].children, file=open("openfisca_france/scripts/parameters/SalNoncadre_APRES.txt", "w"))
     # Cadre
     cadre = ParameterNode("cadre", data={})
     sal.add_child('cadre', cadre)
     sal.children['cadre'].children.update(retraites.salarie.cadre.children)
     sal.children['cadre'].children.update(commun.children)
-    print(sal.children['cadre'].children, file=open("openfisca_france/scripts/parameters/SalCadre_APRES.txt", "w"))
+    # print(sal.children['cadre'].children, file=open("openfisca_france/scripts/parameters/SalCadre_APRES.txt", "w"))
 
     # Renaming
     sal.children['prive_non_cadre'] = sal.children.pop('noncadre')
@@ -200,22 +199,22 @@ def build_sal(node_json):
     sal.children['fonc'].children['etat'].children.update(public.rafp.salarie.children)
     sal.children['fonc'].children['etat'].children.update(public.retraite.pension.salarie.children)
     sal.children['public_titulaire_etat'] = sal.children['fonc'].children['etat']
-    print(sal.children['fonc'].children['etat'].children, file=open("openfisca_france/scripts/parameters/SalFonc_etat_APRES.txt", "w"))
+    # print(sal.children['fonc'].children['etat'].children, file=open("openfisca_france/scripts/parameters/SalFonc_etat_APRES.txt", "w"))
 
     # Collectivités Locales
     sal.children['fonc'].children['colloc'].children.update(public.cnral.salarie.children)
     sal.children['public_titulaire_territoriale'] = sal.children['fonc'].children['colloc']
     sal.children['public_titulaire_hospitaliere'] = sal.children['fonc'].children['colloc']
-    print(sal.children['fonc'].children['colloc'].children, file=open("openfisca_france/scripts/parameters/SalFonc_colloc_APRES.txt", "w"))
+    # print(sal.children['fonc'].children['colloc'].children, file=open("openfisca_france/scripts/parameters/SalFonc_colloc_APRES.txt", "w"))
 
     # Contractuel
     sal.children['fonc'].children['contract'] = public.ircantec.salarie
-    print(sal.children['fonc'].children['contract'].children, file=open("openfisca_france/scripts/parameters/SalFonc_contract_APRES.txt", "w"))
+    # print(sal.children['fonc'].children['contract'].children, file=open("openfisca_france/scripts/parameters/SalFonc_contract_APRES.txt", "w"))
     sal.children['public_non_titulaire'] = sal.children['fonc'].children['contract']
 
     # Commun
     sal.children['fonc'].children['commun'].children.update(public.fds.children)  # À harmoniser ! + Créer params depuis IPP
-    print(sal.children['fonc'].children['commun'].children, file=open("openfisca_france/scripts/parameters/SalFonc_commun_APRES.txt", "w"))
+    # print(sal.children['fonc'].children['commun'].children, file=open("openfisca_france/scripts/parameters/SalFonc_commun_APRES.txt", "w"))
 
     for type_sal_category in [
             'public_titulaire_etat',
@@ -236,8 +235,8 @@ def build_sal(node_json):
     del sal.children['fonc'].children['colloc']
     del sal.children['fonc'].children['contract']
 
-    print(sal.children['public_titulaire_hospitaliere'].children, file=open("openfisca_france/scripts/parameters/SalPublic_host_APRES.txt", "w"))
-    print(sal.children['public_titulaire_territoriale'].children, file=open("openfisca_france/scripts/parameters/SalPublic_ter_APRES.txt", "w"))
+    # print(sal.children['public_titulaire_hospitaliere'].children, file=open("openfisca_france/scripts/parameters/SalPublic_host_APRES.txt", "w"))
+    # print(sal.children['public_titulaire_territoriale'].children, file=open("openfisca_france/scripts/parameters/SalPublic_ter_APRES.txt", "w"))
 
     # Arti
     sal.add_child('arti', ParameterNode("arti", data={}))
@@ -246,7 +245,7 @@ def build_sal(node_json):
     sal.children['arti'].children.update(indep.mmid.arti.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['arti'].children.update(indep.deces.arti.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['arti'].children.update(indep.retraite.arti.children)  # À harmoniser ! + Créer params depuis IPP
-    print(sal.arti.children, file=open("openfisca_france/scripts/parameters/sal_arti_APRES.txt", "w"))
+    # print(sal.arti.children, file=open("openfisca_france/scripts/parameters/sal_arti_APRES.txt", "w"))
     # Comind
     sal.add_child('comind', ParameterNode("comind", data={}))
     sal.children['comind'].children.update(indep.famille.comind.children)  # À harmoniser ! + Créer params depuis IPP
@@ -254,15 +253,15 @@ def build_sal(node_json):
     sal.children['comind'].children.update(indep.mmid.comind.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['comind'].children.update(indep.deces.comind.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['comind'].children.update(indep.retraite.comind.children)  # À harmoniser ! + Créer params depuis IPP
-    print(sal.comind.children, file=open("openfisca_france/scripts/parameters/sal_comind_APRES.txt", "w"))
+    # print(sal.comind.children, file=open("openfisca_france/scripts/parameters/sal_comind_APRES.txt", "w"))
     # Microsocial
     sal.add_child('microsocial', ParameterNode("microsocial", data={}))
     sal.children['microsocial'].children.update(liberal.auto_entrepreneur.children)  # À harmoniser ! + Créer params depuis IPP
 
-    print(sal.microsocial.children, file=open("openfisca_france/scripts/parameters/sal_microsocial_APRES.txt", "w"))
+    # print(sal.microsocial.children, file=open("openfisca_france/scripts/parameters/sal_microsocial_APRES.txt", "w"))
 
     # TO DO ONLY ONCE, BEFORE CHANGING V2
-    print(sal.children, file=open("openfisca_france/scripts/parameters/sal_children_APRES.txt", "w"))
+    # print(sal.children, file=open("openfisca_france/scripts/parameters/sal_children_APRES.txt", "w"))
     return sal
 
 
@@ -272,6 +271,12 @@ def preprocess_parameters(parameters):
     '''
     pat = build_pat(parameters)
     sal = build_sal(parameters)
+
+    # ICI à un moment il faudra faire:
+    #cotsoc = ParameterNode("cotsoc", data={})
+    #parameters.add_child('cotsoc', cotsoc)
+    #parameters.cotsoc.add_child('sal', sal)
+    #parameters.cotsoc.add_child('pat', pat)
 
     cotsoc = parameters.children["cotsoc"]  # Ici on va chercher l'arbre réel
 
@@ -287,6 +292,7 @@ def preprocess_parameters(parameters):
                 cotsoc.children[cotisation_name].children[category] = bareme
 
     # TO DO ONLY ONCE, BEFORE CHANGING V2
-    print(cotsoc, file=open("openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt", "w"))
+    # print(cotsoc, file=open("openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt", "w"))
+    # print(cotsoc, file=open("openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt", "w"))
 
     return parameters
