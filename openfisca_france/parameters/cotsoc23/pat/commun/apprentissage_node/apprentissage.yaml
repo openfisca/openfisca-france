@@ -1,0 +1,10 @@
+brackets:
+- rate:
+    1993-07-01:
+      value: 0.005
+    2014-01-01:
+      value: 0.0068
+  threshold:
+    1993-07-01:
+      value: 0.0
+description: Taxe d'apprentissage (toutes entreprises)

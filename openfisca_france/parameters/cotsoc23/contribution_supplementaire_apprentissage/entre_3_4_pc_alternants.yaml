@@ -1,0 +1,5 @@
+description: Taux pour les entreprises comprenant 3%  à 4% d'atlernants
+unit: /1
+values:
+  2013-01-01:
+    value: 0.0005

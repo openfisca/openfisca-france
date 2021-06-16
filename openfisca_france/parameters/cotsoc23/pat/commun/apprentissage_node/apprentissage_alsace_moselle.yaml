@@ -1,0 +1,10 @@
+brackets:
+- rate:
+    1993-07-01:
+      value: 0.005
+    2014-01-01:
+      value: 0.0044
+  threshold:
+    1993-07-01:
+      value: 0.0
+description: Taxe d'apprentissage pour les salariés du régime d'Alsace-Moselle

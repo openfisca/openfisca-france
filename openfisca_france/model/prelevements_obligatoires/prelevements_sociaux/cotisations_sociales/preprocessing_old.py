@@ -70,7 +70,9 @@ def build_pat(node_json):
         del pat.children['public_titulaire_hospitaliere'].children[category]
 
     pat.children['public_non_titulaire'] = pat.children.pop('contract')
-
+    path_avant = "openfisca_france/scripts/parameters/pat_children_AVANT_old.txt"
+    print(pat.children, file=open(path_avant, "w"))  # noqa: T001
+    
     return pat
 
 
@@ -112,7 +114,10 @@ def build_sal(node_json):
     del sal.children['fonc'].children['etat']
     del sal.children['fonc'].children['colloc']
     del sal.children['fonc'].children['contract']
-
+    
+    path_avant = "openfisca_france/scripts/parameters/sal_children_AVANT_old.txt"
+    print(sal.children, file=open(path_avant, "w"))  # noqa: T001
+    
     return sal
 
 
@@ -134,5 +139,6 @@ def preprocess_parameters(parameters):
         for category, bareme in baremes.items():
             if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
-
+    path_avant = "openfisca_france/scripts/parameters/preprocessed_parameters_AVANT_old.txt"
+    print(parameters.children, file=open(path_avant, "w"))  # noqa: T001
     return parameters

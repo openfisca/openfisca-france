@@ -1,0 +1,5 @@
+description: La décote se fait à ce taux
+unit: /1
+values:
+  2001-01-01:
+    value: 0.75

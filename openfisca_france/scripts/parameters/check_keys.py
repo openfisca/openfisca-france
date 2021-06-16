@@ -210,15 +210,14 @@ def check_keys2(path1, path2):
 
     # Comparing
     missing = []
-    for i in range(len(txt1c)):
-        key = txt1c[i]
-        if key not in txt2c:
+    for i in range(len(txt1)):
+        key = txt1[i]
+        if key not in txt2:
             missing.append(key)
         else:
-            ind = txt2c.index(key)
-            txt2c.pop(ind)
-
-    en_trop = txt2c
+            ind = txt2.index(key)
+            txt2.pop(ind)
+    en_trop = txt2
 
     return missing, en_trop
 

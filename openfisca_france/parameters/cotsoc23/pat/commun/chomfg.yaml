@@ -1,0 +1,64 @@
+brackets:
+- rate:
+    1993-07-01:
+      value: 0.0035
+    1995-07-01:
+      value: 0.0025
+    1999-07-01:
+      value: 0.002
+    2000-07-01:
+      value: 0.0015
+    2001-01-01:
+      value: 0.001
+    2002-01-01:
+      value: 0.002
+    2002-07-01:
+      value: 0.003
+    2003-01-01:
+      value: 0.0035
+    2003-09-01:
+      value: 0.0045
+    2005-04-01:
+      reference: https://www.ags-garantie-salaires.org/archives.html?year=2005
+      value: 0.0035
+    2006-01-01:
+      reference: https://www.ags-garantie-salaires.org/archives.html?year=2006
+      value: 0.0025
+    2006-07-01:
+      reference: https://www.ags-garantie-salaires.org/archives.html?year=2006
+      value: 0.0015
+    2008-07-01:
+      reference: https://www.unedic.org/sites/default/files/circulaires/ci200805.pdf
+      value: 0.001
+    2009-04-01:
+      reference: https://www.ags-garantie-salaires.org/archives.html?year=2009
+      value: 0.002
+    2009-07-01:
+      reference: https://www.ags-garantie-salaires.org/archives.html?year=2009
+      value: 0.003
+    2009-10-01:
+      reference: https://www.ags-garantie-salaires.org/archives.html?year=2009
+      value: 0.004
+    2011-04-01:
+      reference: https://www.ags-garantie-salaires.org/archives.html?year=2011
+      value: 0.003
+    2016-01-01:
+      reference: https://www.ags-garantie-salaires.org/archives.html?year=2016
+      value: 0.0025
+    2017-01-01:
+      reference: https://www.ags-garantie-salaires.org/archives.html?year=2016
+      value: 0.002
+    2017-07-01:
+      reference: https://www.ags-garantie-salaires.org/archives.html?year=2017
+      value: 0.0015
+  threshold:
+    1993-07-01:
+      value: 0.0
+- rate:
+    1993-07-01:
+      value: 0.0
+  threshold:
+    1993-07-01:
+      value: 4.0
+description: 'Chômage: fond national de garantie des salaires (FNGS)'
+reference: http://www.ags-garantie-salaires.org/actualites/items/taux-de-cotisation-89.html

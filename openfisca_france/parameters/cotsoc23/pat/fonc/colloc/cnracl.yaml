@@ -1,0 +1,38 @@
+brackets:
+- rate:
+    1995-01-01:
+      value: 0.251
+    2000-01-01:
+      value: 0.256
+    2001-01-01:
+      value: 0.261
+    2003-01-01:
+      value: 0.265
+    2004-01-01:
+      value: 0.269
+    2005-01-01:
+      value: 0.273
+    2012-11-01:
+      value: 0.274
+    2013-01-01:
+      value: 0.2885
+    2014-01-01:
+      value: 0.3040
+    2015-01-01:
+      value: 0.3050
+    2016-01-01:
+      value: 0.3060
+    2017-01-01:
+      value: 0.3065
+    2018-01-01:
+      value: 0.3065
+    2019-01-01:
+      value: 0.3065
+    2020-01-01:
+      value: 0.3065
+  threshold:
+    1984-01-01:
+      value: 0.0
+    2013-01-01:
+      value: null
+description: Retraites des agents des collectivités locales

@@ -1,0 +1,10 @@
+brackets:
+- rate:
+    1992-01-01:
+      value: 0.0015
+    2012-01-01:
+      value: 0.0025
+  threshold:
+    2012-01-01:
+      value: 0.0
+description: Formation professionnelle

@@ -377,8 +377,6 @@ def preprocess_parameters(parameters):
             if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
 
-    # TO DO ONLY ONCE, BEFORE CHANGING V2
-    # print(cotsoc, file=open("openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt", "w"))
     # print(cotsoc, file=open("openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt", "w"))
 
     return parameters

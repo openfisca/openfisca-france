@@ -1,0 +1,16 @@
+brackets:
+- rate:
+    2007-01-01:
+      value: 0.013
+    2013-01-01:
+      value: 0.011
+  threshold:
+    2007-01-01:
+      value: 0.0
+- rate:
+    2007-01-01:
+      value: 0.0
+  threshold:
+    2007-01-01:
+      value: 1.0
+description: Invalidité, décès

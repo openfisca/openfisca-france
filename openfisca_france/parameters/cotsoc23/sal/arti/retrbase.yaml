@@ -1,0 +1,26 @@
+brackets:
+- rate:
+    1991-02-01:
+      value: 0.1635
+    2004-07-01:
+      value: 0.1645
+    2006-01-01:
+      value: 0.1665
+    2012-11-01:
+      value: 0.1685
+    2014-01-01:
+      value: 0.1695
+    2015-01-01:
+      value: 0.1705
+    2016-01-01:
+      value: 0.1715
+  threshold:
+    2003-01-01:
+      value: 0.0
+- rate:
+    2003-01-01:
+      value: 0.0
+  threshold:
+    2003-01-01:
+      value: 1.0
+description: Retraite de base

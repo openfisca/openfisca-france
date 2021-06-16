@@ -1,0 +1,40 @@
+description: Plafond mensuel de la sécurité sociale
+reference: http://www.ameli.fr/employeurs/vos-demarches/chiffres-utiles/plafond-de-la-securite-sociale.php
+unit: currency
+values:
+  2001-01-01:
+    value: 2279.0
+  2002-01-01:
+    value: 2352.0
+  2003-01-01:
+    value: 2432.0
+  2004-01-01:
+    value: 2476.0
+  2005-01-01:
+    value: 2516.0
+  2006-01-01:
+    value: 2589.0
+  2007-01-01:
+    value: 2689.0
+  2008-01-01:
+    value: 2773.0
+  2009-01-01:
+    value: 2859.0
+  2010-01-01:
+    value: 2885.0
+  2011-01-01:
+    value: 2946.0
+  2012-01-01:
+    value: 3031.0
+  2013-01-01:
+    value: 3086.0
+  2014-01-01:
+    value: 3129.0
+  2015-01-01:
+    value: 3170.0
+  2016-01-01:
+    value: 3218.0
+  2017-01-01:
+    value: 3269.0
+  2018-01-01:
+    value: 3311.0
