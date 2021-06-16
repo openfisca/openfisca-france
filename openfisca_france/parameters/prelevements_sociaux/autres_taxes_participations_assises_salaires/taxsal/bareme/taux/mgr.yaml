@@ -1,0 +1,5 @@
+description: 'Taxes sur les salaires : Guadeloupe, Martinique, Réunion'
+unit: /1
+values:
+  2001-01-01:
+    value: 0.0295

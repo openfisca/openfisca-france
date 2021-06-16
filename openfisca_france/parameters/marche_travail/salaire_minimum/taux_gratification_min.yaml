@@ -1,0 +1,9 @@
+description: Rémunération minimale d'un stagiaire, exprimée en pourcentage du plafond de la sécurité sociale
+reference: "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234400&cidTexte=LEGITEXT000006071191&dateTexte=20170901"
+values:
+  2015-09-01:
+    value: 0.15
+  2015-01-01:
+    value: 0.1375
+  2008-02-01:
+    value: 0.125

@@ -1,0 +1,5 @@
+description: Pourcentage du salaire de base
+unit: /1
+values:
+  1990-01-01:
+    value: 0.1

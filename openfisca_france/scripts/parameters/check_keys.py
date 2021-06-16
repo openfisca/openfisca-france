@@ -22,7 +22,7 @@ def check_keys(path1, path2):
                 for j in range(len(key_name)):
                     txt2.append(key_name[j])
 
-    print("TXT AVANT", txt1, "\n ET TXT APRES: ", txt2)
+    # print("TXT AVANT", txt1, "\n ET TXT APRES: ", txt2)
 
     missing = []
     for i in range(len(txt1)):
@@ -142,8 +142,10 @@ def check_keys(path1, path2):
 # path2 = "openfisca_france/scripts/parameters/sal_children_APRES.txt"
 # print("Sal CHILDREN 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1]), "\n"
 
+
 def check_keys2(path1, path2):
 
+    pattern_list = ['threshold', 'brackets', 'rate', 'amount', "21"]
     txt1 = []
     with open(path1, 'r') as file1:
         for line in file1:
@@ -151,7 +153,13 @@ def check_keys2(path1, path2):
             for i in range(len(key)):
                 key_name = re.findall(r"\w+", key[i])
                 for j in range(len(key_name)):
-                    txt1.append(key_name[j])
+                    key = key_name[j]
+                    if key in pattern_list:
+                        continue
+                    if re.search(r"\d\d", key):
+                        continue
+                    else:
+                        txt1.append(key)
 
     txt2 = []
     with open(path2, 'r') as file2:
@@ -160,58 +168,33 @@ def check_keys2(path1, path2):
             for i in range(len(key)):
                 key_name = re.findall(r"\w+", key[i])
                 for j in range(len(key_name)):
-                    txt2.append(key_name[j])
-
-    
-
-    # Cleaning
-    pattern_list = ['threshold','brackets','rate', 'amount',"21"]
-    #txt1 = ['brackets', 'rate', 'agirc', 'threshold', 'arrco', 'salarie', 'employeur', 'agff', 'salarie', 'employeur']
-    txt1c = []
-    for i in range(len(txt1)):
-        key = txt1[i]
-        match = 0
-        if key in pattern_list:
-            continue
-        if re.search(r"\d\d", key):
-            continue
-        else:
-            # print(key)
-            txt1c.append(key)
-
-    #txt2 = ['brackets', 'rate', 'agirc', 'threshold', 'arrco', 'salarie', 'employeur', 'agff', 'salarie']
-    txt2c = []
-    for i in range(len(txt2)):
-        key = txt2[i]
-        print('before', key)
-        match = 0
-        if key in pattern_list:
-            print('ya matcht')
-            continue
-        if re.match(r"\d\d", key):
-            print('ya nb!')
-            continue
-        else:
-            print('appened:' ,key)
-            txt2c.append(key)
-
-
-    #print("TXT AVANT", txt1c, "\n ET TXT APRES: ", txt2c)
-
+                    key = key_name[j]
+                    if key in pattern_list:
+                        continue
+                    if re.search(r"\d\d", key):
+                        continue
+                    else:
+                        txt2.append(key)
+    # print("TXT AVANT", txt1, "\n ET TXT APRES: ", txt2)
     # Comparing
     missing = []
-    for i in range(len(txt1c)):
-        key = txt1c[i]
-        if key not in txt2c:
+    for i in range(len(txt1)):
+        key = txt1[i]
+        if key not in txt2:
             missing.append(key)
         else:
-            ind = txt2c.index(key)
-            txt2c.pop(ind)
-
-    en_trop = txt2c
+            ind = txt2.index(key)
+            txt2.pop(ind)
+    en_trop = txt2
 
     return missing, en_trop
 
-path1 = "openfisca_france/scripts/parameters/preprocessed_parameters_AVANT_old.txt"
-path2 = "openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt" 
-print("COTSOC 😱  Missing: ", check_keys2(path1, path2)[0], "\n", "😱  En trop", check_keys2(path1, path2)[1])
+# path1 = "openfisca_france/scripts/parameters/preprocessed_parameters_AVANT.txt"
+# path2 = 'openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt'
+# print("COTSOC 😱  Missing: ", check_keys2(path1, path2)[0], "\n", "😱  En trop", check_keys2(path1, path2)[1])
+
+
+# FINAL
+# path1 = "openfisca_france/scripts/parameters/preprocessed_parameters_AVANT_old.txt"
+# path2 = 'openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt'
+# print("COTSOC 😱  Missing: ", check_keys2(path1, path2)[0], "\n", "😱  En trop", check_keys2(path1, path2)[1])

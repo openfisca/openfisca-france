@@ -254,7 +254,7 @@ class rafp_salarie(Variable):
     definition_period = MONTH
     # Part salariale de la retraite additionelle de la fonction publique
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
-
+    
     def formula_2005_01_01(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         categorie_salarie = individu('categorie_salarie', period)
@@ -262,13 +262,14 @@ class rafp_salarie(Variable):
         supplement_familial_traitement = individu('supplement_familial_traitement', period)
         indemnite_residence = individu('indemnite_residence', period)
         _P = parameters(period)
+        print(_P, file=open('openfisca_france/scripts/parameters/PREPROCESSED_PARAMS.txt', "w"))  # noqa: T001
 
         eligible = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
-
+        print()
         plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence
         assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
