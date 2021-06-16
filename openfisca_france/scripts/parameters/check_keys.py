@@ -98,9 +98,9 @@ def check_keys(path1, path2):
 # path2 = "openfisca_france/scripts/parameters/Fonc_APRES.txt"
 # print("Fonc 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
 
-path1 = "openfisca_france/scripts/parameters/SalFonc_etat_AVANT.txt"
-path2 = "openfisca_france/scripts/parameters/SalFonc_etat_APRES.txt"
-print("SalFonc Etat 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
+# path1 = "openfisca_france/scripts/parameters/SalFonc_etat_AVANT.txt"
+# path2 = "openfisca_france/scripts/parameters/SalFonc_etat_APRES.txt"
+# print("SalFonc Etat 😱  Missing: ", check_keys(path1, path2)[0], "\n", "😱  En trop", check_keys(path1, path2)[1], "\n")
 
 # path1 = "openfisca_france/scripts/parameters/SalFonc_colloc_AVANT.txt"
 # path2 = "openfisca_france/scripts/parameters/SalFonc_colloc_APRES.txt"
@@ -162,16 +162,56 @@ def check_keys2(path1, path2):
                 for j in range(len(key_name)):
                     txt2.append(key_name[j])
 
-    print("TXT AVANT", txt1, "\n ET TXT APRES: ", txt2)
+    
 
-    missing = []
+    # Cleaning
+    pattern_list = ['threshold','brackets','rate', 'amount',"21"]
+    #txt1 = ['brackets', 'rate', 'agirc', 'threshold', 'arrco', 'salarie', 'employeur', 'agff', 'salarie', 'employeur']
+    txt1c = []
     for i in range(len(txt1)):
         key = txt1[i]
-        if key not in txt2:
+        match = 0
+        if key in pattern_list:
+            continue
+        if re.search(r"\d\d", key):
+            continue
+        else:
+            # print(key)
+            txt1c.append(key)
+
+    #txt2 = ['brackets', 'rate', 'agirc', 'threshold', 'arrco', 'salarie', 'employeur', 'agff', 'salarie']
+    txt2c = []
+    for i in range(len(txt2)):
+        key = txt2[i]
+        print('before', key)
+        match = 0
+        if key in pattern_list:
+            print('ya matcht')
+            continue
+        if re.match(r"\d\d", key):
+            print('ya nb!')
+            continue
+        else:
+            print('appened:' ,key)
+            txt2c.append(key)
+
+
+    #print("TXT AVANT", txt1c, "\n ET TXT APRES: ", txt2c)
+
+    # Comparing
+    missing = []
+    for i in range(len(txt1c)):
+        key = txt1c[i]
+        if key not in txt2c:
             missing.append(key)
         else:
-            ind = txt2.index(key)
-            txt2.pop(ind)
-    en_trop = txt2
+            ind = txt2c.index(key)
+            txt2c.pop(ind)
+
+    en_trop = txt2c
 
     return missing, en_trop
+
+path1 = "openfisca_france/scripts/parameters/preprocessed_parameters_AVANT_old.txt"
+path2 = "openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt" 
+print("COTSOC 😱  Missing: ", check_keys2(path1, path2)[0], "\n", "😱  En trop", check_keys2(path1, path2)[1])
