@@ -1,0 +1,320 @@
+- name: Revenu disponible - En couple sans enfant - Salaire brut de 506 euros et le conjoint 500 euros 
+  period: 2018-01
+  relative_error_margin: 0.01
+  max_spiral_loops: 60
+  neutralized_variables:
+    # RSA TODO base ressources
+    - rsa_eligibilite_tns
+    - taux_csg_remplacement
+    # - Minimas sociaux
+    - ars
+    - aefa
+    - aspa
+    - asi
+    - caah
+    # individu
+    - allocation_securisation_professionnelle
+    - dedommagement_victime_amiante
+    - gains_exceptionnels
+    - pensions_alimentaires_percues
+    - pensions_invalidite
+    - prestation_compensatoire
+    - prime_forfaitaire_mensuelle_reprise_activite
+    - rsa_base_ressources_patrimoine_individu
+    - rsa_indemnites_journalieres_hors_activite
+    - rente_viagere_titre_onereux
+    # ASS
+    # - chomage_net
+    - categorie_salarie
+    # Ass base ressources
+    - revenus_stage_formation_pro
+    - aah
+    - retraite_nette
+    - retraite_brute
+    - retraite_imposable
+    - pensions_alimentaires_percues
+    - indemnites_stage
+    - pensions_invalidite
+    - revenus_locatifs
+    - revenus_capital
+    - rpns
+    - tns_auto_entrepreneur_benefice
+    - tns_micro_entreprise_benefice
+    - tns_benefice_exploitant_agricole
+    - tns_autres_revenus
+    - pensions_alimentaires_versees_individu
+    # PF
+    - revenu_categoriel_capital
+  input:
+    famille:
+      parents: [personne1, personne2]
+      rsa:
+        year:1998:20: 0
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement:
+        year:2010:20: locataire_vide
+      logement_conventionne:
+        year:2010:20: true
+      zone_apl:
+        year:2010:20: zone_2
+      loyer:
+        year:2010:20: 20 * 12 * 500
+    individus:
+      personne1:
+        are:
+          year:1998:20: 0
+        ass:
+          year:1998:20: 0
+        depcom_entreprise: 75114
+        autonomie_financiere:
+          year:1995:40: False
+        date_debut_chomage: 2018-01-01
+        rsa_jeune_condition_heures_travail_remplie: False
+        activite:
+          2019: chomeur
+          2018: chomeur
+          2017: actif
+          2016: actif
+        date_naissance: 1980-12-25
+        contrat_de_travail_debut:
+          year:1995:30: 2005-01-01
+        contrat_de_travail_fin:
+          year:1995:30: 2018-01-01
+        chomage_brut:
+            year:1998:20: 0
+        chomage_net:
+            year:1998:20: 0
+        duree_versement_are :
+            year:1998:20: 0
+        nombre_annees_travaillees_les_10_dernieres_annees:
+          2018: 3
+          2019: 3
+        nombre_jours_travailles_dans_les_x_derniers_mois:
+          2018: 21.7 * 12
+          2019: 21.7 * 12
+        nombre_jours_travailles_12_derniers_mois:
+          2018: 21.7 * 12 / 2
+          2019: 21.7 * 12 / 2
+        salaire_de_base:
+          2017: 12 * 506.3333
+          2016: 12 * 506.3333
+          2015: 12 * 506.3333
+        allegement_fillon_mode_recouvrement: progressif 
+        effectif_entreprise: 25
+        code_postal_entreprise: '75001'
+        categorie_salarie: prive_non_cadre
+        allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
+      personne2: 
+        are:
+          year:1998:20: 0
+        ass:
+          year:1998:20: 0
+        depcom_entreprise: 75114
+        autonomie_financiere:
+          year:1995:40: False
+        date_debut_chomage: 2018-01-01
+        rsa_jeune_condition_heures_travail_remplie: False
+        activite:
+          2019: actif
+          2018: actif
+          2017: actif
+          2016: actif
+        date_naissance: 1980-12-25
+        contrat_de_travail_debut:
+          year:1995:30: 2005-01-01
+        contrat_de_travail_fin:
+          year:1995:30: 2018-01-01
+        chomage_brut:
+            year:1998:20: 0
+        chomage_net:
+            year:1998:20: 0
+        duree_versement_are :
+            year:1998:20: 0
+        salaire_de_base:
+          2019: 12 * 500
+          2018: 12 * 500
+          2017: 12 * 500
+          2016: 12 * 500
+          2015: 12 * 500
+        allegement_fillon_mode_recouvrement: progressif 
+        effectif_entreprise: 25
+        code_postal_entreprise: '75001'
+        categorie_salarie: prive_non_cadre
+        allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output: 
+    ppa: 
+    individus: 
+      personne1: 
+       are_nette: 750
+       rsa: 0
+       minima_sociaux_mensuel: 363.777099609375
+       prestations_familiales_mensuelles: 0
+       aide_logement: 210.77000427246094
+       prestations_sociales_mensuelles: 608.4971313476562
+       revenu_disponible_avec_impots: 1772.766845703125
+       
+- name: Revenu disponible - En couple sans enfant - Salaire brut de 506 euros et le conjoint 500 euros 
+  period: 2018-09
+  absolute_error_margin: 0.01
+  max_spiral_loops: 60
+  neutralized_variables:
+    # RSA TODO base ressources
+    - rsa_eligibilite_tns
+    - taux_csg_remplacement
+    - af_majoration
+    - paje_base
+    # - Minimas sociaux
+    - ars
+    - aefa
+    - aspa
+    - asi
+    - caah
+    # individu
+    - allocation_securisation_professionnelle
+    - dedommagement_victime_amiante
+    - gains_exceptionnels
+    - pensions_alimentaires_percues
+    - pensions_invalidite
+    - prestation_compensatoire
+    - prime_forfaitaire_mensuelle_reprise_activite
+    - rsa_base_ressources_patrimoine_individu
+    - rsa_indemnites_journalieres_hors_activite
+    - rente_viagere_titre_onereux
+    # ASS
+    # - chomage_net
+    # Ass base ressources
+    - revenus_stage_formation_pro
+    - aah
+    - retraite_nette
+    - retraite_brute
+    - retraite_imposable
+    - pensions_alimentaires_percues
+    - indemnites_stage
+    - pensions_invalidite
+    - revenus_locatifs
+    - revenus_capital
+    - rpns
+    - tns_auto_entrepreneur_benefice
+    - tns_micro_entreprise_benefice
+    - tns_benefice_exploitant_agricole
+    - tns_autres_revenus
+    - pensions_alimentaires_versees_individu
+    # PF
+    - revenu_categoriel_capital
+  input:
+    famille:
+      parents: [personne1, personne2]
+      rsa:
+        year:1998:20: 0
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement:
+        year:2010:20: locataire_vide
+      logement_conventionne:
+        year:2010:20: true
+      zone_apl:
+        year:2010:20: zone_2
+      loyer:
+        year:2010:20: 20 * 12 * 500
+    individus:
+      personne1:
+        are:
+          year:1998:20: 0
+        ass:
+          year:1998:20: 0
+        depcom_entreprise: 75114
+        autonomie_financiere:
+          year:1995:40: False
+        date_debut_chomage: 2018-01-01
+        rsa_jeune_condition_heures_travail_remplie: False
+        activite:
+          2019: chomeur
+          2018: actif
+          2017: actif
+          2016: actif
+        date_naissance: 1980-12-25
+        contrat_de_travail_debut:
+          year:1995:30: 2005-01-01
+        contrat_de_travail_fin:
+          year:1995:30: 2018-01-01
+        chomage_brut:
+            year:1998:20: 0
+        chomage_net:
+            year:1998:20: 0
+        duree_versement_are :
+            year:1998:20: 0
+        nombre_annees_travaillees_les_10_dernieres_annees:
+          2018: 3
+          2019: 3
+        nombre_jours_travailles_dans_les_x_derniers_mois:
+          2018: 21.7 * 12 * 2
+          2019: 21.7 * 12 * 2
+        nombre_jours_travailles_12_derniers_mois:
+          2018: 21.7 * 12 
+          2019: 21.7 * 12 
+        salaire_de_base:
+          2017: 12 * 506.3333
+          2016: 12 * 506.3333
+          2015: 12 * 506.3333
+        allegement_fillon_mode_recouvrement: progressif 
+        effectif_entreprise: 25
+        code_postal_entreprise: '75001'
+        categorie_salarie: prive_non_cadre
+        allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
+      personne2: 
+        are:
+          year:1998:20: 0
+        ass:
+          year:1998:20: 0
+        depcom_entreprise: 75114
+        autonomie_financiere:
+          year:1995:40: False
+        rsa_jeune_condition_heures_travail_remplie: False
+        activite:
+          2019: actif
+          2018: actif
+          2017: actif
+          2016: actif
+        date_naissance: 1980-12-25
+        contrat_de_travail_debut:
+          year:1995:30: 2005-01-01
+        chomage_brut:
+            year:1998:20: 0
+        chomage_net:
+            year:1998:20: 0
+        duree_versement_are :
+            year:1998:20: 0
+        salaire_de_base:
+          2019: 12 * 500
+          2018: 12 * 500
+          2017: 12 * 500
+          2016: 12 * 500
+          2015: 12 * 500
+        allegement_fillon_mode_recouvrement: progressif 
+        effectif_entreprise: 25
+        code_postal_entreprise: '75001'
+        categorie_salarie: prive_non_cadre
+        allegement_cotisation_allocations_familiales_mode_recouvrement: progressif
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    individus: 
+      personne2: 
+        salaire_net: 
+      personne1:
+        rsa_base_ressources_individu: 375
+        rsa_base_ressources: 609.959228515625
+        reduction_loyer_solidarite: 33.95000076293945
+        rsa_socle: 826.39501953125
+        rsa_forfait_logement: 132.22320556640625
+        rsa: 84.21258544921875
+        prestations_familiales_mensuelles: 0
+        aide_logement: 288.670013427734
+        prestations_sociales_mensuelles: 546.8968505859375
+        revenu_disponible_avec_impots: 1191.5968017578125
+      

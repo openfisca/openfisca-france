@@ -117,6 +117,7 @@
     aide_logement: 237.41
     prestations_sociales_mensuelles: 749.9784
     revenu_disponible_avec_impots: 749.9784
+    
 - name: Revenu disponible - Célibataire sans enfant - Salaire brut de 506 euros - ASS
   period: 2019-01
   relative_error_margin: 0.01

@@ -759,3 +759,18 @@ class revenu_disponible_avec_impots(Variable):
             )
 
 
+
+class crds_pfam_mensuel(Variable):
+    value_type = float
+    entity = Famille
+    label = "CRDS sur les prestations familiales)"
+    reference = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        af = famille('af', period)
+        cf = famille('cf', period)
+        asf = famille('asf', period)
+        taux_crds = parameters(period).prelevements_sociaux.contributions.crds.taux
+
+        return -(af + cf + asf) * taux_crds

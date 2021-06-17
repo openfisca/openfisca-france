@@ -1,6 +1,6 @@
 - name: Revenu disponible - Célibataire sans enfant - Salaire brut de 506 euros 
   period: 2018-01
-  relative_error_margin: 0.01
+  absolute_error_margin: 0.01
   max_spiral_loops: 60
   neutralized_variables:
     # RSA TODO base ressources
@@ -111,12 +111,13 @@
     pensions_nettes_mensuelles: 750
     rsa: 0
     ppa: 244.19658
-    minima_sociaux_mensuel: 244.19658
+    minima_sociaux_mensuel: 242.9756
     prestations_familiales_mensuelles: 0
     aide_logement: 237.41
     reduction_loyer_solidarite: 27.739999771118164
     prestations_sociales_mensuelles: 508.1256
     revenu_disponible_avec_impots: 1258.125
+    
 - name: Revenu disponible - Célibataire sans enfant - Salaire brut de 1519 euros   
   period: 2018-01
   absolute_error_margin: 0.01
