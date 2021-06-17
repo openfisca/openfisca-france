@@ -31,3 +31,6 @@ values:
     value: 1103.08
   2016-04-01:
     value: 1104.18
+  2021-04-01:
+    value: 1126.41
+    reference: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_14_01042021.pdf
