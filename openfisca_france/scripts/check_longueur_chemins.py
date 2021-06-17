@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 """
 Ce script sert à estimer la longueur des chemins d'arborescence des paramètres,
 afin de ne pas avoir de chemins > 150 caractères (incompatible Windows).
@@ -12,6 +13,7 @@ import re
 
 
 def get_directory_structure(rootdir):
+    changes = []
     """
     Creates a nested dictionary that represents the folder structure of rootdir
     Amended from https://code.activestate.com/recipes/577879-create-a-nested-dictionary-from-oswalk/
@@ -20,20 +22,32 @@ def get_directory_structure(rootdir):
     rootdir = rootdir.rstrip(os.sep)
     start = rootdir.rfind(os.sep) + 1
 
-    with open("chemins_trop_longs.json", "w") as outfile:
-        for path, _dirs, files in os.walk(rootdir):
-            if re.search(".ipynb_checkpoints", path):
-                pass
-            else:
-                folders = path[start:].split(os.sep)
-                # On regarde les chemins qui dépassent 150 caractères
-                # Ce nombre vient d'ici: https://github.com/openfisca/openfisca-france/pull/1414
-                # Et on ajoute 28 caractères pour le openfisca_france/parameters/
-                if len(path) > 150 + 28:
-                    outfile.write("{} here: {}".format(len(path), path) + "\n \n")
-                subdir = dict.fromkeys(files)
-                parent = functools.reduce(dict.get, folders[:-1], dir)
-                parent[folders[-1]] = subdir
+    for path, _dirs, files in os.walk(rootdir):
+        if re.search(".ipynb_checkpoints", path):
+            pass
+        else:
+            folders = path[start:].split(os.sep)
+            # On regarde les chemins qui dépassent 150 caractères
+            # Ce nombre vient d'ici: https://github.com/openfisca/openfisca-france/pull/1414
+            # Et on ajoute 28 caractères pour le openfisca_france/parameters/
+            if len(path) > 150 + 28:
+                change = True
+                txt = f"Path of {len(path)} caracters here: {path}"
+                print(txt)
+                changes.append(txt)
+
+            subdir = dict.fromkeys(files)
+            parent = functools.reduce(dict.get, folders[:-1], dir)
+            parent[folders[-1]] = subdir
+    if len(changes) > 0:
+        filename = "path_too_long.txt"
+        
+        with open(filename, "w") as outfile:
+            for s in changes:
+                outfile.write(s)
+        print(f"Sorry, you have long path to shorten. They have been saved in {filename}")
+    else:
+        print("Congratulation, there is no path too long for you !!!")
     return dir
 
 
