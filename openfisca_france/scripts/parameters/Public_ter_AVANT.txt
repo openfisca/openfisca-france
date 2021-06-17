@@ -1,0 +1,81 @@
+{'cnracl': brackets:
+  - rate:
+      2020-01-01: 0.3065
+      2019-01-01: 0.3065
+      2018-01-01: 0.3065
+      2017-01-01: 0.3065
+      2016-01-01: 0.306
+      2015-01-01: 0.305
+      2014-01-01: 0.304
+      2013-01-01: 0.2885
+      2012-11-01: 0.274
+      2005-01-01: 0.273
+      2004-01-01: 0.269
+      2003-01-01: 0.265
+      2001-01-01: 0.261
+      2000-01-01: 0.256
+      1995-01-01: 0.251
+    threshold:
+      2013-01-01: null
+      1984-01-01: 0.0, 'maladie': brackets:
+  - rate:
+      2018-01-01: 0.0988
+      1984-01-01: 0.115
+    threshold:
+      1984-01-01: 0.0, 'atiacl': brackets:
+  - rate:
+      2013-01-01: 0.004
+      1982-01-01: 0.005
+    threshold:
+      2003-01-01: 0.0, 'rafp': brackets:
+  - rate:
+      2005-01-01: 0.05
+    threshold:
+      1993-01-01: 0.0, 'penibilite_base': brackets:
+  - rate:
+      2017-01-01: 0.0001
+    threshold:
+      2017-01-01: 0.0, 'famille': brackets:
+  - rate:
+      2014-01-01: 0.0525
+      1993-07-01: 0.054
+    threshold:
+      1993-07-01: 0.0, 'fnal1': brackets:
+  - rate:
+      1993-07-01: 0.001
+    threshold:
+      1993-07-01: 0.0
+  - rate:
+      1993-07-01: 0.0
+    threshold:
+      1993-07-01: 1.0, 'penibilite_additionnelle': brackets:
+  - rate:
+      2017-01-01: 0.002
+      2015-01-01: 0.001
+    threshold:
+      2015-01-01: 0.0, 'penibilite_multiplicateur_exposition_multiple': 2015-01-01: 2.0, 'financement_organisations_syndicales': brackets:
+  - rate:
+      2015-01-01: 0.00016
+    threshold:
+      2015-01-01: 0.0, 'fnal2': brackets:
+  - rate:
+      1991-07-01: 0.005
+    threshold:
+      1991-07-01: 0.0
+  - rate:
+      2011-01-01: null
+      1991-07-01: 0.004
+    threshold:
+      2011-01-01: null
+      1991-07-01: 1.0, 'csa': brackets:
+  - rate:
+      2004-07-01: 0.003
+    threshold:
+      2004-07-01: 0.0, 'fcppa': brackets:
+  - rate:
+      2011-01-01: null
+      2002-01-01: 0.005
+      1984-01-01: 0.002
+    threshold:
+      2011-01-01: null
+      1984-01-01: 0.0}

@@ -34,6 +34,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['formprof_20'] = autres.formation.children['formprof_20']
     # Construction
     commun.children['construction'] = autres.construction.children['construction_20']
+    commun.children['seuil'] = autres.construction.children['seuil']
     # Reste
     commun.children.update(chom.assedic.employeur.children)
     commun.children.update(chom.chomfg.children)
@@ -166,7 +167,7 @@ def build_sal(node_json):
     commun.children.update(cotiz.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(cotiz.cnav.bareme.salarie.children)  # À harmoniser !
     # print(commun.children, file=open("openfisca_france/scripts/parameters/SalNodes_APRES.txt", "w"))
-
+    sal.add_child('commun', commun)
     # Non Cadre
     # Initialisation
     noncadre = ParameterNode("noncadre", data={})

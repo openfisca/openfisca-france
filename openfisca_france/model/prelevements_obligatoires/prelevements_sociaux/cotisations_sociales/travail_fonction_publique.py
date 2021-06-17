@@ -262,7 +262,6 @@ class rafp_salarie(Variable):
         supplement_familial_traitement = individu('supplement_familial_traitement', period)
         indemnite_residence = individu('indemnite_residence', period)
         _P = parameters(period)
-        print(_P, file=open('openfisca_france/scripts/parameters/PREPROCESSED_PARAMS.txt', "w"))  # noqa: T001
 
         eligible = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
@@ -270,7 +269,7 @@ class rafp_salarie(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
         print()
-        plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
+        plaf_ass = _P.prelevements_sociaux.cotisations_secteur_public.rafp.salarie.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence
         assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
         # Même régime pour les fonctions publiques d'Etat et des collectivité locales
@@ -299,7 +298,7 @@ class rafp_employeur(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
 
-        plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
+        plaf_ass = _P.prelevements_sociaux.cotisations_secteur_public.rafp.salarie.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence
         assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
         bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']

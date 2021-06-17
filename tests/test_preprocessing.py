@@ -56,16 +56,14 @@ def test_full_build_sal(node_json):
     assert en_trop == []
 
 
-# def test_preprocess_parameters(node_json):
-#    # Original preprocessing
-#    # preprocessing_old.preprocess_parameters(node_json) #Ne marche plus une fois qu'on a supprimé PAT et SAL
-#    path_avant = "openfisca_france/scripts/parameters/preprocessed_parameters_AVANT_old.txt"
-#    # print(preprocessing_old.preprocess_parameters(node_json).cotsoc, file=open(path_avant, "w"))  # noqa: T001
-#
-#    # Output of preprocessingV2
-#    path_apres = 'openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt'
-#    print(preprocessing.preprocess_parameters(node_json).cotsoc, file=open(path_apres, "w"))  # noqa: T001
-#
-#    missing, en_trop = check_keys2(path_avant, path_apres)
-#    assert missing == []
-#    assert en_trop == []
+def test_preprocess_parameters(node_json):
+   # Original preprocessing
+   # preprocessing_old.preprocess_parameters(node_json) #Ne marche plus une fois qu'on a supprimé PAT et SAL
+   path_avant = "openfisca_france/scripts/parameters/preprocessed_parameters_AVANT_old.txt"
+   # print(preprocessing_old.preprocess_parameters(node_json).cotsoc, file=open(path_avant, "w"))  # noqa: T001
+   # Output of preprocessingV2
+   path_apres = 'openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt'
+   print(preprocessing.preprocess_parameters(node_json).cotsoc, file=open(path_apres, "w"))  # noqa: T001
+   missing, en_trop = check_keys2(path_avant, path_apres)
+   assert missing == []
+   assert en_trop == []

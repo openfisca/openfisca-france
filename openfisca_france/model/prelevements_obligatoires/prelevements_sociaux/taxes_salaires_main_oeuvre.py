@@ -305,6 +305,7 @@ class participation_effort_construction(Variable):
             )
 
         seuil = parameters(period).cotsoc.pat.commun.construction_node.seuil
+        seuil = parameters(period).prelevements_sociaux.
         cotisation = bareme * (effectif_entreprise >= seuil)
 
         return cotisation

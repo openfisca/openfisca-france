@@ -650,13 +650,6 @@ csa:
         2004-07-01: 0.003
       threshold:
         2004-07-01: 0.0
-employeur:
-  rafp:
-    brackets:
-      - rate:
-          2005-01-01: 0.05
-        threshold:
-          1993-01-01: 0.0
 famille:
   brackets:
     - rate:
@@ -723,15 +716,12 @@ penibilite_base:
         2017-01-01: 0.0
 penibilite_multiplicateur_exposition_multiple:
   2015-01-01: 2.0
-salarie:
-  rafp:
-    brackets:
-      - rate:
-          2005-01-01: 0.05
-        threshold:
-          1993-01-01: 0.0
-  rafp_plaf_assiette:
-    2005-01-01: 0.2, 'public_titulaire_hospitaliere': atiacl:
+rafp:
+  brackets:
+    - rate:
+        2005-01-01: 0.05
+      threshold:
+        1993-01-01: 0.0, 'public_titulaire_hospitaliere': atiacl:
   brackets:
     - rate:
         2013-01-01: 0.004
@@ -765,13 +755,6 @@ csa:
         2004-07-01: 0.003
       threshold:
         2004-07-01: 0.0
-employeur:
-  rafp:
-    brackets:
-      - rate:
-          2005-01-01: 0.05
-        threshold:
-          1993-01-01: 0.0
 famille:
   brackets:
     - rate:
@@ -839,15 +822,12 @@ penibilite_base:
         2017-01-01: 0.0
 penibilite_multiplicateur_exposition_multiple:
   2015-01-01: 2.0
-salarie:
-  rafp:
-    brackets:
-      - rate:
-          2005-01-01: 0.05
-        threshold:
-          1993-01-01: 0.0
-  rafp_plaf_assiette:
-    2005-01-01: 0.2, 'public_non_titulaire': csa:
+rafp:
+  brackets:
+    - rate:
+        2005-01-01: 0.05
+      threshold:
+        1993-01-01: 0.0, 'public_non_titulaire': csa:
   brackets:
     - rate:
         2004-07-01: 0.003
