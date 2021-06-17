@@ -1,2 +1,4 @@
 description: Impôt sur le revenu
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  ux_name: Impôt sur le revenu
+  description_en: Income tax
