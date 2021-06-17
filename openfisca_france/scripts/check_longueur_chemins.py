@@ -7,9 +7,12 @@ Il est à utiliser avant de contribuer à l'harmonisation
 import os
 import functools
 import re
+import logging
 
 # from pprint import pprint
 # import json
+
+logging.basicConfig(level=logging.DEBUG)
 
 
 def get_directory_structure(rootdir):
@@ -31,9 +34,8 @@ def get_directory_structure(rootdir):
             # Ce nombre vient d'ici: https://github.com/openfisca/openfisca-france/pull/1414
             # Et on ajoute 28 caractères pour le openfisca_france/parameters/
             if len(path) > 150 + 28:
-                change = True
                 txt = f"Path of {len(path)} caracters here: {path}"
-                print(txt)
+                logging.info(txt)
                 changes.append(txt)
 
             subdir = dict.fromkeys(files)
@@ -41,13 +43,12 @@ def get_directory_structure(rootdir):
             parent[folders[-1]] = subdir
     if len(changes) > 0:
         filename = "path_too_long.txt"
-        
         with open(filename, "w") as outfile:
             for s in changes:
                 outfile.write(s)
-        print(f"Sorry, you have long path to shorten. They have been saved in {filename}")
+        logging.warning(f"Sorry, you have long path to shorten. They have been saved in {filename}")
     else:
-        print("Congratulation, there is no path too long for you !!!")
+        logging.info("Congratulation, there is no path too long for you !!!")
     return dir
 
 
