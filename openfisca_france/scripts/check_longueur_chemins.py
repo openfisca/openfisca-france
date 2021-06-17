@@ -21,7 +21,7 @@ def get_directory_structure(rootdir):
     start = rootdir.rfind(os.sep) + 1
 
     with open("chemins_trop_longs.json", "w") as outfile:
-        for path, dirs, files in os.walk(rootdir):
+        for path, _dirs, files in os.walk(rootdir):
             if re.search(".ipynb_checkpoints", path):
                 pass
             else:
