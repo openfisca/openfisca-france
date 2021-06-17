@@ -222,7 +222,7 @@ def build_sal(node_json):
     commun.children.update(cotiz.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(cotiz.cnav.bareme.salarie.children)  # À harmoniser !
     # print(commun.children, file=open("openfisca_france/scripts/parameters/SalNodes_APRES.txt", "w"))
-
+    sal.add_child('commun', commun)
     # Non Cadre
     # Initialisation
     noncadre = ParameterNode("noncadre", data={})

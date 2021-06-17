@@ -262,14 +262,12 @@ class rafp_salarie(Variable):
         supplement_familial_traitement = individu('supplement_familial_traitement', period)
         indemnite_residence = individu('indemnite_residence', period)
         _P = parameters(period)
-        print(_P, file=open('openfisca_france/scripts/parameters/PREPROCESSED_PARAMS.txt', "w"))  # noqa: T001
 
         eligible = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
-
         plaf_ass = _P.prelevements_sociaux.cotisations_secteur_public.rafp.salarie.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence
         assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
