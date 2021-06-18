@@ -1,4 +1,4 @@
-description: Zone 1 - enfants supplémentaires
+description: Montant du plafond de loyer en zone 1 - par personne à charge supplémentaire
 reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
@@ -39,5 +39,5 @@ values:
     reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&dateTexte=20191008
     value: 58.52
   2020-10-01:
-    value: 58.70
     reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042378448/2021-01-02
+    value: 58.70

@@ -1,7 +1,8 @@
-description: Taux par pac supplémentaire
+description: Taux par personne à charge supplémentaire
 unit: currency
 values:
   2015-01-01:
     value: 304.0
   2016-01-01:
     value: 305.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2020/1/3/LOGL1934006A/jo/article_1

@@ -1,5 +1,16 @@
 # Changelog
 
+### 54.0.2 [#1460](https://github.com/openfisca/openfisca-france/pull/1460)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées : 
+  - `parameters/prestations/aides_logement/`
+  - `parameters/prestations/al_etudiant/`
+  - `parameters/prestations/al_plafonds_logement_foyer/conventionne/`
+* Détails :
+  - Met à jour libellés et références de paramètres des aides au logement.
+
 ### 54.0.1 [#1459](https://github.com/openfisca/openfisca-france/pull/1459)
 
 * Changement mineur.
