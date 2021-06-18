@@ -95,7 +95,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     # Renaming
     pat.children['prive_non_cadre'] = pat.children.pop('noncadre')
     pat.children['prive_cadre'] = pat.children.pop('cadre')
-    # print(pat.children['fonc'].children, file=open("openfisca_france/scripts/parameters/Fonc_APRES.txt", "w"))
+    # print(pat.children, file=open("openfisca_france/scripts/parameters/Fonc_APRES.txt", "w"))
 
     # Rework commun to deal with public employees
     for var in ["apprentissage", "apprentissage_add", "apprentissage_alsace_moselle", "assedic", "chomfg", "construction", "maladie", "formprof_09",
@@ -163,11 +163,11 @@ def build_sal(node_json):
 
     # Création de commun
     commun.children.update(chom.assedic.salarie.children)
-    commun.children.update(cotiz.mmid.bareme.salarie.children)  # À harmoniser !
+    commun.children.update(cotiz.mmid.bareme.salarie.children)  # harmoniser !
     commun.children.update(cotiz.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(cotiz.cnav.bareme.salarie.children)  # À harmoniser !
     # print(commun.children, file=open("openfisca_france/scripts/parameters/SalNodes_APRES.txt", "w"))
-    sal.add_child('commun', commun)
+    # sal.add_child('commun', commun)
     # Non Cadre
     # Initialisation
     noncadre = ParameterNode("noncadre", data={})
@@ -282,46 +282,45 @@ def preprocess_parameters(parameters):
     cotiz = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general
     autres = parameters.prelevements_sociaux.autres_taxes_participations_assises_salaires
     liberal = parameters.prelevements_sociaux.cotisations_taxes_professions_liberales
-    travail =  parameters.marche_travail
+    travail = parameters.marche_travail
     pss = parameters.prelevements_sociaux.pss
 
     # Valeurs
     cotsoc.add_child('accident', ParameterNode("accident", data={}))
-    cotsoc.accident.children.update(cotiz.accidents.bareme.children)  # À harmoniser (pas de params IPP)
-
+    cotsoc.accident.children.update(cotiz.accidents.bareme.children)  # À harmoniser! + Créer params depuis IPP
     cotsoc.add_child('assiette', ParameterNode("assiette", data={}))
     cotsoc.assiette.add_child('cantines_titres_restaurants', ParameterNode("cantines_titres_restaurants", data={}))
     cotsoc.assiette.cantines_titres_restaurants.children.update(cotiz.assiette.cantines_titres_restaurants.children)
 
     cotsoc.add_child('conge_individuel_formation', ParameterNode("conge_individuel_formation", data={}))
-    cotsoc.conge_individuel_formation.children.update(autres.formation.conge_individuel_formation.children)  # À harmoniser
+    cotsoc.conge_individuel_formation.children.update(autres.formation.conge_individuel_formation.children)  # À harmoniser
 
     cotsoc.add_child('contribution_supplementaire_apprentissage', ParameterNode("contribution_supplementaire_apprentissage", data={}))
-    cotsoc.contribution_supplementaire_apprentissage.children.update(autres.apprentissage.contribution_supplementaire_apprentissage.children)  # À harmoniser
+    cotsoc.contribution_supplementaire_apprentissage.children.update(autres.apprentissage.contribution_supplementaire_apprentissage.children)  # À harmoniser
 
     cotsoc.add_child('gen', ParameterNode("gen", data={}))
-    cotsoc.gen.children['plafond_securite_sociale'] = pss.children['plafond_securite_sociale']  # À harmoniser
-    cotsoc.gen.children['plafond_securite_sociale_horaire'] = pss.children['plafond_securite_sociale_horaire']  # À harmoniser
-    cotsoc.gen.children['nb_heure_travail_mensuel'] = travail.salaire_minimum.children['nb_heure_travail_mensuel']  # À harmoniser
-    cotsoc.gen.children['smic_h_b'] = travail.salaire_minimum.children['smic_h_b']  # À harmoniser
+    cotsoc.gen.children['plafond_securite_sociale'] = pss.children['plafond_securite_sociale']  # À harmoniser
+    cotsoc.gen.children['plafond_securite_sociale_horaire'] = pss.children['plafond_securite_sociale_horaire']  # À harmoniser
+    cotsoc.gen.children['nb_heure_travail_mensuel'] = travail.salaire_minimum.children['nb_heure_travail_mensuel']  # À harmoniser
+    cotsoc.gen.children['smic_h_b'] = travail.salaire_minimum.children['smic_h_b']  # À harmoniser
 
     cotsoc.add_child('indemnite_fin_contrat', ParameterNode("indemnite_fin_contrat", data={}))
-    cotsoc.indemnite_fin_contrat.children.update(cotiz.indemnite_fin_contrat.children)  # À harmoniser
+    cotsoc.indemnite_fin_contrat.children.update(cotiz.indemnite_fin_contrat.children)  # À harmoniser
 
     cotsoc.add_child('microsocial', ParameterNode("microsocial", data={}))
-    cotsoc.microsocial.children.update(liberal.auto_entrepreneur.children)  # À harmoniser
+    cotsoc.microsocial.children.update(liberal.auto_entrepreneur.children)  # À harmoniser
 
     cotsoc.add_child('stage', ParameterNode("stage", data={}))
-    cotsoc.stage.children['taux_gratification_min'] = travail.salaire_minimum.children['taux_gratification_min']  # À harmoniser + IPP
+    cotsoc.stage.children['taux_gratification_min'] = travail.salaire_minimum.children['taux_gratification_min']  # À harmoniser + IPP
 
     cotsoc.add_child('taxes_sal', ParameterNode("taxes_sal", data={}))
-    cotsoc.taxes_sal.children.update(autres.taxsal.bareme.children)  # À harmoniser
+    cotsoc.taxes_sal.children.update(autres.taxsal.bareme.children)  # À harmoniser
 
     cotsoc.add_child('versement_transport', ParameterNode("versement_transport", data={}))
-    cotsoc.versement_transport.children.update(autres.versement_transport.bareme.children)  # À harmoniser
+    cotsoc.versement_transport.children.update(autres.versement_transport.bareme.children)  # À harmoniser
 
-    cotsoc.children['hsup_exo'] = parameters.prelevements_sociaux.children['hsup_exo']  # À harmoniser
-    cotsoc.children['tehr'] = autres.tehr.children['tehr']  # À harmoniser
+    cotsoc.children['hsup_exo'] = parameters.prelevements_sociaux.children['hsup_exo']  # À harmoniser
+    cotsoc.children['tehr'] = autres.tehr.children['tehr']  # À harmoniser
 
     # Modifs
     cotsoc.children["cotisations_employeur"] = ParameterNode('cotisations_employeur_after_preprocessing', data = {})
