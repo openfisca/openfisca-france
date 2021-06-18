@@ -2,21 +2,11 @@ from openfisca_france.model.base import Individu, Variable, MONTH
 from openfisca_france.model.prestations.education import TypesClasse
 
 
-class aide_mobilite_parcoursup_sortie_academie(Variable):
+class sortie_academie(Variable):
     value_type = bool
-    label = "Indicatrice d'une sortie de l'académie d'études au lycée dans les voeux ParcourSup"
+    label = "Mention d'un vœu de changement d'académie entre le lycée et les études supérieures"
     entity = Individu
     definition_period = MONTH
-
-
-class aide_mobilite_parcoursup_boursier_lycee(Variable):
-    value_type = bool
-    label = "Bénéficiaire d'une bourse du lycée"
-    entity = Individu
-    definition_period = MONTH
-
-    def formula(individu, period):
-        return individu.famille("bourse_lycee", period) > 0
 
 
 class aide_mobilite_parcoursup(Variable):
@@ -27,25 +17,25 @@ class aide_mobilite_parcoursup(Variable):
     reference = "https://www.etudiant.gouv.fr/fr/le-repas-au-crous-passe-1-euro-pour-tous-les-etudiants-2314"
 
     def formula(individu, period, parameters):
-        sortie_academie = individu("aide_mobilite_parcoursup_sortie_academie", period)
-        en_terminal = individu("classe_scolarite", period) == TypesClasse.terminale
-        boursier = individu("aide_mobilite_parcoursup_boursier_lycee", period)
+        sortie_academie = individu("sortie_academie", period)
+        en_terminale = individu("annee_etude", period) == TypesClasse.terminale
+        boursier = individu.famille("bourse_lycee", period) > 0
 
         montant = parameters(period).prestations.aide_mobilite_parcoursup.montant
 
-        return montant * sortie_academie * en_terminal * boursier
+        return montant * sortie_academie * en_terminale * boursier
 
 
-class aide_mobilite_master_sortie_region_academique(Variable):
+class sortie_region_academique(Variable):
     value_type = bool
-    label = "Indicatrice d'un changement de région académique entre la 3ème année de licence et la 1ère 1ère année de master"
+    label = "Changement de région académique entre la 3ème année de licence (L3) et la 1ère année de master (M1)"
     entity = Individu
     definition_period = MONTH
 
 
 class aide_mobilite_master(Variable):
     """
-    Critères non pris en comptes:
+    Critères non pris en compte :
     - Première inscription en master l'année qui suit l'obtention de la licence
     """
     value_type = float
@@ -58,9 +48,9 @@ class aide_mobilite_master(Variable):
         ]
 
     def formula(individu, period, parameters):
-        sortie_academie = individu("aide_mobilite_master_sortie_region_academique", period)
-        classe = individu("classe_scolarite", period)
-        en_transition = (classe == TypesClasse.licence_3) + (classe == TypesClasse.master_1)
+        sortie_academie = individu("sortie_region_academique", period)
+        annee_etude = individu("annee_etude", period)
+        en_transition = (annee_etude == TypesClasse.licence_3) + (annee_etude == TypesClasse.master_1)
         boursier = individu("boursier", period)
 
         montant = parameters(period).prestations.aide_mobilite_master.montant
