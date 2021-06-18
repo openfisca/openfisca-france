@@ -309,6 +309,9 @@ cotisations_employeur:
             2017-01-01: 0.0
     penibilite_multiplicateur_exposition_multiple:
       2015-01-01: 2.0
+    seuil:
+      2005-02-08: 20
+      1943-01-01: 10
     vieillesse_deplafonnee:
       brackets:
         - rate:
@@ -545,6 +548,9 @@ cotisations_employeur:
             2017-01-01: 0.0
     penibilite_multiplicateur_exposition_multiple:
       2015-01-01: 2.0
+    seuil:
+      2005-02-08: 20
+      1943-01-01: 10
     vieillesse_deplafonnee:
       brackets:
         - rate:
@@ -668,6 +674,9 @@ cotisations_employeur:
             2017-01-01: 0.0
     penibilite_multiplicateur_exposition_multiple:
       2015-01-01: 2.0
+    seuil:
+      2005-02-08: 20
+      1943-01-01: 10
     vieillesse_deplafonnee:
       brackets:
         - rate:
@@ -789,6 +798,9 @@ cotisations_employeur:
             2005-01-01: 0.05
           threshold:
             1993-01-01: 0.0
+    seuil:
+      2005-02-08: 20
+      1943-01-01: 10
   public_titulaire_hospitaliere:
     atiacl:
       brackets:
@@ -897,6 +909,9 @@ cotisations_employeur:
             2005-01-01: 0.05
           threshold:
             1993-01-01: 0.0
+    seuil:
+      2005-02-08: 20
+      1943-01-01: 10
   public_titulaire_territoriale:
     atiacl:
       brackets:
@@ -1004,6 +1019,9 @@ cotisations_employeur:
             2005-01-01: 0.05
           threshold:
             1993-01-01: 0.0
+    seuil:
+      2005-02-08: 20
+      1943-01-01: 10
 cotisations_salarie:
   prive_cadre:
     agff:
@@ -1879,6 +1897,9 @@ pat:
             2017-01-01: 0.0
     penibilite_multiplicateur_exposition_multiple:
       2015-01-01: 2.0
+    seuil:
+      2005-02-08: 20
+      1943-01-01: 10
     vieillesse_deplafonnee:
       brackets:
         - rate:
@@ -2115,6 +2136,9 @@ pat:
             2017-01-01: 0.0
     penibilite_multiplicateur_exposition_multiple:
       2015-01-01: 2.0
+    seuil:
+      2005-02-08: 20
+      1943-01-01: 10
     vieillesse_deplafonnee:
       brackets:
         - rate:
@@ -2238,6 +2262,9 @@ pat:
             2017-01-01: 0.0
     penibilite_multiplicateur_exposition_multiple:
       2015-01-01: 2.0
+    seuil:
+      2005-02-08: 20
+      1943-01-01: 10
     vieillesse_deplafonnee:
       brackets:
         - rate:
@@ -2359,6 +2386,9 @@ pat:
             2005-01-01: 0.05
           threshold:
             1993-01-01: 0.0
+    seuil:
+      2005-02-08: 20
+      1943-01-01: 10
   public_titulaire_hospitaliere:
     atiacl:
       brackets:
@@ -2467,6 +2497,9 @@ pat:
             2005-01-01: 0.05
           threshold:
             1993-01-01: 0.0
+    seuil:
+      2005-02-08: 20
+      1943-01-01: 10
   public_titulaire_territoriale:
     atiacl:
       brackets:
@@ -2574,6 +2607,9 @@ pat:
             2005-01-01: 0.05
           threshold:
             1993-01-01: 0.0
+    seuil:
+      2005-02-08: 20
+      1943-01-01: 10
 sal:
   arti:
     famille:
