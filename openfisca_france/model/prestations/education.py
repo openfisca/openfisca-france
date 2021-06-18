@@ -336,12 +336,12 @@ class statuts_etablissement_scolaire(Variable):
 
 
 class TypesClasse(Enum):
-    __order__ = 'autre seconde premiere terminale licence_1 licence_2 licence_3 master_1 master_2 doctorat_1'
+    __order__ = 'seconde premiere terminale licence_1 licence_2 licence_3 master_1 master_2 doctorat_1 autre'
     autre = 'Autre'
     seconde = 'Seconde'
     premiere = 'Première'
     terminale = 'Terminale'
-    licence_1 = 'Licence 1ère année'
+    licence_1 = 'Première année de licence'
     licence_2 = 'Licence 2ème année'
     licence_3 = 'Licence 3ème année'
     master_1 = 'Master 1ère année'
@@ -349,7 +349,7 @@ class TypesClasse(Enum):
     doctorat_1 = 'Doctorat 1ème année'
 
 
-class classe_scolarite(Variable):
+class annee_etude(Variable):
     value_type = Enum
     possible_values = TypesClasse
     default_value = TypesClasse.autre
