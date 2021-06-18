@@ -4,7 +4,7 @@ from openfisca_france.model.prestations.education import TypesClasse
 
 class aide_mobilite_parcoursup_sortie_academie(Variable):
     value_type = bool
-    label = "Indicatrice d'une sortie de l'académie d'études au lycée dans les voeux ParcourSup"
+    label = "Mention d'un vœu de changement d'académie entre le lycée et les études supérieures"
     entity = Individu
     definition_period = MONTH
 
@@ -28,7 +28,7 @@ class aide_mobilite_parcoursup(Variable):
 
     def formula(individu, period, parameters):
         sortie_academie = individu("aide_mobilite_parcoursup_sortie_academie", period)
-        en_terminal = individu("classe_scolarite", period) == TypesClasse.terminale
+        en_terminale = individu("classe_scolarite", period) == TypesClasse.terminale
         boursier = individu("aide_mobilite_parcoursup_boursier_lycee", period)
 
         montant = parameters(period).prestations.aide_mobilite_parcoursup.montant
@@ -38,14 +38,14 @@ class aide_mobilite_parcoursup(Variable):
 
 class aide_mobilite_master_sortie_region_academique(Variable):
     value_type = bool
-    label = "Indicatrice d'un changement de région académique entre la 3ème année de licence et la 1ère 1ère année de master"
+    label = "Changement de région académique entre la 3ème année de licence (L3) et la 1ère année de master (M1)"
     entity = Individu
     definition_period = MONTH
 
 
 class aide_mobilite_master(Variable):
     """
-    Critères non pris en comptes:
+    Critères non pris en compte :
     - Première inscription en master l'année qui suit l'obtention de la licence
     """
     value_type = float
