@@ -19,7 +19,7 @@ class aide_mobilite_parcoursup(Variable):
     def formula(individu, period, parameters):
         sortie_academie = individu("sortie_academie", period)
         en_terminale = individu("annee_etude", period) == TypesClasse.terminale
-        boursier = individu("bourse_lycee", period) > 0
+        boursier = individu.famille("bourse_lycee", period) > 0
 
         montant = parameters(period).prestations.aide_mobilite_parcoursup.montant
 
