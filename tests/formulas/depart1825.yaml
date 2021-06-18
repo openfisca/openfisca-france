@@ -1,17 +1,11 @@
 - period: 2021-03
   input:
     nbptr:
-      2019: [1, 1.5]
-  output:
-    depart1825_plafond_ressources: [17280, 21600]
-
-- period: 2021-03
-  input:
+      2019: [1, 1.5, 1]
     rfr:
-      2019: 100
-    depart1825_plafond_ressources: [120]
+      2019: [17280, 21600, 21600]
   output:
-    depart1825_eligibilite_financiere: [true]
+    depart1825_eligibilite_financiere: [true, true, false]
 
 - period: 2021-03
   input:
