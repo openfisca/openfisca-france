@@ -1,8 +1,17 @@
 # Changelog
 
-## 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547) 
+### 54.0.1 [#1459](https://github.com/openfisca/openfisca-france/pull/1459)
 
-* Changement majeur. 
+* Changement mineur.
+* Périodes concernées : à partir du 01/04/2020.
+* Zones impactées : 
+  - `openfisca_france/parameters/prestations/minima_sociaux/asi/`
+  - `openfisca_france/parameters/prestations/minima_sociaux/aah/montant.yaml`
+* Détails :
+  - Corrige des références législatives d'AAH et d'ASI.
+
+# 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547) 
+ 
 * Évolution du système socio-fiscal non rétrocompatible
 * Périodes concernées : toutes.
 * Zones impactées :
@@ -41,7 +50,7 @@
   - `/parameters/prestations/pass_culture/*`
 * Détails :
   -  Ajoute la variable `pass_culture` qui calcule le pass culture.
-  
+
 ## 53.2.0 [#1511](https://github.com/openfisca/openfisca-france/pull/1511)
 
 * Évolution du système socio-fiscal.

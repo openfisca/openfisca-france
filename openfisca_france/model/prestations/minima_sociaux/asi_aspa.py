@@ -189,13 +189,13 @@ class asi_aspa_nb_alloc(Variable):
 
 
 class asi(Variable):
-    calculate_output = calculate_output_add
     value_type = float
-    label = "Allocation supplémentaire d'invalidité"
-    reference = "http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
+    label = "Allocation supplémentaire d'invalidité (ASI)"
     entity = Individu
     definition_period = MONTH
+    reference = "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006156277/"
     set_input = set_input_divide_by_period
+    calculate_output = calculate_output_add
 
     def formula_2007(individu, period, parameters):
         maries = individu.famille('maries', period)
