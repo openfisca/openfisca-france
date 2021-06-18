@@ -254,7 +254,7 @@ class rafp_salarie(Variable):
     definition_period = MONTH
     # Part salariale de la retraite additionelle de la fonction publique
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
-    
+
     def formula_2005_01_01(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         categorie_salarie = individu('categorie_salarie', period)

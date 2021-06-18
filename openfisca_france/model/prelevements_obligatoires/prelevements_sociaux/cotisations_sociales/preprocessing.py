@@ -87,7 +87,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     # Renaming
     pat.children['prive_non_cadre'] = pat.children.pop('noncadre')
     pat.children['prive_cadre'] = pat.children.pop('cadre')
-    # print(pat.children['fonc'].children, file=open("openfisca_france/scripts/parameters/Fonc_APRES.txt", "w"))
+    # print(pat.children, file=open("openfisca_france/scripts/parameters/Fonc_APRES.txt", "w"))
 
     # Rework commun to deal with public employees
     for var in ["apprentissage", "apprentissage_add", "apprentissage_alsace_moselle", "assedic", "chomfg", "construction", "maladie", "formprof_09",
@@ -222,7 +222,7 @@ def build_sal(node_json):
     commun.children.update(cotiz.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(cotiz.cnav.bareme.salarie.children)  # À harmoniser !
     # print(commun.children, file=open("openfisca_france/scripts/parameters/SalNodes_APRES.txt", "w"))
-    sal.add_child('commun', commun)
+    # sal.add_child('commun', commun)
     # Non Cadre
     # Initialisation
     noncadre = ParameterNode("noncadre", data={})
