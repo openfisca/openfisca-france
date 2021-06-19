@@ -1,14 +1,14 @@
+description: Contribution exceptionnelle de solidarité (seuil d'assujetissment variable)
 brackets:
-- rate:
+- threshold:
+    1983-01-01:
+      value: 0
+  rate:
     1983-01-01:
       value: 0.01
-  threshold:
+- threshold:
     1983-01-01:
-      value: 0.0
-- rate:
+      value: 4
+  rate:
     1983-01-01:
-      value: 0.0
-  threshold:
-    1983-01-01:
-      value: 4.0
-description: Contribution exceptionnelle de solidarité (seuil d'assujetissment variable)
+      value: 0

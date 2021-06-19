@@ -1,14 +1,8 @@
 description: Taux de la Contribution au remboursement de la dette sociale (CRDS) sur les pensions de retraite et d'invalidité
-unit: /1
-values:
-    1998-01-01:
-      value: 0.005
 metadata:
-  ux_name: Taux
-  last_review:
-    1998-01-01 
-  reference:
-  date_of_issue_in_oj:
-  notes:
   description_en: CRDS
-documentation:
+  last_review: "1998-01-01"
+  unit: /1
+  ux_name: Taux
+1998-01-01:
+  value: 0.005

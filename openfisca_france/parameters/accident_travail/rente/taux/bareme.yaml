@@ -1,15 +1,16 @@
 description: Tranches de taux d'accident du travail
-unit: currency
+metadata:
+  threshold_unit: currency
 brackets:
-- rate:
-    2018-01-01:
-      value: 0.5
-  threshold:
+- threshold:
     2018-01-01:
       value: 0
-- rate:
-    2018-01-01:
-      value: 1.5
-  threshold:
+  rate:
     2018-01-01:
       value: 0.5
+- threshold:
+    2018-01-01:
+      value: 0.5
+  rate:
+    2018-01-01:
+      value: 1.5

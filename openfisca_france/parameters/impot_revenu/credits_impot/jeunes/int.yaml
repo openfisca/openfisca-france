@@ -1,7 +1,7 @@
 description: Seuil intemédiaire de revenus
-unit: currency
-values:
-  2005-01-01:
-    value: 10060.0
-  2009-01-01:
-    value: null
+metadata:
+  unit: currency
+2005-01-01:
+  value: 10060
+2009-01-01:
+  value: null

@@ -1,5 +1,11 @@
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
 brackets:
-- rate:
+- threshold:
+    1953-09-01:
+      value: 0
+  rate:
     1953-09-01:
       value: 0.01
     1978-01-01:
@@ -14,7 +20,3 @@ brackets:
       value: 0.0055
     1992-01-01:
       value: 0.0045
-  threshold:
-    1953-09-01:
-      value: 0.0
-reference: https://www.ipp.eu/outils/baremes-ipp/

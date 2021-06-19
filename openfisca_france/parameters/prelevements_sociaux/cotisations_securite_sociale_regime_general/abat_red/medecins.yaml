@@ -1,18 +1,9 @@
 description: Abattement de Cotisations de sécurité sociale (SS) du régime général pour les médecins
-values:
-  1975-01-01:
-    value: 0.3
-unit: /1
+documentation: "Notes médecins à temps partiel :\nL'arrêté du 03/02/1975 (JO 13/02/1975) détermine un abattement de 30 % pour les membres des professions médicales exerçant à temps partiel pour plusieurs employeurs pour les cotisations de sécurité sociale,\nd'accident du travail, d'allocation familiales, du versement transport et du FNAL. Les dispositions s'appliquent au 01/01/1975.\nIl est modifié par\_l'arrêté du 09-06-1982 (JO 30/12/1982) qui limite l'abattement aux cotisations sous plafond (cotisations assurance vieillesse et aide au logement) au 01/07/1982."
 metadata:
-  ux_name: Abattement
-  last_review:
-    2016-01-01
-  reference:
-  date_of_issue_in_oj:
-  notes:
   description_en: SSCs rebate for physicians (1975-2016)
-documentation: |
-  Notes médecins à temps partiel :
-  L'arrêté du 03/02/1975 (JO 13/02/1975) détermine un abattement de 30 % pour les membres des professions médicales exerçant à temps partiel pour plusieurs employeurs pour les cotisations de sécurité sociale,
-  d'accident du travail, d'allocation familiales, du versement transport et du FNAL. Les dispositions s'appliquent au 01/01/1975.
-  Il est modifié par l'arrêté du 09-06-1982 (JO 30/12/1982) qui limite l'abattement aux cotisations sous plafond (cotisations assurance vieillesse et aide au logement) au 01/07/1982.
+  last_review: "2016-01-01"
+  unit: /1
+  ux_name: Abattement
+1975-01-01:
+  value: 0.3

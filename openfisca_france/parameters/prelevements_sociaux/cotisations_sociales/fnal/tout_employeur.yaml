@@ -1,14 +1,16 @@
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
 brackets:
-- rate:
+- threshold:
+    1972-07-01:
+      value: 0
+  rate:
     1972-07-01:
       value: 0.001
-  threshold:
+- threshold:
     1972-07-01:
-      value: 0.0
-- rate:
+      value: 1
+  rate:
     1972-07-01:
-      value: 0.0
-  threshold:
-    1972-07-01:
-      value: 1.0
-reference: https://www.ipp.eu/outils/baremes-ipp/
+      value: 0

@@ -1,5 +1,6 @@
 description: Plafond de ressources pour l'AAH, en multiples du montant de base
-reference: https://www.ipp.eu/outils/baremes-ipp/
-values:
-  2000-01-01:
-    value: 12.0
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+2000-01-01:
+  value: 12

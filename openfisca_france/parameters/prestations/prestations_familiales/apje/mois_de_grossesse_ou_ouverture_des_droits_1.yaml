@@ -1,8 +1,9 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-values:
-  1985-01-01:
-    value: 3.0
-  1996-07-01:
-    value: 4.0
-  2004-01-01:
-    value: null
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+1985-01-01:
+  value: 3
+1996-07-01:
+  value: 4
+2004-01-01:
+  value: null

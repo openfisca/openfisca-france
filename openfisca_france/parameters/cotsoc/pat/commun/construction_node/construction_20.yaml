@@ -1,8 +1,8 @@
+description: Effort à la construction (plus de 20 salariés)
 brackets:
-- rate:
+- threshold:
+    1992-01-01:
+      value: 0
+  rate:
     1992-01-01:
       value: 0.0045
-  threshold:
-    1992-01-01:
-      value: 0.0
-description: Effort à la construction (plus de 20 salariés)

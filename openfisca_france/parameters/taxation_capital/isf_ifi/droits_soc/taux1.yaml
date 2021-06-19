@@ -1,5 +1,5 @@
 description: Taux parts et actions détenues par les salariés et mandataires sociaux
-unit: /1
-values:
-  2006-01-01:
-    value: 0.25
+metadata:
+  unit: /1
+2006-01-01:
+  value: 0.25

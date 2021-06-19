@@ -1,6 +1,7 @@
 description: Âge limite inférieur
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: year
-values:
-  2002-01-01:
-    value: 3.0
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: year
+2002-01-01:
+  value: 3

@@ -1,5 +1,5 @@
-description: 'Par nfant supplémentaire '
-unit: /1
-values:
-  1999-07-01:
-    value: 0.06
+description: Par nfant supplémentaire
+metadata:
+  unit: /1
+1999-07-01:
+  value: 0.06

@@ -1,11 +1,17 @@
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
 brackets:
-- rate:
+- threshold:
     1981-01-01:
-      value: 0.0
-  threshold:
+      value: 0
+  rate:
     1981-01-01:
-      value: 0.0
-- rate:
+      value: 0
+- threshold:
+    1981-01-01:
+      value: 1
+  rate:
     1981-01-01:
       value: 0.0206
     1983-01-01:
@@ -22,12 +28,12 @@ brackets:
       value: 0.0484
     1995-01-01:
       value: 0.05
-  threshold:
+- threshold:
     1981-01-01:
-      value: 1.0
-- rate:
+      value: 4
+  rate:
     1981-01-01:
-      value: 0.0
+      value: 0
     1991-01-01:
       value: 0.0234
     1994-01-01:
@@ -48,13 +54,9 @@ brackets:
       value: 0.0775
     2015-01-01:
       value: 0.078
-  threshold:
+- threshold:
     1981-01-01:
-      value: 4.0
-- rate:
+      value: 8
+  rate:
     1981-01-01:
-      value: 0.0
-  threshold:
-    1981-01-01:
-      value: 8.0
-reference: https://www.ipp.eu/outils/baremes-ipp/
+      value: 0

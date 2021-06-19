@@ -1,6 +1,7 @@
 description: Taux du complément familial dans les DOM
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
-values:
-  2002-01-01:
-    value: 0.2379
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+2002-01-01:
+  value: 0.2379

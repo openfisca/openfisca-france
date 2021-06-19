@@ -1,5 +1,6 @@
 description: Montant de la prestation complémentaire versé en fonction de besoins d'assistance
-unit: currency
+metadata:
+  unit: currency
 0:
   1985-12-21:
     value: 0

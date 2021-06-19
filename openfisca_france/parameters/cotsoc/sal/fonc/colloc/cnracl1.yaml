@@ -1,5 +1,9 @@
+description: Retraites des agents des collectivités locales (taux hors NBI)
 brackets:
-- rate:
+- threshold:
+    1984-01-01:
+      value: 0
+  rate:
     1991-02-01:
       value: 0.0785
     2011-01-01:
@@ -23,8 +27,4 @@ brackets:
     2019-01-01:
       value: 0.1083
     2020-01-01:
-      value: 0.1110
-  threshold:
-    1984-01-01:
-      value: 0.0
-description: Retraites des agents des collectivités locales (taux hors NBI)
+      value: 0.111

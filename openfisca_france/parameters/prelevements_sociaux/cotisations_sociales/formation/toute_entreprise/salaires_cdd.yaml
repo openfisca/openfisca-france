@@ -1,5 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
-values:
-  1990-07-14:
-    value: 0.01
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+1990-07-14:
+  value: 0.01

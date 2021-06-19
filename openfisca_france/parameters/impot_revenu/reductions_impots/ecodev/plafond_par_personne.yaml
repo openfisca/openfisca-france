@@ -1,8 +1,9 @@
 description: Maximum
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
-values:
-  2009-01-01:
-    value: 20000.0
-  2011-01-01:
-    value: null
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
+2009-01-01:
+  value: 20000
+2011-01-01:
+  value: null

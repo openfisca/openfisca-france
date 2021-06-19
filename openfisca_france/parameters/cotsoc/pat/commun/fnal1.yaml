@@ -1,14 +1,14 @@
+description: Fonds national action logement (FNAL, tout employeur)
 brackets:
-- rate:
+- threshold:
+    1993-07-01:
+      value: 0
+  rate:
     1993-07-01:
       value: 0.001
-  threshold:
+- threshold:
     1993-07-01:
-      value: 0.0
-- rate:
+      value: 1
+  rate:
     1993-07-01:
-      value: 0.0
-  threshold:
-    1993-07-01:
-      value: 1.0
-description: Fonds national action logement (FNAL, tout employeur)
+      value: 0

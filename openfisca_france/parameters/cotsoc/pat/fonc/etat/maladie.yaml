@@ -1,8 +1,8 @@
+description: Maladie
 brackets:
-- rate:
+- threshold:
+    1984-01-01:
+      value: 0
+  rate:
     1984-01-01:
       value: 0.097
-  threshold:
-    1984-01-01:
-      value: 0.0
-description: Maladie

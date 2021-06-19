@@ -1,5 +1,5 @@
 description: Taux 1
-unit: /1
-values:
-  2007-01-01:
-    value: 0.4
+metadata:
+  unit: /1
+2007-01-01:
+  value: 0.4

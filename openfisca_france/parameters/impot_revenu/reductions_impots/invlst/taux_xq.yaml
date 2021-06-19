@@ -1,5 +1,5 @@
 description: Taux (XQ)
-unit: /1
-values:
-  2012-01-01:
-    value: 0.2
+metadata:
+  unit: /1
+2012-01-01:
+  value: 0.2

@@ -1,5 +1,5 @@
 description: Taux
-unit: /1
-values:
-  2002-01-01:
-    value: 0.075
+metadata:
+  unit: /1
+2002-01-01:
+  value: 0.075

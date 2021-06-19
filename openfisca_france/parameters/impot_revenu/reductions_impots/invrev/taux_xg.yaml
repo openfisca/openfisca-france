@@ -1,7 +1,7 @@
 description: Case XG
-unit: /1
-values:
-  2002-01-01:
-    value: 0.1
-  2004-01-01:
-    value: null
+metadata:
+  unit: /1
+2002-01-01:
+  value: 0.1
+2004-01-01:
+  value: null

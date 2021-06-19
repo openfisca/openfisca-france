@@ -1,16 +1,5 @@
 description: Année 3 de l'accord 4 des aides incitatives à la RTT (Aubry I) (1998-2006) des réductions de cotisation sociales
-unit: currency-FRF
-values:
-  1998-07-01:
-    value: 1000.0
-  1999-07-01:
-    value: null
-metadata:
-  ux_name: Année 3
-  last_review:
-    2002-01-01
-  description_en: Incentives to the reduction of worked time ("RTT") (Aubry I)
-documentation: |
+documentation: |-
   Notes :
   La date d'effet correspond ici à la date de signature de l'accord de réduction du temps de travail.
   Le dispositif Aubry I accorde des réductions forfaitaires de cotisations, dont le montant annuel par salarié varie selon la présence d'un accord de réduction du temps de travail, l'importance de cette réduction et la nature de l'accord.
@@ -27,3 +16,12 @@ documentation: |
   Loi 98-461 du 13/06/1998 (JORF 14/06/1998), en particulier l'article 3, détermine le principe du dispositif.
   Annexes des décrets 98-494 du 22/06/1998 et 2000-84 du 31/01/2000, donnent le montant des aides forfaitaires.
   Mémento pratique Social, Ed. Francis Lefevre, paragraphe 382 pour les éditions 2003 et 2004, paragraphe 302 pour l'édition 2006, stipulent que les entreprises ayant signé une convention Aubry I continuent de bénéficier des allègements même après le 31 décembre 1999 (pour les entreprises de plus de 21 salariés et plus) ou après le 31 décembre 2001 (pour les entreprises 20 salariés ou moins).
+metadata:
+  description_en: Incentives to the reduction of worked time ("RTT") (Aubry I)
+  last_review: "2002-01-01"
+  unit: currency-FRF
+  ux_name: Année 3
+1998-07-01:
+  value: 1000
+1999-07-01:
+  value: null

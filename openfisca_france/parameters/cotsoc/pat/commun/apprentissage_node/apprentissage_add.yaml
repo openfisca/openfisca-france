@@ -1,5 +1,9 @@
+description: Contribution additionnelle au développement de l'apprentissage (toutes entreprises)
 brackets:
-- rate:
+- threshold:
+    2004-01-01:
+      value: 0
+  rate:
     2004-01-01:
       value: 0.0006
     2005-01-01:
@@ -7,9 +11,4 @@ brackets:
     2006-01-01:
       value: 0.0018
     2014-01-01:
-      value: 0.0
-  threshold:
-    2004-01-01:
-      value: 0.0
-description: Contribution additionnelle au développement de l'apprentissage (toutes
-  entreprises)
+      value: 0

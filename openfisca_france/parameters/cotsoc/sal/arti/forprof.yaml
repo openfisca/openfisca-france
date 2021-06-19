@@ -1,10 +1,10 @@
+description: Formation professionnelle
 brackets:
-- rate:
+- threshold:
+    2003-01-01:
+      value: 0
+  rate:
     2004-01-01:
       value: 0.0024
     2008-01-01:
       value: 0.0029
-  threshold:
-    2003-01-01:
-      value: 0.0
-description: Formation professionnelle

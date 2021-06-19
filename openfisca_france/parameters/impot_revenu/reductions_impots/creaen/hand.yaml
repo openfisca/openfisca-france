@@ -1,5 +1,5 @@
 description: Par personne handicapée
-unit: currency
-values:
-  2006-01-01:
-    value: 400.0
+metadata:
+  unit: currency
+2006-01-01:
+  value: 400

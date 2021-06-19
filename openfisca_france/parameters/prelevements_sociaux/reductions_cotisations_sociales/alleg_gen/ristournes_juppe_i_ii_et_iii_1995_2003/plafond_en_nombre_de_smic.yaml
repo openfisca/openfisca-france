@@ -1,50 +1,5 @@
 description: Plafond (en nombre de SMIC) des ristournes Juppé (I, II et III) (1995-2003) des allègements généraux de cotisations de Sécurité sociale (SS)
-unit:
-values:
-  1995-09-01:
-    value: 1.2
-  1996-10-01:
-    value: 1.33
-  1998-01-01:
-    value: 1.3
-  2003-07-01:
-    value: null
-metadata:
-  ux_name: Plafond en nombre de SMIC
-  last_review:
-    2003-07-01
-  reference:
-    2003-07-01:
-      title: Loi 2003-47 du 17/01/2003
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000594652
-    1998-01-01:
-    - title: Loi 97-1269 du 30/12/1997
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
-    - title: Décret 97-1330 du 31/12/1997
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569809
-    1996-10-01:
-    - Loi 95-1236 du 30/12/1995
-    - title: Décret 95-835 du 20/09/1996
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000554907
-    1995-09-01:
-    - title: Loi 95-882 du 04/08/1995
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000371685
-    - Décrets 95-942 et 95-943 du 25/08/1995
-    1995-01-01:
-      title: Loi 93-1313 du 20/12/1993, art. 1
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657310&cidTexte=JORFTEXT000000864578
-  date_of_issue_in_oj:
-    2003-07-01: 2003-01-18
-    1998-01-01: 1997-12-31; 1997-01-03
-    1996-10-01: 1996-09-22
-    1995-09-01: 1985-08-05; 1985-08-26
-    1995-01-01: 1993-12-21
-  notes:
-    1998-01-01: "Ristourne Juppé III (plafond : 1,3 SMIC)"
-    1996-10-01: "Ristourne Juppé II (plafond : 1,33 SMIC)"
-    1995-09-01: "Ristourne Juppé I (plafond : 1,2 SMIC). Cumulable avec réduction cotisation famille"
-  description_en: Global reduction in SSCs (1993-2003)
-documentation: |
+documentation: |-
   Note :
   Pour les ristournes Juppé, un montant maximal de réduction est fixé par décret. Il correspond à la réduction dont bénéficie un employeur pour un salarié au SMIC à temps plein.
   Le montant de la ristourne se calcule comme suit:
@@ -62,3 +17,45 @@ documentation: |
   Références législatives :
   Les allègements généraux de charges sont régulés par l'art. L241-13 du CSS (depuis 1995).
   La loi 95-1346 du 30/12/1995 (LF pour 1996), art. 113, prévoit l'instauration des ristournes Juppé II et III.
+metadata:
+  date_of_issue_in_oj:
+    1995-01-01: "1993-12-21"
+    1995-09-01: 1985-08-05; 1985-08-26
+    1996-10-01: "1996-09-22"
+    1998-01-01: 1997-12-31; 1997-01-03
+    2003-07-01: "2003-01-18"
+  description_en: Global reduction in SSCs (1993-2003)
+  last_review: "2003-07-01"
+  notes:
+    1995-09-01: "Ristourne Juppé I (plafond : 1,2 SMIC). Cumulable avec réduction cotisation famille"
+    1996-10-01: "Ristourne Juppé II (plafond : 1,33 SMIC)"
+    1998-01-01: "Ristourne Juppé III (plafond : 1,3 SMIC)"
+  reference:
+    1995-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657310&cidTexte=JORFTEXT000000864578
+      title: Loi 93-1313 du 20/12/1993, art. 1
+    1995-09-01:
+    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000371685
+      title: Loi 95-882 du 04/08/1995
+    - title: Décrets 95-942 et 95-943 du 25/08/1995
+    1996-10-01:
+    - title: Loi 95-1236 du 30/12/1995
+    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000554907
+      title: Décret 95-835 du 20/09/1996
+    1998-01-01:
+    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
+      title: Loi 97-1269 du 30/12/1997
+    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569809
+      title: Décret 97-1330 du 31/12/1997
+    2003-07-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000594652
+      title: Loi 2003-47 du 17/01/2003
+  ux_name: Plafond en nombre de SMIC
+1995-09-01:
+  value: 1.2
+1996-10-01:
+  value: 1.33
+1998-01-01:
+  value: 1.3
+2003-07-01:
+  value: null
