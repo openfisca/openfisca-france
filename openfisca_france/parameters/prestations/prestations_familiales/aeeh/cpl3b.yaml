@@ -1,5 +1,6 @@
 description: Seuil dépense b complément de catégorie 3
 metadata:
   unit: /1
-2002-04-01:
-  value: 0.59
+values:
+  2002-04-01:
+    value: 0.59

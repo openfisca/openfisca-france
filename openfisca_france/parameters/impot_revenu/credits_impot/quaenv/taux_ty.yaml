@@ -1,5 +1,6 @@
 description: Taux (TY)
 metadata:
   unit: /1
-2012-01-01:
-  value: 0.32
+values:
+  2012-01-01:
+    value: 0.32

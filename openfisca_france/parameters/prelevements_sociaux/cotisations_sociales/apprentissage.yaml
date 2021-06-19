@@ -10,12 +10,13 @@ cas_des_entreprises_2000_salaries_ou_alternants_representent_1_de_l_effectif_i_i
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    2011-01-01:
-      value: 0.002
-    2012-01-01:
-      value: 0.0025
-    2014-01-01:
-      value: 0.004
+    values:
+      2011-01-01:
+        value: 0.002
+      2012-01-01:
+        value: 0.0025
+      2014-01-01:
+        value: 0.004
 entreprises_de_250_salaries_et_plus:
   metadata:
     reference:
@@ -25,10 +26,11 @@ entreprises_de_250_salaries_et_plus:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    2010-01-01:
-      value: 0.001
-    2011-01-01:
-      value: null
+    values:
+      2010-01-01:
+        value: 0.001
+      2011-01-01:
+        value: null
 taxe_apprentissage:
   metadata:
     reference:

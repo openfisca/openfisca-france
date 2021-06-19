@@ -5,20 +5,22 @@ cas_general:
       reference:
         href: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
       unit: currency
-    2018-06-19:
-      reference:
-      - href: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
-      value: 1300
+    values:
+      2018-06-19:
+        reference:
+        - href: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
+        value: 1300
   ile_de_france:
     description: Montant maximum du loyer éligible à la caution Visale pour les personnes logeant en Île-de-France.
     metadata:
       reference:
         href: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
       unit: currency
-    2018-06-19:
-      reference:
-      - href: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
-      value: 1500
+    values:
+      2018-06-19:
+        reference:
+        - href: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
+        value: 1500
 etudiant:
   hors_ile_de_france:
     description: Montant maximum du loyer pour l'éligibilité automatique à Visale pour les personnes disposant d'un statut étudiant et logeant hors Île-de-France.
@@ -26,25 +28,27 @@ etudiant:
       reference:
         href: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
       unit: currency
-    2016-01-01:
-      reference:
-      - href: https://www.lemonde.fr/campus/article/2018/06/11/logement-le-systeme-de-caution-visale-etendu-a-tous-les-etudiants_5312871_4401467.html
-      value: 425
-    2018-06-19:
-      reference:
-      - href: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
-      value: 600
+    values:
+      2016-01-01:
+        reference:
+        - href: https://www.lemonde.fr/campus/article/2018/06/11/logement-le-systeme-de-caution-visale-etendu-a-tous-les-etudiants_5312871_4401467.html
+        value: 425
+      2018-06-19:
+        reference:
+        - href: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
+        value: 600
   ile_de_france:
     description: Montant maximum du loyer pour l'éligibilité automatique à Visale pour les personnes disposant d'un statut étudiant et logeant en Île-de-France.
     metadata:
       reference:
         href: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
       unit: currency
-    2016-01-01:
-      reference:
-      - href: https://www.lemonde.fr/campus/article/2018/06/11/logement-le-systeme-de-caution-visale-etendu-a-tous-les-etudiants_5312871_4401467.html
-      value: 425
-    2018-06-19:
-      reference:
-      - href: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
-      value: 800
+    values:
+      2016-01-01:
+        reference:
+        - href: https://www.lemonde.fr/campus/article/2018/06/11/logement-le-systeme-de-caution-visale-etendu-a-tous-les-etudiants_5312871_4401467.html
+        value: 425
+      2018-06-19:
+        reference:
+        - href: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
+        value: 800

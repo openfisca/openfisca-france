@@ -1,5 +1,6 @@
 description: Age limite (strict) de perception
 metadata:
   unit: year
-2004-01-01:
-  value: 1
+values:
+  2004-01-01:
+    value: 1

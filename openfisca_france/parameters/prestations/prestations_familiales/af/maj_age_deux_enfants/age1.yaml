@@ -1,5 +1,6 @@
 description: Âge de début de la 1ere majoration
 metadata:
   unit: year
-2002-01-01:
-  value: 11
+values:
+  2002-01-01:
+    value: 11

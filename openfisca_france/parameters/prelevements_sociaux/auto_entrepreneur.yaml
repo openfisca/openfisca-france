@@ -10,14 +10,15 @@ achat_vente_vente_a_consommer_sur_place_prestations_d_hebergement_sauf_location_
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    2009-01-01:
-      value: 0.12
-    2013-01-01:
-      value: 0.14
-    2014-01-01:
-      value: 0.141
-    2015-01-01:
-      value: 0.133
+    values:
+      2009-01-01:
+        value: 0.12
+      2013-01-01:
+        value: 0.14
+      2014-01-01:
+        value: 0.141
+      2015-01-01:
+        value: 0.133
 activites_liberales_relevant_de_la_cipav:
   metadata:
     reference:
@@ -27,14 +28,15 @@ activites_liberales_relevant_de_la_cipav:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    2009-01-01:
-      value: 0.183
-    2013-01-01:
-      value: 0.213
-    2014-01-01:
-      value: 0.233
-    2015-01-01:
-      value: 0.229
+    values:
+      2009-01-01:
+        value: 0.183
+      2013-01-01:
+        value: 0.213
+      2014-01-01:
+        value: 0.233
+      2015-01-01:
+        value: 0.229
 formation_professionnelle:
   metadata:
     reference:
@@ -44,29 +46,33 @@ formation_professionnelle:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    2011-01-01:
-      value: 0.00176
+    values:
+      2011-01-01:
+        value: 0.00176
   artisans_hors_alsace:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    2011-01-01:
-      value: 0.003
+    values:
+      2011-01-01:
+        value: 0.003
   commercants_chiffre_d_affaires:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    2011-01-01:
-      value: 0.001
+    values:
+      2011-01-01:
+        value: 0.001
   professions_liberales:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    2011-01-01:
-      value: 0.002
+    values:
+      2011-01-01:
+        value: 0.002
 prestations_de_service:
   metadata:
     reference:
@@ -76,9 +82,10 @@ prestations_de_service:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    2009-01-01:
-      value: 0.213
-    2013-01-01:
-      value: 0.246
-    2015-01-01:
-      value: 0.229
+    values:
+      2009-01-01:
+        value: 0.213
+      2013-01-01:
+        value: 0.246
+      2015-01-01:
+        value: 0.229

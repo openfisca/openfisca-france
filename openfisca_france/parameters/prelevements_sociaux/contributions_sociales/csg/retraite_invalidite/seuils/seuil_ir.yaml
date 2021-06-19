@@ -56,7 +56,8 @@ metadata:
   unit: currency
   ux_name: Seuil d'impôt sur le revenu
 seuil_ir:
-  1991-02-01:
-    value: 61
-  2015-01-01:
-    value: null
+  values:
+    1991-02-01:
+      value: 61
+    2015-01-01:
+      value: null

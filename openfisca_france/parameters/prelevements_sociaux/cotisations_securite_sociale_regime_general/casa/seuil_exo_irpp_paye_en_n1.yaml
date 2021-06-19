@@ -17,5 +17,6 @@ metadata:
       title: Loi 2012-1404 du 03/12/2012 (LFSS pour 2013), art. 17
   unit: currency
   ux_name: Seuil d'exonération (sur l'IRPP payé en N-1)
-2013-04-01:
-  value: 61
+values:
+  2013-04-01:
+    value: 61

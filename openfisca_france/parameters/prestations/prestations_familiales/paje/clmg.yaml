@@ -8,295 +8,314 @@ age1:
     reference:
       title: openfisca
     unit: year
-  2004-01-01:
-    value: 3
+  values:
+    2004-01-01:
+      value: 3
 age2:
   description: Limite d'âge (stricte) pour une prestation réduite
   metadata:
     reference:
       title: openfisca
     unit: year
-  2004-01-01:
-    value: 6
+  values:
+    2004-01-01:
+      value: 6
 ass_mat1:
   description: Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcréche avant le premier plafond
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2004-01-01:
-    value: 1.7257
+  values:
+    2004-01-01:
+      value: 1.7257
 ass_mat2:
   description: Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcréche avant le second plafond
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2004-01-01:
-    value: 1.4381
+  values:
+    2004-01-01:
+      value: 1.4381
 ass_mat3:
   description: Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcréche après le second plafond
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2004-01-01:
-    value: 1.1505
+  values:
+    2004-01-01:
+      value: 1.1505
 domi1:
   description: Taux pour recours à une garde à domicile avant le premier plafond
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2004-01-01:
-    value: 2.0853
+  values:
+    2004-01-01:
+      value: 2.0853
 domi2:
   description: Taux pour recours à une garde à domicile avant le second plafond
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2004-01-01:
-    value: 1.7976
+  values:
+    2004-01-01:
+      value: 1.7976
 domi3:
   description: Taux pour recours à une garde à domicile après le second plafond
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2004-01-01:
-    value: 1.51
+  values:
+    2004-01-01:
+      value: 1.51
 majoration_du_plafond_pour_une_personne_isolee:
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2008-05-01:
-    value: 0.4
+  values:
+    2008-05-01:
+      value: 0.4
 remuneration_brute_maximale_de_l_assistante_maternelle_par_jour_et_par_enfant_en_multiple_du_smic_horaire:
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2004-01-01:
-    value: 5
+  values:
+    2004-01-01:
+      value: 5
 seuil11:
   description: Premier plafond de ressources pour un enfant
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: currency
-  2004-01-01:
-    value: 14349
-  2004-07-01:
-    value: 14622
-  2005-07-01:
-    value: 14870
-  2006-07-01:
-    value: 15123
-  2007-07-01:
-    value: 19255
-  2009-01-01:
-    value: 19513
-  2010-01-01:
-    value: 20059
-  2011-01-01:
-    value: 20079
-  2012-01-01:
-    value: 20281
-  2013-01-01:
-    value: 20706
-  2014-01-01:
-    value: 21100
-  2015-01-01:
-    value: 21248
-  2016-01-01:
-    value: 21332
+  values:
+    2004-01-01:
+      value: 14349
+    2004-07-01:
+      value: 14622
+    2005-07-01:
+      value: 14870
+    2006-07-01:
+      value: 15123
+    2007-07-01:
+      value: 19255
+    2009-01-01:
+      value: 19513
+    2010-01-01:
+      value: 20059
+    2011-01-01:
+      value: 20079
+    2012-01-01:
+      value: 20281
+    2013-01-01:
+      value: 20706
+    2014-01-01:
+      value: 21100
+    2015-01-01:
+      value: 21248
+    2016-01-01:
+      value: 21332
 seuil12:
   description: Premier plafond de ressources pour deux enfants
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: currency
-  2004-01-01:
-    value: 16521
-  2004-07-01:
-    value: 16835
-  2005-07-01:
-    value: 17120
-  2006-07-01:
-    value: 17411
-  2007-07-01:
-    value: 22135
-  2009-01-01:
-    value: 22467
-  2010-01-01:
-    value: 23095
-  2011-01-01:
-    value: 23118
-  2012-01-01:
-    value: 23350
-  2013-01-01:
-    value: 23840
-  2014-01-01:
-    value: 24293
-  2015-01-01:
-    value: 2463
-  2016-01-01:
-    value: 24561
+  values:
+    2004-01-01:
+      value: 16521
+    2004-07-01:
+      value: 16835
+    2005-07-01:
+      value: 17120
+    2006-07-01:
+      value: 17411
+    2007-07-01:
+      value: 22135
+    2009-01-01:
+      value: 22467
+    2010-01-01:
+      value: 23095
+    2011-01-01:
+      value: 23118
+    2012-01-01:
+      value: 23350
+    2013-01-01:
+      value: 23840
+    2014-01-01:
+      value: 24293
+    2015-01-01:
+      value: 2463
+    2016-01-01:
+      value: 24561
 seuil1sup:
   description: "Premier plafond de ressources: maj. enfant suppl."
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: currency
-  2004-01-01:
-    value: 2626
-  2004-07-01:
-    value: 2655
-  2005-07-01:
-    value: 2701
-  2006-07-01:
-    value: 2747
-  2007-07-01:
-    value: 3492
-  2009-01-01:
-    value: 3543
-  2010-01-01:
-    value: 3643
-  2011-01-01:
-    value: 3647
-  2012-01-01:
-    value: 3683
-  2013-01-01:
-    value: 3761
-  2014-01-01:
-    value: 3831
-  2015-01-01:
-    value: 3859
-  2016-01-01:
-    value: 3874
+  values:
+    2004-01-01:
+      value: 2626
+    2004-07-01:
+      value: 2655
+    2005-07-01:
+      value: 2701
+    2006-07-01:
+      value: 2747
+    2007-07-01:
+      value: 3492
+    2009-01-01:
+      value: 3543
+    2010-01-01:
+      value: 3643
+    2011-01-01:
+      value: 3647
+    2012-01-01:
+      value: 3683
+    2013-01-01:
+      value: 3761
+    2014-01-01:
+      value: 3831
+    2015-01-01:
+      value: 3859
+    2016-01-01:
+      value: 3874
 seuil21:
   description: Second plafond de ressources pour un enfant
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: currency
-  2004-01-01:
-    value: 31887
-  2004-07-01:
-    value: 32493
-  2005-07-01:
-    value: 33044
-  2006-07-01:
-    value: 33606
-  2007-07-01:
-    value: 42722
-  2009-01-01:
-    value: 43363
-  2010-01-01:
-    value: 44576
-  2011-01-01:
-    value: 44621
-  2012-01-01:
-    value: 45068
-  2013-01-01:
-    value: 46014
-  2014-01-01:
-    value: 46888
-  2015-01-01:
-    value: 47217
-  2016-01-01:
-    value: 47405
+  values:
+    2004-01-01:
+      value: 31887
+    2004-07-01:
+      value: 32493
+    2005-07-01:
+      value: 33044
+    2006-07-01:
+      value: 33606
+    2007-07-01:
+      value: 42722
+    2009-01-01:
+      value: 43363
+    2010-01-01:
+      value: 44576
+    2011-01-01:
+      value: 44621
+    2012-01-01:
+      value: 45068
+    2013-01-01:
+      value: 46014
+    2014-01-01:
+      value: 46888
+    2015-01-01:
+      value: 47217
+    2016-01-01:
+      value: 47405
 seuil22:
   description: Second plafond de ressources pour deux enfants
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: currency
-  2004-01-01:
-    value: 36713
-  2004-07-01:
-    value: 37411
-  2005-07-01:
-    value: 38045
-  2006-07-01:
-    value: 38692
-  2007-07-01:
-    value: 49188
-  2009-01-01:
-    value: 49926
-  2010-01-01:
-    value: 51322
-  2011-01-01:
-    value: 51374
-  2012-01-01:
-    value: 51889
-  2013-01-01:
-    value: 52978
-  2014-01-01:
-    value: 53984
-  2015-01-01:
-    value: 54363
-  2016-01-01:
-    value: 54579
+  values:
+    2004-01-01:
+      value: 36713
+    2004-07-01:
+      value: 37411
+    2005-07-01:
+      value: 38045
+    2006-07-01:
+      value: 38692
+    2007-07-01:
+      value: 49188
+    2009-01-01:
+      value: 49926
+    2010-01-01:
+      value: 51322
+    2011-01-01:
+      value: 51374
+    2012-01-01:
+      value: 51889
+    2013-01-01:
+      value: 52978
+    2014-01-01:
+      value: 53984
+    2015-01-01:
+      value: 54363
+    2016-01-01:
+      value: 54579
 seuil2sup:
   description: "Second plafond de ressources: maj. enfant suppl."
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: currency
-  2004-01-01:
-    value: 5791
-  2004-07-01:
-    value: 5901
-  2005-07-01:
-    value: 6001
-  2006-07-01:
-    value: 6103
-  2007-07-01:
-    value: 7759
-  2009-01-01:
-    value: 7875
-  2010-01-01:
-    value: 8096
-  2011-01-01:
-    value: 8104
-  2012-01-01:
-    value: 8195
-  2013-01-01:
-    value: 8357
-  2014-01-01:
-    value: 8515
-  2015-01-01:
-    value: 8575
-  2016-01-01:
-    value: 8609
+  values:
+    2004-01-01:
+      value: 5791
+    2004-07-01:
+      value: 5901
+    2005-07-01:
+      value: 6001
+    2006-07-01:
+      value: 6103
+    2007-07-01:
+      value: 7759
+    2009-01-01:
+      value: 7875
+    2010-01-01:
+      value: 8096
+    2011-01-01:
+      value: 8104
+    2012-01-01:
+      value: 8195
+    2013-01-01:
+      value: 8357
+    2014-01-01:
+      value: 8515
+    2015-01-01:
+      value: 8575
+    2016-01-01:
+      value: 8609
 taux_recours_emploi_1er_plafond:
   description: Taux pour recours à un emploi direct avant le premier plafond
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2004-01-01:
-    value: 1.0067
-  2008-05-01:
-    value: 1.1404
-  2012-06-01:
-    value: 1.0067
+  values:
+    2004-01-01:
+      value: 1.0067
+    2008-05-01:
+      value: 1.1404
+    2012-06-01:
+      value: 1.0067
 taux_recours_emploi_2e_plafond:
   description: Taux pour recours à un emploi direct avant le second plafond
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2004-01-01:
-    value: 0.7191
+  values:
+    2004-01-01:
+      value: 0.7191
 taux_recours_emploi_supp_2e_plafond:
   description: Taux pour recours à un emploi direct après le second plafond
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2004-01-01:
-    value: 0.4314
+  values:
+    2004-01-01:
+      value: 0.4314

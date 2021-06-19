@@ -5,21 +5,22 @@ metadata:
   - href: http://bofip.impots.gouv.fr/bofip/2494-PGP
   - href: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
   unit: currency
-2012-01-01:
-  value: 672
-2013-01-01:
-  value: 1672
-2014-01-01:
-  value: 1680
-2015-01-01:
-  value: 1682
-2016-01-01:
-  value: 1684
-2017-01-01:
-  value: 1701
-2018-01-01:
-  value: 1728
-2019-01-01:
-  value: 1745
-2021-01-01:
-  value: 1748
+values:
+  2012-01-01:
+    value: 672
+  2013-01-01:
+    value: 1672
+  2014-01-01:
+    value: 1680
+  2015-01-01:
+    value: 1682
+  2016-01-01:
+    value: 1684
+  2017-01-01:
+    value: 1701
+  2018-01-01:
+    value: 1728
+  2019-01-01:
+    value: 1745
+  2021-01-01:
+    value: 1748

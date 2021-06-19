@@ -47,9 +47,10 @@ metadata:
       title: Décret 95-835 du 20/09/1996
   unit: /1
   ux_name: De 1,2 à 1,3 SMIC
-1993-07-01:
-  value: null
-1994-07-01:
-  value: 0.027
-1996-10-01:
-  value: null
+values:
+  1993-07-01:
+    value: null
+  1994-07-01:
+    value: 0.027
+  1996-10-01:
+    value: null

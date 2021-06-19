@@ -34,7 +34,8 @@ metadata:
       title: Loi 2017-1837 du 30/12/2017 (LF pour 2018), art. 86
   unit: /1
   ux_name: Plafond (en nombre de SMIC)
-2013-01-01:
-  value: 2.5
-2019-01-01:
-  value: null
+values:
+  2013-01-01:
+    value: 2.5
+  2019-01-01:
+    value: null

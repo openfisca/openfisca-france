@@ -1,7 +1,8 @@
 description: Plafond de ressources
 metadata:
   unit: currency
-2004-01-01:
-  value: 0
-2016-01-01:
-  value: 28697
+values:
+  2004-01-01:
+    value: 0
+  2016-01-01:
+    value: 28697

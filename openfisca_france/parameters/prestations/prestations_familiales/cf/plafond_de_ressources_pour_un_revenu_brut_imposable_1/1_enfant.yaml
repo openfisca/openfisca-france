@@ -2,11 +2,12 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
-1978-01-01:
-  value: 44270
-1978-07-01:
-  value: 50034
-1983-01-01:
-  value: 87242
-1986-07-01:
-  value: 105528
+values:
+  1978-01-01:
+    value: 44270
+  1978-07-01:
+    value: 50034
+  1983-01-01:
+    value: 87242
+  1986-07-01:
+    value: 105528

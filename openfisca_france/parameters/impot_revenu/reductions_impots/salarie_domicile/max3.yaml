@@ -1,7 +1,8 @@
 description: Plafond si présence d'un invalide
 metadata:
   unit: currency
-2001-01-01:
-  value: 13800
-2005-01-01:
-  value: 20000
+values:
+  2001-01-01:
+    value: 13800
+  2005-01-01:
+    value: 20000

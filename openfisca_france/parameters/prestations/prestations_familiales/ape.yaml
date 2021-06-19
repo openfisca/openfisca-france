@@ -8,22 +8,25 @@ age_max_enfant:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: year
-  1985-01-01:
-    value: 3
+  values:
+    1985-01-01:
+      value: 3
 annees_d_activite_precedant_la_demande:
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
-  1985-01-01:
-    value: 2
+  values:
+    1985-01-01:
+      value: 2
 duree_de_l_allocation_maximale_mois:
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
-  1985-01-01:
-    value: 24
-  1987-04-01:
-    value: 36
+  values:
+    1985-01-01:
+      value: 24
+    1987-04-01:
+      value: 36
 intervalle_considere_pour_le_calcul_du_nombre_d_annees_d_activite_precedant_la_demande_d_ape_mois:
   metadata:
     reference:
@@ -32,53 +35,59 @@ intervalle_considere_pour_le_calcul_du_nombre_d_annees_d_activite_precedant_la_d
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
-    1994-07-01:
-      value: 60
+    values:
+      1994-07-01:
+        value: 60
   pour_le_3e_enfant:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
-    1985-01-01:
-      value: 30
-    1987-04-01:
-      value: 120
+    values:
+      1985-01-01:
+        value: 30
+      1987-04-01:
+        value: 120
 nombre_minimal_d_enfants_pris_en_charge:
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
-  1985-01-01:
-    value: 3
-  1994-07-01:
-    value: 2
+  values:
+    1985-01-01:
+      value: 3
+    1994-07-01:
+      value: 2
 taux_activite_sup_50:
   description: Activité au plus égale au mi-temps de la durée légale du travail en % de la base mensuelle des allocations familiales (BMAF)
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  1985-01-01:
-    value: 0.451
-  1994-07-01:
-    value: 0.9427
+  values:
+    1985-01-01:
+      value: 0.451
+    1994-07-01:
+      value: 0.9427
 taux_activite_sup_80:
   description: Activité entre 50% et 80% de la durée légale du travail en % de la base mensuelle des allocations familiales (BMAF)
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  1985-01-01:
-    value: 0.451
-  1987-04-01:
-    value: 0.7129
+  values:
+    1985-01-01:
+      value: 0.451
+    1987-04-01:
+      value: 0.7129
 taux_inactivite:
   description: Cessation complète d'activité à plein temps en % de la base mensuelle des allocations familiales (BMAF)
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  1985-01-01:
-    value: 0.624
-  1986-07-01:
-    value: 0.902
-  1987-04-01:
-    value: 1.4257
+  values:
+    1985-01-01:
+      value: 0.624
+    1986-07-01:
+      value: 0.902
+    1987-04-01:
+      value: 1.4257

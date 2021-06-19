@@ -3,5 +3,6 @@ metadata:
   last_review: "1997-01-01"
   unit: /1
   ux_name: Taux
-1997-01-01:
-  value: 0.024
+values:
+  1997-01-01:
+    value: 0.024

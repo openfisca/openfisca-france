@@ -1,5 +1,6 @@
 description: Seuil
 metadata:
   unit: /1
-1988-01-01:
-  value: 0.01
+values:
+  1988-01-01:
+    value: 0.01

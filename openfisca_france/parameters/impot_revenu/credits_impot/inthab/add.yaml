@@ -1,5 +1,6 @@
 description: Par enfant à charge
 metadata:
   unit: currency
-2007-01-01:
-  value: 500
+values:
+  2007-01-01:
+    value: 500

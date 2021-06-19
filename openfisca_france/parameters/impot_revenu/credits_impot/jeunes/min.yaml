@@ -1,7 +1,8 @@
 description: Plancher de revenus
 metadata:
   unit: currency
-2005-01-01:
-  value: 2970
-2009-01-01:
-  value: null
+values:
+  2005-01-01:
+    value: 2970
+  2009-01-01:
+    value: null

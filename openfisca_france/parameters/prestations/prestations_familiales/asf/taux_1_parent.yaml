@@ -3,19 +3,20 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
-1970-12-26:
-  value: 0.16
-1978-01-01:
-  value: 0.225
-2014-04-01:
-  value: 0.2363
-2015-04-01:
-  value: 0.2476
-2016-04-01:
-  value: 0.2589
-2017-04-01:
-  value: 0.2702
-2018-04-01:
-  reference:
-  - href: http://circulaires.legifrance.gouv.fr/pdf/2018/03/cir_43190.pdf
-  value: 0.2813
+values:
+  1970-12-26:
+    value: 0.16
+  1978-01-01:
+    value: 0.225
+  2014-04-01:
+    value: 0.2363
+  2015-04-01:
+    value: 0.2476
+  2016-04-01:
+    value: 0.2589
+  2017-04-01:
+    value: 0.2702
+  2018-04-01:
+    reference:
+    - href: http://circulaires.legifrance.gouv.fr/pdf/2018/03/cir_43190.pdf
+    value: 0.2813

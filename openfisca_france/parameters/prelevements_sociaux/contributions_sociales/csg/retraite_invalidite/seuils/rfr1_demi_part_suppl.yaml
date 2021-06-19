@@ -81,17 +81,18 @@ metadata:
       title: Lettre ministérielle D-2019-025051 du 07/11/2019
   unit: currency
   ux_name: RFR1 - Demi-part suppl.
-1991-02-01:
-  value: null
-2015-01-01:
-  value: 2839
-2016-01-01:
-  value: 2850
-2017-01-01:
-  value: 2936
-2018-01-01:
-  value: 2942
-2019-01-01:
-  value: 2971
-2020-01-01:
-  value: 3019
+values:
+  1991-02-01:
+    value: null
+  2015-01-01:
+    value: 2839
+  2016-01-01:
+    value: 2850
+  2017-01-01:
+    value: 2936
+  2018-01-01:
+    value: 2942
+  2019-01-01:
+    value: 2971
+  2020-01-01:
+    value: 3019

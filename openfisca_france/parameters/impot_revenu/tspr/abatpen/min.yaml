@@ -5,51 +5,52 @@ metadata:
   - href: http://bofip.impots.gouv.fr/bofip/7458-PGP#7458-PGP_Plafond_de_labattement_33
   - href: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034597100&cidTexte=LEGITEXT000006069577
   unit: currency
-1978-01-01:
-  value: 1800
-1992-01-01:
-  value: 1860
-1993-01-01:
-  value: 1900
-1994-01-01:
-  value: 1930
-1995-01-01:
-  value: 1960
-1996-01-01:
-  value: 2000
-1997-01-01:
-  value: 2020
-1998-01-01:
-  value: 2040
-1999-01-01:
-  value: 2050
-2000-01-01:
-  value: 2080
-2001-01-01:
-  value: 323
-2002-01-01:
-  value: 328
-2003-01-01:
-  value: 334
-2004-01-01:
-  value: 340
-2005-01-01:
-  value: 346
-2006-01-01:
-  value: 352
-2007-01-01:
-  value: 357
-2008-01-01:
-  value: 367
-2009-01-01:
-  value: 368
-2010-01-01:
-  value: 374
-2014-01-01:
-  value: 379
-2017-01-01:
-  value: 383
-2018-01-01:
-  value: 389
-2019-01-01:
-  value: 393
+values:
+  1978-01-01:
+    value: 1800
+  1992-01-01:
+    value: 1860
+  1993-01-01:
+    value: 1900
+  1994-01-01:
+    value: 1930
+  1995-01-01:
+    value: 1960
+  1996-01-01:
+    value: 2000
+  1997-01-01:
+    value: 2020
+  1998-01-01:
+    value: 2040
+  1999-01-01:
+    value: 2050
+  2000-01-01:
+    value: 2080
+  2001-01-01:
+    value: 323
+  2002-01-01:
+    value: 328
+  2003-01-01:
+    value: 334
+  2004-01-01:
+    value: 340
+  2005-01-01:
+    value: 346
+  2006-01-01:
+    value: 352
+  2007-01-01:
+    value: 357
+  2008-01-01:
+    value: 367
+  2009-01-01:
+    value: 368
+  2010-01-01:
+    value: 374
+  2014-01-01:
+    value: 379
+  2017-01-01:
+    value: 383
+  2018-01-01:
+    value: 389
+  2019-01-01:
+    value: 393

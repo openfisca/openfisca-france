@@ -1,5 +1,6 @@
 description: Taux forfait mobilier
 metadata:
   unit: /1
-2002-01-01:
-  value: 0.05
+values:
+  2002-01-01:
+    value: 0.05

@@ -1,13 +1,14 @@
 description: Plafond des revenus nets catégoriels annuels
 metadata:
   unit: /1
-2001-07-01:
-  value: 224317
-2002-01-01:
-  value: 34196.91
-2002-07-01:
-  value: 34744
-2003-07-01:
-  value: 35335
-2004-07-01:
-  value: null
+values:
+  2001-07-01:
+    value: 224317
+  2002-01-01:
+    value: 34196.91
+  2002-07-01:
+    value: 34744
+  2003-07-01:
+    value: 35335
+  2004-07-01:
+    value: null

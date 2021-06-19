@@ -1,7 +1,8 @@
 metadata:
   reference:
     title: ipp
-1986-01-01:
-  value: 0.4
-1988-07-01:
-  value: 0.5
+values:
+  1986-01-01:
+    value: 0.4
+  1988-07-01:
+    value: 0.5

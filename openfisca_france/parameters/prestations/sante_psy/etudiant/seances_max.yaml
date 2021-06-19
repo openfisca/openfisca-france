@@ -2,7 +2,8 @@ description: Nombre maximum de séances prises en charge par le chèque santé p
 metadata:
   reference:
     href: https://www.service-public.fr/particuliers/actualites/A14726
-2021-03-10:
-  reference:
-  - href: https://www.service-public.fr/particuliers/actualites/A14726
-  value: 6
+values:
+  2021-03-10:
+    reference:
+    - href: https://www.service-public.fr/particuliers/actualites/A14726
+    value: 6

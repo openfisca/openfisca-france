@@ -1,7 +1,8 @@
 description: Majoration pour biactifs et isolés
 metadata:
   unit: currency
-2004-01-01:
-  value: 0
-2016-01-01:
-  value: 11534
+values:
+  2004-01-01:
+    value: 0
+  2016-01-01:
+    value: 11534

@@ -1,5 +1,6 @@
 description: La décote se fait à ce taux
 metadata:
   unit: /1
-2001-01-01:
-  value: 0.75
+values:
+  2001-01-01:
+    value: 0.75

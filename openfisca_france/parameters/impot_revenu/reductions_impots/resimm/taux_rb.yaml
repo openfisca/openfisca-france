@@ -1,7 +1,8 @@
 description: Taux_RB
 metadata:
   unit: /1
-2009-01-01:
-  value: 0.4
-2011-01-01:
-  value: 0.36
+values:
+  2009-01-01:
+    value: 0.4
+  2011-01-01:
+    value: 0.36

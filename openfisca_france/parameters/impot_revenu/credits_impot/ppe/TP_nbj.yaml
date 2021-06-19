@@ -1,3 +1,4 @@
 description: Nombre de jour du temps plein
-2002-01-01:
-  value: 360
+values:
+  2002-01-01:
+    value: 360

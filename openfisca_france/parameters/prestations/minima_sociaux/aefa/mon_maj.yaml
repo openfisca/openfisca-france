@@ -1,5 +1,6 @@
 description: Montant majoré
 metadata:
   unit: currency
-2005-01-01:
-  value: 219.53
+values:
+  2005-01-01:
+    value: 219.53

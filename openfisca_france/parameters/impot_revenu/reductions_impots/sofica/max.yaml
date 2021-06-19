@@ -1,5 +1,6 @@
 description: Plafond
 metadata:
   unit: currency
-2001-01-01:
-  value: 18000
+values:
+  2001-01-01:
+    value: 18000

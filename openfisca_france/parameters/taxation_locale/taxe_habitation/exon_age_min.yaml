@@ -3,5 +3,6 @@ metadata:
   reference:
     title: art. 1414 du CGI
   unit: /1
-2017-01-01:
-  value: 60
+values:
+  2017-01-01:
+    value: 60

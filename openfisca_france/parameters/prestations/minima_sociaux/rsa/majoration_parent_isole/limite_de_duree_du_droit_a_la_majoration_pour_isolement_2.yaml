@@ -1,5 +1,6 @@
 metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
-2009-06-01:
-  value: 18
+values:
+  2009-06-01:
+    value: 18

@@ -9,5 +9,6 @@ metadata:
   last_review: "2016-01-01"
   unit: /1
   ux_name: Artistes
-1975-01-01:
-  value: 0.3
+values:
+  1975-01-01:
+    value: 0.3

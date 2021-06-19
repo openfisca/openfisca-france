@@ -1,11 +1,12 @@
 description: Zone 1 - Famille avec 3 personnes à charge
 metadata:
   unit: currency
-2018-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801551A/jo/article_1
-  value: 2023
-2019-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/eli/arrete/2018/12/27/LOGL1831321A/jo/texte
-  value: 2043
+values:
+  2018-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801551A/jo/article_1
+    value: 2023
+  2019-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/eli/arrete/2018/12/27/LOGL1831321A/jo/texte
+    value: 2043

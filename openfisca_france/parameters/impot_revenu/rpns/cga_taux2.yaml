@@ -1,7 +1,8 @@
 description: Taux de la pénalité non CGA-AA
 metadata:
   unit: /1
-2002-01-01:
-  value: 0
-2006-01-01:
-  value: 0.25
+values:
+  2002-01-01:
+    value: 0
+  2006-01-01:
+    value: 0.25

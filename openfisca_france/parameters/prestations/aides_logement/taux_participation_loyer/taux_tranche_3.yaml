@@ -3,7 +3,8 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
-2001-01-01:
-  value: 0.0085
-2007-07-01:
-  value: 0.0068
+values:
+  2001-01-01:
+    value: 0.0085
+  2007-07-01:
+    value: 0.0068

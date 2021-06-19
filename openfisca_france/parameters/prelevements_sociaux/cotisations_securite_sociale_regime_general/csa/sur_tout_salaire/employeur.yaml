@@ -14,5 +14,6 @@ metadata:
       title: Loi 2004-626 du 26/06/2004, art. 11
   unit: /1
   ux_name: Taux employeur
-2004-07-01:
-  value: 0.003
+values:
+  2004-07-01:
+    value: 0.003

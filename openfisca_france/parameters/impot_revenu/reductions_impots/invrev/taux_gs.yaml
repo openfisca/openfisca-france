@@ -1,7 +1,8 @@
 description: case GS
 metadata:
   unit: /1
-2002-01-01:
-  value: 0.15
-2004-01-01:
-  value: null
+values:
+  2002-01-01:
+    value: 0.15
+  2004-01-01:
+    value: null

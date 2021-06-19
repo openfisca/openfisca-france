@@ -2,51 +2,61 @@ alsace_moselle:
   cmu_30_49_ans:
     metadata:
       unit: currency
-    2019-11-01:
-      value: 4.9
+    values:
+      2019-11-01:
+        value: 4.9
   cmu_50_59_ans:
     metadata:
       unit: currency
-    2019-11-01:
-      value: 7.3
+    values:
+      2019-11-01:
+        value: 7.3
   cmu_60_69_ans:
     metadata:
       unit: currency
-    2019-11-01:
-      value: 8.7
+    values:
+      2019-11-01:
+        value: 8.7
   cmu_moins_30_ans:
     metadata:
       unit: currency
-    2019-11-01:
-      value: 2.8
+    values:
+      2019-11-01:
+        value: 2.8
   cmu_plus_69_ans:
     metadata:
       unit: currency
-    2019-11-01:
-      value: 10.5
+    values:
+      2019-11-01:
+        value: 10.5
 france:
   cmu_30_49_ans:
     metadata:
       unit: currency
-    2019-11-01:
-      value: 14
+    values:
+      2019-11-01:
+        value: 14
   cmu_50_59_ans:
     metadata:
       unit: currency
-    2019-11-01:
-      value: 21
+    values:
+      2019-11-01:
+        value: 21
   cmu_60_69_ans:
     metadata:
       unit: currency
-    2019-11-01:
-      value: 25
+    values:
+      2019-11-01:
+        value: 25
   cmu_moins_30_ans:
     metadata:
       unit: currency
-    2019-11-01:
-      value: 8
+    values:
+      2019-11-01:
+        value: 8
   cmu_plus_69_ans:
     metadata:
       unit: currency
-    2019-11-01:
-      value: 30
+    values:
+      2019-11-01:
+        value: 30

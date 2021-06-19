@@ -74,7 +74,8 @@ metadata:
       title: Loi 2015-1702 du 21/12/2015, art. 7 (LFSS pour 2016)
   unit: /1
   ux_name: Taux réduit
-1946-07-01:
-  value: null
-2015-01-01:
-  value: 0.0345
+values:
+  1946-07-01:
+    value: null
+  2015-01-01:
+    value: 0.0345

@@ -46,7 +46,8 @@ metadata:
       title: Loi 2017-1837 du 30/12/2017, art. 67 (LF pour 2018)
   unit: /1
   ux_name: Taux
-1991-02-01:
-  value: 0.011
-1993-07-01:
-  value: 0.024
+values:
+  1991-02-01:
+    value: 0.011
+  1993-07-01:
+    value: 0.024

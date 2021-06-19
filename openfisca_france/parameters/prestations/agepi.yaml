@@ -1,6 +1,7 @@
 age_enfant_maximum:
-  2013-01-01:
-    value: 10
+  values:
+    2013-01-01:
+      value: 10
 montants:
   moins_de_15h_par_semaine:
     metadata:

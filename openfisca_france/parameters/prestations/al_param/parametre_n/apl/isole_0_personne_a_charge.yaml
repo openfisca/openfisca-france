@@ -1,5 +1,6 @@
 metadata:
   reference:
     title: ipp
-2007-07-01:
-  value: 1.4
+values:
+  2007-07-01:
+    value: 1.4

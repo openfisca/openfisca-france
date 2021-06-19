@@ -3,13 +3,14 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
-2002-01-01:
-  value: 0.2379
-2014-04-01:
-  value: 0.2617
-2015-04-01:
-  value: 0.2855
-2016-04-01:
-  value: 0.3093
-2017-04-01:
-  value: 0.3331
+values:
+  2002-01-01:
+    value: 0.2379
+  2014-04-01:
+    value: 0.2617
+  2015-04-01:
+    value: 0.2855
+  2016-04-01:
+    value: 0.3093
+  2017-04-01:
+    value: 0.3331

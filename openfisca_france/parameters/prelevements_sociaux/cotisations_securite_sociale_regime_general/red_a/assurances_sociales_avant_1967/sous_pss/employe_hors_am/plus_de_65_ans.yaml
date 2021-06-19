@@ -24,7 +24,8 @@ metadata:
       title: Arrêté du 29/09/1967
   unit: /1
   ux_name: Plus de 65 ans
-1960-01-01:
-  value: 0.014
-1967-10-01:
-  value: null
+values:
+  1960-01-01:
+    value: 0.014
+  1967-10-01:
+    value: null

@@ -1,10 +1,11 @@
 description: Taux (XH)
 metadata:
   unit: /1
-2004-01-01:
-  value: 0.1
-2005-01-01:
-  value: 0.2
-2011-01-01:
-  value: 0.18
-2013-01-01: expected
+values:
+  2004-01-01:
+    value: 0.1
+  2005-01-01:
+    value: 0.2
+  2011-01-01:
+    value: 0.18
+  2013-01-01: expected

@@ -1,5 +1,6 @@
 description: Âge limite (strict) pour être considéré comme enfant à charge
 metadata:
   unit: year
-2001-01-01:
-  value: 20
+values:
+  2001-01-01:
+    value: 20

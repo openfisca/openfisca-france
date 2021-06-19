@@ -2,25 +2,26 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
-2007-07-01:
-  value: 201
-2009-01-01:
-  value: 204
-2010-01-01:
-  value: 210
-2012-01-01:
-  value: 213
-2013-01-01:
-  value: 217
-2014-01-01:
-  value: 221
-2015-01-01:
-  value: 223
-2016-01-01:
-  value: 224
-2019-01-01:
-  value: 226
-2020-01-01:
-  value: 230
-2021-01-01:
-  value: 232
+values:
+  2007-07-01:
+    value: 201
+  2009-01-01:
+    value: 204
+  2010-01-01:
+    value: 210
+  2012-01-01:
+    value: 213
+  2013-01-01:
+    value: 217
+  2014-01-01:
+    value: 221
+  2015-01-01:
+    value: 223
+  2016-01-01:
+    value: 224
+  2019-01-01:
+    value: 226
+  2020-01-01:
+    value: 230
+  2021-01-01:
+    value: 232

@@ -1,7 +1,8 @@
 description: Taux pour 1 enfant
 metadata:
   unit: /1
-2002-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000035672548&cidTexte=LEGITEXT000005630325&dateTexte=20180829
-  value: 0.0238
+values:
+  2002-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000035672548&cidTexte=LEGITEXT000005630325&dateTexte=20180829
+    value: 0.0238

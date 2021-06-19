@@ -127,11 +127,14 @@ baremes:
           value: 0
 unites_consommation:
   autres_personnes:
-    2017-01-01:
-      value: 0.3
+    values:
+      2017-01-01:
+        value: 0.3
   deuxieme_personne:
-    2017-01-01:
-      value: 0.5
+    values:
+      2017-01-01:
+        value: 0.5
   premiere_personne:
-    2017-01-01:
-      value: 1
+    values:
+      2017-01-01:
+        value: 1

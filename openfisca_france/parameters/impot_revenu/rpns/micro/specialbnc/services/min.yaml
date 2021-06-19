@@ -1,5 +1,6 @@
 description: Minimum
 metadata:
   unit: currency
-2002-01-01:
-  value: 305
+values:
+  2002-01-01:
+    value: 305

@@ -1,5 +1,6 @@
 description: Taux (VY)
 metadata:
   unit: /1
-2013-01-01:
-  value: 0.4
+values:
+  2013-01-01:
+    value: 0.4

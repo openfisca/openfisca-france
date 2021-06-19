@@ -62,13 +62,14 @@ metadata:
       title: Loi 2017-1837 du 30/12/2017, art. 67 (LF pour 2018)
   unit: /1
   ux_name: Taux plein
-1991-02-01:
-  value: null
-1997-01-01:
-  value: 0.01
-1998-01-01:
-  value: 0.038
-2005-01-01:
-  value: 0.042
-2018-01-01:
-  value: 0.068
+values:
+  1991-02-01:
+    value: null
+  1997-01-01:
+    value: 0.01
+  1998-01-01:
+    value: 0.038
+  2005-01-01:
+    value: 0.042
+  2018-01-01:
+    value: 0.068

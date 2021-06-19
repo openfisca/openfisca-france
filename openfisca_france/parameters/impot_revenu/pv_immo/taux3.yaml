@@ -1,5 +1,6 @@
 description: Pas annuel du taux (après seuil 3)
 metadata:
   unit: /1
-2012-02-01:
-  value: 0.08
+values:
+  2012-02-01:
+    value: 0.08

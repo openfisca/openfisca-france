@@ -17,9 +17,10 @@ metadata:
       title: Ordonnance 96-50 du 24/01/1996, art. 15, 16 et 19
   unit: /1
   ux_name: Taux CRDS capital revenus du patrimoine
-1945-01-01:
-  value: 0
-1990-01-01:
-  value: null
-1996-02-01:
-  value: 0.005
+values:
+  1945-01-01:
+    value: 0
+  1990-01-01:
+    value: null
+  1996-02-01:
+    value: 0.005

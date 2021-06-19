@@ -14,5 +14,6 @@ metadata:
       title: "Loi 2015-1702 du\_21/12/2015\_(LFSS 2016), art. 7"
   unit: /1
   ux_name: Réduction du taux
-2015-01-01:
-  value: 0.018
+values:
+  2015-01-01:
+    value: 0.018

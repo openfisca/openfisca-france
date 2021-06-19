@@ -1,7 +1,8 @@
 metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
-1978-01-01:
-  value: 1
-1986-07-01:
-  value: 3
+values:
+  1978-01-01:
+    value: 1
+  1986-07-01:
+    value: 3

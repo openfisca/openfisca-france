@@ -1,5 +1,6 @@
 description: Plafond de référence pour l'échelon 3, pour une famille avec 2 enfants, en multiple du SMIC horaire brut
 metadata:
   unit: /1
-2016-07-01:
-  value: 365.3
+values:
+  2016-07-01:
+    value: 365.3

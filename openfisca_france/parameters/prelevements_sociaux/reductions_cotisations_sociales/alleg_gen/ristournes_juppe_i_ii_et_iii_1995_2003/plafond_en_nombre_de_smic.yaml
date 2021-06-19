@@ -51,11 +51,12 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000594652
       title: Loi 2003-47 du 17/01/2003
   ux_name: Plafond en nombre de SMIC
-1995-09-01:
-  value: 1.2
-1996-10-01:
-  value: 1.33
-1998-01-01:
-  value: 1.3
-2003-07-01:
-  value: null
+values:
+  1995-09-01:
+    value: 1.2
+  1996-10-01:
+    value: 1.33
+  1998-01-01:
+    value: 1.3
+  2003-07-01:
+    value: null

@@ -9,5 +9,6 @@ metadata:
       title: Ordonnance 96-50 du 24/01/96, art. 19
   unit: /1
   ux_name: Taux global
-1996-02-01:
-  value: 0.005
+values:
+  1996-02-01:
+    value: 0.005

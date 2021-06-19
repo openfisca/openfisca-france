@@ -1,5 +1,6 @@
 description: "Taxes sur les salaires : France métropolitaine"
 metadata:
   unit: /1
-2001-01-01:
-  value: 0.0425
+values:
+  2001-01-01:
+    value: 0.0425

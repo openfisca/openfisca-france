@@ -1,5 +1,6 @@
 description: Facteur multitplicatif de la prime à l'adoption, en pourcentage de la base mensuelle des allocations familiales (BMAF)
 metadata:
   unit: /1
-2004-01-01:
-  value: 2
+values:
+  2004-01-01:
+    value: 2

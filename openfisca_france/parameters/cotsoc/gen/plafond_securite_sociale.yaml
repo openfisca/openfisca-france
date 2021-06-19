@@ -3,39 +3,40 @@ metadata:
   reference:
     href: http://www.ameli.fr/employeurs/vos-demarches/chiffres-utiles/plafond-de-la-securite-sociale.php
   unit: currency
-2001-01-01:
-  value: 2279
-2002-01-01:
-  value: 2352
-2003-01-01:
-  value: 2432
-2004-01-01:
-  value: 2476
-2005-01-01:
-  value: 2516
-2006-01-01:
-  value: 2589
-2007-01-01:
-  value: 2689
-2008-01-01:
-  value: 2773
-2009-01-01:
-  value: 2859
-2010-01-01:
-  value: 2885
-2011-01-01:
-  value: 2946
-2012-01-01:
-  value: 3031
-2013-01-01:
-  value: 3086
-2014-01-01:
-  value: 3129
-2015-01-01:
-  value: 3170
-2016-01-01:
-  value: 3218
-2017-01-01:
-  value: 3269
-2018-01-01:
-  value: 3311
+values:
+  2001-01-01:
+    value: 2279
+  2002-01-01:
+    value: 2352
+  2003-01-01:
+    value: 2432
+  2004-01-01:
+    value: 2476
+  2005-01-01:
+    value: 2516
+  2006-01-01:
+    value: 2589
+  2007-01-01:
+    value: 2689
+  2008-01-01:
+    value: 2773
+  2009-01-01:
+    value: 2859
+  2010-01-01:
+    value: 2885
+  2011-01-01:
+    value: 2946
+  2012-01-01:
+    value: 3031
+  2013-01-01:
+    value: 3086
+  2014-01-01:
+    value: 3129
+  2015-01-01:
+    value: 3170
+  2016-01-01:
+    value: 3218
+  2017-01-01:
+    value: 3269
+  2018-01-01:
+    value: 3311

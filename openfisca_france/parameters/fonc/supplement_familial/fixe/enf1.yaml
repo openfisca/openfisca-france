@@ -1,3 +1,4 @@
 description: 1er enfant
-1999-07-01:
-  value: 2.29
+values:
+  1999-07-01:
+    value: 2.29

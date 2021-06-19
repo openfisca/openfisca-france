@@ -3,5 +3,6 @@ metadata:
   reference:
     title: art. 1641 du CGI
   unit: /1
-2017-01-01:
-  value: 0.01
+values:
+  2017-01-01:
+    value: 0.01

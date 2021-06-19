@@ -84,17 +84,18 @@ metadata:
       title: Loi 2018-1203 du 22/12/2018 - art. 26 (modifie l'art. L136-8 du CSS)
   unit: /1
   ux_name: Taux global CSG capital (patrimoine)
-1990-07-01:
-  value: 0.011
-1993-07-01:
-  value: 0.024
-1996-01-01:
-  value: 0.034
-1997-01-01:
-  value: 0.075
-2004-01-01:
-  value: 0.082
-2017-01-01:
-  value: 0.099
-2018-01-01:
-  value: 0.092
+values:
+  1990-07-01:
+    value: 0.011
+  1993-07-01:
+    value: 0.024
+  1996-01-01:
+    value: 0.034
+  1997-01-01:
+    value: 0.075
+  2004-01-01:
+    value: 0.082
+  2017-01-01:
+    value: 0.099
+  2018-01-01:
+    value: 0.092

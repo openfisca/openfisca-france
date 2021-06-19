@@ -52,11 +52,12 @@ metadata:
       title: Loi 2003-47 du 17/01/2003
   unit: /1
   ux_name: Taux
-1995-09-01:
-  value: 0.64
-1996-10-01:
-  value: 0.55
-1998-01-01:
-  value: 0.607
-2003-07-01:
-  value: null
+values:
+  1995-09-01:
+    value: 0.64
+  1996-10-01:
+    value: 0.55
+  1998-01-01:
+    value: 0.607
+  2003-07-01:
+    value: null

@@ -29,7 +29,8 @@ metadata:
       title: Arrêté du 31/12/1968
   unit: /1
   ux_name: Moins de 65 ans
-1967-10-01:
-  value: 0.018
-1969-01-01:
-  value: 0.028
+values:
+  1967-10-01:
+    value: 0.018
+  1969-01-01:
+    value: 0.028

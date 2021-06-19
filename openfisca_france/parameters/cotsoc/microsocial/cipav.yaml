@@ -1,5 +1,6 @@
 description: Taux professions libérales relevant du  CIPAV
 metadata:
   unit: /1
-2013-01-01:
-  value: 0.233
+values:
+  2013-01-01:
+    value: 0.233

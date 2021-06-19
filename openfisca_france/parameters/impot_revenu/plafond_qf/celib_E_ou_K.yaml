@@ -3,7 +3,8 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
-2012-01-01:
-  value: 120
-2013-01-01:
-  value: null
+values:
+  2012-01-01:
+    value: 120
+  2013-01-01:
+    value: null

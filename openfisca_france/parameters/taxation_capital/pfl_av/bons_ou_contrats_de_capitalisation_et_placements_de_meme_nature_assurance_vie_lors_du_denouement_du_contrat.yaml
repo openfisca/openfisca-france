@@ -6,10 +6,11 @@ avec_anonymat:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  1983-01-01:
-    value: 0.5
-  1999-04-01:
-    value: 0.6
+  values:
+    1983-01-01:
+      value: 0.5
+    1999-04-01:
+      value: 0.6
 souscrits_apres_le_1_1_90_et_le_pour_une_duree_de:
   metadata:
     reference:
@@ -19,29 +20,33 @@ souscrits_apres_le_1_1_90_et_le_pour_une_duree_de:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1990-01-01:
-      value: 0.15
+    values:
+      1990-01-01:
+        value: 0.15
   duree_8_ans_et_plus_pour_les_primes_versees_avant_le_01_01_1998_et_les_produits_afferents_acquis_apres_cette_date:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1990-01-01:
-      value: 0
+    values:
+      1990-01-01:
+        value: 0
   duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1998-01-01:
-      value: 0.075
+    values:
+      1998-01-01:
+        value: 0.075
   duree_moins_de_4_ans:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1990-01-01:
-      value: 0.35
+    values:
+      1990-01-01:
+        value: 0.35
 souscrits_entre_le_1_1_83_et_le_31_12_89_pour_une_duree_de:
   metadata:
     reference:
@@ -51,39 +56,44 @@ souscrits_entre_le_1_1_83_et_le_31_12_89_pour_une_duree_de:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1983-01-01:
-      value: 0.25
-    1998-01-01:
-      value: null
+    values:
+      1983-01-01:
+        value: 0.25
+      1998-01-01:
+        value: null
   duree_4_a_6_ans_4:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1983-01-01:
-      value: 0.15
-    1998-01-01:
-      value: null
+    values:
+      1983-01-01:
+        value: 0.15
+      1998-01-01:
+        value: null
   duree_6_ans_et_plus_pour_les_primes_versees_avant_le_01_01_1998_et_les_produits_afferents_acquis_apres_cette_date:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1983-01-01:
-      value: 0
+    values:
+      1983-01-01:
+        value: 0
   duree_6_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1998-01-01:
-      value: 0.075
+    values:
+      1998-01-01:
+        value: 0.075
   duree_moins_de_2_ans_2:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1983-01-01:
-      value: 0.45
-    1998-01-01:
-      value: null
+    values:
+      1983-01-01:
+        value: 0.45
+      1998-01-01:
+        value: null

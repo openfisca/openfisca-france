@@ -1,5 +1,6 @@
 description: Coefficient de majoration du plafond CMU applicable aux DOM
 metadata:
   unit: /1
-2000-01-01:
-  value: 0.113
+values:
+  2000-01-01:
+    value: 0.113

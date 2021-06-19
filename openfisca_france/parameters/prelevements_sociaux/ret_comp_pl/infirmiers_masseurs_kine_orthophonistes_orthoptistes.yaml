@@ -10,8 +10,9 @@ commissions_et_remunerations_brutes_entre_un_seuil_plancher_et_un_seuil_plafond:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1996-01-01:
-      value: 0.03
+    values:
+      1996-01-01:
+        value: 0.03
 sous_5_pss:
   metadata:
     reference:
@@ -21,7 +22,8 @@ sous_5_pss:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    2010-01-01:
-      value: 0.0025
-    2011-01-01:
-      value: 0.004
+    values:
+      2010-01-01:
+        value: 0.0025
+      2011-01-01:
+        value: 0.004

@@ -2,11 +2,12 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: year
-1985-12-22:
-  value: 17
-1990-07-01:
-  value: 18
-1998-01-01:
-  value: 19
-1999-01-01:
-  value: 20
+values:
+  1985-12-22:
+    value: 17
+  1990-07-01:
+    value: 18
+  1998-01-01:
+    value: 19
+  1999-01-01:
+    value: 20

@@ -3,7 +3,8 @@ metadata:
   reference:
     title: art. 1414 A du CGI
   unit: /1
-2017-01-01:
-  value: 0.0344
-2020-01-01:
-  value: null
+values:
+  2017-01-01:
+    value: 0.0344
+  2020-01-01:
+    value: null

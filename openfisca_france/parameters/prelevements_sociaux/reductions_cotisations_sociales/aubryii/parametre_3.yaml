@@ -41,13 +41,14 @@ metadata:
       title: Loi 2003-47 du 17/01/2003
   unit: currency
   ux_name: Paramètre 3
-2000-02-01:
-  value: 20000
-2000-07-01:
-  value: 20290
-2001-07-01:
-  value: 3181.31
-2002-07-01:
-  value: 3238.57
-2003-07-01:
-  value: null
+values:
+  2000-02-01:
+    value: 20000
+  2000-07-01:
+    value: 20290
+  2001-07-01:
+    value: 3181.31
+  2002-07-01:
+    value: 3238.57
+  2003-07-01:
+    value: null

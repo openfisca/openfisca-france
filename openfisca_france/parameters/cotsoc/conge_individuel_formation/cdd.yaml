@@ -1,5 +1,6 @@
 description: Taux pour les salariés en contrat à durée déterminée
 metadata:
   unit: /1
-1990-07-14:
-  value: 0.01
+values:
+  1990-07-14:
+    value: 0.01

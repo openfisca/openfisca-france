@@ -1,5 +1,6 @@
 description: Revenus taxés à 10% (Inventeurs, auteurs de logiciels, cession de brevets)
 metadata:
   unit: /1
-2019-01-01:
-  value: 0.1
+values:
+  2019-01-01:
+    value: 0.1

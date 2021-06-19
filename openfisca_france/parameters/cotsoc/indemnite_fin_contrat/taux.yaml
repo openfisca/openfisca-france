@@ -1,5 +1,6 @@
 description: Pourcentage du salaire de base
 metadata:
   unit: /1
-1990-01-01:
-  value: 0.1
+values:
+  1990-01-01:
+    value: 0.1

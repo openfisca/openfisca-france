@@ -1,5 +1,6 @@
 description: Taux 4
 metadata:
   unit: /1
-2011-01-01:
-  value: 0.2
+values:
+  2011-01-01:
+    value: 0.2

@@ -35,9 +35,10 @@ metadata:
       title: Arrêté du 30/12/1970
   unit: /1
   ux_name: Taux employeur
-1967-10-01:
-  value: 0.0605
-1969-01-01:
-  value: 0.0665
-1971-01-01:
-  value: 0.0732
+values:
+  1967-10-01:
+    value: 0.0605
+  1969-01-01:
+    value: 0.0665
+  1971-01-01:
+    value: 0.0732

@@ -3,7 +3,8 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: year
-1976-10-01:
-  value: 3
-2009-06-01:
-  value: null
+values:
+  1976-10-01:
+    value: 3
+  2009-06-01:
+    value: null

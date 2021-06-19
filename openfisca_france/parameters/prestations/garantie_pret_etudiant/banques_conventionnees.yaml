@@ -2,13 +2,14 @@ description: Réseaux bancaires conventionnés pour délivrer un prêt étudiant
 metadata:
   reference:
     href: https://www.bpifrance.fr/Toutes-nos-solutions/Garanties-et-assurances/Garanties-aux-banques/Garantie-des-prets-etudiants
-2021-02-16:
-  value:
-  - Crédit Mutuel
-  - CIC
-2021-03-15:
-  value:
-  - Crédit Mutuel
-  - CIC
-  - Banque Populaire
-  - Caisse d’épargne
+values:
+  2021-02-16:
+    value:
+    - Crédit Mutuel
+    - CIC
+  2021-03-15:
+    value:
+    - Crédit Mutuel
+    - CIC
+    - Banque Populaire
+    - Caisse d’épargne

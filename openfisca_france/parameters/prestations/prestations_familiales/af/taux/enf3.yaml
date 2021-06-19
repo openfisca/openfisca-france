@@ -1,5 +1,6 @@
 description: Troisième enfant à charge et suivants
 metadata:
   unit: /1
-2002-01-01:
-  value: 0.41
+values:
+  2002-01-01:
+    value: 0.41

@@ -1,5 +1,6 @@
 description: Plafond de référence pour l'échelon 1, pour une famille avec 7 enfants, en multiple du SMIC horaire brut
 metadata:
   unit: /1
-2016-07-01:
-  value: 3710.9
+values:
+  2016-07-01:
+    value: 3710.9

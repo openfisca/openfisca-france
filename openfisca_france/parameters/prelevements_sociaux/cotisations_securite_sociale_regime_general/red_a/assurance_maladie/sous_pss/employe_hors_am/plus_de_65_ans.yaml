@@ -29,9 +29,10 @@ metadata:
       title: Arrêté du 31/12/1968
   unit: /1
   ux_name: Plus de 65 ans
-1960-01-01:
-  value: null
-1967-10-01:
-  value: 0.0145
-1969-01-01:
-  value: 0.0105
+values:
+  1960-01-01:
+    value: null
+  1967-10-01:
+    value: 0.0145
+  1969-01-01:
+    value: 0.0105

@@ -40,17 +40,18 @@ metadata:
       title: Lettre ministérielle D-2019-025051 du 07/11/2019
   unit: currency
   ux_name: Seuil d'exonération (RFR pour 1 part de QF en N-2)
-2013-04-01:
-  value: null
-2015-01-01:
-  value: 13900
-2016-04-01:
-  value: 13956
-2017-01-01:
-  value: 14375
-2018-01-01:
-  value: 14404
-2019-01-01:
-  value: 14548
-2020-01-01:
-  value: 14781
+values:
+  2013-04-01:
+    value: null
+  2015-01-01:
+    value: 13900
+  2016-04-01:
+    value: 13956
+  2017-01-01:
+    value: 14375
+  2018-01-01:
+    value: 14404
+  2019-01-01:
+    value: 14548
+  2020-01-01:
+    value: 14781

@@ -1,11 +1,12 @@
 description: dont CSG déductible
 metadata:
   unit: /1
-2000-01-01:
-  value: 0.051
-2004-01-01:
-  value: 0.058
-2012-01-01:
-  value: 0.051
-2018-01-01:
-  value: 0.068
+values:
+  2000-01-01:
+    value: 0.051
+  2004-01-01:
+    value: 0.058
+  2012-01-01:
+    value: 0.051
+  2018-01-01:
+    value: 0.068

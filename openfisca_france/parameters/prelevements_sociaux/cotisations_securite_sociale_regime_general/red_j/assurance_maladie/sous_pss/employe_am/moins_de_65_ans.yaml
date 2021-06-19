@@ -28,7 +28,8 @@ metadata:
       title: Arrêté du 23/05/1969
   unit: /1
   ux_name: Moins de 65 ans
-1967-10-01:
-  value: 0.022
-1969-01-01:
-  value: 0.032
+values:
+  1967-10-01:
+    value: 0.022
+  1969-01-01:
+    value: 0.032

@@ -41,13 +41,14 @@ metadata:
       title: Décret 97-1252 du 29/12/1997, art. 4
   unit: /1
   ux_name: Régimes complémentaires
-1980-07-01:
-  value: 0.02
-1987-07-01:
-  value: 0.024
-1996-01-01:
-  value: 0.036
-1997-01-01:
-  value: 0.038
-1998-01-01:
-  value: 0.01
+values:
+  1980-07-01:
+    value: 0.02
+  1987-07-01:
+    value: 0.024
+  1996-01-01:
+    value: 0.036
+  1997-01-01:
+    value: 0.038
+  1998-01-01:
+    value: 0.01

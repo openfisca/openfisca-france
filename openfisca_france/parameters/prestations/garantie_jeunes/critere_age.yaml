@@ -3,8 +3,10 @@ age:
     reference:
       title: Article L5131-3 du code du travail - https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DED54A598193DDE1DF59E0AE16BDE87D.tplgfr21s_3?idArticle=LEGIARTI000033023861&cidTexte=LEGITEXT000006072050&dateTexte=20190131
   maximum:
-    2009-01-01:
-      value: 25
+    values:
+      2009-01-01:
+        value: 25
   minimum:
-    2009-01-01:
-      value: 16
+    values:
+      2009-01-01:
+        value: 16

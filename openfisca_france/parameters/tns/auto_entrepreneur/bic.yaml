@@ -1,7 +1,8 @@
 description: Activité de type BIC
 metadata:
   unit: /1
-2008-01-01:
-  value: 0.248
-2015-01-01:
-  value: 0.232
+values:
+  2008-01-01:
+    value: 0.248
+  2015-01-01:
+    value: 0.232

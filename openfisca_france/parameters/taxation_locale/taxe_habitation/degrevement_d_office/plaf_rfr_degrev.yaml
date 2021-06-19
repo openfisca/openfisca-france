@@ -6,29 +6,32 @@ autres_demi_parts_supp:
   description: Plafond de revenu fiscal de référence pour le dégrèvement d'office à taux plein - autres demi-parts supplémentaires
   metadata:
     unit: currency
-  2018-01-01:
-    value: 6000
-  2019-01-01:
-    value: 6096
-  2020-01-01:
-    value: 6157
+  values:
+    2018-01-01:
+      value: 6000
+    2019-01-01:
+      value: 6096
+    2020-01-01:
+      value: 6157
 deux_premieres_demi_parts_supp:
   description: Plafond de revenu fiscal de référence pour le dégrèvement d'office à taux plein - deux premières demi-parts supplémentaires
   metadata:
     unit: currency
-  2018-01-01:
-    value: 8000
-  2019-01-01:
-    value: 8128
-  2020-01-01:
-    value: 8210
+  values:
+    2018-01-01:
+      value: 8000
+    2019-01-01:
+      value: 8128
+    2020-01-01:
+      value: 8210
 premiere_part:
   description: Plafonds de revenu fiscal de référence pour le dégrèvement d'office à taux plein - 1ère part
   metadata:
     unit: currency
-  2018-01-01:
-    value: 27000
-  2019-01-01:
-    value: 27432
-  2020-01-01:
-    value: 27706
+  values:
+    2018-01-01:
+      value: 27000
+    2019-01-01:
+      value: 27432
+    2020-01-01:
+      value: 27706

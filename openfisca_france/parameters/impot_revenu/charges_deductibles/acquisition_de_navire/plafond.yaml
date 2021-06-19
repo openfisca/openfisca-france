@@ -2,7 +2,8 @@ metadata:
   reference:
     href: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
   unit: currency
-1990-01-01:
-  value: 25000
-2000-01-01:
-  value: null
+values:
+  1990-01-01:
+    value: 25000
+  2000-01-01:
+    value: null

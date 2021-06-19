@@ -1,5 +1,6 @@
 description: Abattement appliqué sur la valeur locative des biens immobiliers non loués
 metadata:
   unit: /1
-2009-01-01:
-  value: 0.5
+values:
+  2009-01-01:
+    value: 0.5

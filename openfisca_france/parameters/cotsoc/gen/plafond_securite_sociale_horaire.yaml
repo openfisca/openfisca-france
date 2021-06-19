@@ -1,11 +1,12 @@
 description: Plafond horaire de la sécurité sociale
 metadata:
   unit: currency
-2009-01-01:
-  value: 21
-2010-01-01:
-  value: 22
-2012-01-01:
-  value: 23
-2015-01-01:
-  value: 24
+values:
+  2009-01-01:
+    value: 21
+  2010-01-01:
+    value: 22
+  2012-01-01:
+    value: 23
+  2015-01-01:
+    value: 24

@@ -1,9 +1,10 @@
 description: Case UP
 metadata:
   unit: currency
-2002-01-01:
-  value: 1525
-2006-01-01:
-  value: 2000
-2008-01-01:
-  value: null
+values:
+  2002-01-01:
+    value: 1525
+  2006-01-01:
+    value: 2000
+  2008-01-01:
+    value: null

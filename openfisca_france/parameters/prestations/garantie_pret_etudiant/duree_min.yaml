@@ -3,5 +3,6 @@ metadata:
   reference:
     href: https://www.service-public.fr/particuliers/vosdroits/F986
   unit: year
-2020-06-08:
-  value: 2
+values:
+  2020-06-08:
+    value: 2

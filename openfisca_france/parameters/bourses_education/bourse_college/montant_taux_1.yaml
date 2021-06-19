@@ -1,9 +1,10 @@
 description: Montant mensuel échelon 1, en multiple de la base mensuelle des allocations familiales (BMAF)
 metadata:
   unit: currency
-2009-05-15:
-  value: 0.2048
-2017-05-07:
-  reference:
-  - href: https://www.legifrance.gouv.fr/eli/decret/2017/5/5/MENE1711101D/jo/texte
-  value: 0.256
+values:
+  2009-05-15:
+    value: 0.2048
+  2017-05-07:
+    reference:
+    - href: https://www.legifrance.gouv.fr/eli/decret/2017/5/5/MENE1711101D/jo/texte
+    value: 0.256

@@ -4,8 +4,9 @@ age_maximum:
     reference:
       href: https://www.actionlogement.fr/l-aide-mobili-jeune
     unit: year
-  2012-07-01:
-    value: 30
+  values:
+    2012-07-01:
+      value: 30
 montant:
   maximum:
     description: Montant maximum de l'aide mobili-jeune
@@ -13,13 +14,15 @@ montant:
       reference:
         href: https://www.actionlogement.fr/l-aide-mobili-jeune
       unit: currency
-    2012-07-01:
-      value: 100
+    values:
+      2012-07-01:
+        value: 100
   minimum:
     description: Montant minimum de l'aide mobili-jeune en-dessous duquel aucune aide n'est versée
     metadata:
       reference:
         href: https://www.actionlogement.fr/l-aide-mobili-jeune
       unit: currency
-    2012-07-01:
-      value: 10
+    values:
+      2012-07-01:
+        value: 10

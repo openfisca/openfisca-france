@@ -70,19 +70,20 @@ metadata:
       title: Loi 2018-1203 du 22/12/2018 - art. 26 (modifie l'art. L136-8 du CSS)
   unit: /1
   ux_name: Taux global CSG capital (produits de placement)
-1990-01-01:
-  value: null
-1991-02-01:
-  value: 0.011
-1993-07-01:
-  value: 0.024
-1997-01-01:
-  value: 0.034
-1998-01-01:
-  value: 0.075
-2005-01-01:
-  value: 0.082
-2018-01-01:
-  value: 0.099
-2019-01-01:
-  value: 0.092
+values:
+  1990-01-01:
+    value: null
+  1991-02-01:
+    value: 0.011
+  1993-07-01:
+    value: 0.024
+  1997-01-01:
+    value: 0.034
+  1998-01-01:
+    value: 0.075
+  2005-01-01:
+    value: 0.082
+  2018-01-01:
+    value: 0.099
+  2019-01-01:
+    value: 0.092

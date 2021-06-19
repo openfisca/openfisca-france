@@ -3,5 +3,6 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
-1985-12-22:
-  value: 0.55
+values:
+  1985-12-22:
+    value: 0.55

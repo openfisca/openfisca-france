@@ -8,43 +8,50 @@ aide_exceptionnelle_famille:
     - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042574431
       title: Décret n°2020-1453 du 27 novembre 2020
   base:
-    2020-05-01:
-      value: 150
-    2020-06-01:
-      value: null
-    2020-10-01:
-      value: 150
-    2020-11-01:
-      value: null
+    values:
+      2020-05-01:
+        value: 150
+      2020-06-01:
+        value: null
+      2020-10-01:
+        value: 150
+      2020-11-01:
+        value: null
   base_jeune:
-    2020-05-01:
-      value: 200
-    2020-06-01:
-      value: null
-    2020-10-01:
-      value: 150
-    2020-11-01:
-      value: null
+    values:
+      2020-05-01:
+        value: 200
+      2020-06-01:
+        value: null
+      2020-10-01:
+        value: 150
+      2020-11-01:
+        value: null
   par_enfant:
-    2020-05-01:
-      value: 100
-    2020-06-01:
-      value: null
-    2020-10-01:
-      value: 100
-    2020-11-01:
-      value: null
+    values:
+      2020-05-01:
+        value: 100
+      2020-06-01:
+        value: null
+      2020-10-01:
+        value: 100
+      2020-11-01:
+        value: null
 aide_exceptionnelle_tpe:
   plafond:
-    2020-03-01:
-      value: 1500
+    values:
+      2020-03-01:
+        value: 1500
 indemnite_ap:
   plafond_smic:
-    2020-03-01:
-      value: 4.5
+    values:
+      2020-03-01:
+        value: 4.5
   plancher:
-    2020-03-01:
-      value: 8.03
+    values:
+      2020-03-01:
+        value: 8.03
   taux:
-    2020-03-01:
-      value: 0.7
+    values:
+      2020-03-01:
+        value: 0.7

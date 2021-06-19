@@ -81,9 +81,10 @@ metadata:
       title: Lettre ministérielle D-2019-025051 du 07/11/2019
   unit: currency
   ux_name: Seuil RFR3 - 1 Part
-2018-01-01:
-  value: null
-2019-01-01:
-  value: 22580
-2020-01-01:
-  value: 22941
+values:
+  2018-01-01:
+    value: null
+  2019-01-01:
+    value: 22580
+  2020-01-01:
+    value: 22941

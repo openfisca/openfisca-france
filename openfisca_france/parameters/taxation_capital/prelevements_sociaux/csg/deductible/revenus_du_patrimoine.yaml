@@ -59,15 +59,16 @@ metadata:
       title: Loi 2017-1837 du 30/12/2017 - art. 67 (modifie l'art. 154 quinquies)
   unit: /1
   ux_name: Taux CSG déductible capital (patrimoine)
-1990-01-01:
-  value: null
-1996-01-01:
-  value: 0.01
-1997-01-01:
-  value: 0.051
-2004-01-01:
-  value: 0.058
-2012-01-01:
-  value: 0.051
-2017-01-01:
-  value: 0.068
+values:
+  1990-01-01:
+    value: null
+  1996-01-01:
+    value: 0.01
+  1997-01-01:
+    value: 0.051
+  2004-01-01:
+    value: 0.058
+  2012-01-01:
+    value: 0.051
+  2017-01-01:
+    value: 0.068

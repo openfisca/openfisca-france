@@ -3,5 +3,6 @@ metadata:
   reference:
     title: https://www.ipp.eu/outils/baremes-ipp/ (hors parser des barèmes)
   unit: /1
-2018-01-01:
-  value: 150000
+values:
+  2018-01-01:
+    value: 150000

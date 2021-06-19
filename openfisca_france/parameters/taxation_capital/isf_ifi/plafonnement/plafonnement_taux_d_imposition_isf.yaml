@@ -3,11 +3,12 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
-1989-01-01:
-  value: 0.7
-1991-01-01:
-  value: 0.85
-2012-01-01:
-  value: 0
-2013-01-01:
-  value: 0.75
+values:
+  1989-01-01:
+    value: 0.7
+  1991-01-01:
+    value: 0.85
+  2012-01-01:
+    value: 0
+  2013-01-01:
+    value: 0.75

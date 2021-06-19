@@ -1,5 +1,6 @@
 description: Limite d'âge des enfants comptés à charge
 metadata:
   unit: year
-1977-10-01:
-  value: 24
+values:
+  1977-10-01:
+    value: 24

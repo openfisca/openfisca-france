@@ -10,54 +10,59 @@ autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_c
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1980-01-01:
-      value: 0.38
-    2013-01-01:
-      value: 0.24
+    values:
+      1980-01-01:
+        value: 0.38
+      2013-01-01:
+        value: 0.24
   courus_entre_le_1_1_83_et_31_12_89:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1983-01-01:
-      value: 0.45
-    2013-01-01:
-      value: 0.24
+    values:
+      1983-01-01:
+        value: 0.45
+      2013-01-01:
+        value: 0.24
   courus_entre_le_1_1_90_et_31_12_94:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1990-06-15:
-      value: 0.35
-    2013-01-01:
-      value: 0.24
+    values:
+      1990-06-15:
+        value: 0.35
+      2013-01-01:
+        value: 0.24
   courus_entre_le_1_1_95_et_apres:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1995-01-01:
-      value: 0.15
-    2004-01-01:
-      value: 0.16
-    2008-01-01:
-      value: 0.18
-    2011-01-01:
-      value: 0.19
-    2012-01-01:
-      value: 0.24
+    values:
+      1995-01-01:
+        value: 0.15
+      2004-01-01:
+        value: 0.16
+      2008-01-01:
+        value: 0.18
+      2011-01-01:
+        value: 0.19
+      2012-01-01:
+        value: 0.24
   courus_entre_le_16_7_78_et_31_12_79:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1974-01-01:
-      value: 0.333
-    1979-07-01:
-      value: 0.4
-    2013-01-01:
-      value: 0.24
+    values:
+      1974-01-01:
+        value: 0.333
+      1979-07-01:
+        value: 0.4
+      2013-01-01:
+        value: 0.24
 bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
   metadata:
     reference:
@@ -67,7 +72,118 @@ bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1995-01-01:
+    values:
+      1995-01-01:
+        value: 0.15
+      2004-01-01:
+        value: 0.16
+      2008-01-01:
+        value: 0.18
+      2011-01-01:
+        value: 0.19
+      2012-01-01:
+        value: 0.24
+  emis_avant_1_6_78:
+    metadata:
+      reference:
+        href: https://www.ipp.eu/outils/baremes-ipp/
+      unit: /1
+    values:
+      1974-01-01:
+        value: 0.333
+      2013-01-01:
+        value: 0.24
+  emis_entre_1_1_83_et_1_1_1998_avec_anonymat:
+    metadata:
+      reference:
+        href: https://www.ipp.eu/outils/baremes-ipp/
+      unit: /1
+    values:
+      1983-01-01:
+        value: 0.5
+      1999-04-01:
+        value: 0.6
+      2013-01-01:
+        value: 0.42
+  emis_entre_1_1_83_et_31_12_89_sans_anonymat:
+    metadata:
+      reference:
+        href: https://www.ipp.eu/outils/baremes-ipp/
+      unit: /1
+    values:
+      1983-01-01:
+        value: 0.45
+      2013-01-01:
+        value: 0.24
+  emis_entre_1_1_90_et_31_12_94_sans_anonymat:
+    metadata:
+      reference:
+        href: https://www.ipp.eu/outils/baremes-ipp/
+      unit: /1
+    values:
+      1990-06-15:
+        value: 0.35
+      2013-01-01:
+        value: 0.24
+  emis_entre_1_6_78_et_20_1_80:
+    metadata:
+      reference:
+        href: https://www.ipp.eu/outils/baremes-ipp/
+      unit: /1
+    values:
+      1979-07-01:
+        value: 0.4
+      2013-01-01:
+        value: 0.24
+  emis_entre_21_1_80_et_31_12_82_avec_anonymat:
+    metadata:
+      reference:
+        href: https://www.ipp.eu/outils/baremes-ipp/
+      unit: /1
+    values:
+      1980-01-01:
+        value: 0.42
+  emis_entre_21_1_80_et_31_12_82_sans_anonymat:
+    metadata:
+      reference:
+        href: https://www.ipp.eu/outils/baremes-ipp/
+      unit: /1
+    values:
+      1980-01-01:
+        value: 0.38
+      2013-01-01:
+        value: 0.24
+dividendes:
+  metadata:
+    reference:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+  values:
+    2008-01-01:
+      value: 0.18
+    2011-01-01:
+      value: 0.19
+    2012-01-01:
+      value: 0.21
+emis_a_partir_de_1_1_1998_avec_anonymat:
+  metadata:
+    reference:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+  values:
+    1997-04-01:
+      value: 0.5
+    1999-04-01:
+      value: 0.6
+obligations_titres_participatifs_fonds_salariaux:
+  metadata:
+    reference:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+  values:
+    1965-01-01:
+      value: 0.25
+    1990-06-15:
       value: 0.15
     2004-01-01:
       value: 0.16
@@ -77,106 +193,6 @@ bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
       value: 0.19
     2012-01-01:
       value: 0.24
-  emis_avant_1_6_78:
-    metadata:
-      reference:
-        href: https://www.ipp.eu/outils/baremes-ipp/
-      unit: /1
-    1974-01-01:
-      value: 0.333
-    2013-01-01:
-      value: 0.24
-  emis_entre_1_1_83_et_1_1_1998_avec_anonymat:
-    metadata:
-      reference:
-        href: https://www.ipp.eu/outils/baremes-ipp/
-      unit: /1
-    1983-01-01:
-      value: 0.5
-    1999-04-01:
-      value: 0.6
-    2013-01-01:
-      value: 0.42
-  emis_entre_1_1_83_et_31_12_89_sans_anonymat:
-    metadata:
-      reference:
-        href: https://www.ipp.eu/outils/baremes-ipp/
-      unit: /1
-    1983-01-01:
-      value: 0.45
-    2013-01-01:
-      value: 0.24
-  emis_entre_1_1_90_et_31_12_94_sans_anonymat:
-    metadata:
-      reference:
-        href: https://www.ipp.eu/outils/baremes-ipp/
-      unit: /1
-    1990-06-15:
-      value: 0.35
-    2013-01-01:
-      value: 0.24
-  emis_entre_1_6_78_et_20_1_80:
-    metadata:
-      reference:
-        href: https://www.ipp.eu/outils/baremes-ipp/
-      unit: /1
-    1979-07-01:
-      value: 0.4
-    2013-01-01:
-      value: 0.24
-  emis_entre_21_1_80_et_31_12_82_avec_anonymat:
-    metadata:
-      reference:
-        href: https://www.ipp.eu/outils/baremes-ipp/
-      unit: /1
-    1980-01-01:
-      value: 0.42
-  emis_entre_21_1_80_et_31_12_82_sans_anonymat:
-    metadata:
-      reference:
-        href: https://www.ipp.eu/outils/baremes-ipp/
-      unit: /1
-    1980-01-01:
-      value: 0.38
-    2013-01-01:
-      value: 0.24
-dividendes:
-  metadata:
-    reference:
-      href: https://www.ipp.eu/outils/baremes-ipp/
-    unit: /1
-  2008-01-01:
-    value: 0.18
-  2011-01-01:
-    value: 0.19
-  2012-01-01:
-    value: 0.21
-emis_a_partir_de_1_1_1998_avec_anonymat:
-  metadata:
-    reference:
-      href: https://www.ipp.eu/outils/baremes-ipp/
-    unit: /1
-  1997-04-01:
-    value: 0.5
-  1999-04-01:
-    value: 0.6
-obligations_titres_participatifs_fonds_salariaux:
-  metadata:
-    reference:
-      href: https://www.ipp.eu/outils/baremes-ipp/
-    unit: /1
-  1965-01-01:
-    value: 0.25
-  1990-06-15:
-    value: 0.15
-  2004-01-01:
-    value: 0.16
-  2008-01-01:
-    value: 0.18
-  2011-01-01:
-    value: 0.19
-  2012-01-01:
-    value: 0.24
 plan_d_epargne_populaire:
   metadata:
     reference:
@@ -186,24 +202,69 @@ plan_d_epargne_populaire:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1990-06-15:
-      value: 0
-    2013-01-01:
-      value: null
+    values:
+      1990-06-15:
+        value: 0
+      2013-01-01:
+        value: null
   retrait_avant_4_ans:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
-    1994-01-01:
-      value: 0.35
-    2008-01-01:
-      value: null
+    values:
+      1994-01-01:
+        value: 0.35
+      2008-01-01:
+        value: null
   retrait_entre_4_et_8_ans:
     metadata:
       reference:
         href: https://www.ipp.eu/outils/baremes-ipp/
       unit: /1
+    values:
+      1990-06-15:
+        value: 0.15
+      2004-01-01:
+        value: 0.16
+      2008-01-01:
+        value: 0.18
+      2011-01-01:
+        value: 0.19
+      2012-01-01:
+        value: 0.24
+      2013-01-01:
+        value: null
+produits_epargne_solidaire_partage:
+  metadata:
+    reference:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+  values:
+    2008-01-01:
+      value: 0.05
+produits_vers_etats_non_cooperatifs:
+  metadata:
+    reference:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+  values:
+    2010-01-01:
+      value: 0.5
+    2013-01-01:
+      value: 0.75
+titres_de_creances_negociables_billets_de_tresorerie_certificats_de_depots_negociables_bons_du_tresor_negociables_et_bons_des_institutions_financieres_specialisees:
+  metadata:
+    reference:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
+  values:
+    1974-01-01:
+      value: 0.333
+    1979-07-01:
+      value: 0.4
+    1986-01-01:
+      value: 0.32
     1990-06-15:
       value: 0.15
     2004-01-01:
@@ -214,42 +275,3 @@ plan_d_epargne_populaire:
       value: 0.19
     2012-01-01:
       value: 0.24
-    2013-01-01:
-      value: null
-produits_epargne_solidaire_partage:
-  metadata:
-    reference:
-      href: https://www.ipp.eu/outils/baremes-ipp/
-    unit: /1
-  2008-01-01:
-    value: 0.05
-produits_vers_etats_non_cooperatifs:
-  metadata:
-    reference:
-      href: https://www.ipp.eu/outils/baremes-ipp/
-    unit: /1
-  2010-01-01:
-    value: 0.5
-  2013-01-01:
-    value: 0.75
-titres_de_creances_negociables_billets_de_tresorerie_certificats_de_depots_negociables_bons_du_tresor_negociables_et_bons_des_institutions_financieres_specialisees:
-  metadata:
-    reference:
-      href: https://www.ipp.eu/outils/baremes-ipp/
-    unit: /1
-  1974-01-01:
-    value: 0.333
-  1979-07-01:
-    value: 0.4
-  1986-01-01:
-    value: 0.32
-  1990-06-15:
-    value: 0.15
-  2004-01-01:
-    value: 0.16
-  2008-01-01:
-    value: 0.18
-  2011-01-01:
-    value: 0.19
-  2012-01-01:
-    value: 0.24

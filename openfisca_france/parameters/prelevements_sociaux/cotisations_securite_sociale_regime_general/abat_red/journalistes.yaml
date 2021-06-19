@@ -11,5 +11,6 @@ metadata:
   last_review: "2016-01-01"
   unit: /1
   ux_name: Abattement
-1975-01-01:
-  value: 0.2
+values:
+  1975-01-01:
+    value: 0.2

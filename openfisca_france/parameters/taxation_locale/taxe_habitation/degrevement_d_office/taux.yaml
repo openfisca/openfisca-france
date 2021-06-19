@@ -3,9 +3,10 @@ metadata:
   reference:
     title: art. 1414 C du CGI
   unit: /1
-2018-01-01:
-  value: 0.3
-2019-01-01:
-  value: 0.65
-2020-01-01:
-  value: 1
+values:
+  2018-01-01:
+    value: 0.3
+  2019-01-01:
+    value: 0.65
+  2020-01-01:
+    value: 1

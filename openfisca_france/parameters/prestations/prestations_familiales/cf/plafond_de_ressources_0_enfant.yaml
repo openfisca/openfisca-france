@@ -3,47 +3,48 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
-1986-01-01:
-  value: 84526
-2003-07-01:
-  value: 14090
-2004-07-01:
-  value: 14358
-2005-07-01:
-  value: 14602
-2006-07-01:
-  value: 14850
-2007-07-01:
-  value: 18878
-2009-01-01:
-  value: 19161
-2010-01-01:
-  value: 19698
-2011-01-01:
-  value: 19718
-2012-01-01:
-  value: 19915
-2013-01-01:
-  value: 20333
-2014-01-01:
-  value: 20719
-2015-01-01:
-  value: 20864
-2016-01-01:
-  value: 20947
-2018-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/eli/arrete/2017/12/27/SSAS1736592A/jo/article_2
-  value: 20989
-2019-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/eli/arrete/2018/12/21/SSAS1835267A/jo/article_2
-  value: 21199
-2020-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/eli/arrete/2019/12/20/SSAS1934813A/jo/article_2
-  value: 21538
-2021-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/eli/arrete/2020/12/14/SSAS2032692A/jo/article_3
-  value: 21732
+values:
+  1986-01-01:
+    value: 84526
+  2003-07-01:
+    value: 14090
+  2004-07-01:
+    value: 14358
+  2005-07-01:
+    value: 14602
+  2006-07-01:
+    value: 14850
+  2007-07-01:
+    value: 18878
+  2009-01-01:
+    value: 19161
+  2010-01-01:
+    value: 19698
+  2011-01-01:
+    value: 19718
+  2012-01-01:
+    value: 19915
+  2013-01-01:
+    value: 20333
+  2014-01-01:
+    value: 20719
+  2015-01-01:
+    value: 20864
+  2016-01-01:
+    value: 20947
+  2018-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/eli/arrete/2017/12/27/SSAS1736592A/jo/article_2
+    value: 20989
+  2019-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/eli/arrete/2018/12/21/SSAS1835267A/jo/article_2
+    value: 21199
+  2020-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/eli/arrete/2019/12/20/SSAS1934813A/jo/article_2
+    value: 21538
+  2021-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/eli/arrete/2020/12/14/SSAS2032692A/jo/article_3
+    value: 21732

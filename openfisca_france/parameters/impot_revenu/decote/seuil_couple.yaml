@@ -5,17 +5,18 @@ metadata:
   - href: http://bofip.impots.gouv.fr/bofip/2495-PGP
   - href: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037985566&cidTexte=LEGITEXT000006069577
   unit: currency
-2014-01-01:
-  value: 1870
-2015-01-01:
-  value: 1920
-2017-01-01:
-  value: 1939
-2018-01-01:
-  value: 1970
-2019-01-01:
-  value: 1990
-2020-01-01:
-  value: 1286
-2021-01-01:
-  value: 1289
+values:
+  2014-01-01:
+    value: 1870
+  2015-01-01:
+    value: 1920
+  2017-01-01:
+    value: 1939
+  2018-01-01:
+    value: 1970
+  2019-01-01:
+    value: 1990
+  2020-01-01:
+    value: 1286
+  2021-01-01:
+    value: 1289

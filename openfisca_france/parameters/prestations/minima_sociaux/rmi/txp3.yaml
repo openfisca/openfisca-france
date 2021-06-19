@@ -1,5 +1,6 @@
 description: Taux pour une 3e personne
 metadata:
   unit: /1
-2002-01-01:
-  value: 0.3
+values:
+  2002-01-01:
+    value: 0.3

@@ -3,9 +3,10 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
-1992-01-01:
-  value: 50000
-1995-01-01:
-  value: 70000
-2001-01-01:
-  value: 10700
+values:
+  1992-01-01:
+    value: 50000
+  1995-01-01:
+    value: 70000
+  2001-01-01:
+    value: 10700

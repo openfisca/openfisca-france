@@ -1,7 +1,8 @@
 description: Seuil2
 metadata:
   unit: currency
-2004-01-01:
-  value: 38120
-2005-01-01:
-  value: 50000
+values:
+  2004-01-01:
+    value: 38120
+  2005-01-01:
+    value: 50000

@@ -1,5 +1,6 @@
 description: Si article L.351-15
 metadata:
   unit: /1
-2002-01-01:
-  value: 0.75
+values:
+  2002-01-01:
+    value: 0.75

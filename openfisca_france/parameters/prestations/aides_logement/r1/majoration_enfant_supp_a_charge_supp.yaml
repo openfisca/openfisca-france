@@ -1,7 +1,8 @@
 description: Taux par enfants supplémentaires
 metadata:
   unit: /1
-2002-01-01:
-  value: 0.4
-2015-01-01:
-  value: null
+values:
+  2002-01-01:
+    value: 0.4
+  2015-01-01:
+    value: null

@@ -25,7 +25,8 @@ metadata:
       title: Décret 2004-858 du 24/08/2004
   unit: /1
   ux_name: Sous plafond
-1981-01-01:
-  value: 0.001
-1982-01-01:
-  value: null
+values:
+  1981-01-01:
+    value: 0.001
+  1982-01-01:
+    value: null

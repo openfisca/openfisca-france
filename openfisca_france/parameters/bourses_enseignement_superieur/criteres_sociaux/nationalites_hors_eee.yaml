@@ -1,21 +1,22 @@
 description: Nationalités hors EEE qui ouvrent droit à une bourse sur critères sociaux pour l'enseignement supérieur
-2004-07-21:
-  reference:
-  - href: https://www.education.gouv.fr/bo/2003/18/MENS0300894C.htm
-  value: []
-2007-03-20:
-  reference:
-  - href: https://www.education.gouv.fr/bo/2007/13/MENS0700649C.htm
-  value:
-  - CH
-2019-06-18:
-  reference:
-  - href: https://www.education.gouv.fr/bo/19/Hebdo26/ESRS1916927C.htm
-  value:
-  - CH
-2020-06-08:
-  reference:
-  - href: https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm
-  value:
-  - CH
-  - UK
+values:
+  2004-07-21:
+    reference:
+    - href: https://www.education.gouv.fr/bo/2003/18/MENS0300894C.htm
+    value: []
+  2007-03-20:
+    reference:
+    - href: https://www.education.gouv.fr/bo/2007/13/MENS0700649C.htm
+    value:
+    - CH
+  2019-06-18:
+    reference:
+    - href: https://www.education.gouv.fr/bo/19/Hebdo26/ESRS1916927C.htm
+    value:
+    - CH
+  2020-06-08:
+    reference:
+    - href: https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm
+    value:
+    - CH
+    - UK

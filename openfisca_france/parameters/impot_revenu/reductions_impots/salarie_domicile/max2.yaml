@@ -1,5 +1,6 @@
 description: Plafond du plafond
 metadata:
   unit: currency
-2005-01-01:
-  value: 15000
+values:
+  2005-01-01:
+    value: 15000

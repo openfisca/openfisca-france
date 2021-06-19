@@ -1,7 +1,8 @@
 description: Taux pour les entreprises de plus de 2000 salariés et avec moins de 1% d'atlernants
 metadata:
   unit: /1
-2013-01-01:
-  value: 0.005
-2014-01-01:
-  value: 0.006
+values:
+  2013-01-01:
+    value: 0.005
+  2014-01-01:
+    value: 0.006

@@ -27,7 +27,8 @@ metadata:
       title: Loi 98-461 du 13/06/1998, art. 3
   unit: /1
   ux_name: Taux (6 années suivantes)
-1996-07-01:
-  value: 0.3
-1998-07-01:
-  value: null
+values:
+  1996-07-01:
+    value: 0.3
+  1998-07-01:
+    value: null

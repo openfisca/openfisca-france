@@ -1,5 +1,6 @@
 description: Maximum
 metadata:
   unit: currency
-2009-01-01:
-  value: 300000
+values:
+  2009-01-01:
+    value: 300000

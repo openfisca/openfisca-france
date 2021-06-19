@@ -1,5 +1,6 @@
 description: Plafond d'assiette
 metadata:
   unit: /1
-2005-01-01:
-  value: 0.2
+values:
+  2005-01-01:
+    value: 0.2

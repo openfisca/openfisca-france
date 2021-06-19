@@ -1,7 +1,8 @@
 description: Seuil (à partir duquel la réduction décroît) par part pour les deux premières parts
 metadata:
   unit: currency
-2013-01-01:
-  value: 13795
-2016-01-01:
-  value: null
+values:
+  2013-01-01:
+    value: 13795
+  2016-01-01:
+    value: null

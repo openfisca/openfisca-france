@@ -1,5 +1,6 @@
 description: Âge mininimal pour toucher les AF
 metadata:
   unit: year
-1985-12-22:
-  value: 0
+values:
+  1985-12-22:
+    value: 0

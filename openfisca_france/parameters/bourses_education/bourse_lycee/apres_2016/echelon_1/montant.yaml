@@ -1,5 +1,6 @@
 description: Montant mensuel de la bourse de lycée échelon 1, en multiple de la base mensuelle des allocations familiales (BMAF)
 metadata:
   unit: currency
-2016-07-01:
-  value: 1.0642
+values:
+  2016-07-01:
+    value: 1.0642

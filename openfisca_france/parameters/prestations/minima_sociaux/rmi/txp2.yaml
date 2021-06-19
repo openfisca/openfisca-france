@@ -1,5 +1,6 @@
 description: Taux pour une 2nde personne
 metadata:
   unit: /1
-2002-01-01:
-  value: 0.5
+values:
+  2002-01-01:
+    value: 0.5

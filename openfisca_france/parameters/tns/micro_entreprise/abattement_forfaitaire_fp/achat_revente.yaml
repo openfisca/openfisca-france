@@ -1,7 +1,8 @@
 description: Activité de type Achat-Revente
 metadata:
   unit: /1
-2006-01-01:
-  value: 0.68
-2007-01-01:
-  value: 0.71
+values:
+  2006-01-01:
+    value: 0.68
+  2007-01-01:
+    value: 0.71

@@ -3,11 +3,12 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: year
-1978-01-01:
-  value: 3
-1986-07-01:
-  value: 17
-1997-01-01:
-  value: 18
-2000-02-01:
-  value: 21
+values:
+  1978-01-01:
+    value: 3
+  1986-07-01:
+    value: 17
+  1997-01-01:
+    value: 18
+  2000-02-01:
+    value: 21

@@ -38,11 +38,12 @@ metadata:
     - title: LOI 2018-1203 du 22/12/2018, art. 26 (modifie l'art. L136-8 du CSS)
   unit: /1
   ux_name: Taux CSG déductible capital (produits de placement)
-1990-01-01:
-  value: null
-2007-01-01:
-  value: 0.058
-2012-01-01:
-  value: 0.051
-2018-01-01:
-  value: 0.068
+values:
+  1990-01-01:
+    value: null
+  2007-01-01:
+    value: 0.058
+  2012-01-01:
+    value: 0.051
+  2018-01-01:
+    value: 0.068

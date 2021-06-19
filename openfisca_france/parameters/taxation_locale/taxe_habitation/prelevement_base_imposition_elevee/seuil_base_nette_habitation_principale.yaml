@@ -3,5 +3,6 @@ metadata:
   reference:
     title: 1° du 3. du I. de l'art. 1641 du CGI
   unit: currency
-2017-01-01:
-  value: 4573
+values:
+  2017-01-01:
+    value: 4573

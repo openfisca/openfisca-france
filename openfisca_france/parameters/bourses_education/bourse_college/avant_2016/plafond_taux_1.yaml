@@ -1,9 +1,10 @@
 description: Plafond de référence pour le taux 1
 metadata:
   unit: currency
-2014-01-01:
-  value: 11252
-2015-07-01:
-  value: 11288
-2016-07-01:
-  value: null
+values:
+  2014-01-01:
+    value: 11252
+  2015-07-01:
+    value: 11288
+  2016-07-01:
+    value: null

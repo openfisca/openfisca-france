@@ -3,11 +3,12 @@ metadata:
   reference:
     href: https://www.service-public.fr/particuliers/vosdroits/F986
   unit: currency
-2020-06-08:
-  reference:
-  - href: https://www.service-public.fr/particuliers/vosdroits/F986
-  value: 15000
-2021-02-16:
-  reference:
-  - href: https://www.bpifrance.fr/Toutes-nos-solutions/Garanties-et-assurances/Garanties-aux-banques/Garantie-des-prets-etudiants
-  value: 20000
+values:
+  2020-06-08:
+    reference:
+    - href: https://www.service-public.fr/particuliers/vosdroits/F986
+    value: 15000
+  2021-02-16:
+    reference:
+    - href: https://www.bpifrance.fr/Toutes-nos-solutions/Garanties-et-assurances/Garanties-aux-banques/Garantie-des-prets-etudiants
+    value: 20000

@@ -3,5 +3,6 @@ metadata:
   reference:
     href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000005745247
   unit: currency
-2003-01-01:
-  value: 152.45
+values:
+  2003-01-01:
+    value: 152.45

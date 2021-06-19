@@ -1,7 +1,8 @@
 description: Investissements dans les DOM-TOM dans le cadre d'une entreprise
 metadata:
   unit: /1
-2003-01-01:
-  value: 0.6
-2010-01-01:
-  value: null
+values:
+  2003-01-01:
+    value: 0.6
+  2010-01-01:
+    value: null

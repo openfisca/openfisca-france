@@ -1,5 +1,6 @@
 description: Incrément pour 5 parts
 metadata:
   unit: currency
-2014-01-01:
-  value: 1169.47
+values:
+  2014-01-01:
+    value: 1169.47

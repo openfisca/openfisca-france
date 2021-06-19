@@ -44,9 +44,10 @@ metadata:
       title: Décret 2005-88 du 04/02/2005
   unit: /1
   ux_name: Réduction maximale
-2003-07-01:
-  value: 0.208
-2004-07-01:
-  value: 0.234
-2005-07-01:
-  value: null
+values:
+  2003-07-01:
+    value: 0.208
+  2004-07-01:
+    value: 0.234
+  2005-07-01:
+    value: null

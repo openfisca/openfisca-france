@@ -46,13 +46,14 @@ metadata:
       title: Arrêté du 15/02/2017
   unit: /1
   ux_name: Taux employeur tout salaire
-1991-01-01:
-  value: 0.013
-1992-01-01:
-  value: 0.012
-1993-01-01:
-  value: 0.01
-2008-01-01:
-  value: 0.011
-2016-01-01:
-  value: 0.01
+values:
+  1991-01-01:
+    value: 0.013
+  1992-01-01:
+    value: 0.012
+  1993-01-01:
+    value: 0.01
+  2008-01-01:
+    value: 0.011
+  2016-01-01:
+    value: 0.01

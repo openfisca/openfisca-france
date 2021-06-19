@@ -3,5 +3,6 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
-1943-01-01:
-  value: 0.1
+values:
+  1943-01-01:
+    value: 0.1

@@ -3,5 +3,6 @@ metadata:
   reference:
     title: 3. du II de l'art. 1411 du CGI
   unit: /1
-2017-01-01:
-  value: 1.3
+values:
+  2017-01-01:
+    value: 1.3

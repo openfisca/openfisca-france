@@ -1,7 +1,8 @@
 description: Revenu fiscal de référence plafond (personne seule)
 metadata:
   unit: currency
-2005-01-01:
-  value: 25000
-2009-01-01:
-  value: null
+values:
+  2005-01-01:
+    value: 25000
+  2009-01-01:
+    value: null

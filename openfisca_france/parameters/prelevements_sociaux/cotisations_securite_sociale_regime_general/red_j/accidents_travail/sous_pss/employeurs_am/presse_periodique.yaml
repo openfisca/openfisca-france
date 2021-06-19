@@ -40,9 +40,10 @@ metadata:
       title: Arrêté du 15/01/1974
   unit: /1
   ux_name: Presse périodique
-1964-01-01:
-  value: null
-1973-03-01:
-  value: 0.0176
-1974-01-01:
-  value: 0.0144
+values:
+  1964-01-01:
+    value: null
+  1973-03-01:
+    value: 0.0176
+  1974-01-01:
+    value: 0.0144

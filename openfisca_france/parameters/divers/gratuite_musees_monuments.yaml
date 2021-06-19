@@ -3,16 +3,18 @@ age_max:
   metadata:
     reference:
       href: https://www.service-public.fr/particuliers/vosdroits/F20348
-  2009-04-04:
-    reference:
-    - href: https://www.culture.gouv.fr/Nous-connaitre/Decouvrir-le-ministere/Histoire-du-ministere/Ressources-documentaires/Discours-de-ministres/Discours-de-ministres-depuis-1998/Frederic-Mitterrand-2009-2012/Communiques-2009-2012/Frederic-Mitterrand-etend-la-gratuite-des-musees-et-des-monuments-nationaux-a-tous-les-jeunes-qui-resident-dans-l-Union-Europeenne-quelle-que-soit
-    value: 25
+  values:
+    2009-04-04:
+      reference:
+      - href: https://www.culture.gouv.fr/Nous-connaitre/Decouvrir-le-ministere/Histoire-du-ministere/Ressources-documentaires/Discours-de-ministres/Discours-de-ministres-depuis-1998/Frederic-Mitterrand-2009-2012/Communiques-2009-2012/Frederic-Mitterrand-etend-la-gratuite-des-musees-et-des-monuments-nationaux-a-tous-les-jeunes-qui-resident-dans-l-Union-Europeenne-quelle-que-soit
+      value: 25
 age_min:
   description: Âge à partir duquel l'accès aux musées et monuments nationaux est gratuit pour les résidents de l'Union européenne.
   metadata:
     reference:
       href: https://www.service-public.fr/particuliers/vosdroits/F20348
-  2009-04-04:
-    reference:
-    - href: https://www.culture.gouv.fr/Nous-connaitre/Decouvrir-le-ministere/Histoire-du-ministere/Ressources-documentaires/Discours-de-ministres/Discours-de-ministres-depuis-1998/Frederic-Mitterrand-2009-2012/Communiques-2009-2012/Frederic-Mitterrand-etend-la-gratuite-des-musees-et-des-monuments-nationaux-a-tous-les-jeunes-qui-resident-dans-l-Union-Europeenne-quelle-que-soit
-    value: 18
+  values:
+    2009-04-04:
+      reference:
+      - href: https://www.culture.gouv.fr/Nous-connaitre/Decouvrir-le-ministere/Histoire-du-ministere/Ressources-documentaires/Discours-de-ministres/Discours-de-ministres-depuis-1998/Frederic-Mitterrand-2009-2012/Communiques-2009-2012/Frederic-Mitterrand-etend-la-gratuite-des-musees-et-des-monuments-nationaux-a-tous-les-jeunes-qui-resident-dans-l-Union-Europeenne-quelle-que-soit
+      value: 18

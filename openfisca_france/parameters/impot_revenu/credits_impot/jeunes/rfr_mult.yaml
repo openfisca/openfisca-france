@@ -1,7 +1,8 @@
 description: Multiplicateur du RFR plafond pour couple
 metadata:
   unit: /1
-2005-01-01:
-  value: 2
-2009-01-01:
-  value: null
+values:
+  2005-01-01:
+    value: 2
+  2009-01-01:
+    value: null

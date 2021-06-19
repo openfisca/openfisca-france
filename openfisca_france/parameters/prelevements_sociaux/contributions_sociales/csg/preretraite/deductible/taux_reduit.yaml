@@ -17,7 +17,8 @@ metadata:
       title: Loi 2007-1786 du 19/12/2007, art. 16
   unit: /1
   ux_name: Taux réduit
-1991-02-01:
-  value: null
-2008-01-01:
-  value: 0.038
+values:
+  1991-02-01:
+    value: null
+  2008-01-01:
+    value: 0.038

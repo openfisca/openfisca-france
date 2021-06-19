@@ -3,5 +3,6 @@ metadata:
   last_review: "2002-01-01"
   unit: /1
   ux_name: Revenu minimum imposable
-2002-01-01:
-  value: 1
+values:
+  2002-01-01:
+    value: 1

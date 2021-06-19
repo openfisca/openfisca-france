@@ -1,15 +1,16 @@
 description: Taux pour 2 pac
 metadata:
   unit: currency
-2015-01-01:
-  value: 7938
-2016-01-01:
-  value: 7969
-2019-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/eli/decret/2018/12/27/2018-1316/jo/texte
-  value: 7992
-2020-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/eli/arrete/2020/1/3/LOGL1934006A/jo/article_1
-  value: 8015
+values:
+  2015-01-01:
+    value: 7938
+  2016-01-01:
+    value: 7969
+  2019-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/eli/decret/2018/12/27/2018-1316/jo/texte
+    value: 7992
+  2020-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/eli/arrete/2020/1/3/LOGL1934006A/jo/article_1
+    value: 8015

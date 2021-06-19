@@ -44,11 +44,12 @@ metadata:
       title: Arrêté du 15/01/1974
   unit: /1
   ux_name: Taux employeur
-1960-01-01:
-  value: null
-1967-10-01:
-  value: 0.0385
-1971-01-01:
-  value: 0.0403
-1974-01-01:
-  value: 0.0508
+values:
+  1960-01-01:
+    value: null
+  1967-10-01:
+    value: 0.0385
+  1971-01-01:
+    value: 0.0403
+  1974-01-01:
+    value: 0.0508

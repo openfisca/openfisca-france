@@ -1,3 +1,4 @@
 description: Zone 2 - coeff suppression
-2016-07-01:
-  value: 3.1
+values:
+  2016-07-01:
+    value: 3.1

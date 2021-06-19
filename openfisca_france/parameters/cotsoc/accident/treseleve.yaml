@@ -1,4 +1,5 @@
 description: Accident du travail (taux tres eleve)
-2012-01-01:
-  value: 0.1
-2015-01-01: expected
+values:
+  2012-01-01:
+    value: 0.1
+  2015-01-01: expected

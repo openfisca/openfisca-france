@@ -1,3 +1,4 @@
 description: 2 enfants
-1999-07-01:
-  value: 10.67
+values:
+  1999-07-01:
+    value: 10.67

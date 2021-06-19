@@ -12,5 +12,6 @@ metadata:
       title: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
   unit: /1
   ux_name: Taux
-1997-01-01:
-  value: 0.024
+values:
+  1997-01-01:
+    value: 0.024

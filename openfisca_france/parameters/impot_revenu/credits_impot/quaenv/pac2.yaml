@@ -1,7 +1,8 @@
 description: Majoration du plafond pour le 2nd enfant
 metadata:
   unit: currency
-2002-01-01:
-  value: 500
-2008-01-01:
-  value: 400
+values:
+  2002-01-01:
+    value: 500
+  2008-01-01:
+    value: 400

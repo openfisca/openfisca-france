@@ -2,7 +2,8 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
-1974-07-01:
-  value: 20100
-1978-01-01:
-  value: null
+values:
+  1974-07-01:
+    value: 20100
+  1978-01-01:
+    value: null

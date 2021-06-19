@@ -3,5 +3,6 @@ metadata:
   reference:
     href: https://www.legifrance.gouv.fr/eli/decret/2016/10/12/LHAL1606833D/jo/texte
   unit: currency
-2016-10-01:
-  value: 30000
+values:
+  2016-10-01:
+    value: 30000

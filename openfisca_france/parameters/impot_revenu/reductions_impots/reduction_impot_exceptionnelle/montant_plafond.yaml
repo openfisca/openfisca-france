@@ -1,7 +1,8 @@
 description: Montant plafond par part pour les deux premières parts
 metadata:
   unit: currency
-2013-01-01:
-  value: 350
-2016-01-01:
-  value: null
+values:
+  2013-01-01:
+    value: 350
+  2016-01-01:
+    value: null

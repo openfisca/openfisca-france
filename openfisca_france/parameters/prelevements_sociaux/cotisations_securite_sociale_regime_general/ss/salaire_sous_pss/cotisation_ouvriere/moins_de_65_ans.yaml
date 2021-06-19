@@ -53,13 +53,14 @@ metadata:
       title: Arrêté du 29/07/1966
   unit: /1
   ux_name: Moins de 65 ans
-1930-07-01:
-  value: 0.04
-1936-01-01:
-  value: 0.035
-1937-01-01:
-  value: 0.04
-1945-01-01:
-  value: 0.06
-1967-09-01:
-  value: null
+values:
+  1930-07-01:
+    value: 0.04
+  1936-01-01:
+    value: 0.035
+  1937-01-01:
+    value: 0.04
+  1945-01-01:
+    value: 0.06
+  1967-09-01:
+    value: null

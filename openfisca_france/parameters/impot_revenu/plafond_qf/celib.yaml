@@ -5,43 +5,44 @@ metadata:
   - href: http://bofip.impots.gouv.fr/bofip/2494-PGP
   - href: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
   unit: currency
-1997-01-01:
-  value: 6100
-1999-01-01:
-  value: 6130
-2000-01-01:
-  value: 6220
-2001-01-01:
-  value: 964
-2002-01-01:
-  value: 980
-2003-01-01:
-  value: 800
-2004-01-01:
-  value: 814
-2005-01-01:
-  value: 829
-2006-01-01:
-  value: 844
-2007-01-01:
-  value: 855
-2008-01-01:
-  value: 880
-2009-01-01:
-  value: 884
-2010-01-01:
-  value: 897
-2014-01-01:
-  value: 901
-2015-01-01:
-  value: 902
-2016-01-01:
-  value: 903
-2017-01-01:
-  value: 912
-2018-01-01:
-  value: 927
-2019-01-01:
-  value: 936
-2021-01-01:
-  value: 938
+values:
+  1997-01-01:
+    value: 6100
+  1999-01-01:
+    value: 6130
+  2000-01-01:
+    value: 6220
+  2001-01-01:
+    value: 964
+  2002-01-01:
+    value: 980
+  2003-01-01:
+    value: 800
+  2004-01-01:
+    value: 814
+  2005-01-01:
+    value: 829
+  2006-01-01:
+    value: 844
+  2007-01-01:
+    value: 855
+  2008-01-01:
+    value: 880
+  2009-01-01:
+    value: 884
+  2010-01-01:
+    value: 897
+  2014-01-01:
+    value: 901
+  2015-01-01:
+    value: 902
+  2016-01-01:
+    value: 903
+  2017-01-01:
+    value: 912
+  2018-01-01:
+    value: 927
+  2019-01-01:
+    value: 936
+  2021-01-01:
+    value: 938

@@ -1,5 +1,6 @@
 description: Taux pour les activités de prestations et de services
 metadata:
   unit: /1
-2013-01-01:
-  value: 0.246
+values:
+  2013-01-01:
+    value: 0.246

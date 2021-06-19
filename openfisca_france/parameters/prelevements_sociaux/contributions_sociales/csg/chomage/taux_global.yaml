@@ -21,9 +21,10 @@ metadata:
       title: Loi 97-1164 du 19/12/1997, art. 5 (LFSS pour 1998)
   unit: /1
   ux_name: Taux Global
-1991-02-01:
-  value: null
-1997-01-01:
-  value: 0.034
-1998-01-01:
-  value: 0.062
+values:
+  1991-02-01:
+    value: null
+  1997-01-01:
+    value: 0.034
+  1998-01-01:
+    value: 0.062

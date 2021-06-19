@@ -40,9 +40,10 @@ metadata:
       title: Arrêté du 15/01/1974
   unit: /1
   ux_name: Presse quotidienne
-1964-01-01:
-  value: null
-1973-03-01:
-  value: 0.0192
-1974-01-01:
-  value: 0.0208
+values:
+  1964-01-01:
+    value: null
+  1973-03-01:
+    value: 0.0192
+  1974-01-01:
+    value: 0.0208

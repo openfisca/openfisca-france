@@ -7,25 +7,26 @@ metadata:
   - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029988857
   - href: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_impot_revenu/plaf_qf/
   unit: currency
-2002-01-01:
-  value: 772
-2003-01-01:
-  value: 786
-2004-01-01:
-  value: 800
-2005-01-01:
-  value: 814
-2006-01-01:
-  value: 828
-2007-01-01:
-  value: 838
-2008-01-01:
-  value: 862
-2009-01-01:
-  value: 866
-2010-01-01:
-  value: 878
-2012-01-01:
-  value: 960
-2013-01-01:
-  value: 1016
+values:
+  2002-01-01:
+    value: 772
+  2003-01-01:
+    value: 786
+  2004-01-01:
+    value: 800
+  2005-01-01:
+    value: 814
+  2006-01-01:
+    value: 828
+  2007-01-01:
+    value: 838
+  2008-01-01:
+    value: 862
+  2009-01-01:
+    value: 866
+  2010-01-01:
+    value: 878
+  2012-01-01:
+    value: 960
+  2013-01-01:
+    value: 1016

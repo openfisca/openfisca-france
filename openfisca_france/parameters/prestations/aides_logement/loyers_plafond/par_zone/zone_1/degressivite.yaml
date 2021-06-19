@@ -1,3 +1,4 @@
 description: Zone 1 - coeff degressivité
-2016-07-01:
-  value: 3.4
+values:
+  2016-07-01:
+    value: 3.4

@@ -21,11 +21,12 @@ metadata:
   last_review: "2002-01-01"
   unit: currency-FRF
   ux_name: Année 1
-1998-07-01:
-  value: 9000
-1999-07-01:
-  value: 7000
-2001-01-01:
-  value: 6000
-2002-01-01:
-  value: null
+values:
+  1998-07-01:
+    value: 9000
+  1999-07-01:
+    value: 7000
+  2001-01-01:
+    value: 6000
+  2002-01-01:
+    value: null

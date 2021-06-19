@@ -1,5 +1,6 @@
 description: Revenus taxés à 16% (logiciels originaux)
 metadata:
   unit: /1
-2002-01-01:
-  value: 0.16
+values:
+  2002-01-01:
+    value: 0.16

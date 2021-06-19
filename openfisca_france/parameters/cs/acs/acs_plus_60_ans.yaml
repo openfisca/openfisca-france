@@ -1,7 +1,8 @@
 description: ACS pour une personne âgée de plus de 60 ans
 metadata:
   unit: currency
-2009-08-01:
-  value: 500
-2014-01-01:
-  value: 550
+values:
+  2009-08-01:
+    value: 500
+  2014-01-01:
+    value: 550

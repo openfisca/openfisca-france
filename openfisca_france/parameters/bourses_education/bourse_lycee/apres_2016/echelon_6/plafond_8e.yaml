@@ -1,5 +1,6 @@
 description: Plafond de référence pour l'échelon 6, pour une famille avec 8 enfants ou plus, en multiple du SMIC horaire brut
 metadata:
   unit: /1
-2016-07-01:
-  value: 1051.3
+values:
+  2016-07-01:
+    value: 1051.3

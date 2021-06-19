@@ -22,9 +22,10 @@ metadata:
       title: Arrêté du 29/09/1967
   unit: /1
   ux_name: Taux employeur
-1964-01-01:
-  value: 0.114
-1966-10-01:
-  value: 0.12
-1967-10-01:
-  value: null
+values:
+  1964-01-01:
+    value: 0.114
+  1966-10-01:
+    value: 0.12
+  1967-10-01:
+    value: null

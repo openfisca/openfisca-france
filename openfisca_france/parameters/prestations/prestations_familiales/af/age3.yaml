@@ -1,5 +1,6 @@
 description: Âge maximal pour toucher les AF (forfait datant de 2003-07-01 inclus)
 metadata:
   unit: year
-2003-07-01:
-  value: 20
+values:
+  2003-07-01:
+    value: 20

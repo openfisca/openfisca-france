@@ -14,7 +14,8 @@ metadata:
       title: "Loi 2015-1702 du\_21/12/2015\_(LFSS 2016), art. 7"
   unit: /1
   ux_name: Plafond (en nombre de SMIC)
-2015-01-01:
-  value: 1.6
-2016-04-01:
-  value: 3.5
+values:
+  2015-01-01:
+    value: 1.6
+  2016-04-01:
+    value: 3.5

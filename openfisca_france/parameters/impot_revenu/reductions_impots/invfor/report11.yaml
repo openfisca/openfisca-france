@@ -1,5 +1,6 @@
 description: Report des excédents 2011
 metadata:
   unit: /1
-2012-01-01:
-  value: 0.22
+values:
+  2012-01-01:
+    value: 0.22

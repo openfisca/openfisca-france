@@ -1,5 +1,6 @@
 description: Taux métropole
 metadata:
   unit: /1
-2013-01-01:
-  value: 0.18
+values:
+  2013-01-01:
+    value: 0.18

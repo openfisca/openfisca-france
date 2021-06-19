@@ -35,13 +35,14 @@ metadata:
       title: Décret 2013-1290 du 27/12/2013
   unit: /1
   ux_name: Taux employeur
-1946-07-01:
-  value: null
-1989-01-01:
-  value: 0.035
-1990-01-01:
-  value: 0.07
-1991-02-01:
-  value: 0.054
-2014-01-01:
-  value: 0.0525
+values:
+  1946-07-01:
+    value: null
+  1989-01-01:
+    value: 0.035
+  1990-01-01:
+    value: 0.07
+  1991-02-01:
+    value: 0.054
+  2014-01-01:
+    value: 0.0525

@@ -1,9 +1,10 @@
 description: Plafond pour investissement dans les PME
 metadata:
   unit: currency
-2009-01-01:
-  value: 50000
-2011-01-01:
-  value: 45000
-2014-01-01:
-  value: 45000
+values:
+  2009-01-01:
+    value: 50000
+  2011-01-01:
+    value: 45000
+  2014-01-01:
+    value: 45000

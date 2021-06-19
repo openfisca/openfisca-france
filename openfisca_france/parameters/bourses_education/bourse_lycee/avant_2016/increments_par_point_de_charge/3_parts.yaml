@@ -1,5 +1,6 @@
 description: Incrément pour 3 parts
 metadata:
   unit: currency
-2014-01-01:
-  value: 1344.26
+values:
+  2014-01-01:
+    value: 1344.26

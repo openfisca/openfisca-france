@@ -3,9 +3,10 @@ metadata:
   reference:
     title: openfisca
   unit: currency
-2002-01-01:
-  value: 0
-2008-01-01:
-  value: 67.55
-2009-01-01:
-  value: 0
+values:
+  2002-01-01:
+    value: 0
+  2008-01-01:
+    value: 67.55
+  2009-01-01:
+    value: 0

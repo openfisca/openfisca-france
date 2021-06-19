@@ -43,19 +43,20 @@ metadata:
       title: Décision du régime local du 28/11/2011 (Avis publié au JO)
   unit: /1
   ux_name: Cotisations sur les allocations chômage et préretraite
-1997-01-01:
-  value: 0.01
-1998-07-01:
-  value: 0.0125
-1999-07-01:
-  value: 0.015
-2003-01-01:
-  value: 0.017
-2006-01-01:
-  value: 0.018
-2007-07-01:
-  value: 0.017
-2008-01-01:
-  value: 0.016
-2012-01-01:
-  value: 0.015
+values:
+  1997-01-01:
+    value: 0.01
+  1998-07-01:
+    value: 0.0125
+  1999-07-01:
+    value: 0.015
+  2003-01-01:
+    value: 0.017
+  2006-01-01:
+    value: 0.018
+  2007-07-01:
+    value: 0.017
+  2008-01-01:
+    value: 0.016
+  2012-01-01:
+    value: 0.015

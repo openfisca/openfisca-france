@@ -5,17 +5,20 @@ deux_enfants:
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
-  2004-01-01:
-    value: 4
+  values:
+    2004-01-01:
+      value: 4
 trois_enfants_ou_plus:
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
-  2004-01-01:
-    value: 5
+  values:
+    2004-01-01:
+      value: 5
 un_enfant:
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
-  2004-01-01:
-    value: 2
+  values:
+    2004-01-01:
+      value: 2

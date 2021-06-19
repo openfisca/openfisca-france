@@ -1,5 +1,6 @@
 description: Forfait logement pour 3 personnes ou plus
 metadata:
   unit: /1
-2002-01-01:
-  value: 0.297
+values:
+  2002-01-01:
+    value: 0.297

@@ -1,5 +1,6 @@
 description: Nombre d'années pleines de détentions minimale (1er seuil)
-2011-01-01:
-  value: 5
-2012-02-01:
-  value: null
+values:
+  2011-01-01:
+    value: 5
+  2012-02-01:
+    value: null

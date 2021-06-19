@@ -3,63 +3,64 @@ metadata:
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
-1978-07-13:
-  value: 25500
-1986-07-01:
-  value: 72104
-1997-07-01:
-  value: 77182
-1998-07-01:
-  value: 78031
-1999-07-01:
-  value: 78499
-2000-07-01:
-  value: 78891
-2001-07-01:
-  value: 80153
-2002-07-01:
-  value: 12415
-2003-07-01:
-  value: 12626
-2004-07-01:
-  value: 12866
-2005-07-01:
-  value: 13085
-2006-07-01:
-  value: 13307
-2007-07-01:
-  value: 16916
-2008-10-10:
-  value: 18947
-2009-01-01:
-  value: 17170
-2010-01-01:
-  value: 17651
-2011-01-01:
-  value: 17669
-2012-01-01:
-  value: 17846
-2013-01-01:
-  value: 18221
-2014-01-01:
-  value: 18567
-2015-01-01:
-  value: 18697
-2016-01-01:
-  value: 18772
-2018-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000036299559&idArticle=JORFARTI000036299573&dateTexte=20171229&categorieLien=cid#JORFARTI000036299573
-  value: 18810
-2019-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/eli/arrete/2018/12/21/SSAS1835267A/jo/article_4
-  value: 18998
-2020-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/eli/arrete/2019/12/20/SSAS1934813A/jo/article_4
-  value: 19302
-2021-01-01:
-  reference:
-  - href: https://www.legifrance.gouv.fr/eli/arrete/2020/12/14/SSAS2032692A/jo/article_5
-  value: 19476
+values:
+  1978-07-13:
+    value: 25500
+  1986-07-01:
+    value: 72104
+  1997-07-01:
+    value: 77182
+  1998-07-01:
+    value: 78031
+  1999-07-01:
+    value: 78499
+  2000-07-01:
+    value: 78891
+  2001-07-01:
+    value: 80153
+  2002-07-01:
+    value: 12415
+  2003-07-01:
+    value: 12626
+  2004-07-01:
+    value: 12866
+  2005-07-01:
+    value: 13085
+  2006-07-01:
+    value: 13307
+  2007-07-01:
+    value: 16916
+  2008-10-10:
+    value: 18947
+  2009-01-01:
+    value: 17170
+  2010-01-01:
+    value: 17651
+  2011-01-01:
+    value: 17669
+  2012-01-01:
+    value: 17846
+  2013-01-01:
+    value: 18221
+  2014-01-01:
+    value: 18567
+  2015-01-01:
+    value: 18697
+  2016-01-01:
+    value: 18772
+  2018-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000036299559&idArticle=JORFARTI000036299573&dateTexte=20171229&categorieLien=cid#JORFARTI000036299573
+    value: 18810
+  2019-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/eli/arrete/2018/12/21/SSAS1835267A/jo/article_4
+    value: 18998
+  2020-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/eli/arrete/2019/12/20/SSAS1934813A/jo/article_4
+    value: 19302
+  2021-01-01:
+    reference:
+    - href: https://www.legifrance.gouv.fr/eli/arrete/2020/12/14/SSAS2032692A/jo/article_5
+    value: 19476

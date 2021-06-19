@@ -3,5 +3,6 @@ metadata:
   reference:
     href: https://www.service-public.fr/particuliers/vosdroits/F12484
   unit: /1
-1984-01-01:
-  value: 789
+values:
+  1984-01-01:
+    value: 789

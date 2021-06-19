@@ -1,5 +1,6 @@
 description: Plafond pluri-annuel sur 4 ans
 metadata:
   unit: currency
-2017-01-01:
-  value: 400000
+values:
+  2017-01-01:
+    value: 400000

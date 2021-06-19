@@ -23,11 +23,12 @@ metadata:
       title: Loi 2004-810 du 13/08/2004, art. 72
   unit: /1
   ux_name: Taux plein
-1991-02-01:
-  value: null
-1997-01-01:
-  value: 0.01
-1998-01-01:
-  value: 0.038
-2005-01-01:
-  value: 0.042
+values:
+  1991-02-01:
+    value: null
+  1997-01-01:
+    value: 0.01
+  1998-01-01:
+    value: 0.038
+  2005-01-01:
+    value: 0.042

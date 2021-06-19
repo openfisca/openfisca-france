@@ -3,15 +3,16 @@ metadata:
   reference:
     href: https://fr.wikipedia.org/wiki/Majorité_civile_en_France#Historique
   unit: year
-1579-01-01:
-  reference:
-  - title: Ordonnance de Blois
-  value: 25
-1792-09-20:
-  reference:
-  - title: Décret du 20 septembre 1792 de la première république
-  value: 21
-1974-07-05:
-  reference:
-  - title: Loi n°74-631
-  value: 18
+values:
+  1579-01-01:
+    reference:
+    - title: Ordonnance de Blois
+    value: 25
+  1792-09-20:
+    reference:
+    - title: Décret du 20 septembre 1792 de la première république
+    value: 21
+  1974-07-05:
+    reference:
+    - title: Loi n°74-631
+    value: 18

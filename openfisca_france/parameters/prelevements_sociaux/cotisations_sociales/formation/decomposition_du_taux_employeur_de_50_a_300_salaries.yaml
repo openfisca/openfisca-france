@@ -6,33 +6,38 @@ compte_personnel_de_formation:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2015-01-01:
-    value: 0.002
+  values:
+    2015-01-01:
+      value: 0.002
 conge_individuel_de_formation:
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2015-01-01:
-    value: 0.002
+  values:
+    2015-01-01:
+      value: 0.002
 plan_de_formation:
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2015-01-01:
-    value: 0.001
+  values:
+    2015-01-01:
+      value: 0.001
 professionnalisation:
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2015-01-01:
-    value: 0.003
+  values:
+    2015-01-01:
+      value: 0.003
 securisation_des_parcours_professionnels:
   metadata:
     reference:
       href: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
-  2015-01-01:
-    value: 0.002
+  values:
+    2015-01-01:
+      value: 0.002

@@ -1,5 +1,6 @@
 description: Âge minimal pour bénéficier de la PPA
 metadata:
   unit: year
-2015-10-01:
-  value: 18
+values:
+  2015-10-01:
+    value: 18
