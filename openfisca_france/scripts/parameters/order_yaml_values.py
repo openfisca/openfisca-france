@@ -17,6 +17,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def order_key(key_dict, key):
+    if key_dict[key] is None:
+        return None
     logging.debug(f"Changing {key}...")
     # We build an ordered dict with the sorted items to keep them sorted
     od = collections.OrderedDict(sorted(key_dict[key].items()))
