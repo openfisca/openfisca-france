@@ -1,5 +1,16 @@
 # Changelog
 
+# 60.0.0 [#1553](https://github.com/openfisca/openfisca-france/pull/1553) 
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : parameters et parameters.cotsoc
+* Détails :
+  - On range tous les paramètres du dossier parameters.cotsoc dans le dossier parameters, chaque paramètre allant dans le répertoire approprié (c'est-à-dire rangé selon l'arbre des barèmes IPP)
+  - On modifie le script preprocessing.py pour récrer les mêmes 'preprocessed_parameters et cotsoc' qu'avant, mais en s'appuyant uniquement sur les paramètres 'rangés'
+  - On supprime le dossier cotsoc
+  - Prochaine étape: trier les doublons, harmoniser les paramètres qui sont sous forme de barème vs paramètre simple, harmoniser les paramètres rangés selon la méthode harmonisation_IPP
+
 # 59.0.0 [#1577](https://github.com/openfisca/openfisca-france/pull/1577)
 
 * Amélioration technique et correction d'un crash.
@@ -58,6 +69,7 @@
   - Suppression de la variable `rpns` qui était un doublon de la variable `rpns_individu`
 
   - Renomme la variable `rpns_individu` en `rpns_imposables` pour préciser le contenu de la variable
+
 # 57.0.0 [#1578](https://github.com/openfisca/openfisca-france/pull/1578)
 
 * Évolution du système socio-fiscal
@@ -163,7 +175,7 @@
 * Détails :
   - Corrige des références législatives d'AAH et d'ASI.
 
-# 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547)
+## 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547) 
 
 * Évolution du système socio-fiscal non rétrocompatible
 * Périodes concernées : toutes.
