@@ -2,7 +2,6 @@
 
 # 56.0.0 [#1549](https://github.com/openfisca/openfisca-france/pull/1549) 
 
-* Changement majeur. 
 * Évolution du système socio-fiscal non rétrocompatible
 * Périodes concernées : toutes.
 * Zones impactées :
