@@ -21,8 +21,8 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000371685
     - Décrets 95-942 et 95-943 du 25/08/1995
     1995-01-01:
-      title: Loi 93-1313 du 20/12/1993, art. 1
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657310&cidTexte=JORFTEXT000000864578
+      - title: Loi 93-1313 du 20/12/1993, art. 1
+        href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657310&cidTexte=JORFTEXT000000864578
     1993-07-01:
       title: Loi 93-953 du 27/07/1993, art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657219&cidTexte=JORFTEXT000000529278
