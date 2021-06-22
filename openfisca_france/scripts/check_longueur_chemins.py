@@ -24,16 +24,23 @@ def get_directory_structure(rootdir):
     dir = {}
     rootdir = rootdir.rstrip(os.sep)
     start = rootdir.rfind(os.sep) + 1
+    max_length = 0
+    max_length_path = ''
 
     for path, _dirs, files in os.walk(rootdir):
         if re.search(".ipynb_checkpoints", path):
             pass
         else:
             folders = path[start:].split(os.sep)
+            # Mémorise le plus long chemin, pour info.
+            length = len(path)
+            if length > max_length:
+                max_length = length
+                max_length_path = path
             # On regarde les chemins qui dépassent 150 caractères
             # Ce nombre vient d'ici: https://github.com/openfisca/openfisca-france/pull/1414
             # Et on ajoute 28 caractères pour le openfisca_france/parameters/
-            if len(path) > 150 + 28:
+            if length > 150 + 28:
                 txt = f"Path of {len(path)} caracters here: {path}"
                 logging.info(txt)
                 changes.append(txt)
@@ -41,6 +48,7 @@ def get_directory_structure(rootdir):
             subdir = dict.fromkeys(files)
             parent = functools.reduce(dict.get, folders[:-1], dir)
             parent[folders[-1]] = subdir
+    logging.debug(f'Max length path: {max_length_path} of size {max_length} < 150 + 28')
     if len(changes) > 0:
         filename = "path_too_long.txt"
         with open(filename, "w") as outfile:
@@ -52,10 +60,9 @@ def get_directory_structure(rootdir):
     return dir
 
 
-COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
-startpath = "{}/openfisca_france/parameters/".join(COUNTRY_DIR)
-ipp_dir_structure = get_directory_structure(startpath)
-
-# json_file = json.dumps(ipp_dir_structure)
-# with open("ipp_dir_structure.json", "w") as outfile:
-#    outfile.write(json_file)
+startpath = "./openfisca_france/parameters/"
+if os.path.exists(startpath):
+    ipp_dir_structure = get_directory_structure(startpath)
+else:
+    logging.error("Please run the script in root folder 'openfisca-france', with :",
+    "\r\npython3 openfisca_france/scripts/check_longueur_chemins.py ")
