@@ -21,7 +21,7 @@
     - Applique l'arborescence du modèle IPP
     - Ajoute parameters/prelevements_sociaux/reductions_cotisations_sociales/
     - Déplace le contenu de parameters/prelevements_sociaux/ 
-    - Ajoute de nouvelles clefs aux metadata: date_of_issue_oj, description_en, last_review, notes, ux_name
+    - Ajoute de nouvelles clefs aux metadata: `official_journal_date`, `description_en`, `last_review`, `notes`, `ux_name`
     - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
   - Ajoute le script de vérification openfisca_france/check_longueur_chemins.py
 
