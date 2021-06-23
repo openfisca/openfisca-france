@@ -1,5 +1,14 @@
 # Changelog
 
+### 54.0.3 [#1556](https://github.com/openfisca/openfisca-france/pull/1556)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2017.
+* Zones impactées :
+  - `parameters/autonomie/mtp/mtp`
+* Détails :
+  - Met à jour les montants et références de la majoration pour aide constante d'une tierce personne.
+
 ### 54.0.2 [#1460](https://github.com/openfisca/openfisca-france/pull/1460)
 
 * Évolution du système socio-fiscal.
