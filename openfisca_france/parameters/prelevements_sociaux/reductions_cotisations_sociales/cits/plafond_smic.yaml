@@ -1,10 +1,9 @@
 description: Plafond (en nombre de SMIC) du crédit d'impôt de taxe sur les salaires (CITS) (2017-2018), dans les réductions sur les cotisations de Sécurité sociale (SS)
 values:
-  values:
-    2019-01-01:
-      value: null
-    2017-01-01:
-      value: 2.5
+  2019-01-01:
+    value: null
+  2017-01-01:
+    value: 2.5
 metadata:
   ux_name: Plafond (en nombre de SMIC)
   last_review:
