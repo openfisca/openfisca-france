@@ -13,7 +13,11 @@ metadata:
     1998-01-01
   reference:
     1991-02-01: Loi 90-1168 du 29/12/90, art. 127 à 135 (LF pour 1991)
+<<<<<<< HEAD
   official_journal_date:
+=======
+  date_of_issue_in_oj:
+>>>>>>> ad90efc8b (Renommage de date_parution_jo en date_of_issue_in_oj.)
     1991-02-01: 1990-12-30
   notes:
   description_en:
@@ -23,7 +27,7 @@ documentation: |
   Notes :
   Pour les pensions de retraite et d'invalidité, à partir de 2015, le seuil de RFR 1 est le seuil d'exonération de CSG, et le seuil de RFR 2 est le seuil d'assujettissement au taux fort de la CSG ;
   les retraités dont le RFR est compris entre le seuil 1 et le seuil 2 sont assujettis au taux réduit de CSG.
-  À partir de 2019, le seuil de RFR 3 est le seuil d'assujettissement au taux plein de CSG ; 
+  À partir de 2019, le seuil de RFR 3 est le seuil d'assujettissement au taux plein de CSG ;
   les retraités dont le RFR est compris entre le seuil 2 et le seuil 3 sont assujettis au taux intermédiaire de CSG.
   Le RFR est le revenu fiscal de référence de l'année N-2.
   (1) Seuils de RFR pour exonération : art. L136-8-III du Code de la Sécurité Sociale (CSS)

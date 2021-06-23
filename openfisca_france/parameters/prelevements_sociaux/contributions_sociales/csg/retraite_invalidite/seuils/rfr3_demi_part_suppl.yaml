@@ -6,7 +6,7 @@ values:
   2019-01-01:
     value: 6028.0
   2020-01-01:
-    value: 6124.0   
+    value: 6124.0
 metadata:
   ux_name: RFR3 - Demi-part suppl.
   last_review:
@@ -25,7 +25,11 @@ metadata:
       href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_34_20102017.pdf
     - title: Loi 2017-1837 du 30/12/2017, art. 67 (LF pour 2018)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377512&cidTexte=JORFTEXT000036339197
+<<<<<<< HEAD
   official_journal_date:
+=======
+  date_of_issue_in_oj:
+>>>>>>> ad90efc8b (Renommage de date_parution_jo en date_of_issue_in_oj.)
     2019-01-01: 2018-12-26
     2018-01-01: 2017-12-31
   notes:
@@ -38,7 +42,7 @@ documentation: |
   Notes :
   Pour les pensions de retraite et d'invalidité, à partir de 2015, le seuil de RFR 1 est le seuil d'exonération de CSG, et le seuil de RFR 2 est le seuil d'assujettissement au taux fort de la CSG ;
   les retraités dont le RFR est compris entre le seuil 1 et le seuil 2 sont assujettis au taux réduit de CSG.
-  À partir de 2019, le seuil de RFR 3 est le seuil d'assujettissement au taux plein de CSG ; 
+  À partir de 2019, le seuil de RFR 3 est le seuil d'assujettissement au taux plein de CSG ;
   les retraités dont le RFR est compris entre le seuil 2 et le seuil 3 sont assujettis au taux intermédiaire de CSG.
   Le RFR est le revenu fiscal de référence de l'année N-2.
   (1) Seuils de RFR pour exonération : art. L136-8-III du Code de la Sécurité Sociale (CSS)

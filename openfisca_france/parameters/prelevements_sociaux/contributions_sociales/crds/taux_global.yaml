@@ -6,10 +6,14 @@ values:
 metadata:
   ux_name: Taux global
   last_review:
-    1998-01-01 
+    1998-01-01
   reference:
     1996-02-01: Ordonnance 96-50 du 24/01/96, art. 19
+<<<<<<< HEAD
   official_journal_date:
+=======
+  date_of_issue_in_oj:
+>>>>>>> ad90efc8b (Renommage de date_parution_jo en date_of_issue_in_oj.)
     1996-02-01: 1996-01-25
   notes:
   description_en: CRDS
