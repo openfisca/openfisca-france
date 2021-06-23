@@ -26,10 +26,14 @@ metadata:
     - title: Loi 2017-1837 du 30/12/2017, art. 67 (LF pour 2018)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377512&cidTexte=JORFTEXT000036339197
 <<<<<<< HEAD
+<<<<<<< HEAD
   official_journal_date:
 =======
   date_of_issue_in_oj:
 >>>>>>> ad90efc8b (Renommage de date_parution_jo en date_of_issue_in_oj.)
+=======
+  official_journal_date:
+>>>>>>> ab07f6ccc (Renomme date_of_issue_in_oj en official_journal_date.)
     2019-01-01: 2018-12-26
     2018-01-01: 2017-12-31
   notes:
