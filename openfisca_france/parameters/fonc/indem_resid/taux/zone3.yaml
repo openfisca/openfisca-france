@@ -1,5 +1,8 @@
-description: 'Indemnité de résidence zone 3 : taux '
-unit: /1
+description: "Indemnité de résidence zone 3 : taux"
+metadata:
+  unit: /1
 values:
   1999-07-01:
-    value: 0.0
+    value: 0
+  2021-06-24:
+    value: 10
