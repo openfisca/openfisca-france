@@ -56,7 +56,8 @@ class garantie_jeunes_montant(Variable):
             'pensions_alimentaires_percues',
             'rente_accident_travail',
             'stage_gratification',
-            'bourse_enseignement_sup'
+            'bourse_enseignement_sup',
+            'salaire_net'
             ]
 
         base_ressource = (
