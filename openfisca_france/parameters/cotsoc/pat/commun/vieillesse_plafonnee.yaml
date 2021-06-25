@@ -1,5 +1,9 @@
+description: Vieillesse plafonnée (régime de base)
 brackets:
-- rate:
+- threshold:
+    1979-01-01:
+      value: 0
+  rate:
     1979-01-01:
       value: 0.082
     2006-01-01:
@@ -12,13 +16,9 @@ brackets:
       value: 0.085
     2016-01-01:
       value: 0.0855
-  threshold:
+- threshold:
     1979-01-01:
-      value: 0.0
-- rate:
+      value: 1
+  rate:
     1979-01-01:
-      value: 0.0
-  threshold:
-    1979-01-01:
-      value: 1.0
-description: Vieillesse plafonnée (régime de base)
+      value: 0

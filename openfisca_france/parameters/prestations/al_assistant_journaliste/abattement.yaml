@@ -1,18 +1,19 @@
 montant:
-    journaliste:
+  assistant_familial:
+    metadata:
       unit: currency
-      values:
-        2019-01-01:
-          value: 637.5
-
-    assistant_maternel:
+    values:
+      2019-01-01:
+        value: 1195
+  assistant_maternel:
+    metadata:
       unit: currency
-      values:
-        2019-01-01:
-          value: 1195
-
-    assistant_familial:
+    values:
+      2019-01-01:
+        value: 1195
+  journaliste:
+    metadata:
       unit: currency
-      values:
-        2019-01-01:
-          value: 1195
+    values:
+      2019-01-01:
+        value: 637.5

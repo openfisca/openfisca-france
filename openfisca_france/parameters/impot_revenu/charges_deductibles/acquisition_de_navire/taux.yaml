@@ -1,5 +1,7 @@
-reference: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
-unit: /1
+metadata:
+  reference:
+    href: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
+  unit: /1
 values:
   1990-01-01:
     value: 0.25

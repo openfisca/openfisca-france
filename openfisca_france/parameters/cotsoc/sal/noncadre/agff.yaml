@@ -1,20 +1,20 @@
+description: Cotisation AGFF
 brackets:
-- rate:
+- threshold:
+    2001-04-01:
+      value: 0
+  rate:
     2001-04-01:
       value: 0.008
-  threshold:
+- threshold:
     2001-04-01:
-      value: 0.0
-- rate:
+      value: 1
+  rate:
     2001-04-01:
       value: 0.009
-  threshold:
+- threshold:
     2001-04-01:
-      value: 1.0
-- rate:
+      value: 3
+  rate:
     2001-04-01:
-      value: 0.0
-  threshold:
-    2001-04-01:
-      value: 3.0
-description: Cotisation AGFF
+      value: 0

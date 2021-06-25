@@ -1,5 +1,13 @@
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
 brackets:
-- rate:
+- threshold:
+    1967-10-01:
+      value: 0
+    2018-01-01:
+      value: null
+  rate:
     1967-10-01:
       value: 0.01
     1976-01-01:
@@ -20,9 +28,3 @@ brackets:
       value: 0.0075
     2018-01-01:
       value: null
-  threshold:
-    1967-10-01:
-      value: 0.0
-    2018-01-01:
-      value: null
-reference: https://www.ipp.eu/outils/baremes-ipp/

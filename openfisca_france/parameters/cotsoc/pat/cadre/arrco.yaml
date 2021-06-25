@@ -1,5 +1,9 @@
+description: Retraite complémentaire ARRCO (Tranche A)
 brackets:
-- rate:
+- threshold:
+    1993-01-01:
+      value: 0
+  rate:
     1993-01-01:
       value: 0.02952
     1996-01-01:
@@ -14,13 +18,9 @@ brackets:
       value: 0.0458
     2015-01-01:
       value: 0.0465
-  threshold:
+- threshold:
     1993-01-01:
-      value: 0.0
-- rate:
+      value: 1
+  rate:
     1993-01-01:
-      value: 0.0
-  threshold:
-    1993-01-01:
-      value: 1.0
-description: Retraite complémentaire ARRCO (Tranche A)
+      value: 0

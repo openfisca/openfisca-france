@@ -1,5 +1,6 @@
 description: Majoration pour du plafond CMU pour l'ACS
-unit: /1
+metadata:
+  unit: /1
 values:
   2005-01-01:
     value: 0.15

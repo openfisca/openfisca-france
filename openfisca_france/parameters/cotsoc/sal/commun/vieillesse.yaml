@@ -1,5 +1,9 @@
+description: Vieillesse (régime de base de la retraite CNAV)
 brackets:
-- rate:
+- threshold:
+    1993-07-01:
+      value: 0
+  rate:
     1993-07-01:
       value: 0.0655
     2006-01-01:
@@ -12,13 +16,9 @@ brackets:
       value: 0.0685
     2016-01-01:
       value: 0.069
-  threshold:
+- threshold:
     1993-07-01:
-      value: 0.0
-- rate:
+      value: 1
+  rate:
     1993-07-01:
-      value: 0.0
-  threshold:
-    1993-07-01:
-      value: 1.0
-description: Vieillesse (régime de base de la retraite CNAV)
+      value: 0

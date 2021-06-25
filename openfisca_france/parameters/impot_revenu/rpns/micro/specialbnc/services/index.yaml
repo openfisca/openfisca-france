@@ -1,2 +1,4 @@
 description: Activité de service
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

@@ -1,5 +1,17 @@
+description: Chômage-emploi ASSEDIC
+metadata:
+  reference:
+    2018-01-01:
+      href: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
+    2018-10-01:
+      href: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
 brackets:
-- rate:
+- threshold:
+    1993-07-01:
+      value: 0
+    2018-10-01:
+      value: null
+  rate:
     1993-07-01:
       value: 0.0377
     1994-01-01:
@@ -23,27 +35,16 @@ brackets:
     2007-01-01:
       value: 0.024
     2018-01-01:
-      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
       value: 0.0095
     2018-10-01:
-      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
       value: null
-  threshold:
-    1993-07-01:
-      value: 0.0
-    2018-10-01:
-      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
-      value: null
-- rate:
+- threshold:
     2003-01-01:
-      value: 0.0
+      value: 4
     2018-10-01:
-      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
       value: null
-  threshold:
+  rate:
     2003-01-01:
-      value: 4.0
+      value: 0
     2018-10-01:
-      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
       value: null
-description: Chômage-emploi ASSEDIC

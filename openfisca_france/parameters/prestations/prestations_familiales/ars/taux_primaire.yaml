@@ -1,6 +1,8 @@
 description: Taux pour les écoliers en % de la base mensuelle des allocations familiales (BMAF)
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
 values:
   1986-08-01:
     value: 0.2

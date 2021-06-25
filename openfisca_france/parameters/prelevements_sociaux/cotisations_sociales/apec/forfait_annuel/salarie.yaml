@@ -1,5 +1,7 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
 values:
   1976-03-01:
     value: 9.12
@@ -16,7 +18,7 @@ values:
   1982-03-01:
     value: 19.68
   1983-03-01:
-    value: 22.0
+    value: 22
   1984-03-01:
     value: 23.92
   1985-03-01:
@@ -56,7 +58,7 @@ values:
   2002-03-01:
     value: 6.772
   2003-03-01:
-    value: 7.0
+    value: 7
   2004-03-01:
     value: 7.13
   2005-03-01:

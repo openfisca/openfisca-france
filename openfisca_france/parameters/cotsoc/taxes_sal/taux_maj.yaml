@@ -1,101 +1,101 @@
-description: 'Taxes sur les salaires : taux majorés (France métropolitaine seulement)'
+description: "Taxes sur les salaires : taux majorés (France métropolitaine seulement)"
 metadata:
-  threshold_unit: currency
   rate_unit: /1
+  threshold_unit: currency
 brackets:
-- rate:
+- threshold:
     2001-01-01:
-      value: 0.0
-  threshold:
+      value: 0
+  rate:
     2001-01-01:
-      value: 0.0
-- rate:
-    2001-01-01:
-      value: 0.0425
-  threshold:
+      value: 0
+- threshold:
     2001-01-01:
       value: 6459.26
     2002-01-01:
-      value: 6563.0
+      value: 6563
     2003-01-01:
-      value: 6675.0
+      value: 6675
     2004-01-01:
-      value: 6789.0
+      value: 6789
     2005-01-01:
-      value: 6904.0
+      value: 6904
     2006-01-01:
-      value: 7029.0
+      value: 7029
     2007-01-01:
-      value: 7156.0
+      value: 7156
     2008-01-01:
-      value: 7250.0
+      value: 7250
     2009-01-01:
-      value: 7461.0
+      value: 7461
     2010-01-01:
-      value: 7491.0
+      value: 7491
     2011-01-01:
-      value: 7604.0
+      value: 7604
     2014-01-01:
-      value: 7666.0
+      value: 7666
     2015-01-01:
-      value: 7705.0
+      value: 7705
     2016-01-01:
-      value: 7713.0
+      value: 7713
     2017-01-01:
       value: 7721
     2018-01-01:
       value: 7779
-- rate:
+  rate:
     2001-01-01:
-      value: 0.0935
-  threshold:
+      value: 0.0425
+- threshold:
     2001-01-01:
       value: 12906.33
     2002-01-01:
-      value: 13113.0
+      value: 13113
     2003-01-01:
-      value: 13337.0
+      value: 13337
     2004-01-01:
-      value: 13563.0
+      value: 13563
     2005-01-01:
-      value: 13793.0
+      value: 13793
     2006-01-01:
-      value: 14042.0
+      value: 14042
     2007-01-01:
-      value: 14295.0
+      value: 14295
     2008-01-01:
-      value: 14481.0
+      value: 14481
     2009-01-01:
-      value: 14902.0
+      value: 14902
     2010-01-01:
-      value: 14960.0
+      value: 14960
     2011-01-01:
-      value: 15185.0
+      value: 15185
     2014-01-01:
-      value: 15308.0
+      value: 15308
     2015-01-01:
-      value: 15385.0
+      value: 15385
     2016-01-01:
-      value: 15401.0
+      value: 15401
     2017-01-01:
       value: 15417
     2018-01-01:
       value: 15572
-- rate:
+  rate:
+    2001-01-01:
+      value: 0.0935
+- threshold:
     2013-01-01:
-      value: 0.1575
-    2018-01-01:
-      value: null
-  threshold:
-    2013-01-01:
-      value: 150000.0
+      value: 150000
     2014-01-01:
-      value: 151208.0
+      value: 151208
     2015-01-01:
-      value: 151965.0
+      value: 151965
     2016-01-01:
-      value: 152122.0
+      value: 152122
     2017-01-01:
       value: 152279
+    2018-01-01:
+      value: null
+  rate:
+    2013-01-01:
+      value: 0.1575
     2018-01-01:
       value: null

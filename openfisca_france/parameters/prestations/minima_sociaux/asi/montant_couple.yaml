@@ -1,6 +1,11 @@
 description: Montant annuel maximal de l'ASI pour un couple
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    0001-01-01:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    2019-04-01:
+      href: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44460.pdf
+  unit: currency
 values:
   2006-01-01:
     value: 7118.77
@@ -30,4 +35,3 @@ values:
     value: 8107.54
   2019-04-01:
     value: 8237.26
-    reference: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44460.pdf

@@ -1,5 +1,7 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
 values:
   2010-01-01:
-    value: 10000.0
+    value: 10000

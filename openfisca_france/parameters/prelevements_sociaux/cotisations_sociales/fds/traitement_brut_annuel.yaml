@@ -1,66 +1,68 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
 values:
   1989-09-01:
-    value: 71448.0
+    value: 71448
   1990-01-01:
-    value: 71806.0
+    value: 71806
   1990-04-01:
-    value: 72662.0
+    value: 72662
   1990-12-01:
-    value: 73591.0
+    value: 73591
   1991-02-01:
-    value: 75040.0
+    value: 75040
   1991-08-01:
-    value: 75998.0
+    value: 75998
   1991-11-01:
-    value: 76755.0
+    value: 76755
   1992-02-01:
-    value: 77736.0
+    value: 77736
   1992-10-01:
-    value: 78796.0
+    value: 78796
   1993-02-01:
-    value: 80156.0
+    value: 80156
   1994-01-01:
-    value: 80957.0
+    value: 80957
   1994-08-01:
-    value: 81362.0
+    value: 81362
   1994-12-01:
-    value: 82011.0
+    value: 82011
   1995-03-01:
-    value: 82995.0
+    value: 82995
   1995-11-01:
-    value: 84157.0
+    value: 84157
   1997-03-01:
-    value: 84577.0
+    value: 84577
   1997-10-01:
-    value: 85000.0
+    value: 85000
   1998-01-01:
-    value: 91188.0
+    value: 91188
   1998-04-01:
-    value: 91918.0
+    value: 91918
   1998-07-01:
-    value: 92575.0
+    value: 92575
   1998-11-01:
-    value: 93032.0
+    value: 93032
   1999-04-01:
-    value: 93829.0
+    value: 93829
   1999-07-01:
-    value: 95244.0
+    value: 95244
   1999-12-01:
-    value: 95578.0
+    value: 95578
   2000-12-01:
-    value: 96056.0
+    value: 96056
   2001-05-01:
-    value: 97212.0
+    value: 97212
   2001-11-01:
-    value: 97891.0
+    value: 97891
   2002-01-01:
-    value: 14923.0
+    value: 14923
   2002-03-01:
-    value: 15013.0
+    value: 15013
   2002-12-01:
-    value: 15118.0
+    value: 15118
   2004-01-01:
     value: 15193.67
   2005-02-01:

@@ -1,5 +1,9 @@
+description: Retraite complémentaire
 brackets:
-- rate:
+- threshold:
+    1993-01-01:
+      value: 0
+  rate:
     1993-07-01:
       value: 0.02952
     1996-01-01:
@@ -14,10 +18,10 @@ brackets:
       value: 0.0458
     2015-01-01:
       value: 0.0465
-  threshold:
-    1993-01-01:
-      value: 0.0
-- rate:
+- threshold:
+    2000-01-01:
+      value: 1
+  rate:
     2000-01-01:
       value: 0.075
     2002-01-01:
@@ -30,13 +34,9 @@ brackets:
       value: 0.1208
     2015-01-01:
       value: 0.1215
-  threshold:
+- threshold:
     2000-01-01:
-      value: 1.0
-- rate:
+      value: 3
+  rate:
     2000-01-01:
-      value: 0.0
-  threshold:
-    2000-01-01:
-      value: 3.0
-description: Retraite complémentaire
+      value: 0

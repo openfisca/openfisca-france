@@ -1,16 +1,25 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    0001-01-01:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    2017-10-01:
+      href: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_5
+    2019-10-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&dateTexte=20191008
+    2020-10-01:
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042378438/2020-10-01
+  unit: currency
 values:
   1994-07-01:
-    value: 142.0
+    value: 142
   1997-07-01:
-    value: 145.0
+    value: 145
   1998-07-01:
-    value: 147.0
+    value: 147
   1999-07-01:
-    value: 149.0
+    value: 149
   2000-07-01:
-    value: 150.0
+    value: 150
   2001-07-01:
     value: 23.25
   2002-07-01:
@@ -32,11 +41,8 @@ values:
   2014-10-01:
     value: 26.61
   2017-10-01:
-    reference: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_5
     value: 26.83
   2019-10-01:
-    reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&dateTexte=20191008
     value: 26.91
   2020-10-01:
     value: 26.99
-    reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042378438/2020-10-01

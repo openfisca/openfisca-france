@@ -1,5 +1,9 @@
+description: Formation professionnelle (plus de 20 salariés)
 brackets:
-- rate:
+- threshold:
+    1992-01-01:
+      value: 0
+  rate:
     1992-01-01:
       value: 0.014
     1993-01-01:
@@ -8,7 +12,3 @@ brackets:
       value: 0.016
     2015-01-01:
       value: 0.01
-  threshold:
-    1992-01-01:
-      value: 0.0
-description: Formation professionnelle (plus de 20 salariés)

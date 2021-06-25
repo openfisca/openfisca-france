@@ -1,22 +1,31 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    0001-01-01:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    2015-10-01:
+      href: https://www.legifrance.gouv.fr/eli/arrete/2015/10/16/AFSS1524789A/jo/article_2
+    2017-10-01:
+      href: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_14
+    2019-10-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&dateTexte=20191008
+  unit: currency
 values:
   1990-07-01:
-    value: 1990.0
+    value: 1990
   1991-07-01:
-    value: 2079.0
+    value: 2079
   1992-07-01:
-    value: 2187.0
+    value: 2187
   1994-07-01:
-    value: 2211.0
+    value: 2211
   1997-07-01:
-    value: 2251.0
+    value: 2251
   1998-07-01:
-    value: 2305.0
+    value: 2305
   1999-07-01:
-    value: 2307.0
+    value: 2307
   2000-07-01:
-    value: 2330.0
+    value: 2330
   2001-07-01:
     value: 359.47
   2002-07-01:
@@ -42,11 +51,8 @@ values:
   2014-09-01:
     value: 428.92
   2015-10-01:
-    reference: https://www.legifrance.gouv.fr/eli/arrete/2015/10/16/AFSS1524789A/jo/article_2
     value: 429.26
   2017-10-01:
-    reference: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_14
     value: 432.48
   2019-10-01:
-    reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&dateTexte=20191008
     value: 433.78
