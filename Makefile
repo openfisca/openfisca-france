@@ -43,3 +43,13 @@ test: clean check-syntax-errors check-style
 	@# before parsing source files containing formulas.
 	pytest
 	openfisca test --country-package openfisca_france tests
+
+test-parallel: clean check-syntax-errors check-style
+	@# Launch tests from openfisca_france/tests directory (and not .) because TaxBenefitSystem must be initialized
+	@# before parsing source files containing formulas.
+	pytest -n=32
+	find ./tests -name \*.yml | parallel -j 32 --halt soon,fail=1 --progress openfisca test --country-package openfisca_france
+	find ./tests -name \*.yaml | parallel -j 32 --halt soon,fail=1 --progress openfisca test --country-package openfisca_france
+	
+	
+ 
