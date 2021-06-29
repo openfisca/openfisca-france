@@ -1,0 +1,8 @@
+description: Actions gratuites 18%
+# IPP : imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012 -> Taux tranche inférieure ?
+# Servait dans ir.py : plus_values.taux2 * f3vd
+reference: openfisca
+unit: /1
+values:
+  2008-01-01:
+    value: 0.18

@@ -1,0 +1,16 @@
+description: Capital risque (VL)
+# Gains de sociétés de capital risque 
+# Déclarez les produits imposables au taux de 24 % case 3VLde la décla-ration complémentaire n° 2042 C et le montant des produits et plus-values exonérés case 3VC. Le montant porté case 3VCsera uniquementretenu pour la détermination du revenu fiscal de référence. Les gainsdéclarés en case 3VLsont imposables aux prélèvements sociaux.
+# IPP : imposition_plus_values_cession_valeurs_mobilieres_plus_values_professionnelles ?
+reference: openfisca
+unit: /1
+values:
+  2002-01-01:
+    value: 0.16
+  2008-01-01:
+    value: 0.18
+  2011-01-01:
+    value: 0.19
+  2012-01-01:
+    value: 0.24
+  2013-01-01: expected

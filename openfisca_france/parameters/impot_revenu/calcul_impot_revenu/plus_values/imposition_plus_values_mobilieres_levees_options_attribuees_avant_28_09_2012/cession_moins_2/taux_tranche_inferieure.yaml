@@ -1,0 +1,11 @@
+# Lorsque le prix de cession des titres est inférieur à leur valeur réelle à la date de levée de
+# l’option, la différence (moins-value de cession) peut être imputée sur le gain de levée d’option
+# imposé au taux de 18%, 30% ou 41% (lignes 3VD, 3VI ou 3VF)
+# ou selon les règles des traitements et salaires (ligne 3VJ ou 3VK). 
+description: Taux tranche inférieure (30%, case 3VI de la 2042C)
+unit: /1
+values:
+  1995-01-01:
+    value: 0.3
+  1977-01-01:
+    value: null

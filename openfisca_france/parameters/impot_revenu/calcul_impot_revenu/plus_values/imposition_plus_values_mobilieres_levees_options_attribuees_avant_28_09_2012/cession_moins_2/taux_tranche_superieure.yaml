@@ -1,0 +1,11 @@
+description: Actions gratuites 40%, case 3VF de la 2042C
+# Anciennement taux4
+# case 3vf
+unit: /1
+values:
+  2010-01-01:
+    value: 0.41
+  2000-01-01:
+    value: 0.4
+  1977-01-01:
+    value: null

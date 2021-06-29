@@ -1,0 +1,13 @@
+# imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012:
+#   description: Imposition des gains de levées d'options sur titre attribuées avant le 28/09/2012 (3)
+#   cession_moins_2:
+#     description: Cession durant le délai de portage de 2 ans (après le délai d'indisponibilité)
+#     taux_tranche_superieure:
+description: Actions gratuites 40%
+reference: openfisca
+unit: /1
+values:
+  2000-01-01:
+    value: 0.4
+  2010-01-01:
+    value: 0.41

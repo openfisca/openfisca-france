@@ -1664,12 +1664,13 @@ class taxation_plus_values_hors_bareme(Variable):
         # revenus taxés à un taux proportionnel
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux1 * max_(0, f3vg - f3vh)
-            + plus_values.taux_pv_mob_pro * f3vl
+            plus_values.pvce_rpns * rpns_pvce
+            # 3VG s’il s’agit d’un gain ou 3VH s’il s’agit d’une perte.
+            + plus_values.imposition_plus_values_cession_valeurs_mobilieres_plus_values_professionnelles * max_(0, f3vg - f3vh)
+            + plus_values.imposition_plus_values_cession_valeurs_mobilieres_plus_values_professionnelles * f3vl
             + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_inferieure * f3vi
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_superieure * f3vf
             )
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
@@ -1694,13 +1695,13 @@ class taxation_plus_values_hors_bareme(Variable):
         # revenus taxés à un taux proportionnel
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux1 * max_(0, f3vg - f3vh)
-            + plus_values.taux_pv_mob_pro * f3vl
+            plus_values.pvce_rpns * rpns_pvce
+            + plus_values.imposition_plus_values_cession_valeurs_mobilieres_plus_values_professionnelles * max_(0, f3vg - f3vh)
+            + plus_values.imposition_plus_values_cession_valeurs_mobilieres_plus_values_professionnelles * f3vl
             + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
-            + plus_values.taux2 * f3vd
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_inferieure * f3vi
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_superieure * f3vf
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_plus_2.taux_tranche_inferieure * f3vd
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -1727,15 +1728,15 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vf = foyer_fiscal.sum(f3vf_i)
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux1 * max_(0, f3vg - f3vh)
-            + plus_values.taux2 * f3vd
-            + plus_values.taux_pv_mob_pro * f3vl
+            plus_values.pvce_rpns * rpns_pvce
+            + plus_values.imposition_plus_values_cession_valeurs_mobilieres_plus_values_professionnelles * max_(0, f3vg - f3vh)
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_plus_2.taux_tranche_inferieure * f3vd
+            + plus_values.imposition_plus_values_cession_valeurs_mobilieres_plus_values_professionnelles * f3vl
             + plus_values.pea.taux_avant_2_ans * f3vm
             + plus_values.pea.taux_posterieur * f3vt
             + plus_values.taux_pv_entrep * f3sa_2012
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_inferieure * f3vi
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_superieure * f3vf
             + plus_values.taux_plus_values_bspce * f3sj
             + plus_values.taux_plus_values_bspce_conditionnel * f3sk
             )
@@ -1760,12 +1761,12 @@ class taxation_plus_values_hors_bareme(Variable):
         plus_values = parameters(period).impot_revenu.calcul_impot_revenu.plus_values
 
         return round_(
-            plus_values.pvce * rpns_pvce
+            plus_values.pvce_rpns * rpns_pvce
             + plus_values.pea.taux_avant_2_ans * f3vm
             + plus_values.pea.taux_posterieur * f3vt
-            + plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_plus_2.taux_tranche_inferieure * f3vd
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_inferieure * f3vi
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_superieure * f3vf
             + plus_values.taux_plus_values_bspce * f3sj
             + plus_values.taux_plus_values_bspce_conditionnel * f3sk
             )
@@ -1792,12 +1793,12 @@ class taxation_plus_values_hors_bareme(Variable):
         plus_values = parameters(period).impot_revenu.calcul_impot_revenu.plus_values
 
         return round_(
-            plus_values.pvce * rpns_pvce
+            plus_values.pvce_rpns * rpns_pvce
             + plus_values.pea.taux_avant_2_ans * f3vm
             + plus_values.pea.taux_posterieur * f3vt
-            + plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_plus_2.taux_tranche_inferieure * f3vd
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_inferieure * f3vi
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_superieure * f3vf
             + plus_values.taux_plus_values_bspce * f3sj
             + plus_values.taux_plus_values_bspce_conditionnel * f3sk
             + plus_values.taux_plus_values_report * f3wi
@@ -1826,9 +1827,9 @@ class taxation_plus_values_hors_bareme(Variable):
         plus_values = parameters(period).impot_revenu.calcul_impot_revenu.plus_values
 
         return round_(
-            plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
+            plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_plus_2.taux_tranche_inferieure * f3vd
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_inferieure * f3vi
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_superieure * f3vf
             + plus_values.taux_plus_values_bspce * f3sj
             + plus_values.taux_plus_values_bspce_conditionnel * f3sk
             + plus_values.pea.taux_avant_2_ans * f3vm
@@ -1862,9 +1863,9 @@ class taxation_plus_values_hors_bareme(Variable):
         P = parameters(period).impot_revenu.rpns
 
         return round_(
-            plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
+            plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_plus_2.taux_tranche_inferieure * f3vd
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_inferieure * f3vi
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_superieure * f3vf
             + P.taux10 * rpns_info
             + plus_values.taux_plus_values_bspce * f3sj
             + plus_values.taux_plus_values_bspce_conditionnel * f3sk

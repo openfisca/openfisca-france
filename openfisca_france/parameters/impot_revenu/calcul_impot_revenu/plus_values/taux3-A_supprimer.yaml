@@ -1,0 +1,8 @@
+# devient imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_inferieure
+
+description: Actions gratuites 30%
+reference: openfisca
+unit: /1
+values:
+  1995-01-01:
+    value: 0.3

@@ -1,0 +1,9 @@
+description: Taux tranche inférieure
+unit: /1
+values:
+  2008-01-01:
+    value: 0.18
+  2006-01-01:
+    value: 0.16
+  1977-01-01:
+    value: null

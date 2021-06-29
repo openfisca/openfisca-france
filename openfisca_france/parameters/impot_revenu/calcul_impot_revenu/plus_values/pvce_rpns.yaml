@@ -1,0 +1,19 @@
+# WARNING : je ne sais pas ce que c'est !!!
+# RPNS : revenu des personnes non-salariées
+# PVCE : Plus Value de CEssion ?
+description: Calcul de l'impôt sur le revenu, imposition des plus values de cession (RPNS) 16%
+unit: /1
+values:
+  2002-01-01:
+    value: 0.16
+  2017-01-01:
+    value: 0.128
+
+metadata:
+  ux_name: Imposition des plus values de cession (RPNS) 16%
+  last_review: null
+  reference: null
+  official_journal_date: null
+  notes: null
+  description_en: null
+documentation: "WARNING : je ne sais pas ce que c'est !!!"
