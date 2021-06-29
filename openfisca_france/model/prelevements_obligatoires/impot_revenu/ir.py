@@ -1861,10 +1861,20 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vf = foyer_fiscal.sum(f3vf_i)
         plus_values = parameters(period).impot_revenu.calcul_impot_revenu.plus_values
         P = parameters(period).impot_revenu.rpns
-
+        """
+        Attention : Il manquait l'utilisation "Taux tranche supérieure" pour les cessions de plus de 2 ans
+        Qu'il faudrait appliquer à la case f3vi, mais on lui applique déjà le "Taux tranche inférieure"
+        pour les cessions de plus de moins de 2 ans, qui est le même (30%)
+        Mais c'est plus logique d'utiliser le cas "cessions de plus de 2 ans"
+        Car on parle d'options attribuées avant 2012 et on est ici dans la formule 2019
+        J'ai donc remplaçé le taux inférieur de moins de 2 ans par le taux supérieur de plus de 2 ans.
+        Le taux suivant n'est donc plus utilisé :
+        plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_inferieure
+        Doc des impôts : https://www.impots.gouv.fr/portail/particulier/lactionnariat-salarie
+        """
         return round_(
             plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_plus_2.taux_tranche_inferieure * f3vd
-            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_inferieure * f3vi
+            + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_plus_2.taux_tranche_superieure * f3vi
             + plus_values.imposition_plus_values_mobilieres_levees_options_attribuees_avant_28_09_2012.cession_moins_2.taux_tranche_superieure * f3vf
             + P.taux10 * rpns_info
             + plus_values.taux_plus_values_bspce * f3sj
