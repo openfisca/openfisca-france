@@ -1,5 +1,19 @@
 # Changelog
 
+
+### 55.0.0 [#1477](https://github.com/openfisca/openfisca-france/pull/1477)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`
+  - `model/prelevements_obligatoires/impot_revenu/reductions_impot.py`
+* Détails :
+  - Correction ou ajout de date de fin pour des variables de réduction de l'impôt sur le revenu
+  - Renommage de variable après la correction de leur date de fin : 
+    - Renommage de f7hs_2016 en f7hs_2017
+    - Renommage de f7hr_2016 en f7hr_2017
+
 ### 54.0.3 [#1556](https://github.com/openfisca/openfisca-france/pull/1556)
 
 * Évolution du système socio-fiscal.
