@@ -866,12 +866,79 @@ class al_biactivite(Variable):
         return deux_parents * famille.all(condition_ressource, role=Famille.PARENT)
 
 
-class aide_logement_base_ressources_defaut(Variable):
+class aide_logement_base_ressources(Variable):
     value_type = float
     entity = Famille
-    label = "Base ressource par défaut des allocations logement"
+    label = "Base ressources des allocations logement"
+    reference = [
+        "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039701752",
+        "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042841854"
+        ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
+
+        def formula_2021_01_01(famille, period, parameters):
+        biactivite = famille('al_biactivite', period)
+        Pr = parameters(period).prestations.aides_logement.ressources
+        base_ressources_i = famille.members('aide_logement_base_ressources_individu', period)
+
+        base_ressources_parents = famille.sum(base_ressources, role = Famille.PARENT)
+        ressources_patrimoine = famille('aide_logement_base_ressources_patrimoine', period)
+        abattement_ressources_enfant = parameters(period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
+        base_ressources_enfants = famille.sum(
+            max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
+
+        demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        # Revenus du foyer fiscal
+        aide_logement_base_revenus_fiscaux = (
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * conjoint_declarant_principal
+            )
+        abat_spe = (
+            famille.demandeur.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
+            * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
+            * conjoint_declarant_principal
+            )
+        base_ressources_parents = max_(0, base_ressources_parents - abat_spe)
+        ressources = (
+            base_ressources_parents
+            + base_ressources_enfants
+            + ressources_patrimoine
+            + aide_logement_base_revenus_fiscaux
+            )
+
+        # Abattement forfaitaire pour double activité
+        abattement_double_activite = biactivite * Pr.dar_1
+
+        # Arrondi aux 100 euros supérieurs
+        ressources = max_(ressources - abattement_double_activite, 0)
+
+        # Forfait de ressources pour étudiants
+        # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
+        demandeur_etudiant = famille.demandeur('etudiant', period) * (famille.demandeur('age', period) < age_etudiant_max)
+        demandeur_boursier = famille.demandeur('boursier', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        logement_crous = famille.demandeur.menage('logement_crous', period)
+        logement_crous_ou_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) + logement_crous
+        montant_plancher_ressources = not_(logement_crous_ou_foyer) * max_(0, demandeur_etudiant * params_al_ressources.dar_4 - demandeur_boursier * params_al_ressources.dar_5)
+        montant_plancher_ressources_logement_foyer = logement_crous_ou_foyer * max_(0, demandeur_etudiant * params_al_ressources.dar_11 - demandeur_boursier * params_al_ressources.dar_12)
+
+        ressources = where(demandeur_etudiant, max_(montant_plancher_ressources, montant_plancher_ressources_logement_foyer), ressources)
+
+        # Arrondi au centime, pour éviter qu'une petite imprécision liée à la recombinaison d'une valeur annuelle éclatée ne fasse monter d'un cran l'arrondi au 100€ supérieur.
+
+        ressources = round_(ressources * 100) / 100
+
+        # Arrondi aux 100 euros supérieurs
+        ressources = ceil(ressources / 100) * 100
+
+        accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
+        plancher = famille.demandeur.menage('aides_logement_primo_accedant_ressources', period)
+
+        return where(accedant, max_(ressources, plancher), ressources)
 
     def formula(famille, period, parameters):
         biactivite = famille('al_biactivite', period.n_2)
@@ -915,182 +982,7 @@ class aide_logement_base_ressources_defaut(Variable):
         abattement_double_activite = biactivite * Pr.dar_1
 
         # Arrondi aux 100 euros supérieurs
-        result = max_(ressources - abattement_double_activite, 0)
-
-        return result
-
-
-class aide_logement_base_ressources(Variable):
-    value_type = float
-    entity = Famille
-    label = "Base ressources des allocations logement"
-    reference = [
-        "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039701752",
-        "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042841854"
-        ]
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula_2021_01_01(famille, period, parameters):
-        params_al_ressources = parameters(period).prestations.aides_logement.ressources
-        age_etudiant_max = parameters(period).prestations.aides_logement.age_max_etudiant
-        # Rolling year
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
-
-        biactivite = famille('al_biactivite', annee_glissante)
-
-        base_ressources_i = famille.members('al_base_ressources_individu', period)
-        base_ressources_parents = famille.sum(base_ressources_i, role=Famille.PARENT)
-
-        demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        # Ressources des douze derniers mois
-        indemnites_journalieres_i = famille.members('indemnites_journalieres', annee_glissante, options=[ADD])
-        revenus_stage_formation_pro_i = famille.members('revenus_stage_formation_pro', annee_glissante, options=[ADD])
-        pch_i = famille.members('pch', annee_glissante, options=[ADD])
-        retraite_combattant_i = famille.members('retraite_combattant', annee_glissante, options=[ADD])
-        rente_accident_travail_i = famille.members('rente_accident_travail', annee_glissante, options=[ADD])
-        ressources_annee_glissante_i = (
-            indemnites_journalieres_i
-            + revenus_stage_formation_pro_i
-            + pch_i
-            + retraite_combattant_i
-            + rente_accident_travail_i
-            )
-        ressources_annee_glissante = famille.sum(ressources_annee_glissante_i, role=Famille.PARENT)
-        paje = famille('paje', annee_glissante, options=[ADD])
-        ressources_annee_glissante += paje
-
-        # Ressources N-2
-        indemnites_journalieres_atexa_i = famille.members('indemnites_journalieres_atexa', period.n_2, options=[ADD])
-        gains_exceptionnels_i = famille.members('gains_exceptionnels', period.n_2, options=[ADD])
-    #    # En l'absence de benefices TNS en N-2, on recupère les bénéfices de l'année glissante
-    #     benefice_agricole_i_m_12 = famille.members('tns_benefice_exploitant_agricole', annee_glissante)
-    #     benefice_micro_entreprise_i_m_12 = famille.members('tns_micro_entreprise_benefice', annee_glissante)
-    #     benefice_auto_entrepreneur_i_m_12 = famille.members('tns_auto_entrepreneur_benefice', annee_glissante,
-    #                                                         options=[ADD])
-    #     tns_autres_revenus_i_m_12 = famille.members('tns_autres_revenus', annee_glissante)
-    #     benefice_agricole_i = where(benefice_agricole_i_n_2 > 0, benefice_agricole_i_n_2, benefice_agricole_i_m_12)
-    #     benefice_micro_entreprise_i = where(benefice_micro_entreprise_i_n_2 > 0, benefice_micro_entreprise_i_n_2,
-    #                                         benefice_micro_entreprise_i_m_12)
-    #     benefice_auto_entrepreneur_i = where(benefice_auto_entrepreneur_i_n_2 > 0, benefice_auto_entrepreneur_i_n_2,
-    #                                          benefice_auto_entrepreneur_i_m_12)
-    #     tns_autres_revenus_i = where(tns_autres_revenus_i_n_2 > 0, tns_autres_revenus_i_n_2,
-    #                                  tns_autres_revenus_i_m_12)
-
-        ressources_n_2_i = (
-            indemnites_journalieres_atexa_i
-            + gains_exceptionnels_i
-           # + benefice_agricole_i
-           # + benefice_micro_entreprise_i
-           # + benefice_auto_entrepreneur_i
-           # + tns_autres_revenus_i
-            )
-        ressources_n_2 = famille.sum(ressources_n_2_i, role=Famille.PARENT)
-        f4ba = famille.demandeur.foyer_fiscal('f4ba', period.n_2)
-        plus_values_base_large = famille.demandeur.foyer_fiscal('plus_values_base_large', period.n_2)
-        deficit_exercice = famille.demandeur.foyer_fiscal('deficit_exercice', period.n_2)
-        ressources_n_2 += (
-            f4ba
-            + plus_values_base_large
-            - deficit_exercice
-            )
-
-        # Montants a soustraire
-        f4bb = famille.demandeur.foyer_fiscal('f4bb', period.n_2)
-
-        ressources_patrimoine = famille('aide_logement_base_ressources_patrimoine', period)
-        demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        revenus_fiscaux = (
-            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux',
-                                           period) * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux',
-                                            period) * conjoint_declarant_principal
-            )
-
-        # abattement_chomage_indemnise_i = famille.members('aide_logement_abattement_chomage_indemnise', period)
-        # abattement_chomage_indemnise = famille.sum(abattement_chomage_indemnise_i, role=Famille.PARENT)
-        # abattement_depart_retraite_i = famille.members('aide_logement_abattement_depart_retraite', period)
-        # abattement_depart_retraite = famille.sum(abattement_depart_retraite_i, role=Famille.PARENT)
-
-        abattement_ressources_enfant = parameters(
-            period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
-        base_ressources_enfants = famille.sum(max_(0, base_ressources_i + ressources_annee_glissante_i - abattement_ressources_enfant), role = Famille.ENFANT)
-
-        ressources = (
-            + base_ressources_parents
-            + ressources_annee_glissante
-            + ressources_n_1
-            + ressources_n_2
-            + base_ressources_enfants
-            + ressources_patrimoine
-            + revenus_fiscaux
-            - f4bb
-            # - (abattement_chomage_indemnise + abattement_depart_retraite)
-            )
-        # Abattement forfaitaire pour double activité
-        abattement_double_activite = biactivite * params_al_ressources.dar_1
-
         ressources = max_(ressources - abattement_double_activite, 0)
-
-        # Forfait de ressources pour étudiants
-        # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
-        demandeur_etudiant = famille.demandeur('etudiant', period) * (famille.demandeur('age', period) < age_etudiant_max)
-        demandeur_boursier = famille.demandeur('boursier', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        logement_crous = famille.demandeur.menage('logement_crous', period)
-        logement_crous_ou_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) + logement_crous
-        montant_plancher_ressources = not_(logement_crous_ou_foyer) * max_(0, demandeur_etudiant * params_al_ressources.dar_4 - demandeur_boursier * params_al_ressources.dar_5)
-        montant_plancher_ressources_logement_foyer = logement_crous_ou_foyer * max_(0, demandeur_etudiant * params_al_ressources.dar_11 - demandeur_boursier * params_al_ressources.dar_12)
-
-        ressources = where(demandeur_etudiant, max_(montant_plancher_ressources, montant_plancher_ressources_logement_foyer), ressources)
-
-        # Arrondi au centime, pour éviter qu'une petite imprécision liée à la recombinaison d'une valeur annuelle éclatée ne fasse monter d'un cran l'arrondi au 100€ supérieur.
-
-        ressources = round_(ressources * 100) / 100
-
-        # Arrondi aux 100 euros supérieurs
-        ressources = ceil(ressources / 100) * 100
-
-        accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
-        plancher = famille.demandeur.menage('aides_logement_primo_accedant_ressources', period)
-
-        return where(accedant, max_(ressources, plancher), ressources)
-
-    def formula(famille, period, parameters):
-        mois_precedent = period.offset(-1)
-        last_day_reference_year = period.n_2.stop
-        base_ressources_defaut = famille('aide_logement_base_ressources_defaut', period)
-        base_ressources_eval_forfaitaire = famille(
-            'aide_logement_base_ressources_eval_forfaitaire', period)
-        en_couple = famille('en_couple', period)
-
-        aah_i = famille.members('aah', mois_precedent)
-        aah = famille.sum(aah_i, role = Famille.PARENT)
-
-        age_demandeur = famille.demandeur('age', period)
-        age_conjoint = famille.conjoint('age', period)
-        smic_horaire_brut_n2 = parameters(last_day_reference_year).marche_travail.salaire_minimum.smic_h_b
-
-        salaire_imposable_i = famille.members('salaire_imposable', period.offset(-1))
-        somme_salaires = famille.sum(salaire_imposable_i, role = Famille.PARENT)
-
-        plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
-
-        plafond_salaire_jeune_isole = parameters(period).prestations.aides_logement.ressources.dar_8
-        plafond_salaire_jeune_couple = parameters(period).prestations.aides_logement.ressources.dar_9
-        plafond_salaire_jeune = where(en_couple, plafond_salaire_jeune_couple, plafond_salaire_jeune_isole)
-
-        neutral_jeune = or_(age_demandeur < 25, and_(en_couple, age_conjoint < 25))
-        neutral_jeune &= somme_salaires < plafond_salaire_jeune
-
-        eval_forfaitaire = base_ressources_defaut <= plafond_eval_forfaitaire
-        eval_forfaitaire &= base_ressources_eval_forfaitaire > 0
-        eval_forfaitaire &= aah == 0
-        eval_forfaitaire &= not_(neutral_jeune)
-        ressources = where(eval_forfaitaire, base_ressources_eval_forfaitaire, base_ressources_defaut)
 
         # Planchers de ressources pour étudiants
         # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
@@ -1116,7 +1008,6 @@ class aide_logement_base_ressources(Variable):
         plancher = famille.demandeur.menage('aides_logement_primo_accedant_ressources', period)
 
         return where(accedant, max_(ressources, plancher), ressources)
-
 
 class aides_logement_primo_accedant_ressources(Variable):
     value_type = float
