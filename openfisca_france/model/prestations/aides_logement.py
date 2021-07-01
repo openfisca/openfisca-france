@@ -247,31 +247,6 @@ class etat_logement(Variable):
     set_input = set_input_dispatch_by_period
     definition_period = MONTH
 
-
-class assistant_maternel(Variable):
-    value_type = bool
-    entity = Individu
-    label = "Exerce la profession d'assistant maternel"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
-class assistant_familial(Variable):
-    value_type = bool
-    entity = Individu
-    label = "Exerce la profession d'assistant familial"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
-class journaliste(Variable):
-    value_type = bool
-    entity = Individu
-    label = "Journaliste"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
 class aide_logement_date_pret_conventionne(Variable):
     value_type = date
     default_value = date.max
@@ -595,6 +570,8 @@ class al_base_ressources_individu(Variable):
         rpns_mvlt = individu('moins_values_long_terme_non_salaries', period.n_2)
 
         rpns = rpns + rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
+
+        rpns_glissant = individu('rpns', period.n_2)
 
         pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period.last_year, options = [ADD])
         retraite_imposable = individu('retraite_imposable', annee_glissante, options=[ADD])
