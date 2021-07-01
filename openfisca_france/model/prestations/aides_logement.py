@@ -532,7 +532,7 @@ class aide_logement_condition_neutralisation(Variable):
 class aide_logement_abattement_revenus_activite_professionnelle(Variable):
     value_type = float
     entity = Individu
-    label = "Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
+    label = "Condition de l'abattement pour personnes au chômage indemnisé ou départ à la retraite (R351-13 du CCH)"
     definition_period = MONTH
     reference = [ #Article 822-13 du code de la construction et de l'habitation
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878977",
@@ -555,7 +555,7 @@ class aide_logement_abattement_revenus_activite_professionnelle(Variable):
 class aide_logement_abattement_indemnites_chomage(Variable):
     value_type = float
     entity = Individu
-    label = "Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
+    label = "Conditon de l'abattement pour départ à la retraite (R351-13 du CCH)"
     definition_period = MONTH
     reference = [ #Article 822-13 du code de la construction et de l'habitation
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878977",
@@ -597,7 +597,7 @@ class al_base_ressources_individu(Variable):
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
 
-        abattement = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
+        abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
         rpns = individu('rpns', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
@@ -621,9 +621,9 @@ class al_base_ressources_individu(Variable):
 
         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
 
-        revenus =  (max_(0,salaire_imposable + f1tt + f3vj - abattement) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
+        revenus =  (max_(0,salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
 
-        revenus = revenus + ((chomage_imposable + min(0,salaire_imposable + f1tt + f3vj - abattement)) * (1 - taux_abattement * abattement_indemnites_chomage))
+        revenus = revenus + ((chomage_imposable + min(0,salaire_imposable + f1tt + f3vj - abattement_frais_pro)) * (1 - taux_abattement * abattement_indemnites_chomage))
 
         revenus = revenus * (1 - aide_logement_condition_neutralisation)
 
@@ -649,7 +649,7 @@ class al_base_ressources_individu(Variable):
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
 
-        abattement = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
+        abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
         rpns = individu('rpns', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
@@ -667,9 +667,9 @@ class al_base_ressources_individu(Variable):
 
         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
 
-        revenus =  (max_(0,salaire_imposable + f1tt + f3vj - abattement) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
+        revenus =  (max_(0,salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
 
-        revenus = revenus + ((chomage_imposable + min(0,salaire_imposable + f1tt + f3vj - abattement)) * (1 - taux_abattement * abattement_indemnites_chomage))
+        revenus = revenus + ((chomage_imposable + min(0,salaire_imposable + f1tt + f3vj - abattement_frais_pro)) * (1 - taux_abattement * abattement_indemnites_chomage))
 
         revenus = revenus * (1 - aide_logement_condition_neutralisation)
 
