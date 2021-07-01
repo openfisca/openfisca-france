@@ -535,7 +535,6 @@ class aide_logement_abattement_indemnites_chomage(Variable):
             return min_(1, (activite == TypesActivite.retraite) * ((salaire_imposable + rpns) == 0) +
                             (aah > 0) * ((salaire_imposable + rpns) == 0))
 
-
 class al_base_ressources_individu(Variable):
     value_type = float
     is_period_size_independent = True
@@ -570,8 +569,6 @@ class al_base_ressources_individu(Variable):
         rpns_mvlt = individu('moins_values_long_terme_non_salaries', period.n_2)
 
         rpns = rpns + rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
-
-        rpns_glissant = individu('rpns', period.n_2)
 
         pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period.last_year, options = [ADD])
         retraite_imposable = individu('retraite_imposable', annee_glissante, options=[ADD])
@@ -863,14 +860,15 @@ class aide_logement_base_ressources_defaut(Variable):
     def formula(famille, period, parameters):
         biactivite = famille('al_biactivite', period.n_2)
         Pr = parameters(period).prestations.aides_logement.ressources
-        base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
-        base_ressources_parents = famille.sum(base_ressources_i, role = Famille.PARENT)
+        base_ressources_i = famille.members('aide_logement_base_ressources_individu', period)
+        base_ressources_eval_forfaitaire_i = famille.members('aide_logement_base_ressources_eval_forfaitaire', period)
+        base_ressources = where(
+            base_ressources_eval_forfaitaire_i > 0,
+            base_ressources_eval_forfaitaire_i,
+            base_ressources_i
+        )
+        base_ressources_parents = famille.sum(base_ressources, role = Famille.PARENT)
         ressources_patrimoine = famille('aide_logement_base_ressources_patrimoine', period)
-        abattement_chomage_indemnise_i = famille.members('aide_logement_abattement_chomage_indemnise', period)
-        abattement_chomage_indemnise = famille.sum(abattement_chomage_indemnise_i, role = Famille.PARENT)
-        abattement_depart_retraite_i = famille.members('aide_logement_abattement_depart_retraite', period)
-        abattement_depart_retraite = famille.sum(abattement_depart_retraite_i, role = Famille.PARENT)
-        neutralisation_rsa = famille('aide_logement_neutralisation_rsa', period)
         abattement_ressources_enfant = parameters(period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
         base_ressources_enfants = famille.sum(
             max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
@@ -895,7 +893,6 @@ class aide_logement_base_ressources_defaut(Variable):
             + base_ressources_enfants
             + ressources_patrimoine
             + aide_logement_base_revenus_fiscaux
-            - (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
             )
 
         # Abattement forfaitaire pour double activité
