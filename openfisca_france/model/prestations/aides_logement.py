@@ -756,7 +756,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
         last_day_reference_year = period.n_2.stop
 
         revenu_assimile_salaire_apres_abattements_i = individu.famille.members('revenu_assimile_salaire_apres_abattements', period.n_2, options=[ADD])
-        revenu_assimile_salaire_apres_abattements = individu.famille.sum(revenu_assimile_salaire_apres_abattements_i,period.n_2, role = Famille.PARENT)
+        revenu_assimile_salaire_apres_abattements = individu.famille.sum(revenu_assimile_salaire_apres_abattements_i, role = Famille.PARENT)
 
         rpns = individu('rpns', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
@@ -766,8 +766,11 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
 
         rpns = rpns + rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
 
-        revenu_assimile_pension_apres_abattements_i = individu('revenu_assimile_pension_apres_abattements', period.n_2, options = [ADD])
-        revenu_assimile_pension_apres_abattements = individu.famille.sum(revenu_assimile_pension_apres_abattements_i,period.n_2, role = Famille.PARENT)
+        revenu_assimile_pension_apres_abattements_i = individu.famille.members('revenu_assimile_pension_apres_abattements', period.n_2, options = [ADD])
+        revenu_assimile_pension_apres_abattements = individu.famille.sum(revenu_assimile_pension_apres_abattements_i, role = Famille.PARENT)
+
+        demandeur_declarant_principal = individu.famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        conjoint_declarant_principal = individu.famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         aide_logement_base_revenus_fiscaux = (
             individu.famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * demandeur_declarant_principal
