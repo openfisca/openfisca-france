@@ -770,13 +770,13 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
         revenu_assimile_pension_apres_abattements = individu.famille.sum(revenu_assimile_pension_apres_abattements_i,period.n_2, role = Famille.PARENT)
 
         aide_logement_base_revenus_fiscaux = (
-            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * conjoint_declarant_principal
+            individu.famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * demandeur_declarant_principal
+            + individu.famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * conjoint_declarant_principal
             )
 
         base_ressources = revenu_assimile_salaire_apres_abattements + rpns + revenu_assimile_pension_apres_abattements + aide_logement_base_revenus_fiscaux
 
-        en_couple = famille('en_couple', period)
+        en_couple = individu.famille('en_couple', period)
 
         aah_i = individu.famille.members('aah', mois_precedent)
         aah = individu.famille.sum(aah_i, role = Famille.PARENT)
@@ -786,7 +786,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
         smic_horaire_brut_n2 = parameters(last_day_reference_year).cotsoc.gen.smic_h_b
 
         salaire_imposable_i = individu.famille.members('salaire_imposable', period.offset(-1))
-        somme_salaires = famille.sum(salaire_imposable_i, role = Famille.PARENT)
+        somme_salaires = individu.famille.sum(salaire_imposable_i, role = Famille.PARENT)
 
         plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
 
