@@ -1,5 +1,13 @@
 # Changelog
 
+##
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2021
+* Zones impactées : `model/covid19/jeunes.py`
+* Détails :
+  - Applique une mise à jour de la réglementation.
+  - Reporte la date limite de dépôt du dossier de demande de l'aide à fin 2021.
 
 ### 55.0.0 [#1477](https://github.com/openfisca/openfisca-france/pull/1477)
 
