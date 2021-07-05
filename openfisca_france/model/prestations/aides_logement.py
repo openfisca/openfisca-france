@@ -653,7 +653,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
         "Code de la sécurité sociale - Article D542-10",
         "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F1CF3B807CE064C9F518B442EF8C856F.tpdila22v_1?idArticle=LEGIARTI000020986758&cidTexte=LEGITEXT000006073189&dateTexte=20170803&categorieLien=id&oldAction=&nbResultRech="
         ]
-    definition_period = MONTH
+    definition_period = YEAR
 
     def formula_2021_01_01(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period.n_2)
@@ -773,8 +773,8 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
         conjoint_declarant_principal = individu.famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         aide_logement_base_revenus_fiscaux = (
-            individu.famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * demandeur_declarant_principal
-            + individu.famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * conjoint_declarant_principal
+            individu.famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.this_year) * demandeur_declarant_principal
+            + individu.famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.this_year) * conjoint_declarant_principal
             )
 
         base_ressources = revenu_assimile_salaire_apres_abattements + rpns + revenu_assimile_pension_apres_abattements + aide_logement_base_revenus_fiscaux
@@ -881,8 +881,8 @@ class aide_logement_base_ressources(Variable):
 
         # Revenus du foyer fiscal
         aide_logement_base_revenus_fiscaux = (
-            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * conjoint_declarant_principal
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.this_year) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.this_year) * conjoint_declarant_principal
             )
         abat_spe = (
             famille.demandeur.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
@@ -950,8 +950,8 @@ class aide_logement_base_ressources(Variable):
 
         # Revenus du foyer fiscal
         aide_logement_base_revenus_fiscaux = (
-            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period) * conjoint_declarant_principal
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.this_year) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.this_year) * conjoint_declarant_principal
             )
         abat_spe = (
             famille.demandeur.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
