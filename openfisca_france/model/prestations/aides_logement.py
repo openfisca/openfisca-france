@@ -467,10 +467,11 @@ class aide_logement_condition_neutralisation(Variable):
     entity = Individu
     label = "Condition de neutralisation des revenus d'activité professionnelle et des indemnités de chômage dans le calcul des ressources de l'aide au logement."
     definition_period = MONTH
-    reference = [  #Article 822-15 du code de la construction et de l'habitation
+    reference = [
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878973/",
-        #Article 822-15 du code de la construction et de l'habitation
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878969/"]
+        #Article 822-15 du code de la construction et de l'habitation
+        #Article 822-15 du code de la construction et de l'habitation
 
     def formula(individu, period):
         activite_i = individu.famille.members('activite', period)
@@ -483,15 +484,13 @@ class aide_logement_condition_neutralisation(Variable):
         # chomage non indemnisé ou indemnisé mais donnant lieu au versement de l'ass
         chomage_non_indemnise_i = (activite_i == TypesActivite.chomeur) * (chomage_imposable_i == 0) + ((chomage_imposable_i > 0) * (ass_i > 0))
         chomage_non_indemnise_i = chomage_non_indemnise_i * (date_debut_chomage_i < two_months_ago)
-        chomage_non_indemnise = individu.famille.sum(chomage_non_indemnise_i,role = Famille.PARENT)
+        chomage_non_indemnise = individu.famille.sum(chomage_non_indemnise_i, role = Famille.PARENT)
         type_conges = individu('type_conges', period)
         conge_parental = (type_conges == TypesConges.conge_parental)
 
         rsa_mois_dernier = individu.famille('rsa', period.last_month)
 
-        return min_((((chomage_non_indemnise > 0) + 
-                conge_parental +
-                (rsa_mois_dernier > 0)) * individu.has_role(Famille.PARENT)),1)
+        return min_((((chomage_non_indemnise > 0) + conge_parental + (rsa_mois_dernier > 0)) * individu.has_role(Famille.PARENT)), 1)
 
 
 class aide_logement_abattement_revenus_activite_professionnelle(Variable):
@@ -499,19 +498,20 @@ class aide_logement_abattement_revenus_activite_professionnelle(Variable):
     entity = Individu
     label = "Condition de l'abattement pour personnes au chômage indemnisé ou départ à la retraite (R351-13 du CCH)"
     definition_period = MONTH
-    reference = [ #Article 822-13 du code de la construction et de l'habitation
+    reference = [ 
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878977",
-        #Article 822-14 du code de la construction et de l'habitation
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878975"]
+        #Article 822-13 du code de la construction et de l'habitation
+        #Article 822-14 du code de la construction et de l'habitation
 
     def formula(individu, period):
         activite = individu('activite', period)
         date_debut_chomage = individu('date_debut_chomage', period)
         two_months_ago = datetime64(period.offset(-2, 'month').start)
 
-        aah = individu('aah',period)
-        salaire_imposable = individu('salaire_imposable',period)
-        rpns = individu('rpns',period, options = [DIVIDE])
+        aah = individu('aah', period)
+        salaire_imposable = individu('salaire_imposable', period)
+        rpns = individu('rpns', period, options = [DIVIDE])
         return min_(1, (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) + (activite == TypesActivite.retraite) * ((salaire_imposable + rpns) == 0) + (aah > 0) * ((salaire_imposable + rpns) == 0))
 
 
@@ -520,11 +520,12 @@ class aide_logement_abattement_indemnites_chomage(Variable):
     entity = Individu
     label = "Conditon de l'abattement pour départ à la retraite (R351-13 du CCH)"
     definition_period = MONTH
-    reference = [ #Article 822-13 du code de la construction et de l'habitation
+    reference = [ 
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878977",
-        #Article 822-14 du code de la construction et de l'habitation
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878975"]
-
+        #Article 822-13 du code de la construction et de l'habitation
+        #Article 822-14 du code de la construction et de l'habitation
+    
     def formula(individu, period):
         activite = individu('activite', period)
 
@@ -582,9 +583,9 @@ class aide_logement_base_ressources_individu(Variable):
 
         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
 
-        revenus =  (max_(0,salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
+        revenus =  (max_(0, salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
 
-        revenus = revenus + ((chomage_imposable + min_(0,(salaire_imposable + f1tt + f3vj - abattement_frais_pro) * (revenu_assimile_salaire > 0))) * (1 - taux_abattement * abattement_indemnites_chomage))
+        revenus = revenus + ((chomage_imposable + min_(0, (salaire_imposable + f1tt + f3vj - abattement_frais_pro) * (revenu_assimile_salaire > 0))) * (1 - taux_abattement * abattement_indemnites_chomage))
 
         revenus = revenus * (1 - aide_logement_condition_neutralisation)
 
@@ -627,9 +628,9 @@ class aide_logement_base_ressources_individu(Variable):
 
         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
 
-        revenus =  (max_(0,salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
+        revenus = (max_(0, salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
 
-        revenus = revenus + ((chomage_imposable + min_(0,(salaire_imposable + f1tt + f3vj - abattement_frais_pro) * (revenu_assimile_salaire > 0))) * (1 - taux_abattement * abattement_indemnites_chomage))
+        revenus = revenus + ((chomage_imposable + min_(0, (salaire_imposable + f1tt + f3vj - abattement_frais_pro) * (revenu_assimile_salaire > 0))) * (1 - taux_abattement * abattement_indemnites_chomage))
 
         revenus = revenus * (1 - aide_logement_condition_neutralisation)
 
