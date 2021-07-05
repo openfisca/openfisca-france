@@ -4,4 +4,5 @@
     sortie_region_academique: [true, true, false]
     boursier: [1, 1, 0]
   output:
-    aide_mobilite_master: [1000, 1000, 0]
+    aide_mobilite_master:
+      2021: [1000, 1000, 0]
