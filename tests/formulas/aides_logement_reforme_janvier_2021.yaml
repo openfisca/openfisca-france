@@ -34,7 +34,7 @@
   input:
     famille:
       parents: [personne1]
-      rsa: 
+      rsa:
         2021-01: 0
         2020-12: 0
     menage:
