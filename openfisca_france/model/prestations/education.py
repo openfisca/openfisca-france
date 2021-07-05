@@ -352,6 +352,8 @@ class TypesClasse(Enum):
     master_1 = 'Première année de master'
     master_2 = 'Deuxième année de master'
     doctorat_1 = 'Première année de doctorat'
+    doctorat_2 = 'Deuxième année de doctorat'
+    doctorat_3 = 'Troisième année de doctorat'
     autre = 'Autre'
 
 
