@@ -217,6 +217,7 @@
       enfant1:
         age: 19
         prestations_familiales_base_ressources_individu: 12500
+        aide_logement_base_ressources_individu: 12500
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -247,6 +248,7 @@
       enfant1:
         age: 19
         prestations_familiales_base_ressources_individu: 12500
+        aide_logement_base_ressources_individu: 12500
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -262,7 +264,7 @@
         personne_de_reference:
         - enfant1
   output:
-    aide_logement_base_ressources_defaut: 12500 - 10634.36
+    aide_logement_base_ressources: 1900
 
 - name: Personne isolée 2016-06
   period: 2016-06
