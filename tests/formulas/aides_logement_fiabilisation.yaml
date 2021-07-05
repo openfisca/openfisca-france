@@ -17,7 +17,7 @@
         date_naissance: 1968-01-10
         activite: chomeur
         date_debut_chomage: 2018-07-01
-        chomage_imposable: 
+        chomage_imposable:
           2018: 7000
         salaire_imposable:
           2016: 10000
@@ -38,7 +38,7 @@
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_vide
-      logement_conventionne:  true
+      logement_conventionne: true
       zone_apl: zone_3
       loyer: 500
     individus:
@@ -46,7 +46,7 @@
         date_naissance: 1968-01-10
         activite: chomeur
         date_debut_chomage: 2018-07-01
-        chomage_imposable: 
+        chomage_imposable:
           2018: 7000
         salaire_imposable:
           2016: 10000
