@@ -655,61 +655,25 @@ class aide_logement_base_revenus_fiscaux(Variable):
         ]
     definition_period = YEAR
 
-    def formula_2021_01_01(foyer_fiscal, period):
-        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period.n_2)
-        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period.last_year) 
-       # Supprimée à partir de 2018
-        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period.n_2)
-        # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period.n_2,
-                                                                options=[ADD])
-        # Apparait à partir de 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal(
-            'revenus_capitaux_prelevement_forfaitaire_unique_ir', period.n_2, options=[ADD])
-        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period.n_2)
-        f7ga = foyer_fiscal('f7ga', period.n_2)
-        f7gb = foyer_fiscal('f7gb', period.n_2)
-        f7gc = foyer_fiscal('f7gc', period.n_2)
-        # Supprimée à partir de 2018
-        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period.n_2)
-        # Apparait à partir de 2018
-        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir',
-                                                                     period.n_2)
-        return (
-            + rente_viagere_titre_onereux_net
-            + pensions_alimentaires_versees
-            + revenu_categoriel_foncier
-            + rev_cat_rvcm
-            + revenus_capitaux_prelevement_liberatoire
-            + revenus_capitaux_prelevement_forfaitaire_unique_ir
-            + rev_cat_pv
-            + plus_values_prelevement_forfaitaire_unique_ir
-            - f7ga
-            - f7gb
-            - f7gc
-            )
-
     def formula(foyer_fiscal, period):
-        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period.n_2)
-        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period.n_2)
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         # Supprimée à partir de 2018
-        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period.n_2)
+        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
         # Supprimée à partir de 2018
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
         # Apparait à partir de 2018
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
-        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period.n_2)
-        f7ga = foyer_fiscal('f7ga', period.n_2)
-        f7gb = foyer_fiscal('f7gb', period.n_2)
-        f7gc = foyer_fiscal('f7gc', period.n_2)
+        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period)
+        f7ga = foyer_fiscal('f7ga', period)
+        f7gb = foyer_fiscal('f7gb', period)
+        f7gc = foyer_fiscal('f7gc', period)
         # Supprimée à partir de 2018
-        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period.n_2)
+        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
         # Apparait à partir de 2018
-        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period.n_2)
+        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)
 
         return (
             + revenu_categoriel_foncier
-            + pensions_alimentaires_versees
             + rente_viagere_titre_onereux_net
             + rev_cat_rvcm
             + revenus_capitaux_prelevement_liberatoire
@@ -773,11 +737,16 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
         conjoint_declarant_principal = individu.famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         aide_logement_base_revenus_fiscaux = (
-            individu.famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.this_year) * demandeur_declarant_principal
-            + individu.famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.this_year) * conjoint_declarant_principal
+            individu.famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * demandeur_declarant_principal
+            + individu.famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
+            )
+        pensions_alimentaires_versees = (
+            individu.famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.n_2) * demandeur_declarant_principal
+            + individu.famille.conjoint.foyer_fiscal('pensions_alimentaires_versees', period.n_2) * conjoint_declarant_principal
             )
 
-        base_ressources = revenu_assimile_salaire_apres_abattements + rpns + revenu_assimile_pension_apres_abattements + aide_logement_base_revenus_fiscaux
+
+        base_ressources = revenu_assimile_salaire_apres_abattements + rpns + revenu_assimile_pension_apres_abattements + aide_logement_base_revenus_fiscaux + pensions_alimentaires_versees
 
         en_couple = individu.famille('en_couple', period)
 
@@ -881,9 +850,15 @@ class aide_logement_base_ressources(Variable):
 
         # Revenus du foyer fiscal
         aide_logement_base_revenus_fiscaux = (
-            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.this_year) * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.this_year) * conjoint_declarant_principal
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
             )
+
+        pensions_alimentaires_versees = (
+            individu.famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.last_year) * demandeur_declarant_principal
+            + individu.famille.conjoint.foyer_fiscal('pensions_alimentaires_versees', period.last_year) * conjoint_declarant_principal
+            )
+
         abat_spe = (
             famille.demandeur.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
             * demandeur_declarant_principal
@@ -896,6 +871,7 @@ class aide_logement_base_ressources(Variable):
             + base_ressources_enfants
             + ressources_patrimoine
             + aide_logement_base_revenus_fiscaux
+            + pensions_alimentaires_versees
             )
 
         # Abattement forfaitaire pour double activité
@@ -950,9 +926,15 @@ class aide_logement_base_ressources(Variable):
 
         # Revenus du foyer fiscal
         aide_logement_base_revenus_fiscaux = (
-            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.this_year) * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.this_year) * conjoint_declarant_principal
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
             )
+
+        pensions_alimentaires_versees = (
+            individu.famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.n_2) * demandeur_declarant_principal
+            + individu.famille.conjoint.foyer_fiscal('pensions_alimentaires_versees', period.n_2) * conjoint_declarant_principal
+            )
+
         abat_spe = (
             famille.demandeur.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
             * demandeur_declarant_principal
@@ -965,6 +947,7 @@ class aide_logement_base_ressources(Variable):
             + base_ressources_enfants
             + ressources_patrimoine
             + aide_logement_base_revenus_fiscaux
+            + pensions_alimentaires_versees
             )
 
         # Abattement forfaitaire pour double activité
