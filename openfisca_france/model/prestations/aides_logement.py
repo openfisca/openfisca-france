@@ -871,8 +871,8 @@ class aide_logement_base_ressources(Variable):
             )
 
         pensions_alimentaires_versees = (
-            individu.famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.last_year) * demandeur_declarant_principal
-            + individu.famille.conjoint.foyer_fiscal('pensions_alimentaires_versees', period.last_year) * conjoint_declarant_principal
+            famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.last_year) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('pensions_alimentaires_versees', period.last_year) * conjoint_declarant_principal
             )
 
         abat_spe = (
@@ -946,8 +946,8 @@ class aide_logement_base_ressources(Variable):
             )
 
         pensions_alimentaires_versees = (
-            individu.famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.n_2) * demandeur_declarant_principal
-            + individu.famille.conjoint.foyer_fiscal('pensions_alimentaires_versees', period.n_2) * conjoint_declarant_principal
+            famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.n_2) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('pensions_alimentaires_versees', period.n_2) * conjoint_declarant_principal
             )
 
         abat_spe = (
