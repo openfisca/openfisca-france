@@ -6,7 +6,7 @@ class sortie_academie(Variable):
     value_type = bool
     label = "Mention d'un vœu de changement d'académie entre le lycée et les études supérieures"
     entity = Individu
-    definition_period = MONTH
+    definition_period = ETERNITY
 
 
 class aide_mobilite_parcoursup(Variable):
@@ -30,7 +30,7 @@ class sortie_region_academique(Variable):
     value_type = bool
     label = "Changement de région académique entre la 3ème année de licence (L3) et la 1ère année de master (M1)"
     entity = Individu
-    definition_period = MONTH
+    definition_period = ETERNITY
 
 
 class aide_mobilite_master(Variable):
@@ -41,7 +41,7 @@ class aide_mobilite_master(Variable):
     value_type = float
     label = "Montant de l'aide à la mobilité Master"
     entity = Individu
-    definition_period = MONTH
+    definition_period = YEAR
     reference = [
         "Décret n° 2017-969 du 10 mai 2017 relatif à l'aide à la mobilité accordée aux étudiants inscrits en première année du diplôme national de master",
         "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000034675851/"
