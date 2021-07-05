@@ -25,9 +25,9 @@ montant_maximum:
       value: 150
     2021-01-01:
       value: 200
-    2021-06-14:
+    2021-06-02:
       value: 300
-    2021-10-01:
+    2021-09-30:
       value: 200
 proportion_maximum:
   description: Part maximale du montant du séjour prise en charge pour les bénéficiaires de Départ 18-25.
@@ -41,10 +41,10 @@ proportion_maximum:
       reference: https://programme-depart-1825.com
     2021-06-14:
       value: .90
-      reference: https://www.service-public.fr/particuliers/actualites/A14868
-    2021-10-01:
+      reference: https://depart1825.com/annonce-president-vacances/
+    2021-09-30:
       value: .75
-      reference: https://www.service-public.fr/particuliers/actualites/A14868
+      reference: https://depart1825.com/annonce-president-vacances/
 reste_a_charge_minimum:
   description: Montant minimum du coût du séjour à régler pour les bénéficiaires de Départ 18-25.
   reference: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans

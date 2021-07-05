@@ -29,6 +29,7 @@
     depart1825_eligibilite: [true, false]
   output:
     depart1825_montant_maximum: [200, 0]
+
 - period: 2021-07
   input:
     depart1825_eligibilite: [true, false]
