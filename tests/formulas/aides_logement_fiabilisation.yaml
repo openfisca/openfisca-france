@@ -17,6 +17,8 @@
         date_naissance: 1968-01-10
         activite: chomeur
         date_debut_chomage: 2018-07-01
+        chomage_imposable: 
+          2018: 7000
         salaire_imposable:
           2016: 10000
     foyer_fiscal:
@@ -44,6 +46,8 @@
         date_naissance: 1968-01-10
         activite: chomeur
         date_debut_chomage: 2018-07-01
+        chomage_imposable: 
+          2018: 7000
         salaire_imposable:
           2016: 10000
     foyer_fiscal:
