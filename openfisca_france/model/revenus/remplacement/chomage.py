@@ -758,19 +758,27 @@ class revenu_disponible_avec_impots(Variable):
             + prestations_sociales
             )
 
-
-
-class crds_pfam_mensuel(Variable):
+class niveau_de_vie_avec_impots(Variable):
     value_type = float
     entity = Famille
-    label = "CRDS sur les prestations familiales)"
-    reference = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
+    label = "Niveau de vie du ménage en prenant le revenu disponible qui ne déduit pas les impôts"
     definition_period = MONTH
 
-    def formula(famille, period, parameters):
-        af = famille('af', period)
-        cf = famille('cf', period)
-        asf = famille('asf', period)
-        taux_crds = parameters(period).prelevements_sociaux.contributions.crds.taux
+    def formula(famille, period):
+        revenu_disponible_avec_impots = famille('revenu_disponible_avec_impots', period)
+        uc = famille('unites_consommation_mensuel', period)
+        return revenu_disponible_avec_impots / uc
 
-        return -(af + cf + asf) * taux_crds
+
+class unites_consommation_mensuel(Variable):
+    value_type = float
+    entity = Famille
+    label = "Unités de consommation du ménage, selon l'échelle de l'INSEE"
+    reference = "https://insee.fr/fr/metadonnees/definition/c1802"
+    definition_period = MONTH
+
+    def formula(menage, period, parameters):
+        age_individu = menage.members('age', period.first_month)
+        uc_individu = 0.5 * (age_individu >= 14) + 0.3 * (age_individu < 14)
+        return 0.5 + menage.sum(uc_individu)  # 1 uc pour la personne de référence
+
