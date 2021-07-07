@@ -503,7 +503,7 @@ class f3tj(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Gains de cession de bons de souscription de parts de crÃ©ateur d'entreprise attribuÃ©s aprÃ¨s 2018 : gains taxables Ã  12.8%"
+    label = "Gains de cession de bons de souscription de parts de créateur d'entreprise attribués après 2018 : gains taxables à 12.8%"
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
@@ -513,7 +513,7 @@ class f3tk(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Abattement forfaitaire sur les gains de cession de bons de souscription de parts de crÃ©ateur d'entreprise (dÃ©part dirigeant PME)"
+    label = "Abattement forfaitaire sur les gains de cession de bons de souscription de parts de créateur d'entreprise (départ dirigeant PME)"
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -552,7 +552,7 @@ class f3an(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Plus-value rÃ©alisÃ©e sur la cession d'actifs numÃ©riques"
+    label = "Plus-value réalisée sur la cession d'actifs numériques"
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -562,7 +562,7 @@ class f3bn(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Moins-value rÃ©alisÃ©e sur la cession d'actifs numÃ©riques"
+    label = "Moins-value réalisée sur la cession d'actifs numériques"
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -572,7 +572,7 @@ class f3pi(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Profits sur instruments financiers rÃ©alisÃ©s dans des ETNC ou paradis fiscaux"
+    label = "Profits sur instruments financiers réalisés dans des ETNC ou paradis fiscaux"
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
