@@ -1,7 +1,15 @@
 # Changelog
 
+### 55.0.1 [#1571](https://github.com/openfisca/openfisca-france/pull/1571)
 
-### 55.0.0 [#1477](https://github.com/openfisca/openfisca-france/pull/1477)
+* Correction d'un bug.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/revenus/capital/plus_value.py`
+* Détails :
+  - Corrige un encodage de caractères dans les métadonnées
+
+# 55.0.0 [#1477](https://github.com/openfisca/openfisca-france/pull/1477)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -10,7 +18,7 @@
   - `model/prelevements_obligatoires/impot_revenu/reductions_impot.py`
 * Détails :
   - Correction ou ajout de date de fin pour des variables de réduction de l'impôt sur le revenu
-  - Renommage de variable après la correction de leur date de fin : 
+  - Renommage de variable après la correction de leur date de fin :
     - Renommage de f7hs_2016 en f7hs_2017
     - Renommage de f7hr_2016 en f7hr_2017
 
@@ -27,7 +35,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2019.
-* Zones impactées : 
+* Zones impactées :
   - `parameters/prestations/aides_logement/`
   - `parameters/prestations/al_etudiant/`
   - `parameters/prestations/al_plafonds_logement_foyer/conventionne/`
@@ -38,25 +46,25 @@
 
 * Changement mineur.
 * Périodes concernées : à partir du 01/04/2020.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/prestations/minima_sociaux/asi/`
   - `openfisca_france/parameters/prestations/minima_sociaux/aah/montant.yaml`
 * Détails :
   - Corrige des références législatives d'AAH et d'ASI.
 
-# 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547) 
- 
+# 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547)
+
 * Évolution du système socio-fiscal non rétrocompatible
 * Périodes concernées : toutes.
 * Zones impactées :
   - parameters/prelevements_sociaux/
     - abat_red/
     - accidents/
-    - casa/ 
-    - cnav/      
+    - casa/
+    - cnav/
     - csa/
-    - css_chom/            
-    - famille/        
+    - css_chom/
+    - famille/
     - mmid_am/
     - mmid_ret/
     - penibilite
@@ -65,17 +73,17 @@
     - red_m/
     - ss/
     - veuvage/
-  
+
 * Détails :
   - Harmonise les paramètres des cotisations sociales:
     - Harmonise ces paramètres OpenFisca avec les barèmes IPP
     - Applique l'arborescence du modèle IPP
     - Ajoute parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/
-    - Déplace le contenu de parameters/prelevements_sociaux/abat_red...veuvage (cf. ci-dessous) vers parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/abat_red...veuvage  
+    - Déplace le contenu de parameters/prelevements_sociaux/abat_red...veuvage (cf. ci-dessous) vers parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/abat_red...veuvage
     - Ajoute de nouvelles clefs aux metadata: official_journal_date, description_en, last_review, notes, ux_name
     - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
-  
-## 53.3.0 [#1543](https://github.com/openfisca/openfisca-france/pull/1543) 
+
+## 53.3.0 [#1543](https://github.com/openfisca/openfisca-france/pull/1543)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -89,7 +97,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `model/base.py`
   - `model/prestations/jeunes/`
   - `model/prestations/education.py`
@@ -103,7 +111,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 05/02/2021 et jusqu'au 30/06/2021.
-* Zones impactées : 
+* Zones impactées :
   - `model/base.py`
   - `model/caracteristiques_socio_demographiques/demographie.py`
   - `model/covid19*`
@@ -117,9 +125,9 @@
   - Ajoute l'éligibilité et le calcul du montant de l'aide aux jeunes diplômes et anciens boursiers.
   - L'aide fait partie du dispositif "plan de relance Jeunes" faisant suite à la crise Covid-19.
 
-## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
+## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541)
 
-* Changement majeur. 
+* Changement majeur.
 * Évolution du système socio-fiscal non rétrocompatible
 * Périodes concernées : toutes.
 * Zones impactées :
@@ -138,19 +146,19 @@
     - Harmonise ces paramètres OpenFisca avec les barèmes IPP
     - Applique l'arborescence du modèle IPP
     - Ajoute parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/
-    - Déplace le contenu de parameters/prelevements_sociaux/contributions 
+    - Déplace le contenu de parameters/prelevements_sociaux/contributions
     - Ajoute de nouvelles clefs aux metadata: date_parution_jo, description_en, last_review, notes, ux_name
     - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
   - Ajoute le script de vérification openfisca_france/check_longueur_chemins.py
 
-### 52.2.0 [#1540](https://github.com/openfisca/openfisca-france/pull/1540) 
+### 52.2.0 [#1540](https://github.com/openfisca/openfisca-france/pull/1540)
 
 * Changement mineur.
 * Zones impactées :
   - `/prestations/enseignement_superieur/aide_formation_gen.py`
 * Détails :
   - Corrige les critères d'éligibilité de l'aide aux apprenants dans une formation labellisée "Grande école du numérique".
-  
+
 ### 52.1.4 [#1526](https://github.com/openfisca/openfisca-france/pull/1526) et [#1529](https://github.com/openfisca/openfisca-france/pull/1529)
 
 * Changement mineur.
