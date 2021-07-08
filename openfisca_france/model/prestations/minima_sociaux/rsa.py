@@ -687,13 +687,13 @@ class rsa_eligibilite_tns(Variable):
     def formula(famille, period, parameters):
         last_year = period.last_year
 
-        tns_benefice_agricole_i = famille.members('rpns_benefice_exploitant_agricole', last_year)
-        tns_benefice_agricole = famille.sum(tns_benefice_agricole_i)
+        rpns_benefice_agricole_i = famille.members('rpns_benefice_exploitant_agricole', last_year)
+        rpns_benefice_agricole = famille.sum(rpns_benefice_agricole_i)
 
         tns_employe_i = famille.members('tns_avec_employe', period)
         tns_avec_employe = famille.any(tns_employe_i)
 
-        tns_autres_revenus_CA_i = famille.members('rpns_autres_revenus_chiffre_affaires', last_year, options = [ADD])
+        rpns_autres_revenus_CA_i = famille.members('rpns_autres_revenus_chiffre_affaires', last_year, options = [ADD])
         tns_autres_revenus_type_activite_i = famille.members('tns_autres_revenus_type_activite', period)
 
         has_conjoint = famille('nb_parents', period) > 1
@@ -705,7 +705,7 @@ class rsa_eligibilite_tns(Variable):
         maj_1e_2ad = P_agr.maj_1e_2ad
         maj_e_sup = P_agr.maj_e_sup
 
-        def eligibilite_agricole(has_conjoint, rsa_nb_enfants, tns_benefice_agricole, P_agr):
+        def eligibilite_agricole(has_conjoint, rsa_nb_enfants, rpns_benefice_agricole, P_agr):
             plafond_benefice_agricole = P_agr.plafond_rsa * P.cotsoc.gen.smic_h_b
 
             taux_avec_conjoint = (
@@ -734,7 +734,7 @@ class rsa_eligibilite_tns(Variable):
 
             plafond_benefice_agricole_majore = taux_majoration * plafond_benefice_agricole
 
-            return tns_benefice_agricole < plafond_benefice_agricole_majore
+            return rpns_benefice_agricole < plafond_benefice_agricole_majore
 
         def eligibilite_chiffre_affaire(ca, type_activite, P_micro):
             plaf_vente = P_micro.specialbnc.marchandises.max
@@ -750,10 +750,10 @@ class rsa_eligibilite_tns(Variable):
 
             return (achat_revente * (ca <= plaf_vente)) + (service * (ca <= plaf_service))
 
-        eligibilite_agricole = eligibilite_agricole(has_conjoint, rsa_nb_enfants, tns_benefice_agricole, P_agr)
+        eligibilite_agricole = eligibilite_agricole(has_conjoint, rsa_nb_enfants, rpns_benefice_agricole, P_agr)
 
         eligibilite_chiffre_affaire = famille.all(
-            eligibilite_chiffre_affaire(tns_autres_revenus_CA_i, tns_autres_revenus_type_activite_i, P_micro),
+            eligibilite_chiffre_affaire(rpns_autres_revenus_CA_i, tns_autres_revenus_type_activite_i, P_micro),
             role = Famille.PARENT
             )
 
@@ -910,14 +910,14 @@ class rsa_non_calculable_tns_individu(Variable):
 
     def formula(individu, period):
         this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
-        tns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD])
+        rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD])
         rpns_micro_entreprise_chiffre_affaires = individu('rpns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD])
-        tns_autres_revenus = individu('rpns_autres_revenus', this_year_and_last_year, options = [ADD])
+        rpns_autres_revenus = individu('rpns_autres_revenus', this_year_and_last_year, options = [ADD])
 
         return (
-            (tns_benefice_exploitant_agricole > 0)
+            (rpns_benefice_exploitant_agricole > 0)
             + (rpns_micro_entreprise_chiffre_affaires > 0)
-            + (tns_autres_revenus > 0)
+            + (rpns_autres_revenus > 0)
             )
 
 
