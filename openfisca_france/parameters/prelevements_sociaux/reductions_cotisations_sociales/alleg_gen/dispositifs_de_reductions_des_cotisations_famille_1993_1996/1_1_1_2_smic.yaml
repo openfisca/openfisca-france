@@ -1,0 +1,55 @@
+description: Dispositifs de réductions (entre 1,1 et 1,2 SMIC) des cotisations famille (1993-1996) des allègements généraux de cotisations de Sécurité sociale (SS)
+unit: /1
+values:
+  1993-07-01:
+    value: 0.027
+  1995-01-01:
+    value: 0.054
+  1996-10-01:
+    value: null
+metadata:
+  ux_name: De 1,1 à 1,2 SMIC
+  last_review:
+    1996-10-01
+  reference:
+    1996-10-01:
+    - Loi 95-1236 du 30/12/1995
+    - title: Décret 95-835 du 20/09/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000554907
+    1995-09-01:
+    - title: Loi 95-882 du 04/08/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000371685
+    - Décrets 95-942 et 95-943 du 25/08/1995
+    1995-01-01:
+      - title: Loi 93-1313 du 20/12/1993, art. 1
+        href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657310&cidTexte=JORFTEXT000000864578
+    1993-07-01:
+      title: Loi 93-953 du 27/07/1993, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657219&cidTexte=JORFTEXT000000529278
+  official_journal_date:
+    1996-10-01: 1996-09-22
+    1995-09-01: 1985-08-05; 1985-08-26
+    1995-01-01: 1993-12-21
+    1993-07-01: 1993-07-28
+  notes:
+    1996-10-01: "Ristourne Juppé II (plafond : 1,33 SMIC)"
+    1995-09-01: "Ristourne Juppé I (plafond : 1,2 SMIC). Cumulable avec réduction cotisation famille"
+  description_en: Global reduction in SSCs (1993-2003)
+documentation: |
+  Note :
+  Pour les ristournes Juppé, un montant maximal de réduction est fixé par décret. Il correspond à la réduction dont bénéficie un employeur pour un salarié au SMIC à temps plein.
+  Le montant de la ristourne se calcule comme suit:
+  réduction = taux max*salaire brut si salaire brut <= SMIC
+  réduction = taux*(plafond - salaire brut) si salaire brut > SMIC et salaire brut <= plafond
+  Le montant de la réduction évolue chaque mois. Lorsque le salarié ne travaille pas à temps plein tout le mois, une proratisation du montant maximal est appliqué.
+  Historique des allégements :
+  La loi 93-953 du 27/07/1993, art. 1, instaure une réduction du taux des cotisations famille, partielle ou totale (taux resp. de 2,7 % et 5,4 %).
+  La loi prévoyait également un élargissement progressif du dispositif sur plusieurs années aux salariés gagnant jusqu'à 1,6 SMIC.
+  Toutefois, la loi 95-882 du 04/08/1995 a modifié le barème du dispositif à compter de septembre 1989, en introduisant une réduction progressive des cotisations MMID pouvant être cumulée avec les réductions de cotisations famille.
+  La loi 95-1236 du 30/12/1995 fusionne les deux dispositifs ; le dispositif conserve alors le nom de "ristourne Juppé".
+  La ristourne s'applique jusqu'au 30 juin 2003 (en parallèle des dispositifs Aubry II à compter de 2000)
+  (voir feuille "Aubry II")
+  Les dispositifs Juppé et Aubry II sont progressivement supprimés entre le 1er juillet 2003 et le 1er juillet 2005, et remplacés par les allégements dits "Fillon".
+  Références législatives :
+  Les allègements généraux de charges sont régulés par l'art. L241-13 du CSS (depuis 1995).
+  La loi 95-1346 du 30/12/1995 (LF pour 1996), art. 113, prévoit l'instauration des ristournes Juppé II et III.

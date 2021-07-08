@@ -1,5 +1,32 @@
 # Changelog
 
+# 56.0.0 [#1549](https://github.com/openfisca/openfisca-france/pull/1549) 
+
+* Évolution du système socio-fiscal non rétrocompatible
+* Périodes concernées : toutes.
+* Zones impactées :
+  - model/prelevements_obligatoires/
+    - prelevements_sociaux/cotisations_sociales/allegements.py
+  - parameters/prelevements_sociaux/reductions_cotisations_sociales/
+    - alleg_gen/
+    - allegement_cotisation_allocations_familiales/
+    - aubryi/
+    - aubryii/
+    - cice/
+    - cits
+    - fillon/
+    - robien/
+* Détails :
+  - Harmonise les paramètres des réductions de cotisations sociales:
+    - Harmonise ces paramètres OpenFisca avec les barèmes IPP
+    - Applique l'arborescence du modèle IPP
+    - Ajoute parameters/prelevements_sociaux/reductions_cotisations_sociales/
+    - Déplace le contenu de parameters/prelevements_sociaux/ 
+    - Ajoute de nouvelles clefs aux metadata: `official_journal_date`, `description_en`, `last_review`, `notes`, `ux_name`
+    - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
+  - Ajoute le script de vérification openfisca_france/check_longueur_chemins.py
+
+  
 ### 55.0.1 [#1571](https://github.com/openfisca/openfisca-france/pull/1571)
 
 * Correction d'un bug.
@@ -125,7 +152,8 @@
   - Ajoute l'éligibilité et le calcul du montant de l'aide aux jeunes diplômes et anciens boursiers.
   - L'aide fait partie du dispositif "plan de relance Jeunes" faisant suite à la crise Covid-19.
 
-## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541)
+## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
+>>>>>>> c260ea28a (Bump version)
 
 * Changement majeur.
 * Évolution du système socio-fiscal non rétrocompatible

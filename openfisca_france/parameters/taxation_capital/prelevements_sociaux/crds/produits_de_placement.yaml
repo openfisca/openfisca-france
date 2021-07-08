@@ -8,7 +8,7 @@ values:
 metadata:
   ux_name: Taux CRDS capital produits de placement
   last_review:
-    1996-01-01 
+    1996-01-01
   reference:
     1996-02-01: Ordonnance 96-50 du 24/01/1996, art. 15, 16 et 19
     1996-01-01:
@@ -16,7 +16,7 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757295&cidTexte=JORFTEXT000000198309
     - title: Loi 96-1181 du 30/12/1996, art. 94 (LF pour 1997)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006319749&cidTexte=JORFTEXT000000380034
-  date_parution_jo:
+  official_journal_date:
     1996-01-01: 1996-12-29; 1996-12-31
   notes:
   description_en: CRDS on financial income

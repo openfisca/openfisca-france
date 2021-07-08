@@ -1,4 +1,4 @@
-description: Taux Global de la Contribution Sociale Généralisée (CSG) sur les allocations chômage 
+description: Taux Global de la Contribution Sociale Généralisée (CSG) sur les allocations chômage
 unit: /1
 values:
   1991-02-01:
@@ -10,7 +10,7 @@ values:
 metadata:
   ux_name: Taux Global
   last_review:
-    1998-01-01 
+    1998-01-01
   reference:
     1998-01-01:
       title: Loi 97-1164 du 19/12/1997, art. 5 (LFSS pour 1998)
@@ -27,4 +27,3 @@ metadata:
 documentation: |
   Référence du Codes général des impôts :
   La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.
-  

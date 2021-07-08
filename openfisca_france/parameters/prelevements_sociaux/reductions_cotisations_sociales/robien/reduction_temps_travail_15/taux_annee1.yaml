@@ -1,0 +1,34 @@
+description: Taux de la 1ère année pour une réduction du temps de travail de 15%, allègements Robien (1996-2005) des cotisations de Sécurité sociale (SS)
+unit: /1
+values:
+  1996-07-01:
+    value: 0.5
+  1998-07-01:
+    value: null
+metadata:
+  ux_name: Taux (1ère année)
+  last_review:
+    1998-07-01
+  reference:
+    1998-07-01:
+      title: Loi 98-461 du 13/06/1998, art. 3
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657863&cidTexte=JORFTEXT000000558109
+    1996-07-01: Loi 96-502 du 11/06/1996, art. 1 et 2
+  official_journal_date:
+    1998-07-01: 1998-06-14
+    1996-07-01: 1996-06-12
+  notes:
+    1998-07-01: Abrogé par la loi "Aubry I". Voir Notes (2)
+    1996-07-01: Voir Notes (1)
+  description_en: Robien reductions (1996-2005)
+documentation: |
+  Notes :
+  (1) Les taux indiqués sont des taux de réduction du montant des cotisations patronales, pour l'ensemble des salariés de l'entreprise.
+  Cette réduction est conditionnée à la signature d'une convention qui stipule une réduction du temps de travail (de 10 ou 15 %) et qui engage l'entreprise à :
+  - soit faire des embauches, dans un délai fixé par la convention, correspondant à 10 % (resp. 15 %) de l'effectif moyen annuel de l'entreprise
+    et à l'issue de la période d'embauches, maintenir l'effectif de l'entreprise au moins à son niveau atteint, pendant au moins 2 ans
+  - soit s'engager à éviter des licenciements pour motif économique, dont le nombre est stipulé dans cette convention,
+    de même que la durée d'engagement de maintien des effectifs et les conditions de compensation de rémunération pour les salariés
+  (2) Quand bien même le dispositif Robien est supprimé, les réductions de cotisations continuent de s'appliquer, pendant le nombre d'années restantes, aux entreprises ayant signé une telle convention avant la date d'abrogation.
+  Sources :
+  Articles 39 et 39-1 de la loi 93-1313 quinquennale relative au travail, à l'emploi et à la formation professionnelle.

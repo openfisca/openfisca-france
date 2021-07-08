@@ -8,13 +8,13 @@ values:
   2016-01-01:
     value: 2850.0
   2017-01-01:
-    value: 2936.0       
+    value: 2936.0
   2018-01-01:
     value: 2942.0
   2019-01-01:
     value: 2971.0
   2020-01-01:
-    value: 3019.0    
+    value: 3019.0
 metadata:
   ux_name: RFR1 - Demi-part suppl.
   last_review:
@@ -90,7 +90,7 @@ documentation: |
   Notes :
   Pour les pensions de retraite et d'invalidité, à partir de 2015, le seuil de RFR 1 est le seuil d'exonération de CSG, et le seuil de RFR 2 est le seuil d'assujettissement au taux fort de la CSG ;
   les retraités dont le RFR est compris entre le seuil 1 et le seuil 2 sont assujettis au taux réduit de CSG.
-  À partir de 2019, le seuil de RFR 3 est le seuil d'assujettissement au taux plein de CSG ; 
+  À partir de 2019, le seuil de RFR 3 est le seuil d'assujettissement au taux plein de CSG ;
   les retraités dont le RFR est compris entre le seuil 2 et le seuil 3 sont assujettis au taux intermédiaire de CSG.
   Le RFR est le revenu fiscal de référence de l'année N-2.
   (1) Seuils de RFR pour exonération : art. L136-8-III du Code de la Sécurité Sociale (CSS)
