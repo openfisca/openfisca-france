@@ -14,12 +14,11 @@ input:
       etudiant: 0
       inapte_travail: 0
       handicap: 0
-      tns_autres_revenus:
+      rpns_autres_revenus:
         '2014': 30000
-      tns_autres_revenus_chiffre_affaires:
+      rpns_auto_entrepreneur_CA_bnc:
         '2014': 33000
       tns_autres_revenus_type_activite: bnc
-      tns_micro_entreprise_type_activite: bnc
       valeur_locative_immo_non_loue:
         2012-01: 0
       valeur_locative_terrains_non_loues:

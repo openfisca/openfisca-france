@@ -181,7 +181,7 @@
           2017-07: 0
           2017-06: 0
           2017-05: 0
-        tns_autres_revenus:
+        rpns_autres_revenus:
           2017: 1925
         pensions_invalidite:
           2018-04: 473
@@ -242,7 +242,7 @@
         date_naissance: 2005-01-01
       enfant2:
         date_naissance: 1998-01-01
-        tns_auto_entrepreneur_benefice:
+        rpns_auto_entrepreneur_benefice:
           2018-04: 50
           2018-03: 650
           2018-02: 390
@@ -371,7 +371,7 @@
         date_naissance: 1997-01-01
       enfant2:
         date_naissance: 1998-01-01
-        tns_micro_entreprise_benefice:
+        rpns_micro_entreprise_benefice:
           2017: 5420
       enfant3:
         date_naissance: 2001-06-05
@@ -471,7 +471,7 @@
           2018-04: 1200
         revenus_capital:
           2018-04: 236
-        tns_benefice_exploitant_agricole:
+        rpns_benefice_exploitant_agricole:
           2017: 4600
       parent2:
         pensions_invalidite:

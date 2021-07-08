@@ -60,9 +60,9 @@ input:
         '2013': 0
       salaire_imposable:
         '2013': 0
-      tns_auto_entrepreneur_type_activite: bic
-      tns_autres_revenus_type_activite: bic
-      tns_micro_entreprise_type_activite: bic
+      # tns_auto_entrepreneur_type_activite: bic
+      # tns_autres_revenus_type_activite: bic
+      # tns_micro_entreprise_type_activite: bic
       valeur_locative_immo_non_loue:
         2012-01: 0
       valeur_locative_terrains_non_loues:

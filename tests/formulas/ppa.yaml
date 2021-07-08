@@ -690,7 +690,7 @@
 - name: 'PPA: Auto-entrepreneur - activité libérale (BNC)'
   period: 2016-01
   input:
-    tns_benefice_exploitant_agricole:
+    rpns_benefice_exploitant_agricole:
       2014: 36000
   output:
     ppa: 0
@@ -700,8 +700,7 @@
 - name: 'PPA: Exploitant agricole, prise en compte du dernier bénéfice agricole connu'
   period: 2016-01
   input:
-    tns_auto_entrepreneur_type_activite: bnc # Abattement de 34%
-    tns_auto_entrepreneur_chiffre_affaires:
+    rpns_micro_entreprise_CA_bnc_imp: # Abattement de 34%
       2015-12: 3000
       2015-11: 3000
       2015-10: 3000
@@ -715,7 +714,7 @@
 - name: 'PPA: Travailleur non salarié, prise en compte des derniers revenus déclarés. (Dans mes-aides, N-2)'
   period: 2016-01
   input:
-    tns_autres_revenus:
+    rpns_autres_revenus:
       2014: 36000
   output:
     ppa: 0
@@ -725,9 +724,8 @@
 - name: "PPA: Travailleur non salarié en micro-entreprise, on applique l'abattement sur le CA"
   period: 2016-01
   input:
-    tns_micro_entreprise_chiffre_affaires:
+    rpns_micro_entreprise_CA_bnc_imp: # Abattement de 34%
       2014: 36000
-    tns_micro_entreprise_type_activite: bnc # Abattement de 34%
   output:
     ppa: 0
     ppa_revenu_activite:

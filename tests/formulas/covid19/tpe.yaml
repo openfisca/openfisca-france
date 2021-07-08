@@ -4,7 +4,7 @@
   absolute_error_margin: 0
   input:
     travailleur_non_salarie: true
-    tns_auto_entrepreneur_chiffre_affaires:
+    rpns_auto_entrepreneur_chiffre_affaires:
       2020-04: 700
       2019-01: 700 - (1600 - 700)/11
       2019-02: 700 - (1600 - 700)/11
@@ -28,7 +28,7 @@
   absolute_error_margin: 0
   input:
     travailleur_non_salarie: true
-    tns_auto_entrepreneur_chiffre_affaires:
+    rpns_auto_entrepreneur_chiffre_affaires:
       2020-04: 700
       2019-01: 700 - (4000 - 700)/11
       2019-02: 700 - (4000 - 700)/11
@@ -52,7 +52,7 @@
   absolute_error_margin: 0
   input:
     travailleur_non_salarie: true
-    tns_auto_entrepreneur_chiffre_affaires:
+    rpns_auto_entrepreneur_chiffre_affaires:
       2020-04: 700
       2019-01: 1600 + (1600 - 700)/11
       2019-02: 1600 + (1600 - 700)/11
@@ -76,7 +76,7 @@
   absolute_error_margin: 0
   input:
     travailleur_non_salarie: true
-    tns_auto_entrepreneur_chiffre_affaires:
+    rpns_auto_entrepreneur_chiffre_affaires:
       2020-04: 700
       2019-01: 4000 + (4000 - 700)/11
       2019-02: 4000 + (4000 - 700)/11
@@ -100,7 +100,7 @@
   absolute_error_margin: 0
   input:
     travailleur_non_salarie: true
-    tns_auto_entrepreneur_chiffre_affaires:
+    rpns_auto_entrepreneur_chiffre_affaires:
       2020-04: 1200
       2019-01: 1600
       2019-02: 1600

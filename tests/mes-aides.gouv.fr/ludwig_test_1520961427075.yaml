@@ -36,16 +36,16 @@ input:
         2017-02: false
         2017-01: false
         2016-12: false
-      tns_auto_entrepreneur_type_activite:
-        2017-03: bic
-        2017-02: bic
-        2017-01: bic
-        2016-12: bic
-      tns_micro_entreprise_type_activite:
-        2017-03: bic
-        2017-02: bic
-        2017-01: bic
-        2016-12: bic
+      # tns_auto_entrepreneur_type_activite:
+      #   2017-03: bic
+      #   2017-02: bic
+      #   2017-01: bic
+      #   2016-12: bic
+      # tns_micro_entreprise_type_activite:
+      #   2017-03: bic
+      #   2017-02: bic
+      #   2017-01: bic
+      #   2016-12: bic
       gir:
         2017-03: non_defini
         2017-02: non_defini
@@ -121,17 +121,17 @@ input:
         2017-02: false
         2017-01: false
         2016-12: false
-      tns_auto_entrepreneur_type_activite:
-        2017-03: bic
-        2017-02: bic
-        2017-01: bic
-        2016-12: bic
-      tns_micro_entreprise_type_activite:
-        2017-03: bic
-        2017-02: bic
-        2017-01: bic
-        2016-12: bic
-      gir:
+      # tns_auto_entrepreneur_type_activite:
+      #   2017-03: bic
+      #   2017-02: bic
+      #   2017-01: bic
+      #   2016-12: bic
+      # tns_micro_entreprise_type_activite:
+      #   2017-03: bic
+      #   2017-02: bic
+      #   2017-01: bic
+      #   2016-12: bic
+      # gir:
         2017-03: non_defini
         2017-02: non_defini
         2017-01: non_defini
@@ -197,16 +197,16 @@ input:
         2017-02: false
         2017-01: false
         2016-12: false
-      tns_auto_entrepreneur_type_activite:
-        2017-03: bic
-        2017-02: bic
-        2017-01: bic
-        2016-12: bic
-      tns_micro_entreprise_type_activite:
-        2017-03: bic
-        2017-02: bic
-        2017-01: bic
-        2016-12: bic
+      # tns_auto_entrepreneur_type_activite:
+      #   2017-03: bic
+      #   2017-02: bic
+      #   2017-01: bic
+      #   2016-12: bic
+      # tns_micro_entreprise_type_activite:
+      #   2017-03: bic
+      #   2017-02: bic
+      #   2017-01: bic
+      #   2016-12: bic
       gir:
         2017-03: non_defini
         2017-02: non_defini
@@ -278,16 +278,16 @@ input:
         2017-02: false
         2017-01: false
         2016-12: false
-      tns_auto_entrepreneur_type_activite:
-        2017-03: bic
-        2017-02: bic
-        2017-01: bic
-        2016-12: bic
-      tns_micro_entreprise_type_activite:
-        2017-03: bic
-        2017-02: bic
-        2017-01: bic
-        2016-12: bic
+      # tns_auto_entrepreneur_type_activite:
+      #   2017-03: bic
+      #   2017-02: bic
+      #   2017-01: bic
+      #   2016-12: bic
+      # tns_micro_entreprise_type_activite:
+      #   2017-03: bic
+      #   2017-02: bic
+      #   2017-01: bic
+      #   2016-12: bic
       gir:
         2017-03: non_defini
         2017-02: non_defini
