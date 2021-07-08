@@ -1852,9 +1852,7 @@ class rpns_auto_entrepreneur_CA_achat_revente(Variable):
     label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine ventes et assimilées "
     definition_period = MONTH
 
-        def formula(individu, period):
-        ebnc_impo_i = individu('ebnc_impo', period, options = [DIVIDE])
-        ebic_imps_i = individu('ebic_imps', period, options = [DIVIDE])
+    def formula(individu, period):
         chiffre_affaire = individu('ebic_impv', period, options = [DIVIDE])
 
         return chiffre_affaire
@@ -1867,8 +1865,7 @@ class rpns_auto_entrepreneur_CA_bic(Variable):
     label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine prestations de service et locations meublées "
     definition_period = MONTH
 
-        def formula(individu, period):
-        ebnc_impo_i = individu('ebnc_impo', period, options = [DIVIDE])
+    def formula(individu, period):
         chiffre_affaire = individu('ebic_imps', period, options = [DIVIDE])
 
         return chiffre_affaire
@@ -1878,10 +1875,10 @@ class rpns_auto_entrepreneur_CA_bnc(Variable):
     value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
-    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine non commercial "
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine non commercial"
     definition_period = MONTH
 
-        def formula(individu, period):
+    def formula(individu, period):
         chiffre_affaire = individu('ebnc_impo', period, options = [DIVIDE])
 
         return chiffre_affaire
@@ -1890,10 +1887,10 @@ class rpns_auto_entrepreneur_chiffre_affaires(Variable):
     value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
-    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine non commercial "
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur"
     definition_period = MONTH
 
-        def formula(individu, period):
+    def formula(individu, period):
         rpns_auto_entrepreneur_CA_achat_revente = individu('rpns_auto_entrepreneur_CA_achat_revente', period, options = [DIVIDE])
         rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period, options = [DIVIDE])
         rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period, options = [DIVIDE])
@@ -1903,11 +1900,87 @@ class rpns_auto_entrepreneur_chiffre_affaires(Variable):
 # Input annuel
 
 
-class tns_micro_entreprise_chiffre_affaires(Variable):
+class rpns_micro_entreprise_CA_bnc_imp(Variable):
+    value_type = float
+    entity = Individu
+    label = "Chiffre d'affaires micro-entreprise domaine non commercial, revenus imposables"
+    definition_period = YEAR
+
+    def formula(individu, period):
+        mbnc_impo = individu('mbnc_impo', period)
+        mncn_impo = individu('mncn_impo', period)
+
+        return mbnc_impo + mncn_impo
+
+
+class rpns_micro_entreprise_CA_bnc_exon(Variable):
+    value_type = float
+    entity = Individu
+    label = "Revenus nets exonérés des  micro-entreprise domaine non commercial"
+    definition_period = YEAR
+
+    def formula(individu, period):
+        mbnc_exon = individu('mbnc_exon', period)
+        mncn_exon = individu('mncn_exon', period)
+
+        return mbnc_exon + mncn_exon
+
+
+class rpns_micro_entreprise_CA_bic_vente_imp(Variable):
+    value_type = float
+    entity = Individu
+    label = "Chiffre d'affaires micro-entreprise domaine vente et assimilée, revenus imposables"
+    definition_period = YEAR
+
+    def formula(individu, period):
+        mbic_impv = individu('mbic_impv', period)
+        macc_impv = individu('macc_impv', period)
+
+        return mbic_impv + macc_impv
+
+
+class rpns_micro_entreprise_CA_bic_service_imp(Variable):
+    value_type = float
+    entity = Individu
+    label = "Chiffre d'affaires micro-entreprise domaine service et locations, revenus imposables"
+    definition_period = YEAR
+
+    def formula(individu, period):
+        mbic_imps = individu('mbic_imps', period)
+        macc_imps = individu('macc_imps', period)
+        aacc_imps = individu('aacc_imps', period)
+        aacc_gits = individu('aacc_gits', period)
+        nacc_meuc = individu('nacc_meuc', period)
+        nacc_meup = individu('nacc_meup', period)
+
+        return mbic_imps + macc_imps + aacc_imps + aacc_gits + nacc_meuc + nacc_meup
+
+
+class rpns_micro_entreprise_bic_exon(Variable):
+    value_type = float
+    entity = Individu
+    label = "Revenus nets exonérés des micro-entreprise domaine bic"
+    definition_period = YEAR
+
+    def formula(individu, period):
+        mbic_exon = individu('mbic_exon', period)
+        macc_exon = individu('macc_exon', period)
+
+        return mbic_exon + macc_exon
+
+
+class rpns_micro_entreprise_chiffre_affaires(Variable):
     value_type = float
     entity = Individu
     label = "Chiffre d'affaires en de micro-entreprise"
     definition_period = YEAR
+
+    def formula(individu, period):
+        rpns_micro_entreprise_CA_bnc_imp = individu('rpns_micro_entreprise_CA_bnc_imp', period)
+        rpns_micro_entreprise_CA_bic_vente_imp = individu('rpns_micro_entreprise_CA_bic_vente_imp', period)
+        rpns_micro_entreprise_CA_bic_service_imp = individu('rpns_micro_entreprise_CA_bic_service_imp', period)
+
+        return rpns_micro_entreprise_CA_bnc_imp + rpns_micro_entreprise_CA_bic_vente_imp + rpns_micro_entreprise_CA_bic_service_imp
 
 
 class TypesTnsTypeActivite(Enum):
@@ -1996,16 +2069,16 @@ class travailleur_non_salarie(Variable):
     def formula(individu, period, parameters):
         this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
         rpns_auto_entrepreneur_chiffre_affaires = individu('rpns_auto_entrepreneur_chiffre_affaires', period) != 0
-        tns_micro_entreprise_chiffre_affaires = individu('tns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
+        rpns_micro_entreprise_chiffre_affaires = individu('rpns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
         tns_autres_revenus = individu('tns_autres_revenus', this_year_and_last_year, options = [ADD]) != 0
         rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD]) != 0
         tns_autres_revenus_chiffre_affaires = individu('tns_autres_revenus_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
 
         result = (
             rpns_auto_entrepreneur_chiffre_affaires
-            + tns_micro_entreprise_chiffre_affaires
+            + rpns_micro_entreprise_chiffre_affaires
             + tns_autres_revenus
-            + tns_benefice_exploitant_agricole
+            + rpns_benefice_exploitant_agricole
             + tns_autres_revenus_chiffre_affaires
             )
 
