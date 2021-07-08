@@ -175,8 +175,8 @@ class rente_accident_travail_salaire_utile(Variable):
         rente_at = parameters(period).accident_travail.rente
 
         salaire_net = individu('salaire_net', previous_year, options=[ADD])
-        tns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', previous_year, options=[ADD])
-        salaire = max_(salaire_net, tns_benefice_exploitant_agricole)
+        rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', previous_year, options=[ADD])
+        salaire = max_(salaire_net, rpns_benefice_exploitant_agricole)
         salaire_net_base = max_(rente_at.salaire_net.salaire_minimum, salaire)
         coef = salaire_net_base / rente_at.salaire_net.salaire_minimum
         bareme = rente_at.salaire_net.bareme.calc(coef)

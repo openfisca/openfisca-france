@@ -1891,9 +1891,9 @@ class rpns_auto_entrepreneur_chiffre_affaires(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        rpns_auto_entrepreneur_CA_achat_revente = individu('rpns_auto_entrepreneur_CA_achat_revente', period, options = [DIVIDE])
-        rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period, options = [DIVIDE])
-        rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period, options = [DIVIDE])
+        rpns_auto_entrepreneur_CA_achat_revente = individu('rpns_auto_entrepreneur_CA_achat_revente', period)
+        rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period)
+        rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period)
 
         return rpns_auto_entrepreneur_CA_achat_revente + rpns_auto_entrepreneur_CA_bic + rpns_auto_entrepreneur_CA_bnc
 
@@ -1999,16 +1999,29 @@ class rpns_autres_revenus(Variable):
 
     def formula(individu, period):
         abic_exon = individu('abic_exon', period)
+        nbic_exon = individu('nbic_exon', period)
         abic_impn = individu('abic_impn', period)
+        nbic_impn = individu('nbic_impn', period)
         aacc_exon = individu('aacc_exon', period)
+        nacc_exon = individu('nacc_exon', period)
         aacc_impn = individu('aacc_impn', period)
+        nacc_impn = individu('nacc_impn', period)
         alnp_imps = individu('alnp_imps', period)
+        nacc_pvce = individu('nacc_pvce', period)
         abnc_exon = individu('abnc_exon', period)
+        nbnc_exon = individu('nbnc_exon', period)
         abnc_impo = individu('abnc_impo', period)
-        cncc_exon = individu('cncc_exon', period)
-        abnc_aimp = individu('abnc_aimp', period)
+        nbnc_impo = individu('nbnc_impo', period)
+        cncn_exon = individu('cncn_exon', period)
+        nbic_pvce = individu('nbic_pvce', period)
+        cncn_aimp = individu('cncn_aimp', period)
+        cncn_bene = individu('cncn_bene', period)
 
-        return abic_exon + abic_impn + aacc_exon + aacc_impn + alnp_imps + abnc_exon + abnc_impo + cncc_exon + abnc_aimp
+
+        return (abic_exon + nbic_exon + abic_impn + nbic_impn + aacc_exon 
+                + nacc_exon + aacc_impn + nacc_impn + alnp_imps + nacc_pvce 
+                + abnc_exon + nbnc_exon + abnc_impo + nbnc_impo + cncn_exon
+                + nbic_pvce + cncn_aimp + cncn_bene)
 
 
 class rpns_autres_revenus_chiffre_affaires(Variable):
@@ -2147,16 +2160,16 @@ class rpns_auto_entrepreneur_revenus_net(Variable):
 
     def formula_2008_01_01(individu, period, parameters):
         rpns_auto_entrepreneur_benefice = individu('rpns_auto_entrepreneur_benefice', period)
-        rpns_auto_entrepreneur_CA_achat_revente = individu('rpns_auto_entrepreneur_CA_achat_revente', period, options = [DIVIDE])
-        rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period, options = [DIVIDE])
-        rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period, options = [DIVIDE])
+        rpns_auto_entrepreneur_CA_achat_revente = individu('rpns_auto_entrepreneur_CA_achat_revente', period)
+        rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period)
+        rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period)
         bareme_cs_ae = parameters(period).tns.auto_entrepreneur
 
-        tns_auto_entrepreneur_charges_sociales = ( bareme_cs_ae.achat_revente * rpns_auto_entrepreneur_CA_achat_revente
+        rpns_auto_entrepreneur_charges_sociales = ( bareme_cs_ae.achat_revente * rpns_auto_entrepreneur_CA_achat_revente
                                                     + bareme_cs_ae.bic * rpns_auto_entrepreneur_CA_bic
                                                     + bareme_cs_ae.bnc * rpns_auto_entrepreneur_CA_bnc )
 
-        return rpns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
+        return rpns_auto_entrepreneur_benefice - rpns_auto_entrepreneur_charges_sociales
 
 
 class rpns_micro_entreprise_revenus_net(Variable):
@@ -2168,7 +2181,7 @@ class rpns_micro_entreprise_revenus_net(Variable):
     def formula(individu, period, parameters):
         rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period)
         taux_cotisations_sociales = parameters(period).tns.micro_entreprise.cotisations_sociales
-        tns_micro_entreprise_charges_sociales = rpns_micro_entreprise_benefice * taux_cotisations_sociales
-        revenus = rpns_micro_entreprise_benefice - tns_micro_entreprise_charges_sociales
+        rpns_micro_entreprise_charges_sociales = rpns_micro_entreprise_benefice * taux_cotisations_sociales
+        revenus = rpns_micro_entreprise_benefice - rpns_micro_entreprise_charges_sociales
 
         return revenus
