@@ -114,11 +114,11 @@ class aah_base_ressources_activite_eval_trimestrielle(Variable):
             revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', three_previous_months, options = [ADD])
 
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year) * 3 / 12
+            rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', last_year) * 3 / 12
             rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', last_year) * 3 / 12
             tns_autres_revenus = individu('tns_autres_revenus', last_year) * 3 / 12
 
-            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + rpns_benefice_exploitant_agricole + tns_autres_revenus
+            return revenus_auto_entrepreneur + rpns_micro_entreprise_benefice + rpns_benefice_exploitant_agricole + tns_autres_revenus
 
         return (ressources + revenus_tns()) * 4
 
