@@ -1990,22 +1990,25 @@ class TypesTnsTypeActivite(Enum):
     bnc = 'bnc'
 
 
-# TODO remove this ugly ETERNITY
-class tns_micro_entreprise_type_activite(Variable):
-    value_type = Enum
-    possible_values = TypesTnsTypeActivite
-    default_value = TypesTnsTypeActivite.achat_revente
-    entity = Individu
-    label = "Type d'activité de la micro-entreprise"
-    definition_period = ETERNITY
-
-
 # Input sur le dernier exercice. Par convention, sur l'année dernière.
-class tns_autres_revenus(Variable):
+class rpns_autres_revenus(Variable):
     value_type = float
     entity = Individu
     label = "Autres revenus non salariés"
     definition_period = YEAR
+
+    def formula(individu, period):
+        abic_exon = individu('abic_exon', period)
+        abic_impn = individu('abic_impn', period)
+        aacc_exon = individu('aacc_exon', period)
+        aacc_impn = individu('aacc_impn', period)
+        alnp_imps = individu('alnp_imps', period)
+        abnc_exon = individu('abnc_exon', period)
+        abnc_impo = individu('abnc_impo', period)
+        cncc_exon = individu('cncc_exon', period)
+        abnc_aimp = individu('abnc_aimp', period)
+
+        return abic_exon + abic_impn + aacc_exon + aacc_impn + alnp_imps + abnc_exon + abnc_impo + cncc_exon + abnc_aimp
 
 
 class tns_autres_revenus_chiffre_affaires(Variable):
@@ -2014,6 +2017,8 @@ class tns_autres_revenus_chiffre_affaires(Variable):
     set_input = set_input_divide_by_period
     label = "Chiffre d'affaire pour les TNS non agricoles autres que les AE et ME"
     definition_period = MONTH
+
+    ## les chiffres d'affaire ne sont pas dans les cases fiscales
 
 
 class tns_autres_revenus_type_activite(Variable):
@@ -2068,32 +2073,19 @@ class travailleur_non_salarie(Variable):
         this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
         rpns_auto_entrepreneur_chiffre_affaires = individu('rpns_auto_entrepreneur_chiffre_affaires', period) != 0
         rpns_micro_entreprise_chiffre_affaires = individu('rpns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
-        tns_autres_revenus = individu('tns_autres_revenus', this_year_and_last_year, options = [ADD]) != 0
+        rpns_autres_revenus = individu('rpns_autres_revenus', this_year_and_last_year, options = [ADD]) != 0
         rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD]) != 0
         tns_autres_revenus_chiffre_affaires = individu('tns_autres_revenus_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
 
         result = (
             rpns_auto_entrepreneur_chiffre_affaires
             + rpns_micro_entreprise_chiffre_affaires
-            + tns_autres_revenus
+            + rpns_autres_revenus
             + rpns_benefice_exploitant_agricole
             + tns_autres_revenus_chiffre_affaires
             )
 
         return result
-
-
-# Auxiliary function
-def compute_benefice_auto_entrepreneur_micro_entreprise(bareme, type_activite, chiffre_affaire):
-    abatt_fp_me = bareme.micro_entreprise.abattement_forfaitaire_fp
-    benefice = chiffre_affaire * (
-        1
-        - (type_activite == TypesTnsTypeActivite.achat_revente) * abatt_fp_me.achat_revente
-        - (type_activite == TypesTnsTypeActivite.bic) * abatt_fp_me.bic
-        - (type_activite == TypesTnsTypeActivite.bnc) * abatt_fp_me.bnc
-        )
-
-    return benefice
 
 
 class rpns_auto_entrepreneur_benefice(Variable):
