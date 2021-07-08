@@ -2011,7 +2011,7 @@ class rpns_autres_revenus(Variable):
         return abic_exon + abic_impn + aacc_exon + aacc_impn + alnp_imps + abnc_exon + abnc_impo + cncc_exon + abnc_aimp
 
 
-class tns_autres_revenus_chiffre_affaires(Variable):
+class rpns_autres_revenus_chiffre_affaires(Variable):
     value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
@@ -2075,14 +2075,14 @@ class travailleur_non_salarie(Variable):
         rpns_micro_entreprise_chiffre_affaires = individu('rpns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
         rpns_autres_revenus = individu('rpns_autres_revenus', this_year_and_last_year, options = [ADD]) != 0
         rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD]) != 0
-        tns_autres_revenus_chiffre_affaires = individu('tns_autres_revenus_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
+        rpns_autres_revenus_chiffre_affaires = individu('rpns_autres_revenus_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
 
         result = (
             rpns_auto_entrepreneur_chiffre_affaires
             + rpns_micro_entreprise_chiffre_affaires
             + rpns_autres_revenus
             + rpns_benefice_exploitant_agricole
-            + tns_autres_revenus_chiffre_affaires
+            + rpns_autres_revenus_chiffre_affaires
             )
 
         return result
