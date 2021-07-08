@@ -20,21 +20,21 @@
           2018-06: false
           2018-05: false
           2018-04: false
-        tns_autres_revenus_type_activite:
-          2018-07: bic
-          2018-06: bic
-          2018-05: bic
-          2018-04: bic
-        tns_micro_entreprise_type_activite:
-          2018-07: bic
-          2018-06: bic
-          2018-05: bic
-          2018-04: bic
-        tns_auto_entrepreneur_type_activite:
-          2018-07: bic
-          2018-06: bic
-          2018-05: bic
-          2018-04: bic
+        # tns_autres_revenus_type_activite:
+        #   2018-07: bic
+        #   2018-06: bic
+        #   2018-05: bic
+        #   2018-04: bic
+        # tns_micro_entreprise_type_activite:
+        #   2018-07: bic
+        #   2018-06: bic
+        #   2018-05: bic
+        #   2018-04: bic
+        # tns_auto_entrepreneur_type_activite:
+        #   2018-07: bic
+        #   2018-06: bic
+        #   2018-05: bic
+        #   2018-04: bic
         date_naissance:
           2018-07: '1960-08-12'
           2018-06: '1960-08-12'
@@ -126,21 +126,21 @@
           2018-06: false
           2018-05: false
           2018-04: false
-        tns_autres_revenus_type_activite:
-          2018-07: bic
-          2018-06: bic
-          2018-05: bic
-          2018-04: bic
-        tns_micro_entreprise_type_activite:
-          2018-07: bic
-          2018-06: bic
-          2018-05: bic
-          2018-04: bic
-        tns_auto_entrepreneur_type_activite:
-          2018-07: bic
-          2018-06: bic
-          2018-05: bic
-          2018-04: bic
+        # tns_autres_revenus_type_activite:
+        #   2018-07: bic
+        #   2018-06: bic
+        #   2018-05: bic
+        #   2018-04: bic
+        # tns_micro_entreprise_type_activite:
+        #   2018-07: bic
+        #   2018-06: bic
+        #   2018-05: bic
+        #   2018-04: bic
+        # tns_auto_entrepreneur_type_activite:
+        #   2018-07: bic
+        #   2018-06: bic
+        #   2018-05: bic
+        #   2018-04: bic
         statut_marital:
           2018-07: marie
           2018-06: marie

@@ -17,7 +17,7 @@ input:
       etudiant: 0
       inapte_travail: 0
       handicap: 0
-      tns_auto_entrepreneur_chiffre_affaires:
+      rpns_auto_entrepreneur_CA_achat_revente:
         2013: 82000
         2014-04: 8883.333333333334
         2014-05: 8883.333333333334
@@ -32,7 +32,6 @@ input:
         2015-02: 1400
         2015-03: 500
         2015-04: 500
-      tns_auto_entrepreneur_type_activite: achat_revente
       valeur_locative_immo_non_loue:
         2012-01: 0
       valeur_locative_terrains_non_loues:

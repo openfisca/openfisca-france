@@ -17,7 +17,7 @@ input:
       etudiant: 0
       inapte_travail: 0
       handicap: 0
-      tns_auto_entrepreneur_chiffre_affaires:
+      rpns_auto_entrepreneur_CA_bnc:
         2013: 29999.999999999996
         2014-04: 3105.5555555555557
         2014-05: 3105.5555555555557
@@ -32,7 +32,6 @@ input:
         2015-02: 500
         2015-03: 150
         2015-04: 150
-      tns_auto_entrepreneur_type_activite: bnc
       valeur_locative_immo_non_loue:
         2012-01: 0
       valeur_locative_terrains_non_loues:

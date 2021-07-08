@@ -58,9 +58,9 @@ input:
         2015-09: 0
         2015-10: 0
       statut_marital: marie
-      tns_auto_entrepreneur_type_activite: bic
-      tns_autres_revenus_type_activite: bic
-      tns_micro_entreprise_type_activite: bic
+      # tns_auto_entrepreneur_type_activite: bic
+      # tns_autres_revenus_type_activite: bic
+      # tns_micro_entreprise_type_activite: bic
       valeur_locative_immo_non_loue:
         2012-01: 0
       valeur_locative_terrains_non_loues:
@@ -76,9 +76,9 @@ input:
       inapte_travail: 0
       handicap: 0
       scolarite: college
-      tns_auto_entrepreneur_type_activite: bic
-      tns_autres_revenus_type_activite: bic
-      tns_micro_entreprise_type_activite: bic
+      # tns_auto_entrepreneur_type_activite: bic
+      # tns_autres_revenus_type_activite: bic
+      # tns_micro_entreprise_type_activite: bic
       valeur_locative_immo_non_loue:
         2012-01: 0
       valeur_locative_terrains_non_loues:
@@ -94,9 +94,9 @@ input:
       inapte_travail: 0
       handicap: 0
       scolarite: college
-      tns_auto_entrepreneur_type_activite: bic
-      tns_autres_revenus_type_activite: bic
-      tns_micro_entreprise_type_activite: bic
+      # tns_auto_entrepreneur_type_activite: bic
+      # tns_autres_revenus_type_activite: bic
+      # tns_micro_entreprise_type_activite: bic
       valeur_locative_immo_non_loue:
         2012-01: 0
       valeur_locative_terrains_non_loues:
@@ -151,9 +151,9 @@ input:
         2015-09: 0
         2015-10: 0
       statut_marital: marie
-      tns_auto_entrepreneur_type_activite: bic
-      tns_autres_revenus_type_activite: bic
-      tns_micro_entreprise_type_activite: bic
+      # tns_auto_entrepreneur_type_activite: bic
+      # tns_autres_revenus_type_activite: bic
+      # tns_micro_entreprise_type_activite: bic
       valeur_locative_immo_non_loue:
         2012-01: 0
       valeur_locative_terrains_non_loues:

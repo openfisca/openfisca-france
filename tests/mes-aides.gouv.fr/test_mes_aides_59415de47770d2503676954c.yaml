@@ -270,21 +270,21 @@ input:
         2012-01: 0
       valeur_locative_terrains_non_loues:
         2012-01: 0
-      tns_autres_revenus_type_activite:
-        2017-06: bic
-        2017-05: bic
-        2017-04: bic
-        2017-03: bic
-      tns_auto_entrepreneur_type_activite:
-        2017-06: bic
-        2017-05: bic
-        2017-04: bic
-        2017-03: bic
-      tns_micro_entreprise_type_activite:
-        2017-06: bic
-        2017-05: bic
-        2017-04: bic
-        2017-03: bic
+      # tns_autres_revenus_type_activite:
+      #   2017-06: bic
+      #   2017-05: bic
+      #   2017-04: bic
+      #   2017-03: bic
+      # tns_auto_entrepreneur_type_activite:
+      #   2017-06: bic
+      #   2017-05: bic
+      #   2017-04: bic
+      #   2017-03: bic
+      # tns_micro_entreprise_type_activite:
+      #   2017-06: bic
+      #   2017-05: bic
+      #   2017-04: bic
+      #   2017-03: bic
       aah:
         2017-05: 800
         2017-04: 800

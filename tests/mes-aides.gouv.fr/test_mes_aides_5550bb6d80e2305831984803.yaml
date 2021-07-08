@@ -15,7 +15,7 @@ input:
       etudiant: 0
       inapte_travail: 0
       handicap: 0
-      tns_benefice_exploitant_agricole:
+      rpns_benefice_exploitant_agricole:
         '2014': 5600
       valeur_locative_immo_non_loue:
         2012-01: 0
