@@ -160,7 +160,7 @@ class ppa_revenu_activite_individu(Variable):
             'remuneration_apprenti',
             'bourse_recherche',
             'indemnites_chomage_partiel',
-            'tns_auto_entrepreneur_benefice',
+            'rpns_auto_entrepreneur_benefice',
             'rsa_indemnites_journalieres_activite'
             ]
 

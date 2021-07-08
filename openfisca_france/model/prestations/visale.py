@@ -142,7 +142,7 @@ class visale_base_ressources_individuelle(Variable):
             'garantie_jeunes',
             'bourse_enseignement_sup',
             'bourse_recherche',
-            'tns_auto_entrepreneur_benefice',
+            'rpns_auto_entrepreneur_benefice',
             'chomage_net',
             'indemnites_chomage_partiel',  # à inclure dans chomage_net ?
             'ass',
