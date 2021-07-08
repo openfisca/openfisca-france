@@ -1,8 +1,10 @@
-- period: 2021-03
+- period: 2021
   input:
-    annee_etude: [licence_3, master_1, autre]
-    sortie_region_academique: [true, true, false]
-    boursier: [1, 1, 0]
+    annee_etude:
+      2021-01: [licence_3, master_1, autre]
+    sortie_region_academique:
+      2021-01: [true, true, false]
+    boursier:
+      2021-01: [1, 1, 0]
   output:
-    aide_mobilite_master:
-      2021: [1000, 1000, 0]
+    aide_mobilite_master: [1000, 1000, 0]

@@ -48,11 +48,12 @@ class aide_mobilite_master(Variable):
         ]
 
     def formula(individu, period, parameters):
-        sortie_academie = individu("sortie_region_academique", period)
-        annee_etude = individu("annee_etude", period)
+        first_month = period.first_month
+        sortie_academie = individu("sortie_region_academique", first_month)
+        annee_etude = individu("annee_etude", first_month)
         en_transition = (annee_etude == TypesClasse.licence_3) + (annee_etude == TypesClasse.master_1)
-        boursier = individu("boursier", period)
+        boursier = individu("boursier", first_month)
 
-        montant = parameters(period).prestations.aide_mobilite_master.montant
+        montant = parameters(first_month).prestations.aide_mobilite_master.montant
 
         return montant * sortie_academie * en_transition * boursier
