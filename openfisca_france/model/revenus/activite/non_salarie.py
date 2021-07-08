@@ -2167,7 +2167,7 @@ class rpns_auto_entrepreneur_revenus_net(Variable):
         return rpns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
 
 
-class tns_micro_entreprise_revenus_net(Variable):
+class rpns_micro_entreprise_revenus_net(Variable):
     value_type = float
     label = "Revenu d'un TNS dans une micro-entreprise"
     entity = Individu
