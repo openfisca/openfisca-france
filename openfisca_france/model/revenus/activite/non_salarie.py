@@ -1918,16 +1918,6 @@ class TypesTnsTypeActivite(Enum):
 
 
 # TODO remove this ugly ETERNITY
-class tns_auto_entrepreneur_type_activite(Variable):
-    value_type = Enum
-    possible_values = TypesTnsTypeActivite
-    default_value = TypesTnsTypeActivite.achat_revente
-    entity = Individu
-    label = "Type d'activité de l'auto-entrepreneur"
-    definition_period = ETERNITY
-
-
-# TODO remove this ugly ETERNITY
 class tns_micro_entreprise_type_activite(Variable):
     value_type = Enum
     possible_values = TypesTnsTypeActivite
@@ -2064,7 +2054,7 @@ class tns_micro_entreprise_benefice(Variable):
 # we are not using the following formulas for calculating prestations.
 
 
-class tns_auto_entrepreneur_revenus_net(Variable):
+class rpns_auto_entrepreneur_revenus_net(Variable):
     value_type = float
     label = "Revenu d'un auto-entrepreneur"
     entity = Individu
@@ -2072,18 +2062,16 @@ class tns_auto_entrepreneur_revenus_net(Variable):
 
     def formula_2008_01_01(individu, period, parameters):
         rpns_auto_entrepreneur_benefice = individu('rpns_auto_entrepreneur_benefice', period)
-        tns_auto_entrepreneur_type_activite = individu('tns_auto_entrepreneur_type_activite', period)
-        rpns_auto_entrepreneur_chiffre_affaires = individu('rpns_auto_entrepreneur_chiffre_affaires', period)
+        rpns_auto_entrepreneur_CA_achat_revente = individu('rpns_auto_entrepreneur_CA_achat_revente', period, options = [DIVIDE])
+        rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period, options = [DIVIDE])
+        rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period, options = [DIVIDE])
         bareme_cs_ae = parameters(period).tns.auto_entrepreneur
-        taux_cotisations_sociales_sur_CA = (
-            (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.achat_revente) * bareme_cs_ae.achat_revente
-            + (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.bic) * bareme_cs_ae.bic
-            + (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.bnc) * bareme_cs_ae.bnc
-            )
-        tns_auto_entrepreneur_charges_sociales = taux_cotisations_sociales_sur_CA * rpns_auto_entrepreneur_chiffre_affaires
-        revenus = rpns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
 
-        return revenus
+        tns_auto_entrepreneur_charges_sociales = ( bareme_cs_ae.achat_revente * rpns_auto_entrepreneur_CA_achat_revente
+                                                    + bareme_cs_ae.bic * rpns_auto_entrepreneur_CA_bic
+                                                    + bareme_cs_ae.bnc * rpns_auto_entrepreneur_CA_bnc )
+
+        return rpns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
 
 
 class tns_micro_entreprise_revenus_net(Variable):
