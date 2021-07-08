@@ -1837,8 +1837,6 @@ class f5sq(Variable):
     end = '2006-12-31'
 
 
-# TODO: Introduit par mes aides à consolider
-
 # """
 # Input variables
 # """
@@ -1847,13 +1845,60 @@ class f5sq(Variable):
 # Input mensuel
 
 
-class tns_auto_entrepreneur_chiffre_affaires(Variable):
+class rpns_auto_entrepreneur_CA_achat_revente(Variable):
     value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
-    label = "Chiffre d'affaires en tant qu'auto-entrepreneur"
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine ventes et assimilées "
     definition_period = MONTH
 
+        def formula(individu, period):
+        ebnc_impo_i = individu('ebnc_impo', period, options = [DIVIDE])
+        ebic_imps_i = individu('ebic_imps', period, options = [DIVIDE])
+        chiffre_affaire = individu('ebic_impv', period, options = [DIVIDE])
+
+        return chiffre_affaire
+
+
+class rpns_auto_entrepreneur_CA_bic(Variable):
+    value_type = float
+    entity = Individu
+    set_input = set_input_divide_by_period
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine prestations de service et locations meublées "
+    definition_period = MONTH
+
+        def formula(individu, period):
+        ebnc_impo_i = individu('ebnc_impo', period, options = [DIVIDE])
+        chiffre_affaire = individu('ebic_imps', period, options = [DIVIDE])
+
+        return chiffre_affaire
+
+
+class rpns_auto_entrepreneur_CA_bnc(Variable):
+    value_type = float
+    entity = Individu
+    set_input = set_input_divide_by_period
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine non commercial "
+    definition_period = MONTH
+
+        def formula(individu, period):
+        chiffre_affaire = individu('ebnc_impo', period, options = [DIVIDE])
+
+        return chiffre_affaire
+
+class rpns_auto_entrepreneur_chiffre_affaires(Variable):
+    value_type = float
+    entity = Individu
+    set_input = set_input_divide_by_period
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine non commercial "
+    definition_period = MONTH
+
+        def formula(individu, period):
+        rpns_auto_entrepreneur_CA_achat_revente = individu('rpns_auto_entrepreneur_CA_achat_revente', period, options = [DIVIDE])
+        rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period, options = [DIVIDE])
+        rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period, options = [DIVIDE])
+
+        return rpns_auto_entrepreneur_CA_achat_revente + rpns_auto_entrepreneur_CA_bic + rpns_auto_entrepreneur_CA_bnc
 
 # Input annuel
 
@@ -1946,14 +1991,14 @@ class travailleur_non_salarie(Variable):
 
     def formula(individu, period, parameters):
         this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
-        tns_auto_entrepreneur_chiffre_affaires = individu('tns_auto_entrepreneur_chiffre_affaires', period) != 0
+        rpns_auto_entrepreneur_chiffre_affaires = individu('rpns_auto_entrepreneur_chiffre_affaires', period) != 0
         tns_micro_entreprise_chiffre_affaires = individu('tns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
         tns_autres_revenus = individu('tns_autres_revenus', this_year_and_last_year, options = [ADD]) != 0
         tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD]) != 0
         tns_autres_revenus_chiffre_affaires = individu('tns_autres_revenus_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
 
         result = (
-            tns_auto_entrepreneur_chiffre_affaires
+            rpns_auto_entrepreneur_chiffre_affaires
             + tns_micro_entreprise_chiffre_affaires
             + tns_autres_revenus
             + tns_benefice_exploitant_agricole
@@ -1976,7 +2021,7 @@ def compute_benefice_auto_entrepreneur_micro_entreprise(bareme, type_activite, c
     return benefice
 
 
-class tns_auto_entrepreneur_benefice(Variable):
+class rpns_auto_entrepreneur_benefice(Variable):
     value_type = float
     label = "Bénéfice en tant qu'auto-entrepreneur"
     entity = Individu
@@ -1984,12 +2029,16 @@ class tns_auto_entrepreneur_benefice(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2008_01_01(individu, period, parameters):
-        tns_auto_entrepreneur_type_activite = individu('tns_auto_entrepreneur_type_activite', period)
-        tns_auto_entrepreneur_chiffre_affaires = individu('tns_auto_entrepreneur_chiffre_affaires', period)
-        bareme = parameters(period).tns
+        rpns_auto_entrepreneur_CA_achat_revente = individu('rpns_auto_entrepreneur_CA_achat_revente', period)
+        rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period)
+        rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period)
 
-        benefice = compute_benefice_auto_entrepreneur_micro_entreprise(
-            bareme, tns_auto_entrepreneur_type_activite, tns_auto_entrepreneur_chiffre_affaires)
+        bareme = parameters(period).impot_revenu.rpns.micro        
+
+        benefice = ((rpns_auto_entrepreneur_CA_achat_revente * bareme.microentreprise.taux_ventes_de_marchandises) 
+                    + (rpns_auto_entrepreneur_CA_bnc * bareme.specialbnc.taux)
+                    + (rpns_auto_entrepreneur_CA_bic * bareme.microentreprise.taux_prestations_de_services))
+        
         return benefice
 
 
@@ -2024,14 +2073,14 @@ class tns_auto_entrepreneur_revenus_net(Variable):
     def formula_2008_01_01(individu, period, parameters):
         tns_auto_entrepreneur_benefice = individu('tns_auto_entrepreneur_benefice', period)
         tns_auto_entrepreneur_type_activite = individu('tns_auto_entrepreneur_type_activite', period)
-        tns_auto_entrepreneur_chiffre_affaires = individu('tns_auto_entrepreneur_chiffre_affaires', period)
+        rpns_auto_entrepreneur_chiffre_affaires = individu('rpns_auto_entrepreneur_chiffre_affaires', period)
         bareme_cs_ae = parameters(period).tns.auto_entrepreneur
         taux_cotisations_sociales_sur_CA = (
             (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.achat_revente) * bareme_cs_ae.achat_revente
             + (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.bic) * bareme_cs_ae.bic
             + (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.bnc) * bareme_cs_ae.bnc
             )
-        tns_auto_entrepreneur_charges_sociales = taux_cotisations_sociales_sur_CA * tns_auto_entrepreneur_chiffre_affaires
+        tns_auto_entrepreneur_charges_sociales = taux_cotisations_sociales_sur_CA * rpns_auto_entrepreneur_chiffre_affaires
         revenus = tns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
 
         return revenus
