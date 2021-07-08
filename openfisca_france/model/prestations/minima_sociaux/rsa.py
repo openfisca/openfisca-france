@@ -913,7 +913,7 @@ class rsa_non_calculable_tns_individu(Variable):
         this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
         tns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD])
         rpns_micro_entreprise_chiffre_affaires = individu('rpns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD])
-        tns_autres_revenus = individu('tns_autres_revenus', this_year_and_last_year, options = [ADD])
+        tns_autres_revenus = individu('rpns_autres_revenus', this_year_and_last_year, options = [ADD])
 
         return (
             (tns_benefice_exploitant_agricole > 0)

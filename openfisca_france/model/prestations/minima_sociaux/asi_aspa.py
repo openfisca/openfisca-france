@@ -52,7 +52,7 @@ class asi_aspa_base_ressources_individu(Variable):
 
             tns_micro_entrerpns_micro_entreprise_beneficeprise_benefice = individu('rpns_micro_entreprise_benefice', last_year) * (3 / 12)
             rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', last_year) * (3 / 12)
-            tns_autres_revenus = individu('tns_autres_revenus', last_year) * (3 / 12)
+            tns_autres_revenus = individu('rpns_autres_revenus', last_year) * (3 / 12)
 
             return (
                 revenus_auto_entrepreneur

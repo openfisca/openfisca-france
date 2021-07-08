@@ -196,7 +196,7 @@ class ppa_rsa_derniers_revenus_tns_annuels_connus(Variable):
 
         return (
             get_last_known('rpns_benefice_exploitant_agricole')
-            + get_last_known('tns_autres_revenus')
+            + get_last_known('rpns_autres_revenus')
             + get_last_known('rpns_micro_entreprise_benefice')
             )
 

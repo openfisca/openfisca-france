@@ -94,7 +94,7 @@ class ass_base_ressources_individu(Variable):
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
             rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', last_year)
             rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', last_year)
-            tns_autres_revenus = individu('tns_autres_revenus', last_year)
+            tns_autres_revenus = individu('rpns_autres_revenus', last_year)
 
             return revenus_auto_entrepreneur + rpns_micro_entreprise_benefice + rpns_benefice_exploitant_agricole + tns_autres_revenus
 
