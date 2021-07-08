@@ -1056,12 +1056,12 @@ class aide_logement_base_ressources(Variable):
         gains_exceptionnels_i = famille.members('gains_exceptionnels', period.n_2, options=[ADD])
         benefice_agricole_i_n_2 = famille.members('tns_benefice_exploitant_agricole', period.n_2)
         benefice_micro_entreprise_i_n_2 = famille.members('tns_micro_entreprise_benefice', period.n_2)
-        benefice_auto_entrepreneur_i_n_2 = famille.members('tns_auto_entrepreneur_benefice', period.n_2, options=[ADD])
+        benefice_auto_entrepreneur_i_n_2 = famille.members('rpns_auto_entrepreneur_benefice', period.n_2, options=[ADD])
         tns_autres_revenus_i_n_2 = famille.members('tns_autres_revenus', period.n_2)
         # En l'absence de benefices TNS en N-2, on recupère les bénéfices de l'année glissante
         benefice_agricole_i_m_12 = famille.members('tns_benefice_exploitant_agricole', annee_glissante)
         benefice_micro_entreprise_i_m_12 = famille.members('tns_micro_entreprise_benefice', annee_glissante)
-        benefice_auto_entrepreneur_i_m_12 = famille.members('tns_auto_entrepreneur_benefice', annee_glissante,
+        benefice_auto_entrepreneur_i_m_12 = famille.members('rpns_auto_entrepreneur_benefice', annee_glissante,
                                                             options=[ADD])
         tns_autres_revenus_i_m_12 = famille.members('tns_autres_revenus', annee_glissante)
         benefice_agricole_i = where(benefice_agricole_i_n_2 > 0, benefice_agricole_i_n_2, benefice_agricole_i_m_12)

@@ -2071,7 +2071,7 @@ class tns_auto_entrepreneur_revenus_net(Variable):
     definition_period = MONTH
 
     def formula_2008_01_01(individu, period, parameters):
-        tns_auto_entrepreneur_benefice = individu('tns_auto_entrepreneur_benefice', period)
+        rpns_auto_entrepreneur_benefice = individu('rpns_auto_entrepreneur_benefice', period)
         tns_auto_entrepreneur_type_activite = individu('tns_auto_entrepreneur_type_activite', period)
         rpns_auto_entrepreneur_chiffre_affaires = individu('rpns_auto_entrepreneur_chiffre_affaires', period)
         bareme_cs_ae = parameters(period).tns.auto_entrepreneur
@@ -2081,7 +2081,7 @@ class tns_auto_entrepreneur_revenus_net(Variable):
             + (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.bnc) * bareme_cs_ae.bnc
             )
         tns_auto_entrepreneur_charges_sociales = taux_cotisations_sociales_sur_CA * rpns_auto_entrepreneur_chiffre_affaires
-        revenus = tns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
+        revenus = rpns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
 
         return revenus
 

@@ -169,7 +169,7 @@ def neutralisation_stage_formation_pro(individu, previous_year, last_month):
 
 
 def revenus_tns(individu, previous_year, last_year):
-    revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options = [ADD])
+    revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', previous_year, options = [ADD])
 
     # Les revenus TNS hors AE sont estimés en se basant sur N-1
     tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year)

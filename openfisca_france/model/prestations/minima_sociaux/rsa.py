@@ -505,7 +505,7 @@ class rsa_revenu_activite_individu(Variable):
             'bourse_recherche',
             'hsup',
             'etr',
-            'tns_auto_entrepreneur_benefice',
+            'rpns_auto_entrepreneur_benefice',
             'rsa_indemnites_journalieres_activite',
             ]
 
