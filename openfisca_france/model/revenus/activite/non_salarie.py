@@ -2055,8 +2055,6 @@ class rpns_benefice_exploitant_agricole(Variable):
         return rpns_revenus_forfait_agricole + arag_exon + arag_impg
 
         
-
-
 # Computed variables
 
 
@@ -2119,19 +2117,27 @@ class rpns_auto_entrepreneur_benefice(Variable):
         return benefice
 
 
-class tns_micro_entreprise_benefice(Variable):
+class rpns_micro_entreprise_benefice(Variable):
     value_type = float
     label = "Bénéfice de la micro entreprise"
     entity = Individu
     definition_period = YEAR
 
     def formula_2008_01_01(individu, period, parameters):
-        tns_micro_entreprise_type_activite = individu('tns_micro_entreprise_type_activite', period)
-        tns_micro_entreprise_chiffre_affaires = individu('tns_micro_entreprise_chiffre_affaires', period)
-        bareme = parameters(period).tns
+        rpns_micro_entreprise_CA_bnc_imp = individu('rpns_micro_entreprise_CA_bnc_imp', period)
+        rpns_micro_entreprise_CA_bic_vente_imp = individu('rpns_micro_entreprise_CA_bic_vente_imp', period)
+        rpns_micro_entreprise_CA_bic_service_imp = individu('rpns_micro_entreprise_CA_bic_service_imp', period)
+        rpns_micro_entreprise_CA_bnc_exon = individu('rpns_micro_entreprise_CA_bnc_exon', period)
+        rpns_micro_entreprise_bic_exon = individu('rpns_micro_entreprise_bic_exon', period)
 
-        benefice = compute_benefice_auto_entrepreneur_micro_entreprise(
-            bareme, tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
+        bareme = parameters(period).impot_revenu.rpns.micro        
+
+        benefice = ((rpns_micro_entreprise_CA_bic_vente_imp * bareme.microentreprise.taux_ventes_de_marchandises) 
+                    + (rpns_micro_entreprise_CA_bnc_imp * bareme.specialbnc.taux)
+                    + (rpns_micro_entreprise_CA_bic_service_imp * bareme.microentreprise.taux_prestations_de_services)
+                    + rpns_micro_entreprise_CA_bnc_exon 
+                    + rpns_micro_entreprise_bic_exon)
+        
         return benefice
 
 
@@ -2168,9 +2174,9 @@ class tns_micro_entreprise_revenus_net(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', period)
+        rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period)
         taux_cotisations_sociales = parameters(period).tns.micro_entreprise.cotisations_sociales
-        tns_micro_entreprise_charges_sociales = tns_micro_entreprise_benefice * taux_cotisations_sociales
-        revenus = tns_micro_entreprise_benefice - tns_micro_entreprise_charges_sociales
+        tns_micro_entreprise_charges_sociales = rpns_micro_entreprise_benefice * taux_cotisations_sociales
+        revenus = rpns_micro_entreprise_benefice - tns_micro_entreprise_charges_sociales
 
         return revenus
