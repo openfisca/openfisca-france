@@ -11,7 +11,7 @@ class rente_accident_travail(Variable):
 
     def formula(individu, period):
         previous_year = period.start.period('year').offset(-1)
-        non_salarie_agricole = individu('tns_benefice_exploitant_agricole', previous_year, options=[ADD]) != 0
+        non_salarie_agricole = individu('rpns_benefice_exploitant_agricole', previous_year, options=[ADD]) != 0
         rente_accident_travail_salarie = individu('rente_accident_travail_salarie', period)
         rente_accident_travail_exploitant_agricole = individu('rente_accident_travail_exploitant_agricole', period)
 
@@ -51,7 +51,7 @@ class rente_accident_travail_exploitant_agricole(Variable):
 
     def formula(individu, period):
         previous_year = period.start.period('year').offset(-1)
-        non_salarie_agricole = individu('tns_benefice_exploitant_agricole', previous_year, options=[ADD]) != 0
+        non_salarie_agricole = individu('rpns_benefice_exploitant_agricole', previous_year, options=[ADD]) != 0
         rente_accident_travail_rachat = individu('rente_accident_travail_rachat', period)
         taux_incapacite = individu('taux_accident_travail', period)
         rente_accident_travail_base = individu('rente_accident_travail_base', period) * non_salarie_agricole
@@ -175,7 +175,7 @@ class rente_accident_travail_salaire_utile(Variable):
         rente_at = parameters(period).accident_travail.rente
 
         salaire_net = individu('salaire_net', previous_year, options=[ADD])
-        tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', previous_year, options=[ADD])
+        tns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', previous_year, options=[ADD])
         salaire = max_(salaire_net, tns_benefice_exploitant_agricole)
         salaire_net_base = max_(rente_at.salaire_net.salaire_minimum, salaire)
         coef = salaire_net_base / rente_at.salaire_net.salaire_minimum
