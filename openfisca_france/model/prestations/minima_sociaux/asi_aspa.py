@@ -50,15 +50,15 @@ class asi_aspa_base_ressources_individu(Variable):
             revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', three_previous_months, options = [ADD])
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
 
-            tns_micro_entrerpns_micro_entreprise_beneficeprise_benefice = individu('rpns_micro_entreprise_benefice', last_year) * (3 / 12)
+            rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', last_year) * (3 / 12)
             rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', last_year) * (3 / 12)
-            tns_autres_revenus = individu('rpns_autres_revenus', last_year) * (3 / 12)
+            rpns_micro_entreprise_beneficens_autres_revenus = individu('rpns_autres_revenus', last_year) * (3 / 12)
 
             return (
                 revenus_auto_entrepreneur
                 + rpns_micro_entreprise_benefice
                 + rpns_benefice_exploitant_agricole
-                + tns_autres_revenus
+                + rpns_micro_entreprise_beneficens_autres_revenus
                 )
 
         pension_invalidite = (individu('pensions_invalidite', period) > 0)
