@@ -694,7 +694,7 @@ class rsa_eligibilite_tns(Variable):
         tns_employe_i = famille.members('tns_avec_employe', period)
         tns_avec_employe = famille.any(tns_employe_i)
 
-        tns_autres_revenus_CA_i = famille.members('tns_autres_revenus_chiffre_affaires', last_year, options = [ADD])
+        tns_autres_revenus_CA_i = famille.members('rpns_autres_revenus_chiffre_affaires', last_year, options = [ADD])
         tns_autres_revenus_type_activite_i = famille.members('tns_autres_revenus_type_activite', period)
 
         has_conjoint = famille('nb_parents', period) > 1
