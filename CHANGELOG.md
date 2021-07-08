@@ -13,6 +13,7 @@
     - aubryi/
     - aubryii/
     - cice/
+    - cits
     - fillon/
     - robien/
 * Détails :
