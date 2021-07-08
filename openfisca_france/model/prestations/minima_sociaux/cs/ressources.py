@@ -173,7 +173,7 @@ def revenus_tns(individu, previous_year, last_year):
 
     # Les revenus TNS hors AE sont estimés en se basant sur N-1
     tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year)
-    tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year)
+    rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', last_year)
     tns_autres_revenus = individu('tns_autres_revenus', last_year)
 
-    return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+    return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + rpns_benefice_exploitant_agricole + tns_autres_revenus

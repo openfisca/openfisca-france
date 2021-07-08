@@ -687,7 +687,7 @@ class rsa_eligibilite_tns(Variable):
     def formula(famille, period, parameters):
         last_year = period.last_year
 
-        tns_benefice_agricole_i = famille.members('tns_benefice_exploitant_agricole', last_year)
+        tns_benefice_agricole_i = famille.members('rpns_benefice_exploitant_agricole', last_year)
         tns_benefice_agricole = famille.sum(tns_benefice_agricole_i)
 
         tns_employe_i = famille.members('tns_avec_employe', period)
@@ -910,7 +910,7 @@ class rsa_non_calculable_tns_individu(Variable):
 
     def formula(individu, period):
         this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
-        tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD])
+        tns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD])
         tns_micro_entreprise_chiffre_affaires = individu('tns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD])
         tns_autres_revenus = individu('tns_autres_revenus', this_year_and_last_year, options = [ADD])
 

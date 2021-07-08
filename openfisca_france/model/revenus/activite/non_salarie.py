@@ -1963,11 +1963,25 @@ class tns_avec_employe(Variable):
 # Input annuel
 
 
-class tns_benefice_exploitant_agricole(Variable):
+class rpns_benefice_exploitant_agricole(Variable):
     value_type = float
     entity = Individu
     label = "Dernier bénéfice agricole"
     definition_period = YEAR
+
+    def formula_2016_01_01(individu, period):
+        rpns_revenus_microBA_agricole = individu('rpns_revenus_microBA_agricole', period)
+        arag_exon = individu('arag_exon', period)
+        arag_impg = individu('arag_impg', period)
+        return rpns_revenus_microBA_agricole + arag_exon + arag_impg
+
+    def formula(individu, period):
+        rpns_revenus_forfait_agricole = individu('rpns_revenus_forfait_agricole', period)
+        arag_exon = individu('arag_exon', period)
+        arag_impg = individu('arag_impg', period)
+        return rpns_revenus_forfait_agricole + arag_exon + arag_impg
+
+        
 
 
 # Computed variables
@@ -1984,7 +1998,7 @@ class travailleur_non_salarie(Variable):
         rpns_auto_entrepreneur_chiffre_affaires = individu('rpns_auto_entrepreneur_chiffre_affaires', period) != 0
         tns_micro_entreprise_chiffre_affaires = individu('tns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
         tns_autres_revenus = individu('tns_autres_revenus', this_year_and_last_year, options = [ADD]) != 0
-        tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD]) != 0
+        rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD]) != 0
         tns_autres_revenus_chiffre_affaires = individu('tns_autres_revenus_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
 
         result = (
