@@ -70,13 +70,11 @@ class prestations_familiales_base_ressources_individu(Variable):
         hsup = individu('hsup', annee_fiscale_n_2, options = [ADD])
         glo = individu('glo', annee_fiscale_n_2)
         plus_values = individu.foyer_fiscal('assiette_csg_plus_values', annee_fiscale_n_2) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        rpns = individu('rpns', annee_fiscale_n_2)
+        rpns = individu('rpns_imposables', annee_fiscale_n_2)
         rpns_pvce = individu('rpns_pvce', annee_fiscale_n_2)
-        rpns_pvct = individu('rpns_pvct', annee_fiscale_n_2)
-        rpns_mvct = individu('moins_values_court_terme_non_salaries', annee_fiscale_n_2)
-        rpns_mvlt = individu('moins_values_long_terme_non_salaries', annee_fiscale_n_2)
-
-        return traitements_salaires_pensions_rentes + hsup + glo + plus_values + rpns + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
+        rpns_exon = individu('rpns_exon', annee_fiscale_n_2)
+ 
+        return traitements_salaires_pensions_rentes + hsup + glo + plus_values + rpns + rpns_pvce + rpns_exon
 
 
 class biactivite(Variable):
@@ -106,7 +104,7 @@ class biactivite(Variable):
         seuil_rev = 12 * pfam.af.bmaf
 
         condition_ressource = (
-            famille.members('rpns_individu', annee_fiscale_n_2)
+            famille.members('rpns_imposables', annee_fiscale_n_2)
             + famille.members('revenu_assimile_salaire_apres_abattements', annee_fiscale_n_2)
             >= seuil_rev
             )
