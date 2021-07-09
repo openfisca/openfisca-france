@@ -687,7 +687,7 @@
   output:
     ppa: 0
 
-- name: 'PPA: Auto-entrepreneur - activité libérale (BNC)'
+- name: 'PPA: Exploitant agricole, prise en compte du dernier bénéfice agricole connu'
   period: 2016-01
   input:
     rpns_benefice_exploitant_agricole:
@@ -697,10 +697,10 @@
     ppa_revenu_activite:
       2015-12: 3000
 
-- name: 'PPA: Exploitant agricole, prise en compte du dernier bénéfice agricole connu'
+- name: 'PPA: Auto-entrepreneur - activité libérale (BNC)'
   period: 2016-01
   input:
-    rpns_micro_entreprise_CA_bnc_imp: # Abattement de 34%
+    rpns_auto_entrepreneur_CA_bnc: # Abattement de 34%
       2015-12: 3000
       2015-11: 3000
       2015-10: 3000
