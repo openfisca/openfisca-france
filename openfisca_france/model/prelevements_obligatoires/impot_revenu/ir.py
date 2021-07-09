@@ -2869,7 +2869,7 @@ class rpns_imposables(Variable):
         macc_imps = individu('macc_imps', period)
         aacc_impn = individu('aacc_impn', period)
         aacc_defn = individu('aacc_defn', period)
-        aacc_defn = individu('aacc_defs', period)
+        aacc_defs = individu('aacc_defs', period)
         aacc_gits = individu('aacc_gits', period)
         nacc_impn = individu('nacc_impn', period)
         nacc_defn = individu('nacc_defn', period)
@@ -2969,7 +2969,7 @@ class rpns_imposables(Variable):
                     micro.specialbnc.services.min,
                     nacc_meuc * (1 - micro.specialbnc.services.taux)
                     )
-                + max_(0, nacc_defs - alnp_defs) - aacc_defn
+                + max_(0, nacc_defs - alnp_defs) - aacc_defn - aacc_defs
                 )
             )
         # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
