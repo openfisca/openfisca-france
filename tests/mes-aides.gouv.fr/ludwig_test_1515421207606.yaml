@@ -24,21 +24,6 @@ input:
         2017-12: false
         2017-11: false
         2017-10: false
-      # tns_autres_revenus_type_activite:
-      #   2018-01: bic
-      #   2017-12: bic
-      #   2017-11: bic
-      #   2017-10: bic
-      # tns_micro_entreprise_type_activite:
-      #   2018-01: bic
-      #   2017-12: bic
-      #   2017-11: bic
-      #   2017-10: bic
-      # tns_auto_entrepreneur_type_activite:
-      #   2018-01: bic
-      #   2017-12: bic
-      #   2017-11: bic
-      #   2017-10: bic
       date_naissance:
         2018-01: '1985-03-21'
         2017-12: '1985-03-21'
