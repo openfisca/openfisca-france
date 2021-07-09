@@ -2677,21 +2677,6 @@ class rnc(Variable):
         return zbnc - cbnc
 
 
-class rpns(Variable):
-    value_type = float
-    entity = Individu
-    label = "Revenus individuels des professions non salariées"
-    definition_period = YEAR
-
-    def formula(individu, period, parameters):
-        rag = individu('rag', period)
-        ric = individu('ric', period)
-        rac = individu('rac', period)
-        rnc = individu('rnc', period)
-
-        return rag + ric + rac + rnc
-
-
 class rpns_pvct(Variable):
     value_type = float
     entity = Individu
