@@ -86,7 +86,7 @@ class deces_artisan_commercant(Variable):
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
             + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) * individu('rpns_individu', period)
+            ) * individu('rpns_imposables', period)
 
         return -bareme.calc(assiette)
 
@@ -111,7 +111,7 @@ class formation_artisan_commercant(Variable):
         bareme_commercant.add_bracket(0, formation.commercants_industriels.sous_pss)
         bareme_commercant.add_bracket(1, 0)
         bareme_commercant.multiply_thresholds(plafond_securite_sociale_annuel)
-        assiette = individu('rpns_individu', period)
+        assiette = individu('rpns_imposables', period)
         categorie_non_salarie = individu('categorie_non_salarie', period)
         artisan = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
         commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
@@ -136,7 +136,7 @@ class maladie_maternite_artisan_commercant(Variable):
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
             + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) * individu('rpns_individu', period)
+            ) * individu('rpns_imposables', period)
         cotisation_sous_1_1_pss = assiette * (
             (assiette > .4 * plafond_securite_sociale_annuel) * (assiette <= 1.1 * plafond_securite_sociale_annuel)
             * (
@@ -159,7 +159,7 @@ class maladie_maternite_artisan_commercant(Variable):
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
             + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) * individu('rpns_individu', period)
+            ) * individu('rpns_imposables', period)
         cotisation_sous_1_1_pss = assiette * (
             (assiette < .7 * plafond_securite_sociale_annuel)
             * (
@@ -188,7 +188,7 @@ class retraite_complementaire_artisan_commercant(Variable):
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
             + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) * individu('rpns_individu', period)
+            ) * individu('rpns_imposables', period)
         return -bareme.calc(assiette)
 
 
@@ -210,7 +210,7 @@ class vieillesse_artisan_commercant(Variable):
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
             + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) * individu('rpns_individu', period)
+            ) * individu('rpns_imposables', period)
         return -bareme.calc(assiette)
 
 
@@ -232,7 +232,7 @@ class famille_independant(Variable):
             (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
             + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
             + (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
-            ) * individu('rpns_individu', period)
+            ) * individu('rpns_imposables', period)
         taux = (
             0 + (.031) * min_(
                 max_(
@@ -266,7 +266,7 @@ class formation_profession_liberale(Variable):
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
-            ) * individu('rpns_individu', period)
+            ) * individu('rpns_imposables', period)
         return -bareme.calc(assiette)
 
 
@@ -286,7 +286,7 @@ class maladie_maternite_profession_liberale(Variable):
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
-            * individu('rpns_individu', period)
+            * individu('rpns_imposables', period)
             )
         taux = (
             .015 + (.065 - .015) * min_(
@@ -320,7 +320,7 @@ class retraite_complementaire_profession_liberale(Variable):
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
-            ) * individu('rpns_individu', period)
+            ) * individu('rpns_imposables', period)
         return -bareme.calc(assiette)
 
 
@@ -342,5 +342,5 @@ class vieillesse_profession_liberale(Variable):
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
-            ) * individu('rpns_individu', period)
+            ) * individu('rpns_imposables', period)
         return -bareme.calc(assiette)

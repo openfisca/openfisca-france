@@ -288,7 +288,7 @@ class assiette_csg_crds_non_salarie(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
-        rpns_individu = individu('rpns_individu', period)
+        rpns_imposables = individu('rpns_imposables', period)
         categorie_non_salarie = individu('categorie_non_salarie', period)
         artisan = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
         commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
@@ -302,7 +302,7 @@ class assiette_csg_crds_non_salarie(Variable):
         retraite_complementaire_profession_liberale = individu('retraite_complementaire_profession_liberale', period)   # noqa F841
 
         assiette_cotisation = (
-            (artisan + commercant + profession_liberale) * rpns_individu
+            (artisan + commercant + profession_liberale) * rpns_imposables
             - (  # cotisations are négative
                 (artisan + commercant) * (
                     famille_independant

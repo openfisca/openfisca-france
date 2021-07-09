@@ -3,7 +3,7 @@
   absolute_error_margin: 1
   period: 2017
   input:
-    rpns_individu: 10000
+    rpns_imposables: 10000
     rpns: 10000
     categorie_non_salarie: artisan
   output:
@@ -27,7 +27,7 @@
   absolute_error_margin: 1
   period: 2017
   input:
-    rpns_individu: 10000
+    rpns_imposables: 10000
     rpns: 10000
     categorie_non_salarie: commercant
   output:
@@ -51,7 +51,7 @@
   absolute_error_margin: 1
   period: 2018
   input:
-    rpns_individu: 10000
+    rpns_imposables: 10000
     rpns: 10000
     categorie_non_salarie: commercant
   output:
@@ -75,7 +75,7 @@
   absolute_error_margin: 1
   period: 2017
   input:
-    rpns_individu: 10000
+    rpns_imposables: 10000
     rpns: 10000
     retraite_complementaire_profession_liberale: 0  # Forcée à 0
     categorie_non_salarie: profession_liberale
@@ -99,7 +99,7 @@
   absolute_error_margin: 1
   period: 2018
   input:
-    rpns_individu: 10000
+    rpns_imposables: 10000
     rpns: 10000
     retraite_complementaire_profession_liberale: 0  # Forcée à 0
     categorie_non_salarie: profession_liberale
