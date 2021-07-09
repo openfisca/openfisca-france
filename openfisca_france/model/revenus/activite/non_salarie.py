@@ -1883,6 +1883,7 @@ class rpns_auto_entrepreneur_CA_bnc(Variable):
 
         return chiffre_affaire
 
+
 class rpns_auto_entrepreneur_chiffre_affaires(Variable):
     value_type = float
     entity = Individu
@@ -2018,8 +2019,8 @@ class rpns_autres_revenus(Variable):
         cncn_bene = individu('cncn_bene', period)
 
 
-        return (abic_exon + nbic_exon + abic_impn + nbic_impn + aacc_exon 
-                + nacc_exon + aacc_impn + nacc_impn + alnp_imps + nacc_pvce 
+        return (abic_exon + nbic_exon + abic_impn + nbic_impn + aacc_exon
+                + nacc_exon + aacc_impn + nacc_impn + alnp_imps + nacc_pvce
                 + abnc_exon + nbnc_exon + abnc_impo + nbnc_impo + cncn_exon
                 + nbic_pvce + cncn_aimp + cncn_bene)
 
@@ -2031,7 +2032,7 @@ class rpns_autres_revenus_chiffre_affaires(Variable):
     label = "Chiffre d'affaire pour les TNS non agricoles autres que les AE et ME"
     definition_period = MONTH
 
-    ## les chiffres d'affaire ne sont pas dans les cases fiscales
+    # les chiffres d'affaire ne sont pas dans les cases fiscales
 
 
 class tns_autres_revenus_type_activite(Variable):
@@ -2072,7 +2073,7 @@ class rpns_benefice_exploitant_agricole(Variable):
         arag_impg = individu('arag_impg', period)
         return rpns_revenus_forfait_agricole + arag_exon + arag_impg
 
-        
+
 # Computed variables
 
 
@@ -2113,12 +2114,12 @@ class rpns_auto_entrepreneur_benefice(Variable):
         rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period)
         rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period)
 
-        bareme = parameters(period).impot_revenu.rpns.micro        
+        bareme = parameters(period).impot_revenu.rpns.micro
 
-        benefice = ((rpns_auto_entrepreneur_CA_achat_revente * bareme.microentreprise.taux_ventes_de_marchandises) 
-                    + (rpns_auto_entrepreneur_CA_bnc * bareme.specialbnc.taux)
-                    + (rpns_auto_entrepreneur_CA_bic * bareme.microentreprise.taux_prestations_de_services))
-        
+        benefice = ((rpns_auto_entrepreneur_CA_achat_revente * (1 - bareme.microentreprise.taux_ventes_de_marchandises))
+                    + (rpns_auto_entrepreneur_CA_bnc * (1 - bareme.specialbnc.taux))
+                    + (rpns_auto_entrepreneur_CA_bic * (1 - bareme.microentreprise.taux_prestations_de_services)))
+
         return benefice
 
 
@@ -2135,14 +2136,14 @@ class rpns_micro_entreprise_benefice(Variable):
         rpns_micro_entreprise_CA_bnc_exon = individu('rpns_micro_entreprise_CA_bnc_exon', period)
         rpns_micro_entreprise_bic_exon = individu('rpns_micro_entreprise_bic_exon', period)
 
-        bareme = parameters(period).impot_revenu.rpns.micro        
+        bareme = parameters(period).impot_revenu.rpns.micro
 
-        benefice = ((rpns_micro_entreprise_CA_bic_vente_imp * bareme.microentreprise.taux_ventes_de_marchandises) 
-                    + (rpns_micro_entreprise_CA_bnc_imp * bareme.specialbnc.taux)
-                    + (rpns_micro_entreprise_CA_bic_service_imp * bareme.microentreprise.taux_prestations_de_services)
-                    + rpns_micro_entreprise_CA_bnc_exon 
+        benefice = ((rpns_micro_entreprise_CA_bic_vente_imp * (1 - bareme.microentreprise.taux_ventes_de_marchandises))
+                    + (rpns_micro_entreprise_CA_bnc_imp * (1 - bareme.specialbnc.taux))
+                    + (rpns_micro_entreprise_CA_bic_service_imp * (1 - bareme.microentreprise.taux_prestations_de_services))
+                    + rpns_micro_entreprise_CA_bnc_exon
                     + rpns_micro_entreprise_bic_exon)
-        
+
         return benefice
 
 
@@ -2165,9 +2166,9 @@ class rpns_auto_entrepreneur_revenus_net(Variable):
         rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period)
         bareme_cs_ae = parameters(period).tns.auto_entrepreneur
 
-        rpns_auto_entrepreneur_charges_sociales = ( bareme_cs_ae.achat_revente * rpns_auto_entrepreneur_CA_achat_revente
+        rpns_auto_entrepreneur_charges_sociales = (bareme_cs_ae.achat_revente * rpns_auto_entrepreneur_CA_achat_revente
                                                     + bareme_cs_ae.bic * rpns_auto_entrepreneur_CA_bic
-                                                    + bareme_cs_ae.bnc * rpns_auto_entrepreneur_CA_bnc )
+                                                    + bareme_cs_ae.bnc * rpns_auto_entrepreneur_CA_bnc)
 
         return rpns_auto_entrepreneur_benefice - rpns_auto_entrepreneur_charges_sociales
 
