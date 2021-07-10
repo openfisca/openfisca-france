@@ -20,7 +20,7 @@
         age: 40
       enfant1:
         age: 9
-        handicap: True
+        handicap: true
         aeeh_niveau_handicap: 4
   output:
     aeeh: 399 * (.32 + .92)
