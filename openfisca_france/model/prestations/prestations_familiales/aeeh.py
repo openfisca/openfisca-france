@@ -77,9 +77,9 @@ class aes(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
-    end = "2002-04-01"
+    end = "2005-12-31"
 
-    def formula(famille, period, parameters):
+    def formula_2002_04_01(famille, period, parameters):
         """Allocation d'éducation spécialisée."""
         janvier = period.this_year.first_month
         isole = not_(famille('en_couple', janvier))
