@@ -43,7 +43,7 @@ class aeeh(Variable):
         # Indicatrice d'isolement pour les indidivus
         isole = famille.project(isole)
 
-        enfant_handicape = handicap * (age < prestations_familiales.aeeh.age)
+        enfant_handicape = handicap * (age < prestations_familiales.aeeh.age_maximum_de_l_enfant)
 
         montant_par_enfant = enfant_handicape * prestations_familiales.af.bmaf * (
             base
@@ -77,8 +77,9 @@ class aes(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
+    end = "2002-04-01"
 
-    def formula_2002_04_01(famille, period, parameters):
+    def formula(famille, period, parameters):
         """Allocation d'éducation spécialisée."""
         janvier = period.this_year.first_month
         isole = not_(famille('en_couple', janvier))
@@ -94,7 +95,7 @@ class aes(Variable):
         # Indicatrice d'isolement pour les indidivus
         isole = famille.project(isole)
 
-        enfant_handicape = handicap * (age < prestations_familiales.aeeh.age)
+        enfant_handicape = handicap * (age < prestations_familiales.aes.age_maximum_de_l_enfant)
 
         montant_par_enfant = enfant_handicape * prestations_familiales.af.bmaf * (
             base
