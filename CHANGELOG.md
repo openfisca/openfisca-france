@@ -1,5 +1,15 @@
 # Changelog
 
+# 59.0.0 [#1577](https://github.com/openfisca/openfisca-france/pull/1577)
+
+* Amélioration technique et correction d'un crash.
+* Périodes concernées : jusqu'au 31/12/2005
+* Zones impactées : `model/prestations/prestations_familiales/aeeh.py`
+* Détails :
+  - Séparation de l'AEEH et de l'AES.
+  - Crée la variable `aes`.
+  - Correction de l'accès aux paramètres débutant par un nombre (utilisation de la méthode `ParameterNodeAtInstant._children`)
+
 # 58.0.0 [#1593](https://github.com/openfisca/openfisca-france/pull/1593)
 * Évolution du système socio-fiscal.
 
@@ -48,7 +58,7 @@
   - Suppression de la variable `rpns` qui était un doublon de la variable `rpns_individu`
 
   - Renomme la variable `rpns_individu` en `rpns_imposables` pour préciser le contenu de la variable
-# 57.0.0 [#1578](https://github.com/openfisca/openfisca-france/pull/1578) 
+# 57.0.0 [#1578](https://github.com/openfisca/openfisca-france/pull/1578)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes.
@@ -60,9 +70,9 @@
     - Ajoute de nouvelles clefs aux metadata: `official_journal_date`, `description_en`, `last_review`, `notes`, `ux_name`
     - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
 
-### 56.0.1 [#1580](https://github.com/openfisca/openfisca-france/pull/1580) 
+### 56.0.1 [#1580](https://github.com/openfisca/openfisca-france/pull/1580)
 
-* Amélioration technique 
+* Amélioration technique
 * Périodes concernées : toutes.
 * Zones impactées :
   - `model/prelevements_obligatoires/impot_revenu/ir.py`
@@ -71,11 +81,11 @@
   - `model/prestations/minima_sociaux/asi_aspa.py`
   - `model/prestations/prestations_familiales/af.py`
   - `model/prestations/prestations_familiales/base_ressource.py`
-  
+
 * Détails :
   - Enlève les opérateurs unaires '+' en tête des formules qui génèrent des `DeprecationWarning` Numpy sur `openfisca-france-local`
 
-# 56.0.0 [#1549](https://github.com/openfisca/openfisca-france/pull/1549) 
+# 56.0.0 [#1549](https://github.com/openfisca/openfisca-france/pull/1549)
 
 * Évolution du système socio-fiscal non rétrocompatible
 * Périodes concernées : toutes.
@@ -96,12 +106,11 @@
     - Harmonise ces paramètres OpenFisca avec les barèmes IPP
     - Applique l'arborescence du modèle IPP
     - Ajoute parameters/prelevements_sociaux/reductions_cotisations_sociales/
-    - Déplace le contenu de parameters/prelevements_sociaux/ 
+    - Déplace le contenu de parameters/prelevements_sociaux/
     - Ajoute de nouvelles clefs aux metadata: `official_journal_date`, `description_en`, `last_review`, `notes`, `ux_name`
     - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
   - Ajoute le script de vérification openfisca_france/check_longueur_chemins.py
 
-  
 ### 55.0.1 [#1571](https://github.com/openfisca/openfisca-france/pull/1571)
 
 * Correction d'un bug.
@@ -227,7 +236,7 @@
   - Ajoute l'éligibilité et le calcul du montant de l'aide aux jeunes diplômes et anciens boursiers.
   - L'aide fait partie du dispositif "plan de relance Jeunes" faisant suite à la crise Covid-19.
 
-## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
+# 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541)
 
 * Changement majeur.
 * Évolution du système socio-fiscal non rétrocompatible
@@ -253,7 +262,7 @@
     - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
   - Ajoute le script de vérification openfisca_france/check_longueur_chemins.py
 
-### 52.2.0 [#1540](https://github.com/openfisca/openfisca-france/pull/1540)
+## 52.2.0 [#1540](https://github.com/openfisca/openfisca-france/pull/1540)
 
 * Changement mineur.
 * Zones impactées :
