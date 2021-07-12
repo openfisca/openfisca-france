@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Individu, Variable, ETERNITY, MONTH, YEAR
+from openfisca_france.model.base import Individu, Variable, ETERNITY, MONTH
 from openfisca_france.model.prestations.education import TypesClasse
 
 
@@ -41,7 +41,7 @@ class aide_mobilite_master(Variable):
     value_type = float
     label = "Montant de l'aide à la mobilité Master"
     entity = Individu
-    definition_period = YEAR
+    definition_period = MONTH
     reference = [
         "Décret n° 2017-969 du 10 mai 2017 relatif à l'aide à la mobilité accordée aux étudiants inscrits en première année du diplôme national de master",
         "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000034675851/"
