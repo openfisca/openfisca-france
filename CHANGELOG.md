@@ -1,5 +1,17 @@
 # Changelog
 
+### 56.0.1 [#1578](https://github.com/openfisca/openfisca-france/pull/1578) 
+
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes.
+* Zones impactées :
+  - model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales_regime_general/mmid
+* Détails :
+    - Ajoute ces paramètres issus des barèmes IPP
+    - Applique l'arborescence du modèle IPP
+    - Ajoute de nouvelles clefs aux metadata: `official_journal_date`, `description_en`, `last_review`, `notes`, `ux_name`
+    - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
+
 # 56.0.0 [#1549](https://github.com/openfisca/openfisca-france/pull/1549) 
 
 * Évolution du système socio-fiscal non rétrocompatible
