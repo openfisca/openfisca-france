@@ -1,6 +1,10 @@
 description: "Indemnité de résidence zone 1 : taux"
 metadata:
+  reference:
+    1999-07-01:
+      title: ksks
   unit: /1
 values:
   1999-07-01:
+    unit: currency-FRF
     value: 0.03
