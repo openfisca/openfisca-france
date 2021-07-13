@@ -356,7 +356,7 @@ class eligibilite_caah(Variable):
         salaire_net = individu('salaire_net', annee_precedente, options = [ADD])
 
         return (
-            + (taux_incapacite >= taux_incapacite_min)
+            (taux_incapacite >= taux_incapacite_min)
             * ((aah > 0) | (benef_asi > 0))
             * not_(locataire_foyer)
             * (salaire_net == 0)

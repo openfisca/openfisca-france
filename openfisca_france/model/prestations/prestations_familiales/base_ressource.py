@@ -139,7 +139,7 @@ class rev_coll(Variable):
 
         # TODO: ajouter les revenus de l'étranger etr*0.9
         return (
-            + revenu_categoriel_foncier
+            revenu_categoriel_foncier
             + pensions_alimentaires_versees  # négatif
             + rente_viagere_titre_onereux_net
             + rev_cat_rvcm
@@ -277,22 +277,22 @@ class abattements_speciaux_prestations_familiales(Variable):
 
         # Vecteur de foyers eligibles aux abattements spéciaux
         foyers_eligibles = (
-            + (((date_naissance_declarant < dateLimite) | declarant_invalide) & (age_declarant > 0))
+            (((date_naissance_declarant < dateLimite) | declarant_invalide) & (age_declarant > 0))
             + (((date_naissance_conjoint < dateLimite) | conjoint_invalide) & (age_conjoint > 0))
             )
 
         # Vecteur de montants d'abattement pour personnes âges ou invalides
         abattement_special_personne_agee_invalide = (
-            + foyers_eligibles
+            foyers_eligibles
             * (
                 (
-                    + abattement_age_ou_invalidite.montant_1
+                    abattement_age_ou_invalidite.montant_1
                     * (revenu_net_global <= abattement_age_ou_invalidite.plafond_1)
                     )
                 + (
-                    + abattement_age_ou_invalidite.montant_2
+                    abattement_age_ou_invalidite.montant_2
                     * (
-                        + (revenu_net_global > abattement_age_ou_invalidite.plafond_1)
+                        (revenu_net_global > abattement_age_ou_invalidite.plafond_1)
                         & (revenu_net_global <= abattement_age_ou_invalidite.plafond_2)
                         )
                     )
@@ -301,7 +301,7 @@ class abattements_speciaux_prestations_familiales(Variable):
 
         # Vecteur de montants d'abattement pour enfants à charge
         abattement_special_enfants_a_charge = (
-            + nombre_enfants
+            nombre_enfants
             * abattement_enfant_marie.montant
             )
 
