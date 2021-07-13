@@ -34,9 +34,6 @@ L'ensembles des endpoints sont décrits dans la [documentation Swagger](https://
 
 Ce paquet requiert [Python 3.7](https://www.python.org/downloads/release/python-370/) et [pip](https://pip.pypa.io/en/stable/installing/).
 
-> La rétro-compatibilité avec Python 2.7 est maintenue pour le moment, mais cessera le 1er janvier 2019.
-
-
 Plateformes supportées :
 - distributions GNU/Linux (en particulier Debian and Ubuntu) ;
 - Mac OS X ;
