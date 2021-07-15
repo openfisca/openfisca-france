@@ -96,6 +96,7 @@ class enceinte(Variable):
     entity = Individu
     label = "Est enceinte"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class statut_marital(Variable):
