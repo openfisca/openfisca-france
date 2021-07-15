@@ -8,6 +8,7 @@ class inapte_travail(Variable):
     entity = Individu
     label = "Reconnu inapte au travail"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class asi_aspa_base_ressources_individu(Variable):
