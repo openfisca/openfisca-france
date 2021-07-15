@@ -28,6 +28,7 @@ class aah_date_debut_hospitalisation(Variable):
     label = "La date de début d'hospitalisation"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class aah_base_ressources(Variable):
