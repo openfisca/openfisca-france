@@ -319,6 +319,7 @@ class rempli_obligation_scolaire(Variable):
     entity = Individu
     label = "Remplit l'obligation scolaire"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class nationalite(Variable):
