@@ -10,6 +10,7 @@ class jei_date_demande(Variable):
     entity = Individu
     label = "Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class exoneration_cotisations_employeur_geographiques(Variable):
