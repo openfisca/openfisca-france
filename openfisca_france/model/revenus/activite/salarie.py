@@ -459,6 +459,7 @@ class complementaire_sante_taux_employeur(Variable):
     entity = Individu
     label = "Part de la complémentaire santé obligatoire payée par l'employeur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class prise_en_charge_employeur_prevoyance_complementaire(Variable):
