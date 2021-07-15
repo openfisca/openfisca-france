@@ -474,3 +474,4 @@ class pch(Variable):
     value_type = float
     label = "Prestation de compensation du handicap"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
