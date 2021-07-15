@@ -20,6 +20,7 @@ class aah_date_debut_incarceration(Variable):
     label = "La date de début d'incarcération"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class aah_date_debut_hospitalisation(Variable):
