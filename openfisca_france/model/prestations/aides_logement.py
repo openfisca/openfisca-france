@@ -258,7 +258,7 @@ class assistant_maternel(Variable):
 class assistant_familial(Variable):
     value_type = bool
     entity = Individu
-    label = "Exerce la profession d'assistant familiale"
+    label = "Exerce la profession d'assistant familial"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
