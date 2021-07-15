@@ -449,6 +449,7 @@ class complementaire_sante_montant(Variable):
     entity = Individu
     label = "Montant de la complémentaire santé obligatoire retenue par l'employeur"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class complementaire_sante_taux_employeur(Variable):
