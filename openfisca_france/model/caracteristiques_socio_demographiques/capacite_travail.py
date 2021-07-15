@@ -7,6 +7,7 @@ class taux_capacite_travail(Variable):
     entity = Individu
     label = "Taux de capacité de travail, appréciée par la commission des droits et de l'autonomie des personnes handicapées (CDAPH)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class taux_incapacite(Variable):
