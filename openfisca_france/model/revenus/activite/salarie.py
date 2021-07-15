@@ -467,6 +467,7 @@ class prise_en_charge_employeur_prevoyance_complementaire(Variable):
     entity = Individu
     label = "Part salariale des cotisations de prévoyance complémentaire prise en charge par l'employeur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class prise_en_charge_employeur_retraite_complementaire(Variable):
@@ -474,6 +475,7 @@ class prise_en_charge_employeur_retraite_complementaire(Variable):
     entity = Individu
     label = "Part salariale des cotisations de retraite complémentaire prise en charge par l'employeur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class prise_en_charge_employeur_retraite_supplementaire(Variable):
@@ -481,6 +483,7 @@ class prise_en_charge_employeur_retraite_supplementaire(Variable):
     entity = Individu
     label = "Part salariale des cotisations de retraite supplémentaire prise en charge par l'employeur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class ratio_alternants(Variable):
