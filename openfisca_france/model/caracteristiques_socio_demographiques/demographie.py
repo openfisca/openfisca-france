@@ -230,6 +230,7 @@ class handicap(Variable):
     entity = Individu
     label = "Individu en situation de handicap"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class invalidite(Variable):
