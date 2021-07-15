@@ -488,6 +488,7 @@ class ratio_alternants(Variable):
     entity = Individu
     label = "Ratio d'alternants dans l'effectif moyen"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class remboursement_transport_base(Variable):
