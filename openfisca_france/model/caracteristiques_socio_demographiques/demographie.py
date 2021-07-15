@@ -330,6 +330,7 @@ class nationalite(Variable):
     max_length = 2
     label = "Code ISO de la nationalité de l'individu"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class ressortissant_eee(Variable):
