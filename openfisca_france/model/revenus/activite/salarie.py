@@ -536,6 +536,7 @@ class titre_restaurant_volume(Variable):
     entity = Individu
     label = "Volume des titres restaurant"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class traitement_indiciaire_brut(Variable):
