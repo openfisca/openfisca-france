@@ -15,6 +15,7 @@ class stage_gratification_taux(Variable):
     entity = Individu
     label = "Taux de gratification (en plafond de la Sécurité sociale)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class stage_gratification(Variable):
