@@ -390,6 +390,8 @@ class entreprise_bilan(Variable):
     entity = Individu
     label = "Bilan de l'entreprise"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
+    
 
 
 class entreprise_chiffre_affaire(Variable):
