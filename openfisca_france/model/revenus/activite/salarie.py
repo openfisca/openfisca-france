@@ -383,8 +383,8 @@ class entreprise_benefice(Variable):
     label = "Bénéfice de l'entreprise"
     definition_period = MONTH
     calculate_output = calculate_output_add
-
-
+    
+    
 class entreprise_bilan(Variable):
     value_type = float
     entity = Individu
@@ -392,7 +392,7 @@ class entreprise_bilan(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     
-
+    
 class entreprise_chiffre_affaire(Variable):
     value_type = float
     entity = Individu
@@ -400,7 +400,7 @@ class entreprise_chiffre_affaire(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     
-
+    
 class entreprise_creation(Variable):
     value_type = date
     entity = Individu
