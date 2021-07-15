@@ -1,0 +1,8 @@
+montant:
+  description: Montant de l'aide mon job mon logement
+  reference:
+    - https://www.actionlogement.fr/aide-mon-job-mon-logement
+  unit: currency
+  values:
+    2021-02-18:
+      value: 1000

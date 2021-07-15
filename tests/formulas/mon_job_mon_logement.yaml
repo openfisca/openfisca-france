@@ -1,0 +1,26 @@
+- name: Éligibilité à l'aide mon job mon logement
+  period: 2021-07
+  input:
+    activite: ["actif", "etudiant", "inactif", "actif", "actif", "actif"]
+    alternant: [false, true, false, false, false, false]
+    salaire_de_base: [1554.58, 1554.58, 1554.58, 1555, 1554.58, 3000.]
+    statut_occupation_logement: ['locataire_meuble', 'locataire_vide', 'locataire_hlm', 'non_renseigne', 'locataire_vide', 'locataire_vide']
+    date_entree_logement: [2021-07-01, 2021-07-01, 2021-07-01, 2021-07-01, 2021-04-01, 2021-07-01]
+    contrat_de_travail_debut: [2021-07-01, 2021-07-01, 2021-07-01, 2021-07-01, 2021-07-01, 2021-04-01]
+    age: [ 26, 26, 26, 26, 26, 26 ]
+
+  output:
+    mon_job_mon_logement: [1000, 1000, 0, 0, 0, 0]
+
+- name: Éligibilité à l'aide mon job mon logement jeunes actifs
+  period: 2021-07
+  input:
+    activite: ["actif", "etudiant", "inactif", "actif", "actif", "actif", "actif"]
+    alternant: [false, true, false, false, false, false, false]
+    salaire_de_base: [1554.58, 1554.58, 1554.58, 1555, 1554.58, 3000., 1554.58]
+    statut_occupation_logement: ['locataire_meuble', 'locataire_vide', 'locataire_hlm', 'non_renseigne', 'locataire_vide', 'locataire_vide', 'locataire_vide']
+    date_entree_logement: [2021-07-01, 2021-07-01, 2021-07-01, 2021-07-01, 2021-04-01, 2021-07-01, 2021-07-01]
+    contrat_de_travail_debut: [2021-07-01, 2021-07-01, 2021-07-01, 2021-07-01, 2021-07-01, 2021-07-01, 2021-03-01]
+    age: [20, 20, 20, 20, 20, 20, 26]
+  output:
+    mon_job_mon_logement: [1000, 1000, 0, 0, 0, 0, 0]
