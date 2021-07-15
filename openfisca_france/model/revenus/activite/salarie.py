@@ -234,6 +234,7 @@ class indemnites_compensatrices_conges_payes(Variable):
     entity = Individu
     label = "indemnites_compensatrices_conges_payes"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnite_fin_contrat_due(Variable):
