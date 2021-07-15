@@ -265,7 +265,7 @@ class formation_profession_liberale(Variable):
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
-            + (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
+            (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
             ) * individu('rpns_individu', period)
         return -bareme.calc(assiette)
 
@@ -319,7 +319,7 @@ class retraite_complementaire_profession_liberale(Variable):
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
-            + (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
+            (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
             ) * individu('rpns_individu', period)
         return -bareme.calc(assiette)
 
@@ -341,6 +341,6 @@ class vieillesse_profession_liberale(Variable):
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
-            + (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
+            (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
             ) * individu('rpns_individu', period)
         return -bareme.calc(assiette)

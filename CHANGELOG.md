@@ -1,5 +1,21 @@
 # Changelog
 
+### 56.0.1 [#1580](https://github.com/openfisca/openfisca-france/pull/1580) 
+
+* Amélioration technique 
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie.py`
+  - `model/prestations/minima_sociaux/aah.py`
+  - `model/prestations/minima_sociaux/asi_aspa.py`
+  - `model/prestations/prestations_familiales/af.py`
+  - `model/prestations/prestations_familiales/base_ressource.py`
+  
+* Détails :
+  - Enlève les opérateurs unaires '+' en tête des formules qui génèrent des `DeprecationWarning` Numpy sur `openfisca-france-local`
+  
+
 # 56.0.0 [#1549](https://github.com/openfisca/openfisca-france/pull/1549) 
 
 * Évolution du système socio-fiscal non rétrocompatible
