@@ -226,6 +226,7 @@ class avantage_en_nature_valeur_reelle(Variable):
     entity = Individu
     label = "Avantages en nature (Valeur réelle)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnites_compensatrices_conges_payes(Variable):
