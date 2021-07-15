@@ -7,6 +7,7 @@ class stage_duree_heures(Variable):
     entity = Individu
     label = "Nombre d'heures effectuées en stage"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class stage_gratification_taux(Variable):
