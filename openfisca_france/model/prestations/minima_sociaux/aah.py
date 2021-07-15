@@ -202,6 +202,7 @@ class aah_restriction_substantielle_durable_acces_emploi(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+
 class aah_eligible(Variable):
     value_type = bool
     label = "Eligibilité à l'Allocation adulte handicapé"
