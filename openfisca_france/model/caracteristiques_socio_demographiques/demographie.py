@@ -28,6 +28,7 @@ class mineur_emancipe(Variable):
     entity = Individu
     label = "L'individu est émancipé"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class adoption(Variable):
