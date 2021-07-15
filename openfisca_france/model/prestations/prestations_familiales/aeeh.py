@@ -6,6 +6,7 @@ class aeeh_niveau_handicap(Variable):
     entity = Individu
     label = "Catégorie de handicap prise en compte pour l'AEEH"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class aeeh(Variable):
