@@ -416,6 +416,7 @@ class nouvelle_bonification_indiciaire(Variable):
     entity = Individu
     label = "Nouvelle bonification indicaire"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class prevoyance_obligatoire_cadre_taux_employe(Variable):
