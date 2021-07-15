@@ -390,13 +390,13 @@ class entreprise_bilan(Variable):
     set_input = set_input_divide_by_period
     
 
-
 class entreprise_chiffre_affaire(Variable):
     value_type = float
     entity = Individu
     label = "Chiffre d'affaire de l'entreprise"
     definition_period = MONTH
-
+    set_input = set_input_divide_by_period
+    
 
 class entreprise_creation(Variable):
     value_type = date
