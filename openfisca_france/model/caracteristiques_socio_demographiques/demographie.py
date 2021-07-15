@@ -372,6 +372,7 @@ class duree_possession_titre_sejour(Variable):
     entity = Individu
     label = "Durée depuis laquelle l'individu possède un titre de séjour (en années)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class enfant_place(Variable):
