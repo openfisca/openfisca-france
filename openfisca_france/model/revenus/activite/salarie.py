@@ -562,6 +562,7 @@ class heures_duree_collective_entreprise(Variable):
     entity = Individu
     label = "Durée mensuelle collective dans l'entreprise (heures, temps plein)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class heures_non_remunerees_volume(Variable):
@@ -585,6 +586,7 @@ class forfait_heures_remunerees_volume(Variable):
     entity = Individu
     label = "Volume des heures rémunérées à un forfait heures"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class forfait_jours_remuneres_volume(Variable):
@@ -592,6 +594,7 @@ class forfait_jours_remuneres_volume(Variable):
     entity = Individu
     label = "Volume des heures rémunérées à forfait jours"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class volume_jours_ijss(Variable):
