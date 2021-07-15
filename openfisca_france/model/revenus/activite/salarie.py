@@ -528,6 +528,7 @@ class titre_restaurant_valeur_unitaire(Variable):
     entity = Individu
     label = "Valeur faciale unitaire du titre restaurant"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class titre_restaurant_volume(Variable):
