@@ -18,6 +18,7 @@ class partiel1(Variable):
     entity = Famille
     label = "Parent actif à moins de 50% (PAJE-CLCA)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class partiel2(Variable):
