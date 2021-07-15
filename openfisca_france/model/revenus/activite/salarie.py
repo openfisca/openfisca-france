@@ -241,7 +241,7 @@ class indemnite_fin_contrat_due(Variable):
     label = "indemnite_fin_contrat_due"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    
+
 
 class TypesContratDeTravail(Enum):
     __order__ = 'temps_plein temps_partiel forfait_heures_semaines forfait_heures_mois forfait_heures_annee forfait_jours_annee sans_objet'  # Needed to preserve the enum order in Python 2
