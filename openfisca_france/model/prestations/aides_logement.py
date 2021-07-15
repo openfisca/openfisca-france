@@ -260,6 +260,7 @@ class assistant_familial(Variable):
     entity = Individu
     label = "Exerce la profession d'assistant familiale"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class journaliste(Variable):
