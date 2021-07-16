@@ -11,6 +11,7 @@ class inactif(Variable):
     entity = Famille
     label = "Parent inactif (PAJE-CLCA)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class partiel1(Variable):
@@ -18,6 +19,7 @@ class partiel1(Variable):
     entity = Famille
     label = "Parent actif à moins de 50% (PAJE-CLCA)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class partiel2(Variable):

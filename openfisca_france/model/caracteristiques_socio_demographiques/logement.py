@@ -54,6 +54,7 @@ class proprietaire_proche_famille(Variable):
     entity = Famille
     label = "Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class habite_chez_parents(Variable):

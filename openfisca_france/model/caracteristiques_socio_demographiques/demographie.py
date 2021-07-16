@@ -28,6 +28,7 @@ class mineur_emancipe(Variable):
     entity = Individu
     label = "L'individu est émancipé"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class adoption(Variable):
@@ -95,6 +96,7 @@ class enceinte(Variable):
     entity = Individu
     label = "Est enceinte"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class statut_marital(Variable):
@@ -230,6 +232,7 @@ class handicap(Variable):
     entity = Individu
     label = "Individu en situation de handicap"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class invalidite(Variable):
@@ -317,6 +320,7 @@ class rempli_obligation_scolaire(Variable):
     entity = Individu
     label = "Remplit l'obligation scolaire"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class nationalite(Variable):
@@ -326,6 +330,7 @@ class nationalite(Variable):
     max_length = 2
     label = "Code ISO de la nationalité de l'individu"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class ressortissant_eee(Variable):
@@ -368,6 +373,7 @@ class duree_possession_titre_sejour(Variable):
     entity = Individu
     label = "Durée depuis laquelle l'individu possède un titre de séjour (en années)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class enfant_place(Variable):
