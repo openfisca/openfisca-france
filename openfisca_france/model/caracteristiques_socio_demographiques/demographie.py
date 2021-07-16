@@ -79,7 +79,7 @@ class niveau_diplome_formation(Variable):
     possible_values = TypesNiveauDiplome  # defined in model/base.py
     entity = Individu
     label = "Niveau du diplôme en cours de préparation"
-    definition_period = YEAR
+    definition_period = MONTH
 
 
 class activite(Variable):
