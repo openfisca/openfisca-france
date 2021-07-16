@@ -1,6 +1,6 @@
 # Changelog
 
-### 56.0.2 [#1581](https://github.com/openfisca/openfisca-france/pull/1581)
+### 56.0.1 [#1581](https://github.com/openfisca/openfisca-france/pull/1581)
 * Changement mineur
 * Périodes concernées : toutes.
 * Zones impactées :
