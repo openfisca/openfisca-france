@@ -61,8 +61,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
         condition_bourse = individu("aide_jeunes_diplomes_anciens_boursiers_base_ressources", period) > 0
 
         # ne pas être en formation (de niveau 5 minimum) au moment de la demande.
-        annee = period.this_year
-        pas_en_formation = individu("niveau_diplome_formation", annee) == TypesNiveauDiplome.non_renseigne
+        pas_en_formation = individu("niveau_diplome_formation", period) == TypesNiveauDiplome.non_renseigne
 
         # décale le test de non-cumul avec d'autres ressources d'un mois dans le passé
         last_month = period.last_month
