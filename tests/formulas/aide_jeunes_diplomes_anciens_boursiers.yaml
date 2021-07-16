@@ -9,8 +9,7 @@
       month:2020-01:10: [1000, false, false, 1000, 1000]
       month:2021-01:10: [false, 10000, 10000, 10000, 10000]
     activite: [chomeur, chomeur, chomeur, chomeur, chomeur]
-    niveau_diplome_formation:
-      2021: [non_renseigne, non_renseigne, niveau_5, non_renseigne, non_renseigne]
+    niveau_diplome_formation: [non_renseigne, non_renseigne, niveau_5, non_renseigne, non_renseigne]
     chomage_brut:
       2021-03: [0., 0., 0., 881.4, 0.]
     ass:
