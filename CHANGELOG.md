@@ -1,5 +1,13 @@
 # Changelog
 
+### 56.0.2 [#1581](https://github.com/openfisca/openfisca-france/pull/1581)
+* Changement mineur
+* Périodes concernées : toutes.
+* Zones impactées :
+  - openfisca_france/model/revenus/activite/salarie.py
+* Détails :
+  Configure la variable "avantage_en_nature_valeur_reelle" par mois pour qu'elle fonctionne avec un input annuel.
+
 # 56.0.0 [#1549](https://github.com/openfisca/openfisca-france/pull/1549) 
 
 * Évolution du système socio-fiscal non rétrocompatible
