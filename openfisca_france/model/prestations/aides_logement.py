@@ -479,10 +479,10 @@ class aide_logement_condition_neutralisation(Variable):
     label = "Condition de neutralisation des revenus d'activité professionnelle et des indemnités de chômage dans le calcul des ressources de l'aide au logement."
     definition_period = MONTH
     reference = [
+        "Article 822-15 du code de la construction et de l'habitation",
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878973/",
+        "Article 822-17 du code de la construction et de l'habitation",
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878969/"]
-        #Article 822-15 du code de la construction et de l'habitation
-        #Article 822-15 du code de la construction et de l'habitation
 
     def formula(individu, period):
         activite_i = individu.famille.members('activite', period)
@@ -509,11 +509,11 @@ class aide_logement_abattement_revenus_activite_professionnelle(Variable):
     entity = Individu
     label = "Condition de l'abattement pour personnes au chômage indemnisé ou départ à la retraite (R351-13 du CCH)"
     definition_period = MONTH
-    reference = [ 
+    reference = [
+        "Article 822-13 du code de la construction et de l'habitation",
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878977",
+        "Article 822-14 du code de la construction et de l'habitation",
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878975"]
-        #Article 822-13 du code de la construction et de l'habitation
-        #Article 822-14 du code de la construction et de l'habitation
 
     def formula(individu, period):
         activite = individu('activite', period)
@@ -531,11 +531,11 @@ class aide_logement_abattement_indemnites_chomage(Variable):
     entity = Individu
     label = "Conditon de l'abattement pour départ à la retraite (R351-13 du CCH)"
     definition_period = MONTH
-    reference = [ 
+    reference = [
+        "Article 822-13 du code de la construction et de l'habitation",
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878977",
+        "Article 822-14 du code de la construction et de l'habitation",
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878975"]
-        #Article 822-13 du code de la construction et de l'habitation
-        #Article 822-14 du code de la construction et de l'habitation
     
     def formula(individu, period):
         activite = individu('activite', period)
@@ -594,7 +594,7 @@ class aide_logement_base_ressources_individu(Variable):
 
         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
 
-        revenus =  (max_(0, salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
+        revenus = (max_(0, salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
 
         revenus = revenus + ((chomage_imposable + min_(0, (salaire_imposable + f1tt + f3vj - abattement_frais_pro) * (revenu_assimile_salaire > 0))) * (1 - taux_abattement * abattement_indemnites_chomage))
 
