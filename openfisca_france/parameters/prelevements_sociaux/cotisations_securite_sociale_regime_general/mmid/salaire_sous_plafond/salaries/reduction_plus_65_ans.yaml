@@ -1,0 +1,41 @@
+description: Réduction pour les plus de 65 ans des cotisations salariés sous plafond du régime d'assurance maladie
+unit: /1
+values:
+  1977-07-01:
+    value: null
+  1968-07-01:
+    value: 0.01
+  1967-10-01:
+    value: null
+metadata:
+  ux_name: Réduction > 65 ans
+  last_review:
+    1977-01-01
+  reference:
+    1977-07-01: Décret 77-677 du 29/06/1977
+    1976-10-01: Décret 76-894 du 29/09/1976
+    1976-01-01: Décret 75-1273 du 29/12/1975
+    1968-07-01: Décret 68-579 du 29/06/1968
+    1967-10-01:
+      title: Décret 67-803 du 20/09/1967
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000330826
+  official_journal_date:
+    1977-07-01: 1977-06-30
+    1976-10-01: 1976-09-30
+    1976-01-01: 1975-12-30
+    1968-07-01: 1968-06-30
+    1967-10-01: 1967-09-24
+  notes:
+    1977-07-01: Depuis le 01/07/1977, la part salarié n'est plus réduite d'un point à partir de 65 ans.
+  description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+documentation: |
+  Sources :
+  Barème social périodique, Législation Cnav et Légifrance.
+  Notes :
+  (i) Parfois le taux de maladie est présenté en incluant le taux de CSA (notamment sur le site de l'URSSAFF). Ici nous distinguons les deux.
+  (ii) En 1981, le taux MMID a été changé en milieu de mois: le décret 81-1013 précise que la date d'application est la date de publication au JO, soit le 14/11/1981.
+  Le fait générateur des cotisations sociales étant le versement des rémunérations, le nouveau taux de cotisation s'applique aux rémunérations versées après l'entrée en vigueur tel que précisée par les textes (Mémento pratique Francis Lefebvre, Paie 2012)
+  En pratique, la plupart des salariés étant payés à la fin du mois, le nouveau taux a été appliqué à la majorité des rémunérations versées en novembre 1981; c'est pourquoi nous avons reporté le 1er novembre 1981 comme date d'effet.
+  Cependant, l'ancien taux a été appliqué à toute rémunération versée avant le 14 novembre 1981.
+  Les accomptes de paie, décalages de paie, rappels de salaire et indemnités de congés payés appellent des précisions quant à l'application de cette règle: voir Mémento pratique Francis Lefebvre, Paie 2012 (§28232 et 2825).
+  A partir de 2019, le taux réduit et le taux normal constituent bien des taux globaux d'imposition, et non des taux d'imposition par tranche, contrairement à précédemment.

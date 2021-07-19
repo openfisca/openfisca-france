@@ -1,90 +1,16 @@
 # Changelog
 
+# 57.0.0 [#1578](https://github.com/openfisca/openfisca-france/pull/1578) 
 
-### 56.1.1 [1592](https://github.com/openfisca/openfisca-france/pull/1592)
-
-* Changement mineur.
-* Périodes concernées : toutes.
-* Zones impactées : `openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/ss/salaire_sous_pss/`.
-* Détails :
-  - Correction de format de dates dans les metadata de paramètres.
-  - Erreurs détectées par le validateur Leximpact.
-
-
-## 56.1.0 [1546](https://github.com/openfisca/openfisca-france/pull/1546)
-
-* Changement mineur.
-* Zones impactées :
-  - `prestations/garantie_jeunes.py`
-* Détails :
-  - Ajoute les revenus d'activités dans le calcul du montant de la Garantie jeunes
-
-
-### 56.0.2 [1589](https://github.com/openfisca/openfisca-france/pull/1589)
-* Amélioration technique.
+* Évolution du système socio-fiscal
 * Périodes concernées : toutes.
 * Zones impactées :
-    - `model/caracteristiques_socio_demographiques/capacite_travail.py`
-    - `model/caracteristiques_socio_demographiques/demographie.py`
-    -  `model/caracteristiques_socio_demographiques/logement.py`
-    -  `caracteristiques_socio_demographiques/capacite_travail.py`
-    -  `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/exonerations.py`
-    - ` model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/stage.py`
-    -  `model/prestations/aides_logement.py`
-    -  `model/prestations/minima_sociaux/aah.py`
-    -  `model/prestations/minima_sociaux/asi_aspa.py`
-    -  `model/prestations/minima_sociaux/rsa.py `
-    -  `model/prestations/prestations_familiales/aeeh.py`
-    -  `model/prestations/prestations_familiales/paje.py`
-    -  `model/revenus/activite/salarie.py`
-    -  `model/revenus/remplacement/rente_accident_travail.py`
-    
+  - model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/mmid
+  - model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales_regime_general/mmid
 * Détails :
-
-   Configure les variables suivantes par mois pour qu'elles fonctionnent avec un input annuel :
-
-    -  `avantage_en_nature_valeur_reelle`
-    -  `indemnite_fin_contrat_due`
-    -  `indemnites_compensatrices_conges_payes`
-    -  `titre_restaurant_taux_employeur`
-    -  `titre_restaurant_valeur_unitaire`
-    -  `titre_restaurant_volume`
-    -  `nouvelle_bonification_indiciaire`
-    -  `stage_duree_heures`
-    -  `stage_gratification_taux`
-    -  `entreprise_bilan`
-    -  `entreprise_chiffre_affaire`
-    -  `jei_date_demande`
-    -  `forfait_heures_remunerees_volume`
-    -  `forfait_jours_remuneres_volume`
-    -  `heures_duree_collective_entreprise`
-    -  `handicap`
-    -  `mineur_emancipe`
-    -  `rempli_obligation_scolaire`
-    -  `aah_date_debut_hospitalisation`
-    -  `aah_date_debut_incarceration`
-    -  ` enceinte`
-    -  `assistant familial`
-    -  `assistant maternel`
-    -  `aeeh_niveau_handicap`
-    -  `partiel1`
-    -  `pch`
-    -  `proprietaire_proche_famille`
-    -  `rsa_jeune_condition_heures_travail_remplis`
-    -  `complementaire_sante_montant`
-    -  `complementaire_sante_taux_employeur`
-    -  `ratio_alternants`
-    -  `prise_en_charge_employeur_retraite_complementaire`
-    -  `prise_en_charge_employeur_retraite_supplementaire`
-    -  `prise_en_charge_employeur_prevoyance_complementaire`
-    -  `duree_possession_titre_sejour`
-    -  `nationalite`
-    -  `inapte_travail`
-    -  `taux_capacite_travail`
-    -  `aah_restriction_substantielle_durable_acces_emploi`
-    -  `inactif`
-    -  `demande_rachat`
-    -  `taux_incapacite`
+    - Déplace ces paramètres pour appliquer l'arborescence du modèle IPP
+    - Ajoute de nouvelles clefs aux metadata: `official_journal_date`, `description_en`, `last_review`, `notes`, `ux_name`
+    - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
 
 ### 56.0.1 [#1580](https://github.com/openfisca/openfisca-france/pull/1580) 
 
@@ -254,7 +180,6 @@
   - L'aide fait partie du dispositif "plan de relance Jeunes" faisant suite à la crise Covid-19.
 
 ## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
->>>>>>> c260ea28a (Bump version)
 
 * Changement majeur.
 * Évolution du système socio-fiscal non rétrocompatible
