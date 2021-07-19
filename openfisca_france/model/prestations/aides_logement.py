@@ -536,7 +536,7 @@ class aide_logement_abattement_indemnites_chomage(Variable):
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878977",
         "Article 822-14 du code de la construction et de l'habitation",
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878975"]
-    
+
     def formula(individu, period):
         activite = individu('activite', period)
 
