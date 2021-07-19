@@ -1,0 +1,11 @@
+- name: Validation de la définition de NEET
+  description: Not in Employement, Education or Training
+  period: 2019-01
+  input:
+    age: [18, 18, 18, 18, 18, 18]
+    salaire_net: [1, 0, 0, 0, 0, 0]
+    activite: [actif, actif, etudiant, etudiant, inactif, inactif]
+    indemnites_stage: [0, 0, 0, 1, 0, 0]
+    revenus_stage_formation_pro: [0, 0, 0, 0, 1, 0]
+  output:
+    garantie_jeunes_neet: [false, false, false, false, false, true]

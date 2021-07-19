@@ -1,5 +1,15 @@
 # Changelog
 
+
+## 56.1.0 [1546](https://github.com/openfisca/openfisca-france/pull/1546)
+
+* Changement mineur.
+* Zones impactées :
+  - `prestations/garantie_jeunes.py`
+* Détails :
+  - Ajoute les revenus d'activités dans le calcul du montant de la Garantie jeunes
+
+
 ### 56.0.2 [1589](https://github.com/openfisca/openfisca-france/pull/1589)
 * Amélioration technique.
 * Périodes concernées : toutes.

@@ -1,0 +1,6 @@
+- name: Critère d'âge pour la Garantie Jeunes
+  period: 2019-01
+  input:
+    age: [15, 16, 25, 26]
+  output:
+    garantie_jeunes_eligibilite_age: [false, true, true, false]
