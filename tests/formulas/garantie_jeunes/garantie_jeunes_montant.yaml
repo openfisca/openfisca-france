@@ -1,0 +1,11 @@
+- name: Calcul du montant de la garantie jeune selon les revenus d'activités
+  period: 2021-05
+  absolute_error_margin: 1
+  input:
+    age: [24, 19, 25, 18]
+    salaire_net: [1500, 0, 0, 0]
+    stage_gratification: [0, 901, 0, 0]
+    revenus_stage_formation_pro: [0, 0, 0, 0]
+    bourse_enseignement_sup: [0, 0, 550, 0]
+  output:
+    garantie_jeunes_montant: [0, 181, 365, 497.5]

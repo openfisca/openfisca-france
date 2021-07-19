@@ -15,9 +15,9 @@ class mobili_jeune(Variable):
     def formula_2012_07(individu, period, parameters):
         loyer = individu.menage('loyer', period)
         charges_locatives = individu.menage('charges_locatives', period)
-        apl = individu.famille('apl', period)
+        aide_logement = individu.famille('aide_logement', period)
 
-        reste_a_charge = loyer + charges_locatives - apl
+        reste_a_charge = loyer + charges_locatives - aide_logement
 
         eligibilite = individu('mobili_jeune_eligibilite', period)
 

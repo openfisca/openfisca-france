@@ -11,6 +11,7 @@ class rsa_jeune_condition_heures_travail_remplie(Variable):
     label = "Éligible au RSA si la personne a moins de vingt-cinq ans et a travaillé deux ans sur les trois dernières années"
     reference = "https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000022743616&cidTexte=LEGITEXT000006074069"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class rsa_base_ressources(Variable):
