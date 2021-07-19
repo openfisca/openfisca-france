@@ -1,6 +1,16 @@
 # Changelog
 
 
+### 56.1.1 [1592](https://github.com/openfisca/openfisca-france/pull/1592)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/ss/salaire_sous_pss/`.
+* Détails :
+  - Correction de format de dates dans les metadata de paramètres.
+  - Erreurs détectées par le validateur Leximpact.
+
+
 ## 56.1.0 [1546](https://github.com/openfisca/openfisca-france/pull/1546)
 
 * Changement mineur.
