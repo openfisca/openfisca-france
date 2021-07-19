@@ -101,6 +101,7 @@ class demande_rachat(Variable):
     entity = Individu
     label = "La victime a demandé le rachat partiel de la rente"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class rente_accident_travail_apres_rachat(Variable):

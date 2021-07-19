@@ -20,6 +20,7 @@ class aah_date_debut_incarceration(Variable):
     label = "La date de début d'incarcération"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class aah_date_debut_hospitalisation(Variable):
@@ -28,6 +29,7 @@ class aah_date_debut_hospitalisation(Variable):
     label = "La date de début d'hospitalisation"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class aah_base_ressources(Variable):
@@ -198,6 +200,7 @@ class aah_restriction_substantielle_durable_acces_emploi(Variable):
         "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=17BE3036A19374AA1C8C7A4169702CD7.tplgfr24s_2?idArticle=LEGIARTI000020039305&cidTexte=LEGITEXT000006073189&dateTexte=20180731"
         ]
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class aah_eligible(Variable):
@@ -356,7 +359,7 @@ class eligibilite_caah(Variable):
         salaire_net = individu('salaire_net', annee_precedente, options = [ADD])
 
         return (
-            + (taux_incapacite >= taux_incapacite_min)
+            (taux_incapacite >= taux_incapacite_min)
             * ((aah > 0) | (benef_asi > 0))
             * not_(locataire_foyer)
             * (salaire_net == 0)
@@ -472,3 +475,4 @@ class pch(Variable):
     value_type = float
     label = "Prestation de compensation du handicap"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period

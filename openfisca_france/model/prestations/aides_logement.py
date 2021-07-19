@@ -253,13 +253,15 @@ class assistant_maternel(Variable):
     entity = Individu
     label = "Exerce la profession d'assistant maternel"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class assistant_familial(Variable):
     value_type = bool
     entity = Individu
-    label = "Exerce la profession d'assistant familiale"
+    label = "Exerce la profession d'assistant familial"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class journaliste(Variable):
@@ -267,6 +269,7 @@ class journaliste(Variable):
     entity = Individu
     label = "Journaliste"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class aide_logement_date_pret_conventionne(Variable):

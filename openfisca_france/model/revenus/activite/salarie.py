@@ -226,6 +226,7 @@ class avantage_en_nature_valeur_reelle(Variable):
     entity = Individu
     label = "Avantages en nature (Valeur réelle)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnites_compensatrices_conges_payes(Variable):
@@ -233,6 +234,7 @@ class indemnites_compensatrices_conges_payes(Variable):
     entity = Individu
     label = "indemnites_compensatrices_conges_payes"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnite_fin_contrat_due(Variable):
@@ -240,6 +242,7 @@ class indemnite_fin_contrat_due(Variable):
     entity = Individu
     label = "indemnite_fin_contrat_due"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class TypesContratDeTravail(Enum):
@@ -387,6 +390,7 @@ class entreprise_bilan(Variable):
     entity = Individu
     label = "Bilan de l'entreprise"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class entreprise_chiffre_affaire(Variable):
@@ -394,6 +398,7 @@ class entreprise_chiffre_affaire(Variable):
     entity = Individu
     label = "Chiffre d'affaire de l'entreprise"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class entreprise_creation(Variable):
@@ -416,6 +421,7 @@ class nouvelle_bonification_indiciaire(Variable):
     entity = Individu
     label = "Nouvelle bonification indicaire"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class prevoyance_obligatoire_cadre_taux_employe(Variable):
@@ -449,6 +455,7 @@ class complementaire_sante_montant(Variable):
     entity = Individu
     label = "Montant de la complémentaire santé obligatoire retenue par l'employeur"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class complementaire_sante_taux_employeur(Variable):
@@ -458,6 +465,7 @@ class complementaire_sante_taux_employeur(Variable):
     entity = Individu
     label = "Part de la complémentaire santé obligatoire payée par l'employeur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class prise_en_charge_employeur_prevoyance_complementaire(Variable):
@@ -465,6 +473,7 @@ class prise_en_charge_employeur_prevoyance_complementaire(Variable):
     entity = Individu
     label = "Part salariale des cotisations de prévoyance complémentaire prise en charge par l'employeur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class prise_en_charge_employeur_retraite_complementaire(Variable):
@@ -472,6 +481,7 @@ class prise_en_charge_employeur_retraite_complementaire(Variable):
     entity = Individu
     label = "Part salariale des cotisations de retraite complémentaire prise en charge par l'employeur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class prise_en_charge_employeur_retraite_supplementaire(Variable):
@@ -479,6 +489,7 @@ class prise_en_charge_employeur_retraite_supplementaire(Variable):
     entity = Individu
     label = "Part salariale des cotisations de retraite supplémentaire prise en charge par l'employeur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class ratio_alternants(Variable):
@@ -486,6 +497,7 @@ class ratio_alternants(Variable):
     entity = Individu
     label = "Ratio d'alternants dans l'effectif moyen"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class remboursement_transport_base(Variable):
@@ -517,6 +529,7 @@ class titre_restaurant_taux_employeur(Variable):
     entity = Individu
     label = "Taux de participation de l'employeur au titre restaurant"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class titre_restaurant_valeur_unitaire(Variable):
@@ -524,6 +537,7 @@ class titre_restaurant_valeur_unitaire(Variable):
     entity = Individu
     label = "Valeur faciale unitaire du titre restaurant"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class titre_restaurant_volume(Variable):
@@ -531,6 +545,7 @@ class titre_restaurant_volume(Variable):
     entity = Individu
     label = "Volume des titres restaurant"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class traitement_indiciaire_brut(Variable):
@@ -556,6 +571,7 @@ class heures_duree_collective_entreprise(Variable):
     entity = Individu
     label = "Durée mensuelle collective dans l'entreprise (heures, temps plein)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class heures_non_remunerees_volume(Variable):
@@ -579,6 +595,7 @@ class forfait_heures_remunerees_volume(Variable):
     entity = Individu
     label = "Volume des heures rémunérées à un forfait heures"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class forfait_jours_remuneres_volume(Variable):
@@ -586,6 +603,7 @@ class forfait_jours_remuneres_volume(Variable):
     entity = Individu
     label = "Volume des heures rémunérées à forfait jours"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class volume_jours_ijss(Variable):

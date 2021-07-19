@@ -241,7 +241,7 @@ class af_complement_degressif(Variable):
         depassement_mensuel = depassement_helper(famille, period, parameters, af_nbenf)
 
         return (
-            + not_(eligibilite_dom)
+            not_(eligibilite_dom)
             * (depassement_mensuel > 0)
             * max_(0, af - depassement_mensuel)
             )
