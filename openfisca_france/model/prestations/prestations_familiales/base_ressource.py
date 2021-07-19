@@ -73,7 +73,7 @@ class prestations_familiales_base_ressources_individu(Variable):
         rpns = individu('rpns_imposables', annee_fiscale_n_2)
         rpns_pvce = individu('rpns_pvce', annee_fiscale_n_2)
         rpns_exon = individu('rpns_exon', annee_fiscale_n_2)
- 
+
         return traitements_salaires_pensions_rentes + hsup + glo + plus_values + rpns + rpns_pvce + rpns_exon
 
 

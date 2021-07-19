@@ -2018,7 +2018,6 @@ class rpns_autres_revenus(Variable):
         cncn_aimp = individu('cncn_aimp', period)
         cncn_bene = individu('cncn_bene', period)
 
-
         return (abic_exon + nbic_exon + abic_impn + nbic_impn + aacc_exon
                 + nacc_exon + aacc_impn + nacc_impn + alnp_imps + nacc_pvce
                 + abnc_exon + nbnc_exon + abnc_impo + nbnc_impo + cncn_exon
@@ -2166,9 +2165,11 @@ class rpns_auto_entrepreneur_revenus_net(Variable):
         rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period)
         bareme_cs_ae = parameters(period).tns.auto_entrepreneur
 
-        rpns_auto_entrepreneur_charges_sociales = (bareme_cs_ae.achat_revente * rpns_auto_entrepreneur_CA_achat_revente
-                                                    + bareme_cs_ae.bic * rpns_auto_entrepreneur_CA_bic
-                                                    + bareme_cs_ae.bnc * rpns_auto_entrepreneur_CA_bnc)
+        rpns_auto_entrepreneur_charges_sociales = (
+            (bareme_cs_ae.achat_revente * rpns_auto_entrepreneur_CA_achat_revente)
+            + (bareme_cs_ae.bic * rpns_auto_entrepreneur_CA_bic)
+            + (bareme_cs_ae.bnc * rpns_auto_entrepreneur_CA_bnc)
+        )
 
         return rpns_auto_entrepreneur_benefice - rpns_auto_entrepreneur_charges_sociales
 
