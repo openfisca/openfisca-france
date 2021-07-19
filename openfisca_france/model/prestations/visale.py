@@ -163,7 +163,7 @@ class visale_base_ressources_individuelle(Variable):
         revenus_individu = sum(individu(ressource, period.last_month) for ressource in ressources_individu_mensuelles)  # les justificatifs des ressources sont demandés « sur le mois précédant la demande de visa »
 
         ressources_individu_annuelles = [
-            'rpns_exon',
+            'rpns_imposables',
             'cotisations_non_salarie',
             'csg_non_salarie',
             'crds_non_salarie',

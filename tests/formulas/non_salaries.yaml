@@ -98,7 +98,7 @@
   description: Revenus TNS aides
   period: 2015-02
   input:
-    rpns_micro_entreprise_CA_bnc_imp:
+    rpns_auto_entrepreneur_CA_bnc:
       2015-01: 1000
       2014-12: 1000
       2014-11: 1000

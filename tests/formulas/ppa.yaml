@@ -699,6 +699,7 @@
 
 - name: 'PPA: Auto-entrepreneur - activité libérale (BNC)'
   period: 2016-01
+  relative_error_margin: 0.001
   input:
     rpns_auto_entrepreneur_CA_bnc: # Abattement de 34%
       2015-12: 3000
@@ -710,6 +711,7 @@
       2015-12: 1980
       2015-11: 1980
       2015-10: 1980
+
 
 - name: 'PPA: Travailleur non salarié, prise en compte des derniers revenus déclarés. (Dans mes-aides, N-2)'
   period: 2016-01
