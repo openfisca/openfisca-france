@@ -2168,8 +2168,7 @@ class rpns_auto_entrepreneur_revenus_net(Variable):
         rpns_auto_entrepreneur_charges_sociales = (
             (bareme_cs_ae.achat_revente * rpns_auto_entrepreneur_CA_achat_revente)
             + (bareme_cs_ae.bic * rpns_auto_entrepreneur_CA_bic)
-            + (bareme_cs_ae.bnc * rpns_auto_entrepreneur_CA_bnc)
-        )
+            + (bareme_cs_ae.bnc * rpns_auto_entrepreneur_CA_bnc))
 
         return rpns_auto_entrepreneur_benefice - rpns_auto_entrepreneur_charges_sociales
 
