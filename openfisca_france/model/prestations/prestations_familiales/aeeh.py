@@ -80,7 +80,6 @@ class aes(Variable):
     end = "2005-12-31"
 
     def formula_2002_04_01(famille, period, parameters):
-        """Allocation d'éducation spéciale."""
         janvier = period.this_year.first_month
         isole = not_(famille('en_couple', janvier))
         prestations_familiales = parameters(period).prestations.prestations_familiales
