@@ -2844,7 +2844,7 @@ class rpns_revenus_microBA_agricole(Variable):
 class rpns_imposables(Variable):
     value_type = float
     entity = Individu
-    label = "Revenus imposiables des professions non salariées individuels"
+    label = "Revenus imposables des professions non salariées individuels"
     definition_period = YEAR
 
     def formula(individu, period, parameters):

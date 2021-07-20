@@ -101,7 +101,7 @@ class revenus_nets_du_travail(Variable):
         '''
         Note : pour les revenus non-salariés, on prend rpns_imposables, auquel on enlève les cotisations sociales
                et la CSG-CRDS. En effet, les variables formant la variable cotisations_non_salarie utilisent
-               comme base rpns_indiviu, ce qui suggère que rpns_imposables est avant tout prélèvement
+               comme base rpns_imposables, ce qui suggère que rpns_imposables est avant tout prélèvement
         '''
         # Salariés
         salaire_net = individu('salaire_net', period, options = [ADD])
@@ -340,7 +340,7 @@ class revenus_travail_super_bruts_menage(Variable):
         avant CSG-CRDS, cotisations salariales et patronales
         Note : pour les revenus non-salariés, on prend rpns_imposables, auquel on n'ajoute ni les cotisations sociales,
                ni la CSG-CRDS. En effet, les variables formant la variable cotisations_non_salarie utilisent
-               comme base rpns_indiviu, ce qui suggère que rpns_imposables est avant tout prélèvement
+               comme base rpns_imposables, ce qui suggère que rpns_imposables est avant tout prélèvement
         '''
         salaire_net_i = menage.members('salaire_net', period, options = [ADD])
         rpns_i = menage.members('rpns_imposables', period)
