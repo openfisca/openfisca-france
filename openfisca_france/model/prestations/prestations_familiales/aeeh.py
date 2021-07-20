@@ -21,7 +21,7 @@ class aeeh(Variable):
     def formula_2006_01_01(famille, period, parameters):
         """Allocation d'éducation de l'enfant handicapé.
 
-        Rremplace l'allocation d'éducation spécialisée (AES) depus le 1er janvier 2006.
+        Rremplace l'allocation d'éducation spéciale (AES) depus le 1er janvier 2006.
         Ce montant peut être majoré par un complément accordé par la Cdaph qui prend en compte :
         le coût du handicap de l'enfant,
         la cessation ou la réduction d'activité professionnelle d'un ou l'autre des deux parents,
@@ -73,14 +73,14 @@ class aeeh(Variable):
 class aes(Variable):
     value_type = float
     entity = Famille
-    label = "Allocation d'éducation spécialisée"
+    label = "Allocation d'éducation spéciale"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
     end = "2005-12-31"
 
     def formula_2002_04_01(famille, period, parameters):
-        """Allocation d'éducation spécialisée."""
+        """Allocation d'éducation spéciale."""
         janvier = period.this_year.first_month
         isole = not_(famille('en_couple', janvier))
         prestations_familiales = parameters(period).prestations.prestations_familiales
