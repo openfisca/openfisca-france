@@ -99,14 +99,14 @@ class revenus_nets_du_travail(Variable):
 
     def formula(individu, period):
         '''
-        Note : pour les revenus non-salariés, on prend rpns_individu, auquel on enlève les cotisations sociales
+        Note : pour les revenus non-salariés, on prend rpns_imposables, auquel on enlève les cotisations sociales
                et la CSG-CRDS. En effet, les variables formant la variable cotisations_non_salarie utilisent
-               comme base rpns_indiviu, ce qui suggère que rpns_individu est avant tout prélèvement
+               comme base rpns_imposables, ce qui suggère que rpns_imposables est avant tout prélèvement
         '''
         # Salariés
         salaire_net = individu('salaire_net', period, options = [ADD])
         # Non salariés
-        revenu_non_salarie = individu('rpns_individu', period, options = [ADD])
+        revenu_non_salarie = individu('rpns_imposables', period, options = [ADD])
         cotisations_non_salarie = individu('cotisations_non_salarie', period)
         csg_non_salarie = individu('csg_non_salarie', period)
         crds_non_salarie = individu('crds_non_salarie', period)
@@ -338,12 +338,12 @@ class revenus_travail_super_bruts_menage(Variable):
         '''
         Revenus du travail super bruts du ménage :
         avant CSG-CRDS, cotisations salariales et patronales
-        Note : pour les revenus non-salariés, on prend rpns_individu, auquel on n'ajoute ni les cotisations sociales,
+        Note : pour les revenus non-salariés, on prend rpns_imposables, auquel on n'ajoute ni les cotisations sociales,
                ni la CSG-CRDS. En effet, les variables formant la variable cotisations_non_salarie utilisent
-               comme base rpns_indiviu, ce qui suggère que rpns_individu est avant tout prélèvement
+               comme base rpns_imposables, ce qui suggère que rpns_imposables est avant tout prélèvement
         '''
         salaire_net_i = menage.members('salaire_net', period, options = [ADD])
-        rpns_i = menage.members('rpns_individu', period)
+        rpns_i = menage.members('rpns_imposables', period)
         csg_imposable_salaire_i = menage.members('csg_imposable_salaire', period, options = [ADD])
         csg_deductible_salaire_i = menage.members('csg_deductible_salaire', period, options = [ADD])
         crds_salaire_i = menage.members('crds_salaire', period, options = [ADD])

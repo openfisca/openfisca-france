@@ -47,18 +47,18 @@ class asi_aspa_base_ressources_individu(Variable):
         plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.this_year) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * (3 / 12)
 
         def revenus_tns():
-            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', three_previous_months, options = [ADD])
+            revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', three_previous_months, options = [ADD])
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
 
-            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year) * (3 / 12)
-            tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year) * (3 / 12)
-            tns_autres_revenus = individu('tns_autres_revenus', last_year) * (3 / 12)
+            rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', last_year) * (3 / 12)
+            rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', last_year) * (3 / 12)
+            rpns_micro_entreprise_beneficens_autres_revenus = individu('rpns_autres_revenus', last_year) * (3 / 12)
 
             return (
                 revenus_auto_entrepreneur
-                + tns_micro_entreprise_benefice
-                + tns_benefice_exploitant_agricole
-                + tns_autres_revenus
+                + rpns_micro_entreprise_benefice
+                + rpns_benefice_exploitant_agricole
+                + rpns_micro_entreprise_beneficens_autres_revenus
                 )
 
         pension_invalidite = (individu('pensions_invalidite', period) > 0)

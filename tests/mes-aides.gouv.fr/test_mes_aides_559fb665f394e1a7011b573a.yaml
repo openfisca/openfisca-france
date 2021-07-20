@@ -18,9 +18,6 @@ input:
       etudiant: 0
       inapte_travail: 0
       handicap: 0
-      tns_auto_entrepreneur_type_activite: bic
-      tns_autres_revenus_type_activite: bic
-      tns_micro_entreprise_type_activite: bic
       valeur_locative_immo_non_loue:
         2012-01: 0
       valeur_locative_terrains_non_loues:
@@ -36,9 +33,6 @@ input:
       inapte_travail: 0
       handicap: 1
       taux_incapacite: 0.9
-      tns_auto_entrepreneur_type_activite: bic
-      tns_autres_revenus_type_activite: bic
-      tns_micro_entreprise_type_activite: bic
       valeur_locative_immo_non_loue:
         2012-01: 0
       valeur_locative_terrains_non_loues:

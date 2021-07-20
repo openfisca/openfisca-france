@@ -1,7 +1,7 @@
 - name: Eligibilité au RSA pour TNS agricole seul quand bénéfice agricole < plafond
   period: month:2015-04
   input:
-    tns_benefice_exploitant_agricole:
+    rpns_benefice_exploitant_agricole:
       2014: 7600
   output:
     rsa_eligibilite_tns: true
@@ -9,7 +9,7 @@
 - name: Non-Eligibilité au RSA pour TNS agricole seul quand bénéfice agricole > plafond
   period: month:2015-04
   input:
-    tns_benefice_exploitant_agricole:
+    rpns_benefice_exploitant_agricole:
       2014: 7700
   output:
     rsa_eligibilite_tns: false
@@ -21,7 +21,7 @@
       parents: [parent1, parent2]
     individus:
       parent1:
-        tns_benefice_exploitant_agricole:
+        rpns_benefice_exploitant_agricole:
           2014: 11500
         age: 40
       parent2:
@@ -50,7 +50,7 @@
       parents: [parent1, parent2]
     individus:
       parent1:
-        tns_benefice_exploitant_agricole:
+        rpns_benefice_exploitant_agricole:
           2014: 11600
         age: 40
       parent2:
@@ -80,7 +80,7 @@
       enfants: [enfant1, enfant2]
     individus:
       parent1:
-        tns_benefice_exploitant_agricole:
+        rpns_benefice_exploitant_agricole:
           2014: 14600
         age: 40
       enfant1:
@@ -118,7 +118,7 @@
       enfants: [enfant1, enfant2]
     individus:
       parent1:
-        tns_benefice_exploitant_agricole:
+        rpns_benefice_exploitant_agricole:
           2014: 14700
         age: 40
       enfant1:
@@ -151,7 +151,7 @@
 - name: Non-Eligibilité au RSA pour TNS avec employé
   period: month:2015-04
   input:
-    tns_autres_revenus:
+    rpns_autres_revenus:
       2014: 4000
     tns_avec_employe: true
   output:
@@ -160,7 +160,7 @@
 - name: Non-Eligibilité au RSA pour TNS avec CA > plafond
   period: month:2015-04
   input:
-    tns_autres_revenus_chiffre_affaires:
+    rpns_autres_revenus_chiffre_affaires:
       2014: 90000
     tns_autres_revenus_type_activite: achat_revente
   output:
@@ -169,7 +169,7 @@
 - name: Eligibilité au RSA pour TNS avec CA < plafond
   period: month:2015-04
   input:
-    tns_autres_revenus_chiffre_affaires:
+    rpns_autres_revenus_chiffre_affaires:
       2014: 80000
     tns_autres_revenus_type_activite: achat_revente
   output:
@@ -178,7 +178,7 @@
 - name: Non-Eligibilité au RSA pour TNS avec CA > plafond
   period: month:2015-04
   input:
-    tns_autres_revenus_chiffre_affaires:
+    rpns_autres_revenus_chiffre_affaires:
       2014: 50000
     tns_autres_revenus_type_activite: bnc
   output:
@@ -187,7 +187,7 @@
 - name: Eligibilité au RSA pour TNS avec CA < plafond
   period: month:2015-04
   input:
-    tns_autres_revenus_chiffre_affaires:
+    rpns_autres_revenus_chiffre_affaires:
       2014: 30000
     tns_autres_revenus_type_activite: bnc
   output:
@@ -207,7 +207,7 @@
   period: month:2015-04
   input:
     rsa_eligibilite: true
-    tns_benefice_exploitant_agricole:
+    rpns_benefice_exploitant_agricole:
       2014: 4000
   output:
     rsa_non_calculable: tns
@@ -222,7 +222,7 @@
         age: 40
       parent2:
         age: 40
-        tns_benefice_exploitant_agricole:
+        rpns_benefice_exploitant_agricole:
           2014: 8000
     foyers_fiscaux:
       foyer_fiscal_0:
@@ -245,7 +245,7 @@
   period: month:2015-04
   input:
     rsa_eligibilite: false
-    tns_benefice_exploitant_agricole:
+    rpns_benefice_exploitant_agricole:
       2014: 10000
   output:
     rsa_non_calculable: calculable
@@ -265,11 +265,11 @@
       parents: [parent1]
     individus:
       parent1:
-        tns_benefice_exploitant_agricole:
+        rpns_benefice_exploitant_agricole:
           2014: 100000
-        tns_autres_revenus_chiffre_affaires:
+        rpns_autres_revenus_chiffre_affaires:
           2014: 100000
-        tns_micro_entreprise_chiffre_affaires:
+        rpns_micro_entreprise_chiffre_affaires:
           2014: 100000
         age: 40
         tns_avec_employe: true

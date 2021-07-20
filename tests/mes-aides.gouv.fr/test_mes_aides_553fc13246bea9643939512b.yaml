@@ -18,7 +18,7 @@ input:
       etudiant: 0
       inapte_travail: 0
       handicap: 0
-      tns_auto_entrepreneur_chiffre_affaires:
+      rpns_auto_entrepreneur_CA_bic:
         2013: 50000
         2014-04: 5400
         2014-05: 5400
@@ -33,7 +33,6 @@ input:
         2015-02: 300
         2015-03: 100
         2015-04: 100
-      tns_auto_entrepreneur_type_activite: bic
       valeur_locative_immo_non_loue:
         2012-01: 0
       valeur_locative_terrains_non_loues:

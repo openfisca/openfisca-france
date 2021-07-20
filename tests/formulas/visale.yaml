@@ -93,7 +93,7 @@
       2021-02: [ 0, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
     remuneration_apprenti:
       2021-02: [ 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
-    tns_auto_entrepreneur_benefice:
+    rpns_auto_entrepreneur_benefice:
       2021-02: [ 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0, 0 ]
     bourse_enseignement_sup:
       2021-02: [ 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0 ]
@@ -111,7 +111,7 @@
       2021-02: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0 ]
     ada:
       2021-02: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0 ]
-    rpns_individu:
+    rpns_imposables:
       2020:    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12000 ]
   output:
     visale_base_ressources_individuelle: [ 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 0, 0, 1000 ]

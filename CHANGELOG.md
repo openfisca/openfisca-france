@@ -1,5 +1,53 @@
 # Changelog
 
+# 58.0.0 [#1593](https://github.com/openfisca/openfisca-france/pull/1593)
+* Évolution du système socio-fiscal.
+
+* Périodes concernées : toutes.
+
+* Zones impactées :
+`
+  - `openfisca_france/model/covid19/activite.py`
+  - `openfisca_france/model/revenus/activite/non_salarie.py`
+  - `openfisca_france/model/prestations/aides_logement.py`
+  - `openfisca_france/model/prestations/minima_sociaux/aah.py`
+  - `openfisca_france/model/prestations/minima_sociaux/asi_aspa.py`
+  - `openfisca_france/model/prestations/minima_sociaux/ass.py`
+  - `openfisca_france/model/prestations/minima_sociaux/cs/ressources.py`
+  - `openfisca_france/model/prestations/minima_sociaux/ppa.py`
+  - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
+  - `openfisca_france/model/prestations/visale.py`
+  - `openfisca_france/model/revenus/remplacement/rente_accident_travail.py`
+
+* Détails :
+
+  - Convergence de deux catégories de variables (rpns_* et tns_*) concernant les revenus des travailleurs non salariés qui coexistait sans être lié mais représentaient la même chose.
+
+  - Notamment création de nouvelles variables plus détaillées :
+
+    - `rpns_auto_entrepreneur_CA_achat_revente`
+    - `rpns_auto_entrepreneur_CA_bic`
+    - `rpns_auto_entrepreneur_CA_bnc`
+    - `rpns_micro_entreprise_CA_bnc_imp`
+    - `rpns_micro_entreprise_CA_bnc_exon`
+    - `rpns_micro_entreprise_CA_bic_vente_imp`
+    - `rpns_micro_entreprise_CA_bic_service_imp`
+    - `rpns_micro_entreprise_bic_exon`
+
+  - Renommage de variables commençant par tns pour l'unicité des noms :
+
+    - `tns_auto_entrepreneur_chiffre_affaires en rpns_auto_entrepreneur_chiffre_affaires`
+    - `tns_auto_entrepreneur_revenus_net en rpns_auto_entrepreneur_revenus_net`
+    - `tns_benefice_exploitant_agricole en rpns_benefice_exploitant_agricole`
+    - `tns_micro_entreprise_chiffre_affaires en rpns_micro_entreprise_chiffre_affaires`
+    - `tns_micro_entreprise_benefice en rpns_micro_entreprise_benefice`
+    - `tns_micro_entreprise_revenus_net en rpns_micro_entreprise_revenus_net`
+    - `tns_autres_revenus en rpns_autres_revenus`
+    - `tns_autres_revenus_chiffre_affaires en rpns_autres_revenus_chiffre_affaires`
+
+  - Suppression de la variable `rpns` qui était un doublon de la variable `rpns_individu`
+
+  - Renomme la variable `rpns_individu` en `rpns_imposables` pour préciser le contenu de la variable
 # 57.0.0 [#1578](https://github.com/openfisca/openfisca-france/pull/1578) 
 
 * Évolution du système socio-fiscal

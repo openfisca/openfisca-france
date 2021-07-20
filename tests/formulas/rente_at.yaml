@@ -122,7 +122,7 @@
     individus:
       parent1:
         taux_accident_travail: 0.29
-        tns_benefice_exploitant_agricole:
+        rpns_benefice_exploitant_agricole:
           2017: 20000
     foyers_fiscaux:
       foyer_fiscal_0:
@@ -144,7 +144,7 @@
     individus:
       parent1:
         taux_accident_travail: 0.32
-        tns_benefice_exploitant_agricole:
+        rpns_benefice_exploitant_agricole:
           2017: 20000
     foyers_fiscaux:
       foyer_fiscal_0:
@@ -166,7 +166,7 @@
     individus:
       parent1:
         taux_accident_travail: 0.7
-        tns_benefice_exploitant_agricole:
+        rpns_benefice_exploitant_agricole:
           2017: 20000
     foyers_fiscaux:
       foyer_fiscal_0:
@@ -189,7 +189,7 @@
       parent1:
         age_en_mois: 1224
         taux_accident_travail: 0.90
-        tns_benefice_exploitant_agricole:
+        rpns_benefice_exploitant_agricole:
           2017: 20000
         pcrtp_nombre_actes_assistance: 5
     foyers_fiscaux:

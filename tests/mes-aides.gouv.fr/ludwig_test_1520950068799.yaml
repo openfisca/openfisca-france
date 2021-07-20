@@ -49,17 +49,7 @@ input:
         2017-12: celibataire
         2017-11: celibataire
         2017-10: celibataire
-      tns_auto_entrepreneur_type_activite:
-        2018-01: bic
-        2017-12: bic
-        2017-11: bic
-        2017-10: bic
       tns_autres_revenus_type_activite:
-        2018-01: bic
-        2017-12: bic
-        2017-11: bic
-        2017-10: bic
-      tns_micro_entreprise_type_activite:
         2018-01: bic
         2017-12: bic
         2017-11: bic

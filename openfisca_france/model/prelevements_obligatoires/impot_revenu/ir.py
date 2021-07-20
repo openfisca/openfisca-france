@@ -949,7 +949,7 @@ class revenu_categoriel_non_salarial(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         nbnc_pvce_i = foyer_fiscal.members('nbnc_pvce', period)
-        rpns_i = foyer_fiscal.members('rpns_individu', period)
+        rpns_i = foyer_fiscal.members('rpns_imposables', period)
         nbnc_pvce = foyer_fiscal.sum(nbnc_pvce_i)
         rpns = foyer_fiscal.sum(rpns_i)
         defrag = foyer_fiscal('defrag', period)
@@ -2677,21 +2677,6 @@ class rnc(Variable):
         return zbnc - cbnc
 
 
-class rpns(Variable):
-    value_type = float
-    entity = Individu
-    label = "Revenus individuels des professions non salariées"
-    definition_period = YEAR
-
-    def formula(individu, period, parameters):
-        rag = individu('rag', period)
-        ric = individu('ric', period)
-        rac = individu('rac', period)
-        rnc = individu('rnc', period)
-
-        return rag + ric + rac + rnc
-
-
 class rpns_pvct(Variable):
     value_type = float
     entity = Individu
@@ -2856,10 +2841,10 @@ class rpns_revenus_microBA_agricole(Variable):
         return mrag_impo * (1 - micro.taux_mBA)
 
 
-class rpns_individu(Variable):
+class rpns_imposables(Variable):
     value_type = float
     entity = Individu
-    label = "Revenus des professions non salariées individuels"
+    label = "Revenus imposables des professions non salariées individuels"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2884,6 +2869,7 @@ class rpns_individu(Variable):
         macc_imps = individu('macc_imps', period)
         aacc_impn = individu('aacc_impn', period)
         aacc_defn = individu('aacc_defn', period)
+        aacc_defs = individu('aacc_defs', period)
         aacc_gits = individu('aacc_gits', period)
         nacc_impn = individu('nacc_impn', period)
         nacc_defn = individu('nacc_defn', period)
@@ -2983,7 +2969,7 @@ class rpns_individu(Variable):
                     micro.specialbnc.services.min,
                     nacc_meuc * (1 - micro.specialbnc.services.taux)
                     )
-                + max_(0, nacc_defs - alnp_defs) - aacc_defn
+                + max_(0, nacc_defs - alnp_defs) - aacc_defn - aacc_defs
                 )
             )
         # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
@@ -3322,7 +3308,7 @@ class ppe_rev(Variable):
     def formula(individu, period, parameters):
         salaire_imposable = individu('salaire_imposable', period, options = [ADD])
         hsup = individu('hsup', period, options = [ADD])
-        rpns = individu('rpns', period)
+        rpns = individu('rpns_imposables', period)
         ppe = parameters(period).impot_revenu.credits_impot.ppe
 
         # Revenu d'activité salarié

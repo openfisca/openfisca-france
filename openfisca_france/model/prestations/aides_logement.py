@@ -578,7 +578,7 @@ class al_biactivite(Variable):
         base_annuelle_allocations_famililales = 12 * pfam.af.bmaf
 
         condition_ressource = (
-            famille.members('rpns_individu', annee_fiscale_n_1)
+            famille.members('rpns_imposables', annee_fiscale_n_1)
             + famille.members('revenu_assimile_salaire_apres_abattements', annee_fiscale_n_1)
             >= base_annuelle_allocations_famililales
             )
@@ -652,7 +652,7 @@ class aide_logement_assiette_abattement_chomage(Variable):
         # Rolling year
         annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
 
-        revenus_non_salarie = individu('rpns', period.n_2)
+        revenus_non_salarie = individu('rpns_imposables', period.n_2)
         revenu_salarie = individu('salaire_imposable', annee_glissante, options = [ADD])
         chomeur_longue_duree = individu('chomeur_longue_duree', period.n_2)
         frais_reels = individu('frais_reels', period.last_year)
@@ -669,7 +669,7 @@ class aide_logement_assiette_abattement_chomage(Variable):
         return revenus_non_salarie + revenus_salarie_apres_abattement
 
     def formula(individu, period, parameters):
-        revenus_non_salarie = individu('rpns', period.n_2)
+        revenus_non_salarie = individu('rpns_imposables', period.n_2)
         revenu_salarie = individu('salaire_imposable', period.n_2, options = [ADD])
         chomeur_longue_duree = individu('chomeur_longue_duree', period.n_2)
         frais_reels = individu('frais_reels', period.n_2)
@@ -988,13 +988,11 @@ class al_base_ressources_individu(Variable):
         hsup = individu('hsup', period.n_2, options = [ADD])
         glo = individu('glo', period.n_2)
         plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.n_2) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        rpns = individu('rpns', period.n_2)
+        rpns = individu('rpns_imposables', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
-        rpns_pvct = individu('rpns_pvct', period.n_2)
-        rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
-        rpns_mvlt = individu('moins_values_long_terme_non_salaries', period.n_2)
+        rpns_exon = individu('rpns_exon', period.n_2)
 
-        return traitements_salaires_pensions_rentes + hsup + glo + plus_values + rpns + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
+        return traitements_salaires_pensions_rentes + hsup + glo + plus_values + rpns + rpns_pvce + rpns_exon
 
 
 class aide_logement_base_ressources(Variable):
@@ -1054,23 +1052,23 @@ class aide_logement_base_ressources(Variable):
         # Ressources N-2
         indemnites_journalieres_atexa_i = famille.members('indemnites_journalieres_atexa', period.n_2, options=[ADD])
         gains_exceptionnels_i = famille.members('gains_exceptionnels', period.n_2, options=[ADD])
-        benefice_agricole_i_n_2 = famille.members('tns_benefice_exploitant_agricole', period.n_2)
-        benefice_micro_entreprise_i_n_2 = famille.members('tns_micro_entreprise_benefice', period.n_2)
-        benefice_auto_entrepreneur_i_n_2 = famille.members('tns_auto_entrepreneur_benefice', period.n_2, options=[ADD])
-        tns_autres_revenus_i_n_2 = famille.members('tns_autres_revenus', period.n_2)
+        benefice_agricole_i_n_2 = famille.members('rpns_benefice_exploitant_agricole', period.n_2)
+        benefice_micro_entreprise_i_n_2 = famille.members('rpns_micro_entreprise_benefice', period.n_2)
+        benefice_auto_entrepreneur_i_n_2 = famille.members('rpns_auto_entrepreneur_benefice', period.n_2, options=[ADD])
+        rpns_autres_revenus_i_n_2 = famille.members('rpns_autres_revenus', period.n_2)
         # En l'absence de benefices TNS en N-2, on recupère les bénéfices de l'année glissante
-        benefice_agricole_i_m_12 = famille.members('tns_benefice_exploitant_agricole', annee_glissante)
-        benefice_micro_entreprise_i_m_12 = famille.members('tns_micro_entreprise_benefice', annee_glissante)
-        benefice_auto_entrepreneur_i_m_12 = famille.members('tns_auto_entrepreneur_benefice', annee_glissante,
+        benefice_agricole_i_m_12 = famille.members('rpns_benefice_exploitant_agricole', annee_glissante)
+        benefice_micro_entreprise_i_m_12 = famille.members('rpns_micro_entreprise_benefice', annee_glissante)
+        benefice_auto_entrepreneur_i_m_12 = famille.members('rpns_auto_entrepreneur_benefice', annee_glissante,
                                                             options=[ADD])
-        tns_autres_revenus_i_m_12 = famille.members('tns_autres_revenus', annee_glissante)
+        rpns_autres_revenus_i_m_12 = famille.members('rpns_autres_revenus', annee_glissante)
         benefice_agricole_i = where(benefice_agricole_i_n_2 > 0, benefice_agricole_i_n_2, benefice_agricole_i_m_12)
         benefice_micro_entreprise_i = where(benefice_micro_entreprise_i_n_2 > 0, benefice_micro_entreprise_i_n_2,
                                             benefice_micro_entreprise_i_m_12)
         benefice_auto_entrepreneur_i = where(benefice_auto_entrepreneur_i_n_2 > 0, benefice_auto_entrepreneur_i_n_2,
                                              benefice_auto_entrepreneur_i_m_12)
-        tns_autres_revenus_i = where(tns_autres_revenus_i_n_2 > 0, tns_autres_revenus_i_n_2,
-                                     tns_autres_revenus_i_m_12)
+        rpns_autres_revenus_i = where(rpns_autres_revenus_i_n_2 > 0, rpns_autres_revenus_i_n_2,
+                                     rpns_autres_revenus_i_m_12)
 
         ressources_n_2_i = (
             indemnites_journalieres_atexa_i
@@ -1078,7 +1076,7 @@ class aide_logement_base_ressources(Variable):
             + benefice_agricole_i
             + benefice_micro_entreprise_i
             + benefice_auto_entrepreneur_i
-            + tns_autres_revenus_i
+            + rpns_autres_revenus_i
             )
         ressources_n_2 = famille.sum(ressources_n_2_i, role=Famille.PARENT)
         f4ba = famille.demandeur.foyer_fiscal('f4ba', period.n_2)

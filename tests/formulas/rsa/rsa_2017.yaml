@@ -234,7 +234,7 @@
   input:
     individus:
       1:
-        tns_benefice_exploitant_agricole:
+        rpns_benefice_exploitant_agricole:
           2016: 2400
     famille:
       parents:
@@ -257,9 +257,9 @@
   input:
     individus:
       1:
-        tns_autres_revenus:
+        rpns_autres_revenus:
           2016: 2400
-        tns_micro_entreprise_benefice:
+        rpns_micro_entreprise_benefice:
           2016: 2400
     famille:
       parents:

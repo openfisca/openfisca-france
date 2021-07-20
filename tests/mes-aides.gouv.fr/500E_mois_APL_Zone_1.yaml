@@ -77,21 +77,6 @@ input:
         2017-06: false
         2017-07: false
         2017-08: false
-      tns_auto_entrepreneur_type_activite:
-        2017-05: bic
-        2017-06: bic
-        2017-07: bic
-        2017-08: bic
-      tns_autres_revenus_type_activite:
-        2017-05: bic
-        2017-06: bic
-        2017-07: bic
-        2017-08: bic
-      tns_micro_entreprise_type_activite:
-        2017-05: bic
-        2017-06: bic
-        2017-07: bic
-        2017-08: bic
       valeur_locative_immo_non_loue:
         2012-01: 0
       valeur_locative_terrains_non_loues:

@@ -2,7 +2,7 @@
   description: Revenus TNS aides
   period: 2015-02
   input:
-    tns_micro_entreprise_chiffre_affaires:
+    rpns_micro_entreprise_chiffre_affaires:
       2014: 12000
 
   output:
@@ -13,7 +13,7 @@
   description: Revenus TNS aides
   period: 2015-02
   input:
-    tns_micro_entreprise_chiffre_affaires:
+    rpns_micro_entreprise_chiffre_affaires:
       2015: 12000
 
   output:
@@ -24,7 +24,7 @@
   description: Revenus TNS aides
   period: 2015-02
   input:
-    tns_auto_entrepreneur_chiffre_affaires:
+    rpns_auto_entrepreneur_chiffre_affaires:
       2015-02: 1000
 
   output:
@@ -35,7 +35,7 @@
   description: Revenus TNS aides
   period: 2015-02
   input:
-    tns_benefice_exploitant_agricole:
+    rpns_benefice_exploitant_agricole:
       2014: 12000
 
   output:
@@ -46,7 +46,7 @@
   description: Revenus TNS aides
   period: 2015-02
   input:
-    tns_benefice_exploitant_agricole:
+    rpns_benefice_exploitant_agricole:
       2015: 12000
 
   output:
@@ -57,7 +57,7 @@
   description: Revenus TNS aides
   period: 2015-02
   input:
-    tns_autres_revenus:
+    rpns_autres_revenus:
       2014: 12000
 
   output:
@@ -68,7 +68,7 @@
   description: Revenus TNS aides
   period: 2015-02
   input:
-    tns_benefice_exploitant_agricole:
+    rpns_benefice_exploitant_agricole:
       2014: 12000
 
   output:
@@ -83,10 +83,9 @@
   description: Revenus TNS aides
   period: 2015-02
   input:
-    tns_micro_entreprise_chiffre_affaires:
+    rpns_micro_entreprise_CA_bic_service_imp:
       2014: 12000
-    tns_micro_entreprise_type_activite:
-      2014: bic
+
   output:
     asi_aspa_base_ressources:
       2015-01: 1000 * (1 - 0.5) # Mensuel
@@ -99,7 +98,7 @@
   description: Revenus TNS aides
   period: 2015-02
   input:
-    tns_auto_entrepreneur_chiffre_affaires:
+    rpns_auto_entrepreneur_CA_bnc:
       2015-01: 1000
       2014-12: 1000
       2014-11: 1000
@@ -112,8 +111,6 @@
       2014-04: 1000
       2014-03: 1000
       2014-02: 1000
-    tns_auto_entrepreneur_type_activite:
-      2014: bnc
 
   output:
     asi_aspa_base_ressources:
@@ -127,7 +124,7 @@
   description: Revenus TNS aides
   period: 2015-02
   input:
-    tns_autres_revenus:
+    rpns_autres_revenus:
       2014: 12000
 
   output:
