@@ -1,15 +1,17 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
 values:
   1994-07-01:
-    value: 167.0
+    value: 167
   1997-07-01:
-    value: 173.0
+    value: 173
   1998-07-01:
-    value: 177.0
+    value: 177
   1999-07-01:
-    value: 201.0
+    value: 201
   2000-07-01:
-    value: 203.0
+    value: 203
   2001-01-01:
     value: null

@@ -1,5 +1,7 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
 values:
   1967-01-01:
     value: 0.2
@@ -10,7 +12,7 @@ values:
   1970-01-01:
     value: 0.02
   1972-01-01:
-    value: 0.0
+    value: 0
   1983-01-01:
     value: 0.08
   1984-01-01:

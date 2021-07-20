@@ -1,9 +1,12 @@
-unit: currency
-reference:
-  2017-10-01: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_6
-  2019-10-01: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000039160779/2019-10-02
-  2020-10-01: https://www.legifrance.gouv.fr/eli/arrete/2020/9/25/LOGL2020835A/jo/article_1
-
+metadata:
+  reference:
+    2017-10-01:
+      href: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_6
+    2019-10-01:
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000039160779/2019-10-02
+    2020-10-01:
+      href: https://www.legifrance.gouv.fr/eli/arrete/2020/9/25/LOGL2020835A/jo/article_1
+  unit: currency
 menage_ou_isole_avec_1_enfant:
   values:
     2017-10-01:
@@ -13,17 +16,17 @@ menage_ou_isole_avec_1_enfant:
     2020-10-01:
       value: 555.55
 menage_ou_isole_avec_2_enfants:
- values:
-  2017-10-01:
-    value: 590.99
-  2019-10-01:
-    value: 592.76
-  2020-10-01:
+  values:
+    2017-10-01:
+      value: 590.99
+    2019-10-01:
+      value: 592.76
+    2020-10-01:
       value: 594.54
 menage_ou_isole_avec_3_enfants:
   values:
     2017-10-01:
-      value: 629.90
+      value: 629.9
     2019-10-01:
       value: 631.79
     2020-10-01:
@@ -57,6 +60,6 @@ personne_isolee_sans_enfant:
     2017-10-01:
       value: 441.78
     2019-10-01:
-      value: 443.10
+      value: 443.1
     2020-10-01:
       value: 444.43

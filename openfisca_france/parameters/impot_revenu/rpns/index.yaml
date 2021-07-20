@@ -1,2 +1,4 @@
 description: Revenus des professions non salariées
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

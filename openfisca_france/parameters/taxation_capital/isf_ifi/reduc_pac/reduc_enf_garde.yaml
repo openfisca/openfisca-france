@@ -1,12 +1,14 @@
 description: Réduction pac sans garde alternée
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
 values:
   1989-01-01:
-    value: 1000.0
+    value: 1000
   2002-01-01:
-    value: 150.0
+    value: 150
   2012-01-01:
-    value: 300.0
+    value: 300
   2013-01-01:
     value: null

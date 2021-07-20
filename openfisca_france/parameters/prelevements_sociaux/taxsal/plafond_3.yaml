@@ -1,11 +1,13 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
 values:
   2013-01-01:
-    value: 150000.0
+    value: 150000
   2014-01-01:
-    value: 151208.0
+    value: 151208
   2015-01-01:
-    value: 151965.0
+    value: 151965
   2016-01-01:
-    value: 152122.0
+    value: 152122

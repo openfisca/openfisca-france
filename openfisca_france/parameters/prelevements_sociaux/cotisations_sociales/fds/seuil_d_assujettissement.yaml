@@ -1,5 +1,7 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
 values:
   1982-11-01:
     value: 4485.25
@@ -10,7 +12,7 @@ values:
   1983-04-04:
     value: 4751.66
   1983-07-06:
-    value: 4843.0
+    value: 4843
   1983-11-07:
     value: 4983.75
   1984-01-08:
@@ -28,17 +30,17 @@ values:
   1986-02-18:
     value: 5505.83
   1987-03-22:
-    value: 5539.0
+    value: 5539
   1987-05-23:
-    value: 5594.0
+    value: 5594
   1987-08-24:
     value: 5621.5
   1988-03-21:
     value: 5677.75
   1988-09-23:
-    value: 5734.0
+    value: 5734
   1989-09-01:
-    value: 5954.0
+    value: 5954
   1990-01-01:
     value: 5983.83
   1990-04-01:
@@ -52,7 +54,7 @@ values:
   1991-11-01:
     value: 6396.25
   1992-02-01:
-    value: 6478.0
+    value: 6478
   1992-10-01:
     value: 6566.33
   1993-02-01:
@@ -72,7 +74,7 @@ values:
   1997-10-01:
     value: 7083.33
   1998-01-01:
-    value: 7599.0
+    value: 7599
   1998-04-01:
     value: 7659.83
   1998-07-01:
@@ -82,13 +84,13 @@ values:
   1999-04-01:
     value: 7819.08
   1999-07-01:
-    value: 7937.0
+    value: 7937
   1999-12-01:
     value: 7964.83
   2000-12-01:
     value: 8004.66
   2001-05-01:
-    value: 8101.0
+    value: 8101
   2001-11-01:
     value: 8157.58
   2002-01-01:
@@ -108,7 +110,7 @@ values:
   2006-07-01:
     value: 1295.5
   2006-11-01:
-    value: 1300.0
+    value: 1300
   2007-02-01:
     value: 1310.4
   2008-03-01:

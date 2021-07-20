@@ -1,5 +1,10 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    0001-01-01:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    2018-01-01:
+      href: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2017/201710dt_parametres_Agirc-Arrco.pdf
+  unit: currency
 values:
   1989-01-01:
     value: 236.916666667
@@ -32,7 +37,7 @@ values:
   2003-01-01:
     value: 52.75
   2004-01-01:
-    value: 54.0
+    value: 54
   2005-01-01:
     value: 55.33
   2006-01-01:
@@ -42,7 +47,7 @@ values:
   2008-01-01:
     value: 60.92
   2009-01-01:
-    value: 62.0
+    value: 62
   2010-01-01:
     value: 62.81
   2011-01-01:
@@ -58,5 +63,4 @@ values:
   2017-01-01:
     value: 70.38
   2018-01-01:
-    reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2017/201710dt_parametres_Agirc-Arrco.pdf
     value: 72.71

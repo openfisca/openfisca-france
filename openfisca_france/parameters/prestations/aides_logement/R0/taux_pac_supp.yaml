@@ -1,8 +1,11 @@
 description: Taux par personne à charge supplémentaire
-unit: currency
+metadata:
+  reference:
+    2016-01-01:
+      href: https://www.legifrance.gouv.fr/eli/arrete/2020/1/3/LOGL1934006A/jo/article_1
+  unit: currency
 values:
   2015-01-01:
-    value: 304.0
+    value: 304
   2016-01-01:
-    value: 305.0
-    reference: https://www.legifrance.gouv.fr/eli/arrete/2020/1/3/LOGL1934006A/jo/article_1
+    value: 305

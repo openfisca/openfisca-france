@@ -1,9 +1,11 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: year
 values:
   1984-01-01:
-    value: 10.0
+    value: 10
   1999-01-01:
-    value: 11.0
+    value: 11
   2008-05-01:
-    value: 14.0
-unit: year
+    value: 14

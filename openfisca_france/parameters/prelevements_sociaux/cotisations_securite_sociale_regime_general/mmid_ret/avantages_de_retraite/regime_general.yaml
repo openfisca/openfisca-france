@@ -1,44 +1,5 @@
 description: Cotisations spéciales assurance maladie sur les avantages retraite (régime général)
-unit: /1
-values:
-  1980-07-01:
-    value: 0.01
-  1987-07-01:
-    value: 0.014
-  1996-01-01:
-    value: 0.026
-  1997-01-01:
-    value: 0.028
-  1998-01-01:
-    value: null
-metadata:
-  ux_name: Régime général
-  last_review:
-    1998-01-01
-  reference:
-    1998-01-01:
-      title: Décret 97-1252 du 29/12/1997, art. 4
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771966&cidTexte=JORFTEXT000000753406
-    1997-01-01: 
-      title: Décret 96-1167 du 26/12/1996, art. 5
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000197223&categorieLien=id
-    1996-01-01:
-      title: Décret 95-1356 du 30/12/1995, art. 1 (V)
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771067&cidTexte=JORFTEXT000000372944
-    1987-07-01:
-      title: Décret 87-453 du 29/06/1987
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516870&categorieLien=id
-    1980-07-01:
-      title: Décret 80-298 du 24/04/1980
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000328902&categorieLien=id
-  official_journal_date:
-    1998-01-01: 1997-12-30
-    1997-01-01: 1996-12-29
-    1996-01-01: 1995-12-31
-    1987-07-01: 1987-06-30
-    1980-07-01: 1980-04-26
-  description_en: Special SSC on pension benefits for sickness insurance
-documentation: |
+documentation: |-
   Sources :
   Direction de la sécurité sociale (DSS), note pour le conseil d'orientation des retraites. Référence DSS/5B/FMM/13/04/06
   Notes :
@@ -53,3 +14,41 @@ documentation: |
   L'art. 4 de la même loi 79-1129 créé un article dans le Code de la Sécurité sociale (CSS) précisant (notamment) que des cotisations
   pour le financement de l'assurance MMID sont prélevées sur les avantages de retraite (dans des conditions fixées par décret).
   Cet article, appelé art. L3-2 lors de sa création en 1979,est aujourd'hui l'art. L241-2 du CCS.
+metadata:
+  description_en: Special SSC on pension benefits for sickness insurance
+  last_review: "1998-01-01"
+  official_journal_date:
+    1980-07-01: "1980-04-26"
+    1987-07-01: "1987-06-30"
+    1996-01-01: "1995-12-31"
+    1997-01-01: "1996-12-29"
+    1998-01-01: "1997-12-30"
+  reference:
+    1980-07-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000328902&categorieLien=id
+      title: Décret 80-298 du 24/04/1980
+    1987-07-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516870&categorieLien=id
+      title: Décret 87-453 du 29/06/1987
+    1996-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771067&cidTexte=JORFTEXT000000372944
+      title: Décret 95-1356 du 30/12/1995, art. 1 (V)
+    1997-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000197223&categorieLien=id
+      title: Décret 96-1167 du 26/12/1996, art. 5
+    1998-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771966&cidTexte=JORFTEXT000000753406
+      title: Décret 97-1252 du 29/12/1997, art. 4
+  unit: /1
+  ux_name: Régime général
+values:
+  1980-07-01:
+    value: 0.01
+  1987-07-01:
+    value: 0.014
+  1996-01-01:
+    value: 0.026
+  1997-01-01:
+    value: 0.028
+  1998-01-01:
+    value: null

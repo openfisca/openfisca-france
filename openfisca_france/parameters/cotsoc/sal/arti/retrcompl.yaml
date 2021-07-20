@@ -1,24 +1,24 @@
+description: Retraite complémentaire
 brackets:
-- rate:
+- threshold:
+    2003-01-01:
+      value: 0
+  rate:
     2003-01-01:
       value: 0.072
     2013-01-01:
       value: 0.07
-  threshold:
+- threshold:
     2003-01-01:
-      value: 0.0
-- rate:
+      value: 1
+  rate:
     2003-01-01:
       value: 0.076
     2013-01-01:
       value: 0.08
-  threshold:
+- threshold:
     2003-01-01:
-      value: 1.0
-- rate:
+      value: 4
+  rate:
     2003-01-01:
-      value: 0.0
-  threshold:
-    2003-01-01:
-      value: 4.0
-description: Retraite complémentaire
+      value: 0

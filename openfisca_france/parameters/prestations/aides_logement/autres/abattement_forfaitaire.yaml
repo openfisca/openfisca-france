@@ -1,5 +1,6 @@
 description: Abattement forfaitaire
-unit: currency
+metadata:
+  unit: currency
 values:
   2016-07-01:
     value: 0

@@ -1,5 +1,9 @@
+description: Allocations temporaires d'invalidité (ATI)
 brackets:
-- rate:
+- threshold:
+    2003-01-01:
+      value: 0
+  rate:
     2006-01-01:
       value: 0.003
     2007-01-01:
@@ -10,7 +14,3 @@ brackets:
       value: 0.0033
     2013-01-01:
       value: 0.0032
-  threshold:
-    2003-01-01:
-      value: 0.0
-description: Allocations temporaires d'invalidité (ATI)

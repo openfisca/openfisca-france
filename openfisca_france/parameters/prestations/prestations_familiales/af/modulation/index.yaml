@@ -1,2 +1,4 @@
 description: Modulation des allocations familiales en fonction des ressources
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

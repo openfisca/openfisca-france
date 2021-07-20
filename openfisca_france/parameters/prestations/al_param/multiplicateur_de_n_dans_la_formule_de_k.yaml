@@ -1,31 +1,33 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
 values:
   1986-01-01:
-    value: 139680.0
+    value: 139680
   1986-07-01:
-    value: 143032.0
+    value: 143032
   1987-07-01:
-    value: 146608.0
+    value: 146608
   1988-07-01:
-    value: 90076.0
+    value: 90076
   1989-07-01:
-    value: 92598.0
+    value: 92598
   1990-07-01:
-    value: 95654.0
+    value: 95654
   1991-07-01:
-    value: 98524.0
+    value: 98524
   1992-07-01:
-    value: 101184.0
+    value: 101184
   1994-07-01:
-    value: 102702.0
+    value: 102702
   1997-07-01:
-    value: 104653.0
+    value: 104653
   1998-07-01:
-    value: 105804.0
+    value: 105804
   1999-07-01:
-    value: 106439.0
+    value: 106439
   2000-07-01:
-    value: 106971.0
+    value: 106971
   2001-07-01:
     value: 16568.62
   2002-07-01:

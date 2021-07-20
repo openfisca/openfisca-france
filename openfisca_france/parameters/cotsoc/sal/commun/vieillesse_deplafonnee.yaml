@@ -1,5 +1,9 @@
+description: Vieillesse déplafonnée (ancienne assurance veuvage transférée à la CNAV en 2004)
 brackets:
-- rate:
+- threshold:
+    2004-07-01:
+      value: 0
+  rate:
     2004-07-01:
       value: 0.001
     2014-01-01:
@@ -10,8 +14,3 @@ brackets:
       value: 0.0035
     2017-01-01:
       value: 0.004
-  threshold:
-    2004-07-01:
-      value: 0.0
-description: Vieillesse déplafonnée (ancienne assurance veuvage transférée à la CNAV
-  en 2004)

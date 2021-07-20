@@ -1,6 +1,6 @@
-description: Plafond de ressources pour une personne seule (mensuel), en multiple
-  du montant journalier à taux plein
-unit: currency
+description: Plafond de ressources pour une personne seule (mensuel), en multiple du montant journalier à taux plein
+metadata:
+  unit: currency
 values:
   2005-01-01:
-    value: 70.0
+    value: 70

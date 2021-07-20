@@ -1,6 +1,8 @@
 description: Taux du complément familial majoré
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
 values:
   2014-04-01:
     value: 0.4582

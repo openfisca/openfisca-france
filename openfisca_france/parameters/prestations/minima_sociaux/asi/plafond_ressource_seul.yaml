@@ -1,7 +1,11 @@
-description: Plafond de ressources (allocation comprise) pour une personne seule pour
-  avoir droit à l'ASI
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+description: Plafond de ressources (allocation comprise) pour une personne seule pour avoir droit à l'ASI
+metadata:
+  reference:
+    0001-01-01:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    2019-04-01:
+      href: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44460.pdf
+  unit: currency
 values:
   2006-01-01:
     value: 7500.53
@@ -30,5 +34,4 @@ values:
   2018-04-01:
     value: 8542.33
   2019-04-01:
-    value: 8679.00
-    reference: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44460.pdf
+    value: 8679

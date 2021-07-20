@@ -1,15 +1,21 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
 taux_contractuel:
-  reference: https://www.ipp.eu/outils/baremes-ipp/
-  unit: /1
+  metadata:
+    reference:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
   values:
     1968-01-01:
       value: 0.036
     1971-01-01:
       value: 0.063
 taux_effectif:
-  reference: https://www.ipp.eu/outils/baremes-ipp/
-  unit: /1
+  metadata:
+    reference:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
   values:
     1968-01-01:
       value: 0.036
@@ -24,8 +30,10 @@ taux_effectif:
     2004-01-01:
       value: 0.09
 taux_invalidite_deces:
-  reference: https://www.ipp.eu/outils/baremes-ipp/
-  unit: /1
+  metadata:
+    reference:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    unit: /1
   values:
     2004-01-01:
       value: 0.01

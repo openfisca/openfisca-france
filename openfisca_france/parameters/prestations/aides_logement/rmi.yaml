@@ -1,6 +1,6 @@
-description: Revenu minimum d'insertion puis rsa socle n-2 pour le calcul de R0 (avant
-  2015)
-unit: currency
+description: Revenu minimum d'insertion puis rsa socle n-2 pour le calcul de R0 (avant 2015)
+metadata:
+  unit: currency
 values:
   2002-01-01:
     value: 397.6

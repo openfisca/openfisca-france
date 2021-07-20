@@ -1,6 +1,11 @@
 description: Montant annuel maximal de l'ASI pour un couple
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    0001-01-01:
+      href: https://www.ipp.eu/outils/baremes-ipp/
+    2019-04-01:
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2019/19-04/ste_20190004_0000_0066.pdf
+  unit: currency
 values:
   2006-01-01:
     value: 7118.77
@@ -29,5 +34,4 @@ values:
   2018-04-01:
     value: 8107.54
   2019-04-01:
-    value: 8237.26  # revalorisation de 1.6%
-    reference: https://solidarites-sante.gouv.fr/fichiers/bo/2019/19-04/ste_20190004_0000_0066.pdf
+    value: 8237.26

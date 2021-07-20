@@ -1,6 +1,6 @@
-description: Taux de remboursements des cotisations (entre les deux limites d'âge
-  ou APE taux partiel)
-unit: /1
+description: Taux de remboursements des cotisations (entre les deux limites d'âge ou APE taux partiel)
+metadata:
+  unit: /1
 values:
   2003-07-01:
     value: 0.5

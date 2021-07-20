@@ -1,8 +1,10 @@
 description: Limite d'âge des enfants ouvrant droit
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: year
 values:
   1976-10-01:
-    value: 3.0
+    value: 3
   2009-06-01:
     value: null
-unit: year

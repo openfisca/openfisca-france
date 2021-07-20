@@ -1,2 +1,4 @@
 description: Taux dépendant de la taille du ménage
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

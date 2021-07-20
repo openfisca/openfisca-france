@@ -1,7 +1,8 @@
-description: Taux pour les personnes à temps partiel inf. à 50% percevant l'allocation
-  de base de la PAJE
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+description: Taux pour les personnes à temps partiel inf. à 50% percevant l'allocation de base de la PAJE
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
 values:
   2004-01-01:
     value: 0.6246

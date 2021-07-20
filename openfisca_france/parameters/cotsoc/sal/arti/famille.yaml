@@ -1,8 +1,8 @@
+description: Cotisation Famille
 brackets:
-- rate:
+- threshold:
+    2003-01-01:
+      value: 0
+  rate:
     2003-01-01:
       value: 0.054
-  threshold:
-    2003-01-01:
-      value: 0.0
-description: Cotisation Famille

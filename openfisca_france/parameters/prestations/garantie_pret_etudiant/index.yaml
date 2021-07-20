@@ -1,1 +1,3 @@
-reference: 'https://www.service-public.fr/particuliers/vosdroits/F986'
+metadata:
+  reference:
+    href: https://www.service-public.fr/particuliers/vosdroits/F986

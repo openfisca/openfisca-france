@@ -1,8 +1,8 @@
+description: Taxe d'apprentissage (plus de 250 salariés)
 brackets:
-- rate:
+- threshold:
+    1993-07-01:
+      value: 0
+  rate:
     1993-07-01:
       value: 0.005
-  threshold:
-    1993-07-01:
-      value: 0.0
-description: Taxe d'apprentissage (plus de 250 salariés)

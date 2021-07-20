@@ -1,6 +1,8 @@
 description: Taux d'abattement résidence principale
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
 values:
   1999-01-01:
     value: 0.2

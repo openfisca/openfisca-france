@@ -1,8 +1,10 @@
 description: Non mariés ou non PACS
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: currency
 values:
   2012-01-01:
-    value: 120.0
+    value: 120
   2013-01-01:
-    value: Null
+    value: null
