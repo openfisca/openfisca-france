@@ -248,30 +248,6 @@ class etat_logement(Variable):
     definition_period = MONTH
 
 
-class assistant_maternel(Variable):
-    value_type = bool
-    entity = Individu
-    label = "Exerce la profession d'assistant maternel"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
-class assistant_familial(Variable):
-    value_type = bool
-    entity = Individu
-    label = "Exerce la profession d'assistant familial"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
-class journaliste(Variable):
-    value_type = bool
-    entity = Individu
-    label = "Journaliste"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
 class aide_logement_date_pret_conventionne(Variable):
     value_type = date
     default_value = date.max
@@ -484,16 +460,247 @@ class al_couple(Variable):
         return couple
 
 
-class aide_logement_base_ressources_eval_forfaitaire(Variable):
+# Eligibilités aux différents abattements, evaluation forfaitaire et neutralisation
+
+class aide_logement_condition_neutralisation(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Condition de neutralisation des revenus d'activité professionnelle et des indemnités de chômage dans le calcul des ressources de l'aide au logement."
+    definition_period = MONTH
+    reference = [
+        "Article 822-15 du code de la construction et de l'habitation",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878973/",
+        "Article 822-17 du code de la construction et de l'habitation",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878969/"]
+
+    def formula(individu, period):
+        activite_i = individu.famille.members('activite', period)
+        date_debut_chomage_i = individu.famille.members('date_debut_chomage', period)
+        two_months_ago = datetime64(period.offset(-2, 'month').start)
+
+        chomage_imposable_i = individu.famille.members('chomage_imposable', period)
+        ass_i = individu.famille.members('ass', period)
+
+        # chomage non indemnisé ou indemnisé mais donnant lieu au versement de l'ass
+        chomage_non_indemnise_i = (activite_i == TypesActivite.chomeur) * (chomage_imposable_i == 0) + ((chomage_imposable_i > 0) * (ass_i > 0))
+        chomage_non_indemnise_i = chomage_non_indemnise_i * (date_debut_chomage_i < two_months_ago)
+        chomage_non_indemnise = individu.famille.sum(chomage_non_indemnise_i, role = Famille.PARENT)
+        type_conges = individu('type_conges', period)
+        conge_parental = (type_conges == TypesConges.conge_parental)
+
+        rsa_mois_dernier = individu.famille('rsa', period.last_month)
+
+        return min_((((chomage_non_indemnise > 0) + conge_parental + (rsa_mois_dernier > 0)) * individu.has_role(Famille.PARENT)), 1)
+
+
+class aide_logement_abattement_revenus_activite_professionnelle(Variable):
     value_type = float
-    entity = Famille
-    label = "Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
+    entity = Individu
+    label = "Condition de l'abattement sur les revenus d'activités pour les personnes au chômage indemnisé ou partant à la retraite (R351-13 du CCH)"
+    definition_period = MONTH
+    reference = [
+        "Article 822-13 du code de la construction et de l'habitation",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878977",
+        "Article 822-14 du code de la construction et de l'habitation",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878975"]
+
+    def formula(individu, period):
+        activite = individu('activite', period)
+        date_debut_chomage = individu('date_debut_chomage', period)
+        two_months_ago = datetime64(period.offset(-2, 'month').start)
+
+        aah = individu('aah', period)
+        salaire_imposable = individu('salaire_imposable', period)
+        rpns = individu('rpns_imposables', period.n_2)
+        rpns_pvce = individu('rpns_pvce', period.n_2)
+        rpns_exon = individu('rpns_exon', period.n_2)
+        return min_(1, (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) + (activite == TypesActivite.retraite) * ((salaire_imposable + rpns + rpns_pvce + rpns_exon) == 0) + (aah > 0) * ((salaire_imposable + rpns + rpns_pvce + rpns_exon) == 0))
+
+
+class aide_logement_abattement_indemnites_chomage(Variable):
+    value_type = float
+    entity = Individu
+    label = "Condition de l'abattement sur les indemnités chômages pour les personnes partant à la retraite (R351-13 du CCH)"
+    definition_period = MONTH
+    reference = [
+        "Article 822-13 du code de la construction et de l'habitation",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878977",
+        "Article 822-14 du code de la construction et de l'habitation",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878975"]
+
+    def formula(individu, period):
+        activite = individu('activite', period)
+
+        aah = individu('aah', period)
+        salaire_imposable = individu('salaire_imposable', period)
+        rpns = individu('rpns_imposables', period.n_2)
+        rpns_pvce = individu('rpns_pvce', period.n_2)
+        rpns_exon = individu('rpns_exon', period.n_2)
+        return min_(1, (activite == TypesActivite.retraite) * ((salaire_imposable + rpns + rpns_pvce + rpns_exon) == 0) + (aah > 0) * ((salaire_imposable + rpns + rpns_pvce + rpns_exon) == 0))
+
+
+class aide_logement_base_ressources_individu(Variable):
+    value_type = float
+    is_period_size_independent = True
+    entity = Individu
+    label = "Base ressource individuelle des aides logement"
     definition_period = MONTH
 
-    def formula(famille, period, parameters):
+    def formula_2021_01_01(individu, period, parameters):
+        period_frais = period.last_year
+        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
+
+        salaire_imposable = individu('salaire_imposable', annee_glissante, options=[ADD])
+        chomage_imposable = individu('chomage_imposable', annee_glissante, options=[ADD])
+        f1tt = individu('f1tt', period.n_2)
+        f3vj = individu('f3vj', period.n_2)
+
+        revenu_assimile_salaire = salaire_imposable + chomage_imposable + f1tt + f3vj
+
+        chomeur_longue_duree = individu('chomeur_longue_duree', period, options = [DIVIDE])
+        frais_reels = individu('frais_reels', period_frais)
+
+        abatpro = parameters(period.last_year).impot_revenu.tspr.abatpro
+        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
+        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+
+        abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
+
+        rpns = individu('rpns_imposables', period.n_2)
+        rpns_pvce = individu('rpns_pvce', period.n_2)
+        rpns_pvct = individu('rpns_pvct', period.n_2)
+        rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
+        rpns_mvlt = individu('moins_values_long_terme_non_salaries', period.n_2)
+
+        rpns = rpns + rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
+        # TO DO : compléter la formule pour prendre en compte la disposition particulière concernant les indépendants ayant commencé une activité entre N-2 et N.
+        # Non implémentée car diffile à comprendre ce qui est fait exactement
+
+        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period.last_year, options = [ADD])
+        retraite_imposable = individu('retraite_imposable', annee_glissante, options=[ADD])
+        pension_invalidite = individu('pensions_invalidite', period.n_2, options = [ADD])
+        revenu_assimile_pension = pensions_alimentaires_percues + retraite_imposable + pension_invalidite
+        abatpen = parameters(period).impot_revenu.tspr.abatpen
+        revenu_assimile_pension = max_(0, revenu_assimile_pension - round_(max_(abatpen.taux * revenu_assimile_pension, abatpen.min)))
+
+        abattement_revenus_activite_professionnelle = individu('aide_logement_abattement_revenus_activite_professionnelle', period)
+        abattement_indemnites_chomage = individu('aide_logement_abattement_indemnites_chomage', period)
+        aide_logement_condition_neutralisation = individu('aide_logement_condition_neutralisation', period)
+
+        taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
+
+        revenus = (max_(0, salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
+
+        revenus = revenus + ((chomage_imposable + min_(0, (salaire_imposable + f1tt + f3vj - abattement_frais_pro) * (revenu_assimile_salaire > 0))) * (1 - taux_abattement * abattement_indemnites_chomage))
+
+        revenus = revenus * (1 - aide_logement_condition_neutralisation)
+
+        hsup = individu('hsup', period.last_year, options = [ADD])
+        glo = individu('glo', period.last_year)
+
+        return revenus + revenu_assimile_pension + hsup + glo
+
+    def formula(individu, period, parameters):
+
+        salaire_imposable = individu('salaire_imposable', period.n_2, options=[ADD])
+        chomage_imposable = individu('chomage_imposable', period.n_2, options=[ADD])
+        f1tt = individu('f1tt', period.n_2)
+        f3vj = individu('f3vj', period.n_2)
+
+        revenu_assimile_salaire = salaire_imposable + chomage_imposable + f1tt + f3vj
+
+        chomeur_longue_duree = individu('chomeur_longue_duree', period, options = [DIVIDE])
+        frais_reels = individu('frais_reels', period.n_2)
+
+        abatpro = parameters(period.n_2).impot_revenu.tspr.abatpro
+        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
+        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+
+        abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
+
+        rpns = individu('rpns_imposables', period.n_2)
+        rpns_pvce = individu('rpns_pvce', period.n_2)
+        rpns_pvct = individu('rpns_pvct', period.n_2)
+        rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
+        rpns_mvlt = individu('moins_values_long_terme_non_salaries', period.n_2)
+
+        rpns = rpns + rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
+
+        revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period.n_2, options = [ADD])
+
+        abattement_revenus_activite_professionnelle = individu('aide_logement_abattement_revenus_activite_professionnelle', period)
+        abattement_indemnites_chomage = individu('aide_logement_abattement_indemnites_chomage', period)
+        aide_logement_condition_neutralisation = individu('aide_logement_condition_neutralisation', period)
+
+        taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
+
+        revenus = (max_(0, salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
+
+        revenus = revenus + ((chomage_imposable + min_(0, (salaire_imposable + f1tt + f3vj - abattement_frais_pro) * (revenu_assimile_salaire > 0))) * (1 - taux_abattement * abattement_indemnites_chomage))
+
+        revenus = revenus * (1 - aide_logement_condition_neutralisation)
+
+        hsup = individu('hsup', period.n_2, options = [ADD])
+        glo = individu('glo', period.n_2)
+
+        return revenus + revenu_assimile_pension_apres_abattements + hsup + glo
+
+
+class aide_logement_base_revenus_fiscaux(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Revenus fiscaux perçus par le foyer fiscal à prendre en compte dans la base ressource des aides au logement"
+    reference = [
+        "Code de la construction et de l'habitation - Article R351-5",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F039735F667F9271DFB284F78105BDC0.tplgfr31s_3?idArticle=LEGIARTI000021632267&cidTexte=LEGITEXT000006074096&dateTexte=20171123",
+        "Code de la sécurité sociale - Article R831-6",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000020080073&dateTexte=20171222&categorieLien=cid#LEGIARTI000020080073",
+        "Code de la sécurité sociale - Article D542-10",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F1CF3B807CE064C9F518B442EF8C856F.tpdila22v_1?idArticle=LEGIARTI000020986758&cidTexte=LEGITEXT000006073189&dateTexte=20170803&categorieLien=id&oldAction=&nbResultRech="
+        ]
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period):
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
+        # Supprimée à partir de 2018
+        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
+        # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        # Apparait à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
+        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period)
+        f7ga = foyer_fiscal('f7ga', period)
+        f7gb = foyer_fiscal('f7gb', period)
+        f7gc = foyer_fiscal('f7gc', period)
+        # Supprimée à partir de 2018
+        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
+        # Apparait à partir de 2018
+        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)
+
+        return (
+            + revenu_categoriel_foncier
+            + rente_viagere_titre_onereux_net
+            + rev_cat_rvcm
+            + revenus_capitaux_prelevement_liberatoire
+            + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + rev_cat_pv
+            + plus_values_prelevement_forfaitaire_unique_ir
+            - f7ga
+            - f7gb
+            - f7gc
+            )
+
+
+class aide_logement_base_ressources_eval_forfaitaire(Variable):
+    value_type = float
+    entity = Individu
+    label = "Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
+    definition_period = MONTH
+    end = "2020-03-31"
+
+    def formula(individu, period, parameters):
         def eval_forfaitaire_salaries():
-            salaire_imposable_i = famille.members('salaire_imposable', period.offset(-1))
-            salaire_imposable = famille.sum(salaire_imposable_i, role = Famille.PARENT)
+            salaire_imposable = individu('salaire_imposable', period.offset(-1))
             # Application de l'abattement pour frais professionnels
             params_abattement = parameters(period).impot_revenu.tspr.abatpro
             somme_salaires_mois_precedent = 12 * salaire_imposable
@@ -510,48 +717,81 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
                 (period.start.year if period.start.month >= 7 else period.start.year - 1,
                 7, 1))
             smic_horaire_brut = parameters(last_july_first).cotsoc.gen.smic_h_b
-            travailleur_non_salarie_i = famille.members('travailleur_non_salarie', period)
-            any_tns = famille.any(travailleur_non_salarie_i)
-            return any_tns * 1500 * smic_horaire_brut
+            travailleur_non_salarie = individu('travailleur_non_salarie', period)
+            return travailleur_non_salarie * 1500 * smic_horaire_brut
 
-        return max_(eval_forfaitaire_salaries(), eval_forfaitaire_tns())
+        base_ressources_eval_forfaitaire = max_(eval_forfaitaire_salaries(), eval_forfaitaire_tns())
+
+        mois_precedent = period.offset(-1)
+        last_day_reference_year = period.n_2.stop
+
+        revenu_assimile_salaire_apres_abattements_i = individu.famille.members('revenu_assimile_salaire_apres_abattements', period.n_2, options=[ADD])
+        revenu_assimile_salaire_apres_abattements = individu.famille.sum(revenu_assimile_salaire_apres_abattements_i, role = Famille.PARENT)
+
+        rpns = individu('rpns_imposables', period.n_2)
+        rpns_pvce = individu('rpns_pvce', period.n_2)
+        rpns_pvct = individu('rpns_pvct', period.n_2)
+        rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
+        rpns_mvlt = individu('moins_values_long_terme_non_salaries', period.n_2)
+
+        rpns = rpns + rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
+
+        revenu_assimile_pension_apres_abattements_i = individu.famille.members('revenu_assimile_pension_apres_abattements', period.n_2, options = [ADD])
+        revenu_assimile_pension_apres_abattements = individu.famille.sum(revenu_assimile_pension_apres_abattements_i, role = Famille.PARENT)
+
+        demandeur_declarant_principal = individu.famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        conjoint_declarant_principal = individu.famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        aide_logement_base_revenus_fiscaux = (
+            individu.famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * demandeur_declarant_principal
+            + individu.famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
+            )
+        pensions_alimentaires_versees = (
+            individu.famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.n_2) * demandeur_declarant_principal
+            + individu.famille.conjoint.foyer_fiscal('pensions_alimentaires_versees', period.n_2) * conjoint_declarant_principal
+            )
+
+        base_ressources = revenu_assimile_salaire_apres_abattements + rpns + revenu_assimile_pension_apres_abattements + aide_logement_base_revenus_fiscaux + pensions_alimentaires_versees
+
+        en_couple = individu.famille('en_couple', period)
+
+        aah_i = individu.famille.members('aah', mois_precedent)
+        aah = individu.famille.sum(aah_i, role = Famille.PARENT)
+
+        age_demandeur = individu.famille.demandeur('age', period)
+        age_conjoint = individu.famille.conjoint('age', period)
+        smic_horaire_brut_n2 = parameters(last_day_reference_year).cotsoc.gen.smic_h_b
+
+        salaire_imposable_i = individu.famille.members('salaire_imposable', period.offset(-1))
+        somme_salaires = individu.famille.sum(salaire_imposable_i, role = Famille.PARENT)
+
+        plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
+
+        plafond_salaire_jeune_isole = parameters(period).prestations.aides_logement.ressources.dar_8
+        plafond_salaire_jeune_couple = parameters(period).prestations.aides_logement.ressources.dar_9
+        plafond_salaire_jeune = where(en_couple, plafond_salaire_jeune_couple, plafond_salaire_jeune_isole)
+
+        neutral_jeune = or_(age_demandeur < 25, and_(en_couple, age_conjoint < 25))
+        neutral_jeune &= somme_salaires < plafond_salaire_jeune
+
+        eval_forfaitaire = base_ressources <= plafond_eval_forfaitaire
+        eval_forfaitaire &= base_ressources_eval_forfaitaire > 0
+        eval_forfaitaire &= aah == 0
+        eval_forfaitaire &= not_(neutral_jeune)
+        ressources = where(eval_forfaitaire, base_ressources_eval_forfaitaire, 0)
+
+        abattement_revenus_activite_professionnelle = individu('aide_logement_abattement_revenus_activite_professionnelle', period)
+        abattement_indemnites_chomage = individu('aide_logement_abattement_indemnites_chomage', period)
+        aide_logement_condition_neutralisation = individu('aide_logement_condition_neutralisation', period)
+
+        taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
+
+        ressources = ressources * (1 - taux_abattement * abattement_revenus_activite_professionnelle) * (1 - taux_abattement * abattement_indemnites_chomage) * (1 - aide_logement_condition_neutralisation)
+
+        return ressources
 
 
-class al_revenu_assimile_salaire(Variable):
-    value_type = float
-    entity = Individu
-    label = "Revenu imposé comme des salaires dans le cadre du calcul des ressources de l'aide au logement."
-    definition_period = MONTH
-
-    def formula(individu, period, parameters):
-        # version spécifique aux aides logement de revenu_assimile_salaire
-        period_salaire_chomage = period.start.period('year').offset(-1).offset(-1, 'month')
-        period_f1tt_f3vj = period.n_2
-
-        smic_annuel_brut = parameters(period).cotsoc.gen.smic_h_b * 52 * 35
-
-        # salaire imposable pour les journaliste et les assistants mat/fam apres l'aplication de l'abattement forfaitaire
-        # dans le cas des frais réels déclarés superieurs à Zero.
-        salaire_imposable_apres_abattement = individu('al_abattement_forfaitaire_assistants_et_journalistes',
-                                                     period_salaire_chomage, options=[ADD])
-        salaire_imposable_sans_abattement = individu('salaire_imposable', period_salaire_chomage, options=[ADD])
-        frais_reels = individu('frais_reels', period.last_year)
-        salaire_imposable = where(frais_reels > 0, salaire_imposable_sans_abattement, salaire_imposable_apres_abattement)
-
-        chomage_imposable = individu('chomage_imposable', period_salaire_chomage, options=[ADD])
-        f1tt = individu('f1tt', period_f1tt_f3vj)
-        f3vj = individu('f3vj', period_f1tt_f3vj)
-
-        # application du plafond d'exonération fiscale pour les salaires des stagiaires et des apprentis
-        remuneration_apprenti = individu('remuneration_apprenti', period_salaire_chomage, options=[ADD])
-        remuneration_apprenti_apres_abattement = max(0, sum(remuneration_apprenti) - smic_annuel_brut)
-        indemnites_stage = individu('indemnites_stage', period_salaire_chomage, options=[ADD])
-        indemnites_stage_apres_abattement = max(0, sum(indemnites_stage) - smic_annuel_brut)
-
-        return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti_apres_abattement + indemnites_stage_apres_abattement
-
-
-class al_biactivite(Variable):
+class aide_logement_biactivite(Variable):
     value_type = bool
     entity = Famille
     label = "Indicatrice de biactivité dans le cadre du calcul des ressources de l'aide au logement."
@@ -572,427 +812,20 @@ class al_biactivite(Variable):
                une part pensions). Mais cette variable n'existe que jusqu'à 2005
                inclus.
         '''
-        annee_fiscale_n_1 = period.start.period('year').offset(-1)
 
-        pfam = parameters(annee_fiscale_n_1).prestations.prestations_familiales
+        pfam = parameters(period).prestations.prestations_familiales
         base_annuelle_allocations_famililales = 12 * pfam.af.bmaf
 
-        condition_ressource = (
-            famille.members('rpns_imposables', annee_fiscale_n_1)
-            + famille.members('revenu_assimile_salaire_apres_abattements', annee_fiscale_n_1)
+        condition_ressource_i = (
+            famille.members('salaire_imposable', period, options = [ADD])
+            + famille.members('f1tt', period.this_year)
+            + famille.members('f3vj', period.this_year)
+            + famille.members('rpns_imposables', period.this_year)
             >= base_annuelle_allocations_famililales
             )
         deux_parents = famille.nb_persons(role=Famille.PARENT) == 2
 
-        return deux_parents * famille.all(condition_ressource, role=Famille.PARENT)
-
-
-class al_abattement_forfaitaire_assistants_et_journalistes(Variable):
-    value_type = float
-    entity = Individu
-    label = "L'application de l'abattement forfaitaire pour les journaliste et les assistants maternels et familiaux."
-    definition_period = MONTH
-
-    def formula_2019_01(individu, period, parameters):
-        assistant_maternel = individu('assistant_maternel', period)
-        assistant_familial = individu('assistant_familial', period)
-        journaliste = individu('journaliste', period)
-        salaire_imposable = individu('salaire_imposable', period)
-        abat = parameters(period).prestations.al_assistant_journaliste.abattement.montant
-
-        montant_abattement = select([assistant_maternel, assistant_familial, journaliste],
-            [abat.assistant_maternel, abat.assistant_familial, abat.journaliste],
-            default=0)
-
-        return max_(0, salaire_imposable - montant_abattement)
-
-
-class aide_logement_condition_neutralisation_chomage(Variable):
-    value_type = bool
-    entity = Individu
-    label = "Condition de neutralisation du chomage dans le calcul des ressources de l'aide au logement."
-    reference = "https://www.legifrance.gouv.fr/eli/decret/2019/12/30/LOGL1920187D/jo/texte"
-    definition_period = MONTH
-
-    def formula_2021_01_01(individu, period, parameters):
-        activite = individu('activite', period)
-        date_debut_chomage = individu('date_debut_chomage', period)
-        two_months_ago = datetime64(period.offset(-2, 'month').start)
-
-        chomage_imposable = individu('chomage_imposable', period)
-        ass = individu('ass', period)
-
-        # chomage non indemnisé ou indemnisé mais donnant lieu au versement de l'ass
-        chomage_non_indemnise = (chomage_imposable == 0) + ((chomage_imposable > 0) * (ass > 0))
-
-        return (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) * chomage_non_indemnise
-
-    def formula(individu, period, parameters):
-        activite = individu('activite', period)
-        date_debut_chomage = individu('date_debut_chomage', period)
-        two_months_ago = datetime64(period.offset(-2, 'month').start)
-
-        chomage_imposable = individu('chomage_imposable', period.n_2, options=[ADD])
-        ass = individu('ass', period.n_2, options=[ADD])
-
-        # chomage non indemnisé ou indemnisé mais donnant lieu au versement de l'ass
-        chomage_non_indemnise = (chomage_imposable == 0) + ((chomage_imposable > 0) * (ass > 0))
-
-        return (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) * chomage_non_indemnise
-
-
-class aide_logement_assiette_abattement_chomage(Variable):
-    value_type = float
-    entity = Individu
-    label = "Assiette sur laquelle un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abattements pour frais professionnels."
-    reference = "https://www.legifrance.gouv.fr/eli/decret/2019/12/30/LOGL1920187D/jo/texte"
-    definition_period = MONTH
-
-    def formula_2021_01_01(individu, period, parameters):
-        # Rolling year
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
-
-        revenus_non_salarie = individu('rpns_imposables', period.n_2)
-        revenu_salarie = individu('salaire_imposable', annee_glissante, options = [ADD])
-        chomeur_longue_duree = individu('chomeur_longue_duree', period.n_2)
-        frais_reels = individu('frais_reels', period.last_year)
-        abatpro = parameters(period.last_year).impot_revenu.tspr.abatpro
-
-        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
-        revenus_salarie_apres_abattement = where(
-            frais_reels > 0,
-            revenu_salarie - frais_reels,
-            max_(0, revenu_salarie - abattement_forfaitaire)
-            )
-
-        return revenus_non_salarie + revenus_salarie_apres_abattement
-
-    def formula(individu, period, parameters):
-        revenus_non_salarie = individu('rpns_imposables', period.n_2)
-        revenu_salarie = individu('salaire_imposable', period.n_2, options = [ADD])
-        chomeur_longue_duree = individu('chomeur_longue_duree', period.n_2)
-        frais_reels = individu('frais_reels', period.n_2)
-        abatpro = parameters(period).impot_revenu.tspr.abatpro
-
-        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
-        revenus_salarie_apres_abattement = where(
-            frais_reels > 0,
-            revenu_salarie - frais_reels,
-            max_(0, revenu_salarie - abattement_forfaitaire)
-            )
-
-        return revenus_non_salarie + revenus_salarie_apres_abattement
-
-
-class aide_logement_abattement_chomage_indemnise(Variable):
-    value_type = float
-    entity = Individu
-    label = "Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
-    definition_period = MONTH
-    # Article R532-7 du Code de la sécurité sociale
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189"
-
-    def formula_2021_01_01(individu, period, parameters):
-        activite = individu('activite', period)
-        date_debut_chomage = individu('date_debut_chomage', period)
-        two_months_ago = datetime64(period.offset(-2, 'month').start)
-        condition_neutralisation = individu('aide_logement_condition_neutralisation_chomage', period)
-        condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
-        revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period)
-        taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
-        return condition_abattement * not_(condition_neutralisation) * taux_abattement * revenus_activite_pro
-
-    def formula(individu, period, parameters):
-        activite = individu('activite', period)
-        date_debut_chomage = individu('date_debut_chomage', period)
-        two_months_ago = datetime64(period.offset(-2, 'month').start)
-        condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
-        revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period)
-        taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
-
-        return condition_abattement * taux_abattement * revenus_activite_pro
-
-
-class aide_logement_abattement_depart_retraite(Variable):
-    value_type = float
-    entity = Individu
-    label = "Montant de l'abattement sur les salaires en cas de départ en retraite"
-    definition_period = MONTH
-    # Article R532-5 du Code de la sécurité sociale
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
-
-    def formula_2021_01_01(individu, period, parameters):
-        activite = individu('activite', period)
-        condition_retraite = activite == TypesActivite.retraite
-
-        revenus_activite_pro = individu('al_revenu_assimile_salaire_apres_abattements', period)
-
-        abattement = condition_retraite * 0.3 * revenus_activite_pro
-
-        return abattement
-
-    def formula(individu, period, parameters):
-        retraite_n_2 = individu('retraite_imposable', period.n_2, options = [ADD])
-        activite = individu('activite', period)
-        retraite = activite == TypesActivite.retraite
-        condition_abattement = (retraite_n_2 == 0) * retraite
-        revenus_activite_pro = individu('revenu_assimile_salaire_apres_abattements', period.n_2)
-
-        abattement = condition_abattement * 0.3 * revenus_activite_pro
-
-        return abattement
-
-
-class aide_logement_neutralisation_conge_parental(Variable):
-    value_type = float
-    entity = Individu
-    label = "Abattement sur les revenus des parents en congé parental."
-    definition_period = MONTH
-    reference = "https://github.com/openfisca/openfisca-france/wiki/files/prestations/Integration-de-la-reforme-AL-2019-dans-OpenFisca_PJ_20190722-FAM_Reforme_AL-2019_v1.4.pdf"
-
-    def formula(individu, period, parameters):
-        type_conges = individu('type_conges', period)
-        conge_parental = (type_conges == TypesConges.conge_parental)
-
-        revenus_a_neutraliser = individu('revenu_assimile_salaire_apres_abattements', period.n_2)
-
-        return revenus_a_neutraliser * conge_parental
-
-
-class aide_logement_neutralisation_rsa(Variable):
-    value_type = float
-    entity = Famille
-    label = "Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
-    definition_period = MONTH
-    reference = [
-        # Article R532-7 du Code de la sécurité sociale
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189",
-        # Article R351-14-1 du Code de la construction et de l'habitation
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006897410"
-        ]
-
-    def formula(famille, period, parameters):
-        # Circular definition, as rsa depends on al.
-        # We don't allow it, so default value of rsa will be returned if a recursion is detected.
-        rsa_mois_dernier = famille('rsa', period.last_month)
-
-        revenus_a_neutraliser_i = famille.members('revenu_assimile_salaire_apres_abattements', period.n_2)
-        revenus_a_neutraliser = famille.sum(revenus_a_neutraliser_i)
-
-        return revenus_a_neutraliser * (rsa_mois_dernier > 0)
-
-
-class aide_logement_base_ressources_defaut(Variable):
-    value_type = float
-    entity = Famille
-    label = "Base ressource par défaut des allocations logement"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        biactivite = famille('biactivite', period)
-        Pr = parameters(period).prestations.aides_logement.ressources
-        base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
-        base_ressources_parents = famille.sum(base_ressources_i, role = Famille.PARENT)
-        ressources_patrimoine = famille('aide_logement_base_ressources_patrimoine', period)
-        abattement_chomage_indemnise_i = famille.members('aide_logement_abattement_chomage_indemnise', period)
-        abattement_chomage_indemnise = famille.sum(abattement_chomage_indemnise_i, role = Famille.PARENT)
-        abattement_depart_retraite_i = famille.members('aide_logement_abattement_depart_retraite', period)
-        abattement_depart_retraite = famille.sum(abattement_depart_retraite_i, role = Famille.PARENT)
-        neutralisation_rsa = famille('aide_logement_neutralisation_rsa', period)
-        abattement_ressources_enfant = parameters(period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
-        base_ressources_enfants = famille.sum(
-            max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
-
-        demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        # Revenus du foyer fiscal
-        aide_logement_base_revenus_fiscaux = (
-            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
-            )
-        abat_spe = (
-            famille.demandeur.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
-            * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
-            * conjoint_declarant_principal
-            )
-        base_ressources_parents = max_(0, base_ressources_parents - abat_spe)
-        ressources = (
-            base_ressources_parents
-            + base_ressources_enfants
-            + ressources_patrimoine
-            + aide_logement_base_revenus_fiscaux
-            - (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
-            )
-
-        # Abattement forfaitaire pour double activité
-        abattement_double_activite = biactivite * Pr.dar_1
-
-        # Arrondi aux 100 euros supérieurs
-        result = max_(ressources - abattement_double_activite, 0)
-
-        return result
-
-
-class aide_logement_base_revenus_fiscaux(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = "Revenus fiscaux perçus par le foyer fiscal à prendre en compte dans la base ressource des aides au logement"
-    reference = [
-        "Code de la construction et de l'habitation - Article R351-5",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F039735F667F9271DFB284F78105BDC0.tplgfr31s_3?idArticle=LEGIARTI000021632267&cidTexte=LEGITEXT000006074096&dateTexte=20171123",
-        "Code de la sécurité sociale - Article R831-6",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000020080073&dateTexte=20171222&categorieLien=cid#LEGIARTI000020080073",
-        "Code de la sécurité sociale - Article D542-10",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F1CF3B807CE064C9F518B442EF8C856F.tpdila22v_1?idArticle=LEGIARTI000020986758&cidTexte=LEGITEXT000006073189&dateTexte=20170803&categorieLien=id&oldAction=&nbResultRech="
-        ]
-    definition_period = YEAR
-
-    def formula_2021_01_01(foyer_fiscal, period):
-        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
-        # Deplacement de la pension alimentaire versée, utilisée sur une periode differentes du reste
-        # Supprimée à partir de 2018
-        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
-        # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period,
-                                                                options=[ADD])
-        # Apparait à partir de 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal(
-            'revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options=[ADD])
-        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period)
-        f7ga = foyer_fiscal('f7ga', period)
-        f7gb = foyer_fiscal('f7gb', period)
-        f7gc = foyer_fiscal('f7gc', period)
-        # Supprimée à partir de 2018
-        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
-        # Apparait à partir de 2018
-        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir',
-                                                                     period)
-        return (
-            + rente_viagere_titre_onereux_net
-            + revenu_categoriel_foncier
-            + rev_cat_rvcm
-            + revenus_capitaux_prelevement_liberatoire
-            + revenus_capitaux_prelevement_forfaitaire_unique_ir
-            + rev_cat_pv
-            + plus_values_prelevement_forfaitaire_unique_ir
-            - f7ga
-            - f7gb
-            - f7gc
-            )
-
-    def formula(foyer_fiscal, period):
-        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
-        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
-        # Supprimée à partir de 2018
-        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
-        # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
-        # Apparait à partir de 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
-        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period)
-        f7ga = foyer_fiscal('f7ga', period)
-        f7gb = foyer_fiscal('f7gb', period)
-        f7gc = foyer_fiscal('f7gc', period)
-        # Supprimée à partir de 2018
-        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
-        # Apparait à partir de 2018
-        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)
-
-        return (
-            + revenu_categoriel_foncier
-            + pensions_alimentaires_versees
-            + rente_viagere_titre_onereux_net
-            + rev_cat_rvcm
-            + revenus_capitaux_prelevement_liberatoire
-            + revenus_capitaux_prelevement_forfaitaire_unique_ir
-            + rev_cat_pv
-            + plus_values_prelevement_forfaitaire_unique_ir
-            - f7ga
-            - f7gb
-            - f7gc
-            )
-
-
-class al_revenu_assimile_salaire_apres_abattements(Variable):
-    value_type = float
-    entity = Individu
-    label = "Salaires et chômage imposables après abattements dans le cadre du calcul des ressources de l'aide au logement"
-    definition_period = MONTH
-
-    def formula_2021_01_01(individu, period, parameters):
-        # version spécifique aux aides logement de revenu_assimile_salaire_apres_abattements
-        period_revenus = period
-        period_chomage = period.n_2
-        period_frais = period.last_year
-
-        revenu_assimile_salaire = individu('al_revenu_assimile_salaire', period_revenus)
-        chomeur_longue_duree = individu('chomeur_longue_duree', period_chomage)
-        frais_reels = individu('frais_reels', period_frais)
-
-        abatpro = parameters(period.last_year).impot_revenu.tspr.abatpro
-        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
-
-        return where(frais_reels > 0, revenu_assimile_salaire - frais_reels,
-            max_(0, revenu_assimile_salaire - abattement_forfaitaire)
-            )
-
-
-class al_traitements_salaires_pensions_rentes(Variable):
-    value_type = float
-    entity = Individu
-    label = "Traitements salaires pensions et rentes individuelles dans le cadre des aides au logement"
-    definition_period = MONTH
-
-    def formula_2021_01_01(individu, period, parameters):
-        # Rolling year
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
-
-        revenu_assimile_salaire_apres_abattements = individu('al_revenu_assimile_salaire_apres_abattements', period)
-
-        # Integration des neutralisations avant prise en compte du montant pour eviter des doubles calculs inutiles
-        condition_neutralisation_rsa = individu.famille('rsa', period.last_month) > 0
-        type_conges = individu('type_conges', period)
-        condition_neutralisation_conge_parental = (type_conges == TypesConges.conge_parental)
-        condition_neutralisation_chomage = individu('aide_logement_condition_neutralisation_chomage', period)
-        neutralisation_salaire = (condition_neutralisation_rsa + condition_neutralisation_conge_parental + condition_neutralisation_chomage)
-
-        # Revenus assimilés pensions apres abattement
-        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period.last_year, options = [ADD])
-        pensions_alimentaires_percues_decl = individu('pensions_alimentaires_percues_decl', period.last_year, options = [ADD])
-        retraite_imposable = individu('retraite_imposable', annee_glissante, options=[ADD])
-        pension_invalidite = individu('pensions_invalidite', period.n_2, options = [ADD])
-        revenu_assimile_pension = pensions_alimentaires_percues * pensions_alimentaires_percues_decl + retraite_imposable + pension_invalidite
-        abatpen = parameters(period).impot_revenu.tspr.abatpen
-        revenu_assimile_pension_apres_abattements = max_(0, revenu_assimile_pension - round_(max_(abatpen.taux * revenu_assimile_pension, abatpen.min)))
-
-        return (
-            + (revenu_assimile_salaire_apres_abattements * not_(neutralisation_salaire))
-            + revenu_assimile_pension_apres_abattements
-            )
-
-
-class al_base_ressources_individu(Variable):
-    value_type = float
-    is_period_size_independent = True
-    entity = Individu
-    label = "Base ressource individuelle des aides logement"
-    definition_period = MONTH
-
-    def formula_2021_01_01(individu, period):
-        traitements_salaires_pensions_rentes = individu('al_traitements_salaires_pensions_rentes', period)
-        hsup = individu('hsup', period.n_2, options = [ADD])
-        glo = individu('glo', period.n_2)
-        plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.n_2) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        rpns = individu('rpns_imposables', period.n_2)
-        rpns_pvce = individu('rpns_pvce', period.n_2)
-        rpns_exon = individu('rpns_exon', period.n_2)
-
-        return traitements_salaires_pensions_rentes + hsup + glo + plus_values + rpns + rpns_pvce + rpns_exon
+        return deux_parents * famille.all(condition_ressource_i, role=Famille.PARENT)
 
 
 class aide_logement_base_ressources(Variable):
@@ -1006,135 +839,61 @@ class aide_logement_base_ressources(Variable):
     definition_period = MONTH
 
     def formula_2021_01_01(famille, period, parameters):
-        biactivite = famille('al_biactivite', period)
-        params_al_ressources = parameters(period).prestations.aides_logement.ressources
+        biactivite = famille('aide_logement_biactivite', period)
+        Pr = parameters(period).prestations.aides_logement.ressources
         age_etudiant_max = parameters(period).prestations.aides_logement.age_max_etudiant
-        # Rolling year
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
+        base_ressources_i = famille.members('aide_logement_base_ressources_individu', period)
 
-        base_ressources_i = famille.members('al_base_ressources_individu', period)
-        base_ressources_parents = famille.sum(base_ressources_i, role=Famille.PARENT)
+        base_ressources_parents = famille.sum(base_ressources_i, role = Famille.PARENT)
+        ressources_patrimoine = famille('aide_logement_base_ressources_patrimoine', period)
+        abattement_ressources_enfant = parameters(period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
+        base_ressources_enfants = famille.sum(
+            max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
 
         demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        # Revenus du foyer fiscal
+        aide_logement_base_revenus_fiscaux = (
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
+            )
+
+        pensions_alimentaires_versees = (
+            famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.last_year) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('pensions_alimentaires_versees', period.last_year) * conjoint_declarant_principal
+            )
+
         abat_spe = (
-            famille.demandeur.foyer_fiscal('abattements_speciaux_prestations_familiales', annee_glissante)
+            famille.demandeur.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
             * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('abattements_speciaux_prestations_familiales', annee_glissante)
+            + famille.conjoint.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
             * conjoint_declarant_principal
             )
-
         base_ressources_parents = max_(0, base_ressources_parents - abat_spe)
-
-        # Ressources des douze derniers mois
-        indemnites_journalieres_i = famille.members('indemnites_journalieres', annee_glissante, options=[ADD])
-        revenus_stage_formation_pro_i = famille.members('revenus_stage_formation_pro', annee_glissante, options=[ADD])
-        pch_i = famille.members('pch', annee_glissante, options=[ADD])
-        retraite_combattant_i = famille.members('retraite_combattant', annee_glissante, options=[ADD])
-        rente_accident_travail_i = famille.members('rente_accident_travail', annee_glissante, options=[ADD])
-        ressources_annee_glissante_i = (
-            indemnites_journalieres_i
-            + revenus_stage_formation_pro_i
-            + pch_i
-            + retraite_combattant_i
-            + rente_accident_travail_i
-            )
-        ressources_annee_glissante = famille.sum(ressources_annee_glissante_i, role=Famille.PARENT)
-        paje = famille('paje', annee_glissante, options=[ADD])
-        ressources_annee_glissante += paje
-
-        # Ressources N-1
-        pensions_alimentaires_versees_i = famille.members('pensions_alimentaires_versees_individu', period.last_year, options=[ADD])
-        pensions_alimentaires_versees = famille.sum(pensions_alimentaires_versees_i, role=Famille.PARENT)
-        # Montant à soustraire
-        ressources_n_1 = -pensions_alimentaires_versees
-
-        # Ressources N-2
-        indemnites_journalieres_atexa_i = famille.members('indemnites_journalieres_atexa', period.n_2, options=[ADD])
-        gains_exceptionnels_i = famille.members('gains_exceptionnels', period.n_2, options=[ADD])
-        benefice_agricole_i_n_2 = famille.members('rpns_benefice_exploitant_agricole', period.n_2)
-        benefice_micro_entreprise_i_n_2 = famille.members('rpns_micro_entreprise_benefice', period.n_2)
-        benefice_auto_entrepreneur_i_n_2 = famille.members('rpns_auto_entrepreneur_benefice', period.n_2, options=[ADD])
-        rpns_autres_revenus_i_n_2 = famille.members('rpns_autres_revenus', period.n_2)
-        # En l'absence de benefices TNS en N-2, on recupère les bénéfices de l'année glissante
-        benefice_agricole_i_m_12 = famille.members('rpns_benefice_exploitant_agricole', annee_glissante)
-        benefice_micro_entreprise_i_m_12 = famille.members('rpns_micro_entreprise_benefice', annee_glissante)
-        benefice_auto_entrepreneur_i_m_12 = famille.members('rpns_auto_entrepreneur_benefice', annee_glissante,
-                                                            options=[ADD])
-        rpns_autres_revenus_i_m_12 = famille.members('rpns_autres_revenus', annee_glissante)
-        benefice_agricole_i = where(benefice_agricole_i_n_2 > 0, benefice_agricole_i_n_2, benefice_agricole_i_m_12)
-        benefice_micro_entreprise_i = where(benefice_micro_entreprise_i_n_2 > 0, benefice_micro_entreprise_i_n_2,
-                                            benefice_micro_entreprise_i_m_12)
-        benefice_auto_entrepreneur_i = where(benefice_auto_entrepreneur_i_n_2 > 0, benefice_auto_entrepreneur_i_n_2,
-                                             benefice_auto_entrepreneur_i_m_12)
-        rpns_autres_revenus_i = where(rpns_autres_revenus_i_n_2 > 0, rpns_autres_revenus_i_n_2,
-                                     rpns_autres_revenus_i_m_12)
-
-        ressources_n_2_i = (
-            indemnites_journalieres_atexa_i
-            + gains_exceptionnels_i
-            + benefice_agricole_i
-            + benefice_micro_entreprise_i
-            + benefice_auto_entrepreneur_i
-            + rpns_autres_revenus_i
-            )
-        ressources_n_2 = famille.sum(ressources_n_2_i, role=Famille.PARENT)
-        f4ba = famille.demandeur.foyer_fiscal('f4ba', period.n_2)
-        plus_values_base_large = famille.demandeur.foyer_fiscal('plus_values_base_large', period.n_2)
-        deficit_exercice = famille.demandeur.foyer_fiscal('deficit_exercice', period.n_2)
-        ressources_n_2 += (
-            f4ba
-            + plus_values_base_large
-            - deficit_exercice
-            )
-
-        # Montants a soustraire
-        f4bb = famille.demandeur.foyer_fiscal('f4bb', period.n_2)
-
-        ressources_patrimoine = famille('aide_logement_base_ressources_patrimoine', period)
-        demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        revenus_fiscaux = (
-            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux',
-                                           period.n_2) * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux',
-                                            period.n_2) * conjoint_declarant_principal
-            )
-
-        abattement_chomage_indemnise_i = famille.members('aide_logement_abattement_chomage_indemnise', period)
-        abattement_chomage_indemnise = famille.sum(abattement_chomage_indemnise_i, role=Famille.PARENT)
-        abattement_depart_retraite_i = famille.members('aide_logement_abattement_depart_retraite', period)
-        abattement_depart_retraite = famille.sum(abattement_depart_retraite_i, role=Famille.PARENT)
-
-        abattement_ressources_enfant = parameters(
-            period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
-        base_ressources_enfants = famille.sum(max_(0, base_ressources_i + ressources_annee_glissante_i - abattement_ressources_enfant), role = Famille.ENFANT)
-
         ressources = (
-            + base_ressources_parents
-            + ressources_annee_glissante
-            + ressources_n_1
-            + ressources_n_2
+            base_ressources_parents
             + base_ressources_enfants
             + ressources_patrimoine
-            + revenus_fiscaux
-            - f4bb
-            - (abattement_chomage_indemnise + abattement_depart_retraite)
+            + aide_logement_base_revenus_fiscaux
+            + pensions_alimentaires_versees
             )
-        # Abattement forfaitaire pour double activité
-        abattement_double_activite = biactivite * params_al_ressources.dar_1
 
+        # Abattement forfaitaire pour double activité
+        abattement_double_activite = biactivite * Pr.dar_1
+
+        # Arrondi aux 100 euros supérieurs
         ressources = max_(ressources - abattement_double_activite, 0)
 
-        # Planchers de ressources pour étudiants
+        # Forfait de ressources pour étudiants
         # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
         demandeur_etudiant = famille.demandeur('etudiant', period) * (famille.demandeur('age', period) < age_etudiant_max)
         demandeur_boursier = famille.demandeur('boursier', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         logement_crous = famille.demandeur.menage('logement_crous', period)
         logement_crous_ou_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) + logement_crous
-        montant_plancher_ressources = not_(logement_crous_ou_foyer) * max_(0, demandeur_etudiant * params_al_ressources.dar_4 - demandeur_boursier * params_al_ressources.dar_5)
-        montant_plancher_ressources_logement_foyer = logement_crous_ou_foyer * max_(0, demandeur_etudiant * params_al_ressources.dar_11 - demandeur_boursier * params_al_ressources.dar_12)
+        montant_plancher_ressources = not_(logement_crous_ou_foyer) * max_(0, demandeur_etudiant * Pr.dar_4 - demandeur_boursier * Pr.dar_5)
+        montant_plancher_ressources_logement_foyer = logement_crous_ou_foyer * max_(0, demandeur_etudiant * Pr.dar_11 - demandeur_boursier * Pr.dar_12)
 
         ressources = where(demandeur_etudiant, max_(montant_plancher_ressources, montant_plancher_ressources_logement_foyer), ressources)
 
@@ -1151,37 +910,55 @@ class aide_logement_base_ressources(Variable):
         return where(accedant, max_(ressources, plancher), ressources)
 
     def formula(famille, period, parameters):
-        mois_precedent = period.offset(-1)
-        last_day_reference_year = period.n_2.stop
-        base_ressources_defaut = famille('aide_logement_base_ressources_defaut', period)
-        base_ressources_eval_forfaitaire = famille(
-            'aide_logement_base_ressources_eval_forfaitaire', period)
-        en_couple = famille('en_couple', period)
+        biactivite = famille('aide_logement_biactivite', period.n_2.last_month)
+        Pr = parameters(period).prestations.aides_logement.ressources
+        base_ressources_i = famille.members('aide_logement_base_ressources_individu', period)
+        base_ressources_eval_forfaitaire_i = famille.members('aide_logement_base_ressources_eval_forfaitaire', period)
+        base_ressources = where(
+            base_ressources_eval_forfaitaire_i > 0,
+            base_ressources_eval_forfaitaire_i,
+            base_ressources_i
+            )
+        base_ressources_parents = famille.sum(base_ressources, role = Famille.PARENT)
+        ressources_patrimoine = famille('aide_logement_base_ressources_patrimoine', period)
+        abattement_ressources_enfant = parameters(period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
+        base_ressources_enfants = famille.sum(
+            max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
 
-        aah_i = famille.members('aah', mois_precedent)
-        aah = famille.sum(aah_i, role = Famille.PARENT)
+        demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        age_demandeur = famille.demandeur('age', period)
-        age_conjoint = famille.conjoint('age', period)
-        smic_horaire_brut_n2 = parameters(last_day_reference_year).cotsoc.gen.smic_h_b
+        # Revenus du foyer fiscal
+        aide_logement_base_revenus_fiscaux = (
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
+            )
 
-        salaire_imposable_i = famille.members('salaire_imposable', period.offset(-1))
-        somme_salaires = famille.sum(salaire_imposable_i, role = Famille.PARENT)
+        pensions_alimentaires_versees = (
+            famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.n_2) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('pensions_alimentaires_versees', period.n_2) * conjoint_declarant_principal
+            )
 
-        plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
+        abat_spe = (
+            famille.demandeur.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
+            * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
+            * conjoint_declarant_principal
+            )
+        base_ressources_parents = max_(0, base_ressources_parents - abat_spe)
+        ressources = (
+            base_ressources_parents
+            + base_ressources_enfants
+            + ressources_patrimoine
+            + aide_logement_base_revenus_fiscaux
+            + pensions_alimentaires_versees
+            )
 
-        plafond_salaire_jeune_isole = parameters(period).prestations.aides_logement.ressources.dar_8
-        plafond_salaire_jeune_couple = parameters(period).prestations.aides_logement.ressources.dar_9
-        plafond_salaire_jeune = where(en_couple, plafond_salaire_jeune_couple, plafond_salaire_jeune_isole)
+        # Abattement forfaitaire pour double activité
+        abattement_double_activite = biactivite * Pr.dar_1
 
-        neutral_jeune = or_(age_demandeur < 25, and_(en_couple, age_conjoint < 25))
-        neutral_jeune &= somme_salaires < plafond_salaire_jeune
-
-        eval_forfaitaire = base_ressources_defaut <= plafond_eval_forfaitaire
-        eval_forfaitaire &= base_ressources_eval_forfaitaire > 0
-        eval_forfaitaire &= aah == 0
-        eval_forfaitaire &= not_(neutral_jeune)
-        ressources = where(eval_forfaitaire, base_ressources_eval_forfaitaire, base_ressources_defaut)
+        # Arrondi aux 100 euros supérieurs
+        ressources = max_(ressources - abattement_double_activite, 0)
 
         # Planchers de ressources pour étudiants
         # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
