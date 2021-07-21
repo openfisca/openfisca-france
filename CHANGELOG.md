@@ -1,5 +1,16 @@
 # Changelog
 
+# 73.0.0 [#1661](https://github.com/openfisca/openfisca-france/pull/1661) [#1567](https://github.com/openfisca/openfisca-france/pull/1567)
+
+* Évolution du système socio-fiscal **non rétrocompatible** | Correction d'un crash
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/aides_logement.py`
+* Détails :
+  - Réapplique la modélisation des aides au logement de la v`60.0.0` supprimées en v`61.0.0` :
+    * Harmonise les variables de calcul des aides au logement avant et après la réforme du 1e janvier 2021.
+    * Corrige certaines imprécisions dans le calcul, notamment des doubles prises en compte de certaines variables.
+  - Applique le renommage de `smic_h_b` et la gestion des périodes par `set_input` intervenus depuis la v`61.0.0`.
+
 ### 72.1.2 [#1650](https://github.com/openfisca/openfisca-france/pull/1650)
 
 * Amélioration technique.
@@ -341,9 +352,11 @@ Ces changements :
 
 # 60.0.0 [#1567](https://github.com/openfisca/openfisca-france/pull/1567)
 
-* Évolution du système socio-fiscal..
+> Version dont le contenu est réappliqué en `#1661` suite à une suppression erronée en v`61.0.0`.
+
+* Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : `openfisca_france/model/prestations/aides_logement.py `.
+* Zones impactées : `openfisca_france/model/prestations/aides_logement.py`
 * Détails :
   - Harmonise les variables de calcul des aides au logement avant et après la réforme du 1e janvier 2021.
   - Corrige certaines imprécisions dans le calcul, notamment des doubles prises en compte de certaines variables.
