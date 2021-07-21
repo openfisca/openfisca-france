@@ -53,8 +53,8 @@
           2021-01: actif
         date_naissance:
           2021-01: 1962-01-01
-        rpns_benefice_exploitant_agricole:
-          year:2019-12: 6864
+        rpns_imposables:
+          2019: 6864
     foyer_fiscal:
       declarants: [personne1]
   output:
@@ -147,7 +147,7 @@
         activite: actif
         date_naissance:
           2021-01: 1981-01-01
-        rpns_benefice_exploitant_agricole:
+        rpns_imposables:
           2019: 21502
       personne2:
         activite: inactif
@@ -191,7 +191,7 @@
           2021-01: actif
         date_naissance:
           2021-01: 1964-01-01
-        rpns_benefice_exploitant_agricole:
+        rpns_imposables:
           2019: 4935
     foyer_fiscal:
       declarants: [personne1]
