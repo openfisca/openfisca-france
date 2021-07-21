@@ -584,6 +584,8 @@ class aide_logement_base_ressources_individu(Variable):
         rpns_mvlt = individu('moins_values_long_terme_non_salaries', period.n_2)
 
         rpns = rpns + rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
+        # TO DO : compléter la formule pour prendre en compte la disposition particulière concernant les indépendants ayant commencé une activité entre N-2 et N.
+        # Non implémentée car diffile à comprendre ce qui est fait exactement
 
         pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period.last_year, options = [ADD])
         retraite_imposable = individu('retraite_imposable', annee_glissante, options=[ADD])
