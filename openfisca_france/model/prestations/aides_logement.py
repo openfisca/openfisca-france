@@ -496,7 +496,7 @@ class aide_logement_condition_neutralisation(Variable):
 class aide_logement_abattement_revenus_activite_professionnelle(Variable):
     value_type = float
     entity = Individu
-    label = "Condition de l'abattement pour personnes au chômage indemnisé ou départ à la retraite (R351-13 du CCH)"
+    label = "Condition de l'abattement sur les revenus d'activités pour les personnes au chômage indemnisé ou partant à la retraite (R351-13 du CCH)"
     definition_period = MONTH
     reference = [
         "Article 822-13 du code de la construction et de l'habitation",
@@ -520,7 +520,7 @@ class aide_logement_abattement_revenus_activite_professionnelle(Variable):
 class aide_logement_abattement_indemnites_chomage(Variable):
     value_type = float
     entity = Individu
-    label = "Conditon de l'abattement pour départ à la retraite (R351-13 du CCH)"
+    label = "Conditon de l'abattement sur les indemnités chômages pour les personnes partant à la retraite (R351-13 du CCH)"
     definition_period = MONTH
     reference = [
         "Article 822-13 du code de la construction et de l'habitation",
