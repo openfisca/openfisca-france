@@ -522,8 +522,10 @@ class aide_logement_abattement_revenus_activite_professionnelle(Variable):
 
         aah = individu('aah', period)
         salaire_imposable = individu('salaire_imposable', period)
-        rpns = individu('rpns', period, options = [DIVIDE])
-        return min_(1, (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) + (activite == TypesActivite.retraite) * ((salaire_imposable + rpns) == 0) + (aah > 0) * ((salaire_imposable + rpns) == 0))
+        rpns = individu('rpns_imposables', period.n_2)
+        rpns_pvce = individu('rpns_pvce', period.n_2)
+        rpns_exon = individu('rpns_exon', period.n_2)
+        return min_(1, (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) + (activite == TypesActivite.retraite) * ((salaire_imposable + rpns + rpns_pvce + rpns_exon) == 0) + (aah > 0) * ((salaire_imposable + rpns + rpns_pvce + rpns_exon) == 0))
 
 
 class aide_logement_abattement_indemnites_chomage(Variable):
@@ -542,8 +544,10 @@ class aide_logement_abattement_indemnites_chomage(Variable):
 
         aah = individu('aah', period)
         salaire_imposable = individu('salaire_imposable', period)
-        rpns = individu('rpns', period, options = [DIVIDE])
-        return min_(1, (activite == TypesActivite.retraite) * ((salaire_imposable + rpns) == 0) + (aah > 0) * ((salaire_imposable + rpns) == 0))
+        rpns = individu('rpns_imposables', period.n_2)
+        rpns_pvce = individu('rpns_pvce', period.n_2)
+        rpns_exon = individu('rpns_exon', period.n_2)
+        return min_(1, (activite == TypesActivite.retraite) * ((salaire_imposable + rpns + rpns_pvce + rpns_exon) == 0) + (aah > 0) * ((salaire_imposable + rpns + rpns_pvce + rpns_exon) == 0))
 
 
 class aide_logement_base_ressources_individu(Variable):
@@ -573,7 +577,7 @@ class aide_logement_base_ressources_individu(Variable):
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
-        rpns = individu('rpns', period.n_2)
+        rpns = individu('rpns_imposables', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
         rpns_pvct = individu('rpns_pvct', period.n_2)
         rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
@@ -623,7 +627,7 @@ class aide_logement_base_ressources_individu(Variable):
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
-        rpns = individu('rpns', period.n_2)
+        rpns = individu('rpns_imposables', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
         rpns_pvct = individu('rpns_pvct', period.n_2)
         rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
@@ -735,7 +739,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
         revenu_assimile_salaire_apres_abattements_i = individu.famille.members('revenu_assimile_salaire_apres_abattements', period.n_2, options=[ADD])
         revenu_assimile_salaire_apres_abattements = individu.famille.sum(revenu_assimile_salaire_apres_abattements_i, role = Famille.PARENT)
 
-        rpns = individu('rpns', period.n_2)
+        rpns = individu('rpns_imposables', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
         rpns_pvct = individu('rpns_pvct', period.n_2)
         rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
