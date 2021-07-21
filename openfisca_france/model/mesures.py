@@ -523,11 +523,12 @@ class prestations_familiales(Variable):
         cf = famille('cf', period, options = [ADD])
         ars = famille('ars', period)
         aeeh = famille('aeeh', period, options = [ADD])
+        aes = famille('aes', period, options = [ADD])
         paje = famille('paje', period, options = [ADD])
         asf = famille('asf', period, options = [ADD])
         crds_pfam = famille('crds_pfam', period)
 
-        return af + cf + ars + aeeh + paje + asf + crds_pfam
+        return af + cf + ars + aeeh + aes + paje + asf + crds_pfam
 
 
 class minimum_vieillesse(Variable):
