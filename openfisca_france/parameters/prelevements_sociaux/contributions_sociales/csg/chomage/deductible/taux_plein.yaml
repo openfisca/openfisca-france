@@ -7,12 +7,10 @@ values:
     value: 0.01
   1998-01-01:
     value: 0.038
-  2005-01-01:
-    value: 0.042
 metadata:
   ux_name: Taux plein
   last_review:
-    2005-01-01
+    2021-07-22
   reference:
     2005-01-01:
       title: Loi 2004-810 du 13/08/2004, art. 72
