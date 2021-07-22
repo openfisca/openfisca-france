@@ -1,0 +1,80 @@
+- name: Test base resources APL 2021 reforme
+  period: '2021-01'
+  input:
+    salaire_imposable: 
+      2020-01:
+        4000
+      2020-02:
+        4000
+      2020-03:
+        4000
+      2020-04:
+        4000
+      2020-05:
+        4000
+      2020-06:
+        4000
+      2020-07:
+        4000
+      2020-08:
+        4000
+      2020-09:
+        4000
+      2020-10:
+        4000
+      2020-11:
+        4000
+      2020-12:
+        4000
+  output:
+    aide_logement_base_ressources: 40000
+
+- name: Test base resources APL
+  period: '2020-01'
+  input:
+    salaire_imposable: 
+      2019-01:
+        4000
+      2019-02:
+        4000
+      2019-03:
+        4000
+      2019-04:
+        4000
+      2019-05:
+        4000
+      2019-06:
+        4000
+      2019-07:
+        4000
+      2019-08:
+        4000
+      2019-09:
+        4000
+      2019-10:
+        4000
+      2019-11:
+        4000
+      2019-12:
+        4000
+  output:
+    aide_logement_base_ressources_defaut: 40000
+
+- name: Base resource APL 1 independant
+  period: '2020-01'
+  input:
+    tns_benefice_exploitant_agricole: 
+      2019:
+        40000
+  output:
+    aide_logement_base_ressources: 40000
+
+- name: Base resource APL 2 independant
+  period: '2021-01'
+  input:
+    tns_benefice_exploitant_agricole: 
+      2019:
+        40000
+  output:
+    aide_logement_base_ressources: 40000
+
