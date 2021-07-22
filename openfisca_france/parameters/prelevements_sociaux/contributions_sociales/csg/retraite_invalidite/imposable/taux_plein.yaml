@@ -1,4 +1,4 @@
-description: Taux imposable de la Contribution Sociale Généralisée (CSG) imposable sur les pensions de retraite et d'invalidité
+description: Taux plein de la Contribution Sociale Généralisée (CSG) imposable sur les pensions de retraite et d'invalidité
 unit: /1
 values:
   1997-01-01:
@@ -6,7 +6,7 @@ values:
 metadata:
   ux_name: Taux
   last_review:
-    1997-01-01
+    2021-07-22
   reference:
   official_journal_date:
   notes:
