@@ -26,9 +26,9 @@ class taux_csg_remplacement(Variable):
     def formula_2015(individu, period, parameters):
         rfr = individu.foyer_fiscal("rfr", period=period.n_2)
         nbptr = individu.foyer_fiscal("nbptr", period=period.n_2)
-        seuils = parameters(period).prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.seuils
-        seuil_exoneration = (seuils.seuil_rfr1 + (nbptr - 1) * seuils.rfr2_demi_part_suppl)
-        seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.rfr2_demi_part_suppl
+        seuils = parameters(period).prelevements_sociaux.contributions_sociales.csg.seuils
+        seuil_exoneration = (seuils.seuil_rfr1 + (nbptr - 1) * seuils.demi_part_suppl_rfr2)
+        seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.demi_part_suppl_rfr2
         taux_csg_remplacement = where(rfr <= seuil_exoneration, TypesTauxCSGRemplacement.exonere,
             where(rfr <= seuil_reduction, TypesTauxCSGRemplacement.taux_reduit, TypesTauxCSGRemplacement.taux_plein))
         return taux_csg_remplacement
