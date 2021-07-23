@@ -212,7 +212,8 @@ class pension_civile_salarie(Variable):
         pension_civile_salarie = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             * sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut + nouvelle_bonification_indiciaire)
-            + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut + nouvelle_bonification_indiciaire)
+            + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
+            + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl2'].calc(nouvelle_bonification_indiciaire)
             )
 
         return - pension_civile_salarie
