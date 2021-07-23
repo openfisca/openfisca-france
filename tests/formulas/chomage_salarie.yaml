@@ -6,25 +6,3 @@
     salaire_de_base: 1500
   output:
     chomage_salarie: -(0.95 / 100) * 1500
-
-
-- name: Cotisation chomage salarié, tranche A et B
-  description: Montant Cotsoc chomage salarié pour base comprise entre 1 et 4 PSS
-  period: 2018-01
-  absolute_error_margin: 0.001
-  input:
-  input:
-    salaire_de_base: 8000
-  output:
-    chomage_salarie: -(0.95 / 100) * 8000
-
-- name: Cotisation chomage salarié, tranche A et B > plafond
-  description: Montant Cotsoc chomage salarié pour base supérieure 4 PSS
-  period: 2018-01
-  absolute_error_margin: 0.001
-  input:
-  input:
-    salaire_de_base: 15000
-  output:
-    chomage_salarie: -(0.95 / 100) * (15000 - 4*3311)
-
