@@ -44,6 +44,7 @@ class assiette_cotisations_sociales_public(Variable):
 
     def formula(individu, period, parameters):
         remuneration_principale = individu('remuneration_principale', period)
+        avantage_en_nature = individu('avantage_en_nature', period)
         # primes_fonction_publique = individu('primes_fonction_publique', period)
         # indemnite_residence = individu('indemnite_residence', period)
         categorie_salarie = individu('categorie_salarie', period)
@@ -56,6 +57,7 @@ class assiette_cotisations_sociales_public(Variable):
 
         assiette = public * (
             remuneration_principale
+            + avantage_en_nature
             # + not_(titulaire) * (indemnite_residence + primes_fonction_publique)
             )
         return assiette

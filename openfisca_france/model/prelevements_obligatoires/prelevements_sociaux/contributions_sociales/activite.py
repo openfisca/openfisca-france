@@ -30,6 +30,7 @@ class assiette_csg_abattue(Variable):
         remuneration_principale = individu('remuneration_principale', period)
         stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
+        avantage_en_nature = individu('avantage_en_nature', period)
 
         return (
             + indemnite_fin_contrat
@@ -40,6 +41,7 @@ class assiette_csg_abattue(Variable):
             + salaire_de_base
             + stage_gratification_reintegration
             + supplement_familial_traitement
+            + avantage_en_nature
             - hsup
             )
 
