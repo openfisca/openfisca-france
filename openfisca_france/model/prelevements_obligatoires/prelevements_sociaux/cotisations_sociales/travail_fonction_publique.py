@@ -200,7 +200,8 @@ class pension_civile_salarie(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)  # TODO: check nbi
+        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
+        nouvelle_bonification_indiciaire = individu('nouvelle_bonification_indiciaire', period)
         categorie_salarie = individu('categorie_salarie', period)
         _P = parameters(period)
 
@@ -210,8 +211,8 @@ class pension_civile_salarie(Variable):
 
         pension_civile_salarie = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
-            * sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut)
-            + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
+            * sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut + nouvelle_bonification_indiciaire)
+            + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut + nouvelle_bonification_indiciaire)
             )
 
         return - pension_civile_salarie
@@ -252,8 +253,6 @@ class rafp_salarie(Variable):
     entity = Individu
     label = "Part salariale de la retraite additionelle de la fonction publique"
     definition_period = MONTH
-    # Part salariale de la retraite additionelle de la fonction publique
-    # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
 
     def formula_2005_01_01(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
@@ -261,6 +260,8 @@ class rafp_salarie(Variable):
         primes_fonction_publique = individu('primes_fonction_publique', period)
         supplement_familial_traitement = individu('supplement_familial_traitement', period)
         indemnite_residence = individu('indemnite_residence', period)
+        gipa = individu('gipa', period)
+        avantage_en_nature = individu('avantage_en_nature', period)
         _P = parameters(period)
 
         eligible = (
@@ -269,8 +270,8 @@ class rafp_salarie(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
         plaf_ass = _P.prelevements_sociaux.cotisations_secteur_public.rafp.salarie.rafp_plaf_assiette
-        base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence
-        assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
+        base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence + avantage_en_nature
+        assiette = (min_(base_imposable, plaf_ass * traitement_indiciaire_brut) + gipa) * eligible
         # Même régime pour les fonctions publiques d'Etat et des collectivité locales
         rafp_salarie = eligible * _P.cotsoc.cotisations_salarie.public_titulaire_etat['rafp'].calc(assiette)
         return -rafp_salarie
