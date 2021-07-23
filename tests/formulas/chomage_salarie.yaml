@@ -24,3 +24,22 @@
     salaire_de_base: 15000
   output:
     chomage_salarie: -(0.95 / 100) * (4*3311)
+
+- name: Cotisation chomage salarié, tranche A et B > plafond
+  description: Montant Cotsoc chomage salarié pour base supérieure 4 PSS
+  period: 2017-01
+  absolute_error_margin: 0.01
+  input:
+    salaire_de_base: 15000
+  output:
+    chomage_salarie: -(2.4 / 100) * (4*3311)
+
+- name: Cotisation chomage salarié, tranche A
+  description: Montant Cotsoc chomage salarié pour base inférieure à 1 PSS
+  period: 2020-01
+  relative_error_margin: 0.01
+  input:
+    salaire_de_base: 4000
+  output:
+    chomage_salarie: 0
+
