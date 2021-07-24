@@ -206,8 +206,8 @@ class aide_premier_salarie(Variable):
 class aide_embauche_pme(Variable):
     value_type = float
     entity = Individu
-    label = "Aide à l'embauche d'un salarié pour les PME"
-    reference = "http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
+    label = "Aide à l'embauche TPE/PME"
+    reference = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031909980/"
     definition_period = MONTH
     calculate_output = calculate_output_add
     set_input = set_input_divide_by_period
