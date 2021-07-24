@@ -16,7 +16,7 @@ class jei_date_demande(Variable):
 class exoneration_cotisations_employeur_geographiques(Variable):
     value_type = float
     entity = Individu
-    label = "Exonérations de cotisations employeur dépendant d'une zone géographique"
+    label = "Aides à l'embauche dans une zone en difficulté"
     reference = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
     definition_period = MONTH
     set_input = set_input_divide_by_period
