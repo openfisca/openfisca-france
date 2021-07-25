@@ -87,7 +87,7 @@ class exoneration_cotisations_employeur_jei(Variable):
 class exoneration_cotisations_employeur_zfu(Variable):
     value_type = float
     entity = Individu
-    label = "Exonérations de cotisations employeur pour l'embauche en zone franche urbaine (ZFU)"
+    label = "Exonération de cotisations employeur pour l'embauche en ZFU (zone franche urbaine)"
     reference = "http://www.apce.com/pid553/exoneration-dans-les-zfu.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
     set_input = set_input_divide_by_period
