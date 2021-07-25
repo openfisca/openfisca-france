@@ -270,7 +270,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
 class exoneration_cotisations_employeur_zrd(Variable):
     value_type = float
     entity = Individu
-    label = "Exonérations de cotisations employeur pour l'embauche en zone de restructuration de la Défense (ZRD)"
+    label = "Exonération de cotisations employeur pour l'embauche en ZRD (zone de restructuration de la Défense)"
     reference = "http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1"
     definition_period = MONTH
     set_input = set_input_divide_by_period
