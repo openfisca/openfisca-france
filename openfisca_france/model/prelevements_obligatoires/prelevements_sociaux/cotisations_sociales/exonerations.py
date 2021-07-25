@@ -38,7 +38,7 @@ class exoneration_cotisations_employeur_geographiques(Variable):
 class exoneration_cotisations_employeur_jei(Variable):
     value_type = float
     entity = Individu
-    label = "Exonérations de cotisations employeur pour une jeune entreprise innovante"
+    label = "Exonération de cotisations employeur pour JEI (jeune entreprise innovante)"
     reference = "http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2"
     definition_period = MONTH
     set_input = set_input_divide_by_period
