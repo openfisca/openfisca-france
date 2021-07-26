@@ -1,0 +1,2 @@
+WARNING:openfisca_core.scripts:Several country packages detected : `openfisca_france, openfisca_france_dotations_locales`. Using `openfisca_france` by default. To use another package, please use the --country-package option.
+WARNING:openfisca_core.scripts:Several country packages detected : `openfisca_france, openfisca_france_dotations_locales`. Using `openfisca_france` by default. To use another package, please use the --country-package option.

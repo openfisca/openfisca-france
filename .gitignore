@@ -28,7 +28,3 @@ build
 /tags
 .spyproject
 chemins_trop_longs.json
-openfisca_france/scripts/parameters/pat_diff.txt
-openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt
-openfisca_france/scripts/parameters/preprocessed_parameters_diff.txt
-openfisca_france/scripts/parameters/preprocessed_parameters_APRES.txt

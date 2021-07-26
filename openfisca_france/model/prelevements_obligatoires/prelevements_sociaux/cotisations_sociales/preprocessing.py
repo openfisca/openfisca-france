@@ -33,6 +33,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['formprof_20'] = autres.formation.children['formprof_20']
     # Construction
     commun.children['construction'] = autres.construction.children['construction_20']
+    commun.children['construction'] = autres.construction.children['seuil']
     # Autres thématiques
     commun.children.update(chomage.assedic.employeur.children)
     commun.children.update(chomage.chomfg.children)
@@ -238,7 +239,7 @@ def preprocess_parameters(parameters):
     parameters.cotsoc.add_child('sal', sal)
     parameters.cotsoc.add_child('pat', pat)
 
-    # ON GENERE LE DOSSIER COTSOC
+    # Ajout de paramètres
     # Nouveaux chemins
     regime_general = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general
     autres = parameters.prelevements_sociaux.autres_taxes_participations_assises_salaires
