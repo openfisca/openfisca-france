@@ -1,7 +1,7 @@
 import copy
 import logging
 
-from openfisca_core.parameters import ParameterNode
+from openfisca_france.model.base import *
 from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalarie
 
 DEBUG_SAL_TYPE = 'public_titulaire_etat'
@@ -18,7 +18,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     # Réindexation : nouveaux chemins suite à l'harmonisation avec les répertoires des barèmes IPP
     autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
-    chom = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
+    chomage = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
     cotiz = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
     public = node_json.prelevements_sociaux.cotisations_secteur_public
 
@@ -26,7 +26,6 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     # Apprentissage
     commun.children['apprentissage'] = autres.apprentissage.children['apprentissage']
     commun.children['apprentissage_add'] = autres.apprentissage.children['apprentissage_add']
-    commun.children['apprentissage'] = autres.apprentissage.children['apprentissage']
     commun.children['apprentissage_alsace_moselle'] = autres.apprentissage.children['apprentissage_alsace_moselle']
     # Formation
     commun.children['formprof_09'] = autres.formation.children['formprof_09']
@@ -34,10 +33,9 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['formprof_20'] = autres.formation.children['formprof_20']
     # Construction
     commun.children['construction'] = autres.construction.children['construction_20']
-    commun.children['seuil'] = autres.construction.children['seuil']
     # Autres thématiques
-    commun.children.update(chom.assedic.employeur.children)
-    commun.children.update(chom.chomfg.children)
+    commun.children.update(chomage.assedic.employeur.children)
+    commun.children.update(chomage.chomfg.children)
     commun.children.update(cotiz.csa.bareme.children)  # À harmoniser !
     commun.children.update(cotiz.famille.bareme.children)  # À harmoniser !
     commun.children.update(autres.fnal.children)  # À harmoniser !
@@ -133,14 +131,14 @@ def build_sal(node_json):
 
     # Réindexation: nouveaux chemins
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
-    chom = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
+    chomage = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
     cotiz = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
     public = node_json.prelevements_sociaux.cotisations_secteur_public
     indep = node_json.prelevements_sociaux.cotisations_taxes_independants_artisans_commercants
     liberal = node_json.prelevements_sociaux.cotisations_taxes_professions_liberales
 
     # Création de commun
-    commun.children.update(chom.assedic.salarie.children)
+    commun.children.update(chomage.assedic.salarie.children)
     commun.children.update(cotiz.mmid.bareme.salarie.children)  # harmoniser !
     commun.children.update(cotiz.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(cotiz.cnav.bareme.salarie.children)  # À harmoniser !
