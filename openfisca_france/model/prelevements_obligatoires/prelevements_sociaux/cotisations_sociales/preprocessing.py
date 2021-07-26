@@ -15,7 +15,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat = ParameterNode("pat", data={})  # Génère pat
     commun = ParameterNode("commun", data={})  # Génère commun
 
-    # Réindexation: nouveaux chemins
+    # Réindexation : nouveaux chemins suite à l'harmonisation avec les répertoires des barèmes IPP
     autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
     chom = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
