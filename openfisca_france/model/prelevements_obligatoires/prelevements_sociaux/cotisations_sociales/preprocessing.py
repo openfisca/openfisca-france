@@ -35,7 +35,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     # Construction
     commun.children['construction'] = autres.construction.children['construction_20']
     commun.children['seuil'] = autres.construction.children['seuil']
-    # Reste
+    # Autres thématiques
     commun.children.update(chom.assedic.employeur.children)
     commun.children.update(chom.chomfg.children)
     commun.children.update(cotiz.csa.bareme.children)  # À harmoniser !
