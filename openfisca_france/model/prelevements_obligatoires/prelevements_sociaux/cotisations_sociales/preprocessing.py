@@ -19,7 +19,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
     chomage = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
-    cotiz = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
+    regime_general = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
     public = node_json.prelevements_sociaux.cotisations_secteur_public
 
     # Création de commun
@@ -36,13 +36,13 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     # Autres thématiques
     commun.children.update(chomage.assedic.employeur.children)
     commun.children.update(chomage.chomfg.children)
-    commun.children.update(cotiz.csa.bareme.children)  # À harmoniser !
-    commun.children.update(cotiz.famille.bareme.children)  # À harmoniser !
+    commun.children.update(regime_general.csa.bareme.children)  # À harmoniser !
+    commun.children.update(regime_general.famille.bareme.children)  # À harmoniser !
+    commun.children.update(regime_general.penibilite.bareme.children)  # À harmoniser !
+    commun.children.update(regime_general.cnav.bareme.employeur.children)  # À harmoniser !
+    commun.children.update(regime_general.mmid.bareme.employeur.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(autres.fnal.children)  # À harmoniser !
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
-    commun.children.update(cotiz.penibilite.bareme.children)  # À harmoniser !
-    commun.children.update(cotiz.cnav.bareme.employeur.children)  # À harmoniser !
-    commun.children.update(cotiz.mmid.bareme.employeur.children)  # À harmoniser ! + Créer params depuis IPP
 
     # Réindexation NonCadre
     # Initialisation
@@ -71,14 +71,14 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     # Etat
     pat.children['fonc'].children['etat'].children.update(public.mmid.etat.children)
-    pat.children['fonc'].children['etat'].children.update(public.retraite.ati.children)
     pat.children['fonc'].children['etat'].children.update(public.rafp.employeur.children)
+    pat.children['fonc'].children['etat'].children.update(public.retraite.ati.children)
     pat.children['fonc'].children['etat'].children.update(public.retraite.pension.employeur.children)
 
     # Collectivités Locales
-    pat.children['fonc'].children['colloc'].children['hospitaliere'] = public.cnral.employeur.hospitaliere
-    pat.children['fonc'].children['colloc'].children['territoriale'] = public.cnral.employeur.territoriale
-    pat.children['fonc'].children['colloc'].children.update(public.cnral.employeur.children)
+    pat.children['fonc'].children['colloc'].children['hospitaliere'] = public.cnracl.employeur.hospitaliere
+    pat.children['fonc'].children['colloc'].children['territoriale'] = public.cnracl.employeur.territoriale
+    pat.children['fonc'].children['colloc'].children.update(public.cnracl.employeur.children)
     pat.children['fonc'].children['colloc'].children.update(public.mmid.colloc.children)
     pat.children['fonc'].children['colloc'].children.update(public.rafp.employeur.children)
 
@@ -132,16 +132,16 @@ def build_sal(node_json):
     # Réindexation: nouveaux chemins
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
     chomage = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
-    cotiz = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
+    regime_general = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
     public = node_json.prelevements_sociaux.cotisations_secteur_public
     indep = node_json.prelevements_sociaux.cotisations_taxes_independants_artisans_commercants
     liberal = node_json.prelevements_sociaux.cotisations_taxes_professions_liberales
 
     # Création de commun
     commun.children.update(chomage.assedic.salarie.children)
-    commun.children.update(cotiz.mmid.bareme.salarie.children)  # harmoniser !
-    commun.children.update(cotiz.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
-    commun.children.update(cotiz.cnav.bareme.salarie.children)  # À harmoniser !
+    commun.children.update(regime_general.mmid.bareme.salarie.children)  # harmoniser !
+    commun.children.update(regime_general.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
+    commun.children.update(regime_general.cnav.bareme.salarie.children)  # À harmoniser !
 
     # Non Cadre
     # Initialisation
@@ -175,7 +175,7 @@ def build_sal(node_json):
     sal.children['public_titulaire_etat'] = sal.children['fonc'].children['etat']
 
     # Collectivités Locales
-    sal.children['fonc'].children['colloc'].children.update(public.cnral.salarie.children)
+    sal.children['fonc'].children['colloc'].children.update(public.cnracl.salarie.children)
     sal.children['public_titulaire_territoriale'] = sal.children['fonc'].children['colloc']
     sal.children['public_titulaire_hospitaliere'] = sal.children['fonc'].children['colloc']
 
@@ -240,7 +240,7 @@ def preprocess_parameters(parameters):
 
     # ON GENERE LE DOSSIER COTSOC
     # Nouveaux chemins
-    cotiz = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general
+    regime_general = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general
     autres = parameters.prelevements_sociaux.autres_taxes_participations_assises_salaires
     liberal = parameters.prelevements_sociaux.cotisations_taxes_professions_liberales
     travail = parameters.marche_travail
@@ -248,10 +248,10 @@ def preprocess_parameters(parameters):
 
     # Valeurs
     cotsoc.add_child('accident', ParameterNode("accident", data={}))
-    cotsoc.accident.children.update(cotiz.accidents.bareme.children)  # À harmoniser! + Créer params depuis IPP
+    cotsoc.accident.children.update(regime_general.accidents.bareme.children)  # À harmoniser! + Créer params depuis IPP
     cotsoc.add_child('assiette', ParameterNode("assiette", data={}))
     cotsoc.assiette.add_child('cantines_titres_restaurants', ParameterNode("cantines_titres_restaurants", data={}))
-    cotsoc.assiette.cantines_titres_restaurants.children.update(cotiz.assiette.cantines_titres_restaurants.children)
+    cotsoc.assiette.cantines_titres_restaurants.children.update(regime_general.assiette.cantines_titres_restaurants.children)
 
     cotsoc.add_child('conge_individuel_formation', ParameterNode("conge_individuel_formation", data={}))
     cotsoc.conge_individuel_formation.children.update(autres.formation.conge_individuel_formation.children)  # À harmoniser
@@ -266,7 +266,7 @@ def preprocess_parameters(parameters):
     cotsoc.gen.children['smic_h_b'] = travail.salaire_minimum.children['smic_h_b']  # À harmoniser
 
     cotsoc.add_child('indemnite_fin_contrat', ParameterNode("indemnite_fin_contrat", data={}))
-    cotsoc.indemnite_fin_contrat.children.update(cotiz.indemnite_fin_contrat.children)  # À harmoniser
+    cotsoc.indemnite_fin_contrat.children.update(regime_general.indemnite_fin_contrat.children)  # À harmoniser
 
     cotsoc.add_child('microsocial', ParameterNode("microsocial", data={}))
     cotsoc.microsocial.children.update(liberal.auto_entrepreneur.children)  # À harmoniser
