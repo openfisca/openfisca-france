@@ -363,10 +363,10 @@ class casa(Variable):
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr <= seuil_taux_intermediaire, rfr > seuil_taux_intermediaire],
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
             )
-        contributions = parameters.prelevements_sociaux.contributions_sociales
+        bareme = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general
         casa = (
             ((taux_csg_retraite == TypesTauxCSGRetraite.taux_plein) + (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire))
-            * contributions.casa.calc(retraite_brute)
+            * bareme.casa.calc(retraite_brute)
             )
         return - casa
 

@@ -15,11 +15,16 @@ values:
     value: 14548.0
   2020-01-01:
     value: 14781.0
+  2021-01-01:
+    value: 14914.0
 metadata:
   ux_name: Seuil d'exonération (RFR pour 1 part de QF en N-2)
   last_review:
-    2020-01-01
+    2021-07-26
   reference:
+    2021-01-01:
+      title: Lettre ministérielle D-20-021991 du 04/12/2020
+      href: https://www.legislation.cnav.fr/Documents/lettre_ministerielle_04122020.pdf
     2020-01-01:
       title: Lettre ministérielle D-2019-025051 du 07/11/2019
       href: https://www.legislation.cnav.fr/Documents/lettre_ministerielle_2019_025051_07112019.pdf
