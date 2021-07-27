@@ -1,5 +1,15 @@
 # Changelog
 
+### 61.0.1 [#1609](https://github.com/openfisca/openfisca-france/pull/1609)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - API web.
+  - cotsoc.gen.smic_h_b
+* Détails :
+  - La version 61.0.0 introduit un renommage qui n'avait pas été répercuté systématiquement.
+
 # 61.0.0 [#1553](https://github.com/openfisca/openfisca-france/pull/1553) 
 
 * Amélioration technique.
