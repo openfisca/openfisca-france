@@ -64,7 +64,7 @@
     loyer: 900
     zone_apl: zone_2
     statut_occupation_logement: locataire_foyer
-    salaire_imposable:
+    revenu_assimile_salaire:
       2017: 9000
       2016: 9000
       2015: 9000
@@ -84,7 +84,7 @@
     loyer: 900
     zone_apl: zone_3
     statut_occupation_logement: locataire_foyer
-    salaire_imposable:
+    revenu_assimile_salaire:
       2017: 9000
       2016: 9000
       2015: 9000

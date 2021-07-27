@@ -1,14 +1,5 @@
 # Changelog
 
-# 60.0.0 [#1567](https://github.com/openfisca/openfisca-france/pull/1567)
-
-* Évolution du système socio-fiscal..
-* Périodes concernées : toutes.
-* Zones impactées : `openfisca_france/model/prestations/aides_logement.py `.
-* Détails :
-  - Harmonise les variables de calcul des aides au logement avant et après la réforme du 1e janvier 2021.
-  - Corrige certaines imprécisions dans le calcul, notamment des doubles prises en compte de certaines variables.
-
 # 59.0.0 [#1577](https://github.com/openfisca/openfisca-france/pull/1577)
 
 * Amélioration technique et correction d'un crash.

@@ -50,7 +50,7 @@
 
 - name: aide_logement_base_revenus_fiscaux_f2dc_f2dh_2018
   description: Montant de aide_logement_base_revenus_fiscaux en 2018 via les case 2DC et 2DH
-  period: 2020
+  period: 2018
   absolute_error_margin: 10
   input:
     f2dc: 100000
