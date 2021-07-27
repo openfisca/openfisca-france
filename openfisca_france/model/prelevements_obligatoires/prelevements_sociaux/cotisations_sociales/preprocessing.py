@@ -237,8 +237,6 @@ def preprocess_parameters(parameters):
 
     cotsoc = ParameterNode("cotsoc", data={})
     parameters.add_child('cotsoc', cotsoc)
-    parameters.cotsoc.add_child('sal', sal)
-    parameters.cotsoc.add_child('pat', pat)
 
     # Ajout de paramètres
     # Nouveaux chemins
