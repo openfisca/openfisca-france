@@ -1,6 +1,6 @@
 # Changelog
 
-# 60.0.0 [#1553](https://github.com/openfisca/openfisca-france/pull/1553) 
+# 61.0.0 [#1553](https://github.com/openfisca/openfisca-france/pull/1553) 
 
 * Amélioration technique.
 * Périodes concernées : toutes.
@@ -10,6 +10,15 @@
   - On modifie le script preprocessing.py pour récrer les mêmes 'preprocessed_parameters et cotsoc' qu'avant, mais en s'appuyant uniquement sur les paramètres 'rangés'
   - On supprime le dossier cotsoc
   - Prochaine étape: trier les doublons, harmoniser les paramètres qui sont sous forme de barème vs paramètre simple, harmoniser les paramètres rangés selon la méthode harmonisation_IPP
+
+# 60.0.0 [#1567](https://github.com/openfisca/openfisca-france/pull/1567)
+
+* Évolution du système socio-fiscal..
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/aides_logement.py `.
+* Détails :
+  - Harmonise les variables de calcul des aides au logement avant et après la réforme du 1e janvier 2021.
+  - Corrige certaines imprécisions dans le calcul, notamment des doubles prises en compte de certaines variables.
 
 # 59.0.0 [#1577](https://github.com/openfisca/openfisca-france/pull/1577)
 
