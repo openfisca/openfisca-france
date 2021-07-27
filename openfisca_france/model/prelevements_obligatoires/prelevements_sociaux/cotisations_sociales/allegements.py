@@ -287,7 +287,7 @@ class smic_proratise(Variable):
 
     def formula(individu, period, parameters):
         coefficient_proratisation = individu('coefficient_proratisation', period)
-        smic_horaire_brut = parameters(period).marche_travail.salaire_minimum.smic_h_b
+        smic_horaire_brut = parameters(period).cotsoc.gen.smic_h_b
         smic_proratise = coefficient_proratisation * smic_horaire_brut * 35 * 52 / 12
 
         return smic_proratise

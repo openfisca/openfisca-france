@@ -509,7 +509,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
             last_july_first = Instant(
                 (period.start.year if period.start.month >= 7 else period.start.year - 1,
                 7, 1))
-            smic_horaire_brut = parameters(last_july_first).marche_travail.salaire_minimum.smic_h_b
+            smic_horaire_brut = parameters(last_july_first).cotsoc.gen.smic_h_b
             travailleur_non_salarie_i = famille.members('travailleur_non_salarie', period)
             any_tns = famille.any(travailleur_non_salarie_i)
             return any_tns * 1500 * smic_horaire_brut
@@ -528,7 +528,7 @@ class al_revenu_assimile_salaire(Variable):
         period_salaire_chomage = period.start.period('year').offset(-1).offset(-1, 'month')
         period_f1tt_f3vj = period.n_2
 
-        smic_annuel_brut = parameters(period).marche_travail.salaire_minimum.smic_h_b * 52 * 35
+        smic_annuel_brut = parameters(period).cotsoc.gen.smic_h_b * 52 * 35
 
         # salaire imposable pour les journaliste et les assistants mat/fam apres l'aplication de l'abattement forfaitaire
         # dans le cas des frais réels déclarés superieurs à Zero.
@@ -1163,7 +1163,7 @@ class aide_logement_base_ressources(Variable):
 
         age_demandeur = famille.demandeur('age', period)
         age_conjoint = famille.conjoint('age', period)
-        smic_horaire_brut_n2 = parameters(last_day_reference_year).marche_travail.salaire_minimum.smic_h_b
+        smic_horaire_brut_n2 = parameters(last_day_reference_year).cotsoc.gen.smic_h_b
 
         salaire_imposable_i = famille.members('salaire_imposable', period.offset(-1))
         somme_salaires = famille.sum(salaire_imposable_i, role = Famille.PARENT)
