@@ -213,11 +213,12 @@ class pension_civile_salarie(Variable):
 
         sal = _P.cotsoc.cotisations_salarie
         terr_or_hosp = (
-            categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            )
+        etat = (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
 
         pension_civile_salarie = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
-            * sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut + nouvelle_bonification_indiciaire)
+            etat * sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut + nouvelle_bonification_indiciaire)
             + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
             + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl2'].calc(nouvelle_bonification_indiciaire)
             )
@@ -244,12 +245,11 @@ class pension_civile_employeur(Variable):
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
             | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
+        etat = (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
 
         cot_pat_pension_civile = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
-            * pat['public_titulaire_etat']['pension'].calc(remuneration_principale)
-            + terr_or_hosp
-            * pat['public_titulaire_territoriale']['cnracl'].calc(remuneration_principale)
+            etat * pat['public_titulaire_etat']['pension'].calc(remuneration_principale)
+            + terr_or_hosp * pat['public_titulaire_territoriale']['cnracl'].calc(remuneration_principale)
             )
 
         return - cot_pat_pension_civile
