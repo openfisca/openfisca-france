@@ -97,8 +97,8 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     pat.children['fonc'].children['etat'].children.update(commun.children)
     pat.children['fonc'].children['colloc'].children.update(commun.children)
-    
-    pat.children['etat_t'] = pat.children['fonc'].children['etat'] # Il semble que ce soient des sauvegardes temporaires ?
+
+    pat.children['etat_t'] = pat.children['fonc'].children['etat']  # Il semble que ce soient des sauvegardes temporaires ?
     pat.children['colloc_t'] = pat.children['fonc'].children['colloc']
     pat.children['contract'] = pat.children['fonc'].children['contract']
 
@@ -232,11 +232,11 @@ def preprocess_parameters(parameters):
     '''
     pat = build_pat(parameters)
     sal = build_sal(parameters)
-    print(sal, file=open("openfisca_france/scripts/parameters/SAL_apres.txt", "w"))
-    print(pat, file=open("openfisca_france/scripts/parameters/PAT_apres.txt", "w"))
 
     cotsoc = ParameterNode("cotsoc", data={})
     parameters.add_child('cotsoc', cotsoc)
+    cotsoc.add_child('pat', pat)
+    cotsoc.add_child('sal', sal)
 
     # Ajout de paramètres
     # Nouveaux chemins
@@ -294,5 +294,5 @@ def preprocess_parameters(parameters):
         for category, bareme in baremes.items():
             if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
-
+    print(parameters, file=open("openfisca_france/scripts/parameters/Parameters_APRES.txt", "w"))
     return parameters
