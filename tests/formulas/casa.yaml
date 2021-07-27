@@ -1,0 +1,32 @@
+- name: Casa exonéré 2016
+  period: 2016-01
+  input:
+    retraite_brute: 2000.0
+    rfr: 
+      2014: 
+        13800.0
+      2015: 
+        14000.0
+  output:
+    casa: -0*2000
+- name: Casa exonéré Demi-part supplémentaire 2021
+  period: 2021-01
+  input:
+    retraite_brute: 2000.0
+    nbptr: 
+      2018:
+        2
+    rfr: 
+      2018: 
+        18850.0
+  output:
+    casa: -0*2000
+- name: Casa non exonéré 2021
+  period: 2021-01
+  input:
+    retraite_brute: 2000.0
+    rfr: 
+      2019: 
+        14920.0
+  output:
+    casa: -0.003*2000

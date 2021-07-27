@@ -354,22 +354,41 @@ class casa(Variable):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
-        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
-        seuil_exoneration = seuils.seuil_rfr1 + (nbptr - 1) * seuils.demi_part_suppl_rfr1
-        seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.demi_part_suppl_rfr2
-        seuil_taux_intermediaire = seuils.seuil_rfr3 + (nbptr - 1) * seuils.demi_part_suppl_rfr3
+        seuils_csg = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuil_exoneration = seuils_csg.seuil_rfr1 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr1
+        seuil_reduction = seuils_csg.seuil_rfr2 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr2
+
+        taux_csg_retraite = select(
+            [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
+            [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
+            )
+        bareme = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.casa
+        casa = (
+            (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein)
+            * bareme.pensions_retraite_preretraite_invalidite.calc(retraite_brute)
+            )
+        return - casa
+
+    def formula_2019_01_01(individu, period, parameters):
+        retraite_brute = individu('retraite_brute', period)
+        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
+        nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
+        parameters = parameters(period)
+        seuils_csg = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuil_exoneration = seuils_csg.seuil_rfr1 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr1
+        seuil_reduction = seuils_csg.seuil_rfr2 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr2
+        seuil_taux_intermediaire = seuils_csg.seuil_rfr3 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr3
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr <= seuil_taux_intermediaire, rfr > seuil_taux_intermediaire],
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
             )
-        bareme = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general
+        bareme = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.casa
         casa = (
             ((taux_csg_retraite == TypesTauxCSGRetraite.taux_plein) + (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire))
-            * bareme.casa.calc(retraite_brute)
+            * bareme.pensions_retraite_preretraite_invalidite.calc(retraite_brute)
             )
         return - casa
-
 
 class retraite_imposable(Variable):
     unit = 'currency'
