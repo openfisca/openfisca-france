@@ -211,6 +211,7 @@ class agff_salarie(Variable):
     entity = Individu
     label = "Cotisation retraite AGFF tranche A (salarié)"
     definition_period = MONTH
+    end = '2018-12-21'
     # AGFF: Association pour la gestion du fonds de financement (sous-entendu des départs entre 60 et 65 ans)
 
     def formula(individu, period, parameters):
@@ -230,6 +231,7 @@ class agff_employeur(Variable):
     entity = Individu
     label = "Cotisation retraite AGFF tranche A (employeur)"
     definition_period = MONTH
+    end = '2018-12-21'
     # TODO: améliorer pour gérer mensuel/annuel
 
     def formula(individu, period, parameters):
@@ -287,6 +289,7 @@ class agirc_gmp_salarie(Variable):
     entity = Individu
     label = "Cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
     definition_period = MONTH
+    end = '2018-12-21'
     # TODO: gestion annuel/mensuel
 
     def formula(individu, period, parameters):
@@ -317,6 +320,7 @@ class agirc_gmp_employeur(Variable):
     entity = Individu
     label = "Cotisation AGIRC pour la garantie minimale de points (GMP, employeur)"
     definition_period = MONTH
+    end = '2018-12-21'
     # TODO: gestion annuel/mensuel
 
     def formula(individu, period, parameters):
@@ -347,6 +351,7 @@ class agirc_salarie(Variable):
     entity = Individu
     label = "Cotisation AGIRC tranche B (salarié)"
     definition_period = MONTH
+    end = '2018-12-21'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -366,6 +371,7 @@ class agirc_employeur(Variable):
     entity = Individu
     label = "Cotisation AGIRC tranche B (employeur)"
     definition_period = MONTH
+    end = '2018-12-21'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -440,6 +446,7 @@ class arrco_salarie(Variable):
     entity = Individu
     label = "Cotisation ARRCO tranche 1 (salarié)"
     definition_period = MONTH
+    end = '2018-12-21'
     # TODO: check gestion mensuel/annuel
 
     def formula(individu, period, parameters):
@@ -479,6 +486,7 @@ class arrco_employeur(Variable):
     entity = Individu
     label = "Cotisation ARRCO tranche 1 (employeur)"
     definition_period = MONTH
+    end = '2018-12-21'
     # TODO: check gestion mensuel/annuel
 
     def formula(individu, period, parameters):
