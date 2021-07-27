@@ -33,7 +33,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['formprof_20'] = autres.formation.children['formprof_20']
     # Construction
     commun.children['construction'] = autres.construction.children['construction_20']
-    commun.children['construction'] = autres.construction.children['seuil']
+    commun.children['seuil'] = autres.construction.children['seuil']
     # Autres thématiques
     commun.children.update(chomage.assedic.employeur.children)
     commun.children.update(chomage.chomfg.children)
@@ -98,8 +98,8 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     pat.children['fonc'].children['etat'].children.update(commun.children)
     pat.children['fonc'].children['colloc'].children.update(commun.children)
-
-    pat.children['etat_t'] = pat.children['fonc'].children['etat']
+    
+    pat.children['etat_t'] = pat.children['fonc'].children['etat'] # Il semble que ce soient des sauvegardes temporaires ?
     pat.children['colloc_t'] = pat.children['fonc'].children['colloc']
     pat.children['contract'] = pat.children['fonc'].children['contract']
 
@@ -185,7 +185,7 @@ def build_sal(node_json):
     sal.children['public_non_titulaire'] = sal.children['fonc'].children['contract']
 
     # Commun
-    sal.children['fonc'].children['commun'].children.update(public.fds.children)  # À harmoniser ! + Créer params depuis IPP
+    sal.children['fonc'].children['commun'].children.update(public.fds.salarie.children)  # À harmoniser ! + Créer params depuis IPP
 
     for type_sal_category in [
             'public_titulaire_etat',
