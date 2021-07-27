@@ -294,5 +294,4 @@ def preprocess_parameters(parameters):
         for category, bareme in baremes.items():
             if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
-    print(parameters, file=open("openfisca_france/scripts/parameters/Parameters_APRES.txt", "w"))
     return parameters
