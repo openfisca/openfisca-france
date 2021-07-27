@@ -2,7 +2,7 @@ from ..model.base import *
 
 
 def modify_parameters(parameters):
-    parameters.cotsoc.gen.smic_h_b.update(period = period(2013), value = 9)
+    parameters.marche_travail.salaire_minimum.smic_h_b.update(period = period(2013), value = 9)
     return parameters
 
 

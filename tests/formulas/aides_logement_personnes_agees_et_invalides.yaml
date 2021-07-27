@@ -14,7 +14,6 @@
       personne1:
         salaire_imposable:
           2020: 13249
-          2019: 13249
         date_naissance: 1930-12-31
     foyer_fiscal:
       declarants: [personne1]
@@ -63,15 +62,13 @@
       personne1:
         salaire_imposable:
           2020: 18535
-          2019: 18535
         date_naissance: 1985-01-01
         frais_reels:
           2020: 7960
-          2019: 7960
     foyer_fiscal:
       declarants: [personne1]
       caseP:
-        2019: true
+        2020: true
   output:
     aide_logement_base_ressources: 8200
     aide_logement: 142.71
@@ -104,22 +101,10 @@
           2020-03: 683.33
           2020-02: 683.33
           2020-01: 683.33
-          2019-12: 683.33
-          2019-11: 683.33
-          2019-10: 683.33
-          2019-09: 683.33
-          2019-08: 683.33
-          2019-07: 683.33
-          2019-06: 683.33
-          2019-05: 683.33
-          2019-04: 683.33
-          2019-03: 683.33
-          2019-02: 683.33
-          2019-01: 683.33
         date_naissance: 1985-01-01
     foyer_fiscal:
       declarants: [personne1]
       caseP:
-        2019: true
+        2020: true
   output:
     aide_logement: 257.41
