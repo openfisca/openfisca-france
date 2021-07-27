@@ -365,6 +365,23 @@ class agirc_salarie(Variable):
         categorie_salarie = individu('categorie_salarie', period)
         return cotisation * (categorie_salarie == TypesCategorieSalarie.prive_cadre)
 
+class agirc_arrco_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = "Cotisation AGIRC-ARCCO (après la fusion)"
+    definition_period = MONTH
+    
+
+    def formula_2019_01_01(individu, period, parameters):
+        cotisation = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = "salarie",
+            bareme_name = "agirc_arrco",
+            variable_name = 'agirc_arrco_salarie'
+            )
+        return cotisation
 
 class agirc_employeur(Variable):
     value_type = float

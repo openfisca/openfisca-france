@@ -114,6 +114,7 @@ class cotisations_salariales_contributives(Variable):
 
     def formula(individu, period, parameters):
         agff_salarie = individu('agff_salarie', period)
+        agirc_arrco_salarie = individu('agirc_arrco_salarie',period)
         agirc_salarie = individu('agirc_salarie', period)
         agirc_gmp_salarie = individu('agirc_gmp_salarie', period)
         apec_salarie = individu('apec_salarie', period)
@@ -129,6 +130,7 @@ class cotisations_salariales_contributives(Variable):
         cotisations_salariales_contributives = (
             # prive
             agff_salarie
+            + agirc_arrco_salarie
             + agirc_salarie
             + agirc_gmp_salarie
             + apec_salarie

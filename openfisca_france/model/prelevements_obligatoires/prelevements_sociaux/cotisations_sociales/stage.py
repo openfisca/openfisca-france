@@ -100,6 +100,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
+        agirc_arrco_salarie = individu('agirc_arrco_salarie', period)
         agirc_salarie = individu('agirc_salarie', period)
         agirc_gmp_salarie = individu('agirc_gmp_salarie', period)
         arrco_salarie = individu('arrco_salarie', period)
