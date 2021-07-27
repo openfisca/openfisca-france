@@ -1,6 +1,6 @@
 # Changelog
 
-# 61.0.0 [#1595](https://github.com/openfisca/openfisca-france/pull/1595)
+# 62.0.0 [#1595](https://github.com/openfisca/openfisca-france/pull/1595)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -13,6 +13,27 @@
   - Corrige le taux plein de la CSG imposable sur les préretraites.
   - Met à jour les seuils de RFR (part et demi-part) pour les taux réduit et médian de CSG sur les revenus de remplacement.
   - Corrige le calcul de la CSG sur revenus de remplacement suite à l'introduction d'un taux médian pour la CSG sur les pensions de retraite et d'invalidité.
+
+### 61.0.1 [#1609](https://github.com/openfisca/openfisca-france/pull/1609)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - API web.
+  - cotsoc.gen.smic_h_b
+* Détails :
+  - La version 61.0.0 introduit un renommage qui n'avait pas été répercuté systématiquement.
+
+# 61.0.0 [#1553](https://github.com/openfisca/openfisca-france/pull/1553) 
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : parameters et parameters.cotsoc
+* Détails :
+  - On range tous les paramètres du dossier parameters.cotsoc dans le dossier parameters, chaque paramètre allant dans le répertoire approprié (c'est-à-dire rangé selon l'arbre des barèmes IPP)
+  - On modifie le script preprocessing.py pour récrer les mêmes 'preprocessed_parameters et cotsoc' qu'avant, mais en s'appuyant uniquement sur les paramètres 'rangés'
+  - On supprime le dossier cotsoc
+  - Prochaine étape: trier les doublons, harmoniser les paramètres qui sont sous forme de barème vs paramètre simple, harmoniser les paramètres rangés selon la méthode harmonisation_IPP
 
 # 60.0.0 [#1567](https://github.com/openfisca/openfisca-france/pull/1567)
 
