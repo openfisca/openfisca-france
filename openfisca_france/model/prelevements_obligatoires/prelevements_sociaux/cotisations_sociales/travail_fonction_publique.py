@@ -235,7 +235,6 @@ class pension_civile_employeur(Variable):
 
     def formula(individu, period, parameters):
         remuneration_principale = individu('remuneration_principale', period)
-        # plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
         _P = parameters(period)
 
