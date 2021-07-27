@@ -33,7 +33,6 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['formprof_20'] = autres.formation.children['formprof_20']
     # Construction
     commun.children['construction'] = autres.construction.children['construction_20']
-    commun.children['seuil'] = autres.construction.children['seuil']
     # Autres thématiques
     commun.children.update(chomage.assedic.employeur.children)
     commun.children.update(chomage.chomfg.children)
@@ -233,6 +232,8 @@ def preprocess_parameters(parameters):
     '''
     pat = build_pat(parameters)
     sal = build_sal(parameters)
+    print(sal, file=open("openfisca_france/scripts/parameters/SAL_apres.txt", "w"))
+    print(pat, file=open("openfisca_france/scripts/parameters/PAT_apres.txt", "w"))
 
     cotsoc = ParameterNode("cotsoc", data={})
     parameters.add_child('cotsoc', cotsoc)
