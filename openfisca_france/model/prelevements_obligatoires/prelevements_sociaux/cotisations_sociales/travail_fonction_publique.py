@@ -12,12 +12,12 @@ class allocations_temporaires_invalidite(Variable):
     # patronale, non-contributive
 
     def formula(individu, period, parameters):
-        assiette_cotisations_sociales_public = individu('assiette_cotisations_sociales_public', period)
+        remuneration_principale = individu('remuneration_principale', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
         _P = parameters(period)
 
-        base = assiette_cotisations_sociales_public
+        base = remuneration_principale
         cotisation_etat = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "ati",
@@ -140,14 +140,14 @@ class fonds_emploi_hospitalier(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        assiette_cotisations_sociales_public = individu('assiette_cotisations_sociales_public', period)
+        remuneration_principale = individu('remuneration_principale', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
         _P = parameters(period)
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "feh",
-            base = assiette_cotisations_sociales_public,  # TODO: check base
+            base = remuneration_principale,  # TODO: check base
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
@@ -233,7 +233,7 @@ class pension_civile_employeur(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        assiette_cotisations_sociales_public = individu('assiette_cotisations_sociales_public', period)
+        remuneration_principale = individu('remuneration_principale', period)
         # plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
         _P = parameters(period)
@@ -247,9 +247,9 @@ class pension_civile_employeur(Variable):
 
         cot_pat_pension_civile = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
-            * pat['public_titulaire_etat']['pension'].calc(assiette_cotisations_sociales_public)
+            * pat['public_titulaire_etat']['pension'].calc(remuneration_principale)
             + terr_or_hosp
-            * pat['public_titulaire_territoriale']['cnracl'].calc(assiette_cotisations_sociales_public)
+            * pat['public_titulaire_territoriale']['cnracl'].calc(remuneration_principale)
             )
 
         return - cot_pat_pension_civile
