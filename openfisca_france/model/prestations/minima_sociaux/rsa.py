@@ -707,7 +707,7 @@ class rsa_eligibilite_tns(Variable):
         maj_e_sup = P_agr.maj_e_sup
 
         def eligibilite_agricole(has_conjoint, rsa_nb_enfants, rpns_benefice_agricole, P_agr):
-            plafond_benefice_agricole = P_agr.plafond_rsa * P.cotsoc.gen.smic_h_b
+            plafond_benefice_agricole = P_agr.plafond_rsa * P.marche_travail.salaire_minimum.smic_h_b
 
             taux_avec_conjoint = (
                 1
