@@ -1,5 +1,17 @@
 # Changelog
 
+### 61.0.2 [#1609](https://github.com/openfisca/openfisca-france/pull/1611)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters`.
+* Détails :
+  - Dans les metadonnées des paramètres, renommage de `date_parution_jo` en `official_journal_date`
+
+Ces changements (effacez les lignes ne correspondant pas à votre cas) :
+
+- Modifient l'API publique d'OpenFisca France, mais seulement dans les metadata et ce sont des corrections.
+
 ### 61.0.1 [#1609](https://github.com/openfisca/openfisca-france/pull/1609)
 
 * Correction d'un crash.
