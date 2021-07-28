@@ -595,6 +595,7 @@ class cotisation_exceptionnelle_temporaire_salarie(Variable):
     entity = Individu
     label = "Cotisation_exceptionnelle_temporaire (salarie)"
     definition_period = MONTH
+    end = "2019-01-01"
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -613,6 +614,7 @@ class cotisation_exceptionnelle_temporaire_employeur(Variable):
     entity = Individu
     label = "Cotisation exceptionnelle temporaire (employeur)"
     definition_period = MONTH
+    end = "2019-01-01"
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
