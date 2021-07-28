@@ -359,7 +359,7 @@ metadata:
     1937-01-01: Loi du 26/08/1936 modifiée
     1936-01-01: Décret-loi du 28/10/1935 art. 2 § 2
     1930-07-01: Loi du 05/04/1928 modifiée
-  date_parution_jo:
+  official_journal_date::
     2021-01-01: 2020-12-29
     2020-01-01: 2019-12-03
     2019-01-01: 2018-12-15
