@@ -643,7 +643,7 @@ class contribution_equilibre_general_salarie(Variable):
             parameters,
             cotisation_type = 'salarie',
             bareme_name = 'ceg',
-            variable_name = 'contribution_equilibre_general',
+            variable_name = 'contribution_equilibre_general_salarie',
             )
         return cotisation
 
