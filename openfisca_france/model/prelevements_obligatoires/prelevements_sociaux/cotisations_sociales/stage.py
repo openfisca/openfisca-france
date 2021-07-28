@@ -68,6 +68,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
+        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
         agirc_employeur = individu('agirc_employeur', period)
         agirc_gmp_employeur = individu('agirc_gmp_employeur', period)
         arrco_employeur = individu('arrco_employeur', period)
@@ -88,7 +89,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
                 )
             for bareme_name in ['agffnc', 'agffc', 'chomfg', 'assedic']
             )
-        exoneration += agirc_employeur + agirc_gmp_employeur + arrco_employeur
+        exoneration += agirc_arrco_employeur + agirc_employeur + agirc_gmp_employeur + arrco_employeur
         return - exoneration * stagiaire
 
 

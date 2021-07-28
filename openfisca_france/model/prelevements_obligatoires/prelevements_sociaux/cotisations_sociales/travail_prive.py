@@ -365,23 +365,6 @@ class agirc_salarie(Variable):
         categorie_salarie = individu('categorie_salarie', period)
         return cotisation * (categorie_salarie == TypesCategorieSalarie.prive_cadre)
 
-class agirc_arrco_salarie(Variable):
-    value_type = float
-    entity = Individu
-    label = "Cotisation AGIRC-ARCCO (après la fusion)"
-    definition_period = MONTH
-    
-
-    def formula_2019_01_01(individu, period, parameters):
-        cotisation = apply_bareme(
-            individu,
-            period,
-            parameters,
-            cotisation_type = "salarie",
-            bareme_name = "agirc_arrco",
-            variable_name = 'agirc_arrco_salarie'
-            )
-        return cotisation
 
 class agirc_employeur(Variable):
     value_type = float
@@ -401,6 +384,42 @@ class agirc_employeur(Variable):
             )
         categorie_salarie = individu('categorie_salarie', period)
         return cotisation * (categorie_salarie == TypesCategorieSalarie.prive_cadre)
+
+
+class agirc_arrco_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = "Cotisation AGIRC-ARCCO (après la fusion, salarié)"
+    definition_period = MONTH
+
+    def formula_2019_01_01(individu, period, parameters):
+        cotisation = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = "salarie",
+            bareme_name = "agirc_arrco",
+            variable_name = 'agirc_arrco_salarie'
+            )
+        return cotisation
+
+
+class agirc_arrco_employeur(Variable):
+    value_type = float
+    entity = Individu
+    label = "Cotisation AGIRC-ARCCO (après la fusion, employeur)"
+    definition_period = MONTH
+
+    def formula_2019_01_01(individu, period, parameters):
+        cotisation = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = "employeur",
+            bareme_name = "agirc_arrco",
+            variable_name = 'agirc_arrco_employeur'
+            )
+        return cotisation
 
 
 class ags(Variable):
@@ -586,10 +605,47 @@ class contribution_equilibre_general_salarie(Variable):
             parameters,
             cotisation_type = 'salarie',
             bareme_name = 'ceg',
-            variable_name = 'contribution_equilibre_general',
+            variable_name = 'contribution_equilibre_general_salarie',
             )
         return cotisation
 
+
+class contribution_equilibre_general_employeur(Variable):
+    value_type = float
+    entity = Individu
+    label = "Contribution d'équilibre général (employeur)"
+    definition_period = MONTH
+
+    def formula_2019_01_01(individu, period, parameters):
+
+        cotisation = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'ceg',
+            variable_name = 'contribution_equilibre_general_employeur',
+            )
+        return cotisation
+
+
+class contribution_equilibre_general_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = "Contribution d'équilibre général (employeur)"
+    definition_period = MONTH
+
+    def formula_2019_01_01(individu, period, parameters):
+
+        cotisation = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'salarie',
+            bareme_name = 'ceg',
+            variable_name = 'contribution_equilibre_general',
+            )
+        return cotisation
 
 class contribution_solidarite_autonomie(Variable):
     value_type = float
@@ -629,6 +685,30 @@ class cotisation_equilibre_technique_salarie(Variable):
             variable_name = 'cotisation_equilibre_technique_salarie',
             )
         return cotisation * (assiette_cotisations_sociales > plafond_securite_sociale)
+
+
+class cotisation_equilibre_technique_employeur(Variable):
+    value_type = float
+    entity = Individu
+    label = "Cotisation d'équilibre technique (employeur)"
+    definition_period = MONTH
+
+    def formula_2019_01_01(individu, period, parameters):
+
+        plafond_securite_sociale = individu('plafond_securite_sociale',period)
+        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+
+        cotisation = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'cet2019',
+            variable_name = 'cotisation_equilibre_technique_employeur',
+            )
+        return cotisation * (assiette_cotisations_sociales > plafond_securite_sociale)
+
+
 class cotisation_exceptionnelle_temporaire_salarie(Variable):
     value_type = float
     entity = Individu

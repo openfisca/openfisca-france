@@ -43,6 +43,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(regime_general.mmid.bareme.employeur.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(autres.fnal.children)  # À harmoniser !
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
+    commun.children.update(retraites.employeur.children)
 
     # Réindexation NonCadre
     # Initialisation

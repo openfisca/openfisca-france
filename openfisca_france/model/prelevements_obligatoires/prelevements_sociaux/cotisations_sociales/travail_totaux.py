@@ -1,4 +1,5 @@
 import logging
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.travail_prive import agirc_arrco_employeur
 
 
 from openfisca_france.model.base import *
@@ -38,11 +39,14 @@ class cotisations_employeur_contributives(Variable):
     def formula(individu, period, parameters):
         ags = individu('ags', period)
         agff_employeur = individu('agff_employeur', period, options = [ADD])
+        agirc_arrco_employeur = individu('agirc_arrco_employeur',period)
         agirc_employeur = individu('agirc_employeur', period, options = [ADD])
         agirc_gmp_employeur = individu('agirc_gmp_employeur', period, options = [ADD])
         apec_employeur = individu('apec_employeur', period)
         arrco_employeur = individu('arrco_employeur', period)
         chomage_employeur = individu('chomage_employeur', period)
+        contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
+        cotisation_equilibre_technique_employeur = individu('cotisation_equilibre_technique_employeur', period)
         cotisation_exceptionnelle_temporaire_employeur = individu(
             'cotisation_exceptionnelle_temporaire_employeur', period)
         fonds_emploi_hospitalier = individu('fonds_emploi_hospitalier', period, options = [ADD])
@@ -57,10 +61,13 @@ class cotisations_employeur_contributives(Variable):
             ags
             + agff_employeur
             + agirc_employeur
+            + agirc_arrco_employeur
             + agirc_gmp_employeur
             + apec_employeur
             + arrco_employeur
             + chomage_employeur
+            + contribution_equilibre_general_employeur
+            + cotisation_equilibre_technique_employeur
             + cotisation_exceptionnelle_temporaire_employeur
             + vieillesse_deplafonnee_employeur
             + vieillesse_plafonnee_employeur
