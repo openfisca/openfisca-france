@@ -589,7 +589,26 @@ class contribution_solidarite_autonomie(Variable):
             )
         return cotisation
 
+class cotisation_equilibre_technique_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = "Cotisation d'équilibre technique (salarie)"
+    definition_period = MONTH
 
+    def formula_2019_01_01(individu, period, parameters):
+
+        plafond_securite_sociale = individu('plafond_securite_sociale',period)
+        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+
+        cotisation = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'salarie',
+            bareme_name = 'cet2019',
+            variable_name = 'cotisation_equilibre_technique_salarie',
+            )
+        return cotisation * (assiette_cotisations_sociales > plafond_securite_sociale)
 class cotisation_exceptionnelle_temporaire_salarie(Variable):
     value_type = float
     entity = Individu
