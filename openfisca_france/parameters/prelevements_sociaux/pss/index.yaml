@@ -1,1 +1,4 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Plafond de la Sécurité sociale (SS)
+metadata:
+  ux_name: Plafond SS
+  description_en: Social security ceiling (1930-2016)
