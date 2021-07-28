@@ -572,6 +572,25 @@ class chomage_employeur(Variable):
         return cotisation
 
 
+class contribution_equilibre_general_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = "Contribution d'équilibre général (salarie)"
+    definition_period = MONTH
+
+    def formula_2019_01_01(individu, period, parameters):
+
+        cotisation = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'salarie',
+            bareme_name = 'ceg',
+            variable_name = 'contribution_equilibre_general',
+            )
+        return cotisation
+
+
 class contribution_solidarite_autonomie(Variable):
     value_type = float
     entity = Individu
@@ -588,6 +607,7 @@ class contribution_solidarite_autonomie(Variable):
             variable_name = 'contribution_solidarite_autonomie',
             )
         return cotisation
+
 
 class cotisation_equilibre_technique_salarie(Variable):
     value_type = float

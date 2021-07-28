@@ -120,6 +120,8 @@ class cotisations_salariales_contributives(Variable):
         apec_salarie = individu('apec_salarie', period)
         arrco_salarie = individu('arrco_salarie', period)
         chomage_salarie = individu('chomage_salarie', period)
+        contribution_equilibre_general_salarie = individu('contribution_equilibre_general_salarie', period)
+        cotisation_equilibre_technique_salarie = individu('cotisation_equilibre_technique_salarie', period)
         cotisation_exceptionnelle_temporaire_salarie = individu('cotisation_exceptionnelle_temporaire_salarie', period)
         ircantec_salarie = individu('ircantec_salarie', period)
         pension_civile_salarie = individu('pension_civile_salarie', period)
@@ -136,6 +138,8 @@ class cotisations_salariales_contributives(Variable):
             + apec_salarie
             + arrco_salarie
             + chomage_salarie
+            + contribution_equilibre_general_salarie
+            + cotisation_equilibre_technique_salarie
             + cotisation_exceptionnelle_temporaire_salarie
             + vieillesse_deplafonnee_salarie
             + vieillesse_plafonnee_salarie
