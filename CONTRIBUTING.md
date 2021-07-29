@@ -61,16 +61,15 @@ Certaines interventions sur OpenFica concernent à la fois [OpenFica-Core](https
 
 C'est par exemple le cas lorsqu'une version à paraître de Core contient un changement non-rétrocompatible, et que l'on souhaite s'assurer qu'il est possible d'adapter France à cette nouvelle version.
 
-Dans ce cas, il peut être pertinent de faire tourner les tests d'OpenFisca-France en se basant sur une version non-publiée de Core, disponible sur une branche spécifique. Pour ce faire, éditer le fichier `circle.yml` comme suit :
+Dans ce cas, il peut être pertinent de faire tourner les tests d'OpenFisca-France en se basant sur une version non-publiée de Core, disponible sur une branche spécifique. Pour ce faire, éditer le fichier `config.yml` comme suit :
 
 ```diff
 (...)
-dependencies:
-  override:
-    - pip install --upgrade pip wheel  # pip >= 8.0 needed to be compatible with "manylinux" wheels, used by numpy >= 1.11
-    - pip install twine
-+    - pip install --editable git+https://github.com/openfisca/openfisca-core.git@SPECIFIC_BRANCH_NAME#egg=OpenFisca-Core
-    - pip install .[test] --upgrade
+ - run:
+     name: Install dependencies
+     command: |
+       make build
++      pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 (...)
 ```
 
