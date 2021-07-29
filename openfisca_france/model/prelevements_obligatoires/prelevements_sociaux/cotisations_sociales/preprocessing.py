@@ -50,6 +50,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.add_child('noncadre', noncadre)
     pat.children['noncadre'].children.update(retraites.employeur.noncadre.children) # a supprimer
     pat.children['noncadre'].children.update(retraites.agff.employeur.noncadre.children)
+    pat.children['noncadre'].children.update(retraites.arrco.employeur.noncadre.children)
     pat.children['noncadre'].children.update(commun.children)
 
     # Réindexation Cadre
@@ -58,6 +59,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.add_child('cadre', cadre)
     pat.children['cadre'].children.update(retraites.employeur.cadre.children) # a supprimer
     pat.children['cadre'].children.update(retraites.agff.employeur.cadre.children)
+    pat.children['cadre'].children.update(retraites.arrco.employeur.cadre.children)
     pat.children['cadre'].children.update(retraites.agirc.employeur.children)
     pat.children['cadre'].children.update(retraites.apec.employeur.children)
     pat.children['cadre'].children.update(commun.children)
@@ -153,6 +155,7 @@ def build_sal(node_json):
     sal.add_child('noncadre', noncadre)
     sal.children['noncadre'].children.update(retraites.salarie.noncadre.children) # a supprimer
     sal.children['noncadre'].children.update(retraites.agff.salarie.noncadre.children)
+    sal.children['noncadre'].children.update(retraites.arrco.salarie.noncadre.children)
     sal.children['noncadre'].children.update(commun.children)
 
     # Cadre
@@ -160,6 +163,7 @@ def build_sal(node_json):
     sal.add_child('cadre', cadre)
     sal.children['cadre'].children.update(retraites.salarie.cadre.children) # a supprimer
     sal.children['cadre'].children.update(retraites.agff.salarie.cadre.children)
+    sal.children['cadre'].children.update(retraites.arrco.salarie.cadre.children)
     sal.children['cadre'].children.update(retraites.agirc.salarie.children)
     sal.children['cadre'].children.update(retraites.apec.salarie.children)
     sal.children['cadre'].children.update(commun.children)
