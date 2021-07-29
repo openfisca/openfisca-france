@@ -68,11 +68,11 @@ brackets:
 metadata:
   ux_name: Taux employeur
   last_review:
-    2017-07-01
+    2021-07-29
   unit_rate: /1
   unit_threshold: "PSS"
   reference:
-    2017-07-01: Conseil d'administration de l'AGS du 29/06/2017. Circulaire Unedic 2017-19 du 21/07/2017. Conseil d'administration de l'AGS du 12/12/2017.
+    2017-07-01: Conseil d'administration de l'AGS du 29/06/2017. Circulaire Unedic 2017-19 du 21/07/2017. Conseil d'administration de l'AGS du 04/06/2021.
     2017-01-01: Conseil d'administration de l'AGS du 14/12/2016. Circulaire Unedic 2016-31 du 19/12/2016.
     2016-01-01: Conseil d'administration de l'AGS du 06/01/2016. Circulaire Unedic 2016-06 du 14/01/2016.
     2011-04-01: Conseil d'administration de l'AGS du 28/03/2011. Circulaire Unedic 2011-16 du 04/04/2011.
