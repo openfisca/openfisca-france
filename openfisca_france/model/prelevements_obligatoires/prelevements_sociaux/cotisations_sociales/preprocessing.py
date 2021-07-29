@@ -59,6 +59,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['cadre'].children.update(retraites.employeur.cadre.children) # a supprimer
     pat.children['cadre'].children.update(retraites.agff.employeur.cadre.children)
     pat.children['cadre'].children.update(retraites.agirc.employeur.children)
+    pat.children['cadre'].children.update(retraites.apec.employeur.children)
     pat.children['cadre'].children.update(commun.children)
     # Réindexation Fonc
     # Initialisation
@@ -160,6 +161,7 @@ def build_sal(node_json):
     sal.children['cadre'].children.update(retraites.salarie.cadre.children) # a supprimer
     sal.children['cadre'].children.update(retraites.agff.salarie.cadre.children)
     sal.children['cadre'].children.update(retraites.agirc.salarie.children)
+    sal.children['cadre'].children.update(retraites.apec.salarie.children)
     sal.children['cadre'].children.update(commun.children)
 
     # Renaming
