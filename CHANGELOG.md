@@ -1,6 +1,16 @@
 # Changelog
 
-# 64.0.1 [#1626](https://github.com/openfisca/openfisca-france/pull/1626)
+# 65.0.0 [#1610](https://github.com/openfisca/openfisca-france/pull/1610)
+* Amélioration technique.
+* Périodes concernées : toutes. 
+* Zones impactées : toutes
+* Détails : Harmonisation du dossier parameters.prelevements_sociaux.pss :
+  -- Arborescence selon le modèle IPP
+  -- Nouveau formatage des fichiers .yaml
+  -- Mise à jour des valeurs et des références (et ajout de nouveaux paramètres) d'après l'IPP
+  -- Supprime plafond_de_la_securite_sociale.yaml qui est un doublon de plafond_securite_sociale_mensuel
+
+### 64.0.1 [#1626](https://github.com/openfisca/openfisca-france/pull/1626)
 
 * Changement mineur.
 * Périodes concernées : jusqu'au 31/12/2005
