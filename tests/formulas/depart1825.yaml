@@ -1,0 +1,25 @@
+- period: 2021-03
+  input:
+    activite: [etudiant, etudiant, inactif, inactif, actif]
+    boursier: [true, false, true, true, true]
+    alternant: [false, false, true, false, false]
+    garantie_jeunes: [0, 0, 0, 1, 1]
+    age: [18, 18, 18, 18, 18]
+    nbptr:
+      2019: [ 1, 1.5, 1, 1, 1 ]
+    rfr:
+      2019: [ 17280, 30000, 17280, 17280, 17280 ]
+  output:
+    depart1825_eligibilite: [true, false, true, true, true]
+
+- period: 2021-03
+  input:
+    depart1825_eligibilite: [true, false]
+  output:
+    depart1825_montant_maximum: [200, 0]
+
+- period: 2021-07
+  input:
+    depart1825_eligibilite: [true, false]
+  output:
+    depart1825_montant_maximum: [300, 0]

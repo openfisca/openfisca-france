@@ -1,0 +1,56 @@
+plafond_ressources:
+  description: Montant maximal des ressources de la famille pour bénéficier de la prise en charge du séjour pour les bénéficiaires de Départ 18-25.
+  reference: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans
+  unit: currency
+  base:
+    2014-09-05:
+      value: 17000
+    2021-01-01:
+      value: 17280 # Date approximative
+  par_demi_part_supplementaire:
+    2014-09-05:
+      value: 4320
+age:
+  description: Fourchette d'âges pour laquelle le séjour peut être pris en charge pour les bénéficiaires de Départ 18-25.
+  reference: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans
+  unit: year
+  minimum:
+    2014-09-05:
+      value: 18
+  maximum:
+    2014-09-05:
+      value: 25
+montant_maximum:
+  unit: currency
+  values:
+    2014-09-05:
+      value: 150
+    2021-01-01:
+      value: 200
+    2021-06-02:
+      value: 300
+    2021-09-30:
+      value: 200
+proportion_maximum:
+  description: Part maximale du montant du séjour prise en charge pour les bénéficiaires de Départ 18-25.
+  unit: /1
+  values:
+    2014-09-05:
+      value: .50
+      reference: https://www.ancv.com/sites/default/files/20140905_depart_1825.pdf
+    2021-01-01:
+      value: .75
+      reference: https://programme-depart-1825.com
+    2021-06-02:
+      value: .90
+      reference: https://depart1825.com/annonce-president-vacances/
+    2021-09-30:
+      value: .75
+      reference: https://depart1825.com/annonce-president-vacances/
+reste_a_charge_minimum:
+  description: Montant minimum du coût du séjour à régler pour les bénéficiaires de Départ 18-25.
+  reference: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans
+  unit: currency
+  values:
+    2014-09-05:
+      value: 50

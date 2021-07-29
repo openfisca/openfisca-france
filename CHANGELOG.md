@@ -1,5 +1,13 @@
 # Changelog
 
+## 61.1.0 [#1507](https://github.com/openfisca/openfisca-france/pull/1507)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 05/09/2014.
+* Zones impactées : `prestations/depart1825.py`.
+* Détails :
+  - Ajoute le dispositif départ 18-25
+
 ### 61.0.2 [#1611](https://github.com/openfisca/openfisca-france/pull/1611)
 
 * Changement mineur.
