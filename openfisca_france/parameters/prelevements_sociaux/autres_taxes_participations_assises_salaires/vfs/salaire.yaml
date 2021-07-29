@@ -51,6 +51,9 @@ metadata:
   notes:
     1968-01-01: Fin du versement forfaitaire sur les salaires et création de la taxe sur les salaires.
     1957-01-01: Anciens francs.
+  threshold_unit: currency
+  rate_unit: /1
+
 documentation: |
   Notes :
   (i) Le versement forfaitaire est dû par les employeurs; il a été instauré à la place de la taxe proportionnelle qui a remplacé les anciens impôts cédulaires.
