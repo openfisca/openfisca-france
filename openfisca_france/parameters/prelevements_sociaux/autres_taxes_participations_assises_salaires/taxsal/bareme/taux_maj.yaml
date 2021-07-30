@@ -1,7 +1,4 @@
 description: 'Taxes sur les salaires : taux majorés (France métropolitaine seulement)'
-metadata:
-  threshold_unit: currency
-  rate_unit: /1
 brackets:
 - rate:
     2001-01-01:
@@ -168,6 +165,8 @@ brackets:
     2018-01-01:
       value: null
 metadata:
+  threshold_unit: currency
+  rate_unit: /1
   reference:
     2020-01-01: 
     - title: BOI-TPS-TS-40 du 24/06/2020 
@@ -229,7 +228,7 @@ metadata:
       title: Loi 78-1239 du 29/12/1978 (LF pour 1979)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886458
     1968-11-01: Loi 68-878 du 09/10/1968
-  date_parution_jo:
+  official_journal_date:
     2018-01-01: 2017-12-30; 2018-06-23
     2015-01-01: 2015-06-05
     2013-01-01: 2013-03-30
@@ -243,13 +242,12 @@ metadata:
     1968-11-01: 1968-10-10
   notes:
     2021-01-01: BOFIP non mis à jour
-  description_en: Payroll tax ("tax on wages") (1968-2016)
-documentation: |
-  Notes :
-  Le taux applicable entre le plafond 1 et le plafond 2 (resp. entre les plafonds 2 et 3 et au dessus du plafond 3) est égal au (taux 1 + majoration 1) (resp. au (taux 1 + majoration2) et (taux1 + majoration3)), soit 8,50% (resp. 13,60% et 20%).
-  Les majorations de taux ne sont pas applicables aux salaires versés aux personnes physiques ou morales établis dans les DOM (art. 231-2 bis du CGI).
-  Références législatives :
-  Les dispositions relatives à la taxe sur les salaires figurent à l'article 231 du CGI.
-  Selon une disposition figurant dans la Loi 78-1239 du 29/12/1978, les plafonds de la taxe sur les salaires sont réévalués chaque année sur la base de la première tranche de l'IR, par décret du Conseil d'Etat.
-  La loi 2000-1352 du 30/12/2000 (LF pour 2001) a aligné l'assiette de la taxe sur les salaires sur l'assiette des cotisations sociales.
-  Toutefois, la loi 2013-1278 du 29/12/2013, art. 75, a prévu l'alignement de l'assiette de la taxe sur les salaires sur l'assiette de la CSG pour les rémunérations versées à compter du 1er janvier 2014.
+  documentation: |
+    Notes :
+    Le taux applicable entre le plafond 1 et le plafond 2 (resp. entre les plafonds 2 et 3 et au dessus du plafond 3) est égal au (taux 1 + majoration 1) (resp. au (taux 1 + majoration2) et (taux1 + majoration3)), soit 8,50% (resp. 13,60% et 20%).
+    Les majorations de taux ne sont pas applicables aux salaires versés aux personnes physiques ou morales établis dans les DOM (art. 231-2 bis du CGI).
+    Références législatives :
+    Les dispositions relatives à la taxe sur les salaires figurent à l'article 231 du CGI.
+    Selon une disposition figurant dans la Loi 78-1239 du 29/12/1978, les plafonds de la taxe sur les salaires sont réévalués chaque année sur la base de la première tranche de l'IR, par décret du Conseil d'Etat.
+    La loi 2000-1352 du 30/12/2000 (LF pour 2001) a aligné l'assiette de la taxe sur les salaires sur l'assiette des cotisations sociales.
+    Toutefois, la loi 2013-1278 du 29/12/2013, art. 75, a prévu l'alignement de l'assiette de la taxe sur les salaires sur l'assiette de la CSG pour les rémunérations versées à compter du 1er janvier 2014.
