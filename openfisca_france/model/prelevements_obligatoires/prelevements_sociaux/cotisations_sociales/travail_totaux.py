@@ -46,7 +46,7 @@ class cotisations_employeur_contributives(Variable):
         cotisation_equilibre_technique_employeur = individu('cotisation_equilibre_technique_employeur', period)
         cotisation_exceptionnelle_temporaire_employeur = individu(
             'cotisation_exceptionnelle_temporaire_employeur', period)
-        fonds_emploi_hospitalier = individu('fonds_emploi_hospitalier', period, options = [ADD])
+        cotisation_fonds_emploi_hospitalier = individu('cotisation_fonds_emploi_hospitalier', period, options = [ADD])
         ircantec_employeur = individu('ircantec_employeur', period, options = [ADD])
         pension_civile_employeur = individu('pension_civile_employeur', period, options = [ADD])
         rafp_employeur = individu('rafp_employeur', period, options = [ADD])
@@ -69,7 +69,7 @@ class cotisations_employeur_contributives(Variable):
             + vieillesse_deplafonnee_employeur
             + vieillesse_plafonnee_employeur
             # public
-            + fonds_emploi_hospitalier
+            + cotisation_fonds_emploi_hospitalier
             + ircantec_employeur
             + pension_civile_employeur
             + rafp_employeur

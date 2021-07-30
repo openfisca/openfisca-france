@@ -97,10 +97,10 @@ class contribution_exceptionnelle_solidarite(Variable):
         return cotisation
 
 
-class fonds_emploi_hospitalier(Variable):
+class cotisation_fonds_emploi_hospitalier(Variable):
     value_type = float
     entity = Individu
-    label = "Fonds pour l'emploi hospitalier (employeur)"
+    label = "Cotisation au fonds pour l'emploi hospitalier (FEH) (cotisation employeur)"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
