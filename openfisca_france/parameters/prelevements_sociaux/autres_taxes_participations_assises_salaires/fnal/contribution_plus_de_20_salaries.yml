@@ -1,31 +1,31 @@
 description: Contribution pour le Fonds national d'aide au logement (FNAL), entreprises de 20 salariés et plus
 brackets:
-  - rate:
-      2007-01-01:
-        value: 0.004
-      2015-01-01:
-        value: 0.005
-      2020-01-01:
-        value: null
-    threshold:
-      2007-01-01:
-        value: 0
-      2020-01-01:
-        value: null
-  - rate:
-      2007-01-01:
-        value: 0.004
-      2011-01-01:
-        value: 0.005
-      2015-01-01:
-        value: 0.005
-      2020-01-01:
-        value: null
-   threshold:
-      2007-01-01:
-        value: 1
-      2020-01-01:
-        value: null
+- rate:
+    2007-01-01:
+      value: 0.004
+    2015-01-01:
+      value: 0.005
+    2020-01-01:
+      value: null
+  threshold:
+    2007-01-01:
+      value: 0
+    2020-01-01:
+      value: null
+- rate:
+    2007-01-01:
+      value: 0.004
+    2011-01-01:
+      value: 0.005
+    2015-01-01:
+      value: 0.005
+    2020-01-01:
+      value: null
+  threshold:
+    2007-01-01:
+      value: 1
+    2020-01-01:
+      value: null
 metadata:
   threshold_unit: currency
   rate_unit: /1
@@ -47,6 +47,4 @@ metadata:
     2011-01-01: 2010-12-30
     2015-01-01: 2014-12-30
     2020-01-01: 2019-05-23
-  notes: Ce dispositif de contribution sur les salaires est cumulatif avec le dispositif de cotisation sur les salaires plafonnés jusqu'en 2015
-  En 2007, le seuil d'effectifs pour la contribution passe de 10 à 20 salariés.
-  En 2015, la cotisation disparaît, et la contribution est élargie à toutes les entreprises, mais avec un barème différent pour entreprises de plus ou moins 20 salariés (50 salariés à partir de 2020)
+  notes: Ce dispositif de contribution sur les salaires est cumulatif avec le dispositif de cotisation sur les salaires plafonnés jusqu'en 2015. En 2007, le seuil d'effectifs pour la contribution passe de 10 à 20 salariés. En 2015, la cotisation disparaît, et la contribution est élargie à toutes les entreprises, mais avec un barème différent pour entreprises de plus ou moins 20 salariés (50 salariés à partir de 2020)

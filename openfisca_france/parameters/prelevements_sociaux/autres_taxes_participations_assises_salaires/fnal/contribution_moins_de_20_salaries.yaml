@@ -1,21 +1,21 @@
 description: Contribution pour le Fonds national d'aide au logement (FNAL), entreprises de moins de 20 salariés
 brackets:
-  - rate:
-      2015-01-01:
-        value: 0.001
-      2020-01-01:
-        value: 0
-    threshold:
-      2015-01-01:
-        value: 0
-  - rate:
-      2015-01-01:
-        value: 0.0
-      2020-01-01:
-        value: 0
-    threshold:
-      2015-01-01:
-        value: 1
+- rate:
+    2015-01-01:
+      value: 0.001
+    2020-01-01:
+      value: 0
+  threshold:
+    2015-01-01:
+      value: 0
+- rate:
+    2015-01-01:
+      value: 0.0
+    2020-01-01:
+      value: 0
+  threshold:
+    2015-01-01:
+      value: 1
 metadata:
   threshold_unit: currency
   rate_unit: /1
