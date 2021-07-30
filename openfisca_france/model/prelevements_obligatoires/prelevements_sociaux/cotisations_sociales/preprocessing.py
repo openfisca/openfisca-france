@@ -198,6 +198,7 @@ def build_sal(node_json):
     for type_sal_category in ['public_titulaire_territoriale', 'public_titulaire_hospitaliere']:
         sal.children[type_sal_category].children['rafp'] = sal.children['fonc'].children['etat'].children['rafp']
     sal.children['public_non_titulaire'].children.update(commun.children)
+    del sal.children['public_non_titulaire'].children['assedic']
 
     # Arti
     sal.add_child('arti', ParameterNode("arti", data={}))
