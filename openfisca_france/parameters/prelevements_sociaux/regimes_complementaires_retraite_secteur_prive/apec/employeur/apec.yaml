@@ -1,55 +1,43 @@
 description: Barème employeur des cotisations pour l'association pour l'emploi des cades (APEC), régimes complémentaires de retraite (secteur privé)
 brackets:
 - rate:
-    1993-07-01:
+    1971-01-01:
       value: 0.0
     2011-01-01:
       value: 0.00036
   threshold:
-    1993-07-01:
+    1971-01-01:
       value: 0.0
 - rate:
-    1993-07-01:
+    1971-01-01:
+      value: 0.00024
+    1975-01-01:
       value: 0.00036
   threshold:
-    1993-07-01:
+    1971-00-01:
       value: 1.0
 - rate:
-    1993-07-01:
+    1971-01-01:
       value: 0.0
   threshold:
-    1993-07-01:
+    1971-01-01:
       value: 4.0
+metadata:
   ux_name: Barème employeur
   last_review:
+    2021-07-30
   unit_rate: /1
   unit_threshold:
   reference:
     2011-01-01: Circulaire AGIRC 2010-5-DF du 29/07/2010
-    2010-01-01: Circulaire AGIRC-ARRCO 2009-30- DRE du 16/12/2009
-    2009-01-01: Circulaire AGIRC-ARRCO 2009-1-DRE du 05/01/2009
-    2008-01-01: Circulaire AGIRC-ARRCO 2007-27-DRE du 14/12/2007
-    2007-01-01: Circulaire AGIRC-ARRCO 2006-17-DRE du 18/12/2006
-    2006-01-01: Circulaire AGIRC-ARRCO 2005-19-DRE du 13/12/2005
   official_journal_date:
     1976-01-01: 1976-02-26
   notes:
     2011-01-01: Remplacement de la cotisation forfaitaire par un taux proportionnel sous plafond.
-    1976-01-01: Cotisation proportionnelle "à comper du 1er franc" (tranche A).
     1975-01-01: Augmentation du taux de 0,04 % à 0,06 % pour la tranche B. Incertitude pour la référence législative.
     1971-01-01: Passage d'une cotisation forfaitaire à une cotisation proportionnelle.
-    1967-01-01: Cotisation forfaitaire d'un montant de 2 FF par cadre.
   description_en: Contributions for the Association for the employment of executives (APEC)
 documentation: |
   Note :
   L'Association pour l'emploi des cadres (APEC) a été mise en place par la convention du 18/11/1966.
   La cotisation APEC est recouvrée par l'AGIRC.
-  Le forfait annuel est dû pour les salaires en-dessous du PSS (tranche A).
-  Le forfait annuel dépend du PSS annuel (0,0006*PSS partagé en 40/60) mais la règle des arrondis semble variable dans le temps.
-  En pratique, l'Agirc a calculé la cotisation comme un forfait plutôt que comme une cotisation proportionnelle au salaire sous plafond.
-  Références contractuelles et législatives :
-  La convention du 18/11/1966 et ses avenants n°1 du 03/01/1969, n°2 du 09/06/1969, n°3 du 10/04/1973 et n°4 du 21/12/1973 ont été étendus,
-  en application de l'article L. 133-8, par l'arrêté du 13/08/1974 (JO 29/08/1974).
-  L'avenant n°5, qui étend la cotisation aux salaires sous plafond, est institué par l'arrêté du 16/02/1976 (JO 26/02/1976).
-  Protocole d'accord Agirc-Apec du 30/12/1975.
-
