@@ -4,10 +4,10 @@ from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
 
 
-class allocations_temporaires_invalidite(Variable):
+class cotisation_ati_atiacl(Variable):
     value_type = float
     entity = Individu
-    label = "Allocations temporaires d'invalidité (ATI, fonction publique et collectivités locales)"
+    label = "Cotisation ATI et ATIACL (contributions pour le financement de l'allocation temporaires d'invalidité)"
     definition_period = MONTH
     # patronale, non-contributive
 

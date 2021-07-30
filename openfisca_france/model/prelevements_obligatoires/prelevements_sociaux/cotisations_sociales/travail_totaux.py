@@ -88,7 +88,7 @@ class cotisations_employeur_non_contributives(Variable):
     def formula(individu, period, parameters):
         penibilite = individu('penibilite', period, options = [ADD])
         accident_du_travail = individu('accident_du_travail', period, options = [ADD])
-        allocations_temporaires_invalidite = individu('allocations_temporaires_invalidite', period, options = [ADD])
+        cotisation_ati_atiacl = individu('cotisation_ati_atiacl', period, options = [ADD])
         contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
         famille = individu('famille', period)
         mmid_employeur = individu('mmid_employeur', period, options = [ADD])
@@ -96,7 +96,7 @@ class cotisations_employeur_non_contributives(Variable):
         forfait_social = individu('forfait_social', period, options = [ADD])
 
         cotisations_employeur_non_contributives = (
-            allocations_temporaires_invalidite
+            cotisation_ati_atiacl
             + penibilite
             + accident_du_travail
             + contribution_solidarite_autonomie
