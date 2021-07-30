@@ -51,13 +51,13 @@ output:
   cotisation_exceptionnelle_temporaire_employeur: 0
   vieillesse_deplafonnee_employeur: -12.86
   vieillesse_plafonnee_employeur: -60.71
-  fonds_emploi_hospitalier: 0
+  cotisation_fonds_emploi_hospitalier: 0
   ircantec_employeur: 0
   pension_civile_employeur: 0
   rafp_employeur: 0
   #
   # # cotisations_employeur_non_contributives: 0
-  allocations_temporaires_invalidite: 0
+  cotisation_ati_atiacl: 0
   accident_du_travail: -10.71
   famille: -37.49
   mmid_employeur: -91.42

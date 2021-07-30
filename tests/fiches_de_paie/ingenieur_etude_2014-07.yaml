@@ -40,7 +40,7 @@
     ircantec_employeur: 0
     pension_civile_employeur: 0
     rafp_employeur: 0
-    allocations_temporaires_invalidite: 0
+    cotisation_ati_atiacl: 0
     accident_du_travail: -33
     famille: -157.5
     # Permière ligne 12.8 = 12.8 + 1.75 + 0.3 (maldie + vieillesse_deplaf + csa )
@@ -62,7 +62,7 @@
     cotisation_exceptionnelle_temporaire_employeur: -6.60
     vieillesse_deplafonnee_employeur: -3000 * 0.0175  # est aggrégé avec maladie et csa
     vieillesse_plafonnee_employeur: -253.5
-    fonds_emploi_hospitalier: 0
+    cotisation_fonds_emploi_hospitalier: 0
     formation_professionnelle: -48
     participation_effort_construction: -13.5
     prevoyance_obligatoire_cadre: -59.02

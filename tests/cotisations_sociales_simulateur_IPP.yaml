@@ -14,13 +14,13 @@
     fnal: -8 - 2
     versement_transport: -2000 * 0.0175  # = 35
     cotisations_employeur_main_d_oeuvre: -45
-    allocations_temporaires_invalidite: -6.6
+    cotisation_ati_atiacl: -6.6
     mmid_employeur: -194
     famille: -108
     contribution_solidarite_autonomie: -6
     cotisations_employeur_non_contributives: -314.6
                 # mmid_employeur, famille, fnal, versement_transport,
-                # allocations_temporaires_invalidite contribution_solidarite_autonomie
+                # cotisation_ati_atiacl contribution_solidarite_autonomie
 
     rafp_employeur: -20
     pension_civile_employeur: -1371.80
@@ -64,7 +64,7 @@
     fnal: -8 - 2
     versement_transport: -2000 * 0.0175  # = 35
     cotisations_employeur_main_d_oeuvre: -45
-    allocations_temporaires_invalidite: -10
+    cotisation_ati_atiacl: -10
     mmid_employeur: -230
     famille: -108
     contribution_solidarite_autonomie: -6
@@ -110,7 +110,7 @@
     fnal: -8 - 2
     versement_transport: -2000 * 0.0175
     cotisations_employeur_main_d_oeuvre: -45
-    allocations_temporaires_invalidite: -10
+    cotisation_ati_atiacl: -10
     mmid_employeur: -230
     famille: -108
     contribution_solidarite_autonomie: -6
@@ -118,7 +118,7 @@
 # pension,  ati, rafp, maladie, famille, feh, fnal1, fnal2, transport, csa
     cotisations_employeur_non_contributives: -354
     pension_civile_employeur: -546
-    fonds_emploi_hospitalier: -20
+    cotisation_fonds_emploi_hospitalier: -20
     rafp_employeur: -20
     cotisations_employeur_contributives: -(546 + 20 + 20)
                 # pension,  rafp, feh
@@ -215,7 +215,7 @@
         fnal: -8 - 2
         versement_transport: -2000 * 0.0175  # = 35
         cotisations_employeur_main_d_oeuvre: -45
-        allocations_temporaires_invalidite: -6.6
+        cotisation_ati_atiacl: -6.6
         mmid_employeur: -194
         famille: -108
         contribution_solidarite_autonomie: -6
@@ -282,7 +282,7 @@
         pension_civile_employeur: -1371.80
         rafp_employeur: -20
         cotisations_employeur_contributives: -1391.8
-        allocations_temporaires_invalidite: -6.6
+        cotisation_ati_atiacl: -6.6
         mmid_employeur: -194
         famille: -108
         contribution_solidarite_autonomie: -6
@@ -307,7 +307,7 @@
         pension_civile_employeur: -1371.80
         rafp_employeur: -20
         cotisations_employeur_contributives: -1391.8
-        allocations_temporaires_invalidite: -6.6
+        cotisation_ati_atiacl: -6.6
         mmid_employeur: -194
         famille: -108
         contribution_solidarite_autonomie: -6
