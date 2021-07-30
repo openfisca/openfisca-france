@@ -35,37 +35,6 @@ class allocations_temporaires_invalidite(Variable):
         return cotisation_etat + cotisation_collectivites_locales
 
 
-class assiette_cotisations_sociales_public(Variable):
-    value_type = float
-    entity = Individu
-    label = "Assiette des cotisations sociales des agents titulaires de la fonction publique"
-    definition_period = MONTH
-    # TODO: gestion des heures supplémentaires
-
-    def formula(individu, period, parameters):
-        remuneration_principale = individu('remuneration_principale', period)
-        avantage_en_nature = individu('avantage_en_nature', period)
-        primes_fonction_publique = individu('primes_fonction_publique', period)
-        indemnite_residence = individu('indemnite_residence', period)
-        supplement_familial_traitement = individu('supplement_familial_traitement', period)
-        categorie_salarie = individu('categorie_salarie', period)
-        public = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
-            )
-
-        assiette = public * (
-            remuneration_principale
-            + avantage_en_nature
-            + indemnite_residence
-            + primes_fonction_publique
-            + supplement_familial_traitement
-            )
-        return assiette
-
-
 # sft dans assiette csg et RAFP et Cotisation exceptionnelle de solidarité et taxe sur les salaires
 # primes dont indemnites de residences idem sft
 # avantages en nature contrib exceptionnelle de solidarite, RAFP, CSG, CRDS.
@@ -162,7 +131,6 @@ class ircantec_salarie(Variable):
 
     def formula(individu, period, parameters):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-        supplement_familial_traitement = individu('supplement_familial_traitement', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
         _P = parameters(period)
@@ -170,7 +138,7 @@ class ircantec_salarie(Variable):
         ircantec = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie,
             bareme_name = "ircantec",
-            base = assiette_cotisations_sociales - supplement_familial_traitement,
+            base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )

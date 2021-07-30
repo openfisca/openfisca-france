@@ -22,7 +22,7 @@ class assiette_cotisations_sociales(Variable):
 
     def formula(individu, period, parameters):
         assiette_cotisations_sociales_prive = individu('assiette_cotisations_sociales_prive', period)
-        assiette_cotisations_sociales_public = individu('assiette_cotisations_sociales_public', period)
+        remuneration_principale = individu('remuneration_principale', period)
         categorie_salarie = individu('categorie_salarie', period)
         stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
         return (
@@ -42,6 +42,8 @@ class assiette_cotisations_sociales_prive(Variable):
         avantage_en_nature = individu('avantage_en_nature', period)
         hsup = individu('hsup', period)
         indemnites_compensatrices_conges_payes = individu('indemnites_compensatrices_conges_payes', period)
+        indemnite_residence = individu('indemnite_residence', period)
+        primes_fonction_publique = individu('primes_fonction_publique', period)
         primes_salaires = individu('primes_salaires', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         reintegration_titre_restaurant_employeur = individu(
@@ -58,6 +60,8 @@ class assiette_cotisations_sociales_prive(Variable):
             + hsup
             + indemnites_compensatrices_conges_payes
             + remuneration_apprenti
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
+            * (indemnite_residence + primes_fonction_publique)
             + reintegration_titre_restaurant_employeur
             + indemnite_fin_contrat
             )
