@@ -13,26 +13,21 @@ class cotisation_ati_atiacl(Variable):
 
     def formula(individu, period, parameters):
         remuneration_principale = individu('remuneration_principale', period)
-        plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
-        _P = parameters(period)
 
-        base = remuneration_principale
-        cotisation_etat = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
-            bareme_name = "ati",
-            base = base,
-            plafond_securite_sociale = plafond_securite_sociale,
-            categorie_salarie = categorie_salarie,
-            )
-        cotisation_collectivites_locales = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
-            bareme_name = "atiacl",
-            base = base,
-            plafond_securite_sociale = plafond_securite_sociale,
-            categorie_salarie = categorie_salarie,
-            )
-        return cotisation_etat + cotisation_collectivites_locales
+        bareme_ati = parameters(period).cotisations_secteur_public.retraite.ati.ati
+        bareme_atiacl = parameters(period).cotisations_secteur_public.cnracl.employeur.atiacl
+
+        etat_hors_militaire = (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+        terr_hosp = (
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+        )
+
+        return (
+            etat_hors_militaire * bareme_ati.calc(remuneration_principale)
+            + terr_hosp * bareme_atiacl.calc(remuneration_principale)
+        )
 
 
 # sft dans assiette csg et RAFP et Cotisation exceptionnelle de solidarité et taxe sur les salaires
