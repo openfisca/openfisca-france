@@ -517,7 +517,7 @@ class indemnites_forfaitaires(Variable):
 class salaire_de_base(Variable):
     value_type = float
     entity = Individu
-    label = "Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie"
+    label = "Salaire de base du privé, en général appelé salaire brut, la 1ère ligne sur la fiche de paie"
     set_input = set_input_divide_by_period
     reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm'
     definition_period = MONTH
@@ -974,6 +974,25 @@ class salaire_net_a_payer(Variable):
         return salaire_net_a_payer
 
 
+class salaire_de_base_ou_remuneration(Variable):
+    value_type = float
+    entity = Individu
+    label = "Salaire de base ou rémunération, appelé communément salaire brut"
+    set_input = set_input_divide_by_period
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        salaire_de_base = individu('salaire_de_base', period)
+        remuneration_principale = individu('remuneration_principale', period)
+        remuneration_apprenti = individu('remuneration_apprenti', period)
+        salaire_de_base_ou_remuneration = (
+            salaire_de_base
+            + remuneration_principale
+            + remuneration_apprenti
+            )
+        return salaire_de_base_ou_remuneration
+
+
 class salaire_super_brut_hors_allegements(Variable):
     value_type = float
     entity = Individu
@@ -982,9 +1001,7 @@ class salaire_super_brut_hors_allegements(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        salaire_de_base = individu('salaire_de_base', period)
-        remuneration_principale = individu('remuneration_principale', period)
-        remuneration_apprenti = individu('remuneration_apprenti', period)
+        salaire_de_base_ou_remuneration = individu('salaire_de_base_ou_remuneration', period)
 
         primes_fonction_publique = individu('primes_fonction_publique', period)
         indemnite_residence = individu('indemnite_residence', period)
@@ -994,10 +1011,8 @@ class salaire_super_brut_hors_allegements(Variable):
         reintegration_titre_restaurant_employeur = individu('reintegration_titre_restaurant_employeur', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         salaire_super_brut_hors_allegements = (
-            salaire_de_base
-            + remuneration_apprenti
+            salaire_de_base_ou_remuneration
             + indemnite_fin_contrat
-            + remuneration_principale
             + primes_fonction_publique
             + indemnite_residence
             + supplement_familial_traitement
