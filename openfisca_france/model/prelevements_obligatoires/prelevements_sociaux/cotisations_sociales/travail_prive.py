@@ -27,7 +27,7 @@ class assiette_cotisations_sociales(Variable):
         stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
         return (
             (categorie_salarie != TypesCategorieSalarie.non_pertinent)
-            * (assiette_cotisations_sociales_prive + assiette_cotisations_sociales_public)
+            * (assiette_cotisations_sociales_prive + remuneration_principale)
             + stage_gratification_reintegration
             )
 
