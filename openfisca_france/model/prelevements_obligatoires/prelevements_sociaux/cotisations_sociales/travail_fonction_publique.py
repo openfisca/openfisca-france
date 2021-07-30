@@ -105,17 +105,14 @@ class cotisation_fonds_emploi_hospitalier(Variable):
 
     def formula(individu, period, parameters):
         remuneration_principale = individu('remuneration_principale', period)
-        plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
-        _P = parameters(period)
-        cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
-            bareme_name = "feh",
-            base = remuneration_principale,  # TODO: check base
-            plafond_securite_sociale = plafond_securite_sociale,
-            categorie_salarie = categorie_salarie,
-            )
-        return cotisation
+
+        bareme_feh = parameters(period).cotisations_secteur_public.cnracl.employeur.hospitaliere.feh
+        hosp = (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+
+        return (
+            hosp * bareme_feh.calc(remuneration_principale)
+        )
 
 
 class ircantec_salarie(Variable):
