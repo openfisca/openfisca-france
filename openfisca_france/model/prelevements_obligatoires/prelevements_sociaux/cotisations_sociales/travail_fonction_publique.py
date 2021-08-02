@@ -196,22 +196,23 @@ class pension_civile_employeur(Variable):
     def formula(individu, period, parameters):
         remuneration_principale = individu('remuneration_principale', period)
         categorie_salarie = individu('categorie_salarie', period)
-        _P = parameters(period)
 
-        pat = _P.cotsoc.cotisations_employeur
+        bareme_cnracl_employeur = parameters(period).prelevements_sociaux.cotisations_secteur_public.cnracl.employeur
+        bareme_retraite_etat_employeur = parameters(period).prelevements_sociaux.cotisations_secteur_public.retraite_etat.pension.employeur
 
         terr_or_hosp = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
-            | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
         etat = (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+        militaire = (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
 
-        cot_pat_pension_civile = (
-            etat * pat['public_titulaire_etat']['pension'].calc(remuneration_principale)
-            + terr_or_hosp * pat['public_titulaire_territoriale']['cnracl'].calc(remuneration_principale)
+        pension_civile_employeur = (
+            etat * bareme_retraite_etat_employeur.pension_civils.calc(remuneration_principale)
+            + militaire * bareme_retraite_etat_employeur.pension_militaires.calc(remuneration_principale)
+            + terr_or_hosp * bareme_cnracl_employeur.cnracl.calc(remuneration_principale)
             )
 
-        return - cot_pat_pension_civile
+        return - pension_civile_employeur
 
 
 class rafp_salarie(Variable):
