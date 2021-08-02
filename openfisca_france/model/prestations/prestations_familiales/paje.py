@@ -27,6 +27,7 @@ class partiel2(Variable):
     entity = Famille
     label = "Parent actif entre 50% et 80% (PAJE-CLCA)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class opt_colca(Variable):
@@ -34,6 +35,7 @@ class opt_colca(Variable):
     entity = Famille
     label = "Opte pour le COLCA"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class empl_dir(Variable):
@@ -41,6 +43,7 @@ class empl_dir(Variable):
     entity = Famille
     label = "Emploi direct (CLCMG)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class ass_mat(Variable):
@@ -48,6 +51,7 @@ class ass_mat(Variable):
     entity = Famille
     label = "Assistante maternelle (CLCMG)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class gar_dom(Variable):
@@ -55,6 +59,7 @@ class gar_dom(Variable):
     entity = Famille
     label = "Garde à domicile (CLCMG)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class paje(Variable):
@@ -63,6 +68,7 @@ class paje(Variable):
     label = "PAJE - Ensemble des prestations"
     reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2017_04(famille, period):
         '''
@@ -179,6 +185,7 @@ class enfant_eligible_paje(Variable):
     entity = Individu
     label = "Enfant ouvrant droit à la PAJE de base"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         age = individu('age', period)
@@ -197,6 +204,7 @@ class paje_naissance(Variable):
     label = "Allocation de naissance de la PAJE"
     reference = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2018_04_01(famille, period, parameters):
         '''
@@ -338,6 +346,7 @@ class paje_prepare(Variable):
     label = "Prestation Partagée d’éducation de l’Enfant (PreParE)"
     reference = "https://www.service-public.fr/particuliers/vosdroits/F32485"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class paje_cmg(Variable):
@@ -351,6 +360,7 @@ class paje_cmg(Variable):
         "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=C92307A93BE5F694EB49FE51DC09602C.tplgfr29s_1?idArticle=LEGIARTI000031500755&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte="
         ]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2017_04_01(famille, period, parameters):
         """
@@ -592,6 +602,7 @@ class ape_avant_cumul(Variable):
     end = '2003-12-31'
     reference = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         '''
@@ -653,6 +664,7 @@ class apje_avant_cumul(Variable):
     end = '2003-12-31'
     reference = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         '''
@@ -697,6 +709,7 @@ class ape(Variable):
     end = '2003-12-31'
     reference = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         '''
@@ -717,6 +730,7 @@ class apje(Variable):
     end = '2003-12-31'
     reference = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         # L'APJE n'est pas cumulable avec le complément familial et l'APE
@@ -808,6 +822,7 @@ class paje_clca_taux_plein(Variable):
     label = "Indicatrice Clca taux plein"
     reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     end = '2017-04-01'
 
     def formula_2004_01_01(famille, period):
@@ -823,6 +838,7 @@ class paje_clca_taux_partiel(Variable):
     label = "Indicatrice Clca taux partiel"
     reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     end = '2017-04-01'
 
     def formula_2004_01_01(famille, period):
@@ -842,6 +858,7 @@ class paje_colca(Variable):
     set_input = set_input_divide_by_period
     reference = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = '2017-04-01'
 
     def formula_2004_01_01(famille, period, parameters):
