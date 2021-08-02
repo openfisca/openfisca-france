@@ -16,6 +16,7 @@ class asi_aspa_base_ressources_individu(Variable):
     label = "Base ressources individuelle du minimum vieillesse/ASPA"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         last_year = period.last_year
@@ -106,6 +107,7 @@ class asi_aspa_base_ressources(Variable):
     label = "Base ressource du minimum vieillesse et assimilés (ASPA)"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         base_ressources_i = famille.members('asi_aspa_base_ressources_individu', period)
@@ -118,6 +120,7 @@ class aspa_eligibilite(Variable):
     label = "Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         age = individu('age', period)
@@ -138,7 +141,8 @@ class asi_eligibilite(Variable):
     label = "Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
     entity = Individu
     definition_period = MONTH
-
+    set_input = set_input_dispatch_by_period
+    
     def formula(individu, period):
         last_month = period.start.period('month').offset(-1)
 
@@ -163,6 +167,7 @@ class asi_aspa_condition_nationalite(Variable):
     label = "Condition de nationalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         ressortissant_eee = individu('ressortissant_eee', period)
@@ -178,6 +183,7 @@ class asi_aspa_nb_alloc(Variable):
     label = "Nombre d'allocataires ASI/ASPA"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         aspa_elig_i = famille.members('aspa_eligibilite', period)
@@ -258,6 +264,7 @@ class aspa_couple(Variable):
     label = "Couple au sens de l'ASPA"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2002_01_01(famille, period):
         maries = famille('maries', period)
