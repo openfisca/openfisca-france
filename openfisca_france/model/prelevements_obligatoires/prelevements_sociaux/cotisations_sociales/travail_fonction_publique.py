@@ -50,7 +50,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         indemnite_residence = individu('indemnite_residence', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         rafp_salarie = individu('rafp_salarie', period)
-        pension_civile_salarie = individu('pension_civile_salarie', period)
+        cotisation_retraite_base_public_salarie = individu('cotisation_retraite_base_public_salarie', period)
         cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         salaire_de_base = individu('salaire_de_base', period)
@@ -80,7 +80,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         #  - les non titulaires, les cotisations sociales contributives (car pas de cotisations non contributives pour les non titulaires de la fonction public)
         deduction = assujettis * (
             + rafp_salarie
-            + pension_civile_salarie
+            + cotisation_retraite_base_public_salarie
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
             )
         # Ces déductions sont négatives
@@ -155,10 +155,10 @@ class ircantec_employeur(Variable):
         return - montant * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
 
 
-class pension_civile_salarie(Variable):
+class cotisation_retraite_base_public_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Pension civile salarié"
+    label = "Cotisation au régime de base de retraite de la fonction publique - part salariale (retenue pour pension)"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -177,19 +177,19 @@ class pension_civile_salarie(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
             )
 
-        pension_civile_salarie = (
+        montant = (
             etat_militaire * bareme_retraite_etat_salarie.calc(traitement_indiciaire_brut + nouvelle_bonification_indiciaire)
             + terr_or_hosp * bareme_cnracl_salarie.cnracl1.calc(traitement_indiciaire_brut)
             + terr_or_hosp * bareme_cnracl_salarie.cnracl2.calc(nouvelle_bonification_indiciaire)
             )
 
-        return - pension_civile_salarie
+        return - montant
 
 
-class pension_civile_employeur(Variable):
+class cotisation_retraite_base_public_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation patronale pension civile"
+    label = "Cotisation au régime de base de retraite de la fonction publique - part employeur"
     reference = "http://www.ac-besancon.fr/spip.php?article2662"
     definition_period = MONTH
 
@@ -206,13 +206,13 @@ class pension_civile_employeur(Variable):
         etat = (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
         militaire = (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
 
-        pension_civile_employeur = (
+        montant = (
             etat * bareme_retraite_etat_employeur.pension_civils.calc(remuneration_principale)
             + militaire * bareme_retraite_etat_employeur.pension_militaires.calc(remuneration_principale)
             + terr_or_hosp * bareme_cnracl_employeur.cnracl.calc(remuneration_principale)
             )
 
-        return - pension_civile_employeur
+        return - montant
 
 
 class rafp_salarie(Variable):

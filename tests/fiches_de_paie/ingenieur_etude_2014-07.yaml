@@ -38,7 +38,7 @@
     # cotisations_employeur: 0
     remboursement_transport: 0
     ircantec_employeur: 0
-    pension_civile_employeur: 0
+    cotisation_retraite_base_public_employeur: 0
     rafp_employeur: 0
     cotisation_ati_atiacl: 0
     accident_du_travail: -33
@@ -90,7 +90,7 @@
     vieillesse_deplafonnee_salarie: -3000 * 0.0025  # est agrégée avec maladie sur la fiche de paie
     vieillesse_plafonnee_salarie: -204
     ircantec_salarie: 0
-    pension_civile_salarie: 0
+    cotisation_retraite_base_public_salarie: 0
     rafp_salarie: 0
 
     # cotisations_salariales_non_contributives: 0

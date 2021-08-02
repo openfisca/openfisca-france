@@ -48,7 +48,7 @@ class cotisations_employeur_contributives(Variable):
             'cotisation_exceptionnelle_temporaire_employeur', period)
         cotisation_fonds_emploi_hospitalier = individu('cotisation_fonds_emploi_hospitalier', period, options = [ADD])
         ircantec_employeur = individu('ircantec_employeur', period, options = [ADD])
-        pension_civile_employeur = individu('pension_civile_employeur', period, options = [ADD])
+        cotisation_retraite_base_public_employeur = individu('cotisation_retraite_base_public_employeur', period, options = [ADD])
         rafp_employeur = individu('rafp_employeur', period, options = [ADD])
         vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period, options = [ADD])
         vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period, options = [ADD])
@@ -71,7 +71,7 @@ class cotisations_employeur_contributives(Variable):
             # public
             + cotisation_fonds_emploi_hospitalier
             + ircantec_employeur
-            + pension_civile_employeur
+            + cotisation_retraite_base_public_employeur
             + rafp_employeur
             )
 
@@ -128,7 +128,7 @@ class cotisations_salariales_contributives(Variable):
         cotisation_equilibre_technique_salarie = individu('cotisation_equilibre_technique_salarie', period)
         cotisation_exceptionnelle_temporaire_salarie = individu('cotisation_exceptionnelle_temporaire_salarie', period)
         ircantec_salarie = individu('ircantec_salarie', period)
-        pension_civile_salarie = individu('pension_civile_salarie', period)
+        cotisation_retraite_base_public_salarie = individu('cotisation_retraite_base_public_salarie', period)
         rafp_salarie = individu('rafp_salarie', period)
         vieillesse_deplafonnee_salarie = individu('vieillesse_deplafonnee_salarie', period)
         vieillesse_plafonnee_salarie = individu('vieillesse_plafonnee_salarie', period)
@@ -149,7 +149,7 @@ class cotisations_salariales_contributives(Variable):
             + vieillesse_plafonnee_salarie
             # public
             + ircantec_salarie
-            + pension_civile_salarie
+            + cotisation_retraite_base_public_salarie
             + rafp_salarie
             )
 

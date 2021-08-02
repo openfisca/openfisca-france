@@ -53,7 +53,7 @@ output:
   vieillesse_plafonnee_employeur: -60.71
   cotisation_fonds_emploi_hospitalier: 0
   ircantec_employeur: 0
-  pension_civile_employeur: 0
+  cotisation_retraite_base_public_employeur: 0
   rafp_employeur: 0
   #
   # # cotisations_employeur_non_contributives: 0
@@ -101,7 +101,7 @@ output:
   vieillesse_deplafonnee_salarie: -2.14
   vieillesse_plafonnee_salarie: -48.92
   ircantec_salarie: 0
-  pension_civile_salarie: 0
+  cotisation_retraite_base_public_salarie: 0
   rafp_salarie: 0
   #
   # cotisations_salariales_non_contributives: 0

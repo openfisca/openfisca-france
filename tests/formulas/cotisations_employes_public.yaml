@@ -39,7 +39,7 @@
   output:
     ircantec_salarie: 0
 
-- name: pension_civile_salarie_1
+- name: cotisation_retraite_base_public_salarie_1
   description: Cotisations retraite obligatoire fonction publique d'Etat
   period: 2021-01
   absolute_error_margin: 0.03
@@ -48,9 +48,9 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    pension_civile_salarie: -0.1110*(3000+1000)
+    cotisation_retraite_base_public_salarie: -0.1110*(3000+1000)
 
-- name: pension_civile_salarie_2
+- name: cotisation_retraite_base_public_salarie_2
   description: Cotisations retraite obligatoire fonction publique territoriale (CNRACL)
   period: 2021-01
   absolute_error_margin: 0.03
@@ -59,9 +59,9 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    pension_civile_salarie: -0.1110*(3000+1000)
+    cotisation_retraite_base_public_salarie: -0.1110*(3000+1000)
 
-- name: pension_civile_salarie_3
+- name: cotisation_retraite_base_public_salarie_3
   description: Cotisations retraite obligatoire fonction publique hospitalière (CNRACL)
   period: 2021-01
   absolute_error_margin: 0.03
@@ -70,9 +70,9 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    pension_civile_salarie: -0.1110*(3000+1000)
+    cotisation_retraite_base_public_salarie: -0.1110*(3000+1000)
 
-- name: pension_civile_salarie_4
+- name: cotisation_retraite_base_public_salarie_4
   description: Cotisations retraite obligatoire fonction publique territoriale et hospitalière CNRACL pour un salarié du privé (donc, zéro)
   period: 2021-01
   absolute_error_margin: 0.03
@@ -81,7 +81,7 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    pension_civile_salarie: 0
+    cotisation_retraite_base_public_salarie: 0
 
 - name: rafp_salarie_1
   description: Cotisations RAFP dans le cas où l'assiette est <= au plafond de 20% du traitement indiciaire brut
