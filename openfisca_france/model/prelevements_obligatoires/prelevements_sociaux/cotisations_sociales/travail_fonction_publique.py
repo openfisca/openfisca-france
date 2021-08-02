@@ -232,9 +232,9 @@ class rafp_salarie(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
 
-        parametres_rafp_salarie = parameters(period).prelevements_sociaux.cotisations_secteur_public.rafp.salarie
-        taux_plafond_tib = parametres_rafp_salarie.rafp_plaf_assiette
-        bareme_rafp_salarie = parametres_rafp_salarie.rafp
+        parametres_rafp = parameters(period).prelevements_sociaux.cotisations_secteur_public.rafp
+        taux_plafond_tib = parametres_rafp.rafp_plaf_assiette
+        bareme_rafp_salarie = parametres_rafp.salarie.rafp
 
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence + avantage_en_nature
         assiette = (min_(base_imposable, taux_plafond_tib * traitement_indiciaire_brut) + gipa) * eligible
