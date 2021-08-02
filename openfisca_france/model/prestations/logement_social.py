@@ -52,6 +52,7 @@ class zone_logement_social(Variable):
     default_value = ZoneLogementSocial.autres_regions
     entity = Menage
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     label = "Zone logement social"
 
     def formula(menage, period):
@@ -88,6 +89,7 @@ class logement_social_categorie_menage(Variable):
     possible_values = CategorieMenageLogementSocial
     default_value = CategorieMenageLogementSocial.categorie_1
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     label = "Catégorie de ménage pour déterminer le plafond de ressources"
     reference = [
         "Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif",
@@ -133,6 +135,7 @@ class logement_social_plafond_ressources(Variable):
     entity = Famille
     value_type = float
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     label = "Plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif"
     reference = [
         "Arrêté du 22 décembre 2016 modifiant l'arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif ",
@@ -159,6 +162,7 @@ class logement_social_eligible(Variable):
     entity = Famille
     value_type = bool
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     label = "Logement social - Éligibilité"
 
     def formula_2017(famille, period, parameters):
