@@ -27,6 +27,7 @@ class cf_enfant_eligible(Variable):
     entity = Individu
     label = "Complément familial - Enfant pris en compte pour l'éligibilité"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         cf_enfant_a_charge = individu('cf_enfant_a_charge', period)
@@ -51,6 +52,7 @@ class cf_dom_enfant_eligible(Variable):
     entity = Individu
     label = "Complément familial (DOM) - Enfant pris en compte pour l'éligibilité"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         cf_enfant_a_charge = individu('cf_enfant_a_charge', period)
@@ -70,6 +72,7 @@ class cf_dom_enfant_trop_jeune(Variable):
     entity = Individu
     label = "Complément familial (DOM) - Enfant trop jeune pour ouvrir le droit"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
@@ -87,6 +90,7 @@ class cf_base_ressources_individu(Variable):
     entity = Individu
     label = "Complément familial - Ressources de l'individu prises en compte"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         base_ressources = individu('prestations_familiales_base_ressources_individu', period)
@@ -101,6 +105,7 @@ class cf_plafond(Variable):
     entity = Famille
     label = "Plafond d'éligibilité au Complément Familial"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         pfam = parameters(period).prestations.prestations_familiales
@@ -155,6 +160,7 @@ class cf_majore_plafond(Variable):
     entity = Famille
     label = "Plafond d'éligibilité au Complément Familial majoré"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2014_04_01(famille, period, parameters):
         plafond_base = famille('cf_plafond', period)
@@ -167,6 +173,7 @@ class cf_base_ressources(Variable):
     entity = Famille
     label = "Ressources prises en compte pour l'éligibilité au complément familial"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         cf_base_ressources_individu_i = famille.members('cf_base_ressources_individu', period)
@@ -180,6 +187,7 @@ class cf_eligibilite_base(Variable):
     entity = Famille
     label = "Éligibilité au complément familial sous condition de ressources et avant cumul"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         residence_dom = famille.demandeur.menage('residence_dom', period)
@@ -195,6 +203,7 @@ class cf_eligibilite_dom(Variable):
     entity = Famille
     label = "Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         residence_dom = famille.demandeur.menage('residence_dom', period)
@@ -217,6 +226,7 @@ class cf_non_majore_avant_cumul(Variable):
     entity = Famille
     label = "Complément familial non majoré avant cumul"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         eligibilite_base = famille('cf_eligibilite_base', period)
@@ -258,6 +268,7 @@ class cf_majore_avant_cumul(Variable):
     entity = Famille
     label = "Complément familial majoré avant cumul"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2014_04_01(famille, period, parameters):
         eligibilite_base = famille('cf_eligibilite_base', period)
@@ -287,6 +298,8 @@ class cf_montant(Variable):
     entity = Famille
     label = "Montant du complément familial, avant prise en compte d'éventuels cumuls"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
+    
 
     def formula(famille, period):
         cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', period)
