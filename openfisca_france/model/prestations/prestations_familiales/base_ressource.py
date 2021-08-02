@@ -10,6 +10,7 @@ class autonomie_financiere(Variable):
     entity = Individu
     label = "Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = [
         'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750602&cidTexte=LEGITEXT000006073189',
         'https://www.service-public.fr/particuliers/vosdroits/F16947'
@@ -32,6 +33,7 @@ class prestations_familiales_enfant_a_charge(Variable):
     entity = Individu
     label = "Enfant considéré à charge au sens des prestations familiales"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
@@ -62,6 +64,7 @@ class prestations_familiales_base_ressources_individu(Variable):
     entity = Individu
     label = "Base ressource individuelle des prestations familiales"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         annee_fiscale_n_2 = period.n_2
@@ -82,6 +85,7 @@ class biactivite(Variable):
     entity = Famille
     label = "Indicatrice de biactivité"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         '''
@@ -161,6 +165,7 @@ class prestations_familiales_base_ressources_communes(Variable):
         "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id"
         ]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         annee_fiscale_n_2 = period.n_2
@@ -187,6 +192,7 @@ class prestations_familiales_base_ressources(Variable):
         "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id"
         ]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
