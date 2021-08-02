@@ -16,6 +16,7 @@ class aer(Variable):
     label = "Allocation équivalent retraite (AER)"
     # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class retraite_combattant(Variable):
