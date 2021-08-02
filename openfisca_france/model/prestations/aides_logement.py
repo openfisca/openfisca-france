@@ -91,6 +91,7 @@ class aide_logement_montant(Variable):
     entity = Famille
     label = "Montant des aides au logement net de CRDS"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
@@ -106,6 +107,7 @@ class aide_logement_montant_brut_crds(Variable):
     label = "Montant des aides au logement brut de CRDS"
     reference = "https://www.legifrance.gouv.fr/eli/decret/2018/2/27/2018-136/jo/article_1"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2018(famille, period, parameters):
         rls = parameters(period).prestations.reduction_loyer_solidarite
@@ -127,6 +129,7 @@ class aide_logement_montant_brut(Variable):
     label = "Montant des aides au logement après degressivité et abattement forfaitaire, avant CRDS"
     reference = "https://www.legifrance.gouv.fr/eli/decret/2017/9/28/TERL1721632D/jo/texte"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2016_07_01(famille, period, parameters):
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
@@ -168,6 +171,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
     reference = "https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801552A/jo/article_1"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations.aides_logement
@@ -223,6 +227,7 @@ class logement_conventionne(Variable):
     entity = Menage
     label = "Logement conventionné"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class TypeEtatLogement(Enum):
@@ -294,6 +299,7 @@ class aides_logement_primo_accedant_eligibilite(Variable):
     entity = Menage
     reference = "https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1723900L/jo/article_126"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(menage, period):
         statut_occupation_logement = menage('statut_occupation_logement', period)
@@ -325,6 +331,7 @@ class aides_logement_foyer_chambre_non_rehabilite_eligibilite(Variable):
     value_type = bool
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
@@ -343,6 +350,7 @@ class aides_logement_foyer_personne_agee_eligibilite(Variable):
     value_type = bool
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
@@ -356,6 +364,7 @@ class al_nb_personnes_a_charge(Variable):
     entity = Famille
     label = "Nombre de personne à charge au sens des allocations logement"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         '''
@@ -418,6 +427,7 @@ class aide_logement_base_ressources_patrimoine(Variable):
     entity = Famille
     reference = "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000033243725&categorieLien=id"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2016_10_01(famille, period, parameters):
         '''
@@ -475,6 +485,7 @@ class al_couple(Variable):
     entity = Famille
     label = 'Situation de couple pour le calcul des AL'
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         en_couple = famille('en_couple', period)
@@ -489,6 +500,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
     entity = Famille
     label = "Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         def eval_forfaitaire_salaries():
@@ -522,6 +534,7 @@ class al_revenu_assimile_salaire(Variable):
     entity = Individu
     label = "Revenu imposé comme des salaires dans le cadre du calcul des ressources de l'aide au logement."
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         # version spécifique aux aides logement de revenu_assimile_salaire
@@ -556,6 +569,7 @@ class al_biactivite(Variable):
     entity = Famille
     label = "Indicatrice de biactivité dans le cadre du calcul des ressources de l'aide au logement."
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         '''
@@ -592,6 +606,7 @@ class al_abattement_forfaitaire_assistants_et_journalistes(Variable):
     entity = Individu
     label = "L'application de l'abattement forfaitaire pour les journaliste et les assistants maternels et familiaux."
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2019_01(individu, period, parameters):
         assistant_maternel = individu('assistant_maternel', period)
@@ -613,6 +628,7 @@ class aide_logement_condition_neutralisation_chomage(Variable):
     label = "Condition de neutralisation du chomage dans le calcul des ressources de l'aide au logement."
     reference = "https://www.legifrance.gouv.fr/eli/decret/2019/12/30/LOGL1920187D/jo/texte"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2021_01_01(individu, period, parameters):
         activite = individu('activite', period)
@@ -647,6 +663,7 @@ class aide_logement_assiette_abattement_chomage(Variable):
     label = "Assiette sur laquelle un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abattements pour frais professionnels."
     reference = "https://www.legifrance.gouv.fr/eli/decret/2019/12/30/LOGL1920187D/jo/texte"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2021_01_01(individu, period, parameters):
         # Rolling year
@@ -691,6 +708,7 @@ class aide_logement_abattement_chomage_indemnise(Variable):
     entity = Individu
     label = "Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     # Article R532-7 du Code de la sécurité sociale
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189"
 
@@ -720,6 +738,7 @@ class aide_logement_abattement_depart_retraite(Variable):
     entity = Individu
     label = "Montant de l'abattement sur les salaires en cas de départ en retraite"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     # Article R532-5 du Code de la sécurité sociale
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
 
@@ -750,6 +769,7 @@ class aide_logement_neutralisation_conge_parental(Variable):
     entity = Individu
     label = "Abattement sur les revenus des parents en congé parental."
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://github.com/openfisca/openfisca-france/wiki/files/prestations/Integration-de-la-reforme-AL-2019-dans-OpenFisca_PJ_20190722-FAM_Reforme_AL-2019_v1.4.pdf"
 
     def formula(individu, period, parameters):
@@ -766,6 +786,7 @@ class aide_logement_neutralisation_rsa(Variable):
     entity = Famille
     label = "Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         # Article R532-7 du Code de la sécurité sociale
         "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189",
@@ -789,6 +810,7 @@ class aide_logement_base_ressources_defaut(Variable):
     entity = Famille
     label = "Base ressource par défaut des allocations logement"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         biactivite = famille('biactivite', period)
@@ -922,6 +944,7 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
     entity = Individu
     label = "Salaires et chômage imposables après abattements dans le cadre du calcul des ressources de l'aide au logement"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2021_01_01(individu, period, parameters):
         # version spécifique aux aides logement de revenu_assimile_salaire_apres_abattements
@@ -947,6 +970,7 @@ class al_traitements_salaires_pensions_rentes(Variable):
     entity = Individu
     label = "Traitements salaires pensions et rentes individuelles dans le cadre des aides au logement"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2021_01_01(individu, period, parameters):
         # Rolling year
@@ -982,6 +1006,7 @@ class al_base_ressources_individu(Variable):
     entity = Individu
     label = "Base ressource individuelle des aides logement"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2021_01_01(individu, period):
         traitements_salaires_pensions_rentes = individu('al_traitements_salaires_pensions_rentes', period)
@@ -1004,6 +1029,7 @@ class aide_logement_base_ressources(Variable):
         "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042841854"
         ]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2021_01_01(famille, period, parameters):
         biactivite = famille('al_biactivite', period)
@@ -1227,6 +1253,7 @@ class aide_logement_loyer_plafond(Variable):
     entity = Famille
     label = "Loyer plafond dans le calcul des aides au logement (L2)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations.aides_logement
@@ -1260,6 +1287,7 @@ class aide_logement_loyer_reel(Variable):
     label = "Loyer réel dans le calcul des aides au logement"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2CE61DFFD9BD9F08700031784123828.tplgfr28s_2?idArticle=LEGIARTI000006737243&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte="
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
@@ -1280,6 +1308,7 @@ class aide_logement_loyer_retenu(Variable):
     entity = Famille
     label = "Loyer retenu (hors charge) dans le calcul des aides au logement"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         loyer_plafond = famille('aide_logement_loyer_plafond', period)
@@ -1294,6 +1323,7 @@ class aide_logement_charges(Variable):
     entity = Famille
     label = "Charges retenues dans le calcul des aides au logement"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         P = parameters(period).prestations.aides_logement.forfait_charges
@@ -1311,6 +1341,7 @@ class aide_logement_R0(Variable):
     entity = Famille
     label = "Revenu de référence, basé sur la situation familiale, pris en compte dans le calcul des AL."
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations.aides_logement
@@ -1370,6 +1401,7 @@ class aide_logement_taux_famille(Variable):
     entity = Famille
     label = "Taux représentant la situation familiale, décroissant avec le nombre de personnes à charge"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations.aides_logement
@@ -1406,6 +1438,7 @@ class aide_logement_taux_loyer(Variable):
     entity = Famille
     label = "Taux obscur basé sur une comparaison du loyer retenu à un loyer de référence."
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations.aides_logement
@@ -1438,6 +1471,7 @@ class aide_logement_participation_personnelle(Variable):
     entity = Famille
     label = "Participation personelle de la famille au loyer"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations.aides_logement
@@ -1471,6 +1505,7 @@ class aide_logement_non_calculable(Variable):
     entity = Famille
     label = "Aide au logement non calculable"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
@@ -1489,6 +1524,7 @@ class crds_logement(Variable):
     label = "CRDS des allocations logement"
     reference = "http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
@@ -1575,6 +1611,7 @@ class aides_logement_accedant_et_foyer(Variable):
                  "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=8A5E748B84270643BC39A1D691F4FC5C.tplgfr27s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006739837&dateTexte=20181031&categorieLien=cid#LEGIARTI000006739837"
                  ]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2007_07(famille, period, parameters):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
@@ -1602,6 +1639,7 @@ class aides_logement_k(Variable):
     reference = ["https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006898932&dateTexte=&categorieLien=cid",
                  "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
@@ -1618,6 +1656,7 @@ class aides_logement_primo_accedant_k(Variable):
     label = "Allocation logement pour les primo-accédants K"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         param = parameters(period).prestations.al_param_accal
@@ -1638,6 +1677,7 @@ class aides_logement_foyer_k_al(Variable):
     reference = ["https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006898932&dateTexte=&categorieLien=cid",
                  "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         param = parameters(period).prestations.al_param_accal
@@ -1659,6 +1699,7 @@ class aides_logement_foyer_k_apl(Variable):
     reference = ["https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006898932&dateTexte=&categorieLien=cid",
                  "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         param = parameters(period).prestations.al_param_accal
@@ -1679,6 +1720,7 @@ class aides_logement_categorie(Variable):
     value_type = str
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         categorie_apl = famille.demandeur.menage('logement_conventionne', period)
@@ -1691,6 +1733,7 @@ class aides_logement_nb_part(Variable):
     label = "Nombre de parts (paramètre N) pour l'aide au logement"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
@@ -1716,6 +1759,7 @@ class aides_logement_loyer_minimal(Variable):
     label = "Allocation logement pour les logements foyers loyer minimal"
     reference = "https://www.legifrance.gouv.fr/eli/arrete/2007/11/8/MLVU0759263A/jo/article_2"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
@@ -1730,6 +1774,7 @@ class aides_logement_loyer_minimal_al(Variable):
     label = "Allocation logement loyer minimal"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         N = famille('aides_logement_nb_part', period)
@@ -1749,6 +1794,7 @@ class aides_logement_loyer_minimal_apl(Variable):
     label = "Allocation logement pour les logements foyers loyer minimal"
     reference = "https://www.legifrance.gouv.fr/eli/arrete/2007/11/8/MLVU0759263A/jo/article_2"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     # Temporairement limitée à après 2007-11 pour pallier des carences de valeurs de paramètres
     def formula_2007_11_01(famille, period, parameters):
@@ -1768,6 +1814,7 @@ class aides_logement_plafond_mensualite(Variable):
     entity = Famille
     label = "Plafond de mensualités (formule commune)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
@@ -1787,6 +1834,7 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
     label = "Allocation logement pour les primo-accédants plafond mensualité"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737237&cidTexte=LEGITEXT000006073189&dateTexte=20170811"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         zone_apl = famille.demandeur.menage('zone_apl', period)
@@ -1814,6 +1862,7 @@ class aides_logement_foyer_conventionne_plafond(Variable):
     label = "Allocation logement pour les logements foyers plafond"
     reference = "https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         zone_apl = famille.demandeur.menage('zone_apl', period)
@@ -1841,6 +1890,7 @@ class aides_logement_foyer_plafond_mensualite(Variable):
     reference = ["https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000035665875&dateTexte=&categorieLien=id",
                  "https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     # Temporairement limitée à après 2017 pour pallier des carences de valeurs de paramètres
     def formula_2017_10(famille, period, parameters):
