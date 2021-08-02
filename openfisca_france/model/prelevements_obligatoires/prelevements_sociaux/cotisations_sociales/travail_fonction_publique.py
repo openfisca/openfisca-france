@@ -249,14 +249,14 @@ class rafp_employeur(Variable):
     label = "Part patronale de la retraite additionnelle de la fonction publique"
     definition_period = MONTH
 
-    # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
     def formula_2005_01_01(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         categorie_salarie = individu('categorie_salarie', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         supplement_familial_traitement = individu('supplement_familial_traitement', period)
         indemnite_residence = individu('indemnite_residence', period)
-        _P = parameters(period)
+        gipa = individu('gipa', period)
+        avantage_en_nature = individu('avantage_en_nature', period)
 
         eligible = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
@@ -264,11 +264,14 @@ class rafp_employeur(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
 
-        plaf_ass = _P.prelevements_sociaux.cotisations_secteur_public.rafp.salarie.rafp_plaf_assiette
-        base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence
-        assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
-        bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
-        rafp_employeur = eligible * bareme_rafp.calc(assiette)
+        parametres_rafp = parameters(period).prelevements_sociaux.cotisations_secteur_public.rafp
+        taux_plafond_tib = parametres_rafp.rafp_plaf_assiette
+        bareme_rafp_employeur = parametres_rafp.employeur.rafp
+
+        base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence + avantage_en_nature
+        assiette = (min_(base_imposable, taux_plafond_tib * traitement_indiciaire_brut) + gipa) * eligible
+        # Même régime pour les fonctions publiques d'Etat et des collectivité locales
+        rafp_employeur = eligible * bareme_rafp_employeur.calc(assiette)
         return - rafp_employeur
 
 
