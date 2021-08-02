@@ -8,6 +8,7 @@ class ppa_eligibilite(Variable):
     entity = Famille
     label = "Eligibilité à la PPA pour un mois"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         P = parameters(period).prestations
@@ -23,6 +24,7 @@ class ppa_plancher_revenu_activite_etudiant(Variable):
     entity = Individu
     label = "Plancher des revenus d'activité pour être éligible à la PPA en tant qu'étudiant"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         P = parameters(period)
@@ -45,6 +47,7 @@ class ppa_eligibilite_etudiants(Variable):
         "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2B88CEFCB83FCAFA4AA31671DAC89DD.tplgfr26s_3?idArticle=LEGIARTI000031087615&cidTexte=LEGITEXT000006073189&dateTexte=20181226"
         ]
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
@@ -83,6 +86,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
     entity = Famille
     label = "Montant forfaitaire familial (sans majoration)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         nb_parents = famille('nb_parents', period)
@@ -110,6 +114,7 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
     entity = Famille
     label = "Montant forfaitaire familial (avec majoration)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         nb_enfants = famille('rsa_nb_enfants', period)
@@ -129,6 +134,7 @@ class ppa_revenu_activite(Variable):
     entity = Famille
     label = "Revenu d'activité pris en compte pour la PPA"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         ppa_revenu_activite_i = famille.members(
@@ -143,6 +149,7 @@ class ppa_revenu_activite_individu(Variable):
     entity = Individu
     label = "Revenu d'activité pris en compte pour la PPA (Individu) pour un mois"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         'Article L842-4 du code de la sécurité sociale',
         'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=358C45A1DF4FA63CC63BEC9456F63F18.tplgfr21s_3?idArticle=LEGIARTI000033813782&cidTexte=LEGITEXT000006073189',
@@ -206,6 +213,7 @@ class ppa_ressources_hors_activite(Variable):
     entity = Famille
     label = "Revenu hors activité pris en compte pour la PPA"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         aspa = famille('aspa', period)
@@ -222,6 +230,7 @@ class ppa_ressources_hors_activite_individu(Variable):
     entity = Individu
     label = "Revenu hors activité pris en compte pour la PPA (Individu) pour un mois"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         # Article L842-4 du code de la sécurité sociale
         "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=B1D8827D50F7B3CC603BB7D398E71AA8.tplgfr28s_3?idArticle=LEGIARTI000033813782&cidTexte=LEGITEXT000006073189&dateTexte=20181226",
@@ -281,6 +290,7 @@ class ppa_base_ressources_prestations_familiales(Variable):
     entity = Famille
     label = "Prestations familiales prises en compte dans le calcul de la PPA"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         "Pour la prise en compte du complément familial, II. de l'article R844-4 du code de la sécurité sociale",
         "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000031676000&cidTexte=LEGITEXT000006073189",
@@ -317,6 +327,7 @@ class ppa_base_ressources(Variable):
     entity = Famille
     label = "Bases ressource prise en compte pour la PPA"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         ppa_revenu_activite = famille('ppa_revenu_activite', period)
@@ -329,6 +340,7 @@ class ppa_bonification(Variable):
     entity = Individu
     label = "Bonification de la PPA pour un individu"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         P = parameters(period)
@@ -351,6 +363,7 @@ class ppa_forfait_logement(Variable):
     label = "Forfait logement intervenant dans le calcul de la prime d'activité"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?idArticle=LEGIARTI000031675988&cidTexte=LEGITEXT000006073189"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         np_pers = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
@@ -396,6 +409,7 @@ class ppa_fictive_ressource_activite(Variable):
     entity = Famille
     label = "Proportion de ressources provenant de l'activité prise en compte pour la primie d'activité fictive"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         pente = parameters(period).prestations.minima_sociaux.ppa.pente
@@ -409,6 +423,7 @@ class ppa_fictive_montant_forfaitaire(Variable):
     entity = Famille
     label = "Montant forfaitaire de la prime d'activité fictive"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
@@ -423,6 +438,7 @@ class ppa_fictive(Variable):
     entity = Famille
     label = "Prime pour l'activité fictive pour un mois"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         forfait_logement = famille('ppa_forfait_logement', period)
@@ -457,6 +473,7 @@ class ppa(Variable):
     entity = Famille
     label = "Prime Pour l'Activité"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
     # Prime d'activité sur service-public.fr
     reference = "https://www.service-public.fr/particuliers/vosdroits/F2882"
@@ -484,6 +501,7 @@ class ppa_indice_du_mois_trimestre_reference(Variable):
     entity = Famille
     label = "Nombre de mois par rapport au mois de du précédent recalcul de la prime d'activité"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         ppa_mois_demande = famille('ppa_mois_demande', period)
@@ -496,6 +514,7 @@ class ppa_versee(Variable):
     entity = Famille
     label = "Prime pour l'activité versée en prenant en compte la date de la demande"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         remainder = famille('ppa_indice_du_mois_trimestre_reference', period)
