@@ -24,6 +24,7 @@ class rente_accident_travail_salarie(Variable):
     label = "Montant de la rente d’accident du travail pour les victimes salariées"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         previous_year = period.start.period('year').offset(-1)
@@ -48,6 +49,7 @@ class rente_accident_travail_exploitant_agricole(Variable):
     label = "Montant de la rente d’accident du travail pour les chefs d'exploitation ou d'entreprise agricole"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006071367&idArticle=LEGIARTI000006598097&dateTexte=&categorieLien=cid"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         previous_year = period.start.period('year').offset(-1)
@@ -71,6 +73,7 @@ class indemnite_accident_travail(Variable):
     label = "Indemnité selon le taux d'incapacité"
     reference = "https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006172216&cidTexte=LEGITEXT000006073189"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         indem_at = parameters(period).accident_travail.rente.taux
@@ -85,6 +88,7 @@ class rente_accident_travail_base(Variable):
     label = "Montant de base de la rente d’accident du travail"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         param_rente_at = parameters(period).accident_travail.rente.taux
@@ -109,6 +113,7 @@ class rente_accident_travail_apres_rachat(Variable):
     entity = Individu
     label = "Rente d’accident du travail, reliquat suite à conversion en capital"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         rente_at = parameters(period).accident_travail.rente.taux
@@ -127,6 +132,7 @@ class rente_accident_travail_rachat(Variable):
     label = "Rachat de la rente d’accident du travail"
     reference = "https://www.legifrance.gouv.fr/eli/arrete/2016/12/19/AFSS1637858A/jo/texte"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         rente_at = parameters(period).accident_travail.rente.taux
@@ -145,6 +151,7 @@ class pcrtp_nombre_actes_assistance(Variable):
     label = "Nombre d'actes nécessitant l'assistance d'une tierce personne"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6D8F7F6917ADFBDEAFE1D8A432F39229.tplgfr23s_2?idArticle=LEGIARTI000027267037&cidTexte=LEGITEXT000006073189&dateTexte=20181218"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class pcrtp(Variable):
@@ -153,6 +160,7 @@ class pcrtp(Variable):
     label = "Prestation complémentaire pour recours à tierce personne (PCRTP)"
     reference = "https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006172216&cidTexte=LEGITEXT000006073189"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         rente_at = parameters(period).accident_travail.rente.taux
@@ -169,6 +177,7 @@ class rente_accident_travail_salaire_utile(Variable):
     label = "Salaire utile pour calculer la rente d’accident du travail"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=7392B9902E4B974EAE8783FAF2D69849.tplgfr30s_1?idArticle=LEGIARTI000006750376&cidTexte=LEGITEXT000006073189&dateTexte=20180823"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         previous_year = period.start.period('year').offset(-1)
