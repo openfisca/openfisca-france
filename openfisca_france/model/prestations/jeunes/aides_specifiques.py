@@ -6,6 +6,7 @@ class allocation_annuelle_etudiant(Variable):
     entity = Individu
     label = "Allocation annuelle (type d'aide spécifique aux étudiants à difficultés pérennes)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         "https://www.education.gouv.fr/bo/14/Hebdo40/MENS1420893C.htm",
         "https://www.etudiant.gouv.fr/fr/aides-specifiques-1306"
