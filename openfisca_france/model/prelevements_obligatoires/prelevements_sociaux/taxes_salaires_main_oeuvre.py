@@ -186,45 +186,45 @@ class fnal_contribution(Variable):
     label = "Contribution fonds national action logement (FNAL)"
     definition_period = MONTH
 
-    def formula_2015_01_01(individu, period, parameters):
+    def formula_2020_01_01(individu, period, parameters):
         assiette_cotisations = individu('assiette_cotisations_sociales', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        effectif_plus_de_50_salaries = effectif_entreprise >=50
+        effectif_plus_de_50_salaries = effectif_entreprise >= 50
         bareme_plus_de_50_salaries = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_plus_de_50_salaries
         contribution_plus_de_50_salaries = bareme_plus_de_50_salaries.calc(assiette_cotisations, factor= plafond_securite_sociale)
         bareme_moins_de_50_salaries = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_moins_de_50_salaries
         contribution_moins_de_50_salaries = bareme_moins_de_50_salaries.calc(assiette_cotisations, factor= plafond_securite_sociale)
-        return -(effectif_plus_de_50_salaries*contribution_plus_de_50_salaries + (1-effectif_plus_de_50_salaries)*contribution_moins_de_50_salaries)
+        return - (effectif_plus_de_50_salaries * contribution_plus_de_50_salaries + (1 - effectif_plus_de_50_salaries) * contribution_moins_de_50_salaries)
 
     def formula_2015_01_01(individu, period, parameters):
         assiette_cotisations = individu('assiette_cotisations_sociales', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        effectif_plus_de_20_salaries = effectif_entreprise >=20
+        effectif_plus_de_20_salaries = effectif_entreprise >= 20
         bareme_plus_de_20_salaries = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_plus_de_20_salaries
         contribution_plus_de_20_salaries = bareme_plus_de_20_salaries.calc(assiette_cotisations, factor= plafond_securite_sociale)
         bareme_moins_de_20_salaries = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_moins_de_20_salaries
         contribution_moins_de_20_salaries = bareme_moins_de_20_salaries.calc(assiette_cotisations, factor= plafond_securite_sociale)
-        return -(effectif_plus_de_20_salaries*contribution_plus_de_20_salaries + (1-effectif_plus_de_20_salaries)*contribution_moins_de_20_salaries)
+        return - (effectif_plus_de_20_salaries * contribution_plus_de_20_salaries + (1 - effectif_plus_de_20_salaries) * contribution_moins_de_20_salaries)
 
     def formula_2007_01_01(individu, period, parameters):
         assiette_cotisations = individu('assiette_cotisations_sociales', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        effectif_plus_de_20_salaries = effectif_entreprise >=20
+        effectif_plus_de_20_salaries = effectif_entreprise >= 20
         bareme_plus_de_20_salaries = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_plus_de_20_salaries
         contribution_plus_de_20_salaries = bareme_plus_de_20_salaries.calc(assiette_cotisations, factor= plafond_securite_sociale)
-        return -(effectif_plus_de_20_salaries*contribution_plus_de_20_salaries)
+        return - (effectif_plus_de_20_salaries * contribution_plus_de_20_salaries)
 
     def formula(individu, period, parameters):
         assiette_cotisations = individu('assiette_cotisations_sociales', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        effectif_plus_de_10_salaries = effectif_entreprise >=10
+        effectif_plus_de_10_salaries = effectif_entreprise >= 10
         bareme_plus_de_10_salaries = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_plus_de_10_salaries
         contribution_plus_de_10_salaries = bareme_plus_de_10_salaries.calc(assiette_cotisations, factor= plafond_securite_sociale)
-        return -(effectif_plus_de_10_salaries*contribution_plus_de_10_salaries)
+        return - (effectif_plus_de_10_salaries * contribution_plus_de_10_salaries)
 
 
 class financement_organisations_syndicales(Variable):
@@ -381,7 +381,7 @@ class taxe_salaires(Variable):
         # La taxe est due notamment par les : [...] organismes sans but lucratif
         assujettissement = assujettie_taxe_salaires + entreprise_est_association_non_lucrative
 
-        parametres = parameters(period).cotsoc.taxes_sal
+        parametres = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.taxsal.bareme
         bareme = parametres.taux_maj
         base = assiette_cotisations_sociales + (
             - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
