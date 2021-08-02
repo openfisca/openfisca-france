@@ -35,6 +35,7 @@ class locapass_eligibilite_individu(Variable):
     value_type = bool
     label = "Satisfaction des conditions d'éligibilité relatives au demandeur pour le dispositif Loca-Pass"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         eligibilite_salarie = individu('locapass_eligibilite_salarie', period)
@@ -48,6 +49,7 @@ class locapass_eligibilite_salarie(Variable):
     value_type = bool
     label = "Indicatrice d'éligibilité au dispositif Loca-Pass pour les salariés"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         return individu('activite', period) == TypesActivite.actif
@@ -58,6 +60,7 @@ class locapass_eligibilite_jeunes(Variable):
     value_type = bool
     label = "Indicatrice d'éligibilité au dispositif Loca-Pass pour les jeunes"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         age = individu('age', period)
@@ -82,6 +85,7 @@ class locapass_eligibilite_etudiant_contrat(Variable):
     value_type = bool
     label = "Satisfaction de la condition de loca-pass relative au contrat de travail pour les étudiants"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         nb_mois_travailles = sum([(individu('salaire_net', period.offset(-i)) > 0) for i in range(6)])
@@ -93,6 +97,7 @@ class locapass_eligibilite_etudiant(Variable):
     value_type = bool
     label = "Indicatrice d'éligibilité au dispositif Loca-Pass pour les étudiants"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         etudiant = individu('etudiant', period)
