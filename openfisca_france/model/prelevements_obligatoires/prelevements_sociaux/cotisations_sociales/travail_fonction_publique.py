@@ -167,7 +167,7 @@ class cotisation_retraite_base_public_salarie(Variable):
         categorie_salarie = individu('categorie_salarie', period)
 
         bareme_cnracl_salarie = parameters(period).prelevements_sociaux.cotisations_secteur_public.cnracl.salarie
-        bareme_retraite_etat_salarie = parameters(period).prelevements_sociaux.cotisations_secteur_public.retraite_etat.pension.salarie.pension
+        bareme_retraite_etat_salarie = parameters(period).prelevements_sociaux.cotisations_secteur_public.retraite.pension.salarie.pension
 
         terr_or_hosp = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
@@ -198,7 +198,7 @@ class cotisation_retraite_base_public_employeur(Variable):
         categorie_salarie = individu('categorie_salarie', period)
 
         bareme_cnracl_employeur = parameters(period).prelevements_sociaux.cotisations_secteur_public.cnracl.employeur
-        bareme_retraite_etat_employeur = parameters(period).prelevements_sociaux.cotisations_secteur_public.retraite_etat.pension.employeur
+        bareme_retraite_etat_employeur = parameters(period).prelevements_sociaux.cotisations_secteur_public.retraite.pension.employeur
 
         terr_or_hosp = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
