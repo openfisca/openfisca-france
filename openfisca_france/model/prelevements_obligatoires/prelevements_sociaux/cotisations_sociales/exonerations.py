@@ -176,10 +176,10 @@ class exoneration_cotisations_employeur_zfu(Variable):
 
         bareme_by_name = parameters(period).cotsoc.cotisations_employeur['prive_non_cadre']
 
-        if period.start.year<2007:
+        if period.start.year < 2007:
             fnal_contrib = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_plus_de_10_salaries
             fnal_contrib_seuil = 10
-        elif period.start.year>=2007 and period.start.year <2020:
+        elif period.start.year >= 2007 and period.start.year < 2020:
             fnal_contrib = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_plus_de_20_salaries
             fnal_contrib_seuil = 20
         else:

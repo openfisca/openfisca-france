@@ -8,7 +8,7 @@
     fnal_cotisation: -2352*0.001
     fnal_contribution: 0
     fnal: -(2352*0.001 + 0)
-    
+
 - name: Test FNAL, 2002, petite entreprise (<10), en dessous PSS
   period: 2002-01
   absolute_error_margin: 0.005
@@ -52,7 +52,7 @@
     fnal_cotisation: -3031*0.001
     fnal_contribution: 0
     fnal: -(3031*0.001 + 0)
-    
+
 - name: Test FNAL, 2012, petite entreprise (<20), en dessous PSS
   period: 2012-01
   absolute_error_margin: 0.005
@@ -96,7 +96,7 @@
     fnal_cotisation: 0
     fnal_contribution: -3218*0.001
     fnal: -(3218*0.001)
-    
+
 - name: Test FNAL, 2016, petite entreprise (<20), en dessous PSS
   period: 2016-01
   absolute_error_margin: 0.005
