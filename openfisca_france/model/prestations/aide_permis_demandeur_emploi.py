@@ -12,6 +12,7 @@ class aide_permis_demandeur_emploi_eligibilite_financiere(Variable):
         "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-pe-n2011-205-du-9-decembre-2011--mise-a-jour-bope-n2020-05.html?type=dossiers/2020/bope-n2020-005-du-17-janvier-2020",
         ]
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         sans_rsa = individu.famille('rsa', period) <= 0
@@ -34,6 +35,7 @@ class aide_permis_demandeur_emploi_eligibilite_individu(Variable):
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n201113-du-11-avril.html?type=dossiers/2011/bope-n2011-36-du-18-avril-2011"
         ]
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         return individu('activite', period) == TypesActivite.chomeur
@@ -50,6 +52,7 @@ class aide_permis_demandeur_emploi(Variable):
         "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-pe-n2011-205-du-9-de.html?type=dossiers/2011/bope-n2011-112-du-9-decembre-201",
         ]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         eligibilite_financiere = individu('aide_permis_demandeur_emploi_eligibilite_financiere', period)
