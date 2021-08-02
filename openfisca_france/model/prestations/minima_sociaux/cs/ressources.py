@@ -24,6 +24,7 @@ class cmu_base_ressources_individu(Variable):
         ]
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         # Rolling year
@@ -88,6 +89,7 @@ class cmu_base_ressources(Variable):
     label = "Base de ressources prise en compte pour l'éligibilité à la ACS / CMU-C / CSS"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         previous_year = period.start.period('year').offset(-1)
