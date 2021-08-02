@@ -171,6 +171,7 @@ class fnal_cotisation(Variable):
     entity = Individu
     label = "Cotisation fonds national action logement (FNAL)"
     definition_period = MONTH
+    end = '2015-01-01'
 
     def formula(individu, period, parameters):
         assiette_cotisations = individu('assiette_cotisations_sociales', period)
