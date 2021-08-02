@@ -1,0 +1,8 @@
+description: Effort à la construction (plus de 50 salariés)
+brackets:
+- rate:
+    2020-01-01:
+      value: 0.0045
+  threshold:
+    2020-01-01:
+      value: 0.0
