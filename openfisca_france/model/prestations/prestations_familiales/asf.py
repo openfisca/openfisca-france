@@ -6,6 +6,7 @@ class asf_elig_enfant(Variable):
     entity = Individu
     label = "Enfant pouvant ouvrir droit à l'ASF"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         age = individu('age', period)
@@ -29,6 +30,7 @@ class asf_elig(Variable):
     label = "Éligibilité à l'ASF"
     reference = ['https://www.aide-sociale.fr/allocation-soutien-familial/']
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         isole = not_(famille('en_couple', period))
