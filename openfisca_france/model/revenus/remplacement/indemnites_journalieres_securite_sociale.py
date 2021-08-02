@@ -54,6 +54,7 @@ class indemnites_journalieres(Variable):
     label = "Total des indemnités journalières"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         ressources = [
@@ -75,6 +76,7 @@ class indemnites_journalieres_imposables(Variable):
     entity = Individu
     reference = "http://vosdroits.service-public.fr/particuliers/F3152.xhtml"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         indemnites_journalieres = individu('indemnites_journalieres', period)
