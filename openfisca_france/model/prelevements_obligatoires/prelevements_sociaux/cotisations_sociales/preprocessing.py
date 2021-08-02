@@ -200,11 +200,6 @@ def build_sal(node_json):
     sal.children['public_non_titulaire'].children.update(commun.children)
     del sal.children['public_non_titulaire'].children['assedic']
 
-    # Cleaning
-    del sal.children['fonc'].children['etat']
-    del sal.children['fonc'].children['colloc']
-    del sal.children['fonc'].children['contract']
-
     # Arti
     sal.add_child('arti', ParameterNode("arti", data={}))
     sal.children['arti'].children.update(indep.famille.arti.children)  # À harmoniser ! + Créer params depuis IPP

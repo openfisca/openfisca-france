@@ -22,12 +22,12 @@ class assiette_cotisations_sociales(Variable):
 
     def formula(individu, period, parameters):
         assiette_cotisations_sociales_prive = individu('assiette_cotisations_sociales_prive', period)
-        assiette_cotisations_sociales_public = individu('assiette_cotisations_sociales_public', period)
+        remuneration_principale = individu('remuneration_principale', period)
         categorie_salarie = individu('categorie_salarie', period)
         stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
         return (
             (categorie_salarie != TypesCategorieSalarie.non_pertinent)
-            * (assiette_cotisations_sociales_prive + assiette_cotisations_sociales_public)
+            * (assiette_cotisations_sociales_prive + remuneration_principale)
             + stage_gratification_reintegration
             )
 
