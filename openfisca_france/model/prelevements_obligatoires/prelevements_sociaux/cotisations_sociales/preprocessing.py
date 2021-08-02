@@ -25,7 +25,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     # Création de commun
     # Apprentissage
     commun.children['apprentissage'] = autres.apprentissage.children['apprentissage']
-    commun.children['apprentissage_add'] = autres.apprentissage.children['apprentissage_add']
+    commun.children['apprentissage_contribution_additionnelle'] = autres.apprentissage.children['apprentissage_contribution_additionnelle']
     commun.children['apprentissage_alsace_moselle'] = autres.apprentissage.children['apprentissage_alsace_moselle']
     # Formation
     commun.children['formprof_09'] = autres.formation.children['formprof_09']
@@ -101,11 +101,11 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['prive_cadre'] = pat.children.pop('cadre')
 
     # Rework commun to deal with public employees
-    for var in ["apprentissage", "apprentissage_add", "apprentissage_alsace_moselle", "assedic", "chomfg", "construction", "maladie", "formprof_09",
+    for var in ["apprentissage", "apprentissage_contribution_additionnelle", "apprentissage_alsace_moselle", "assedic", "chomfg", "construction", "maladie", "formprof_09",
                 "formprof_1019", "formprof_20", "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
         del commun.children[var]
 
-    for var in ["apprentissage", "apprentissage_add", "apprentissage_alsace_moselle", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
+    for var in ["apprentissage", "apprentissage_contribution_additionnelle", "apprentissage_alsace_moselle", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
                 "construction", "assedic"]:
         del pat.children['fonc'].children['contract'].children[var]
 

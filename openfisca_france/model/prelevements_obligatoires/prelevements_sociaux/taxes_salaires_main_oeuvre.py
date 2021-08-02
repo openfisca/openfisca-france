@@ -65,7 +65,7 @@ class contribution_developpement_apprentissage(Variable):
             period,
             parameters,
             cotisation_type = "employeur",
-            bareme_name = "apprentissage_add",
+            bareme_name = "apprentissage_contribution_additionnelle",
             variable_name = "contribution_developpement_apprentissage",
             )
         return cotisation * redevable_taxe_apprentissage
