@@ -145,16 +145,14 @@ class ircantec_employeur(Variable):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
-        _P = parameters(period)
 
-        ircantec = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
-            bareme_name = "ircantec",
-            base = assiette_cotisations_sociales,
-            plafond_securite_sociale = plafond_securite_sociale,
-            categorie_salarie = categorie_salarie,
+        bareme = parameters(period).prelevements_sociaux.cotisations_secteur_public.ircantec.employeur.ircantec
+        montant = bareme.calc(
+            tax_base = assiette_cotisations_sociales,
+            factor = plafond_securite_sociale,
             )
-        return ircantec * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
+
+        return - montant * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
 
 
 class pension_civile_salarie(Variable):
