@@ -366,6 +366,7 @@ class entreprise_assujettie_cet(Variable):
     entity = Individu
     label = "Entreprise assujettie à la contribution économique territoriale"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class entreprise_assujettie_is(Variable):
@@ -414,6 +415,7 @@ class nombre_tickets_restaurant(Variable):
     entity = Individu
     label = "Nombre de tickets restaurant"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class nouvelle_bonification_indiciaire(Variable):
@@ -505,6 +507,7 @@ class remboursement_transport_base(Variable):
     entity = Individu
     label = "Base pour le calcul du remboursement des frais de transport"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnites_forfaitaires(Variable):
@@ -512,6 +515,7 @@ class indemnites_forfaitaires(Variable):
     entity = Individu
     label = "Indemnités forfaitaires (transport, nourriture)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class salaire_de_base(Variable):
@@ -611,6 +615,7 @@ class volume_jours_ijss(Variable):
     entity = Individu
     label = "Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class avantage_en_nature(Variable):
@@ -618,6 +623,7 @@ class avantage_en_nature(Variable):
     entity = Individu
     label = "Avantages en nature"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         period = period
@@ -632,6 +638,7 @@ class avantage_en_nature_valeur_forfaitaire(Variable):
     entity = Individu
     label = "Evaluation fofaitaire des avantages en nature "
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     # TODO: coplete this function
     def formula(individu, period, parameters):
@@ -646,6 +653,7 @@ class depense_cantine_titre_restaurant_employe(Variable):
     entity = Individu
     label = "Dépense de cantine et de titre restaurant à charge de l'employe"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         period = period
@@ -662,6 +670,7 @@ class depense_cantine_titre_restaurant_employeur(Variable):
     entity = Individu
     label = "Dépense de cantine et de titre restaurant à charge de l'employeur"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         period = period
@@ -678,6 +687,7 @@ class nombre_jours_calendaires(Variable):
     label = "Nombre de jours calendaires travaillés"
     definition_period = MONTH
     default_value = 30
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
@@ -702,6 +712,7 @@ class remboursement_transport(Variable):
     entity = Individu
     label = "Remboursement partiel des frais de transport par l'employeur"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
 
@@ -717,6 +728,7 @@ class gipa(Variable):
     entity = Individu
     label = "Indemnité de garantie individuelle du pouvoir d'achat"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     # TODO: à coder
 
 
@@ -757,6 +769,7 @@ class indice_majore(Variable):
     entity = Individu
     label = "Indice majoré"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         period = period.start.period('month').offset('first-of')
@@ -803,6 +816,7 @@ class af_nbenf_fonc(Variable):
     label = "Nombre d'enfants dans la famille au sens des allocations familiales pour les fonctionnaires"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         """
@@ -926,6 +940,7 @@ class remuneration_principale(Variable):
     entity = Individu
     label = "Rémunération principale des agents titulaires de la fonction publique"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
@@ -1029,6 +1044,7 @@ class exonerations_et_allegements(Variable):
     entity = Individu
     label = "Charges, aides et crédits différées ou particulières"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         exoneration_cotisations_employeur_apprenti = individu(
@@ -1073,6 +1089,7 @@ class cout_differe(Variable):
     entity = Individu
     label = "Charges, aides et crédits différées ou particulières"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         credit_impot_competitivite_emploi = individu('credit_impot_competitivite_emploi', period, options = [ADD])
