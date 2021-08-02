@@ -1,5 +1,18 @@
 # Changelog
 
+## 62.0.0 [#1608](https://github.com/openfisca/openfisca-france/pull/1608)
+
+* Amélioration technique : Corrige ou améliore un calcul déjà existant.
+* Périodes concernées : toutes
+* Zones impactées : 
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique`.
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`.
+* Détails :
+  - Vérifie, corrige et améliore les formules et paramètres des cotisations salariales de la fonction publique (cotisations salariales de la rubrique 6 du barème IPP prélèvements sociaux)
+  - Supprime l'utilisation du preprocessing et des fonctions intermédiaires pour ces mêmes cotisations.
+  - Réarrange quelques formules des cotisations employeurs du public, mais sans aucun check de législation
+  - Changements "majeurs" (1ère arborescence dans la numérotation de version) car suppression de la variable `assiette_cotisations_sociales_public`, qui était redondante avec `remuneration_principale`
+
 ## 61.1.0 [#1507](https://github.com/openfisca/openfisca-france/pull/1507)
 
 * Évolution du système socio-fiscal.
