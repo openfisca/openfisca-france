@@ -1,4 +1,4 @@
-description: Cotisations employeur aux régimes complémentaires de retraite après fusion de l'AGIRC et de l'ARCCO (secteur privé)
+description: Cotisations employeur aux régimes complémentaires de retraite après fusion de l'AGIRC et de l'ARRCO (secteur privé)
 brackets:
 - rate:
     2019-01-01:
@@ -24,7 +24,7 @@ brackets:
       reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/conventions_accords/2017/ANI_Retraite_17nov2017_01012019.pdf
       value: 8.0
 metadata:
-  ux_name: Barème salarié
+  ux_name: Barème employeur
   last_review:
     2021-08-02
   unit_rate: /1

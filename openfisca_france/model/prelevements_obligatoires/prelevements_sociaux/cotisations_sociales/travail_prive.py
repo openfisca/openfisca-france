@@ -389,7 +389,7 @@ class agirc_employeur(Variable):
 class agirc_arrco_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation AGIRC-ARCCO (après la fusion, salarié)"
+    label = "Cotisation AGIRC-ARRCO (après la fusion, salarié)"
     definition_period = MONTH
 
     def formula_2019_01_01(individu, period, parameters):
@@ -401,13 +401,15 @@ class agirc_arrco_salarie(Variable):
             bareme_name = "agirc_arrco",
             variable_name = 'agirc_arrco_salarie'
             )
+        
+        
         return cotisation
 
 
 class agirc_arrco_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation AGIRC-ARCCO (après la fusion, employeur)"
+    label = "Cotisation AGIRC-ARRCO (après la fusion, employeur)"
     definition_period = MONTH
 
     def formula_2019_01_01(individu, period, parameters):
