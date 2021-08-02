@@ -7,6 +7,7 @@ class cmu_acs_eligibilite(Variable):
     entity = Famille
     label = "Pré-éligibilité à l'ACS, la CMU-C et à la CSS, avant prise en compte des ressources"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         previous_year = period.start.period('year').offset(-1)
