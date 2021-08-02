@@ -41,6 +41,7 @@ class allocation_retour_emploi(Variable):
     entity = Individu
     label = "Allocation chômage d'aide au retour à l'emploi (ARE)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178163/"
 
 
@@ -49,6 +50,7 @@ class allocation_travailleur_independant(Variable):
     entity = Individu
     label = "Allocation des travailleurs indépendants (ATI)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000037388330/"
     documentation = '''
     Indemnisation de Pôle emploi en vigueur à partir du 1er novembre 2019 à destination
