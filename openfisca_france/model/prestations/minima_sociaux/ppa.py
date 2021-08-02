@@ -501,7 +501,7 @@ class ppa_indice_du_mois_trimestre_reference(Variable):
     entity = Famille
     label = "Nombre de mois par rapport au mois de du précédent recalcul de la prime d'activité"
     definition_period = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         ppa_mois_demande = famille('ppa_mois_demande', period)
