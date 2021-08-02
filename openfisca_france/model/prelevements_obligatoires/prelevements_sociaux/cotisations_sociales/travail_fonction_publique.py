@@ -172,10 +172,13 @@ class pension_civile_salarie(Variable):
         terr_or_hosp = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
-        etat = (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+        etat_militaire = (
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+            )
 
         pension_civile_salarie = (
-            etat * bareme_retraite_etat_salarie.calc(traitement_indiciaire_brut + nouvelle_bonification_indiciaire)
+            etat_militaire * bareme_retraite_etat_salarie.calc(traitement_indiciaire_brut + nouvelle_bonification_indiciaire)
             + terr_or_hosp * bareme_cnracl_salarie.cnracl1.calc(traitement_indiciaire_brut)
             + terr_or_hosp * bareme_cnracl_salarie.cnracl2.calc(nouvelle_bonification_indiciaire)
             )
