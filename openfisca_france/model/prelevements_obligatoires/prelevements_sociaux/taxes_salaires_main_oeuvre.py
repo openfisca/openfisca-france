@@ -301,6 +301,7 @@ class participation_effort_construction(Variable):
     entity = Individu
     label = "Participation à l'effort de construction"
     definition_period = MONTH
+    # TO DO : integration de peec_employeur : les critères d'éligibilité 
 
     def formula(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)

@@ -32,7 +32,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['formprof_1019'] = autres.formation.children['formprof_1019']
     commun.children['formprof_20'] = autres.formation.children['formprof_20']
     # Construction
-    commun.children['construction'] = autres.construction.children['construction_20']
+    commun.children['construction'] = autres.construction.children['taux']
     # Autres thématiques
     commun.children.update(chomage.assedic.employeur.children)
     commun.children.update(chomage.chomfg.children)
