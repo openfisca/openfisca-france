@@ -48,7 +48,6 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(retraites.cet2019.employeur.children)
     commun.children.update(retraites.agirc_arrco.employeur.children)
 
-
     # Réindexation NonCadre
     # Initialisation
     noncadre = ParameterNode("noncadre", data={})
@@ -156,7 +155,6 @@ def build_sal(node_json):
     commun.children.update(retraites.ceg.salarie.children)
     commun.children.update(retraites.cet2019.salarie.children)
     commun.children.update(retraites.agirc_arrco.salarie.children)
-
 
     # Non Cadre
     # Initialisation

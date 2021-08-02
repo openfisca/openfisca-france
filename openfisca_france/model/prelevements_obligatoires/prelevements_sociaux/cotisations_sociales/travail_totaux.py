@@ -1,7 +1,4 @@
 import logging
-from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.travail_prive import agirc_arrco_employeur
-
-
 from openfisca_france.model.base import *
 
 
@@ -39,7 +36,7 @@ class cotisations_employeur_contributives(Variable):
     def formula(individu, period, parameters):
         ags = individu('ags', period)
         agff_employeur = individu('agff_employeur', period, options = [ADD])
-        agirc_arrco_employeur = individu('agirc_arrco_employeur',period)
+        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
         agirc_employeur = individu('agirc_employeur', period, options = [ADD])
         agirc_gmp_employeur = individu('agirc_gmp_employeur', period, options = [ADD])
         apec_employeur = individu('apec_employeur', period)
@@ -121,7 +118,7 @@ class cotisations_salariales_contributives(Variable):
 
     def formula(individu, period, parameters):
         agff_salarie = individu('agff_salarie', period)
-        agirc_arrco_salarie = individu('agirc_arrco_salarie',period)
+        agirc_arrco_salarie = individu('agirc_arrco_salarie', period)
         agirc_salarie = individu('agirc_salarie', period)
         agirc_gmp_salarie = individu('agirc_gmp_salarie', period)
         apec_salarie = individu('apec_salarie', period)

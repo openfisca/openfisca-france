@@ -401,8 +401,6 @@ class agirc_arrco_salarie(Variable):
             bareme_name = "agirc_arrco",
             variable_name = 'agirc_arrco_salarie'
             )
-        
-        
         return cotisation
 
 
@@ -649,6 +647,7 @@ class contribution_equilibre_general_salarie(Variable):
             )
         return cotisation
 
+
 class contribution_solidarite_autonomie(Variable):
     value_type = float
     entity = Individu
@@ -675,7 +674,7 @@ class cotisation_equilibre_technique_salarie(Variable):
 
     def formula_2019_01_01(individu, period, parameters):
 
-        plafond_securite_sociale = individu('plafond_securite_sociale',period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
 
         cotisation = apply_bareme(
@@ -697,7 +696,7 @@ class cotisation_equilibre_technique_employeur(Variable):
 
     def formula_2019_01_01(individu, period, parameters):
 
-        plafond_securite_sociale = individu('plafond_securite_sociale',period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
 
         cotisation = apply_bareme(

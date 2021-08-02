@@ -123,6 +123,6 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,
                 )
-        exoneration = exoneration + agirc_salarie + agirc_gmp_salarie + arrco_salarie
+        exoneration = exoneration + agirc_salarie + agirc_gmp_salarie + arrco_salarie + agirc_arrco_salarie
 
         return - exoneration * stagiaire
