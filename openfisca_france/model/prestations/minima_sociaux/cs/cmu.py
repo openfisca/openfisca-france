@@ -20,6 +20,7 @@ class cmu_forfait_logement_base(Variable):
     entity = Famille
     label = "Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         cmu_nbp_foyer = famille('cmu_nbp_foyer', period)
@@ -34,6 +35,7 @@ class cmu_forfait_logement_al(Variable):
     entity = Famille
     label = "Forfait logement applicable en cas d'aide au logement"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         nb_personnes_foyer = famille('cmu_nbp_foyer', period)
@@ -50,6 +52,7 @@ class cmu_nbp_foyer(Variable):
     entity = Famille
     label = "Nombre de personnes dans le foyer CMU-C"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         nb_parents = famille('nb_parents', period)
@@ -76,6 +79,7 @@ class cmu_c_plafond(Variable):
     entity = Famille
     label = "Plafond annuel de ressources pour l'éligibilité à la CMU-C"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006753234"
 
     def formula(famille, period, parameters):
@@ -133,6 +137,7 @@ class cmu_eligible_majoration_dom(Variable):
     value_type = bool
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         menage = famille.demandeur.menage
@@ -149,6 +154,7 @@ class cmu_c(Variable):
     label = "Éligibilité à la CMU-C"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         cmu_c_plafond = famille('cmu_c_plafond', period)
