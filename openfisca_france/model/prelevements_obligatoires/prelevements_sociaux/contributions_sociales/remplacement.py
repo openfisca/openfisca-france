@@ -358,6 +358,19 @@ class casa(Variable):
 
     def formula_2013_04_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
+        ir = individu.foyer_fiscal('irpp', period = period.last_year)
+        parameters = parameters(period)
+        seuil_exoneration = parameters.prelevements_sociaux.contributions_sociales.csg.seuils.seuil_ir
+
+        bareme = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.casa
+        casa = (
+            (ir > seuil_exoneration)
+            * bareme.pensions_retraite_preretraite_invalidite.calc(retraite_brute)
+            )
+        return - casa
+
+    def formula_2015_01_01(individu, period, parameters):
+        retraite_brute = individu('retraite_brute', period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
