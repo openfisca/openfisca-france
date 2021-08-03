@@ -24,6 +24,29 @@ class TypesTauxCSGRetraite(Enum):
     taux_plein = "Taux plein"
 
 
+def montant_csg_crds_2_taux(base_avec_abattement = None, base_sans_abattement = None, indicatrice_taux_plein = None,
+        indicatrice_taux_reduit = None, law_node = None, plafond_securite_sociale = None):
+    assert law_node is not None
+    assert plafond_securite_sociale is not None
+    if base_sans_abattement is None:
+        base_sans_abattement = 0
+    if base_avec_abattement is None:
+        base = base_sans_abattement
+    else:
+        base = base_avec_abattement - law_node.abattement.calc(
+            base_avec_abattement,
+            factor = plafond_securite_sociale,
+            round_base_decimals = 2,
+            ) + base_sans_abattement
+    if indicatrice_taux_plein is None and indicatrice_taux_reduit is None :
+        return -law_node.taux * base
+    else:
+        return - (
+            law_node.taux_plein * indicatrice_taux_plein + 
+            law_node.taux_reduit * indicatrice_taux_reduit
+            ) * base
+
+
 def montant_csg_crds_3_taux(base_avec_abattement = None, base_sans_abattement = None, indicatrice_taux_plein = None,
         indicatrice_taux_reduit = None, indicatrice_taux_intermediaire = None, law_node = None, plafond_securite_sociale = None):
     assert law_node is not None
@@ -269,6 +292,30 @@ class csg_deductible_retraite(Variable):
         seuil_taux_intermediaire = seuils.seuil_rfr3 + (nbptr - 1) * seuils.demi_part_suppl_rfr3
 
         taux_csg_retraite = select(
+            [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
+            [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
+            )
+
+        montant_csg = montant_csg_crds_2_taux(
+            base_sans_abattement = retraite_brute,
+            indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
+            indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
+            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.deductible,
+            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            )
+        return montant_csg
+
+    def formula_2019(individu, period, parameters):
+        retraite_brute = individu('retraite_brute', period)
+        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
+        nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
+        parameters = parameters(period)
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuil_exoneration = seuils.seuil_rfr1 + (nbptr - 1) * seuils.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.demi_part_suppl_rfr2
+        seuil_taux_intermediaire = seuils.seuil_rfr3 + (nbptr - 1) * seuils.demi_part_suppl_rfr3
+
+        taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr <= seuil_taux_intermediaire, rfr > seuil_taux_intermediaire],
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
             )
@@ -300,6 +347,30 @@ class csg_imposable_retraite(Variable):
         return - montant_csg
 
     def formula_2015(individu, period, parameters):
+        retraite_brute = individu('retraite_brute', period)
+        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
+        nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
+        parameters = parameters(period)
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuil_exoneration = seuils.seuil_rfr1 + (nbptr - 1) * seuils.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.demi_part_suppl_rfr2
+        seuil_taux_intermediaire = seuils.seuil_rfr3 + (nbptr - 1) * seuils.demi_part_suppl_rfr3
+
+        taux_csg_retraite = select(
+            [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
+            [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
+            )
+
+        montant_csg = montant_csg_crds_2_taux(
+            base_sans_abattement = retraite_brute,
+            indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
+            indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
+            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.imposable,
+            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            )
+        return montant_csg
+
+    def formula_2019(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
