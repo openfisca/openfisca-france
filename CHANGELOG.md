@@ -1,5 +1,29 @@
 # Changelog
 
+## 63.0.0 [#1619](https://github.com/openfisca/openfisca-france/pull/1619)
+
+* Évolution du système socio-fiscal.  
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : 
+ - `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive`.
+ - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
+ -  `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/stage.py`
+ -  `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py`
+ - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_totaux.py`
+*
+* Détails :
+  - Mise à jour des paramètres `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/`.
+  - Harmonisation des sous-dossiers de `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/` avec l'arborescence des barèmes IPP.
+  -  Ajout des variables : `ceg_employeur`, `ceg_salarie`, `cet2019_employeur`, `cet2019_salarie`, `agirc_arrco_employeur`, `agirc_arrco_salarie`,
+  - Vérifie la validité des formules des variables liées aux cotisations sociales des régimes complémentaires de retraites du secteur privé.
+
+Ces changements :
+
+- Modifient l'API publique d'OpenFisca France (par exemple renommage ou suppression de variables).
+- Ajoutent une fonctionnalité (par exemple ajout d'une variable).
+- Corrigent ou améliorent un calcul déjà existant.
+
 ### 62.0.1 [#1617](https://github.com/openfisca/openfisca-france/pull/1617)
 
 * Changement mineur.
