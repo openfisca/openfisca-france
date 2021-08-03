@@ -193,7 +193,7 @@ class accident_du_travail(Variable):
     label = "Cotisations employeur accident du travail et maladie professionelle"
     definition_period = MONTH
 
-    def formula(individu, period, parameters):
+    def formula_1991(individu, period, parameters):    # TODO : rajouter formule pré-1991 : s'applique au salaire sous PSS uniquement
         assiette_cotisations_sociales = individu(
             'assiette_cotisations_sociales', period)
         taux_accident_travail = individu('taux_accident_travail', period)
@@ -268,7 +268,7 @@ class quotite_de_travail(Variable):
     def formula(individu, period, parameters):
         contrat_de_travail = individu('contrat_de_travail', period)
         TypesContratDeTravail = contrat_de_travail.possible_values
-        heures_temps_plein = 35 * 52 / 12  # ~151,67 (durée légale mensuelle)
+        heures_temps_plein = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
         forfait_jours_remuneres_volume = individu('forfait_jours_remuneres_volume', period)
         heures_remunerees_volume = individu('heures_remunerees_volume', period)
         return switch(
@@ -846,7 +846,7 @@ class taux_accident_travail(Variable):
     def formula_2012_01_01(individu, period, parameters):
         exposition_accident = individu('exposition_accident', period)
         TypesExpositionAccident = exposition_accident.possible_values
-        accident = parameters(period).cotsoc.accident
+        accident = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.accidents.bareme
 
         return (exposition_accident == TypesExpositionAccident.faible) * accident.faible + (exposition_accident == TypesExpositionAccident.moyen) * accident.moyen \
             + (exposition_accident == TypesExpositionAccident.eleve) * accident.eleve + (exposition_accident == TypesExpositionAccident.tres_eleve) * accident.treseleve
