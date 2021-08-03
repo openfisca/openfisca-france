@@ -12,7 +12,9 @@ brackets:
     2014-01-01:
       value: 0.0044
     2019-01-01:
-      value: null
+      value: 0
+    2020-01-01:
+      value: 0.0044
   threshold:
     1972-07-01:
       value: 0.0
