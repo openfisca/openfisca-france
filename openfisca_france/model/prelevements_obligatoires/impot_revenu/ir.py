@@ -100,6 +100,7 @@ class age_en_mois(Variable):
     label = "Âge (en mois)"
     is_period_size_independent = True
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         # If age_en_mois is known at the same day of another month, compute the new age_en_mois from it.
