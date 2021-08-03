@@ -613,7 +613,18 @@ class famille(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'famille',
+            bareme_name = 'sous_pss',
+            variable_name = 'famille',
+            )
+        return cotisation
+
+    def formula_1989(individu, period, parameters):
+        cotisation = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'sur_tout_salaire',
             variable_name = 'famille',
             )
         return cotisation
