@@ -48,5 +48,6 @@
     effectif_entreprise: 249
     contrat_de_travail_debut: 2016-01-25
   output:
+    formation_professionnelle: 100
     salaire_super_brut: 1649.4
     cout_du_travail: 1394.8

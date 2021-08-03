@@ -362,6 +362,38 @@ class participation_effort_construction(Variable):
     definition_period = MONTH
     # TO DO : integration de la variable peec_employeur : les critères d'éligibilité employeur incluent d'autres dimensions que l'effectif
 
+    def formula_2020_01_01(individu, period, parameters):
+        effectif_entreprise = individu('effectif_entreprise', period)
+
+        bareme = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'construction_plus_de_50_salaries',
+            variable_name = 'participation_effort_construction',
+            )
+
+        cotisation = bareme * (effectif_entreprise >= 50)
+
+        return cotisation
+
+    def formula_2005_01_01(individu, period, parameters):
+        effectif_entreprise = individu('effectif_entreprise', period)
+
+        bareme = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'construction_plus_de_20_salaries',
+            variable_name = 'participation_effort_construction',
+            )
+
+        cotisation = bareme * (effectif_entreprise >= 20)
+
+        return cotisation
+
     def formula(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
 
@@ -370,12 +402,11 @@ class participation_effort_construction(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'construction_10_a_19_salaries',
+            bareme_name = 'construction_plus_de_10_salaries',
             variable_name = 'participation_effort_construction',
             )
 
-        seuil = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.construction.seuil
-        cotisation = bareme * (effectif_entreprise >= seuil)
+        cotisation = bareme * (effectif_entreprise >= 10)
 
         return cotisation
 
