@@ -78,40 +78,81 @@ class contribution_supplementaire_apprentissage(Variable):
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
     definition_period = MONTH
 
-    def formula_2013_01_01(individu, period, parameters):
+    def formula_2015_01_01(individu, period, parameters):
         redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         ratio_alternants = individu('ratio_alternants', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
+        cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
 
-        cotsoc_params = parameters(period).cotsoc
-        csa_params = cotsoc_params.contribution_supplementaire_apprentissage
-
-        # Exception Alsace-Moselle : CGI Article 1609 quinvicies IV
-        # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=36F88516571C1CA136D91A7A84A2D65B.tpdila09v_1?idSectionTA=LEGISCTA000029038088&cidTexte=LEGITEXT000006069577&dateTexte=20161219
-        multiplier = (salarie_regime_alsace_moselle * csa_params.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
+        multiplier = (salarie_regime_alsace_moselle * cotsoc_params.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
         taux_conditionnel = (
-            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * csa_params.moins_2000_moins_1pc_alternants
-            + (effectif_entreprise >= 2000) * (ratio_alternants < .01) * csa_params.plus_2000_moins_1pc_alternants
-            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * csa_params.entre_1_2_pc_alternants
-            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * csa_params.entre_2_3_pc_alternants
-            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * csa_params.entre_3_4_pc_alternants
-            + (.04 <= ratio_alternants) * (ratio_alternants < .05) * csa_params.entre_4_5_pc_alternants
+            (effectif_entreprise >= 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_2000_moins_de_1pc
+            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
+            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
+            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * cotsoc_params.plus_de_250_entre_2_et_3pc
+            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * cotsoc_params.plus_de_250_entre_3_et_4pc
+            + (.04 <= ratio_alternants) * (ratio_alternants < .05) * cotsoc_params.plus_de_250_entre_4_et_5pc
             )
         taux_contribution = taxe_due * taux_conditionnel * multiplier
         return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
-    def formula_2010_01_01(individu, period, parameters):
+    def formula_2012_01_01(individu, period, parameters):
         redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         effectif_entreprise = individu('effectif_entreprise', period)
+        ratio_alternants = individu('ratio_alternants', period)
+        salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
+        cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
 
-        cotsoc_params = parameters(period).cotsoc
+        multiplier = (salarie_regime_alsace_moselle * cotsoc_params.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
 
-        taux_contribution = (effectif_entreprise >= 250) * cotsoc_params.contribution_supplementaire_apprentissage.plus_de_250
+        taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .04)
+        taux_conditionnel = (
+            (effectif_entreprise >= 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_2000_moins_de_1pc
+            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
+            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
+            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * cotsoc_params.plus_de_250_entre_2_et_3pc
+            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * cotsoc_params.plus_de_250_entre_3_et_4pc
+            )
+        taux_contribution = taux_conditionnel * taxe_due * multiplier
+        return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
+
+    def formula_2011_01_01(individu, period, parameters):
+        redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
+        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+        ratio_alternants = individu('ratio_alternants', period)
+        cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
+
+        taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .04)
+        taux_conditionnel = (
+            (effectif_entreprise >= 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_2000_moins_de_1pc
+            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
+            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
+            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * cotsoc_params.plus_de_250_entre_2_et_3pc
+            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * cotsoc_params.plus_de_250_entre_3_et_4pc
+            )
+        taux_contribution = taux_conditionnel * taxe_due
+        return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
+
+    def formula_2009_01_01(individu, period, parameters):
+        redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
+        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+        ratio_alternants = individu('ratio_alternants', period)
+        cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
+
+        taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
+        taux_conditionnel = (
+            (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
+            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
+            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * cotsoc_params.plus_de_250_entre_2_et_3pc
+            )
+        taux_contribution = taux_conditionnel * taxe_due
         return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
 

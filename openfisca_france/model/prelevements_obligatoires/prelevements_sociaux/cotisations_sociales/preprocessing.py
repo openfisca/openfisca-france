@@ -24,9 +24,9 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     # Création de commun
     # Apprentissage
-    commun.children['apprentissage'] = autres.apprentissage.children['apprentissage']
+    commun.children['apprentissage_taxe'] = autres.apprentissage.children['apprentissage_taxe']
     commun.children['apprentissage_contribution_additionnelle'] = autres.apprentissage.children['apprentissage_contribution_additionnelle']
-    commun.children['apprentissage_alsace_moselle'] = autres.apprentissage.children['apprentissage_alsace_moselle']
+    commun.children['apprentissage_taxe_alsace_moselle'] = autres.apprentissage.children['apprentissage_taxe_alsace_moselle']
     # Formation
     commun.children['formprof_09'] = autres.formation.children['formprof_09']
     commun.children['formprof_1019'] = autres.formation.children['formprof_1019']
@@ -101,11 +101,11 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['prive_cadre'] = pat.children.pop('cadre')
 
     # Rework commun to deal with public employees
-    for var in ["apprentissage", "apprentissage_contribution_additionnelle", "apprentissage_alsace_moselle", "assedic", "chomfg", "construction", "maladie", "formprof_09",
+    for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle", "assedic", "chomfg", "construction", "maladie", "formprof_09",
                 "formprof_1019", "formprof_20", "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
         del commun.children[var]
 
-    for var in ["apprentissage", "apprentissage_contribution_additionnelle", "apprentissage_alsace_moselle", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
+    for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
                 "construction", "assedic"]:
         del pat.children['fonc'].children['contract'].children[var]
 
@@ -281,8 +281,8 @@ def preprocess_parameters(parameters):
     cotsoc.add_child('conge_individuel_formation', ParameterNode("conge_individuel_formation", data={}))
     cotsoc.conge_individuel_formation.children.update(autres.formation.conge_individuel_formation.children)  # À harmoniser
 
-    cotsoc.add_child('contribution_supplementaire_apprentissage', ParameterNode("contribution_supplementaire_apprentissage", data={}))
-    cotsoc.contribution_supplementaire_apprentissage.children.update(autres.apprentissage.contribution_supplementaire_apprentissage.children)  # À harmoniser
+    cotsoc.add_child('apprentissage_contribution_supplementaire', ParameterNode("apprentissage_contribution_supplementaire", data={}))
+    cotsoc.apprentissage_contribution_supplementaire.children.update(autres.apprentissage.apprentissage_contribution_supplementaire.children)  # À harmoniser
 
     cotsoc.add_child('gen', ParameterNode("gen", data={}))
     cotsoc.gen.children['plafond_securite_sociale'] = pss.children['plafond_securite_sociale_mensuel']
