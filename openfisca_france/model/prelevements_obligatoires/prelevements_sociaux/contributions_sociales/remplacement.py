@@ -289,7 +289,6 @@ class csg_deductible_retraite(Variable):
         seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
         seuil_exoneration = seuils.seuil_rfr1 + (nbptr - 1) * seuils.demi_part_suppl_rfr1
         seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.demi_part_suppl_rfr2
-        seuil_taux_intermediaire = seuils.seuil_rfr3 + (nbptr - 1) * seuils.demi_part_suppl_rfr3
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
@@ -354,7 +353,6 @@ class csg_imposable_retraite(Variable):
         seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
         seuil_exoneration = seuils.seuil_rfr1 + (nbptr - 1) * seuils.demi_part_suppl_rfr1
         seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.demi_part_suppl_rfr2
-        seuil_taux_intermediaire = seuils.seuil_rfr3 + (nbptr - 1) * seuils.demi_part_suppl_rfr3
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
