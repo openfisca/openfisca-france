@@ -43,7 +43,6 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(regime_general.mmid.bareme.employeur.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(autres.fnal.children)  # À harmoniser !
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
-    # commun.children.update(retraites.employeur.children)
     commun.children.update(retraites.ceg.employeur.children)
     commun.children.update(retraites.cet2019.employeur.children)
     commun.children.update(retraites.agirc_arrco.employeur.children)
@@ -151,7 +150,6 @@ def build_sal(node_json):
     commun.children.update(regime_general.mmid.bareme.salarie.children)  # harmoniser !
     commun.children.update(regime_general.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(regime_general.cnav.bareme.salarie.children)  # À harmoniser !
-    # commun.children.update(retraites.salarie.children)
     commun.children.update(retraites.ceg.salarie.children)
     commun.children.update(retraites.cet2019.salarie.children)
     commun.children.update(retraites.agirc_arrco.salarie.children)
