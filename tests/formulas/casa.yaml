@@ -1,3 +1,21 @@
+- name: Casa exonéré 2014
+  period: 2014-01
+  input:
+    retraite_brute: 2000.0
+    irpp: 
+      2013: 
+        50.0
+  output:
+    casa: -0*2000
+- name: Casa non exonéré 2014
+  period: 2014-01
+  input:
+    retraite_brute: 2000.0
+    irpp: 
+      2013: 
+        1500
+  output:
+    casa: -0.003*2000
 - name: Casa exonéré 2016
   period: 2016-01
   input:
