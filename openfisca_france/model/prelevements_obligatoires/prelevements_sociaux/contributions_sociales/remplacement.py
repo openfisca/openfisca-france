@@ -251,7 +251,14 @@ class csg_deductible_retraite(Variable):
     reference = "https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
     definition_period = MONTH
 
-    def formula_2015(individu, period, parameters):    # TODO il manque la formula_1997_2014 (autres critères pour taux réduit)
+    def formula(individu, period, parameters):    # formula_1997_2014 à corriger une fois seuils RFR complétés avant 2015
+        retraite_brute = individu('retraite_brute', period)
+        parameters = parameters(period)
+
+        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.deductible.taux_plein * retraite_brute
+        return - montant_csg
+
+    def formula_2015(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
@@ -285,7 +292,14 @@ class csg_imposable_retraite(Variable):
     reference = "https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
     definition_period = MONTH
 
-    def formula_2015(individu, period, parameters):    # TODO il manque la formula_1997_2014 (autres critères pour taux réduit)
+    def formula(individu, period, parameters):    # formula_1997_2014 à corriger une fois seuils RFR complétés avant 2015
+        retraite_brute = individu('retraite_brute', period)
+        parameters = parameters(period)
+
+        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.imposable.taux_plein * retraite_brute
+        return - montant_csg
+
+    def formula_2015(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
@@ -402,6 +416,7 @@ class casa(Variable):
             * bareme.pensions_retraite_preretraite_invalidite.calc(retraite_brute)
             )
         return - casa
+
 
 class retraite_imposable(Variable):
     unit = 'currency'
