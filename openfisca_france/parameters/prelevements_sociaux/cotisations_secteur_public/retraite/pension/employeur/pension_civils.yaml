@@ -23,8 +23,6 @@ brackets:
     2014-01-01:
       value: 0.7428
   threshold:
-    1993-01-01:
+    2006-01-01:
       value: 0.0
-    2013-01-01:
-      value: null
 description: Pensions civiles (TI et NBI)

@@ -15,8 +15,8 @@ class cotisation_ati_atiacl(Variable):
         remuneration_principale = individu('remuneration_principale', period)
         categorie_salarie = individu('categorie_salarie', period)
 
-        bareme_ati = parameters(period).cotisations_secteur_public.retraite.ati.ati
-        bareme_atiacl = parameters(period).cotisations_secteur_public.cnracl.employeur.atiacl
+        bareme_ati = parameters(period).prelevements_sociaux.cotisations_secteur_public.retraite.ati.ati
+        bareme_atiacl = parameters(period).prelevements_sociaux.cotisations_secteur_public.cnracl.employeur.atiacl
 
         etat_hors_militaire = (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
         terr_hosp = (
@@ -24,7 +24,7 @@ class cotisation_ati_atiacl(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
         )
 
-        return (
+        return - (
             etat_hors_militaire * bareme_ati.calc(remuneration_principale)
             + terr_hosp * bareme_atiacl.calc(remuneration_principale)
         )
@@ -107,10 +107,10 @@ class cotisation_fonds_emploi_hospitalier(Variable):
         remuneration_principale = individu('remuneration_principale', period)
         categorie_salarie = individu('categorie_salarie', period)
 
-        bareme_feh = parameters(period).cotisations_secteur_public.cnracl.employeur.hospitaliere.feh
+        bareme_feh = parameters(period).prelevements_sociaux.cotisations_secteur_public.cnracl.employeur.hospitaliere.feh
         hosp = (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
 
-        return (
+        return - (
             hosp * bareme_feh.calc(remuneration_principale)
         )
 
