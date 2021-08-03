@@ -38,7 +38,7 @@ output:
   agff_employeur: -21.60
   apec_employeur: 0
   arrco_employeur: -82.44
-  chomage_employeur: -72
+  cotisation_chomage_employeur: -72
   cotisation_exceptionnelle_temporaire_employeur: 0
   vieillesse_deplafonnee_employeur: -31.5
   vieillesse_plafonnee_employeur: -152.1
@@ -75,7 +75,7 @@ output:
   agirc_salarie: 0
   apec_salarie: 0
   arrco_salarie: -54.9
-  chomage_salarie: -43.2
+  cotisation_chomage_salarie: -43.2
   cotisation_exceptionnelle_temporaire_salarie: 0
   vieillesse_deplafonnee_salarie: -4.5
   vieillesse_plafonnee_salarie: -122.4

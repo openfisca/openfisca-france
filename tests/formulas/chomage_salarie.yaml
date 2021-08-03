@@ -5,7 +5,7 @@
   input:
     salaire_de_base: 1500
   output:
-    chomage_salarie: -(0.95 / 100) * 1500
+    cotisation_chomage_salarie: -(0.95 / 100) * 1500
 
 - name: Cotisation chomage salarié, tranche A et B
   description: Montant Cotsoc chomage salarié pour salaire base compris entre 1 et 4 PSS
@@ -14,7 +14,7 @@
   input:
     salaire_de_base: 8000
   output:
-    chomage_salarie: -(0.95 / 100) * 8000
+    cotisation_chomage_salarie: -(0.95 / 100) * 8000
 
 - name: Cotisation chomage salarié, tranche A et B > plafond
   description: Montant Cotsoc chomage salarié pour salaire base supérieur 4 PSS
@@ -23,7 +23,7 @@
   input:
     salaire_de_base: 15000
   output:
-    chomage_salarie: -(0.95 / 100) * (4*3311)
+    cotisation_chomage_salarie: -(0.95 / 100) * (4*3311)
 
 - name: Cotisation chomage salarié, tranche A et B > plafond
   description: Montant Cotsoc chomage salarié pour salaire base supérieur 4 PSS, avant 2018
@@ -32,7 +32,7 @@
   input:
     salaire_de_base: 15000
   output:
-    chomage_salarie: -(2.4 / 100) * (4*3269)
+    cotisation_chomage_salarie: -(2.4 / 100) * (4*3269)
 
 - name: Cotisation chomage salarié, tranche A
   description: Montant Cotsoc chomage salarié après 10/2018
@@ -41,7 +41,7 @@
   input:
     salaire_de_base: 4000
   output:
-    chomage_salarie: 0
+    cotisation_chomage_salarie: 0
 
 - name: Cotisation chomage salarié, tranche A
   description: Montant Cotsoc chomage salarié après 10/2018
@@ -50,4 +50,4 @@
   input:
     assiette_cotisations_sociales: 15000
   output:
-    chomage_salarie: 0
+    cotisation_chomage_salarie: 0

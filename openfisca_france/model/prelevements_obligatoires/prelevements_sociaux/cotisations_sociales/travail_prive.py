@@ -572,7 +572,7 @@ class arrco_employeur(Variable):
             ) * public
 
 
-class chomage_salarie(Variable):
+class cotisation_chomage_salarie(Variable):
     value_type = float
     entity = Individu
     label = "Cotisation chômage (salarié)"
@@ -587,12 +587,12 @@ class chomage_salarie(Variable):
             parameters,
             cotisation_type = "salarie",
             bareme_name = "assedic",
-            variable_name = "chomage_salarie",
+            variable_name = "cotisation_chomage_salarie",
             )
         return cotisation
 
 
-class chomage_employeur(Variable):
+class cotisation_chomage_employeur(Variable):
     value_type = float
     entity = Individu
     label = "Cotisation chômage (employeur)"
@@ -606,7 +606,7 @@ class chomage_employeur(Variable):
             parameters,
             cotisation_type = "employeur",
             bareme_name = "assedic",
-            variable_name = "chomage_employeur",
+            variable_name = "cotisation_chomage_employeur",
             )
         return cotisation
 

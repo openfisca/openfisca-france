@@ -38,7 +38,7 @@ output:
   agff_employeur: 0
   apec_employeur: 0
   arrco_employeur: 0
-  # chomage_employeur: -104.46  # TODO: mieux gérer les contractuels de la FP
+  # cotisation_chomage_employeur: -104.46  # TODO: mieux gérer les contractuels de la FP
   cotisation_exceptionnelle_temporaire_employeur: 0
   vieillesse_deplafonnee_employeur: -30.4
   vieillesse_plafonnee_employeur: -157.70
@@ -76,7 +76,7 @@ output:
   agirc_salarie: 0
   apec_salarie: 0
   arrco_salarie: 0
-  # chomage_salarie: -17.14 # TODO: devrait être 0
+  # cotisation_chomage_salarie: -17.14 # TODO: devrait être 0
   cotisation_exceptionnelle_temporaire_salarie: 0
   vieillesse_deplafonnee_salarie: -1.9
   vieillesse_plafonnee_salarie: -126.35
