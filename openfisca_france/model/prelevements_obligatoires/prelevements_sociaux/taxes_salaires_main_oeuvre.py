@@ -25,6 +25,7 @@ class conge_individuel_formation_cdd(Variable):
     entity = Individu
     label = "Contribution au financement des congé individuel de formation (CIF) des salariées en CDD"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     # TODO: date de début
     def formula(individu, period, parameters):
@@ -42,6 +43,7 @@ class redevable_taxe_apprentissage(Variable):
     entity = Individu
     label = "Entreprise redevable de la taxe d'apprentissage"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
@@ -56,6 +58,7 @@ class contribution_developpement_apprentissage(Variable):
     entity = Individu
     label = "Contribution additionnelle au développement de l'apprentissage"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
@@ -77,6 +80,7 @@ class contribution_supplementaire_apprentissage(Variable):
     label = "Contribution supplémentaire à l'apprentissage"
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2013_01_01(individu, period, parameters):
         redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
@@ -120,6 +124,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
     entity = Individu
     label = "Cotisation sociales employeur main d'oeuvre"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         conge_individuel_formation_cdd = individu('conge_individuel_formation_cdd', period)
@@ -159,6 +164,7 @@ class fnal(Variable):
     entity = Individu
     label = "Cotisation fonds national action logement (FNAL)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         fnal_tranche_a = individu('fnal_tranche_a', period)
@@ -171,6 +177,7 @@ class fnal_tranche_a(Variable):
     entity = Individu
     label = "Cotisation fonds national action logement (FNAL tout employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         taille_entreprise = individu('taille_entreprise', period)
@@ -197,6 +204,7 @@ class fnal_tranche_a_plus_20(Variable):
     entity = Individu
     label = "Fonds national action logement (FNAL, employeur avec plus de 20 salariés)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         taille_entreprise = individu('taille_entreprise', period)
@@ -222,6 +230,7 @@ class financement_organisations_syndicales(Variable):
     entity = Individu
     label = "Contribution patronale au financement des organisations syndicales"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2015_01_01(individu, period, parameters):
         categorie_salarie = individu('categorie_salarie', period)
@@ -248,6 +257,7 @@ class formation_professionnelle(Variable):
     label = "Formation professionnelle"
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         taille_entreprise = individu('taille_entreprise', period)
@@ -291,6 +301,7 @@ class participation_effort_construction(Variable):
     entity = Individu
     label = "Participation à l'effort de construction"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
@@ -316,6 +327,7 @@ class taxe_apprentissage(Variable):
     label = "Taxe d'apprentissage (employeur, entreprise redevable de la taxe d'apprentissage uniquement)"
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
@@ -353,6 +365,7 @@ class taxe_salaires(Variable):
     entity = Individu
     label = "Taxe sur les salaires"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 # Voir
 # http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf
 
