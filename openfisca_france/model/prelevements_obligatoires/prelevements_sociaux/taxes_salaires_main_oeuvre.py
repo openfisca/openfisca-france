@@ -296,42 +296,60 @@ class financement_organisations_syndicales(Variable):
 class formation_professionnelle(Variable):
     value_type = float
     entity = Individu
-    label = "Formation professionnelle"
+    label = "PEFPC - Formation professionnelle"
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
     definition_period = MONTH
+    end = '2019-01-01'
+
+    def formula_2016_01_01(individu, period, parameters):
+        effectif_entreprise = individu('effectif_entreprise', period)
+
+        cotisation_0_10 = (effectif_entreprise < 11) * apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'formprof_moins_de_11_salaries',
+            variable_name = 'formation_professionnelle',
+            )
+
+        cotisation_11 = (effectif_entreprise >= 11) * apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'formprof_11_salaries_et_plus',
+            variable_name = 'formation_professionnelle',
+            )
+        return cotisation_0_10 + cotisation_11
 
     def formula(individu, period, parameters):
-        taille_entreprise = individu('taille_entreprise', period)
-        TypesTailleEntreprise = taille_entreprise.possible_values
+        effectif_entreprise = individu('effectif_entreprise', period)
 
-        cotisation_0_9 = (taille_entreprise == TypesTailleEntreprise.moins_de_10) * apply_bareme(
+        cotisation_0_9 = (effectif_entreprise < 10) * apply_bareme(
             individu,
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'formprof_09',
+            bareme_name = 'formprof_moins_de_10_salaries',
             variable_name = 'formation_professionnelle',
             )
 
-        cotisation_10_19 = (taille_entreprise == TypesTailleEntreprise.de_10_a_19) * apply_bareme(
+        cotisation_10_19 = ((effectif_entreprise >= 10) * (effectif_entreprise < 20)) * apply_bareme(
             individu,
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'formprof_1019',
+            bareme_name = 'formprof_entre_10_et_19_salaries',
             variable_name = 'formation_professionnelle',
             )
 
-        entreprise_eligible = (
-            (taille_entreprise == TypesTailleEntreprise.de_20_a_249)
-            + (taille_entreprise == TypesTailleEntreprise.plus_de_250)
-            )
-        cotisation_20 = entreprise_eligible * apply_bareme(
+        cotisation_20 = (effectif_entreprise >= 20) * apply_bareme(
             individu,
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'formprof_20',
+            bareme_name = 'formprof_20_salaries_et_plus',
             variable_name = 'formation_professionnelle',
             )
         return cotisation_0_9 + cotisation_10_19 + cotisation_20
@@ -352,7 +370,7 @@ class participation_effort_construction(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'construction',
+            bareme_name = 'construction_10_a_19_salaries',
             variable_name = 'participation_effort_construction',
             )
 
@@ -423,7 +441,7 @@ class taxe_salaires(Variable):
         # La taxe est due notamment par les : [...] organismes sans but lucratif
         assujettissement = assujettie_taxe_salaires + entreprise_est_association_non_lucrative
 
-        parametres = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.taxsal.bareme
+        parametres = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.taxsal
         bareme = parametres.taux_maj
         base = assiette_cotisations_sociales + (
             - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire

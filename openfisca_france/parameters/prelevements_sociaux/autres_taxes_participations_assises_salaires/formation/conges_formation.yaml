@@ -1,0 +1,12 @@
+description: Congés de formation
+values:
+  1972-01-01:
+    value: null
+  1984-01-01:
+    value: 0.001
+  1991-01-01:
+    value: 0.0015
+  1993-01-01:
+    value: 0.002
+  2015-01-01:
+    value: null
