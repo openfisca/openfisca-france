@@ -10,6 +10,7 @@ class apprenti(Variable):
     label = "L'individu est apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         age = individu('age', period)
@@ -93,6 +94,7 @@ class exoneration_cotisations_employeur_apprenti(Variable):
     label = "Exonération de cotisations employeur pour l'emploi d'un apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     # Artisans et employeurs de moins de 11 salariés
     #
     # - exonération totale (part patronale et salariale) des charges sociales,
@@ -147,6 +149,7 @@ class exoneration_cotisations_salariales_apprenti(Variable):
     label = "Exonération de cotisations salariales pour l'emploi d'un apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         apprenti = individu('apprenti', period)
