@@ -146,7 +146,7 @@ class contribution_supplementaire_apprentissage(Variable):
         ratio_alternants = individu('ratio_alternants', period)
         cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
 
-        taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
+        taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .03)
         taux_conditionnel = (
             (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
             + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
@@ -378,7 +378,7 @@ class taxe_apprentissage(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'apprentissage_alsace_moselle',
+            bareme_name = 'apprentissage_taxe_alsace_moselle',
             variable_name = 'taxe_apprentissage',
             )
 
@@ -387,7 +387,7 @@ class taxe_apprentissage(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'apprentissage',
+            bareme_name = 'apprentissage_taxe',
             variable_name = 'taxe_apprentissage',
             )
 
