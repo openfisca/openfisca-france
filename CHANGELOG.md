@@ -1,6 +1,6 @@
 # Changelog
 
-# 62.0.0 [#1595](https://github.com/openfisca/openfisca-france/pull/1595)
+# 63.0.0 [#1595](https://github.com/openfisca/openfisca-france/pull/1595)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -13,6 +13,39 @@
   - Corrige le taux plein de la CSG imposable sur les préretraites.
   - Met à jour les seuils de RFR (part et demi-part) pour les taux réduit et médian de CSG sur les revenus de remplacement.
   - Corrige le calcul de la CSG sur revenus de remplacement suite à l'introduction d'un taux médian pour la CSG sur les pensions de retraite et d'invalidité.
+
+## 62.0.0 [#1608](https://github.com/openfisca/openfisca-france/pull/1608)
+
+* Amélioration technique : Corrige ou améliore un calcul déjà existant.
+* Périodes concernées : toutes
+* Zones impactées : 
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique`.
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`.
+* Détails :
+  - Vérifie, corrige et améliore les formules et paramètres des cotisations salariales de la fonction publique (cotisations salariales de la rubrique 6 du barème IPP prélèvements sociaux)
+  - Supprime l'utilisation du preprocessing et des fonctions intermédiaires pour ces mêmes cotisations.
+  - Réarrange quelques formules des cotisations employeurs du public, mais sans aucun check de législation
+  - Changements "majeurs" (1ère arborescence dans la numérotation de version) car suppression de la variable `assiette_cotisations_sociales_public`, qui était redondante avec `remuneration_principale`
+
+## 61.1.0 [#1507](https://github.com/openfisca/openfisca-france/pull/1507)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 05/09/2014.
+* Zones impactées : `prestations/depart1825.py`.
+* Détails :
+  - Ajoute le dispositif départ 18-25
+
+### 61.0.2 [#1611](https://github.com/openfisca/openfisca-france/pull/1611)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters`.
+* Détails :
+  - Dans les metadonnées des paramètres, renommage de `date_parution_jo` en `official_journal_date`
+
+Ces changements (effacez les lignes ne correspondant pas à votre cas) :
+
+- Modifient l'API publique d'OpenFisca France, mais seulement dans les metadata et ce sont des corrections.
 
 ### 61.0.1 [#1609](https://github.com/openfisca/openfisca-france/pull/1609)
 
