@@ -16,7 +16,7 @@ class cotisation_ati_atiacl(Variable):
         categorie_salarie = individu('categorie_salarie', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         _P = parameters(period)
- 
+
         # ATI : pour les fonctionnaires d'Etat, hors militaires
         cotisation_etat_hors_militaires = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
@@ -160,7 +160,7 @@ class ircantec_employeur(Variable):
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
         _P = parameters(period)
- 
+
         ircantec = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "ircantec",
