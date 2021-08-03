@@ -105,13 +105,13 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['prive_cadre'] = pat.children.pop('cadre')
 
     # Rework commun to deal with public employees
-    for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle", "assedic", "chomfg", 
-                "construction_plus_de_10_salaries", "construction_plus_de_20_salaries", "construction_plus_de_50_salaries", "maladie", 
+    for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle", "assedic", "chomfg",
+                "construction_plus_de_10_salaries", "construction_plus_de_20_salaries", "construction_plus_de_50_salaries", "maladie",
                 "formprof_moins_de_10_salaries", "formprof_moins_de_11_salaries", "formprof_20_salaries_et_plus", "formprof_11_salaries_et_plus", "formprof_entre_10_et_19_salaries",
                 "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
         del commun.children[var]
 
-    for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle", 
+    for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle",
                 "formprof_moins_de_10_salaries", "formprof_moins_de_11_salaries", "formprof_20_salaries_et_plus", "formprof_11_salaries_et_plus", "formprof_entre_10_et_19_salaries",
                 "chomfg", "construction_plus_de_10_salaries", "construction_plus_de_20_salaries", "construction_plus_de_50_salaries", "assedic"]:
         del pat.children['fonc'].children['contract'].children[var]

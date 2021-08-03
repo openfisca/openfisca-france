@@ -10,3 +10,24 @@ brackets:
   threshold:
     1972-01-01:
       value: 0.0
+metadata:
+  order:
+  - employeur_tout_salaire
+  - moins_10_salaries
+  - 10_salaries_plus
+  - decomposition_taux_employeur_50_300_salaries
+  - toute_entreprise
+  reference:
+    2019-01-01:
+      title: Loi 2018-771 du 5/09/2018, art. 37
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037368540&cidTexte=JORFTEXT000037367660
+    2016-01-01:
+      title: Loi 2015-1785 du 29/12/2015, art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000031734417&cidTexte=JORFTEXT000031732865
+    1972-01-01:
+      title: Loi 71-575 du 16/07/1971
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000687666
+  date_parution_jo:
+    2019-01-01: 2018-09-06
+    2016-01-01: 2015-12-30
+    1972-01-01: 1971-07-17
