@@ -408,7 +408,35 @@ class crds_retraite(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2015(individu, period, parameters):    # TODO il manque la formula_1997_2014 (autres critères pour taux réduit)
+    def formula(individu, period, parameters):    # formula_1997_2014 à corriger une fois seuils RFR complétés avant 2015
+        retraite_brute = individu('retraite_brute', period)
+        parameters = parameters(period)
+        taux = parameters.prelevements_sociaux.contributions_sociales.crds.retraite.taux
+
+        return - taux * retraite_brute
+
+    def formula_2015(individu, period, parameters):
+        retraite_brute = individu('retraite_brute', period)
+        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
+        nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
+        parameters = parameters(period)
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuil_exoneration = seuils.seuil_rfr1 + (nbptr - 1) * seuils.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.demi_part_suppl_rfr2
+
+        taux_csg_retraite = select(
+            [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
+            [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
+            )
+
+        montant_crds = montant_csg_crds(
+            base_sans_abattement = retraite_brute,
+            law_node = law.prelevements_sociaux.contributions_sociales.crds.retraite,
+            plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+            ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
+        return montant_crds
+
+    def formula_2019(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
@@ -427,7 +455,7 @@ class crds_retraite(Variable):
             base_sans_abattement = retraite_brute,
             law_node = law.prelevements_sociaux.contributions_sociales.crds.retraite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
-            ) * (taux_csg_retraite == TypesTauxCSGRetraite.exonere)
+            ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
         return montant_crds
 
 
