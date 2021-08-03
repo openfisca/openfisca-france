@@ -1,4 +1,8 @@
-description: Nombre d'heures travaillÃ©es forfaitaires
+description: Nombre d'heures travaillées forfaitaires
 values:
+  1936-01-01:
+    value: 173.3
+  1982-02-01:
+    value: 169.0
   2002-01-01:
     value: 151.67
