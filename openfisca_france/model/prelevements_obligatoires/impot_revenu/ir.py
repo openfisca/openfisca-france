@@ -3000,7 +3000,7 @@ class rpns_imposables(Variable):
 
         majo_cga = max_(0, cga_taux2 * (ntimp + rpns_frag))  # Pour ne pas avoir à majorer les déficits
         # total 6
-        revevenus_non_salaries = rpns_frag + rpns_mrag + frag_fore + coupe_bois + atimp + ntimp + majo_cga - def_agri
+        revenus_non_salaries = rpns_frag + rpns_mrag + frag_fore + coupe_bois + atimp + ntimp + majo_cga - def_agri
 
         # revenu net après abatement
         # total 7
@@ -3009,7 +3009,7 @@ class rpns_imposables(Variable):
         exon_ncn = max_(0, mncn_timp - mncn_mvct) - mncn_timp  # ajout artificiel
 
         return (
-            revevenus_non_salaries + rev_ns_mi + rpns_pvct + exon_acc + exon_ncn
+            revenus_non_salaries + rev_ns_mi + rpns_pvct + exon_acc + exon_ncn
             + abic_impm - abic_defm + alnp_imps + cncn_aimp - rpns_mvct_pro - rpns_mvct_agr - rpns_mvct_nonpro
             )
 

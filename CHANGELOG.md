@@ -1,5 +1,15 @@
 # Changelog
 
+### 62.0.1 [#1617](https://github.com/openfisca/openfisca-france/pull/1617)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`.
+* Détails : 
+  - Corrige une faute de frappe
+  - Supprime des fichiers inutiles
+  - Met à jour la documentation avec la syntaxe CircleCI 2.0
+
 ## 62.0.0 [#1608](https://github.com/openfisca/openfisca-france/pull/1608)
 
 * Amélioration technique : Corrige ou améliore un calcul déjà existant.
@@ -27,11 +37,8 @@
 * Périodes concernées : toutes.
 * Zones impactées : `parameters`.
 * Détails :
-  - Dans les metadonnées des paramètres, renommage de `date_parution_jo` en `official_journal_date`
-
-Ces changements (effacez les lignes ne correspondant pas à votre cas) :
-
-- Modifient l'API publique d'OpenFisca France, mais seulement dans les metadata et ce sont des corrections.
+  - Dans les metadonnées des paramètres, renommage de `date_parution_jo` en `official_journal_date`.
+  - Modifie l'API publique d'OpenFisca France, mais seulement dans les metadata et ce sont des corrections.
 
 ### 61.0.1 [#1609](https://github.com/openfisca/openfisca-france/pull/1609)
 
