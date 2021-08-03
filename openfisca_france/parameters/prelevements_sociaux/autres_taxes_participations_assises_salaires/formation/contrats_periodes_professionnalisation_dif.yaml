@@ -7,12 +7,6 @@ values:
   2015-01-01:
     value: null
 metadata:
-  order:
-  - employeur_tout_salaire
-  - moins_10_salaries
-  - 10_salaries_plus
-  - decomposition_taux_employeur_50_300_salaries
-  - toute_entreprise
   reference:
     2015-01-01:
       title: Décret 2014-1240 du 24/10/2014, art. 9

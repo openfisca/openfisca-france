@@ -9,12 +9,6 @@ values:
   2008-05-01:
     value: null
 metadata:
-  order:
-  - employeur_tout_salaire
-  - moins_10_salaries
-  - 10_salaries_plus
-  - decomposition_taux_employeur_50_300_salaries
-  - toute_entreprise
   reference:
     1993-01-01:
     - title: Loi 93-121 du 27/01/1993 , art. 92

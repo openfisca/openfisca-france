@@ -11,12 +11,6 @@ brackets:
     1972-01-01:
       value: 0.0
 metadata:
-  order:
-  - employeur_tout_salaire
-  - moins_10_salaries
-  - 10_salaries_plus
-  - decomposition_taux_employeur_50_300_salaries
-  - toute_entreprise
   reference:
     2019-01-01:
       title: Loi 2018-771 du 5/09/2018, art. 37
