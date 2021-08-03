@@ -47,6 +47,7 @@ class versement_transport(Variable):
     entity = Individu
     label = "Versement transport"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
