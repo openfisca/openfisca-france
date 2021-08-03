@@ -11,7 +11,7 @@ Certaines règles sont communes à tous les dépôts OpenFisca et sont détaill�
 
 Les évolutions d'OpenFisca-France doivent pouvoir être comprises par des réutilisateurs qui n'interviennent pas nécessairement sur le code. Le Changelog, rédigé en français, se doit donc d'être le plus explicite possible.
 
-Chaque évolution sera documentée par les élements suivants :
+Chaque évolution sera documentée par les éléments suivants :
 
 - Sur la première ligne figure en guise de titre le numéro de version, et un lien vers la Pull Request introduisant le changement. Le niveau de titre doit correspondre au niveau d'incrémentation de la version.
 
@@ -61,17 +61,7 @@ Certaines interventions sur OpenFica concernent à la fois [OpenFica-Core](https
 
 C'est par exemple le cas lorsqu'une version à paraître de Core contient un changement non-rétrocompatible, et que l'on souhaite s'assurer qu'il est possible d'adapter France à cette nouvelle version.
 
-Dans ce cas, il peut être pertinent de faire tourner les tests d'OpenFisca-France en se basant sur une version non-publiée de Core, disponible sur une branche spécifique. Pour ce faire, éditer le fichier `config.yml` comme suit :
-
-```diff
-(...)
- - run:
-     name: Install dependencies
-     command: |
-       make build
-+      pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
-(...)
-```
+Dans ce cas, il peut être pertinent d'exécuter les tests d'OpenFisca-France en se basant sur une version non-publiée de Core, disponible sur une branche spécifique. Pour ce faire, éditer le fichier [`.circleci/config.yml`](https://github.com/openfisca/openfisca-france/blob/9c44a5e2d44e1319c64326e7c528b2ac37cbfc05/.circleci/config.yml#L26).
 
 Bien sûr, une fois la version spécifique de core publiée, **ce changement doit être reverté** avant le merge de la pull request sur France.
 
