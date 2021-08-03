@@ -431,8 +431,8 @@ class crds_retraite(Variable):
 
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            law_node = law.prelevements_sociaux.contributions_sociales.crds.retraite,
-            plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+            law_node = parameters.prelevements_sociaux.contributions_sociales.crds.retraite,
+            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
         return montant_crds
 
@@ -453,8 +453,8 @@ class crds_retraite(Variable):
 
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            law_node = law.prelevements_sociaux.contributions_sociales.crds.retraite,
-            plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+            law_node = parameters.prelevements_sociaux.contributions_sociales.crds.retraite,
+            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
         return montant_crds
 
