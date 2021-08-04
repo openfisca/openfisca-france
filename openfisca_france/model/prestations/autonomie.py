@@ -23,7 +23,7 @@ class apa_domicile_participation(Variable):
     value_type = float
     label = "Participation du bénéficiaire de l'APA à domicile en euros"
     entity = Individu
-    definition_period = MONTH`
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2002(individu, period, parameters):
