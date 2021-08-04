@@ -38,12 +38,12 @@ def montant_csg_crds_2_taux(base_avec_abattement = None, base_sans_abattement = 
             factor = plafond_securite_sociale,
             round_base_decimals = 2,
             ) + base_sans_abattement
-    if indicatrice_taux_plein is None and indicatrice_taux_reduit is None :
+    if indicatrice_taux_plein is None and indicatrice_taux_reduit is None:
         return -law_node.taux * base
     else:
         return - (
-            law_node.taux_plein * indicatrice_taux_plein + 
-            law_node.taux_reduit * indicatrice_taux_reduit
+            law_node.taux_plein * indicatrice_taux_plein
+            + law_node.taux_reduit * indicatrice_taux_reduit
             ) * base
 
 
@@ -61,13 +61,13 @@ def montant_csg_crds_3_taux(base_avec_abattement = None, base_sans_abattement = 
             factor = plafond_securite_sociale,
             round_base_decimals = 2,
             ) + base_sans_abattement
-    if indicatrice_taux_plein is None and indicatrice_taux_reduit is None and indicatrice_taux_intermediaire is None :
+    if indicatrice_taux_plein is None and indicatrice_taux_reduit is None and indicatrice_taux_intermediaire is None:
         return -law_node.taux * base
     else:
         return - (
-            law_node.taux_plein * indicatrice_taux_plein + 
-            law_node.taux_reduit * indicatrice_taux_reduit + 
-            law_node.taux_median * indicatrice_taux_intermediaire
+            law_node.taux_plein * indicatrice_taux_plein
+            + law_node.taux_reduit * indicatrice_taux_reduit
+            + law_node.taux_median * indicatrice_taux_intermediaire
             ) * base
 
 
@@ -100,7 +100,7 @@ class csg_deductible_chomage(Variable):
                 TypesTauxCSGRemplacement.taux_reduit,
                 TypesTauxCSGRemplacement.taux_plein,
                 )
-            )        
+            )
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = chomage_brut,
@@ -207,7 +207,7 @@ class crds_chomage(Variable):
             )
         smic_h_b = parameters.cotsoc.gen.smic_h_b
         # salaire_mensuel_reference = chomage_brut / .7
-        # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12) 
+        # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)
         heures_mensuelles = parameters.cotsoc.gen.nb_heure_travail_mensuel
 
         cho_seuil_exo = parameters.prelevements_sociaux.contributions_sociales.csg.chomage.min_exo * heures_mensuelles * smic_h_b
