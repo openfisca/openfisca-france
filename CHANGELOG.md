@@ -1,5 +1,12 @@
 # Changelog
 
+# 64.0.1 [#1626](https://github.com/openfisca/openfisca-france/pull/1626)
+
+* Changement mineur.
+* Périodes concernées : jusqu'au 31/12/2005
+* Zones impactées : /model/prestations/minima_sociaux/asi_aspa.py
+* Détails : L'aspa n'existe pas avant 2006
+
 # 64.0.0 [#1622](https://github.com/openfisca/openfisca-france/pull/1622)
 
 * Évolution du système socio-fiscal. | Amélioration technique.
