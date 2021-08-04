@@ -1,5 +1,5 @@
 from numpy import logical_not as not_
-from openfisca_france.model.base import Variable, Famille, MONTH, ADD
+from openfisca_france.model.base import Variable, Famille, MONTH, ADD, set_input_dispatch_by_period
 
 
 class cmu_acs_eligibilite(Variable):
