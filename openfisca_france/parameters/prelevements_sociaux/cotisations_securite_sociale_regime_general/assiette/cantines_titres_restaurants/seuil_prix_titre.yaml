@@ -1,8 +1,16 @@
-description: Taux de prise en charge par l'entreprise maximum pour non intégration
-  dans l'assiette des cotisations sociales
+description: Seuil maximum de prise en charge par l'entreprise pour non intégration des cantines et titres restaurants dans l'assiette des cotisations sociales du régime général
 unit: currency
 values:
   2000-01-01:
     value: 5.33
   2015-01-01:
     value: 5.66
+metadata:
+  ux_name: Seuil
+  last_review:
+    2015-01-01
+  reference:
+  official_journal_date:
+  notes:
+  description_en:
+documentation: |
