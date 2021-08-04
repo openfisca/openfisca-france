@@ -1,0 +1,41 @@
+description: Barème pour les salariés non-cadre des cotisations aux régimes complémentaires de retraite (secteur privé) pour la structure financière de l'AGFF (2001-2018)
+brackets:
+- rate:
+    2001-04-01:
+      value: 0.008
+  threshold:
+    2001-04-01:
+      value: 0.0
+- rate:
+    2001-04-01:
+      value: 0.009
+  threshold:
+    2001-04-01:
+      value: 1.0
+- rate:
+    2001-04-01:
+      value: 0.0
+  threshold:
+    2001-04-01:
+      value: 3.0
+metadata:
+  ux_name: Non-cadre
+  last_review:
+    2021-07-30
+  unit_rate: /1
+  unit_threshold: PSS
+  reference:
+    2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+    2001-04-01: Accord Arrco-Agirc du 10/02/2001 (ch. III) et du 12/11/2003
+  notes:
+    2019-01-01: Suppression de l'AGFF avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et CET, voir barème AGIRC-ARRCO)
+  description_en: Contributions to the financial structure AGFF (2001-2016)
+documentation: |
+  Notes :
+  (i) L'Association pour la Gestion du Fonds de Financement de l'AGIRC et de l'ARRCO (AGFF) remplace depuis le 1er avril 2001, l'Association pour la structure Financière (ASF).
+  (voir feuille "ASF")
+  L'ASF était perçue par les ASSEDIC quand l'AGFF est perçue par les régimes complémentaires AGIRC-ARRCO.
+  Le dispositif est reconduit jusqu'à 2018.
+  (ii) La tranche 2 est située entre 1 et 3 fois le PSS et s'applique pour les non cadres; la tranche B, entre 1 et 4 fois le plafond, s'applique pour les cadres.
+  La tranche 1 (pour les non-cadres) et la tranche A (pour les cadres) correspond au salaire en dessous d'un PSS
+

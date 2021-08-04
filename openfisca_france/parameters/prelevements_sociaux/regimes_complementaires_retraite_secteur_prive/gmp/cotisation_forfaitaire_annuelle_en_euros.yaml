@@ -1,0 +1,119 @@
+description: Cotisation forfaitaire annuelle pour les cotisations pour la garantie minimale de points (GMP) aux régimes complémentaires de retraite (secteur privé) (1989-2018)
+
+values:
+  1989-01-01:
+    value: 2843.0
+  1990-01-01:
+    value: 3068.0
+  1991-01-01:
+    value: 3196.1
+  1992-01-01:
+    value: 3276.9
+  1993-01-01:
+    value: 3307.3
+  1994-01-01:
+    value: 3364.6
+  1995-01-01:
+    value: 3612.6
+  1996-01-01:
+    value: 3605.4
+  1997-01-01:
+    value: 3339.0
+  1998-01-01:
+    value: 3465.0
+  1999-01-01:
+    value: 3703.5
+  2000-01-01:
+    value: 3958.5
+  2001-01-01:
+    value: 4018.5
+  2002-01-01:
+    value: 622.5
+  2003-01-01:
+    value: 633.0
+  2004-01-01:
+    value: 648.0
+  2005-01-01:
+    value: 663.96
+  2006-01-01:
+    value: 682.0
+  2007-01-01:
+    value: 707.0
+  2008-01-01:
+    value: 731.0
+  2009-01-01:
+    value: 744.0
+  2010-01-01:
+    value: 753.72
+  2011-01-01:
+    value: 770.28
+  2012-01-01:
+    value: 787.68
+  2013-01-01:
+    value: 795.12
+  2014-01-01:
+    value: 796.08
+  2016-01-01:
+    value: 816.84
+  2017-01-01:
+    value: 844.56
+  2018-01-01:
+    reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2017/201710dt_parametres_Agirc-Arrco.pdf
+    value: 872.52
+  2019-01-01:
+    value: 0.0
+metadata:
+  ux_name: Cotisation forfaitaire annuelle
+  last_review:
+    2021-07-30
+  unit_rate: /1
+  unit_threshold: PSS
+  reference:
+    2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+    2018-01-01: Circulaire 2017-07-DT du 16/10/2017
+    2017-01-01: Circulaire 2016-4-DT du 10/10/2016
+    2016-01-01: Circulaire 2015-15-DRJ du 28/12/2015
+    2015-01-01: Circulaire 2014-16-DRJ du 18/12/2014
+    2014-01-01: Circulaire 2014-2-DT du 20/03/2014
+    2013-01-01: Circulaire 2013-6-DT du 02/04/2013
+    2012-01-01: Circulaire 2012-09-DT du 20/03/2012
+    2011-01-01: Circulaire 2011-02-DT du 18/03/2011
+    2010-01-01: Circulaire 2010-2-DT du 18/03/2010
+    2009-01-01: Circulaire 2009-1-DT du 18/03/2009
+    2008-01-01: Circulaire 2008-4-DT du 14/03/2008
+    2007-01-01: Circulaire 2007-1-DT du 14/03/2007
+    2006-01-01: Circulaire 2006-2-DRE du 19/05/2006
+    2005-01-01: Circulaires 2005-2-DT du 21/03/2005 et 2005-9-DRE du 09/12/2005
+    1989-01-01: CCN des Cadres du 14/03/1947, art. 6 (§2, F.)
+  notes:
+    2019-01-01: Suppression de la GMP avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et CET, voir barème AGIRC-ARRCO)
+    2004-01-01: Les valeurs des paramètres pour les années 2005 et antérieures sont tirées de barèmes communiqués par l'AGIRC-ARRCO.
+    2000-01-01: BSP n° 48 du 31/01/2000
+    1999-01-01: BSP n° 44 du 31/01/1999
+    1998-01-01: BSP n° 40 du 31/01/1998 et BSP n°44 du 31/01/1999
+    1997-01-01: BSP n° 36 du 31/01/1997 et BSP n°40 du 31/01/1998
+    1996-01-01: BSP n° 36 du 31/01/1997
+    1995-01-01: BSP n° 32 du 31/01/1996
+  description_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
+documentation: |
+  Notes :
+  Certains montants n'ont pas été trouvés dans les textes officiels, mais ont été recalculés à partir de la formule de la GMP (voir note ci-dessous).
+  Sources :
+  Site de l'AGIRC-ARRCO; § V.2.1.2 du Guide réglementaire AGIRC et ARRCO.
+  Les valeurs des paramètres pour les années 2005 et antérieures sont tirées de barèmes communiqués par l'AGIRC-ARRCO. Voir notamment le fichier disponible à l'adresse suivante:
+  http://www.agirc-arrco.fr/fileadmin/agircarrco/documents/Doc_specif_page/Historique_valeur_du_point_salaire_de_reference.pdf
+  Principe de la GMP :
+  La Garantie Minimale de Points (GMP) vise à garantir à chaque participant du régime AGIRC (cadre) un minimum de points de retraite pour une année donnée. Un montant minimum de cotisations doit être versé en contrepartie de cette garantie.
+  Cette garantie est prévue par la convention collective nationale du 14/03/1947 (art. 6 et art. 36 de l'annexe I.).
+  L'arrêté d'agrément et d'extension du 24/02/1989 relatif à l'accord du 08/12/1988 rend la GMP obligatoire pour toutes les entreprises adhérentes au régime de retraite complémentaire des cadres.
+  Mode de calcul de la cotisation GMP :
+  La GMP est une cotisation versée à titre éventuelle, dans le cas où la cotisation AGIRC sur la tranche B est inférieure à la cotisation forfaitaire fixée chaque année par l'AGIRC.
+  La cotisation GMP est calculée comme la différence entre la cotisation forfaitaire et la cotisation AGIRC versée sur la tranche B.
+  La cotisation forfaitaire est fixée de telle manière que lorsque le salaire est supérieur au salaire charnière, la cotisation sur tranche B permet d'atteindre les 120 points sans surcotisation.
+  La répartition cotisation employeur/cotisation employé est la même que pour la cotisation AGIRC en tranche B (cf. feuille "AGIRC" du présent fichier).
+  La cotisation forfaitaire annuelle peut-être calculée à partir de la formule de calcul des points AGIRC:
+  Nombre de points de retraite par année = assiette de cotisation x taux de cotisation / salaire de référence
+  Attention cependant!
+  C'est sur le taux effectif que sont calculées les cotisations (taux contractuel * taux d'appel). Mais c'est à partir du taux contractuel que sont calculés les points.
+  Le taux d'appel de 125 signifie que c'est sur une base de 125 que sont calculées les cotisations, mais que c'est sur une base 100 que sont calculés les points AGIRC.
+

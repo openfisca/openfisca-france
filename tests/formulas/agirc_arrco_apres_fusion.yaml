@@ -1,0 +1,17 @@
+- period: 2019-01
+  description: Salarié sous le plafond de la sécurité sociale
+  relative_error_margin: 0.01
+  input:
+    salaire_de_base: 2000
+  output:
+    agirc_arrco_salarie: -63
+    agirc_arrco_employeur: -94.4
+
+- period: 2019-01
+  description: Salarié au dessus du plafond de la sécurité sociale
+  relative_error_margin: 0.01
+  input:
+    salaire_de_base: 10000
+  output:
+    agirc_arrco_salarie: -682.2
+    agirc_arrco_employeur: -1022.5

@@ -1,0 +1,52 @@
+description: Barème salarié des cotisations retraites exceptionnelle et temporaire (CET) aux régimes complémentaires de retraite (secteur privé) (1997-2018)
+brackets:
+- rate:
+    1997-01-01:
+      value: 0.00025
+    1998-01-01:
+      value: 0.0005
+    1999-01-01:
+      value: 0.0008
+    2000-01-01:
+      value: 0.0011
+    2001-01-01:
+      value: 0.0013
+    2019-01-01:
+      value: 0.0
+  threshold:
+    1997-01-01:
+      value: 0.0
+- rate:
+    1997-01-01:
+      value: 0.0
+  threshold:
+    1997-01-01:
+      value: 8.0
+metadata:
+  ux_name: Barème salarié
+  last_review:
+    2021-07-30
+  unit_rate: /1
+  unit_threshold: PSS
+  reference:
+    2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+    1998-01-01: Référence non trouvée
+    1997-01-01: CCN des cadres du 14/03/1947, art. 2 de l'annexe III.
+  notes:
+    2019-01-01: Suppression de la CET avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et nouvelle CET, voir barème AGIRC-ARRCO)
+    2001-01-01: BSP pour 2001non communicables à la BNF
+    2000-01-01: BSP n°48 du 31/01/2000
+    1999-01-01: BSP n°44 du 31/01/1999
+    1998-01-01: BSP n°40 du 31/01/1998. Plus qu'un seul taux à partir de 1998.
+    1997-01-01: "BSP : en 1997, le taux est de 0,07% (0,045% employeur, 0,025% salarié) pour le taux contractuel de 14%. Elle est respectivement de 0,044% et 0,026% pour les taux contractuels de 15 et 16%"
+  description_en: Exceptional and temporary pension contribution (CET)
+documentation: |
+  Notes :
+  CET: Cotisation Exceptionnelle et Temporaire, cotisation pour le régime Agirc (pour les cadres uniquement).
+  Elle a été instaurée par les accords AGIRC du 25/04/1996.
+  Non génératrice de droits; non soumise au pourcentage d’appel des cotisations (donc taux contractuel = taux effectif). Elle est répartie entre employeur et cadre de la même façon que la cotisation Agirc sur la tranche B.
+  Pour 2017, circulaire 2016-11-DRJ du 16/12/2016
+  Pour 2018, circulaire 2017-12-DRJ du 13/12/2017
+  L'article Article 4-1 de l'accord du 30 octobre 2015 relatif aux retraites complémentaires Agirc-Arrco-AGFF fixe le taux total CET pour les années 2016, 2017 et 2018.
+
+

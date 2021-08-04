@@ -43,19 +43,27 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(regime_general.mmid.bareme.employeur.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(autres.fnal.children)  # À harmoniser !
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
+    commun.children.update(retraites.ceg.employeur.children)
+    commun.children.update(retraites.cet2019.employeur.children)
+    commun.children.update(retraites.agirc_arrco.employeur.children)
 
     # Réindexation NonCadre
     # Initialisation
     noncadre = ParameterNode("noncadre", data={})
     pat.add_child('noncadre', noncadre)
-    pat.children['noncadre'].children.update(retraites.employeur.noncadre.children)
+    pat.children['noncadre'].children.update(retraites.agff.employeur.noncadre.children)
+    pat.children['noncadre'].children.update(retraites.arrco.employeur.noncadre.children)
     pat.children['noncadre'].children.update(commun.children)
 
     # Réindexation Cadre
     # Initialisation
     cadre = ParameterNode("cadre", data={})
     pat.add_child('cadre', cadre)
-    pat.children['cadre'].children.update(retraites.employeur.cadre.children)
+    pat.children['cadre'].children.update(retraites.agff.employeur.cadre.children)
+    pat.children['cadre'].children.update(retraites.arrco.employeur.cadre.children)
+    pat.children['cadre'].children.update(retraites.agirc.employeur.children)
+    pat.children['cadre'].children.update(retraites.apec.employeur.children)
+    pat.children['cadre'].children.update(retraites.cet.employeur.children)
     pat.children['cadre'].children.update(commun.children)
     # Réindexation Fonc
     # Initialisation
@@ -142,18 +150,26 @@ def build_sal(node_json):
     commun.children.update(regime_general.mmid.bareme.salarie.children)  # harmoniser !
     commun.children.update(regime_general.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(regime_general.cnav.bareme.salarie.children)  # À harmoniser !
+    commun.children.update(retraites.ceg.salarie.children)
+    commun.children.update(retraites.cet2019.salarie.children)
+    commun.children.update(retraites.agirc_arrco.salarie.children)
 
     # Non Cadre
     # Initialisation
     noncadre = ParameterNode("noncadre", data={})
     sal.add_child('noncadre', noncadre)
-    sal.children['noncadre'].children.update(retraites.salarie.noncadre.children)
+    sal.children['noncadre'].children.update(retraites.agff.salarie.noncadre.children)
+    sal.children['noncadre'].children.update(retraites.arrco.salarie.noncadre.children)
     sal.children['noncadre'].children.update(commun.children)
 
     # Cadre
     cadre = ParameterNode("cadre", data={})
     sal.add_child('cadre', cadre)
-    sal.children['cadre'].children.update(retraites.salarie.cadre.children)
+    sal.children['cadre'].children.update(retraites.agff.salarie.cadre.children)
+    sal.children['cadre'].children.update(retraites.arrco.salarie.cadre.children)
+    sal.children['cadre'].children.update(retraites.agirc.salarie.children)
+    sal.children['cadre'].children.update(retraites.apec.salarie.children)
+    sal.children['cadre'].children.update(retraites.cet.salarie.children)
     sal.children['cadre'].children.update(commun.children)
 
     # Renaming

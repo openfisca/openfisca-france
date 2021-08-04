@@ -1,6 +1,4 @@
 import logging
-
-
 from openfisca_france.model.base import *
 
 
@@ -38,11 +36,14 @@ class cotisations_employeur_contributives(Variable):
     def formula(individu, period, parameters):
         ags = individu('ags', period)
         agff_employeur = individu('agff_employeur', period, options = [ADD])
+        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
         agirc_employeur = individu('agirc_employeur', period, options = [ADD])
         agirc_gmp_employeur = individu('agirc_gmp_employeur', period, options = [ADD])
         apec_employeur = individu('apec_employeur', period)
         arrco_employeur = individu('arrco_employeur', period)
         chomage_employeur = individu('chomage_employeur', period)
+        contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
+        cotisation_equilibre_technique_employeur = individu('cotisation_equilibre_technique_employeur', period)
         cotisation_exceptionnelle_temporaire_employeur = individu(
             'cotisation_exceptionnelle_temporaire_employeur', period)
         fonds_emploi_hospitalier = individu('fonds_emploi_hospitalier', period, options = [ADD])
@@ -57,10 +58,13 @@ class cotisations_employeur_contributives(Variable):
             ags
             + agff_employeur
             + agirc_employeur
+            + agirc_arrco_employeur
             + agirc_gmp_employeur
             + apec_employeur
             + arrco_employeur
             + chomage_employeur
+            + contribution_equilibre_general_employeur
+            + cotisation_equilibre_technique_employeur
             + cotisation_exceptionnelle_temporaire_employeur
             + vieillesse_deplafonnee_employeur
             + vieillesse_plafonnee_employeur
@@ -114,11 +118,14 @@ class cotisations_salariales_contributives(Variable):
 
     def formula(individu, period, parameters):
         agff_salarie = individu('agff_salarie', period)
+        agirc_arrco_salarie = individu('agirc_arrco_salarie', period)
         agirc_salarie = individu('agirc_salarie', period)
         agirc_gmp_salarie = individu('agirc_gmp_salarie', period)
         apec_salarie = individu('apec_salarie', period)
         arrco_salarie = individu('arrco_salarie', period)
         chomage_salarie = individu('chomage_salarie', period)
+        contribution_equilibre_general_salarie = individu('contribution_equilibre_general_salarie', period)
+        cotisation_equilibre_technique_salarie = individu('cotisation_equilibre_technique_salarie', period)
         cotisation_exceptionnelle_temporaire_salarie = individu('cotisation_exceptionnelle_temporaire_salarie', period)
         ircantec_salarie = individu('ircantec_salarie', period)
         pension_civile_salarie = individu('pension_civile_salarie', period)
@@ -129,11 +136,14 @@ class cotisations_salariales_contributives(Variable):
         cotisations_salariales_contributives = (
             # prive
             agff_salarie
+            + agirc_arrco_salarie
             + agirc_salarie
             + agirc_gmp_salarie
             + apec_salarie
             + arrco_salarie
             + chomage_salarie
+            + contribution_equilibre_general_salarie
+            + cotisation_equilibre_technique_salarie
             + cotisation_exceptionnelle_temporaire_salarie
             + vieillesse_deplafonnee_salarie
             + vieillesse_plafonnee_salarie

@@ -1,0 +1,117 @@
+description: Forfait annuel des cotisations pour l'association pour l'emploi des cades (APEC), régimes complémentaires de retraite (secteur privé)
+values:
+  1976-01-01:
+    value: 9.12
+  1977-01-01:
+    value: 10.4
+  1978-01-01:
+    value: 11.52
+  1979-01-01:
+    value: 12.88
+  1980-01-01:
+    value: 14.44
+  1981-01-01:
+    value: 16.52
+  1982-01-01:
+    value: 19.68
+  1983-01-01:
+    value: 22.0
+  1984-01-01:
+    value: 23.92
+  1985-01-01:
+    value: 25.6
+  1986-01-01:
+    value: 26.92
+  1987-01-01:
+    value: 28.04
+  1988-01-01:
+    value: 28.88
+  1989-01-01:
+    value: 30.08
+  1990-01-01:
+    value: 31.44
+  1991-01-01:
+    value: 33.08
+  1992-01-01:
+    value: 34.6
+  1993-01-01:
+    value: 35.96
+  1994-01-01:
+    value: 36.76
+  1995-01-01:
+    value: 37.44
+  1996-01-01:
+    value: 38.68
+  1997-01-01:
+    value: 39.52
+  1998-01-01:
+    value: 40.56
+  1999-01-01:
+    value: 41.68
+  2000-01-01:
+    value: 42.32
+  2001-01-01:
+    value: 43.04
+  2002-01-01:
+    value: 6.772
+  2003-01-01:
+    value: 7.0
+  2004-01-01:
+    value: 7.13
+  2005-01-01:
+    value: 7.25
+  2006-01-01:
+    value: 7.46
+  2007-01-01:
+    value: 7.72
+  2008-01-01:
+    value: 7.99
+  2009-01-01:
+    value: 8.23
+  2010-01-01:
+    value: 8.31
+  2011-01-01:
+    value: 0.0
+metadata:
+  ux_name: Forfait annuel
+  last_review:
+    2021-07-30
+  unit_rate: /1
+  unit_threshold:
+  reference:
+    2011-01-01: Circulaire AGIRC 2010-5-DF du 29/07/2010
+    2010-01-01: Circulaire AGIRC-ARRCO 2009-30- DRE du 16/12/2009
+    2009-01-01: Circulaire AGIRC-ARRCO 2009-1-DRE du 05/01/2009
+    2008-01-01: Circulaire AGIRC-ARRCO 2007-27-DRE du 14/12/2007
+    2007-01-01: Circulaire AGIRC-ARRCO 2006-17-DRE du 18/12/2006
+    2006-01-01: Circulaire AGIRC-ARRCO 2005-19-DRE du 13/12/2005
+    1976-01-01: 
+     - Protocole d'accord Agirc-Apec du 30/12/1975. 
+     - title: Avenant n°5 du 17/11/1975
+       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000668581&categorieLien=id
+    1975-01-01:
+    - Avenant A 56 du 05/02/1974
+    - Avenant n°4 du 21/11/1973
+    1971-01-01: Avenant n° 2 du 09/06/1969
+    1967-01-01: Convention APEC du 18/11/1966, art. 3
+  official_journal_date:
+    1976-01-01: 1976-02-26
+  notes:
+    2011-01-01: Remplacement de la cotisation forfaitaire par un taux proportionnel sous plafond.
+    1976-01-01: Cotisation proportionnelle "à comper du 1er franc" (tranche A).
+    1975-01-01: Augmentation du taux de 0,04 % à 0,06 % pour la tranche B. Incertitude pour la référence législative.
+    1971-01-01: Passage d'une cotisation forfaitaire à une cotisation proportionnelle.
+    1967-01-01: Cotisation forfaitaire d'un montant de 2 FF par cadre.
+    description_en: Contributions for the Association for the employment of executives (APEC)
+documentation: |
+  Note :
+  L'Association pour l'emploi des cadres (APEC) a été mise en place par la convention du 18/11/1966.
+  La cotisation APEC est recouvrée par l'AGIRC.
+  Le forfait annuel est dû pour les salaires en-dessous du PSS (tranche A).
+  Le forfait annuel dépend du PSS annuel (0,0006*PSS partagé en 40/60) mais la règle des arrondis semble variable dans le temps.
+  En pratique, l'Agirc a calculé la cotisation comme un forfait plutôt que comme une cotisation proportionnelle au salaire sous plafond.
+  Références contractuelles et législatives :
+  La convention du 18/11/1966 et ses avenants n°1 du 03/01/1969, n°2 du 09/06/1969, n°3 du 10/04/1973 et n°4 du 21/12/1973 ont été étendus,
+  en application de l'article L. 133-8, par l'arrêté du 13/08/1974 (JO 29/08/1974).
+  L'avenant n°5, qui étend la cotisation aux salaires sous plafond, est institué par l'arrêté du 16/02/1976 (JO 26/02/1976).
+  Protocole d'accord Agirc-Apec du 30/12/1975.

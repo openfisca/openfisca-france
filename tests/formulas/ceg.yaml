@@ -1,0 +1,17 @@
+- period: 2019-01
+  description: Salarié en dessous du plafond de la sécurité sociale
+  relative_error_margin: 0.01
+  input:
+    salaire_de_base: 2000
+  output:
+    contribution_equilibre_general_salarie: -17.2
+    contribution_equilibre_general_employeur: -25.8
+
+- period: 2019-01
+  description: Salarié au dessus du plafond de la sécurité sociale
+  relative_error_margin: 0.01
+  input:
+    salaire_de_base: 10000
+  output:
+    contribution_equilibre_general_salarie: -100.7
+    contribution_equilibre_general_employeur: -151.1
