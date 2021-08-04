@@ -581,15 +581,24 @@ class cotisation_chomage_salarie(Variable):
     end = '2018-09-30'
 
     def formula(individu, period, parameters):
-        cotisation = apply_bareme(
+        cotisation_chomage = apply_bareme(
             individu,
             period,
             parameters,
             cotisation_type = "salarie",
-            bareme_name = "assedic",
+            bareme_name = "chomage",
             variable_name = "cotisation_chomage_salarie",
             )
-        return cotisation
+        asf = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = "salarie",
+            bareme_name = "asf",
+            variable_name = "cotisation_chomage_salarie",
+            )
+
+        return cotisation_chomage + asf
 
 
 class cotisation_chomage_employeur(Variable):
@@ -600,15 +609,24 @@ class cotisation_chomage_employeur(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        cotisation = apply_bareme(
+        cotisation_chomage = apply_bareme(
             individu,
             period,
             parameters,
             cotisation_type = "employeur",
-            bareme_name = "assedic",
+            bareme_name = "chomage",
             variable_name = "cotisation_chomage_employeur",
             )
-        return cotisation
+        asf = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = "employeur",
+            bareme_name = "asf",
+            variable_name = "cotisation_chomage_salarie",
+            )
+
+        return cotisation_chomage + asf
 
 
 class contribution_equilibre_general_salarie(Variable):

@@ -1,72 +1,137 @@
-description: Cotisations employeur de la tranche A au régime de l'assurance chômage
-unit: /1
-values:
-  2017-10-01:
-    value: 0.0405
-  2007-01-01:
-    value: 0.04
-  2006-01-01:
-    value: 0.0404
-  2003-01-01:
-    value: 0.04
-  2002-07-01:
-    value: 0.037
-  2002-01-01:
-    value: 0.036
-  2001-01-01:
-    value: 0.037
-  1997-01-01:
-    value: 0.0397
-  1993-08-01:
-    value: 0.0418
-  1992-08-01:
-    value: 0.0363
-  1992-01-01:
-    value: 0.0323
-  1991-01-01:
-    value: 0.0305
-  1990-10-01:
-    value: 0.0311
-  1988-01-01:
-    value: 0.0323
-  1985-11-01:
-    value: 0.0307
-  1985-07-01:
-    value: 0.0408
-  1984-04-01:
-    value: 0.0288
-  1983-07-01:
-    value: 0.0408
-  1982-11-06:
-    value: 0.0348
-  1979-04-01:
-    value: 0.0276
-  1978-05-01:
-    value: 0.024
-  1978-01-01:
-    value: 0.0192
-  1977-01-01:
-    value: 0.0176
-  1975-07-01:
-    value: 0.0192
-  1975-01-01:
-    value: 0.0144
-  1974-01-01:
-    value: 0.0064
-  1973-01-01:
-    value: 0.0056
-  1969-01-01:
-    value: 0.0032
-  1968-01-01:
-    value: 0.0028
-  1962-01-01:
-    value: 0.002
-  1959-01-01:
-    value: 0.008
+description: Cotisations salariales au régime de l'assurance chômage
+brackets:
+  - rate:
+      2018-01-01:
+        value: 0.0095
+      2007-01-01:
+        value: 0.024
+      2006-01-01:
+        value: 0.0244
+      2003-01-01:
+        value: 0.024
+      2002-07-01:
+        value: 0.021
+      2002-01-01:
+        value: 0.02
+      2001-01-01:
+        value: 0.021
+      1997-01-01:
+        value: 0.0221
+      1993-08-01:
+        value: 0.0242
+      1992-08-01:
+        value: 0.0207
+      1992-01-01:
+        value: 0.0167
+      1991-01-01:
+        value: 0.0153
+      1990-10-01:
+        value: 0.0159
+      1988-01-01:
+        value: 0.0167
+      1985-11-01:
+        value: 0.0151
+      1985-07-01:
+        value: 0.0212
+      1984-04-01:
+        value: 0.0112
+      1983-07-01:
+        value: 0.0172
+      1982-11-06:
+        value: 0.0132
+      1979-04-01:
+        value: 0.0084
+      1978-05-01:
+        value: 0.006
+      1978-01-01:
+        value: 0.0048
+      1977-01-01:
+        value: 0.0044
+      1975-07-01:
+        value: 0.0048
+      1975-01-01:
+        value: 0.0036
+      1974-01-01:
+        value: 0.0016
+      1973-01-01:
+        value: 0.0014
+      1969-01-01:
+        value: 0.0008
+      1968-01-01:
+        value: 0.0007
+      1962-01-01:
+        value: 0.0005
+      1959-01-01:
+        value: 0.002
+    threshold:
+      1959-01-01:
+        value: 0.0
+  - rate:
+      2018-10-01:
+        value: null
+      2018-01-01:
+        value: 0.0095
+      2007-01-01:
+        value: 0.024
+      2006-01-01:
+        value: 0.0244
+      2003-01-01:
+        value: 0.024
+      2002-07-01:
+        value: 0.021
+      2002-01-01:
+        value: 0.02
+      2001-01-01:
+        value: 0.026
+      1997-01-01:
+        value: 0.0271
+      1993-08-01:
+        value: 0.0297
+      1992-08-01:
+        value: 0.0257
+      1992-01-01:
+        value: 0.0217
+      1991-01-01:
+        value: 0.0211
+      1988-01-01:
+        value: 0.0217
+      1985-11-01:
+        value: 0.0201
+      1985-07-01:
+        value: 0.0262
+      1984-04-01:
+        value: 0.0162
+      1983-07-01:
+        value: 0.0172
+      1982-11-06:
+        value: 0.0132
+      1979-04-01:
+        value: 0.0084
+      1978-05-01:
+        value: 0.006
+      1978-01-01:
+        value: 0.0048
+      1977-01-01:
+        value: 0.0044
+      1975-07-01:
+        value: 0.0048
+      1959-01-01:
+        value: null
+    threshold:
+      1975-07-01:
+        value: 1.0
+  - rate:
+      1959-01-01:
+        value: 0
+    threshold:
+      1959-01-01:
+        value: 4.0
 metadata:
-  ux_name: Taux employeur
+  unit_rate: /1
+  unit_threshold: PSS
+  ux_name: Taux salarié
   last_review:
-    2017-00-01
+    2018-10-01
   reference:
     2018-10-01:
       title: Loi 2017-1836 du 30/12/2017, art. 8 VI. (LFSS pour 2018)
@@ -146,7 +211,6 @@ metadata:
     1975-07-01: S'applique bien entre 1 et 4 plafonds
     1969-01-01: Pas de référence trouvée.
     1968-01-01: Pas de référence trouvée.
-  description_en: Unemployment insurance contribution
 documentation: |
   Notes :
   La tranche A correspond au salaire en-dessous du PSS et tranche B le salaire de 1 à 4 plafonds.

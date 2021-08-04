@@ -1,16 +1,37 @@
-description: Cotisations salariales pour la tranche A de la structure financière ASF (1984-2001) au régime de l'assurance chômage
-unit: /1
-values:
-  1984-01-01:
-    value: 0.008
-  1990-10-01:
-    value: 0.0072
-  1994-01-01:
-    value: 0.008
-  2001-04-01:
-    value: null
+description: Cotisations employeur pour la tranche B de la structure financière ASF (1984-2001) au régime de l'assurance chômage
+brackets:
+  - rate:
+      1984-01-01:
+        value: 0.012
+      1990-10-01:
+        value: 0.0108
+      1994-01-01:
+        value: 0.0116
+      2001-04-01:
+        value: 0.0
+    threshold:
+      1984-01-01:
+        value: 0.0
+  - rate:
+      1984-04-01:
+        value: 0.012
+      1994-01-01:
+        value: 0.0129
+      2001-04-01:
+        value: 0.0
+    threshold:
+      1984-04-01:
+        value: 1.0
+  - rate:
+      1984-04-01:
+        value: 0.0
+    threshold:
+      1984-04-01:
+        value: 4.0
 metadata:
-  ux_name: Taux salarié
+  unit_rate: /1
+  unit_threshold: PSS
+  ux_name: Taux employeur
   last_review:
     2021-07-01
   reference:
@@ -26,7 +47,6 @@ metadata:
     1984-04-01: 1984-04-04
   notes:
     2001-04-01: Le taux AGFF se substitute à l'ASF.
-  description_en: Contributions to the financial structure ASF (1984-2001)
 documentation: |
   Notes :
   (i) L'Association pour la gestion de la structure financière (ASF) a eu pour mission:
