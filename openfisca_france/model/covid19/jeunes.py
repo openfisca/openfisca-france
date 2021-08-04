@@ -35,6 +35,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
     entity = Individu
     label = "Éligibilité à l'aide jeunes diplômés et anciens boursiers"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     end = "2021-06-30"
     reference = "https://www.pole-emploi.fr/candidat/mes-droits-aux-aides-et-allocati/allocations-et-aides--les-repons/aides-financieres-aux-jeunes-dip.html"
     documentation = '''
@@ -83,6 +84,7 @@ class aide_jeunes_diplomes_anciens_boursiers_montant(Variable):
     entity = Individu
     label = "Montant de l'aide jeunes diplômés et anciens boursiers"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = "2021-06-30"
     reference = "https://www.pole-emploi.fr/candidat/mes-droits-aux-aides-et-allocati/allocations-et-aides--les-repons/aides-financieres-aux-jeunes-dip.html"
 
