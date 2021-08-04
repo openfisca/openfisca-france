@@ -1,7 +1,7 @@
 from numpy import datetime64
 from openfisca_france.model.base import (
     Variable, Individu,
-    MONTH, ADD, set_input_divide_by_period,
+    MONTH, ADD, set_input_divide_by_period, set_input_dispatch_by_period,
     not_, where,
     TypesNiveauDiplome, TypesActivite, TypesStatutOccupationLogement
     )
