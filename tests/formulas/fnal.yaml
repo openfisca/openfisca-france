@@ -72,8 +72,8 @@
     effectif_entreprise: 23
   output:
     fnal_cotisation: -3031*0.001
-    fnal_contribution: -(3031*0.004 + (4000-3031)*0.005)
-    fnal: -(3031*0.001 + 3031*0.004 + (4000-3031)*0.005)
+    fnal_contribution: -16.96 # -(3031*0.004 + (4000-3031)*0.005)
+    fnal: -19.991 # -(3031*0.001 + 3031*0.004 + (4000-3031)*0.005)
 
 - name: Test FNAL, 2012, grande entreprise (>=20), en dessous PSS
   period: 2012-01

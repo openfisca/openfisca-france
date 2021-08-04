@@ -46,6 +46,13 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(regime_general.cnav.bareme.employeur.children)  # À harmoniser !
     commun.children.update(regime_general.mmid.bareme.employeur.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(autres.fnal.children)  # À harmoniser !
+    commun.children['fnal_cont_moins_de_20_salaries'] = autres.fnal.children['contribution_moins_de_20_salaries']
+    commun.children['fnal_cont_moins_de_50_salaries'] = autres.fnal.children['contribution_moins_de_50_salaries']
+    commun.children['fnal_cont_plus_de_10_salaries'] = autres.fnal.children['contribution_plus_de_10_salaries']
+    commun.children['fnal_cont_plus_de_20_salaries'] = autres.fnal.children['contribution_plus_de_20_salaries']
+    commun.children['fnal_cont_plus_de_50_salaries'] = autres.fnal.children['contribution_plus_de_50_salaries']
+    commun.children['fnal_cotisation'] = autres.fnal.children['cotisation']
+
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
     commun.children.update(retraites.ceg.employeur.children)
     commun.children.update(retraites.cet2019.employeur.children)
@@ -307,8 +314,8 @@ def preprocess_parameters(parameters):
     cotsoc.add_child('stage', ParameterNode("stage", data={}))
     cotsoc.stage.children['taux_gratification_min'] = travail.salaire_minimum.children['taux_gratification_min']  # À harmoniser + IPP
 
-    cotsoc.add_child('taxes_sal', ParameterNode("taxes_sal", data={}))
-    cotsoc.taxes_sal.children.update(autres.taxsal.children)  # À harmoniser
+    cotsoc.add_child('taxe_salaires', ParameterNode("taxe_salaires", data={}))
+    cotsoc.taxe_salaires.children.update(autres.taxsal.children)  # À harmoniser
 
     cotsoc.add_child('versement_transport', ParameterNode("versement_transport", data={}))
     cotsoc.versement_transport.children.update(autres.versement_transport.bareme.children)  # À harmoniser
