@@ -1,4 +1,4 @@
-from openfisca_core.model_api import not_, select, where, Variable, MONTH, set_input_divide_by_period
+from openfisca_core.model_api import not_, select, where, Variable, MONTH, set_input_divide_by_period, set_input_dispatch_by_period
 from openfisca_france.model.base import Famille, Individu, TypesStatutMarital
 from openfisca_france.model.prestations.education import TypesScolarite, StatutsEtablissementScolaire
 
