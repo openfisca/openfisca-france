@@ -1,4 +1,5 @@
-description: Accident du travail (taux bureau)
+description: Taux bureau des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
+unit: /1
 values:
   1991-01-01:
     value: 0.013
@@ -8,3 +9,12 @@ values:
     value: 0.01
   2013-01-01:
     value: 0.011
+metadata:
+  ux_name: Taux bureau
+  last_review:
+    2013-01-01
+  reference:
+  official_journal_date:
+  notes:
+  description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
+documentation: |
