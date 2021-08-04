@@ -60,7 +60,7 @@ class rsa_has_ressources_substitution(Variable):
     label = "Présence de ressources de substitution au mois M, qui désactivent la neutralisation des revenus professionnels interrompus au moins M."
     entity = Individu
     definition_period = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         return (
@@ -576,7 +576,7 @@ class rsa(Variable):
     label = "Revenu de solidarité active"
     entity = Famille
     definition_period = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
 
     def formula_2009_06(famille, period):
         montant = famille('rsa_montant', period)
