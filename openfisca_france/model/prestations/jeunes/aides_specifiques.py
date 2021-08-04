@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Variable, Individu, MONTH
+from openfisca_france.model.base import Variable, Individu, MONTH, set_input_divide_by_period
 
 
 class allocation_annuelle_etudiant(Variable):
