@@ -5,6 +5,7 @@ from openfisca_core.periods import MONTH
 from openfisca_core.variables import Variable
 
 from openfisca_france.entities import Famille, Menage
+from openfisca_france.model.base import set_input_dispatch_by_period, set_input_divide_by_period
 
 paris_communes_limitrophes = [
     b'75056',  # Paris
