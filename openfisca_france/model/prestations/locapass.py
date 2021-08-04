@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Individu, Menage, TypesActivite, TypesStatutOccupationLogement, Variable, MONTH, set_input_dispatch_by_period, set_input_divide_by_period
+from openfisca_france.model.base import Individu, Menage, TypesActivite, TypesStatutOccupationLogement, Variable, MONTH, set_input_dispatch_by_period
 
 
 class locapass_eligibilite(Variable):

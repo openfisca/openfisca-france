@@ -142,7 +142,7 @@ class asi_eligibilite(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    
+
     def formula(individu, period):
         last_month = period.start.period('month').offset(-1)
 

@@ -299,7 +299,6 @@ class cf_montant(Variable):
     label = "Montant du complément familial, avant prise en compte d'éventuels cumuls"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    
 
     def formula(famille, period):
         cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', period)

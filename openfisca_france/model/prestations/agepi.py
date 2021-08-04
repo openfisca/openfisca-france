@@ -23,7 +23,7 @@ class agepi_temps_travail_semaine(Variable):
     label = "Temps de travail par semaine pour le calcul de l'aide à la garde des enfants de parents isolés de Pôle Emploi"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    
+
     def formula(individu, period):
         heures_remunerees_volume = individu('heures_remunerees_volume', period)
         return heures_remunerees_volume / 52 * 12  # Passage en heures par semaine
