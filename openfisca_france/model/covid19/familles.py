@@ -6,6 +6,7 @@ class covid_aide_exceptionnelle_famille_montant(Variable):
     value_type = float
     label = "Montant de l'aide exceptionnelle pour les familles pendant la crise sanitaire dûe au COVID-19"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = "2020-10-31"
     reference = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042574431"
 
