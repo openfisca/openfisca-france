@@ -8,6 +8,8 @@ from openfisca_france.model.base import (
     ADD,
     TypesStatutOccupationLogement,
     TypesActivite,
+    set_input_dispatch_by_period,
+    set_input_divide_by_period,
     )
 
 
