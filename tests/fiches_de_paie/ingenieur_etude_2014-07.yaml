@@ -38,9 +38,9 @@
     # cotisations_employeur: 0
     remboursement_transport: 0
     ircantec_employeur: 0
-    cotisation_retraite_base_public_employeur: 0
+    pension_employeur: 0
     rafp_employeur: 0
-    cotisation_ati_atiacl: 0
+    ati_atiacl: 0
     accident_du_travail: -33
     famille: -157.5
     # Permière ligne 12.8 = 12.8 + 1.75 + 0.3 (maldie + vieillesse_deplaf + csa )
@@ -62,7 +62,7 @@
     cotisation_exceptionnelle_temporaire_employeur: -6.60
     vieillesse_deplafonnee_employeur: -3000 * 0.0175  # est aggrégé avec maladie et csa
     vieillesse_plafonnee_employeur: -253.5
-    cotisation_fonds_emploi_hospitalier: 0
+    fonds_emploi_hospitalier: 0
     formation_professionnelle: -48
     participation_effort_construction: -13.5
     prevoyance_obligatoire_cadre: -59.02
@@ -90,7 +90,7 @@
     vieillesse_deplafonnee_salarie: -3000 * 0.0025  # est agrégée avec maladie sur la fiche de paie
     vieillesse_plafonnee_salarie: -204
     ircantec_salarie: 0
-    cotisation_retraite_base_public_salarie: 0
+    pension_salarie: 0
     rafp_salarie: 0
 
     # cotisations_salariales_non_contributives: 0

@@ -51,13 +51,13 @@ output:
   cotisation_exceptionnelle_temporaire_employeur: 0
   vieillesse_deplafonnee_employeur: -12.86
   vieillesse_plafonnee_employeur: -60.71
-  cotisation_fonds_emploi_hospitalier: 0
+  fonds_emploi_hospitalier: 0
   ircantec_employeur: 0
-  cotisation_retraite_base_public_employeur: 0
+  pension_employeur: 0
   rafp_employeur: 0
   #
   # # cotisations_employeur_non_contributives: 0
-  cotisation_ati_atiacl: 0
+  ati_atiacl: 0
   accident_du_travail: -10.71
   famille: -37.49
   mmid_employeur: -91.42
@@ -101,7 +101,7 @@ output:
   vieillesse_deplafonnee_salarie: -2.14
   vieillesse_plafonnee_salarie: -48.92
   ircantec_salarie: 0
-  cotisation_retraite_base_public_salarie: 0
+  pension_salarie: 0
   rafp_salarie: 0
   #
   # cotisations_salariales_non_contributives: 0

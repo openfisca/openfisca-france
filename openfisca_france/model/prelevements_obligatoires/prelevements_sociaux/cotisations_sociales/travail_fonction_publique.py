@@ -4,7 +4,7 @@ from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
 
 
-class cotisation_ati_atiacl(Variable):
+class ati_atiacl(Variable):
     value_type = float
     entity = Individu
     label = "Cotisation ATI et ATIACL (contributions pour le financement de l'allocation temporaires d'invalidité)"
@@ -56,7 +56,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         indemnite_residence = individu('indemnite_residence', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         rafp_salarie = individu('rafp_salarie', period)
-        cotisation_retraite_base_public_salarie = individu('cotisation_retraite_base_public_salarie', period)
+        pension_salarie = individu('pension_salarie', period)
         cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         salaire_de_base = individu('salaire_de_base', period)
@@ -86,7 +86,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         #  - les non titulaires, les cotisations sociales contributives (car pas de cotisations non contributives pour les non titulaires de la fonction public)
         deduction = assujettis * (
             + rafp_salarie
-            + cotisation_retraite_base_public_salarie
+            + pension_salarie
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
             )
         # Ces déductions sont négatives
@@ -103,7 +103,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         return cotisation
 
 
-class cotisation_fonds_emploi_hospitalier(Variable):
+class fonds_emploi_hospitalier(Variable):
     value_type = float
     entity = Individu
     label = "Cotisation au fonds pour l'emploi hospitalier (FEH) (cotisation employeur)"
@@ -172,7 +172,7 @@ class ircantec_employeur(Variable):
         return ircantec * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
 
 
-class cotisation_retraite_base_public_salarie(Variable):
+class pension_salarie(Variable):
     value_type = float
     entity = Individu
     label = "Cotisation au régime de base de retraite de la fonction publique - part salariale (retenue pour pension)"
@@ -203,7 +203,7 @@ class cotisation_retraite_base_public_salarie(Variable):
         return - montant
 
 
-class cotisation_retraite_base_public_employeur(Variable):
+class pension_employeur(Variable):
     value_type = float
     entity = Individu
     label = "Cotisation au régime de base de retraite de la fonction publique - part employeur"

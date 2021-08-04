@@ -27,16 +27,16 @@ output:
   vieillesse_deplafonnee_employeur: -2172.9 * 0.018
   vieillesse_plafonnee_employeur: -2172.9 * 0.0850   # -2.17
   exoneration_cotisations_employeur_jei: 2172.9 * (.018 + 0.0850 + 0.0525 + 0.128)
-  cotisation_fonds_emploi_hospitalier: 0
+  fonds_emploi_hospitalier: 0
   ircantec_employeur: 0
-  cotisation_retraite_base_public_employeur: 0
+  pension_employeur: 0
   rafp_employeur: 0
   # cotisations_employeur (somme de la feuille de paie)
   # 0.35 + 23.90 + 6.52 + 2.17 + 74.97 + 78.77 + 86.92 + 6.52 + 101.4 + 41.16 + 0.78 + 4.78 + 26.07 + 16.08
   # = 470.39 != 496.76
   # cotisations_employeur: -470.39 - 2172.9 * (.018 + 0.0850 + 0.128)
   # cotisations_employeur_non_contributives: -2172.9 * (.018 + 0.0850 + 0.0525 + 0.128 - 0.004)
-  cotisation_ati_atiacl: 0
+  ati_atiacl: 0
   accident_du_travail: -23.9
   taxe_salaires: 0
   # cotisations_employeur_main_d_oeuvre: 0
@@ -67,7 +67,7 @@ output:
   vieillesse_deplafonnee_salarie: -22.82 * 0.003/.0105 # -2172.9 * 0.003
   vieillesse_plafonnee_salarie: -148.84
   ircantec_salarie: 0
-  cotisation_retraite_base_public_salarie: 0
+  pension_salarie: 0
   rafp_salarie: 0
   # cotisations_salariales_non_contributives
   mmid_salarie: -22.82 * 0.0075/.0105  # -.0075 * 2172.9

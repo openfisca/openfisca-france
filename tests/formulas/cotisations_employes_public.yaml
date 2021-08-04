@@ -52,8 +52,8 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    cotisation_retraite_base_public_salarie: -0.1110*(3000+1000)
-    cotisation_retraite_base_public_employeur: -0.7428*(3000+1000)
+    pension_salarie: -0.1110*(3000+1000)
+    pension_employeur: -0.7428*(3000+1000)
 
 - name: cotisation_retraite_base_public_2
   description: Cotisations retraite obligatoire fonction publique territoriale (CNRACL)
@@ -64,8 +64,8 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    cotisation_retraite_base_public_salarie: -0.1110*(3000+1000)
-    cotisation_retraite_base_public_employeur: -0.3065*(3000+1000)
+    pension_salarie: -0.1110*(3000+1000)
+    pension_employeur: -0.3065*(3000+1000)
 
 - name: cotisation_retraite_base_public_3
   description: Cotisations retraite obligatoire fonction publique hospitalière (CNRACL)
@@ -76,8 +76,8 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    cotisation_retraite_base_public_salarie: -0.1110*(3000+1000)
-    cotisation_retraite_base_public_employeur: -0.3065*(3000+1000)
+    pension_salarie: -0.1110*(3000+1000)
+    pension_employeur: -0.3065*(3000+1000)
 
 - name: cotisation_retraite_base_public_4
   description: Cotisations retraite obligatoire pour les militaires
@@ -88,8 +88,8 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    cotisation_retraite_base_public_salarie: -0.1110*(3000+1000)
-    cotisation_retraite_base_public_employeur: -1.2607*(3000+1000)
+    pension_salarie: -0.1110*(3000+1000)
+    pension_employeur: -1.2607*(3000+1000)
 
 - name: cotisation_retraite_base_public_5
   description: Cotisations retraite obligatoire fonction publique territoriale et hospitalière CNRACL pour un salarié du privé (donc, zéro)
@@ -100,8 +100,8 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    cotisation_retraite_base_public_salarie: 0
-    cotisation_retraite_base_public_employeur: 0
+    pension_salarie: 0
+    pension_employeur: 0
 
 - name: rafp_1
   description: Cotisations RAFP dans le cas où l'assiette est <= au plafond de 20% du traitement indiciaire brut
@@ -149,7 +149,7 @@
     gipa: 150
     avantage_en_nature: 200
   output:
-    cotisation_ati_atiacl: -0.0032*(2000+1000)
+    ati_atiacl: -0.0032*(2000+1000)
 
 - name: ati_atiacl_2
   description: Cotisation ATIACL pour les fonctionnaires territoriaux
@@ -165,7 +165,7 @@
     gipa: 150
     avantage_en_nature: 200
   output:
-    cotisation_ati_atiacl: -0.004*(2000+1000)
+    ati_atiacl: -0.004*(2000+1000)
 
 - name: ati_atiacl_3
   description: Cotisation ATIACL pour les fonctionnaires de la fonction publique hospitalière
@@ -181,7 +181,7 @@
     gipa: 150
     avantage_en_nature: 200
   output:
-    cotisation_ati_atiacl: -0.004*(2000+1000)
+    ati_atiacl: -0.004*(2000+1000)
 
 - name: ati_atiacl_4
   description: Cotisation ATIACL pour les militaires
@@ -197,7 +197,7 @@
     gipa: 150
     avantage_en_nature: 200
   output:
-    cotisation_ati_atiacl: 0
+    ati_atiacl: 0
 
 - name: feh_1
   description: Cotisation FEH pour les fonctionnaires de la fonction publique hospitalière
@@ -213,7 +213,7 @@
     gipa: 150
     avantage_en_nature: 200
   output:
-    cotisation_fonds_emploi_hospitalier: -0.008*(2000+1000)
+    fonds_emploi_hospitalier: -0.008*(2000+1000)
 
 - name: feh_2
   description: Cotisation FEH pour les fonctionnaires d'Etat
@@ -229,7 +229,7 @@
     gipa: 150
     avantage_en_nature: 200
   output:
-    cotisation_fonds_emploi_hospitalier: 0
+    fonds_emploi_hospitalier: 0
 
 - name: feh_3
   description: Cotisation FEH pour les fonctionnaires territoriaux
@@ -245,7 +245,7 @@
     gipa: 150
     avantage_en_nature: 200
   output:
-    cotisation_fonds_emploi_hospitalier: 0
+    fonds_emploi_hospitalier: 0
 
 - name: feh_4
   description: Cotisation FEH pour les militaires
@@ -261,4 +261,4 @@
     gipa: 150
     avantage_en_nature: 200
   output:
-    cotisation_fonds_emploi_hospitalier: 0
+    fonds_emploi_hospitalier: 0
