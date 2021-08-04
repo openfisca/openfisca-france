@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Individu, Variable, min_, max_, not_, MONTH
+from openfisca_france.model.base import Individu, Variable, min_, max_, not_, MONTH, set_input_dispatch_by_period, set_input_divide_by_period
 from numpy import ceil
 
 
