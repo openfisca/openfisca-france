@@ -456,6 +456,7 @@ class crds_retraite(Variable):
             law_node = parameters.prelevements_sociaux.contributions_sociales.crds.retraite,
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
+
         return montant_crds
 
 
