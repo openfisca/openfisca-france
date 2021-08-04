@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Variable, Individu, TypesActivite, MONTH
+from openfisca_france.model.base import Variable, Individu, TypesActivite, MONTH, set_input_dispatch_by_period, set_input_divide_by_period
 
 
 class aide_permis_demandeur_emploi_eligibilite_financiere(Variable):
