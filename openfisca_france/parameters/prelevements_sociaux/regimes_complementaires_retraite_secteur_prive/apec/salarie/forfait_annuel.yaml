@@ -76,8 +76,7 @@ metadata:
   ux_name: Forfait annuel
   last_review:
     2021-07-30
-  unit_rate: /1
-  unit_threshold:
+  unit: currency
   reference:
     2011-01-01: Circulaire AGIRC 2010-5-DF du 29/07/2010
     2010-01-01: Circulaire AGIRC-ARRCO 2009-30- DRE du 16/12/2009
@@ -102,7 +101,7 @@ metadata:
     1975-01-01: Augmentation du taux de 0,04 % à 0,06 % pour la tranche B. Incertitude pour la référence législative.
     1971-01-01: Passage d'une cotisation forfaitaire à une cotisation proportionnelle.
     1967-01-01: Cotisation forfaitaire d'un montant de 2 FF par cadre.
-    description_en: Contributions for the Association for the employment of executives (APEC)
+  description_en: Contributions for the Association for the employment of executives (APEC)
 documentation: |
   Note :
   L'Association pour l'emploi des cadres (APEC) a été mise en place par la convention du 18/11/1966.

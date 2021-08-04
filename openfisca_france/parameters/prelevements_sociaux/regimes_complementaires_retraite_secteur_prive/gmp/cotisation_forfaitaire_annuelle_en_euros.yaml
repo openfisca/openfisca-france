@@ -66,8 +66,7 @@ metadata:
   ux_name: Cotisation forfaitaire annuelle
   last_review:
     2021-07-30
-  unit_rate: /1
-  unit_threshold: PSS
+  unit: currency
   reference:
     2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
     2018-01-01: Circulaire 2017-07-DT du 16/10/2017

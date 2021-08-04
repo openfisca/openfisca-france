@@ -26,8 +26,8 @@ metadata:
   ux_name: Barème employeur
   last_review:
     2021-07-30
-  unit_rate: /1
-  unit_threshold:
+  rate_unit: /1
+  threshold_unit:
   reference:
     2011-01-01: Circulaire AGIRC 2010-5-DF du 29/07/2010
   official_journal_date:

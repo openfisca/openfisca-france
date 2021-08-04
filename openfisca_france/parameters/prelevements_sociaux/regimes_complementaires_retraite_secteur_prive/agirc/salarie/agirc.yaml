@@ -88,8 +88,8 @@ metadata:
   ux_name: Barème salarié
   last_review:
     2021-07-30
-  unit_rate: /1
-  unit_threshold: PSS
+  rate_unit: /1
+  threshold_unit: PSS
   reference:
     2015-01-01: AGIRC-ARRCO Circulaire 2014-16-DRJ du 18/12/2014
     2014-01-01: AGIRC-ARRCO Circulaire 2013-16-DRJ
