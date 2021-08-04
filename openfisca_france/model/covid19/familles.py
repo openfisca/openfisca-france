@@ -1,6 +1,4 @@
-from openfisca_france.model.base import Variable, Famille, MONTH, not_, max_
-from openfisca_france.model.base import set_input_divide_by_period
-from openfisca_france.model.base import set_input = set_input_dispatch_by_period
+from openfisca_france.model.base import Variable, Famille, MONTH, not_, max_, set_input = set_input_dispatch_by_period, set_input_divide_by_period
 
 
 class covid_aide_exceptionnelle_famille_montant(Variable):
