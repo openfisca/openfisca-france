@@ -71,6 +71,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.add_child('fonc', fonc)
     fonc.add_child('colloc', ParameterNode("colloc", data={}))
     fonc.add_child('etat', ParameterNode("etat", data={}))
+    fonc.add_child('militaire', ParameterNode("militaire", data={}))
     fonc.add_child('contract', ParameterNode("contract", data={}))
 
     # Contractuel
@@ -81,7 +82,12 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['fonc'].children['etat'].children.update(public.mmid.etat.children)
     pat.children['fonc'].children['etat'].children.update(public.rafp.employeur.children)
     pat.children['fonc'].children['etat'].children.update(public.retraite.ati.children)
-    pat.children['fonc'].children['etat'].children.update(public.retraite.pension.employeur.children)
+    pat.children['fonc'].children['etat'].children.update(public.retraite.pension.employeur.civils.children)
+
+    # Militaires
+    pat.children['fonc'].children['militaire'].children.update(public.mmid.etat.children)
+    pat.children['fonc'].children['militaire'].children.update(public.rafp.employeur.children)
+    pat.children['fonc'].children['militaire'].children.update(public.retraite.pension.employeur.militaires.children)
 
     # Collectivités Locales
     pat.children['fonc'].children['colloc'].children['hospitaliere'] = public.cnracl.employeur.hospitaliere
@@ -105,16 +111,19 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     pat.children['fonc'].children['etat'].children.update(commun.children)
     pat.children['fonc'].children['colloc'].children.update(commun.children)
+    pat.children['fonc'].children['militaire'].children.update(commun.children)
 
     pat.children['etat_t'] = pat.children['fonc'].children['etat']  # Il semble que ce soient des sauvegardes temporaires ?
     pat.children['colloc_t'] = pat.children['fonc'].children['colloc']
     pat.children['contract'] = pat.children['fonc'].children['contract']
+    pat.children['militaire_t'] = pat.children['fonc'].children['militaire']
 
-    for var in ['etat', 'colloc', 'contract']:
+    for var in ['etat', 'colloc', 'contract', 'militaire']:
         del pat.children['fonc'].children[var]
 
     # Renaming
     pat.children['public_titulaire_etat'] = pat.children.pop('etat_t')
+    pat.children['public_titulaire_militaire'] = pat.children.pop('militaire_t')
     # del pat.children['public_titulaire_etat'].children['rafp']
     pat.children['public_titulaire_territoriale'] = pat.children.pop('colloc_t')
     pat.children['public_titulaire_hospitaliere'] = copy.deepcopy(pat.children['public_titulaire_territoriale'])
@@ -215,6 +224,11 @@ def build_sal(node_json):
         sal.children[type_sal_category].children['rafp'] = sal.children['fonc'].children['etat'].children['rafp']
     sal.children['public_non_titulaire'].children.update(commun.children)
     del sal.children['public_non_titulaire'].children['assedic']
+
+    # Cleaning
+    del sal.children['fonc'].children['etat']
+    del sal.children['fonc'].children['colloc']
+    del sal.children['fonc'].children['contract']
 
     # Arti
     sal.add_child('arti', ParameterNode("arti", data={}))

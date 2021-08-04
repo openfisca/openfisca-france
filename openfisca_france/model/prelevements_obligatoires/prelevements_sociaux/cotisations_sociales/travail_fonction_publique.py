@@ -4,35 +4,36 @@ from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
 
 
-class allocations_temporaires_invalidite(Variable):
+class ati_atiacl(Variable):
     value_type = float
     entity = Individu
-    label = "Allocations temporaires d'invalidité (ATI, fonction publique et collectivités locales)"
+    label = "Cotisation ATI et ATIACL (contributions pour le financement de l'allocation temporaires d'invalidité)"
     definition_period = MONTH
     # patronale, non-contributive
 
     def formula(individu, period, parameters):
         remuneration_principale = individu('remuneration_principale', period)
-        plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
         _P = parameters(period)
 
-        base = remuneration_principale
-        cotisation_etat = apply_bareme_for_relevant_type_sal(
+        # ATI : pour les fonctionnaires d'Etat, hors militaires
+        cotisation_etat_hors_militaires = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "ati",
-            base = base,
+            base = remuneration_principale,
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
+        # ATIACL : pour les fonctionnaires territoriaux et hospitaliers
         cotisation_collectivites_locales = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "atiacl",
-            base = base,
+            base = remuneration_principale,
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return cotisation_etat + cotisation_collectivites_locales
+        return cotisation_etat_hors_militaires + cotisation_collectivites_locales
 
 
 # sft dans assiette csg et RAFP et Cotisation exceptionnelle de solidarité et taxe sur les salaires
@@ -55,7 +56,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         indemnite_residence = individu('indemnite_residence', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         rafp_salarie = individu('rafp_salarie', period)
-        pension_civile_salarie = individu('pension_civile_salarie', period)
+        pension_salarie = individu('pension_salarie', period)
         cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         salaire_de_base = individu('salaire_de_base', period)
@@ -85,7 +86,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         #  - les non titulaires, les cotisations sociales contributives (car pas de cotisations non contributives pour les non titulaires de la fonction public)
         deduction = assujettis * (
             + rafp_salarie
-            + pension_civile_salarie
+            + pension_salarie
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
             )
         # Ces déductions sont négatives
@@ -105,18 +106,20 @@ class contribution_exceptionnelle_solidarite(Variable):
 class fonds_emploi_hospitalier(Variable):
     value_type = float
     entity = Individu
-    label = "Fonds pour l'emploi hospitalier (employeur)"
+    label = "Cotisation au fonds pour l'emploi hospitalier (FEH) (cotisation employeur)"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
         remuneration_principale = individu('remuneration_principale', period)
-        plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
         _P = parameters(period)
+
+        # Que pour fonctionnaires hospitaliers
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "feh",
-            base = remuneration_principale,  # TODO: check base
+            base = remuneration_principale,
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
@@ -133,14 +136,17 @@ class ircantec_salarie(Variable):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         categorie_salarie = individu('categorie_salarie', period)
+        _P = parameters(period)
 
-        bareme = parameters(period).prelevements_sociaux.cotisations_secteur_public.ircantec.salarie.ircantec
-        montant = bareme.calc(
-            tax_base = assiette_cotisations_sociales,
-            factor = plafond_securite_sociale,
+        ircantec = apply_bareme_for_relevant_type_sal(
+            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie,
+            bareme_name = "ircantec",
+            base = assiette_cotisations_sociales,
+            plafond_securite_sociale = plafond_securite_sociale,
+            categorie_salarie = categorie_salarie,
             )
 
-        return - montant * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
+        return ircantec * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
 
 
 class ircantec_employeur(Variable):
@@ -162,63 +168,67 @@ class ircantec_employeur(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
+
         return ircantec * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
 
 
-class pension_civile_salarie(Variable):
+class pension_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Pension civile salarié"
+    label = "Cotisation au régime de base de retraite de la fonction publique - part salariale (retenue pour pension)"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         nouvelle_bonification_indiciaire = individu('nouvelle_bonification_indiciaire', period)
         categorie_salarie = individu('categorie_salarie', period)
-
-        bareme_cnracl_salarie = parameters(period).prelevements_sociaux.cotisations_secteur_public.cnracl.salarie
-        bareme_retraite_etat_salarie = parameters(period).prelevements_sociaux.cotisations_secteur_public.retraite.pension.salarie.pension
+        _P = parameters(period)
+        sal = _P.cotsoc.cotisations_salarie
 
         terr_or_hosp = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
-        etat = (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
-
-        pension_civile_salarie = (
-            etat * bareme_retraite_etat_salarie.calc(traitement_indiciaire_brut + nouvelle_bonification_indiciaire)
-            + terr_or_hosp * bareme_cnracl_salarie.cnracl1.calc(traitement_indiciaire_brut)
-            + terr_or_hosp * bareme_cnracl_salarie.cnracl2.calc(nouvelle_bonification_indiciaire)
+        etat_militaire = (
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
             )
 
-        return - pension_civile_salarie
+        montant = (
+            etat_militaire
+            * sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut + nouvelle_bonification_indiciaire)
+            + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
+            + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl2'].calc(nouvelle_bonification_indiciaire)
+            )
+
+        return - montant
 
 
-class pension_civile_employeur(Variable):
+class pension_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation patronale pension civile"
+    label = "Cotisation au régime de base de retraite de la fonction publique - part employeur"
     reference = "http://www.ac-besancon.fr/spip.php?article2662"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
         remuneration_principale = individu('remuneration_principale', period)
         categorie_salarie = individu('categorie_salarie', period)
-        _P = parameters(period)
-
-        pat = _P.cotsoc.cotisations_employeur
 
         terr_or_hosp = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
-            | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
         etat = (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+        militaire = (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+        _P = parameters(period)
+        pat = _P.cotsoc.cotisations_employeur
 
-        cot_pat_pension_civile = (
+        montant = (
             etat * pat['public_titulaire_etat']['pension'].calc(remuneration_principale)
+            + militaire * pat['public_titulaire_militaire']['pension'].calc(remuneration_principale)
             + terr_or_hosp * pat['public_titulaire_territoriale']['cnracl'].calc(remuneration_principale)
             )
 
-        return - cot_pat_pension_civile
+        return - montant
 
 
 class rafp_salarie(Variable):
@@ -238,13 +248,15 @@ class rafp_salarie(Variable):
 
         eligible = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
 
-        parametres_rafp_salarie = parameters(period).prelevements_sociaux.cotisations_secteur_public.rafp.salarie
-        taux_plafond_tib = parametres_rafp_salarie.rafp_plaf_assiette
-        bareme_rafp_salarie = parametres_rafp_salarie.rafp
+        parametres_rafp = parameters(period).prelevements_sociaux.cotisations_secteur_public.rafp
+        taux_plafond_tib = parametres_rafp.rafp_plaf_assiette
+        _P = parameters(period)
+        bareme_rafp_salarie = _P.cotsoc.cotisations_salarie.public_titulaire_etat['rafp']
 
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence + avantage_en_nature
         assiette = (min_(base_imposable, taux_plafond_tib * traitement_indiciaire_brut) + gipa) * eligible
@@ -259,26 +271,31 @@ class rafp_employeur(Variable):
     label = "Part patronale de la retraite additionnelle de la fonction publique"
     definition_period = MONTH
 
-    # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
     def formula_2005_01_01(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         categorie_salarie = individu('categorie_salarie', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         supplement_familial_traitement = individu('supplement_familial_traitement', period)
         indemnite_residence = individu('indemnite_residence', period)
-        _P = parameters(period)
+        gipa = individu('gipa', period)
+        avantage_en_nature = individu('avantage_en_nature', period)
 
         eligible = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
 
-        plaf_ass = _P.prelevements_sociaux.cotisations_secteur_public.rafp.salarie.rafp_plaf_assiette
-        base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence
-        assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
-        bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
-        rafp_employeur = eligible * bareme_rafp.calc(assiette)
+        parametres_rafp = parameters(period).prelevements_sociaux.cotisations_secteur_public.rafp
+        taux_plafond_tib = parametres_rafp.rafp_plaf_assiette
+        _P = parameters(period)
+        bareme_rafp_employeur = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
+
+        base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence + avantage_en_nature
+        assiette = (min_(base_imposable, taux_plafond_tib * traitement_indiciaire_brut) + gipa) * eligible
+        # Même régime pour les fonctions publiques d'Etat et des collectivité locales
+        rafp_employeur = eligible * bareme_rafp_employeur.calc(assiette)
         return - rafp_employeur
 
 

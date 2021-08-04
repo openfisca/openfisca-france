@@ -48,7 +48,7 @@ class cotisations_employeur_contributives(Variable):
             'cotisation_exceptionnelle_temporaire_employeur', period)
         fonds_emploi_hospitalier = individu('fonds_emploi_hospitalier', period, options = [ADD])
         ircantec_employeur = individu('ircantec_employeur', period, options = [ADD])
-        pension_civile_employeur = individu('pension_civile_employeur', period, options = [ADD])
+        pension_employeur = individu('pension_employeur', period, options = [ADD])
         rafp_employeur = individu('rafp_employeur', period, options = [ADD])
         vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period, options = [ADD])
         vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period, options = [ADD])
@@ -71,7 +71,7 @@ class cotisations_employeur_contributives(Variable):
             # public
             + fonds_emploi_hospitalier
             + ircantec_employeur
-            + pension_civile_employeur
+            + pension_employeur
             + rafp_employeur
             )
 
@@ -88,7 +88,7 @@ class cotisations_employeur_non_contributives(Variable):
     def formula(individu, period, parameters):
         penibilite = individu('penibilite', period, options = [ADD])
         accident_du_travail = individu('accident_du_travail', period, options = [ADD])
-        allocations_temporaires_invalidite = individu('allocations_temporaires_invalidite', period, options = [ADD])
+        ati_atiacl = individu('ati_atiacl', period, options = [ADD])
         contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
         famille = individu('famille', period)
         mmid_employeur = individu('mmid_employeur', period, options = [ADD])
@@ -96,7 +96,7 @@ class cotisations_employeur_non_contributives(Variable):
         forfait_social = individu('forfait_social', period, options = [ADD])
 
         cotisations_employeur_non_contributives = (
-            allocations_temporaires_invalidite
+            ati_atiacl
             + penibilite
             + accident_du_travail
             + contribution_solidarite_autonomie
@@ -128,7 +128,7 @@ class cotisations_salariales_contributives(Variable):
         cotisation_equilibre_technique_salarie = individu('cotisation_equilibre_technique_salarie', period)
         cotisation_exceptionnelle_temporaire_salarie = individu('cotisation_exceptionnelle_temporaire_salarie', period)
         ircantec_salarie = individu('ircantec_salarie', period)
-        pension_civile_salarie = individu('pension_civile_salarie', period)
+        pension_salarie = individu('pension_salarie', period)
         rafp_salarie = individu('rafp_salarie', period)
         vieillesse_deplafonnee_salarie = individu('vieillesse_deplafonnee_salarie', period)
         vieillesse_plafonnee_salarie = individu('vieillesse_plafonnee_salarie', period)
@@ -149,7 +149,7 @@ class cotisations_salariales_contributives(Variable):
             + vieillesse_plafonnee_salarie
             # public
             + ircantec_salarie
-            + pension_civile_salarie
+            + pension_salarie
             + rafp_salarie
             )
 

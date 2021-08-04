@@ -1,5 +1,5 @@
-- name: ircantec_salarie_1
-  description: Cotisations IRCANTEC salariales lorsque l'assiette est < 1 PSS
+- name: ircantec_1
+  description: Cotisations IRCANTEC lorsque l'assiette est < 1 PSS
   period: 2021-01
   absolute_error_margin: 0.03
   input:
@@ -7,9 +7,10 @@
     assiette_cotisations_sociales: 3000
   output:
     ircantec_salarie: (-1) * ( 1.25*0.0224*3000 )
+    ircantec_employeur: (-1) * ( 1.25*0.0336*3000 )
 
-- name: ircantec_salarie_2
-  description: Cotisations IRCANTEC salariales lorsque l'assiette est entre 1 et 8 PSS
+- name: ircantec_2
+  description: Cotisations IRCANTEC lorsque l'assiette est entre 1 et 8 PSS
   period: 2021-01
   absolute_error_margin: 0.03
   input:
@@ -18,9 +19,10 @@
   output:
     plafond_securite_sociale: 3428
     ircantec_salarie: -(1.25*0.0224*3428 + 1.25*0.0556*(5000-3428))
+    ircantec_employeur: -(1.25*0.0336*3428 + 1.25*0.1004*(5000-3428))
 
-- name: ircantec_salarie_3
-  description: Cotisations IRCANTEC salariales lorsque l'assiette est > 8 PSS
+- name: ircantec_3
+  description: Cotisations IRCANTEC lorsque l'assiette est > 8 PSS
   period: 2021-01
   absolute_error_margin: 0.03
   input:
@@ -28,9 +30,10 @@
     assiette_cotisations_sociales: 30000
   output:
     ircantec_salarie: -(1.25*0.0224*3428 + 1.25*0.0556*(27424-3428))
+    ircantec_employeur: -(1.25*0.0336*3428 + 1.25*0.1004*(27424-3428))
 
-- name: ircantec_salarie_4
-  description: Cotisations IRCANTEC salariales pour un salarié du privé (donc, zéro)
+- name: ircantec_4
+  description: Cotisations IRCANTEC pour un salarié du privé (donc, zéro)
   period: 2021-01
   absolute_error_margin: 0.03
   input:
@@ -38,8 +41,9 @@
     assiette_cotisations_sociales: 30000
   output:
     ircantec_salarie: 0
+    ircantec_employeur: 0
 
-- name: pension_civile_salarie_1
+- name: cotisation_retraite_base_public_1
   description: Cotisations retraite obligatoire fonction publique d'Etat
   period: 2021-01
   absolute_error_margin: 0.03
@@ -48,9 +52,10 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    pension_civile_salarie: -0.1110*(3000+1000)
+    pension_salarie: -0.1110*(3000+1000)
+    pension_employeur: -0.7428*(3000+1000)
 
-- name: pension_civile_salarie_2
+- name: cotisation_retraite_base_public_2
   description: Cotisations retraite obligatoire fonction publique territoriale (CNRACL)
   period: 2021-01
   absolute_error_margin: 0.03
@@ -59,9 +64,10 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    pension_civile_salarie: -0.1110*(3000+1000)
+    pension_salarie: -0.1110*(3000+1000)
+    pension_employeur: -0.3065*(3000+1000)
 
-- name: pension_civile_salarie_3
+- name: cotisation_retraite_base_public_3
   description: Cotisations retraite obligatoire fonction publique hospitalière (CNRACL)
   period: 2021-01
   absolute_error_margin: 0.03
@@ -70,9 +76,22 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    pension_civile_salarie: -0.1110*(3000+1000)
+    pension_salarie: -0.1110*(3000+1000)
+    pension_employeur: -0.3065*(3000+1000)
 
-- name: pension_civile_salarie_4
+- name: cotisation_retraite_base_public_4
+  description: Cotisations retraite obligatoire pour les militaires
+  period: 2021-01
+  absolute_error_margin: 0.03
+  input:
+    categorie_salarie: public_titulaire_militaire
+    traitement_indiciaire_brut: 3000
+    nouvelle_bonification_indiciaire: 1000
+  output:
+    pension_salarie: -0.1110*(3000+1000)
+    pension_employeur: -1.2607*(3000+1000)
+
+- name: cotisation_retraite_base_public_5
   description: Cotisations retraite obligatoire fonction publique territoriale et hospitalière CNRACL pour un salarié du privé (donc, zéro)
   period: 2021-01
   absolute_error_margin: 0.03
@@ -81,9 +100,10 @@
     traitement_indiciaire_brut: 3000
     nouvelle_bonification_indiciaire: 1000
   output:
-    pension_civile_salarie: 0
+    pension_salarie: 0
+    pension_employeur: 0
 
-- name: rafp_salarie_1
+- name: rafp_1
   description: Cotisations RAFP dans le cas où l'assiette est <= au plafond de 20% du traitement indiciaire brut
   period: 2021-01
   absolute_error_margin: 0.03
@@ -97,8 +117,9 @@
     avantage_en_nature: 200
   output:
     rafp_salarie: -0.05*(100+200+300+150+200)
+    rafp_employeur: -0.05*(100+200+300+150+200)
 
-- name: rafp_salarie_2
+- name: rafp_2
   description: Cotisations RAFP dans le cas où l'assiette avant gipa est > au plafond de 20% du traitement indiciaire brut. On considère l'assiette avant gipa, car la gipa n'est pas soumis au plafond, et on veut tester cela.
   period: 2021-01
   absolute_error_margin: 0.03
@@ -112,3 +133,132 @@
     avantage_en_nature: 200
   output:
     rafp_salarie: -(0.05*(0.2*2000+150))
+    rafp_employeur: -(0.05*(0.2*2000+150))
+
+- name: ati_atiacl_1
+  description: Cotisation ATI pour les fonctionnaires d'Etat
+  period: 2021-01
+  absolute_error_margin: 0.03
+  input:
+    categorie_salarie: public_titulaire_etat
+    traitement_indiciaire_brut: 2000
+    nouvelle_bonification_indiciaire: 1000
+    primes_fonction_publique: 100
+    supplement_familial_traitement: 200
+    indemnite_residence: 300
+    gipa: 150
+    avantage_en_nature: 200
+  output:
+    ati_atiacl: -0.0032*(2000+1000)
+
+- name: ati_atiacl_2
+  description: Cotisation ATIACL pour les fonctionnaires territoriaux
+  period: 2021-01
+  absolute_error_margin: 0.03
+  input:
+    categorie_salarie: public_titulaire_territoriale
+    traitement_indiciaire_brut: 2000
+    nouvelle_bonification_indiciaire: 1000
+    primes_fonction_publique: 100
+    supplement_familial_traitement: 200
+    indemnite_residence: 300
+    gipa: 150
+    avantage_en_nature: 200
+  output:
+    ati_atiacl: -0.004*(2000+1000)
+
+- name: ati_atiacl_3
+  description: Cotisation ATIACL pour les fonctionnaires de la fonction publique hospitalière
+  period: 2021-01
+  absolute_error_margin: 0.03
+  input:
+    categorie_salarie: public_titulaire_hospitaliere
+    traitement_indiciaire_brut: 2000
+    nouvelle_bonification_indiciaire: 1000
+    primes_fonction_publique: 100
+    supplement_familial_traitement: 200
+    indemnite_residence: 300
+    gipa: 150
+    avantage_en_nature: 200
+  output:
+    ati_atiacl: -0.004*(2000+1000)
+
+- name: ati_atiacl_4
+  description: Cotisation ATIACL pour les militaires
+  period: 2021-01
+  absolute_error_margin: 0.03
+  input:
+    categorie_salarie: public_titulaire_militaire
+    traitement_indiciaire_brut: 2000
+    nouvelle_bonification_indiciaire: 1000
+    primes_fonction_publique: 100
+    supplement_familial_traitement: 200
+    indemnite_residence: 300
+    gipa: 150
+    avantage_en_nature: 200
+  output:
+    ati_atiacl: 0
+
+- name: feh_1
+  description: Cotisation FEH pour les fonctionnaires de la fonction publique hospitalière
+  period: 2021-01
+  absolute_error_margin: 0.03
+  input:
+    categorie_salarie: public_titulaire_hospitaliere
+    traitement_indiciaire_brut: 2000
+    nouvelle_bonification_indiciaire: 1000
+    primes_fonction_publique: 100
+    supplement_familial_traitement: 200
+    indemnite_residence: 300
+    gipa: 150
+    avantage_en_nature: 200
+  output:
+    fonds_emploi_hospitalier: -0.008*(2000+1000)
+
+- name: feh_2
+  description: Cotisation FEH pour les fonctionnaires d'Etat
+  period: 2021-01
+  absolute_error_margin: 0.03
+  input:
+    categorie_salarie: public_titulaire_etat
+    traitement_indiciaire_brut: 2000
+    nouvelle_bonification_indiciaire: 1000
+    primes_fonction_publique: 100
+    supplement_familial_traitement: 200
+    indemnite_residence: 300
+    gipa: 150
+    avantage_en_nature: 200
+  output:
+    fonds_emploi_hospitalier: 0
+
+- name: feh_3
+  description: Cotisation FEH pour les fonctionnaires territoriaux
+  period: 2021-01
+  absolute_error_margin: 0.03
+  input:
+    categorie_salarie: public_titulaire_territoriale
+    traitement_indiciaire_brut: 2000
+    nouvelle_bonification_indiciaire: 1000
+    primes_fonction_publique: 100
+    supplement_familial_traitement: 200
+    indemnite_residence: 300
+    gipa: 150
+    avantage_en_nature: 200
+  output:
+    fonds_emploi_hospitalier: 0
+
+- name: feh_4
+  description: Cotisation FEH pour les militaires
+  period: 2021-01
+  absolute_error_margin: 0.03
+  input:
+    categorie_salarie: public_titulaire_militaire
+    traitement_indiciaire_brut: 2000
+    nouvelle_bonification_indiciaire: 1000
+    primes_fonction_publique: 100
+    supplement_familial_traitement: 200
+    indemnite_residence: 300
+    gipa: 150
+    avantage_en_nature: 200
+  output:
+    fonds_emploi_hospitalier: 0
