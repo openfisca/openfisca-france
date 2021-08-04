@@ -45,7 +45,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(regime_general.famille.bareme.children)
     commun.children.update(regime_general.penibilite.bareme.children)  # À harmoniser !
     commun.children.update(regime_general.cnav.employeur.children)
-    commun.children.update(regime_general.mmid.bareme.employeur.children)  # À harmoniser ! + Créer params depuis IPP
+    commun.children.update(regime_general.mmid.employeur.children)
     commun.children.update(autres.fnal.children)  # À harmoniser !
     commun.children['fnal_cont_moins_de_20_salaries'] = autres.fnal.children['contribution_moins_de_20_salaries']
     commun.children['fnal_cont_moins_de_50_salaries'] = autres.fnal.children['contribution_moins_de_50_salaries']
