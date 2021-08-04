@@ -1,8 +1,12 @@
 description: Taux employeur de la Contribution de solidarité autonomie (CSA) du régime général de la sécurité sociale (SS)
 unit: /1
-values:
-  2004-07-01:
-    value: 0.003
+brackets:
+- rate:
+    2004-07-01:
+      value: 0.003
+  threshold:
+    2004-07-01:
+      value: 0.0
 metadata:
   ux_name: Taux employeur
   last_review:
