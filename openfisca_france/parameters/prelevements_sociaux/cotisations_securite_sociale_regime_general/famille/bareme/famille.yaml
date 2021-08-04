@@ -1,10 +1,27 @@
+description: Barème employeur des cotisations de sécurité sociale (SS) du régime général pour la branche famille
 brackets:
 - rate:
+    1989-01-01:
+      value: 0.035
+    1990-01-01:
+      value: 0.07
+    1991-02-01:
+      value: 0.054
     1993-07-01:
       value: 0.054
     2014-01-01:
       value: 0.0525
   threshold:
+    1946-07-01:
+      value: 0.0
     1993-07-01:
       value: 0.0
-description: Allocation familiales
+metadata:
+  ux_name: Barème employeur
+  last_review:
+    2014-01-01
+  reference:
+  official_journal_date:
+  notes:
+  description_en: SSCs for family benefits
+documentation: |
