@@ -279,7 +279,7 @@ class aspa(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(famille, period, parameters):
+    def formula_2006_01_01(famille, period, parameters):
         maries = famille('maries', period)
         en_couple = famille('en_couple', period)
         asi_aspa_nb_alloc = famille('asi_aspa_nb_alloc', period)
