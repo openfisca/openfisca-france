@@ -1,6 +1,21 @@
 # Changelog
 
-## 63.0.0 [#1619](https://github.com/openfisca/openfisca-france/pull/1619)
+# 64.0.0 [#1622](https://github.com/openfisca/openfisca-france/pull/1622)
+
+* Évolution du système socio-fiscal. | Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique`.
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing`.
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_totaux`.
+* Détails :
+  - Vérifie les formules des cotisations employeurs fonctions publiques présentes dans `travail_fonction_publique.py`, à l’exception de `contribution_exceptionnelle_solidarite`. N'ont pas été vérifiées non plus les cotisations employeurs de la fonction publique hors de ce fichier, car renvoyant à une formule commune avec les autres secteurs (ex : `mmid_employeur`).
+- Renomme plusieurs variables:
+   - `allocations_temporaires_invalidite` renommé par `ati_atiacl`
+   - `pension_civile_salarie` renommée par `pension_salarie` (qui maintenant inclut les militaires)
+   - `pension_civile_employeur` renommée par `pension_employeur` (qui maintenant inclut les militaires)
+
+# 63.0.0 [#1619](https://github.com/openfisca/openfisca-france/pull/1619)
 
 * Évolution du système socio-fiscal.  
 * Amélioration technique.
@@ -34,7 +49,7 @@ Ces changements :
   - Supprime des fichiers inutiles
   - Met à jour la documentation avec la syntaxe CircleCI 2.0
 
-## 62.0.0 [#1608](https://github.com/openfisca/openfisca-france/pull/1608)
+# 62.0.0 [#1608](https://github.com/openfisca/openfisca-france/pull/1608)
 
 * Amélioration technique : Corrige ou améliore un calcul déjà existant.
 * Périodes concernées : toutes
