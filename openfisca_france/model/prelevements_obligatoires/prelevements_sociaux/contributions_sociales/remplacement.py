@@ -522,6 +522,7 @@ class casa(Variable):
             )
         return - casa
 
+
 class retraite_imposable(Variable):
     unit = 'currency'
     value_type = float
