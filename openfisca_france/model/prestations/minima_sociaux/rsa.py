@@ -899,7 +899,7 @@ class rsa_non_calculable(Variable):
     label = "RSA non calculable"
     end = '2016-12-31'
     definition_period = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         # Si le montant du RSA est nul sans tenir compte des revenus
