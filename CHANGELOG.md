@@ -1,5 +1,19 @@
 # Changelog
 
+### 67.0.0 [#1595](https://github.com/openfisca/openfisca-france/pull/1595)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/model/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
+  - `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/csg/`
+* Détails :
+  - Corrige des dates anciennes et des références législatives sur un grand nombre de paramètres associés à la CSG sur les revenus de remplacement.
+  - Corrige le taux plein de la CSG déductible sur les allocations chômage.
+  - Corrige le taux plein de la CSG imposable sur les préretraites.
+  - Met à jour les seuils de RFR (part et demi-part) pour les taux réduit et médian de CSG sur les revenus de remplacement.
+  - Corrige le calcul de la CSG sur revenus de remplacement suite à l'introduction d'un taux médian pour la CSG sur les pensions de retraite et d'invalidité.
+
 ### 66.0.2 [#1628](https://github.com/openfisca/openfisca-france/pull/1628)
 
 * Changement mineur.
