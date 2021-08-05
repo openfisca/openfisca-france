@@ -56,11 +56,27 @@ class csg_deductible_chomage(Variable):
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.chomage.deductible,
-            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale)
-        nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
-        cho_seuil_exo = (parameters.prelevements_sociaux.contributions_sociales.csg.chomage.min_exo * nbh_travail * parameters.cotsoc.gen.smic_h_b)
-        csg_deductible_chomage = max_(-montant_csg - max_(cho_seuil_exo - (chomage_brut + csg_imposable_chomage + montant_csg), 0), 0)
-        return -csg_deductible_chomage
+            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            )
+        nbh_travail = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
+
+        cho_seuil_exo = (
+            parameters.prelevements_sociaux.contributions_sociales.csg.chomage.min_exo
+            * nbh_travail
+            * parameters.cotsoc.gen.smic_h_b
+            )
+
+        csg_deductible_chomage = max_(
+            - montant_csg
+            - max_(cho_seuil_exo - (
+                chomage_brut
+                + csg_imposable_chomage
+                + montant_csg
+                ), 0),
+            0,
+            )
+
+        return - csg_deductible_chomage
 
 
 class csg_imposable_chomage(Variable):
@@ -77,13 +93,20 @@ class csg_imposable_chomage(Variable):
         parameters = parameters(period)
 
         montant_csg = montant_csg_crds(
-            base_avec_abattement=chomage_brut,
-            law_node=parameters.prelevements_sociaux.contributions_sociales.csg.chomage.imposable,
-            plafond_securite_sociale=parameters.cotsoc.gen.plafond_securite_sociale)
-        nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
-        cho_seuil_exo = (parameters.prelevements_sociaux.contributions_sociales.csg.chomage.min_exo * nbh_travail * parameters.cotsoc.gen.smic_h_b)
-        csg_imposable_chomage = max_(-montant_csg - max_(cho_seuil_exo - (chomage_brut + montant_csg), 0), 0)
-        return -csg_imposable_chomage
+            base_avec_abattement = chomage_brut,
+            indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
+            indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
+            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.chomage.imposable,
+            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            )
+        nbh_travail = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
+        cho_seuil_exo = (
+            parameters.prelevements_sociaux.contributions_sociales.csg.chomage.min_exo
+            * nbh_travail
+            * parameters.cotsoc.gen.smic_h_b
+            )
+        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chomage_brut + montant_csg), 0), 0)
+        return - csg_imposable_chomage
 
 
 class crds_chomage(Variable):
