@@ -2,8 +2,8 @@
   period: 2014-01
   input:
     retraite_brute: 2000.0
-    irpp: 
-      2013: 
+    irpp:
+      2013:
         50.0
   output:
     casa: -0*2000
@@ -11,8 +11,8 @@
   period: 2014-01
   input:
     retraite_brute: 2000.0
-    irpp: 
-      2013: 
+    irpp:
+      2013:
         1500
   output:
     casa: -0.003*2000
@@ -20,10 +20,10 @@
   period: 2016-01
   input:
     retraite_brute: 2000.0
-    rfr: 
-      2014: 
+    rfr:
+      2014:
         13800.0
-      2015: 
+      2015:
         14000.0
   output:
     casa: -0*2000
@@ -31,11 +31,11 @@
   period: 2021-01
   input:
     retraite_brute: 2000.0
-    nbptr: 
+    nbptr:
       2018:
         2
-    rfr: 
-      2018: 
+    rfr:
+      2018:
         18850.0
   output:
     casa: -0*2000
@@ -43,8 +43,8 @@
   period: 2021-01
   input:
     retraite_brute: 2000.0
-    rfr: 
-      2019: 
+    rfr:
+      2019:
         14920.0
   output:
     casa: -0.003*2000
