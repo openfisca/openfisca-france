@@ -31,7 +31,7 @@
     csg_deductible_retraite: -0.042*2000
     csg_imposable_retraite: -0.024*2000
 
-- name: Retraite Exonéré
+- name: Retraite Exonéré 2020
   period: 2020-01
   input:
     retraite_brute: 2000.0
@@ -42,7 +42,7 @@
     csg_imposable_retraite: 0*2000
     csg_deductible_retraite: 0*2000
 
-- name: Retraite Taux réduit
+- name: Retraite Taux réduit 2020
   period: 2020-01
   input:
     retraite_brute: 2000.0
@@ -53,7 +53,7 @@
     csg_deductible_retraite: -0.038*2000
     csg_imposable_retraite: -0*2000
 
-- name: Retraite Taux médian
+- name: Retraite Taux médian 2020
   period: 2020-01
   input:
     retraite_brute: 2000.0
@@ -64,7 +64,7 @@
     csg_deductible_retraite: -0.042*2000
     csg_imposable_retraite: -0.024*2000
 
-- name: Retraite Taux plein
+- name: Retraite Taux plein 2020
   period: 2020-01
   input:
     retraite_brute: 2000.0
@@ -75,7 +75,7 @@
     csg_deductible_retraite: -0.059*2000
     csg_imposable_retraite: -0.024*2000
 
-- name: Chomage déductible et imposable Abattement Exoneration seuil Smic
+- name: Chomage déductible et imposable Abattement Exoneration seuil Smic 2020
   period: 2020-01
   input:
     chomage_brut: 1000.0
@@ -86,7 +86,7 @@
     csg_deductible_chomage: 0
     csg_imposable_chomage: 0
 
-- name: Chomage déductible et imposable Abattement Exonération seuil RFR
+- name: Chomage déductible et imposable Abattement Exonération seuil RFR 2020
   period: 2020-01
   input:
     chomage_brut: 1000.0
@@ -97,7 +97,7 @@
     csg_deductible_chomage: 0*(0.9825*1000)
     csg_imposable_chomage: 0*(0.9825*1000)
 
-- name: Chomage déductible et imposable Abattement Taux réduit
+- name: Chomage déductible et imposable Abattement Taux réduit 2020
   period: 2020-01
   input:
     chomage_brut: 2000.0
@@ -108,7 +108,7 @@
     csg_imposable_chomage: -0*(0.9825*2000)
     csg_deductible_chomage: -0.038*(0.9825*2000)
 
-- name: Chomage déductible et imposable Abattement Taux plein
+- name: Chomage déductible et imposable Abattement Taux plein 2020
   period: 2020-01
   input:
     chomage_brut: 2000.0
