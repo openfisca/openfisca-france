@@ -1,5 +1,20 @@
 # Changelog
 
+### 66.0.2 [#1628](https://github.com/openfisca/openfisca-france/pull/1628)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive`.
+* Détails :
+  - Corrections d'indentation dans les metadata des paramètres
+  - Renommage de unit_rate et de unit_threshold en rate_unit et threshold_unit
+  - Correction des rate_unit et threshold_unit utilisés ailleurs que dans des barèmes
+  - Correction d'un format de date
+
+Ces changements :
+
+- Modifient des éléments non fonctionnels (metadata de paramètres).
+
 ### 66.0.1 [#1620](https://github.com/openfisca/openfisca-france/pull/1620)
 
 * Changement mineur.

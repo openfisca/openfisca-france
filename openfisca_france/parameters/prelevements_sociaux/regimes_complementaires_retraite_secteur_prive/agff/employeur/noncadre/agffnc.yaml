@@ -26,8 +26,8 @@ metadata:
   ux_name: Non-cadre
   last_review:
     2021-07-30
-  unit_rate: /1
-  unit_threshold: PSS
+  rate_unit: /1
+  threshold_unit: PSS
   reference:
     2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
     2001-04-01: Accord Arrco-Agirc du 10/02/2001 (ch. III) et du 12/11/2003
