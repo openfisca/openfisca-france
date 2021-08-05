@@ -7,7 +7,7 @@
 * Zones impactées : Presque l'ensemble des fichiers présents dans : 
 `openfisca-france/openfisca_france/model/`
 * Détails :
-  - Ajoute un champ `set_input` à toutes les variables dont la `definition_period = MONTH`
+  - Configure les variables par mois pour qu'elles fonctionnent avec un input annuel.
 
 ### 64.0.1 [#1626](https://github.com/openfisca/openfisca-france/pull/1626)
 
