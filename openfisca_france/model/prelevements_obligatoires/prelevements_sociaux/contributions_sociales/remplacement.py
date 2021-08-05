@@ -278,36 +278,6 @@ class csg_deductible_retraite(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):    # formula_1997_2014 à corriger une fois seuils RFR complétés avant 2015
-        retraite_brute = individu('retraite_brute', period)
-        parameters = parameters(period)
-
-        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.deductible.taux_plein * retraite_brute
-        return - montant_csg
-
-    def formula_2015(individu, period, parameters):
-        retraite_brute = individu('retraite_brute', period)
-        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
-        nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
-        parameters = parameters(period)
-        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
-        seuil_exoneration = seuils.seuil_rfr1 + (nbptr - 1) * seuils.demi_part_suppl_rfr1
-        seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.demi_part_suppl_rfr2
-
-        taux_csg_retraite = select(
-            [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
-            [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
-            )
-
-        montant_csg = montant_csg_crds_2_taux(
-            base_sans_abattement = retraite_brute,
-            indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
-            indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
-            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.deductible,
-            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
-            )
-        return montant_csg
-
     def formula_2019(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
@@ -332,6 +302,36 @@ class csg_deductible_retraite(Variable):
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             )
         return montant_csg
+
+    def formula_2015(individu, period, parameters):
+        retraite_brute = individu('retraite_brute', period)
+        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
+        nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
+        parameters = parameters(period)
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuil_exoneration = seuils.seuil_rfr1 + (nbptr - 1) * seuils.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.demi_part_suppl_rfr2
+
+        taux_csg_retraite = select(
+            [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
+            [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
+            )
+
+        montant_csg = montant_csg_crds_2_taux(
+            base_sans_abattement = retraite_brute,
+            indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
+            indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
+            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.deductible,
+            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            )
+        return montant_csg
+
+    def formula(individu, period, parameters):    # formula_1997_2014 à corriger une fois seuils RFR complétés avant 2015
+        retraite_brute = individu('retraite_brute', period)
+        parameters = parameters(period)
+
+        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.deductible.taux_plein * retraite_brute
+        return - montant_csg
 
 
 class csg_imposable_retraite(Variable):
@@ -343,36 +343,6 @@ class csg_imposable_retraite(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):    # formula_1997_2014 à corriger une fois seuils RFR complétés avant 2015
-        retraite_brute = individu('retraite_brute', period)
-        parameters = parameters(period)
-
-        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.imposable.taux_plein * retraite_brute
-        return - montant_csg
-
-    def formula_2015(individu, period, parameters):
-        retraite_brute = individu('retraite_brute', period)
-        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
-        nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
-        parameters = parameters(period)
-        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
-        seuil_exoneration = seuils.seuil_rfr1 + (nbptr - 1) * seuils.demi_part_suppl_rfr1
-        seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.demi_part_suppl_rfr2
-
-        taux_csg_retraite = select(
-            [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
-            [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
-            )
-
-        montant_csg = montant_csg_crds_2_taux(
-            base_sans_abattement = retraite_brute,
-            indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
-            indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
-            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.imposable,
-            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
-            )
-        return montant_csg
-
     def formula_2019(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
@@ -398,23 +368,6 @@ class csg_imposable_retraite(Variable):
             )
         return montant_csg
 
-
-class crds_retraite(Variable):
-    calculate_output = calculate_output_add
-    value_type = float
-    entity = Individu
-    label = "CRDS sur les pensions de retraite"
-    reference = "http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula(individu, period, parameters):    # formula_1997_2014 à corriger une fois seuils RFR complétés avant 2015
-        retraite_brute = individu('retraite_brute', period)
-        parameters = parameters(period)
-        taux = parameters.prelevements_sociaux.contributions_sociales.crds.retraite.taux
-
-        return - taux * retraite_brute
-
     def formula_2015(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
@@ -429,12 +382,31 @@ class crds_retraite(Variable):
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
             )
 
-        montant_crds = montant_csg_crds(
+        montant_csg = montant_csg_crds_2_taux(
             base_sans_abattement = retraite_brute,
-            law_node = parameters.prelevements_sociaux.contributions_sociales.crds.retraite,
+            indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
+            indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
+            law_node = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.imposable,
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
-            ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
-        return montant_crds
+            )
+        return montant_csg
+
+    def formula(individu, period, parameters):    # formula_1997_2014 à corriger une fois seuils RFR complétés avant 2015
+        retraite_brute = individu('retraite_brute', period)
+        parameters = parameters(period)
+
+        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.imposable.taux_plein * retraite_brute
+        return - montant_csg
+
+
+class crds_retraite(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Individu
+    label = "CRDS sur les pensions de retraite"
+    reference = "http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2019(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
@@ -459,6 +431,34 @@ class crds_retraite(Variable):
 
         return montant_crds
 
+    def formula_2015(individu, period, parameters):
+        retraite_brute = individu('retraite_brute', period)
+        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
+        nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
+        parameters = parameters(period)
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuil_exoneration = seuils.seuil_rfr1 + (nbptr - 1) * seuils.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.demi_part_suppl_rfr2
+
+        taux_csg_retraite = select(
+            [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
+            [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
+            )
+
+        montant_crds = montant_csg_crds(
+            base_sans_abattement = retraite_brute,
+            law_node = parameters.prelevements_sociaux.contributions_sociales.crds.retraite,
+            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
+        return montant_crds
+
+    def formula(individu, period, parameters):    # formula_1997_2014 à corriger une fois seuils RFR complétés avant 2015
+        retraite_brute = individu('retraite_brute', period)
+        parameters = parameters(period)
+        taux = parameters.prelevements_sociaux.contributions_sociales.crds.retraite.taux
+
+        return - taux * retraite_brute
+
 
 class casa(Variable):
     value_type = float
@@ -468,15 +468,23 @@ class casa(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2013_04_01(individu, period, parameters):
+    def formula_2019_01_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
-        ir = individu.foyer_fiscal('irpp', period = period.last_year)
+        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
+        nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
-        seuil_exoneration = parameters.prelevements_sociaux.contributions_sociales.csg.seuils.seuil_ir
+        seuils_csg = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuil_exoneration = seuils_csg.seuil_rfr1 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr1
+        seuil_reduction = seuils_csg.seuil_rfr2 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr2
+        seuil_taux_intermediaire = seuils_csg.seuil_rfr3 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr3
 
+        taux_csg_retraite = select(
+            [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr <= seuil_taux_intermediaire, rfr > seuil_taux_intermediaire],
+            [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
+            )
         bareme = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.casa
         casa = (
-            (ir > seuil_exoneration)
+            ((taux_csg_retraite == TypesTauxCSGRetraite.taux_plein) + (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire))
             * bareme.pensions_retraite_preretraite_invalidite.calc(retraite_brute)
             )
         return - casa
@@ -501,23 +509,15 @@ class casa(Variable):
             )
         return - casa
 
-    def formula_2019_01_01(individu, period, parameters):
+    def formula_2013_04_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
-        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
-        nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
+        ir = individu.foyer_fiscal('irpp', period = period.last_year)
         parameters = parameters(period)
-        seuils_csg = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
-        seuil_exoneration = seuils_csg.seuil_rfr1 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr1
-        seuil_reduction = seuils_csg.seuil_rfr2 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr2
-        seuil_taux_intermediaire = seuils_csg.seuil_rfr3 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr3
+        seuil_exoneration = parameters.prelevements_sociaux.contributions_sociales.csg.seuils.seuil_ir
 
-        taux_csg_retraite = select(
-            [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr <= seuil_taux_intermediaire, rfr > seuil_taux_intermediaire],
-            [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
-            )
         bareme = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.casa
         casa = (
-            ((taux_csg_retraite == TypesTauxCSGRetraite.taux_plein) + (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire))
+            (ir > seuil_exoneration)
             * bareme.pensions_retraite_preretraite_invalidite.calc(retraite_brute)
             )
         return - casa
