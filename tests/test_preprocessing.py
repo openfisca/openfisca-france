@@ -1,5 +1,6 @@
 """Teste les cotisations par catégorie de salarié produites à l'issue de l'étape preprocessing."""
 
+from collections import OrderedDict
 import datetime
 from openfisca_france.model.revenus.activite.salarie import categorie_salarie
 from .cache import tax_benefit_system
@@ -8,6 +9,48 @@ import pytest
 
 
 years = range(2006, 2020)
+
+
+cotisations_salarie_by_name = {
+        "agff": {},
+        "agirc_arrco": {},
+        "agirc": {},
+        "apec": {},
+        "arrco": {},
+        "assedic": {},
+        "ceg": {},
+        "cet": {
+            "final_null_date": "2019-01-01"
+
+            },
+        "cet2019": {},
+        "forfait_annuel": {},
+        "maladie_alsace_moselle": {},
+        "maladie": {},
+        "vieillesse_deplafonnee": {},
+        "vieillesse": {},
+    }
+
+
+cotisations_salarie_by_categorie_salarie = {
+    "prive_cadre": [
+        "agff",
+        "agirc_arrco",
+        "agirc",
+        "apec",
+        "arrco",
+        "assedic",
+        "ceg",
+        "cet",
+        "cet2019",
+        "forfait_annuel",
+        "maladie_alsace_moselle",
+        "maladie",
+        "vieillesse_deplafonnee",
+        "vieillesse",
+        ],
+
+    }
 
 
 # @pytest.mark.parametrize("year", years)
@@ -39,9 +82,38 @@ def test_preprocessing(year = None):
         'public_titulaire_territoriale',
         ]), "Les barèmes de cotisations salarié de certaines catégories de salariés sont manquants"
 
-    # categorie_salarie = "prive_cadre"
-    # print(parameters.cotsoc.cotisations_salarie.children["prive_cadre"].children.keys())
+    categorie_salaries = [
+        "prive_cadre",
+        ]
+    for categorie_salarie in categorie_salaries:
+        test = parameters.cotsoc.cotisations_salarie.children["prive_cadre"].children.keys()
+        target = cotisations_salarie_by_categorie_salarie[categorie_salarie]
+        assert set(test) == set(target), "Les barèmes de cotisations salarié {} ne sont pas les bons".format(
+            categorie_salarie)
 
+    cotisations_salaries = set(sum(
+        (cotisations_salarie_by_categorie_salarie[categorie_salarie] for categorie_salarie in categorie_salaries),
+        [],
+        ))
 
-if __name__ == "__main__":
-    test_basics()
+    for cotisation_salarie in sorted(cotisations_salaries):
+        bareme = parameters.cotsoc.cotisations_salarie.children["prive_cadre"].children[cotisation_salarie]
+
+        final_null_date = cotisations_salarie_by_name[cotisation_salarie].get("final_null_date")
+        if final_null_date:
+            thresholds = [
+                dict(
+                    (parameter_at_instant.instant_str, parameter_at_instant.value)
+                    for parameter_at_instant in bracket.threshold.values_list
+                    )
+                for bracket in bareme.brackets
+                ]
+            final_thresholds_by_instant_str = OrderedDict(sorted(threshold.items(), reverse = True)[0] for threshold in thresholds)
+            assert all([final_threshold is None for final_threshold in final_thresholds_by_instant_str.values()]), "Barème salarié {} ne s'éteint pas (il devrait en {})".format(
+                cotisation_salarie,
+                final_null_date,
+                )
+            assert max(final_thresholds_by_instant_str.keys()) == final_null_date, "Barème salarié {} ne s'éteint pas en {}".format(
+                cotisation_salarie,
+                final_null_date,
+                )
