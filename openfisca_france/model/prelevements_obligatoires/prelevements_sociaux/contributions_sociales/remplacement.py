@@ -81,8 +81,9 @@ class csg_deductible_chomage(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    # TODO : formule à partir de 2015 seulement. Pour les années d'avant, certaines seuils de RFR sont manquants, ainsi que des informations relatives à des exonérations passées.
 
-    def formula_2015(individu, period, parameters):    # TODO il manque la formula_1997_2014 (autres critères pour taux réduit)
+    def formula_2015(individu, period, parameters):
         chomage_brut = individu('chomage_brut', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
         parameters = parameters(period)
@@ -138,8 +139,9 @@ class csg_imposable_chomage(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    # TODO : formule à partir de 2015 seulement. Pour les années d'avant, certaines seuils de RFR sont manquants, ainsi que des informations relatives à des exonérations passées.
 
-    def formula_2015(individu, period, parameters):    # TODO il manque la formula_1997_2014 (autres critères pour taux réduit)
+    def formula_2015(individu, period, parameters):
         chomage_brut = individu('chomage_brut', period)
         parameters = parameters(period)
 
@@ -184,8 +186,9 @@ class crds_chomage(Variable):
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    # TODO : formule à partir de 2015 seulement. Pour les années d'avant, certaines seuils de RFR sont manquants, ainsi que des informations relatives à des exonérations passées.
 
-    def formula_2015(individu, period, parameters):    # TODO il manque la formula_1997_2014 (autres critères pour taux réduit)
+    def formula_2015(individu, period, parameters):
         chomage_brut = individu('chomage_brut', period)
         csg_deductible_chomage = individu('csg_deductible_chomage', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
@@ -277,6 +280,7 @@ class csg_deductible_retraite(Variable):
     reference = "https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    # TODO : formule à partir de 2015 seulement. Pour les années d'avant, certaines seuils de RFR sont manquants, ainsi que des informations relatives à des exonérations passées.
 
     def formula_2019(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
@@ -325,13 +329,6 @@ class csg_deductible_retraite(Variable):
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             )
         return montant_csg
-
-    def formula(individu, period, parameters):    # formula_1997_2014 à corriger une fois seuils RFR complétés avant 2015
-        retraite_brute = individu('retraite_brute', period)
-        parameters = parameters(period)
-
-        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.deductible.taux_plein * retraite_brute
-        return - montant_csg
 
 
 class csg_imposable_retraite(Variable):
@@ -342,6 +339,7 @@ class csg_imposable_retraite(Variable):
     reference = "https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    # TODO : formule à partir de 2015 seulement. Pour les années d'avant, certaines seuils de RFR sont manquants, ainsi que des informations relatives à des exonérations passées.
 
     def formula_2019(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
@@ -391,13 +389,6 @@ class csg_imposable_retraite(Variable):
             )
         return montant_csg
 
-    def formula(individu, period, parameters):    # formula_1997_2014 à corriger une fois seuils RFR complétés avant 2015
-        retraite_brute = individu('retraite_brute', period)
-        parameters = parameters(period)
-
-        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.imposable.taux_plein * retraite_brute
-        return - montant_csg
-
 
 class crds_retraite(Variable):
     calculate_output = calculate_output_add
@@ -407,6 +398,7 @@ class crds_retraite(Variable):
     reference = "http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    # TODO : formule à partir de 2015 seulement. Pour les années d'avant, certaines seuils de RFR sont manquants, ainsi que des informations relatives à des exonérations passées.
 
     def formula_2019(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
@@ -451,13 +443,6 @@ class crds_retraite(Variable):
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
         return montant_crds
-
-    def formula(individu, period, parameters):    # formula_1997_2014 à corriger une fois seuils RFR complétés avant 2015
-        retraite_brute = individu('retraite_brute', period)
-        parameters = parameters(period)
-        taux = parameters.prelevements_sociaux.contributions_sociales.crds.retraite.taux
-
-        return - taux * retraite_brute
 
 
 class casa(Variable):
