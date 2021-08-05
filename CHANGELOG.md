@@ -1,5 +1,20 @@
 # Changelog
 
+# 66.0.0 [#1615](https://github.com/openfisca/openfisca-france/pull/1615)
+
+* Évolution du système socio-fiscal. | Amélioration technique. | Correction paramètres et formules
+* Périodes concernées : toutes. 
+* Zones impactées : 
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires`.
+  - `model/prelevements_obligatoires/prelevements_sociaux/taxes_salaires_main_oeuvre.py`
+* Détails :
+  - Harmonisation des paramètres entre OFF et baremes-ipp
+  - Erreur constatée dans les paramètres suivants: 
+     - FNAL
+     - APPRENTISSAGE
+  - Erreur constatée dans les tests suivants: 
+     - APPRENTISSAGE
+     
 # 65.0.0 [#1610](https://github.com/openfisca/openfisca-france/pull/1610)
 * Amélioration technique.
 * Périodes concernées : toutes. 
