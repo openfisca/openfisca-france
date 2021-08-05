@@ -5,7 +5,7 @@
 * Changement mineur.
 * Périodes concernées : toutes
 * Zones impactées : Presque l'ensemble des fichiers présents dans : 
-`openfisca-france/openfisca_france/model/` (liste des fichiers détaillée dans la PR)
+`openfisca-france/openfisca_france/model/`
 * Détails :
   - Ajoute un champ `set_input` à toutes les variables dont la `definition_period = MONTH`
 
