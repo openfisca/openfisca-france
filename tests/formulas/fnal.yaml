@@ -1,0 +1,131 @@
+- name: Test FNAL, 2002, petite entreprise (<10), au-dessus PSS
+  period: 2002-01
+  absolute_error_margin: 0.005
+  input:
+    assiette_cotisations_sociales: 2500
+    effectif_entreprise: 5
+  output:
+    fnal_cotisation: -2352*0.001
+    fnal_contribution: 0
+    fnal: -(2352*0.001 + 0)
+
+- name: Test FNAL, 2002, petite entreprise (<10), en dessous PSS
+  period: 2002-01
+  absolute_error_margin: 0.005
+  input:
+    assiette_cotisations_sociales: 2100
+    effectif_entreprise: 5
+  output:
+    fnal_cotisation: -2100*0.001
+    fnal_contribution: 0
+    fnal: -(2100*0.001 + 0)
+
+- name: Test FNAL, 2002, grande entreprise (>=10), au-dessus PSS
+  period: 2002-01
+  absolute_error_margin: 0.005
+  input:
+    assiette_cotisations_sociales: 2500
+    effectif_entreprise: 14
+  output:
+    fnal_cotisation: -2352*0.001
+    fnal_contribution: -2500*0.004
+    fnal: -(2352*0.001 + 2500*0.004)
+
+- name: Test FNAL, 2002, grande entreprise (>=10), en dessous PSS
+  period: 2002-01
+  absolute_error_margin: 0.005
+  input:
+    assiette_cotisations_sociales: 2100
+    effectif_entreprise: 14
+  output:
+    fnal_cotisation: -2100*0.001
+    fnal_contribution: -2100*0.004
+    fnal: -(2100*0.001 + 2100*0.004)
+
+- name: Test FNAL, 2012, petite entreprise (<20), au-dessus PSS
+  period: 2012-01
+  absolute_error_margin: 0.005
+  input:
+    assiette_cotisations_sociales: 4000
+    effectif_entreprise: 11
+  output:
+    fnal_cotisation: -3031*0.001
+    fnal_contribution: 0
+    fnal: -(3031*0.001 + 0)
+
+- name: Test FNAL, 2012, petite entreprise (<20), en dessous PSS
+  period: 2012-01
+  absolute_error_margin: 0.005
+  input:
+    assiette_cotisations_sociales: 2100
+    effectif_entreprise: 11
+  output:
+    fnal_cotisation: -2100*0.001
+    fnal_contribution: 0
+    fnal: -(2100*0.001 + 0)
+
+- name: Test FNAL, 2012, grande entreprise (>=20), au-dessus PSS
+  period: 2012-01
+  absolute_error_margin: 0.005
+  input:
+    assiette_cotisations_sociales: 4000
+    effectif_entreprise: 23
+  output:
+    fnal_cotisation: -3031*0.001
+    fnal_contribution: -16.96 # -(3031*0.004 + (4000-3031)*0.005)
+    fnal: -19.991 # -(3031*0.001 + 3031*0.004 + (4000-3031)*0.005)
+
+- name: Test FNAL, 2012, grande entreprise (>=20), en dessous PSS
+  period: 2012-01
+  absolute_error_margin: 0.005
+  input:
+    assiette_cotisations_sociales: 2100
+    effectif_entreprise: 23
+  output:
+    fnal_cotisation: -2100*0.001
+    fnal_contribution: -2100*0.004
+    fnal: -(2100*0.001 + 2100*0.004)
+
+- name: Test FNAL, 2016, petite entreprise (<20), au-dessus PSS
+  period: 2016-01
+  absolute_error_margin: 0.005
+  input:
+    assiette_cotisations_sociales: 4000
+    effectif_entreprise: 11
+  output:
+    fnal_cotisation: 0
+    fnal_contribution: -3218*0.001
+    fnal: -(3218*0.001)
+
+- name: Test FNAL, 2016, petite entreprise (<20), en dessous PSS
+  period: 2016-01
+  absolute_error_margin: 0.005
+  input:
+    assiette_cotisations_sociales: 2100
+    effectif_entreprise: 11
+  output:
+    fnal_cotisation: 0
+    fnal_contribution: -2100*0.001
+    fnal: -(2100*0.001 + 0)
+
+- name: Test FNAL, 2016, grande entreprise (>=20), au-dessus PSS
+  period: 2016-01
+  absolute_error_margin: 0.005
+  input:
+    assiette_cotisations_sociales: 4000
+    effectif_entreprise: 23
+  output:
+    fnal_cotisation: 0
+    fnal_contribution: -4000*0.005
+    fnal: -(4000*0.005)
+
+- name: Test FNAL, 2016, grande entreprise (>=20), en dessous PSS
+  period: 2016-01
+  absolute_error_margin: 0.005
+  input:
+    assiette_cotisations_sociales: 2100
+    effectif_entreprise: 23
+  output:
+    fnal_cotisation: 0
+    fnal_contribution: -2100*0.005
+    fnal: -(2100*0.005)

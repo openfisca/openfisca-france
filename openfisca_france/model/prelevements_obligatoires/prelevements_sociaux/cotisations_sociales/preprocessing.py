@@ -24,15 +24,19 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     # Création de commun
     # Apprentissage
-    commun.children['apprentissage'] = autres.apprentissage.children['apprentissage']
-    commun.children['apprentissage_add'] = autres.apprentissage.children['apprentissage_add']
-    commun.children['apprentissage_alsace_moselle'] = autres.apprentissage.children['apprentissage_alsace_moselle']
+    commun.children['apprentissage_taxe'] = autres.apprentissage.children['apprentissage_taxe']
+    commun.children['apprentissage_contribution_additionnelle'] = autres.apprentissage.children['apprentissage_contribution_additionnelle']
+    commun.children['apprentissage_taxe_alsace_moselle'] = autres.apprentissage.children['apprentissage_taxe_alsace_moselle']
     # Formation
-    commun.children['formprof_09'] = autres.formation.children['formprof_09']
-    commun.children['formprof_1019'] = autres.formation.children['formprof_1019']
-    commun.children['formprof_20'] = autres.formation.children['formprof_20']
+    commun.children['formprof_moins_de_10_salaries'] = autres.formation.pefpc.children['formprof_moins_de_10_salaries']
+    commun.children['formprof_moins_de_11_salaries'] = autres.formation.pefpc.children['formprof_moins_de_11_salaries']
+    commun.children['formprof_20_salaries_et_plus'] = autres.formation.pefpc.children['formprof_20_salaries_et_plus']
+    commun.children['formprof_11_salaries_et_plus'] = autres.formation.pefpc.children['formprof_11_salaries_et_plus']
+    commun.children['formprof_entre_10_et_19_salaries'] = autres.formation.pefpc.children['formprof_entre_10_et_19_salaries']
     # Construction
-    commun.children['construction'] = autres.construction.children['construction_20']
+    commun.children['construction_plus_de_10_salaries'] = autres.construction.children['taux_plus_de_10_salaries']
+    commun.children['construction_plus_de_20_salaries'] = autres.construction.children['taux_plus_de_20_salaries']
+    commun.children['construction_plus_de_50_salaries'] = autres.construction.children['taux_plus_de_50_salaries']
     # Autres thématiques
     commun.children.update(chomage.assedic.employeur.children)
     commun.children.update(chomage.chomfg.children)
@@ -42,6 +46,13 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(regime_general.cnav.bareme.employeur.children)  # À harmoniser !
     commun.children.update(regime_general.mmid.bareme.employeur.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(autres.fnal.children)  # À harmoniser !
+    commun.children['fnal_cont_moins_de_20_salaries'] = autres.fnal.children['contribution_moins_de_20_salaries']
+    commun.children['fnal_cont_moins_de_50_salaries'] = autres.fnal.children['contribution_moins_de_50_salaries']
+    commun.children['fnal_cont_plus_de_10_salaries'] = autres.fnal.children['contribution_plus_de_10_salaries']
+    commun.children['fnal_cont_plus_de_20_salaries'] = autres.fnal.children['contribution_plus_de_20_salaries']
+    commun.children['fnal_cont_plus_de_50_salaries'] = autres.fnal.children['contribution_plus_de_50_salaries']
+    commun.children['fnal_cotisation'] = autres.fnal.children['cotisation']
+
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
     commun.children.update(retraites.ceg.employeur.children)
     commun.children.update(retraites.cet2019.employeur.children)
@@ -101,12 +112,15 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['prive_cadre'] = pat.children.pop('cadre')
 
     # Rework commun to deal with public employees
-    for var in ["apprentissage", "apprentissage_add", "apprentissage_alsace_moselle", "assedic", "chomfg", "construction", "maladie", "formprof_09",
-                "formprof_1019", "formprof_20", "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
+    for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle", "assedic", "chomfg",
+                "construction_plus_de_10_salaries", "construction_plus_de_20_salaries", "construction_plus_de_50_salaries", "maladie",
+                "formprof_moins_de_10_salaries", "formprof_moins_de_11_salaries", "formprof_20_salaries_et_plus", "formprof_11_salaries_et_plus", "formprof_entre_10_et_19_salaries",
+                "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
         del commun.children[var]
 
-    for var in ["apprentissage", "apprentissage_add", "apprentissage_alsace_moselle", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
-                "construction", "assedic"]:
+    for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle",
+                "formprof_moins_de_10_salaries", "formprof_moins_de_11_salaries", "formprof_20_salaries_et_plus", "formprof_11_salaries_et_plus", "formprof_entre_10_et_19_salaries",
+                "chomfg", "construction_plus_de_10_salaries", "construction_plus_de_20_salaries", "construction_plus_de_50_salaries", "assedic"]:
         del pat.children['fonc'].children['contract'].children[var]
 
     pat.children['fonc'].children['etat'].children.update(commun.children)
@@ -281,12 +295,13 @@ def preprocess_parameters(parameters):
     cotsoc.add_child('conge_individuel_formation', ParameterNode("conge_individuel_formation", data={}))
     cotsoc.conge_individuel_formation.children.update(autres.formation.conge_individuel_formation.children)  # À harmoniser
 
-    cotsoc.add_child('contribution_supplementaire_apprentissage', ParameterNode("contribution_supplementaire_apprentissage", data={}))
-    cotsoc.contribution_supplementaire_apprentissage.children.update(autres.apprentissage.contribution_supplementaire_apprentissage.children)  # À harmoniser
+    cotsoc.add_child('apprentissage_contribution_supplementaire', ParameterNode("apprentissage_contribution_supplementaire", data={}))
+    cotsoc.apprentissage_contribution_supplementaire.children.update(autres.apprentissage.apprentissage_contribution_supplementaire.children)  # À harmoniser
 
     cotsoc.add_child('gen', ParameterNode("gen", data={}))
-    cotsoc.gen.children['plafond_securite_sociale'] = pss.children['plafond_securite_sociale']  # À harmoniser
-    cotsoc.gen.children['plafond_securite_sociale_horaire'] = pss.children['plafond_securite_sociale_horaire']  # À harmoniser
+    cotsoc.gen.children['plafond_securite_sociale'] = pss.children['plafond_securite_sociale_mensuel']
+    cotsoc.gen.children['plafond_securite_sociale_annuel'] = pss.children['plafond_securite_sociale_annuel']
+    cotsoc.gen.children['plafond_securite_sociale_horaire'] = pss.children['plafond_securite_sociale_horaire']
     cotsoc.gen.children['nb_heure_travail_mensuel'] = travail.salaire_minimum.children['nb_heure_travail_mensuel']  # À harmoniser
     cotsoc.gen.children['smic_h_b'] = travail.salaire_minimum.children['smic_h_b']  # À harmoniser
 
@@ -299,8 +314,8 @@ def preprocess_parameters(parameters):
     cotsoc.add_child('stage', ParameterNode("stage", data={}))
     cotsoc.stage.children['taux_gratification_min'] = travail.salaire_minimum.children['taux_gratification_min']  # À harmoniser + IPP
 
-    cotsoc.add_child('taxes_sal', ParameterNode("taxes_sal", data={}))
-    cotsoc.taxes_sal.children.update(autres.taxsal.bareme.children)  # À harmoniser
+    cotsoc.add_child('taxe_salaires', ParameterNode("taxe_salaires", data={}))
+    cotsoc.taxe_salaires.children.update(autres.taxsal.children)  # À harmoniser
 
     cotsoc.add_child('versement_transport', ParameterNode("versement_transport", data={}))
     cotsoc.versement_transport.children.update(autres.versement_transport.bareme.children)  # À harmoniser

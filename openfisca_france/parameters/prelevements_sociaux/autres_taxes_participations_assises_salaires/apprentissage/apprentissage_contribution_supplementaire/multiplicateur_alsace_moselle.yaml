@@ -1,0 +1,11 @@
+description: Multiplicateur CSA Alsace-Moselle
+unit: /1
+values:
+  2012-01-01:
+    value: 0.52
+metadata:
+  reference:
+    title: art. 155, LOI n° 2011-1977 du 28 décembre 2011 de finances pour 2012
+    href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000025044460
+  official_journal_date:
+    2012-01-01: 2012-03-15

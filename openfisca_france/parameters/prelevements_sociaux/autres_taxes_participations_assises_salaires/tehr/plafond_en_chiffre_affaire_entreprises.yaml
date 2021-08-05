@@ -1,0 +1,18 @@
+description: Plafond du montant de taxe versée (en % du chiffre d'affaire de l'entreprises)
+unit: /1
+values:
+  2013-01-01:
+    value: 0.05
+  2015-01-01:
+    value: null
+metadata:
+  reference:
+    2013-01-01:
+      title: Art. 15 de la loi 2013-1278
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=1AACF2E1F7F065EF9C92B6B91E024EBE.tpdjo02v_1?idArticle=LEGIARTI000028402680&cidTexte=LEGITEXT000028402464&dateTexte=20140113
+    2015-01-01:
+      title: Loi 2013-1278 du 29/12/2013 (LF pour 2014), art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000028402680&cidTexte=JORFTEXT000028399511
+  official_journal_date:
+    2015-01-01: 2013-12-30
+    2013-01-01: 2013-12-30

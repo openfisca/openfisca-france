@@ -1,0 +1,15 @@
+description: Effort à la construction
+brackets:
+- rate:
+    2020-01-01:
+      value: 0.0045
+  threshold:
+    2020-01-01:
+      value: 0.0
+metadata:
+  reference:
+    2020-01-01:
+      title: Loi 2019-486 du 22/05/2019, art. 11
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000038496156
+  official_journal_date:
+    2020-01-01: 2019-05-23

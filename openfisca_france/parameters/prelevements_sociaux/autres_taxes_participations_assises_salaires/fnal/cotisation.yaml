@@ -1,0 +1,34 @@
+description: Cotisation pour le Fonds national d'aide au logement (FNAL)
+brackets:
+- rate:
+    1972-07-01:
+      value: 0.001
+    1986-01-01:
+      value: 0.001
+    2015-01-01:
+      value: 0
+  threshold:
+    1972-07-01:
+      value: 0
+- rate:
+    1972-07-01:
+      value: 0
+  threshold:
+    1972-07-01:
+      value: 1
+metadata:
+  reference: 
+    1972-07-01:
+      title: Décret 72-526 du 29/06/1972, art. 29
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006763229&cidTexte=JORFTEXT000000677865
+    1986-01-01:
+      title: Loi 86-1317 du 30/12/1986, art. 82-II et III. (LF pour 1986)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000317305&categorieLien=id
+    2015-01-01:
+      title: Loi 2014-1655 du 29/12/2014, art. 29 (LFR pour 2014)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000030009397&cidTexte=JORFTEXT000029990432
+  official_journal_date:
+    1972-07-01: 1972-06-30
+    1986-01-01: 1985-12-31
+    2015-01-01: 2014-12-30
+  notes: Ce dispositif de cotisation sur les salaires plafonnés est cumulatif avec le dispositif de contribution sur les salaires non plafonnés, spécifique aux entreprises excédant une certaine taille (d'abord 10+, puis 20+), jusqu'en 2015. En 2015, la cotisation disparaît, et la contribution est élargie à toutes les entreprises, mais avec un barème différent pour entreprises de plus ou moins 20 salariés (50 salariés à partir de 2020)
