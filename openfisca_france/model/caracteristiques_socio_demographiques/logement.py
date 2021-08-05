@@ -8,6 +8,7 @@ class coloc(Variable):
     entity = Menage
     label = "Vie en colocation"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class logement_crous(Variable):
@@ -15,6 +16,7 @@ class logement_crous(Variable):
     entity = Menage
     label = "Le logement est géré par les CROUS "
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class logement_chambre(Variable):
@@ -22,6 +24,7 @@ class logement_chambre(Variable):
     entity = Menage
     label = "Le logement est considéré comme une chambre"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class loyer(Variable):
@@ -62,6 +65,7 @@ class habite_chez_parents(Variable):
     entity = Individu
     label = "L'individu habite chez ses parents"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class statut_occupation_logement(Variable):
@@ -79,6 +83,7 @@ class residence_ile_de_france(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
@@ -89,6 +94,7 @@ class residence_dom(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(menage, period):
         residence_guadeloupe = menage('residence_guadeloupe', period)
@@ -104,6 +110,7 @@ class residence_guadeloupe(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
@@ -114,6 +121,7 @@ class residence_martinique(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
@@ -124,6 +132,7 @@ class residence_guyane(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
@@ -134,6 +143,7 @@ class residence_reunion(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
@@ -144,6 +154,7 @@ class residence_saint_pierre_et_miquelon(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
@@ -154,6 +165,7 @@ class residence_mayotte(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
@@ -164,6 +176,7 @@ class residence_saint_bartelemy(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
@@ -174,6 +187,7 @@ class residence_saint_martin(Variable):
     value_type = bool
     entity = Menage
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
@@ -200,6 +214,7 @@ class residence(Variable):
     entity = Menage
     label = "Zone de résidence"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
         return select(

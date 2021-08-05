@@ -36,6 +36,7 @@ class adoption(Variable):
     entity = Individu
     label = "Enfant adopté"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class garde_alternee(Variable):
@@ -69,6 +70,7 @@ class alternant(Variable):
     label = "En formation en alternance"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = "https://www.service-public.fr/particuliers/vosdroits/N11240"
 
 
@@ -249,6 +251,7 @@ class nb_parents(Variable):
     entity = Famille
     label = "Nombre d'adultes (parents) dans la famille"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
@@ -262,6 +265,7 @@ class maries(Variable):
     entity = Famille
     label = "maries"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
@@ -277,6 +281,7 @@ class en_couple(Variable):
     entity = Famille
     label = "Indicatrice de vie en couple"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
@@ -304,6 +309,7 @@ class etudiant(Variable):
     entity = Individu
     label = "Indique que l'individu dispose du statut étudiant"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = "https://www.service-public.fr/particuliers/vosdroits/F986"
 
     def formula(individu, period, parameters):
@@ -339,6 +345,7 @@ class ressortissant_eee(Variable):
     entity = Individu
     label = "Individu ressortissant d'un pays membre de l'Espace Économique Européen (EEE)."
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         nationalite = individu('nationalite', period)
@@ -351,6 +358,7 @@ class resident_ue(Variable):
     entity = Individu
     label = "Individu résidant dans pays membre de l'Union européenne (UE)."
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         '''
@@ -366,6 +374,7 @@ class residence_continue_annees(Variable):
     entity = Individu
     label = "Durée depuis laquelle l'individu réside sur le territoire français de manière régulière et continue (en années)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class duree_possession_titre_sejour(Variable):
@@ -381,3 +390,4 @@ class enfant_place(Variable):
     entity = Individu
     label = "Enfant placé en structure spécialisée ou famille d'accueil"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period

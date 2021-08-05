@@ -116,6 +116,7 @@ class bourse_lycee_points_de_charge(Variable):
     label = "Nombre de points de charge pour la bourse de lycée"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     end = '2016-07-01'
 
     def formula(famille, period, parameters):
@@ -139,6 +140,7 @@ class bourse_lycee_nombre_parts(Variable):
     label = "Nombre de parts pour le calcul du montant de la bourse de lycée"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     end = '2016-07-01'
 
     def formula(famille, period, parameters):
@@ -168,6 +170,7 @@ class bourse_lycee_echelon(Variable):
     label = "Échelon de la bourse de collège attribuée"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         """
@@ -304,6 +307,7 @@ class scolarite(Variable):
     entity = Individu
     label = "Scolarité de l'enfant : collège, lycée..."
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class StatutsEtablissementScolaire(Enum):
@@ -321,6 +325,7 @@ class statuts_etablissement_scolaire(Variable):
     default_value = StatutsEtablissementScolaire.inconnu
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class boursier(Variable):
@@ -328,6 +333,7 @@ class boursier(Variable):
     entity = Individu
     label = "Élève ou étudiant boursier"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2021(individu, period):
         college = individu.famille('bourse_college_echelon', period)

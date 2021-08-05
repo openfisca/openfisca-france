@@ -6,6 +6,7 @@ class pass_culture(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Montant du pass culture"
+    set_input = set_input_divide_by_period
     reference = ['https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043518870', 'https://www.service-public.fr/particuliers/vosdroits/F34959']
 
     def formula(individu, period, parameters):

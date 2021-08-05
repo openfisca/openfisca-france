@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Variable, Individu, MONTH
+from openfisca_france.model.base import Variable, Individu, MONTH, set_input_dispatch_by_period, set_input_divide_by_period
 
 
 class pret_formation_permis_eligibilite(Variable):
@@ -31,6 +31,7 @@ class aide_financement_permis_apprenti(Variable):
     label = "Montant de l'aide au financement du permis de conduire pour les apprentis"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         "Décret n° 2019-1 du 3 janvier 2019 relatif à l'aide au financement du permis de conduire pour les apprentis",
         "https://www.legifrance.gouv.fr/eli/decret/2019/1/3/MTRD1835610D/jo/article_1"
@@ -48,6 +49,7 @@ class aide_financement_permis_apprenti_eligibilite(Variable):
     label = "Éligibilité à l'aide au financement du permis de conduire pour les apprentis"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = [
         "Décret n° 2019-1 du 3 janvier 2019 relatif à l'aide au financement du permis de conduire pour les apprentis",
         "https://www.legifrance.gouv.fr/eli/decret/2019/1/3/MTRD1835610D/jo/article_1"

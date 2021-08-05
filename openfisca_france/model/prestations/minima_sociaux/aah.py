@@ -37,6 +37,7 @@ class aah_base_ressources(Variable):
     label = "Base ressources de l'allocation adulte handicapé"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         law = parameters(period)
@@ -79,6 +80,7 @@ class aah_base_ressources_activite_eval_trimestrielle(Variable):
     label = "Base de ressources des revenus d'activité de l'AAH pour un individu, évaluation trimestrielle"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     '''
         N'entrent pas en compte dans les ressources :
@@ -130,6 +132,7 @@ class aah_base_ressources_activite_milieu_protege(Variable):
     label = "Base de ressources de l'AAH des revenus d'activité en milieu protégé pour un individu"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
@@ -137,6 +140,7 @@ class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
     label = "Base de ressources hors revenus d'activité de l'AAH pour un individu, évaluation trimestrielle"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     '''
         N'entrent pas en compte dans les ressources :
@@ -181,6 +185,7 @@ class aah_base_ressources_eval_annuelle(Variable):
     label = "Base de ressources de l'AAH pour un individu, évaluation annuelle"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         return (
@@ -208,6 +213,7 @@ class aah_eligible(Variable):
     label = "Eligibilité à l'Allocation adulte handicapé"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     '''
         Allocation adulte handicapé
@@ -261,6 +267,7 @@ class aah_base_non_cumulable(Variable):
     label = "Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         return individu('pensions_invalidite', period) + individu('asi', period.last_month)
@@ -275,6 +282,7 @@ class aah_plafond_ressources(Variable):
         "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=4B54EC7065520E4812F84677B918A48E.tplgfr28s_2?idArticle=LEGIARTI000019077584&cidTexte=LEGITEXT000006073189&dateTexte=20081218"
         ]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         law = parameters(period).prestations
@@ -302,6 +310,7 @@ class aah_base(Variable):
         "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=53AFF5AA4010B01F0539052A33180B39.tplgfr35s_1?idArticle=LEGIARTI000033813790&cidTexte=LEGITEXT000006073189&dateTexte=20180412"
         ]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         law = parameters(period).prestations
@@ -344,6 +353,7 @@ class eligibilite_caah(Variable):
     value_type = float
     label = "Eligibilité aux compléments à l'aah"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2015_07_01(individu, period, parameters):
         annee_precedente = period.start.period('year').offset(-1)
@@ -373,6 +383,7 @@ class caah(Variable):
     entity = Individu
     set_input = set_input_divide_by_period
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2019_12_01(individu, period, parameters):
         eligibilite_caah = individu('eligibilite_caah', period)
@@ -443,6 +454,7 @@ class complement_ressources_aah(Variable):
     label = "Le complément de ressources"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006745305&dateTexte=&categorieLien=cid"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = "2019-11-30"
 
     def formula_2015_07_01(individu, period, parameters):
@@ -461,6 +473,7 @@ class mva(Variable):
     label = "Majoration pour la vie autonome"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6E5B97C7E6C7E06666BCFFA11871E70B.tplgfr43s_2?idArticle=LEGIARTI000006745350&cidTexte=LEGITEXT000006073189&dateTexte=20190124"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2015_07_01(individu, period, parameters):
         prestations = parameters(period).prestations

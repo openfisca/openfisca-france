@@ -12,6 +12,7 @@ class assiette_allegement(Variable):
     entity = Individu
     label = "Assiette des allègements de cotisations sociales employeur"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period, options = [ADD])
@@ -27,6 +28,7 @@ class coefficient_proratisation(Variable):
     entity = Individu
     label = "Coefficient de proratisation du salaire notamment pour le calcul du SMIC"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         #  * Tous les calculs sont faits sur le mois *
@@ -120,6 +122,7 @@ class credit_impot_competitivite_emploi(Variable):
     label = "Crédit d'impôt pour la compétitivité et l'emploi"
     definition_period = MONTH
     calculate_output = calculate_output_add
+    set_input = set_input_divide_by_period
 
     def formula_2013_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
@@ -141,6 +144,7 @@ class aide_premier_salarie(Variable):
     label = "Aide à l'embauche d'un premier salarié"
     definition_period = MONTH
     calculate_output = calculate_output_add
+    set_input = set_input_divide_by_period
 
     def formula_2015_06_09(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
@@ -205,6 +209,7 @@ class aide_embauche_pme(Variable):
     reference = "http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
     definition_period = MONTH
     calculate_output = calculate_output_add
+    set_input = set_input_divide_by_period
 
     def formula_2016_01_18(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
@@ -284,6 +289,7 @@ class smic_proratise(Variable):
     entity = Individu
     label = "SMIC proratisé (mensuel)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         coefficient_proratisation = individu('coefficient_proratisation', period)
@@ -300,6 +306,7 @@ class allegement_fillon(Variable):
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542"
     definition_period = MONTH
     calculate_output = calculate_output_add
+    set_input = set_input_divide_by_period
 
     # Attention : cet allègement a des règles de cumul spécifiques
 
@@ -384,6 +391,7 @@ class allegement_cotisation_allocations_familiales(Variable):
     entity = Individu
     reference = "https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2015_01_01(individu, period, parameters):
         stagiaire = individu('stagiaire', period)

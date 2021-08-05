@@ -9,6 +9,7 @@ class ati_atiacl(Variable):
     entity = Individu
     label = "Cotisation ATI et ATIACL (contributions pour le financement de l'allocation temporaires d'invalidité)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     # patronale, non-contributive
 
     def formula(individu, period, parameters):
@@ -46,6 +47,7 @@ class contribution_exceptionnelle_solidarite(Variable):
     entity = Individu
     label = "Cotisation exceptionnelle au fonds de solidarité (salarié)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = '2017-12-31'
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006903878&dateTexte=&categorieLien=cid"
 
@@ -108,6 +110,7 @@ class fonds_emploi_hospitalier(Variable):
     entity = Individu
     label = "Cotisation au fonds pour l'emploi hospitalier (FEH) (cotisation employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         remuneration_principale = individu('remuneration_principale', period)
@@ -131,6 +134,7 @@ class ircantec_salarie(Variable):
     entity = Individu
     label = "Ircantec salarié"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
@@ -154,6 +158,7 @@ class ircantec_employeur(Variable):
     entity = Individu
     label = "Ircantec employeur"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
@@ -177,6 +182,7 @@ class pension_salarie(Variable):
     entity = Individu
     label = "Cotisation au régime de base de retraite de la fonction publique - part salariale (retenue pour pension)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
@@ -209,6 +215,7 @@ class pension_employeur(Variable):
     label = "Cotisation au régime de base de retraite de la fonction publique - part employeur"
     reference = "http://www.ac-besancon.fr/spip.php?article2662"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         remuneration_principale = individu('remuneration_principale', period)
@@ -236,6 +243,7 @@ class rafp_salarie(Variable):
     entity = Individu
     label = "Part salariale de la retraite additionelle de la fonction publique"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2005_01_01(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
@@ -270,6 +278,7 @@ class rafp_employeur(Variable):
     entity = Individu
     label = "Part patronale de la retraite additionnelle de la fonction publique"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2005_01_01(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)

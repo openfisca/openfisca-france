@@ -12,6 +12,7 @@ class covid_aide_exceptionnelle_tpe_eligible(Variable):
         "https://www.legifrance.gouv.fr/eli/ordonnance/2020/6/10/ECOI2012371R/jo/texte"
         ]
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2020_03(individu, period):
         chiffre_d_affaire = individu('rpns_auto_entrepreneur_chiffre_affaires', period)
@@ -27,6 +28,7 @@ class covid_aide_exceptionnelle_tpe_montant(Variable):
     value_type = float
     label = "Montant de l'aide exceptionnelle pour les TPE pendant la crise sanitaire dûe au COVID-19"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = '2020-12-31'
 
     def formula_2020_03(individu, period, parameters):
@@ -46,6 +48,7 @@ class covid_activite_partielle_eligible(Variable):
     value_type = bool
     label = "Eligibilité au dispositif du chômage partiel"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         return individu('salaire_de_base', period) != 0
@@ -56,6 +59,7 @@ class covid_activite_partielle_montant(Variable):
     value_type = float
     label = "Montant de l'indemnité salariale de chômage partiel"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         "Ordonnance n° 2020-346 du 27 mars 2020 portant mesures d'urgence en matière d'activité partielle",
         "https://www.legifrance.gouv.fr/eli/ordonnance/2020/3/27/MTRX2008381R/jo/texte",

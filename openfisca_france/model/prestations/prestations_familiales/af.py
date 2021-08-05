@@ -9,6 +9,7 @@ class af_nbenf(Variable):
     entity = Famille
     label = "Nombre d'enfants dans la famille au sens des allocations familiales"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         prestations_familiales_enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', period)
@@ -23,6 +24,7 @@ class af_coeff_garde_alternee(Variable):
     entity = Famille
     label = "Coefficient à appliquer aux af pour tenir compte de la garde alternée"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2007_05_01(famille, period):
         nb_enf = famille('af_nbenf', period)
@@ -43,6 +45,7 @@ class af_allocation_forfaitaire_nb_enfants(Variable):
     entity = Famille
     label = "Nombre d'enfants ouvrant droit à l'allocation forfaitaire des AF"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         pfam = parameters(period).prestations.prestations_familiales.af
@@ -56,6 +59,7 @@ class af_eligibilite_base(Variable):
     entity = Famille
     label = "Allocations familiales - Éligibilité pour la France métropolitaine sous condition de ressources"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         residence_dom = famille.demandeur.menage('residence_dom', period)
@@ -69,6 +73,7 @@ class af_eligibilite_dom(Variable):
     entity = Famille
     label = "Allocations familiales - Éligibilité pour les DOM (hors Mayotte) sous condition de ressources"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         residence_dom = famille.demandeur.menage('residence_dom', period)
@@ -83,6 +88,7 @@ class af_base(Variable):
     entity = Famille
     label = "Allocations familiales - allocation de base"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     # prestations familiales (brutes de crds)
 
     def formula(famille, period, parameters):
@@ -119,6 +125,7 @@ class af_taux_modulation(Variable):
     entity = Famille
     label = "Taux de modulation à appliquer au montant des AF depuis 2015"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2015_07_01(famille, period, parameters):
         nb_enf_tot = famille('af_nbenf', period)
@@ -132,6 +139,7 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
     entity = Famille
     label = "Taux de modulation à appliquer à l'allocation forfaitaire des AF depuis 2015"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2015_07_01(famille, period, parameters):
         af_nbenf = famille('af_nbenf', period)
@@ -147,6 +155,7 @@ class af_age_aine(Variable):
     entity = Famille
     label = "Allocations familiales - Âge de l'aîné des enfants éligibles"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     is_period_size_independent = True
 
     def formula(famille, period, parameters):
@@ -166,6 +175,7 @@ class af_majoration_enfant(Variable):
     entity = Individu
     label = "Allocations familiales - Majoration pour âge applicable à l'enfant"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         pfam_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
@@ -215,6 +225,7 @@ class af_majoration(Variable):
     entity = Famille
     label = "Allocations familiales - majoration pour âge"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         af_majoration_enfant = famille.members('af_majoration_enfant', period)
@@ -231,6 +242,7 @@ class af_complement_degressif(Variable):
     entity = Famille
     label = "AF - Complément dégressif en cas de dépassement du plafond"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2015_07_01(famille, period, parameters):
         eligibilite_dom = famille('af_eligibilite_dom', period)
@@ -252,6 +264,7 @@ class af_allocation_forfaitaire_complement_degressif(Variable):
     entity = Famille
     label = "AF - Complément dégressif pour l'allocation forfaitaire en cas de dépassement du plafond"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2015_07_01(famille, period, parameters):
         af_nbenf = famille('af_nbenf', period)
@@ -269,6 +282,7 @@ class af_allocation_forfaitaire(Variable):
     entity = Famille
     label = "Allocations familiales - forfait"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2003_07_01(famille, period, parameters):
         af_nbenf = famille('af_nbenf', period)

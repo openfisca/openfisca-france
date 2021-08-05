@@ -9,6 +9,7 @@ class aide_formation_gen_eligibilite(Variable):
     reference = "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000034429379/"
     label = "Éligibilité à l'aide accordée aux personnes inscrites dans une formation labellisée par la Grande Ecole du numérique"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2017_04_14(individu, period):
         '''
@@ -33,6 +34,7 @@ class aide_formation_gen(Variable):
     reference = "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000034429379/"
     label = "Montant de l'aide accordée aux personnes inscrites dans une formation labellisée par la Grande Ecole du numérique"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2017_04_14(individu, period, parameters):
         points_de_charge = individu('bourse_criteres_sociaux_points_de_charge', period)

@@ -1,4 +1,4 @@
-from openfisca_core.model_api import not_, select, where, Variable, MONTH, set_input_divide_by_period
+from openfisca_core.model_api import not_, select, where, Variable, MONTH, set_input_divide_by_period, set_input_dispatch_by_period
 from openfisca_france.model.base import Famille, Individu, TypesStatutMarital
 from openfisca_france.model.prestations.education import TypesScolarite, StatutsEtablissementScolaire
 
@@ -30,6 +30,7 @@ class bourse_criteres_sociaux_eligibilite_etude(Variable):
         ]
     label = "Satisfaction des critères d'étude pour la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         enseignement_superieur = individu('scolarite', period) == TypesScolarite.enseignement_superieur
@@ -51,6 +52,7 @@ class bourse_criteres_sociaux_eligibilite_nationalite(Variable):
         ]
     label = "Satisfaction des critères de nationalité pour la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2004_07_21(individu, period, parameters):
         '''
@@ -79,6 +81,7 @@ class bourse_criteres_sociaux_nombre_enfants_parent_etudiant(Variable):
         ]
     label = "Nombre d'enfants de l'étudiant pour le calcul de la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         return famille.nb_persons(Famille.ENFANT)
@@ -93,6 +96,7 @@ class bourse_criteres_sociaux_eligibilite_age(Variable):
         ]
     label = "Satisfaction des critères d'âge pour la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         age = individu('age', period)
@@ -112,6 +116,7 @@ class bourse_criteres_sociaux_eligibilite(Variable):
         ]
     label = "Éligibilité aux bourses sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         eligibilite_age = individu('bourse_criteres_sociaux_eligibilite_age', period)
@@ -130,6 +135,7 @@ class bourse_criteres_sociaux_base_ressources(Variable):
         ]
     label = "Ressources prise en compte pour la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         autonome = individu('bourse_criteres_sociaux_etudiant_autonome', period)
@@ -147,6 +153,7 @@ class bourse_criteres_sociaux_base_ressources_parentale(Variable):
         ]
     label = "Ressources parentales prises en compte pour la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class bourse_criteres_sociaux_base_ressources_etudiant_autonome(Variable):
@@ -158,6 +165,7 @@ class bourse_criteres_sociaux_base_ressources_etudiant_autonome(Variable):
         ]
     label = "Ressources de l'étudiant pour le barème pour la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         return individu.foyer_fiscal('rbg', period.n_2)
@@ -172,6 +180,7 @@ class bourse_criteres_sociaux_etudiant_autonome_ressource_mensuelle(Variable):
         ]
     label = "Ressources mensuelle prise en compte pour déterminer l'autonomie financière de l'étudiant pour la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         return individu.famille('rsa_base_ressources', period)
@@ -186,6 +195,7 @@ class bourse_criteres_sociaux_etudiant_autonome(Variable):
         ]
     label = "Indicatrice de la satisfaction des critères d'autonomie pour l'étudiant dans le cadre de l'évaluation de la bourse sur critères sociaux"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         statut_marital = individu('statut_marital', period)
@@ -217,6 +227,7 @@ class bourse_criteres_sociaux_points_de_charge(Variable):
         ]
     label = "Nombre de points de charge pour la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         pts_distance = individu('bourse_criteres_sociaux_points_de_charge_distance_domicile_familial', period)
@@ -233,6 +244,7 @@ class bourse_criteres_sociaux_points_de_charge_distance_domicile_familial(Variab
         ]
     label = "Distance entre le lieu d'étude et le domicile familial pour le calcul la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         distance = individu('bourse_criteres_sociaux_distance_domicile_familial', period)
@@ -249,6 +261,7 @@ class bourse_criteres_sociaux_distance_domicile_familial(Variable):
         ]
     label = "Distance en kilomètres entre le lieu d'étude et le domicile familial"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class bourse_criteres_sociaux_nombre_enfants_a_charge(Variable):
@@ -260,6 +273,7 @@ class bourse_criteres_sociaux_nombre_enfants_a_charge(Variable):
         ]
     label = "Nombre total d'enfants à la charge de la famille pour le calcul de la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur(Variable):
@@ -271,6 +285,7 @@ class bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieu
         ]
     label = "Nombre total d'enfants à la charge de la famille et étudiants dans l'enseignement supérieur pour le calcul la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class bourse_criteres_sociaux_points_de_charge_charges_familiale(Variable):
@@ -282,6 +297,7 @@ class bourse_criteres_sociaux_points_de_charge_charges_familiale(Variable):
         ]
     label = "Points de charge associés aux charges de la famille pour le alcul la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         nb_enf = individu.famille('bourse_criteres_sociaux_nombre_enfants_a_charge', period)
@@ -307,6 +323,7 @@ class bourse_criteres_sociaux_echelon(Variable):
         ]
     label = "Échelon de la bourse sur critères sociaux de l'enseignement supérieur en prenant uniquement en compte les critères de ressources et de points de charge"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         points_de_charge = individu('bourse_criteres_sociaux_points_de_charge', period)

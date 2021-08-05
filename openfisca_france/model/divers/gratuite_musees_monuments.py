@@ -6,6 +6,7 @@ class gratuite_musees_monuments(Variable):
     label = "Accès gratuit aux musées et monuments nationaux"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = "https://www.service-public.fr/particuliers/vosdroits/F20348"
 
     def formula(individu, period, parameters):

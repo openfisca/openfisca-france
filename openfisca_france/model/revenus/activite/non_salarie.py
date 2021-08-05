@@ -2041,6 +2041,7 @@ class tns_autres_revenus_type_activite(Variable):
     entity = Individu
     label = "Type d'activité de l'entreprise non AE ni ME"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class tns_avec_employe(Variable):
@@ -2081,6 +2082,7 @@ class travailleur_non_salarie(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
@@ -2157,6 +2159,7 @@ class rpns_auto_entrepreneur_revenus_net(Variable):
     label = "Revenu d'un auto-entrepreneur"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2008_01_01(individu, period, parameters):
         rpns_auto_entrepreneur_benefice = individu('rpns_auto_entrepreneur_benefice', period)
@@ -2178,6 +2181,7 @@ class rpns_micro_entreprise_revenus_net(Variable):
     label = "Revenu d'un TNS dans une micro-entreprise"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period)

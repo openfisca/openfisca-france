@@ -1,7 +1,7 @@
 from openfisca_france.model.base import (
     Variable, Individu, MONTH,
     TypesCategorieSalarie, TypesSecteurActivite, TypesStatutOccupationLogement,
-    min_, where,
+    min_, where, set_input_dispatch_by_period, set_input_divide_by_period
     )
 
 
@@ -10,6 +10,7 @@ class mobili_jeune(Variable):
     label = "Montant de l'aide au logement mobili-jeune"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
 
     def formula_2012_07(individu, period, parameters):
@@ -33,6 +34,7 @@ class mobili_jeune_eligibilite_employeur(Variable):
     label = "Conditions à remplir par l'employeur d'un demandeur d'aide au logement mobili-jeune"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
 
     def formula_2012_07(individu, period):
@@ -51,6 +53,7 @@ class mobili_jeune_eligibilite(Variable):
     label = "Éligibilité à l'aide au logement mobili-jeune"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
     documentation = '''
     Conditions non modélisées :

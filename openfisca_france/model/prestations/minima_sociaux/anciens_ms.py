@@ -11,6 +11,7 @@ class api(Variable):
     reference = "http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
     end = '2009-05-31'
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
     def formula(famille, period, parameters):
@@ -98,6 +99,7 @@ class psa(Variable):
     end = '2009-04-30'
     reference = "http://www.service-public.fr/actualites/001077.html"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
     def formula_2009_04(famille, period, parameters):
@@ -133,6 +135,7 @@ class rmi(Variable):
     label = "Revenu Minimum d'Insertion"
     end = '2009-05-31'
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_1988_12(famille, period):
         activite_i = famille.members('activite', period)
@@ -157,6 +160,7 @@ class rsa_activite(Variable):
     label = "Revenu de solidarité active - activité"
     end = '2015-12-31'
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2009_06_01(famille, period):
         rsa = famille('rsa', period, period)

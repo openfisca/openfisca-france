@@ -24,6 +24,7 @@ class apa_domicile_participation(Variable):
     label = "Participation du bénéficiaire de l'APA à domicile en euros"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2002(individu, period, parameters):
         # Les départements doivent appliquer la nouvelle formule
@@ -129,6 +130,7 @@ class apa_eligibilite(Variable):
     entity = Individu
     label = "Allocation personalisée d'autonomie - Éligibilité"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2002(individu, period, parameters):
         period = period.start.offset('first-of', 'month').period('month')
@@ -152,6 +154,7 @@ class apa_domicile_taux_participation(Variable):
     label = "Taux de participation du bénéficiaire à l'APA à domicile"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2002(individu, period, parameters):
         apa_domicile = individu('apa_domicile', period)
@@ -166,6 +169,7 @@ class apa_domicile(Variable):
     label = "Allocation personalisée d'autonomie"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2002(individu, period, parameters):
         period = period.start.offset('first-of', 'month').period('month')
@@ -185,6 +189,7 @@ class apa_etablissement(Variable):
     label = "Allocation personalisée d'autonomie en institution"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2002(individu, period, parameters):
         period = period.start.offset('first-of', 'month').period('month')
@@ -264,6 +269,7 @@ class gir(Variable):
     entity = Individu
     label = "Groupe iso-ressources de l'individu"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class dependance_plan_aide_domicile(Variable):
@@ -271,6 +277,7 @@ class dependance_plan_aide_domicile(Variable):
     entity = Individu
     label = "Coût du plan d'aide à domicile pour une personne dépendante"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class dependance_tarif_etablissement_gir_1_2(Variable):
@@ -278,6 +285,7 @@ class dependance_tarif_etablissement_gir_1_2(Variable):
     entity = Individu
     label = "Tarif dépendance de l'établissement pour les GIR 1 et 2"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class dependance_tarif_etablissement_gir_3_4(Variable):
@@ -285,6 +293,7 @@ class dependance_tarif_etablissement_gir_3_4(Variable):
     entity = Individu
     label = "Tarif dépendance de l'établissement pour les GIR 3 et 4"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class dependance_tarif_etablissement_gir_5_6(Variable):
@@ -292,12 +301,14 @@ class dependance_tarif_etablissement_gir_5_6(Variable):
     entity = Individu
     label = "Tarif dépendance de l'établissement pour les GIR 5 et 6"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class dependance_tarif_etablissement_gir_dependant(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     label = "Tarif dépendance de l'établissement pour le GIR de la personne dépendante"
     reference = ["https://www.service-public.fr/particuliers/vosdroits/F10009"]
 
@@ -319,6 +330,7 @@ class apa_urgence_domicile(Variable):
     label = "Allocation personalisée d'autonomie d'urgence à domicile"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2002(individu, period, parameters):
         period = period.first_month
@@ -334,6 +346,7 @@ class apa_urgence_institution(Variable):
     label = "Allocation personalisée d'autonomie en institution"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2002(individu, period, parameters):
         period = period.start.offset('first-of', 'month').period('month')
@@ -348,6 +361,7 @@ class dependance_plan_aide_domicile_accepte(Variable):
     label = "Coût du plan d'aide plafonné pris en compte pour la détermination de l'APA"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         # Code de l'action sociale et des familles - Article R232-10-1
         'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=4D213136F764CDAC77B33F705B4DE178.tplgfr41s_1?idArticle=LEGIARTI000032133764&cidTexte=LEGITEXT000006074069&dateTexte=20170929&categorieLien=id&oldAction=&nbResultRech='

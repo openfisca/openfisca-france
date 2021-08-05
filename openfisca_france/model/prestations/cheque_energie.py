@@ -32,6 +32,7 @@ class cheque_energie_eligibilite_logement(Variable):
         ]
     label = "Éligibilité du logement occupé au chèque énergie"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2017(menage, period, parameters):
         statut_occupation_logement = menage('statut_occupation_logement', period)
@@ -79,6 +80,7 @@ class cheque_energie(Variable):
     reference = "https://chequeenergie.gouv.fr"
     label = "Montant auquel le ménage peut prétendre au titre du chèque energie"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2017(menage, period, parameters):
         eligible = menage('cheque_energie_eligibilite_logement', period)
