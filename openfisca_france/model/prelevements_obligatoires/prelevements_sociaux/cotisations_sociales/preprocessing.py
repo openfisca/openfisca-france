@@ -285,8 +285,9 @@ def preprocess_parameters(parameters):
     cotsoc.contribution_supplementaire_apprentissage.children.update(autres.apprentissage.contribution_supplementaire_apprentissage.children)  # À harmoniser
 
     cotsoc.add_child('gen', ParameterNode("gen", data={}))
-    cotsoc.gen.children['plafond_securite_sociale'] = pss.children['plafond_securite_sociale']  # À harmoniser
-    cotsoc.gen.children['plafond_securite_sociale_horaire'] = pss.children['plafond_securite_sociale_horaire']  # À harmoniser
+    cotsoc.gen.children['plafond_securite_sociale'] = pss.children['plafond_securite_sociale_mensuel']
+    cotsoc.gen.children['plafond_securite_sociale_annuel'] = pss.children['plafond_securite_sociale_annuel']
+    cotsoc.gen.children['plafond_securite_sociale_horaire'] = pss.children['plafond_securite_sociale_horaire']
     cotsoc.gen.children['nb_heure_travail_mensuel'] = travail.salaire_minimum.children['nb_heure_travail_mensuel']  # À harmoniser
     cotsoc.gen.children['smic_h_b'] = travail.salaire_minimum.children['smic_h_b']  # À harmoniser
 

@@ -34,7 +34,7 @@ class salaire_de_base(Variable):
         P = parameters(period)
 
         salarie = P.cotsoc.cotisations_salarie
-        plafond_securite_sociale_annuel = P.cotsoc.gen.plafond_securite_sociale * 12
+        plafond_securite_sociale_annuel = P.cotsoc.gen.plafond_securite_sociale_annuel
         taux_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite.deductible.taux * (1 - .0175)
         csg = MarginalRateTaxScale(name = 'csg')
         csg.add_bracket(0, taux_csg)
