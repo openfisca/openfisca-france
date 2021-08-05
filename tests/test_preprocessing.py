@@ -4,10 +4,6 @@ from collections import OrderedDict
 from .cache import tax_benefit_system
 
 
-
-years = range(2006, 2020)
-
-
 cotisations_salarie_by_name = {
     "agff": {},
     "agirc_arrco": {},
@@ -49,8 +45,7 @@ cotisations_salarie_by_categorie_salarie = {
     }
 
 
-# @pytest.mark.parametrize("year", years)
-def test_preprocessing(year = None):
+def test_preprocessing():
     """Basic test for a specific year.
 
     Args:
