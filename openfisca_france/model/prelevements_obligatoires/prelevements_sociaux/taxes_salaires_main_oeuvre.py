@@ -221,7 +221,6 @@ class fnal_cotisation(Variable):
     set_input = set_input_divide_by_period
     end = '2015-01-01'
 
-
     def formula(individu, period, parameters):
         assiette_cotisations = individu('assiette_cotisations_sociales', period)
         bareme = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.cotisation
