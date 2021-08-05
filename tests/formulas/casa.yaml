@@ -7,6 +7,7 @@
         50.0
   output:
     casa: -0*2000
+
 - name: Casa non exonéré 2014
   period: 2014-01
   input:
@@ -27,6 +28,7 @@
         14000.0
   output:
     casa: -0*2000
+
 - name: Casa exonéré Demi-part supplémentaire 2021
   period: 2021-01
   input:

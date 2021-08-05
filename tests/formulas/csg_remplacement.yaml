@@ -8,6 +8,7 @@
   output:
     csg_imposable_retraite: 0*2000
     csg_deductible_retraite: 0*2000
+
 - name: Retraite Taux réduit 2016
   period: 2016-01
   input:
@@ -18,6 +19,7 @@
   output:
     csg_deductible_retraite: -0.038*2000
     csg_imposable_retraite: -0*2000
+
 - name: Retraite Taux plein 2016
   period: 2016-01
   input:
@@ -28,6 +30,7 @@
   output:
     csg_deductible_retraite: -0.042*2000
     csg_imposable_retraite: -0.024*2000
+
 - name: Retraite Exonéré
   period: 2020-01
   input:
@@ -38,6 +41,7 @@
   output:
     csg_imposable_retraite: 0*2000
     csg_deductible_retraite: 0*2000
+
 - name: Retraite Taux réduit
   period: 2020-01
   input:
@@ -48,6 +52,7 @@
   output:
     csg_deductible_retraite: -0.038*2000
     csg_imposable_retraite: -0*2000
+
 - name: Retraite Taux médian
   period: 2020-01
   input:
@@ -58,6 +63,7 @@
   output:
     csg_deductible_retraite: -0.042*2000
     csg_imposable_retraite: -0.024*2000
+
 - name: Retraite Taux plein
   period: 2020-01
   input:
@@ -68,6 +74,7 @@
   output:
     csg_deductible_retraite: -0.059*2000
     csg_imposable_retraite: -0.024*2000
+
 - name: Chomage déductible et imposable Abattement Exoneration seuil Smic
   period: 2020-01
   input:
@@ -78,6 +85,7 @@
   output:
     csg_deductible_chomage: 0
     csg_imposable_chomage: 0
+
 - name: Chomage déductible et imposable Abattement Exonération seuil RFR
   period: 2020-01
   input:
@@ -88,6 +96,7 @@
   output:
     csg_deductible_chomage: 0*(0.9825*1000)
     csg_imposable_chomage: 0*(0.9825*1000)
+
 - name: Chomage déductible et imposable Abattement Taux réduit
   period: 2020-01
   input:
@@ -98,6 +107,7 @@
   output:
     csg_imposable_chomage: -0*(0.9825*2000)
     csg_deductible_chomage: -0.038*(0.9825*2000)
+
 - name: Chomage déductible et imposable Abattement Taux plein
   period: 2020-01
   input:
