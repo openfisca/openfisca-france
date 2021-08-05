@@ -76,7 +76,7 @@ class deces_artisan_commercant(Variable):
     calculate_output = calculate_output_add
 
     def formula_2015(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
+        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'deces')
         deces = parameters(period).prelevements_sociaux.deces_ac.artisans
         bareme.add_bracket(0, deces.sous_pss)
@@ -99,7 +99,7 @@ class formation_artisan_commercant(Variable):
     calculate_output = calculate_output_add
 
     def formula_2015(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
+        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale_annuel
         formation = parameters(period).prelevements_sociaux.formation_ac
         # Artisan
         bareme_artisan = MarginalRateTaxScale(name = 'formation_artisan')
@@ -126,7 +126,7 @@ class maladie_maternite_artisan_commercant(Variable):
     calculate_output = calculate_output_add
 
     def formula_2018(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
+        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'famille')
         bareme.add_bracket(0, 0)
         bareme.add_bracket(1.1, .072)
@@ -150,7 +150,7 @@ class maladie_maternite_artisan_commercant(Variable):
         return - (cotisation_sous_1_1_pss + bareme.calc(assiette))
 
     def formula_2017(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
+        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'famille')
         bareme.add_bracket(0, 0)
         bareme.add_bracket(.7, .065)
@@ -177,7 +177,7 @@ class retraite_complementaire_artisan_commercant(Variable):
     calculate_output = calculate_output_add
 
     def formula_2013(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
+        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale_annuel
         retraite_complementaire = parameters(period).prelevements_sociaux.ret_comp_ac.artisans_industriels_commercants
         montant_du_plafond_rci = retraite_complementaire.montant_du_plafond_rci
         bareme = MarginalRateTaxScale(name = 'retraite_complementaire')
@@ -200,7 +200,7 @@ class vieillesse_artisan_commercant(Variable):
     calculate_output = calculate_output_add
 
     def formula_2014(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
+        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale_annuel
         vieillesse_artisan_commercant = parameters(period).prelevements_sociaux.ret_ac
         bareme = MarginalRateTaxScale(name = 'vieillesse')
         bareme.add_bracket(0, vieillesse_artisan_commercant.artisans.sous_pss + vieillesse_artisan_commercant.tous_independants.tout_salaire)
@@ -222,7 +222,7 @@ class famille_independant(Variable):
     calculate_output = calculate_output_add
 
     def formula_2015(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
+        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'famille')
         bareme.add_bracket(0, 0)
         bareme.add_bracket(1.4, .031)  # TODO parsing des paramèters pas à jour
@@ -257,7 +257,7 @@ class formation_profession_liberale(Variable):
     calculate_output = calculate_output_add
 
     def formula(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
+        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'formation_profession_liberale')
         taux = parameters(period).prelevements_sociaux.formation_pl.formation_professionnelle.sous_pss
         bareme.add_bracket(0, taux)
@@ -278,7 +278,7 @@ class maladie_maternite_profession_liberale(Variable):
     calculate_output = calculate_output_add
 
     def formula(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
+        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'maladie_maternite')
         bareme.add_bracket(0, 0)
         bareme.add_bracket(1.1, .065)  # TODO parsing des paramèters IPP pas à jour
@@ -312,7 +312,7 @@ class retraite_complementaire_profession_liberale(Variable):
     calculate_output = calculate_output_add
 
     def formula_2013(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
+        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'retraite_complementaire')
         bareme.add_bracket(0, .09)  # TODO taux à la louche car hétérogène
         bareme.add_bracket(5, 0)
@@ -332,7 +332,7 @@ class vieillesse_profession_liberale(Variable):
     calculate_output = calculate_output_add
 
     def formula_2015(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
+        plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'vieillesse')
         assurance_vieillesse = parameters(period).prelevements_sociaux.ret_pl.assurance_vieillesse
         bareme.add_bracket(0, assurance_vieillesse.sous_1_pss)

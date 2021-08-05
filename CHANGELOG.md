@@ -1,6 +1,6 @@
 # Changelog
 
-# 66.0.1 [#1620](https://github.com/openfisca/openfisca-france/pull/1620)
+### 66.0.1 [#1620](https://github.com/openfisca/openfisca-france/pull/1620)
 
 * Changement mineur.
 * Périodes concernées : toutes
@@ -8,7 +8,6 @@
 `openfisca-france/openfisca_france/model/` (liste des fichiers détaillée dans la PR)
 * Détails :
   - Ajoute un champ `set_input` à toutes les variables dont la `definition_period = MONTH`
-
 
 # 66.0.0 [#1615](https://github.com/openfisca/openfisca-france/pull/1615)
 
@@ -35,7 +34,7 @@
   -- Mise à jour des valeurs et des références (et ajout de nouveaux paramètres) d'après l'IPP
   -- Supprime plafond_de_la_securite_sociale.yaml qui est un doublon de plafond_securite_sociale_mensuel
 
-# 64.0.1 [#1626](https://github.com/openfisca/openfisca-france/pull/1626)
+### 64.0.1 [#1626](https://github.com/openfisca/openfisca-france/pull/1626)
 
 * Changement mineur.
 * Périodes concernées : jusqu'au 31/12/2005

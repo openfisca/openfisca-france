@@ -1,6 +1,6 @@
 - name: Cotisations sociales - Celibataire public titulaire etat
   description: Montant cotisations sociales celibataire public titulaire etat
-  period: 2012-01
+  period: 2012-01 # PSS : 3031
   absolute_error_margin: 0.005
   input:
     date_naissance: '1972-01-01'
@@ -8,10 +8,11 @@
     primes_fonction_publique: 500
     traitement_indiciaire_brut: 2000
     taille_entreprise: de_20_a_249  # TODO fix this
+    effectif_entreprise: 25
     categorie_salarie: public_titulaire_etat
     zone_apl: zone_1
   output:
-    fnal: -8 - 2
+    fnal: -(2000*0.001 + 2000*0.004) # cotisation à 0,1% sur salaire plafonné + contrib en barème 0,4% puis 0,5% audelà du PSS
     versement_transport: -2000 * 0.0175  # = 35
     cotisations_employeur_main_d_oeuvre: -45
     ati_atiacl: -6.6
@@ -58,10 +59,11 @@
     primes_fonction_publique: 500
     traitement_indiciaire_brut: 2000
     taille_entreprise: de_20_a_249  # TODO fix this
+    effectif_entreprise: 25
     categorie_salarie: public_titulaire_territoriale
     zone_apl: zone_1
   output:
-    fnal: -8 - 2
+    fnal: -8 - 2 # cotisation à 0,1% sur salaire plafonné + contrib en barème 0,4% puis 0,5% audelà du PSS
     versement_transport: -2000 * 0.0175  # = 35
     cotisations_employeur_main_d_oeuvre: -45
     ati_atiacl: -10
@@ -104,6 +106,7 @@
     primes_fonction_publique: 500
     traitement_indiciaire_brut: 2000
     taille_entreprise: de_20_a_249   # TODO fix this
+    effectif_entreprise: 25
     categorie_salarie: public_titulaire_hospitaliere
     zone_apl: zone_1
   output:
@@ -146,6 +149,7 @@
     primes_fonction_publique: 500
     salaire_de_base: 2000
     taille_entreprise: de_20_a_249
+    effectif_entreprise: 25
     categorie_salarie: public_non_titulaire
     zone_apl: zone_1
   output:
@@ -202,6 +206,7 @@
         primes_fonction_publique: 500
         traitement_indiciaire_brut: 2000
         taille_entreprise: de_20_a_249
+        effectif_entreprise: 25
         categorie_salarie: public_titulaire_etat
       parent2:
         date_naissance: 1972-01-01
@@ -261,6 +266,7 @@
         primes_fonction_publique: 500
         traitement_indiciaire_brut: 2000
         taille_entreprise: de_20_a_249
+        effectif_entreprise: 25
         categorie_salarie: public_titulaire_etat
       parent2:
         date_naissance: 1972-01-01
@@ -268,6 +274,7 @@
         primes_fonction_publique: 500
         traitement_indiciaire_brut: 2000
         taille_entreprise: de_20_a_249
+        effectif_entreprise: 25
         categorie_salarie: public_titulaire_etat
       enfant1:
         date_naissance: 2000-01-01
