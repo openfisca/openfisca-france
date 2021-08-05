@@ -330,6 +330,13 @@ class csg_deductible_retraite(Variable):
             )
         return montant_csg
 
+    def formula(individu, period, parameters):  # formula_1997_2014 à corriger (cf. commentaire au niveau de la variable)
+        retraite_brute = individu('retraite_brute', period)
+        parameters = parameters(period)
+
+        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.deductible.taux_plein * retraite_brute
+        return - montant_csg
+
 
 class csg_imposable_retraite(Variable):
     calculate_output = calculate_output_add
@@ -389,6 +396,13 @@ class csg_imposable_retraite(Variable):
             )
         return montant_csg
 
+    def formula(individu, period, parameters):  # formula_1997_2014 à corriger (cf. commentaire au niveau de la variable)
+        retraite_brute = individu('retraite_brute', period)
+        parameters = parameters(period)
+
+        montant_csg = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.imposable.taux_plein * retraite_brute
+        return - montant_csg
+
 
 class crds_retraite(Variable):
     calculate_output = calculate_output_add
@@ -443,6 +457,13 @@ class crds_retraite(Variable):
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
         return montant_crds
+
+    def formula(individu, period, parameters):  # formula_1997_2014 à corriger (cf. commentaire au niveau de la variable)
+        retraite_brute = individu('retraite_brute', period)
+        parameters = parameters(period)
+        taux = parameters.prelevements_sociaux.contributions_sociales.crds.retraite.taux
+
+        return - taux * retraite_brute
 
 
 class casa(Variable):
