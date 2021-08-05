@@ -110,7 +110,7 @@ class csg_deductible_chomage(Variable):
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.chomage.deductible,
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             )
-        nbh_travail = parameters.cotsoc.gen.nb_heure_travail_mensuel
+        nbh_travail = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
 
         cho_seuil_exo = (
             parameters.prelevements_sociaux.contributions_sociales.csg.chomage.min_exo
@@ -168,7 +168,7 @@ class csg_imposable_chomage(Variable):
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.chomage.imposable,
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             )
-        nbh_travail = parameters.cotsoc.gen.nb_heure_travail_mensuel
+        nbh_travail = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
         cho_seuil_exo = (
             parameters.prelevements_sociaux.contributions_sociales.csg.chomage.min_exo
             * nbh_travail
