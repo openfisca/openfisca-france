@@ -1,25 +1,22 @@
-description: Seuil de RFR1 - Demi-part supplémentaire de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
+description: Seuil de RFR3  - 1 Part (taux intermédiaire/médian) de la de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
 unit: currency #-EUR
 values:
   1991-02-01:
     value: null
-  2015-01-01:
-    value: 2839.0
-  2016-01-01:
-    value: 2850.0
-  2017-01-01:
-    value: 2936.0
-  2018-01-01:
-    value: 2942.0
   2019-01-01:
-    value: 2971.0
+    value: 22580.0
   2020-01-01:
-    value: 3019.0
+    value: 22941.0
+  2021-01-01:
+    value: 23147.0
 metadata:
-  ux_name: RFR1 - Demi-part suppl.
+  ux_name: Seuil RFR3 - 1 Part
   last_review:
-    2020-01-01
+    2021-07-23
   reference:
+    2021-01-01:
+    - title: Lettre ministérielle D-20-021991 du 04/12/2020
+      href: https://www.legislation.cnav.fr/Documents/lettre_ministerielle_04122020.pdf
     2020-01-01:
     - title: Lettre ministérielle D-2019-025051 du 07/11/2019
       href: https://www.legislation.cnav.fr/Documents/lettre_ministerielle_2019_025051_07112019.pdf

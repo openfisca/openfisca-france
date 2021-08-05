@@ -1,5 +1,19 @@
 # Changelog
 
+### 67.0.0 [#1595](https://github.com/openfisca/openfisca-france/pull/1595)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/model/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
+  - `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/csg/`
+* Détails :
+  - Corrige des dates anciennes et des références législatives sur un grand nombre de paramètres associés à la CSG sur les revenus de remplacement.
+  - Corrige le taux plein de la CSG déductible sur les allocations chômage.
+  - Corrige le taux plein de la CSG imposable sur les préretraites.
+  - Met à jour les seuils de RFR (part et demi-part) pour les taux réduit et médian de CSG sur les revenus de remplacement.
+  - Corrige le calcul de la CSG sur revenus de remplacement suite à l'introduction d'un taux médian pour la CSG sur les pensions de retraite et d'invalidité.
+
 ### 66.0.2 [#1628](https://github.com/openfisca/openfisca-france/pull/1628)
 
 * Changement mineur.
@@ -756,7 +770,7 @@ Ces changements :
 * Correction d'un crash.
 * Détails :
   - Force la réinstallation d'OpenFisca France lors de la création du fichier de distribution d'OpenFisca France
-  - Erreur constatée lors du lancements des tests sur CircleCI :
+  - Erreur constatée lors du lancements des tests sur CircleCI :
     - CircleCI utilise ce fichier pour faire tourner les tests
     - Or, si de commits ont déjà été poussés sur un branch, CircleCI ne réinstalle pas OpenFisca France
     - Ce qui est inattendu puisque si l'on ajoute par exemple un paramètre ou une variable après avoir poussé les changements une première fois, CircleCI va échouer car la version utilisée pour lancer les tests ne contient pas ces derniers changements
@@ -885,7 +899,7 @@ Ces changements :
   - Suppression d'un paramètre dupliqué sur le plafonnement du quotient familial
   - Le paramètre `plafond_qf.veuf` reprend `plafond_qf.reduc_postplafond_veuf`
   - Additionnellement, il n'est utilisé nulle part dans le code
-  - Enfin, il n'est pas bien-fondé : ce barème ne devrait commencer qu'en 2012
+  - Enfin, il n'est pas bien-fondé : ce barème ne devrait commencer qu'en 2012
 
 ### 48.17.1 [#1461](https://github.com/openfisca/openfisca-france/pull/1461)
 
@@ -1174,7 +1188,7 @@ Ces changements :
 * Détails :
   - La formule zone_logement_social retournait un scalar `numpy.ndarray[int]`.
   - Corrige zone_logement_social pour retourner un vecteur `numpy.ndarray[bool]`.
-  - Note : à partir de Numpy 1.18, l'utilisation de `select` avec une valeur non `bool` est dépréciée.
+  - Note : à partir de Numpy 1.18, l'utilisation de `select` avec une valeur non `bool` est dépréciée.
 
 ### 48.9.4 [#1399](https://github.com/openfisca/openfisca-france/pull/1399)
 
@@ -1310,7 +1324,7 @@ Ces changements :
 * Correction d'un crash.
 * Périodes concernées : à partir du 01/01/2017.
 * Zones impactées : `openfisca_france/model/prelevements_obligatoires/taxe_habitation/taxe_habitation.py`.
-* Détails :
+* Détails :
   - Corrige la comparaison entre un `numpy.array` et un nombre
 
 ## 48.5.0 [#1362](https://github.com/openfisca/openfisca-france/pull/1362)
@@ -1346,7 +1360,7 @@ Ces changements :
 * Périodes concernées : toutes.
 * Zones impactées :
   - `openfisca_france/model/prestations/autonomie.py`
-* Détails :
+* Détails :
   - Corrige erreur sur 'apa_domicile', 'apa_etablissement' et 'apa_urgence_domicile'
   - Il s'agit d'une double comparaison, incompatible avec `numpy`
 
@@ -3389,7 +3403,7 @@ Ces changements :
 ### 21.8.2 [#968](https://github.com/openfisca/openfisca-france/pull/968)
 
 * Changement mineur.
-* Détails :
+* Détails :
   - Corrige lien vers la documentation dans `README.md`
   - Corrige lien vers Swagger dans `notebooks/getting-started.ipynb`
 
@@ -3988,7 +4002,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
 * Zones impactées : `/prestations/aides_logement`.
-* Détails :
+* Détails :
   - Suppresion de la notification de non-calculabilité des aides au logement pour les primo-accédants.
 
 ### 18.9.1 [#583](https://github.com/openfisca/openfisca-france/pull/583)
@@ -4570,7 +4584,7 @@ These changes are low impact since the two deprecated variables were not used.
 
 * Add `fuzzy` in some `ppa` parameters, needed to run calculations in 2017
 
-# 9.0.0
+# 9.0.0
 
 * Continue mesures migration
 * Complete remplacement migration

@@ -2,7 +2,7 @@ description: Abattement de la Contribution Sociale Généralisée (CSG) imposabl
 unit: /1 # Unit de l'abattement
 brackets:
   - rate:
-      1998-01-01:
+      1997-01-01:
         value: 0.05
       2005-01-01:
         value: 0.03
@@ -20,7 +20,7 @@ brackets:
 metadata:
   ux_name: Abattement
   last_review:
-    2012-01-01
+    2021-07-22
   reference:
     2012-01-01:
       title: Loi 2011-1906 du 28/12/2011, art. 17 (LFSS pour 2012)

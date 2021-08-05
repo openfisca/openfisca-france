@@ -33,6 +33,8 @@ class csg(Variable):
             + csg_revenus_capital_projetee
             )
 
+    # TODO: manque CSG sur IJ et pré-retraites
+
 
 class crds(Variable):
     value_type = float
@@ -56,6 +58,7 @@ class crds(Variable):
         # CRDS sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
         crds_revenus_capital = individu.foyer_fiscal('crds_revenus_capital', period)
         crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
         return crds_individu + crds_famille_projetes + crds_revenus_capital_projetee
 
 
