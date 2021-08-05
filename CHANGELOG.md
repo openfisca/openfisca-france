@@ -9,31 +9,6 @@
 * Détails :
   - Ajoute un champ `set_input` à toutes les variables dont la `definition_period = MONTH`
 
-# 66.0.0 [#1615](https://github.com/openfisca/openfisca-france/pull/1615)
-
-* Évolution du système socio-fiscal. | Amélioration technique. | Correction paramètres et formules
-* Périodes concernées : toutes. 
-* Zones impactées : 
-  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires`.
-  - `model/prelevements_obligatoires/prelevements_sociaux/taxes_salaires_main_oeuvre.py`
-* Détails :
-  - Harmonisation des paramètres entre OFF et baremes-ipp
-  - Erreur constatée dans les paramètres suivants: 
-     - FNAL
-     - APPRENTISSAGE
-  - Erreur constatée dans les tests suivants: 
-     - APPRENTISSAGE
-     
-# 65.0.0 [#1610](https://github.com/openfisca/openfisca-france/pull/1610)
-* Amélioration technique.
-* Périodes concernées : toutes. 
-* Zones impactées : toutes
-* Détails : Harmonisation du dossier parameters.prelevements_sociaux.pss :
-  -- Arborescence selon le modèle IPP
-  -- Nouveau formatage des fichiers .yaml
-  -- Mise à jour des valeurs et des références (et ajout de nouveaux paramètres) d'après l'IPP
-  -- Supprime plafond_de_la_securite_sociale.yaml qui est un doublon de plafond_securite_sociale_mensuel
-
 ### 64.0.1 [#1626](https://github.com/openfisca/openfisca-france/pull/1626)
 
 * Changement mineur.
