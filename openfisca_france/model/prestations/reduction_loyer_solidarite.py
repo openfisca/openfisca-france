@@ -61,6 +61,7 @@ class reduction_loyer_solidarite_montant(Variable):
     label = "Montant de la réduction du loyer de solidarité"
     reference = "https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801551A/jo/article_2"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         rls = parameters(period).prestations.reduction_loyer_solidarite
@@ -100,6 +101,7 @@ class reduction_loyer_solidarite(Variable):
         "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650026&dateTexte=&categorieLien=id"
         ]
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2018_01_01(famille, period):
         # les ressources renvoyés sont recombiné pour donner une valeur annuelle

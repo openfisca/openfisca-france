@@ -6,6 +6,7 @@ class garantie_jeunes_neet(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Variable NEET - Ni étudiant, ni employé, ni stagiaire"
+    set_input = set_input_divide_by_period
     reference = ['https://fr.wikipedia.org/wiki/NEET']
 
     def formula(individu, period):
@@ -26,6 +27,7 @@ class garantie_jeunes_max(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Montant maximal de l'allocation Garantie Jeune"
+    set_input = set_input_divide_by_period
     reference = [
         "Article D5131-20 du code du travail",
         "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DED54A598193DDE1DF59E0AE16BDE87D.tplgfr21s_3?idArticle=LEGIARTI000033709227&cidTexte=LEGITEXT000006072050",
@@ -43,6 +45,7 @@ class garantie_jeunes_montant(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Montant maximal de l'allocation Garantie Jeune"
+    set_input = set_input_dispatch_by_period
     reference = [
         "https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/",
         "https://www.service-public.fr/particuliers/vosdroits/F32700"
@@ -82,6 +85,7 @@ class garantie_jeunes_eligibilite_age(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Éligibilité en fonction de l'âge à la Garantie Jeune"
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         params_age = parameters(period).prestations.garantie_jeunes.critere_age.age
@@ -94,6 +98,7 @@ class garantie_jeunes(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     label = "Montant de la Garantie Jeune"
     reference = ["https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/", "https://www.service-public.fr/particuliers/vosdroits/F32700"]
 

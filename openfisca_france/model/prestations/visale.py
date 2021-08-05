@@ -43,6 +43,7 @@ class visale_montant_max(Variable):
     entity = Menage
     label = "Montant maximum du loyer éligible à une caution Visale"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13"
 
     def formula_2016_01_01(menage, period, parameters):
@@ -77,6 +78,7 @@ class visale_base_ressources(Variable):
     entity = Menage
     label = "Revenus pris en compte pour l'éligibilité à la caution Visale"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7"
 
     def formula_2016_01_01(menage, period, parameters):
@@ -130,6 +132,7 @@ class visale_base_ressources_individuelle(Variable):
     entity = Individu
     label = "Revenus des individus pris en compte pour l'éligibilité à la caution Visale"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7"
 
     def formula_2016_01_01(individu, period, parameters):

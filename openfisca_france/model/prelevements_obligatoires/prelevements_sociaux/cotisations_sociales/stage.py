@@ -23,6 +23,7 @@ class stage_gratification(Variable):
     entity = Individu
     label = "Gratification de stage"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2014_11(individu, period, parameters):
         stage_duree_heures = individu('stage_duree_heures', period)
@@ -39,6 +40,7 @@ class stage_gratification_reintegration(Variable):
     entity = Individu
     label = "Part de la gratification de stage réintégrée à l'assiette des cotisations et contributions sociales"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2014_11(individu, period, parameters):
         stage_duree_heures = individu('stage_duree_heures', period)
@@ -54,6 +56,7 @@ class stagiaire(Variable):
     entity = Individu
     label = "L'individu est stagiaire"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         stage_duree_heures = individu('stage_duree_heures', period)
@@ -66,6 +69,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
     label = "Exonrérations de cotisations employeur pour un stagaire"
     reference = "http://www.apce.com/pid2798/stages.html?espace=3"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
@@ -105,6 +109,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
     label = "Exonrérations de cotisations salarié pour un stagiaire"
     reference = "http://www.apce.com/pid2798/stages.html?espace=3"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         agirc_arrco_salarie = individu('agirc_arrco_salarie', period)

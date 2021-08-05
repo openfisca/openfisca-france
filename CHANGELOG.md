@@ -1,5 +1,14 @@
 # Changelog
 
+### 66.0.1 [#1620](https://github.com/openfisca/openfisca-france/pull/1620)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : Presque l'ensemble des fichiers présents dans : 
+`openfisca-france/openfisca_france/model/`
+* Détails :
+  - Configure les variables par mois pour qu'elles fonctionnent avec un input annuel.
+  
 # 66.0.0 [#1615](https://github.com/openfisca/openfisca-france/pull/1615)
 
 * Évolution du système socio-fiscal. | Amélioration technique. | Correction paramètres et formules
@@ -14,8 +23,9 @@
      - APPRENTISSAGE
   - Erreur constatée dans les tests suivants: 
      - APPRENTISSAGE
-     
+
 # 65.0.0 [#1610](https://github.com/openfisca/openfisca-france/pull/1610)
+
 * Amélioration technique.
 * Périodes concernées : toutes. 
 * Zones impactées : toutes

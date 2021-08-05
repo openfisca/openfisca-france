@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Individu, Variable, MONTH
+from openfisca_france.model.base import Individu, Variable, MONTH, set_input_dispatch_by_period
 from openfisca_france.model.prestations.education import TypesScolarite
 
 
@@ -7,6 +7,7 @@ class crous_repas_un_euro_eligibilite(Variable):
     label = "Éligibilité au repas Crous à un euro"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = "https://www.etudiant.gouv.fr/fr/le-repas-au-crous-passe-1-euro-pour-tous-les-etudiants-2314"
     documentation = '''
     Suite à la crise Covid-19, tous les étudiants, boursiers ou non, peuvent bénéficier

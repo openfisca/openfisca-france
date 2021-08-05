@@ -19,6 +19,7 @@ class assiette_cotisations_sociales(Variable):
     entity = Individu
     label = "Assiette des cotisations sociales des salaries"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         assiette_cotisations_sociales_prive = individu('assiette_cotisations_sociales_prive', period)
@@ -37,6 +38,7 @@ class assiette_cotisations_sociales_prive(Variable):
     entity = Individu
     label = "Assiette des cotisations sociales des salaries du prive"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         avantage_en_nature = individu('avantage_en_nature', period)
@@ -114,6 +116,7 @@ class reintegration_titre_restaurant_employeur(Variable):
     entity = Individu
     label = "Prise en charge de l'employeur des dépenses de cantine et des titres restaurants non exonérés de charges sociales"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         valeur_unitaire = individu("titre_restaurant_valeur_unitaire", period)
@@ -149,6 +152,7 @@ class penibilite(Variable):
     entity = Individu
     label = "Les dépenses liées à l'utilisation du compte pénibilité par le salarié sont prises en charge par un fonds financé par l'employeur"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2015_01_01(individu, period, parameters):
         exposition_penibilite = individu('exposition_penibilite', period)
@@ -192,6 +196,7 @@ class accident_du_travail(Variable):
     entity = Individu
     label = "Cotisations employeur accident du travail et maladie professionelle"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         assiette_cotisations_sociales = individu(
@@ -211,6 +216,7 @@ class agff_salarie(Variable):
     entity = Individu
     label = "Cotisation retraite AGFF tranche A (salarié)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = '2018-12-21'
     # AGFF: Association pour la gestion du fonds de financement (sous-entendu des départs entre 60 et 65 ans)
 
@@ -231,6 +237,7 @@ class agff_employeur(Variable):
     entity = Individu
     label = "Cotisation retraite AGFF tranche A (employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = '2018-12-21'
     # TODO: améliorer pour gérer mensuel/annuel
 
@@ -265,6 +272,7 @@ class quotite_de_travail(Variable):
     entity = Individu
     label = "Quotité de travail"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     # TODO: gestion annuel/mensuel
 
     def formula(individu, period, parameters):
@@ -289,6 +297,7 @@ class agirc_gmp_salarie(Variable):
     entity = Individu
     label = "Cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = '2018-12-21'
     # TODO: gestion annuel/mensuel
 
@@ -320,6 +329,7 @@ class agirc_gmp_employeur(Variable):
     entity = Individu
     label = "Cotisation AGIRC pour la garantie minimale de points (GMP, employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = '2018-12-21'
     # TODO: gestion annuel/mensuel
 
@@ -351,6 +361,7 @@ class agirc_salarie(Variable):
     entity = Individu
     label = "Cotisation AGIRC tranche B (salarié)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = '2018-12-21'
 
     def formula(individu, period, parameters):
@@ -371,6 +382,7 @@ class agirc_employeur(Variable):
     entity = Individu
     label = "Cotisation AGIRC tranche B (employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = '2018-12-21'
 
     def formula(individu, period, parameters):
@@ -427,6 +439,7 @@ class ags(Variable):
     entity = Individu
     label = "Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -445,6 +458,7 @@ class apec_salarie(Variable):
     entity = Individu
     label = "Cotisations agence pour l'emploi des cadres (APEC,  salarié)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         categorie_salarie = individu('categorie_salarie', period)
@@ -464,6 +478,7 @@ class apec_employeur(Variable):
     entity = Individu
     label = "Cotisations Agenece pour l'emploi des cadres (APEC, employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -482,6 +497,7 @@ class arrco_salarie(Variable):
     entity = Individu
     label = "Cotisation ARRCO tranche 1 (salarié)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = '2018-12-21'
     # TODO: check gestion mensuel/annuel
 
@@ -522,6 +538,7 @@ class arrco_employeur(Variable):
     entity = Individu
     label = "Cotisation ARRCO tranche 1 (employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = '2018-12-21'
     # TODO: check gestion mensuel/annuel
 
@@ -559,6 +576,7 @@ class chomage_salarie(Variable):
     entity = Individu
     label = "Cotisation chômage tranche A (salarié)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     end = '2018-09-30'
 
     def formula(individu, period, parameters):
@@ -578,6 +596,7 @@ class chomage_employeur(Variable):
     entity = Individu
     label = "Cotisation chômage tranche A (employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -634,6 +653,7 @@ class contribution_solidarite_autonomie(Variable):
     entity = Individu
     label = "Contribution solidarité autonomie (employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -696,7 +716,8 @@ class cotisation_exceptionnelle_temporaire_salarie(Variable):
     entity = Individu
     label = "Cotisation_exceptionnelle_temporaire (salarie)"
     definition_period = MONTH
-    end = "2018-12-31"
+    set_input = set_input_divide_by_period
+    end = '2018-12-21'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -715,7 +736,8 @@ class cotisation_exceptionnelle_temporaire_employeur(Variable):
     entity = Individu
     label = "Cotisation exceptionnelle temporaire (employeur)"
     definition_period = MONTH
-    end = "2018-12-31"
+    set_input = set_input_divide_by_period
+    end = '2018-12-21'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -734,6 +756,7 @@ class famille(Variable):
     entity = Individu
     label = "Cotisation famille (employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -752,6 +775,7 @@ class mmid_salarie(Variable):
     entity = Individu
     label = "Cotisation maladie (salarié)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2018(individu, period, parameters):
         """
@@ -803,6 +827,7 @@ class mmid_employeur(Variable):
     label = "Cotisation maladie (employeur)"
     reference = "https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -821,6 +846,7 @@ class mmida_employeur(Variable):
     entity = Individu
     label = "Cotisation maladie (employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     # Note: this formula is used only to check fiche_de_paie from memento
 
     def formula(individu, period, parameters):
@@ -842,6 +868,7 @@ class mhsup(Variable):
     entity = Individu
     label = "Heures supplémentaires comptées négativement"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         return - individu('hsup', period)
@@ -852,6 +879,7 @@ class plafond_securite_sociale(Variable):
     entity = Individu
     label = "Plafond de la securite sociale"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     # TODO gérer les plafonds mensuel, trimestriel, annuel
 
     def formula(individu, period, parameters):
@@ -877,6 +905,7 @@ class prevoyance_obligatoire_cadre(Variable):
     entity = Individu
     label = "Cotisation de prévoyance pour les cadres et assimilés"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     # TODO: gérer le mode de recouvrement et l'aspect mensuel/annuel
 
     def formula(individu, period, parameters):
@@ -899,6 +928,7 @@ class complementaire_sante_employeur(Variable):
     entity = Individu
     label = "Couverture complémentaire santé collective d'entreprise - part employeur"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         complementaire_sante_taux_employeur = individu(
@@ -914,6 +944,7 @@ class complementaire_sante_salarie(Variable):
     entity = Individu
     label = "Couverture complémentaire santé collective d'entreprise - part salarié"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         complementaire_sante_taux_employeur = individu(
@@ -941,6 +972,7 @@ class taille_entreprise(Variable):
     label = "Catégorie de taille d'entreprise"
     reference = "http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
@@ -985,6 +1017,7 @@ class vieillesse_deplafonnee_salarie(Variable):
     entity = Individu
     label = "Cotisation vieillesse déplafonnée (salarié)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -1003,6 +1036,7 @@ class vieillesse_plafonnee_salarie(Variable):
     entity = Individu
     label = "Cotisation vieillesse plafonnée (salarié)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -1021,6 +1055,7 @@ class vieillesse_deplafonnee_employeur(Variable):
     entity = Individu
     label = "Cotisation vieillesse déplafonnée"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -1039,6 +1074,7 @@ class vieillesse_plafonnee_employeur(Variable):
     entity = Individu
     label = "Cotisation vieillesse plafonnée (employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -1057,6 +1093,7 @@ class peec_employeur(Variable):
     entity = Individu
     label = "Participation de l'employeur à l'effort de construction (PEEC) communément appelé le 1% logement (employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583"
 
 

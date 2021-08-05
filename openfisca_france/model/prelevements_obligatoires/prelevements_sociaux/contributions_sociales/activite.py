@@ -17,6 +17,7 @@ class assiette_csg_abattue(Variable):
     label = "Assiette CSG - CRDS"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         primes_salaires = individu('primes_salaires', period)
@@ -51,6 +52,7 @@ class assiette_csg_non_abattue(Variable):
     label = "Assiette CSG - CRDS"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period)
@@ -71,6 +73,7 @@ class csg_deductible_salaire(Variable):
     label = "CSG déductible sur les salaires"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         assiette_csg_abattue = individu('assiette_csg_abattue', period)
@@ -93,6 +96,7 @@ class csg_imposable_salaire(Variable):
     label = "CSG imposables sur les salaires"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         assiette_csg_abattue = individu('assiette_csg_abattue', period)
@@ -116,6 +120,7 @@ class crds_salaire(Variable):
     label = "CRDS sur les salaires"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         assiette_csg_abattue = individu('assiette_csg_abattue', period)
@@ -140,6 +145,7 @@ class forfait_social(Variable):
     label = "Forfait social"
     definition_period = MONTH
     calculate_output = calculate_output_add
+    set_input = set_input_divide_by_period
 
     # les contributions destinées au financement des prestations de prévoyance complémentaire versées
     # au bénéfice de leurs salariés, anciens salariés et de leurs ayants droit (entreprises à partir de 10 salariés),
@@ -192,6 +198,7 @@ class salaire_imposable(Variable):
     label = "Salaires imposables"
     set_input = set_input_divide_by_period
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         salaire_de_base = individu('salaire_de_base', period)

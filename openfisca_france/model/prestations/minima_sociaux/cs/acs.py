@@ -13,6 +13,7 @@ class acs_montant_i(Variable):
     entity = Individu
     label = "Montant de l'ACS attribué à une personne en cas d'éligibilité de la famille"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2009_08_01(individu, period, parameters):
         P = parameters(period).cs.acs
@@ -37,6 +38,7 @@ class acs_montant(Variable):
     entity = Famille
     label = "Montant de l'ACS attribué à une famille en cas d'éligibilité"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2009_08_01(famille, period, parameters):
         acs_montant_i = famille.members('acs_montant_i', period)
@@ -48,6 +50,7 @@ class acs_plafond(Variable):
     entity = Famille
     label = "Plafond annuel de ressources pour l'éligibilité à l'ACS"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         P = parameters(period).cs.acs

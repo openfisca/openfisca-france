@@ -14,6 +14,7 @@ class css_participation_forfaitaire_montant_i(Variable):
     entity = Individu
     label = "Montant de la participation forfaitaire d'une personne"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         P = parameters(period).cs.css
@@ -49,6 +50,7 @@ class css_participation_forfaitaire_montant(Variable):
     entity = Famille
     label = "Montant de participation forfaitaire d'une famille en cas d'éligibilité"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         css_participation_forfaitaire_i = famille.members('css_participation_forfaitaire_montant_i', period)

@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Variable, Individu, MONTH, TypesActivite, max_
+from openfisca_france.model.base import Variable, Individu, MONTH, TypesActivite, max_, set_input_dispatch_by_period, set_input_divide_by_period
 
 
 class depart1825_eligibilite(Variable):
@@ -13,6 +13,7 @@ class depart1825_eligibilite(Variable):
     label = "Éligibilité au dispositif départ 18-25"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = [
         "https://programme-depart-1825.com/eligibilite/",
         "https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans"
@@ -46,6 +47,7 @@ class depart1825_montant_maximum(Variable):
     label = "Montant maximum du dispositif départ 18-25"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         "https://programme-depart-1825.com/eligibilite/",
         "https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans"

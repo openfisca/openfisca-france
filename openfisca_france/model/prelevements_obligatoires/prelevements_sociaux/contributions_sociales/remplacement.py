@@ -44,6 +44,7 @@ class csg_deductible_chomage(Variable):
     label = "CSG déductible sur les allocations chômage"
     reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         chomage_brut = individu("chomage_brut", period)
@@ -69,6 +70,7 @@ class csg_imposable_chomage(Variable):
     label = "CSG imposable sur les allocations chômage"
     reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         chomage_brut = individu("chomage_brut", period)
@@ -91,6 +93,7 @@ class crds_chomage(Variable):
     label = "CRDS sur les allocations chômage"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         chomage_brut = individu("chomage_brut", period)
@@ -161,6 +164,7 @@ class csg_deductible_retraite(Variable):
     label = "CSG déductible sur les pensions de retraite"
     reference = "https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         retraite_brute = individu("retraite_brute", period)
@@ -183,6 +187,7 @@ class csg_imposable_retraite(Variable):
     label = "CSG imposable sur les pensions de retraite"
     reference = "https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         retraite_brute = individu("retraite_brute", period)
@@ -202,6 +207,7 @@ class crds_retraite(Variable):
     label = "CRDS sur les pensions de retraite"
     reference = "http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         retraite_brute = individu("retraite_brute", period)
@@ -223,6 +229,7 @@ class casa(Variable):
     label = "Contribution additionnelle de solidarité et d'autonomie"
     reference = "http://www.service-public.fr/actualites/002691.html"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2013_04_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period = period)

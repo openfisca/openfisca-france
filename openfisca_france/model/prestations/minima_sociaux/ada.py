@@ -6,6 +6,7 @@ class ada(Variable):
     entity = Famille
     label = "Montant mensuel  de l'aide pour demandeur d'asile"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2015_11(famille, period, parameters):
         nb_parents = famille('nb_parents', period)
@@ -31,6 +32,7 @@ class asile_demandeur(Variable):
     entity = Famille
     label = "Famille demandant l'asile"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class place_hebergement(Variable):
@@ -39,3 +41,4 @@ class place_hebergement(Variable):
     entity = Famille
     label = "Bénéficie d'une place dans un centre d'hébergement"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period

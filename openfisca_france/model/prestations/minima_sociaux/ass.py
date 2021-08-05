@@ -52,6 +52,7 @@ class ass_base_ressources(Variable):
     label = "Base de ressources de l'ASS"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         ass_base_ressources_demandeur = famille.demandeur('ass_base_ressources_individu', period)
@@ -66,6 +67,7 @@ class ass_base_ressources_individu(Variable):
     label = "Base de ressources individuelle de l'ASS"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         # Articles R5423-1 à 6 du code du travail
         'https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000018525086&cidTexte=LEGITEXT000006072050&dateTexte=20181227'
@@ -120,6 +122,7 @@ class ass_base_ressources_conjoint(Variable):
     label = "Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         # Rolling year
@@ -170,6 +173,7 @@ class ass_eligibilite_cumul_individu(Variable):
     label = "Eligibilité au cumul de l'ASS avec un revenu d'activité"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = [
         "Article R5425-2 du code du travail",
         "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018496568&dateTexte=",
@@ -210,6 +214,7 @@ class ass_eligibilite_individu(Variable):
     label = "Éligibilité individuelle à l'ASS"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = [
         "Article L5423-1 du code du travail",
         "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006903847&dateTexte=&categorieLien=cid",

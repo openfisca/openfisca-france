@@ -19,6 +19,7 @@ class rsa_base_ressources(Variable):
     label = "Base ressources du Rmi ou du Rsa"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2009_06_01(famille, period):
         rsa_base_ressources_prestations_familiales = famille('rsa_base_ressources_prestations_familiales', period)
@@ -59,6 +60,7 @@ class rsa_has_ressources_substitution(Variable):
     label = "Présence de ressources de substitution au mois M, qui désactivent la neutralisation des revenus professionnels interrompus au moins M."
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         return (
@@ -73,6 +75,7 @@ class rsa_base_ressources_individu(Variable):
     label = "Base ressource individuelle du RSA/RMI (hors revenus d'actvité)"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036393176&dateTexte=&categorieLien=id"
 
     def formula_2009_06_01(individu, period, parameters):
@@ -187,6 +190,7 @@ class rsa_base_ressources_minima_sociaux(Variable):
     label = "Minima sociaux inclus dans la base ressource RSA/RMI"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         three_previous_months = period.last_3_months
@@ -205,6 +209,7 @@ class rsa_base_ressources_prestations_familiales(Variable):
     label = "Prestations familiales inclues dans la base ressource RSA/RMI"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DA7C73D70BE5D3C7BE36D690E75FDC83.tplgfr38s_3?idArticle=LEGIARTI000020526199&cidTexte=LEGITEXT000006074069&categorieLien=id&dateTexte=20161231"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2002_01_01(famille, period):
         prestations = [
@@ -295,6 +300,7 @@ class crds_mini(Variable):
     entity = Famille
     label = "CRDS versée sur les minimas sociaux"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2016_01_01(famille, period, parameters):
         ppa = famille('ppa', period)
@@ -313,6 +319,7 @@ class enceinte_fam(Variable):
     value_type = bool
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         enceinte_i = famille.members('enceinte', period)
@@ -330,6 +337,7 @@ class rsa_enfant_a_charge(Variable):
     entity = Individu
     label = "Enfant pris en compte dans le calcul du RSA"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         P_rsa = parameters(period).prestations.minima_sociaux.rsa
@@ -399,6 +407,7 @@ class rsa_nb_enfants(Variable):
     entity = Famille
     label = "Nombre d'enfants pris en compte pour le calcul du RSA"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         return famille.sum(famille.members('rsa_enfant_a_charge', period))
@@ -409,6 +418,7 @@ class participation_frais(Variable):
     entity = Menage
     label = "Partipation aux frais de logement pour un hebergé à titre gratuit"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class rsa_revenu_activite(Variable):
@@ -416,6 +426,7 @@ class rsa_revenu_activite(Variable):
     label = "Revenus d'activité du RSA"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2009_06_01(famille, period):
         rsa_revenu_activite_i = famille.members('rsa_revenu_activite_individu', period)
@@ -430,6 +441,7 @@ class rsa_indemnites_journalieres_activite(Variable):
     label = "Indemnités journalières prises en compte comme revenu d'activité"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         m_3 = period.offset(-3, 'month')
@@ -475,6 +487,7 @@ class rsa_indemnites_journalieres_hors_activite(Variable):
     label = "Indemnités journalières prises en compte comme revenu de remplacement"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         return (
@@ -488,6 +501,7 @@ class rsa_revenu_activite_individu(Variable):
     label = "Revenus d'activité du Rsa - Individuel"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2009_06(individu, period):
         last_3_months = period.last_3_months
@@ -534,6 +548,7 @@ class rsa_montant(Variable):
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=C0E3FD6701B46D63786815D26ADEAD58.tplgfr35s_2?idArticle=LEGIARTI000033979143&cidTexte=LEGITEXT000006074069&dateTexte=20180830"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2009_06(famille, period, parameters):
         rsa_socle_non_majore = famille('rsa_socle', period)
@@ -561,7 +576,7 @@ class rsa(Variable):
     label = "Revenu de solidarité active"
     entity = Famille
     definition_period = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
 
     def formula_2009_06(famille, period):
         montant = famille('rsa_montant', period)
@@ -584,6 +599,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074069&idArticle=LEGIARTI000006905072&dateTexte=&categorieLien=cid"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2009_06_01(individu, period, parameters):
         livret_a = individu('livret_a', period)
@@ -613,6 +629,7 @@ class rsa_condition_nationalite(Variable):
     entity = Individu
     label = "Conditions de nationalité et de titre de séjour pour bénéficier du RSA"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2009_06_01(individu, period, parameters):
         fr = individu('nationalite', period) == b'FR'
@@ -641,6 +658,7 @@ class rsa_eligibilite(Variable):
     entity = Famille
     label = "Eligibilité au RSA et au RMI"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
@@ -684,6 +702,7 @@ class rsa_eligibilite_tns(Variable):
     label = "Condition de chiffres d'affaires pour qu'un travailleur non salarié soit éligible au RSA"
     end = '2016-12-31'
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
         last_year = period.last_year
@@ -766,6 +785,8 @@ class rsa_forfait_asf(Variable):
     entity = Famille
     label = "Allocation de soutien familial forfaitisée pour le RSA"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
+
     reference = [
         "Pour le revenu de solidarité active, article R262-10-1 du code de l'action sociale et des familles",
         "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000029006452&cidTexte=LEGITEXT000006074069&dateTexte=20190204",
@@ -793,6 +814,7 @@ class rsa_forfait_logement(Variable):
     label = "Forfait logement intervenant dans le calcul du Rmi ou du Rsa"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694445&cidTexte=LEGITEXT000006074069&dateTexte=20171222&fastPos=2&fastReqId=1534790830&oldAction=rechCodeArticle"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         np_pers = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
@@ -851,6 +873,7 @@ class rsa_majore_eligibilite(Variable):
     entity = Famille
     label = "Eligibilité au RSA majoré pour parent isolé"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         isole = not_(famille('en_couple', period))
@@ -876,6 +899,7 @@ class rsa_non_calculable(Variable):
     label = "RSA non calculable"
     end = '2016-12-31'
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
         # Si le montant du RSA est nul sans tenir compte des revenus
@@ -906,6 +930,7 @@ class rsa_non_calculable_tns_individu(Variable):
     entity = Individu
     label = "RSA non calculable du fait de la situation de l'individu. Dans le cas des TNS, l'utilisateur est renvoyé vers son PCG"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     # En fait l'évaluation par le PCD est plutôt l'exception que la règle. En général on retient plutôt le bénéfice déclaré au FISC (après abattement forfaitaire ou réel).
 
@@ -927,6 +952,7 @@ class rsa_socle(Variable):
     entity = Famille
     label = "RSA socle"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2009_06_01(famille, period, parameters):
         nb_parents = famille('nb_parents', period)
@@ -976,6 +1002,7 @@ class rsa_socle_majore(Variable):
     entity = Famille
     label = "Montant majoré pour parent isolé du Revenu de solidarité active socle"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2009_06_01(famille, period, parameters):
         eligib = famille('rsa_majore_eligibilite', period)
