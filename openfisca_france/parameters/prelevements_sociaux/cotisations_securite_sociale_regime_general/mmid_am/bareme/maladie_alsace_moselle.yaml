@@ -29,8 +29,6 @@ brackets:
   threshold:
     1989-09-01:
       value: 0.0
-description: Assurance maladie, maternité, invalidité, décès pour les salariés du
-  régime Alsace-Moselle
 metadata:
   ux_name: Cotisation maladie salarié Alsace-Moselle sur tout salaire
   last_review:

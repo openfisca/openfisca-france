@@ -63,7 +63,7 @@ class csg_deductible_chomage(Variable):
         cho_seuil_exo = (
             parameters.prelevements_sociaux.contributions_sociales.csg.chomage.min_exo
             * nbh_travail
-            * parameters.cotsoc.gen.smic_h_b
+            * parameters.marche_travail.salaire_minimum.smic_h_b
             )
 
         csg_deductible_chomage = max_(
@@ -103,7 +103,7 @@ class csg_imposable_chomage(Variable):
         cho_seuil_exo = (
             parameters.prelevements_sociaux.contributions_sociales.csg.chomage.min_exo
             * nbh_travail
-            * parameters.cotsoc.gen.smic_h_b
+            * parameters.marche_travail.salaire_minimum.smic_h_b
             )
         csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chomage_brut + montant_csg), 0), 0)
         return - csg_imposable_chomage
@@ -124,7 +124,7 @@ class crds_chomage(Variable):
         csg_imposable_chomage = individu("csg_imposable_chomage", period)
         taux_csg_remplacement = individu("taux_csg_remplacement", period)
         law = parameters(period)
-        smic_h_b = law.cotsoc.gen.smic_h_b
+        smic_h_b = law.marche_travail.salaire_minimum.smic_h_b
         # salaire_mensuel_reference = chomage_brut / .7
         # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
         heures_mensuelles = 35 * 52 / 12
