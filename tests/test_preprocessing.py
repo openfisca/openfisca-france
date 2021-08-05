@@ -1,7 +1,5 @@
 """Teste les cotisations par catégorie de salarié produites à l'issue de l'étape preprocessing."""
 
-from collections import
-from typing import OrderedDict OrderedDict
 import datetime
 from openfisca_france.model.revenus.activite.salarie import categorie_salarie
 from .cache import tax_benefit_system
@@ -13,7 +11,7 @@ years = range(2006, 2020)
 
 
 # @pytest.mark.parametrize("year", years)
-def test_basics(year = None):
+def test_preprocessing(year = None):
     """Basic test for a specific year.
 
     Args:
