@@ -65,7 +65,7 @@ class contribution_developpement_apprentissage(Variable):
             period,
             parameters,
             cotisation_type = "employeur",
-            bareme_name = "apprentissage_add",
+            bareme_name = "apprentissage_contribution_additionnelle",
             variable_name = "contribution_developpement_apprentissage",
             )
         return cotisation * redevable_taxe_apprentissage
@@ -78,40 +78,81 @@ class contribution_supplementaire_apprentissage(Variable):
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
     definition_period = MONTH
 
-    def formula_2013_01_01(individu, period, parameters):
+    def formula_2015_01_01(individu, period, parameters):
         redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         ratio_alternants = individu('ratio_alternants', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
+        cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
 
-        cotsoc_params = parameters(period).cotsoc
-        csa_params = cotsoc_params.contribution_supplementaire_apprentissage
-
-        # Exception Alsace-Moselle : CGI Article 1609 quinvicies IV
-        # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=36F88516571C1CA136D91A7A84A2D65B.tpdila09v_1?idSectionTA=LEGISCTA000029038088&cidTexte=LEGITEXT000006069577&dateTexte=20161219
-        multiplier = (salarie_regime_alsace_moselle * csa_params.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
+        multiplier = (salarie_regime_alsace_moselle * cotsoc_params.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
         taux_conditionnel = (
-            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * csa_params.moins_2000_moins_1pc_alternants
-            + (effectif_entreprise >= 2000) * (ratio_alternants < .01) * csa_params.plus_2000_moins_1pc_alternants
-            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * csa_params.entre_1_2_pc_alternants
-            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * csa_params.entre_2_3_pc_alternants
-            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * csa_params.entre_3_4_pc_alternants
-            + (.04 <= ratio_alternants) * (ratio_alternants < .05) * csa_params.entre_4_5_pc_alternants
+            (effectif_entreprise >= 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_2000_moins_de_1pc
+            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
+            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
+            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * cotsoc_params.plus_de_250_entre_2_et_3pc
+            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * cotsoc_params.plus_de_250_entre_3_et_4pc
+            + (.04 <= ratio_alternants) * (ratio_alternants < .05) * cotsoc_params.plus_de_250_entre_4_et_5pc
             )
         taux_contribution = taxe_due * taux_conditionnel * multiplier
         return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
-    def formula_2010_01_01(individu, period, parameters):
+    def formula_2012_01_01(individu, period, parameters):
         redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         effectif_entreprise = individu('effectif_entreprise', period)
+        ratio_alternants = individu('ratio_alternants', period)
+        salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
+        cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
 
-        cotsoc_params = parameters(period).cotsoc
+        multiplier = (salarie_regime_alsace_moselle * cotsoc_params.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
 
-        taux_contribution = (effectif_entreprise >= 250) * cotsoc_params.contribution_supplementaire_apprentissage.plus_de_250
+        taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .04)
+        taux_conditionnel = (
+            (effectif_entreprise >= 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_2000_moins_de_1pc
+            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
+            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
+            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * cotsoc_params.plus_de_250_entre_2_et_3pc
+            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * cotsoc_params.plus_de_250_entre_3_et_4pc
+            )
+        taux_contribution = taux_conditionnel * taxe_due * multiplier
+        return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
+
+    def formula_2011_01_01(individu, period, parameters):
+        redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
+        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+        ratio_alternants = individu('ratio_alternants', period)
+        cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
+
+        taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .04)
+        taux_conditionnel = (
+            (effectif_entreprise >= 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_2000_moins_de_1pc
+            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
+            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
+            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * cotsoc_params.plus_de_250_entre_2_et_3pc
+            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * cotsoc_params.plus_de_250_entre_3_et_4pc
+            )
+        taux_contribution = taux_conditionnel * taxe_due
+        return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
+
+    def formula_2009_01_01(individu, period, parameters):
+        redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
+        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+        ratio_alternants = individu('ratio_alternants', period)
+        cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
+
+        taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .03)
+        taux_conditionnel = (
+            (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
+            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
+            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * cotsoc_params.plus_de_250_entre_2_et_3pc
+            )
+        taux_contribution = taux_conditionnel * taxe_due
         return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
 
@@ -161,60 +202,98 @@ class fnal(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        fnal_tranche_a = individu('fnal_tranche_a', period)
-        fnal_tranche_a_plus_20 = individu('fnal_tranche_a_plus_20', period)
-        return fnal_tranche_a + fnal_tranche_a_plus_20
+        fnal_cotisation = individu('fnal_cotisation', period)
+        fnal_contribution = individu('fnal_contribution', period)
+        return fnal_cotisation + fnal_contribution
 
 
-class fnal_tranche_a(Variable):
+class fnal_cotisation(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation fonds national action logement (FNAL tout employeur)"
+    label = "Cotisation fonds national action logement (FNAL)"
     definition_period = MONTH
+    end = '2015-01-01'
 
     def formula(individu, period, parameters):
-        taille_entreprise = individu('taille_entreprise', period)
-        TypesTailleEntreprise = taille_entreprise.possible_values
+        assiette_cotisations = individu('assiette_cotisations_sociales', period)
+        bareme = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.cotisation
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        return -(bareme.calc(assiette_cotisations, factor= plafond_securite_sociale))
 
-        cotisation = apply_bareme(
+
+class fnal_contribution(Variable):
+    value_type = float
+    entity = Individu
+    label = "Contribution fonds national action logement (FNAL)"
+    definition_period = MONTH
+
+    def formula_2020_01_01(individu, period, parameters):
+        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_plus_de_50_salaries = effectif_entreprise >= 50
+        contribution_plus_de_50_salaries = apply_bareme(
             individu,
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'fnal1',
-            variable_name = "fnal_tranche_a",
+            bareme_name = 'fnal_cont_plus_de_50_salaries',
+            variable_name = "fnal_contribution",
             )
-        entreprise_eligible = (
-            (taille_entreprise == TypesTailleEntreprise.non_pertinent)
-            + (taille_entreprise == TypesTailleEntreprise.moins_de_10)
-            + (taille_entreprise == TypesTailleEntreprise.de_10_a_19)
-            )
-        return cotisation * entreprise_eligible
-
-
-class fnal_tranche_a_plus_20(Variable):
-    value_type = float
-    entity = Individu
-    label = "Fonds national action logement (FNAL, employeur avec plus de 20 salariés)"
-    definition_period = MONTH
-
-    def formula(individu, period, parameters):
-        taille_entreprise = individu('taille_entreprise', period)
-        TypesTailleEntreprise = taille_entreprise.possible_values
-
-        cotisation = apply_bareme(
+        contribution_moins_de_50_salaries = apply_bareme(
             individu,
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'fnal2',
-            variable_name = 'fnal_tranche_a_plus_20',
+            bareme_name = 'fnal_cont_moins_de_50_salaries',
+            variable_name = "fnal_contribution",
             )
-        entreprise_eligible = (
-            (taille_entreprise == TypesTailleEntreprise.de_20_a_249)
-            + (taille_entreprise == TypesTailleEntreprise.plus_de_250)
+        return effectif_plus_de_50_salaries * contribution_plus_de_50_salaries + (1 - effectif_plus_de_50_salaries) * contribution_moins_de_50_salaries
+
+    def formula_2015_01_01(individu, period, parameters):
+        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_plus_de_20_salaries = effectif_entreprise >= 20
+        contribution_plus_de_20_salaries = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'fnal_cont_plus_de_20_salaries',
+            variable_name = "fnal_contribution",
             )
-        return cotisation * entreprise_eligible
+        contribution_moins_de_20_salaries = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'fnal_cont_moins_de_20_salaries',
+            variable_name = "fnal_contribution",
+            )
+        return effectif_plus_de_20_salaries * contribution_plus_de_20_salaries + (1 - effectif_plus_de_20_salaries) * contribution_moins_de_20_salaries
+
+    def formula_2007_01_01(individu, period, parameters):
+        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_plus_de_20_salaries = effectif_entreprise >= 20
+        contribution_plus_de_20_salaries = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'fnal_cont_plus_de_20_salaries',
+            variable_name = "fnal_contribution",
+            )
+        return effectif_plus_de_20_salaries * contribution_plus_de_20_salaries
+
+    def formula(individu, period, parameters):
+        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_plus_de_10_salaries = effectif_entreprise >= 10
+        contribution_plus_de_10_salaries = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'fnal_cont_plus_de_10_salaries',
+            variable_name = "fnal_contribution",
+            )
+        return effectif_plus_de_10_salaries * contribution_plus_de_10_salaries
 
 
 class financement_organisations_syndicales(Variable):
@@ -245,42 +324,60 @@ class financement_organisations_syndicales(Variable):
 class formation_professionnelle(Variable):
     value_type = float
     entity = Individu
-    label = "Formation professionnelle"
+    label = "PEFPC - Formation professionnelle"
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
     definition_period = MONTH
+    end = '2019-01-01'
+
+    def formula_2016_01_01(individu, period, parameters):
+        effectif_entreprise = individu('effectif_entreprise', period)
+
+        cotisation_0_10 = (effectif_entreprise < 11) * apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'formprof_moins_de_11_salaries',
+            variable_name = 'formation_professionnelle',
+            )
+
+        cotisation_11 = (effectif_entreprise >= 11) * apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'formprof_11_salaries_et_plus',
+            variable_name = 'formation_professionnelle',
+            )
+        return cotisation_0_10 + cotisation_11
 
     def formula(individu, period, parameters):
-        taille_entreprise = individu('taille_entreprise', period)
-        TypesTailleEntreprise = taille_entreprise.possible_values
+        effectif_entreprise = individu('effectif_entreprise', period)
 
-        cotisation_0_9 = (taille_entreprise == TypesTailleEntreprise.moins_de_10) * apply_bareme(
+        cotisation_0_9 = (effectif_entreprise < 10) * apply_bareme(
             individu,
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'formprof_09',
+            bareme_name = 'formprof_moins_de_10_salaries',
             variable_name = 'formation_professionnelle',
             )
 
-        cotisation_10_19 = (taille_entreprise == TypesTailleEntreprise.de_10_a_19) * apply_bareme(
+        cotisation_10_19 = ((effectif_entreprise >= 10) * (effectif_entreprise < 20)) * apply_bareme(
             individu,
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'formprof_1019',
+            bareme_name = 'formprof_entre_10_et_19_salaries',
             variable_name = 'formation_professionnelle',
             )
 
-        entreprise_eligible = (
-            (taille_entreprise == TypesTailleEntreprise.de_20_a_249)
-            + (taille_entreprise == TypesTailleEntreprise.plus_de_250)
-            )
-        cotisation_20 = entreprise_eligible * apply_bareme(
+        cotisation_20 = (effectif_entreprise >= 20) * apply_bareme(
             individu,
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'formprof_20',
+            bareme_name = 'formprof_20_salaries_et_plus',
             variable_name = 'formation_professionnelle',
             )
         return cotisation_0_9 + cotisation_10_19 + cotisation_20
@@ -291,6 +388,39 @@ class participation_effort_construction(Variable):
     entity = Individu
     label = "Participation à l'effort de construction"
     definition_period = MONTH
+    # TO DO : integration de la variable peec_employeur : les critères d'éligibilité employeur incluent d'autres dimensions que l'effectif
+
+    def formula_2020_01_01(individu, period, parameters):
+        effectif_entreprise = individu('effectif_entreprise', period)
+
+        bareme = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'construction_plus_de_50_salaries',
+            variable_name = 'participation_effort_construction',
+            )
+
+        cotisation = bareme * (effectif_entreprise >= 50)
+
+        return cotisation
+
+    def formula_2005_01_01(individu, period, parameters):
+        effectif_entreprise = individu('effectif_entreprise', period)
+
+        bareme = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'construction_plus_de_20_salaries',
+            variable_name = 'participation_effort_construction',
+            )
+
+        cotisation = bareme * (effectif_entreprise >= 20)
+
+        return cotisation
 
     def formula(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
@@ -300,12 +430,11 @@ class participation_effort_construction(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'construction',
+            bareme_name = 'construction_plus_de_10_salaries',
             variable_name = 'participation_effort_construction',
             )
 
-        seuil = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.construction.seuil
-        cotisation = bareme * (effectif_entreprise >= seuil)
+        cotisation = bareme * (effectif_entreprise >= 10)
 
         return cotisation
 
@@ -326,7 +455,7 @@ class taxe_apprentissage(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'apprentissage_alsace_moselle',
+            bareme_name = 'apprentissage_taxe_alsace_moselle',
             variable_name = 'taxe_apprentissage',
             )
 
@@ -335,7 +464,7 @@ class taxe_apprentissage(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'apprentissage',
+            bareme_name = 'apprentissage_taxe',
             variable_name = 'taxe_apprentissage',
             )
 
@@ -371,7 +500,7 @@ class taxe_salaires(Variable):
         # La taxe est due notamment par les : [...] organismes sans but lucratif
         assujettissement = assujettie_taxe_salaires + entreprise_est_association_non_lucrative
 
-        parametres = parameters(period).cotsoc.taxes_sal
+        parametres = parameters(period).cotsoc.taxe_salaires
         bareme = parametres.taux_maj
         base = assiette_cotisations_sociales + (
             - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire

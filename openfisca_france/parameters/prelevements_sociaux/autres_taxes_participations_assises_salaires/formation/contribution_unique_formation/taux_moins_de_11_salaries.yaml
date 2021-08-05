@@ -1,0 +1,12 @@
+description: Contribution unique à la formation professionnelle et à l'alternance, entreprises de moins de 11 salariés
+values:
+  2019-01-01:
+    value: 0.0055
+metadata:
+  unit: /1
+  reference:
+    2019-01-01:
+      title: Loi 2018-771 du 5/09/2018, art. 37
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037368540&cidTexte=JORFTEXT000037367660
+  official_journal_date:
+    2019-01-01: 2018-09-06

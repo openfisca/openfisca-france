@@ -1,0 +1,253 @@
+description: 'Taxes sur les salaires : taux majorés (France métropolitaine seulement)'
+brackets:
+- rate:
+    2001-01-01:
+      value: 0.0
+  threshold:
+    2001-01-01:
+      value: 0.0
+- rate:
+    2001-01-01:
+      value: 0.0425
+  threshold:
+    1968-11-01:
+      value: 30000.0
+    1979-01-01:
+      value: 32800.0
+    1989-01-01:
+      value: 33660.0
+    1990-01-01:
+      value: 34780.0
+    1991-01-01:
+      value: 35900.0
+    1992-01-01:
+      value: 36980.0
+    1993-01-01:
+      value: 38020.0
+    1994-01-01:
+      value: 38750.0
+    1995-01-01:
+      value: 39300.0
+    1996-01-01:
+      value: 40010.0
+    1997-01-01:
+      value: 40780.0
+    1998-01-01:
+      value: 41230.0
+    1999-01-01:
+      value: 41570.0
+    2000-01-01:
+      value: 41780.0
+    2001-01-01:
+      value: 6459.26
+    2002-01-01:
+      value: 6563.0
+    2003-01-01:
+      value: 6675.0
+    2004-01-01:
+      value: 6789.0
+    2005-01-01:
+      value: 6904.0
+    2006-01-01:
+      value: 7029.0
+    2007-01-01:
+      value: 7156.0
+    2008-01-01:
+      value: 7250.0
+    2009-01-01:
+      value: 7461.0
+    2010-01-01:
+      value: 7491.0
+    2011-01-01:
+      value: 7604.0
+    2014-01-01:
+      value: 7666.0
+    2015-01-01:
+      value: 7705.0
+    2016-01-01:
+      value: 7713.0
+    2017-01-01:
+      value: 7721.0
+    2018-01-01:
+      value: 7799.0
+    2019-01-01:
+      value: 7924.0
+    2020-01-01:
+      value: 8004.0
+    2021-01-01:
+      value: 8020.0
+- rate:
+    2001-01-01:
+      value: 0.0935
+  threshold:
+    1968-11-01:
+      value: 60000.0
+    1979-01-01:
+      value: 65600.0
+    1989-01-01:
+      value: 67310.0
+    1990-01-01:
+      value: 69540.0
+    1991-01-01:
+      value: 71770.0
+    1992-01-01:
+      value: 73930.0
+    1993-01-01:
+      value: 76000.0
+    1994-01-01:
+      value: 77450.0
+    1995-01-01:
+      value: 78550.0
+    1996-01-01:
+      value: 79970.0
+    1997-01-01:
+      value: 81490.0
+    1998-01-01:
+      value: 82390.0
+    1999-01-01:
+      value: 83060.0
+    2000-01-01:
+      value: 83480.0
+    2001-01-01:
+      value: 12906.33
+    2002-01-01:
+      value: 13113.0
+    2003-01-01:
+      value: 13337.0
+    2004-01-01:
+      value: 13563.0
+    2005-01-01:
+      value: 13793.0
+    2006-01-01:
+      value: 14042.0
+    2007-01-01:
+      value: 14295.0
+    2008-01-01:
+      value: 14481.0
+    2009-01-01:
+      value: 14902.0
+    2010-01-01:
+      value: 14960.0
+    2011-01-01:
+      value: 15185.0
+    2014-01-01:
+      value: 15308.0
+    2015-01-01:
+      value: 15385.0
+    2016-01-01:
+      value: 15401.0
+    2017-01-01:
+      value: 15417.0
+    2018-01-01:
+      value: 15572.0
+    2019-01-01:
+      value: 15822.0
+    2020-01-01:
+      value: 15981.0
+    2021-01-01:
+      value: 16013.0
+- rate:
+    2013-01-01:
+      value: 0.1575
+    2018-01-01:
+      value: null
+  threshold:
+    2013-01-01:
+      value: 150000.0
+    2014-01-01:
+      value: 151208.0
+    2015-01-01:
+      value: 151965.0
+    2016-01-01:
+      value: 152122.0
+    2017-01-01:
+      value: 152279
+    2018-01-01:
+      value: null
+metadata:
+  threshold_unit: currency
+  rate_unit: /1
+  reference:
+    2020-01-01: 
+    - title: BOI-TPS-TS-40 du 24/06/2020 
+      href: https://bofip.impots.gouv.fr/bofip/6683-PGP.html/identifiant%3DBOI-TPS-TS-40-20200624
+    2019-01-01: 
+    - title: Décret 2019-559 du 06/06/2019, art.1
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000038559363&categorieLien=id
+    - BOI-TPS-TS-30 du 30/01/2019
+    2018-01-01:
+    - title: Loi 2017-1837 du 30/12/2017 (LF pour 2018), art. 90
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377552&cidTexte=JORFTEXT000036339197
+    - title: Décret 2018-500 du 20/06/2018
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037090889
+    2017-01-01: BOI-TPS-TS-30 du 01/03/2017
+    2016-01-01: BOI-TPS-TS-30 du 02/03/2016
+    2015-01-01: Décret 2015-606 du 9/06/2015, modifiant Art. 231 du CGI en conséquence de la Loi 2014-1654 du 29/12/2014 (LF pour 2015), art. 2-II
+    2014-01-01: BOI-TPS-TS-30 du 25/03/2014 (§160)
+    2013-01-01:
+    - title: Décret 2013-265 du 28/03/2013
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000027247140
+    - title: Loi 2012-1404 du 17/12/2012 (LFSS pour 2013)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026785322
+    2011-01-01: BOI n°105 du 14/12/2010, 5 L-1-10
+    2010-01-01: BOI n°99 du 18/12/2009, 5 L-3-09
+    2009-01-01: BOI n°5 du 16/01/2009, 5 L-1-09
+    2008-01-01: BOI n°132 du 28/12/2007, 5 L-3-07
+    2007-01-01: BOI n°4 du 11/01/2007, 5 L-1-07
+    2006-01-01: BOI n°6 du 16/01/2006, 5 L-2-06
+    2005-01-01: BOI n°18 du 27/01/2005, 5 L-1-05
+    2004-01-01: BOI n°36 du 24/02/2004, 5 L-2-04
+    2003-01-01: BOI n°30du 14/02/2003, 5 L-2-03
+    2002-01-01: BOI n°37 du 21/02/2002, 5 L-2-02
+    2001-01-01:
+      title: Loi 2000-1352 du 30/12/2000 (LF pour 2001)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000220595
+    2000-01-01:
+      title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
+    1999-01-01:
+      title: Loi 98-1266 du 30/12/1998 (LF pour 1999)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209044
+    1998-01-01:
+      title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
+    1997-01-01:
+      title: Loi 96-559 du 24/06/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000742825
+    1996-01-01: BOI n°8 du 12/01/1996, 5 L-1-96
+    1995-01-01:
+      title: Loi 93-1352 du 30/12/1993, art. 2 (LF pour 1994)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006318839&cidTexte=JORFTEXT000000509319
+    1994-01-01: Référence législative manquante
+    1993-01-01: Référence législative manquante
+    1992-01-01: Référence législative manquante
+    1991-01-01: Référence législative manquante
+    1990-01-01: Référence législative manquante
+    1989-01-01: Référence législative manquante
+    1979-01-01:
+      title: Loi 78-1239 du 29/12/1978 (LF pour 1979)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886458
+    1968-11-01: Loi 68-878 du 09/10/1968
+  official_journal_date:
+    2018-01-01: 2017-12-30; 2018-06-23
+    2015-01-01: 2015-06-05
+    2013-01-01: 2013-03-30
+    2001-01-01: 2000-12-31
+    2000-01-01: 1999-12-31
+    1999-01-01: 1998-12-31
+    1998-01-01: 1997-12-31
+    1997-01-01: 1996-06-25
+    1995-01-01: 1993-12-31
+    1979-01-01: 1978-12-30
+    1968-11-01: 1968-10-10
+  notes:
+    2021-01-01: BOFIP non mis à jour
+  documentation: |
+    Notes :
+    Le taux applicable entre le plafond 1 et le plafond 2 (resp. entre les plafonds 2 et 3 et au dessus du plafond 3) est égal au (taux 1 + majoration 1) (resp. au (taux 1 + majoration2) et (taux1 + majoration3)), soit 8,50% (resp. 13,60% et 20%).
+    Les majorations de taux ne sont pas applicables aux salaires versés aux personnes physiques ou morales établis dans les DOM (art. 231-2 bis du CGI).
+    Références législatives :
+    Les dispositions relatives à la taxe sur les salaires figurent à l'article 231 du CGI.
+    Selon une disposition figurant dans la Loi 78-1239 du 29/12/1978, les plafonds de la taxe sur les salaires sont réévalués chaque année sur la base de la première tranche de l'IR, par décret du Conseil d'Etat.
+    La loi 2000-1352 du 30/12/2000 (LF pour 2001) a aligné l'assiette de la taxe sur les salaires sur l'assiette des cotisations sociales.
+    Toutefois, la loi 2013-1278 du 29/12/2013, art. 75, a prévu l'alignement de l'assiette de la taxe sur les salaires sur l'assiette de la CSG pour les rémunérations versées à compter du 1er janvier 2014.

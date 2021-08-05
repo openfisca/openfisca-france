@@ -1,0 +1,33 @@
+description: Versement forfaitaire sur les pensions (1949-1967)
+brackets:
+  - rate:
+      1949-01-01:
+        value: 0.03
+      1957-01-01:
+        value: null
+    threshold:
+      1949-01-01:
+        value: 0
+      1957-01-01:
+        value: null
+metadata:
+  reference:
+    1957-01-01:
+      title: Loi 56-1327 du 29/12/1956, art. 2-IV (LF pour 1957)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006756031&cidTexte=JORFTEXT000000504194
+    1949-01-01: 
+      title: Décret 48-1986 du 09/12/1948, art. 70
+  official_journal_date:
+    1957-01-01: 1956-12-30
+    1949-01-01: 1949-01-01
+  notes:
+    1957-01-01: Anciens francs.
+  threshold_unit: currency
+  rate_unit: /1
+  documentation: |
+    Notes :
+    (i) Le versement forfaitaire est dû par les employeurs; il a été instauré à la place de la taxe proportionnelle qui a remplacé les anciens impôts cédulaires.
+    Les plafonds instaurés en 1957 sont définis sur la masse des rémunérations individuelles versées par l'employeur.
+    (ii) A l'origine provisoire, le versement a été rendu pérenne par la loi de finances pour 1952 du 14/04/1952.
+    Source :
+    Rapport d'information du Sénat, no 8, session 2000-2001.
