@@ -1,34 +1,31 @@
 """Teste les cotisations par catégorie de salarié produites à l'issue de l'étape preprocessing."""
 
 from collections import OrderedDict
-import datetime
-from openfisca_france.model.revenus.activite.salarie import categorie_salarie
 from .cache import tax_benefit_system
 
-import pytest
 
 
 years = range(2006, 2020)
 
 
 cotisations_salarie_by_name = {
-        "agff": {},
-        "agirc_arrco": {},
-        "agirc": {},
-        "apec": {},
-        "arrco": {},
-        "assedic": {},
-        "ceg": {},
-        "cet": {
-            "final_null_date": "2019-01-01"
+    "agff": {},
+    "agirc_arrco": {},
+    "agirc": {},
+    "apec": {},
+    "arrco": {},
+    "assedic": {},
+    "ceg": {},
+    "cet": {
+        "final_null_date": "2019-01-01"
 
-            },
-        "cet2019": {},
-        "forfait_annuel": {},
-        "maladie_alsace_moselle": {},
-        "maladie": {},
-        "vieillesse_deplafonnee": {},
-        "vieillesse": {},
+        },
+    "cet2019": {},
+    "forfait_annuel": {},
+    "maladie_alsace_moselle": {},
+    "maladie": {},
+    "vieillesse_deplafonnee": {},
+    "vieillesse": {},
     }
 
 
@@ -49,7 +46,6 @@ cotisations_salarie_by_categorie_salarie = {
         "vieillesse_deplafonnee",
         "vieillesse",
         ],
-
     }
 
 
