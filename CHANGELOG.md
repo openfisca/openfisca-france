@@ -25,6 +25,7 @@
      - APPRENTISSAGE
 
 # 65.0.0 [#1610](https://github.com/openfisca/openfisca-france/pull/1610)
+
 * Amélioration technique.
 * Périodes concernées : toutes. 
 * Zones impactées : toutes
