@@ -28,7 +28,7 @@
   description: Rien au dessus de 2.5 fois le SMIC
   relative_error_margin: 0.001
   input:
-    salaire_de_base: 3643.81
+    salaire_de_base: 3643.9
     # nécessaire pour des requêtes sur un mois de salaire :
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 0

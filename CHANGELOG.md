@@ -1,5 +1,22 @@
 # Changelog
 
+## 68.1.0 [#1633](https://github.com/openfisca/openfisca-france/pull/1633)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées :  jusqu'au 31/12/2002.
+* Zones impactées : 
+  - `model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
+  - `parameters/marche_travail/`
+  - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/mmid/`
+  -  `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/mmid_am/`
+  - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/cnav/`
+  - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/accident/`
+* Détails :
+  - Modifie le chemin pour le smic horaire.
+  - Remplace le nombre d'heures pour un temps plein par le paramètre.
+  - Ajoute et corrige les anciennes valeurs pour les cotisations maladie, vieillesse et accident.
+
 # 68.0.0 [#1613](https://github.com/openfisca/openfisca-france/pull/1613)
 
 * Amélioration technique.
