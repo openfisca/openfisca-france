@@ -19,6 +19,9 @@ brackets:
         value: 0.0089
       2001-04-01:
         value: 0.0
+    threshold:
+      1984-04-01:
+        value: 1.0
   - rate:
       1984-04-01:
         value: 0.0
