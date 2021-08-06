@@ -121,7 +121,7 @@ def test_preprocessing():
                     )
                 for bracket in bareme.brackets
                 ]
-            start_thresholds_by_instant_str = OrderedDict(sorted(threshold.items(), reverse = False)[0] for threshold in thresholds)
+            start_thresholds_by_instant_str = OrderedDict(sorted(threshold.items())[0] for threshold in thresholds)
             assert all([start_threshold is not None for start_threshold in start_thresholds_by_instant_str.values()]), "Barème salarié {} ne s'éteint pas (il devrait en {})".format(
                 cotisation_salarie,
                 start_non_null_date,
