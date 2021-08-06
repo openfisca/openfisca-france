@@ -3,25 +3,37 @@ brackets:
 - rate:
     2001-04-01:
       value: 0.008
+    2019-01-01:
+      value: null
   threshold:
     2001-04-01:
       value: 0.0
+    2019-01-01:
+      value: null
 - rate:
     2001-04-01:
       value: 0.009
+    2019-01-01:
+      value: null
   threshold:
     2001-04-01:
       value: 1.0
     2016-01-01:
       value: 4.0
+    2019-01-01:
+      value: null
 - rate:
     2001-04-01:
       value: 0.0
+    2019-01-01:
+      value: null
   threshold:
     2001-04-01:
       value: 4.0
     2016-01-01:
       value: 8.0
+    2019-01-01:
+      value: null 
 metadata:
   ux_name: Cadre
   last_review:
