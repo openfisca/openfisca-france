@@ -1,6 +1,15 @@
 # Changelog
 
-### 67.0.0 [#1595](https://github.com/openfisca/openfisca-france/pull/1595)
+### 67.0.1 [#1630](https://github.com/openfisca/openfisca-france/pull/1630)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/formation`.
+* Détails : Ajout de ";" manquants aux official_journal_date multiples.
+
+Ces changements modifient des éléments non fonctionnels (metadata official_journal_date de paramètres).
+
+# 67.0.0 [#1595](https://github.com/openfisca/openfisca-france/pull/1595)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
