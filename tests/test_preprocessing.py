@@ -126,7 +126,7 @@ def test_preprocessing():
                 cotisation_salarie,
                 start_non_null_date,
                 )
-            assert min(start_thresholds_by_instant_str.keys()) == start_non_null_date, "Barème salarié {} ne s'éteint pas en {}".format(
+            assert min(start_thresholds_by_instant_str.keys()) == start_non_null_date, "Barème salarié {} ne commence pas à la bonne date {}".format(
                 cotisation_salarie,
                 start_non_null_date,
                 )
