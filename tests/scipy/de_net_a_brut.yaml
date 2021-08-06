@@ -20,7 +20,7 @@
     # csg_imposable_salaire: -54.23400115966797
     # contribution_solidarite_autonomie: -6.900000095367432
     # vieillesse_plafonnee_employeur: -196.64999389648438
-    # cotisation_chomage_employeur: -92
+    # chomage_employeur: -92
     # arrco_employeur: -106.94999694824219
     # smic_proratise: 1466.61669921875
     # prevoyance_obligatoire_cadre: 0
@@ -55,4 +55,4 @@
     # ags: -5.75
     # vieillesse_deplafonnee_employeur: -42.54999923706055
     # contribution_supplementaire_apprentissage: 0 # -9.199999809265137 pour effectif > 250
-    # cotisation_chomage_salarie: -55.20000076293945
+    # chomage_salarie: -55.20000076293945

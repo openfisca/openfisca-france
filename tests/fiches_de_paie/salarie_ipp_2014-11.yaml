@@ -33,7 +33,7 @@ output:
   arrco_employeur: -138.53
   agirc_employeur: -199.75
   agirc_gmp_employeur: 0
-  cotisation_chomage_employeur: -120.99 - 63.01
+  chomage_employeur: -120.99 - 63.01
   # chomage_tranche_a_employeur: -120.99  # Inclus dans assedic
   # chomage_tranche_b_employeur: -63.01  # Inclus dans assedic
   vieillesse_deplafonnee_employeur: -80.5
@@ -59,7 +59,7 @@ output:
   agirc_gmp_salarie: 0
   # chomage_tranche_a_employe: -72.59  # Inclus dans assedic
   # chomage_tranche_b_employe: 37.81  # Inclus dans assedic
-  cotisation_chomage_salarie: -72.59 - 37.81
+  chomage_salarie: -72.59 - 37.81
 
   vieillesse_deplafonnee_salarie: -11.5
   vieillesse_plafonnee_salarie: -205.68

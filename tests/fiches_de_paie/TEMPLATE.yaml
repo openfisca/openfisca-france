@@ -48,7 +48,7 @@ output:
   agirc_employeur: 0
   apec_employeur: 0
   arrco_employeur: 0
-  cotisation_chomage_employeur: 0
+  chomage_employeur: 0
   cotisation_exceptionnelle_temporaire_employeur: 0
   vieillesse_deplafonnee_employeur: 0
   vieillesse_plafonnee_employeur: 0
@@ -90,7 +90,7 @@ output:
   agirc_salarie: 0
   apec_salarie: 0
   arrco_salarie: 0
-  cotisation_chomage_salarie: 0
+  chomage_salarie: 0
   cotisation_exceptionnelle_temporaire_salarie: 0
   vieillesse_deplafonnee_salarie: 0
   vieillesse_plafonnee_salarie: 0

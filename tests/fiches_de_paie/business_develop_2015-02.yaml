@@ -20,7 +20,7 @@ output:
   arrco_employeur: -101.04
   agirc_employeur: 0
   agirc_gmp_employeur: -41.16 -.01  # manque 0.01 dans la  fiche de paie
-  cotisation_chomage_employeur: -86.92
+  chomage_employeur: -86.92
   cotisation_exceptionnelle_temporaire_employeur: -4.78
   famille: -2172.9 * 0.0525 # = -153.74 = -74.97-78.77
   mmid_employeur: -2172.9 * 0.128  # -6.52
@@ -62,7 +62,7 @@ output:
   agirc_salarie: 0
   apec_salarie: -0.52
   arrco_salarie: -67.36
-  cotisation_chomage_salarie: -52.15
+  chomage_salarie: -52.15
   cotisation_exceptionnelle_temporaire_salarie: -2.82
   vieillesse_deplafonnee_salarie: -22.82 * 0.003/.0105 # -2172.9 * 0.003
   vieillesse_plafonnee_salarie: -148.84
