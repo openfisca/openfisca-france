@@ -1,5 +1,17 @@
 # Changelog
 
+# 68.0.0 [#1613](https://github.com/openfisca/openfisca-france/pull/1613)
+
+* Amélioration technique.
+* Périodes concernées : toutes. 
+* Zones impactées : toutes
+* Détails : Harmonisation du dossier parameters.prelevements_sociaux.cotisations_regime_assurance_chomage :
+  -- Arborescence selon le modèle IPP
+  -- Nouveau formatage des fichiers .yaml
+  -- Mise à jour des valeurs et des références (et ajout de nouveaux paramètres) d'après l'IPP
+  -- Supprime chomfg qui est un doublon de ags
+  -- Pas de paramètre assedic trouvé du côté IPP: on n'a pas de références. C'est étonnant.
+
 ### 67.0.1 [#1630](https://github.com/openfisca/openfisca-france/pull/1630)
 
 * Changement mineur.

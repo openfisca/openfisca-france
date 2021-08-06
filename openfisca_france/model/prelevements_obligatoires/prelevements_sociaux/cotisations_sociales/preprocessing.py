@@ -39,7 +39,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['construction_plus_de_50_salaries'] = autres.construction.children['taux_plus_de_50_salaries']
     # Autres thématiques
     commun.children.update(chomage.assedic.employeur.children)
-    commun.children.update(chomage.chomfg.children)
+    commun.children.update(chomage.ags.employeur.children)
     commun.children.update(regime_general.csa.bareme.children)  # À harmoniser !
     commun.children.update(regime_general.famille.bareme.children)  # À harmoniser !
     commun.children.update(regime_general.penibilite.bareme.children)  # À harmoniser !
@@ -112,7 +112,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['prive_cadre'] = pat.children.pop('cadre')
 
     # Rework commun to deal with public employees
-    for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle", "assedic", "chomfg",
+    for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle", "assedic", "ags",
                 "construction_plus_de_10_salaries", "construction_plus_de_20_salaries", "construction_plus_de_50_salaries", "maladie",
                 "formprof_moins_de_10_salaries", "formprof_moins_de_11_salaries", "formprof_20_salaries_et_plus", "formprof_11_salaries_et_plus", "formprof_entre_10_et_19_salaries",
                 "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
@@ -120,7 +120,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle",
                 "formprof_moins_de_10_salaries", "formprof_moins_de_11_salaries", "formprof_20_salaries_et_plus", "formprof_11_salaries_et_plus", "formprof_entre_10_et_19_salaries",
-                "chomfg", "construction_plus_de_10_salaries", "construction_plus_de_20_salaries", "construction_plus_de_50_salaries", "assedic"]:
+                "ags", "construction_plus_de_10_salaries", "construction_plus_de_20_salaries", "construction_plus_de_50_salaries", "assedic"]:
         del pat.children['fonc'].children['contract'].children[var]
 
     pat.children['fonc'].children['etat'].children.update(commun.children)

@@ -447,7 +447,7 @@ class ags(Variable):
             period,
             parameters,
             cotisation_type = "employeur",
-            bareme_name = "chomfg",
+            bareme_name = "ags",
             variable_name = 'ags',
             )
         return cotisation
