@@ -1,4 +1,4 @@
-- name: cotisation_chomage_salarie_tranche_A_2018
+- name: cotisation_chomage_salarie_2018_sous_pss
   description: Montant Cotsoc chomage salarié pour base salaire inférieur à 1 PSS en 2018
   period: 2018-01
   relative_error_margin: 0.01
@@ -7,7 +7,7 @@
   output:
     chomage_salarie: -(0.95 / 100) * 1500
 
-- name: cotisation_chomage_salarie_tranche_A_B_2018
+- name: cotisation_chomage_salarie_2018_sous_4pss
   description: Montant Cotsoc chomage salarié pour salaire base compris entre 1 et 4 PSS en 2018
   period: 2018-01
   absolute_error_margin: 0.01
@@ -16,7 +16,7 @@
   output:
     chomage_salarie: -(0.95 / 100) * 8000
 
-- name: cotisation_chomage_salarie_tranche_A_B_sup_plaf_2018
+- name: cotisation_chomage_salarie_2018_plus_que_4pss
   description: Montant Cotsoc chomage salarié pour salaire base supérieur 4 PSS en 2018
   period: 2018-01
   absolute_error_margin: 0.01
@@ -25,7 +25,7 @@
   output:
     chomage_salarie: -(0.95 / 100) * (4 * 3311)
 
-- name: cotisation_chomage_salarie_tranche_A_B_sup_plaf_avant_2018
+- name: cotisation_chomage_salarie_2017_plus_que_4pss
   description: Montant Cotsoc chomage salarié pour salaire base supérieur 4 PSS, avant 2018
   period: 2017-01
   absolute_error_margin: 0.01
@@ -34,7 +34,7 @@
   output:
     chomage_salarie: -(2.4 / 100) * (4 * 3269)
 
-- name: cotisation_chomage_salarie_tranche_A_apres_2018
+- name: cotisation_chomage_salarie_2020_sous_4pss
   description: Montant Cotsoc chomage salarié après 10/2018
   period: 2020-01
   relative_error_margin: 0.01
@@ -43,7 +43,7 @@
   output:
     chomage_salarie: 0
 
-- name: cotisation_chomage_salarie_tranche_A_apres_2018
+- name: cotisation_chomage_salarie_2020_plus_que_4pss
   description: Montant Cotsoc chomage salarié après 10/2018
   period: 2020-01
   relative_error_margin: 0.01
