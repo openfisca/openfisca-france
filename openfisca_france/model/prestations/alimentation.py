@@ -18,5 +18,7 @@ class crous_repas_un_euro_eligibilite(Variable):
     et jusqu’au début de la semaine du 25 janvier.
     '''
 
-    def formula_2021_01(individu, period, parameters):
-        return individu('scolarite', period) == TypesScolarite.enseignement_superieur
+    def formula_2021_01(individu, period):
+        detention_carte_etudiante = individu('scolarite', period) == TypesScolarite.enseignement_superieur
+        detention_carte_des_metiers = individu('detention_carte_des_metiers', period)
+        return detention_carte_etudiante + detention_carte_des_metiers
