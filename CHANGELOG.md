@@ -1,6 +1,17 @@
 # Changelog
 
-## 69.0.0 [#1627](https://github.com/openfisca/openfisca-france/pull/1627)
+### 69.0.1 [#1638](https://github.com/openfisca/openfisca-france/pull/1638)
+
+* Changement mineur.
+* Périodes concernées : toutes. 
+* Zones impactées :
+  * `parameters/prelevements_sociaux/cotisations_regime_assurance_chomage/asf`
+  * `parameters/prelevements_sociaux/cotisations_regime_assurance_chomage/chomage`
+* Détails :
+  - Ajoute le seuil manquant de la deuxième tranche ASF salarié
+  - Corrige des format de dates dans le champ official_journal_date des metadata.
+
+# 69.0.0 [#1627](https://github.com/openfisca/openfisca-france/pull/1627)
 
 * Évolution du système socio-fiscal. | Amélioration technique
 * Périodes concernées : toutes.
