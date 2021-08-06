@@ -1,5 +1,18 @@
 # Changelog
 
+## 69.0.0 [#1627](https://github.com/openfisca/openfisca-france/pull/1627)
+
+* Évolution du système socio-fiscal. | Amélioration technique
+* Périodes concernées : toutes.
+* Zones impactées : `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`, `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py`, `parameters/prelevements_sociaux/cotisations_regime_assurance_chomage`
+* Détails :
+  - Harmonisation des parametres de cotisation assurance chomage + extension (années 1959-1993)
+  - Vérification des formules cotisation assurance chomage
+  - Séparation explicite des parametres de cotisation chomage (auparavant nommé "assedic" dans master) en
+    - cotisation chomage et 
+    - ASF 
+    Ceci a un impact avant 2001, sans impact sur la période 2001-ajd).
+
 ## 68.1.0 [#1633](https://github.com/openfisca/openfisca-france/pull/1633)
 
 * Évolution du système socio-fiscal.
