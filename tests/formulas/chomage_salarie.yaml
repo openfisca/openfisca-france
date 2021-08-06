@@ -23,7 +23,7 @@
   input:
     salaire_de_base: 15000
   output:
-    chomage_salarie: -(0.95 / 100) * (4*3311)
+    chomage_salarie: -(0.95 / 100) * (4 * 3311)
 
 - name: Cotisation chomage salarié, tranche A et B > plafond
   description: Montant Cotsoc chomage salarié pour salaire base supérieur 4 PSS, avant 2018
