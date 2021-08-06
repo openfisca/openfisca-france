@@ -5,23 +5,35 @@ from .cache import tax_benefit_system
 
 
 cotisations_salarie_by_name = {
-    "agff": {},
+    "agff": {
+        "start_non_null_date": "2001-04-01",
+        "final_null_date": "2019-01-01",
+        },
     "agirc_arrco": {
         "start_non_null_date": "2019-01-01",
         },
     "agirc": {
+        "start_non_null_date": "1948-01-01",
         "final_null_date": "2019-01-01",
         },
-    "apec": {},
+    "apec": {
+        "start_non_null_date": "1971-01-01",
+        },
     "arrco": {
+        "start_non_null_date": "1962-01-01",
         "final_null_date": "2019-01-01",
         },
     "assedic": {},
-    "ceg": {},
+    "ceg": {
+        "start_non_null_date": "2019-01-01",
+        },
     "cet": {
+        "start_non_null_date": "1997-01-01",
         "final_null_date": "2019-01-01",
         },
-    "cet2019": {},
+    "cet2019": {
+        "start_non_null_date": "2019-01-01",
+        },
     "forfait_annuel": {},
     "maladie_alsace_moselle": {},
     "maladie": {
