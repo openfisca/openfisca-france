@@ -1,0 +1,45 @@
+description: Cotisations employeur pour la tranche B de la structure financière ASF (1984-2001) au régime de l'assurance chômage
+brackets:
+  - rate:
+      1984-01-01:
+        value: 0.012
+      1990-10-01:
+        value: 0.0108
+      1994-01-01:
+        value: 0.0116
+      2001-04-01:
+        value: 0.0
+    threshold:
+      1984-01-01:
+        value: 0.0
+  - rate:
+      1984-04-01:
+        value: 0.012
+      1994-01-01:
+        value: 0.0129
+      2001-04-01:
+        value: 0.0
+    threshold:
+      1984-04-01:
+        value: 1.0
+  - rate:
+      1984-04-01:
+        value: 0.0
+    threshold:
+      1984-04-01:
+        value: 4.0
+metadata:
+  rate_unit: /1
+  threshold_unit: PSS
+  ux_name: Barème employeur
+  reference:
+    2001-04-01: Accord Arrco-Agirc du 10/02/2001, ch. III
+    1994-01-01: Convention et règlement UNEDIC du 01/01/94 agréés par arrêté du 04/01/94
+    1992-01-01: Protocole d'accord du 5/12/1991 (avenants n° 1 et 8 du 13/12/91, agréés)
+    1990-10-01: Compromis du 25/06/1990 (Dupeyroux 1993, p. 791)
+    1984-04-01: Convention et règlement Unedic du 24/02/84 agréés par arrêté du 28/03/84
+    1984-01-01: Accord du 10/01/1984
+  official_journal_date:
+    1994-01-01: 1994-01-08
+    1992-01-01: 1992-01-07
+    1984-04-01: 1984-04-04

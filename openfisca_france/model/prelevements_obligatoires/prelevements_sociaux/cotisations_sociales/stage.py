@@ -94,7 +94,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,
                 )
-            for bareme_name in ['agffnc', 'agffc', 'ags', 'assedic']
+            for bareme_name in ['agffnc', 'agffc', 'ags', 'chomage', 'asf']
             )
         exoneration += (agirc_arrco_employeur + agirc_employeur + agirc_gmp_employeur + arrco_employeur
             + contribution_equilibre_general_employeur + cotisation_equilibre_technique_employeur
@@ -125,7 +125,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
         categorie_salarie = individu('categorie_salarie', period)
 
         bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_salarie
-        bareme_names = ['agff', 'assedic']
+        bareme_names = ['agff', 'chomage', 'asf']
 
         exoneration = plafond_securite_sociale * 0.0
         for bareme_name in bareme_names:

@@ -1,60 +1,135 @@
-description: Cotisations salariales de la tranche B au régime de l'assurance chômage
-unit: /1
-values:
-  2018-10-01:
-    value: null
-  2018-01-01:
-    value: 0.0095
-  2007-01-01:
-    value: 0.024
-  2006-01-01:
-    value: 0.0244
-  2003-01-01:
-    value: 0.024
-  2002-07-01:
-    value: 0.021
-  2002-01-01:
-    value: 0.02
-  2001-01-01:
-    value: 0.026
-  1997-01-01:
-    value: 0.0271
-  1993-08-01:
-    value: 0.0297
-  1992-08-01:
-    value: 0.0257
-  1992-01-01:
-    value: 0.0217
-  1991-01-01:
-    value: 0.0211
-  1988-01-01:
-    value: 0.0217
-  1985-11-01:
-    value: 0.0201
-  1985-07-01:
-    value: 0.0262
-  1984-04-01:
-    value: 0.0162
-  1983-07-01:
-    value: 0.0172
-  1982-11-06:
-    value: 0.0132
-  1979-04-01:
-    value: 0.0084
-  1978-05-01:
-    value: 0.006
-  1978-01-01:
-    value: 0.0048
-  1977-01-01:
-    value: 0.0044
-  1975-07-01:
-    value: 0.0048
-  1959-01-01:
-    value: null
+description: Cotisations salariales au régime de l'assurance chômage
+brackets:
+  - rate:
+      2018-01-01:
+        value: 0.0095
+      2007-01-01:
+        value: 0.024
+      2006-01-01:
+        value: 0.0244
+      2003-01-01:
+        value: 0.024
+      2002-07-01:
+        value: 0.021
+      2002-01-01:
+        value: 0.02
+      2001-01-01:
+        value: 0.021
+      1997-01-01:
+        value: 0.0221
+      1993-08-01:
+        value: 0.0242
+      1992-08-01:
+        value: 0.0207
+      1992-01-01:
+        value: 0.0167
+      1991-01-01:
+        value: 0.0153
+      1990-10-01:
+        value: 0.0159
+      1988-01-01:
+        value: 0.0167
+      1985-11-01:
+        value: 0.0151
+      1985-07-01:
+        value: 0.0212
+      1984-04-01:
+        value: 0.0112
+      1983-07-01:
+        value: 0.0172
+      1982-11-06:
+        value: 0.0132
+      1979-04-01:
+        value: 0.0084
+      1978-05-01:
+        value: 0.006
+      1978-01-01:
+        value: 0.0048
+      1977-01-01:
+        value: 0.0044
+      1975-07-01:
+        value: 0.0048
+      1975-01-01:
+        value: 0.0036
+      1974-01-01:
+        value: 0.0016
+      1973-01-01:
+        value: 0.0014
+      1969-01-01:
+        value: 0.0008
+      1968-01-01:
+        value: 0.0007
+      1962-01-01:
+        value: 0.0005
+      1959-01-01:
+        value: 0.002
+    threshold:
+      1959-01-01:
+        value: 0.0
+  - rate:
+      2018-10-01:
+        value: null
+      2018-01-01:
+        value: 0.0095
+      2007-01-01:
+        value: 0.024
+      2006-01-01:
+        value: 0.0244
+      2003-01-01:
+        value: 0.024
+      2002-07-01:
+        value: 0.021
+      2002-01-01:
+        value: 0.02
+      2001-01-01:
+        value: 0.026
+      1997-01-01:
+        value: 0.0271
+      1993-08-01:
+        value: 0.0297
+      1992-08-01:
+        value: 0.0257
+      1992-01-01:
+        value: 0.0217
+      1991-01-01:
+        value: 0.0211
+      1988-01-01:
+        value: 0.0217
+      1985-11-01:
+        value: 0.0201
+      1985-07-01:
+        value: 0.0262
+      1984-04-01:
+        value: 0.0162
+      1983-07-01:
+        value: 0.0172
+      1982-11-06:
+        value: 0.0132
+      1979-04-01:
+        value: 0.0084
+      1978-05-01:
+        value: 0.006
+      1978-01-01:
+        value: 0.0048
+      1977-01-01:
+        value: 0.0044
+      1975-07-01:
+        value: 0.0048
+      1959-01-01:
+        value: null
+    threshold:
+      1975-07-01:
+        value: 1.0
+  - rate:
+      1959-01-01:
+        value: 0
+    threshold:
+      1959-01-01:
+        value: 4.0
 metadata:
+  rate_unit: /1
+  threshold_unit: PSS
   ux_name: Taux salarié
-  last_review:
-    2018-10-01
   reference:
     2018-10-01:
       title: Loi 2017-1836 du 30/12/2017, art. 8 VI. (LFSS pour 2018)
@@ -104,7 +179,7 @@ metadata:
     1973-01-01: Bureau Unedic du 22 nov. 1971
     1962-01-01: Décision conseil adm. 27 nov. 1961
     1959-01-01: Convention du 31/12/1958
-  date_parution_jo:
+  official_journal_date:
     2018-10-01: 2017-12-31
     2018-01-01: 2017-12-31
     2017-10-01: 2017-05-06
@@ -121,28 +196,3 @@ metadata:
     1984-04-01: 22/03/1984; 04/04/1984
     1983-07-01: 1983-07-01
     1982-11-06: 1982-11-05
-  notes:
-    2018-10-01: "Suppression de la cotisation salariale : Prise en charge par l'Acoss des contributions salariales au taux en vigueur en 2017 à hauteur de 2,40 points (soit la totalité)"
-    2018-01-01: Prise en charge par l'Acoss des contributions salariales au taux en vigueur en 2017 à hauteur de 1,45 points
-    2017-10-01: Contribution exceptionnelle temporaire de 0,05 % à la charge des employeurs
-    1993-08-01: "Attention : les taux réellement décidés diffèrent des taux prévus. Cf. changements dans les prévisions du BSP"
-    1992-01-01: "Attention : erreur dans le BSP N°16 de janvier 1992 : taux employeur de 3,33% au lieu de 3,23% (corrigé dans édition suivante)"
-    1990-10-01: "BSP : \"Application aux salaires payés à partir du 01/01/88\""
-    1985-07-01: BSP n° IV/1985 manquant
-    1984-04-01: "BSP : taux supplémentaire de 0,50% sur la tranche des rémunérations comprises entre 1 et 4 PSS (d'où 1,62% au lieu de 1,12%)"
-    1982-11-06: "BSP : taux applicables aux salaires versés après le 05/11/82; décret précise à partir du 06/11/82."
-    1975-07-01: S'applique bien entre 1 et 4 plafonds
-    1969-01-01: Pas de référence trouvée.
-    1968-01-01: Pas de référence trouvée.
-  description_en: Unemployment insurance contribution
-documentation: |
-  Notes :
-  La tranche A correspond au salaire en-dessous du PSS et tranche B le salaire de 1 à 4 plafonds.
-  Sources :
-  Assedic, service Internet unijuris
-  Barème social périodique (1976-2001)
-  Droit de la Sécurité Sociale - JJ Dupeyroux - Précis Dalloz (1984, 1986, 1993)
-  Unedic Historique du régime d'Assurance chômage 1959-1982 (1983)
-  J. Boutault L'assurance chômage en France: Unedic-Assedic (1999)
-  V. Drouin et X. Greffe L'assurance-chômage, Filet de sécurité ou parapluie percée ? (1985) Economica
-  Bulletin de liaison de l'Unedic (consulté au service documentaire de l'Unedic).

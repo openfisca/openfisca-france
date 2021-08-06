@@ -38,8 +38,9 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['construction_plus_de_20_salaries'] = autres.construction.children['taux_plus_de_20_salaries']
     commun.children['construction_plus_de_50_salaries'] = autres.construction.children['taux_plus_de_50_salaries']
     # Autres thématiques
-    commun.children.update(chomage.assedic.employeur.children)
     commun.children.update(chomage.ags.employeur.children)
+    commun.children.update(chomage.asf.employeur.children)
+    commun.children.update(chomage.chomage.employeur.children)
     commun.children.update(regime_general.csa.bareme.children)  # À harmoniser !
     commun.children.update(regime_general.famille.bareme.children)  # À harmoniser !
     commun.children.update(regime_general.penibilite.bareme.children)  # À harmoniser !
@@ -112,7 +113,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['prive_cadre'] = pat.children.pop('cadre')
 
     # Rework commun to deal with public employees
-    for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle", "assedic", "ags",
+    for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle", "chomage", "asf", "ags",
                 "construction_plus_de_10_salaries", "construction_plus_de_20_salaries", "construction_plus_de_50_salaries", "maladie",
                 "formprof_moins_de_10_salaries", "formprof_moins_de_11_salaries", "formprof_20_salaries_et_plus", "formprof_11_salaries_et_plus", "formprof_entre_10_et_19_salaries",
                 "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
@@ -120,7 +121,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     for var in ["apprentissage_taxe", "apprentissage_contribution_additionnelle", "apprentissage_taxe_alsace_moselle",
                 "formprof_moins_de_10_salaries", "formprof_moins_de_11_salaries", "formprof_20_salaries_et_plus", "formprof_11_salaries_et_plus", "formprof_entre_10_et_19_salaries",
-                "ags", "construction_plus_de_10_salaries", "construction_plus_de_20_salaries", "construction_plus_de_50_salaries", "assedic"]:
+                "ags", "construction_plus_de_10_salaries", "construction_plus_de_20_salaries", "construction_plus_de_50_salaries", "chomage", "asf"]:
         del pat.children['fonc'].children['contract'].children[var]
 
     pat.children['fonc'].children['etat'].children.update(commun.children)
@@ -169,7 +170,8 @@ def build_sal(node_json):
     liberal = node_json.prelevements_sociaux.cotisations_taxes_professions_liberales
 
     # Création de commun
-    commun.children.update(chomage.assedic.salarie.children)
+    commun.children.update(chomage.chomage.salarie.children)
+    commun.children.update(chomage.asf.salarie.children)
     commun.children.update(regime_general.mmid.bareme.salarie.children)  # harmoniser !
     commun.children.update(regime_general.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(regime_general.cnav.bareme.salarie.children)  # À harmoniser !
@@ -237,7 +239,8 @@ def build_sal(node_json):
     for type_sal_category in ['public_titulaire_territoriale', 'public_titulaire_hospitaliere']:
         sal.children[type_sal_category].children['rafp'] = sal.children['fonc'].children['etat'].children['rafp']
     sal.children['public_non_titulaire'].children.update(commun.children)
-    del sal.children['public_non_titulaire'].children['assedic']
+    del sal.children['public_non_titulaire'].children['chomage']
+    del sal.children['public_non_titulaire'].children['asf']
 
     # Cleaning
     del sal.children['fonc'].children['etat']
