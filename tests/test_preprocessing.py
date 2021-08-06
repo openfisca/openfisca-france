@@ -6,20 +6,27 @@ from .cache import tax_benefit_system
 
 cotisations_salarie_by_name = {
     "agff": {},
-    "agirc_arrco": {},
-    "agirc": {},
+    "agirc_arrco": {
+        "start_non_null_date": "2019-01-01",
+        },
+    "agirc": {
+        "final_null_date": "2019-01-01",
+        },
     "apec": {},
-    "arrco": {},
+    "arrco": {
+        "final_null_date": "2019-01-01",
+        },
     "assedic": {},
     "ceg": {},
     "cet": {
-        "final_null_date": "2019-01-01"
-
+        "final_null_date": "2019-01-01",
         },
     "cet2019": {},
     "forfait_annuel": {},
     "maladie_alsace_moselle": {},
-    "maladie": {},
+    "maladie": {
+        "final_null_date": "2018-01-01",
+        },
     "vieillesse_deplafonnee": {},
     "vieillesse": {},
     }
@@ -46,11 +53,7 @@ cotisations_salarie_by_categorie_salarie = {
 
 
 def test_preprocessing():
-    """Basic test for a specific year.
-
-    Args:
-        year (int): Year.
-    """
+    """Tests the result of parameters preprocessing."""
     parameters = tax_benefit_system.parameters
 
     assert set(parameters.cotsoc.cotisations_employeur.children.keys()) == set([
@@ -71,7 +74,7 @@ def test_preprocessing():
         'public_titulaire_hospitaliere',
         # 'public_titulaire_militaire',  FIXME Il y en a sûrement mais pas actuellement
         'public_titulaire_territoriale',
-        ]), "Les barèmes de cotisations salarié de certaines catégories de salariés sont manquants"
+        ]), "Les barèmes de cotisations salarié de certaines catégories instant_sde salariés sont manquants"
 
     categorie_salaries = [
         "prive_cadre",
