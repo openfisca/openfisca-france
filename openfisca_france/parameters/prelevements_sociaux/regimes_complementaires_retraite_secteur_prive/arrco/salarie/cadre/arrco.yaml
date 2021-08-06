@@ -34,16 +34,22 @@ brackets:
     2015-01-01:
       value: 0.031
     2019-01-01:
-      value: 0.0
+      value: null
   threshold:
     1962-01-01:
       value: 0.0
+    2019-01-01:
+      value: null
 - rate:
     1962-01-01:
       value: 0.0
+    2019-01-01:
+      value: null
   threshold:
     1962-01-01:
       value: 1.0
+    2019-01-01:
+      value: null
 metadata:
   ux_name: Cadre
   last_review:
@@ -82,4 +88,3 @@ documentation: |
   Sources :
   Document faxé par l'ARRCO "Paramètres de fonctionnement pratique depuis la création de l'Arrco au titre des opérations obligatoires (1962-1999)"
   Site web de l'Arrco depuis 1999.
-
