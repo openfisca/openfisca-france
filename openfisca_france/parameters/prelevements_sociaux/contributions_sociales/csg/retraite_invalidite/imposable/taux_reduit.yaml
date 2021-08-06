@@ -1,10 +1,8 @@
-description: Taux de la Contribution Sociale Généralisée (CSG) imposable sur les revenus d'activité
+description: Taux réduit de la Contribution Sociale Généralisée (CSG) imposable sur les pensions de retraite et d'invalidité
 unit: /1
 values:
-  1991-02-01:
-    value: 0.011
-  1993-07-01:
-    value: 0.024
+  1997-01-01:
+    value: 0.0
 metadata:
   ux_name: Taux
   last_review:

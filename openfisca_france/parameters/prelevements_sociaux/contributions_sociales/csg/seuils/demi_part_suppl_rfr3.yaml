@@ -7,11 +7,16 @@ values:
     value: 6028.0
   2020-01-01:
     value: 6124.0
+  2021-01-01:
+    value: 6179.0
 metadata:
   ux_name: RFR3 - Demi-part suppl.
   last_review:
-    2020-01-01
+    2021-07-23
   reference:
+    2021-01-01:
+    - title: Lettre ministérielle D-20-021991 du 04/12/2020
+      href: https://www.legislation.cnav.fr/Documents/lettre_ministerielle_04122020.pdf
     2020-01-01:
     - title: Lettre ministérielle D-2019-025051 du 07/11/2019
       href: https://www.legislation.cnav.fr/Documents/lettre_ministerielle_2019_025051_07112019.pdf
