@@ -111,3 +111,22 @@ def test_preprocessing():
                 cotisation_salarie,
                 final_null_date,
                 )
+
+        start_non_null_date = cotisations_salarie_by_name[cotisation_salarie].get("start_non_null_date")
+        if start_non_null_date:
+            thresholds = [
+                dict(
+                    (parameter_at_instant.instant_str, parameter_at_instant.value)
+                    for parameter_at_instant in bracket.threshold.values_list
+                    )
+                for bracket in bareme.brackets
+                ]
+            start_thresholds_by_instant_str = OrderedDict(sorted(threshold.items(), reverse = False)[0] for threshold in thresholds)
+            assert all([start_threshold is not None for start_threshold in start_thresholds_by_instant_str.values()]), "Barème salarié {} ne s'éteint pas (il devrait en {})".format(
+                cotisation_salarie,
+                start_non_null_date,
+                )
+            assert min(start_thresholds_by_instant_str.keys()) == start_non_null_date, "Barème salarié {} ne s'éteint pas en {}".format(
+                cotisation_salarie,
+                start_non_null_date,
+                )
