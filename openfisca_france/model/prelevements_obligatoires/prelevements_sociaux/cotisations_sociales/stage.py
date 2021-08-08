@@ -30,7 +30,7 @@ class stage_gratification(Variable):
         stage_gratification_taux = individu('stage_gratification_taux', period)
         stagiaire = individu('stagiaire', period)
         plafond_securite_sociale_horaire = parameters(period).cotsoc.gen.plafond_securite_sociale_horaire
-        stage_gratification_taux_min = parameters(period).travail.salaire_minimum.taux_gratification_min
+        stage_gratification_taux_min = parameters(period).marche_travail.salaire_minimum.taux_gratification_min
         return stagiaire * plafond_securite_sociale_horaire * stage_duree_heures * max_(
             stage_gratification_taux, stage_gratification_taux_min)
 
@@ -46,7 +46,7 @@ class stage_gratification_reintegration(Variable):
         stage_duree_heures = individu('stage_duree_heures', period)
         stage_gratification = individu('stage_gratification', period)
         plafond_securite_sociale_horaire = parameters(period).cotsoc.gen.plafond_securite_sociale_horaire
-        stage_gratification_taux_min = parameters(period).travail.salaire_minimum.taux_gratification_min
+        stage_gratification_taux_min = parameters(period).marche_travail.salaire_minimum.taux_gratification_min
         stage_gratification_min = plafond_securite_sociale_horaire * stage_duree_heures * stage_gratification_taux_min
         return max_(stage_gratification - stage_gratification_min, 0)
 
