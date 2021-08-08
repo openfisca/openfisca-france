@@ -291,9 +291,6 @@ def preprocess_parameters(parameters):
     cotsoc.add_child('accident', ParameterNode("accident", data={}))
     cotsoc.accident.children.update(regime_general.accidents.bareme.children)  # À harmoniser! + Créer params depuis IPP
 
-    cotsoc.add_child('conge_individuel_formation', ParameterNode("conge_individuel_formation", data={}))
-    cotsoc.conge_individuel_formation.children.update(autres.formation.conge_individuel_formation.children)  # À harmoniser
-
     cotsoc.add_child('apprentissage_contribution_supplementaire', ParameterNode("apprentissage_contribution_supplementaire", data={}))
     cotsoc.apprentissage_contribution_supplementaire.children.update(autres.apprentissage.apprentissage_contribution_supplementaire.children)  # À harmoniser
 
