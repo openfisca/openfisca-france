@@ -902,7 +902,7 @@ class plafond_securite_sociale(Variable):
     # TODO gérer les plafonds mensuel, trimestriel, annuel
 
     def formula(individu, period, parameters):
-        plafond_temps_plein = parameters(period).cotsoc.gen.plafond_securite_sociale
+        plafond_temps_plein = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_mensuel
         quotite = individu('quotite_de_travail', period)
 
         plafond = plafond_temps_plein * quotite

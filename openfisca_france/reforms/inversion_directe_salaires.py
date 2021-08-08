@@ -34,22 +34,10 @@ class salaire_de_base(Variable):
         P = parameters(period)
 
         salarie = P.cotsoc.cotisations_salarie
-        plafond_securite_sociale_annuel = P.cotsoc.gen.plafond_securite_sociale_annuel
+        plafond_securite_sociale_annuel = P.parameters.prelevements_sociaux.pss.plafond_securite_sociale_annuel
         taux_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite.deductible.taux * (1 - .0175)
         csg = MarginalRateTaxScale(name = 'csg')
         csg.add_bracket(0, taux_csg)
-
-#            cat = None
-#            if (categorie_salarie == 0).all():
-#                cat = 'prive_non_cadre'
-#            elif (categorie_salarie == 1).all():
-#                cat = 'prive_cadre'
-#            elif (categorie_salarie == 2).all():
-#                cat = 'public_titulaire_etat'
-#            if cat is not None:
-#                for name, bareme in salarie[cat].items():
-#                    print name, bareme
-
         prive_non_cadre = salarie['prive_non_cadre'].combine_tax_scales().scale_tax_scales(
             plafond_securite_sociale_annuel)
         prive_cadre = salarie['prive_cadre'].combine_tax_scales().scale_tax_scales(plafond_securite_sociale_annuel)

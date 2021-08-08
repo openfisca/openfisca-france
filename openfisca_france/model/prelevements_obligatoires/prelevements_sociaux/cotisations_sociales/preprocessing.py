@@ -291,11 +291,6 @@ def preprocess_parameters(parameters):
     cotsoc.add_child('accident', ParameterNode("accident", data={}))
     cotsoc.accident.children.update(regime_general.accidents.bareme.children)  # À harmoniser! + Créer params depuis IPP
 
-    cotsoc.add_child('gen', ParameterNode("gen", data={}))
-    cotsoc.gen.children['plafond_securite_sociale'] = pss.children['plafond_securite_sociale_mensuel']
-    cotsoc.gen.children['plafond_securite_sociale_annuel'] = pss.children['plafond_securite_sociale_annuel']
-    cotsoc.gen.children['plafond_securite_sociale_horaire'] = pss.children['plafond_securite_sociale_horaire']
-
     cotsoc.add_child('microsocial', ParameterNode("microsocial", data={}))
     cotsoc.microsocial.children.update(liberal.auto_entrepreneur.children)  # À harmoniser
 
