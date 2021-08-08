@@ -80,7 +80,7 @@ class asi_aspa_base_ressources_individu(Variable):
 
             # Abattement sur les salaires (appliqué sur une base trimestrielle)
             abattement_forfaitaire_base = (
-                leg_1er_janvier.marche_travail.salaire_minimum.smic_h_b * law.cotsoc.gen.nb_heure_travail_mensuel
+                leg_1er_janvier.marche_travail.salaire_minimum.smic_h_b * law.marche_travail.salaire_minimum.nb_heure_travail_mensuel
                 )
 
             taux_abattement_forfaitaire = where(
