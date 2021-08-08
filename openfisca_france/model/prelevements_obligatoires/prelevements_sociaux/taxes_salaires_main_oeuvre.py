@@ -33,7 +33,7 @@ class conge_individuel_formation_cdd(Variable):
         TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
 
-        conge_individuel_formation = parameters(period)..prelevements_sociaux.autres_taxes_participations_assises_salaires.conge_individuel_formation
+        conge_individuel_formation = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.conge_individuel_formation
         cotisation = - conge_individuel_formation.cdd * (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * assiette_cotisations_sociales
         return cotisation
 
