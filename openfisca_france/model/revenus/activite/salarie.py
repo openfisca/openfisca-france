@@ -829,7 +829,7 @@ class af_nbenf_fonc(Variable):
         salaire_de_base_mensualise = famille.members('salaire_de_base', period.start.period('month', 6).offset(-6), options = [ADD])
         law = parameters(period)
         nbh_travaillees = 169
-        smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
+        smic_mensuel_brut = law.marche_travail.salaire_minimum.smic_h_b * nbh_travaillees
 
         autonomie_financiere = (salaire_de_base_mensualise >= (
             law.prestations.prestations_familiales.af.seuil_rev_taux
