@@ -45,7 +45,7 @@ class stage_gratification_reintegration(Variable):
     def formula_2014_11(individu, period, parameters):
         stage_duree_heures = individu('stage_duree_heures', period)
         stage_gratification = individu('stage_gratification', period)
-        plafond_securite_sociale_horaire = parameters.prelevements_sociaux.pss.plafond_securite_sociale_horaire
+        plafond_securite_sociale_horaire = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_horaire
         stage_gratification_taux_min = parameters(period).marche_travail.salaire_minimum.taux_gratification_min
         stage_gratification_min = plafond_securite_sociale_horaire * stage_duree_heures * stage_gratification_taux_min
         return max_(stage_gratification - stage_gratification_min, 0)
