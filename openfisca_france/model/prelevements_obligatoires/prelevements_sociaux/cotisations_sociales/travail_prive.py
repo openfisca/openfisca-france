@@ -122,7 +122,7 @@ class reintegration_titre_restaurant_employeur(Variable):
         valeur_unitaire = individu("titre_restaurant_valeur_unitaire", period)
         volume = individu("titre_restaurant_volume", period)
         taux_employeur = individu('titre_restaurant_taux_employeur', period)
-        cantines_titres_restaurants = parameters(period).cotsoc.assiette.cantines_titres_restaurants
+        cantines_titres_restaurants = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.assiette.cantines_titres_restaurants
 
         taux_minimum_exoneration = cantines_titres_restaurants.taux_minimum_exoneration
         taux_maximum_exoneration = cantines_titres_restaurants.taux_maximum_exoneration

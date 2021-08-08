@@ -290,9 +290,6 @@ def preprocess_parameters(parameters):
     # Valeurs
     cotsoc.add_child('accident', ParameterNode("accident", data={}))
     cotsoc.accident.children.update(regime_general.accidents.bareme.children)  # À harmoniser! + Créer params depuis IPP
-    cotsoc.add_child('assiette', ParameterNode("assiette", data={}))
-    cotsoc.assiette.add_child('cantines_titres_restaurants', ParameterNode("cantines_titres_restaurants", data={}))
-    cotsoc.assiette.cantines_titres_restaurants.children.update(regime_general.assiette.cantines_titres_restaurants.children)
 
     cotsoc.add_child('conge_individuel_formation', ParameterNode("conge_individuel_formation", data={}))
     cotsoc.conge_individuel_formation.children.update(autres.formation.conge_individuel_formation.children)  # À harmoniser
@@ -310,9 +307,6 @@ def preprocess_parameters(parameters):
 
     cotsoc.add_child('microsocial', ParameterNode("microsocial", data={}))
     cotsoc.microsocial.children.update(liberal.auto_entrepreneur.children)  # À harmoniser
-
-    cotsoc.add_child('taxe_salaires', ParameterNode("taxe_salaires", data={}))
-    cotsoc.taxe_salaires.children.update(autres.taxsal.children)  # À harmoniser
 
     cotsoc.add_child('versement_transport', ParameterNode("versement_transport", data={}))
     cotsoc.versement_transport.children.update(autres.versement_transport.bareme.children)  # À harmoniser
