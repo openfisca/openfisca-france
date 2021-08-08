@@ -55,7 +55,8 @@ class garantie_jeunes_montant(Variable):
         garantie_jeunes_max = individu("garantie_jeunes_max", period)
 
         cotsoc = parameters(period).cotsoc
-        smic_mensuel_brut = marche_travail.salaire_minimum.smic_h_b * cotsoc.gen.nb_heure_travail_mensuel
+        smic_mensuel_brut = (
+            parameters(period).marche_travail.salaire_minimum.smic_h_b * cotsoc.gen.nb_heure_travail_mensuel
 
         degressivite = parameters(period).prestations.garantie_jeunes.degressivite
         plafond = degressivite.plafond_en_pourcentage_du_smic_brut * smic_mensuel_brut
