@@ -296,16 +296,11 @@ def preprocess_parameters(parameters):
     cotsoc.gen.children['plafond_securite_sociale_annuel'] = pss.children['plafond_securite_sociale_annuel']
     cotsoc.gen.children['plafond_securite_sociale_horaire'] = pss.children['plafond_securite_sociale_horaire']
 
-    cotsoc.add_child('indemnite_fin_contrat', ParameterNode("indemnite_fin_contrat", data={}))
-    cotsoc.indemnite_fin_contrat.children.update(regime_general.indemnite_fin_contrat.children)  # À harmoniser
-
     cotsoc.add_child('microsocial', ParameterNode("microsocial", data={}))
     cotsoc.microsocial.children.update(liberal.auto_entrepreneur.children)  # À harmoniser
 
     cotsoc.add_child('versement_transport', ParameterNode("versement_transport", data={}))
     cotsoc.versement_transport.children.update(autres.versement_transport.bareme.children)  # À harmoniser
-
-    cotsoc.children['hsup_exo'] = parameters.prelevements_sociaux.children['hsup_exo']  # À harmoniser
 
     # Modifs
     cotsoc.children["cotisations_employeur"] = ParameterNode('cotisations_employeur_after_preprocessing', data = {})
