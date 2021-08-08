@@ -285,7 +285,6 @@ def preprocess_parameters(parameters):
     regime_general = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general
     autres = parameters.prelevements_sociaux.autres_taxes_participations_assises_salaires
     liberal = parameters.prelevements_sociaux.cotisations_taxes_professions_liberales
-    travail = parameters.marche_travail
     pss = parameters.prelevements_sociaux.pss
 
     # Valeurs
@@ -305,17 +304,12 @@ def preprocess_parameters(parameters):
     cotsoc.gen.children['plafond_securite_sociale'] = pss.children['plafond_securite_sociale_mensuel']
     cotsoc.gen.children['plafond_securite_sociale_annuel'] = pss.children['plafond_securite_sociale_annuel']
     cotsoc.gen.children['plafond_securite_sociale_horaire'] = pss.children['plafond_securite_sociale_horaire']
-    cotsoc.gen.children['nb_heure_travail_mensuel'] = travail.salaire_minimum.children['nb_heure_travail_mensuel']  # À harmoniser
-    cotsoc.gen.children['smic_h_b'] = travail.salaire_minimum.children['smic_h_b']  # À harmoniser
 
     cotsoc.add_child('indemnite_fin_contrat', ParameterNode("indemnite_fin_contrat", data={}))
     cotsoc.indemnite_fin_contrat.children.update(regime_general.indemnite_fin_contrat.children)  # À harmoniser
 
     cotsoc.add_child('microsocial', ParameterNode("microsocial", data={}))
     cotsoc.microsocial.children.update(liberal.auto_entrepreneur.children)  # À harmoniser
-
-    cotsoc.add_child('stage', ParameterNode("stage", data={}))
-    cotsoc.stage.children['taux_gratification_min'] = travail.salaire_minimum.children['taux_gratification_min']  # À harmoniser + IPP
 
     cotsoc.add_child('taxe_salaires', ParameterNode("taxe_salaires", data={}))
     cotsoc.taxe_salaires.children.update(autres.taxsal.children)  # À harmoniser
@@ -324,7 +318,6 @@ def preprocess_parameters(parameters):
     cotsoc.versement_transport.children.update(autres.versement_transport.bareme.children)  # À harmoniser
 
     cotsoc.children['hsup_exo'] = parameters.prelevements_sociaux.children['hsup_exo']  # À harmoniser
-    cotsoc.children['tehr'] = autres.tehr.children['tehr']  # À harmoniser
 
     # Modifs
     cotsoc.children["cotisations_employeur"] = ParameterNode('cotisations_employeur_after_preprocessing', data = {})

@@ -45,7 +45,7 @@ class redevable_taxe_apprentissage(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def formula(individu, period, parameters):
+    def formula(individu, period):
         # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
         # -> pas de taxe d'apprentissage
         association = individu('entreprise_est_association_non_lucrative', period)
@@ -513,8 +513,8 @@ class taxe_salaires(Variable):
         # La taxe est due notamment par les : [...] organismes sans but lucratif
         assujettissement = assujettie_taxe_salaires + entreprise_est_association_non_lucrative
 
-        parametres = parameters(period).cotsoc.taxe_salaires
-        bareme = parametres.taux_maj
+        taxe_salaires = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.taxsal
+        bareme = taxe_salaires.taux_maj
         base = assiette_cotisations_sociales + (
             - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
             - complementaire_sante_employeur
@@ -529,7 +529,7 @@ class taxe_salaires(Variable):
                 factor = 1 / 12,
                 round_base_decimals = 2
                 )
-            + round_(parametres.taux.metro * base, 2)
+            + round_(taxe_salaires.taux.metro * base, 2)
             )
 
         # Une franchise et une décôte s'appliquent à cette taxe
@@ -538,14 +538,14 @@ class taxe_salaires(Variable):
         # considérant que l'unique salarié de la individu est la moyenne.
         # http://www.impots.gouv.fr/portal/dgi/public/popup?typePage=cpr02&espId=2&docOid=documentstandard_1845
         estimation = cotisation_individuelle * effectif_entreprise * 12
-        conditions = [estimation < parametres.franchise, estimation <= parametres.decote_montant, estimation > parametres.decote_montant]
-        results = [0, estimation - (parametres.decote_montant - estimation) * parametres.decote_taux, estimation]
+        conditions = [estimation < taxe_salaires.franchise, estimation <= taxe_salaires.decote_montant, estimation > taxe_salaires.decote_montant]
+        results = [0, estimation - (taxe_salaires.decote_montant - estimation) * taxe_salaires.decote_taux, estimation]
 
         estimation_reduite = np.select(conditions, results)
 
         # Abattement spécial de taxe sur les salaires
         # Les associations à but non lucratif bénéficient d'un abattement important
-        estimation_abattue_negative = estimation_reduite - parametres.abattement_special
+        estimation_abattue_negative = estimation_reduite - taxe_salaires.abattement_special
         estimation_abattue = switch(
             entreprise_est_association_non_lucrative,
             {
