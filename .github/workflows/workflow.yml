@@ -26,7 +26,7 @@ jobs:
         run: |
           make build
 
-  tests-yaml:
+  tests_yaml:
     runs-on: ubuntu-latest
     needs: build
     strategy:
@@ -52,7 +52,7 @@ jobs:
           key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}
 
       - name: Yaml test
-        id : yaml test
+        id: yaml-test
         env:
           CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
