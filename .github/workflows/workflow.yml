@@ -37,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: set-dirs # Give it an id to handle to get step outputs in the outputs key above
-        run: echo "::set-output name=dir::$(ls -d tests/impact_revenu/**/*.yaml | jq -R -s -c 'split("\n")[:-1]')"
+        run: echo "::set-output name=dir::$(ls -d tests/impot_revenu/**/*.yaml | jq -R -s -c 'split("\n")[:-1]')"
 
   loop:
     runs-on: ubuntu-latest
@@ -56,4 +56,4 @@ jobs:
         with:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}
-      - run: echo ${{matrix.dir}}
+      - run: openfisca test ${{matrix.dir}}
