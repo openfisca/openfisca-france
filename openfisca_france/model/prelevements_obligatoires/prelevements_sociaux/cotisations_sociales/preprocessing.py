@@ -288,9 +288,6 @@ def preprocess_parameters(parameters):
     pss = parameters.prelevements_sociaux.pss
 
     # Valeurs
-    cotsoc.add_child('accident', ParameterNode("accident", data={}))
-    cotsoc.accident.children.update(regime_general.accidents.bareme.children)  # À harmoniser! + Créer params depuis IPP
-
     cotsoc.add_child('versement_transport', ParameterNode("versement_transport", data={}))
     cotsoc.versement_transport.children.update(autres.versement_transport.bareme.children)  # À harmoniser
 
