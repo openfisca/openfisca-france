@@ -32,8 +32,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ci_node_total: [ 10 ]
-        ci_node_index: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+        ci_node_total: [ 20 ]
+        ci_node_index: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
     steps:
 
       - name: Checkout
@@ -57,4 +57,4 @@ jobs:
           CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
         continue-on-error: true
-        run: ../split-test.sh
+        run: "${GITHUB_WORKSPACE}/.github/split-tests.sh"
