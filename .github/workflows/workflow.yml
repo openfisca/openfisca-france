@@ -3,17 +3,36 @@ name: My GitHub Actions Workflow
 on: [push]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
+
+      - name: Cache
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ hashFiles('setup.py') }}
+
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           make build
-      - name: Run tests
-        run: openfisca test --country-package openfisca_france tests
+
+  test-py:
+    runs-on: ubuntu-latest
+    steps:
+      - run: pytest
+
+
+  test-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - run: openfisca test --country-package openfisca_france tests/**/*.{yaml,yml}
