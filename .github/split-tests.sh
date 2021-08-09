@@ -15,13 +15,3 @@ for i in $(seq 1 $len_dir); do
 done
 
 openfisca test $final_list
-
-
-
-
-
-
-
-
-
-
