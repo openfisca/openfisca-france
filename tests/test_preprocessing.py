@@ -23,7 +23,7 @@ cotisations_salarie_by_name = {
         "start_non_null_date": "1962-01-01",
         "final_null_date": "2019-01-01",
         },
-    "assedic": {},
+    "assedic": {}, #TODO: add dates
     "ceg": {
         "start_non_null_date": "2019-01-01",
         },
@@ -68,13 +68,52 @@ cotisations_salarie_by_categorie_salarie = {
         "vieillesse_deplafonnee",
         "vieillesse",
         ],
+    "prive_non_cadre": [
+        "agff",
+        "agirc_arrco",
+        "arrco",
+        "assedic",
+        "ceg",
+        "cet2019",
+        "maladie_alsace_moselle",
+        "maladie",
+        "vieillesse_deplafonnee",
+        "vieillesse",
+        ],
+    "public_non_titulaire": [
+        "agirc_arrco",
+        "ceg",
+        "cet2019",
+        "excep_solidarite", #TODO: ajouter dates
+        "ircantec", #TODO: ajouter dates
+        "maladie_alsace_moselle",
+        "maladie",
+        "vieillesse_deplafonnee",
+        "vieillesse",
+        ],
+    "public_titulaire_etat": [
+        "excep_solidarite",
+        "pension", #TODO: ajouter dates
+        "rafp", #TODO: ajouter dates
+        ],
+    "public_titulaire_hospitaliere": [
+        "cnracl1", #TODO: ajouter dates
+        "cnracl2", #TODO: ajouter dates
+        "excep_solidarite",
+        "rafp",
+        ],
+    "public_titulaire_territoriale": [
+        "cnracl1",
+        "cnracl2",
+        "excep_solidarite",
+        "rafp",
+        ],
     }
 
 
 def test_preprocessing():
     """Tests the result of parameters preprocessing."""
     parameters = tax_benefit_system.parameters
-
     assert set(parameters.cotsoc.cotisations_employeur.children.keys()) == set([
         'prive_cadre',
         'prive_non_cadre',
@@ -97,9 +136,10 @@ def test_preprocessing():
 
     categorie_salaries = [
         "prive_cadre",
+        "prive_non_cadre",
         ]
     for categorie_salarie in categorie_salaries:
-        test = parameters.cotsoc.cotisations_salarie.children["prive_cadre"].children.keys()
+        test = parameters.cotsoc.cotisations_salarie.children[categorie_salarie].children.keys()
         target = cotisations_salarie_by_categorie_salarie[categorie_salarie]
         assert set(test) == set(target), "Les barèmes de cotisations salarié {} ne sont pas les bons".format(
             categorie_salarie)
