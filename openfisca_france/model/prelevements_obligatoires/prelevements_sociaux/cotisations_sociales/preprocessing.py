@@ -282,10 +282,7 @@ def preprocess_parameters(parameters):
 
     # Ajout de paramètres
     # Nouveaux chemins
-    regime_general = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general
     autres = parameters.prelevements_sociaux.autres_taxes_participations_assises_salaires
-    liberal = parameters.prelevements_sociaux.cotisations_taxes_professions_liberales
-    pss = parameters.prelevements_sociaux.pss
 
     # Valeurs
     cotsoc.add_child('versement_transport', ParameterNode("versement_transport", data={}))
