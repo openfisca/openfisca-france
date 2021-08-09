@@ -34,14 +34,21 @@ cotisations_salarie_by_name = {
     "cet2019": {
         "start_non_null_date": "2019-01-01",
         },
-    "forfait_annuel": {},
-    "maladie_alsace_moselle": {},
+    "forfait_annuel": {}, #TODO: vérifier barème IPP: 2011 0 ou null? Start date?
+    "maladie_alsace_moselle": {
+        "start_non_null_date": "1989-09-01",
+    },
     "maladie": {
+        "start_non_null_date": "1993-07-01", #TODO: barème IPP commence en 1967
         "final_null_date": "2018-01-01",
         },
-    "vieillesse_deplafonnee": {},
-    "vieillesse": {},
-    }
+    "vieillesse_deplafonnee": {
+        "start_non_null_date": "2004-07-01"
+    },
+    "vieillesse": {
+        "start_non_null_date": "1993-07-01", #TODO: barème IPP commence en 1967
+    },
+}
 
 
 cotisations_salarie_by_categorie_salarie = {
