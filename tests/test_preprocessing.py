@@ -8,40 +8,54 @@ cotisations_salarie_by_name = {
     "agff": {
         "start_non_null_date": "2001-04-01",
         "final_null_date": "2019-01-01",
-        },
+    },
     "agirc_arrco": {
         "start_non_null_date": "2019-01-01",
-        },
+    },
     "agirc": {
         "start_non_null_date": "1948-01-01",
         "final_null_date": "2019-01-01",
-        },
+    },
     "apec": {
         "start_non_null_date": "1971-01-01",
-        },
+    },
     "arrco": {
         "start_non_null_date": "1962-01-01",
         "final_null_date": "2019-01-01",
-        },
+    },
     "assedic": {}, #TODO: add dates
     "ceg": {
         "start_non_null_date": "2019-01-01",
-        },
+    },
     "cet": {
         "start_non_null_date": "1997-01-01",
         "final_null_date": "2019-01-01",
-        },
+    },
     "cet2019": {
         "start_non_null_date": "2019-01-01",
-        },
+    },
+    "cnracl1": {
+        "start_non_null_date": "1947-09-19",
+    },
+    "cnracl2": {
+        "start_non_null_date": "1947-09-19",
+    },
+    "excep_solidarite": {}, #TODO: add dates
     "forfait_annuel": {}, #TODO: vérifier barème IPP: 2011 0 ou null? Start date?
+    "ircantec": {
+        "start_non_null_date": "1971-01-01",
+    },
     "maladie_alsace_moselle": {
         "start_non_null_date": "1989-09-01",
     },
     "maladie": {
         "start_non_null_date": "1993-07-01", #TODO: barème IPP commence en 1967
         "final_null_date": "2018-01-01",
-        },
+    },
+    "pension": {}, #TODO: add dates
+    "rafp": {
+        "start_non_null_date": "2005-01-01"
+    },
     "vieillesse_deplafonnee": {
         "start_non_null_date": "2004-07-01"
     },
@@ -84,8 +98,8 @@ cotisations_salarie_by_categorie_salarie = {
         "agirc_arrco",
         "ceg",
         "cet2019",
-        "excep_solidarite", #TODO: ajouter dates
-        "ircantec", #TODO: ajouter dates
+        "excep_solidarite",
+        "ircantec",
         "maladie_alsace_moselle",
         "maladie",
         "vieillesse_deplafonnee",
@@ -93,12 +107,12 @@ cotisations_salarie_by_categorie_salarie = {
         ],
     "public_titulaire_etat": [
         "excep_solidarite",
-        "pension", #TODO: ajouter dates
-        "rafp", #TODO: ajouter dates
+        "pension",
+        "rafp",
         ],
     "public_titulaire_hospitaliere": [
-        "cnracl1", #TODO: ajouter dates
-        "cnracl2", #TODO: ajouter dates
+        "cnracl1",
+        "cnracl2",
         "excep_solidarite",
         "rafp",
         ],
@@ -151,7 +165,7 @@ def test_preprocessing():
 
     for cotisation_salarie in sorted(cotisations_salaries):
         bareme = parameters.cotsoc.cotisations_salarie.children["prive_cadre"].children[cotisation_salarie]
-
+        BIM
         final_null_date = cotisations_salarie_by_name[cotisation_salarie].get("final_null_date")
         if final_null_date:
             thresholds = [
