@@ -1,6 +1,6 @@
 # Changelog
 
-### 73.0.1 [#]()
+### 73.0.1 [#1642](https://github.com/openfisca/openfisca-france/pull/1642)
 
 * Changement mineur.
 * Périodes concernées : 1995 - 2001
