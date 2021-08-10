@@ -1069,7 +1069,7 @@ class vieillesse_plafonnee_salarie(Variable):
             period,
             parameters,
             cotisation_type = 'salarie',
-            bareme_name = 'vieillesse',
+            bareme_name = 'vieillesse_plafonnee',
             variable_name = 'vieillesse_plafonnee_salarie',
             )
         return cotisation
