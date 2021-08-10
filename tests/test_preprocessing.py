@@ -134,6 +134,232 @@ cotisations_salarie_by_categorie_salarie = {
         ],
     }
 
+cotisations_employeur_by_categorie_salarie = {
+    "prive_cadre": [
+        "agffc",
+        "agirc_arrco",
+        "agirc",
+        "apec",
+        "apprentissage_contribution_additionnelle", ###
+        "apprentissage_taxe", ###
+        "apprentissage_taxe_alsace_moselle", ###
+        "arrco",
+        "assedic",
+        "ceg",
+        "cet",
+        "cet2019",
+        "chomfg", ###
+        "construction_plus_de_10_salaries", ###
+        "construction_plus_de_20_salaries", ###
+        "construction_plus_de_50_salaries", ###
+        "contribution_moins_de_20_salaries", ###
+        "contribution_moins_de_50_salaries", ###
+        "contribution_plus_de_10_salaries", ###
+        "contribution_plus_de_20_salaries", ###
+        "contribution_plus_de_50_salaries", ###
+        "cotisation", ###
+        "csa", ###
+        "famille", ###
+        "financement_organisations_syndicales", ###
+        "fnal_cont_moins_de_20_salaries", ###
+        "fnal_cont_moins_de_50_salaries", ###
+        "fnal_cont_plus_de_10_salaries", ###
+        "fnal_cont_plus_de_20_salaries", ###
+        "fnal_cont_plus_de_50_salaries", ###
+        "fnal_cotisation", ###
+        "forfait_annuel",
+        "formprof_11_salaries_et_plus", ###
+        "formprof_20_salaries_et_plus", ###
+        "formprof_entre_10_et_19_salaries", ###
+        "formprof_moins_de_10_salaries", ###
+        "formprof_moins_de_11_salaries", ###
+        "maladie",
+        "penibilite_additionnelle", ###
+        "penibilite_base", ###
+        "penibilite_multiplicateur_exposition_multiple", ###
+        "vieillesse_deplafonnee",
+        "vieillesse_plafonnee", ###
+        ],
+    "prive_non_cadre": [
+        "agffnc", ###
+        "agirc_arrco",
+        "apprentissage_contribution_additionnelle", 
+        "apprentissage_taxe", 
+        "apprentissage_taxe_alsace_moselle", 
+        "arrco",
+        "assedic",
+        "ceg",
+        "cet2019",
+        "chomfg",
+        "construction_plus_de_10_salaries", 
+        "construction_plus_de_20_salaries", 
+        "construction_plus_de_50_salaries", 
+        "contribution_moins_de_20_salaries", 
+        "contribution_moins_de_50_salaries", 
+        "contribution_plus_de_10_salaries", 
+        "contribution_plus_de_20_salaries", 
+        "contribution_plus_de_50_salaries", 
+        "cotisation", 
+        "csa", 
+        "famille", 
+        "financement_organisations_syndicales", 
+        "fnal_cont_moins_de_20_salaries", 
+        "fnal_cont_moins_de_50_salaries", 
+        "fnal_cont_plus_de_10_salaries", 
+        "fnal_cont_plus_de_20_salaries", 
+        "fnal_cont_plus_de_50_salaries", 
+        "fnal_cotisation", 
+        "formprof_11_salaries_et_plus", 
+        "formprof_20_salaries_et_plus", 
+        "formprof_entre_10_et_19_salaries", 
+        "formprof_moins_de_10_salaries", 
+        "formprof_moins_de_11_salaries", 
+        "maladie",
+        "penibilite_additionnelle", 
+        "penibilite_base", 
+        "penibilite_multiplicateur_exposition_multiple", 
+        "vieillesse_deplafonnee",
+        "vieillesse_plafonnee", 
+        ],
+    "public_non_titulaire": [
+        "agirc_arrco",
+        "ceg",
+        "cet2019",
+        "contribution_moins_de_20_salaries", 
+        "contribution_moins_de_50_salaries", 
+        "contribution_plus_de_10_salaries", 
+        "contribution_plus_de_20_salaries", 
+        "contribution_plus_de_50_salaries",
+        "cotisation" ,
+        "csa",
+        "famille",
+        "financement_organisations_syndicales", 
+        "fnal_cont_moins_de_20_salaries", 
+        "fnal_cont_moins_de_50_salaries", 
+        "fnal_cont_plus_de_10_salaries", 
+        "fnal_cont_plus_de_20_salaries", 
+        "fnal_cont_plus_de_50_salaries", 
+        "fnal_cotisation", 
+        "ircantec",
+        "maladie",
+        "penibilite_additionnelle", 
+        "penibilite_base", 
+        "penibilite_multiplicateur_exposition_multiple", 
+        "vieillesse_deplafonnee",
+        "vieillesse_plafonnee",
+        ],
+    "public_titulaire_etat": [
+        "agirc_arrco",
+        "ati", ###
+        "ceg",
+        "cet2019",
+        "contribution_moins_de_20_salaries", 
+        "contribution_moins_de_50_salaries", 
+        "contribution_plus_de_10_salaries", 
+        "contribution_plus_de_20_salaries", 
+        "contribution_plus_de_50_salaries",
+        "cotisation" ,
+        "csa",
+        "famille",
+        "financement_organisations_syndicales", 
+        "fnal_cont_moins_de_20_salaries", 
+        "fnal_cont_moins_de_50_salaries", 
+        "fnal_cont_plus_de_10_salaries", 
+        "fnal_cont_plus_de_20_salaries", 
+        "fnal_cont_plus_de_50_salaries", 
+        "fnal_cotisation", 
+        "maladie",
+        "penibilite_additionnelle", 
+        "penibilite_base", 
+        "penibilite_multiplicateur_exposition_multiple", 
+        "pension",
+        "rafp",
+        ],
+    "public_titulaire_hospitaliere": [
+        "agirc_arrco",
+        "atiacl", ###
+        "ceg",
+        "cet2019",
+        "cnracl", ###
+        "contribution_moins_de_20_salaries", 
+        "contribution_moins_de_50_salaries", 
+        "contribution_plus_de_10_salaries", 
+        "contribution_plus_de_20_salaries", 
+        "contribution_plus_de_50_salaries",
+        "cotisation" ,
+        "csa",
+        "famille",
+        "feh", ###
+        "financement_organisations_syndicales", 
+        "fnal_cont_moins_de_20_salaries", 
+        "fnal_cont_moins_de_50_salaries", 
+        "fnal_cont_plus_de_10_salaries", 
+        "fnal_cont_plus_de_20_salaries", 
+        "fnal_cont_plus_de_50_salaries", 
+        "fnal_cotisation", 
+        "maladie",
+        "penibilite_additionnelle", 
+        "penibilite_base", 
+        "penibilite_multiplicateur_exposition_multiple", 
+        "rafp",
+        ],
+    "public_titulaire_militaire": [
+        "agirc_arrco",
+        "ceg",
+        "cet2019",
+        "cnracl", ###
+        "contribution_moins_de_20_salaries", 
+        "contribution_moins_de_50_salaries", 
+        "contribution_plus_de_10_salaries", 
+        "contribution_plus_de_20_salaries", 
+        "contribution_plus_de_50_salaries",
+        "cotisation" ,
+        "csa",
+        "famille",
+        "financement_organisations_syndicales", 
+        "fnal_cont_moins_de_20_salaries", 
+        "fnal_cont_moins_de_50_salaries", 
+        "fnal_cont_plus_de_10_salaries", 
+        "fnal_cont_plus_de_20_salaries", 
+        "fnal_cont_plus_de_50_salaries", 
+        "fnal_cotisation", 
+        "maladie",
+        "penibilite_additionnelle", 
+        "penibilite_base", 
+        "penibilite_multiplicateur_exposition_multiple",
+        "pension",  
+        "rafp",
+        ],
+    "public_titulaire_territoriale": [
+        "agirc_arrco",
+        "atiacl", 
+        "ceg",
+        "cet2019",
+        "cnracl",
+        "contribution_moins_de_20_salaries", 
+        "contribution_moins_de_50_salaries", 
+        "contribution_plus_de_10_salaries", 
+        "contribution_plus_de_20_salaries", 
+        "contribution_plus_de_50_salaries",
+        "cotisation" ,
+        "csa",
+        "famille",
+        "fcppa", ###
+        "financement_organisations_syndicales", 
+        "fnal_cont_moins_de_20_salaries", 
+        "fnal_cont_moins_de_50_salaries", 
+        "fnal_cont_plus_de_10_salaries", 
+        "fnal_cont_plus_de_20_salaries", 
+        "fnal_cont_plus_de_50_salaries", 
+        "fnal_cotisation", 
+        "maladie",
+        "penibilite_additionnelle", 
+        "penibilite_base", 
+        "penibilite_multiplicateur_exposition_multiple",
+        "rafp",
+        ],
+    }
+
 def test_preprocessing():
     """Tests the result of parameters preprocessing."""
     parameters = tax_benefit_system.parameters
@@ -170,6 +396,11 @@ def test_preprocessing():
         test = parameters.cotsoc.cotisations_salarie.children[categorie_salarie].children.keys()
         target = cotisations_salarie_by_categorie_salarie[categorie_salarie]
         assert set(test) == set(target), "Les barèmes de cotisations salarié {} ne sont pas les bons".format(
+            categorie_salarie)
+
+        test = parameters.cotsoc.cotisations_employeur.children[categorie_salarie].children.keys()
+        target = cotisations_employeur_by_categorie_salarie[categorie_salarie]
+        assert set(test) == set(target), "Les barèmes de cotisations employeur {} ne sont pas les bons".format(
             categorie_salarie)
 
     for categorie_salarie in categorie_salaries:
