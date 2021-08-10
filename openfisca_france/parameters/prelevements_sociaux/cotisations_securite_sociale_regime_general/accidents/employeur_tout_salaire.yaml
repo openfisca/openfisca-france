@@ -1,43 +1,22 @@
-brackets:
-- rate:
-    1976-01-01:
-      value: 0.017
-    1979-01-01:
-      value: 0.018
-    1983-01-01:
-      value: 0.017
-    1984-01-01:
-      value: 0.018
-    1985-01-01:
-      value: 0.017
-    1986-01-01:
-      value: 0.018
-    1989-01-01:
-      value: 0.017
-    1991-01-01:
-      value: null
-  threshold:
-    1976-01-01:
-      value: 0.0
-- rate:
-    1991-01-01:
+description: Taux employeur tout salaire des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
+unit: /1
+values:
+  2018-01-01:
+    value: 0.009
+  2016-01-01:
+    value: 0.01
+  2008-01-01:
+    value: 0.011
+  1993-01-01:
+    value: 0.01
+  1992-01-01:
+    value: 0.012
+  1991-01-01:
     value: 0.013
-    1992-01-01:
-      value: 0.012
-    1993-01-01:
-      value: 0.01
-    2008-01-01:
-      value: 0.011
-    2016-01-01:
-      value: 0.01
-  threshold:
-    1991-01-01:
-      value: 1.0
-description: Barème employeur des taux faibles (employés de bureau) des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
+  1976-01-01:
+    value: null
 metadata:
-  rate_unit: /1
-  threshold_unit: PSS
-  ux_name: Barème employeur - Taux faible
+  ux_name: Taux employeur tout salaire
   last_review:
     2020-01-01
   reference:
@@ -56,19 +35,14 @@ metadata:
     1991-01-01:
       title: Loi 90-86 du 23/01/1990, art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006756669&cidTexte=JORFTEXT000000707200
-    1976-01-01: 
-      title: Arrêté du 01/10/1976
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000642719&categorieLien=id
   official_journal_date:
     2020-01-01: 2017-03-01
     2018-01-01: 2017-12-31
     2016-01-01: 2015-12-22
     2008-01-01: 2008-12-27
     1991-01-01: 1990-01-25
-    1976-01-01: 1976-10-10
   notes:
     2020-01-01: Suppression du taux bureau, remplacé par le taux "Fonctions support de nature administrative" pour les entreprises en tarification collective ou mixte. Voir Notes.
-    2008-01-01: La date du passage du taux de 1,0 à 1,1% doit être vérifiée.
     1991-01-01: Cotisation déplafonnée avec réduction des taux.
   description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
 documentation: |
