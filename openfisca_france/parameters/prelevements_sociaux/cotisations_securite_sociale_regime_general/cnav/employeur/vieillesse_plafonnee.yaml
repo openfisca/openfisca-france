@@ -1,5 +1,4 @@
-description: Taux employeur de la Cotisation plafonnée de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV) (1967-2016)
-unit: /1
+description: Taux employeur sous plafond de la Cotisation de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV) (1967-2016)
 brackets:
 - rate:
     1967-10-01:
@@ -34,9 +33,11 @@ brackets:
     1967-10-01:
       value: 0.0
 metadata:
-  ux_name: Employeur
+  ux_name: Taux sous plafond
   last_review:
     2016-01-01
+  rate_unit: /1
+  threshold_unit: PSS
   reference:
     2016-01-01:
       title: Décret 2014-1531 du 17/12/2014, art. 4
