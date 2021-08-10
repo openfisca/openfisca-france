@@ -175,7 +175,7 @@ def build_sal(node_json):
     commun.children.update(regime_general.mmid.bareme.salarie.children)  # harmoniser !
     commun.children.update(regime_general.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
     commun.children.update(regime_general.cnav.salarie.children)
-    #commun.children.update(regime_general.cnav.bareme.salarie.children)  # À harmoniser !
+    # commun.children.update(regime_general.cnav.bareme.salarie.children)  # À harmoniser !
     commun.children.update(retraites.ceg.salarie.children)
     commun.children.update(retraites.cet2019.salarie.children)
     commun.children.update(retraites.agirc_arrco.salarie.children)

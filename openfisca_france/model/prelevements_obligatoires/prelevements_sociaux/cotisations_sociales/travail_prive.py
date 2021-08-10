@@ -1031,7 +1031,7 @@ class taux_accident_travail(Variable):
     def formula_2012_01_01(individu, period, parameters):
         exposition_accident = individu('exposition_accident', period)
         TypesExpositionAccident = exposition_accident.possible_values
-        accident = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.accidents.bareme
+        accident = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.accidents.taux
 
         return (exposition_accident == TypesExpositionAccident.faible) * accident.faible + (exposition_accident == TypesExpositionAccident.moyen) * accident.moyen \
             + (exposition_accident == TypesExpositionAccident.eleve) * accident.eleve + (exposition_accident == TypesExpositionAccident.tres_eleve) * accident.treseleve
