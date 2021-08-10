@@ -16,10 +16,44 @@ brackets:
       value: 0.0
     1993-07-01:
       value: 0.0
+- rate:
+    1990-01-01:
+      value: null
+    1989-01-01:
+      value: 0.045
+    1974-04-01:
+      value: 0.09
+    1970-08-01:
+      value: 0.105
+    1967-10-01:
+      value: 0.115
+    1962-01-01:
+      value: 0.135
+    1961-01-01:
+      value: 0.1425
+    1959-01-01:
+      value: 0.12
+    1951-10-01:
+      value: 0.1675
+    1948-10-01:
+      value: 0.16
+    1948-03-01:
+      value: 0.14
+    1947-10-01:
+      value: 0.13
+    1946-10-01:
+      value: 0.125
+    1946-07-01:
+      value: 0.12
+  threshold:
+    1946-07-01:
+      value: 1.0
 metadata:
   ux_name: Barème employeur
   last_review:
     2014-01-01
+  rate_unit: /1
+  threshold_unit: PSS
   reference:
     2016-04-01:
       title: Loi 2015-1702 du 21/12/2015, art. 7 (LFSS pour 2016)
