@@ -1,4 +1,3 @@
-description: Barème employeur des taux faibles (employés de bureau) des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
 brackets:
 - rate:
     1976-01-01:
@@ -34,6 +33,7 @@ brackets:
   threshold:
     1991-01-01:
       value: 1.0
+description: Barème employeur des taux faibles (employés de bureau) des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
 metadata:
   rate_unit: /1
   threshold_unit: PSS
