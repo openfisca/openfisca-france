@@ -165,7 +165,7 @@ def test_preprocessing():
 
     for cotisation_salarie in sorted(cotisations_salaries):
         bareme = parameters.cotsoc.cotisations_salarie.children["prive_cadre"].children[cotisation_salarie]
-        BIM
+        
         final_null_date = cotisations_salarie_by_name[cotisation_salarie].get("final_null_date")
         if final_null_date:
             thresholds = [
