@@ -1,9 +1,20 @@
 # Changelog
 
+### 70.0.0 [#1640](https://github.com/openfisca/openfisca-france/pull/1640)
+
+    Remove cotsoc.versement_transport
+    Remove parameters.cotsoc.accident
+    Remove parameters.cotsoc.microsocial
+    Remove parameters.cotsoc.gen.plafond_securite_sociale (can be found at parameters.prleevements_sociaux.pss.plafond_securite_sociale_mensuel)
+    Remove parameters.cotsoc.gen.plafond_securite_sociale_annuel (can be found at parameters.prleevements_sociaux.pss.plafond_securite_sociale_annuel)
+    Remove parameters.cotsoc.gen.plafond_securite_sociale_horaire (can be found at parameters.prleevements_sociaux.pss.plafond_securite_sociale_horaire)
+    Remove parameters.cotsoc.indemnite_fin_contrat (can be found at parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.indemnite_fin_contrat)
+    Remove parameters.cotsoc.hsup_exo (unused)
+
 ### 69.0.1 [#1638](https://github.com/openfisca/openfisca-france/pull/1638)
 
 * Changement mineur.
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées :
   * `parameters/prelevements_sociaux/cotisations_regime_assurance_chomage/asf`
   * `parameters/prelevements_sociaux/cotisations_regime_assurance_chomage/chomage`
@@ -20,15 +31,15 @@
   - Harmonisation des parametres de cotisation assurance chomage + extension (années 1959-1993)
   - Vérification des formules cotisation assurance chomage
   - Séparation explicite des parametres de cotisation chomage (auparavant nommé "assedic" dans master) en
-    - cotisation chomage et 
-    - ASF 
+    - cotisation chomage et
+    - ASF
     Ceci a un impact avant 2001, sans impact sur la période 2001-ajd).
 
 ## 68.1.0 [#1633](https://github.com/openfisca/openfisca-france/pull/1633)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées :  jusqu'au 31/12/2002.
-* Zones impactées : 
+* Zones impactées :
   - `model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
   - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
   - `parameters/marche_travail/`
@@ -44,7 +55,7 @@
 # 68.0.0 [#1613](https://github.com/openfisca/openfisca-france/pull/1613)
 
 * Amélioration technique.
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées : toutes
 * Détails : Harmonisation du dossier parameters.prelevements_sociaux.cotisations_regime_assurance_chomage :
   -- Arborescence selon le modèle IPP
@@ -66,7 +77,7 @@ Ces changements modifient des éléments non fonctionnels (metadata official_jou
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
   - `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/csg/`
 * Détails :
@@ -95,30 +106,30 @@ Ces changements :
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : Presque l'ensemble des fichiers présents dans : 
+* Zones impactées : Presque l'ensemble des fichiers présents dans :
 `openfisca-france/openfisca_france/model/`
 * Détails :
   - Configure les variables par mois pour qu'elles fonctionnent avec un input annuel.
-  
+
 # 66.0.0 [#1615](https://github.com/openfisca/openfisca-france/pull/1615)
 
 * Évolution du système socio-fiscal. | Amélioration technique. | Correction paramètres et formules
-* Périodes concernées : toutes. 
-* Zones impactées : 
+* Périodes concernées : toutes.
+* Zones impactées :
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires`.
   - `model/prelevements_obligatoires/prelevements_sociaux/taxes_salaires_main_oeuvre.py`
 * Détails :
   - Harmonisation des paramètres entre OFF et baremes-ipp
-  - Erreur constatée dans les paramètres suivants: 
+  - Erreur constatée dans les paramètres suivants:
      - FNAL
      - APPRENTISSAGE
-  - Erreur constatée dans les tests suivants: 
+  - Erreur constatée dans les tests suivants:
      - APPRENTISSAGE
 
 # 65.0.0 [#1610](https://github.com/openfisca/openfisca-france/pull/1610)
 
 * Amélioration technique.
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées : toutes
 * Détails : Harmonisation du dossier parameters.prelevements_sociaux.pss :
   -- Arborescence selon le modèle IPP
@@ -137,7 +148,7 @@ Ces changements :
 
 * Évolution du système socio-fiscal. | Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique`.
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing`.
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_totaux`.
@@ -150,10 +161,10 @@ Ces changements :
 
 # 63.0.0 [#1619](https://github.com/openfisca/openfisca-france/pull/1619)
 
-* Évolution du système socio-fiscal.  
+* Évolution du système socio-fiscal.
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
  - `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive`.
  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
  -  `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/stage.py`
@@ -177,7 +188,7 @@ Ces changements :
 * Changement mineur.
 * Périodes concernées : toutes
 * Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`.
-* Détails : 
+* Détails :
   - Corrige une faute de frappe
   - Supprime des fichiers inutiles
   - Met à jour la documentation avec la syntaxe CircleCI 2.0
@@ -186,7 +197,7 @@ Ces changements :
 
 * Amélioration technique : Corrige ou améliore un calcul déjà existant.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique`.
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`.
 * Détails :
@@ -222,7 +233,7 @@ Ces changements :
 * Détails :
   - La version 61.0.0 introduit un renommage qui n'avait pas été répercuté systématiquement.
 
-# 61.0.0 [#1553](https://github.com/openfisca/openfisca-france/pull/1553) 
+# 61.0.0 [#1553](https://github.com/openfisca/openfisca-france/pull/1553)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
@@ -406,7 +417,7 @@ Ces changements :
 * Détails :
   - Corrige des références législatives d'AAH et d'ASI.
 
-## 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547) 
+## 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547)
 
 * Évolution du système socio-fiscal non rétrocompatible
 * Périodes concernées : toutes.
