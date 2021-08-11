@@ -280,14 +280,6 @@ def preprocess_parameters(parameters):
     cotsoc.add_child('pat', pat)
     cotsoc.add_child('sal', sal)
 
-    # Ajout de paramètres
-    # Nouveaux chemins
-    autres = parameters.prelevements_sociaux.autres_taxes_participations_assises_salaires
-
-    # Valeurs
-    cotsoc.add_child('versement_transport', ParameterNode("versement_transport", data={}))
-    cotsoc.versement_transport.children.update(autres.versement_transport.bareme.children)  # À harmoniser
-
     # Modifs
     cotsoc.children["cotisations_employeur"] = ParameterNode('cotisations_employeur_after_preprocessing', data = {})
     cotsoc.children["cotisations_salarie"] = ParameterNode('cotisations_salarie_after_preprocessing', data = {})
