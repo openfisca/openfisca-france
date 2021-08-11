@@ -1,15 +1,20 @@
 # Changelog
 
 ### 70.0.0 [#1640](https://github.com/openfisca/openfisca-france/pull/1640)
-
-    Remove cotsoc.versement_transport
-    Remove parameters.cotsoc.accident
-    Remove parameters.cotsoc.microsocial
-    Remove parameters.cotsoc.gen.plafond_securite_sociale (can be found at parameters.prleevements_sociaux.pss.plafond_securite_sociale_mensuel)
-    Remove parameters.cotsoc.gen.plafond_securite_sociale_annuel (can be found at parameters.prleevements_sociaux.pss.plafond_securite_sociale_annuel)
-    Remove parameters.cotsoc.gen.plafond_securite_sociale_horaire (can be found at parameters.prleevements_sociaux.pss.plafond_securite_sociale_horaire)
-    Remove parameters.cotsoc.indemnite_fin_contrat (can be found at parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.indemnite_fin_contrat)
-    Remove parameters.cotsoc.hsup_exo (unused)
+*  Amélioration technique.
+*  Périodes concernées : toutes.
+*  Zones impactées :
+  - model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py
+  - parameters.cotsoc
+* Détails:
+    - Retire cotsoc.versement_transport
+    - Retire parameters.cotsoc.accident
+    - Retire parameters.cotsoc.microsocial
+    - Retire parameters.cotsoc.gen.plafond_securite_sociale (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_mensuel)
+    - Retire parameters.cotsoc.gen.plafond_securite_sociale_annuel (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_annuel)
+    - Retire parameters.cotsoc.gen.plafond_securite_sociale_horaire (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_horaire)
+    - Retire parameters.cotsoc.indemnite_fin_contrat (disponible dans parameters.prelevements_sociaux.- cotisations_securite_sociale_regime_general.indemnite_fin_contrat)
+    - Retire parameters.cotsoc.hsup_exo (inutilisé)
 
 ### 69.0.1 [#1638](https://github.com/openfisca/openfisca-france/pull/1638)
 
@@ -4643,7 +4648,7 @@ These changes are low impact since the two deprecated variables were not used.
 
 # 10.0.0
 
-* From 2017, for RSA, remove CA and number of employees conditions.
+* From 2017, for RSA, Retire CA and number of employees conditions.
 * Calculate RSA for Travailleurs Non Salariés
 * Introduce RSA fictif mechanism
 * Deprecate:
@@ -4692,8 +4697,8 @@ These changes are low impact since the two deprecated variables were not used.
 * Rename `revdisp` to `revenu_disponible`
 * Rename `typ_men` to `type_menage`
 * Cleaning:
-  * remove superfluous `default = 0` in `FloatCol` and `IntCol`
-  * remove superfluous comments
+  * Retire superfluous `default = 0` in `FloatCol` and `IntCol`
+  * Retire superfluous comments
   * migrate some formulas
 
 ## 6.1.0
@@ -4706,7 +4711,7 @@ These changes are low impact since the two deprecated variables were not used.
 
 ### 6.0.7
 
-* Remove wrong max numbers of enfants in entities
+* Retire wrong max numbers of enfants in entities
 
 ### 6.0.6
 
@@ -4857,7 +4862,7 @@ These changes are low impact since the two deprecated variables were not used.
 
 ### 4.1.11
 
-* Remove end dates where not necessary
+* Retire end dates where not necessary
 
 ### 4.1.10
 
@@ -4957,7 +4962,7 @@ These changes are low impact since the two deprecated variables were not used.
 
 ### 4.0.2 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.1..4.0.2)
 
-* Remove wrong stop date of `aeeh`
+* Retire wrong stop date of `aeeh`
 
 ### 4.0.1 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.0..4.0.1)
 
@@ -5130,7 +5135,7 @@ It is included in the bases of the following variables.
 * Prime d'activité fiabilization
 * Implementation of Indemnite de fin de contrat
 * Prolongation of aidper, credit_impots, reductions
-* Remove detailes logs in CI
+* Retire detailes logs in CI
 * Update prestations parameters (2016/04/01 revalorisation)
 * Add net -> brut reform
 
@@ -5150,7 +5155,7 @@ It is included in the bases of the following variables.
 
 * Fix vieillesse deplafonnee baremes
 * Fix some dates in arrco and formation prof. baremes
-* Remove obsolete or unuseful comment which induces indentation problem when using parameters fusion scripts
+* Retire obsolete or unuseful comment which induces indentation problem when using parameters fusion scripts
 * Improve decote legislation parameters
 * Removing unused obsolete reform parameters still in param.xml
 * Add tests
@@ -5159,7 +5164,7 @@ It is included in the bases of the following variables.
 * update bourse_college params
 * flake8
 * Do not pre-initialize reforms cache
-* Remove licence from code files
+* Retire licence from code files
 * Introduce asi_aspa_condition_nationalite Introduce rsa_condition_nationalite
 * Introduce ressortissant_eee Introduce duree_possession_titre_sejour
 * change it in the tests too...
@@ -5177,7 +5182,7 @@ It is included in the bases of the following variables.
 * Put reforms/plf2015.py into legislation. WIP still need a proper test on decote
 * Return ape_temp for a month, not for a weird period
 * Repair imports in test_basics.py
-* Remove irrelevant calculate_divide and calculate_add_divide in rsa.py, cf.py, asi_aspa.py
+* Retire irrelevant calculate_divide and calculate_add_divide in rsa.py, cf.py, asi_aspa.py
 * Merge formulas and formulas_mes_aides folder
 * Typo in cerfa field
 * Add test for psoc formula
@@ -5196,16 +5201,16 @@ It is included in the bases of the following variables.
 * Add make clean target
 * Add MANIFEST.in
 * Do not package tests
-* Remove unnecessary __init__.py in scripts
+* Retire unnecessary __init__.py in scripts
 * Add data_files in setup.py
 * Use extras_require in setup.py
-* Remove nose section from setup.cfg
+* Retire nose section from setup.cfg
 * Add CONTRIBUTING.md file
 
 ### 0.5.2 [diff](https://github.com/openfisca/openfisca-france/compare/0.5.1...0.5.2)
 
 * Merge pull request #304 from sgmap/taille_entreprise
-* Remove unmaintainable tests
+* Retire unmaintainable tests
 * Merge pull request #307 from sgmap/al-abattement-30-retraite
 * Merge pull request #301 from sgmap/several-updates
 * Move doc to openfisca-gitbook
@@ -5226,7 +5231,7 @@ It is included in the bases of the following variables.
 * Add tests for fillon from embauche.sgmap.fr
 * Make test_yaml.py executable
 * Merge pull request #302 from sgmap/no-bom
-* Remove leading U+FEFF from param.xml
+* Retire leading U+FEFF from param.xml
 * Update travis according to http://docs.travis-ci.com/user/migrating-from-legacy/
 * Do not install scipy in travis
 * Do not use relative import in script (__main__)
@@ -5234,7 +5239,7 @@ It is included in the bases of the following variables.
 
 ### 0.5.1 [diff](https://github.com/openfisca/openfisca-france/compare/0.5.0...0.5.1)
 
-* Remove scipy by default
+* Retire scipy by default
 
 ## 0.5.0
 
