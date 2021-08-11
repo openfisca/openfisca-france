@@ -1,5 +1,13 @@
 # Changelog
 
+### 69.0.2 [#1645](https://github.com/openfisca/openfisca-france/pull/1645)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`.
+* Détails :
+  - Ajout des set_input manquants empêchant la saisie de montant annuels.
+
 ### 69.0.1 [#1638](https://github.com/openfisca/openfisca-france/pull/1638)
 
 * Changement mineur.
