@@ -404,6 +404,7 @@ class agirc_arrco_salarie(Variable):
     entity = Individu
     label = "Cotisation AGIRC-ARRCO (après la fusion, salarié)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2019_01_01(individu, period, parameters):
         cotisation = apply_bareme(
@@ -422,6 +423,7 @@ class agirc_arrco_employeur(Variable):
     entity = Individu
     label = "Cotisation AGIRC-ARRCO (après la fusion, employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2019_01_01(individu, period, parameters):
         cotisation = apply_bareme(
@@ -634,6 +636,7 @@ class contribution_equilibre_general_salarie(Variable):
     entity = Individu
     label = "Contribution d'équilibre général (salarie)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2019_01_01(individu, period, parameters):
 
@@ -653,6 +656,7 @@ class contribution_equilibre_general_employeur(Variable):
     entity = Individu
     label = "Contribution d'équilibre général (employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2019_01_01(individu, period, parameters):
 
@@ -691,6 +695,7 @@ class cotisation_equilibre_technique_salarie(Variable):
     entity = Individu
     label = "Cotisation d'équilibre technique (salarie)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2019_01_01(individu, period, parameters):
 
@@ -713,6 +718,7 @@ class cotisation_equilibre_technique_employeur(Variable):
     entity = Individu
     label = "Cotisation d'équilibre technique (employeur)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2019_01_01(individu, period, parameters):
 
