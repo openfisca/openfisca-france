@@ -1,14 +1,18 @@
-description: Taux des poly-exposés pour les cotisations additionnelles de sécurité sociale (SS) du régime général au titre de la pénibilité (2015-2017)
+description: Barème de base des cotisations patronales de sécurité sociale (SS) du régime général au titre de la pénibilité (2015-2017)
 unit: /1
-values:
-    2015-01-01:
-      value: 0.002
-    2017-01-01:
-      value: 0.004
+brackets:
+- rate:
     2018-01-01:
       value: null
+    2017-01-01:
+      value: 0.0001
+    2015-01-01:
+      value: null
+  threshold:
+    2017-01-01:
+      value: 0.0
 metadata:
-  ux_name: Poly-exposés
+  ux_name: Cotisation de base
   last_review:
     2028-01-01
   reference:

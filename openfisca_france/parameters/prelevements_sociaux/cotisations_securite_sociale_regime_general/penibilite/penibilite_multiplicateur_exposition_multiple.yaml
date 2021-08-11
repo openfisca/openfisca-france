@@ -1,14 +1,12 @@
-description: Taux de base des cotisations de sécurité sociale (SS) du régime général au titre de la pénibilité (2015-2017)
+description: Coefficient multiplicateur pour poly-exposés des cotisations de sécurité sociale (SS) du régime général au titre de la pénibilité (2015-2017)
 unit: /1
 values:
   2015-01-01:
-    value: null
-  2017-01-01:
-    value: 0.0001
+    value: 2.0
   2018-01-01:
     value: null
 metadata:
-  ux_name: Cotisation de base
+  ux_name: Coefficient multiplicateur pour poly-exposés
   last_review:
     2028-01-01
   reference:
