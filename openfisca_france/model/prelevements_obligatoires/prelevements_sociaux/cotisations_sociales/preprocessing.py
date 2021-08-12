@@ -173,7 +173,7 @@ def build_sal(node_json):
     commun.children.update(chomage.chomage.salarie.children)
     commun.children.update(chomage.asf.salarie.children)
     commun.children.update(regime_general.mmid.salarie.children)
-    commun.children.update(regime_general.mmid_am.bareme.children)  # À harmoniser ! + Créer params depuis IPP
+    commun.children.update(regime_general.mmid_am.children['maladie_alsace_moselle'])
     commun.children.update(regime_general.cnav.salarie.children)
     commun.children.update(retraites.ceg.salarie.children)
     commun.children.update(retraites.cet2019.salarie.children)

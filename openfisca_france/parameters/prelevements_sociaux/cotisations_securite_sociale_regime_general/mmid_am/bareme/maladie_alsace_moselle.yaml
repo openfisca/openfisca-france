@@ -1,6 +1,18 @@
-description: Cotisations des salariés sous plafond du régime local d'assurance maladie d'Alsace et Moselle (depuis 1967)
+description: Barème salarié des cotisations du régime local d'assurance maladie d'Alsace et Moselle (depuis 1967)
 unit: /1
 brackets:
+- rate:
+    1946-07-01:
+      value: 0.02
+    1947-07-01:
+      value: 0.01
+    1967-10-01:
+      value: 0.015
+    1986-01-11:
+      value: null
+  threshold:
+    1989-09-01:
+      value: 0.0
 - rate:
     1986-01-11:
       value: 0.015
@@ -28,11 +40,13 @@ brackets:
       value: 0.015
   threshold:
     1989-09-01:
-      value: 0.0
+      value: 1.0
 metadata:
   ux_name: Cotisation maladie salarié Alsace-Moselle sur tout salaire
   last_review:
     2021-08-05
+  rate_unit: /1
+  threshold_unit: PSS
   reference:
     2012-01-01: Décision du régime local du 28/11/2011 (Avis publié au JO)
     2008-01-01: Décision du régime local du 16/04/2007 (Avis publié au JO)
