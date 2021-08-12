@@ -782,7 +782,9 @@ class famille(Variable):
     label = "Cotisation famille (employeur)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-
+    # L'allègement général de cotisations de 2015 n'est pas dans le barème mais pris en compte dans 
+    # allegements.allegement_cotisation_allocations_familiales ,  
+    # (sur la base du paramètre prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales/reduction)
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
             individu,
