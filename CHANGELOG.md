@@ -1,5 +1,21 @@
 # Changelog
 
+# 70.0.0 [#1640](https://github.com/openfisca/openfisca-france/pull/1640)
+*  Amélioration technique.
+*  Périodes concernées : toutes.
+*  Zones impactées :
+  - model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py
+  - parameters.cotsoc
+* Détails:
+    - Retire cotsoc.versement_transport
+    - Retire parameters.cotsoc.accident
+    - Retire parameters.cotsoc.microsocial
+    - Retire parameters.cotsoc.gen.plafond_securite_sociale (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_mensuel)
+    - Retire parameters.cotsoc.gen.plafond_securite_sociale_annuel (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_annuel)
+    - Retire parameters.cotsoc.gen.plafond_securite_sociale_horaire (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_horaire)
+    - Retire parameters.cotsoc.indemnite_fin_contrat (disponible dans parameters.prelevements_sociaux.- cotisations_securite_sociale_regime_general.indemnite_fin_contrat)
+    - Retire parameters.cotsoc.hsup_exo (inutilisé)
+
 ### 69.0.2 [#1645](https://github.com/openfisca/openfisca-france/pull/1645)
 
 * Changement mineur.
@@ -11,7 +27,7 @@
 ### 69.0.1 [#1638](https://github.com/openfisca/openfisca-france/pull/1638)
 
 * Changement mineur.
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées :
   * `parameters/prelevements_sociaux/cotisations_regime_assurance_chomage/asf`
   * `parameters/prelevements_sociaux/cotisations_regime_assurance_chomage/chomage`
@@ -28,15 +44,15 @@
   - Harmonisation des parametres de cotisation assurance chomage + extension (années 1959-1993)
   - Vérification des formules cotisation assurance chomage
   - Séparation explicite des parametres de cotisation chomage (auparavant nommé "assedic" dans master) en
-    - cotisation chomage et 
-    - ASF 
+    - cotisation chomage et
+    - ASF
     Ceci a un impact avant 2001, sans impact sur la période 2001-ajd).
 
 ## 68.1.0 [#1633](https://github.com/openfisca/openfisca-france/pull/1633)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées :  jusqu'au 31/12/2002.
-* Zones impactées : 
+* Zones impactées :
   - `model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
   - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
   - `parameters/marche_travail/`
@@ -52,7 +68,7 @@
 # 68.0.0 [#1613](https://github.com/openfisca/openfisca-france/pull/1613)
 
 * Amélioration technique.
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées : toutes
 * Détails : Harmonisation du dossier parameters.prelevements_sociaux.cotisations_regime_assurance_chomage :
   -- Arborescence selon le modèle IPP
@@ -74,7 +90,7 @@ Ces changements modifient des éléments non fonctionnels (metadata official_jou
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
   - `openfisca_france/parameters/prelevements_sociaux/contributions_sociales/csg/`
 * Détails :
@@ -103,30 +119,30 @@ Ces changements :
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : Presque l'ensemble des fichiers présents dans : 
+* Zones impactées : Presque l'ensemble des fichiers présents dans :
 `openfisca-france/openfisca_france/model/`
 * Détails :
   - Configure les variables par mois pour qu'elles fonctionnent avec un input annuel.
-  
+
 # 66.0.0 [#1615](https://github.com/openfisca/openfisca-france/pull/1615)
 
 * Évolution du système socio-fiscal. | Amélioration technique. | Correction paramètres et formules
-* Périodes concernées : toutes. 
-* Zones impactées : 
+* Périodes concernées : toutes.
+* Zones impactées :
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires`.
   - `model/prelevements_obligatoires/prelevements_sociaux/taxes_salaires_main_oeuvre.py`
 * Détails :
   - Harmonisation des paramètres entre OFF et baremes-ipp
-  - Erreur constatée dans les paramètres suivants: 
+  - Erreur constatée dans les paramètres suivants:
      - FNAL
      - APPRENTISSAGE
-  - Erreur constatée dans les tests suivants: 
+  - Erreur constatée dans les tests suivants:
      - APPRENTISSAGE
 
 # 65.0.0 [#1610](https://github.com/openfisca/openfisca-france/pull/1610)
 
 * Amélioration technique.
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées : toutes
 * Détails : Harmonisation du dossier parameters.prelevements_sociaux.pss :
   -- Arborescence selon le modèle IPP
@@ -145,7 +161,7 @@ Ces changements :
 
 * Évolution du système socio-fiscal. | Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique`.
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing`.
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_totaux`.
@@ -158,10 +174,10 @@ Ces changements :
 
 # 63.0.0 [#1619](https://github.com/openfisca/openfisca-france/pull/1619)
 
-* Évolution du système socio-fiscal.  
+* Évolution du système socio-fiscal.
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
  - `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive`.
  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
  -  `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/stage.py`
@@ -185,7 +201,7 @@ Ces changements :
 * Changement mineur.
 * Périodes concernées : toutes
 * Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`.
-* Détails : 
+* Détails :
   - Corrige une faute de frappe
   - Supprime des fichiers inutiles
   - Met à jour la documentation avec la syntaxe CircleCI 2.0
@@ -194,7 +210,7 @@ Ces changements :
 
 * Amélioration technique : Corrige ou améliore un calcul déjà existant.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique`.
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`.
 * Détails :
@@ -230,7 +246,7 @@ Ces changements :
 * Détails :
   - La version 61.0.0 introduit un renommage qui n'avait pas été répercuté systématiquement.
 
-# 61.0.0 [#1553](https://github.com/openfisca/openfisca-france/pull/1553) 
+# 61.0.0 [#1553](https://github.com/openfisca/openfisca-france/pull/1553)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
@@ -414,7 +430,7 @@ Ces changements :
 * Détails :
   - Corrige des références législatives d'AAH et d'ASI.
 
-## 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547) 
+## 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547)
 
 * Évolution du système socio-fiscal non rétrocompatible
 * Périodes concernées : toutes.
@@ -4640,7 +4656,7 @@ These changes are low impact since the two deprecated variables were not used.
 
 # 10.0.0
 
-* From 2017, for RSA, remove CA and number of employees conditions.
+* From 2017, for RSA, Retire CA and number of employees conditions.
 * Calculate RSA for Travailleurs Non Salariés
 * Introduce RSA fictif mechanism
 * Deprecate:
@@ -4689,8 +4705,8 @@ These changes are low impact since the two deprecated variables were not used.
 * Rename `revdisp` to `revenu_disponible`
 * Rename `typ_men` to `type_menage`
 * Cleaning:
-  * remove superfluous `default = 0` in `FloatCol` and `IntCol`
-  * remove superfluous comments
+  * Retire superfluous `default = 0` in `FloatCol` and `IntCol`
+  * Retire superfluous comments
   * migrate some formulas
 
 ## 6.1.0
@@ -4703,7 +4719,7 @@ These changes are low impact since the two deprecated variables were not used.
 
 ### 6.0.7
 
-* Remove wrong max numbers of enfants in entities
+* Retire wrong max numbers of enfants in entities
 
 ### 6.0.6
 
@@ -4854,7 +4870,7 @@ These changes are low impact since the two deprecated variables were not used.
 
 ### 4.1.11
 
-* Remove end dates where not necessary
+* Retire end dates where not necessary
 
 ### 4.1.10
 
@@ -4954,7 +4970,7 @@ These changes are low impact since the two deprecated variables were not used.
 
 ### 4.0.2 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.1..4.0.2)
 
-* Remove wrong stop date of `aeeh`
+* Retire wrong stop date of `aeeh`
 
 ### 4.0.1 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.0..4.0.1)
 
@@ -5127,7 +5143,7 @@ It is included in the bases of the following variables.
 * Prime d'activité fiabilization
 * Implementation of Indemnite de fin de contrat
 * Prolongation of aidper, credit_impots, reductions
-* Remove detailes logs in CI
+* Retire detailes logs in CI
 * Update prestations parameters (2016/04/01 revalorisation)
 * Add net -> brut reform
 
@@ -5147,7 +5163,7 @@ It is included in the bases of the following variables.
 
 * Fix vieillesse deplafonnee baremes
 * Fix some dates in arrco and formation prof. baremes
-* Remove obsolete or unuseful comment which induces indentation problem when using parameters fusion scripts
+* Retire obsolete or unuseful comment which induces indentation problem when using parameters fusion scripts
 * Improve decote legislation parameters
 * Removing unused obsolete reform parameters still in param.xml
 * Add tests
@@ -5156,7 +5172,7 @@ It is included in the bases of the following variables.
 * update bourse_college params
 * flake8
 * Do not pre-initialize reforms cache
-* Remove licence from code files
+* Retire licence from code files
 * Introduce asi_aspa_condition_nationalite Introduce rsa_condition_nationalite
 * Introduce ressortissant_eee Introduce duree_possession_titre_sejour
 * change it in the tests too...
@@ -5174,7 +5190,7 @@ It is included in the bases of the following variables.
 * Put reforms/plf2015.py into legislation. WIP still need a proper test on decote
 * Return ape_temp for a month, not for a weird period
 * Repair imports in test_basics.py
-* Remove irrelevant calculate_divide and calculate_add_divide in rsa.py, cf.py, asi_aspa.py
+* Retire irrelevant calculate_divide and calculate_add_divide in rsa.py, cf.py, asi_aspa.py
 * Merge formulas and formulas_mes_aides folder
 * Typo in cerfa field
 * Add test for psoc formula
@@ -5193,16 +5209,16 @@ It is included in the bases of the following variables.
 * Add make clean target
 * Add MANIFEST.in
 * Do not package tests
-* Remove unnecessary __init__.py in scripts
+* Retire unnecessary __init__.py in scripts
 * Add data_files in setup.py
 * Use extras_require in setup.py
-* Remove nose section from setup.cfg
+* Retire nose section from setup.cfg
 * Add CONTRIBUTING.md file
 
 ### 0.5.2 [diff](https://github.com/openfisca/openfisca-france/compare/0.5.1...0.5.2)
 
 * Merge pull request #304 from sgmap/taille_entreprise
-* Remove unmaintainable tests
+* Retire unmaintainable tests
 * Merge pull request #307 from sgmap/al-abattement-30-retraite
 * Merge pull request #301 from sgmap/several-updates
 * Move doc to openfisca-gitbook
@@ -5223,7 +5239,7 @@ It is included in the bases of the following variables.
 * Add tests for fillon from embauche.sgmap.fr
 * Make test_yaml.py executable
 * Merge pull request #302 from sgmap/no-bom
-* Remove leading U+FEFF from param.xml
+* Retire leading U+FEFF from param.xml
 * Update travis according to http://docs.travis-ci.com/user/migrating-from-legacy/
 * Do not install scipy in travis
 * Do not use relative import in script (__main__)
@@ -5231,7 +5247,7 @@ It is included in the bases of the following variables.
 
 ### 0.5.1 [diff](https://github.com/openfisca/openfisca-france/compare/0.5.0...0.5.1)
 
-* Remove scipy by default
+* Retire scipy by default
 
 ## 0.5.0
 

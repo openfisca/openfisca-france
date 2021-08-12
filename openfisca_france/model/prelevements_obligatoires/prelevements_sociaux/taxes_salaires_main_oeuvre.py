@@ -33,8 +33,8 @@ class conge_individuel_formation_cdd(Variable):
         TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
 
-        law = parameters(period).cotsoc.conge_individuel_formation
-        cotisation = - law.cdd * (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * assiette_cotisations_sociales
+        conge_individuel_formation = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.formation.conge_individuel_formation
+        cotisation = - conge_individuel_formation.cdd * (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * assiette_cotisations_sociales
         return cotisation
 
 
@@ -45,7 +45,7 @@ class redevable_taxe_apprentissage(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def formula(individu, period, parameters):
+    def formula(individu, period):
         # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
         # -> pas de taxe d'apprentissage
         association = individu('entreprise_est_association_non_lucrative', period)
@@ -88,18 +88,18 @@ class contribution_supplementaire_apprentissage(Variable):
         ratio_alternants = individu('ratio_alternants', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
-        cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.apprentissage_contribution_supplementaire
 
-        multiplier = (salarie_regime_alsace_moselle * cotsoc_params.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
+        multiplier = (salarie_regime_alsace_moselle * contribution.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
         taux_conditionnel = (
-            (effectif_entreprise >= 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_2000_moins_de_1pc
-            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
-            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
-            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * cotsoc_params.plus_de_250_entre_2_et_3pc
-            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * cotsoc_params.plus_de_250_entre_3_et_4pc
-            + (.04 <= ratio_alternants) * (ratio_alternants < .05) * cotsoc_params.plus_de_250_entre_4_et_5pc
+            (effectif_entreprise >= 2000) * (ratio_alternants < .01) * contribution.plus_de_2000_moins_de_1pc
+            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * contribution.plus_de_250_moins_de_1pc
+            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * contribution.plus_de_250_entre_1_et_2pc
+            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * contribution.plus_de_250_entre_2_et_3pc
+            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * contribution.plus_de_250_entre_3_et_4pc
+            + (.04 <= ratio_alternants) * (ratio_alternants < .05) * contribution.plus_de_250_entre_4_et_5pc
             )
         taux_contribution = taxe_due * taux_conditionnel * multiplier
         return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
@@ -110,17 +110,17 @@ class contribution_supplementaire_apprentissage(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         ratio_alternants = individu('ratio_alternants', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
-        cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.apprentissage_contribution_supplementaire
 
-        multiplier = (salarie_regime_alsace_moselle * cotsoc_params.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
+        multiplier = (salarie_regime_alsace_moselle * contribution.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .04)
         taux_conditionnel = (
-            (effectif_entreprise >= 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_2000_moins_de_1pc
-            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
-            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
-            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * cotsoc_params.plus_de_250_entre_2_et_3pc
-            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * cotsoc_params.plus_de_250_entre_3_et_4pc
+            (effectif_entreprise >= 2000) * (ratio_alternants < .01) * contribution.plus_de_2000_moins_de_1pc
+            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * contribution.plus_de_250_moins_de_1pc
+            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * contribution.plus_de_250_entre_1_et_2pc
+            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * contribution.plus_de_250_entre_2_et_3pc
+            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * contribution.plus_de_250_entre_3_et_4pc
             )
         taux_contribution = taux_conditionnel * taxe_due * multiplier
         return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
@@ -130,15 +130,15 @@ class contribution_supplementaire_apprentissage(Variable):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         ratio_alternants = individu('ratio_alternants', period)
-        cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.apprentissage_contribution_supplementaire
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .04)
         taux_conditionnel = (
-            (effectif_entreprise >= 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_2000_moins_de_1pc
-            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
-            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
-            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * cotsoc_params.plus_de_250_entre_2_et_3pc
-            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * cotsoc_params.plus_de_250_entre_3_et_4pc
+            (effectif_entreprise >= 2000) * (ratio_alternants < .01) * contribution.plus_de_2000_moins_de_1pc
+            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * contribution.plus_de_250_moins_de_1pc
+            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * contribution.plus_de_250_entre_1_et_2pc
+            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * contribution.plus_de_250_entre_2_et_3pc
+            + (.03 <= ratio_alternants) * (ratio_alternants < .04) * contribution.plus_de_250_entre_3_et_4pc
             )
         taux_contribution = taux_conditionnel * taxe_due
         return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
@@ -148,13 +148,13 @@ class contribution_supplementaire_apprentissage(Variable):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         ratio_alternants = individu('ratio_alternants', period)
-        cotsoc_params = parameters(period).cotsoc.apprentissage_contribution_supplementaire
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.apprentissage_contribution_supplementaire
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .03)
         taux_conditionnel = (
-            (ratio_alternants < .01) * cotsoc_params.plus_de_250_moins_de_1pc
-            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * cotsoc_params.plus_de_250_entre_1_et_2pc
-            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * cotsoc_params.plus_de_250_entre_2_et_3pc
+            (ratio_alternants < .01) * contribution.plus_de_250_moins_de_1pc
+            + (.01 <= ratio_alternants) * (ratio_alternants < .02) * contribution.plus_de_250_entre_1_et_2pc
+            + (.02 <= ratio_alternants) * (ratio_alternants < .03) * contribution.plus_de_250_entre_2_et_3pc
             )
         taux_contribution = taux_conditionnel * taxe_due
         return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
@@ -513,8 +513,8 @@ class taxe_salaires(Variable):
         # La taxe est due notamment par les : [...] organismes sans but lucratif
         assujettissement = assujettie_taxe_salaires + entreprise_est_association_non_lucrative
 
-        parametres = parameters(period).cotsoc.taxe_salaires
-        bareme = parametres.taux_maj
+        taxe_salaires = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.taxsal
+        bareme = taxe_salaires.taux_maj
         base = assiette_cotisations_sociales + (
             - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
             - complementaire_sante_employeur
@@ -529,7 +529,7 @@ class taxe_salaires(Variable):
                 factor = 1 / 12,
                 round_base_decimals = 2
                 )
-            + round_(parametres.taux.metro * base, 2)
+            + round_(taxe_salaires.taux.metro * base, 2)
             )
 
         # Une franchise et une décôte s'appliquent à cette taxe
@@ -538,14 +538,14 @@ class taxe_salaires(Variable):
         # considérant que l'unique salarié de la individu est la moyenne.
         # http://www.impots.gouv.fr/portal/dgi/public/popup?typePage=cpr02&espId=2&docOid=documentstandard_1845
         estimation = cotisation_individuelle * effectif_entreprise * 12
-        conditions = [estimation < parametres.franchise, estimation <= parametres.decote_montant, estimation > parametres.decote_montant]
-        results = [0, estimation - (parametres.decote_montant - estimation) * parametres.decote_taux, estimation]
+        conditions = [estimation < taxe_salaires.franchise, estimation <= taxe_salaires.decote_montant, estimation > taxe_salaires.decote_montant]
+        results = [0, estimation - (taxe_salaires.decote_montant - estimation) * taxe_salaires.decote_taux, estimation]
 
         estimation_reduite = np.select(conditions, results)
 
         # Abattement spécial de taxe sur les salaires
         # Les associations à but non lucratif bénéficient d'un abattement important
-        estimation_abattue_negative = estimation_reduite - parametres.abattement_special
+        estimation_abattue_negative = estimation_reduite - taxe_salaires.abattement_special
         estimation_abattue = switch(
             entreprise_est_association_non_lucrative,
             {

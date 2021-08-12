@@ -19,7 +19,7 @@ class taux_versement_transport(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         categorie_salarie = individu('categorie_salarie', period)
 
-        seuil_effectif = parameters(period).cotsoc.versement_transport.seuil_effectif
+        seuil_effectif = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.versement_transport.bareme.seuil_effectif
 
         preload_taux_versement_transport()
         public = (

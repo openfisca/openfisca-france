@@ -108,7 +108,7 @@ class csg_deductible_chomage(Variable):
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.chomage.deductible,
-            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             )
         nbh_travail = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
 
@@ -166,7 +166,7 @@ class csg_imposable_chomage(Variable):
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.chomage.imposable,
-            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             )
         nbh_travail = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
         cho_seuil_exo = (
@@ -221,7 +221,7 @@ class crds_chomage(Variable):
         montant_crds = montant_csg_crds(
             base_avec_abattement = chomage_brut,
             law_node = parameters.prelevements_sociaux.contributions_sociales.crds.activite,
-            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             ) * eligible
         crds_chomage = max_(
             -montant_crds - max_(
@@ -303,7 +303,7 @@ class csg_deductible_retraite(Variable):
             indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
             indicatrice_taux_intermediaire = (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire),
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.deductible,
-            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             )
         return montant_csg
 
@@ -326,7 +326,7 @@ class csg_deductible_retraite(Variable):
             indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
             indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.deductible,
-            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             )
         return montant_csg
 
@@ -369,7 +369,7 @@ class csg_imposable_retraite(Variable):
             indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
             indicatrice_taux_intermediaire = (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire),
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.imposable,
-            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             )
         return montant_csg
 
@@ -392,7 +392,7 @@ class csg_imposable_retraite(Variable):
             indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
             indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.retraite_invalidite.imposable,
-            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             )
         return montant_csg
 
@@ -432,7 +432,7 @@ class crds_retraite(Variable):
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
             law_node = parameters.prelevements_sociaux.contributions_sociales.crds.retraite,
-            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
 
         return montant_crds
@@ -454,7 +454,7 @@ class crds_retraite(Variable):
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
             law_node = parameters.prelevements_sociaux.contributions_sociales.crds.retraite,
-            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             ) * (taux_csg_retraite != TypesTauxCSGRetraite.exonere)
         return montant_crds
 

@@ -60,7 +60,7 @@ class remuneration_professionnalisation(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        smic = parameters(period).cotsoc.gen.smic_h_b * 52 * 35 / 12
+        smic = parameters(period).marche_travail.salaire_minimum.smic_h_b * 52 * 35 / 12
         professionnalisation = individu('professionnalisation', period)
         qualifie = individu('qualifie', period)
         salaire_en_smic = [

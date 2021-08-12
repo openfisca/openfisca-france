@@ -91,7 +91,7 @@ class indemnite_fin_contrat(Variable):
         # Pour l'instant, cette variable d'entrée peut les remplacer
         # Elle est cependant fixée à False par défaut
         indemnite_fin_contrat_due = individu('indemnite_fin_contrat_due', period)
-        taux = parameters(period).cotsoc.indemnite_fin_contrat.taux
+        taux = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.indemnite_fin_contrat.taux
 
         result = (
             # CDD
@@ -122,7 +122,7 @@ class reintegration_titre_restaurant_employeur(Variable):
         valeur_unitaire = individu("titre_restaurant_valeur_unitaire", period)
         volume = individu("titre_restaurant_volume", period)
         taux_employeur = individu('titre_restaurant_taux_employeur', period)
-        cantines_titres_restaurants = parameters(period).cotsoc.assiette.cantines_titres_restaurants
+        cantines_titres_restaurants = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.assiette.cantines_titres_restaurants
 
         taux_minimum_exoneration = cantines_titres_restaurants.taux_minimum_exoneration
         taux_maximum_exoneration = cantines_titres_restaurants.taux_maximum_exoneration
@@ -908,7 +908,7 @@ class plafond_securite_sociale(Variable):
     # TODO gérer les plafonds mensuel, trimestriel, annuel
 
     def formula(individu, period, parameters):
-        plafond_temps_plein = parameters(period).cotsoc.gen.plafond_securite_sociale
+        plafond_temps_plein = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_mensuel
         quotite = individu('quotite_de_travail', period)
 
         plafond = plafond_temps_plein * quotite

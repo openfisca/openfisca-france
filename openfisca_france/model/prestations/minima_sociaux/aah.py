@@ -48,7 +48,7 @@ class aah_base_ressources(Variable):
             return 0.9 * (1 - 0.2) * revenus_conjoint
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
-            smic_brut_annuel = 12 * law.cotsoc.gen.smic_h_b * law.cotsoc.gen.nb_heure_travail_mensuel
+            smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic_h_b * law.marche_travail.salaire_minimum.nb_heure_travail_mensuel
             tranche1 = min_(0.3 * smic_brut_annuel, revenus_demandeur)
             tranche2 = revenus_demandeur - tranche1
             return (1 - 0.8) * tranche1 + (1 - 0.4) * tranche2
