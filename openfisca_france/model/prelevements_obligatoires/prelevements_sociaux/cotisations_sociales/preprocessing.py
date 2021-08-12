@@ -42,7 +42,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(chomage.asf.employeur.children)
     commun.children.update(chomage.chomage.employeur.children)
     commun.children.update(regime_general.csa.employeur.children)
-    commun.children.update(regime_general.famille.bareme.children)
+    commun.children.update(regime_general.famille.children['famille'])
     commun.children.update(regime_general.penibilite.children)
     commun.children.update(regime_general.cnav.employeur.children)
     commun.children.update(regime_general.mmid.employeur.children)
