@@ -1,6 +1,6 @@
 # Changelog
 
-### 70.0.0 [#1640](https://github.com/openfisca/openfisca-france/pull/1640)
+# 70.0.0 [#1640](https://github.com/openfisca/openfisca-france/pull/1640)
 *  Amélioration technique.
 *  Périodes concernées : toutes.
 *  Zones impactées :
@@ -15,6 +15,14 @@
     - Retire parameters.cotsoc.gen.plafond_securite_sociale_horaire (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_horaire)
     - Retire parameters.cotsoc.indemnite_fin_contrat (disponible dans parameters.prelevements_sociaux.- cotisations_securite_sociale_regime_general.indemnite_fin_contrat)
     - Retire parameters.cotsoc.hsup_exo (inutilisé)
+
+### 69.0.2 [#1645](https://github.com/openfisca/openfisca-france/pull/1645)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`.
+* Détails :
+  - Ajout des set_input manquants empêchant la saisie de montant annuels.
 
 ### 69.0.1 [#1638](https://github.com/openfisca/openfisca-france/pull/1638)
 
