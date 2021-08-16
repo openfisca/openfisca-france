@@ -291,6 +291,9 @@ cotisations_salarie_by_categorie_salarie = {
     }
 
 
+# TODO: Rename bareme_by_type_sal_name to bareme_by_categorie_salarie
+
+
 def apply_bareme_for_relevant_type_sal(
         bareme_by_type_sal_name,
         bareme_name,
@@ -308,6 +311,8 @@ def apply_bareme_for_relevant_type_sal(
 
     def iter_cotisations():
         for type_sal in TypesCategorieSalarie:
+            if type_sal == TypesCategorieSalarie.non_pertinent:
+                continue
             type_sal_name = type_sal.name
             try:
                 node = bareme_by_type_sal_name[type_sal_name]
