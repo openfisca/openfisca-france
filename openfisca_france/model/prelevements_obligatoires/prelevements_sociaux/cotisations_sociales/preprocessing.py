@@ -7,11 +7,11 @@ from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalari
 
 log = logging.getLogger(__name__)
 
-# TODO: contribution patronale de prévoyance complémentaire
 
 
 def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     """Construit le dictionnaire de barèmes des cotisations employeur à partir des paramètres de parameters."""
+    # TODO: contribution patronale de prévoyance complémentaire
     pat = ParameterNode("pat", data={})  # Génère pat
     commun = ParameterNode("commun", data={})  # Génère commun
 
