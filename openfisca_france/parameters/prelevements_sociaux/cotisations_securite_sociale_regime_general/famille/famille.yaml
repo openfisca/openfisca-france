@@ -24,14 +24,16 @@ brackets:
     1970-08-01:
       value: 0.105
     1974-04-01:
-      value: 0.09 
+      value: 0.09
     1989-01-01:
-      value: 0.045
+      value: 0.08
     1990-01-01:
-      value: 0.0
+      value: null
   threshold:
     1946-07-01:
-      value: 0.0
+      value: 0
+    1990-01-01:
+      value: null
 - rate:
     1946-07-01:
       value: 0.0
@@ -46,6 +48,8 @@ brackets:
   threshold:
     1946-07-01:
       value: 1.0
+    1990-01-01:
+      value: 0.0
 metadata:
   ux_name: Barème employeur
   last_review:
