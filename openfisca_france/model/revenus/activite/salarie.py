@@ -888,7 +888,7 @@ class supplement_familial_traitement(Variable):
         indice_maj_min = P.IM_min
         indice_maj_max = P.IM_max
 
-        traitement_brut_mensuel_min = _traitement_brut_mensuel(indice_maj_min, _P)
+        traitement_brut_mensuel_min = _traitement_brut_mensuel(indice_maj_min, _P.fonc.IM_100)
         plancher_mensuel_1 = part_fixe
         plancher_mensuel_2 = part_fixe + traitement_brut_mensuel_min * pct_variable_2
         plancher_mensuel_3 = part_fixe + traitement_brut_mensuel_min * pct_variable_3
@@ -901,7 +901,7 @@ class supplement_familial_traitement(Variable):
             + plancher_mensuel_supp * max_(0, fonc_nbenf - 3)
             )
 
-        traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, _P)
+        traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, _P.fonc.IM_100)
         plafond_mensuel_1 = part_fixe
         plafond_mensuel_2 = part_fixe + traitement_brut_mensuel_max * pct_variable_2
         plafond_mensuel_3 = part_fixe + traitement_brut_mensuel_max * pct_variable_3
@@ -930,9 +930,8 @@ class supplement_familial_traitement(Variable):
         return sft
 
 
-def _traitement_brut_mensuel(indice_maj, law):
-    Indice_majore_100_annuel = law.fonc.IM_100
-    traitement_brut = Indice_majore_100_annuel * indice_maj / 100 / 12
+def _traitement_brut_mensuel(indice_maj, indice_majore_100_annuel):
+    traitement_brut = indice_majore_100_annuel * indice_maj / 100 / 12
     return traitement_brut
 
 
