@@ -31,7 +31,7 @@ cotisations_salarie_by_name = {
         #"final_null_date": "2019-01-01", #TODO: update parameter from bareme IPP
         #https://framagit.org/french-tax-and-benefit-tables/baremes-ipp-yaml/-/blob/master/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/arrco.yaml
         },
-    "assedic": {}, #TODO: add dates
+    "asf": {}, # TODO: add dates
     "ceg": {
         "start_non_null_date": "2019-01-01",
         },
@@ -42,6 +42,7 @@ cotisations_salarie_by_name = {
     "cet2019": {
         "start_non_null_date": "2019-01-01",
         },
+    "chomage": {}, # TODO: add dates
     "cnracl1": {
         "start_non_null_date": "1984-01-01",
         #"start_non_null_date": "1947-09-19", #TODO: update parameter from bareme IPP

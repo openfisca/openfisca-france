@@ -9,16 +9,17 @@ cotisations_employeur_by_categorie_salarie = {
         "agffc",
         "agirc_arrco",
         "agirc",
+        "ags",
         "apec",
         "apprentissage_contribution_additionnelle", ###
         "apprentissage_taxe", ###
         "apprentissage_taxe_alsace_moselle", ###
         "arrco",
-        "assedic",
+        "asf",
         "ceg",
         "cet",
         "cet2019",
-        "chomfg", ###
+        "chomage",
         "construction_plus_de_10_salaries", ###
         "construction_plus_de_20_salaries", ###
         "construction_plus_de_50_salaries", ###
@@ -53,14 +54,15 @@ cotisations_employeur_by_categorie_salarie = {
     "prive_non_cadre": [
         "agffnc", ###
         "agirc_arrco",
+        "ags",
         "apprentissage_contribution_additionnelle",
         "apprentissage_taxe",
         "apprentissage_taxe_alsace_moselle",
         "arrco",
-        "assedic",
+        "asf",
         "ceg",
         "cet2019",
-        "chomfg",
+        "chomage",
         "construction_plus_de_10_salaries",
         "construction_plus_de_20_salaries",
         "construction_plus_de_50_salaries",
@@ -238,10 +240,11 @@ cotisations_salarie_by_categorie_salarie = {
         "agirc",
         "apec",
         "arrco",
-        "assedic",
+        "asf",
         "ceg",
         "cet",
         "cet2019",
+        "chomage",
         "forfait_annuel",
         "maladie_alsace_moselle",
         "maladie",
@@ -251,10 +254,11 @@ cotisations_salarie_by_categorie_salarie = {
     "prive_non_cadre": [
         "agff",
         "agirc_arrco",
+        "asf",
         "arrco",
-        "assedic",
         "ceg",
         "cet2019",
+        "chomage",
         "maladie_alsace_moselle",
         "maladie",
         "vieillesse_deplafonnee",
