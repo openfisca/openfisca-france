@@ -1,5 +1,19 @@
 # Changelog
 
+### 70.0.2 [#1647](https://github.com/openfisca/openfisca-france/pull/1647)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
+  * `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique.py`
+  * `openfisca_france/model/revenus/activite/salarie.py`
+* Détails :
+  - En tout et pour tout, il y avait 3 fonctions appelées par des formules OpenFisca, qui recevaient la racine des paramètres en argument.
+  - Or, ces 3 fonctions n'utilisent chacune qu'une partie bien spécifique de l'arbre des paramètres.
+  - Ce patch modifie l'appel de ces 3 fonctions afin de leur fournir uniquement la partie spécifique de l'arbre qui les concerne.
+  - Cela facilite la détection automatique des paramètres précisément utilisés par chaque formule.
+
 # 70.0.0 [#1640](https://github.com/openfisca/openfisca-france/pull/1640)
 *  Amélioration technique.
 *  Périodes concernées : toutes.

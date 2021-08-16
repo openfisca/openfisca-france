@@ -65,7 +65,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         supplement_familial_traitement = individu('supplement_familial_traitement', period)
         # Assujettis
         parameters = parameters(period)
-        seuil_assujetissement_fds = compute_seuil_fds(parameters)
+        seuil_assujetissement_fds = compute_seuil_fds(parameters.prelevements_sociaux.cotisations_sociales.fds)
         concernes = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
@@ -308,11 +308,10 @@ class rafp_employeur(Variable):
         return - rafp_employeur
 
 
-def compute_seuil_fds(parameters):
+def compute_seuil_fds(fds):
     '''
     Calcule le seuil mensuel d'assujetissement à la contribution au fond de solidarité
     '''
-    fds = parameters.prelevements_sociaux.cotisations_sociales.fds
     pt_ind_mensuel = fds.valeur_annuelle_point_fp / 12
     seuil_mensuel = math.floor((pt_ind_mensuel * fds.indice_majore_de_reference))  # TODO improve
     return seuil_mensuel

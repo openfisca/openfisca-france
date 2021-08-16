@@ -129,8 +129,7 @@ class credit_impot_competitivite_emploi(Variable):
         jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)  # noqa F841
         smic_proratise = individu('smic_proratise', period)
         stagiaire = individu('stagiaire', period)
-        parameters = parameters(period)
-        taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, parameters)
+        taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, parameters(period).prelevements_sociaux.reductions_cotisations_sociales.cice)
         credit_impot_competitivite_emploi = taux_cice * assiette_allegement  # En updatant la formule (>2019) il faudra passer le parametre à null
         non_cumul = not_(stagiaire)
         association = individu('entreprise_est_association_non_lucrative', period)
@@ -484,7 +483,6 @@ def compute_allegement_progressif(individu, period, parameters, variable_name, c
         return compute_function(individu, up_to_this_month, parameters) - cumul
 
 
-def taux_exo_cice(assiette_allegement, smic_proratise, parameters):
-    cice = parameters.prelevements_sociaux.reductions_cotisations_sociales.cice
+def taux_exo_cice(assiette_allegement, smic_proratise, cice):
     taux_cice = ((assiette_allegement / (smic_proratise + 1e-16)) <= cice.plafond_smic) * cice.taux
     return taux_cice
