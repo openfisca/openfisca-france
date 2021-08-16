@@ -14,10 +14,12 @@ brackets:
     1981-11-01:
       value: 0.0545
     1984-01-01:
-      value: 0.0
+      value: null
   threshold:
     1967-10-01:
       value: 0.0
+    1984-01-01:
+      value: null
 - rate: # Tout_salaire
     2019-01-01:
       value: null
@@ -42,6 +44,10 @@ brackets:
   threshold:
     1967-10-01:
       value: 1.0
+    1984-01-01:
+      value: 0.0
+    2019-01-01:
+      value: null
 metadata:
   ux_name: Taux
   last_review:

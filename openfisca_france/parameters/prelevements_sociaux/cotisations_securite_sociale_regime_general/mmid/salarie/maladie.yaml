@@ -12,6 +12,8 @@ brackets:
   threshold:
     1967-10-01:
       value: 0.0
+    1980-01-01:
+      value: null
 - rate: # Tout salaire
     2018-01-01:
       value: null
@@ -36,6 +38,10 @@ brackets:
   threshold:
     1967-10-01:
       value: 1.0
+    1980-01-01:
+      value: 0.0
+    2018-01-01:
+      value: null
 metadata:
   ux_name: Barème salarié
   last_review:
