@@ -23,7 +23,6 @@ cotisations_employeur_by_categorie_salarie = {
         "construction_plus_de_10_salaries", ###
         "construction_plus_de_20_salaries", ###
         "construction_plus_de_50_salaries", ###
-
         "csa", ###
         "famille", ###
         "financement_organisations_syndicales", ###

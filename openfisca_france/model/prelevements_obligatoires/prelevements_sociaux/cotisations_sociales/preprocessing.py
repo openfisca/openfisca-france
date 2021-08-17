@@ -23,20 +23,19 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     public = node_json.prelevements_sociaux.cotisations_secteur_public
 
     # Création de commun
-    # Apprentissage
-    commun.children['apprentissage_taxe'] = autres.apprentissage.children['apprentissage_taxe']
-    commun.children['apprentissage_contribution_additionnelle'] = autres.apprentissage.children['apprentissage_contribution_additionnelle']
-    commun.children['apprentissage_taxe_alsace_moselle'] = autres.apprentissage.children['apprentissage_taxe_alsace_moselle']
+    # Apprentissage (avec effacement)
+    commun.children.update(autres.apprentissage.children)
+    del commun.children['apprentissage_contribution_supplementaire']  # n'est pas un barème et est utilisé directement
+
     # Formation
-    commun.children['formprof_moins_de_10_salaries'] = autres.formation.pefpc.children['formprof_moins_de_10_salaries']
-    commun.children['formprof_moins_de_11_salaries'] = autres.formation.pefpc.children['formprof_moins_de_11_salaries']
-    commun.children['formprof_20_salaries_et_plus'] = autres.formation.pefpc.children['formprof_20_salaries_et_plus']
-    commun.children['formprof_11_salaries_et_plus'] = autres.formation.pefpc.children['formprof_11_salaries_et_plus']
-    commun.children['formprof_entre_10_et_19_salaries'] = autres.formation.pefpc.children['formprof_entre_10_et_19_salaries']
-    # Construction
-    commun.children['construction_plus_de_10_salaries'] = autres.construction.children['taux_plus_de_10_salaries']
-    commun.children['construction_plus_de_20_salaries'] = autres.construction.children['taux_plus_de_20_salaries']
-    commun.children['construction_plus_de_50_salaries'] = autres.construction.children['taux_plus_de_50_salaries']
+    commun.children.update(autres.formation.pefpc.children)
+
+    # Construction (avec renommage et effacement)
+    commun.children.update(autres.construction.children)
+    commun.children['construction_plus_de_10_salaries'] = commun.children.pop('taux_plus_de_10_salaries')
+    commun.children['construction_plus_de_20_salaries'] = commun.children.pop('taux_plus_de_20_salaries')
+    commun.children['construction_plus_de_50_salaries'] = commun.children.pop('taux_plus_de_50_salaries')
+    del commun.children['seuil']
     # Autres thématiques
     commun.children.update(chomage.ags.employeur.children)
     commun.children.update(chomage.asf.employeur.children)
@@ -47,14 +46,14 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(regime_general.cnav.employeur.children)
     commun.children.update(regime_general.mmid.employeur.children)
 
-    # Fnal
-    # commun.children.update(autres.fnal.children)  FIXME garder cette ligne et renommer les clés du dictionnaire commun.children en utilisant pop
-    commun.children['fnal_contribution_moins_de_20_salaries'] = autres.fnal.children['contribution_moins_de_20_salaries']
-    commun.children['fnal_contribution_moins_de_50_salaries'] = autres.fnal.children['contribution_moins_de_50_salaries']
-    commun.children['fnal_contribution_plus_de_10_salaries'] = autres.fnal.children['contribution_plus_de_10_salaries']
-    commun.children['fnal_contribution_plus_de_20_salaries'] = autres.fnal.children['contribution_plus_de_20_salaries']
-    commun.children['fnal_contribution_plus_de_50_salaries'] = autres.fnal.children['contribution_plus_de_50_salaries']
-    commun.children['fnal_cotisation'] = autres.fnal.children['cotisation']
+    # Fnal (avec renommage)
+    commun.children.update(autres.fnal.children)
+    commun.children['fnal_contribution_moins_de_20_salaries'] = commun.children.pop('contribution_moins_de_20_salaries')
+    commun.children['fnal_contribution_moins_de_50_salaries'] = commun.children.pop('contribution_moins_de_50_salaries')
+    commun.children['fnal_contribution_plus_de_10_salaries'] = commun.children.pop('contribution_plus_de_10_salaries')
+    commun.children['fnal_contribution_plus_de_20_salaries'] = commun.children.pop('contribution_plus_de_20_salaries')
+    commun.children['fnal_contribution_plus_de_50_salaries'] = commun.children.pop('contribution_plus_de_50_salaries')
+    commun.children['fnal_cotisation'] = commun.children.pop('cotisation')
 
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
     commun.children.update(retraites.ceg.employeur.children)
