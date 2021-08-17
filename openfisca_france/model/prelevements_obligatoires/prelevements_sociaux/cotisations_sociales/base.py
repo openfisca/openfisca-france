@@ -56,8 +56,8 @@ cotisations_employeur_by_categorie_salarie = {
         "agirc_arrco",
         "ags",
         "apprentissage_contribution_additionnelle",
-        "apprentissage_taxe",
         "apprentissage_taxe_alsace_moselle",
+        "apprentissage_taxe",
         "arrco",
         "asf",
         "ceg",
@@ -334,10 +334,10 @@ def apply_bareme_for_relevant_type_sal(
                     continue
                 raise(e)
 
-            if bareme_name in cotisations_by_categorie_salarie:
+            if bareme_name in cotisations_by_categorie_salarie[categorie_salarie_type.name]:
                 bareme = categorie_salarie_baremes[bareme_name]
             else:
-                print(f"{bareme_name} not in {bareme_by_type_sal_name._name} for {categorie_salarie_type.name}")
+                KeyError(f"{bareme_name} not in {bareme_by_type_sal_name._name} for {categorie_salarie_type.name}")
                 continue
 
             yield bareme.calc(
