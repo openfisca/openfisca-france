@@ -23,20 +23,15 @@ cotisations_employeur_by_categorie_salarie = {
         "construction_plus_de_10_salaries", ###
         "construction_plus_de_20_salaries", ###
         "construction_plus_de_50_salaries", ###
-        "contribution_moins_de_20_salaries", ###
-        "contribution_moins_de_50_salaries", ###
-        "contribution_plus_de_10_salaries", ###
-        "contribution_plus_de_20_salaries", ###
-        "contribution_plus_de_50_salaries", ###
-        "cotisation", ###
+
         "csa", ###
         "famille", ###
         "financement_organisations_syndicales", ###
-        "fnal_cont_moins_de_20_salaries", ###
-        "fnal_cont_moins_de_50_salaries", ###
-        "fnal_cont_plus_de_10_salaries", ###
-        "fnal_cont_plus_de_20_salaries", ###
-        "fnal_cont_plus_de_50_salaries", ###
+        "fnal_contribution_moins_de_20_salaries", ###
+        "fnal_contribution_moins_de_50_salaries", ###
+        "fnal_contribution_plus_de_10_salaries", ###
+        "fnal_contribution_plus_de_20_salaries", ###
+        "fnal_contribution_plus_de_50_salaries", ###
         "fnal_cotisation", ###
         "forfait_annuel",
         "formprof_11_salaries_et_plus", ###
@@ -66,20 +61,14 @@ cotisations_employeur_by_categorie_salarie = {
         "construction_plus_de_10_salaries",
         "construction_plus_de_20_salaries",
         "construction_plus_de_50_salaries",
-        "contribution_moins_de_20_salaries",
-        "contribution_moins_de_50_salaries",
-        "contribution_plus_de_10_salaries",
-        "contribution_plus_de_20_salaries",
-        "contribution_plus_de_50_salaries",
-        "cotisation",
         "csa",
         "famille",
         "financement_organisations_syndicales",
-        "fnal_cont_moins_de_20_salaries",
-        "fnal_cont_moins_de_50_salaries",
-        "fnal_cont_plus_de_10_salaries",
-        "fnal_cont_plus_de_20_salaries",
-        "fnal_cont_plus_de_50_salaries",
+        "fnal_contribution_moins_de_20_salaries",
+        "fnal_contribution_moins_de_50_salaries",
+        "fnal_contribution_plus_de_10_salaries",
+        "fnal_contribution_plus_de_20_salaries",
+        "fnal_contribution_plus_de_50_salaries",
         "fnal_cotisation",
         "formprof_11_salaries_et_plus",
         "formprof_20_salaries_et_plus",
@@ -97,20 +86,14 @@ cotisations_employeur_by_categorie_salarie = {
         "agirc_arrco",
         "ceg",
         "cet2019",
-        "contribution_moins_de_20_salaries",
-        "contribution_moins_de_50_salaries",
-        "contribution_plus_de_10_salaries",
-        "contribution_plus_de_20_salaries",
-        "contribution_plus_de_50_salaries",
-        "cotisation" ,
         "csa",
         "famille",
         "financement_organisations_syndicales",
-        "fnal_cont_moins_de_20_salaries",
-        "fnal_cont_moins_de_50_salaries",
-        "fnal_cont_plus_de_10_salaries",
-        "fnal_cont_plus_de_20_salaries",
-        "fnal_cont_plus_de_50_salaries",
+        "fnal_contribution_moins_de_20_salaries",
+        "fnal_contribution_moins_de_50_salaries",
+        "fnal_contribution_plus_de_10_salaries",
+        "fnal_contribution_plus_de_20_salaries",
+        "fnal_contribution_plus_de_50_salaries",
         "fnal_cotisation",
         "ircantec",
         "maladie",
@@ -125,20 +108,14 @@ cotisations_employeur_by_categorie_salarie = {
         "ati", ###
         "ceg",
         "cet2019",
-        "contribution_moins_de_20_salaries",
-        "contribution_moins_de_50_salaries",
-        "contribution_plus_de_10_salaries",
-        "contribution_plus_de_20_salaries",
-        "contribution_plus_de_50_salaries",
-        "cotisation" ,
         "csa",
         "famille",
         "financement_organisations_syndicales",
-        "fnal_cont_moins_de_20_salaries",
-        "fnal_cont_moins_de_50_salaries",
-        "fnal_cont_plus_de_10_salaries",
-        "fnal_cont_plus_de_20_salaries",
-        "fnal_cont_plus_de_50_salaries",
+        "fnal_contribution_moins_de_20_salaries",
+        "fnal_contribution_moins_de_50_salaries",
+        "fnal_contribution_plus_de_10_salaries",
+        "fnal_contribution_plus_de_20_salaries",
+        "fnal_contribution_plus_de_50_salaries",
         "fnal_cotisation",
         "maladie",
         "penibilite_additionnelle",
@@ -153,21 +130,15 @@ cotisations_employeur_by_categorie_salarie = {
         "ceg",
         "cet2019",
         "cnracl", ###
-        "contribution_moins_de_20_salaries",
-        "contribution_moins_de_50_salaries",
-        "contribution_plus_de_10_salaries",
-        "contribution_plus_de_20_salaries",
-        "contribution_plus_de_50_salaries",
-        "cotisation" ,
         "csa",
         "famille",
         "feh", ###
         "financement_organisations_syndicales",
-        "fnal_cont_moins_de_20_salaries",
-        "fnal_cont_moins_de_50_salaries",
-        "fnal_cont_plus_de_10_salaries",
-        "fnal_cont_plus_de_20_salaries",
-        "fnal_cont_plus_de_50_salaries",
+        "fnal_contribution_moins_de_20_salaries",
+        "fnal_contribution_moins_de_50_salaries",
+        "fnal_contribution_plus_de_10_salaries",
+        "fnal_contribution_plus_de_20_salaries",
+        "fnal_contribution_plus_de_50_salaries",
         "fnal_cotisation",
         "maladie",
         "penibilite_additionnelle",
@@ -180,20 +151,14 @@ cotisations_employeur_by_categorie_salarie = {
         "ceg",
         "cet2019",
         "cnracl", ###
-        "contribution_moins_de_20_salaries",
-        "contribution_moins_de_50_salaries",
-        "contribution_plus_de_10_salaries",
-        "contribution_plus_de_20_salaries",
-        "contribution_plus_de_50_salaries",
-        "cotisation" ,
         "csa",
         "famille",
         "financement_organisations_syndicales",
-        "fnal_cont_moins_de_20_salaries",
-        "fnal_cont_moins_de_50_salaries",
-        "fnal_cont_plus_de_10_salaries",
-        "fnal_cont_plus_de_20_salaries",
-        "fnal_cont_plus_de_50_salaries",
+        "fnal_contribution_moins_de_20_salaries",
+        "fnal_contribution_moins_de_50_salaries",
+        "fnal_contribution_plus_de_10_salaries",
+        "fnal_contribution_plus_de_20_salaries",
+        "fnal_contribution_plus_de_50_salaries",
         "fnal_cotisation",
         "maladie",
         "penibilite_additionnelle",
@@ -208,21 +173,15 @@ cotisations_employeur_by_categorie_salarie = {
         "ceg",
         "cet2019",
         "cnracl",
-        "contribution_moins_de_20_salaries",
-        "contribution_moins_de_50_salaries",
-        "contribution_plus_de_10_salaries",
-        "contribution_plus_de_20_salaries",
-        "contribution_plus_de_50_salaries",
-        "cotisation" ,
         "csa",
         "famille",
         "fcppa", ###
         "financement_organisations_syndicales",
-        "fnal_cont_moins_de_20_salaries",
-        "fnal_cont_moins_de_50_salaries",
-        "fnal_cont_plus_de_10_salaries",
-        "fnal_cont_plus_de_20_salaries",
-        "fnal_cont_plus_de_50_salaries",
+        "fnal_contribution_moins_de_20_salaries",
+        "fnal_contribution_moins_de_50_salaries",
+        "fnal_contribution_plus_de_10_salaries",
+        "fnal_contribution_plus_de_20_salaries",
+        "fnal_contribution_plus_de_50_salaries",
         "fnal_cotisation",
         "maladie",
         "penibilite_additionnelle",
@@ -374,7 +333,7 @@ def apply_bareme(individu, period, parameters, cotisation_type = None, bareme_na
                 bareme_name = bareme_name,
                 )
             ) + (
-        # mensuel stricte
+        # mensuel strict
         cotisation_mode_recouvrement == TypesCotisationSocialeModeRecouvrement.mensuel_strict) * (
             compute_cotisation(
                 individu,

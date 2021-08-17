@@ -222,6 +222,15 @@ class fnal_cotisation(Variable):
     end = '2015-01-01'
 
     def formula(individu, period, parameters):
+        apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'employeur',
+            bareme_name = 'fnal_contribution_plus_de_50_salaries',
+            variable_name = "fnal_cotisation",
+            )
+
         assiette_cotisations = individu('assiette_cotisations_sociales', period)
         bareme = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.cotisation
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
@@ -243,7 +252,7 @@ class fnal_contribution(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'fnal_cont_plus_de_50_salaries',
+            bareme_name = 'fnal_contribution_plus_de_50_salaries',
             variable_name = "fnal_contribution",
             )
         contribution_moins_de_50_salaries = apply_bareme(
@@ -251,7 +260,7 @@ class fnal_contribution(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'fnal_cont_moins_de_50_salaries',
+            bareme_name = 'fnal_contribution_moins_de_50_salaries',
             variable_name = "fnal_contribution",
             )
         return effectif_plus_de_50_salaries * contribution_plus_de_50_salaries + (1 - effectif_plus_de_50_salaries) * contribution_moins_de_50_salaries
@@ -264,7 +273,7 @@ class fnal_contribution(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'fnal_cont_plus_de_20_salaries',
+            bareme_name = 'fnal_contribution_plus_de_20_salaries',
             variable_name = "fnal_contribution",
             )
         contribution_moins_de_20_salaries = apply_bareme(
@@ -272,7 +281,7 @@ class fnal_contribution(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'fnal_cont_moins_de_20_salaries',
+            bareme_name = 'fnal_contribution_moins_de_20_salaries',
             variable_name = "fnal_contribution",
             )
         return effectif_plus_de_20_salaries * contribution_plus_de_20_salaries + (1 - effectif_plus_de_20_salaries) * contribution_moins_de_20_salaries
@@ -285,7 +294,7 @@ class fnal_contribution(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'fnal_cont_plus_de_20_salaries',
+            bareme_name = 'fnal_contribution_plus_de_20_salaries',
             variable_name = "fnal_contribution",
             )
         return effectif_plus_de_20_salaries * contribution_plus_de_20_salaries
@@ -298,7 +307,7 @@ class fnal_contribution(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'fnal_cont_plus_de_10_salaries',
+            bareme_name = 'fnal_contribution_plus_de_10_salaries',
             variable_name = "fnal_contribution",
             )
         return effectif_plus_de_10_salaries * contribution_plus_de_10_salaries

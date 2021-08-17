@@ -46,12 +46,14 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(regime_general.penibilite.children)
     commun.children.update(regime_general.cnav.employeur.children)
     commun.children.update(regime_general.mmid.employeur.children)
-    commun.children.update(autres.fnal.children)  # À harmoniser !
-    commun.children['fnal_cont_moins_de_20_salaries'] = autres.fnal.children['contribution_moins_de_20_salaries']
-    commun.children['fnal_cont_moins_de_50_salaries'] = autres.fnal.children['contribution_moins_de_50_salaries']
-    commun.children['fnal_cont_plus_de_10_salaries'] = autres.fnal.children['contribution_plus_de_10_salaries']
-    commun.children['fnal_cont_plus_de_20_salaries'] = autres.fnal.children['contribution_plus_de_20_salaries']
-    commun.children['fnal_cont_plus_de_50_salaries'] = autres.fnal.children['contribution_plus_de_50_salaries']
+
+    # Fnal
+    # commun.children.update(autres.fnal.children)  FIXME garder cette ligne et renommer les clés du dictionnaire commun.children en utilisant pop
+    commun.children['fnal_contribution_moins_de_20_salaries'] = autres.fnal.children['contribution_moins_de_20_salaries']
+    commun.children['fnal_contribution_moins_de_50_salaries'] = autres.fnal.children['contribution_moins_de_50_salaries']
+    commun.children['fnal_contribution_plus_de_10_salaries'] = autres.fnal.children['contribution_plus_de_10_salaries']
+    commun.children['fnal_contribution_plus_de_20_salaries'] = autres.fnal.children['contribution_plus_de_20_salaries']
+    commun.children['fnal_contribution_plus_de_50_salaries'] = autres.fnal.children['contribution_plus_de_50_salaries']
     commun.children['fnal_cotisation'] = autres.fnal.children['cotisation']
 
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
