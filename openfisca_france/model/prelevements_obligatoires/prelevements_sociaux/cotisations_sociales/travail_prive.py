@@ -1035,9 +1035,20 @@ class taux_accident_travail(Variable):
         exposition_accident = individu('exposition_accident', period)
         TypesExpositionAccident = exposition_accident.possible_values
         accident = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.accidents.taux
-
-        return (exposition_accident == TypesExpositionAccident.faible) * accident.faible + (exposition_accident == TypesExpositionAccident.moyen) * accident.moyen \
-            + (exposition_accident == TypesExpositionAccident.eleve) * accident.eleve + (exposition_accident == TypesExpositionAccident.tres_eleve) * accident.treseleve
+        return select(
+            [
+                exposition_accident == TypesExpositionAccident.faible,
+                exposition_accident == TypesExpositionAccident.moyen,
+                exposition_accident == TypesExpositionAccident.eleve,
+                exposition_accident == TypesExpositionAccident.tres_eleve,
+                ],
+            [
+                accident.faible,
+                accident.moyen,
+                accident.eleve,
+                accident.treseleve
+                ]
+            )
 
 
 class vieillesse_deplafonnee_salarie(Variable):
