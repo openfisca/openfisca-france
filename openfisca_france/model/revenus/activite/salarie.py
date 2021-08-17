@@ -1057,11 +1057,11 @@ class exonerations_et_allegements(Variable):
             'exoneration_cotisations_employeur_stagiaire', period, options = [ADD])
 
         allegement_fillon = individu('allegement_fillon', period, options = [ADD])
-        allegement_cot_alloc_fam = individu('allegement_cotisation_allocations_familiales', period, options = [ADD])
+        allegement_cotisation_allocations_familiales = individu('allegement_cotisation_allocations_familiales', period, options = [ADD])
 
         return (
             allegement_fillon
-            + allegement_cot_alloc_fam
+            + allegement_cotisation_allocations_familiales
             + exoneration_cotisations_employeur_geographiques
             + exoneration_cotisations_employeur_jei
             + exoneration_cotisations_employeur_apprenti
@@ -1087,7 +1087,7 @@ class cout_du_travail(Variable):
 class cout_differe(Variable):
     value_type = float
     entity = Individu
-    label = "Charges, aides et crédits différées ou particulières"
+    label = "Charges, aides et crédits différés ou particuliers"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
