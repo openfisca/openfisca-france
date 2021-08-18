@@ -91,27 +91,7 @@ jobs:
           command: |
             .circleci/test-api.sh
 
-  lint_yaml_files:
-    docker:
-      - image: python:3.7
-
-    steps:
-      - checkout
-
-      - restore_cache:
-          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
-
-      - run:
-          name: Activate virtualenv
-          command: |
-            echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
-
-      - run:
-          name: Lint files
-          command: |
-            .circleci/lint-changed-yaml-tests.sh
-
-  lint_python_files:
+  lint_files:
     docker:
       - image: python:3.7
 
@@ -131,6 +111,7 @@ jobs:
           command: |
             make check-syntax-errors check-style
             .circleci/lint-changed-python-files.sh
+            .circleci/lint-changed-yaml-tests.sh
 
   check_version_and_changelog:
     docker:
@@ -194,10 +175,7 @@ workflows:
       - test_api:
            requires:
              - build
-      - lint_yaml_files:
-          requires:
-            - build
-      - lint_python_files:
+      - lint_files:
           requires:
             - build
       - deploy:
@@ -207,8 +185,7 @@ workflows:
             - test-python
             - test-yaml
             - test_api
-            - lint_yaml_files
-            - lint_python_files
+            - lint_files
           filters:
             branches:
               only: master
