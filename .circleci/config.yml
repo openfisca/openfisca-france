@@ -45,7 +45,7 @@ jobs:
           key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - run:
-          name: Avtivate virtualenv
+          name: Activate virtualenv
           command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
 
       - run:
@@ -64,7 +64,7 @@ jobs:
           key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - run:
-          name: Avtivate virtualenv
+          name: Activate virtualenv
           command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
 
       - run:
