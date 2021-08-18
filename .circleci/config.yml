@@ -37,9 +37,25 @@ jobs:
 
       - run:
           name: Run tests
-          command: |
-            pytest `circleci tests glob "tests/**/[^_]*.py" | circleci tests split`
-            openfisca test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
+          command: openfisca test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
+
+  test-python:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+
+      - run:
+          name: Avtivate virtualenv
+          command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
+
+      - run:
+          name: Run Python tests
+          command: pytest `circleci tests glob "tests/**/[^_]*.py" | circleci tests split`
 
   lint_yaml_files:
     docker:
@@ -155,6 +171,9 @@ workflows:
     jobs:
       - check_version_and_changelog
       - build
+      - test-python:
+          requires:
+            - build
       - test_api:
           requires:
             - build
@@ -169,6 +188,7 @@ workflows:
             - check_version_and_changelog
             - build
             - test_api
+            - test-python
             - lint_yaml_files
             - lint_python_files
           filters:
