@@ -164,7 +164,6 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - check_version_and_changelog
       - build
       - test-python:
           requires:
@@ -178,6 +177,12 @@ workflows:
       - lint_files:
           requires:
             - build
+      - check_version_and_changelog:
+          requires:
+            - build
+            - test-python
+            - test-yaml
+            - lint_files
       - deploy:
           requires:
             - check_version_and_changelog
