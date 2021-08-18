@@ -34,7 +34,7 @@ jobs:
           paths:
             - dist
 
-  test-python:
+  test-python: # Python tests are separated from YAML tests, because the latter take longer. This would allow Python tests to use any other available container and yield it, once finished, to another job instead of counting only on the two containers assigned to the YAML tests.
     docker:
       - image: python:3.7
 
