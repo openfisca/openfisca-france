@@ -82,6 +82,26 @@ jobs:
             make check-syntax-errors check-style
             .circleci/lint-changed-python-files.sh
 
+  test_api:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+
+      - run:
+          name: Activate virtualenv
+          command: |
+            echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
+
+      - run:
+          name: Test the Web API
+          command: |
+            .circleci/test-api.sh
+
   check_version_and_changelog:
     docker:
       - image: python:3.7
@@ -135,6 +155,9 @@ workflows:
     jobs:
       - check_version_and_changelog
       - build
+      - test_api:
+          requires:
+            - build
       - lint_yaml_files:
           requires:
             - build
@@ -145,6 +168,7 @@ workflows:
           requires:
             - check_version_and_changelog
             - build
+            - test_api
             - lint_yaml_files
             - lint_python_files
           filters:
