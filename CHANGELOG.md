@@ -1,5 +1,16 @@
 # Changelog
 
+### 70.0.3 [#1653](https://github.com/openfisca/openfisca-france/pull/1653)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `.circleci/config.yml`
+  * `.circleci/test-api.sh`
+
+* Détails :
+  - Teste automatiquement l'API web dans la CI
+
 ### 70.0.2 [#1647](https://github.com/openfisca/openfisca-france/pull/1647)
 
 * Changement mineur.
