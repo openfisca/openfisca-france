@@ -207,7 +207,7 @@ cotisations_salarie_by_categorie_salarie = {
         "maladie_alsace_moselle",
         "maladie",
         "vieillesse_deplafonnee",
-        "vieillesse",
+        "vieillesse_plafonnee",
         ],
     "prive_non_cadre": [
         "agff",
@@ -220,7 +220,7 @@ cotisations_salarie_by_categorie_salarie = {
         "maladie_alsace_moselle",
         "maladie",
         "vieillesse_deplafonnee",
-        "vieillesse",
+        "vieillesse_plafonnee",
         ],
     "public_non_titulaire": [
         "agirc_arrco",
@@ -231,7 +231,7 @@ cotisations_salarie_by_categorie_salarie = {
         "maladie_alsace_moselle",
         "maladie",
         "vieillesse_deplafonnee",
-        "vieillesse",
+        "vieillesse_plafonnee",
         ],
     "public_titulaire_etat": [
         "excep_solidarite",

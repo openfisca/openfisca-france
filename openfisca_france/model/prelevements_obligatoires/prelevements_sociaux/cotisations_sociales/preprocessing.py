@@ -173,8 +173,14 @@ def build_sal(node_json):
     # Création de commun
     commun.children.update(chomage.chomage.salarie.children)
     commun.children.update(chomage.asf.salarie.children)
+
     commun.children.update(regime_general.mmid.salarie.children)
+    del commun.children['reduction_plus_65_ans']
+
     commun.children.update(regime_general.mmid_am.children)
+    del commun.children['allocations_chomage_et_preretraite']
+    del commun.children['avantages_vieillesse']
+
     commun.children.update(regime_general.cnav.salarie.children)
     commun.children.update(retraites.ceg.salarie.children)
     commun.children.update(retraites.cet2019.salarie.children)

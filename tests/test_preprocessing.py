@@ -62,9 +62,7 @@ cotisations_salarie_by_name = {
         "start_non_null_date": "1989-09-01",
         },
     "maladie": {
-        "start_non_null_date": "1993-07-01",
-        #"start_non_null_date": "1967-10-01", #TODO: update parameter from bareme IPP
-        #https://framagit.org/french-tax-and-benefit-tables/baremes-ipp-yaml/-/blob/master/parameters/prelevements_sociaux/cotisations_securite_sociale_ss_regime_general/mmid.yaml
+        "start_non_null_date": "1967-10-01",
         "final_null_date": "2018-01-01",
         },
     "pension": {}, #TODO: add dates
@@ -74,10 +72,8 @@ cotisations_salarie_by_name = {
     "vieillesse_deplafonnee": {
         "start_non_null_date": "2004-07-01"
         },
-    "vieillesse": {
+    "vieillesse_plafonnee": {
         "start_non_null_date": "1993-07-01",
-        #"start_non_null_date": "1967-10-01", #TODO: update parameter from bareme IPP
-        #https://framagit.org/french-tax-and-benefit-tables/baremes-ipp-yaml/-/blob/master/parameters/prelevements_sociaux/cotisations_securite_sociale_ss_regime_general/cnav.yaml
         },
     }
 
