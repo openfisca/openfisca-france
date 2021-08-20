@@ -44,6 +44,7 @@ jobs:
           command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
 
       - run:
+          name: Build package
           command: |
             make build
             # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
