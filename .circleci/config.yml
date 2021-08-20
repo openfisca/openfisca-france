@@ -206,6 +206,7 @@ workflows:
             - build
             - test_python
             - test_yaml
+            - test_api
             - lint_files
       - deploy:
           requires:
