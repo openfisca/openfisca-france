@@ -29,11 +29,6 @@ jobs:
           paths:
             - /tmp/venv/openfisca_france
 
-      - save_cache:
-          key: v1-py3-build-{{ .Revision }}
-          paths:
-            - dist
-
   build:
     docker:
       - image: python:3.7
@@ -52,6 +47,11 @@ jobs:
           command: |
             make build
             # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
+
+      - save_cache:
+          key: v1-py3-build-{{ .Revision }}
+          paths:
+            - dist
 
   test_python: # Python tests are separated from YAML tests, because the latter take longer. This would allow Python tests to use any other available container and yield it, once finished, to another job instead of counting only on the two containers assigned to the YAML tests.
     docker:
