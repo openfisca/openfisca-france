@@ -34,7 +34,7 @@ jobs:
           paths:
             - dist
 
-  test-python: # Python tests are separated from YAML tests, because the latter take longer. This would allow Python tests to use any other available container and yield it, once finished, to another job instead of counting only on the two containers assigned to the YAML tests.
+  test_python: # Python tests are separated from YAML tests, because the latter take longer. This would allow Python tests to use any other available container and yield it, once finished, to another job instead of counting only on the two containers assigned to the YAML tests.
     docker:
       - image: python:3.7
 
@@ -52,7 +52,7 @@ jobs:
           name: Run Python tests
           command: pytest `circleci tests glob "tests/**/[^_]*.py" | circleci tests split`
 
-  test-yaml:
+  test_yaml:
     parallelism: 2  # Speed up the yaml tests, while letting two containers available for other jobs.
     docker:
       - image: python:3.7
@@ -165,10 +165,10 @@ workflows:
   build_and_deploy:
     jobs:
       - build
-      - test-python:
+      - test_python:
           requires:
             - build
-      - test-yaml:
+      - test_yaml:
           requires:
              - build
       - test_api:
@@ -180,15 +180,15 @@ workflows:
       - check_version_and_changelog:
           requires:
             - build
-            - test-python
-            - test-yaml
+            - test_python
+            - test_yaml
             - lint_files
       - deploy:
           requires:
             - check_version_and_changelog
             - build
-            - test-python
-            - test-yaml
+            - test_python
+            - test_yaml
             - test_api
             - lint_files
           filters:
