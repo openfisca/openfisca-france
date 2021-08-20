@@ -1,7 +1,7 @@
 # CircleCI 2.0 configuration file. See <https://circleci.com/docs/2.0/language-python/>.
 version: 2
 jobs:
-  build:
+  install:
     docker:
       - image: python:3.7
 
@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            make build
+            make install
             # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
@@ -33,6 +33,25 @@ jobs:
           key: v1-py3-build-{{ .Revision }}
           paths:
             - dist
+
+  build:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+
+      - run:
+          name: Activate virtualenv
+          command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
+
+      - run:
+          command: |
+            make build
+            # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
   test_python: # Python tests are separated from YAML tests, because the latter take longer. This would allow Python tests to use any other available container and yield it, once finished, to another job instead of counting only on the two containers assigned to the YAML tests.
     docker:
@@ -164,6 +183,7 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
+      - install
       - build
       - test_python:
           requires:
@@ -176,9 +196,10 @@ workflows:
              - build
       - lint_files:
           requires:
-            - build
+            - install
       - check_version_and_changelog:
           requires:
+            - install
             - build
             - test_python
             - test_yaml
@@ -186,6 +207,7 @@ workflows:
       - deploy:
           requires:
             - check_version_and_changelog
+            - install
             - build
             - test_python
             - test_yaml
