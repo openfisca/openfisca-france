@@ -184,7 +184,9 @@ workflows:
   build_and_deploy:
     jobs:
       - install
-      - build
+      - build:
+          requires:
+            - install
       - test_python:
           requires:
             - build
