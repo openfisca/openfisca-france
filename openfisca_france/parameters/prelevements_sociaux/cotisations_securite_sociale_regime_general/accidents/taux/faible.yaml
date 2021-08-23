@@ -1,4 +1,4 @@
-description: Taux employeur tout salaire des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
+description: Taux bureau (déplafonné) des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
 unit: /1
 values:
   2018-01-01:
@@ -16,9 +16,9 @@ values:
   1976-01-01:
     value: null
 metadata:
-  ux_name: Taux employeur tout salaire
+  ux_name: Taux des employés de bureau
   last_review:
-    2020-01-01
+    2018-01-01
   reference:
     2020-01-01:
       title: Arrêté du 15/02/2017
@@ -35,12 +35,16 @@ metadata:
     1991-01-01:
       title: Loi 90-86 du 23/01/1990, art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006756669&cidTexte=JORFTEXT000000707200
+    1976-01-01: 
+      title: Arrêté du 01/10/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000642719&categorieLien=id
   official_journal_date:
     2020-01-01: 2017-03-01
     2018-01-01: 2017-12-31
     2016-01-01: 2015-12-22
     2008-01-01: 2008-12-27
     1991-01-01: 1990-01-25
+    1976-01-01: 1976-10-10
   notes:
     2020-01-01: Suppression du taux bureau, remplacé par le taux "Fonctions support de nature administrative" pour les entreprises en tarification collective ou mixte. Voir Notes.
     1991-01-01: Cotisation déplafonnée avec réduction des taux.
@@ -61,3 +65,6 @@ documentation: |
   Voir la nomenclature des risques établie par l'arrêté du 17/10/1995 et modifiée par les arrêtés successifs.
   Le taux applicable à chaque entreprise une année donnée est notifié par la CNAM-TS de la région (ou la CRAM pour les entreprises situées en Ile-de-France).
   Changement 2020 : le taux bureaux est supprimé et remplacé, pour les entreprises en tarification collective, ainsi que pour celles en tarification mixte qui le demandent, par le taux "Fonctions support" (même taux). Pour les entreprises en tarification individuelle, le taux appliqué est la "fusion" (moyenne ?) du taux Fonctions support et du taux de l'activité principale de l'entreprise.
+  official_journal_date:
+  notes:
+  description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates

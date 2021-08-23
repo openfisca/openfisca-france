@@ -189,10 +189,15 @@ class exoneration_cotisations_employeur_zfu(Variable):
             fnal_contrib = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_plus_de_50_salaries
             fnal_contrib_seuil = 50
 
+        if period.start.year < 2019:
+            taux_maladie = bareme_by_name['maladie'].rates[0]
+        else:
+            taux_maladie = 0
+
         taux_max = (
             bareme_by_name['vieillesse_deplafonnee'].rates[0]
             + bareme_by_name['vieillesse_plafonnee'].rates[0]
-            + bareme_by_name['maladie'].rates[0]
+            + taux_maladie
             + bareme_by_name['famille'].rates[0]
             + parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.cotisation.rates[0]
             + fnal_contrib.rates[0] * (effectif_entreprise >= fnal_contrib_seuil)

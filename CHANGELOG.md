@@ -1,5 +1,16 @@
 # Changelog
 
+# 71.0.0 [#1623](https://github.com/openfisca/openfisca-france/pull/1623)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/`
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py`
+  - `parameters.cotsoc`
+* Détails :
+  - Harmonisation de  `parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general` avec `parameters.prelevements_sociaux.cotsoc`
+
 ### 70.0.3 [#1653](https://github.com/openfisca/openfisca-france/pull/1653)
 
 * Amélioration technique.
@@ -7,7 +18,6 @@
 * Zones impactées :
   * `.circleci/config.yml`
   * `.circleci/test-api.sh`
-
 * Détails :
   - Teste automatiquement l'API web dans la CI
 
@@ -26,20 +36,20 @@
   - Cela facilite la détection automatique des paramètres précisément utilisés par chaque formule.
 
 # 70.0.0 [#1640](https://github.com/openfisca/openfisca-france/pull/1640)
-*  Amélioration technique.
-*  Périodes concernées : toutes.
-*  Zones impactées :
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
   - model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py
   - parameters.cotsoc
 * Détails:
-    - Retire cotsoc.versement_transport
-    - Retire parameters.cotsoc.accident
-    - Retire parameters.cotsoc.microsocial
-    - Retire parameters.cotsoc.gen.plafond_securite_sociale (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_mensuel)
-    - Retire parameters.cotsoc.gen.plafond_securite_sociale_annuel (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_annuel)
-    - Retire parameters.cotsoc.gen.plafond_securite_sociale_horaire (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_horaire)
-    - Retire parameters.cotsoc.indemnite_fin_contrat (disponible dans parameters.prelevements_sociaux.- cotisations_securite_sociale_regime_general.indemnite_fin_contrat)
-    - Retire parameters.cotsoc.hsup_exo (inutilisé)
+  - Retire cotsoc.versement_transport
+  - Retire parameters.cotsoc.accident
+  - Retire parameters.cotsoc.microsocial
+  - Retire parameters.cotsoc.gen.plafond_securite_sociale (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_mensuel)
+  - Retire parameters.cotsoc.gen.plafond_securite_sociale_annuel (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_annuel)
+  - Retire parameters.cotsoc.gen.plafond_securite_sociale_horaire (disponible dans parameters.prleevements_sociaux.pss.- plafond_securite_sociale_horaire)
+  - Retire parameters.cotsoc.indemnite_fin_contrat (disponible dans parameters.prelevements_sociaux.- cotisations_securite_sociale_regime_general.indemnite_fin_contrat)
+  - Retire parameters.cotsoc.hsup_exo (inutilisé)
 
 ### 69.0.2 [#1645](https://github.com/openfisca/openfisca-france/pull/1645)
 
@@ -66,9 +76,9 @@
 * Périodes concernées : toutes.
 * Zones impactées : `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`, `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py`, `parameters/prelevements_sociaux/cotisations_regime_assurance_chomage`
 * Détails :
-  - Harmonisation des parametres de cotisation assurance chomage + extension (années 1959-1993)
+  - Harmonisation des paramètres de cotisation assurance chomage + extension (années 1959-1993)
   - Vérification des formules cotisation assurance chomage
-  - Séparation explicite des parametres de cotisation chomage (auparavant nommé "assedic" dans master) en
+  - Séparation explicite des paramètres de cotisation chomage (auparavant nommé "assedic" dans master) en
     - cotisation chomage et
     - ASF
     Ceci a un impact avant 2001, sans impact sur la période 2001-ajd).
@@ -208,7 +218,6 @@ Ces changements :
  -  `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/stage.py`
  -  `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py`
  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_totaux.py`
-*
 * Détails :
   - Mise à jour des paramètres `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/`.
   - Harmonisation des sous-dossiers de `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/` avec l'arborescence des barèmes IPP.
@@ -3841,7 +3850,7 @@ Ces changements :
 * Amélioration technique
 * Détails :
   - Modifie la façon dont les Enumerations sont définies et appelées.
-  - Renomme des fichiers de parametres pour pouvoir simplifier des formules dont le resultat dépend de `TypesZoneAPL` (Fancy indexing).
+  - Renomme des fichiers de paramètres pour pouvoir simplifier des formules dont le resultat dépend de `TypesZoneAPL` (Fancy indexing).
   - Certains Enums étaient utilisées comme booléens. La valeur 0/1 a été remplacée par le membre d'Enum correspondant.
 
 Par exemple pour :

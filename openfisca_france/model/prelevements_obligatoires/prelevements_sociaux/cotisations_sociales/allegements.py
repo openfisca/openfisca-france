@@ -120,6 +120,7 @@ class credit_impot_competitivite_emploi(Variable):
     value_type = float
     entity = Individu
     label = "Crédit d'impôt pour la compétitivité et l'emploi"
+    end = '2018-12-31'
     definition_period = MONTH
     calculate_output = calculate_output_add
     set_input = set_input_divide_by_period
@@ -130,7 +131,7 @@ class credit_impot_competitivite_emploi(Variable):
         smic_proratise = individu('smic_proratise', period)
         stagiaire = individu('stagiaire', period)
         taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, parameters(period).prelevements_sociaux.reductions_cotisations_sociales.cice)
-        credit_impot_competitivite_emploi = taux_cice * assiette_allegement  # En updatant la formule (>2019) il faudra passer le parametre à null
+        credit_impot_competitivite_emploi = taux_cice * assiette_allegement
         non_cumul = not_(stagiaire)
         association = individu('entreprise_est_association_non_lucrative', period)
 

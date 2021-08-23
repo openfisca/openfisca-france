@@ -1,0 +1,14 @@
+description: Taux moyen des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
+values:
+  2012-01-01:
+    value: 0.03
+  2015-01-01: expected
+metadata:
+  ux_name: Taux moyen
+  last_review:
+    2015-01-01
+  reference:
+  official_journal_date:
+  notes:
+  description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
+documentation: |

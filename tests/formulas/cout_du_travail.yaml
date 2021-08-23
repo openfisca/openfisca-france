@@ -39,7 +39,7 @@
 
 - period: 2016-02
   name: Cout du travail 2016, pas d'aide 1er sal. mais aide PME
-  relative_error_margin: 0.001
+  relative_error_margin: 0.0001
   input:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
@@ -48,5 +48,19 @@
     effectif_entreprise: 249
     contrat_de_travail_debut: 2016-01-25
   output:
-    salaire_super_brut: 1649.4
-    cout_du_travail: 1394.8
+    allegement_fillon: 416.63
+    allegement_cotisation_allocations_familiales: 26.406
+    exoneration_cotisations_employeur_geographiques: 0
+    exoneration_cotisations_employeur_jei: 0
+    exoneration_cotisations_employeur_apprenti: 0
+    exoneration_cotisations_employeur_stagiaire: 0
+    cotisations_employeur_contributives: -300.74002
+    taux_accident_travail: 0.01
+    accident_du_travail: -14.67
+    cotisations_employeur_non_contributives: -284.45
+    cotisations_employeur_main_d_oeuvre: -38.82
+    cotisations_employeur: -624.0101
+    salaire_super_brut_hors_allegements: 2091.01
+    salaire_super_brut: 1647.9761
+    cout_differe: 254.69
+    cout_du_travail: 1393.2894

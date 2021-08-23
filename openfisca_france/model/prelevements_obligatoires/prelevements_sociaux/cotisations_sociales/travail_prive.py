@@ -783,6 +783,9 @@ class famille(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    # L'allègement général de cotisations de 2015 n'est pas dans le barème mais pris en compte dans
+    # allegements.allegement_cotisation_allocations_familiales,
+    # (sur la base du paramètre prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales/reduction)
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
             individu,
@@ -1031,10 +1034,21 @@ class taux_accident_travail(Variable):
     def formula_2012_01_01(individu, period, parameters):
         exposition_accident = individu('exposition_accident', period)
         TypesExpositionAccident = exposition_accident.possible_values
-        accident = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.accidents.bareme
-
-        return (exposition_accident == TypesExpositionAccident.faible) * accident.faible + (exposition_accident == TypesExpositionAccident.moyen) * accident.moyen \
-            + (exposition_accident == TypesExpositionAccident.eleve) * accident.eleve + (exposition_accident == TypesExpositionAccident.tres_eleve) * accident.treseleve
+        accident = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.accidents.taux
+        return select(
+            [
+                exposition_accident == TypesExpositionAccident.faible,
+                exposition_accident == TypesExpositionAccident.moyen,
+                exposition_accident == TypesExpositionAccident.eleve,
+                exposition_accident == TypesExpositionAccident.tres_eleve,
+                ],
+            [
+                accident.faible,
+                accident.moyen,
+                accident.eleve,
+                accident.treseleve
+                ]
+            )
 
 
 class vieillesse_deplafonnee_salarie(Variable):
@@ -1069,7 +1083,7 @@ class vieillesse_plafonnee_salarie(Variable):
             period,
             parameters,
             cotisation_type = 'salarie',
-            bareme_name = 'vieillesse',
+            bareme_name = 'vieillesse_plafonnee',
             variable_name = 'vieillesse_plafonnee_salarie',
             )
         return cotisation

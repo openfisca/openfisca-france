@@ -1,0 +1,48 @@
+description: Barème des mono-exposés pour les cotisations additionnelles de sécurité sociale (SS) du régime général au titre de la pénibilité (2015-2017)
+unit: /1
+brackets:
+- rate:
+    2015-01-01:
+      value: 0.001
+    2017-01-01:
+      value: 0.002
+  threshold:
+    2015-01-01:
+      value: 0.0
+metadata:
+  ux_name: Barème pour mono-exposés
+  last_review:
+    2028-01-01
+  reference:
+    2018-01-01: Ordonnance 2017-1389 du 22/09/2017, art. 1 et 5
+    2017-01-01:
+    - title: Décret 2016-953 du 11/07/2016 (cotisations additionnelles)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000032887383
+    - title: Décret 2014-1157 du 9/10/2014 (cotisation de base)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029559255
+    2015-01-01:
+    - title: Loi 2014-40 du 20/01/2014 (voir Notes)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028493476
+    - title: Loi 2015-994 du 17/08/2015
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000031046061
+    - title: Décret 2016-953 du 11/07/2016 (cotisations additionnelles)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000032887383
+    - title: Décret 2014-1157 du 9/10/2014 (cotisation de base)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029559255
+  official_journal_date:
+    2018-01-01: 2017-09-23
+    2017-01-01: 2015-08-18; 2014-10-10
+    2015-01-01: 2016-07-13; 2014-10-10
+  notes:
+    2018-01-01: Suppression des cotisations pénibilité (voir Notes pour les dates d'effet)
+  description_en: SSCs for arduous working conditions
+documentation: |
+  Notes :
+  L'article 10 de la Loi 2014-40 du 20/01/2014 créé l'article L4162-19 du Code du travail, qui institue la cotisation pour pénibilité, et l'article L4162-20 du même Code, précisant ses modalités.
+  L'article 31 de la Loi 2015-994 du 17/08/2015 modifie les taux spécifiés dans l'article L4162-20 du Code du travail et précise qu'aucune cotisation à ce titre n'est due en 2015 et 2016 (début en 2017).
+  Le taux exact de cotisation dû est fixé par décret.
+  La cotisation de base est due par tous les employeurs.La cotisation additionnelle est due par les employeurs ayant exposé au moins un de leurs salariés à des conditions de pénibilité.
+  Suppression de la cotisation de base et des cotisations additionnelles, dates d'effet : 1er janvier 2018, sauf dans certains cas :
+  "pour le quatrième trimestre 2017, la cotisation additionnelle, mentionnée au 2° de l'article L. 4162-19 du code de travail dans sa rédaction antérieure à l'entrée en vigueur de la présente ordonnance,
+  est due par les seuls employeurs ayant exposé au moins un de leurs salariés aux six facteurs de risques professionnels définis à l'article L. 4163-1 du code du travail dans la rédaction issue de la présente ordonnance."
+  (Ordonnance 2017-1389 du 22/09/2017, art. 5)
