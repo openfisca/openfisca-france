@@ -6,18 +6,26 @@ brackets:
   threshold:
     2001-04-01:
       value: 0.0
+    2019-01-01:
+      value: null
 - rate:
     2001-04-01:
       value: 0.009
   threshold:
     2001-04-01:
       value: 1.0
+    2019-01-01:
+      value: null
 - rate:
     2001-04-01:
       value: 0.0
+    2019-01-01:
+      value: null
   threshold:
     2001-04-01:
       value: 3.0
+    2019-01-01:
+      value: null
 metadata:
   ux_name: Non-cadre
   last_review:
@@ -38,4 +46,3 @@ documentation: |
   Le dispositif est reconduit jusqu'à 2018.
   (ii) La tranche 2 est située entre 1 et 3 fois le PSS et s'applique pour les non cadres; la tranche B, entre 1 et 4 fois le plafond, s'applique pour les cadres.
   La tranche 1 (pour les non-cadres) et la tranche A (pour les cadres) correspond au salaire en dessous d'un PSS
-
