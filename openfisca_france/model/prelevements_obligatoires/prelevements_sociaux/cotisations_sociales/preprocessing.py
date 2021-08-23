@@ -8,7 +8,6 @@ from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalari
 log = logging.getLogger(__name__)
 
 
-
 def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     """Construit le dictionnaire de barèmes des cotisations employeur à partir des paramètres de parameters."""
     # TODO: contribution patronale de prévoyance complémentaire
@@ -46,7 +45,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(regime_general.cnav.employeur.children)
     commun.children.update(regime_general.mmid.employeur.children)
 
-    # Fnal (avec renommage)
+    # Fnal (avec renommage)
     commun.children.update(autres.fnal.children)
     commun.children['fnal_contribution_moins_de_20_salaries'] = commun.children.pop('contribution_moins_de_20_salaries')
     commun.children['fnal_contribution_moins_de_50_salaries'] = commun.children.pop('contribution_moins_de_50_salaries')

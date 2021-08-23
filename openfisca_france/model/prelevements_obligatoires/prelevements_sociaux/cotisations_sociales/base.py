@@ -11,42 +11,42 @@ cotisations_employeur_by_categorie_salarie = {
         "agirc",
         "ags",
         "apec",
-        "apprentissage_contribution_additionnelle", ###
-        "apprentissage_taxe", ###
-        "apprentissage_taxe_alsace_moselle", ###
+        "apprentissage_contribution_additionnelle",
+        "apprentissage_taxe",
+        "apprentissage_taxe_alsace_moselle",
         "arrco",
         "asf",
         "ceg",
         "cet",
         "cet2019",
         "chomage",
-        "construction_plus_de_10_salaries", ###
-        "construction_plus_de_20_salaries", ###
-        "construction_plus_de_50_salaries", ###
-        "csa", ###
-        "famille", ###
-        "financement_organisations_syndicales", ###
-        "fnal_contribution_moins_de_20_salaries", ###
-        "fnal_contribution_moins_de_50_salaries", ###
-        "fnal_contribution_plus_de_10_salaries", ###
-        "fnal_contribution_plus_de_20_salaries", ###
-        "fnal_contribution_plus_de_50_salaries", ###
-        "fnal_cotisation", ###
-        # "forfait_annuel",  # Atnérieur à 2011, pas présent sous forme de barème
-        "formprof_11_salaries_et_plus", ###
-        "formprof_20_salaries_et_plus", ###
-        "formprof_entre_10_et_19_salaries", ###
-        "formprof_moins_de_10_salaries", ###
-        "formprof_moins_de_11_salaries", ###
+        "construction_plus_de_10_salaries",
+        "construction_plus_de_20_salaries",
+        "construction_plus_de_50_salaries",
+        "csa",
+        "famille",
+        "financement_organisations_syndicales",
+        "fnal_contribution_moins_de_20_salaries",
+        "fnal_contribution_moins_de_50_salaries",
+        "fnal_contribution_plus_de_10_salaries",
+        "fnal_contribution_plus_de_20_salaries",
+        "fnal_contribution_plus_de_50_salaries",
+        "fnal_cotisation",
+        # "forfait_annuel",  # Antérieur à 2011, pas présent sous forme de barème
+        "formprof_11_salaries_et_plus",
+        "formprof_20_salaries_et_plus",
+        "formprof_entre_10_et_19_salaries",
+        "formprof_moins_de_10_salaries",
+        "formprof_moins_de_11_salaries",
         "maladie",
-        "penibilite_additionnelle", ###
-        "penibilite_base", ###
-        "penibilite_multiplicateur_exposition_multiple", ###
+        "penibilite_additionnelle",
+        "penibilite_base",
+        "penibilite_multiplicateur_exposition_multiple",
         "vieillesse_deplafonnee",
-        "vieillesse_plafonnee", ###
+        "vieillesse_plafonnee",
         ],
     "prive_non_cadre": [
-        "agffnc", ###
+        "agffnc",
         "agirc_arrco",
         "ags",
         "apprentissage_contribution_additionnelle",
@@ -104,7 +104,7 @@ cotisations_employeur_by_categorie_salarie = {
         ],
     "public_titulaire_etat": [
         "agirc_arrco",
-        "ati", ###
+        "ati",
         "ceg",
         "cet2019",
         "csa",
@@ -125,13 +125,13 @@ cotisations_employeur_by_categorie_salarie = {
         ],
     "public_titulaire_hospitaliere": [
         "agirc_arrco",
-        "atiacl", ###
+        "atiacl",
         "ceg",
         "cet2019",
-        "cnracl", ###
+        "cnracl",
         "csa",
         "famille",
-        "feh", ###
+        "feh",
         "financement_organisations_syndicales",
         "fnal_contribution_moins_de_20_salaries",
         "fnal_contribution_moins_de_50_salaries",
@@ -149,7 +149,7 @@ cotisations_employeur_by_categorie_salarie = {
         "agirc_arrco",
         "ceg",
         "cet2019",
-        "cnracl", ###
+        "cnracl",
         "csa",
         "famille",
         "financement_organisations_syndicales",
@@ -174,7 +174,7 @@ cotisations_employeur_by_categorie_salarie = {
         "cnracl",
         "csa",
         "famille",
-        "fcppa", ###
+        "fcppa",
         "financement_organisations_syndicales",
         "fnal_contribution_moins_de_20_salaries",
         "fnal_contribution_moins_de_50_salaries",
@@ -203,7 +203,7 @@ cotisations_salarie_by_categorie_salarie = {
         "cet",
         "cet2019",
         "chomage",
-        # "forfait_annuel",  # Atnérieur à 2011, pas présent sous forme de barème
+        # "forfait_annuel",  # Antérieur à 2011, pas présent sous forme de barème
         "maladie_alsace_moselle",
         "maladie",
         "vieillesse_deplafonnee",
@@ -287,7 +287,7 @@ def apply_bareme_for_relevant_type_sal(
             try:
                 categorie_salarie_baremes = bareme_by_type_sal_name[categorie_salarie_type.name]
             except KeyError as e:
-                # FIXME: dirty fix since public_titulaire_militaire does not exist
+                # FIXME: dirty fix since public_titulaire_militaire does not exist
                 if categorie_salarie_type.name == "public_titulaire_militaire":
                     continue
                 raise(e)
