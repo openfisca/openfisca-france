@@ -227,7 +227,7 @@ class fnal_cotisation(Variable):
             period,
             parameters,
             cotisation_type = 'employeur',
-            bareme_name = 'fnal_contribution_plus_de_50_salaries',
+            bareme_name = 'fnal_cotisation',
             variable_name = "fnal_cotisation",
             )
 
