@@ -222,7 +222,7 @@ class fnal_cotisation(Variable):
     end = '2015-01-01'
 
     def formula(individu, period, parameters):
-        apply_bareme(
+        return apply_bareme(
             individu,
             period,
             parameters,
@@ -230,11 +230,6 @@ class fnal_cotisation(Variable):
             bareme_name = 'fnal_contribution_plus_de_50_salaries',
             variable_name = "fnal_cotisation",
             )
-
-        assiette_cotisations = individu('assiette_cotisations_sociales', period)
-        bareme = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.cotisation
-        plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        return -(bareme.calc(assiette_cotisations, factor= plafond_securite_sociale))
 
 
 class fnal_contribution(Variable):
