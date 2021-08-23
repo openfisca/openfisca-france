@@ -13,8 +13,7 @@ from .cache import tax_benefit_system
 cotisations_salarie_by_name = {
     "agff": {
         "start_non_null_date": "2001-04-01",
-        #"final_null_date": "2019-01-01", #TODO: update parameter from bareme IPP
-        #https://framagit.org/french-tax-and-benefit-tables/baremes-ipp-yaml/-/blob/master/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/agff.yaml
+        "final_null_date": "2019-01-01",
         },
     "agirc_arrco": {
         "start_non_null_date": "2019-01-01",
@@ -28,8 +27,7 @@ cotisations_salarie_by_name = {
         },
     "arrco": {
         "start_non_null_date": "1962-01-01",
-        #"final_null_date": "2019-01-01", #TODO: update parameter from bareme IPP
-        #https://framagit.org/french-tax-and-benefit-tables/baremes-ipp-yaml/-/blob/master/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/arrco.yaml
+        "final_null_date": "2019-01-01",
         },
     "asf": {}, # TODO: add dates
     "ceg": {
@@ -45,16 +43,16 @@ cotisations_salarie_by_name = {
     "chomage": {}, # TODO: add dates
     "cnracl1": {
         "start_non_null_date": "1984-01-01",
-        #"start_non_null_date": "1947-09-19", #TODO: update parameter from bareme IPP
-        #https://framagit.org/french-tax-and-benefit-tables/baremes-ipp-yaml/-/blob/master/parameters/prelevements_sociaux/cotisations_secteur_public/cnracl.yaml
+        # "start_non_null_date": "1947-09-19", # TODO: update parameter from bareme IPP
+        # https://framagit.org/french-tax-and-benefit-tables/baremes-ipp-yaml/-/blob/master/parameters/prelevements_sociaux/cotisations_secteur_public/cnracl.yaml
         },
     "cnracl2": {
         "start_non_null_date": "1984-01-01",
-        #"start_non_null_date": "1947-09-19", #TODO: update parameter from bareme IPP
-        #https://framagit.org/french-tax-and-benefit-tables/baremes-ipp-yaml/-/blob/master/parameters/prelevements_sociaux/cotisations_secteur_public/cnracl.yaml
+        # "start_non_null_date": "1947-09-19", # TODO: update parameter from bareme IPP
+        # https://framagit.org/french-tax-and-benefit-tables/baremes-ipp-yaml/-/blob/master/parameters/prelevements_sociaux/cotisations_secteur_public/cnracl.yaml
         },
-    "excep_solidarite": {}, #TODO: add dates
-    "forfait_annuel": {}, #TODO: add dates; 2011 0 or null?
+    "excep_solidarite": {}, # TODO: add dates
+    "forfait_annuel": {}, # TODO: add dates; 2011 0 or null?
     "ircantec": {
         "start_non_null_date": "1971-01-01",
         },
@@ -65,7 +63,7 @@ cotisations_salarie_by_name = {
         "start_non_null_date": "1967-10-01",
         "final_null_date": "2018-01-01",
         },
-    "pension": {}, #TODO: add dates
+    "pension": {}, # TODO: add dates
     "rafp": {
         "start_non_null_date": "2005-01-01"
         },
