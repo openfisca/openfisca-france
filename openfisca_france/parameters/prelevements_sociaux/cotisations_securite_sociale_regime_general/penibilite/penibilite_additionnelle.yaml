@@ -1,4 +1,4 @@
-description: Taux des mono-exposés pour les cotisations additionnelles de sécurité sociale (SS) du régime général au titre de la pénibilité (2015-2017)
+description: Barème des mono-exposés pour les cotisations additionnelles de sécurité sociale (SS) du régime général au titre de la pénibilité (2015-2017)
 unit: /1
 brackets:
 - rate:
@@ -10,7 +10,7 @@ brackets:
     2015-01-01:
       value: 0.0
 metadata:
-  ux_name: Mono-exposés
+  ux_name: Barème pour mono-exposés
   last_review:
     2028-01-01
   reference:
