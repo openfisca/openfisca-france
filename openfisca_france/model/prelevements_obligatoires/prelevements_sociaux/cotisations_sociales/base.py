@@ -32,7 +32,7 @@ cotisations_employeur_by_categorie_salarie = {
         "fnal_contribution_plus_de_20_salaries", ###
         "fnal_contribution_plus_de_50_salaries", ###
         "fnal_cotisation", ###
-        "forfait_annuel",
+        # "forfait_annuel",  # Atnérieur à 2011, pas présent sous forme de barème
         "formprof_11_salaries_et_plus", ###
         "formprof_20_salaries_et_plus", ###
         "formprof_entre_10_et_19_salaries", ###
@@ -203,7 +203,7 @@ cotisations_salarie_by_categorie_salarie = {
         "cet",
         "cet2019",
         "chomage",
-        "forfait_annuel",
+        # "forfait_annuel",  # Atnérieur à 2011, pas présent sous forme de barème
         "maladie_alsace_moselle",
         "maladie",
         "vieillesse_deplafonnee",

@@ -1,6 +1,8 @@
 """Teste les cotisations par catégorie de salarié produites à l'issue de l'étape preprocessing."""
 
 from collections import OrderedDict
+
+from openfisca_core.parameters.parameter_scale import ParameterScale
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import (
     cotisations_employeur_by_categorie_salarie,
     cotisations_salarie_by_categorie_salarie,
@@ -52,7 +54,10 @@ cotisations_salarie_by_name = {
         # https://framagit.org/french-tax-and-benefit-tables/baremes-ipp-yaml/-/blob/master/parameters/prelevements_sociaux/cotisations_secteur_public/cnracl.yaml
         },
     "excep_solidarite": {}, # TODO: add dates
-    "forfait_annuel": {}, # TODO: add dates; 2011 0 or null?
+    # TODO: remove because not a bareme ?
+    # "forfait_annuel": {
+    #     "start_non_null_date": "2011-01-01"
+    #     }, # TODO: add dates; 2011 0 or null?
     "ircantec": {
         "start_non_null_date": "1971-01-01",
         },
@@ -123,6 +128,8 @@ def test_preprocessing():
         cotisations_salaries = set(cotisations_salarie_by_categorie_salarie[categorie_salarie])
         for cotisation_salarie in sorted(cotisations_salaries):
             bareme = parameters.cotsoc.cotisations_salarie.children[categorie_salarie].children[cotisation_salarie]
+
+            assert isinstance(bareme, ParameterScale), f"{cotisation_salarie} entry's class is {type(bareme)} which is not a ParameterScale"
 
             final_null_date = cotisations_salarie_by_name[cotisation_salarie].get("final_null_date")
             if final_null_date:
