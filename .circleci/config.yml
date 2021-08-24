@@ -216,10 +216,6 @@ workflows:
             - test_api
       - deploy:
           requires:
-            - lint_files
-            - test_python
-            - test_yaml
-            - test_api
             - check_version_and_changelog
           filters:
             branches:
