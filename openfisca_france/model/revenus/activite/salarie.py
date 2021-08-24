@@ -1057,10 +1057,12 @@ class exonerations_et_allegements(Variable):
             'exoneration_cotisations_employeur_stagiaire', period, options = [ADD])
 
         allegement_fillon = individu('allegement_fillon', period, options = [ADD])
+        allegement_cotisation_maladie = individu('allegement_cotisation_maladie', period, options = [ADD])
         allegement_cotisation_allocations_familiales = individu('allegement_cotisation_allocations_familiales', period, options = [ADD])
 
         return (
             allegement_fillon
+            + allegement_cotisation_maladie
             + allegement_cotisation_allocations_familiales
             + exoneration_cotisations_employeur_geographiques
             + exoneration_cotisations_employeur_jei
