@@ -11,4 +11,7 @@ brackets:
       value: 0.0
     2011-01-01:
       value: null
-description: Fonds de compensation de la cessation progressive d’activité
+metadata:
+  description: CNRACL, Fonds de compensation de la cessation progressive d’activité
+  ux_name: Fonds de compensation de la cessation progressive d’activité
+  last_review: 2021-08-24 
