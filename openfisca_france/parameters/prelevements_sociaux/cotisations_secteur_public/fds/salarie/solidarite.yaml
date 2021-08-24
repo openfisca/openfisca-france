@@ -1,14 +1,25 @@
 brackets:
 - rate:
-    1983-01-01:
+    1982-11-01:
       value: 0.01
+    2018-01-01:
+      value: null
   threshold:
-    1983-01-01:
+    1982-11-01:
       value: 0.0
+    2018-01-01:
+      value: null
 - rate:
-    1983-01-01:
+    1982-11-01:
       value: 0.0
+    2018-01-01:
+      value: null
   threshold:
-    1983-01-01:
+    1982-11-01:
       value: 4.0
-description: Contribution exceptionnelle de solidarité (seuil d'assujetissment variable)
+    2018-01-01:
+      value: null
+metadata:
+  ux_name: Contribution exceptionnelle de solidarité (seuil d'assujetissment variable)
+  description: Cotisations au Fonds de solidarité (FDS) spécifique à la fonction publique (1982-2017) Contribution exceptionnelle de solidarité (seuil d'assujetissment variable)
+  last_review: 2021-08-24

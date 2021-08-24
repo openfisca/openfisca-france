@@ -3,7 +3,9 @@ brackets:
     2005-01-01:
       value: 0.05
   threshold:
-    1993-01-01:
+    2005-01-01:
       value: 0.0
-description: Régime additionnel de retraite (RAFP, totalité sauf TI et NBI, min 20%
-  TI )
+metadata:
+  ux_name: Cotisations salarié
+  description: Cotisations salarié au régime de Retraite additionnelle de la fonction publique (RAFP)
+  last_review: 2021-08-24

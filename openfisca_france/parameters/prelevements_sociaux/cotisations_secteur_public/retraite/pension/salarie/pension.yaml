@@ -1,6 +1,16 @@
 brackets:
 - rate:
-    2003-01-01:
+    1925-01-01:
+      value: 0.06
+    1984-01-01:
+      value: 0.07
+    1986-08-01:
+      value: 0.077
+    1987-07-01:
+      value: 0.079
+    1989-01-01:
+      value: 0.089
+    1991-02-01:
       value: 0.0785
     2011-01-01:
       value: 0.0812
@@ -25,6 +35,9 @@ brackets:
     2020-01-01:
       value: 0.1110
   threshold:
-    2003-01-01:
+    1925-01-01:
       value: 0.0
-description: Retenue pour pension civile (assiette=TI + NBI)
+metadata:
+  ux_name: Cotisations salarié
+  description: Cotisations salarié au régime de Retraite de la fonction publique (RAFP)
+  last_review: 2021-08-24

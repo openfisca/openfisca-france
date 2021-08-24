@@ -77,4 +77,7 @@ brackets:
       value: 4.75
     1992-01-01:
       value: 8.0
-description: IRCANTEC
+metadata:
+  ux_name: Contribution salarié
+  description: Cotisations salarié à la Retraite complémentaire des agents non titulaires de la Fonction publique et des élus locaux (IRCANTEC)
+  last_review: 2021-08-24

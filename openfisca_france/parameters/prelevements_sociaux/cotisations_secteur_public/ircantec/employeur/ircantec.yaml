@@ -1,8 +1,10 @@
 brackets:
 - base:
-    1992-01-01:
+    1971-01-01:
       value: 1.25
   rate:
+    1971-01-01:
+      value: 0.021
     1992-01-01:
       value: 0.027
     2011-01-01:
@@ -20,12 +22,14 @@ brackets:
     2017-01-01:
       value: 0.0336
   threshold:
-    1992-01-01:
+    1971-01-01:
       value: 0.0
 - base:
-    1992-01-01:
+    1971-01-01:
       value: 1.25
   rate:
+    1971-01-01:
+      value: 0.0825
     1992-01-01:
       value: 0.0924
     2011-01-01:
@@ -43,12 +47,16 @@ brackets:
     2017-01-01:
       value: 0.1004
   threshold:
-    1992-01-01:
+    1971-01-01:
       value: 1.0
 - rate:
-    1992-01-01:
+    1971-01-01:
       value: 0.0
   threshold:
-    1992-01-01:
+    1971-01-01:
       value: 8.0
-description: IRCANTEC
+metadata:
+  ux_name: Contribution employeur
+  description: Cotisations employeur à la Retraite complémentaire des agents non titulaires de la Fonction publique et des élus locaux (IRCANTEC) spécifiques à la fonction publique
+  last_review: 2021-08-24
+

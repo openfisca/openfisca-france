@@ -202,8 +202,8 @@ class pension_salarie(Variable):
         montant = (
             etat_militaire
             * sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut + nouvelle_bonification_indiciaire)
-            + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
-            + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl2'].calc(nouvelle_bonification_indiciaire)
+            + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl_s_ti'].calc(traitement_indiciaire_brut)
+            + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl_s_nbi'].calc(nouvelle_bonification_indiciaire)
             )
 
         return - montant

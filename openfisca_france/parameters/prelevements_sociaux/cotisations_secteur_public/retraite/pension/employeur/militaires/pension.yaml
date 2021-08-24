@@ -1,7 +1,5 @@
 brackets:
 - rate:
-    1995-01-01:
-      value: null
     2006-01-01:
       value: 1.0
     2007-01-01:
@@ -19,12 +17,12 @@ brackets:
     2013-01-01:
       value: 1.2607
   threshold:
-    1995-01-01:
-      value: null
     2006-01-01:
       value: 0.0
-description: Pensions militaires (TI et NBI)
-
+metadata:
+  ux_name: Pensions militaires (TI et NBI)
+  description: Cotisations salarié au régime de Retraite de la fonction publique (RAFP), pensions militaires (TI et NBI)
+  last_review: 2021-08-24
     
       
       

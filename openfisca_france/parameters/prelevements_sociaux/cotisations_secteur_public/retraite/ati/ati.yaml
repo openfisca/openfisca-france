@@ -13,4 +13,7 @@ brackets:
   threshold:
     2003-01-01:
       value: 0.0
-description: Allocations temporaires d'invalidité (ATI)
+metadata:
+  ux_name: Allocations temporaires d'invalidité (ATI)
+  description: Cotisations au régime de Retraite de la fonction publique (RAFP), allocations temporaires d'invalidité (ATI)
+  last_review: 2021-08-24

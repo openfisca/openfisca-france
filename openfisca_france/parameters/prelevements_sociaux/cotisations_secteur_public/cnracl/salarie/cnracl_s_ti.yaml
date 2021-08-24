@@ -1,8 +1,18 @@
 brackets:
 - rate:
+    1947-09-19:
+      value: 0.06
+    1984-01-01:
+      value: 0.07
+    1986-08-01:
+      value: 0.077
+    1987-07-01:
+      value: 0.079
+    1989-01-01:
+      value: 0.089
     1991-02-01:
       value: 0.0785
-    2011-02-21:
+    2011-01-01:
       value: 0.0812
     2012-01-01:
       value: 0.0839
@@ -25,6 +35,9 @@ brackets:
     2020-01-01:
       value: 0.1110
   threshold:
-    1984-01-01:
+    1947-09-19:
       value: 0.0
-description: Retraites des agents des collectivités locales (taux NBI)
+metadata:
+  description: Cotisations à la Caisse nationale de retraite des agents des collectivités locales (CNRACL) Hors NBI
+  ux_name: Hors NBI
+  last_review: 2021-08-24

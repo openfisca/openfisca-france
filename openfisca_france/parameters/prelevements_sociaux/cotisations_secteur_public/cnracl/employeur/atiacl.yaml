@@ -1,10 +1,21 @@
 brackets:
 - rate:
+    1964-07-01:
+      value: 0.006
+    1967-05-01:
+      value: 0.003
+    1972-10-01:
+      value: 0.002
+    1980-07-01:
+      value: 0.004
     1982-01-01:
       value: 0.005
     2013-01-01:
       value: 0.004
   threshold:
-    2003-01-01:
+    1964-07-01:
       value: 0.0
-description: Allocations temporaires d'invalidité (hors NBI)
+metadata:
+  description: CNRACL, Allocations temporaires d'invalidité (hors NBI)
+  ux_name: Allocations temporaires d'invalidité (hors NBI)
+  last_review: 2021-08-24
