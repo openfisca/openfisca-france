@@ -1,1 +1,4 @@
-description: Commune à toutes les fonctions publiques
+description: Cotisations spécifiques à la fonction publique
+metadata:
+  ux_name: Cotisations fonction publique
+  description_en: Contributions to the Solidarity Fund (FDS)
