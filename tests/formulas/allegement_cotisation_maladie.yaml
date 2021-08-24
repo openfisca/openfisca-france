@@ -1,0 +1,28 @@
+- period: 2021-09
+  name: 1xSMIC
+  relative_error_margin: 0.001
+  input:
+    # salaire_de_base: 2915
+    # # allegement mode necessary when requesting on a 1 month salary :
+    # allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
+    # allegement_fillon_mode_recouvrement: anticipe
+    # contrat_de_travail_debut: 2015-01-01
+    # contrat_de_travail_fin: 2015-12-31
+    # effectif_entreprise: 1
+    assiette_allegement: 1554.58
+  output:
+    allegement_cotisation_maladie: 0.6 * 1554.58
+
+- period: 2021-09
+  name: 2.5xSMIC
+  input:
+    # salaire_de_base: 2915
+    # # allegement mode necessary when requesting on a 1 month salary :
+    # allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
+    # allegement_fillon_mode_recouvrement: anticipe
+    # contrat_de_travail_debut: 2015-01-01
+    # contrat_de_travail_fin: 2015-12-31
+    # effectif_entreprise: 1
+    assiette_allegement: 1554.58 * 2.5 + 0.1  # 3887.45 * 12
+  output:
+    allegement_cotisation_maladie: 0
