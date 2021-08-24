@@ -20,9 +20,11 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: |
-            make install
-            # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
+          command: make install
+
+    # - run:
+      #    name: Use a specific branch of OpenFisca-Core for testing purposes
+      #    command:  pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core
 
       - save_cache:
           key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
@@ -45,9 +47,7 @@ jobs:
 
       - run:
           name: Build package
-          command: |
-            make build
-            # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
+          command: make build
 
       - save_cache:
           key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
@@ -59,7 +59,7 @@ jobs:
           paths:
             - dist
 
-  test_python: # Python tests are separated from YAML tests, because the latter take longer. This would allow Python tests to use any other available container and yield it, once finished, to another job instead of counting only on the two containers assigned to the YAML tests.
+  test_python: # Python tests are separated from YAML tests, because the latter take longer. This allows Python tests to use any other available container and yield it, once finished, to another job instead of relying only on the two containers assigned to the YAML tests.
     docker:
       - image: python:3.7
 
