@@ -45,21 +45,13 @@ cotisations_salarie_by_name = {
         "start_non_null_date": "2019-01-01",
         },
     "chomage": {},  # TODO: add dates
-    "cnracl1": {
-        "start_non_null_date": "1984-01-01",
-        # "start_non_null_date": "1947-09-19",  # TODO: update parameter from bareme IPP
-        # https://framagit.org/french-tax-and-benefit-tables/baremes-ipp-yaml/-/blob/master/parameters/prelevements_sociaux/cotisations_secteur_public/cnracl.yaml
+    "cnracl_s_ti": {
+        "start_non_null_date": "1947-09-19",
         },
-    "cnracl2": {
-        "start_non_null_date": "1984-01-01",
-        # "start_non_null_date": "1947-09-19",  # TODO: update parameter from bareme IPP
-        # https://framagit.org/french-tax-and-benefit-tables/baremes-ipp-yaml/-/blob/master/parameters/prelevements_sociaux/cotisations_secteur_public/cnracl.yaml
+    "cnracl_s_nbi": {
+        "start_non_null_date": "1947-09-19",
         },
     "excep_solidarite": {},  # TODO: add dates
-    # TODO: remove because not a bareme ?
-    # "forfait_annuel": {
-    #     "start_non_null_date": "2011-01-01"
-    #     }, # TODO: add dates; 2011 0 or null?
     "ircantec": {
         "start_non_null_date": "1971-01-01",
         },

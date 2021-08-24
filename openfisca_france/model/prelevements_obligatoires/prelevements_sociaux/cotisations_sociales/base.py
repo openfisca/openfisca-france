@@ -239,14 +239,14 @@ cotisations_salarie_by_categorie_salarie = {
         "rafp",
         ],
     "public_titulaire_hospitaliere": [
-        "cnracl1",
-        "cnracl2",
+        "cnracl_s_ti",
+        "cnracl_s_nbi",
         "excep_solidarite",
         "rafp",
         ],
     "public_titulaire_territoriale": [
-        "cnracl1",
-        "cnracl2",
+        "cnracl_s_ti",
+        "cnracl_s_nbi",
         "excep_solidarite",
         "rafp",
         ],
