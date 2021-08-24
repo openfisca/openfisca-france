@@ -25,4 +25,7 @@ brackets:
   threshold:
     2006-01-01:
       value: 0.0
-description: Pensions civiles (TI et NBI)
+metadata:
+  ux_name: Pensions civiles (TI et NBI)
+  description: Cotisations salarié au régime de Retraite de la fonction publique (RAFP), pensions civiles (TI et NBI)
+  last_review: 2021-08-24
