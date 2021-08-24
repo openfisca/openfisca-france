@@ -57,19 +57,6 @@ jobs:
           name: Lint YAML tests
           command: .circleci/lint-changed-yaml-tests.sh
 
-  check_version_and_changelog:
-    docker:
-      - image: python:3.7
-
-    steps:
-      - checkout
-
-      - run:
-          name: Check version number has been properly updated
-          command: |
-            git fetch
-            .circleci/is-version-number-acceptable.sh
-
   build:
     docker:
       - image: python:3.7
@@ -153,6 +140,19 @@ jobs:
       - run:
           name: Test the Web API
           command: .circleci/test-api.sh
+
+  check_version_and_changelog:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - run:
+          name: Check version number has been properly updated
+          command: |
+            git fetch
+            .circleci/is-version-number-acceptable.sh
 
   deploy:
     docker:
