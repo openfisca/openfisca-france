@@ -124,6 +124,7 @@ class credit_impot_competitivite_emploi(Variable):
     definition_period = MONTH
     calculate_output = calculate_output_add
     set_input = set_input_divide_by_period
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037992483"
 
     def formula_2013_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
