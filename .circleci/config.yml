@@ -31,6 +31,45 @@ jobs:
           paths:
             - /tmp/venv/openfisca_france
 
+  lint_files:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+
+      - run:
+          name: Activate virtualenv
+          command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
+
+      - run: make check-syntax-errors
+
+      - run: make check-style
+
+      - run:
+          name: Lint Python files
+          command: .circleci/lint-changed-python-files.sh
+
+      - run:
+          name: Lint YAML tests
+          command: .circleci/lint-changed-yaml-tests.sh
+
+  check_version_and_changelog:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - run:
+          name: Check version number has been properly updated
+          command: |
+            git fetch
+            .circleci/is-version-number-acceptable.sh
+
   build:
     docker:
       - image: python:3.7
@@ -113,43 +152,7 @@ jobs:
 
       - run:
           name: Test the Web API
-          command: |
-            .circleci/test-api.sh
-
-  lint_files:
-    docker:
-      - image: python:3.7
-
-    steps:
-      - checkout
-
-      - restore_cache:
-          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
-
-      - run:
-          name: Activate virtualenv
-          command: |
-            echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
-
-      - run:
-          name: Lint files
-          command: |
-            make check-syntax-errors check-style
-            .circleci/lint-changed-python-files.sh
-            .circleci/lint-changed-yaml-tests.sh
-
-  check_version_and_changelog:
-    docker:
-      - image: python:3.7
-
-    steps:
-      - checkout
-
-      - run:
-          name: Check version number has been properly updated
-          command: |
-            git fetch
-            .circleci/is-version-number-acceptable.sh
+          command: .circleci/test-api.sh
 
   deploy:
     docker:
@@ -190,6 +193,9 @@ workflows:
   build_and_deploy:
     jobs:
       - install
+      - lint_files:
+          requires:
+            - install
       - build:
           requires:
             - install
@@ -202,26 +208,19 @@ workflows:
       - test_api:
            requires:
              - build
-      - lint_files:
-          requires:
-            - install
       - check_version_and_changelog:
           requires:
-            - install
-            - build
+            - lint_files
             - test_python
             - test_yaml
             - test_api
-            - lint_files
       - deploy:
           requires:
-            - check_version_and_changelog
-            - install
-            - build
+            - lint_files
             - test_python
             - test_yaml
             - test_api
-            - lint_files
+            - check_version_and_changelog
           filters:
             branches:
               only: master
