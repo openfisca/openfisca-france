@@ -119,7 +119,7 @@ class coefficient_proratisation(Variable):
 class credit_impot_competitivite_emploi(Variable):
     value_type = float
     entity = Individu
-    label = "Crédit d'impôt pour la compétitivité et l'emploi"
+    label = "Crédit d'impôt pour la compétitivité et l'emploi (CICE)"
     end = '2018-12-31'
     definition_period = MONTH
     calculate_output = calculate_output_add
