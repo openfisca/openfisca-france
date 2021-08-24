@@ -31,7 +31,9 @@ cotisations_salarie_by_name = {
         "start_non_null_date": "1962-01-01",
         "final_null_date": "2019-01-01",
         },
-    "asf": {},  # TODO: add dates
+    "asf": {
+        "start_non_null_date": "1984-01-01",
+        },
     "ceg": {
         "start_non_null_date": "2019-01-01",
         },
