@@ -390,7 +390,7 @@ def compute_allegement_fillon(individu, period, parameters):
 
 class allegement_cotisation_allocations_familiales(Variable):
     value_type = float
-    label = "Allègement de la cotisation d'allocations familiales sur les bas et moyens salaires"
+    label = "Allègement des cotisations d'allocations familiales sur les bas et moyens salaires"
     entity = Individu
     reference = "https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
     definition_period = MONTH
@@ -413,6 +413,30 @@ class allegement_cotisation_allocations_familiales(Variable):
             )
 
         return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
+
+
+class allegement_cotisation_maladie(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+    label = "Allègement des cotisations employeur d’assurance maladie sur les bas et moyens salaires (Ex-CICE)"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559"
+
+    def formula_2019_01_01(individu, period, parameters):
+        assiette = individu('assiette_allegement', period, options = [ADD])
+
+        # openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/mmid/taux.yaml
+        # taux_cotisation_assurance_maladie = 0.13 
+        reduction_taux = 0.6
+        # taux_final = taux_cotisation_assurance_maladie - reduction_taux
+
+        remuneration_salarie = assiette
+        smic_proratise_annuel = individu('smic_proratise', period) * 12
+        
+        condition_smic = (remuneration_salarie <= 2.5 * smic_proratise_annuel)
+
+        return condition_smic * reduction_taux * assiette
+
 
 
 def compute_allegement_cotisation_allocations_familiales(individu, period, parameters):
