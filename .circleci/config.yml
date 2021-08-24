@@ -50,6 +50,11 @@ jobs:
             # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+          paths:
+            - /tmp/venv/openfisca_france
+
+      - save_cache:
           key: v1-py3-build-{{ .Revision }}
           paths:
             - dist
