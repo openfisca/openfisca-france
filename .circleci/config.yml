@@ -75,7 +75,7 @@ jobs:
 
       - run:
           name: Run Python tests
-          command: pytest `circleci tests glob "tests/**/[^_]*.py" | circleci tests split`
+          command: pytest `circleci tests glob "tests/**/[^_]*.py"`
 
   test_yaml:
     parallelism: 2  # Speed up the yaml tests, while letting two containers available for other jobs.
