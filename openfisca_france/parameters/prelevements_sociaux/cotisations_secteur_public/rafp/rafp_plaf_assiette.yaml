@@ -1,5 +1,8 @@
-description: Plafond d'assiette
 unit: /1
 values:
   2005-01-01:
     value: 0.2
+metadata:
+  ux_name: Assiette plafond
+  description: Cotisations au régime de Retraite additionnelle de la fonction publique (RAFP), assiette plafond
+  last_review: 2021-08-24
