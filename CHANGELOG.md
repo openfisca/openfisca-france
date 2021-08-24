@@ -1,5 +1,14 @@
 # Changelog
 
+## 72.0.0 [#1656](https://github.com/openfisca/openfisca-france/pull/1656)
+
+* Évolution du système socio-fiscal. | Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public.
+* Détails :
+  - Harmonisation et vérification des paramètres des cotisations sociales des salariés de la fonction publique pour les aligner avec les barèmes IPP
+  - Renommage des paramètres cnracl1 en cnracl_s_ti et cnracl2 en cnracl_s_nbi
+
 ## 71.1.0 [#1586](https://github.com/openfisca/openfisca-france/pull/1586)
 
 * Évolution du système socio-fiscal.
