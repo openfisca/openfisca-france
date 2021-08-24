@@ -1,5 +1,15 @@
 # Changelog
 
+## 71.1.0 [#1586](https://github.com/openfisca/openfisca-france/pull/1586)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `/prestations/mon_job_mon_logement.py`
+  - `/parameters/prestations/mon_job_mon_logement.yaml`
+* Détails :
+  - Ajoute la variable `mon_job_mon_logement` qui calcule l'aide mon job mon logement d'action logement.
+
 # 71.0.0 [#1623](https://github.com/openfisca/openfisca-france/pull/1623)
 
 * Amélioration technique.
