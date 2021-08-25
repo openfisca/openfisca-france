@@ -1,5 +1,13 @@
 # Changelog
 
+## 72.1.1 [#1634](https://github.com/openfisca/openfisca-france/pull/1634)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées : `parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/gmp`.
+* Détails :
+  - Eteint les séries correctement (valeurs à `null` au lie de `0.0`)
+
 ## 72.1.0 [#1634](https://github.com/openfisca/openfisca-france/pull/1634)
 
 * Amélioration technique.
