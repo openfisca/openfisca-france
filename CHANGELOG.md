@@ -1,6 +1,17 @@
 # Changelog
 
-## 72.0.0 [#1656](https://github.com/openfisca/openfisca-france/pull/1656)
+## 72.1.0 [#1634](https://github.com/openfisca/openfisca-france/pull/1634)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `tests/test_preprocessing.py`.
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py`
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/base.py`
+* Détails :
+  - Test de le résultat de la distribution des barèmes de cotisation vers les différentes catégories de salariés réaliséees dans `preprocessing.py`
+
+# 72.0.0 [#1656](https://github.com/openfisca/openfisca-france/pull/1656)
 
 * Évolution du système socio-fiscal. | Amélioration technique.
 * Périodes concernées : toutes.
