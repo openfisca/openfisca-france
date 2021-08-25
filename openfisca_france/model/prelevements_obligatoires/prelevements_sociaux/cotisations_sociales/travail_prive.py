@@ -62,8 +62,9 @@ class assiette_cotisations_sociales_prive(Variable):
             + hsup
             + indemnites_compensatrices_conges_payes
             + remuneration_apprenti
-            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
-            * (indemnite_residence + primes_fonction_publique)
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * (
+                indemnite_residence + primes_fonction_publique
+                )
             + reintegration_titre_restaurant_employeur
             + indemnite_fin_contrat
             )

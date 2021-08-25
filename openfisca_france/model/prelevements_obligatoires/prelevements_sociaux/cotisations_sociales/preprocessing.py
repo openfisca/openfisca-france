@@ -4,14 +4,13 @@ import logging
 from openfisca_france.model.base import *
 from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalarie
 
-DEBUG_SAL_TYPE = 'public_titulaire_etat'
-log = logging.getLogger(__name__)
 
-# TODO: contribution patronale de prévoyance complémentaire
+log = logging.getLogger(__name__)
 
 
 def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
-    """Construit le dictionnaire de barèmes des cotisations employeur à partir des paramètres de parameters"""
+    """Construit le dictionnaire de barèmes des cotisations employeur à partir des paramètres de parameters."""
+    # TODO: contribution patronale de prévoyance complémentaire
     pat = ParameterNode("pat", data={})  # Génère pat
     commun = ParameterNode("commun", data={})  # Génère commun
 
@@ -23,20 +22,19 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     public = node_json.prelevements_sociaux.cotisations_secteur_public
 
     # Création de commun
-    # Apprentissage
-    commun.children['apprentissage_taxe'] = autres.apprentissage.children['apprentissage_taxe']
-    commun.children['apprentissage_contribution_additionnelle'] = autres.apprentissage.children['apprentissage_contribution_additionnelle']
-    commun.children['apprentissage_taxe_alsace_moselle'] = autres.apprentissage.children['apprentissage_taxe_alsace_moselle']
+    # Apprentissage (avec effacement)
+    commun.children.update(autres.apprentissage.children)
+    del commun.children['apprentissage_contribution_supplementaire']  # n'est pas un barème et est utilisé directement
+
     # Formation
-    commun.children['formprof_moins_de_10_salaries'] = autres.formation.pefpc.children['formprof_moins_de_10_salaries']
-    commun.children['formprof_moins_de_11_salaries'] = autres.formation.pefpc.children['formprof_moins_de_11_salaries']
-    commun.children['formprof_20_salaries_et_plus'] = autres.formation.pefpc.children['formprof_20_salaries_et_plus']
-    commun.children['formprof_11_salaries_et_plus'] = autres.formation.pefpc.children['formprof_11_salaries_et_plus']
-    commun.children['formprof_entre_10_et_19_salaries'] = autres.formation.pefpc.children['formprof_entre_10_et_19_salaries']
-    # Construction
-    commun.children['construction_plus_de_10_salaries'] = autres.construction.children['taux_plus_de_10_salaries']
-    commun.children['construction_plus_de_20_salaries'] = autres.construction.children['taux_plus_de_20_salaries']
-    commun.children['construction_plus_de_50_salaries'] = autres.construction.children['taux_plus_de_50_salaries']
+    commun.children.update(autres.formation.pefpc.children)
+
+    # Construction (avec renommage et effacement)
+    commun.children.update(autres.construction.children)
+    commun.children['construction_plus_de_10_salaries'] = commun.children.pop('taux_plus_de_10_salaries')
+    commun.children['construction_plus_de_20_salaries'] = commun.children.pop('taux_plus_de_20_salaries')
+    commun.children['construction_plus_de_50_salaries'] = commun.children.pop('taux_plus_de_50_salaries')
+    del commun.children['seuil']
     # Autres thématiques
     commun.children.update(chomage.ags.employeur.children)
     commun.children.update(chomage.asf.employeur.children)
@@ -46,18 +44,17 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children.update(regime_general.penibilite.children)
     commun.children.update(regime_general.cnav.employeur.children)
     commun.children.update(regime_general.mmid.employeur.children)
-    commun.children.update(autres.fnal.children)  # À harmoniser !
-    commun.children['fnal_cont_moins_de_20_salaries'] = autres.fnal.children['contribution_moins_de_20_salaries']
-    commun.children['fnal_cont_moins_de_50_salaries'] = autres.fnal.children['contribution_moins_de_50_salaries']
-    commun.children['fnal_cont_plus_de_10_salaries'] = autres.fnal.children['contribution_plus_de_10_salaries']
-    commun.children['fnal_cont_plus_de_20_salaries'] = autres.fnal.children['contribution_plus_de_20_salaries']
-    commun.children['fnal_cont_plus_de_50_salaries'] = autres.fnal.children['contribution_plus_de_50_salaries']
-    commun.children['fnal_cotisation'] = autres.fnal.children['cotisation']
+
+    # Fnal (avec renommage)
+    commun.children.update(autres.fnal.children)
+    commun.children['fnal_contribution_moins_de_20_salaries'] = commun.children.pop('contribution_moins_de_20_salaries')
+    commun.children['fnal_contribution_moins_de_50_salaries'] = commun.children.pop('contribution_moins_de_50_salaries')
+    commun.children['fnal_contribution_plus_de_10_salaries'] = commun.children.pop('contribution_plus_de_10_salaries')
+    commun.children['fnal_contribution_plus_de_20_salaries'] = commun.children.pop('contribution_plus_de_20_salaries')
+    commun.children['fnal_contribution_plus_de_50_salaries'] = commun.children.pop('contribution_plus_de_50_salaries')
+    commun.children['fnal_cotisation'] = commun.children.pop('cotisation')
 
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
-    commun.children.update(retraites.ceg.employeur.children)
-    commun.children.update(retraites.cet2019.employeur.children)
-    commun.children.update(retraites.agirc_arrco.employeur.children)
 
     # Réindexation NonCadre
     # Initialisation
@@ -65,6 +62,9 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.add_child('noncadre', noncadre)
     pat.children['noncadre'].children.update(retraites.agff.employeur.noncadre.children)
     pat.children['noncadre'].children.update(retraites.arrco.employeur.noncadre.children)
+    pat.children['noncadre'].children.update(retraites.ceg.employeur.children)
+    pat.children['noncadre'].children.update(retraites.cet2019.employeur.children)
+    pat.children['noncadre'].children.update(retraites.agirc_arrco.employeur.children)
     pat.children['noncadre'].children.update(commun.children)
 
     # Réindexation Cadre
@@ -75,6 +75,10 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['cadre'].children.update(retraites.arrco.employeur.cadre.children)
     pat.children['cadre'].children.update(retraites.agirc.employeur.children)
     pat.children['cadre'].children.update(retraites.apec.employeur.children)
+    pat.children['cadre'].children.update(retraites.ceg.employeur.children)
+    pat.children['cadre'].children.update(retraites.cet2019.employeur.children)
+    pat.children['cadre'].children.update(retraites.agirc_arrco.employeur.children)
+    del pat.children['cadre'].children['forfait_annuel']
     pat.children['cadre'].children.update(retraites.cet.employeur.children)
     pat.children['cadre'].children.update(commun.children)
     # Réindexation Fonc
@@ -172,12 +176,15 @@ def build_sal(node_json):
     # Création de commun
     commun.children.update(chomage.chomage.salarie.children)
     commun.children.update(chomage.asf.salarie.children)
+
     commun.children.update(regime_general.mmid.salarie.children)
+    del commun.children['reduction_plus_65_ans']
+
     commun.children.update(regime_general.mmid_am.children)
+    del commun.children['allocations_chomage_et_preretraite']
+    del commun.children['avantages_vieillesse']
+
     commun.children.update(regime_general.cnav.salarie.children)
-    commun.children.update(retraites.ceg.salarie.children)
-    commun.children.update(retraites.cet2019.salarie.children)
-    commun.children.update(retraites.agirc_arrco.salarie.children)
 
     # Non Cadre
     # Initialisation
@@ -186,6 +193,9 @@ def build_sal(node_json):
     sal.children['noncadre'].children.update(retraites.agff.salarie.noncadre.children)
     sal.children['noncadre'].children.update(retraites.arrco.salarie.noncadre.children)
     sal.children['noncadre'].children.update(commun.children)
+    sal.children['noncadre'].children.update(retraites.ceg.salarie.children)
+    sal.children['noncadre'].children.update(retraites.cet2019.salarie.children)
+    sal.children['noncadre'].children.update(retraites.agirc_arrco.salarie.children)
 
     # Cadre
     cadre = ParameterNode("cadre", data={})
@@ -194,6 +204,11 @@ def build_sal(node_json):
     sal.children['cadre'].children.update(retraites.arrco.salarie.cadre.children)
     sal.children['cadre'].children.update(retraites.agirc.salarie.children)
     sal.children['cadre'].children.update(retraites.apec.salarie.children)
+    sal.children['cadre'].children.update(retraites.ceg.salarie.children)
+    sal.children['cadre'].children.update(retraites.cet2019.salarie.children)
+    sal.children['cadre'].children.update(retraites.agirc_arrco.salarie.children)
+    del sal.children['cadre'].children['forfait_annuel']
+
     sal.children['cadre'].children.update(retraites.cet.salarie.children)
     sal.children['cadre'].children.update(commun.children)
 
@@ -281,8 +296,8 @@ def preprocess_parameters(parameters):
     cotsoc.add_child('sal', sal)
 
     # Modifs
-    cotsoc.children["cotisations_employeur"] = ParameterNode('cotisations_employeur_after_preprocessing', data = {})
-    cotsoc.children["cotisations_salarie"] = ParameterNode('cotisations_salarie_after_preprocessing', data = {})
+    cotsoc.add_child("cotisations_employeur", ParameterNode('cotisations_employeur_after_preprocessing', data = {}))
+    cotsoc.add_child("cotisations_salarie", ParameterNode('cotisations_salarie_after_preprocessing', data = {}))
 
     for cotisation_name, baremes in (
             ('cotisations_employeur', pat.children),

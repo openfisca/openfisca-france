@@ -11,17 +11,19 @@ brackets:
       value: 0.0011
     2001-01-01:
       value: 0.0013
-    2019-01-01:
-      value: 0.0
   threshold:
     1997-01-01:
       value: 0.0
+    2019-01-01:
+      value: null
 - rate:
     1997-01-01:
       value: 0.0
   threshold:
     1997-01-01:
       value: 8.0
+    2019-01-01:
+      value: null
 metadata:
   ux_name: Barème salarié
   last_review:
@@ -34,7 +36,7 @@ metadata:
     1997-01-01: CCN des cadres du 14/03/1947, art. 2 de l'annexe III.
   notes:
     2019-01-01: Suppression de la CET avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et nouvelle CET, voir barème AGIRC-ARRCO)
-    2001-01-01: BSP pour 2001non communicables à la BNF
+    2001-01-01: BSP pour 2001 non communicables à la BNF
     2000-01-01: BSP n°48 du 31/01/2000
     1999-01-01: BSP n°44 du 31/01/1999
     1998-01-01: BSP n°40 du 31/01/1998. Plus qu'un seul taux à partir de 1998.

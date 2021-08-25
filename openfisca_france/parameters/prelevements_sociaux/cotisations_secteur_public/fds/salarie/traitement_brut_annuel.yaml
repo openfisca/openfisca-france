@@ -1,4 +1,3 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   1989-09-01:
@@ -99,3 +98,9 @@ values:
     value: 17375.18
   2017-02-01:
     value: 17272.08
+  2018-01-01:
+    value: null
+metadata:
+  ux_name: Traitement brut annuel
+  description: Traitement brut annuel pour la contribution exceptionnelle de solidarité spécifique à la fonction publique (1982-2017)
+  last_review: 2021-08-24

@@ -3,9 +3,13 @@ brackets:
 - rate:
     1948-01-01:
       value: 0.0
+    2019-01-01:
+      value: null
   threshold:
     1948-01-01:
       value: 0.0
+    2019-01-01:
+      value: null
 - rate:
     1948-01-01:
       value: 0.02
@@ -48,10 +52,12 @@ brackets:
     2015-01-01:
       value: 0.078
     2019-01-01:
-      value: 0.0
+      value: null
   threshold:
     1948-01-01:
       value: 1.0
+    2019-01-01:
+      value: null
 - rate:
     1948-01-01:
       value: 0.0
@@ -75,15 +81,23 @@ brackets:
       value: 0.0775
     2015-01-01:
       value: 0.078
+    2019-01-01:
+      value: null
   threshold:
     1993-07-01:
       value: 4.0
+    2019-01-01:
+      value: null
 - rate:
     1948-01-01:
       value: 0.0
+    2019-01-01:
+      value: null
   threshold:
     1948-01-01:
       value: 8.0
+    2019-01-01:
+      value: null
 metadata:
   ux_name: Barème salarié
   last_review:

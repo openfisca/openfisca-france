@@ -65,7 +65,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         supplement_familial_traitement = individu('supplement_familial_traitement', period)
         # Assujettis
         parameters = parameters(period)
-        seuil_assujetissement_fds = compute_seuil_fds(parameters.prelevements_sociaux.cotisations_sociales.fds)
+        seuil_assujettissement_fds = compute_seuil_fds(parameters.prelevements_sociaux.cotisations_secteur_public.fds.salarie)
         concernes = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
@@ -78,7 +78,7 @@ class contribution_exceptionnelle_solidarite(Variable):
             + indemnite_residence
             - hsup
             )
-        assujettis = concernes * (remuneration_brute > seuil_assujetissement_fds)
+        assujettis = concernes * (remuneration_brute > seuil_assujettissement_fds)
         # Pour le calcul de l'assiette, on déduit de la rémunaration brute
         #  - toutes les cotisations de sécurité sociale obligatoires
         #  - les prélèvements pour pension
@@ -97,7 +97,7 @@ class contribution_exceptionnelle_solidarite(Variable):
             bareme_name = "excep_solidarite",
             base = assujettis * min_(
                 remuneration_brute + supplement_familial_traitement + primes_fonction_publique + deduction,
-                parameters.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
+                parameters.prelevements_sociaux.cotisations_secteur_public.fds.salarie.plafond_base_solidarite,
                 ),
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
@@ -312,6 +312,6 @@ def compute_seuil_fds(fds):
     '''
     Calcule le seuil mensuel d'assujetissement à la contribution au fond de solidarité
     '''
-    pt_ind_mensuel = fds.valeur_annuelle_point_fp / 12
-    seuil_mensuel = math.floor((pt_ind_mensuel * fds.indice_majore_de_reference))  # TODO improve
+    pt_ind_mensuel = fds.pt_ind / 12
+    seuil_mensuel = math.floor((pt_ind_mensuel * fds.ind_maj_ref))  # TODO improve
     return seuil_mensuel

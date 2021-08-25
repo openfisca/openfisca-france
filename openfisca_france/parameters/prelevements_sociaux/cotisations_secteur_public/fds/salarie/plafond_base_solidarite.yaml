@@ -1,0 +1,10 @@
+unit: currency
+values:
+  2002-01-01:
+    value: 12516.0
+  2018-01-01:
+    value: null
+metadata:
+  ux_name: Plafond de la contribution exceptionnelle de solidarité
+  description: Plafond de la contribution exceptionnelle de solidarité spécifique à la fonction publique (1982-2017)
+  last_review: 2021-08-24

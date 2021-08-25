@@ -1,4 +1,3 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   1982-11-01:
@@ -135,3 +134,9 @@ values:
     value: 1447.98
   2017-02-01:
     value: 1439.35
+  2018-01-01:
+    value: null
+metadata:
+  ux_name: Seuil d'assujettissement
+  description: Seuil d'assujettissement contribution exceptionnelle de solidarité spécifique à la fonction publique (1982-2017)
+  last_review: 2021-08-24
