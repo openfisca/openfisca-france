@@ -55,9 +55,6 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['fnal_cotisation'] = commun.children.pop('cotisation')
 
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
-    commun.children.update(retraites.ceg.employeur.children)
-    commun.children.update(retraites.cet2019.employeur.children)
-    commun.children.update(retraites.agirc_arrco.employeur.children)
 
     # Réindexation NonCadre
     # Initialisation
@@ -65,6 +62,9 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.add_child('noncadre', noncadre)
     pat.children['noncadre'].children.update(retraites.agff.employeur.noncadre.children)
     pat.children['noncadre'].children.update(retraites.arrco.employeur.noncadre.children)
+    pat.children['noncadre'].children.update(retraites.ceg.employeur.children)
+    pat.children['noncadre'].children.update(retraites.cet2019.employeur.children)
+    pat.children['noncadre'].children.update(retraites.agirc_arrco.employeur.children)
     pat.children['noncadre'].children.update(commun.children)
 
     # Réindexation Cadre
@@ -75,6 +75,9 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['cadre'].children.update(retraites.arrco.employeur.cadre.children)
     pat.children['cadre'].children.update(retraites.agirc.employeur.children)
     pat.children['cadre'].children.update(retraites.apec.employeur.children)
+    pat.children['cadre'].children.update(retraites.ceg.employeur.children)
+    pat.children['cadre'].children.update(retraites.cet2019.employeur.children)
+    pat.children['cadre'].children.update(retraites.agirc_arrco.employeur.children)
     del pat.children['cadre'].children['forfait_annuel']
     pat.children['cadre'].children.update(retraites.cet.employeur.children)
     pat.children['cadre'].children.update(commun.children)
@@ -182,9 +185,6 @@ def build_sal(node_json):
     del commun.children['avantages_vieillesse']
 
     commun.children.update(regime_general.cnav.salarie.children)
-    commun.children.update(retraites.ceg.salarie.children)
-    commun.children.update(retraites.cet2019.salarie.children)
-    commun.children.update(retraites.agirc_arrco.salarie.children)
 
     # Non Cadre
     # Initialisation
@@ -193,6 +193,9 @@ def build_sal(node_json):
     sal.children['noncadre'].children.update(retraites.agff.salarie.noncadre.children)
     sal.children['noncadre'].children.update(retraites.arrco.salarie.noncadre.children)
     sal.children['noncadre'].children.update(commun.children)
+    sal.children['noncadre'].children.update(retraites.ceg.salarie.children)
+    sal.children['noncadre'].children.update(retraites.cet2019.salarie.children)
+    sal.children['noncadre'].children.update(retraites.agirc_arrco.salarie.children)
 
     # Cadre
     cadre = ParameterNode("cadre", data={})
@@ -201,6 +204,9 @@ def build_sal(node_json):
     sal.children['cadre'].children.update(retraites.arrco.salarie.cadre.children)
     sal.children['cadre'].children.update(retraites.agirc.salarie.children)
     sal.children['cadre'].children.update(retraites.apec.salarie.children)
+    sal.children['cadre'].children.update(retraites.ceg.salarie.children)
+    sal.children['cadre'].children.update(retraites.cet2019.salarie.children)
+    sal.children['cadre'].children.update(retraites.agirc_arrco.salarie.children)
     del sal.children['cadre'].children['forfait_annuel']
 
     sal.children['cadre'].children.update(retraites.cet.salarie.children)

@@ -82,9 +82,6 @@ cotisations_employeur_by_categorie_salarie = {
         "vieillesse_plafonnee",
         ],
     "public_non_titulaire": [
-        "agirc_arrco",
-        "ceg",
-        "cet2019",
         "csa",
         "famille",
         "financement_organisations_syndicales",
@@ -103,10 +100,7 @@ cotisations_employeur_by_categorie_salarie = {
         "vieillesse_plafonnee",
         ],
     "public_titulaire_etat": [
-        "agirc_arrco",
         "ati",
-        "ceg",
-        "cet2019",
         "csa",
         "famille",
         "financement_organisations_syndicales",
@@ -124,10 +118,7 @@ cotisations_employeur_by_categorie_salarie = {
         "rafp",
         ],
     "public_titulaire_hospitaliere": [
-        "agirc_arrco",
         "atiacl",
-        "ceg",
-        "cet2019",
         "cnracl",
         "csa",
         "famille",
@@ -146,9 +137,6 @@ cotisations_employeur_by_categorie_salarie = {
         "rafp",
         ],
     "public_titulaire_militaire": [
-        "agirc_arrco",
-        "ceg",
-        "cet2019",
         "cnracl",
         "csa",
         "famille",
@@ -167,10 +155,7 @@ cotisations_employeur_by_categorie_salarie = {
         "rafp",
         ],
     "public_titulaire_territoriale": [
-        "agirc_arrco",
         "atiacl",
-        "ceg",
-        "cet2019",
         "cnracl",
         "csa",
         "famille",
@@ -223,9 +208,6 @@ cotisations_salarie_by_categorie_salarie = {
         "vieillesse_plafonnee",
         ],
     "public_non_titulaire": [
-        "agirc_arrco",
-        "ceg",
-        "cet2019",
         "excep_solidarite",
         "ircantec",
         "maladie_alsace_moselle",
