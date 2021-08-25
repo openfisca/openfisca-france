@@ -76,11 +76,6 @@ jobs:
           command: make build
 
       - save_cache:
-          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
-          paths:
-            - /tmp/venv/openfisca_france
-
-      - save_cache:
           key: v1-py3-build-{{ .Revision }}
           paths:
             - dist
