@@ -47,14 +47,17 @@ cotisations_salarie_by_name = {
     "chomage": {
         "start_non_null_date": "1959-01-01",
         "final_null_date": "2018-10-01",
-    },
+        },
     "cnracl_s_ti": {
         "start_non_null_date": "1947-09-19",
         },
     "cnracl_s_nbi": {
         "start_non_null_date": "1947-09-19",
         },
-    "excep_solidarite": {},  # TODO: add dates
+    "excep_solidarite": {
+        "start_non_null_date": "1982-11-01",
+        "final_null_date": "2018-01-01",
+        },
     "ircantec": {
         "start_non_null_date": "1971-01-01",
         },
@@ -65,7 +68,9 @@ cotisations_salarie_by_name = {
         "start_non_null_date": "1967-10-01",
         "final_null_date": "2018-01-01",
         },
-    "pension": {},  # TODO: add dates
+    "pension": {
+        "start_non_null_date": "1925-01-01",
+        },
     "rafp": {
         "start_non_null_date": "2005-01-01"
         },
