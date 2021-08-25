@@ -68,8 +68,11 @@ jobs:
           key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - run:
-          name: Activate virtualenv
-          command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
+          name: Create a virtualenv
+          command: |
+            mkdir -p /tmp/venv/openfisca_france
+            python -m venv /tmp/venv/openfisca_france
+            echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
 
       - run:
           name: Build package
@@ -195,13 +198,10 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - install
+      - build
       - lint_files:
           requires:
-            - install
-      - build:
-          requires:
-            - install
+            - build
       - test_python:
           requires:
             - build
