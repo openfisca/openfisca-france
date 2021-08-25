@@ -76,7 +76,7 @@ jobs:
           command: make build
 
       - save_cache:
-          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+          key: v2-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
           paths:
             - /tmp/venv/openfisca_france
 
@@ -93,7 +93,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+          key: v2-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - restore_cache:
           key: v1-py3-build-{{ .Revision }}
@@ -101,9 +101,6 @@ jobs:
       - run:
           name: Activate virtualenv
           command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
-
-      - run:
-          command: make install
 
       - run:
           name: Run Python tests
