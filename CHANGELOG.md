@@ -1,6 +1,6 @@
 # Changelog
 
-## 72.1.1 [#1634](https://github.com/openfisca/openfisca-france/pull/1634)
+## 72.1.1 [#1657](https://github.com/openfisca/openfisca-france/pull/1657)
 
 * Changement mineur.
 * Périodes concernées : à partir du 01/01/2019.
