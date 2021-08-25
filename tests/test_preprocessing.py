@@ -44,7 +44,10 @@ cotisations_salarie_by_name = {
     "cet2019": {
         "start_non_null_date": "2019-01-01",
         },
-    "chomage": {},  # TODO: add dates
+    "chomage": {
+        "start_non_null_date": "1959-01-01",
+        "final_null_date": "2018-10-01",
+    },
     "cnracl_s_ti": {
         "start_non_null_date": "1947-09-19",
         },
