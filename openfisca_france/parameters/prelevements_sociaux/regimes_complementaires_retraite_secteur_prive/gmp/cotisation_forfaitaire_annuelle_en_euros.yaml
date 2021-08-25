@@ -61,7 +61,7 @@ values:
     reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2017/201710dt_parametres_Agirc-Arrco.pdf
     value: 872.52
   2019-01-01:
-    value: 0.0
+    value: null
 metadata:
   ux_name: Cotisation forfaitaire annuelle
   last_review:
@@ -115,4 +115,3 @@ documentation: |
   Attention cependant!
   C'est sur le taux effectif que sont calculées les cotisations (taux contractuel * taux d'appel). Mais c'est à partir du taux contractuel que sont calculés les points.
   Le taux d'appel de 125 signifie que c'est sur une base de 125 que sont calculées les cotisations, mais que c'est sur une base 100 que sont calculés les points AGIRC.
-
