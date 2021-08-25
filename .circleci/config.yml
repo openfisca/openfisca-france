@@ -201,7 +201,7 @@ workflows:
             - install
       - test_python:
           requires:
-            - build
+            - install
       - test_yaml:
           requires:
              - build
