@@ -103,6 +103,9 @@ jobs:
           command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
 
       - run:
+          command: make install
+
+      - run:
           name: Run Python tests
           command: pytest `circleci tests glob "tests/**/[^_]*.py"`
 
