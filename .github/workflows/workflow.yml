@@ -95,6 +95,8 @@ jobs:
     needs: install
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
@@ -107,7 +109,6 @@ jobs:
           key: ${{ env.pythonLocation }}-install-${{ hashFiles('setup.py') }}
       - run: make check-syntax-errors
       - run: make check-style
-      - run: git fetch
       - name: Lint Python files
         run: "${GITHUB_WORKSPACE}/.github/lint-changed-python-files.sh"
       - name: Lint YAML tests
