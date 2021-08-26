@@ -12,14 +12,14 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
-      - name: Cache
-        id: restore-build
+      - name: Cache install
+        id: restore-install
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}
+          key: ${{ env.pythonLocation }}-install-${{ hashFiles('setup.py') }}
       - name: Install dependencies
-        if: steps.restore-build.outputs.cache-hit != 'true'
+        if: steps.restore-install.outputs.cache-hit != 'true'
         run: |
           make install
 
@@ -33,12 +33,12 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
-      - name: Cache
+      - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}
+          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - name: Build package
         if: steps.restore-build.outputs.cache-hit != 'true'
         run: |
@@ -53,12 +53,12 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
-      - name: Cache
+      - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}
+          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - run: pytest
 
   yaml-tests:
@@ -76,12 +76,12 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
-      - name: Cache
+      - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}
+          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - name: Yaml tests
         id: yaml-test
         env:
