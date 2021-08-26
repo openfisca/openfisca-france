@@ -20,8 +20,7 @@ jobs:
           key: ${{ env.pythonLocation }}-install-${{ hashFiles('setup.py') }}
       - name: Install dependencies
         if: steps.restore-install.outputs.cache-hit != 'true'
-        run: |
-          make install
+        run: make install
 
   build:
     runs-on: ubuntu-latest
@@ -41,8 +40,7 @@ jobs:
           key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - name: Build package
         if: steps.restore-build.outputs.cache-hit != 'true'
-        run: |
-          make build
+        run: make build
 
   python-tests:
     runs-on: ubuntu-latest
