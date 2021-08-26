@@ -143,3 +143,29 @@ jobs:
           python-version: 3.7
       - name: Check version number has been properly updated
         run: "${GITHUB_WORKSPACE}/.github/is-version-number-acceptable.sh"
+
+  #GitHub Actions does not have a halt job option
+  check-for-functional-changes:
+    runs-on: ubuntu-latest
+    if: ${{ GITHUB_REF#refs/heads/ == github-actions }}
+    needs: check_version_and_changelog
+    outputs:
+      status: ${{ steps.early.conclusion }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # to fetch all the tags
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Cache install
+        id: restore-install
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
+      - run: if  "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; exit 0 ; fi
+      - run: echo *************
+      - run: echo ${{ steps.early.conclusion }}
+      - run: echo *************
