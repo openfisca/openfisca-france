@@ -135,6 +135,8 @@ jobs:
     needs: [install, build, test-python, test-yaml, test-api]
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # to fetch all the tags
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
