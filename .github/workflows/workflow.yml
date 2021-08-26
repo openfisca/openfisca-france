@@ -147,7 +147,7 @@ jobs:
   #GitHub Actions does not have a halt job option
   check-for-functional-changes:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/github-actions'
     needs: check_version_and_changelog
     outputs:
       status: ${{ steps.early.conclusion }}
