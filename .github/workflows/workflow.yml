@@ -129,3 +129,18 @@ jobs:
           key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - name: Test the Web API
         run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
+
+  check_version_and_changelog:
+    runs-on: ubuntu-latest
+    needs: [install, build, test-python, test-yaml, test-api]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Check version number has been properly updated
+        run: |
+          git fetch
+          echo ${GITHUB_REF#refs/heads/}
+          "${GITHUB_WORKSPACE}/is-version-number-acceptable.sh"
