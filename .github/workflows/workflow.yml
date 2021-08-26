@@ -161,12 +161,14 @@ jobs:
           python-version: 3.7
       - id: stop-early
         run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
-      - run: echo ${{ steps.stop-early.outputs.status }}
 
   deploy:
     runs-on: ubuntu-latest
     needs: [check-for-functional-changes]
     if: needs.check-for-functional-changes.outputs.status == 'success'
+    env:
+      PYPI_USERNAME: openfisca-bot
+      PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }} # PYPI_PASSWORD: this value should be set in GitHub secrets!
     steps:
       - uses: actions/checkout@v2
         with:
@@ -182,9 +184,6 @@ jobs:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - name: Upload a Python package to PyPi
-        env:
-          PYPI_USERNAME: openfisca-bot
-          PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }} # PYPI_PASSWORD: this value should be set in GitHub secrets!
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
