@@ -140,7 +140,4 @@ jobs:
         with:
           python-version: 3.7
       - name: Check version number has been properly updated
-        run: |
-          git fetch
-          echo ${GITHUB_REF#refs/heads/}
-          "${GITHUB_WORKSPACE}/is-version-number-acceptable.sh"
+        run: "${GITHUB_WORKSPACE}/.github/is-version-number-acceptable.sh"
