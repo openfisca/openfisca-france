@@ -111,3 +111,21 @@ jobs:
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
         continue-on-error: true
         run: "${GITHUB_WORKSPACE}/.github/split-tests.sh"
+
+  test-api:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Cache build
+        id: restore-build
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
+      - name: Test the Web API
+        run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
