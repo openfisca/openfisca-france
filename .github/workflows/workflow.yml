@@ -104,9 +104,10 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
+          key: ${{ env.pythonLocation }}-install-${{ hashFiles('setup.py') }}
       - run: make check-syntax-errors
       - run: make check-style
+      - run: git fetch
       - name: Lint Python files
         run: "${GITHUB_WORKSPACE}/.github/lint-changed-python-files.sh"
       - name: Lint YAML tests
