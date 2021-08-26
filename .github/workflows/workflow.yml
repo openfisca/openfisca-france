@@ -148,9 +148,9 @@ jobs:
   check-for-functional-changes:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/github-actions'
-    needs: check_version_and_changelog
+    # needs: check_version_and_changelog
     outputs:
-      status: ${{ steps.early.conclusion }}
+      status: ${{ steps.early.status }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -159,13 +159,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
-      - name: Cache install
-        id: restore-install
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
-      - run: if  "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; exit 0 ; fi
+      - id: early
+        run: if  "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; echo "::set-output name=status::success" ; fi
       - run: echo *************
-      - run: echo ${{ steps.early.conclusion }}
+      - run: echo ${{ steps.early.status }}
       - run: echo *************
