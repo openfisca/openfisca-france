@@ -160,7 +160,7 @@ jobs:
         with:
           python-version: 3.7
       - id: early
-        run: if  "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; echo "::set-output name=status::success" ; fi
+        run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; echo "::set-output name=status::success" ; fi
       - run: echo *************
       - run: echo ${{ steps.early.status }}
       - run: echo *************
