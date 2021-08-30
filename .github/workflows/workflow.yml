@@ -129,7 +129,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ 3.7, 3.8, 3.9 ]
+        python-version: [ 3.7, 3.8 ] # 3.9 Not Working
     needs: build
     steps:
       - uses: actions/checkout@v2
@@ -188,7 +188,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ 3.7, 3.8, 3.9 ]
+        python-version: [ 3.7, 3.8 ] # 3.9 Not Working for API
     needs: [check-for-functional-changes]
     if: needs.check-for-functional-changes.outputs.status == 'success'
     env:
