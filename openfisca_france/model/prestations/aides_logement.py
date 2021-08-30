@@ -773,7 +773,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
 
         age_demandeur = individu.famille.demandeur('age', period)
         age_conjoint = individu.famille.conjoint('age', period)
-        smic_horaire_brut_n2 = parameters(last_day_reference_year).cotsoc.gen.smic_h_b
+        smic_horaire_brut_n2 = parameters(last_day_reference_year).marche_travail.salaire_minimum.smic_h_b
 
         salaire_imposable_i = individu.famille.members('salaire_imposable', period.offset(-1))
         somme_salaires = individu.famille.sum(salaire_imposable_i, role = Famille.PARENT)
