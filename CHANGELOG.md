@@ -2,7 +2,7 @@
 
 # 73.0.0 [#1661](https://github.com/openfisca/openfisca-france/pull/1661) [#1567](https://github.com/openfisca/openfisca-france/pull/1567)
 
-* Évolution du système socio-fiscal **non rétrocompatible** | Correction d'un crash
+* Évolution du système socio-fiscal **non rétrocompatible** | Correction d'un crash.
 * Périodes concernées : toutes.
 * Zones impactées : `openfisca_france/model/prestations/aides_logement.py`
 * Détails :
@@ -42,7 +42,7 @@
 
 # 72.0.0 [#1656](https://github.com/openfisca/openfisca-france/pull/1656)
 
-* Évolution du système socio-fiscal. | Amélioration technique.
+* Évolution du système socio-fiscal **non rétrocompatible** | Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public.
 * Détails :
@@ -61,7 +61,7 @@
 
 # 71.0.0 [#1623](https://github.com/openfisca/openfisca-france/pull/1623)
 
-* Amélioration technique.
+* Amélioration technique **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées :
   - `openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/`
@@ -95,7 +95,7 @@
   - Cela facilite la détection automatique des paramètres précisément utilisés par chaque formule.
 
 # 70.0.0 [#1640](https://github.com/openfisca/openfisca-france/pull/1640)
-* Amélioration technique.
+* Amélioration technique **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées :
   - model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py
@@ -131,7 +131,7 @@
 
 # 69.0.0 [#1627](https://github.com/openfisca/openfisca-france/pull/1627)
 
-* Évolution du système socio-fiscal. | Amélioration technique
+* Évolution du système socio-fiscal **non rétrocompatible** | Amélioration technique
 * Périodes concernées : toutes.
 * Zones impactées : `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`, `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py`, `parameters/prelevements_sociaux/cotisations_regime_assurance_chomage`
 * Détails :
@@ -161,7 +161,7 @@
 
 # 68.0.0 [#1613](https://github.com/openfisca/openfisca-france/pull/1613)
 
-* Amélioration technique.
+* Amélioration technique **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées : toutes
 * Détails : Harmonisation du dossier parameters.prelevements_sociaux.cotisations_regime_assurance_chomage :
@@ -182,7 +182,7 @@ Ces changements modifient des éléments non fonctionnels (metadata official_jou
 
 # 67.0.0 [#1595](https://github.com/openfisca/openfisca-france/pull/1595)
 
-* Évolution du système socio-fiscal.
+* Évolution du système socio-fiscal **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées :
   - `openfisca_france/model/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
@@ -220,7 +220,7 @@ Ces changements :
 
 # 66.0.0 [#1615](https://github.com/openfisca/openfisca-france/pull/1615)
 
-* Évolution du système socio-fiscal. | Amélioration technique. | Correction paramètres et formules
+* Évolution du système socio-fiscal **non rétrocompatible** | Amélioration technique | Correction paramètres et formules.
 * Périodes concernées : toutes.
 * Zones impactées :
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires`.
@@ -235,7 +235,7 @@ Ces changements :
 
 # 65.0.0 [#1610](https://github.com/openfisca/openfisca-france/pull/1610)
 
-* Amélioration technique.
+* Amélioration technique **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées : toutes
 * Détails : Harmonisation du dossier parameters.prelevements_sociaux.pss :
@@ -253,7 +253,7 @@ Ces changements :
 
 # 64.0.0 [#1622](https://github.com/openfisca/openfisca-france/pull/1622)
 
-* Évolution du système socio-fiscal. | Amélioration technique.
+* Évolution du système socio-fiscal **non rétrocompatible** | Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées :
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique`.
@@ -268,7 +268,7 @@ Ces changements :
 
 # 63.0.0 [#1619](https://github.com/openfisca/openfisca-france/pull/1619)
 
-* Évolution du système socio-fiscal.
+* Évolution du système socio-fiscal **non rétrocompatible**
 * Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées :
@@ -301,7 +301,7 @@ Ces changements :
 
 # 62.0.0 [#1608](https://github.com/openfisca/openfisca-france/pull/1608)
 
-* Amélioration technique : Corrige ou améliore un calcul déjà existant.
+* Amélioration technique **non rétrocompatible** : Corrige ou améliore un calcul déjà existant.
 * Périodes concernées : toutes
 * Zones impactées :
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique`.
@@ -341,7 +341,7 @@ Ces changements :
 
 # 61.0.0 [#1553](https://github.com/openfisca/openfisca-france/pull/1553)
 
-* Amélioration technique.
+* Amélioration technique **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées : parameters et parameters.cotsoc
 * Détails :
@@ -354,7 +354,7 @@ Ces changements :
 
 > Version dont le contenu est réappliqué en `#1661` suite à une suppression erronée en v`61.0.0`.
 
-* Évolution du système socio-fiscal.
+* Évolution du système socio-fiscal **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées : `openfisca_france/model/prestations/aides_logement.py`
 * Détails :
@@ -363,7 +363,7 @@ Ces changements :
 
 # 59.0.0 [#1577](https://github.com/openfisca/openfisca-france/pull/1577)
 
-* Amélioration technique et correction d'un crash.
+* Amélioration technique **non rétrocompatible** et correction d'un crash.
 * Périodes concernées : jusqu'au 31/12/2005
 * Zones impactées : `model/prestations/prestations_familiales/aeeh.py`
 * Détails :
@@ -422,7 +422,7 @@ Ces changements :
 
 # 57.0.0 [#1578](https://github.com/openfisca/openfisca-france/pull/1578)
 
-* Évolution du système socio-fiscal
+* Évolution du système socio-fiscal **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées :
   - model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/mmid
@@ -449,7 +449,7 @@ Ces changements :
 
 # 56.0.0 [#1549](https://github.com/openfisca/openfisca-france/pull/1549)
 
-* Évolution du système socio-fiscal non rétrocompatible
+* Évolution du système socio-fiscal **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées :
   - model/prelevements_obligatoires/
@@ -484,7 +484,7 @@ Ces changements :
 
 # 55.0.0 [#1477](https://github.com/openfisca/openfisca-france/pull/1477)
 
-* Évolution du système socio-fiscal.
+* Évolution du système socio-fiscal **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées :
   - `model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`
@@ -527,7 +527,7 @@ Ces changements :
 
 ## 54.0.0 [#1547](https://github.com/openfisca/openfisca-france/pull/1547)
 
-* Évolution du système socio-fiscal non rétrocompatible
+* Évolution du système socio-fiscal **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées :
   - parameters/prelevements_sociaux/
@@ -600,7 +600,7 @@ Ces changements :
 
 # 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541)
 
-* Changement majeur.
+* Changement majeur **non rétrocompatible**
 * Évolution du système socio-fiscal non rétrocompatible
 * Périodes concernées : toutes.
 * Zones impactées :
@@ -678,7 +678,7 @@ Ces changements :
 
 # 52.0.0 [#1521](https://github.com/openfisca/openfisca-france/pull/1521)
 
-* Évolution du système socio-fiscal.
+* Évolution du système socio-fiscal **non rétrocompatible**.
 * Périodes concernées : toutes.
 * Zones impactées :
   * `prestations/enseignement_superieur/bourse_criteres_sociaux.py`
@@ -1010,7 +1010,7 @@ Ces changements :
 
 # 51.0.0 [#1442](https://github.com/openfisca/openfisca-france/pull/1442)
 
-* Évolution du système socio-fiscal.
+* Évolution du système socio-fiscal **non rétrocompatible**
 * Périodes concernées : jusqu'au 31/12/2020 | à partir du 01/03/2020
 * Zones impactées : `model/covid19.py`
 * Détails :
@@ -1056,7 +1056,7 @@ Ces changements :
 
 # 50.0.0 [#1431](https://github.com/openfisca/openfisca-france/pull/1431)
 
-* Amélioration technique non rétro-compatible.
+* Amélioration technique **non rétrocompatible**
 * Périodes concernées : toutes.
 * Détails :
   - Adapte OpenFisca-France à [numpy v1.18](https://numpy.org/devdocs/release/1.18.0-notes.html#expired-deprecations) au travers de la mise à jour à Core v35.
@@ -1073,7 +1073,7 @@ Ces changements :
 
 # 49.0.0 [#1462](https://github.com/openfisca/openfisca-france/pull/1462)
 
-* Évolution du système socio-fiscal.
+* Évolution du système socio-fiscal **non rétrocompatible**
 * Périodes concernées : à partir du 01/01/1998.
 * Zones impactées : `parameters/impot_revenu/plafond_qf/veuf.yaml`.
 * Détails :
