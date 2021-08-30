@@ -478,6 +478,7 @@ class aide_logement_condition_neutralisation(Variable):
     entity = Individu
     label = "Condition de neutralisation des revenus d'activité professionnelle et des indemnités de chômage dans le calcul des ressources de l'aide au logement."
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = [
         "Article 822-15 du code de la construction et de l'habitation",
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878973/",
@@ -509,6 +510,7 @@ class aide_logement_abattement_revenus_activite_professionnelle(Variable):
     entity = Individu
     label = "Condition de l'abattement sur les revenus d'activités pour les personnes au chômage indemnisé ou partant à la retraite (R351-13 du CCH)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         "Article 822-13 du code de la construction et de l'habitation",
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878977",
@@ -529,10 +531,11 @@ class aide_logement_abattement_revenus_activite_professionnelle(Variable):
 
 
 class aide_logement_abattement_indemnites_chomage(Variable):
-    value_type = float
+    value_type = bool
     entity = Individu
     label = "Condition de l'abattement sur les indemnités chômages pour les personnes partant à la retraite (R351-13 du CCH)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = [
         "Article 822-13 du code de la construction et de l'habitation",
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878977",
@@ -552,10 +555,10 @@ class aide_logement_abattement_indemnites_chomage(Variable):
 
 class aide_logement_base_ressources_individu(Variable):
     value_type = float
-    is_period_size_independent = True
     entity = Individu
     label = "Base ressource individuelle des aides logement"
     definition_period = MONTH
+    is_period_size_independent = True
 
     def formula_2021_01_01(individu, period, parameters):
         period_frais = period.last_year
@@ -1007,6 +1010,7 @@ class aides_logement_primo_accedant_ressources(Variable):
     label = "Allocation logement pour les primo-accédants, plancher de ressources"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=0E9C46E37CA82EB75BD1482030D54BB5.tpdila18v_2?idArticle=LEGIARTI000021632291&cidTexte=LEGITEXT000006074096&dateTexte=20170623&categorieLien=id&oldAction="
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(menage, period, parameters):
         loyer = menage('loyer', period)
