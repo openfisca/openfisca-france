@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 set -m
-
+shopt -s globstar
 dir=($(ls -d tests/*.{yaml,yml}))
 final_list=()
 len_dir=${#dir[@]}
