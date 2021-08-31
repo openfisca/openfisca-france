@@ -48,9 +48,9 @@ jobs:
       - run: make check-syntax-errors
       - run: make check-style
       - name: Lint Python files
-        run: "${GITHUB_WORKSPACE}/CI-scripts/lint-changed-python-files.sh"
+        run: "${GITHUB_WORKSPACE}/ci-scripts/lint-changed-python-files.sh"
       - name: Lint YAML tests
-        run: "${GITHUB_WORKSPACE}/CI-scripts/lint-changed-yaml-tests.sh"
+        run: "${GITHUB_WORKSPACE}/ci-scripts/lint-changed-yaml-tests.sh"
 
   build:
     runs-on: ubuntu-latest
@@ -125,7 +125,7 @@ jobs:
           CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
         continue-on-error: true
-        run: "${GITHUB_WORKSPACE}/CI-scripts/split-tests.sh"
+        run: "${GITHUB_WORKSPACE}/ci-scripts/split-tests.sh"
 
   test-api:
     runs-on: ubuntu-latest
@@ -146,7 +146,7 @@ jobs:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - name: Test the Web API
-        run: "${GITHUB_WORKSPACE}/CI-scripts/test-api.sh"
+        run: "${GITHUB_WORKSPACE}/ci-scripts/test-api.sh"
 
   check-version-and-changelog:
     runs-on: ubuntu-latest
@@ -163,7 +163,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Check version number has been properly updated
-        run: "${GITHUB_WORKSPACE}/CI-scripts/is-version-number-acceptable.sh"
+        run: "${GITHUB_WORKSPACE}/ci-scripts/is-version-number-acceptable.sh"
 
   #GitHub Actions does not have a halt job option
   check-for-functional-changes:
@@ -184,7 +184,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - id: stop-early
-        run: if "${GITHUB_WORKSPACE}/CI-scripts/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
+        run: if "${GITHUB_WORKSPACE}/ci-scripts/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
 
   deploy:
     runs-on: ubuntu-latest
@@ -213,6 +213,6 @@ jobs:
       - name: Upload a Python package to PyPi
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
-        run: "${GITHUB_WORKSPACE}/CI-scripts/publish-git-tag.sh"
+        run: "${GITHUB_WORKSPACE}/ci-scripts/publish-git-tag.sh"
       - name: Deploy the Web API
         run: ssh -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
