@@ -1,8 +1,7 @@
 # CircleCI 2.0 configuration file. See <https://circleci.com/docs/2.0/language-python/>.
 version: 2
 jobs:
-  build:
-    parallelism: 2  # Speed up the tests, while letting two containers available for other builds.
+  install:
     docker:
       - image: python:3.7
 
@@ -21,12 +20,63 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: |
-            make build
-            # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
+          command: make install
+
+    # - run:
+      #    name: Use a specific branch of OpenFisca-Core for testing purposes
+      #    command:  pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core
 
       - save_cache:
           key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+          paths:
+            - /tmp/venv/openfisca_france
+
+  lint_files:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+
+      - run:
+          name: Activate virtualenv
+          command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
+
+      - run: make check-syntax-errors
+
+      - run: make check-style
+
+      - run:
+          name: Lint Python files
+          command: .circleci/lint-changed-python-files.sh
+
+      - run:
+          name: Lint YAML tests
+          command: .circleci/lint-changed-yaml-tests.sh
+
+  build:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+
+      - run:
+          name: Activate virtualenv
+          command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
+
+      - run:
+          name: Build package
+          command: make build
+
+      - save_cache:
+          key: v2-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
           paths:
             - /tmp/venv/openfisca_france
 
@@ -35,13 +85,7 @@ jobs:
           paths:
             - dist
 
-      - run:
-          name: Run tests
-          command: |
-            pytest `circleci tests glob "tests/**/[^_]*.py" | circleci tests split`
-            openfisca test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
-
-  lint_yaml_files:
+  test_python: # Python tests are separated from YAML tests, because the latter take longer. This allows Python tests to use any other available container and yield it, once finished, to another job instead of relying only on the two containers assigned to the YAML tests.
     docker:
       - image: python:3.7
 
@@ -49,19 +93,18 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+          key: v2-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - run:
           name: Activate virtualenv
-          command: |
-            echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
+          command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
 
       - run:
-          name: Lint files
-          command: |
-            .circleci/lint-changed-yaml-tests.sh
+          name: Run Python tests
+          command: pytest `circleci tests glob "tests/**/[^_]*.py"`
 
-  lint_python_files:
+  test_yaml:
+    parallelism: 2  # Speed up the yaml tests, while letting two containers available for other jobs.
     docker:
       - image: python:3.7
 
@@ -69,18 +112,15 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+          key: v2-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - run:
           name: Activate virtualenv
-          command: |
-            echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
+          command: echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
 
       - run:
-          name: Lint files
-          command: |
-            make check-syntax-errors check-style
-            .circleci/lint-changed-python-files.sh
+          name: Run YAML tests
+          command: openfisca test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
   test_api:
     docker:
@@ -90,7 +130,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+          key: v2-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - run:
           name: Activate virtualenv
@@ -99,8 +139,7 @@ jobs:
 
       - run:
           name: Test the Web API
-          command: |
-            .circleci/test-api.sh
+          command: .circleci/test-api.sh
 
   check_version_and_changelog:
     docker:
@@ -126,7 +165,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
+          key: v2-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - restore_cache:
           key: v1-py3-build-{{ .Revision }}
@@ -153,24 +192,31 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - check_version_and_changelog
-      - build
+      - install
+      - lint_files:
+          requires:
+            - install
+      - build:
+          requires:
+            - install
+      - test_python:
+          requires:
+            - build
+      - test_yaml:
+          requires:
+            - build
       - test_api:
           requires:
             - build
-      - lint_yaml_files:
+      - check_version_and_changelog:
           requires:
-            - build
-      - lint_python_files:
-          requires:
-            - build
+            - lint_files
+            - test_python
+            - test_yaml
+            - test_api
       - deploy:
           requires:
             - check_version_and_changelog
-            - build
-            - test_api
-            - lint_yaml_files
-            - lint_python_files
           filters:
             branches:
               only: master
