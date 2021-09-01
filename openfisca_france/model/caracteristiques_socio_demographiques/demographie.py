@@ -391,3 +391,27 @@ class enfant_place(Variable):
     label = "Enfant placé en structure spécialisée ou famille d'accueil"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
+
+class RegimeSecuriteSociale(Enum):
+    regime_general = "Régime général"
+    regime_agricole = "Régime Agricole"
+    regime_retraite_fonctionnaires_civils_militaires_etat = "Régime de retraite des fonctionnaires civils et militaires de l’Etat"
+    regime_special_fonctionnaires_territoriaux_hospitaliers = "Régime spécial des fonctionnaires territoriaux et hospitaliers"
+    fond_special_pensions_ouvriers_etablissements_industriels_etat = "Le Fonds spécial des pensions des ouvriers des établissements industriels de l’Etat (FSPOEIE)"
+    regime_special_agents_sncf = "Régime spécial des agents de la SNCF"
+    regime_special_agents_ratp = "Régime spécial des agents de la RATP"
+    regime_special_industries_electriques_gazieres = "Régime spécial des industries électriques et gazières (CNIEG)"
+    autres_regimes = "Autres régimes"
+    aucun = "Aucun"
+
+
+class regime_securite_sociale(Variable):
+    value_type = Enum
+    possible_values = RegimeSecuriteSociale
+    default_value = RegimeSecuriteSociale.aucun
+    entity = Individu
+    label = "Régime de sécurité sociale"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    reference = "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2020/RAPPORT%20CCSS-Sept%202020.pdf"
