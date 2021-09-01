@@ -1,5 +1,15 @@
 # Changelog
 
+### 72.1.2 [#1650](https://github.com/openfisca/openfisca-france/pull/1650)
+
+* Amélioration technique.
+* Zones impactées : configuration de l'intégration continue.
+* Détails :
+  - Sépare les jobs `test_python` et `test_yaml` du `build`.
+  - Sépare le job `install` du job `build`.
+  - Regroupe les deux jobs `lint_python_files` et `lint_yaml_files` dans un seul job.
+  - Rend le job `check-version-and-changelog` dépendant de tous les autres jobs.
+
 ## 72.1.1 [#1657](https://github.com/openfisca/openfisca-france/pull/1657)
 
 * Changement mineur.
