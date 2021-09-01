@@ -1,4 +1,4 @@
-name: OpenFisca France Workflow
+name: OpenFisca France
 
 on: [ push ]
 
