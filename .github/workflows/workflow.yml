@@ -5,16 +5,13 @@ on: [ push ]
 jobs:
   install:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ 3.7, 3.8, 3.9 ] # Test multiple Python versions
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.7
       - name: Cache install
         id: restore-install
         uses: actions/cache@v2
@@ -27,9 +24,6 @@ jobs:
 
   lint-files:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ 3.7, 3.8, 3.9 ]
     needs: [ install ]
     steps:
       - uses: actions/checkout@v2
@@ -38,7 +32,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.7
       - name: Cache install
         id: restore-install
         uses: actions/cache@v2
@@ -54,9 +48,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ 3.7, 3.8, 3.9 ]
     needs: [ install ]
     steps:
       - name: Checkout
@@ -64,7 +55,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.7
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
@@ -77,16 +68,13 @@ jobs:
 
   test-python:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ 3.7, 3.8, 3.9 ]
     needs: [ build ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.7
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
@@ -103,7 +91,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ 3.7, 3.8, 3.9 ]
         # Set N number of parallel jobs to run tests on. Here we use 10 jobs
         # Remember to update ci_node_index below to 0..N-1
         ci_node_total: [ 10 ]
@@ -114,7 +101,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.7
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
@@ -131,16 +118,13 @@ jobs:
 
   test-api:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ 3.7, 3.8 ] # With 3.9, job does not exit
     needs: [ build ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.7
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
@@ -152,9 +136,6 @@ jobs:
 
   check-version-and-changelog:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ 3.7, 3.8, 3.9 ]
     needs: [ lint-files, test-python, test-yaml, test-api ] # Last job to run
     steps:
       - uses: actions/checkout@v2
@@ -163,7 +144,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.7
       - name: Check version number has been properly updated
         run: "${GITHUB_WORKSPACE}/ci-scripts/is-version-number-acceptable.sh"
 
@@ -172,9 +153,6 @@ jobs:
   # The `deploy` job is dependent on the output of the `check-for-functional-changes`job.
   check-for-functional-changes:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ 3.7, 3.8, 3.9 ]
     if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ check-version-and-changelog ]
     outputs:
@@ -186,15 +164,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.7
       - id: stop-early
         run: if "${GITHUB_WORKSPACE}/ci-scripts/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
 
   deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ 3.7, 3.8 ] # 3.9 Not Working for API test
     needs: [ check-for-functional-changes ]
     if: needs.check-for-functional-changes.outputs.status == 'success'
     env:
@@ -207,7 +182,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.7
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
