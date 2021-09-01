@@ -126,7 +126,7 @@ jobs:
         env:
           CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-        continue-on-error: true # Prevent a job from failing when a step fails. In case we wish for the other tests to continue.
+        # continue-on-error: true # Prevent a job from failing when a step fails. In case we wish for the other tests to continue running.
         run: "${GITHUB_WORKSPACE}/ci-scripts/split-tests.sh"
 
   test-api:
