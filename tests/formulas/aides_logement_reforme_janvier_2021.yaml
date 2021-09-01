@@ -34,6 +34,9 @@
   input:
     famille:
       parents: [personne1]
+      rsa:
+        2021-01: 0
+        2020-12: 0
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
@@ -50,8 +53,8 @@
           2021-01: actif
         date_naissance:
           2021-01: 1962-01-01
-        rpns_benefice_exploitant_agricole:
-          year:2019-12: 6864
+        rpns_imposables:
+          2019: 6864
     foyer_fiscal:
       declarants: [personne1]
   output:
@@ -118,13 +121,15 @@
     aide_logement_base_ressources: 9600
     aide_logement: 100.71
 
-- name: "Cas 5 AL Reforme 2019"
+- name: "Cas 4 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
       parents: [personne1, personne2]
       enfants: [enfant1, enfant2]
+      rsa:
+        2020-12: 0
     menage:
       personne_de_reference: personne1
       conjoint: personne2
@@ -142,7 +147,7 @@
         activite: actif
         date_naissance:
           2021-01: 1981-01-01
-        rpns_benefice_exploitant_agricole:
+        rpns_imposables:
           2019: 21502
       personne2:
         activite: inactif
@@ -162,12 +167,14 @@
     aide_logement_base_ressources: 21600
     aide_logement: 53.64
 
-- name: "Cas 6 AL Reforme 2019"
+- name: "Cas 5 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
       parents: [personne1]
+      rsa:
+        2020-12: 0
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
@@ -184,7 +191,7 @@
           2021-01: actif
         date_naissance:
           2021-01: 1964-01-01
-        rpns_benefice_exploitant_agricole:
+        rpns_imposables:
           2019: 4935
     foyer_fiscal:
       declarants: [personne1]
@@ -193,7 +200,7 @@
     aide_logement_base_ressources: 5000
     aide_logement: 213.80
 
-- name: "Cas 7 AL Reforme 2019"
+- name: "Cas 6 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -250,7 +257,7 @@
     aide_logement_base_ressources: 12500
     aide_logement: 11.48
 
-- name: "Cas 8 AL Reforme 2019"
+- name: "Cas 7 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -329,7 +336,7 @@
     aide_logement: 209.46
     reduction_loyer_solidarite: 37.85
 
-- name: "Cas 9 AL Reforme 2019"
+- name: "Cas 8 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -430,7 +437,7 @@
     aide_logement: 438.81
     reduction_loyer_solidarite: 58.8
 
-- name: "Cas 10 AL Reforme 2019"
+- name: "Cas 9 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -494,14 +501,14 @@
           2020: 45
     foyer_fiscal:
       declarants: [personne1]
-      plus_values_base_large:
+      revenu_categoriel_capital:
         2019: 828.40
   output:
     zone_apl: zone_3
-    aide_logement_base_ressources: 9000
-    aide_logement: 131.13
+    aide_logement_base_ressources: 9100
+    aide_logement: 129
 
-- name: "Cas 11 AL Reforme 2019"
+- name: "Cas 10 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -545,7 +552,7 @@
     aide_logement_base_ressources: 6200
     aide_logement: 219.58
 
-- name: "Cas 12 AL Reforme 2019"
+- name: "Cas 11 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -603,7 +610,7 @@
     aide_logement: 145.3
     reduction_loyer_solidarite: 29.72
 
-- name: "Cas 13 AL Reforme 2019: stagiaire étudiant"
+- name: "Cas 12 AL Reforme 2019: stagiaire étudiant"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -651,50 +658,3 @@
       declarants: [personne1]
   output:
     aide_logement: 172.78
-
-- name: "cas 14 AL Reforme 2019: apprenti avec un salaire"
-  period: 2021-01
-  relative_error_margin: 0.01
-  input:
-    famille:
-      parents: [personne1]
-      rsa:
-        2019-10: 0
-    menage:
-      personne_de_reference: personne1
-      statut_occupation_logement: locataire_vide
-      zone_apl: zone_2
-      loyer: 373
-    individus:
-      personne1:
-        date_naissance: 1998-01-01
-        salaire_imposable:
-          2020-11: 0
-          2020-10: 0
-          2020-09: 0
-          2020-08: 0
-          2020-07: 0
-          2020-06: 0
-          2020-05: 0
-          2020-04: 0
-          2020-03: 0
-          2020-02: 0
-          2020-01: 0
-          2019-12: 0
-        remuneration_apprenti:
-          2020-11: 2511.25
-          2020-10: 2511.25
-          2020-09: 2511.25
-          2020-08: 2511.25
-          2020-07: 2511.25
-          2020-06: 2511.25
-          2020-05: 2511.25
-          2020-04: 2511.25
-          2020-03: 2511.25
-          2020-02: 2511.25
-          2020-01: 2511.25
-          2019-12: 2511.25
-    foyer_fiscal:
-      declarants: [personne1]
-  output:
-    aide_logement: 89.78
