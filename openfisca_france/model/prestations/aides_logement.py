@@ -550,7 +550,11 @@ class aide_logement_abattement_indemnites_chomage(Variable):
         rpns = individu('rpns_imposables', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
         rpns_exon = individu('rpns_exon', period.n_2)
-        return min_(1, (activite == TypesActivite.retraite) * ((salaire_imposable + rpns + rpns_pvce + rpns_exon) == 0) + (aah > 0) * ((salaire_imposable + rpns + rpns_pvce + rpns_exon) == 0))
+
+        return min_(
+            1,
+            ((activite == TypesActivite.retraite) + (aah > 0)) * ((salaire_imposable + rpns + rpns_pvce + rpns_exon) == 0)
+            )
 
 
 class aide_logement_base_ressources_individu(Variable):
