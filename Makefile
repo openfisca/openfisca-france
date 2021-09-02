@@ -1,5 +1,8 @@
 # Le nombre de processeurs disponibles.
-cpus = $$(($$(nproc)))
+cpu = $$(($$(nproc)))
+
+# Le nombre de groupes de test à lancer en parallèle.
+pas = $$(seq 1 $(cpu))
 
 all: test
 
