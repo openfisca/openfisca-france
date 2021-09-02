@@ -1,5 +1,4 @@
 description: Barème salarié des cotisations du régime local d'assurance maladie d'Alsace et Moselle (depuis 1967)
-unit: /1
 brackets:
 - rate:
     1946-07-01:
