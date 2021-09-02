@@ -16,8 +16,8 @@ metadata:
   ux_name: Barème salarié
   last_review:
     2019-01-01
-  unit_rate: /1
-  unit_threshold: SMIC
+  rate_unit: /1
+  threshold_unit: SMIC
   reference:
     2019-01-01:
       title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018), art. 9
