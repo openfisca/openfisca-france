@@ -27,7 +27,7 @@ ressources_annuelles_maximal:
       value: 25000
 
 age:
-  description: Fourchette d'âges pour l'aide au permis B par probtp.
+  description: Fourchette d'âges pour l'aide au permis B par pro btp.
   reference: https://www.probtp.com/part/apprenti/aide-permis.html
   unit: year
   minimum:
