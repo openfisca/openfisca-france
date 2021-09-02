@@ -1,5 +1,14 @@
 # Changelog
 
+### 73.0.1 [#1642](https://github.com/openfisca/openfisca-france/pull/1642)
+
+* Changement mineur.
+* Périodes concernées : 1995 - 2001
+* Zones impactées :
+  * `parameters/marche_travail/salaire_minimum/smic_h_b.yaml`
+* Détails :
+  - Ajoute quelques années au SMIC horaire brut
+
 # 73.0.0 [#1661](https://github.com/openfisca/openfisca-france/pull/1661) [#1567](https://github.com/openfisca/openfisca-france/pull/1567)
 
 * Évolution du système socio-fiscal **non rétrocompatible** | Correction d'un crash.
@@ -134,7 +143,7 @@
 
 * Évolution du système socio-fiscal **non rétrocompatible** | Amélioration technique
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
   - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py`
   - `parameters/prelevements_sociaux/cotisations_regime_assurance_chomage`
@@ -168,7 +177,7 @@
 * Amélioration technique **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées : toutes
-* Détails : 
+* Détails :
   - Harmonisation du dossier `parameters.prelevements_sociaux.cotisations_regime_assurance_chomage` :
     * Arborescence selon le modèle IPP
     * Nouveau formatage des fichiers .yaml
@@ -181,7 +190,7 @@
 * Changement mineur.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/formation`.
-* Détails : 
+* Détails :
   * Ajout de ";" manquants aux `official_journal_date` multiples.
 
 Ces changements modifient des éléments non fonctionnels (metadata `official_journal_date` de paramètres).
@@ -219,7 +228,7 @@ Ces changements :
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
   - Presque l'ensemble des fichiers présents dans : `openfisca-france/openfisca_france/model/`
 * Détails :
   - Configure les variables par mois pour qu'elles fonctionnent avec un input annuel.
@@ -244,7 +253,7 @@ Ces changements :
 * Amélioration technique **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées : toutes
-* Détails : 
+* Détails :
   - Harmonisation du dossier `parameters.prelevements_sociaux.pss` :
     * Arborescence selon le modèle IPP
     * Nouveau formatage des fichiers .yaml
@@ -350,7 +359,7 @@ Ces changements :
 
 * Amélioration technique **non rétrocompatible**
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `parameters`
   - `parameters.cotsoc`
 * Détails :
