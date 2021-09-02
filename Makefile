@@ -1,3 +1,6 @@
+# Le nombre de processeurs disponibles.
+cpus = $$(($$(nproc)))
+
 all: test
 
 uninstall:
