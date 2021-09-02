@@ -27,7 +27,7 @@ metadata:
   last_review:
     2021-07-30
   rate_unit: /1
-  threshold_unit:
+  threshold_unit: PSS
   reference:
     2011-01-01: Circulaire AGIRC 2010-5-DF du 29/07/2010
   official_journal_date:
