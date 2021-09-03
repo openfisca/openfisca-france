@@ -1,11 +1,5 @@
-# Le nombre de processeurs disponibles.
-ncpus = $(shell echo $$(($$(nproc))))
-
-# Le nombre de steps de test à lancer en parallèle.
-steps = $(shell echo $$(seq 1 ${ncpus}))
-
-# Options passées à py.test.
-padds = --splits ${ncpus} --splitting-algorithm least_duration
+# Le nombre de cpus disponibles.
+ncpus = $$(nproc)
 
 all: test
 
@@ -52,8 +46,11 @@ test: clean check-syntax-errors check-style
 	@# before parsing source files containing formulas.
 	openfisca test --country-package openfisca_france tests
 
-test.parallel:
-	time $(foreach step, $(steps), ${MAKE} test.parallel.$(step))
+test-parallel: MAKEFLAGS = --output-sync --jobs $(shell echo $$((${ncpus} + 1)))
+test-parallel: nodes = $(shell seq ${ncpus})
+test-parallel:
+	@$(foreach step, ${nodes}, ${MAKE} test-parallel-${step} ncpus=${ncpus})
 
-test.parallel.%: .circleci/.test-durations
-	PYTEST_ADDOPTS="${padds} --group $* --durations-path $?" openfisca test --country-package openfisca_france tests
+test-parallel-%: splitting = --splits ${ncpus} --splitting-algorithm least_duration --durations-path .circleci/.test-durations
+test-parallel-%:
+	PYTEST_ADDOPTS="${PYTEST_ADDOPTS} -x --group $* ${splitting}" openfisca test --country-package openfisca_france tests
