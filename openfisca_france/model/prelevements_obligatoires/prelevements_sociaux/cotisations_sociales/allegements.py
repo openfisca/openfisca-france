@@ -429,9 +429,10 @@ class allegement_cotisation_maladie(Variable):
         # taux global tout salaire à réduire :
         # openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/mmid/taux.yaml
         tranches_bareme_maladie = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.mmid.taux
+        bareme_a_deux_tranches = (len(tranches_bareme_maladie.rates) == 2) * (len(tranches_bareme_maladie.thresholds) == 2)
 
-        taux_reduction = tranches_bareme_maladie.rates[1] - tranches_bareme_maladie.rates[0]
-        seuil_reduction = tranches_bareme_maladie.thresholds[1]  # en nombre de smic
+        taux_reduction = bareme_a_deux_tranches * (tranches_bareme_maladie.rates[1] - tranches_bareme_maladie.rates[0])
+        seuil_reduction = bareme_a_deux_tranches * tranches_bareme_maladie.thresholds[1]  # en nombre de smic
 
         smic_proratise = individu('smic_proratise', period)
         condition_smic = assiette_allegement <= (seuil_reduction * smic_proratise)
