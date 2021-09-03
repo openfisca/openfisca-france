@@ -424,14 +424,17 @@ class allegement_cotisation_maladie(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559"
 
     def formula_2019_01_01(individu, period, parameters):
-        assiette_allegement = individu('assiette_allegement', period)  # remuneration_salarie
+        assiette_allegement = individu('assiette_allegement', period)
 
         # taux global tout salaire à réduire :
         # openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/mmid/taux.yaml
-    
-        taux_reduction = 0.6
+        tranches_bareme_maladie = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.mmid.taux
+
+        taux_reduction = tranches_bareme_maladie.rates[1] - tranches_bareme_maladie.rates[0]
+        seuil_reduction = tranches_bareme_maladie.thresholds[1]  # en nombre de smic
+
         smic_proratise = individu('smic_proratise', period)
-        condition_smic = assiette_allegement <= (2.5 * smic_proratise)
+        condition_smic = assiette_allegement <= (seuil_reduction * smic_proratise)
 
         return condition_smic * taux_reduction * assiette_allegement
 

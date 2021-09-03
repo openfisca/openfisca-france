@@ -11,7 +11,7 @@
     # effectif_entreprise: 1
     assiette_allegement: 1554.58
   output:
-    allegement_cotisation_maladie: 0.6 * 1554.58
+    allegement_cotisation_maladie: 0.06 * 1554.58
 
 - period: 2021-09
   name: 2.5xSMIC
