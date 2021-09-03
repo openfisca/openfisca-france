@@ -1,5 +1,13 @@
 # Changelog
 
+## 73.1.2 [#1664](https://github.com/openfisca/openfisca-france/pull/1664)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : parameters.
+* Détails :
+  -  Corrige quelques erreurs dans certains parametres, ayant trait aux unités (unités manquantes).
+
 ## 73.1.1 [#1665](https://github.com/openfisca/openfisca-france/pull/1665)
 
 * Changement mineur.
