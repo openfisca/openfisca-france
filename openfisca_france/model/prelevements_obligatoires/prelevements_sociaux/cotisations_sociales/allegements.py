@@ -440,7 +440,6 @@ class allegement_cotisation_maladie(Variable):
         return condition_smic * taux_reduction * assiette_allegement
 
 
-
 def compute_allegement_cotisation_allocations_familiales(individu, period, parameters):
     """
         La réduction du taux de la cotisation d’allocations familiales
