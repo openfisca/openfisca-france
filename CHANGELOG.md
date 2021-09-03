@@ -1,5 +1,15 @@
 # Changelog
 
+## [#1654](https://github.com/openfisca/openfisca-france/pull/1654)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées : 
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
+  - `model/revenus/activite/salarie.py`
+* Détails :
+  - Ajoute et calcule l`allegement_cotisation_maladie` qui remplace le CICE.
+  - Ajoute cet allègement de cotisations employeur non contributives à la liste des `exonerations_et_allegements`.
 
 ### 76.1.1 [#1686](https://github.com/openfisca/openfisca-france/pull/1686)
 
