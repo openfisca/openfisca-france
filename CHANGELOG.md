@@ -1,13 +1,12 @@
 # Changelog
 
-## 73.1.0 [#1662](https://github.com/openfisca/openfisca-france/pull/1662)
+## 73.1.1 [#1665](https://github.com/openfisca/openfisca-france/pull/1665)
 
-* Évolution du système socio-fiscal.
+* Changement mineur.
 * Périodes concernées : toutes.
-* Zones impactées :
-  - `model/caracteristiques_socio_demographiques/demographie.py`
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general`.
 * Détails :
-  - Ajoute une variable Enum pour le régime de sécurité sociale.
+  - Correction d'erreurs sur les `unit` dans les metadata de paramètres YAML.
 
 ### 73.0.1 [#1642](https://github.com/openfisca/openfisca-france/pull/1642)
 

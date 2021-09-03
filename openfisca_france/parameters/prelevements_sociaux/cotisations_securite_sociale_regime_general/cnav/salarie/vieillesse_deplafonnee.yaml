@@ -1,5 +1,4 @@
 description: Taux salarié de la Cotisation déplafonnée de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV) (2004-2016)
-unit: /1
 brackets:
 - rate:
     2004-07-01:
