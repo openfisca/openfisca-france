@@ -47,4 +47,7 @@ check-style:
 test: clean check-syntax-errors check-style
 	@# Launch tests from openfisca_france/tests directory (and not .) because TaxBenefitSystem must be initialized
 	@# before parsing source files containing formulas.
+	openfisca test --country-package openfisca_france tests
+
+test.parallel:
 	time openfisca test --country-package openfisca_france tests
