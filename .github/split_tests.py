@@ -1,4 +1,4 @@
-from sys import argv
+import sys
 from glob import glob
 
 
@@ -16,7 +16,7 @@ def split_tests(number_of_files, CI_NODE_TOTAL, CI_NODE_INDEX, test_files_list):
 
 
 if __name__ == "__main__":
-    CI_NODE_TOTAL, CI_NODE_INDEX = int(argv[1]), int(argv[2])
+    CI_NODE_TOTAL, CI_NODE_INDEX = int(sys.argv[1]), int(sys.argv[2])
     test_files_list = glob("tests/**/*.yaml", recursive=True) + glob("tests/**/*.yml", recursive=True)
     number_of_files = len(test_files_list)
-    print(split_tests(number_of_files, CI_NODE_TOTAL, CI_NODE_INDEX, test_files_list))
+    sys.stdout.write(split_tests(number_of_files, CI_NODE_TOTAL, CI_NODE_INDEX, test_files_list))
