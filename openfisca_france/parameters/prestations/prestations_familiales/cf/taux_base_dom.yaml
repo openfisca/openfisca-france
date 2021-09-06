@@ -4,3 +4,13 @@ unit: /1
 values:
   2002-01-01:
     value: 0.2379
+    reference: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006739176/1991-08-06
+  2018-04-01:
+    value: 0.2974
+    reference: https://www.legifrance.gouv.fr/eli/jo/2017/4/16
+  2019-04-01:
+    value: 0.357
+    reference: https://www.legifrance.gouv.fr/eli/jo/2017/4/16
+  2020-04-01:
+    value: 0.4165
+    reference: https://www.legifrance.gouv.fr/eli/jo/2017/4/16

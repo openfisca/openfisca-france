@@ -12,3 +12,12 @@ values:
     value: 0.3093
   2017-04-01:
     value: 0.3331
+  2018-04-01:
+    value: 0.4303
+    reference: https://www.legifrance.gouv.fr/eli/jo/2017/4/16
+  2019-04-01:
+    value: 0.5276
+    reference: https://www.legifrance.gouv.fr/eli/jo/2017/4/16
+  2020-04-01:
+    value: 0.6248
+    reference: https://www.legifrance.gouv.fr/eli/jo/2017/4/16
