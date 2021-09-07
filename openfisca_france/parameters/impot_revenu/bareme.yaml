@@ -1,5 +1,6 @@
 description: Barème progressif de l'impôt sur le revenu applicable aux revenus des années indiquées
 metadata:
+  ux_name: Barème de l'impôt sur le revenu
   reference: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/bareme_ir_depuis_1945/bareme_ir/
   type: marginal_rate
   threshold_unit: currency
