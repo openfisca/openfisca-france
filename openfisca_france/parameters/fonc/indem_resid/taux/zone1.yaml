@@ -3,3 +3,5 @@ unit: /1
 values:
   1999-07-01:
     value: 0.03
+metadata:
+  ux_name: Taux zone 1
