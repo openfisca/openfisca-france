@@ -10,7 +10,7 @@ values:
   2015-01-01:
     value: 24.0
 metadata:
-  ux_name: Horaire
+  ux_name: Plafond horaire
   last_review:
     2015-01-01
   reference:
