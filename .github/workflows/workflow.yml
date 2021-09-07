@@ -33,12 +33,12 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
-      - name: Cache install
-        id: restore-install
+      - name: Cache build
+        id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-install-${{ hashFiles('setup.py') }}
+          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - run: make check-syntax-errors
       - run: make check-style
       - name: Lint Python files
