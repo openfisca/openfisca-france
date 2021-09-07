@@ -1,4 +1,4 @@
-description: Montant de l'abattement de l'impôt sur le revenu, pour les personnes âgées ou invalides à charge
+description: Montant de l'abattement de l'impôt sur le revenu pour la première tranche, pour les personnes âgées ou invalides à charge
 unit: currency
 values:
   1977-01-01:
