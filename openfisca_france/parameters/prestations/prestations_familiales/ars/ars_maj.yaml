@@ -1,0 +1,8 @@
+description: Allocation de rentrée scolaire (ARS) majoration exceptionnelle, en % de la base mensuelle des allocations familiales (BMAF)
+reference: https://www.ipp.eu/baremes-ipp/prestations-sociales/0/3/education_presence_parentale/ars_maj
+unit: /1
+values:
+  2020-08-06:
+    value: 0.2426
+  2021-08-01:
+    value: null
