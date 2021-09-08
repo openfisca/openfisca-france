@@ -1,5 +1,15 @@
 # Changelog
 
+# 74.0.0 [#1569](https://github.com/openfisca/openfisca-france/pull/1569)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2021 au 31/21/2021.
+* Zones impactées :
+  - `caracteristiques_socio_demographiques/demographie.py`.
+  - `covid19/jeunes.py`
+* Détails :
+  - `plus_haut_diplome_niveau`, `plus_haut_diplome_date_obtention`, `alternant` sont désormais des variables mensuelles (et non plus annuelles).
+
 ### 73.1.3 [#1658](https://github.com/openfisca/openfisca-france/pull/1658)
 
 * Évolution du système socio-fiscal.
