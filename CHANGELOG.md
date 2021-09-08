@@ -1,5 +1,14 @@
 # Changelog
 
+# 74.0.1 [#1668](https://github.com/openfisca/openfisca-france/pull/1668)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : openfisca_france\parameters\prestations.
+* Détails :
+  - Mise à jour de plusieurs paramètres relatifs aux prestations familiales.
+  - Un fichier pour la majoration exceptionnelle de l'ARS en 2020 a été ajouté (ars_maj.yaml).
+
 # 74.0.0 [#1569](https://github.com/openfisca/openfisca-france/pull/1569)
 
 * Évolution du système socio-fiscal.
