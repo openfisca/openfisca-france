@@ -3,22 +3,24 @@
   absolute_error_margin: 0.01
   input:
     age: [29, 29, 29, 29, 29]
-    plus_haut_diplome_niveau:
-      2021: [niveau_5, niveau_5, niveau_5, niveau_5, niveau_5]
-    plus_haut_diplome_date_obtention:
-      2021: ['2020-01-01', '2021', '2021', '2021', '2022-01-01']
+    plus_haut_diplome_niveau: [niveau_5, niveau_5, niveau_5, niveau_5, niveau_5]
+    plus_haut_diplome_date_obtention: ['2020-01-01', '2021', '2021', '2021', '2021-01-01']
     bourse_criteres_sociaux:
       month:2020-01:10: [1000, false, false, 1000, 1000]
       month:2021-01:10: [false, 10000, 10000, 10000, 10000]
     activite: [chomeur, chomeur, chomeur, chomeur, chomeur]
-    niveau_diplome_formation:
-      2021: [non_renseigne, non_renseigne, niveau_5, non_renseigne, non_renseigne]
-    chomage_brut: [0., 0., 0., 881.4, 0.]
-    ass: [0., 0., 0., 0., 0.]
-    allocation_travailleur_independant: [0., 0., 0., 0., 0.]
-    garantie_jeunes: [0., 0., 0., 0., 0.]
-    rsa: [0., 0., 0., 0., 0.]
-    statut_occupation_logement: [locataire_meuble, loge_gratuitement, loge_gratuitement, locataire_meuble, locataire_meuble]
+    niveau_diplome_formation: [non_renseigne, non_renseigne, niveau_5, non_renseigne, non_renseigne]
+    chomage_brut:
+      2021-03: [0., 0., 0., 881.4, 0.]
+    ass:
+      2021-03: [0., 0., 0., 0., 0.]
+    allocation_travailleur_independant:
+      2021-03: [0., 0., 0., 0., 0.]
+    garantie_jeunes:
+      2021-03: [0., 0., 0., 0., 1.]
+    rsa:
+      2021-03: [0., 0., 0., 0., 0.]
+    statut_occupation_logement: [locataire_meuble, loge_gratuitement, loge_gratuitement, locataire_meuble, loge_gratuitement]
   output:
     aide_jeunes_diplomes_anciens_boursiers_eligibilite: [true, true, false, false, false]
     aide_jeunes_diplomes_anciens_boursiers_base_ressources: [100, 1000, 1000, 1000, 1000]

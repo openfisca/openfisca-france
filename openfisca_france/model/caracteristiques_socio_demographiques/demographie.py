@@ -53,8 +53,7 @@ class plus_haut_diplome_niveau(Variable):
     possible_values = TypesNiveauDiplome  # defined in model/base.py
     entity = Individu
     label = "Plus haut niveau de diplôme obtenu"
-    definition_period = YEAR
-    set_input = set_input_dispatch_by_period
+    definition_period = MONTH
 
 
 class plus_haut_diplome_date_obtention(Variable):
@@ -62,7 +61,7 @@ class plus_haut_diplome_date_obtention(Variable):
     default_value = date.max
     entity = Individu
     label = "Date d'obtention du diplôme de plus haut niveau"
-    definition_period = YEAR
+    definition_period = MONTH
 
 
 class alternant(Variable):
@@ -80,7 +79,7 @@ class niveau_diplome_formation(Variable):
     possible_values = TypesNiveauDiplome  # defined in model/base.py
     entity = Individu
     label = "Niveau du diplôme en cours de préparation"
-    definition_period = YEAR
+    definition_period = MONTH
 
 
 class activite(Variable):
