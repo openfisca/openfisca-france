@@ -11,7 +11,7 @@
     aide_merite_eligibilite: [true, true, false]
 
 - name: Montant de l'aide au mérite à destination des étudiants
-  period: 2021
+  period: 2021-04
   input:
     aide_merite_eligibilite:
       month:2020-09:10: [true, false]
