@@ -70,7 +70,7 @@ class aide_merite_montant(Variable):
     value_type = float
     entity = Individu
     label = "Montant de l'aide au mérite pour l'année universitaire"
-    definition_period = YEAR
+    definition_period = MONTH
     reference = [
         "https://www.etudiant.gouv.fr/fr/aide-au-merite-1291",
         "https://www.service-public.fr/particuliers/vosdroits/F1010",
