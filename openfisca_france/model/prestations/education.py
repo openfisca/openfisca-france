@@ -366,3 +366,18 @@ class mention_baccalaureat(Variable):
     documentation = '''
     En cas de multiples baccalauréats, meilleure mention obtenue.
     '''
+
+
+class detention_carte_des_metiers(Variable):
+    value_type = bool
+    label = "Détention carte des métiers"
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    reference = [
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024410525/2011-07-30/",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031088014/"
+        ]
+
+    def formula(individu, period, parameters):
+        return individu('alternant', period) * (individu('age', period) < parameters(period).prestations.carte_des_metiers.age_maximal)

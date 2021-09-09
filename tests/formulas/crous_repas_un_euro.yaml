@@ -1,6 +1,16 @@
 - name: Covid-19 - Deux repas par jour au Crous à 1 € pour tous les étudiants.
   period: 2021-01
   input:
-    scolarite: [enseignement_superieur, lycee]
+    scolarite: [enseignement_superieur, non_renseigne]
   output:
     crous_repas_un_euro_eligibilite: [true, false]
+
+- name: Covid-19 - Deux repas par jour au Crous à 1 € pour tous les étudiants.
+  period: 2021-08
+  input:
+    boursier: [true, true, true, false]
+    scolarite: [enseignement_superieur, non_renseigne, non_renseigne, enseignement_superieur]
+    alternant: [false, true, true, false]
+    age: [26, 26, 25, 26]
+  output:
+    crous_repas_un_euro_eligibilite: [true, false, true, false]

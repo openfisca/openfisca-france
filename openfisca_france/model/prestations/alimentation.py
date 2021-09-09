@@ -23,5 +23,6 @@ class crous_repas_un_euro_eligibilite(Variable):
 
     def formula_2021_07(individu, period):
         enseignement_superieur = individu('scolarite', period) == TypesScolarite.enseignement_superieur
+        detention_carte_des_metiers = individu('detention_carte_des_metiers', period)
         boursier = individu('boursier', period)
-        return boursier * enseignement_superieur
+        return boursier * (enseignement_superieur + detention_carte_des_metiers)

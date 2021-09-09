@@ -1,5 +1,16 @@
 # Changelog
 
+## 74.1.0 [#1636](https://github.com/openfisca/openfisca-france/pull/1636)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2021.
+* Zones impactées :
+  - `model/prestations/alimentation.py`
+  - `parameters/crous_repas_un_euro.yaml`.
+  - `model/prestations/education.py`.
+* Détails :
+  - Ajoute une condition d'éligibilité pour les détenteurs d'une carte des métiers pour la variable `crous_repas_un_euro_eligibilite`.
+
 # 74.0.1 [#1668](https://github.com/openfisca/openfisca-france/pull/1668)
 
 * Changement mineur.
