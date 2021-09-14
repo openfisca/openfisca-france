@@ -21,11 +21,12 @@ jobs:
       - name: Build package
         if: steps.restore-build.outputs.cache-hit != 'true'
         run: make build
-      - name: Archive production release
-        uses: actions/upload-artifact@v2
+      - name: Cache build release
+        id: restore-build-release
+        uses: actions/cache@v2
         with:
-          name: build-dist
-          path: dist # Upload content of `dist` folder
+          path: dist
+          key: ${{ env.pythonLocation }}-build-release-${{ hashFiles('setup.py') }}
 
   lint-files:
     runs-on: ubuntu-latest
@@ -177,12 +178,12 @@ jobs:
         with:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
-      - name: Download production release
-        uses: actions/download-artifact@v2
+      - name: Cache build release
+        id: restore-build-release
+        uses: actions/cache@v2
         with:
-          name: build-dist
           path: dist
-          check_artifacts: true # Will get the last available artifact from previous workflow
+          key: ${{ env.pythonLocation }}-build-release-${{ hashFiles('setup.py') }}
       - name: Upload a Python package to PyPi
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
