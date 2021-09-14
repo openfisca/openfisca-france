@@ -182,6 +182,7 @@ jobs:
         with:
           name: build-dist
           path: dist
+          check_artifacts: true # Will get the last available artifact from previous workflow
       - name: Upload a Python package to PyPi
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
