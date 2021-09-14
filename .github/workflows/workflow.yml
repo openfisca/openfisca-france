@@ -21,6 +21,11 @@ jobs:
       - name: Build package
         if: steps.restore-build.outputs.cache-hit != 'true'
         run: make build
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-dist
+          path: dist # Upload content of `dist` folder
 
   lint-files:
     runs-on: ubuntu-latest
@@ -157,7 +162,7 @@ jobs:
     if: needs.check-for-functional-changes.outputs.status == 'success'
     env:
       PYPI_USERNAME: openfisca-bot
-      PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }} # PYPI_PASSWORD: this value should be set in GitHub secrets!
+      PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -172,6 +177,11 @@ jobs:
         with:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
+      - name: Download production artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build-dist
+          path: dist
       - name: Upload a Python package to PyPi
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
