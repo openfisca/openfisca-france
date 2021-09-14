@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-IGNORE_DIFF_ON="README.md CONTRIBUTING.md Makefile .gitignore .circleci/* .github/*"
+IGNORE_DIFF_ON="README.md CONTRIBUTING.md Makefile .gitignore .github/*"
 
 last_tagged_commit=`git describe --tags --abbrev=0 --first-parent`  # --first-parent ensures we don't follow tags not published in master through an unlikely intermediary merge commit
 
