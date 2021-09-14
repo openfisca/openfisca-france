@@ -19,7 +19,7 @@ jobs:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }} # Cache the entire build Python environment
       - name: Build package
-        if: steps.restore-build.outputs.cache-hit != 'true'
+        # if: steps.restore-build.outputs.cache-hit != 'true'
         run: make build
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
