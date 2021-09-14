@@ -26,6 +26,8 @@ jobs:
         with:
           name: build-dist
           path: dist # Upload content of `dist` folder
+      - name: Debug Files
+        run: ls -R
 
   lint-files:
     runs-on: ubuntu-latest
