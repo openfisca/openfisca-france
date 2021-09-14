@@ -19,15 +19,13 @@ jobs:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }} # Cache the entire build Python environment
       - name: Build package
-        # if: steps.restore-build.outputs.cache-hit != 'true'
+        if: steps.restore-build.outputs.cache-hit != 'true'
         run: make build
-      - name: Archive production artifacts
+      - name: Archive production release
         uses: actions/upload-artifact@v2
         with:
           name: build-dist
           path: dist # Upload content of `dist` folder
-      - name: Debug Files
-        run: ls -R
 
   lint-files:
     runs-on: ubuntu-latest
@@ -179,7 +177,7 @@ jobs:
         with:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
-      - name: Download production artifact
+      - name: Download production release
         uses: actions/download-artifact@v2
         with:
           name: build-dist
