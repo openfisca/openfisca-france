@@ -1,5 +1,14 @@
 # Changelog
 
+# 75.0.0 [#1636](https://github.com/openfisca/openfisca-france/pull/1636)
+
+* Évolution du système socio-fiscal.
+* Zones impactées :
+  - `openfisca-france/tests/formulas/bourses_superieur/aide_merite.yaml`
+  - `openfisca-france/openfisca_france/model/prestations/enseignement_superieur/aide_merite.py`
+* Détails :
+  - Change la période d'éligibilité pour l'aide au mérite.
+
 ## 74.2.0 [#1682](https://github.com/openfisca/openfisca-france/pull/1682)
 
 * Évolution du système socio-fiscal
