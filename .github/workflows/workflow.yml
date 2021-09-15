@@ -142,7 +142,7 @@ jobs:
   # The `deploy` job is dependent on the output of the `check-for-functional-changes`job.
   check-for-functional-changes:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/github-actions' # Only triggered for the `master` branch
+    if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ check-version-and-changelog ]
     outputs:
       status: ${{ steps.stop-early.outputs.status }}
@@ -184,10 +184,10 @@ jobs:
         with:
           path: dist
           key: ${{ env.pythonLocation }}-build-release-${{ hashFiles('setup.py') }}
-      # - name: Upload a Python package to PyPi
-      #  run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
-      # - name: Publish a git tag
-      #  run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
+      - name: Upload a Python package to PyPi
+        run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
+      - name: Publish a git tag
+        run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
       - name: Add SSH key & Deploy the Web API
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
