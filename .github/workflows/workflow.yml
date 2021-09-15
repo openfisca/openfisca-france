@@ -196,6 +196,4 @@ jobs:
           ssh-keyscan fr.openfisca.org >> /home/runner/.ssh/known_hosts
           echo "${{ secrets.FRANCE_API_DEPLOY_KEY }}" > /home/runner/.ssh/github_actions
           chmod 600 /home/runner/.ssh/github_actions
-          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-          ssh-add /home/runner/.ssh/github_actions
-          ssh -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
+          ssh -i /home/runner/.ssh/github_actions -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
