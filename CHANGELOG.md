@@ -1,5 +1,12 @@
 # Changelog
 
+### 74.1.1 [#1663](https://github.com/openfisca/openfisca-france/pull/1663)
+
+* Amélioration technique.
+* Zones impactées : configuration de l'intégration continue.
+* Détails :
+  - Passage de CircleCI vers GitHub Actions
+
 ## 74.1.0 [#1636](https://github.com/openfisca/openfisca-france/pull/1636)
 
 * Évolution du système socio-fiscal.
