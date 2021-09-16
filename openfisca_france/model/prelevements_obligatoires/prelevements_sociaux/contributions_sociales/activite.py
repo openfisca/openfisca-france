@@ -295,6 +295,7 @@ class assiette_csg_crds_non_salarie(Variable):
     entity = Individu
     label = "Assiette CSG des personnes non salariées"
     definition_period = YEAR
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         rpns_imposables = individu('rpns_imposables', period)
@@ -334,6 +335,7 @@ class csg_non_salarie(Variable):
     entity = Individu
     label = "Assiette CSG des personnes non salariées"
     definition_period = YEAR
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
@@ -347,6 +349,7 @@ class crds_non_salarie(Variable):
     entity = Individu
     label = "Assiette CSG des personnes non salariées"
     definition_period = YEAR
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)

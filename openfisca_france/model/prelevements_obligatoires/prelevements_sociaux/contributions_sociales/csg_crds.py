@@ -9,6 +9,7 @@ class csg(Variable):
     entity = Individu
     label = "Contribution sociale généralisée"
     definition_period = YEAR
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         csg_imposable_salaire = individu('csg_imposable_salaire', period, options = [ADD])
@@ -41,6 +42,7 @@ class crds(Variable):
     entity = Individu
     label = "Contributions au remboursement de la dette sociale"
     definition_period = YEAR
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         # CRDS sur revenus individuels
@@ -67,6 +69,7 @@ class crds_hors_prestations(Variable):
     entity = Individu
     label = "Contributions au remboursement de la dette sociale (hors celles portant sur les prestations sociales)"
     definition_period = YEAR
+    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         # CRDS sur revenus individuels
