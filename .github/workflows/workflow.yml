@@ -17,7 +17,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }} # Cache the entire build Python environment
+          key: ${{ github.ref }}-${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }} # Cache the entire build Python environment
       - name: Build package
         if: steps.restore-build.outputs.cache-hit != 'true'
         run: make build
@@ -26,7 +26,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: dist
-          key: ${{ env.pythonLocation }}-build-release-${{ hashFiles('setup.py') }}
+          key: ${{ github.ref }}-${{ env.pythonLocation }}-build-release-${{ hashFiles('setup.py') }}
 
   lint-files:
     runs-on: ubuntu-latest
@@ -44,7 +44,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
+          key: ${{ github.ref }}-${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - run: make check-syntax-errors
       - run: make check-style
       - name: Lint Python files
@@ -66,7 +66,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
+          key: ${{ github.ref }}-${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - run: |
           shopt -s globstar
           openfisca test tests/**/*.py
@@ -93,7 +93,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
+          key: ${{ github.ref }}-${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - name: Split YAML tests
         id: yaml-test
         env:
@@ -119,7 +119,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
+          key: ${{ github.ref }}-${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - name: Test the Web API
         run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
 
@@ -177,13 +177,13 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
+          key: ${{ github.ref }}-${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - name: Cache build release
         id: restore-build-release
         uses: actions/cache@v2
         with:
           path: dist
-          key: ${{ env.pythonLocation }}-build-release-${{ hashFiles('setup.py') }}
+          key: ${{ github.ref }}-${{ env.pythonLocation }}-build-release-${{ hashFiles('setup.py') }}
       - name: Upload a Python package to PyPi
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
