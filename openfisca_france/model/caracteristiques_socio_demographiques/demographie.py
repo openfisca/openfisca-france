@@ -16,8 +16,8 @@ class majeur(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        majeur = individu('age', period) >= parameters(period).demographie.age_majorite
-        mineur_emancipe = individu('mineur_emancipe', period)
+        majeur = individu("age", period) >= parameters(period).demographie.age_majorite
+        mineur_emancipe = individu("mineur_emancipe", period)
 
         return majeur + mineur_emancipe
 
@@ -112,7 +112,9 @@ class statut_marital(Variable):
     def formula(individu, period, parameters):
         # Par défault, on considère que deux adultes dans un foyer fiscal sont PACSÉS
         deux_adultes = individu.foyer_fiscal.nb_persons(FoyerFiscal.DECLARANT) >= 2
-        return where(deux_adultes, TypesStatutMarital.pacse, TypesStatutMarital.celibataire)
+        return where(
+            deux_adultes, TypesStatutMarital.pacse, TypesStatutMarital.celibataire
+        )
 
 
 class nbN(Variable):
@@ -138,7 +140,7 @@ class caseE(Variable):
     value_type = bool
     entity = FoyerFiscal
     label = "Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul"
-    end = '2012-12-31'
+    end = "2012-12-31"
     definition_period = YEAR
 
 
@@ -174,7 +176,7 @@ class caseK(Variable):
     value_type = bool
     entity = FoyerFiscal
     label = "Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre"
-    end = '2011-12-31'
+    end = "2011-12-31"
     definition_period = YEAR
 
 
@@ -256,7 +258,7 @@ class nb_parents(Variable):
         # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
 
-        return famille.nb_persons(role = Famille.PARENT)
+        return famille.nb_persons(role=Famille.PARENT)
 
 
 class maries(Variable):
@@ -269,10 +271,10 @@ class maries(Variable):
     def formula(famille, period):
         # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        statut_marital = famille.members('statut_marital', period)
-        individu_marie = (statut_marital == TypesStatutMarital.marie)
+        statut_marital = famille.members("statut_marital", period)
+        individu_marie = statut_marital == TypesStatutMarital.marie
 
-        return famille.any(individu_marie, role = Famille.PARENT)
+        return famille.any(individu_marie, role=Famille.PARENT)
 
 
 class en_couple(Variable):
@@ -285,7 +287,7 @@ class en_couple(Variable):
     def formula(famille, period, parameters):
         # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        nb_parents = famille('nb_parents', period)
+        nb_parents = famille("nb_parents", period)
 
         return nb_parents == 2
 
@@ -301,9 +303,10 @@ class est_enfant_dans_famille(Variable):
 
 
 class etudiant(Variable):
-    '''
+    """
     L'individu est inscrit·e dans un établissement en vue de la préparation d'un concours ou d'un diplôme de l'enseignement supérieur français : une université, une école de commerce ou d'ingénieur, dans un lycée pour un BTS…
-    '''
+    """
+
     value_type = bool
     entity = Individu
     label = "Indique que l'individu dispose du statut étudiant"
@@ -314,7 +317,7 @@ class etudiant(Variable):
     def formula(individu, period, parameters):
         # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        activite = individu('activite', period)
+        activite = individu("activite", period)
 
         return activite == TypesActivite.etudiant
 
@@ -331,7 +334,7 @@ class rempli_obligation_scolaire(Variable):
 class nationalite(Variable):
     value_type = str
     entity = Individu
-    default_value = 'FR'
+    default_value = "FR"
     max_length = 2
     label = "Code ISO de la nationalité de l'individu"
     definition_period = MONTH
@@ -342,7 +345,9 @@ class ressortissant_eee(Variable):
     value_type = bool
     default_value = True
     entity = Individu
-    label = "Individu ressortissant d'un pays membre de l'Espace Économique Européen (EEE)."
+    label = (
+        "Individu ressortissant d'un pays membre de l'Espace Économique Européen (EEE)."
+    )
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -360,12 +365,17 @@ class resident_ue(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        '''
+        """
         La résidence est supposée par la nationalité.
         Si la résidence est déterminée d'une autre manière plus précise, écraser cette variable en la définissant plutôt qu'en la laissant calculer par la nationalité.
-        '''
-        nationalite = individu('nationalite', period)
-        return sum([nationalite == str.encode(etat_membre) for etat_membre in parameters(period).geopolitique.ue])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
+        """
+        nationalite = individu("nationalite", period)
+        return sum(
+            [
+                nationalite == str.encode(etat_membre)
+                for etat_membre in parameters(period).geopolitique.ue
+            ]
+        )  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
 
 class residence_continue_annees(Variable):
@@ -395,12 +405,18 @@ class enfant_place(Variable):
 class RegimeSecuriteSociale(Enum):
     regime_general = "Régime général"
     regime_agricole = "Régime Agricole"
-    regime_retraite_fonctionnaires_civils_militaires_etat = "Régime de retraite des fonctionnaires civils et militaires de l’Etat"
-    regime_special_fonctionnaires_territoriaux_hospitaliers = "Régime spécial des fonctionnaires territoriaux et hospitaliers"
+    regime_retraite_fonctionnaires_civils_militaires_etat = (
+        "Régime de retraite des fonctionnaires civils et militaires de l’Etat"
+    )
+    regime_special_fonctionnaires_territoriaux_hospitaliers = (
+        "Régime spécial des fonctionnaires territoriaux et hospitaliers"
+    )
     fond_special_pensions_ouvriers_etablissements_industriels_etat = "Le Fonds spécial des pensions des ouvriers des établissements industriels de l’Etat (FSPOEIE)"
     regime_special_agents_sncf = "Régime spécial des agents de la SNCF"
     regime_special_agents_ratp = "Régime spécial des agents de la RATP"
-    regime_special_industries_electriques_gazieres = "Régime spécial des industries électriques et gazières (CNIEG)"
+    regime_special_industries_electriques_gazieres = (
+        "Régime spécial des industries électriques et gazières (CNIEG)"
+    )
     autres_regimes = "Autres régimes"
     aucun = "Aucun"
 
