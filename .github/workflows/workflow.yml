@@ -40,6 +40,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false # Only new or edited files
           IGNORE_GITIGNORED_FILES: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_JSCPD: false # Copy/paste detection
 
   test-python:
     runs-on: ubuntu-latest
