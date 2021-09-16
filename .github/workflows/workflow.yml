@@ -35,7 +35,7 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Lint Code Base
-        uses: github/super-linter@v4
+        uses: github/super-linter/slim@v4
         env:
           VALIDATE_ALL_CODEBASE: false # Only new or edited files
           IGNORE_GITIGNORED_FILES: true
@@ -111,7 +111,7 @@ jobs:
           path: ${{ env.pythonLocation }}
           key: ${{ github.ref }}${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - name: Test the Web API
-        run: $"{GITHUB_WORKSPACE}"/.github/test-api.sh"
+        run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
 
   check-version-and-changelog:
     runs-on: ubuntu-latest
@@ -125,7 +125,7 @@ jobs:
         with:
           python-version: 3.7.12
       - name: Check version number has been properly updated
-        run: $"{GITHUB_WORKSPACE}"/.github/is-version-number-acceptable.sh
+        run: "${GITHUB_WORKSPACE}/.github/is-version-number-acceptable.sh"
 
   # GitHub Actions does not have a halt job option, to stop from deploying if no functional changes were found.
   # We build a separate job to substitute the halt option.
@@ -177,7 +177,7 @@ jobs:
       - name: Upload a Python package to PyPi
         run: twine upload dist/* --username "$PYPI_USERNAME" --password "$PYPI_PASSWORD"
       - name: Publish a git tag
-        run: $"{GITHUB_WORKSPACE}"/.github/publish-git-tag.sh
+        run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
       - name: Add SSH key & Deploy the Web API
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
