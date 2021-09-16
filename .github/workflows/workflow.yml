@@ -200,7 +200,7 @@ jobs:
 
   check-api-version:
     runs-on: ubuntu-latest
-    needs: [ deploy ]
+    needs: [ build ]
     outputs:
       version-match: ${{ steps.check-api-version.outputs.version-match }}
     steps:
