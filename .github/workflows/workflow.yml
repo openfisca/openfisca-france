@@ -42,6 +42,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JSCPD: false # Copy/paste detection
           VALIDATE_GITHUB_ACTIONS: false # Due to shellcheck SC2086 issues
+          VALIDATE_MARKDOWN: false # Due to multiple headings issue
 
   test-python:
     runs-on: ubuntu-latest
