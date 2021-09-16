@@ -37,7 +37,7 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter/slim@v4
         env:
-          VALIDATE_ALL_CODEBASE: false # Only new or edited files
+          VALIDATE_ALL_CODEBASE: true # Only new or edited files
           IGNORE_GITIGNORED_FILES: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JSCPD: false # Copy/paste detection
