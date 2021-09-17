@@ -61,3 +61,23 @@ class aide_financement_permis_apprenti_eligibilite(Variable):
         apprenti = individu('apprenti', period)
 
         return (age_minimal <= age) * apprenti
+
+
+class carte_sncf_eleve_apprenti_eligibilite(Variable):
+    value_type = bool
+    label = "Éligibilité à la carte SNCF pour les élèves et les apprentis"
+    entity = Individu
+    definition_period = MONTH
+    reference = [
+        "https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/eleves-apprentis"
+        ]
+
+    def formula(individu, period, parameters):
+        age_apprenti = parameters(period).prestations.transport.carte_sncf_eleve_apprenti.age_apprenti
+        age_etudiant = parameters(period).prestations.transport.carte_sncf_eleve_apprenti.age_etudiant
+        age = individu('age', period)
+
+        eligibilite_apprenti = (age_apprenti > age) * individu('apprenti', period)
+        eligibilite_etudiant = (age_etudiant > age) * individu('etudiant', period)
+
+        return eligibilite_apprenti + eligibilite_etudiant
