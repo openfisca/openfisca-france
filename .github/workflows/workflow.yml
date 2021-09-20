@@ -45,6 +45,7 @@ jobs:
           VALIDATE_MARKDOWN: false # Due to multiple headings issue
           VALIDATE_PYTHON_BLACK: false # Not using black
           PYTHON_FLAKE8_CONFIG_FILE: setup.cfg
+          PYTHON_PYLINT_CONFIG_FILE: setup.cfg
 
   test-python:
     runs-on: ubuntu-latest
