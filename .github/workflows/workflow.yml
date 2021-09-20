@@ -44,7 +44,7 @@ jobs:
           VALIDATE_GITHUB_ACTIONS: false # Due to shellcheck SC2086 issues
           VALIDATE_MARKDOWN: false # Due to multiple headings issue
           VALIDATE_PYTHON_BLACK: false # Not using black
-          PYTHON_FLAKE8_CONFIG_FILE: ${GITHUB_WORKSPACE}/setup.cfg
+          PYTHON_FLAKE8_CONFIG_FILE: setup.cfg
 
   test-python:
     runs-on: ubuntu-latest
