@@ -39,7 +39,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           IGNORE_GITIGNORED_FILES: true
-          VALIDATE_ALL_CODEBASE: true # Only new or edited files
+          VALIDATE_ALL_CODEBASE: false # Only new or edited files
           VALIDATE_JSCPD: false # Copy/paste detection
           VALIDATE_GITHUB_ACTIONS: false # Due to shellcheck SC2086 issues
           VALIDATE_MARKDOWN: false # Due to multiple headings issue
