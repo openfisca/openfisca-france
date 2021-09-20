@@ -37,12 +37,13 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter/slim@v4
         env:
-          VALIDATE_ALL_CODEBASE: true # Only new or edited files
-          IGNORE_GITIGNORED_FILES: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IGNORE_GITIGNORED_FILES: true
+          VALIDATE_ALL_CODEBASE: true # Only new or edited files
           VALIDATE_JSCPD: false # Copy/paste detection
           VALIDATE_GITHUB_ACTIONS: false # Due to shellcheck SC2086 issues
           VALIDATE_MARKDOWN: false # Due to multiple headings issue
+          VALIDATE_PYTHON_BLACK: false # Not using black
 
   test-python:
     runs-on: ubuntu-latest
