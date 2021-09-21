@@ -1,4 +1,4 @@
-description: Abattement spécial pour enfants à charge ayant fondé un foyer distinct (par personne rattachée)
+description: Montant de l'abattement spécial pour enfants à charge ayant fondé un foyer distinct (par personne rattachée)
 unit: currency
 values:
   2020-01-01:

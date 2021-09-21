@@ -1,1 +1,4 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Abattement de l'impôt sur le revenu, pour les personnes âgées ou invalides à charge
+metadata:
+  ux_name: Personne âgée ou invalide
+  description_en: Tax allowance for net taxable income
