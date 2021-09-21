@@ -1,5 +1,14 @@
 # Changelog
 
+### 74.1.2 [#1673](https://github.com/openfisca/openfisca-france/pull/1673)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir de 2017.
+* Zones impactées : openfisca-france\parameters\prestations.
+* Détails :
+  - Mise à jour des montants, plafonds et taux de prestations sociales
+  - Corrige une date dans l'historique du complément à l'allocation adulte handicapé
+
 ### 74.1.1 [#1663](https://github.com/openfisca/openfisca-france/pull/1663)
 
 * Amélioration technique.

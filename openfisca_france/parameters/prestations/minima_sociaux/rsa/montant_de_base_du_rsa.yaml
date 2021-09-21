@@ -41,3 +41,6 @@ values:
   2020-04-01:
     value: 564.78
     reference: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041835196
+  2021-04-01:
+    value: 565.34
+    reference: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459557

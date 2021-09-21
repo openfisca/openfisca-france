@@ -633,7 +633,7 @@
           2021-02: 0
           2021-01: 0
   output:
-    rsa_forfait_logement: 67.77
+    rsa_forfait_logement: 67.84
     rsa_base_ressources: 960
     rsa: 0
 
@@ -669,6 +669,6 @@
           2021-02: 0
           2021-01: 0
   output:
-    rsa_forfait_logement: 67.77
+    rsa_forfait_logement: 67.84
     rsa_base_ressources: 943
     rsa: 0

@@ -32,3 +32,9 @@ values:
   2019-04-01:
     value: 8679.00
     reference: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44460.pdf
+  2020-04-01:
+    value: 9000.0
+    reference: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042421132
+  2021-04-01:
+    value: 9600.0
+    reference: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042840981
