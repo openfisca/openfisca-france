@@ -218,7 +218,7 @@ class agff_salarie(Variable):
     label = "Cotisation retraite AGFF tranche A (salarié)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
     # AGFF: Association pour la gestion du fonds de financement (sous-entendu des départs entre 60 et 65 ans)
 
     def formula(individu, period, parameters):
@@ -239,7 +239,7 @@ class agff_employeur(Variable):
     label = "Cotisation retraite AGFF tranche A (employeur)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
     # TODO: améliorer pour gérer mensuel/annuel
 
     def formula(individu, period, parameters):
@@ -300,7 +300,7 @@ class agirc_gmp_salarie(Variable):
     label = "Cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
     # TODO: gestion annuel/mensuel
 
     def formula(individu, period, parameters):
@@ -332,7 +332,7 @@ class agirc_gmp_employeur(Variable):
     label = "Cotisation AGIRC pour la garantie minimale de points (GMP, employeur)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
     # TODO: gestion annuel/mensuel
 
     def formula(individu, period, parameters):
@@ -364,7 +364,7 @@ class agirc_salarie(Variable):
     label = "Cotisation AGIRC tranche B (salarié)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -385,7 +385,7 @@ class agirc_employeur(Variable):
     label = "Cotisation AGIRC tranche B (employeur)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -502,7 +502,7 @@ class arrco_salarie(Variable):
     label = "Cotisation ARRCO tranche 1 (salarié)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
     # TODO: check gestion mensuel/annuel
 
     def formula(individu, period, parameters):
@@ -543,7 +543,7 @@ class arrco_employeur(Variable):
     label = "Cotisation ARRCO tranche 1 (employeur)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
     # TODO: check gestion mensuel/annuel
 
     def formula(individu, period, parameters):
@@ -743,7 +743,7 @@ class cotisation_exceptionnelle_temporaire_salarie(Variable):
     label = "Cotisation_exceptionnelle_temporaire (salarie)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -763,7 +763,7 @@ class cotisation_exceptionnelle_temporaire_employeur(Variable):
     label = "Cotisation exceptionnelle temporaire (employeur)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-21'
+    end = '2018-12-31'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
