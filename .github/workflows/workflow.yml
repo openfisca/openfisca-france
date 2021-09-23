@@ -212,4 +212,4 @@ jobs:
       - name: Check api version
         id: check-api-version
         run: |
-          python check-api-version.py
+          python ${GITHUB_WORKSPACE}/.github/check-api-version.py
