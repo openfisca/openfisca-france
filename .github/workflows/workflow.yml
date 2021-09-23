@@ -142,7 +142,7 @@ jobs:
   # The `deploy` job is dependent on the output of the `check-for-functional-changes`job.
   check-for-functional-changes:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/api-version' # Only triggered for the `master` branch
+    if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ check-version-and-changelog ]
     outputs:
       status: ${{ steps.stop-early.outputs.status }}
@@ -200,7 +200,7 @@ jobs:
 
   check-api-version:
     runs-on: ubuntu-latest
-    needs: [ check-for-functional-changes ]
+    needs: [ deploy ]
     outputs:
       version-match: ${{ steps.check-api-version.outputs.version-match }}
     steps:

@@ -1,7 +1,7 @@
 import requests
-import sys
 import pkg_resources  # part of setuptools
 import json
+import sys
 
 package_version = pkg_resources.require("openfisca-france")[0].version
 
