@@ -1,5 +1,4 @@
 import requests
-import re
 import sys
 import pkg_resources  # part of setuptools
 import json
