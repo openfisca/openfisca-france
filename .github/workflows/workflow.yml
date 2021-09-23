@@ -212,10 +212,4 @@ jobs:
       - name: Check api version
         id: check-api-version
         run: |
-          output=$(python "${GITHUB_WORKSPACE}/.github/check-api-version.py")
-          echo "::set-output name=version-match::$output"
-      - name: Check on failure
-        if: steps.check-api-version.outputs.version-match != 'True'
-        run: |
-          echo "The api package version and the pypi package version do not match"
-          exit 1
+          python check-api-version.py
