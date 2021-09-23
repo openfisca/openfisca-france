@@ -1,5 +1,13 @@
 # Changelog
 
+### 74.1.4 [#1681](https://github.com/openfisca/openfisca-france/pull/1681)
+
+* Changement mineur.
+* Périodes concernées : jusqu'au 31/12/2018 (inclus) à partir du 21/12/2018 (inclus)
+* Zones impactées : model/prelevements_obligatoires/prelevements_sociaux/travail_prive.py.
+* Détails :
+  - Erreur dans l'end_date de 8 cotisation sociales concernées par la fusion Agirc Arrco (agff, agirc, arrco, cet, employeur et salarié)
+
 ### 74.1.3 [#1674](https://github.com/openfisca/openfisca-france/pull/1674)
 
 * Amélioration technique.
