@@ -1,5 +1,12 @@
 # Changelog
 
+### 74.1.3 [#1674](https://github.com/openfisca/openfisca-france/pull/1674)
+
+* Amélioration technique.
+* Zones impactées : configuration de l'intégration continue.
+  * Détails :
+  - Ajoute la vérification de la version du package de l'api web
+
 ### 74.1.2 [#1673](https://github.com/openfisca/openfisca-france/pull/1673)
 
 * Évolution du système socio-fiscal

@@ -217,5 +217,4 @@ jobs:
           key: ${{ github.ref }}${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - name: Check api version
         id: check-api-version
-        run: |
-          python ${GITHUB_WORKSPACE}/.github/check-api-version.py
+        run: python ${GITHUB_WORKSPACE}/.github/check-api-version.py
