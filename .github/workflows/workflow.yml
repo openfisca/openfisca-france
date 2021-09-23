@@ -100,10 +100,10 @@ jobs:
           CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
         run: |
-            echo "TEST_FILES_SUBLIST=$(python "${GITHUB_WORKSPACE}/.github/split_tests.py" ${CI_NODE_TOTAL} ${CI_NODE_INDEX})" >> $GITHUB_ENV
+          echo "TEST_FILES_SUBLIST=$(python "${GITHUB_WORKSPACE}/.github/split_tests.py" ${CI_NODE_TOTAL} ${CI_NODE_INDEX})" >> $GITHUB_ENV
       - name: Run YAML test
         run: |
-            openfisca test ${TEST_FILES_SUBLIST}
+          openfisca test ${TEST_FILES_SUBLIST}
 
   test-api:
     runs-on: ubuntu-latest
@@ -197,3 +197,24 @@ jobs:
           echo "${{ secrets.FRANCE_API_DEPLOY_KEY }}" > /home/runner/.ssh/france_api_deploy
           chmod 600 /home/runner/.ssh/france_api_deploy
           ssh -i /home/runner/.ssh/france_api_deploy -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
+
+  check-api-version:
+    runs-on: ubuntu-latest
+    needs: [ deploy ]
+    outputs:
+      version-match: ${{ steps.check-api-version.outputs.version-match }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7.12
+      - name: Cache build
+        id: restore-build
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ github.ref }}${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
+      - name: Check api version
+        id: check-api-version
+        run: python ${GITHUB_WORKSPACE}/.github/check-api-version.py
