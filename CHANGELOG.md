@@ -1,5 +1,12 @@
 # Changelog
 
+## 74.2.0 [#1682](https://github.com/openfisca/openfisca-france/pull/1682)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/transport.py`.
+* Détails : Ajout de l'aide [carte SNCF élèves et apprentis](https://www.sncf.com/fr/offres-voyageurs/cartes-tarifs-grandes-lignes/eleves-apprentis)
+
 ### 74.1.4 [#1681](https://github.com/openfisca/openfisca-france/pull/1681)
 
 * Changement mineur.
