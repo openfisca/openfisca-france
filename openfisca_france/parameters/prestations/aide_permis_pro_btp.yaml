@@ -1,0 +1,38 @@
+montant:
+  description: Montant de l'aide au financement du permis B pro btp.
+  reference: https://www.probtp.com/part/apprenti/aide-permis.html
+  unit: currency
+  premier_echelon:
+    2021-01-01:
+      value: 700
+  deuxieme_echelon:
+    2021-01-01:
+      value: 500
+  troisieme_echelon:
+    2021-01-01:
+      value: 300
+
+ressources_annuelles_maximal:
+  description: Ressources annuelles maximales pour toucher l'allocation
+  reference: https://www.probtp.com/part/apprenti/aide-permis.html
+  unit: currency
+  premier_echelon:
+    2021-01-01:
+      value: 15000
+  deuxieme_echelon:
+    2021-01-01:
+      value: 21000
+  troisieme_echelon:
+    2021-01-01:
+      value: 25000
+
+age:
+  description: Fourchette d'âges pour l'aide au permis B par pro btp.
+  reference: https://www.probtp.com/part/apprenti/aide-permis.html
+  unit: year
+  minimum:
+    2021-01-01:
+      value: 15
+  maximum:
+    2021-01-01:
+      value: 30

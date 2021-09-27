@@ -1,0 +1,8 @@
+- period: 2021-07
+  input:
+    rfr:
+      2021: [7000, 18000, 24000, 35000, 7000, 7000]
+    age: [30, 30, 30, 30, 31, 30]
+    alternant: [true, true, true, true, true, false]
+  output:
+    aide_permis_pro_btp: [700, 500, 300, 0, 0, 0]

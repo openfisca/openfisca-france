@@ -1,5 +1,16 @@
 # Changelog
 
+## 75.1.0 [#1641](https://github.com/openfisca/openfisca-france/pull/1641)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2021.
+* Zones impactées : 
+  - `model/prelevements_obligatoires/prestations/aide_permis_probtp.py`
+  - `parameters/prestations/aide_permis_probtp.yaml`.
+* Détails :
+  - Ajoute l'aide au permis : `aide_permis_probtp`.
+ 
+
 # 75.0.0 [#1636](https://github.com/openfisca/openfisca-france/pull/1636)
 
 * Évolution du système socio-fiscal.
