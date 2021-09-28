@@ -427,14 +427,14 @@ class allegement_cotisation_maladie(Variable):
         prelevements_sociaux = parameters(period).prelevements_sociaux
         taux_normal = prelevements_sociaux.cotisations_securite_sociale_regime_general.mmid.taux
 
-        reduction_mmid = prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid        
-        taux_reduit = taux_normal - reduction_mmid.taux
+        allegement_mmid = prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid        
+        taux_reduit = taux_normal - allegement_mmid.taux
 
-        plafond_reduction_mmid = reduction_mmid.plafond  # en nombre de smic
+        plafond_allegement_mmid = allegement_mmid.plafond  # en nombre de smic
 
         smic_proratise = individu('smic_proratise', period)
         assiette_allegement = individu('assiette_allegement', period)
-        condition_smic = assiette_allegement <= (plafond_reduction_mmid * smic_proratise)
+        condition_smic = assiette_allegement <= (plafond_allegement_mmid * smic_proratise)
 
         return condition_smic * taux_reduit * assiette_allegement
 
