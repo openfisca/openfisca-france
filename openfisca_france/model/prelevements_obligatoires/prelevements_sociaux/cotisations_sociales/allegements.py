@@ -424,19 +424,15 @@ class allegement_cotisation_maladie(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559"
 
     def formula_2019_01_01(individu, period, parameters):
-        prelevements_sociaux = parameters(period).prelevements_sociaux
-        taux_normal = prelevements_sociaux.cotisations_securite_sociale_regime_general.mmid.taux
+        allegement_mmid = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid        
 
-        allegement_mmid = prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid        
-        taux_reduit = taux_normal - allegement_mmid.taux
-
+        assiette_allegement = individu('assiette_allegement', period)
+        smic_proratise = individu('smic_proratise', period)
         plafond_allegement_mmid = allegement_mmid.plafond  # en nombre de smic
 
-        smic_proratise = individu('smic_proratise', period)
-        assiette_allegement = individu('assiette_allegement', period)
-        condition_smic = assiette_allegement <= (plafond_allegement_mmid * smic_proratise)
+        condition_smic = assiette_allegement <= (smic_proratise * plafond_allegement_mmid)
 
-        return condition_smic * taux_reduit * assiette_allegement
+        return condition_smic * allegement_mmid.taux * assiette_allegement
 
 
 def compute_allegement_cotisation_allocations_familiales(individu, period, parameters):
