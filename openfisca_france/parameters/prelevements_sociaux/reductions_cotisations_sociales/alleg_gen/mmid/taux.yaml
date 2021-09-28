@@ -1,4 +1,4 @@
-description: Réduction sur taux des cotisations du régime d'assurance maladie sous 2,5 SMIC (à partir de 2019)
+description: Taux de réduction des cotisations du régime d'assurance maladie sous 2,5 SMIC (à partir de 2019)
 values:
   2019-01-01:
     value: 0.06
@@ -16,7 +16,7 @@ metadata:
   official_journal_date:
     2019-01-01: 2017-12-31
   notes:
-    2019-01-01: Réduction sur taux pour salaire inférieur à 2,5 Smic constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
+    2019-01-01: Taux de réduction pour salaire inférieur à 2,5 Smic constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
   description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
 documentation: |
   A partir de 2019, une réduction sur le taux normal est appliquée 
