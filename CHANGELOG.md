@@ -1,5 +1,14 @@
 # Changelog
 
+# 76.0.0 [#1550](https://github.com/openfisca/openfisca-france/pull/1550)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/minima_sociaux/aah.py`.
+* Détails :
+  - **Attache `aah_base_ressources` aux individus plutôt qu'aux familles**
+  - Ajoute l'asymétrie bénéficiaire/conjoint dans la base ressources de l'AAH
+
 ## 75.1.0 [#1641](https://github.com/openfisca/openfisca-france/pull/1641)
 
 * Évolution du système socio-fiscal.
@@ -9,7 +18,6 @@
   - `parameters/prestations/aide_permis_probtp.yaml`.
 * Détails :
   - Ajoute l'aide au permis : `aide_permis_probtp`.
- 
 
 # 75.0.0 [#1636](https://github.com/openfisca/openfisca-france/pull/1636)
 

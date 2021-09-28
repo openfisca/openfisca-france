@@ -232,7 +232,9 @@
         - parent2
   output:
     aah_base_ressources:
-      2015-11: (1128.70 * 12) * 0.9 * 0.8
+      2015-11:
+        - 9751.97 # 1128.70 * 12 avec les abattements pour conjoint
+        - 6027.77 # 1128.70 * 12 avec les abattements pour bénéficiaire
 
 - name: AAH demandeur et conjoint salariés
   period: month:2015-11
@@ -272,11 +274,14 @@
         - parent2
   output:
     aah_base_ressources:
-      2015-11: (1000 * 12) * 0.9 * 0.8 + 8494
+      2015-11:
+        - 17132 # 1471 avec abat. bénéficiaire + 1000 avec abat. conjoint
+        - 17811 # 1471 avec abat. conjoint     + 1000 avec abat. bénéficiaire
     aah_base:
       2015-11: [187, 0]
     aah:
       2015-11: [187, 0]
+
 - name: |
     Revalorisation 01-04-2018, Cas Non Passant
     AAH personne seule de 50 ans avec

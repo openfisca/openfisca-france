@@ -6,12 +6,12 @@
     famille:
       parents: [parent1]
       en_couple: 0
-      aah_base_ressources: 9700
       af_nbenf: 0
     individus:
       parent1:
         taux_incapacite: 0.9
         age: 50
+        aah_base_ressources: 9700
     foyer_fiscal:
       declarants:
       - parent1
@@ -29,12 +29,12 @@
     famille:
       parents: [parent1]
       en_couple: 0
-      aah_base_ressources: 0
       af_nbenf: 0
     individus:
       parent1:
         taux_incapacite: 0.9
         age: 27
+        aah_base_ressources: 0
     foyer_fiscal:
       declarants:
       - parent1
@@ -52,11 +52,11 @@
     famille:
       parents: [parent1, parent2]
       en_couple: true
-      aah_base_ressources: 15000
       af_nbenf: 0
     individus:
       parent1:
         aah_eligible: true
+        aah_base_ressources: 15000
       parent2:
         aah_eligible: false
     foyers_fiscaux:
@@ -88,13 +88,14 @@
     famille:
       parents: [parent1, parent2]
       en_couple: true
-      aah_base_ressources: 15000
       af_nbenf: 0
     individus:
       parent1:
         aah_eligible: true
+        aah_base_ressources: 15000
       parent2:
         aah_eligible: true
+        aah_base_ressources: 15000
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -124,13 +125,13 @@
     famille:
       parents: [parent1, parent2]
       en_couple: true
-      aah_base_ressources: 20000
       af_nbenf: 1
     individus:
       parent1:
         aah_eligible: false
       parent2:
         aah_eligible: true
+        aah_base_ressources: 20000
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -161,7 +162,6 @@
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2]
       en_couple: true
-      aah_base_ressources: 25000
       af_nbenf: 2
     individus:
       parent1:
@@ -170,6 +170,7 @@
         aah_eligible: false
       enfant1:
         aah_eligible: true
+        aah_base_ressources: 25000
       enfant2:
         aah_eligible: false
     foyers_fiscaux:
