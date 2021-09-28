@@ -424,7 +424,7 @@ class allegement_cotisation_maladie(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559"
 
     def formula_2019_01_01(individu, period, parameters):
-        allegement_mmid = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid        
+        allegement_mmid = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid
 
         assiette_allegement = individu('assiette_allegement', period)
         smic_proratise = individu('smic_proratise', period)

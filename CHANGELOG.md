@@ -7,9 +7,12 @@
 * Zones impactées : 
   - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
   - `model/revenus/activite/salarie.py`
+  - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/mmid/taux.yaml`
+  - `parameters/prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/`
 * Détails :
-  - Ajoute et calcule l`allegement_cotisation_maladie` qui remplace le CICE.
+  - Ajoute et calcule l'`allegement_cotisation_maladie` qui remplace le CICE.
   - Ajoute cet allègement de cotisations employeur non contributives à la liste des `exonerations_et_allegements`.
+  - Transforme son `taux` normal de barème à paramètre simple et ajoute les paramètres de l'allègement.
 
 ### 76.1.1 [#1686](https://github.com/openfisca/openfisca-france/pull/1686)
 
