@@ -424,20 +424,19 @@ class allegement_cotisation_maladie(Variable):
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559"
 
     def formula_2019_01_01(individu, period, parameters):
-        assiette_allegement = individu('assiette_allegement', period)
+        prelevements_sociaux = parameters(period).prelevements_sociaux
+        taux_normal = prelevements_sociaux.cotisations_securite_sociale_regime_general.mmid.taux
 
-        # taux global tout salaire à réduire :
-        # openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/mmid/taux.yaml
-        tranches_bareme_maladie = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.mmid.taux
-        bareme_a_deux_tranches = (len(tranches_bareme_maladie.rates) == 2) * (len(tranches_bareme_maladie.thresholds) == 2)
+        reduction_mmid = prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid        
+        taux_reduit = taux_normal - reduction_mmid.taux
 
-        taux_reduction = bareme_a_deux_tranches * (tranches_bareme_maladie.rates[1] - tranches_bareme_maladie.rates[0])
-        seuil_reduction = bareme_a_deux_tranches * tranches_bareme_maladie.thresholds[1]  # en nombre de smic
+        plafond_reduction_mmid = reduction_mmid.plafond  # en nombre de smic
 
         smic_proratise = individu('smic_proratise', period)
-        condition_smic = assiette_allegement <= (seuil_reduction * smic_proratise)
+        assiette_allegement = individu('assiette_allegement', period)
+        condition_smic = assiette_allegement <= (plafond_reduction_mmid * smic_proratise)
 
-        return condition_smic * taux_reduction * assiette_allegement
+        return condition_smic * taux_reduit * assiette_allegement
 
 
 def compute_allegement_cotisation_allocations_familiales(individu, period, parameters):
