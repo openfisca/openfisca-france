@@ -6,8 +6,7 @@ metadata:
   ux_name: Réduction salariale
   last_review:
     2019-01-01
-  rate_unit: /1
-  threshold_unit: SMIC
+  unit: /1
   reference:
     2019-01-01:
     - title: Article L241-2-1 du Code de la sécurité sociale
