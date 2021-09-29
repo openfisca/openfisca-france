@@ -4,6 +4,7 @@
   input:
     salaire_de_base: 1554.58
   output:
+    allegement_cotisation_maladie_mode_recouvrement: fin_d_annee
     assiette_allegement: 1554.58
     allegement_cotisation_maladie: 0.06 * 1554.58
 
@@ -12,5 +13,6 @@
   input:
     salaire_de_base: 3886.55  # = 1554.58 * 2.5 + 0.1
   output:
+    allegement_cotisation_maladie_mode_recouvrement: fin_d_annee
     assiette_allegement: 3886.55
     allegement_cotisation_maladie: 0
