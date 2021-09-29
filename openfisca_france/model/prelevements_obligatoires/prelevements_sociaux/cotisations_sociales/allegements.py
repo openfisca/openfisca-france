@@ -430,9 +430,9 @@ class allegement_cotisation_maladie(Variable):
         smic_proratise = individu('smic_proratise', period)
         plafond_allegement_mmid = allegement_mmid.plafond  # en nombre de smic
 
-        condition_smic = assiette_allegement <= (smic_proratise * plafond_allegement_mmid)
+        sous_plafond = assiette_allegement <= (smic_proratise * plafond_allegement_mmid)
 
-        return condition_smic * allegement_mmid.taux * assiette_allegement
+        return sous_plafond * allegement_mmid.taux * assiette_allegement
 
 
 def compute_allegement_cotisation_allocations_familiales(individu, period, parameters):
