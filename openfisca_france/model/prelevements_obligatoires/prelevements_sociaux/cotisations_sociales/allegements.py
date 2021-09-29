@@ -406,7 +406,7 @@ class allegement_cotisation_allocations_familiales(Variable):
 
         non_cumulee = not_(exoneration_cotisations_employeur_jei)
 
-        # switch on 3 possible payment options
+        # propose 3 modes de paiement possibles
         allegement = switch_on_allegement_mode(
             individu, period, parameters,
             allegement_mode_recouvrement,
@@ -415,24 +415,6 @@ class allegement_cotisation_allocations_familiales(Variable):
 
         return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
-
-class allegement_cotisation_maladie(Variable):
-    value_type = float
-    entity = Individu
-    definition_period = MONTH
-    label = "Allègement des cotisations employeur d’assurance maladie sur les bas et moyens salaires (Ex-CICE)"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559"
-
-    def formula_2019_01_01(individu, period, parameters):
-        allegement_mmid = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid
-
-        assiette_allegement = individu('assiette_allegement', period)
-        smic_proratise = individu('smic_proratise', period)
-        plafond_allegement_mmid = allegement_mmid.plafond  # en nombre de smic
-
-        sous_plafond = assiette_allegement <= (smic_proratise * plafond_allegement_mmid)
-
-        return sous_plafond * allegement_mmid.taux * assiette_allegement
 
 
 def compute_allegement_cotisation_allocations_familiales(individu, period, parameters):
@@ -447,6 +429,42 @@ def compute_allegement_cotisation_allocations_familiales(individu, period, param
 
     # Montant de l'allegment
     return (assiette < law.plafond_smic * smic_proratise) * law.reduction * assiette
+
+
+class allegement_cotisation_maladie(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+    label = "Allègement des cotisations employeur d’assurance maladie sur les bas et moyens salaires (Ex-CICE)"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559"
+
+    def formula_2019_01_01(individu, period, parameters):
+        # propose 3 modes de paiement possibles
+        allegement_mode_recouvrement = individu('allegement_cotisation_maladie_mode_recouvrement', period)
+
+        allegement = switch_on_allegement_mode(
+            individu, period, parameters,
+            allegement_mode_recouvrement,
+            "allegement_cotisation_maladie",
+            )
+
+        return allegement
+
+
+
+def compute_allegement_cotisation_maladie(individu, period, parameters):
+    """
+        Le calcul de l'allègement de cotisation maladie sur les bas et moyens salires (Ex-CICE).
+    """
+    allegement_mmid = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid
+
+    assiette_allegement = individu('assiette_allegement', period)
+    smic_proratise = individu('smic_proratise', period)
+    plafond_allegement_mmid = allegement_mmid.plafond  # en nombre de smic
+
+    sous_plafond = assiette_allegement <= (smic_proratise * plafond_allegement_mmid)
+
+    return sous_plafond * allegement_mmid.taux * assiette_allegement
 
 
 ###############################
