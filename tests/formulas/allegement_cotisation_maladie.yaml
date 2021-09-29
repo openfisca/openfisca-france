@@ -2,17 +2,17 @@
   period: 2021-09
   relative_error_margin: 0.001
   input:
-    salaire_de_base: 1554.58
+    salaire_de_base: [1554.58, 1554.58, 1554.58]
+    allegement_cotisation_maladie_mode_recouvrement: [fin_d_annee, progressif, anticipe_regularisation_fin_de_periode]
   output:
-    allegement_cotisation_maladie_mode_recouvrement: fin_d_annee
-    assiette_allegement: 1554.58
-    allegement_cotisation_maladie: 0.06 * 1554.58
+    assiette_allegement: [1554.58, 1554.58, 1554.58]
+    allegement_cotisation_maladie: [93.27, 93.27, 93.27]  # 0.06 * 1554.58
 
 - name: Taux complet de cotisation maladie pour rémunération > 2.5xSMIC
   period: 2021-09
   input:
-    salaire_de_base: 3886.55  # = 1554.58 * 2.5 + 0.1
+    salaire_de_base: [3886.55, 3886.55]  # 1554.58 * 2.5 + 0.1
+    allegement_cotisation_maladie_mode_recouvrement: [fin_d_annee, progressif]
   output:
-    allegement_cotisation_maladie_mode_recouvrement: fin_d_annee
-    assiette_allegement: 3886.55
-    allegement_cotisation_maladie: 0
+    assiette_allegement: [3886.55, 3886.55]
+    allegement_cotisation_maladie: [0, 0]
