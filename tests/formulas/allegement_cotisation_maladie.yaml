@@ -1,18 +1,35 @@
-- name: Taux réduit de cotisation maladie pour rémunération 1xSMIC <= 2.5xSMIC
+- name: Taux réduit de cotisation maladie recouvrée progressivement et pour rémunération 1xSMIC <= 2.5xSMIC
   period: 2021-09
   relative_error_margin: 0.001
   input:
-    salaire_de_base: [1554.58, 1554.58, 1554.58]
-    allegement_cotisation_maladie_mode_recouvrement: [fin_d_annee, progressif, anticipe_regularisation_fin_de_periode]
+    salaire_de_base: 1554.58
+    allegement_cotisation_maladie_mode_recouvrement: progressif
   output:
-    assiette_allegement: [1554.58, 1554.58, 1554.58]
-    allegement_cotisation_maladie: [93.27, 93.27, 93.27]  # 0.06 * 1554.58
+    assiette_allegement: 1554.58
+    allegement_cotisation_maladie: 0.06 * 1554.58
+
+- name: Taux réduit de cotisation maladie recouvrée en fin d'année et pour rémunération 1xSMIC <= 2.5xSMIC
+  period: 2021
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 
+      month:2021-01:9: 1554.58 * 9
+    allegement_cotisation_maladie_mode_recouvrement: fin_d_annee
+  output:
+    assiette_allegement: 
+      2021-09: 1554.58
+      2021-10: 0
+    allegement_cotisation_maladie: 
+      2021-09: 0
+      2021-10: 0
+      2021-11: 0
+      2021-12: 93.27 * 9  # 0.06 * 1554.58 * 9 mois de salaire
 
 - name: Taux complet de cotisation maladie pour rémunération > 2.5xSMIC
   period: 2021-09
   input:
-    salaire_de_base: [3886.55, 3886.55]  # 1554.58 * 2.5 + 0.1
-    allegement_cotisation_maladie_mode_recouvrement: [fin_d_annee, progressif]
+    salaire_de_base: 3886.55  # 1554.58 * 2.5 + 0.1
+    allegement_cotisation_maladie_mode_recouvrement: progressif
   output:
-    assiette_allegement: [3886.55, 3886.55]
-    allegement_cotisation_maladie: [0, 0]
+    assiette_allegement: 3886.55
+    allegement_cotisation_maladie: 0
