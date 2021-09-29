@@ -20,7 +20,6 @@ jobs:
           key: ${{ github.ref }}${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}-${{ github.sha }} # Cache the entire build Python environment
           restore-keys: ${{ github.ref }}${{ env.pythonLocation }}-build-${{ hashFiles('setup.py') }}
       - name: Build package
-        if: steps.restore-build.outputs.cache-hit != 'true'
         run: make build
       - name: Cache build release
         id: restore-build-release
