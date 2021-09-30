@@ -1,5 +1,13 @@
 # Changelog
 
+## 76.1.0 [#1508](https://github.com/openfisca/openfisca-france/pull/1508)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 21/08/2017.
+* Zones impactées : `prestations/mobilite_jeunes.py`.
+* Détails :
+  - Ajoute les aides à la mobilité Master et ParcourSup.
+
 # 76.0.0 [#1550](https://github.com/openfisca/openfisca-france/pull/1550)
 
 * Évolution du système socio-fiscal.

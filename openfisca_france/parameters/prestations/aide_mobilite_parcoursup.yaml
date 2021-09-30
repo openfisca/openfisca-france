@@ -1,0 +1,6 @@
+montant:
+  reference: https://www.education.gouv.fr/bo/19/Hebdo20/ESRS1910244C.htm
+  unit: currency
+  values:
+    2019-05-14:
+      value: 500

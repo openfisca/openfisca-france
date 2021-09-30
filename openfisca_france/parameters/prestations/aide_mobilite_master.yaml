@@ -1,0 +1,6 @@
+montant:
+  reference: https://www.legifrance.gouv.fr/eli/arrete/2017/8/21/ESRS1721353A/jo/texte
+  unit: currency
+  values:
+    2017-08-21:
+      value: 1000

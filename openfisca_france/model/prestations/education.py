@@ -310,6 +310,19 @@ class scolarite(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class boursier(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Élève ou étudiant boursier"
+    definition_period = MONTH
+
+    def formula_2021(individu, period):
+        college = individu.famille('bourse_college_echelon', period)
+        lycee = individu.famille('bourse_lycee', period)
+        sup = individu('bourse_criteres_sociaux', period)
+        return (college > 0) + (lycee > 0) + (sup > 0)
+
+
 class StatutsEtablissementScolaire(Enum):
     __order__ = 'inconnu public prive_sous_contrat prive_hors_contrat'  # Needed to preserve the enum order in Python 2
     inconnu = "Inconnu"
@@ -328,18 +341,30 @@ class statuts_etablissement_scolaire(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class boursier(Variable):
-    value_type = bool
+class TypesClasse(Enum):
+    __order__ = 'seconde premiere terminale licence_1 licence_2 licence_3 master_1 master_2 doctorat_1 doctorat_2 doctorat_3 autre'
+    seconde = 'Seconde'
+    premiere = 'Première'
+    terminale = 'Terminale'
+    licence_1 = 'Première année de licence'
+    licence_2 = 'Deuxième année de licence'
+    licence_3 = 'Troisième année de licence'
+    master_1 = 'Première année de master'
+    master_2 = 'Deuxième année de master'
+    doctorat_1 = 'Première année de doctorat'
+    doctorat_2 = 'Deuxième année de doctorat'
+    doctorat_3 = 'Troisième année de doctorat'
+    autre = 'Autre'
+
+
+class annee_etude(Variable):
+    value_type = Enum
+    possible_values = TypesClasse
+    default_value = TypesClasse.autre
     entity = Individu
-    label = "Élève ou étudiant boursier"
+    label = "Classe de l'étudiant"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-
-    def formula_2021(individu, period):
-        college = individu.famille('bourse_college_echelon', period)
-        lycee = individu.famille('bourse_lycee', period)
-        sup = individu('bourse_criteres_sociaux', period)
-        return (college > 0) + (lycee > 0) + (sup > 0)
 
 
 class debut_etudes_etranger(Variable):
