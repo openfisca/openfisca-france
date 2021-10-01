@@ -1,5 +1,14 @@
 # Changelog
 
+
+### 76.1.1 [#1654](https://github.com/openfisca/openfisca-france/pull/1654)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : openfisca_france/model/prestations/minima_sociaux/rsa.py.
+* Détails :
+  - Corrige le set_input du RSA, qui avait été initialisé par erreur lors d'un ajout en masse des set_input.
+
 ## 76.1.0 [#1508](https://github.com/openfisca/openfisca-france/pull/1508)
 
 * Évolution du système socio-fiscal.
