@@ -575,6 +575,7 @@ class rsa(Variable):
     calculate_output = calculate_output_add
     value_type = float
     label = "Revenu de solidarité active"
+    reference = "https://www.service-public.fr/particuliers/vosdroits/N19775"
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
