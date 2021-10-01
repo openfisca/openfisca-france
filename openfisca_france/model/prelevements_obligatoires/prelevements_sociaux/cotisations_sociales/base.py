@@ -3,7 +3,6 @@ from openfisca_france.model.base import *
 
 DEFAULT_ROUND_BASE_DECIMALS = 2
 
-
 cotisations_employeur_by_categorie_salarie = {
     "prive_cadre": [
         "agffc",
