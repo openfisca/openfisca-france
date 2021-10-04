@@ -13,9 +13,9 @@ values:
     value: 8600.0
   1979-01-01:
     value: 9500.0
-  1980-01-01:
-    value: 10800.0
-  1981-01-01:
+  #1980-01-01:
+  #  value: 10800.0
+  1982-01-01:
     value: 12500.0
   1982-01-01:
     value: 13000.0
@@ -208,8 +208,8 @@ metadata:
     1982-01-01: 
       title: Article 196 B du CGI du 1983-10-09
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006308294/1983-10-09/
-    1981-01-01:
-      title: Article 196 B du CGI 
+    1982-01-01:
+      title: Article 196 B du CGI applicable aux revenus 1981
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006308293/1982-01-01/
     1979-07-01:
       title: Article 196 B du CGI - Valeurs pour l'imposition des revenus de 1974 à 1978 inclus
