@@ -1,9 +1,4 @@
 description: Montant de l'abattement de l'impôt sur le revenu, pour les personnes âgées ou invalides à charge
-reference:
-  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/abat_rni/
-  - http://bofip.impots.gouv.fr/bofip/2036-PGP.html
-  - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042158963/2020-07-25
-description: Abattement spécial pour enfants à charge ayant fondé un foyer distinct (par personne rattachée)
 unit: currency
 values:
   1977-01-01:
@@ -82,3 +77,8 @@ values:
     value: 2416.0
   2019-01-01:
     value: 2442.0
+metadata:
+  reference:
+    - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/abat_rni/
+    - http://bofip.impots.gouv.fr/bofip/2036-PGP.html
+    - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042158963/2020-07-25
