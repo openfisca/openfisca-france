@@ -1,5 +1,15 @@
 # Changelog
 
+# 77.0.2 [#1688](https://github.com/openfisca/openfisca-france/pull/1688)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : `parameters/prelevements_sociaux/contributions_sociales`.
+* Détails :
+  - Update de last_review sur les parametres CSG/CRDS/CASA
+  - Update de references sur quelques variables CSG/CRDS/CASA
+  - Aucune modification de valeur de parametres
+
 # 77.0.1 [#1687](https://github.com/openfisca/openfisca-france/pull/1687)
 
 * Évolution du système socio-fiscal.

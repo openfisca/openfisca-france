@@ -1,4 +1,5 @@
 description: Taux réduit de la Contribution Sociale Généralisée (CSG) déductible sur les allocations chômage
+unit: /1
 values:
   1991-02-01:
     value: null
@@ -6,11 +7,10 @@ values:
     value: 0.01
   1998-01-01:
     value: 0.038
-unit: /1
 metadata:
   ux_name: Taux réduit
   last_review:
-    2021-07-22
+    2021-10-06
   reference:
     1998-01-01:
       title: Loi 97-1164 du 19/12/1997, art. 5 (LFSS pour 1998)
