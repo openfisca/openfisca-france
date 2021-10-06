@@ -6,9 +6,10 @@ values:
 metadata:
   ux_name: Taux global
   last_review:
-    1998-01-01
+    2021-10-06
   reference:
-    1996-02-01: Ordonnance 96-50 du 24/01/96, art. 19
+      title: Articles  19 de l'Ordonnance n° 96-50 du 24 janvier 1996
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000041466982/2021-10-06/
   official_journal_date:
     1996-02-01: 1996-01-25
   notes:
