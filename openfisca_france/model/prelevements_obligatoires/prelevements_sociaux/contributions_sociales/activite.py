@@ -71,6 +71,7 @@ class csg_deductible_salaire(Variable):
     calculate_output = calculate_output_add
     value_type = float
     label = "CSG déductible sur les salaires"
+    reference = "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073189/LEGISCTA000006173055/#LEGIARTI000042340733"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
