@@ -458,8 +458,8 @@ def compute_allegement_cotisation_maladie(individu, period, parameters):
     """
     allegement_mmid = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid
 
-    assiette_allegement = individu('assiette_allegement', period)
-    smic_proratise = individu('smic_proratise', period)
+    assiette_allegement = individu('assiette_allegement', period, options = [ADD])
+    smic_proratise = individu('smic_proratise', period, options = [ADD])
     plafond_allegement_mmid = allegement_mmid.plafond  # en nombre de smic
 
     sous_plafond = assiette_allegement <= (smic_proratise * plafond_allegement_mmid)
