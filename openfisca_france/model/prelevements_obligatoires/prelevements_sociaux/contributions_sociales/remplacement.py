@@ -470,7 +470,7 @@ class casa(Variable):
     value_type = float
     entity = Individu
     label = "Contribution additionnelle de solidarité et d'autonomie"
-    reference = "http://www.service-public.fr/actualites/002691.html"
+    reference = "http://www.service-public.fr/actualites/002691.html et https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073189/LEGISCTA000042675227/#LEGISCTA000042675234"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
