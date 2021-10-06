@@ -1,5 +1,13 @@
 # Changelog
 
+# 77.0.1 [#1687](https://github.com/openfisca/openfisca-france/pull/1687)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : Octobre 2021 et plus
+* Zones impactées : `parameters/marche_travail/salaire_minimum/smic_h_b.yaml`.
+* Détails :
+  - Ajoute la revalorisation du smic horaire brut prenant effet en octobre 2021
+
 # 77.0.0 [#1654](https://github.com/openfisca/openfisca-france/pull/1654)
 
 * Évolution du système socio-fiscal.
