@@ -1,6 +1,6 @@
 # Changelog
 
-## [#1654](https://github.com/openfisca/openfisca-france/pull/1654)
+# 77.0.0 [#1654](https://github.com/openfisca/openfisca-france/pull/1654)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2019.
@@ -12,7 +12,7 @@
 * Détails :
   - Ajoute et calcule l'`allegement_cotisation_maladie` qui remplace le CICE.
   - Ajoute cet allègement de cotisations employeur non contributives à la liste des `exonerations_et_allegements`.
-  - Transforme son `taux` normal de barème à paramètre simple et ajoute les paramètres de l'allègement.
+  - Modifie l'interface Python d'openfisca-france en transformant `prelevements_sociaux.cotisations_securite_sociale_regime_general.mmid.taux` de barème à paramètre simple.
 
 ### 76.1.1 [#1686](https://github.com/openfisca/openfisca-france/pull/1686)
 
