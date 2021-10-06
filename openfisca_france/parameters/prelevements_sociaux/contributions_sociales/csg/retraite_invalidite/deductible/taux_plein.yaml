@@ -14,8 +14,11 @@ values:
 metadata:
   ux_name: Taux plein
   last_review:
-    2018-01-01
+    2021-10-06
   reference:
+    2021-10-06:
+      title: Article 154 quinquies - I du Code Général des Impôts
+      href: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069577/LEGISCTA000006197369/2021-10-06/
     2018-01-01:
     - title:
       href: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
