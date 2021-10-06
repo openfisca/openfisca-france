@@ -416,7 +416,6 @@ class allegement_cotisation_allocations_familiales(Variable):
         return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
 
-
 def compute_allegement_cotisation_allocations_familiales(individu, period, parameters):
     """
         La réduction du taux de la cotisation d’allocations familiales
@@ -449,7 +448,6 @@ class allegement_cotisation_maladie(Variable):
             )
 
         return allegement
-
 
 
 def compute_allegement_cotisation_maladie(individu, period, parameters):
