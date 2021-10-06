@@ -10,8 +10,11 @@ values:
 metadata:
   ux_name: Taux plein
   last_review:
-    2021-07-22
+    2021-10-06
   reference:
+    2021-10-06:
+      title: Article L136-8-III
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683546/2021-10-06/
     2005-01-01:
       title: Loi 2004-810 du 13/08/2004, art. 72
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006759004&cidTexte=JORFTEXT000000625158

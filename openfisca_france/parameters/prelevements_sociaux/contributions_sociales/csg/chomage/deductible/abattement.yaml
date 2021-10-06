@@ -20,8 +20,11 @@ brackets:
 metadata:
   ux_name: Abattement
   last_review:
-    2021-07-22
+    2021-10-06
   reference:
+    2021-10-06:
+      title: Article L136-2-I du Code de la Sécurité Sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683568/2021-10-06/
     2012-01-01:
       title: Loi 2011-1906 du 28/12/2011, art. 17 (LFSS pour 2012)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025007624&cidTexte=JORFTEXT000025005833
