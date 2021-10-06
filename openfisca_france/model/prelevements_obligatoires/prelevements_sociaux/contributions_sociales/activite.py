@@ -15,6 +15,7 @@ log = logging.getLogger(__name__)
 class assiette_csg_abattue(Variable):
     value_type = float
     label = "Assiette CSG - CRDS"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683657"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -197,6 +198,7 @@ class salaire_imposable(Variable):
         }
     entity = Individu
     label = "Salaires imposables"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683657"
     set_input = set_input_divide_by_period
     definition_period = MONTH
     set_input = set_input_divide_by_period
