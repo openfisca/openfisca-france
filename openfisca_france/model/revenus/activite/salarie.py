@@ -189,6 +189,16 @@ class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class allegement_cotisation_maladie_mode_recouvrement(Variable):
+    value_type = Enum
+    possible_values = TypesAllegementModeRecouvrement
+    default_value = TypesAllegementModeRecouvrement.fin_d_annee
+    entity = Individu
+    label = "Mode de recouvrement de l'allègement des cotisations maladie sur les bas et moyens salaires (Ex-CICE)"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
 class apprentissage_contrat_debut(Variable):
     value_type = date
     entity = Individu
@@ -1057,10 +1067,12 @@ class exonerations_et_allegements(Variable):
             'exoneration_cotisations_employeur_stagiaire', period, options = [ADD])
 
         allegement_fillon = individu('allegement_fillon', period, options = [ADD])
+        allegement_cotisation_maladie = individu('allegement_cotisation_maladie', period, options = [ADD])
         allegement_cotisation_allocations_familiales = individu('allegement_cotisation_allocations_familiales', period, options = [ADD])
 
         return (
             allegement_fillon
+            + allegement_cotisation_maladie
             + allegement_cotisation_allocations_familiales
             + exoneration_cotisations_employeur_geographiques
             + exoneration_cotisations_employeur_jei

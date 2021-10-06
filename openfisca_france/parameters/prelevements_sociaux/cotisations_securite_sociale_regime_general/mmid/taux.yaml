@@ -1,23 +1,12 @@
-description: Taux normal et réduit des cotisations du régime d'assurance maladie (à partir de 2019)
-brackets:
-- rate: # Taux réduit sous 2,5 SMIC
-    2019-01-01:
-      value: 0.07
-  threshold:
-    1967-10-01:
-      value: 0.0
-- rate: # Tout salaire
-    2019-01-01:
-      value: 0.13
-  threshold: # Taux normal au-dessus de 2,5 SMIC
-    1967-10-01:
-      value: 2.5
+description: Taux normal des cotisations du régime d'assurance maladie pour tout salaire (à partir de 2019)
+values:
+  2019-01-01:
+    value: 0.13
 metadata:
-  ux_name: Barème salarié
+  ux_name: Taux normal de cotisation maladie
   last_review:
     2019-01-01
-  rate_unit: /1
-  threshold_unit: SMIC
+  unit: /1
   reference:
     2019-01-01:
       title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018), art. 9
@@ -25,7 +14,8 @@ metadata:
   official_journal_date:
     2019-01-01: 2017-12-31
   notes:
-    2019-01-01: Taux réduit pour salaire inférieur à 2,5 Smic constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
+    2019-01-01: Taux pour tout salaire qui constitue la transformation du CICE et CITS auquel s'applique une baisse pérenne de cotisations employeur.
   description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
 documentation: |
-  A partir de 2019, le taux réduit et le taux normal constitue bien des taux globaux d'imposition, et non des taux d'imposition par tranche, contrairement à précédemment.
+  A partir de 2019, le taux normal constitue bien un des taux global d'imposition, 
+  et non un des taux d'imposition par tranche, contrairement à précédemment.

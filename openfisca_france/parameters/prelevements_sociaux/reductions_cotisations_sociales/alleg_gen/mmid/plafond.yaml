@@ -1,0 +1,23 @@
+description: Plafond de rémunération en nombre de SMIC soumise à l'allègement des cotisations du régime d'assurance maladie (à partir de 2019)
+values:
+  2019-01-01:
+    value: 2.5
+metadata:
+  ux_name: Plafond d'allègement maladie
+  last_review:
+    2019-01-01
+  unit: SMIC
+  reference:
+    2019-01-01:
+    - title: Article L241-2-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559
+    - title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018), art. 9
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358458&cidTexte=JORFTEXT000036339090
+  official_journal_date:
+    2019-01-01: 2017-12-31
+  notes:
+    2019-01-01: Plafond de rémunération en nombre de SMIC en-dessous de laquelle l'allègement pour salaire est appliqué et constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
+  description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+documentation: |
+  A partir de 2019, un allègement sur le taux normal de cotisation MMID est appliqué 
+  contrairement à précédemment où des taux d'imposition par tranche étaient en vigueur.
