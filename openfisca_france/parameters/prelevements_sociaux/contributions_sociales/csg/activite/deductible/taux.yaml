@@ -12,8 +12,11 @@ values:
 metadata:
   ux_name: Taux
   last_review:
-    2021-07-21
+    2021-10-06
   reference:
+    2021-10-06:
+      title: Article 154 quinquies - II
+      href: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069577/LEGISCTA000006197369/2021-10-06/
     2018-01-01:
     - title:
       href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000036431149/2018-01-01/
