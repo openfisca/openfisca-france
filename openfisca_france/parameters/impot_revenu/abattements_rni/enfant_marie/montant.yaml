@@ -13,8 +13,6 @@ values:
     value: 8600.0
   1979-01-01:
     value: 9500.0
-  #1980-01-01:
-  #  value: 10800.0 - référence inconnue
   1982-01-01:
     value: 12500.0
   1983-10-09:
@@ -65,8 +63,6 @@ values:
     value: 4338.0
   2005-01-01:
     value: 4410.0
-  #2005-01-01:
-  #  value: 4489.0 - issue des barèmes IPP mais valeur non retrouvée et référence législative inconnue
   2006-01-01:
     value: 5398.0
   2006-12-27:
@@ -79,8 +75,6 @@ values:
     value: 5753.0
   2011-01-01:
     value: 5698.0
-  #2013-01-01:
-  #  value: 5753 - valeur issue des barèmes IPP mais bug ? Même valeur qu'en 2010.
   2015-01-01:
     value: 5726.0
   2016-01-01:
