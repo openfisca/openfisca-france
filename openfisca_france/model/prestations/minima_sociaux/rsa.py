@@ -299,6 +299,7 @@ class crds_mini(Variable):
     value_type = float
     entity = Famille
     label = "CRDS versée sur les minimas sociaux"
+    reference = "https://www.legifrance.gouv.fr/loda/id/LEGIARTI000038834962/2019-09-01/#LEGIARTI000038834962"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -574,6 +575,7 @@ class rsa(Variable):
     calculate_output = calculate_output_add
     value_type = float
     label = "Revenu de solidarité active"
+    reference = "https://www.service-public.fr/particuliers/vosdroits/N19775"
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period

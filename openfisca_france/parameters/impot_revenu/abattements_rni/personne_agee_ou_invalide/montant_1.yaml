@@ -1,8 +1,4 @@
-description: Âgé ou invalide - montant 1
-reference:
-  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/abat_rni/
-  - http://bofip.impots.gouv.fr/bofip/2036-PGP.html
-  - https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
+description: Montant de l'abattement de l'impôt sur le revenu, pour les personnes âgées ou invalides à charge
 unit: currency
 values:
   1977-01-01:
@@ -81,3 +77,12 @@ values:
     value: 2416.0
   2019-01-01:
     value: 2442.0
+metadata:
+  reference:
+    0001-01-01:
+      - title: Barèmes IPP
+        href: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/abat_rni/
+      - title: Bofip
+        href: http://bofip.impots.gouv.fr/bofip/2036-PGP.html
+    2020-07-25:
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042158963/2020-07-25
