@@ -2,12 +2,12 @@ description: Montant de l'aide pour une personne seule
 reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000005745247
 unit: currency
 values:
-  2003-01-01:
+  2003-12-30:
     value: 152.45
 metadata:
   last_review:
     2021-09-28
   reference:
-    2003-12-26:
+    2003-12-30:
     - title: Article 1 du décret n° 2003-1283 
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006226757
