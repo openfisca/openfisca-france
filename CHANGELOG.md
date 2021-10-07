@@ -1,21 +1,16 @@
 # Changelog
 
-# 77.1.0 [#1683](https://github.com/openfisca/openfisca-france/pull/1683)
+## 77.1.0 [#1683](https://github.com/openfisca/openfisca-france/pull/1683)
 
 * Évolution du système socio-fiscal.
-* Périodes concernées :  toutes
+* Périodes concernées : toutes
 * Zones impactées : toutes
 * Détails :
   - Abattement RNI (Impôt sur le revenu): Ajout de références + Correction des valeurs + Mise à jour paramètres 2021
   - Allocation Solidarité Spécifique : Ajout de référence dans la variable + Mise à jour paramètre 2021
   - `crds_mini` : Ajout de la référence dans la variable
-- - - -
-Ceci n'inclus pas les paramètres `crds_mini` pour 2019 et 2020
-- - - -
-Ces changements (effacez les lignes ne correspondant pas à votre cas) 
-- Corrigent ou améliorent un calcul déjà existant.
 
-# 77.0.2 [#1688](https://github.com/openfisca/openfisca-france/pull/1688)
+### 77.0.2 [#1688](https://github.com/openfisca/openfisca-france/pull/1688)
 
 * Changement mineur.
 * Périodes concernées : toutes
@@ -25,7 +20,7 @@ Ces changements (effacez les lignes ne correspondant pas à votre cas)
   - Update de references sur quelques variables CSG/CRDS/CASA
   - Aucune modification de valeur de parametres
 
-# 77.0.1 [#1687](https://github.com/openfisca/openfisca-france/pull/1687)
+### 77.0.1 [#1687](https://github.com/openfisca/openfisca-france/pull/1687)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : Octobre 2021 et plus
