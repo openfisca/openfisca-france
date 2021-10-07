@@ -1,5 +1,6 @@
 description: Rémunération minimale d'un stagiaire
 reference: "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234400&cidTexte=LEGITEXT000006071191&dateTexte=20170901"
+unit: PSS
 values:
   2015-09-01:
     value: 0.15
