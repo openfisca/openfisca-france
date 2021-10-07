@@ -1,5 +1,21 @@
 # Changelog
 
+### 77.1.1 [#1669](https://github.com/openfisca/openfisca-france/pull/1669)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `parameters/demographie`
+  - `parameters/epargne`
+  - `parameters/fonc/indem_resid et parameters/fonc/supplement_familial`
+  - `parameters/impot_revenu`
+  - `parameters/marche_travail/salaire_minimum`
+  - `parameters/prelevements_sociaux`
+  - `parameters/prestations/prestations_familiales/af`
+* Détails : 
+  - Améliore les libellés des paramètres (accents, formulations ...)
+  - Modifie les formulations des libellés des paramètres de plafond du QF de l'impôt sur le revenu (en utilisant les formulations du site economie.gouv / et celles de l'IPP)
+
 ## 77.1.0 [#1683](https://github.com/openfisca/openfisca-france/pull/1683)
 
 * Évolution du système socio-fiscal.

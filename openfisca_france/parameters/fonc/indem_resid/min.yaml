@@ -17,3 +17,5 @@ values:
   2013-01-01:
     value: 313.0
   2014-07-01: expected
+metadata:
+  ux_name: Montant plancher
