@@ -344,10 +344,19 @@ class statuts_etablissement_scolaire(Variable):
 
 
 class TypesClasse(Enum):
-    __order__ = 'seconde premiere terminale licence_1 licence_2 licence_3 master_1 master_2 doctorat_1 doctorat_2 doctorat_3 autre'
+    __order__ = 'cap_1 cap_2 seconde premiere terminale bts_1 bts_2 cpge_1 cpge_2 but_1 but_2 but_3 licence_1 licence_2 licence_3 master_1 master_2 doctorat_1 doctorat_2 doctorat_3 autre'
+    cap_1 = 'Première année de CAP'
+    cap_2 = 'Deuxième année de CAP'
     seconde = 'Seconde'
     premiere = 'Première'
     terminale = 'Terminale'
+    bts_1 = 'Première année de BTS'
+    bts_2 = 'Deuxième année de BTS'
+    cpge_1 = 'Première année de CPGE'
+    cpge_2 = 'Deuxième année de CPGE'
+    but_1 = 'Première année de BUT'
+    but_2 = 'Deuxième année de BUT'
+    but_3 = 'Troisième année de BUT'
     licence_1 = 'Première année de licence'
     licence_2 = 'Deuxième année de licence'
     licence_3 = 'Troisième année de licence'
