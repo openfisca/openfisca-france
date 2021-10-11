@@ -1056,6 +1056,7 @@ class vieillesse_deplafonnee_salarie(Variable):
     value_type = float
     entity = Individu
     label = "Cotisation vieillesse déplafonnée (salarié)"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043870904"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -1075,6 +1076,7 @@ class vieillesse_plafonnee_salarie(Variable):
     value_type = float
     entity = Individu
     label = "Cotisation vieillesse plafonnée (salarié)"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043870904"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
