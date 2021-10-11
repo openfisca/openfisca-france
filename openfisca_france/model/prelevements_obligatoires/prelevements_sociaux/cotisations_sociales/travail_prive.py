@@ -803,6 +803,7 @@ class mmid_salarie(Variable):
     value_type = float
     entity = Individu
     label = "Cotisation maladie (salarié)"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036390317/ et https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036679615"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
