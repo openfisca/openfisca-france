@@ -1,14 +1,22 @@
 # Changelog
 
+## 77.3.0 [#1690](https://github.com/openfisca/openfisca-france/pull/1690)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/prestations/education.py`
+* Détails :
+  - Ajoute des types de classes dans l'enum `TypesClasse`.
+
 ## 77.2.0 [#1692](https://github.com/openfisca/openfisca-france/pull/1692)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `model/prestations/education.py`
 * Détails :
-  - Ajoute des types de scolarité dans l'enum `TypesScolarite`.
-
+  - Ajoute des types de classes dans l'enum `TypesClasse`.
 
 ### 77.1.1 [#1669](https://github.com/openfisca/openfisca-france/pull/1669)
 
