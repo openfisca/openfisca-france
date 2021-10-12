@@ -292,8 +292,10 @@ class bourse_lycee(Variable):
 
 
 class TypesScolarite(Enum):
-    __order__ = 'inconnue college lycee enseignement_superieur grande_ecole_du_numerique'  # Needed to preserve the enum order in Python 2
+    __order__ = 'inconnue maternelle primaire college lycee enseignement_superieur grande_ecole_du_numerique'  # Needed to preserve the enum order in Python 2
     inconnue = "Inconnue"
+    maternelle = "Maternelle"
+    primaire = "Primaire"
     college = "Collège"
     lycee = "Lycée"
     enseignement_superieur = "Établissement de l'enseignement supérieur"
