@@ -957,6 +957,7 @@ class complementaire_sante_employeur(Variable):
     value_type = float
     entity = Individu
     label = "Couverture complémentaire santé collective d'entreprise - part employeur"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038610242"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -973,6 +974,7 @@ class complementaire_sante_salarie(Variable):
     value_type = float
     entity = Individu
     label = "Couverture complémentaire santé collective d'entreprise - part salarié"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038610242"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
