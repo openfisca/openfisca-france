@@ -1,5 +1,15 @@
 # Changelog
 
+### 79.0.2 [#1693](https://github.com/openfisca/openfisca-france/pull/1693)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : 
+  - `model/prelevements_obligatoires/impot_revenu`
+  - `parameters/taxation_capital/isf_ifi`
+* Détails :
+  - Ajoute des références (si manquantes ou liens morts)
+
 ### 79.0.1 [#1697](https://github.com/openfisca/openfisca-france/pull/1697)
 
 * Changement mineur.
