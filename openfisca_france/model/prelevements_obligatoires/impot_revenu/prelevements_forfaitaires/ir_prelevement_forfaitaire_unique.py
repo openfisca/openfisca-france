@@ -123,7 +123,7 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Plus-values soumises au prélèvement forfaitaire unique (partie impôt sur le revenu)"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036428175/2021-10-12/"
+    reference = "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000036377422/"
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
