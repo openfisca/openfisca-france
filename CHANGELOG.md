@@ -1,5 +1,17 @@
 # Changelog
 
+### 79.0.3 [#1689](https://github.com/openfisca/openfisca-france/pull/1689)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `chemin/vers/le/fichier/contenant/les/variables/impactées`.
+* Détails :
+  - Vérifie que les paramètres CNAV (prelevements_sociaux/cotisations_securite_sociale_regime_general/cnav/*) sont à jour
+  - Vérifie que les paramètres AGIRC-ARCCO (cas salarié du privé) sont à jour
+  - Vérifie que les paramètres CET et CEG (cas salarié du privé) sont à jour
+  - Vérifie que les paramètres MMID (cas salarié du privé) sont à jour
+  - Ajoute des références (si manquantes ou lien mort) pour ces dispositifs
+
 ### 79.0.2 [#1693](https://github.com/openfisca/openfisca-france/pull/1693)
 
 * Changement mineur.
