@@ -43,7 +43,7 @@ class cotisations_employeur_contributives(Variable):
         arrco_employeur = individu('arrco_employeur', period)
         chomage_employeur = individu('chomage_employeur', period)
         contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
-        cotisation_equilibre_technique_employeur = individu('cotisation_equilibre_technique_employeur', period)
+        contribution_equilibre_technique_employeur = individu('contribution_equilibre_technique_employeur', period)
         cotisation_exceptionnelle_temporaire_employeur = individu(
             'cotisation_exceptionnelle_temporaire_employeur', period)
         fonds_emploi_hospitalier = individu('fonds_emploi_hospitalier', period, options = [ADD])
@@ -64,7 +64,7 @@ class cotisations_employeur_contributives(Variable):
             + arrco_employeur
             + chomage_employeur
             + contribution_equilibre_general_employeur
-            + cotisation_equilibre_technique_employeur
+            + contribution_equilibre_technique_employeur
             + cotisation_exceptionnelle_temporaire_employeur
             + vieillesse_deplafonnee_employeur
             + vieillesse_plafonnee_employeur
@@ -125,7 +125,7 @@ class cotisations_salariales_contributives(Variable):
         arrco_salarie = individu('arrco_salarie', period)
         chomage_salarie = individu('chomage_salarie', period)
         contribution_equilibre_general_salarie = individu('contribution_equilibre_general_salarie', period)
-        cotisation_equilibre_technique_salarie = individu('cotisation_equilibre_technique_salarie', period)
+        contribution_equilibre_technique_salarie = individu('contribution_equilibre_technique_salarie', period)
         cotisation_exceptionnelle_temporaire_salarie = individu('cotisation_exceptionnelle_temporaire_salarie', period)
         ircantec_salarie = individu('ircantec_salarie', period)
         pension_salarie = individu('pension_salarie', period)
@@ -143,7 +143,7 @@ class cotisations_salariales_contributives(Variable):
             + arrco_salarie
             + chomage_salarie
             + contribution_equilibre_general_salarie
-            + cotisation_equilibre_technique_salarie
+            + contribution_equilibre_technique_salarie
             + cotisation_exceptionnelle_temporaire_salarie
             + vieillesse_deplafonnee_salarie
             + vieillesse_plafonnee_salarie

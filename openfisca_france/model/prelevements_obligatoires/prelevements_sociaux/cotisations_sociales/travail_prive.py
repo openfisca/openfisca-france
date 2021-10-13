@@ -691,10 +691,10 @@ class contribution_solidarite_autonomie(Variable):
         return cotisation
 
 
-class cotisation_equilibre_technique_salarie(Variable):
+class contribution_equilibre_technique_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation d'équilibre technique (salarie)"
+    label = "Contribution d'équilibre technique (salarie)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -709,15 +709,15 @@ class cotisation_equilibre_technique_salarie(Variable):
             parameters,
             cotisation_type = 'salarie',
             bareme_name = 'cet2019',
-            variable_name = 'cotisation_equilibre_technique_salarie',
+            variable_name = 'contribution_equilibre_technique_salarie',
             )
         return cotisation * (assiette_cotisations_sociales > plafond_securite_sociale)
 
 
-class cotisation_equilibre_technique_employeur(Variable):
+class contribution_equilibre_technique_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation d'équilibre technique (employeur)"
+    label = "Contribution d'équilibre technique (employeur)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -732,7 +732,7 @@ class cotisation_equilibre_technique_employeur(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'cet2019',
-            variable_name = 'cotisation_equilibre_technique_employeur',
+            variable_name = 'contribution_equilibre_technique_employeur',
             )
         return cotisation * (assiette_cotisations_sociales > plafond_securite_sociale)
 

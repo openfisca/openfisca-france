@@ -4,8 +4,8 @@
   input:
     salaire_de_base: 2000
   output:
-    cotisation_equilibre_technique_salarie: 0
-    cotisation_equilibre_technique_employeur: 0
+    contribution_equilibre_technique_salarie: 0
+    contribution_equilibre_technique_employeur: 0
 
 - period: 2019-01
   description: Salarié au dessus du plafond de la sécurité sociale
@@ -13,5 +13,5 @@
   input:
     salaire_de_base: 10000
   output:
-    cotisation_equilibre_technique_salarie: -14
-    cotisation_equilibre_technique_employeur: -21
+    contribution_equilibre_technique_salarie: -14
+    contribution_equilibre_technique_employeur: -21
