@@ -72,7 +72,7 @@ class ir_pv_immo(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Impôt sur le revenu afférent à la plus-value immobilière"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/popup?espId=1&typePage=cpr02&docOid=documentstandard_2157"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042908474/"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
