@@ -1,5 +1,13 @@
 # Changelog
 
+### 77.3.1 [#1694](https://github.com/openfisca/openfisca-france/pull/1694)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py`.
+* Détails :
+  - Dans preprocessing, un mauvais attribut (`metadata.label`) était utilisé pour donner une description au paramètre cotsoc.
+
 ## 77.3.0 [#1690](https://github.com/openfisca/openfisca-france/pull/1690)
 
 * Évolution du système socio-fiscal.

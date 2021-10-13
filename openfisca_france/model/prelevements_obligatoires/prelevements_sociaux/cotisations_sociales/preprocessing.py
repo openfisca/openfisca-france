@@ -290,8 +290,7 @@ def preprocess_parameters(parameters):
     pat = build_pat(parameters)
     sal = build_sal(parameters)
 
-    cotsoc = ParameterNode("cotsoc", data={})
-    cotsoc.metadata = {"label": "Cotisations sociales"}
+    cotsoc = ParameterNode("cotsoc", data=dict(description='Cotisations sociales'))
     parameters.add_child('cotsoc', cotsoc)
     cotsoc.add_child('pat', pat)
     cotsoc.add_child('sal', sal)
