@@ -77,7 +77,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
         agirc_gmp_employeur = individu('agirc_gmp_employeur', period)
         arrco_employeur = individu('arrco_employeur', period)
         contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
-        cotisation_equilibre_technique_employeur = individu('cotisation_equilibre_technique_employeur', period)
+        contribution_equilibre_technique_employeur = individu('contribution_equilibre_technique_employeur', period)
         cotisation_exceptionnelle_temporaire_employeur = individu('cotisation_exceptionnelle_temporaire_employeur', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
@@ -97,7 +97,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
             for bareme_name in ['agffnc', 'agffc', 'ags', 'chomage', 'asf']
             )
         exoneration += (agirc_arrco_employeur + agirc_employeur + agirc_gmp_employeur + arrco_employeur
-            + contribution_equilibre_general_employeur + cotisation_equilibre_technique_employeur
+            + contribution_equilibre_general_employeur + contribution_equilibre_technique_employeur
             + cotisation_exceptionnelle_temporaire_employeur)
 
         return - exoneration * stagiaire
@@ -117,7 +117,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
         agirc_gmp_salarie = individu('agirc_gmp_salarie', period)
         arrco_salarie = individu('arrco_salarie', period)
         contribution_equilibre_general_salarie = individu('contribution_equilibre_general_salarie', period)
-        cotisation_equilibre_technique_salarie = individu('cotisation_equilibre_technique_salarie', period)
+        contribution_equilibre_technique_salarie = individu('contribution_equilibre_technique_salarie', period)
         cotisation_exceptionnelle_temporaire_salarie = individu('cotisation_exceptionnelle_temporaire_salarie', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
@@ -138,7 +138,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
                 round_base_decimals = 2,
                 )
         exoneration = (exoneration + agirc_salarie + agirc_gmp_salarie + arrco_salarie + agirc_arrco_salarie
-            + contribution_equilibre_general_salarie + cotisation_equilibre_technique_salarie
+            + contribution_equilibre_general_salarie + contribution_equilibre_technique_salarie
             + cotisation_exceptionnelle_temporaire_salarie)
 
         return - exoneration * stagiaire
