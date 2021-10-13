@@ -1,5 +1,17 @@
 # Changelog
 
+# 78.0.0 [#1696](https://github.com/openfisca/openfisca-france/pull/1696)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/stage.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_totaux.py`
+  - `tests/formulas/cet2019.yaml`
+* Détails :
+  - Corrige le nom de la CET (contribution d'équilibre technique).
+
 ### 77.3.1 [#1694](https://github.com/openfisca/openfisca-france/pull/1694)
 
 * Changement mineur.
@@ -30,7 +42,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `parameters/demographie`
   - `parameters/epargne`
   - `parameters/fonc/indem_resid et parameters/fonc/supplement_familial`
@@ -38,7 +50,7 @@
   - `parameters/marche_travail/salaire_minimum`
   - `parameters/prelevements_sociaux`
   - `parameters/prestations/prestations_familiales/af`
-* Détails : 
+* Détails :
   - Améliore les libellés des paramètres (accents, formulations ...)
   - Modifie les formulations des libellés des paramètres de plafond du QF de l'impôt sur le revenu (en utilisant les formulations du site economie.gouv / et celles de l'IPP)
 
@@ -74,7 +86,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2019.
-* Zones impactées : 
+* Zones impactées :
   - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
   - `model/revenus/activite/salarie.py`
   - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/mmid/taux.yaml`
@@ -113,7 +125,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2021.
-* Zones impactées : 
+* Zones impactées :
   - `model/prelevements_obligatoires/prestations/aide_permis_probtp.py`
   - `parameters/prestations/aide_permis_probtp.yaml`.
 * Détails :
