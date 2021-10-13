@@ -613,6 +613,7 @@ class isf_ifi(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Montant d'ISF-IFI"
+    reference = "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000036385039/"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
