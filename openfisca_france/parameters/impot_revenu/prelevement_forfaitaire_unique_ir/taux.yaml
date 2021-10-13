@@ -1,6 +1,12 @@
 description: Taux
-reference: https://www.ipp.eu/outils/baremes-ipp/ (hors parser des barèmes)
+reference: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036428175/
 unit: /1
 values:
   2018-01-01:
     value: 0.128
+metadata:
+  last_review: 2021-10-12
+  reference:
+    2018-01-01:
+      title: Art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
+      href: "https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197"
