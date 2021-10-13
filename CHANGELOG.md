@@ -1,5 +1,16 @@
 # Changelog
 
+# 79.0.0 [#1695](https://github.com/openfisca/openfisca-france/pull/1695)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées:
+  - `prelevements_obligatoires/impot_revenu/ir.py`
+  - `covid19/familles.py`
+* Détails :
+  - Supprime un doublon dans les barèmes du plafonnement du QF (barème du cas général). Change celui des deux qui est utilisé (`general.yaml` au lieu de `maries_pacses.yaml`)
+  - Corrige un barème sur les aides exceptionnelles covid
+
 # 78.0.0 [#1696](https://github.com/openfisca/openfisca-france/pull/1696)
 
 * Changement mineur.

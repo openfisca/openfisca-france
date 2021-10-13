@@ -13,7 +13,7 @@ aide_exceptionnelle_famille:
       2020-05-01:
         value: 150
       2020-06-01:
-        value: null
+        value: 0
       2020-10-01:
         value: 150
       2020-11-01:
@@ -23,7 +23,7 @@ aide_exceptionnelle_famille:
       2020-05-01:
         value: 200
       2020-06-01:
-        value: null
+        value: 0
       2020-10-01:
         value: 150
       2020-11-01:
@@ -33,7 +33,7 @@ aide_exceptionnelle_famille:
       2020-05-01:
         value: 100
       2020-06-01:
-        value: null
+        value: 0
       2020-10-01:
         value: 100
       2020-11-01:
