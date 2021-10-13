@@ -1,5 +1,13 @@
 # Changelog
 
+### 79.0.1 [#1697](https://github.com/openfisca/openfisca-france/pull/1697)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : `/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py`.
+* Détails :
+  - Ajout de descriptions dans les noeuds du preprocessing
+
 # 79.0.0 [#1695](https://github.com/openfisca/openfisca-france/pull/1695)
 
 * Changement mineur.
