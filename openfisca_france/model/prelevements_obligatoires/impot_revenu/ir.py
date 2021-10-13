@@ -1189,8 +1189,8 @@ class ir_plaf_qf(Variable):
         aa0 = (nb_parts - nb_adult) * 2  # nombre de demi part excédant nbadult
         aa1 = min_((nb_parts - 1) * 2, 2)  # deux première demi part excédants une part
 
-        B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.maries_ou_pacses * (aa0 - aa1)
-        B2 = plafond_qf.maries_ou_pacses * aa0
+        B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.general * (aa0 - aa1)
+        B2 = plafond_qf.general * aa0
         B3 = plafond_qf.celib
 
         condition61 = celibataire_ou_divorce & caseT
@@ -1282,8 +1282,8 @@ class ir_plaf_qf(Variable):
 
         aa0 = (nb_parts - nb_adult) * 2
         aa1 = min_((nb_parts - 1) * 2, 2)
-        B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.maries_ou_pacses * (aa0 - aa1)
-        B2 = plafond_qf.maries_ou_pacses * aa0
+        B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.general * (aa0 - aa1)
+        B2 = plafond_qf.general * aa0
         B3 = plafond_qf.celib
 
         condition61 = celibataire_ou_divorce & caseT
