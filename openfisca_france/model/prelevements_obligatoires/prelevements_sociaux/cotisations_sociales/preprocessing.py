@@ -11,8 +11,8 @@ log = logging.getLogger(__name__)
 def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     """Construit le dictionnaire de barèmes des cotisations employeur à partir des paramètres de parameters."""
     # TODO: contribution patronale de prévoyance complémentaire
-    pat = ParameterNode("pat", data={})  # Génère pat
-    commun = ParameterNode("commun", data={})  # Génère commun
+    pat = ParameterNode("pat", data=dict(description='Cotisations sociales employeur'))  # Génère pat
+    commun = ParameterNode("commun", data=dict(description='Cotisations sociales employeur communes à plusieurs régimes'))  # Génère commun
 
     # Réindexation : nouveaux chemins suite à l'harmonisation avec les répertoires des barèmes IPP
     autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
@@ -58,7 +58,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     # Réindexation NonCadre
     # Initialisation
-    noncadre = ParameterNode("noncadre", data={})
+    noncadre = ParameterNode("noncadre", data=dict(description='Cotisations employeur pour salarié non cadre'))
     pat.add_child('noncadre', noncadre)
     pat.children['noncadre'].children.update(retraites.agff.employeur.noncadre.children)
     pat.children['noncadre'].children.update(retraites.arrco.employeur.noncadre.children)
@@ -69,7 +69,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     # Réindexation Cadre
     # Initialisation
-    cadre = ParameterNode("cadre", data={})
+    cadre = ParameterNode("cadre", data=dict(description='Cotisations employeur pour salarié cadre'))
     pat.add_child('cadre', cadre)
     pat.children['cadre'].children.update(retraites.agff.employeur.cadre.children)
     pat.children['cadre'].children.update(retraites.arrco.employeur.cadre.children)
@@ -83,12 +83,12 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['cadre'].children.update(commun.children)
     # Réindexation Fonc
     # Initialisation
-    fonc = ParameterNode("fonc", data={})
+    fonc = ParameterNode("fonc", data=dict(description='Cotisations sociales employeur du secteur public'))
     pat.add_child('fonc', fonc)
-    fonc.add_child('colloc', ParameterNode("colloc", data={}))
-    fonc.add_child('etat', ParameterNode("etat", data={}))
-    fonc.add_child('militaire', ParameterNode("militaire", data={}))
-    fonc.add_child('contract', ParameterNode("contract", data={}))
+    fonc.add_child('colloc', ParameterNode("colloc", data=dict(description='Cotisations sociales employeur du secteur public pour les collectivités locales')))
+    fonc.add_child('etat', ParameterNode("etat", data=dict(description="Cotisations sociales employeur du secteur public pour les fonctions d'Etat")))
+    fonc.add_child('militaire', ParameterNode("militaire", data=dict(description='Cotisations sociales employeur du secteur public pour les militaires')))
+    fonc.add_child('contract', ParameterNode("contract", data=dict(description='Cotisations sociales employeur du secteur public pour les agents contractuels')))
 
     # Contractuel
     pat.children['fonc'].children['contract'] = public.ircantec.employeur
@@ -162,8 +162,8 @@ def build_sal(node_json):
     '''
     Construit le dictionnaire de barèmes des cotisations salariales
     '''
-    sal = ParameterNode("sal", data={})  # Génère sal
-    commun = ParameterNode("commun", data={})  # Génère commun
+    sal = ParameterNode("sal", data=dict(description='Cotisations sociales salariales'))  # Génère sal
+    commun = ParameterNode("commun", data=dict(description='Cotisations sociales salariales communes à plusieurs régimes'))  # Génère commun
 
     # Réindexation: nouveaux chemins
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
@@ -188,7 +188,7 @@ def build_sal(node_json):
 
     # Non Cadre
     # Initialisation
-    noncadre = ParameterNode("noncadre", data={})
+    noncadre = ParameterNode("noncadre", data=dict(description='Cotisations salariales pour salarié non cadre'))
     sal.add_child('noncadre', noncadre)
     sal.children['noncadre'].children.update(retraites.agff.salarie.noncadre.children)
     sal.children['noncadre'].children.update(retraites.arrco.salarie.noncadre.children)
@@ -198,7 +198,7 @@ def build_sal(node_json):
     sal.children['noncadre'].children.update(retraites.agirc_arrco.salarie.children)
 
     # Cadre
-    cadre = ParameterNode("cadre", data={})
+    cadre = ParameterNode("cadre", data=dict(description='Cotisations salariales pour salarié cadre'))
     sal.add_child('cadre', cadre)
     sal.children['cadre'].children.update(retraites.agff.salarie.cadre.children)
     sal.children['cadre'].children.update(retraites.arrco.salarie.cadre.children)
@@ -218,12 +218,12 @@ def build_sal(node_json):
 
     # Réindexation Fonc
     # Initialisation
-    fonc = ParameterNode("fonc", data={})
+    fonc = ParameterNode("fonc", data=dict(description='Cotisations salariales du secter public'))
     sal.add_child('fonc', fonc)
-    fonc.add_child('colloc', ParameterNode("colloc", data={}))
-    fonc.add_child('etat', ParameterNode("etat", data={}))
-    fonc.add_child('contract', ParameterNode("contract", data={}))
-    fonc.add_child('commun', ParameterNode("commun", data={}))
+    fonc.add_child('colloc', ParameterNode("colloc", data=dict(description='Cotisations sociales salariales du secteur public pour les collectivités locales')))
+    fonc.add_child('etat', ParameterNode("etat", data=dict(description="Cotisations sociales salariales du secteur public pour les fonctions d'Etat")))
+    fonc.add_child('contract', ParameterNode("contract", data=dict(description='Cotisations sociales salariales du secteur public pour les agents contractuels')))
+    fonc.add_child('commun', ParameterNode("commun", data=dict(description='Cotisations sociales salariales communes à plusieurs régimes')))
 
     # Etat
     sal.children['fonc'].children['etat'].children.update(public.rafp.salarie.children)
@@ -263,21 +263,21 @@ def build_sal(node_json):
     del sal.children['fonc'].children['contract']
 
     # Arti
-    sal.add_child('arti', ParameterNode("arti", data={}))
+    sal.add_child('arti', ParameterNode("arti", data=dict(description='Cotisations sociales salariales des artisans')))
     sal.children['arti'].children.update(indep.famille.arti.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['arti'].children.update(indep.formation.arti.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['arti'].children.update(indep.mmid.arti.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['arti'].children.update(indep.deces.arti.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['arti'].children.update(indep.retraite.arti.children)  # À harmoniser ! + Créer params depuis IPP
     # Comind
-    sal.add_child('comind', ParameterNode("comind", data={}))
+    sal.add_child('comind', ParameterNode("comind", data=dict(description='Cotisations sociales salariales des commercants et indépendants')))
     sal.children['comind'].children.update(indep.famille.comind.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['comind'].children.update(indep.formation.comind.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['comind'].children.update(indep.mmid.comind.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['comind'].children.update(indep.deces.comind.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['comind'].children.update(indep.retraite.comind.children)  # À harmoniser ! + Créer params depuis IPP
     # Microsocial
-    sal.add_child('microsocial', ParameterNode("microsocial", data={}))
+    sal.add_child('microsocial', ParameterNode("microsocial", data=dict(description='Cotisations sociales salariales des professions libérales')))
     sal.children['microsocial'].children.update(liberal.auto_entrepreneur.children)  # À harmoniser ! + Créer params depuis IPP
 
     return sal
@@ -296,8 +296,8 @@ def preprocess_parameters(parameters):
     cotsoc.add_child('sal', sal)
 
     # Modifs
-    cotsoc.add_child("cotisations_employeur", ParameterNode('cotisations_employeur_after_preprocessing', data = {}))
-    cotsoc.add_child("cotisations_salarie", ParameterNode('cotisations_salarie_after_preprocessing', data = {}))
+    cotsoc.add_child("cotisations_employeur", ParameterNode('cotisations_employeur_after_preprocessing', data=dict(description='Cotisations sociales employeur')))
+    cotsoc.add_child("cotisations_salarie", ParameterNode('cotisations_salarie_after_preprocessing', data=dict(description='Cotisations sociales salariales')))
 
     for cotisation_name, baremes in (
             ('cotisations_employeur', pat.children),
