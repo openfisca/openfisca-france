@@ -1,12 +1,45 @@
 - period: 2020-06
   input:
-    pe_nbenf: [1, 2]
-    agepi_temps_travail_semaine: [10, 10]
+    pe_nbenf: [1, 2, 3]
+    agepi_temps_travail_semaine: [10, 10, 15]
   output:
-    agepi: [170, 195]
+    agepi: [170, 195, 520]
 
 - period: 2020-06
   input:
     heures_remunerees_volume: 35 * 52 / 12
   output:
     agepi_temps_travail_semaine: 35
+
+#- period: 2021-10
+#  input:
+#    contrat_de_travail_duree: cdd
+#    contrat_de_travail_debut: 11/10/2021
+#    contrat_de_travail_fin: 11/01/2021
+#    allocation_retour_emploi: 29*20
+#    pe_nbenf: 1
+#  output:
+#    agepi: 170
+
+- name: Vérification du non cumul de l'aide AGEPI
+  period: 2021-10
+  input:
+    agepi:
+      2020-11: 170
+    pe_nbenf: 1
+    agepi_temps_travail_semaine: 10
+  output:
+    agepi: 0
+    agepi_eligible: false
+
+- name: Vérification si le candidat appartient à une catégorie
+  period: 2021-10
+  input:
+    agepi:
+      2020-11: 170
+    pe_nbenf: 1
+    agepi_temps_travail_semaine: 10
+    pe_categorie_demandeur_emploi: "1"
+  output:
+    agepi: 170
+    agepi_eligible: true
