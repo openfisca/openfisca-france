@@ -23,8 +23,8 @@ jobs:
             build-${{ env.pythonLocation }}-
       - name: Build package
         run: make build
-      - name: Cache build release
-        id: restore-build-release
+      - name: Cache release
+        id: restore-release
         uses: actions/cache@v2
         with:
           path: dist
@@ -179,8 +179,8 @@ jobs:
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
-      - name: Cache build release
-        id: restore-build-release
+      - name: Cache release
+        id: restore-release
         uses: actions/cache@v2
         with:
           path: dist
