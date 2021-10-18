@@ -157,11 +157,12 @@ jobs:
         with:
           python-version: 3.7.12
       - id: stop-early
-        run: "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh"
+        run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
 
   deploy:
     runs-on: ubuntu-latest
     needs: [ check-for-functional-changes ]
+    if: needs.check-for-functional-changes.outputs.status == 'success'
     env:
       PYPI_USERNAME: openfisca-bot
       PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
