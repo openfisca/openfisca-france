@@ -34,14 +34,14 @@ class TypesCategoriesDemandeurEmploi(Enum):
     __order__ = 'pas_de_categorie categorie_1 categorie_2 categorie_3 categorie_4 categorie_5 categorie_6 categorie_7 categorie_8 ' \
                 # Needed to preserve the enum order in Python 2
     pas_de_categorie = "NA"
-    categorie_1 = "Catégorie 1 - Personnes sans emploi immédiatement disponibles en recherche de CDI plein temps"
-    categorie_2 = "2"
-    categorie_3 = "3"
-    categorie_4 = "4"
-    categorie_5 = "5"
-    categorie_6 = "6"
-    categorie_7 = "7"
-    categorie_8 = "8"
+    categorie_1 = "Catégorie 1 - Personnes sans emploi, immédiatement disponibles en recherche de CDI plein temps"
+    categorie_2 = "Catégorie 2 - Personnes sans emploi, immédiatement disponibles en recherche de CDI à temps partiel"
+    categorie_3 = "Catégorie 3 - Personnes sans emploi, immédiatement disponibles en recherche de CDD"
+    categorie_4 = "Catégorie 4 - Personnes sans emploi, non immédiatement disponibles et à la recherche d’un emploi."
+    categorie_5 = "Catégorie 5 - Personnes non immédiatement disponibles, parce que titulaires d'un ou de plusieurs emplois, et à la recherche d'un autre emploi."
+    categorie_6 = "Catégorie 6 - Personnes non immédiatement disponibles, en recherche d'un autre emploi en CDI à plein temps"
+    categorie_7 = "Catégorie 7 - Personnes non immédiatement disponibles, en recherche d'un autre emploi en CDI à temps partiel"
+    categorie_8 = "Catégorie 8 - Personnes non immédiatement disponibles, en recherche d'un autre emploi en CDD"
 
 
 class pole_emploi_categorie_demandeur_emploi(Variable):
@@ -98,7 +98,7 @@ class agepi_eligible(Variable):
         # print(ARE_max)
 
         # return agepi_non_percue * pe_categorie_demandeur_emploi * ARE_max != 0
-        
+
         # print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
         # print("categorie_eligible = " + str(categories_eligibles))
         # print("agepi_non_percue = " + agepi_non_percue)
