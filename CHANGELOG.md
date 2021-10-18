@@ -1,5 +1,12 @@
 # Changelog
 
+### 79.0.4-beta.1 [#1685](https://github.com/openfisca/openfisca-france/pull/1685)
+
+* Amélioration technique.
+* Zones impactées : configuration de l'intégration continue.
+  * Détails :
+  - Corrige la gestion des caches dans l'intégration continue
+
 ### 79.0.3 [#1689](https://github.com/openfisca/openfisca-france/pull/1689)
 
 * Évolution du système socio-fiscal.
