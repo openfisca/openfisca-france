@@ -1,6 +1,6 @@
 # Changelog
 
-### 79.0.4-beta.1 [#1685](https://github.com/openfisca/openfisca-france/pull/1685)
+### 79.0.4 [#1685](https://github.com/openfisca/openfisca-france/pull/1685)
 
 * Amélioration technique.
 * Zones impactées : configuration de l'intégration continue.
