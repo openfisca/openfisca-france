@@ -51,6 +51,14 @@
 * Détails :
   - Met à jour les paramètres de la RLS
 
+### 79.0.5 [#1702](https://github.com/openfisca/openfisca-france/pull/1702)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes
+* Zones impactées : `openfisca_france/model/prestations/visale.py`& `openfisca_france/model/prestations/locapass.py`.
+* Détails :
+  - Gestion de la date d'entrée dans le logement (future et/ou moins de deux mois) pour les aides Visale et Locapass
+
 ### 79.0.4 [#1685](https://github.com/openfisca/openfisca-france/pull/1685)
 
 * Amélioration technique.

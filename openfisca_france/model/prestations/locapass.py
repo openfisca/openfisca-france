@@ -1,4 +1,5 @@
 from openfisca_france.model.base import Individu, Menage, TypesActivite, TypesStatutOccupationLogement, Variable, MONTH, set_input_dispatch_by_period
+from numpy import datetime64
 
 
 class locapass_eligibilite(Variable):
@@ -11,7 +12,7 @@ class locapass_eligibilite(Variable):
     def formula(individu, period):
         eligibilite_individu = individu('locapass_eligibilite_individu', period)
         eligibilite_logement = individu.menage('locapass_eligibilite_logement', period)
-        return eligibilite_individu * eligibilite_logement
+        return eligibilite_individu * eligibilite_logement * (individu.menage('date_entree_logement', period) >= datetime64(period.offset(-2, 'month').start))
 
 
 class locapass_eligibilite_logement(Variable):

@@ -1,4 +1,5 @@
 from openfisca_france.model.base import *
+from numpy import datetime64
 
 
 class visale_eligibilite(Variable):
@@ -35,7 +36,7 @@ class visale_eligibilite(Variable):
 
         eligibilite_loyer = (loyer + charges_locatives) <= montant_max
 
-        return eligibilite_age * eligibilite_nationalite * eligibilite_loyer
+        return eligibilite_age * eligibilite_nationalite * eligibilite_loyer * (menage('date_entree_logement', period) > datetime64(period.start))
 
 
 class visale_montant_max(Variable):
