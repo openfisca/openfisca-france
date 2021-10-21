@@ -1,5 +1,26 @@
 # Changelog
 
+### 79.0.5 [#1701](https://github.com/openfisca/openfisca-france/pull/1701)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/2021
+* Zones impactées :
+  - `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/zone_1/couples.yaml`
+  - `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/zone_1/famille_1pac.yaml`
+  - `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/zone_1/majoration_par_pac_supp.yaml`
+  - `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/zone_1/personnes_seules.yaml`
+  - `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/zone_2/couples.yaml`
+  - `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/zone_2/famille_1pac.yaml`
+  - `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/zone_2/majoration_par_pac_supp.yaml`
+  - `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/zone_2/personnes_seules.yaml`
+  - `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/zone_3/couples.yaml`
+  - `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/zone_3/famille_1pac.yaml`
+  - `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/zone_3/majoration_par_pac_supp.yaml`
+  - `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/zone_3/personnes_seules.yaml`
+  - `tests\formulas\aides_logement_reforme_janvier_2021.yaml`
+* Détails :
+  - Met à jour les paramètres de la RLS
+
 ### 79.0.4 [#1685](https://github.com/openfisca/openfisca-france/pull/1685)
 
 * Amélioration technique.
@@ -23,7 +44,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
   - `model/prelevements_obligatoires/impot_revenu`
   - `parameters/taxation_capital/isf_ifi`
 * Détails :
