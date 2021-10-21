@@ -295,9 +295,10 @@ class contrat_de_travail_fin(Variable):
 
 
 class TypesContratDeTravailDuree(Enum):
-    __order__ = 'cdi cdd'  # Needed to preserve the enum order in Python 2
+    __order__ = 'cdi cdd ctt'  # Needed to preserve the enum order in Python 2
     cdi = "CDI"
     cdd = "CDD"
+    ctt = "CTT"
 
 
 class contrat_de_travail_duree(Variable):

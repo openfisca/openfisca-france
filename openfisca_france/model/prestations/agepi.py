@@ -16,8 +16,9 @@ class pe_nbenf(Variable):
     ]
 
     def formula(famille, period, parameters):
-        agepi = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi
-        return famille.sum(famille.members('age', period) < agepi.age_enfant_maximum, role=Famille.ENFANT)
+        age_enfant_eligible = famille('agepi_eligible', period)
+        nb_enfants_eligibles = famille.sum(age_enfant_eligible, role=Famille.ENFANT)
+        return nb_enfants_eligibles
 
 
 class agepi_temps_travail_semaine(Variable):
@@ -59,6 +60,7 @@ class pole_emploi_categorie_demandeur_emploi(Variable):
     definition_period = MONTH
 
 
+
 class agepi_eligible(Variable):
     value_type = bool
     entity = Famille
@@ -69,7 +71,6 @@ class agepi_eligible(Variable):
         "Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
     ]
-
 
     def formula(famille, period, parameters):
         # Renvoi true si :
@@ -84,7 +85,11 @@ class agepi_eligible(Variable):
         #  1- L'individu élève seul son enfant dont l'age est inférieur à 10 ans
 
         parent_isole = famille('nb_parents', period) == 1
-        #  TODO enfants_eligibles
+
+        age_enfant = famille.members('age', period)
+        print(f"age_enfant: {age_enfant}")
+        age_enfant_eligible = age_enfant < parameters(period).prestations.agepi.age_enfant_maximum
+        print(f"age_enfant_eligible: {age_enfant_eligible}")
 
         #  2- L'individu n'a pas touché l'AGEPI dans les 12 derniers mois
 
@@ -114,8 +119,8 @@ class agepi_eligible(Variable):
         #
         # print(f"contrat_de_travail_debut: {famille.members('contrat_de_travail_debut', period)}")
         # print(f"date_debut_contrat_de_travail_plus_un_mois: {date_debut_contrat_de_travail_plus_un_mois}")
-
-        #date_demande_agepi_eligible = (date_demande_agepi <= date_debut_contrat_de_travail_plus_un_mois)
+        #
+        # date_demande_agepi_eligible = (date_demande_agepi < date_debut_contrat_de_travail_plus_un_mois)
 
         #  5- L'individu est non indemnisé ou que son ARE est inférieure ou égale à l'ARE minimale
 
@@ -130,11 +135,10 @@ class agepi_eligible(Variable):
 
         #   TODO 6- L'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs
         #       - Ou en processur d'entrée en formation supérieure ou égale à 40 heures
-        #
 
         date_demande_agepi_eligible = True
 
-        return parent_isole * agepi_non_percue * categories_eligibles * date_demande_agepi_eligible * montant_ARE_eligible != 0
+        return parent_isole * age_enfant_eligible * agepi_non_percue * categories_eligibles * date_demande_agepi_eligible * montant_ARE_eligible != 0
 
 
 class agepi(Variable):
@@ -150,12 +154,12 @@ class agepi(Variable):
 
     def formula(famille, period, parameters):
         nb_heures = famille.sum(famille.members('agepi_temps_travail_semaine', period), role=Famille.PARENT)
-        nbenf = famille('pe_nbenf', period)
+        nb_enfants_eligibles = famille('pe_nbenf', period)
         agepi_eligible = famille('agepi_eligible', period)
 
         montants = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants
-        montant_moins_de_15h = montants.moins_de_15h_par_semaine.calc(nbenf)
-        montant_plus_de_15h = montants.plus_de_15h_par_semaine.calc(nbenf)
+        montant_moins_de_15h = montants.moins_de_15h_par_semaine.calc(nb_enfants_eligibles)
+        montant_plus_de_15h = montants.plus_de_15h_par_semaine.calc(nb_enfants_eligibles)
 
         montant = (nb_heures < 15) * montant_moins_de_15h + (nb_heures >= 15) * montant_plus_de_15h
 
