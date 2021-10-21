@@ -137,7 +137,7 @@ class agepi_eligible(Variable):
         #   TODO 6- L'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs
         #       - Ou en processur d'entrée en formation supérieure ou égale à 40 heures
 
-        reprise_type_emploi = famille.members('contrat_de_travail_duree', period)
+        reprise_type_emploi = famille.members('contrat_de_travail_type', period)
         print(f"reprise_type_emploi_3_mois_consecutifs: {reprise_type_emploi}")
 
         reprise_type_emploi_eligible = ((reprise_type_emploi == salarie.TypesContratDeTravailDuree.cdi) +
@@ -148,7 +148,7 @@ class agepi_eligible(Variable):
 
         # reprise_type_emploi_3_mois_consecutifs_eligible = reprise_type_emploi_eligible sur une periode de 3 mois
 
-        # reprise_activite_superieure_40_heures = famille.members('contrat_de_travail_duree', period('month', period, 3))
+        # reprise_activite_superieure_40_heures = famille.members('contrat_de_travail_type', period('month', period, 3))
         # reprise_activite_eligible = reprise_type_emploi_3_mois_consecutifs + reprise_activite_superieure_40_heures
 
         date_demande_agepi_eligible = True

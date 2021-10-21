@@ -3,7 +3,7 @@ period: 2014-11
 absolute_error_margin: 0.005
 input:
   assujettie_taxe_salaires: true
-  contrat_de_travail_duree: cdd
+  contrat_de_travail_type: cdd
   contrat_de_travail_debut: '2014-11-02'
   effectif_entreprise: 3000
   # exposition_accident: tres_eleve

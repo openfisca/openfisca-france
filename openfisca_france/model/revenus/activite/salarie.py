@@ -302,7 +302,7 @@ class TypesContratDeTravailDuree(Enum):
     ctt = "CTT"
 
 
-class contrat_de_travail_duree(Variable):
+class contrat_de_travail_type(Variable):
     value_type = Enum
     possible_values = TypesContratDeTravailDuree
     default_value = TypesContratDeTravailDuree.pas_de_contrat

@@ -110,7 +110,7 @@
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
     agepi_temps_travail_semaine: [10, 10, 10, 10]
     allocation_retour_emploi: [0, 0, 0, 0]
-    contrat_de_travail_duree: [cdi, cdd, ctt, cp]
+    contrat_de_travail_type: [cdi, cdd, ctt, cp]
   output:
     agepi_eligible: [True, True, True, False]
 
@@ -123,13 +123,13 @@
 #    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
 #    agepi_temps_travail_semaine: [10, 10, 10, 10]
 #    allocation_retour_emploi: [0, 0, 0, 0]
-#    contrat_de_travail_duree: [cdi, cdd, ctt, cp]
+#    contrat_de_travail_type: [cdi, cdd, ctt, cp]
 #  output:
 #    agepi_eligible: [True, True, True, True]
 
 #- period: 2021-10
 #  input:
-#    contrat_de_travail_duree: x
+#    contrat_de_travail_type: x
 #    contrat_de_travail_debut: 11/10/2021
 #    contrat_de_travail_fin: 11/01/2021
 #    allocation_retour_emploi: 29*20

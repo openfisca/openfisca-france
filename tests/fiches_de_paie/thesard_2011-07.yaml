@@ -8,7 +8,7 @@ input:
   contrat_de_travail: temps_plein
   contrat_de_travail_debut: '2011-01-01'
   contrat_de_travail_fin: '2011-12-31'
-  contrat_de_travail_duree: cdd
+  contrat_de_travail_type: cdd
   effectif_entreprise: 10000
   heures_non_remunerees_volume: 0
   indemnite_residence: 0  # WARNING

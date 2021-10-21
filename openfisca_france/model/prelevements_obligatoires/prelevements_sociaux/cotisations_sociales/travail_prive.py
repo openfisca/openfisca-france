@@ -81,8 +81,8 @@ class indemnite_fin_contrat(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        contrat_de_travail_duree = individu('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
+        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        TypesContratDeTravailDuree = contrat_de_travail_type.possible_values
         salaire_de_base = individu('salaire_de_base', period)
         categorie_salarie = individu('categorie_salarie', period)
         apprenti = individu('apprenti', period)
@@ -96,7 +96,7 @@ class indemnite_fin_contrat(Variable):
 
         result = (
             # CDD
-            (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd)
+            (contrat_de_travail_type == TypesContratDeTravailDuree.cdd)
             # non fonction publique
             * (
                 (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)

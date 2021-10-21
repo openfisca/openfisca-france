@@ -5,7 +5,7 @@
     salaire_de_base: 1467
     allegement_fillon_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
     effectif_entreprise: 94
     categorie_salarie: prive_non_cadre
   output:
@@ -18,7 +18,7 @@
     salaire_de_base: 1467
     allegement_fillon_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
-    contrat_de_travail_duree: cdd
+    contrat_de_travail_type: cdd
     effectif_entreprise: 94
     categorie_salarie: prive_non_cadre
     indemnite_fin_contrat_due: 1

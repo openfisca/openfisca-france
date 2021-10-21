@@ -11,7 +11,7 @@ input:
   contrat_de_travail: temps_plein
   # contrat_de_travail_debut:
   # contrat_de_travail_fin:
-  # contrat_de_travail_duree: cdi
+  # contrat_de_travail_type: cdi
   effectif_entreprise: 6
   heures_non_remunerees_volume: 0
   heures_remunerees_volume: 0

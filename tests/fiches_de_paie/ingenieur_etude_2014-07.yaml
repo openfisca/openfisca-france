@@ -10,7 +10,7 @@
     contrat_de_travail: temps_plein
     contrat_de_travail_debut: '2014-01-01'
     contrat_de_travail_fin: '2014-12-31'
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
     depcom_entreprise: '75114'
     effectif_entreprise: 3000
     heures_non_remunerees_volume: 0

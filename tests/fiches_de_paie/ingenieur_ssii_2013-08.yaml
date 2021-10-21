@@ -10,7 +10,7 @@ input:
   contrat_de_travail: temps_plein
   contrat_de_travail_debut: '2013-01-01'
   contrat_de_travail_fin: '2013-12-31'
-  contrat_de_travail_duree: cdi
+  contrat_de_travail_type: cdi
   effectif_entreprise: 5000
   heures_non_remunerees_volume: 21.0
   # exposition_accident: tres_eleve

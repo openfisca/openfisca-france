@@ -34,7 +34,7 @@
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
-    contrat_de_travail_duree: cdd
+    contrat_de_travail_type: cdd
     contrat_de_travail_debut: 2015-07-01
     contrat_de_travail_fin: 2016-07-01
   output:
@@ -48,7 +48,7 @@
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
-    contrat_de_travail_duree: cdd
+    contrat_de_travail_type: cdd
     # supérieur à 1 an :
     contrat_de_travail_debut: 2015-07-01
     contrat_de_travail_fin: 2016-06-30
@@ -63,7 +63,7 @@
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
-    contrat_de_travail_duree: cdd
+    contrat_de_travail_type: cdd
     # supérieur à 1 an :
     contrat_de_travail_debut: 2015-07-01
     contrat_de_travail_fin: 2015-12-30
@@ -96,7 +96,7 @@
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
-    contrat_de_travail_duree: cdd
+    contrat_de_travail_type: cdd
     # supérieur à 1 an :
     contrat_de_travail_debut: '2015-07-01'
     contrat_de_travail_fin: '2019-06-30'
