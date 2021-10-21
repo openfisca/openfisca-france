@@ -2,6 +2,7 @@ from openfisca_core.periods import Period, Instant, instant
 
 from openfisca_france.model.base import Famille, Individu, Variable, MONTH, ADD, set_input_dispatch_by_period, \
     set_input_divide_by_period, Enum
+from openfisca_france.model.revenus.activite import salarie
 
 
 class pe_nbenf(Variable):
@@ -36,7 +37,7 @@ class agepi_temps_travail_semaine(Variable):
 class TypesCategoriesDemandeurEmploi(Enum):
     __order__ = 'pas_de_categorie categorie_1 categorie_2 categorie_3 categorie_4 categorie_5 categorie_6 categorie_7 categorie_8 ' \
                 # Needed to preserve the enum order in Python 2
-    pas_de_categorie = "NA"
+    pas_de_categorie = "Aucune catégorie"
     categorie_1 = "Catégorie 1 - Personnes sans emploi, immédiatement disponibles en recherche de CDI plein temps."
     categorie_2 = "Catégorie 2 - Personnes sans emploi, immédiatement disponibles en recherche de CDI à temps partiel."
     categorie_3 = "Catégorie 3 - Personnes sans emploi, immédiatement disponibles en recherche de CDD."
@@ -136,9 +137,23 @@ class agepi_eligible(Variable):
         #   TODO 6- L'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs
         #       - Ou en processur d'entrée en formation supérieure ou égale à 40 heures
 
+        reprise_type_emploi = famille.members('contrat_de_travail_duree', period)
+        print(f"reprise_type_emploi_3_mois_consecutifs: {reprise_type_emploi}")
+
+        reprise_type_emploi_eligible = ((reprise_type_emploi == salarie.TypesContratDeTravailDuree.cdi) +
+                                        (reprise_type_emploi == salarie.TypesContratDeTravailDuree.cdd) +
+                                        (reprise_type_emploi == salarie.TypesContratDeTravailDuree.ctt))
+
+        print(f"reprise_type_emploi_eligible: {reprise_type_emploi_eligible}")
+
+        # reprise_type_emploi_3_mois_consecutifs_eligible = reprise_type_emploi_eligible sur une periode de 3 mois
+
+        # reprise_activite_superieure_40_heures = famille.members('contrat_de_travail_duree', period('month', period, 3))
+        # reprise_activite_eligible = reprise_type_emploi_3_mois_consecutifs + reprise_activite_superieure_40_heures
+
         date_demande_agepi_eligible = True
 
-        return parent_isole * age_enfant_eligible * agepi_non_percue * categories_eligibles * date_demande_agepi_eligible * montant_ARE_eligible != 0
+        return parent_isole * age_enfant_eligible * agepi_non_percue * categories_eligibles * date_demande_agepi_eligible * montant_ARE_eligible * reprise_type_emploi != 0
 
 
 class agepi(Variable):
