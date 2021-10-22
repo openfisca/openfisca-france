@@ -13,3 +13,9 @@ values:
   2020-10-01:
     value: 34.10
     reference: https://www.legifrance.gouv.fr/eli/arrete/2020/9/30/LOGL2020748A/jo/article_1
+  2021-01-01:
+    value: 46.47
+    reference: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042709416
+  2021-10-01:
+    value: 52.24
+    reference: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044138120
