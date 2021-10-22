@@ -396,7 +396,7 @@ class degrevement_office_taxe_habitation(Variable):
 
         # Calcul du dégrèvement
         taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
-        degrev = P_degrev.taux * taxe_habitation_commune_epci_apres_degrevement_plafonnement
+        degrev = P_degrev.taux_inf_plaf * taxe_habitation_commune_epci_apres_degrevement_plafonnement
         degrev_degressif = degrev * max_((plafond_rfr_degrev_degressif - rfr_menage) / (plafond_rfr_degrev_degressif - plafond_rfr_degrev), 0)
 
         return degrev * elig_degrev + degrev_degressif * elig_degrev_degressif
@@ -419,13 +419,15 @@ class degrevement_office_taxe_habitation(Variable):
         plafond_rfr_degrev_degressif = P_degrev.plaf_rfr_degrev_degressif.premiere_part + P_degrev.plaf_rfr_degrev_degressif.deux_premieres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev_degressif.autres_demi_parts_supp * (max_(nbptr_menage - 2, 0)) / 0.5
         elig_degrev = (isf_ifi_menage == 0) * (rfr_menage <= plafond_rfr_degrev)
         elig_degrev_degressif = (isf_ifi_menage == 0) * (elig_degrev == 0) * (rfr_menage <= plafond_rfr_degrev_degressif)
+        elig_degrev_sup_plaf = (elig_degrev == 0)
 
         # Calcul du dégrèvement
         taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
-        degrev = P_degrev.taux * taxe_habitation_commune_epci_avant_degrevement
+        degrev = P_degrev.taux_inf_plaf * taxe_habitation_commune_epci_avant_degrevement
         degrev_degressif = degrev * max_((plafond_rfr_degrev_degressif - rfr_menage) / (plafond_rfr_degrev_degressif - plafond_rfr_degrev), 0)
+        degrev_sup_plaf = P_degrev.taux_sup_plaf * max_(taxe_habitation_commune_epci_avant_degrevement - degrev_degressif, 0)
 
-        return degrev * elig_degrev + degrev_degressif * elig_degrev_degressif
+        return degrev * elig_degrev + degrev_degressif * elig_degrev_degressif + degrev_sup_plaf * elig_degrev_sup_plaf
 
 
 class prelevement_base_imposition_elevee_taxe_habitation(Variable):
@@ -434,6 +436,7 @@ class prelevement_base_imposition_elevee_taxe_habitation(Variable):
     label = "Prélevement sur base d'imposition élevée sur l'habitation principale"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=81889AAB5AC742D99144BC27CE3D7C31.tplgfr32s_3?idArticle=LEGIARTI000036443853&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20171231"
     definition_period = YEAR
+    end = '2021-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
 
