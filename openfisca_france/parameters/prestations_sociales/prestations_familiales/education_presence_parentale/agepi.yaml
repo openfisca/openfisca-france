@@ -2,6 +2,10 @@ age_enfant_maximum:
   values:
     2013-01-01:
       value: 10
+duree_de_formation_minimum:
+  values:
+    2013-01-01:
+      value: 40
 montants:
   moins_de_15h_par_semaine:
     metadata:

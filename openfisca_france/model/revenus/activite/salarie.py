@@ -312,6 +312,15 @@ class contrat_de_travail_type(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class contrat_de_travail_duree(Variable):
+    value_type = float
+    default_value = 0.
+    entity = Individu
+    label = "Durée du contrat de travail en mois"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
 class TypesCotisationSocialeModeRecouvrement(Enum):
     __order__ = 'mensuel annuel mensuel_strict'  # Needed to preserve the enum order in Python 2
     mensuel = "Mensuel avec régularisation en fin d'année"
