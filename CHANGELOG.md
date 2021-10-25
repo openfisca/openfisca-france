@@ -1,5 +1,15 @@
 # Changelog
 
+# 80.0.0 [#1698](https://github.com/openfisca/openfisca-france/pull/1698)
+
+* Changement majeur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `model/prestations/minima_sociaux/aah.py`.
+
+* Détails :
+  - Corrige un calcul déjà existant : La variable aah_base_mensuelle est déclarée comme mensuelle, mais son résultat était annuel, ce qui générait des montants 12 fois trop grands sur le simulateur socio-fiscal Leximpact.
+
 ## 79.1.0 [#1703](https://github.com/openfisca/openfisca-france/pull/1703)
 
 * Évolution du système socio-fiscal.

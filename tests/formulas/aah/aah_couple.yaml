@@ -10,7 +10,7 @@
     individus:
       parent1:
         aah_eligible: true
-        aah_base_ressources: 16790.72
+        aah_base_ressources: 16790.72 / 12
       parent2:
         aah_eligible: false
     foyers_fiscaux:
@@ -46,7 +46,7 @@
     individus:
       parent1:
         aah_eligible: true
-        aah_base_ressources: 8777.70
+        aah_base_ressources: 8777.70 / 12
       parent2:
         aah_eligible: false
     foyers_fiscaux:
@@ -84,7 +84,7 @@
         aah_eligible: false
       parent2:
         aah_eligible: true
-        aah_base_ressources: 12585.68
+        aah_base_ressources: 12585.68 / 12
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -132,4 +132,4 @@
         personne_de_reference:
         - parent2
   output:
-    aah_base_ressources: [4961, 8640]
+    aah_base_ressources: [413.42, 720]

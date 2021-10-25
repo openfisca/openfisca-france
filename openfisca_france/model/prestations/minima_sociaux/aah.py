@@ -77,8 +77,8 @@ class aah_base_ressources(Variable):
 
         return where(
             en_activite,
-            base_ressource_eval_trim(),
-            base_ressource_eval_annuelle()
+            base_ressource_eval_trim() / 12,
+            base_ressource_eval_annuelle() / 12
             )
 
 
@@ -323,7 +323,7 @@ class aah_base(Variable):
         law = parameters(period).prestations
 
         aah_eligible = individu('aah_eligible', period)
-        aah_base_ressources = individu('aah_base_ressources', period) / 12
+        aah_base_ressources = individu('aah_base_ressources', period)
         plaf_ress_aah = individu('aah_plafond_ressources', period)
         # Le montant de l'AAH est plafonné au montant de base.
         montant_max = law.minima_sociaux.aah.montant
