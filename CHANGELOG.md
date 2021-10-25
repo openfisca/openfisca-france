@@ -1,8 +1,8 @@
 # Changelog
 
-### 79.0.6 [#1698](https://github.com/openfisca/openfisca-france/pull/1698)
+# 80.0.0 [#1698](https://github.com/openfisca/openfisca-france/pull/1698)
 
-* Changement mineur.
+* Changement majeur.
 * Périodes concernées : toutes.
 * Zones impactées :
   * `model/prestations/minima_sociaux/aah.py`.
