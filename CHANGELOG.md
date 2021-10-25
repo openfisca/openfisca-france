@@ -1,5 +1,14 @@
 # Changelog
 
+## 79.1.0 [#1703](https://github.com/openfisca/openfisca-france/pull/1703)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2021
+* Zones impactées : `prelevements_obligatoires/taxe_habitation/taxe_habitation`.
+* Détails :
+  - Actualise la suppression progressive de la TH pour 2021
+  - Incorpore l'abrogation en 2021 du prélèvement sur bases d'imposition élevées en 2021
+
 ### 79.0.5 [#1701](https://github.com/openfisca/openfisca-france/pull/1701)
 
 * Changement mineur.
