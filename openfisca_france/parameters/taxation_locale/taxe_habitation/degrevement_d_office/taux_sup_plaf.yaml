@@ -1,0 +1,8 @@
+description: Taux du dégrèvement d'office de la taxe d'habitation pour les redevables dont les revenus sont supérieurs aux plafonds
+unit: /1
+reference: art. 1414 C du CGI
+values:
+  2017-01-01:
+    value: 0.00
+  2021-01-01:
+    value: 0.30
