@@ -470,3 +470,8 @@ class taxe_habitation(Variable):
         degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
         prelevement_base_imposition_elevee_taxe_habitation = menage('prelevement_base_imposition_elevee_taxe_habitation', period)
         return - max_(taxe_habitation_commune_epci_avant_degrevement - degrevement_office_taxe_habitation, 0) - prelevement_base_imposition_elevee_taxe_habitation
+
+    def formula_2021_01_01(menage, period):
+        taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
+        degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
+        return - max_(taxe_habitation_commune_epci_avant_degrevement - degrevement_office_taxe_habitation, 0)
