@@ -11,3 +11,8 @@ values:
     value: 67.46
   2020-10-01:
     value: 46.47
+  2021-01-01:
+    value: 63.33
+  2021-10-01:
+    reference: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044138120
+    value: 71.33
