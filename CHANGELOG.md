@@ -1,5 +1,16 @@
 # Changelog
 
+## 80.1.0 [#1700](https://github.com/openfisca/openfisca-france/pull/1700)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/prestations/mon_job_mon_logement.py`
+  - `parameters/prestations/mon_job_mon_logement.yaml`
+  
+* Détails :
+  - Change les valeurs enregistrées dans la variable par des paramètres pour l'aide mon job mon logement.
+
 # 80.0.0 [#1698](https://github.com/openfisca/openfisca-france/pull/1698)
 
 * Changement majeur.
