@@ -3,6 +3,7 @@ reference:
   2017-10-01: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_6
   2019-10-01: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000039160779/2019-10-02
   2020-10-01: https://www.legifrance.gouv.fr/eli/arrete/2020/9/25/LOGL2020835A/jo/article_1
+  2021-10-01: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044126838
 
 menage_ou_isole_avec_1_enfant:
   values:
@@ -12,6 +13,8 @@ menage_ou_isole_avec_1_enfant:
       value: 553.89
     2020-10-01:
       value: 555.55
+    2021-10-01:
+      value: 557.88
 menage_ou_isole_avec_2_enfants:
  values:
   2017-10-01:
@@ -19,7 +22,9 @@ menage_ou_isole_avec_2_enfants:
   2019-10-01:
     value: 592.76
   2020-10-01:
-      value: 594.54
+    value: 594.54
+  2021-10-01:
+    value: 597.04
 menage_ou_isole_avec_3_enfants:
   values:
     2017-10-01:
@@ -28,6 +33,8 @@ menage_ou_isole_avec_3_enfants:
       value: 631.79
     2020-10-01:
       value: 633.69
+    2021-10-01:
+      value: 636.35
 menage_ou_isole_avec_4_enfants:
   values:
     2017-10-01:
@@ -36,6 +43,8 @@ menage_ou_isole_avec_4_enfants:
       value: 681.46
     2020-10-01:
       value: 683.5
+    2021-10-01:
+      value: 686.37
 menage_ou_isole_par_enfant_en_plus:
   values:
     2017-10-01:
@@ -44,6 +53,8 @@ menage_ou_isole_par_enfant_en_plus:
       value: 70.68
     2020-10-01:
       value: 70.89
+    2021-10-01:
+      value: 71.19
 menage_seul:
   values:
     2017-10-01:
@@ -52,6 +63,8 @@ menage_seul:
       value: 519.46
     2020-10-01:
       value: 521.02
+    2021-10-01:
+      value: 523.21
 personne_isolee_sans_enfant:
   values:
     2017-10-01:
@@ -60,3 +73,5 @@ personne_isolee_sans_enfant:
       value: 443.10
     2020-10-01:
       value: 444.43
+    2021-10-01:
+      value: 446.3
