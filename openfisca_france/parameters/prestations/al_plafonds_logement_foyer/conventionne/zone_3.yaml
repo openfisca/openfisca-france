@@ -12,6 +12,8 @@ menage_ou_isole_avec_1_enfant:
       value: 474.60
     2020-10-01:
       value: 476.02
+    2021-10-01:
+      value: 478.02
 menage_ou_isole_avec_2_enfants:
   values:
     2017-10-01:
@@ -20,6 +22,8 @@ menage_ou_isole_avec_2_enfants:
       value: 505.92
     2020-10-01:
       value: 507.44
+    2021-10-01:
+      value: 509.57
 menage_ou_isole_avec_3_enfants:
   values:
     2017-10-01:
@@ -28,6 +32,8 @@ menage_ou_isole_avec_3_enfants:
       value: 537.23
     2020-10-01:
       value: 538.84
+    2021-10-01:
+      value: 541.1
 menage_ou_isole_avec_4_enfants:
   values:
     2017-10-01:
@@ -36,6 +42,8 @@ menage_ou_isole_avec_4_enfants:
       value: 572.44
     2020-10-01:
       value: 574.16
+    2021-10-01:
+      value: 576.57
 menage_ou_isole_par_enfant_en_plus:
   values:
     2017-10-01:
@@ -44,6 +52,8 @@ menage_ou_isole_par_enfant_en_plus:
       value: 59.28
     2020-10-01:
       value: 59.46
+    2021-10-01:
+      value: 59.71
 menage_seul:
   values:
     2017-10-01:
@@ -52,6 +62,8 @@ menage_seul:
       value: 447.35
     2020-10-01:
       value: 448.69
+    2021-10-01:
+      value: 450.57
 personne_isolee_sans_enfant:
   values:
     2017-10-01:
@@ -60,3 +72,5 @@ personne_isolee_sans_enfant:
       value: 384.63
     2020-10-01:
       value: 385.78
+    2021-10-01:
+      value: 387.4
