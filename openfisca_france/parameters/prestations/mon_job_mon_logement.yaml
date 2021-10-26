@@ -6,21 +6,21 @@ montant:
     2021-02-18:
       value: 1000
 
-offset_mois_date_entree_logement:
+delai_max_en_mois_apres_entree_logement:
   description: Nombre de mois maximum entre la date d'entrée dans un logement et la date courante pour être éligible à l'aide mon job mon logement.
   reference: https://www.actionlogement.fr/aide-mon-job-mon-logement
   unit: month
   values:
     2021-02-18:
-      value: -3
+      value: 3
 
-offset_mois_debut_contrat_de_travail:
+delai_max_en_mois_apres_debut_contrat_de_travail:
   description: Nombre de mois maximum entre la date début de contrat de travail et la date courante pour être éligible à l'aide mon job mon logement.
   reference: https://www.actionlogement.fr/aide-mon-job-mon-logement
   unit: month
   values:
     2021-02-18:
-      value: -3
+      value: 3
 
 pourcentage_maximum_smic:
   description: Pourcentage maximum du SMIC mensuel brut pour être éligible à l'aide mon job mon logement.
@@ -30,26 +30,27 @@ pourcentage_maximum_smic:
     2021-02-18:
       value: 1.5
 
-offset_mois_debut_contrat_de_travail_jeune_actif:
-  description: Nombre de mois maximum entre la date de début de contrat de travail et la date courante pour être éligible à l'aide mon job mon logement en tant que jeune actif.
-  reference: https://www.actionlogement.fr/aide-mon-job-mon-logement
-  unit: month
-  values:
-    2021-02-18:
-      value: -6
+jeune_actif:
+  delai_max_en_mois_apres_debut_contrat_de_travail:
+    description: Nombre de mois maximum entre la date de début de contrat de travail et la date courante pour être éligible à l'aide mon job mon logement en tant que jeune actif.
+    reference: https://www.actionlogement.fr/aide-mon-job-mon-logement
+    unit: month
+    values:
+      2021-02-18:
+        value: 6
 
-pourcentage_minimum_smic_jeune_actif:
-  description: Pourcentage minimum du SMIC mensuel brut pour être éligible à l'aide mon job mon logement en tant que jeune actif.
-  reference: https://www.actionlogement.fr/aide-mon-job-mon-logement
-  unit: /1
-  values:
-    2021-02-18:
-      value: 0.3
+  pourcentage_minimum_smic:
+    description: Pourcentage minimum du SMIC mensuel brut pour être éligible à l'aide mon job mon logement en tant que jeune actif.
+    reference: https://www.actionlogement.fr/aide-mon-job-mon-logement
+    unit: /1
+    values:
+      2021-02-18:
+        value: 0.3
 
-age_maximum_jeune_actif:
-  description: Âge maximum pour lequel l'individu est considéré comme jeune actif pour l'aide mon job mon logement en tant que jeune actif.
-  reference: https://www.actionlogement.fr/aide-mon-job-mon-logement
-  unit: year
-  values:
-    2021-02-18:
-      value: 25
+  age_maximum:
+    description: Âge maximum pour lequel l'individu est considéré comme jeune actif pour l'aide mon job mon logement en tant que jeune actif.
+    reference: https://www.actionlogement.fr/aide-mon-job-mon-logement
+    unit: year
+    values:
+      2021-02-18:
+        value: 25

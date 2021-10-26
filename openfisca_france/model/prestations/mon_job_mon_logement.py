@@ -24,7 +24,7 @@ class mon_job_mon_logement_eligibilite_logement(Variable):
         locataire = ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
                      + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
                      + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble))
-        return locataire * (individu.menage('date_entree_logement', period) > datetime64(period.offset(params.offset_mois_date_entree_logement, 'month').start))
+        return locataire * (individu.menage('date_entree_logement', period) > datetime64(period.offset(-params.delai_max_en_mois_apres_entree_logement, 'month').start))
 
 
 class mon_job_mon_logement_eligibilite_jeunes_actifs(Variable):
@@ -34,14 +34,14 @@ class mon_job_mon_logement_eligibilite_jeunes_actifs(Variable):
     label = "Éligibilité à l'aide mon job mon logement pour les jeunes actifs"
 
     def formula(individu, period, parameters):
-        params = parameters(period).prestations.mon_job_mon_logement
+        params = parameters(period).prestations.mon_job_mon_logement.jeune_actif
 
         eligibilite_activite = (individu('activite', period) == TypesActivite.actif) + individu('alternant', period)
         smic_mensuel_brut = individu("smic_proratise", period)
-        eligibilite_salaire = (individu("salaire_de_base", period) <= smic_mensuel_brut) * (individu("salaire_de_base", period) >= smic_mensuel_brut * params.pourcentage_minimum_smic_jeune_actif)
+        eligibilite_salaire = (individu("salaire_de_base", period) <= smic_mensuel_brut) * (individu("salaire_de_base", period) >= smic_mensuel_brut * params.pourcentage_minimum_smic)
         eligibilite_logement = individu('mon_job_mon_logement_eligibilite_logement', period)
-        eligibilite_activite_debut = individu('contrat_de_travail_debut', period) > datetime64(period.offset(params.offset_mois_debut_contrat_de_travail_jeune_actif, 'month').start)
-        elibilite_age = individu('age', period) < params.age_maximum_jeune_actif
+        eligibilite_activite_debut = individu('contrat_de_travail_debut', period) > datetime64(period.offset(-params.delai_max_en_mois_apres_debut_contrat_de_travail, 'month').start)
+        elibilite_age = individu('age', period) < params.age_maximum
 
         return eligibilite_activite * eligibilite_salaire * eligibilite_logement * eligibilite_activite_debut * elibilite_age
 
@@ -59,7 +59,7 @@ class mon_job_mon_logement_eligibilite(Variable):
         eligibilite_salaire = individu("salaire_de_base", period) <= smic_mensuel_brut * params.pourcentage_maximum_smic
         eligibilite_logement = individu('mon_job_mon_logement_eligibilite_logement', period)
         eligibilite_activite_debut = individu('contrat_de_travail_debut', period) >= datetime64(
-            period.offset(params.offset_mois_debut_contrat_de_travail, 'month').start)
+            period.offset(-params.delai_max_en_mois_apres_debut_contrat_de_travail, 'month').start)
 
         return eligibilite_activite * eligibilite_salaire * eligibilite_logement * eligibilite_activite_debut
 
