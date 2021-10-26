@@ -1,11 +1,13 @@
-#- period: 2020-06
+#- name: Test1 - Calcul AGEPI
+#  period: 2020-06
 #  input:
 #    pe_nbenf: [1, 2, 3]
 #    agepi_temps_travail_semaine: [10, 10, 15]
 #  output:
 #    agepi: [170, 195, 520]
-
-
+#
+#
+#- name: Test2 - Calcul AGEPI
 #- period: 2020-06
 #  input:
 #    heures_remunerees_volume: 35 * 52 / 12
@@ -14,7 +16,7 @@
 
 
 # FIXME - Revoir le test
-#- name: Vérifie du non cumul de l'aide AGEPI
+#- name: Test3 - Vérifie du non cumul de l'aide AGEPI
 #  period: 2021-10
 #  input:
 #    agepi:
@@ -27,90 +29,108 @@
 #    agepi: 0
 #    agepi_eligible: false
 
+- name: Test3 - Vérifie du non cumul de l'aide AGEPI
+  period: 2021-02
+  input:
+    agepi:
+      2020-01: 170
+    nb_parents: 1
+    pe_nbenf: 1
+    age: 8
+    pole_emploi_categorie_demandeur_emploi: categorie_1
+    agepi_temps_travail_semaine: 10
+    allocation_retour_emploi: 0
+    types_activite_condition_agepi: cdi
+    heures_formation_volume: 0
+    contrat_de_travail_duree: 0
+  output:
+    agepi_eligible: True
+    agepi: 170
 
-#- name: Vérifie si l'individu appartient à une catégorie
-#  period: 2021-10
-#  input:
-#    nb_parents: [1, 1, 1, 1]
-#    pe_nbenf: [1, 1, 1, 1]
-#    age: [8, 8, 8, 8]
-#    agepi_temps_travail_semaine: [10, 10, 10, 10]
-#    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_2, categorie_6, categorie_non_existante]
-#  output:
-#    agepi: [170, 170, 0, 0]
-#    agepi_eligible: [True, True, False, False]
+- name: Test4 - Vérifie si l'individu appartient à une catégorie
+  period: 2021-10
+  input:
+    nb_parents: [1, 1, 1, 1]
+    pe_nbenf: [1, 1, 1, 1]
+    age: [8, 8, 8, 8]
+    agepi_temps_travail_semaine: [10, 10, 10, 10]
+    types_activite_condition_agepi: [cdi, cdi, cdi, cdi]
+    heures_formation_volume: [0, 0, 0, 0]
+    contrat_de_travail_duree: [0, 0, 0, 0]
+    allocation_retour_emploi: [0, 0, 0, 0]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_2, categorie_6, categorie_non_existante]
+  output:
+    agepi: [170, 170, 0, 0]
+    agepi_eligible: [True, True, False, False]
 
 
 # TODO
-#- name: Vérifie si l'individu a effectué sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
-#  period: 2021-10
-#  input:
-#    nb_parents: [1, 1, 1, 1]
-#    pe_nbenf: [1, 1, 1, 1]
-#    age: [8, 8, 8, 8]
-#    agepi_temps_travail_semaine: [10, 10, 10, 10]
-#    pole_emploi_categorie_demandeur_emploi: categorie_1
-#    contrat_de_travail_debut: '2021-10-18'
-#  output:
-#    date_demande_agepi_eligible: True
-#    agepi_eligible: True
+- name: Test5 - Vérifie si l'individu a effectué sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
+  period: 2021-10
+  input:
+    nb_parents: [1, 1, 1, 1]
+    pe_nbenf: [1, 1, 1, 1]
+    age: [8, 8, 8, 8]
+    agepi_temps_travail_semaine: [10, 10, 10, 10]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
+    contrat_de_travail_debut: ['2021-10-01', '2021-10-21', '2021-09-01', '2021-10-22']
+  output:
+    date_demande_agepi_eligible: [True, True, False, False]
+    agepi_eligible: [True, True, False, False]
 
 
-# TODO
-#- name: Vérifie si l'individu a effectué sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
-#  period: 2021-10
-#  input:
-#    nb_parents: [1, 1, 1, 1]
-#    pe_nbenf: [1, 1, 1, 1]
-#    age: [8, 8, 8, 8]
-#    agepi_temps_travail_semaine: [10, 10, 10, 10]
-#    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
-#    contrat_de_travail_debut: ['2021-10-01', '2021-10-21', '2021-09-01', '2021-10-22']
-#  output:
-#    date_demande_agepi_eligible: [True, True, False, False]
-#    agepi_eligible: [True, True, False, False]
+- name: Test6 - Vérifie si l'individu est non indémnisé ou son ARE est inférieure ou égale à l'ARE minimale (2021-07-01 = 29.56€)
+  period: 2021-10
+  input:
+    nb_parents: [1, 1, 1, 1]
+    pe_nbenf: [1, 1, 1, 1]
+    age: [8, 8, 8, 8]
+    agepi_temps_travail_semaine: [10, 10, 10, 10]
+    types_activite_condition_agepi: [cdi, cdi, cdi, cdi]
+    heures_formation_volume: [0, 0, 0, 0]
+    contrat_de_travail_duree: [0, 0, 0, 0]
+    allocation_retour_emploi: [0, 29.56, 0, 29.57]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
+  output:
+    agepi: [170, 170, 170, 0]
+    agepi_eligible: [True, True, True, False]
 
 
-#- name: Vérifie si l'individu est non indémnisé ou son ARE est inférieure ou égale à l'ARE minimale (2020-07-01 = 29.38€)
-#  period: 2021-10
-#  input:
-#    nb_parents: [1, 1, 1]
-#    pe_nbenf: [1, 1, 1]
-#    age: [8, 8, 8]
-#    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1]
-#    agepi_temps_travail_semaine: [10, 10, 10]
-#    allocation_retour_emploi: [0, 29.38, 29.39]
-#  output:
-#    agepi_eligible: [True, True, False]
+- name: Test7 - Vérifie si l'individu élève seul son enfant
+  period: 2021-10
+  input:
+    nb_parents: [1, 2, 1, 1]
+    pe_nbenf: [1, 1, 1, 1]
+    age: [8, 8, 8, 8]
+    agepi_temps_travail_semaine: [10, 10, 10, 10]
+    types_activite_condition_agepi: [cdi, cdi, cdi, cdi]
+    heures_formation_volume: [0, 0, 0, 0]
+    contrat_de_travail_duree: [0, 0, 0, 0]
+    allocation_retour_emploi: [0, 0, 0, 0]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
+  output:
+    agepi: [170, 0, 170, 170]
+    agepi_eligible: [True, False, True, True]
 
 
-#- name: Vérifie si l'individu élève seul son enfant
-#  period: 2021-10
-#  input:
-#    nb_parents: [1, 2, 1]
-#    pe_nbenf: [1, 1, 1]
-#    age: [8, 8, 8]
-#    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1]
-#    agepi_temps_travail_semaine: [10, 10, 10]
-#    allocation_retour_emploi: [0, 0, 0]
-#  output:
-#    agepi_eligible: [True, False, True]
+- name: Test8 - Vérifie si l'individu élève seul son enfant dont l'age est inférieur à 10 ans
+  period: 2021-10
+  input:
+    nb_parents: [1, 1, 1, 1]
+    pe_nbenf: [1, 1, 1, 1]
+    age: [8, 9, 10, 11]
+    agepi_temps_travail_semaine: [10, 10, 10, 10]
+    types_activite_condition_agepi: [cdi, cdi, cdi, cdi]
+    heures_formation_volume: [0, 0, 0, 0]
+    contrat_de_travail_duree: [0, 0, 0, 0]
+    allocation_retour_emploi: [0, 0, 0, 0]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
+  output:
+    agepi: [170, 170, 0, 0]
+    agepi_eligible: [True, True, False, False]
 
 
-#- name: Vérifie si l'individu élève seul son enfant dont l'age est inférieur à 10 ans
-#  period: 2021-10
-#  input:
-#    nb_parents: [1, 1, 1]
-#    pe_nbenf: [1, 1, 1]
-#    age: [9, 10, 11]
-#    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1]
-#    agepi_temps_travail_semaine: [10, 10, 10]
-#    allocation_retour_emploi: [0, 0, 0]
-#  output:
-#    agepi_eligible: [True, False, False]
-
-
-- name: Vérifie si l'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs ou en processur d'entrée en formation supérieure ou égale à 40 heures
+- name: Test9 - Vérifie si l'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs ou en processur d'entrée en formation supérieure ou égale à 40 heures
   period: 2021-10
   input:
     nb_parents: [1, 1, 1, 1, 1, 1]
@@ -124,60 +144,53 @@
     contrat_de_travail_duree: [0, 3, 2, 0, 0, 0]
   output:
     agepi_eligible: [True, True, False, False, True, False]
+    agepi: [170, 170, 0, 0, 170, 0]
 
 
-#- name: Vérifie si l'individu est en reprise d'emploi du type CDI, CDD, CTT
-#  period: 2021-10
-#  input:
-#    nb_parents: [1, 1, 1, 1]
-#    pe_nbenf: [1, 1, 1, 1]
-#    age: [8, 8, 8, 8]
-#    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
-#    agepi_temps_travail_semaine: [10, 10, 10, 10]
-#    allocation_retour_emploi: [0, 0, 0, 0]
-#    contrat_de_travail_type: [cdi, cdd, ctt, cp]
-#  output:
-#    agepi_eligible: [True, True, True, False]
+- name: Test10 - Vérifie si l'age des enfants est inférieur à 10 ans
+  period: 2021-10
+  absolute_error_margin: 0.005
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+    individus:
+      parent:
+        age: 29
+        contrat_de_travail_duree:
+          2021-05: cdi
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        agepi_temps_travail_semaine: 10
+        allocation_retour_emploi: 0
+      Jean:
+        age: 10
+      Marie:
+        age: 8
+    familles:
+      famille_0:
+        parent: Camille
+        enfants: [Jean, Marie]
+    foyers_fiscal:
+      foyer_fiscal_0:
+        declarants: Camille
+        personnes_a_charge: [Jean, Marie]
+  output:
+    pe_nbenf: 1
+    agepi_eligible: True
 
-
-#- period: 2021-10
-#  input:
-#    contrat_de_travail_type: x
-#    contrat_de_travail_debut: 11/10/2021
-#    contrat_de_travail_fin: 11/01/2021
-#    allocation_retour_emploi: 29*20
-#    pe_nbenf: 1
-#  output:
-#    agepi: 170
-
-
-#- name: Vérifie si l'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs ou en processur d'entrée en formation supérieure ou égale à 40 heures
-#  period: 2021-10
-#  absolute_error_margin: 0.005
-#  input:
-#    menage:
-#      personne_de_reference: Camille
-#      enfants: [enfant_1, enfant_2]
-#    individus:
-#      parent:
-#        age: 29
-#        contrat_de_travail_duree:
-#          2021-05: cdi
-#        pole_emploi_categorie_demandeur_emploi: categorie_1
-#        agepi_temps_travail_semaine: 10
-#        allocation_retour_emploi: 0
-#      enfant_1:
-#        age: 8
-#      enfant_2:
-#        age: 10
-#    familles:
-#      famille_0:
-#        parents: Camille
-#        enfants: [enfant_1, enfant_2]
-#    foyers_fiscaux:
-#      foyer_fiscal_0:
-#        declarants: Camille
-#        personnes_a_charge: [enfant_1, enfant_2]
-#  output:
-#    pe_nbenf: 2
-#    agepi_eligible: True
+- name: Test11 - Vérifie si l'individu est non indémnisé ou son ARE est inférieure ou égale à l'ARE minimale en region Mayotte (2021-07-01 = 14.77€) ou hors Mayotte (2021-07-01 = 29.56€)
+  period: 2021-10
+  input:
+    nb_parents: [1, 1, 1, 1, 1, 1]
+    reside_en_region_mayotte: [False, False, False, True, True, True]
+    pe_nbenf: [1, 1, 1, 1, 1, 1]
+    age: [8, 8, 8, 8, 8, 8]
+    agepi_temps_travail_semaine: [10, 10, 10, 10, 10, 10]
+    types_activite_condition_agepi: [cdi, cdi, cdi, cdi, cdi, cdi]
+    heures_formation_volume: [0, 0, 0, 0, 0, 0]
+    contrat_de_travail_duree: [0, 0, 0, 0, 0, 0]
+    allocation_retour_emploi: [0, 29.56,  29.57, 0, 14.76, 14.78]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1, categorie_1, categorie_1]
+  output:
+    agepi: [170, 170, 0, 170, 170, 0]
+    agepi_eligible: [True, True, False, True, True, False]

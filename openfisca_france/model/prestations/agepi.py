@@ -61,6 +61,14 @@ class pole_emploi_categorie_demandeur_emploi(Variable):
     definition_period = MONTH
 
 
+class reside_en_region_mayotte(Variable):
+    value_type = bool
+    entity = Individu
+    label = "L'individu réside en région Mayotte"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
 class TypesActiviteConditionAGEPI(Enum):
     __order__ = 'aucune_activite cdi cdd ctt formation'  # Needed to preserve the enum order in Python 2
     aucune_activite = "AUCUNE ACTIVITE"
@@ -110,7 +118,7 @@ class agepi_eligible(Variable):
         # Renvoi true si :
         #   1- L'individu élève seul son enfant dont l'age est inférieur à 10 ans
         #   2- L'individu n'a pas touché l'AGEPI dans les 12 derniers mois
-        #   3- L'individu est inscrit en catégorie 1, 2, 3, 4 ou 5
+        #   3- L'individu est inscrit en catégorie 1, 2, 3, 4 ou 5 (cas Mayotte)
         #   4- L'individu effectue sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
         #   5- L'individu est non indemnisé ou que son ARE est inférieure ou égale à l'ARE minimale
         #   6- L'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs
@@ -136,8 +144,11 @@ class agepi_eligible(Variable):
         ################################################################################################################
 
 
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
+        annee_glissante = period.start.period('year').offset(-1)
         agepi_non_percue = famille('agepi', annee_glissante, options=[ADD]) == 0
+
+        print(f"annee_glissante: {annee_glissante}")
+        print(f"agepi_non_percue: {agepi_non_percue}")
 
 
         ################################################################################################################
@@ -156,6 +167,17 @@ class agepi_eligible(Variable):
 
 
         ################################################################################################################
+        #  3.2 - L'individu est en zone Mayotte
+        ################################################################################################################
+
+
+        reside_en_mayotte = famille.members('reside_en_region_mayotte', period) == True
+        print(f"reside_en_mayotte: {reside_en_mayotte}")
+        ne_reside_pas_en_mayotte = famille.members('reside_en_region_mayotte', period) == False
+        print(f"ne_reside_pas_en_mayotte: {ne_reside_pas_en_mayotte}")
+
+
+        ################################################################################################################
         # FIXME 4- L'individu effectue sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
         ################################################################################################################
 
@@ -166,7 +188,7 @@ class agepi_eligible(Variable):
         # test_date_plus_1_mois = str((period.offset(1, 'month')).date)
         # print(f"test_date_plus_1_mois: {test_date_plus_1_mois}")
         #
-        # date_debut_contrat_de_travail_plus_un_mois = famille.members('contrat_de_travail_duree', period)
+        # date_debut_contrat_de_travail_plus_un_mois = famille.members('contrat_de_travail_duree', period.offset(1, 'month'))
         #
         # print(f"contrat_de_travail_debut: {famille.members('contrat_de_travail_duree', period)}")
         # print(f"date_debut_contrat_de_travail_plus_un_mois: {date_debut_contrat_de_travail_plus_un_mois}")
@@ -175,18 +197,40 @@ class agepi_eligible(Variable):
 
 
         ################################################################################################################
-        #  5- L'individu est non indemnisé ou que son ARE est inférieure ou égale à l'ARE minimale
+        #  5.1- L'individu est non indemnisé ou que son ARE est inférieure ou égale à l'ARE minimale - Hors Mayotte
         ################################################################################################################
 
 
         allocation_individu = famille.members('allocation_retour_emploi', period)
         print(f"alloc_user: {allocation_individu}")
 
-        allocation_minimale = parameters(period).allocation_retour_emploi.montant_minimum
-        print(f"alloc_mini: {allocation_minimale}")
+        allocation_minimale_hors_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_hors_mayotte * not_(reside_en_mayotte)
+        print(f"allocation_minimale_hors_mayotte: {allocation_minimale_hors_mayotte}")
 
-        montant_are_eligible = allocation_individu <= allocation_minimale
-        print(f"montant_ARE_eligible: {montant_are_eligible}")
+        montant_are_eligible_hors_mayotte = allocation_individu <= allocation_minimale_hors_mayotte
+        print(f"montant_are_eligible_hors_mayotte: {montant_are_eligible_hors_mayotte}")
+
+
+        ################################################################################################################
+        #  5.2- L'individu est non indemnisé ou que son ARE est inférieure ou égale à l'ARE minimale - Mayotte
+        ################################################################################################################
+
+
+        allocation_minimale_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_mayotte * reside_en_mayotte
+        print(f"allocation_minimale_mayotte: {allocation_minimale_mayotte}")
+
+        montant_are_eligible_mayotte = allocation_individu <= allocation_minimale_mayotte
+        print(f"montant_are_eligible_mayotte: {montant_are_eligible_mayotte}")
+
+
+        ################################################################################################################
+        #  5.3- L'individu est non indemnisé ou que son ARE est inférieure ou égale à l'ARE minimale en fonction de sa
+        #       région (Mayotte / hors Mayotte)
+        ################################################################################################################
+
+
+        montant_are_eligible = montant_are_eligible_hors_mayotte + montant_are_eligible_mayotte
+        print(f"montant_are_eligible: {montant_are_eligible}")
 
 
         ################################################################################################################

@@ -1,5 +1,7 @@
 description: Montant minimum journalier de l'allocation chômage
 values:
+  2021-07-01:
+    value: 29.56
   2020-07-01:
     value: 29.38
   2019-07-01:
