@@ -189,7 +189,7 @@
     types_activite_condition_agepi: [cdi, cdi, cdi, cdi, cdi, cdi]
     heures_formation_volume: [0, 0, 0, 0, 0, 0]
     contrat_de_travail_duree: [0, 0, 0, 0, 0, 0]
-    allocation_retour_emploi: [0, 29.56,  29.57, 0, 14.76, 14.78]
+    allocation_retour_emploi: [0, 29.56,  29.57, 0, 14.77, 14.78]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1, categorie_1, categorie_1]
   output:
     agepi: [170, 170, 0, 170, 170, 0]

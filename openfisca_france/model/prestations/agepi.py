@@ -1,4 +1,4 @@
-import datetime
+import numpy as np
 
 from openfisca_france.model.base import Famille, Individu, Variable, MONTH, ADD, set_input_dispatch_by_period, \
     set_input_divide_by_period, Enum
@@ -124,6 +124,9 @@ class agepi_eligible(Variable):
         #   6- L'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs
         #       - Ou en processur d'entrée en formation supérieure ou égale à 40 heures
 
+        #  Diminution de la précision car la comparaison : 14.77 <= 14.77 me renvoyait un False
+        epsilon = 0.001
+        print(f"epsilon = {epsilon}")
 
         ################################################################################################################
         #  1- L'individu élève seul son enfant dont l'age est inférieur à 10 ans
@@ -147,8 +150,8 @@ class agepi_eligible(Variable):
         annee_glissante = period.start.period('year').offset(-1)
         agepi_non_percue = famille('agepi', annee_glissante, options=[ADD]) == 0
 
-        print(f"annee_glissante: {annee_glissante}")
-        print(f"agepi_non_percue: {agepi_non_percue}")
+        #  print(f"annee_glissante: {annee_glissante}")
+        #  print(f"agepi_non_percue: {agepi_non_percue}")
 
 
         ################################################################################################################
@@ -167,14 +170,12 @@ class agepi_eligible(Variable):
 
 
         ################################################################################################################
-        #  3.2 - L'individu est en zone Mayotte
+        #  3.2 - L'individu réside ou non en zone Mayotte
         ################################################################################################################
 
 
         reside_en_mayotte = famille.members('reside_en_region_mayotte', period) == True
-        print(f"reside_en_mayotte: {reside_en_mayotte}")
-        ne_reside_pas_en_mayotte = famille.members('reside_en_region_mayotte', period) == False
-        print(f"ne_reside_pas_en_mayotte: {ne_reside_pas_en_mayotte}")
+        ne_reside_pas_en_mayotte = np.logical_not(reside_en_mayotte)
 
 
         ################################################################################################################
@@ -197,39 +198,31 @@ class agepi_eligible(Variable):
 
 
         ################################################################################################################
-        #  5.1- L'individu est non indemnisé ou que son ARE est inférieure ou égale à l'ARE minimale - Hors Mayotte
+        #  5.1- L'individu est non indemnisé ou que son ARE est inférieure ou égale à l'ARE minimale
         ################################################################################################################
 
+        #  Hors Mayotte
 
         allocation_individu = famille.members('allocation_retour_emploi', period)
-        print(f"alloc_user: {allocation_individu}")
+        print(f"allocation_individu: {allocation_individu}")
 
-        allocation_minimale_hors_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_hors_mayotte * not_(reside_en_mayotte)
-        print(f"allocation_minimale_hors_mayotte: {allocation_minimale_hors_mayotte}")
+        allocation_minimale_hors_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_hors_mayotte * ne_reside_pas_en_mayotte
 
-        montant_are_eligible_hors_mayotte = allocation_individu <= allocation_minimale_hors_mayotte
-        print(f"montant_are_eligible_hors_mayotte: {montant_are_eligible_hors_mayotte}")
-
-
-        ################################################################################################################
-        #  5.2- L'individu est non indemnisé ou que son ARE est inférieure ou égale à l'ARE minimale - Mayotte
-        ################################################################################################################
-
+        #  Mayotte
 
         allocation_minimale_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_mayotte * reside_en_mayotte
-        print(f"allocation_minimale_mayotte: {allocation_minimale_mayotte}")
 
-        montant_are_eligible_mayotte = allocation_individu <= allocation_minimale_mayotte
-        print(f"montant_are_eligible_mayotte: {montant_are_eligible_mayotte}")
+        allocation_minimale_en_fonction_de_la_region = allocation_minimale_hors_mayotte + allocation_minimale_mayotte
+        print(f"allocation_minimale_en_fonction_de_la_region : {allocation_minimale_en_fonction_de_la_region} ")
 
+        #  Montant ARE minimum en fonction de la région (Mayotte / hors Mayotte)
 
-        ################################################################################################################
-        #  5.3- L'individu est non indemnisé ou que son ARE est inférieure ou égale à l'ARE minimale en fonction de sa
-        #       région (Mayotte / hors Mayotte)
-        ################################################################################################################
+        are_individu_egale_are_min = np.fabs(allocation_individu - allocation_minimale_en_fonction_de_la_region) < epsilon
+        print(f"are_individu_egale_are_min = {are_individu_egale_are_min}")
 
+        are_individu_inferieure_are_min = allocation_individu <= allocation_minimale_en_fonction_de_la_region
 
-        montant_are_eligible = montant_are_eligible_hors_mayotte + montant_are_eligible_mayotte
+        montant_are_eligible = are_individu_inferieure_are_min + are_individu_egale_are_min
         print(f"montant_are_eligible: {montant_are_eligible}")
 
 
@@ -243,36 +236,36 @@ class agepi_eligible(Variable):
 
         # On veut voir 0 lorsqu'il y a match avec 'aucune_activite' pour l'utiliser dans type_et_duree_activite_eligible
         reprise_types_activites_aucune_activite = reprise_types_activites != TypesActiviteConditionAGEPI.aucune_activite
-        print(f"reprise_types_activites_aucune_activite: {reprise_types_activites_aucune_activite}")
+        #  print(f"reprise_types_activites_aucune_activite: {reprise_types_activites_aucune_activite}")
 
         reprise_types_activites_formation = reprise_types_activites == TypesActiviteConditionAGEPI.formation
-        print(f"reprise_types_activites_formation: {reprise_types_activites_formation}")
+        #  print(f"reprise_types_activites_formation: {reprise_types_activites_formation}")
 
         reprise_types_activites_cdi = reprise_types_activites == TypesActiviteConditionAGEPI.cdi
-        print(f"reprise_types_activites_cdi: {reprise_types_activites_cdi}")
+        #  print(f"reprise_types_activites_cdi: {reprise_types_activites_cdi}")
 
         reprise_types_activites_cdd = reprise_types_activites == TypesActiviteConditionAGEPI.cdd
-        print(f"reprise_types_activites_cdd: {reprise_types_activites_cdd}")
+        #  print(f"reprise_types_activites_cdd: {reprise_types_activites_cdd}")
 
         reprise_types_activites_ctt = reprise_types_activites == TypesActiviteConditionAGEPI.ctt
-        print(f"reprise_types_activites_ctt: {reprise_types_activites_ctt}")
+        #  print(f"reprise_types_activites_ctt: {reprise_types_activites_ctt}")
 
         #   La formation doit être supérieure ou égale à 40 heures
         duree_formation = famille.members('heures_formation_volume', period)
         periode_formation_eligible = duree_formation >= parameters(period).prestations.agepi.duree_de_formation_minimum
-        print(f'periode_formation_eligible: {periode_formation_eligible}')
+        #  print(f'periode_formation_eligible: {periode_formation_eligible}')
 
         #   Le durée de contrat de l'emploi doit être d'au moins 3 mois
         periode_de_contrat_3_mois_minimum = famille.members('contrat_de_travail_duree', period) >= 3
-        print(f'periode_de_contrat_3_mois_minimum: {periode_de_contrat_3_mois_minimum}')
+        #  print(f'periode_de_contrat_3_mois_minimum: {periode_de_contrat_3_mois_minimum}')
 
 
         reprise_types_activites_formation_eligible = reprise_types_activites_formation * periode_formation_eligible
-        print(f"reprise_types_activites_formation_eligible: {reprise_types_activites_formation_eligible}")
+        #  print(f"reprise_types_activites_formation_eligible: {reprise_types_activites_formation_eligible}")
         reprise_types_activites_cdd_eligible = reprise_types_activites_cdd * periode_de_contrat_3_mois_minimum
-        print(f"reprise_types_activites_cdd_eligible: {reprise_types_activites_cdd_eligible}")
+        #  print(f"reprise_types_activites_cdd_eligible: {reprise_types_activites_cdd_eligible}")
         reprise_types_activites_ctt_eligible = reprise_types_activites_ctt * periode_de_contrat_3_mois_minimum
-        print(f"reprise_types_activites_ctt_eligible: {reprise_types_activites_ctt_eligible}")
+        #  print(f"reprise_types_activites_ctt_eligible: {reprise_types_activites_ctt_eligible}")
 
         type_et_duree_activite_eligible = reprise_types_activites_aucune_activite * \
                                           (reprise_types_activites_formation_eligible + \
