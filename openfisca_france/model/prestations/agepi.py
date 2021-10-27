@@ -115,14 +115,17 @@ class agepi_eligible(Variable):
     ]
 
     def formula(famille, period, parameters):
-        # Renvoi true si :
-        #   1- L'individu élève seul son enfant dont l'age est inférieur à 10 ans
-        #   2- L'individu n'a pas touché l'AGEPI dans les 12 derniers mois
-        #   3- L'individu est inscrit en catégorie 1, 2, 3, 4 ou 5 (cas Mayotte)
+        # Renvoie true si :
+        #   1- L'individu élève seul son enfant dont l'âge est inférieur à 10 ans (condition de garde d'enfant)
+        #   2- L'individu n'a pas touché l'AGEPI dans les 12 derniers mois (condition de durée entre faits générateurs)
+        #   FIXME 3- L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou
+        #      5 "contrat aidé" (condition d'inscription)
         #   4- L'individu effectue sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
-        #   5- L'individu est non indemnisé ou que son ARE est inférieure ou égale à l'ARE minimale
-        #   6- L'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs
-        #       - Ou en processur d'entrée en formation supérieure ou égale à 40 heures
+        #      (condition de date dépôt)
+        #   5- L'individu est non indemnisé ou son ARE est inférieure ou égale à l'ARE minimale
+        #      (condition de ressources)
+        #   6- L'individu est en reprise d'emploi du type CDI ou CDD, CTT d'au moins 3 mois consécutifs
+        #      ou en processus d'entrée en formation d'une durée supérieure ou égale à 40 heures (condition de durée)
 
         #  Diminution de la précision car la comparaison : 14.77 <= 14.77 me renvoyait un False
         epsilon = 0.001
