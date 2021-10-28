@@ -95,14 +95,6 @@ class heures_formation_volume(Variable):
     definition_period = MONTH
 
 
-class heures_formation_volume(Variable):
-    value_type = float
-    entity = Individu
-    label = "Volume des heures contractuellement (heures/mois)"
-    set_input = set_input_divide_by_period
-    definition_period = MONTH
-
-
 class agepi_eligible(Variable):
     value_type = bool
     entity = Famille
@@ -223,7 +215,7 @@ class agepi_eligible(Variable):
         are_individu_egale_are_min = np.fabs(allocation_individu - allocation_minimale_en_fonction_de_la_region) < epsilon
         print(f"are_individu_egale_are_min = {are_individu_egale_are_min}")
 
-        are_individu_inferieure_are_min = allocation_individu <= allocation_minimale_en_fonction_de_la_region
+        are_individu_inferieure_are_min = allocation_individu < allocation_minimale_en_fonction_de_la_region
 
         montant_are_eligible = are_individu_inferieure_are_min + are_individu_egale_are_min
         print(f"montant_are_eligible: {montant_are_eligible}")
@@ -281,6 +273,7 @@ class agepi_eligible(Variable):
         date_demande_agepi_eligible = True
 
         return parent_isole * \
+               est_parent * \
                age_enfant_eligible * \
                agepi_non_percue * \
                categories_eligibles * \
@@ -305,10 +298,21 @@ class agepi(Variable):
         nb_enfants_eligibles = famille('pe_nbenf', period)
         agepi_eligible = famille('agepi_eligible', period)
 
-        montants = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants
-        montant_moins_de_15h = montants.moins_de_15h_par_semaine.calc(nb_enfants_eligibles)
-        montant_plus_de_15h = montants.plus_de_15h_par_semaine.calc(nb_enfants_eligibles)
+        reside_en_mayotte = famille.members('reside_en_region_mayotte', period) == True
+        ne_reside_pas_en_mayotte = np.logical_not(reside_en_mayotte)
 
-        montant = (nb_heures < 15) * montant_moins_de_15h + (nb_heures >= 15) * montant_plus_de_15h
+        montants_hors_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte
+        montants_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.mayotte
+
+        montants_moins_de_15h_hors_mayotte = montants_hors_mayotte.moins_de_15h_par_semaine.calc(nb_enfants_eligibles) * ne_reside_pas_en_mayotte
+        montants_plus_de_15h_hors_mayotte = montants_hors_mayotte.plus_de_15h_par_semaine.calc(nb_enfants_eligibles) * ne_reside_pas_en_mayotte
+
+        montants_moins_de_15h_mayotte = montants_mayotte.moins_de_15h_par_semaine.calc(nb_enfants_eligibles) * reside_en_mayotte
+        montants_plus_de_15h_mayotte = montants_mayotte.plus_de_15h_par_semaine.calc(nb_enfants_eligibles) * reside_en_mayotte
+
+        montant_moins_de_15h_en_fonction_de_la_region = montants_moins_de_15h_hors_mayotte + montants_moins_de_15h_mayotte
+        montant_plus_de_15h_en_fonction_de_la_region = montants_plus_de_15h_hors_mayotte + montants_plus_de_15h_mayotte
+
+        montant = (nb_heures < 15) * montant_moins_de_15h_en_fonction_de_la_region + (nb_heures >= 15) * montant_plus_de_15h_en_fonction_de_la_region
 
         return agepi_eligible * (nb_heures > 0) * montant

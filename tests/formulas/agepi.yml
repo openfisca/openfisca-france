@@ -149,7 +149,6 @@
 
 - name: Test10 - Vérifie si l'age des enfants est inférieur à 10 ans
   period: 2021-10
-  absolute_error_margin: 0.005
   input:
     menage:
       personne_de_reference: Camille
@@ -178,6 +177,7 @@
     pe_nbenf: 1
     agepi_eligible: True
 
+
 - name: Test11 - Vérifie si l'individu est non indémnisé ou son ARE est inférieure ou égale à l'ARE minimale en region Mayotte (2021-07-01 = 14.77€) ou hors Mayotte (2021-07-01 = 29.56€)
   period: 2021-10
   input:
@@ -194,3 +194,52 @@
   output:
     agepi: [170, 170, 0, 170, 170, 0]
     agepi_eligible: [True, True, False, True, True, False]
+
+
+- name: Test12 - Vérifie le montant de l'AGEPI en fonction de sa region (Mayotte / hors Mayotte)
+  period: 2021-10
+  input:
+    nb_parents: [1, 1]
+    reside_en_region_mayotte: [False, True]
+    pe_nbenf: [1, 1]
+    age: [8, 8]
+    agepi_temps_travail_semaine: [10, 10]
+    types_activite_condition_agepi: [cdi, cdi]
+    heures_formation_volume: [0, 0]
+    contrat_de_travail_duree: [0, 0]
+    allocation_retour_emploi: [0, 0]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
+  output:
+    agepi: [170, 85]
+    agepi_eligible: [True, True]
+
+#  FIXME - Gérer la variable qui précise si un individu est parent
+- name: Test13 - Vérifie le montant de l'AGEPI en fonction de sa region (Mayotte / hors Mayotte) et le nombre d'enfants
+  period: 2021-10
+  input:
+    nb_parents: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    reside_en_region_mayotte: [False, False, False, False, False, False, False, True, True, True, True, True, True, True]
+    pe_nbenf: [0, 1, 2, 3, 1, 2, 3, 0, 1, 2, 3, 1, 2, 3]
+    age: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]
+    agepi_temps_travail_semaine: [10, 10, 10, 10, 15, 15, 15, 10, 10, 10, 10, 15, 15, 15]
+    types_activite_condition_agepi: [cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi]
+    heures_formation_volume: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    contrat_de_travail_duree: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    allocation_retour_emploi: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1,
+                                             categorie_1,
+                                             categorie_1,
+                                             categorie_1,
+                                             categorie_1,
+                                             categorie_1,
+                                             categorie_1,
+                                             categorie_1,
+                                             categorie_1,
+                                             categorie_1,
+                                             categorie_1,
+                                             categorie_1,
+                                             categorie_1,
+                                             categorie_1]
+  output:
+    agepi: [0, 170, 195, 220, 400, 460, 520, 0, 85, 97.5, 110, 200, 230, 260]
+    #agepi_eligible: [False, True, True, True, True, True, True, False, True, True, True, True, True, True]
