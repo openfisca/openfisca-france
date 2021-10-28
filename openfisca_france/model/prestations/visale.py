@@ -35,8 +35,9 @@ class visale_eligibilite(Variable):
         montant_max = menage('visale_montant_max', period)
 
         eligibilite_loyer = (loyer + charges_locatives) <= montant_max
+        eligibilite_date_entree_logement = menage('date_entree_logement', period) > datetime64(period.start)
 
-        return eligibilite_age * eligibilite_nationalite * eligibilite_loyer * (menage('date_entree_logement', period) > datetime64(period.start))
+        return eligibilite_age * eligibilite_nationalite * eligibilite_loyer * eligibilite_date_entree_logement
 
 
 class visale_montant_max(Variable):

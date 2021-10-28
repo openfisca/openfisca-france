@@ -9,10 +9,12 @@ class locapass_eligibilite(Variable):
     definition_period = MONTH
     reference = 'https://www.actionlogement.fr/l-avance-loca-pass'
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
+        params = parameters(period).action_logement.locapass
+
         eligibilite_individu = individu('locapass_eligibilite_individu', period)
         eligibilite_logement = individu.menage('locapass_eligibilite_logement', period)
-        eligibilite_date_entree_logement = individu.menage('date_entree_logement', period) >= datetime64(period.offset(-2, 'month').start)
+        eligibilite_date_entree_logement = individu.menage('date_entree_logement', period) >= datetime64(period.offset(-params.delai_max_en_mois_apres_entree_logement, 'month').start)
         return eligibilite_individu * eligibilite_logement * eligibilite_date_entree_logement
 
 

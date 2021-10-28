@@ -24,7 +24,8 @@ class mon_job_mon_logement_eligibilite_logement(Variable):
         locataire = ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
                      + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
                      + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble))
-        return locataire * (individu.menage('date_entree_logement', period) > datetime64(period.offset(-params.delai_max_en_mois_apres_entree_logement, 'month').start))
+        eligibilite_date_entree_logement = individu.menage('date_entree_logement', period) > datetime64(period.offset(-params.delai_max_en_mois_apres_entree_logement, 'month').start)
+        return locataire * eligibilite_date_entree_logement
 
 
 class mon_job_mon_logement_eligibilite_jeunes_actifs(Variable):
