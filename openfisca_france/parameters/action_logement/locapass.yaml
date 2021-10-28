@@ -2,3 +2,11 @@ jeunes:
   age_max:
     2021-01-01:
       value: 30
+
+delai_max_en_mois_apres_entree_logement:
+  description: Nombre de mois maximum entre la date d'entrée dans un logement et la date courante pour être éligible à l'aide locapass.
+  reference: https://www.actionlogement.fr/l-avance-loca-pass
+  unit: month
+  values:
+    2021-01-01:
+      value: 2
