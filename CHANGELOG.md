@@ -1,5 +1,15 @@
 # Changelog
 
+### 80.1.2 [#1705](https://github.com/openfisca/openfisca-france/pull/1705)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/prestations/education.py`
+
+* Détails :
+  - Corrige le calcul de la variable `boursier`.
+
 ### 80.1.1 [#1702](https://github.com/openfisca/openfisca-france/pull/1702)
 
 * Évolution du système socio-fiscal
