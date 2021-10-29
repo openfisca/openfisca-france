@@ -8,7 +8,7 @@ setup(
     version = "80.2.0",
     author = "OpenFisca Team",
     author_email = "contact@openfisca.fr",
-    classifiers = [ 
+    classifiers = [
         "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: GNU Affero General Public License v3",
         "Operating System :: POSIX",
