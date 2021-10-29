@@ -3,6 +3,16 @@ import numpy as np
 from openfisca_france.model.base import Famille, Individu, Variable, MONTH, ADD, set_input_dispatch_by_period, \
     set_input_divide_by_period, Enum
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 
 class pe_nbenf(Variable):
     value_type = int
@@ -135,7 +145,7 @@ class agepi_eligible(Variable):
         ################################################################################################################
 
 
-        parent_isole = famille('nb_parents', period) == 1
+        parents_isoles = famille('nb_parents', period) == 1
         est_parent = famille.members.has_role(Famille.PARENT)
 
         age_enfant = famille.members('age', period)
@@ -143,6 +153,9 @@ class agepi_eligible(Variable):
         age_enfant_eligible = age_enfant < parameters(period).prestations.agepi.age_enfant_maximum
         print(f"age_enfant_eligible: {age_enfant_eligible}")
 
+        for parent in parents_isoles:
+            if parent != 1 :
+                raise Exception(f"{bcolors.FAIL}Le parent doit elever son enfant seul pour etre eligible a l'AGEPI !{bcolors.ENDC}")
 
         ################################################################################################################
         #  2- L'individu n'a pas touché l'AGEPI dans les 12 derniers mois
@@ -160,16 +173,21 @@ class agepi_eligible(Variable):
         #  3- L'individu est inscrit en catégorie 1, 2, 3, 4 ou 5
         ################################################################################################################
 
-
         pe_categorie_demandeur_emploi = famille.members('pole_emploi_categorie_demandeur_emploi', period)
-        print("pe_categorie_demandeur_emploi = " + str(pe_categorie_demandeur_emploi))
 
         categories_eligibles = ((pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_1) +
                                 (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_2) +
                                 (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_3) +
                                 (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_4) +
-                                (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_5))
+                                (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_5) +
+                                (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_6)) *
+                                (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_7)) *
+                                (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_8)) *
+                                (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.pas_de_categorie)))
 
+        for categorie_eligible in categories_eligibles:
+            if not categorie_eligible:
+                raise Exception(f"{bcolors.FAIL} Au moins une categorie renseignee n'est pas eligible a l'AGEPI !{bcolors.ENDC}")
 
         ################################################################################################################
         #  3.2 - L'individu réside ou non en zone Mayotte
@@ -236,6 +254,7 @@ class agepi_eligible(Variable):
 
         reprise_types_activites = famille.members('types_activite_condition_agepi', period)
 
+
         reprise_types_activites_aucune_activite = np.logical_not(reprise_types_activites == TypesActiviteConditionAGEPI.aucune_activite)
         #  print(f"reprise_types_activites_aucune_activite: {reprise_types_activites_aucune_activite}")
 
@@ -268,37 +287,25 @@ class agepi_eligible(Variable):
         reprise_types_activites_ctt_eligible = reprise_types_activites_ctt * periode_de_contrat_3_mois_minimum
         #  print(f"reprise_types_activites_ctt_eligible: {reprise_types_activites_ctt_eligible}")
 
+
         type_et_duree_activite_eligible = reprise_types_activites_aucune_activite * \
                                           (reprise_types_activites_formation_eligible + \
                                           reprise_types_activites_cdi + \
                                           reprise_types_activites_cdd_eligible + \
                                           reprise_types_activites_ctt_eligible)
 
-        print(f"type_et_duree_activite_eligible: {type_et_duree_activite_eligible}")
-
-
-        ################################################################################################################
-        #  7- L'individu a saisi une intensité (hebdomadaire ou mensuelle)
-        ################################################################################################################
-
-
-        intensite_activite = famille.members('types_intensite_activite', period)
-        intensite_saisie = np.logical_not(intensite_activite == TypesIntensiteActivite.intensite_non_valide)
-
-
         ################################################################################################################
 
         date_demande_agepi_eligible = True
 
-        return parent_isole * \
+        return parents_isoles * \
                est_parent * \
                age_enfant_eligible * \
                agepi_non_percue * \
                categories_eligibles * \
                date_demande_agepi_eligible * \
                montant_are_eligible * \
-               type_et_duree_activite_eligible * \
-               intensite_saisie != 0
+               type_et_duree_activite_eligible != 0
 
 
 class agepi(Variable):
@@ -327,6 +334,7 @@ class agepi(Variable):
 
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
         intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
+        intensite_non_valide = np.logical_not(intensite_activite == TypesIntensiteActivite.intensite_non_valide)
 
         reside_en_mayotte = famille.members('reside_en_region_mayotte', period) == True
         ne_reside_pas_en_mayotte = np.logical_not(reside_en_mayotte)
