@@ -540,3 +540,25 @@
   output:
     bourse_college:
       2017-09: 450
+
+- name: Bourse collège taux 3 sans enfant pas de bourse
+  period: 2017-09
+  input:
+    famille:
+      parents: [parent1]
+    foyer_fiscal:
+      declarants: [parent1]
+      rfr:
+        2015: 2852
+    menage:
+      personne_de_reference: parent1
+    individus:
+      parent1:
+        age: 40
+  output:
+    bourse_college_echelon:
+      2017-09: 3
+    bourse_college:
+      2017-09: 0
+    boursier:
+      2017-09: false

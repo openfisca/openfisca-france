@@ -319,7 +319,7 @@ class boursier(Variable):
     definition_period = MONTH
 
     def formula_2021(individu, period):
-        college = individu.famille('bourse_college_echelon', period)
+        college = individu.famille('bourse_college', period)
         lycee = individu.famille('bourse_lycee', period)
         sup = individu('bourse_criteres_sociaux', period)
         return (college > 0) + (lycee > 0) + (sup > 0)
