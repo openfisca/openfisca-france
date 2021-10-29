@@ -236,7 +236,7 @@ class agepi_eligible(Variable):
 
         reprise_types_activites = famille.members('types_activite_condition_agepi', period)
 
-        reprise_types_activites_aucune_activite = reprise_types_activites != TypesActiviteConditionAGEPI.aucune_activite
+        reprise_types_activites_aucune_activite = np.logical_not(reprise_types_activites == TypesActiviteConditionAGEPI.aucune_activite)
         #  print(f"reprise_types_activites_aucune_activite: {reprise_types_activites_aucune_activite}")
 
         reprise_types_activites_formation = reprise_types_activites == TypesActiviteConditionAGEPI.formation
