@@ -41,7 +41,7 @@
     agepi_temps_travail_semaine: 10
     allocation_retour_emploi: 0
     types_activite_condition_agepi: cdi
-    heures_formation_volume: 0
+    heures_remunerees_volume: 0
     contrat_de_travail_duree: 0
   output:
     agepi_eligible: True
@@ -55,7 +55,7 @@
     age: [8, 8, 8, 8]
     agepi_temps_travail_semaine: [10, 10, 10, 10]
     types_activite_condition_agepi: [cdi, cdi, cdi, cdi]
-    heures_formation_volume: [0, 0, 0, 0]
+    heures_remunerees_volume: [0, 0, 0, 0]
     contrat_de_travail_duree: [0, 0, 0, 0]
     allocation_retour_emploi: [0, 0, 0, 0]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_2, categorie_6, categorie_non_existante]
@@ -87,7 +87,7 @@
     age: [8, 8, 8, 8]
     agepi_temps_travail_semaine: [10, 10, 10, 10]
     types_activite_condition_agepi: [cdi, cdi, cdi, cdi]
-    heures_formation_volume: [0, 0, 0, 0]
+    heures_remunerees_volume: [0, 0, 0, 0]
     contrat_de_travail_duree: [0, 0, 0, 0]
     allocation_retour_emploi: [0, 29.56, 0, 29.57]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
@@ -104,7 +104,7 @@
     age: [8, 8, 8, 8]
     agepi_temps_travail_semaine: [10, 10, 10, 10]
     types_activite_condition_agepi: [cdi, cdi, cdi, cdi]
-    heures_formation_volume: [0, 0, 0, 0]
+    heures_remunerees_volume: [0, 0, 0, 0]
     contrat_de_travail_duree: [0, 0, 0, 0]
     allocation_retour_emploi: [0, 0, 0, 0]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
@@ -121,7 +121,7 @@
     age: [8, 9, 10, 11]
     agepi_temps_travail_semaine: [10, 10, 10, 10]
     types_activite_condition_agepi: [cdi, cdi, cdi, cdi]
-    heures_formation_volume: [0, 0, 0, 0]
+    heures_remunerees_volume: [0, 0, 0, 0]
     contrat_de_travail_duree: [0, 0, 0, 0]
     allocation_retour_emploi: [0, 0, 0, 0]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
@@ -140,7 +140,7 @@
     agepi_temps_travail_semaine: [10, 10, 10, 10, 10, 10]
     allocation_retour_emploi: [0, 0, 0, 0, 0, 0]
     types_activite_condition_agepi: [cdi, cdd, ctt, formation, formation, activite_inexistante]
-    heures_formation_volume: [0, 0, 0, 39, 40, 0]
+    heures_remunerees_volume: [0, 0, 0, 39, 40, 0]
     contrat_de_travail_duree: [0, 3, 2, 0, 0, 0]
   output:
     agepi_eligible: [True, True, False, False, True, False]
@@ -154,7 +154,7 @@
       personne_de_reference: Camille
       enfants: [Jean, Marie]
     individus:
-      parent:
+      Camille:
         age: 29
         contrat_de_travail_duree:
           2021-05: cdi
@@ -187,7 +187,7 @@
     age: [8, 8, 8, 8, 8, 8]
     agepi_temps_travail_semaine: [10, 10, 10, 10, 10, 10]
     types_activite_condition_agepi: [cdi, cdi, cdi, cdi, cdi, cdi]
-    heures_formation_volume: [0, 0, 0, 0, 0, 0]
+    heures_remunerees_volume: [0, 0, 0, 0, 0, 0]
     contrat_de_travail_duree: [0, 0, 0, 0, 0, 0]
     allocation_retour_emploi: [0, 29.56,  29.57, 0, 14.77, 14.78]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1, categorie_1, categorie_1]
@@ -205,7 +205,7 @@
     age: [8, 8]
     agepi_temps_travail_semaine: [10, 10]
     types_activite_condition_agepi: [cdi, cdi]
-    heures_formation_volume: [0, 0]
+    heures_remunerees_volume: [0, 0]
     contrat_de_travail_duree: [0, 0]
     allocation_retour_emploi: [0, 0]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
@@ -213,33 +213,44 @@
     agepi: [170, 85]
     agepi_eligible: [True, True]
 
-#  FIXME - Gérer la variable qui précise si un individu est parent
-- name: Test13 - Vérifie le montant de l'AGEPI en fonction de sa region (Mayotte / hors Mayotte) et le nombre d'enfants
+
+- name: Test13 - Vérifie le montant de l'AGEPI en fonction de la region (Mayotte / hors Mayotte) reprise < 15h sem ou < 64h mens ou >= 15
+  period: 2021-10
+  input:
+    nb_parents: [1, 1]
+    reside_en_region_mayotte: [False, True]
+    pe_nbenf: [1, 1]
+    age: [8, 8]
+    agepi_temps_travail_semaine: [10, 15]
+    types_activite_condition_agepi: [cdi, cdi]
+    heures_remunerees_volume: [40, 65]
+    contrat_de_travail_duree: [0, 0]
+    allocation_retour_emploi: [0, 0]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
+  output:
+    agepi: [170, 200]
+    agepi_eligible: [True, True]
+
+
+#  FIXME - Set la variable qui précise si un individu est parent
+- name: Test14 - Vérifie le montant de l'AGEPI en fonction de sa region (Mayotte / hors Mayotte) et le nombre d'enfants
   period: 2021-10
   input:
     nb_parents: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     reside_en_region_mayotte: [False, False, False, False, False, False, False, True, True, True, True, True, True, True]
     pe_nbenf: [0, 1, 2, 3, 1, 2, 3, 0, 1, 2, 3, 1, 2, 3]
     age: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]
-    agepi_temps_travail_semaine: [10, 10, 10, 10, 15, 15, 15, 10, 10, 10, 10, 15, 15, 15]
+    types_intensite_activite: [hebdomadaire, hebdomadaire, hebdomadaire, mensuelle, hebdomadaire, hebdomadaire,
+                               mensuelle, hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire, mensuelle,
+                               hebdomadaire, hebdomadaire]
+    agepi_temps_travail_semaine: [10, 10, 10, 0, 15, 15, 0, 10, 10, 10, 10, 0, 30, 14]
     types_activite_condition_agepi: [cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi]
-    heures_formation_volume: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    heures_remunerees_volume: [0, 0, 0, 63, 0, 0, 70, 0, 0, 0, 0, 63, 0, 0]
     contrat_de_travail_duree: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     allocation_retour_emploi: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    pole_emploi_categorie_demandeur_emploi: [categorie_1,
-                                             categorie_1,
-                                             categorie_1,
-                                             categorie_1,
-                                             categorie_1,
-                                             categorie_1,
-                                             categorie_1,
-                                             categorie_1,
-                                             categorie_1,
-                                             categorie_1,
-                                             categorie_1,
-                                             categorie_1,
-                                             categorie_1,
-                                             categorie_1]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1, categorie_1, categorie_1,
+                                             categorie_1, categorie_1, categorie_1, categorie_1, categorie_1, categorie_1,
+                                             categorie_1, categorie_1]
   output:
-    agepi: [0, 170, 195, 220, 400, 460, 520, 0, 85, 97.5, 110, 200, 230, 260]
+    agepi: [0, 170, 195, 220, 400, 460, 520, 0, 85, 97.5, 110, 85, 230, 110]
     #agepi_eligible: [False, True, True, True, True, True, True, False, True, True, True, True, True, True]
