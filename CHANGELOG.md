@@ -1,5 +1,14 @@
 # Changelog
 
+## 80.2.0 [#1707](https://github.com/openfisca/openfisca-france/pull/1707)
+
+* Correction d'un crash.
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées : `parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.mmid`
+* Détails :
+  - Supprime le paramètre simple qui avait été implémenté dans la PR#1654 pour le réintegrer dans le barème. Sinon il n'est pas pris en compte dans le preprocessing et donc pas dans les calculs
+  - Ajoute des tests pour les cotisations MMID employeur, en vérifiant si l'allègement (ex-cice) s'applique
+
 ### 80.1.2 [#1705](https://github.com/openfisca/openfisca-france/pull/1705)
 
 * Changement mineur.
