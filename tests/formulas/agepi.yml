@@ -240,17 +240,19 @@
     reside_en_region_mayotte: [False, False, False, False, False, False, False, True, True, True, True, True, True, True]
     pe_nbenf: [0, 1, 2, 3, 1, 2, 3, 0, 1, 2, 3, 1, 2, 3]
     age: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]
+    agepi:
+      2020-09: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     types_intensite_activite: [hebdomadaire, hebdomadaire, hebdomadaire, mensuelle, hebdomadaire, hebdomadaire,
                                mensuelle, hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire, mensuelle,
                                hebdomadaire, hebdomadaire]
     agepi_temps_travail_semaine: [10, 10, 10, 0, 15, 15, 0, 10, 10, 10, 10, 0, 30, 14]
-    types_activite_condition_agepi: [cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi, cdi]
+    types_activite_condition_agepi: [cdi, cdd, cdi, cdi, cdi, cdi, cdi, cdi, cdd, cdd, cdd, cdi, cdi, cdi]
     heures_remunerees_volume: [0, 0, 0, 63, 0, 0, 70, 0, 0, 0, 0, 63, 0, 0]
-    contrat_de_travail_duree: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    contrat_de_travail_duree: [0, 3, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 0]
     allocation_retour_emploi: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1, categorie_1, categorie_1,
                                              categorie_1, categorie_1, categorie_1, categorie_1, categorie_1, categorie_1,
                                              categorie_1, categorie_1]
   output:
-    agepi: [0, 170, 195, 220, 400, 460, 520, 0, 85, 97.5, 110, 85, 230, 110]
+    agepi: [0, 170, 460, 520, 400, 460, 520, 0, 85, 97.5, 110, 200, 230, 260]
     #agepi_eligible: [False, True, True, True, True, True, True, False, True, True, True, True, True, True]
