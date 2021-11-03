@@ -1,4 +1,5 @@
 import numpy as np
+from openfisca_core.periods import DAY
 
 from openfisca_france.model.base import Famille, Individu, Variable, MONTH, ADD, set_input_dispatch_by_period, \
     set_input_divide_by_period, Enum
@@ -122,6 +123,9 @@ class agepi_eligible(Variable):
         "Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
     ]
+    documentation = '''
+        Mes conditions
+    '''
 
     def formula(famille, period, parameters):
         # Renvoie true si :
@@ -158,7 +162,7 @@ class agepi_eligible(Variable):
                 raise Exception(f"{bcolors.FAIL}Le parent doit elever son enfant seul pour etre eligible a l'AGEPI !{bcolors.ENDC}")
 
         ################################################################################################################
-        #  2- L'individu n'a pas touché l'AGEPI dans les 12 derniers mois FIXME: Ne regarde pas le mois
+        #  2- L'individu n'a pas touché l'AGEPI dans les 12 derniers mois FIXME: Ne regarde pas le jour/mois
         ################################################################################################################
 
 
@@ -206,7 +210,7 @@ class agepi_eligible(Variable):
         ################################################################################################################
 
 
-        # date_demande_agepi = str(period.date)
+        # date_demande_agepi = str(period.start.day)
         # print(f"date_demande_agepi: {date_demande_agepi}")
         #
         # test_date_plus_1_mois = str((period.offset(1, 'month')).date)

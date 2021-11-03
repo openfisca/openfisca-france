@@ -66,7 +66,7 @@
 
 # TODO
 - name: Test5 - Vérifie si l'individu a effectué sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
-  period: 2021-10
+  period: 2021-10-05
   input:
     nb_parents: [1, 1, 1, 1]
     pe_nbenf: [1, 1, 1, 1]
@@ -75,7 +75,6 @@
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
     contrat_de_travail_debut: ['2021-10-01', '2021-10-21', '2021-09-01', '2021-10-22']
   output:
-    date_demande_agepi_eligible: [True, True, False, False]
     agepi_eligible: [True, True, False, False]
 
 
@@ -156,25 +155,28 @@
     individus:
       Camille:
         age: 29
-        contrat_de_travail_duree:
+        reside_en_region_mayotte: False
+        types_activite_condition_agepi:
           2021-05: cdi
         pole_emploi_categorie_demandeur_emploi: categorie_1
+        heures_remunerees_volume: 0
+        contrat_de_travail_duree: 0
         agepi_temps_travail_semaine: 10
         allocation_retour_emploi: 0
       Jean:
-        age: 10
+        age: 12
       Marie:
         age: 8
-    familles:
-      famille_0:
-        parent: Camille
-        enfants: [Jean, Marie]
-    foyers_fiscal:
-      foyer_fiscal_0:
-        declarants: Camille
-        personnes_a_charge: [Jean, Marie]
+    famille:
+      nb_parents: 1
+      parents: Camille
+      pe_nbenf: 2
+      enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
   output:
-    pe_nbenf: 1
+    pe_nbenf: 2
     agepi_eligible: True
 
 
