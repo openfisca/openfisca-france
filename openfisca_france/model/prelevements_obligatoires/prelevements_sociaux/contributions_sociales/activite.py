@@ -258,8 +258,11 @@ class salaire_net(Variable):
 class tehr(Variable):
     value_type = float
     entity = Individu
-    label = "TEHR (Taxe exceptionnelle sur les hautes rémunérations)"
-    reference = "art. 15 de la loi 2013-1278 (https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=1AACF2E1F7F065EF9C92B6B91E024EBE.tpdjo02v_1?idArticle=LEGIARTI000028402680&cidTexte=LEGITEXT000028402464&dateTexte=20140113)"
+    label = "Taxe exceptionnelle sur les hautes rémunérations (TEHR)"
+    reference = [
+        "Article 15 de la loi 2013-1278",
+        "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000028402680/"
+        ]
     calculate_output = calculate_output_divide
     definition_period = YEAR
     end = '2015-01-01'
