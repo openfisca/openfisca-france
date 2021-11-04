@@ -8,7 +8,7 @@ duree_de_formation_minimum:
       value: 40
 montants:
   hors_mayotte:
-    minore:
+    minimum:
       metadata:
         type: single_amount
       brackets:
@@ -30,7 +30,7 @@ montants:
           amount:
             2013-01-01:
               value: 220
-    majore:
+    maximum:
       metadata:
         type: single_amount
       brackets:
@@ -53,7 +53,7 @@ montants:
             2013-01-01:
               value: 520
   mayotte:
-    minore:
+    minimum:
       metadata:
         type: single_amount
       brackets:
@@ -75,7 +75,7 @@ montants:
           amount:
             2013-01-01:
               value: 110
-    majore:
+    maximum:
       metadata:
         type: single_amount
       brackets:

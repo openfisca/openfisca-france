@@ -79,7 +79,7 @@ class reside_en_region_mayotte(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class TypesActiviteConditionAGEPI(Enum):
+class TypesActiviteCondition(Enum):
     __order__ = 'aucune_activite cdi cdd ctt formation'  # Needed to preserve the enum order in Python 2
     aucune_activite = "AUCUNE ACTIVITE"
     cdi = "CDI"
@@ -88,10 +88,10 @@ class TypesActiviteConditionAGEPI(Enum):
     formation = "FORMATION"
 
 
-class types_activite_condition_agepi(Variable):
+class types_activite_condition(Variable):
     value_type = Enum
-    possible_values = TypesActiviteConditionAGEPI
-    default_value = TypesActiviteConditionAGEPI.aucune_activite
+    possible_values = TypesActiviteCondition
+    default_value = TypesActiviteCondition.aucune_activite
     entity = Individu
     label = "Les types d'activité éligibles à l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI "
     definition_period = MONTH
@@ -262,30 +262,43 @@ class agepi_eligible(Variable):
         ################################################################################################################
 
 
-        reprises_types_activites = famille.members('types_activite_condition_agepi', period)
+        reprises_types_activites = famille.members('types_activite_condition', period)
 
-        reprises_types_activites_aucune_activite = np.logical_not(reprises_types_activites == TypesActiviteConditionAGEPI.aucune_activite)
-        reprises_types_activites_formation = reprises_types_activites == TypesActiviteConditionAGEPI.formation
-        reprises_types_activites_cdi = reprises_types_activites == TypesActiviteConditionAGEPI.cdi
-        reprises_types_activites_cdd = reprises_types_activites == TypesActiviteConditionAGEPI.cdd
-        reprises_types_activites_ctt = reprises_types_activites == TypesActiviteConditionAGEPI.ctt
+        reprises_types_activites_aucune_activite = np.logical_not(reprises_types_activites == TypesActiviteCondition.aucune_activite)
+        reprises_types_activites_formation = reprises_types_activites == TypesActiviteCondition.formation
+        reprises_types_activites_cdi = reprises_types_activites == TypesActiviteCondition.cdi
+        reprises_types_activites_cdd = reprises_types_activites == TypesActiviteCondition.cdd
+        reprises_types_activites_ctt = reprises_types_activites == TypesActiviteCondition.ctt
 
-        #   La formation doit être supérieure ou égale à 40 heures
+        #  La formation doit être supérieure ou égale à 40 heures
         duree_formation = famille.members('heures_remunerees_volume', period)
         periode_formation_eligible = duree_formation >= parameters(period).prestations.agepi.duree_de_formation_minimum
 
-        #   Le durée de contrat de l'emploi doit être d'au moins 3 mois
+        #  Le durée de contrat de l'emploi doit être d'au moins 3 mois
         periode_de_contrat_3_mois_minimum = famille.members('contrat_de_travail_duree', period) >= 3
+
+        for reprise_type_activites_aucune_activite in reprises_types_activites_aucune_activite:
+            if not reprise_type_activites_aucune_activite:
+                raise Exception(f"{bcolors.FAIL}L'activite renseignee ne permet pas d'etre eligible a l'AGEPI!{bcolors.ENDC}")
+
+        for i in range(len(reprises_types_activites_formation)):
+            if reprises_types_activites_formation[i] and not periode_formation_eligible[i]:
+                raise Exception(f"{bcolors.FAIL}En formation, la duree renseignee doit etre >= 40h pour etre eligible a l'AGEPI!{bcolors.ENDC}")
+
+        for i in range(len(reprises_types_activites_cdd)):
+            if (reprises_types_activites_cdd[i] or reprises_types_activites_ctt[i]) and not periode_de_contrat_3_mois_minimum[i]:
+                raise Exception(f"{bcolors.FAIL}En CDD ou CTT, la duree de contrat doit etre superieure ou egale a 3 mois pour etre eligible a l'AGEPI!{bcolors.ENDC}")
 
         reprises_types_activites_formation_eligible = reprises_types_activites_formation * periode_formation_eligible
         reprises_types_activites_cdd_eligible = reprises_types_activites_cdd * periode_de_contrat_3_mois_minimum
         reprises_types_activites_ctt_eligible = reprises_types_activites_ctt * periode_de_contrat_3_mois_minimum
 
-        type_et_duree_activite_eligible = reprises_types_activites_aucune_activite * \
+        types_et_duree_activite_eligible = reprises_types_activites_aucune_activite * \
                                           (reprises_types_activites_formation_eligible + \
                                           reprises_types_activites_cdi + \
                                           reprises_types_activites_cdd_eligible + \
                                           reprises_types_activites_ctt_eligible)
+
 
         ################################################################################################################
 
@@ -298,7 +311,7 @@ class agepi_eligible(Variable):
                categories_eligibles * \
                date_demande_agepi_eligible * \
                montants_are_eligibles * \
-               type_et_duree_activite_eligible != 0
+               types_et_duree_activite_eligible != 0
 
 
 class agepi(Variable):
@@ -315,10 +328,10 @@ class agepi(Variable):
     ]
 
     def formula(famille, period, parameters):
-        types_de_contrat = famille.members('types_activite_condition_agepi', period)
-        contrat_cdi = types_de_contrat == TypesActiviteConditionAGEPI.cdi
+        types_de_contrat = famille.members('types_activite_condition', period)
+        contrat_cdi = types_de_contrat == TypesActiviteCondition.cdi
         print(f"contrat_cdi: {contrat_cdi}")
-        contrat_autre_que_cdi = np.logical_not(types_de_contrat == TypesActiviteConditionAGEPI.cdi)
+        contrat_autre_que_cdi = np.logical_not(types_de_contrat == TypesActiviteCondition.cdi)
         print(f"contrat_autre_que_cdi: {contrat_autre_que_cdi}")
         intensite_activite = famille.members('types_intensite_activite', period)
         nb_heures_semaine = famille.sum(famille.members('agepi_temps_travail_semaine', period), role=Famille.PARENT)
@@ -338,68 +351,68 @@ class agepi(Variable):
         montants_hors_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte
         montants_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.mayotte
 
-        montant_majore_hors_intensite_hors_mayotte = montants_hors_mayotte.majore.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte
-        montant_majore_hors_intensite_mayotte = montants_mayotte.majore.calc(nb_enfants_eligibles) * resident_en_mayotte
+        montant_maximum_hors_intensite_hors_mayotte = montants_hors_mayotte.maximum.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte
+        montant_maximum_hors_intensite_mayotte = montants_mayotte.maximum.calc(nb_enfants_eligibles) * resident_en_mayotte
 
         ################################################################################################################
 
         #  Montants en fonction du nombre d'enfants pour une reprise emploi ou formation < 15h/sem - HORS MAYOTTE
-        montants_minore_intensite_hebdo_hors_mayotte = montants_hors_mayotte.minore.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte * intensite_hebdomadaire
-        montants_majore_intensite_hebdo_hors_mayotte = montants_hors_mayotte.majore.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte * intensite_hebdomadaire
+        montants_minimum_intensite_hebdo_hors_mayotte = montants_hors_mayotte.minimum.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte * intensite_hebdomadaire
+        montants_maximum_intensite_hebdo_hors_mayotte = montants_hors_mayotte.maximum.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte * intensite_hebdomadaire
 
         #  Montants en fonction du nombre d'enfants pour une reprise emploi ou formation < 64h/mensuelle - HORS MAYOTTE
-        montants_minore_intensite_mensuelle_hors_mayotte = montants_hors_mayotte.minore.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte * intensite_mensuelle
-        montants_majore_intensite_mensuelle_hors_mayotte = montants_hors_mayotte.majore.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte * intensite_mensuelle
+        montants_minimum_intensite_mensuelle_hors_mayotte = montants_hors_mayotte.minimum.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte * intensite_mensuelle
+        montants_maximum_intensite_mensuelle_hors_mayotte = montants_hors_mayotte.maximum.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte * intensite_mensuelle
 
         ################################################################################################################
 
         #  Montants en fonction du nombre d'enfants pour une reprise emploi ou formation < 15h/sem - MAYOTTE
-        montants_minore_intensite_hebdo_mayotte = montants_mayotte.minore.calc(nb_enfants_eligibles) * resident_en_mayotte * intensite_hebdomadaire
-        montants_majore_intensite_hebdo_mayotte = montants_mayotte.majore.calc(nb_enfants_eligibles) * resident_en_mayotte * intensite_hebdomadaire
+        montants_minimum_intensite_hebdo_mayotte = montants_mayotte.minimum.calc(nb_enfants_eligibles) * resident_en_mayotte * intensite_hebdomadaire
+        montants_maximum_intensite_hebdo_mayotte = montants_mayotte.maximum.calc(nb_enfants_eligibles) * resident_en_mayotte * intensite_hebdomadaire
 
         #  Montants en fonction du nombre d'enfants pour une reprise emploi ou formation < 64h/mensuelle - MAYOTTE
-        montants_minore_intensite_mensuelle_mayotte = montants_mayotte.minore.calc(nb_enfants_eligibles) * resident_en_mayotte * intensite_mensuelle
-        montants_majore_intensite_mensuelle_mayotte = montants_mayotte.majore.calc(nb_enfants_eligibles) * resident_en_mayotte * intensite_mensuelle
+        montants_minimum_intensite_mensuelle_mayotte = montants_mayotte.minimum.calc(nb_enfants_eligibles) * resident_en_mayotte * intensite_mensuelle
+        montants_maximum_intensite_mensuelle_mayotte = montants_mayotte.maximum.calc(nb_enfants_eligibles) * resident_en_mayotte * intensite_mensuelle
 
         ################################################################################################################
 
         #  Montants minorés / majorés - Hors Mayotte - intensité hebdomadaire
-        montants_minores_hors_mayotte = montants_minore_intensite_hebdo_hors_mayotte + montants_minore_intensite_mensuelle_hors_mayotte
-        montants_majores_hors_mayotte = montants_majore_intensite_hebdo_hors_mayotte + montants_majore_intensite_mensuelle_hors_mayotte
+        montants_minimums_hors_mayotte = montants_minimum_intensite_hebdo_hors_mayotte + montants_minimum_intensite_mensuelle_hors_mayotte
+        montants_maximums_hors_mayotte = montants_maximum_intensite_hebdo_hors_mayotte + montants_maximum_intensite_mensuelle_hors_mayotte
 
         #  Montants minorés / majorés - Mayotte - intensité mensuelle
-        montants_minores_mayotte = montants_minore_intensite_hebdo_mayotte + montants_minore_intensite_mensuelle_mayotte
-        montants_majores_mayotte = montants_majore_intensite_hebdo_mayotte + montants_majore_intensite_mensuelle_mayotte
+        montants_minimums_mayotte = montants_minimum_intensite_hebdo_mayotte + montants_minimum_intensite_mensuelle_mayotte
+        montants_maximums_mayotte = montants_maximum_intensite_hebdo_mayotte + montants_maximum_intensite_mensuelle_mayotte
 
         #  Association des tableaux de montants - Hors Mayotte / Mayotte - intensité hebdomadaire / mensuelle
 
-        montants_minores_en_fonction_de_la_region = montants_minores_hors_mayotte + montants_minores_mayotte
-        montants_majores_en_fonction_de_la_region = montants_majores_hors_mayotte + montants_majores_mayotte
+        montants_minimums_en_fonction_de_la_region = montants_minimums_hors_mayotte + montants_minimums_mayotte
+        montants_maximums_en_fonction_de_la_region = montants_maximums_hors_mayotte + montants_maximums_mayotte
 
         ################################################################################################################
 
         # Calcul du montant en fonction du nombre d'heures de la reprise d'emploi ou de formation
 
-        condition_montants_minores_hebdomadaire = (nb_heures_semaine < 15) * intensite_hebdomadaire
-        condition_montants_minores_mensuelle = (nb_heures_mensuelles < 64) * intensite_mensuelle
+        condition_montants_minimums_hebdomadaire = (nb_heures_semaine < 15) * intensite_hebdomadaire
+        condition_montants_minimums_mensuelle = (nb_heures_mensuelles < 64) * intensite_mensuelle
 
-        condition_montants_majores_hebdomadaire = (nb_heures_semaine >= 15) * intensite_hebdomadaire
-        condition_montants_majores_mensuelle = (nb_heures_mensuelles >= 64) * intensite_mensuelle
+        condition_montants_maximums_hebdomadaire = (nb_heures_semaine >= 15) * intensite_hebdomadaire
+        condition_montants_maximums_mensuelle = (nb_heures_mensuelles >= 64) * intensite_mensuelle
 
-        condition_montants_minores = condition_montants_minores_hebdomadaire + condition_montants_minores_mensuelle
-        condition_montants_majores = condition_montants_majores_hebdomadaire + condition_montants_majores_mensuelle
+        condition_montants_minimums = condition_montants_minimums_hebdomadaire + condition_montants_minimums_mensuelle
+        condition_montants_maximums = condition_montants_maximums_hebdomadaire + condition_montants_maximums_mensuelle
 
         ################################################################################################################
 
-        montant_avec_intensite = ((condition_montants_minores * montants_minores_en_fonction_de_la_region) + \
-                                  (condition_montants_majores * montants_majores_en_fonction_de_la_region)) * \
+        montant_avec_intensite = ((condition_montants_minimums * montants_minimums_en_fonction_de_la_region) + \
+                                  (condition_montants_maximums * montants_maximums_en_fonction_de_la_region)) * \
                                  contrat_autre_que_cdi
 
         print(f"montant_avec_intensite: {montant_avec_intensite}")
 
         # Si activite CDI, on ne prend pas en compte l'intensite
 
-        montant_sans_intensite = (montant_majore_hors_intensite_hors_mayotte + montant_majore_hors_intensite_mayotte) * contrat_cdi
+        montant_sans_intensite = (montant_maximum_hors_intensite_hors_mayotte + montant_maximum_hors_intensite_mayotte) * contrat_cdi
         print(f"montant_sans_intensite: {montant_sans_intensite}")
 
         montants = montant_avec_intensite + montant_sans_intensite
