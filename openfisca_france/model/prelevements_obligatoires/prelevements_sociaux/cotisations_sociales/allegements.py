@@ -306,7 +306,7 @@ class smic_proratise(Variable):
 class allegement_fillon(Variable):
     value_type = float
     entity = Individu
-    label = "Ex-réduction Fillon (Réduction générale des cotisations patronales)"
+    label = "Réduction générale des cotisations patronales (dite réduction Fillon)"
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542"
     definition_period = MONTH
     calculate_output = calculate_output_add
