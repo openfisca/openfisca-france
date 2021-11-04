@@ -66,8 +66,8 @@ class stagiaire(Variable):
 class exoneration_cotisations_employeur_stagiaire(Variable):
     value_type = float
     entity = Individu
-    label = "Exonérations de cot. employeur sur gratification d'un stagaire"
-    reference = "http://www.apce.com/pid2798/stages.html?espace=3"
+    label = "Exonération de cotisations employeur sur gratification d'un stagaire"
+    reference = "https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/cas-particuliers--bases-forfaita/le-stagiaire-en-milieu-professio/la-franchise-de-cotisations-et-c.html"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
