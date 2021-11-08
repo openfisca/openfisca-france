@@ -1,18 +1,7 @@
 import numpy as np
-from openfisca_core.periods import DAY
 
-from openfisca_france.model.base import Famille, Individu, Variable, MONTH, ADD, set_input_dispatch_by_period, \
+from openfisca_france.model.base import Famille, Individu, Variable, MONTH, set_input_dispatch_by_period, \
     set_input_divide_by_period, Enum
-
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
 
 
 class pe_nbenf(Variable):
@@ -22,9 +11,9 @@ class pe_nbenf(Variable):
     set_input = set_input_dispatch_by_period
     label = "Nombre d'enfants pour le calcul de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI"
     reference = [
-        "Article 2 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi"
+        "Article 2 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
-    ]
+        ]
 
     def formula(famille, period):
         age_enfant_eligible = famille('agepi_eligible', period)
@@ -42,6 +31,14 @@ class agepi_temps_travail_semaine(Variable):
     def formula(individu, period):
         heures_remunerees_volume = individu('heures_remunerees_volume', period)
         return heures_remunerees_volume / 52 * 12  # Passage en heures par semaine
+
+
+class agepi_percue_12_derniers_mois(Variable):
+    value_type = bool
+    entity = Individu
+    label = "L'individu a t-il perçu une AGEPI dans les 12 derniers mois"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class emploi_ou_formation_en_france(Variable):
@@ -70,7 +67,7 @@ class pole_emploi_categorie_demandeur_emploi(Variable):
     reference = [
         "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-n2016-33-du-6-octobr.html?type=dossiers/2016/bope-n2016-80-du-17-novembre-201#",
         "Annexe 3 : la fiche 3 - Les effets de l’inscription"
-    ]
+        ]
     value_type = Enum
     possible_values = TypesCategoriesDemandeurEmploi
     default_value = TypesCategoriesDemandeurEmploi.pas_de_categorie
@@ -130,7 +127,7 @@ class agepi_eligible(Variable):
     reference = [
         "Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
-    ]
+        ]
     documentation = '''
         1- L'individu élève seul son enfant dont l'âge est inférieur à 10 ans (condition de garde d'enfant)
         2- L'individu n'a pas touché l'AGEPI dans les 12 derniers mois (condition de durée entre faits générateurs)
@@ -155,49 +152,27 @@ class agepi_eligible(Variable):
         age_enfants = famille.members('age', period)
         age_enfants_eligible = (age_enfants < parameters(period).prestations.agepi.age_enfant_maximum) * (age_enfants > 0)
 
-        for parent in parents_isoles:
-            if parent != 1 :
-                print(f"{bcolors.FAIL}Le parent doit elever seul son enfant pour etre eligible a l'AGEPI !{bcolors.ENDC}")
+        #  2
 
-        for ageEnfant in age_enfants:
-            if ageEnfant >= 10 or ageEnfant < 0:
-                print(f"{bcolors.FAIL}ageEnfant: {ageEnfant}{bcolors.ENDC}")
-                print(f"{bcolors.FAIL}L'enfant doit avoir moins de 10 ans et etre different de 0 pour etre eligible a l'AGEPI!{bcolors.ENDC}")
-
-        #  2 FIXME: Ne regarde pas le jour/mois
-
-        annee_glissante = period.start.period('year').offset(-1)
-        agepi_non_percues = famille('agepi', annee_glissante, options=[ADD]) == 0
-
-        for agepi_non_percue in agepi_non_percues:
-            if agepi_non_percue == 0:
-                print(f"{bcolors.FAIL}Une AGEPI a deja ete percue au cours de la derniere annee!{bcolors.ENDC}")
+        agepi_non_percues = np.logical_not(famille.members('agepi_percue_12_derniers_mois', period))
 
         #  3
 
         pe_categorie_demandeur_emploi = famille.members('pole_emploi_categorie_demandeur_emploi', period)
 
-        categories_eligibles = ((pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_1) +
-                                (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_2) +
-                                (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_3) +
-                                (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_4) +
-                                (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_5) +
-                                (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_6)) *
-                                (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_7)) *
-                                (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_8)) *
-                                (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.pas_de_categorie)))
-
-        for categorie_eligible in categories_eligibles:
-            if not categorie_eligible:
-                print(f"{bcolors.FAIL}Au moins une categorie renseignee n'est pas eligible a l'AGEPI !{bcolors.ENDC}")
+        categories_eligibles = ((pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_1)
+                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_2)
+                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_3)
+                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_4)
+                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_5)
+                                + (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_6))
+                                * (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_7))
+                                * (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_8))
+                                * (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.pas_de_categorie)))
 
         #  4
 
         reprises_activites_en_france = famille.members('emploi_ou_formation_en_france', period)
-
-        for reprise_activite_en_france in reprises_activites_en_france:
-            if not reprise_activite_en_france:
-                print(f"{bcolors.FAIL}La repise d'emploi ou de formation doit avoir lieu en France pour etre eligible a l'AGEPI !{bcolors.ENDC}")
 
         #  5 FIXME
 
@@ -216,7 +191,7 @@ class agepi_eligible(Variable):
 
         #  6
 
-        resident_en_mayotte = famille.members('reside_en_region_mayotte', period) == True
+        resident_en_mayotte = famille.members('reside_en_region_mayotte', period) == 1
         ne_resident_pas_en_mayotte = np.logical_not(resident_en_mayotte)
 
         allocation_individu = famille.members('allocation_retour_emploi', period)
@@ -232,10 +207,6 @@ class agepi_eligible(Variable):
         are_individu_inferieure_are_min = allocation_individu < allocation_minimale_en_fonction_de_la_region
 
         montants_are_eligibles = are_individu_inferieure_are_min + are_individu_egale_are_min
-
-        for montant_are_eligible in montants_are_eligibles:
-            if not montant_are_eligible:
-                print(f"{bcolors.FAIL}Le montant de l'ARE ne permet pas d'etre eligible a l'AGEPI !{bcolors.ENDC}")
 
         #  7
 
@@ -254,39 +225,27 @@ class agepi_eligible(Variable):
         #  Le durée de contrat de l'emploi doit être d'au moins 3 mois
         periode_de_contrat_3_mois_minimum = famille.members('contrat_de_travail_duree', period) >= 3
 
-        for reprise_type_activites_aucune_activite in reprises_types_activites_aucune_activite:
-            if not reprise_type_activites_aucune_activite:
-                print(f"{bcolors.FAIL}L'activite renseignee ne permet pas d'etre eligible a l'AGEPI!{bcolors.ENDC}")
-
-        for i in range(len(reprises_types_activites_formation)):
-            if reprises_types_activites_formation[i] and not periode_formation_eligible[i]:
-                print(f"{bcolors.FAIL}En formation, la duree renseignee doit etre >= 40h pour etre eligible a l'AGEPI!{bcolors.ENDC}")
-
-        for i in range(len(reprises_types_activites_cdd)):
-            if (reprises_types_activites_cdd[i] or reprises_types_activites_ctt[i]) and not periode_de_contrat_3_mois_minimum[i]:
-                print(f"{bcolors.FAIL}En CDD ou CTT, la duree de contrat doit etre superieure ou egale a 3 mois pour etre eligible a l'AGEPI!{bcolors.ENDC}")
-
         reprises_types_activites_formation_eligible = reprises_types_activites_formation * periode_formation_eligible
         reprises_types_activites_cdd_eligible = reprises_types_activites_cdd * periode_de_contrat_3_mois_minimum
         reprises_types_activites_ctt_eligible = reprises_types_activites_ctt * periode_de_contrat_3_mois_minimum
 
-        types_et_duree_activite_eligible = reprises_types_activites_aucune_activite * \
-                                          (reprises_types_activites_formation_eligible + \
-                                          reprises_types_activites_cdi + \
-                                          reprises_types_activites_cdd_eligible + \
-                                          reprises_types_activites_ctt_eligible)
+        types_et_duree_activite_eligible = reprises_types_activites_aucune_activite \
+            * (reprises_types_activites_formation_eligible
+            + reprises_types_activites_cdi
+            + reprises_types_activites_cdd_eligible
+            + reprises_types_activites_ctt_eligible)
 
         date_demande_agepi_eligible = True
 
-        return parents_isoles * \
-               est_parent * \
-               age_enfants_eligible * \
-               agepi_non_percues * \
-               reprises_activites_en_france *\
-               categories_eligibles * \
-               date_demande_agepi_eligible * \
-               montants_are_eligibles * \
-               types_et_duree_activite_eligible != 0
+        return parents_isoles \
+            * est_parent \
+            * age_enfants_eligible \
+            * agepi_non_percues \
+            * reprises_activites_en_france \
+            * categories_eligibles \
+            * date_demande_agepi_eligible \
+            * montants_are_eligibles \
+            * types_et_duree_activite_eligible != 0
 
 
 class agepi(Variable):
@@ -300,7 +259,7 @@ class agepi(Variable):
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20",
         "2. Aide à la garde d’enfants pour les parents isolés (AGEPI)",
         "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014"
-    ]
+        ]
 
     def formula(famille, period, parameters):
         types_de_contrat = famille.members('types_activite_condition', period)
@@ -315,7 +274,7 @@ class agepi(Variable):
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
         intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
 
-        resident_en_mayotte = famille.members('reside_en_region_mayotte', period) == True
+        resident_en_mayotte = famille.members('reside_en_region_mayotte', period) == 1
         ne_resident_pas_en_mayotte = np.logical_not(resident_en_mayotte)
 
         #  Montants en fonction de la région avec ou sans prise en compte de l'intensite
@@ -375,9 +334,8 @@ class agepi(Variable):
 
         ################################################################################################################
 
-        montant_avec_intensite = ((condition_montants_minimums * montants_minimums_en_fonction_de_la_region) + \
-                                  (condition_montants_maximums * montants_maximums_en_fonction_de_la_region)) * \
-                                 contrat_autre_que_cdi
+        montant_avec_intensite = ((condition_montants_minimums * montants_minimums_en_fonction_de_la_region)
+            + (condition_montants_maximums * montants_maximums_en_fonction_de_la_region)) * contrat_autre_que_cdi
 
         # Si activite CDI, on ne prend pas en compte l'intensite
 

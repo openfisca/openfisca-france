@@ -24,7 +24,7 @@ Individu = build_entity(
     plural = "individus",
     label = 'Individu',
     is_person = True
-)
+    )
 
 FoyerFiscal = build_entity(
     key = "foyer_fiscal",
