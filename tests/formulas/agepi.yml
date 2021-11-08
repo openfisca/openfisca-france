@@ -23,22 +23,25 @@
 - name: Test2 - Vérifie le non cumul de l'aide AGEPI
   period: 2021-10
   input:
-    nb_parents: [ 1, 1 ]
-    emploi_ou_formation_en_france: [ True, True ]
-    reside_en_region_mayotte: [ False, False ]
-    pe_nbenf: [ 1, 1 ]
-    age: [ 8, 8 ]
-    agepi_percue_12_derniers_mois: [True, False]
-    types_intensite_activite: [ mensuelle, mensuelle ]
-    agepi_temps_travail_semaine: [ 0, 0 ]
-    types_activite_condition: [ cdd, cdd ]
-    heures_remunerees_volume: [ 0, 0 ]
-    contrat_de_travail_duree: [ 3, 3 ]
-    allocation_retour_emploi: [ 0, 0 ]
-    pole_emploi_categorie_demandeur_emploi: [ categorie_1, categorie_1 ]
+    nb_parents: [ 1, 1, 1 ]
+    emploi_ou_formation_en_france: [ True, True, True ]
+    reside_en_region_mayotte: [ False, False, False ]
+    pe_nbenf: [ 1, 1, 1 ]
+    age: [ 8, 8, 8 ]
+    agepi:
+      2021-09: [ 170, 0, 0 ]
+      2020-10: [ 0, 170, 0 ]
+      2020-09: [ 0, 0, 170 ]
+    types_intensite_activite: [ mensuelle, mensuelle, mensuelle ]
+    agepi_temps_travail_semaine: [ 0, 0, 0 ]
+    types_activite_condition: [ cdd, cdd, cdd ]
+    heures_remunerees_volume: [ 0, 0, 0 ]
+    contrat_de_travail_duree: [ 3, 3, 3 ]
+    allocation_retour_emploi: [ 0, 0, 0 ]
+    pole_emploi_categorie_demandeur_emploi: [ categorie_1, categorie_1, categorie_1 ]
   output:
-    agepi: [ 0, 170 ]
-    agepi_eligible: [ False, True ]
+    agepi: [ 0, 0, 170 ]
+    agepi_eligible: [ False, False, True ]
 
 
 - name: Test3 - Vérifie si l'individu appartient à une catégorie
@@ -49,7 +52,8 @@
     reside_en_region_mayotte: [ True, True, True, True, True, True, True, True, True ]
     pe_nbenf: [ 1, 1, 1, 1, 1, 1, 1, 1, 1 ]
     age: [ 8, 8, 8, 8, 8, 8, 8, 8, 8 ]
-    agepi_percue_12_derniers_mois: [False, False, False, False, False, False, False, False, False]
+    agepi:
+      2020-09: [ 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
     types_intensite_activite: [ mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle ]
     agepi_temps_travail_semaine: [ 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
     types_activite_condition: [ cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd ]
@@ -71,7 +75,8 @@
     reside_en_region_mayotte: [ True, True ]
     pe_nbenf: [ 1, 1 ]
     age: [ 8, 8 ]
-    agepi_percue_12_derniers_mois: [False, False]
+    agepi:
+      2020-09: [ 0, 0 ]
     types_intensite_activite: [ mensuelle, mensuelle ]
     agepi_temps_travail_semaine: [ 0, 0 ]
     types_activite_condition: [ cdd, cdd ]
@@ -85,25 +90,26 @@
 
 
 # TODO
-- name: Test5 - Vérifie si l'individu a effectué sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
-  period: 2021-11-01
-  input:
-    nb_parents: [1, 1, 1, 1]
-    pe_nbenf: [1, 1, 1, 1]
-    age: [8, 8, 8, 8]
-    emploi_ou_formation_en_france: [True, True, True, True]
-    agepi_percue_12_derniers_mois: [False, False, False, False]
-    reside_en_region_mayotte: [True, True, True, True]
-    agepi_temps_travail_semaine: [10, 10, 10, 10]
-    types_intensite_activite: [hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire]
-    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
-    types_activite_condition: [cdd, cdd, cdd, cdd]
-    heures_remunerees_volume: [0, 0, 0, 0]
-    contrat_de_travail_duree: [3, 3, 3, 3]
-    allocation_retour_emploi: [0, 0, 0, 0]
-    contrat_de_travail_debut_agepi: ['2021-10-01', '2021-10-21', '2021-09-01', '2021-10-22']
-  output:
-    agepi_eligible: [True, True, False, False]
+#- name: Test5 - Vérifie si l'individu a effectué sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
+#  period: 2021-11
+#  input:
+#    nb_parents: [1, 1, 1, 1]
+#    pe_nbenf: [1, 1, 1, 1]
+#    age: [8, 8, 8, 8]
+#    emploi_ou_formation_en_france: [True, True, True, True]
+#    agepi:
+#      2020-09: [0, 0, 0, 0]
+#    reside_en_region_mayotte: [True, True, True, True]
+#    agepi_temps_travail_semaine: [10, 10, 10, 10]
+#    types_intensite_activite: [hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire]
+#    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
+#    types_activite_condition: [cdd, cdd, cdd, cdd]
+#    heures_remunerees_volume: [0, 0, 0, 0]
+#    contrat_de_travail_duree: [3, 3, 3, 3]
+#    allocation_retour_emploi: [0, 0, 0, 0]
+#    contrat_de_travail_debut: ['2021-10-01', '2021-10-21', '2021-09-01', '2021-10-22']
+#  output:
+#    agepi_eligible: [True, True, False, False]
 
 
 - name: Test6 - Vérifie si l'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs ou en processur d'entrée en formation supérieure ou égale à 40 heures
@@ -114,7 +120,8 @@
     reside_en_region_mayotte: [ True, True, True, True, True, True, True, True ]
     pe_nbenf: [ 1, 1, 1, 1, 1, 1, 1, 1 ]
     age: [ 8, 8, 8, 8, 8, 8, 8, 8 ]
-    agepi_percue_12_derniers_mois: [False, False, False, False, False, False, False, False]
+    agepi:
+      2020-09: [ 0, 0, 0, 0, 0, 0, 0, 0 ]
     types_intensite_activite: [ mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle ]
     agepi_temps_travail_semaine: [ 0, 0, 0, 0, 0, 0, 0, 0 ]
     types_activite_condition: [ autre, cdi, cdd, ctt, formation, cdd, ctt, formation ]
@@ -136,7 +143,8 @@
     reside_en_region_mayotte: [ True, True, False, False ]
     pe_nbenf: [ 1, 1, 1, 1 ]
     age: [ 8, 8, 8, 8 ]
-    agepi_percue_12_derniers_mois: [False, False, False, False]
+    agepi:
+      2020-09: [ 0, 0, 0, 0 ]
     types_intensite_activite: [ mensuelle, mensuelle, mensuelle, mensuelle ]
     agepi_temps_travail_semaine: [ 0, 0, 0, 0 ]
     types_activite_condition: [ cdd, cdd, cdd, cdd ]
@@ -157,7 +165,8 @@
     reside_en_region_mayotte: [ True, True, True, True, True, True, True, False, False, False, False, False, False, False ]
     pe_nbenf: [ 0, 1, 2, 3, 1, 2, 3, 0, 1, 2, 3, 1, 2, 3 ]
     age: [ 0, 8, 8, 8, 8, 8, 8, 0, 8, 8, 8, 8, 8, 8 ]
-    agepi_percue_12_derniers_mois: [False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+    agepi:
+      2020-09: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
     types_intensite_activite: [ mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle,
                                 mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle ]
     agepi_temps_travail_semaine: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
@@ -181,7 +190,8 @@
     reside_en_region_mayotte: [True, True, True, True, True, True, True, False, False, False, False, False, False, False]
     pe_nbenf: [0, 1, 2, 3, 1, 2, 3, 0, 1, 2, 3, 1, 2, 3]
     age: [0, 8, 8, 8, 8, 8, 8, 0, 8, 8, 8, 8, 8, 8]
-    agepi_percue_12_derniers_mois: [False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+    agepi:
+      2020-09: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     types_intensite_activite: [hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire,
                                hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire,
                                hebdomadaire, hebdomadaire]
