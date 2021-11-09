@@ -1,11 +1,8 @@
-import datetime
-from datetime import timedelta
-
+from datetime import date
 import numpy as np
-from openfisca_core.periods import DAY
 
-from openfisca_france.model.base import Famille, Individu, Variable, MONTH, set_input_dispatch_by_period, \
-    set_input_divide_by_period, Enum
+from openfisca_france.model.base import Famille, Individu, Variable, Enum, MONTH, \
+     set_input_dispatch_by_period, set_input_divide_by_period, min_, not_
 
 
 class pe_nbenf(Variable):
@@ -122,6 +119,16 @@ class types_intensite_activite(Variable):
     definition_period = MONTH
 
 
+class agepi_date_demande(Variable):
+    value_type = date
+    default_value = date(1870, 1, 1)
+    entity = Individu
+    label = "Date de demande d'évaluation à l'éligibilité à l'AGEPI (date du fait générateur)"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
+
+
 class agepi_eligible(Variable):
     value_type = bool
     entity = Famille
@@ -158,7 +165,7 @@ class agepi_eligible(Variable):
 
         #  2
 
-        agepi_non_percues = np.logical_not(famille.members('agepi_percue_12_derniers_mois', period))
+        agepi_non_percues = not_(famille.members('agepi_percue_12_derniers_mois', period))
 
         #  3
 
@@ -169,59 +176,35 @@ class agepi_eligible(Variable):
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_3)
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_4_stagiaire_formation_professionnelle)
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_5_contrat_aide)
-                                + (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_6))
-                                * (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_7))
-                                * (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_8))
-                                * (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.pas_de_categorie)))
+                                + (not_(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_6))
+                                * (not_(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_7))
+                                * (not_(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_8))
+                                * (not_(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.pas_de_categorie)))
 
         #  4
 
         reprises_activites_en_france = famille.members('emploi_ou_formation_en_france', period)
 
-        #  5 FIXME
+        #  5
 
-        # date_demande_agepi = period.start.day
-        # print(f"date_demande_agepi: {date_demande_agepi}")
-        #
-        # test_date_plus_1_mois = str((period.offset(1, 'month')).date)
-        # print(f"test_date_plus_1_mois: {test_date_plus_1_mois}")
-        #
-        # date_debut_contrat_de_travail_plus_un_mois = famille.members('contrat_de_travail_duree', period.offset(1, 'month'))
-        #
-        # print(f"contrat_de_travail_debut: {famille.members('contrat_de_travail_duree', period)}")
-        # print(f"date_debut_contrat_de_travail_plus_un_mois: {date_debut_contrat_de_travail_plus_un_mois}")
-        #
-        # date_demande_agepi_eligible = (date_demande_agepi < date_debut_contrat_de_travail_plus_un_mois)
-
-        jour_simulation = datetime.date.today()
-        print("jour_simulation", jour_simulation)
-
-        date_demande_agepi_eligible = []
-
-        print("period.first_month = ", period.first_month)
         contrat_de_travail_debut = famille.members('contrat_de_travail_debut', period)  # numpy.datetime64
-        print("Date de début de contrat de travail = ", contrat_de_travail_debut)
+        contrat_de_travail_debut_en_mois = contrat_de_travail_debut.astype('M8[M]')
+        print("contrat_de_travail_debut_en_mois = ", contrat_de_travail_debut_en_mois)
 
-        en_mois = contrat_de_travail_debut.astype('M8[M]')
-        print("en_mois = ", en_mois)
-
-        date_limite_eligibilite_contrat = np.minimum((en_mois + 1) + (contrat_de_travail_debut - en_mois), (en_mois + 2) - np.timedelta64(1, 'D'))
+        date_limite_eligibilite_contrat = min_(
+            (contrat_de_travail_debut_en_mois + 1) + (contrat_de_travail_debut - contrat_de_travail_debut_en_mois), 
+            (contrat_de_travail_debut_en_mois + 2) - np.timedelta64(1, 'D')
+            )
         print("date_limite_eligibilite_contrat = ", date_limite_eligibilite_contrat)
-
-        for i in range(len(contrat_de_travail_debut)):
-            print("date_limite_eligibilite_contrat[i]", date_limite_eligibilite_contrat[i])
-            print("contrat_de_travail_debut[i]", contrat_de_travail_debut[i])
-            if date_limite_eligibilite_contrat[i] <= contrat_de_travail_debut[i]:
-                date_demande_agepi_eligible.append(True)
-            elif date_limite_eligibilite_contrat[i] > contrat_de_travail_debut[i]:
-                date_demande_agepi_eligible.append(False)
-
+        
+        agepi_date_demande = famille.members("agepi_date_demande", period)
+        date_demande_agepi_eligible = agepi_date_demande <= date_limite_eligibilite_contrat
         print("date_demande_agepi_eligible", date_demande_agepi_eligible)
 
         #  6
 
         resident_en_mayotte = famille.members('reside_en_region_mayotte', period) == 1
-        ne_resident_pas_en_mayotte = np.logical_not(resident_en_mayotte)
+        ne_resident_pas_en_mayotte = not_(resident_en_mayotte)
 
         allocation_individu = famille.members('allocation_retour_emploi', period)
 
@@ -241,7 +224,7 @@ class agepi_eligible(Variable):
 
         reprises_types_activites = famille.members('types_activite_condition', period)
 
-        reprises_types_activites_aucune_activite = np.logical_not(reprises_types_activites == TypesActiviteCondition.aucune_activite)
+        reprises_types_activites_aucune_activite = not_(reprises_types_activites == TypesActiviteCondition.aucune_activite)
         reprises_types_activites_formation = reprises_types_activites == TypesActiviteCondition.formation
         reprises_types_activites_cdi = reprises_types_activites == TypesActiviteCondition.cdi
         reprises_types_activites_cdd = reprises_types_activites == TypesActiviteCondition.cdd
@@ -293,7 +276,7 @@ class agepi(Variable):
     def formula(famille, period, parameters):
         types_de_contrat = famille.members('types_activite_condition', period)
         contrat_cdi = types_de_contrat == TypesActiviteCondition.cdi
-        contrat_autre_que_cdi = np.logical_not(types_de_contrat == TypesActiviteCondition.cdi)
+        contrat_autre_que_cdi = not_(types_de_contrat == TypesActiviteCondition.cdi)
         intensite_activite = famille.members('types_intensite_activite', period)
         nb_heures_semaine = famille.sum(famille.members('agepi_temps_travail_semaine', period), role=Famille.PARENT)
         nb_heures_mensuelles = famille.members('heures_remunerees_volume', period)
@@ -304,7 +287,7 @@ class agepi(Variable):
         intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
 
         resident_en_mayotte = famille.members('reside_en_region_mayotte', period) == 1
-        ne_resident_pas_en_mayotte = np.logical_not(resident_en_mayotte)
+        ne_resident_pas_en_mayotte = not_(resident_en_mayotte)
 
         #  Montants en fonction de la région avec ou sans prise en compte de l'intensite
         montants_hors_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte

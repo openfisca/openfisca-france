@@ -102,8 +102,9 @@
     contrat_de_travail_duree: [3, 3, 3, 3]
     allocation_retour_emploi: [0, 0, 0, 0]
     contrat_de_travail_debut: ['2021-01-31', '2021-10-21', '2021-09-01', '2021-10-22']
+    agepi_date_demande: ['2021-01-31', '2021-11-21', '2021-10-02', '2021-09-21']
   output:
-    agepi_eligible: [True, True, False, False]
+    agepi_eligible: [True, True, False, True]
 
 
 - name: Test6 - Vérifie si l'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs ou en processur d'entrée en formation supérieure ou égale à 40 heures
