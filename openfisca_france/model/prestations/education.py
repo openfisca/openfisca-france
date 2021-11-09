@@ -321,8 +321,9 @@ class boursier(Variable):
     def formula_2021(individu, period):
         college = individu.famille('bourse_college', period)
         lycee = individu.famille('bourse_lycee', period)
-        sup = individu('bourse_criteres_sociaux', period)
-        return (college > 0) + (lycee > 0) + (sup > 0)
+        bcs = individu('bourse_criteres_sociaux', period)
+        bes = individu('bourse_enseignement_sup', period)
+        return (college > 0) + (lycee > 0) + (bcs > 0) + (bes > 0)
 
 
 class StatutsEtablissementScolaire(Enum):

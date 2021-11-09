@@ -562,3 +562,13 @@
       2017-09: 0
     boursier:
       2017-09: false
+
+- name: Test boursier
+  period: 2021-11
+  input:
+    bourse_college: [1, 0, 0, 0, 0]
+    bourse_lycee: [0, 1, 0, 0, 0]
+    bourse_criteres_sociaux: [0, 0, 1, 0, 0]
+    bourse_enseignement_sup: [0, 0, 0, 1, 0]
+  output:
+    boursier: [1, 1, 1, 1, 0]
