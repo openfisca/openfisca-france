@@ -55,8 +55,8 @@
     heures_remunerees_volume: [ 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
     contrat_de_travail_duree: [ 3, 3, 3, 3, 3, 3, 3, 3, 3 ]
     allocation_retour_emploi: [ 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
-    pole_emploi_categorie_demandeur_emploi: [ categorie_1, categorie_2, categorie_3, categorie_4, categorie_5,
-                                              categorie_6, categorie_7, categorie_8, autre ]
+    pole_emploi_categorie_demandeur_emploi: [ categorie_1, categorie_2, categorie_3, categorie_4_stagiaire_formation_professionnelle,
+                                              categorie_5_contrat_aide, categorie_6, categorie_7, categorie_8, autre ]
   output:
     agepi: [ 85, 85, 85, 85, 85, 0, 0, 0, 0 ]
     agepi_eligible: [ True, True, True, True, True, False, False, False, False ]
@@ -84,26 +84,26 @@
 
 
 # TODO
-#- name: Test5 - Vérifie si l'individu a effectué sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
-#  period: 2021-11
-#  input:
-#    nb_parents: [1, 1, 1, 1]
-#    pe_nbenf: [1, 1, 1, 1]
-#    age: [8, 8, 8, 8]
-#    emploi_ou_formation_en_france: [True, True, True, True]
-#    agepi:
-#      2020-09: [0, 0, 0, 0]
-#    reside_en_region_mayotte: [True, True, True, True]
-#    agepi_temps_travail_semaine: [10, 10, 10, 10]
-#    types_intensite_activite: [hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire]
-#    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
-#    types_activite_condition: [cdd, cdd, cdd, cdd]
-#    heures_remunerees_volume: [0, 0, 0, 0]
-#    contrat_de_travail_duree: [3, 3, 3, 3]
-#    allocation_retour_emploi: [0, 0, 0, 0]
-#    contrat_de_travail_debut: ['2021-10-01', '2021-10-21', '2021-09-01', '2021-10-22']
-#  output:
-#    agepi_eligible: [True, True, False, False]
+- name: Test5 - Vérifie si l'individu a effectué sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
+  period: 2021-10
+  input:
+    nb_parents: [1, 1, 1, 1]
+    pe_nbenf: [1, 1, 1, 1]
+    age: [8, 8, 8, 8]
+    emploi_ou_formation_en_france: [True, True, True, True]
+    agepi:
+      2020-09: [0, 0, 0, 0]
+    reside_en_region_mayotte: [True, True, True, True]
+    agepi_temps_travail_semaine: [10, 10, 10, 10]
+    types_intensite_activite: [hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
+    types_activite_condition: [cdd, cdd, cdd, cdd]
+    heures_remunerees_volume: [0, 0, 0, 0]
+    contrat_de_travail_duree: [3, 3, 3, 3]
+    allocation_retour_emploi: [0, 0, 0, 0]
+    contrat_de_travail_debut: ['2021-01-31', '2021-10-21', '2021-09-01', '2021-10-22']
+  output:
+    agepi_eligible: [True, True, False, False]
 
 
 - name: Test6 - Vérifie si l'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs ou en processur d'entrée en formation supérieure ou égale à 40 heures

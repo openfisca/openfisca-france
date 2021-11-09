@@ -1,4 +1,8 @@
+import datetime
+from datetime import timedelta
+
 import numpy as np
+from openfisca_core.periods import DAY
 
 from openfisca_france.model.base import Famille, Individu, Variable, MONTH, set_input_dispatch_by_period, \
     set_input_divide_by_period, Enum
@@ -50,14 +54,14 @@ class emploi_ou_formation_en_france(Variable):
 
 
 class TypesCategoriesDemandeurEmploi(Enum):
-    __order__ = 'pas_de_categorie categorie_1 categorie_2 categorie_3 categorie_4 categorie_5 categorie_6 categorie_7 categorie_8' \
+    __order__ = 'pas_de_categorie categorie_1 categorie_2 categorie_3 categorie_4_stagiaire_formation_professionnelle categorie_5_contrat_aide categorie_6 categorie_7 categorie_8' \
                 # Needed to preserve the enum order in Python 2
     pas_de_categorie = "Aucune catégorie"
     categorie_1 = "Catégorie 1 - Personnes sans emploi, immédiatement disponibles en recherche de CDI plein temps."
     categorie_2 = "Catégorie 2 - Personnes sans emploi, immédiatement disponibles en recherche de CDI à temps partiel."
     categorie_3 = "Catégorie 3 - Personnes sans emploi, immédiatement disponibles en recherche de CDD."
-    categorie_4 = "Catégorie 4 - Personnes sans emploi, non immédiatement disponibles et à la recherche d’un emploi."
-    categorie_5 = "Catégorie 5 - Personnes non immédiatement disponibles, parce que titulaires d'un ou de plusieurs emplois, et à la recherche d'un autre emploi."
+    categorie_4_stagiaire_formation_professionnelle = "Catégorie 4 - stagiaire de la formation professionnelle - Personnes sans emploi, non immédiatement disponibles et à la recherche d’un emploi."
+    categorie_5_contrat_aide = "Catégorie 5 - contrat aidé - Personnes non immédiatement disponibles, parce que titulaires d'un ou de plusieurs emplois, et à la recherche d'un autre emploi."
     categorie_6 = "Catégorie 6 - Personnes non immédiatement disponibles, en recherche d'un autre emploi en CDI à plein temps."
     categorie_7 = "Catégorie 7 - Personnes non immédiatement disponibles, en recherche d'un autre emploi en CDI à temps partiel."
     categorie_8 = "Catégorie 8 - Personnes non immédiatement disponibles, en recherche d'un autre emploi en CDD."
@@ -163,8 +167,8 @@ class agepi_eligible(Variable):
         categories_eligibles = ((pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_1)
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_2)
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_3)
-                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_4)
-                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_5)
+                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_4_stagiaire_formation_professionnelle)
+                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_5_contrat_aide)
                                 + (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_6))
                                 * (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_7))
                                 * (np.logical_not(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_8))
@@ -188,6 +192,31 @@ class agepi_eligible(Variable):
         # print(f"date_debut_contrat_de_travail_plus_un_mois: {date_debut_contrat_de_travail_plus_un_mois}")
         #
         # date_demande_agepi_eligible = (date_demande_agepi < date_debut_contrat_de_travail_plus_un_mois)
+
+        jour_simulation = datetime.date.today()
+        print("jour_simulation", jour_simulation)
+
+        date_demande_agepi_eligible = []
+
+        print("period.first_month = ", period.first_month)
+        contrat_de_travail_debut = famille.members('contrat_de_travail_debut', period)  # numpy.datetime64
+        print("Date de début de contrat de travail = ", contrat_de_travail_debut)
+
+        en_mois = contrat_de_travail_debut.astype('M8[M]')
+        print("en_mois = ", en_mois)
+
+        date_limite_eligibilite_contrat = np.minimum((en_mois + 1) + (contrat_de_travail_debut - en_mois), (en_mois + 2) - np.timedelta64(1, 'D'))
+        print("date_limite_eligibilite_contrat = ", date_limite_eligibilite_contrat)
+
+        for i in range(len(contrat_de_travail_debut)):
+            print("date_limite_eligibilite_contrat[i]", date_limite_eligibilite_contrat[i])
+            print("contrat_de_travail_debut[i]", contrat_de_travail_debut[i])
+            if date_limite_eligibilite_contrat[i] <= contrat_de_travail_debut[i]:
+                date_demande_agepi_eligible.append(True)
+            elif date_limite_eligibilite_contrat[i] > contrat_de_travail_debut[i]:
+                date_demande_agepi_eligible.append(False)
+
+        print("date_demande_agepi_eligible", date_demande_agepi_eligible)
 
         #  6
 
@@ -235,7 +264,7 @@ class agepi_eligible(Variable):
             + reprises_types_activites_cdd_eligible
             + reprises_types_activites_ctt_eligible)
 
-        date_demande_agepi_eligible = True
+        # date_demande_agepi_eligible = True
 
         return parents_isoles \
             * est_parent \
