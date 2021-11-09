@@ -156,9 +156,7 @@ class agepi_eligible(Variable):
         epsilon = 0.001
 
         #  1
-
         parents_isoles = famille('nb_parents', period) == 1
-        est_parent = famille.members.has_role(Famille.PARENT)
 
         age_enfants = famille.members('age', period)
         age_enfants_eligible = (age_enfants < parameters(period).prestations.agepi.age_enfant_maximum) * (age_enfants > 0)
@@ -250,7 +248,6 @@ class agepi_eligible(Variable):
         # date_demande_agepi_eligible = True
 
         return parents_isoles \
-            * est_parent \
             * age_enfants_eligible \
             * agepi_non_percues \
             * reprises_activites_en_france \
