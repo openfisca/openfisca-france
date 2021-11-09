@@ -1,5 +1,14 @@
 # Changelog
 
+## 80.3.0 [#1710](https://github.com/openfisca/openfisca-france/pull/1710)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+    - `model/prestations/education.py`
+* Détails :
+  - Ajoute `bourse_enseignement_sup` comme critère de `boursier`
+
 ## 80.2.0 [#1707](https://github.com/openfisca/openfisca-france/pull/1707)
 
 * Correction d'un crash.
