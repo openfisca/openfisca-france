@@ -141,7 +141,7 @@ class agepi_date_demande(Variable):
 
 class agepi_eligible(Variable):
     value_type = bool
-    entity = Famille
+    entity = Individu
     label = "Eligibilité à l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI"
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -160,26 +160,26 @@ class agepi_eligible(Variable):
         8- L'individu est en reprise d'emploi du type CDI, CDD ou CTT d'au moins 3 mois consécutifs ou en processus d'entrée en formation d'une durée supérieure ou égale à 40 heures
     '''
 
-    def formula(famille, period, parameters):
+    def formula(individu, period, parameters):
 
         #  Diminution de la précision car la comparaison : 14.77 <= 14.77 me renvoyait un False
 
-        epsilon = 0.001
+        epsilon = 0.0001
 
         #  1
-        parents_isoles = famille('nb_parents', period) == 1
+        parents_isoles = individu.famille('nb_parents', period) == 1
 
         #  2
-        condition_nb_enfants = famille('pe_nbenf', period) > 0
+        condition_nb_enfants = individu.famille('pe_nbenf', period) > 0
 
         #  3
-        agepi_non_percues = not_(famille.members('agepi_percue_12_derniers_mois', period))
+        agepi_non_percues = not_(individu('agepi_percue_12_derniers_mois', period))
 
         #  4
-        pe_categorie_demandeur_emploi = famille.members('pole_emploi_categorie_demandeur_emploi', period)
+        pe_categorie_demandeur_emploi = individu('pole_emploi_categorie_demandeur_emploi', period)
 
-        stagiaire_formation_professionnelle = famille.members('stagiaire', period)
-        contrat_aide = famille.members('en_contrat_aide', period)
+        stagiaire_formation_professionnelle = individu('stagiaire', period)
+        contrat_aide = individu('en_contrat_aide', period)
 
         categorie_4 = pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_4
         categorie_4_stagiaire_formation_professionnelle = categorie_4 * stagiaire_formation_professionnelle
@@ -197,10 +197,10 @@ class agepi_eligible(Variable):
                                 * (not_(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.pas_de_categorie)))
 
         #  5
-        lieux_activite_eligibles = famille.members('emploi_ou_formation_en_france', period)
+        lieux_activite_eligibles = individu('emploi_ou_formation_en_france', period)
 
         #  6
-        contrat_de_travail_debut = famille.members('contrat_de_travail_debut', period)  # numpy.datetime64
+        contrat_de_travail_debut = individu('contrat_de_travail_debut', period)  # numpy.datetime64
         contrat_de_travail_debut_en_mois = contrat_de_travail_debut.astype('M8[M]')
 
         date_limite_eligibilite_contrat = min_(
@@ -208,14 +208,14 @@ class agepi_eligible(Variable):
             (contrat_de_travail_debut_en_mois + 2) - np.timedelta64(1, 'D')
             )
         
-        agepi_date_de_demande = famille.members("agepi_date_demande", period)
+        agepi_date_de_demande = individu("agepi_date_demande", period)
         dates_demandes_agepi_eligibles = agepi_date_de_demande <= date_limite_eligibilite_contrat
 
         #  7
-        resident_en_mayotte = famille.members('reside_en_region_mayotte', period) == 1
+        resident_en_mayotte = individu('reside_en_region_mayotte', period) == 1
         ne_resident_pas_en_mayotte = not_(resident_en_mayotte)
 
-        allocation_individu = famille.members('allocation_retour_emploi', period)
+        allocation_individu = individu('allocation_retour_emploi', period)
 
         allocation_minimale_hors_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_hors_mayotte * ne_resident_pas_en_mayotte
         allocation_minimale_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_mayotte * resident_en_mayotte
@@ -230,7 +230,7 @@ class agepi_eligible(Variable):
         montants_are_eligibles = are_individu_inferieure_are_min + are_individu_egale_are_min
 
         #  8
-        reprises_types_activites = famille.members('types_activite_condition', period)
+        reprises_types_activites = individu('types_activite_condition', period)
 
         reprises_types_activites_aucune_activite = not_(reprises_types_activites == TypesActiviteCondition.aucune_activite)
         reprises_types_activites_formation = reprises_types_activites == TypesActiviteCondition.formation
@@ -239,11 +239,11 @@ class agepi_eligible(Variable):
         reprises_types_activites_ctt = reprises_types_activites == TypesActiviteCondition.ctt
 
         #  La formation doit être supérieure ou égale à 40 heures
-        duree_formation = famille.members('heures_remunerees_volume', period)
+        duree_formation = individu('heures_remunerees_volume', period)
         periode_formation_eligible = duree_formation >= parameters(period).prestations.agepi.duree_de_formation_minimum
 
         #  Le durée de contrat de l'emploi doit être d'au moins 3 mois
-        periode_de_contrat_3_mois_minimum = famille.members('contrat_de_travail_duree', period) >= 3
+        periode_de_contrat_3_mois_minimum = individu('contrat_de_travail_duree', period) >= 3
 
         reprises_types_activites_formation_eligible = reprises_types_activites_formation * periode_formation_eligible
         reprises_types_activites_cdd_eligible = reprises_types_activites_cdd * periode_de_contrat_3_mois_minimum
@@ -255,13 +255,13 @@ class agepi_eligible(Variable):
             + reprises_types_activites_cdd_eligible
             + reprises_types_activites_ctt_eligible)
 
-        eligible_agepi = famille.sum(parents_isoles \
-            * condition_nb_enfants \
-            * agepi_non_percues \
-            * categories_eligibles \
-            * lieux_activite_eligibles \
-            * dates_demandes_agepi_eligibles \
-            * montants_are_eligibles \
+        eligible_agepi = (parents_isoles
+            * condition_nb_enfants
+            * agepi_non_percues
+            * categories_eligibles
+            * lieux_activite_eligibles
+            * dates_demandes_agepi_eligibles
+            * montants_are_eligibles
             * types_et_duree_activite_eligible)
 
         return eligible_agepi
@@ -269,7 +269,7 @@ class agepi_eligible(Variable):
 
 class agepi(Variable):
     value_type = float
-    entity = Famille
+    entity = Individu
     label = "Montant de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI"
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -280,21 +280,21 @@ class agepi(Variable):
         "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014"
         ]
 
-    def formula(famille, period, parameters):
-        est_parent = famille.members.has_role(Famille.PARENT)
-        types_de_contrat = famille.members('types_activite_condition', period)
+    def formula(individu, period, parameters):
+        est_parent = individu.has_role(Famille.PARENT)
+        types_de_contrat = individu('types_activite_condition', period)
         contrat_cdi = types_de_contrat == TypesActiviteCondition.cdi
         contrat_autre_que_cdi = not_(types_de_contrat == TypesActiviteCondition.cdi)
-        intensite_activite = famille.members('types_intensite_activite', period)
-        nb_heures_semaine = famille.sum(famille.members('agepi_temps_travail_semaine', period), role=Famille.PARENT)
-        nb_heures_mensuelles = famille.members('heures_remunerees_volume', period)
-        nb_enfants_eligibles = famille('pe_nbenf', period)
-        eligibilite_agepi = famille('agepi_eligible', period)
+        intensite_activite = individu('types_intensite_activite', period)
+        nb_heures_semaine = individu('agepi_temps_travail_semaine', period)
+        nb_heures_mensuelles = individu('heures_remunerees_volume', period)
+        nb_enfants_eligibles = individu.famille('pe_nbenf', period)
+        eligibilite_agepi = individu('agepi_eligible', period)
 
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
         intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
 
-        resident_en_mayotte = famille.members('reside_en_region_mayotte', period) == 1
+        resident_en_mayotte = individu('reside_en_region_mayotte', period) == 1
         ne_resident_pas_en_mayotte = not_(resident_en_mayotte)
 
         #  Montants en fonction de la région avec ou sans prise en compte de l'intensite
@@ -355,6 +355,6 @@ class agepi(Variable):
 
         montant_sans_intensite = (montant_maximum_hors_intensite_hors_mayotte + montant_maximum_hors_intensite_mayotte) * contrat_cdi
 
-        montants = famille.sum((montant_avec_intensite + montant_sans_intensite) * est_parent)
+        montants = est_parent * (montant_avec_intensite + montant_sans_intensite)
 
         return eligibilite_agepi * montants

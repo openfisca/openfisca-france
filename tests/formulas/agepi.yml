@@ -33,9 +33,9 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: True
+    agepi_eligible: [True, False, False]
     pe_nbenf: 1
-    agepi: 170
+    agepi: [170, 0, 0]
 
 
 - name: Test 02 - Vérifie si l'individu élève seul son enfant dont l'age est inférieur à 10 ans
@@ -76,9 +76,9 @@
       declarants: [Camille, Paul]
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: False
+    agepi_eligible: [False, False, False, False]
     pe_nbenf: 1
-    agepi: 0
+    agepi: [0, 0, 0, 0]
 
 
 - name: Test 03 - Vérifie le non cumul de l'aide AGEPI
@@ -116,9 +116,9 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: False
+    agepi_eligible: [False, False, False]
     pe_nbenf: 1
-    agepi: 0
+    agepi: [0, 0, 0]
 
 
 - name: Test 04 - Vérifie si l'individu appartient à une catégorie éligible à l'AGEPI
@@ -156,9 +156,9 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: False
+    agepi_eligible: [False, False, False]
     pe_nbenf: 1
-    agepi: 0
+    agepi: [0, 0, 0]
 
 
 - name: Test 05 - Vérifie si l'individu est de catégorie 4 et stagiaire de formation professionnelle
@@ -196,9 +196,9 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: True
+    agepi_eligible: [True, False, False]
     pe_nbenf: 1
-    agepi: 170
+    agepi: [170, 0, 0]
 
 
 - name: Test 06 - Vérifie si l'individu est de catégorie 5 et en contrat aidé
@@ -236,9 +236,9 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: True
+    agepi_eligible: [True, False, False]
     pe_nbenf: 1
-    agepi: 170
+    agepi: [170, 0, 0]
 
 
 - name: Test 07 - Vérifie si la reprise d'emploi ou de formation a lieu en France
@@ -276,9 +276,9 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: False
+    agepi_eligible: [False, False, False]
     pe_nbenf: 1
-    agepi: 0
+    agepi: [0, 0, 0]
 
 
 - name: Test 08 - Vérifie si l'individu a effectué sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
@@ -316,160 +316,66 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: False
+    agepi_eligible: [False, False, False]
     pe_nbenf: 1
-    agepi: 0
+    agepi: [0, 0, 0]
 
 
-#- name: Test - Vérifie si l'individu est en reprise d'emploi du type CDI, CDD, CTT d'au moins 3 mois consécutifs ou en processur d'entrée en formation supérieure ou égale à 40 heures
-#  period: 2021-10
-#  input:
-#    nb_parents: [ 1, 1, 1, 1, 1, 1, 1, 1 ]
-#    emploi_ou_formation_en_france: [ True, True, True, True, True, True, True, True ]
-#    reside_en_region_mayotte: [ True, True, True, True, True, True, True, True ]
-#    pe_nbenf: [ 1, 1, 1, 1, 1, 1, 1, 1 ]
-#    age: [ 8, 8, 8, 8, 8, 8, 8, 8 ]
-#    agepi_percue_12_derniers_mois: [ False, False, False, False, False, False, False, False ]
-#    types_intensite_activite: [ mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle ]
-#    agepi_temps_travail_semaine: [ 0, 0, 0, 0, 0, 0, 0, 0 ]
-#    types_activite_condition: [ autre, cdi, cdd, ctt, formation, cdd, ctt, formation ]
-#    heures_remunerees_volume: [ 0, 0, 0, 0, 40, 0, 0, 39 ]
-#    contrat_de_travail_duree: [ 3, 3, 3, 3, 0, 2, 2, 0 ]
-#    allocation_retour_emploi: [ 0, 0, 0, 0, 0, 0, 0, 0 ]
-#    pole_emploi_categorie_demandeur_emploi: [ categorie_1, categorie_1, categorie_1, categorie_1, categorie_1, categorie_1,
-#                                              categorie_1, categorie_1 ]
-#  output:
-#    agepi: [ 0, 200, 85, 85, 85, 0, 0, 0 ]
-#    agepi_eligible: [ False, True, True, True, True, False, False, False ]
-#
-#
-#- name: Test - Vérifie si l'individu est non indémnisé ou son ARE est inférieure ou égale à l'ARE minimale en region Mayotte (2021-07-01 = 14.77€) ou hors Mayotte (2021-07-01 = 29.56€)
-#  period: 2021-10
-#  input:
-#    nb_parents: [ 1, 1, 1, 1 ]
-#    emploi_ou_formation_en_france: [ True, True, True, True ]
-#    reside_en_region_mayotte: [ True, True, False, False ]
-#    pe_nbenf: [ 1, 1, 1, 1 ]
-#    age: [ 8, 8, 8, 8 ]
-#    agepi_percue_12_derniers_mois: [ False, False, False, False ]
-#    types_intensite_activite: [ mensuelle, mensuelle, mensuelle, mensuelle ]
-#    agepi_temps_travail_semaine: [ 0, 0, 0, 0 ]
-#    types_activite_condition: [ cdd, cdd, cdd, cdd ]
-#    heures_remunerees_volume: [ 0, 0, 0, 0 ]
-#    contrat_de_travail_duree: [ 3, 3, 3, 3 ]
-#    allocation_retour_emploi: [ 14.77, 14.78, 29.56, 29.57]
-#    pole_emploi_categorie_demandeur_emploi: [ categorie_1, categorie_1, categorie_1, categorie_1 ]
-#  output:
-#    agepi: [ 85, 0, 170, 0 ]
-#    agepi_eligible: [ True, False, True, False ]
-#
-#
-#- name: Test - Vérifie le montant de l'AGEPI en fonction de la region (Mayotte / hors Mayotte), le nombre d'enfants et l'intensité mensuelle
-#  period: 2021-10
-#  input:
-#    nb_parents: [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ]
-#    emploi_ou_formation_en_france: [ True, True, True, True, True, True, True, True, True, True, True, True, True, True ]
-#    reside_en_region_mayotte: [ True, True, True, True, True, True, True, False, False, False, False, False, False, False ]
-#    pe_nbenf: [ 0, 1, 2, 3, 1, 2, 3, 0, 1, 2, 3, 1, 2, 3 ]
-#    age: [ 0, 8, 8, 8, 8, 8, 8, 0, 8, 8, 8, 8, 8, 8 ]
-#    agepi_percue_12_derniers_mois: [ False, False, False, False, False, False, False, False, False, False, False, False, False, False ]
-#    types_intensite_activite: [ mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle,
-#                                mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle, mensuelle ]
-#    agepi_temps_travail_semaine: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
-#    types_activite_condition: [ cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd ]
-#    heures_remunerees_volume: [ 0, 63, 63, 63, 64, 64, 64, 0, 63, 63, 63, 64, 64, 64 ]
-#    contrat_de_travail_duree: [ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 ]
-#    allocation_retour_emploi: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
-#    pole_emploi_categorie_demandeur_emploi: [ categorie_1, categorie_1, categorie_1, categorie_1, categorie_1, categorie_1,
-#                                              categorie_1, categorie_1, categorie_1, categorie_1, categorie_1, categorie_1,
-#                                              categorie_1, categorie_1 ]
-#  output:
-#    agepi: [ 0, 85, 97.5, 110, 200, 230, 260, 0, 170, 195, 220, 400, 460, 520 ]
-#    agepi_eligible: [ False, True, True, True, True, True, True, False, True, True, True, True, True, True ]
-#
-#
-#- name: Test - Vérifie le montant de l'AGEPI en fonction de la region (Mayotte / hors Mayotte), le nombre d'enfants et l'intensité hebdomadaire
-#  period: 2021-10
-#  input:
-#    nb_parents: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-#    emploi_ou_formation_en_france: [True, True, True, True, True, True, True, True, True, True, True, True, True, True]
-#    reside_en_region_mayotte: [True, True, True, True, True, True, True, False, False, False, False, False, False, False]
-#    pe_nbenf: [0, 1, 2, 3, 1, 2, 3, 0, 1, 2, 3, 1, 2, 3]
-#    age: [0, 8, 8, 8, 8, 8, 8, 0, 8, 8, 8, 8, 8, 8]
-#    agepi_percue_12_derniers_mois: [ False, False, False, False, False, False, False, False, False, False, False, False, False, False ]
-#    types_intensite_activite: [hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire,
-#                               hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire, hebdomadaire,
-#                               hebdomadaire, hebdomadaire]
-#    agepi_temps_travail_semaine: [10, 10, 10, 10, 15, 15, 15, 10, 10, 10, 10, 15, 15, 15]
-#    types_activite_condition: [cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd, cdd]
-#    heures_remunerees_volume: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-#    contrat_de_travail_duree: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
-#    allocation_retour_emploi: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-#    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1, categorie_1, categorie_1,
-#                                             categorie_1, categorie_1, categorie_1, categorie_1, categorie_1, categorie_1,
-#                                             categorie_1, categorie_1]
-#  output:
-#    agepi: [0, 85, 97.5, 110, 200, 230, 260, 0, 170, 195, 220, 400, 460, 520]
-#    agepi_eligible: [False, True, True, True, True, True, True, False, True, True, True, True, True, True]
-
-
-
-
-#- name: Test 12 - Vérifie si l'individu élève seul son enfant dont l'age est inférieur à 10 ans
-#  period: 2022-01
-#  input:
-#    menages:
-#      menage_1:
-#        personne_de_reference: Camille
-#        enfants: [Jean, Marie]
-#      menage_2:
-#        personne_de_reference: Paul
-#        conjoint: Elodie
-#        enfants: [Aileen, Sebastien]
-#    individus:
-#      Camille:
-#        age: 29
-#        agepi_percue_12_derniers_mois: False
-#        pole_emploi_categorie_demandeur_emploi: categorie_1
-#        stagiaire: False
-#        en_contrat_aide: False
-#        emploi_ou_formation_en_france: True
-#        contrat_de_travail_debut: '2021-01-01'
-#        agepi_date_demande: '2021-01-02'
-#        reside_en_region_mayotte: False
-#        allocation_retour_emploi: 0
-#        types_activite_condition: cdd
-#        heures_remunerees_volume: 0
-#        contrat_de_travail_duree: 3
-#        types_intensite_activite: hebdomadaire
-#        agepi_temps_travail_semaine: 10
-#      Jean:
-#        age: 12
-#      Marie:
-#        age: 8
-#      Elodie:
-#        age: 31
-#      Paul:
-#        age: 30
-#      Aileen:
-#        age: 9
-#      Sebastien:
-#        age: 7
-#    familles:
-#      famille_1:
-#        parents: Camille
-#        enfants: [Jean, Marie]
-#      famille_2:
-#        parents: [Elodie, Paul]
-#        enfants: [Aileen, Sebastien]
-#    foyers_fiscaux:
-#      foyer_fiscal_1:
-#        declarants: Camille
-#        personnes_a_charge: [Jean, Marie]
-#      foyer_fiscal_2:
-#        declarants: [Elodie, Paul]
-#        personnes_a_charge: [Aileen, Sebastien]
-#  output:
-#    agepi_eligible: [True, False]
-#    pe_nbenf: [1, 2]
-#    agepi: [170, 0]
+- name: Test 12 - Vérifie si l'individu élève seul son enfant dont l'age est inférieur à 10 ans
+  period: 2022-01
+  input:
+    menages:
+      menage_1:
+        personne_de_reference: Camille
+        enfants: [Jean, Marie]
+      menage_2:
+        personne_de_reference: Paul
+        conjoint: Elodie
+        enfants: [Aileen, Sebastien]
+    individus:
+      Camille:
+        age: 29
+        agepi_percue_12_derniers_mois: False
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        emploi_ou_formation_en_france: True
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        reside_en_region_mayotte: False
+        allocation_retour_emploi: 0
+        types_activite_condition: cdd
+        heures_remunerees_volume: 0
+        contrat_de_travail_duree: 3
+        types_intensite_activite: hebdomadaire
+        agepi_temps_travail_semaine: 10
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+      Elodie:
+        age: 31
+      Paul:
+        age: 30
+      Aileen:
+        age: 9
+      Sebastien:
+        age: 7
+    familles:
+      famille_1:
+        parents: Camille
+        enfants: [Jean, Marie]
+      famille_2:
+        parents: [Elodie, Paul]
+        enfants: [Aileen, Sebastien]
+    foyers_fiscaux:
+      foyer_fiscal_1:
+        declarants: Camille
+        personnes_a_charge: [Jean, Marie]
+      foyer_fiscal_2:
+        declarants: [Elodie, Paul]
+        personnes_a_charge: [Aileen, Sebastien]
+  output:
+    agepi_eligible: [True, False, False, False, False, False, False]
+    pe_nbenf: [1, 2]
+    agepi: [170, 0, 0, 0, 0, 0, 0 ]
