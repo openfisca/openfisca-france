@@ -16,11 +16,11 @@ class pe_nbenf(Variable):
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
         ]
 
-    def formula(famille, period):
-        age_enfant_eligible = famille('agepi_eligible', period)
-        print("age_enfant_eligible", age_enfant_eligible)
-        nb_enfants_eligibles = famille.sum(age_enfant_eligible, role=Famille.ENFANT)
-        print("nb_enfants_eligibles", nb_enfants_eligibles)
+    def formula(famille, period, parameters):
+        age_membres_famille = famille.members('age', period)
+        age_eligibles = (age_membres_famille < parameters(period).prestations.agepi.age_enfant_maximum) * (age_membres_famille > 0)
+        nb_enfants_eligibles = famille.sum(age_eligibles, role=Famille.ENFANT)
+
         return nb_enfants_eligibles
 
 
@@ -170,8 +170,7 @@ class agepi_eligible(Variable):
         parents_isoles = famille('nb_parents', period) == 1
 
         #  2
-        age_membres_famille = famille.members('age', period)
-        age_enfants_eligible = (age_membres_famille < parameters(period).prestations.agepi.age_enfant_maximum) * (age_membres_famille > 0)
+        condition_nb_enfants = famille('pe_nbenf', period) > 0
 
         #  3
         agepi_non_percues = not_(famille.members('agepi_percue_12_derniers_mois', period))
@@ -256,14 +255,16 @@ class agepi_eligible(Variable):
             + reprises_types_activites_cdd_eligible
             + reprises_types_activites_ctt_eligible)
 
-        return parents_isoles \
-            * age_enfants_eligible \
+        eligible_agepi = famille.sum(parents_isoles \
+            * condition_nb_enfants \
             * agepi_non_percues \
-            * lieux_activite_eligibles \
             * categories_eligibles \
+            * lieux_activite_eligibles \
             * dates_demandes_agepi_eligibles \
             * montants_are_eligibles \
-            * types_et_duree_activite_eligible != 0
+            * types_et_duree_activite_eligible)
+
+        return eligible_agepi
 
 
 class agepi(Variable):
@@ -280,6 +281,7 @@ class agepi(Variable):
         ]
 
     def formula(famille, period, parameters):
+        est_parent = famille.members.has_role(Famille.PARENT)
         types_de_contrat = famille.members('types_activite_condition', period)
         contrat_cdi = types_de_contrat == TypesActiviteCondition.cdi
         contrat_autre_que_cdi = not_(types_de_contrat == TypesActiviteCondition.cdi)
@@ -353,6 +355,6 @@ class agepi(Variable):
 
         montant_sans_intensite = (montant_maximum_hors_intensite_hors_mayotte + montant_maximum_hors_intensite_mayotte) * contrat_cdi
 
-        montants = montant_avec_intensite + montant_sans_intensite
+        montants = famille.sum((montant_avec_intensite + montant_sans_intensite) * est_parent)
 
         return eligibilite_agepi * montants
