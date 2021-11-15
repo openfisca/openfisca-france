@@ -2,7 +2,7 @@ from datetime import date
 import numpy as np
 
 from openfisca_france.model.base import Famille, Individu, Variable, Enum, MONTH, \
-     set_input_dispatch_by_period, set_input_divide_by_period, min_, not_
+    set_input_dispatch_by_period, set_input_divide_by_period, min_, not_
 
 
 class pe_nbenf(Variable):
@@ -204,10 +204,10 @@ class agepi_eligible(Variable):
         contrat_de_travail_debut_en_mois = contrat_de_travail_debut.astype('M8[M]')
 
         date_limite_eligibilite_contrat = min_(
-            (contrat_de_travail_debut_en_mois + 1) + (contrat_de_travail_debut - contrat_de_travail_debut_en_mois), 
+            (contrat_de_travail_debut_en_mois + 1) + (contrat_de_travail_debut - contrat_de_travail_debut_en_mois),
             (contrat_de_travail_debut_en_mois + 2) - np.timedelta64(1, 'D')
             )
-        
+
         agepi_date_de_demande = individu("agepi_date_demande", period)
         dates_demandes_agepi_eligibles = agepi_date_de_demande <= date_limite_eligibilite_contrat
 
@@ -294,66 +294,64 @@ class agepi(Variable):
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
         intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
 
-        resident_en_mayotte = individu('reside_en_region_mayotte', period) == 1
-        ne_resident_pas_en_mayotte = not_(resident_en_mayotte)
+        mayotte = individu('reside_en_region_mayotte', period) == 1
+        hors_mayotte = not_(mayotte)
 
-        #  Montants en fonction de la région avec ou sans prise en compte de l'intensite
-        montants_hors_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte
-        montants_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.mayotte
+        montants_min = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.minimum.calc(nb_enfants_eligibles)
+        montants_max = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.maximum.calc(nb_enfants_eligibles)
 
-        montant_maximum_hors_intensite_hors_mayotte = montants_hors_mayotte.maximum.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte
-        montant_maximum_hors_intensite_mayotte = montants_mayotte.maximum.calc(nb_enfants_eligibles) * resident_en_mayotte
+        montants_min_intensite_hebdo = montants_min * intensite_hebdomadaire
+        montants_max_intensite_hebdo = montants_max * intensite_hebdomadaire
 
+        montants_min_intensite_mensuelle = montants_min * intensite_mensuelle
+        montants_max_intensite_mensuelle = montants_max * intensite_mensuelle
 
-        #  Montants en fonction du nombre d'enfants pour une reprise emploi ou formation < 15h/sem - HORS MAYOTTE
-        montants_minimum_intensite_hebdo_hors_mayotte = montants_hors_mayotte.minimum.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte * intensite_hebdomadaire
-        montants_maximum_intensite_hebdo_hors_mayotte = montants_hors_mayotte.maximum.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte * intensite_hebdomadaire
+        montant_max_hors_intensite_hors_mayotte = montants_max * hors_mayotte
+        montant_max_hors_intensite_mayotte = (montants_min * mayotte) / 2
 
-        #  Montants en fonction du nombre d'enfants pour une reprise emploi ou formation < 64h/mensuelle - HORS MAYOTTE
-        montants_minimum_intensite_mensuelle_hors_mayotte = montants_hors_mayotte.minimum.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte * intensite_mensuelle
-        montants_maximum_intensite_mensuelle_hors_mayotte = montants_hors_mayotte.maximum.calc(nb_enfants_eligibles) * ne_resident_pas_en_mayotte * intensite_mensuelle
+        #  Montants pour une reprise emploi ou formation < 15h/sem - HORS MAYOTTE
+        montants_min_intensite_hebdo_hors_mayotte = montants_min_intensite_hebdo * hors_mayotte
+        montants_max_intensite_hebdo_hors_mayotte = montants_max_intensite_hebdo * hors_mayotte
 
+        #  Montants pour une reprise emploi ou formation < 64h/mensuelle - HORS MAYOTTE
+        montants_min_intensite_mensuelle_hors_mayotte = montants_min_intensite_mensuelle * hors_mayotte
+        montants_max_intensite_mensuelle_hors_mayotte = montants_max_intensite_mensuelle * hors_mayotte
 
-        #  Montants en fonction du nombre d'enfants pour une reprise emploi ou formation < 15h/sem - MAYOTTE
-        montants_minimum_intensite_hebdo_mayotte = montants_mayotte.minimum.calc(nb_enfants_eligibles) * resident_en_mayotte * intensite_hebdomadaire
-        montants_maximum_intensite_hebdo_mayotte = montants_mayotte.maximum.calc(nb_enfants_eligibles) * resident_en_mayotte * intensite_hebdomadaire
+        #  Montants pour une reprise emploi ou formation < 15h/sem - MAYOTTE
+        montants_min_intensite_hebdo_mayotte = (montants_min_intensite_hebdo * mayotte) / 2
+        montants_max_intensite_hebdo_mayotte = (montants_max_intensite_hebdo * mayotte) / 2
 
-        #  Montants en fonction du nombre d'enfants pour une reprise emploi ou formation < 64h/mensuelle - MAYOTTE
-        montants_minimum_intensite_mensuelle_mayotte = montants_mayotte.minimum.calc(nb_enfants_eligibles) * resident_en_mayotte * intensite_mensuelle
-        montants_maximum_intensite_mensuelle_mayotte = montants_mayotte.maximum.calc(nb_enfants_eligibles) * resident_en_mayotte * intensite_mensuelle
+        #  Montants pour une reprise emploi ou formation < 64h/mensuelle - MAYOTTE
+        montants_min_intensite_mensuelle_mayotte = (montants_min_intensite_mensuelle * mayotte) / 2
+        montants_max_intensite_mensuelle_mayotte = (montants_max_intensite_mensuelle * mayotte) / 2
 
-        #  Montants minorés / majorés - Hors Mayotte - intensité hebdomadaire
-        montants_minimums_hors_mayotte = montants_minimum_intensite_hebdo_hors_mayotte + montants_minimum_intensite_mensuelle_hors_mayotte
-        montants_maximums_hors_mayotte = montants_maximum_intensite_hebdo_hors_mayotte + montants_maximum_intensite_mensuelle_hors_mayotte
+        #  Montants minimums / maximums - Hors Mayotte - intensité hebdomadaire
+        montants_mini_hors_mayotte = montants_min_intensite_hebdo_hors_mayotte + montants_min_intensite_mensuelle_hors_mayotte
+        montants_max_hors_mayotte = montants_max_intensite_hebdo_hors_mayotte + montants_max_intensite_mensuelle_hors_mayotte
 
-        #  Montants minorés / majorés - Mayotte - intensité mensuelle
-        montants_minimums_mayotte = montants_minimum_intensite_hebdo_mayotte + montants_minimum_intensite_mensuelle_mayotte
-        montants_maximums_mayotte = montants_maximum_intensite_hebdo_mayotte + montants_maximum_intensite_mensuelle_mayotte
+        #  Montants minimums / maximums - Mayotte - intensité mensuelle
+        montants_min_mayotte = montants_min_intensite_hebdo_mayotte + montants_min_intensite_mensuelle_mayotte
+        montants_max_mayotte = montants_max_intensite_hebdo_mayotte + montants_max_intensite_mensuelle_mayotte
 
         #  Association des tableaux de montants - Hors Mayotte / Mayotte - intensité hebdomadaire / mensuelle
-
-        montants_minimums_en_fonction_de_la_region = montants_minimums_hors_mayotte + montants_minimums_mayotte
-        montants_maximums_en_fonction_de_la_region = montants_maximums_hors_mayotte + montants_maximums_mayotte
-
+        montants_mini_fonction_region = montants_mini_hors_mayotte + montants_min_mayotte
+        montants_max_fonction_region = montants_max_hors_mayotte + montants_max_mayotte
 
         # Calcul du montant en fonction du nombre d'heures de la reprise d'emploi ou de formation
+        condition_montants_min_hebdo = (nb_heures_semaine < 15) * intensite_hebdomadaire
+        condition_montants_mini_mensuelle = (nb_heures_mensuelles < 64) * intensite_mensuelle
 
-        condition_montants_minimums_hebdomadaire = (nb_heures_semaine < 15) * intensite_hebdomadaire
-        condition_montants_minimums_mensuelle = (nb_heures_mensuelles < 64) * intensite_mensuelle
+        condition_montants_max_hebdo = (nb_heures_semaine >= 15) * intensite_hebdomadaire
+        condition_montants_max_mensuelle = (nb_heures_mensuelles >= 64) * intensite_mensuelle
 
-        condition_montants_maximums_hebdomadaire = (nb_heures_semaine >= 15) * intensite_hebdomadaire
-        condition_montants_maximums_mensuelle = (nb_heures_mensuelles >= 64) * intensite_mensuelle
+        condition_montants_min = condition_montants_min_hebdo + condition_montants_mini_mensuelle
+        condition_montants_max = condition_montants_max_hebdo + condition_montants_max_mensuelle
 
-        condition_montants_minimums = condition_montants_minimums_hebdomadaire + condition_montants_minimums_mensuelle
-        condition_montants_maximums = condition_montants_maximums_hebdomadaire + condition_montants_maximums_mensuelle
-
-
-        montant_avec_intensite = ((condition_montants_minimums * montants_minimums_en_fonction_de_la_region)
-            + (condition_montants_maximums * montants_maximums_en_fonction_de_la_region)) * contrat_autre_que_cdi
+        montant_avec_intensite = ((condition_montants_min * montants_mini_fonction_region)
+            + (condition_montants_max * montants_max_fonction_region)) * contrat_autre_que_cdi
 
         # Si activite CDI, on ne prend pas en compte l'intensite
-
-        montant_sans_intensite = (montant_maximum_hors_intensite_hors_mayotte + montant_maximum_hors_intensite_mayotte) * contrat_cdi
+        montant_sans_intensite = (montant_max_hors_intensite_hors_mayotte + montant_max_hors_intensite_mayotte) * contrat_cdi
 
         montants = est_parent * (montant_avec_intensite + montant_sans_intensite)
 
