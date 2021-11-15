@@ -125,7 +125,7 @@ class types_intensite_activite(Variable):
     possible_values = TypesIntensiteActivite
     default_value = TypesIntensiteActivite.mensuelle
     entity = Individu
-    label = "Les types d'intensité pour le calcul de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI "
+    label = "Les types d'intensité pour le calcul de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI"
     definition_period = MONTH
 
 
