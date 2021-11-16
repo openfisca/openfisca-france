@@ -114,8 +114,9 @@ class types_activite_condition(Variable):
 
 
 class TypesIntensiteActivite(Enum):
-    __order__ = 'intensite_non_valide hebdomadaire mensuelle'  # Needed to preserve the enum order in Python 2
+    __order__ = 'intensite_non_valide sans_intensite hebdomadaire mensuelle'  # Needed to preserve the enum order in Python 2
     intensite_non_valide = "INTENSITE_NON_VALIDE"
+    sans_intensite = "SANS_INTENSITE"
     hebdomadaire = "HEBDOMADAIRE"
     mensuelle = "MENSUELLE"
 
@@ -267,17 +268,16 @@ class agepi_eligible(Variable):
         return eligible_agepi
 
 
-class agepi(Variable):
+class agepi_hors_mayotte(Variable):
     value_type = float
     entity = Individu
-    label = "Montant de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI"
+    label = "Montant de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI - Cas HORS MAYOTTE"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
         "Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20",
-        "2. Aide à la garde d’enfants pour les parents isolés (AGEPI)",
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014"
+        "2. Aide à la garde d’enfants pour les parents isolés (AGEPI)"
         ]
 
     def formula(individu, period, parameters):
@@ -293,66 +293,69 @@ class agepi(Variable):
 
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
         intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
+        sans_intensite = intensite_activite == TypesIntensiteActivite.sans_intensite
+
+        hors_mayotte = individu('reside_en_region_mayotte', period) == 0
+
+        montants_min_hors_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte.minimum.calc(nb_enfants_eligibles)
+        montants_max_hors_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte.maximum.calc(nb_enfants_eligibles)
+
+        montants_min_intensite = montants_min_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle + sans_intensite)
+        montants_max_intensite = montants_max_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle + sans_intensite)
+
+        condition_montants_min = ((nb_heures_semaine < 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles < 64) * intensite_mensuelle)
+        condition_montants_max = ((nb_heures_semaine >= 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles >= 64) * intensite_mensuelle)
+
+        montant_avec_intensite = ((condition_montants_min * montants_min_intensite) + (condition_montants_max * montants_max_intensite)) * contrat_autre_que_cdi
+        montant_sans_intensite = montants_max_intensite * contrat_cdi
+
+        montants = hors_mayotte * (est_parent * (montant_avec_intensite + montant_sans_intensite))
+
+        return eligibilite_agepi * montants
+
+
+class agepi_mayotte(Variable):
+    value_type = float
+    entity = Individu
+    label = "Montant de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI - Cas MAYOTTE"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    reference = [
+        "Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
+        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20",
+        "2. Aide à la garde d’enfants pour les parents isolés (AGEPI)",
+        "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014",
+        ]
+
+    def formula(individu, period, parameters):
+        est_parent = individu.has_role(Famille.PARENT)
+        types_de_contrat = individu('types_activite_condition', period)
+        contrat_cdi = types_de_contrat == TypesActiviteCondition.cdi
+        contrat_autre_que_cdi = not_(types_de_contrat == TypesActiviteCondition.cdi)
+        intensite_activite = individu('types_intensite_activite', period)
+        nb_heures_semaine = individu('agepi_temps_travail_semaine', period)
+        nb_heures_mensuelles = individu('heures_remunerees_volume', period)
+        nb_enfants_eligibles = individu.famille('pe_nbenf', period)
+        eligibilite_agepi = individu('agepi_eligible', period)
+
+        intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
+        intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
+        sans_intensite = intensite_activite == TypesIntensiteActivite.sans_intensite
 
         mayotte = individu('reside_en_region_mayotte', period) == 1
-        hors_mayotte = not_(mayotte)
 
-        montants_min = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.minimum.calc(nb_enfants_eligibles)
-        montants_max = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.maximum.calc(nb_enfants_eligibles)
+        montants_min_mayotte = parameters(period).prestations.agepi.montants.mayotte.minimum.calc(nb_enfants_eligibles)
+        montants_max_mayotte = parameters(period).prestations.agepi.montants.mayotte.maximum.calc(nb_enfants_eligibles)
 
-        montants_min_intensite_hebdo = montants_min * intensite_hebdomadaire
-        montants_max_intensite_hebdo = montants_max * intensite_hebdomadaire
+        montants_min_intensite = montants_min_mayotte * (intensite_hebdomadaire + intensite_mensuelle + sans_intensite)
+        montants_max_intensite = montants_max_mayotte * (intensite_hebdomadaire + intensite_mensuelle + sans_intensite)
 
-        montants_min_intensite_mensuelle = montants_min * intensite_mensuelle
-        montants_max_intensite_mensuelle = montants_max * intensite_mensuelle
+        condition_montants_min = ((nb_heures_semaine < 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles < 64) * intensite_mensuelle)
+        condition_montants_max = ((nb_heures_semaine >= 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles >= 64) * intensite_mensuelle)
 
-        montant_max_hors_intensite_hors_mayotte = montants_max * hors_mayotte
-        montant_max_hors_intensite_mayotte = (montants_min * mayotte) / 2
+        montant_avec_intensite = ((condition_montants_min * montants_min_intensite) + (condition_montants_max * montants_max_intensite)) * contrat_autre_que_cdi
+        montant_sans_intensite = montants_max_intensite * contrat_cdi
 
-        #  Montants pour une reprise emploi ou formation < 15h/sem - HORS MAYOTTE
-        montants_min_intensite_hebdo_hors_mayotte = montants_min_intensite_hebdo * hors_mayotte
-        montants_max_intensite_hebdo_hors_mayotte = montants_max_intensite_hebdo * hors_mayotte
-
-        #  Montants pour une reprise emploi ou formation < 64h/mensuelle - HORS MAYOTTE
-        montants_min_intensite_mensuelle_hors_mayotte = montants_min_intensite_mensuelle * hors_mayotte
-        montants_max_intensite_mensuelle_hors_mayotte = montants_max_intensite_mensuelle * hors_mayotte
-
-        #  Montants pour une reprise emploi ou formation < 15h/sem - MAYOTTE
-        montants_min_intensite_hebdo_mayotte = (montants_min_intensite_hebdo * mayotte) / 2
-        montants_max_intensite_hebdo_mayotte = (montants_max_intensite_hebdo * mayotte) / 2
-
-        #  Montants pour une reprise emploi ou formation < 64h/mensuelle - MAYOTTE
-        montants_min_intensite_mensuelle_mayotte = (montants_min_intensite_mensuelle * mayotte) / 2
-        montants_max_intensite_mensuelle_mayotte = (montants_max_intensite_mensuelle * mayotte) / 2
-
-        #  Montants minimums / maximums - Hors Mayotte - intensité hebdomadaire
-        montants_mini_hors_mayotte = montants_min_intensite_hebdo_hors_mayotte + montants_min_intensite_mensuelle_hors_mayotte
-        montants_max_hors_mayotte = montants_max_intensite_hebdo_hors_mayotte + montants_max_intensite_mensuelle_hors_mayotte
-
-        #  Montants minimums / maximums - Mayotte - intensité mensuelle
-        montants_min_mayotte = montants_min_intensite_hebdo_mayotte + montants_min_intensite_mensuelle_mayotte
-        montants_max_mayotte = montants_max_intensite_hebdo_mayotte + montants_max_intensite_mensuelle_mayotte
-
-        #  Association des tableaux de montants - Hors Mayotte / Mayotte - intensité hebdomadaire / mensuelle
-        montants_mini_fonction_region = montants_mini_hors_mayotte + montants_min_mayotte
-        montants_max_fonction_region = montants_max_hors_mayotte + montants_max_mayotte
-
-        # Calcul du montant en fonction du nombre d'heures de la reprise d'emploi ou de formation
-        condition_montants_min_hebdo = (nb_heures_semaine < 15) * intensite_hebdomadaire
-        condition_montants_mini_mensuelle = (nb_heures_mensuelles < 64) * intensite_mensuelle
-
-        condition_montants_max_hebdo = (nb_heures_semaine >= 15) * intensite_hebdomadaire
-        condition_montants_max_mensuelle = (nb_heures_mensuelles >= 64) * intensite_mensuelle
-
-        condition_montants_min = condition_montants_min_hebdo + condition_montants_mini_mensuelle
-        condition_montants_max = condition_montants_max_hebdo + condition_montants_max_mensuelle
-
-        montant_avec_intensite = ((condition_montants_min * montants_mini_fonction_region)
-            + (condition_montants_max * montants_max_fonction_region)) * contrat_autre_que_cdi
-
-        # Si activite CDI, on ne prend pas en compte l'intensite
-        montant_sans_intensite = (montant_max_hors_intensite_hors_mayotte + montant_max_hors_intensite_mayotte) * contrat_cdi
-
-        montants = est_parent * (montant_avec_intensite + montant_sans_intensite)
+        montants = mayotte * (est_parent * (montant_avec_intensite + montant_sans_intensite))
 
         return eligibilite_agepi * montants
