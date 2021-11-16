@@ -567,7 +567,7 @@
         heures_remunerees_volume: 0
         contrat_de_travail_duree: 0
         types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 10
+        agepi_temps_travail_semaine: 15
       Jean:
         age: 12
       Marie:

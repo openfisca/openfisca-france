@@ -282,9 +282,6 @@ class agepi_hors_mayotte(Variable):
 
     def formula(individu, period, parameters):
         est_parent = individu.has_role(Famille.PARENT)
-        types_de_contrat = individu('types_activite_condition', period)
-        contrat_cdi = types_de_contrat == TypesActiviteCondition.cdi
-        contrat_autre_que_cdi = not_(types_de_contrat == TypesActiviteCondition.cdi)
         intensite_activite = individu('types_intensite_activite', period)
         nb_heures_semaine = individu('agepi_temps_travail_semaine', period)
         nb_heures_mensuelles = individu('heures_remunerees_volume', period)
@@ -305,10 +302,9 @@ class agepi_hors_mayotte(Variable):
         condition_montants_min = ((nb_heures_semaine < 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles < 64) * intensite_mensuelle)
         condition_montants_max = ((nb_heures_semaine >= 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles >= 64) * intensite_mensuelle)
 
-        montant_avec_intensite = ((condition_montants_min * montants_min_intensite) + (condition_montants_max * montants_max_intensite)) * contrat_autre_que_cdi
-        montant_sans_intensite = montants_max_hors_mayotte * contrat_cdi
+        montant_avec_intensite = (condition_montants_min * montants_min_intensite) + (condition_montants_max * montants_max_intensite)
 
-        montants = hors_mayotte * (est_parent * (montant_avec_intensite + montant_sans_intensite))
+        montants = hors_mayotte * (est_parent * montant_avec_intensite)
 
         return eligibilite_agepi * montants
 
@@ -328,9 +324,6 @@ class agepi_mayotte(Variable):
 
     def formula(individu, period, parameters):
         est_parent = individu.has_role(Famille.PARENT)
-        types_de_contrat = individu('types_activite_condition', period)
-        contrat_cdi = types_de_contrat == TypesActiviteCondition.cdi
-        contrat_autre_que_cdi = not_(types_de_contrat == TypesActiviteCondition.cdi)
         intensite_activite = individu('types_intensite_activite', period)
         nb_heures_semaine = individu('agepi_temps_travail_semaine', period)
         nb_heures_mensuelles = individu('heures_remunerees_volume', period)
@@ -351,9 +344,8 @@ class agepi_mayotte(Variable):
         condition_montants_min = ((nb_heures_semaine < 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles < 64) * intensite_mensuelle)
         condition_montants_max = ((nb_heures_semaine >= 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles >= 64) * intensite_mensuelle)
 
-        montant_avec_intensite = ((condition_montants_min * montants_min_intensite) + (condition_montants_max * montants_max_intensite)) * contrat_autre_que_cdi
-        montant_sans_intensite = montants_max_mayotte * contrat_cdi
+        montant_avec_intensite = (condition_montants_min * montants_min_intensite) + (condition_montants_max * montants_max_intensite)
 
-        montants = mayotte * (est_parent * (montant_avec_intensite + montant_sans_intensite))
+        montants = mayotte * (est_parent * montant_avec_intensite)
 
         return eligibilite_agepi * montants
