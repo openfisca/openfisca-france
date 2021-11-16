@@ -293,21 +293,20 @@ class agepi_hors_mayotte(Variable):
 
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
         intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
-        sans_intensite = intensite_activite == TypesIntensiteActivite.sans_intensite
 
         hors_mayotte = individu('reside_en_region_mayotte', period) == 0
 
         montants_min_hors_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte.minimum.calc(nb_enfants_eligibles)
         montants_max_hors_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte.maximum.calc(nb_enfants_eligibles)
 
-        montants_min_intensite = montants_min_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle + sans_intensite)
-        montants_max_intensite = montants_max_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle + sans_intensite)
+        montants_min_intensite = montants_min_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
+        montants_max_intensite = montants_max_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
 
         condition_montants_min = ((nb_heures_semaine < 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles < 64) * intensite_mensuelle)
         condition_montants_max = ((nb_heures_semaine >= 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles >= 64) * intensite_mensuelle)
 
         montant_avec_intensite = ((condition_montants_min * montants_min_intensite) + (condition_montants_max * montants_max_intensite)) * contrat_autre_que_cdi
-        montant_sans_intensite = montants_max_intensite * contrat_cdi
+        montant_sans_intensite = montants_max_hors_mayotte * contrat_cdi
 
         montants = hors_mayotte * (est_parent * (montant_avec_intensite + montant_sans_intensite))
 
@@ -340,21 +339,20 @@ class agepi_mayotte(Variable):
 
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
         intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
-        sans_intensite = intensite_activite == TypesIntensiteActivite.sans_intensite
 
         mayotte = individu('reside_en_region_mayotte', period) == 1
 
         montants_min_mayotte = parameters(period).prestations.agepi.montants.mayotte.minimum.calc(nb_enfants_eligibles)
         montants_max_mayotte = parameters(period).prestations.agepi.montants.mayotte.maximum.calc(nb_enfants_eligibles)
 
-        montants_min_intensite = montants_min_mayotte * (intensite_hebdomadaire + intensite_mensuelle + sans_intensite)
-        montants_max_intensite = montants_max_mayotte * (intensite_hebdomadaire + intensite_mensuelle + sans_intensite)
+        montants_min_intensite = montants_min_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
+        montants_max_intensite = montants_max_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
 
         condition_montants_min = ((nb_heures_semaine < 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles < 64) * intensite_mensuelle)
         condition_montants_max = ((nb_heures_semaine >= 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles >= 64) * intensite_mensuelle)
 
         montant_avec_intensite = ((condition_montants_min * montants_min_intensite) + (condition_montants_max * montants_max_intensite)) * contrat_autre_que_cdi
-        montant_sans_intensite = montants_max_intensite * contrat_cdi
+        montant_sans_intensite = montants_max_mayotte * contrat_cdi
 
         montants = mayotte * (est_parent * (montant_avec_intensite + montant_sans_intensite))
 

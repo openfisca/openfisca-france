@@ -381,7 +381,7 @@
     agepi_hors_mayotte: [170, 0, 0, 0, 0, 0, 0 ]
 
 
-- name: Test 10
+- name: Test 10 - Individu eligible, 1 enfant, reprise CDD < 64h/mois, hors Mayotte
   period: 2022-01
   input:
     menage:
@@ -400,7 +400,7 @@
         reside_en_region_mayotte: False
         allocation_retour_emploi: 0
         types_activite_condition: formation
-        heures_remunerees_volume: 60
+        heures_remunerees_volume: 63
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_semaine: 10
@@ -421,3 +421,166 @@
     agepi_mayotte: [0, 0, 0]
     agepi_hors_mayotte: [170, 0, 0]
 
+
+- name: Test 11 - Individu eligible 2 enfants, reprise CDD >= 64h/mois, hors Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+    individus:
+      Camille:
+        age: 29
+        agepi_percue_12_derniers_mois: False
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        emploi_ou_formation_en_france: True
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        reside_en_region_mayotte: False
+        allocation_retour_emploi: 0
+        types_activite_condition: cdd
+        heures_remunerees_volume: 64
+        contrat_de_travail_duree: 3
+        types_intensite_activite: mensuelle
+        agepi_temps_travail_semaine: 0
+      Jean:
+        age: 9
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [True, False, False]
+    pe_nbenf: 2
+    agepi_mayotte: [0, 0, 0]
+    agepi_hors_mayotte: [460, 0, 0]
+
+
+- name: Test 12 - Individu eligible 2 enfants, reprise CDD >= 64h/mois, Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+    individus:
+      Camille:
+        age: 29
+        agepi_percue_12_derniers_mois: False
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        emploi_ou_formation_en_france: True
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        reside_en_region_mayotte: True
+        allocation_retour_emploi: 0
+        types_activite_condition: cdd
+        heures_remunerees_volume: 64
+        contrat_de_travail_duree: 3
+        types_intensite_activite: mensuelle
+        agepi_temps_travail_semaine: 0
+      Jean:
+        age: 9
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [True, False, False]
+    pe_nbenf: 2
+    agepi_mayotte: [230, 0, 0]
+    agepi_hors_mayotte: [0, 0, 0]
+
+
+- name: Test 13 - Individu eligible 2 enfants, reprise formation > 40h, < 15h/sem, catégorie 4, Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+    individus:
+      Camille:
+        age: 29
+        agepi_percue_12_derniers_mois: False
+        pole_emploi_categorie_demandeur_emploi: categorie_4
+        stagiaire: True
+        en_contrat_aide: False
+        emploi_ou_formation_en_france: True
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        reside_en_region_mayotte: True
+        allocation_retour_emploi: 0
+        types_activite_condition: formation
+        heures_remunerees_volume: 40
+        contrat_de_travail_duree: 0
+        types_intensite_activite: hebdomadaire
+        agepi_temps_travail_semaine: 14
+      Jean:
+        age: 9
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [True, False, False]
+    pe_nbenf: 2
+    agepi_mayotte: [97.5, 0, 0]
+    agepi_hors_mayotte: [0, 0, 0]
+
+
+- name: Test 14 - Individu eligible, 1 enfant, reprise CDI, hors Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+    individus:
+      Camille:
+        age: 29
+        agepi_percue_12_derniers_mois: False
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        emploi_ou_formation_en_france: True
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        reside_en_region_mayotte: False
+        allocation_retour_emploi: 0
+        types_activite_condition: cdi
+        heures_remunerees_volume: 0
+        contrat_de_travail_duree: 0
+        types_intensite_activite: hebdomadaire
+        agepi_temps_travail_semaine: 10
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [True, False, False]
+    pe_nbenf: 1
+    agepi_mayotte: [0, 0, 0]
+    agepi_hors_mayotte: [400, 0, 0]
