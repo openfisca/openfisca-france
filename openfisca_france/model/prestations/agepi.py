@@ -5,7 +5,7 @@ from openfisca_france.model.base import Famille, Individu, Variable, Enum, MONTH
     set_input_dispatch_by_period, set_input_divide_by_period, min_, not_
 
 
-class pe_nbenf(Variable):
+class agepi_nbenf(Variable):
     value_type = int
     entity = Famille
     definition_period = MONTH
@@ -16,7 +16,7 @@ class pe_nbenf(Variable):
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
         ]
 
-    def formula(famille, period, parameters):
+    def formula_2014_01_20(famille, period, parameters):
         age_membres_famille = famille.members('age', period)
         age_eligibles = (age_membres_famille < parameters(period).prestations.agepi.age_enfant_maximum) * (age_membres_famille > 0)
         nb_enfants_eligibles = famille.sum(age_eligibles, role=Famille.ENFANT)
@@ -31,7 +31,7 @@ class agepi_temps_travail_semaine(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period):
+    def formula_2014_01_20(individu, period):
         heures_remunerees_volume = individu('heures_remunerees_volume', period)
         return heures_remunerees_volume / 52 * 12  # Passage en heures par semaine
 
@@ -153,7 +153,7 @@ class agepi_eligible(Variable):
         8- L'individu est en reprise d'emploi du type CDI, CDD ou CTT d'au moins 3 mois consécutifs ou en processus d'entrée en formation d'une durée supérieure ou égale à 40 heures
     '''
 
-    def formula(individu, period, parameters):
+    def formula_2014_01_20(individu, period, parameters):
 
         #  Diminution de la précision car la comparaison : 14.77 <= 14.77 me renvoyait un False
 
@@ -163,7 +163,7 @@ class agepi_eligible(Variable):
         parents_isoles = individu.famille('nb_parents', period) == 1
 
         #  2
-        condition_nb_enfants = individu.famille('pe_nbenf', period) > 0
+        condition_nb_enfants = individu.famille('agepi_nbenf', period) > 0
 
         #  3
         agepi_non_percues = not_(individu('agepi_percue_12_derniers_mois', period))
@@ -266,12 +266,12 @@ class agepi_hors_mayotte(Variable):
         "2. Aide à la garde d’enfants pour les parents isolés (AGEPI)"
         ]
 
-    def formula(individu, period, parameters):
+    def formula_2014_01_20(individu, period, parameters):
         est_parent = individu.has_role(Famille.PARENT)
         intensite_activite = individu('types_intensite_activite', period)
         nb_heures_semaine = individu('agepi_temps_travail_semaine', period)
         nb_heures_mensuelles = individu('heures_remunerees_volume', period)
-        nb_enfants_eligibles = individu.famille('pe_nbenf', period)
+        nb_enfants_eligibles = individu.famille('agepi_nbenf', period)
         eligibilite_agepi = individu('agepi_eligible', period)
 
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
@@ -282,12 +282,14 @@ class agepi_hors_mayotte(Variable):
         parametres_montants = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte
         montants_min_hors_mayotte = parametres_montants.minimum.calc(nb_enfants_eligibles)
         montants_max_hors_mayotte = parametres_montants.maximum.calc(nb_enfants_eligibles)
+        intensite_hebdo_seuil = parameters(period).prestations.agepi.intensite_hebdomadaire_seuil
+        intensite_mensuelle_seuil = parameters(period).prestations.agepi.intensite_mensuelle_seuil
 
         montants_min_intensite = montants_min_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
         montants_max_intensite = montants_max_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
 
-        condition_montants_min = ((nb_heures_semaine < 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles < 64) * intensite_mensuelle)
-        condition_montants_max = ((nb_heures_semaine >= 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles >= 64) * intensite_mensuelle)
+        condition_montants_min = ((nb_heures_semaine < intensite_hebdo_seuil) * intensite_hebdomadaire) + ((nb_heures_mensuelles < intensite_mensuelle_seuil) * intensite_mensuelle)
+        condition_montants_max = ((nb_heures_semaine >= intensite_hebdo_seuil) * intensite_hebdomadaire) + ((nb_heures_mensuelles >= intensite_mensuelle_seuil) * intensite_mensuelle)
 
         montant_avec_intensite = (condition_montants_min * montants_min_intensite) + (condition_montants_max * montants_max_intensite)
 
@@ -309,12 +311,12 @@ class agepi_mayotte(Variable):
         "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014",
         ]
 
-    def formula(individu, period, parameters):
+    def formula_2014_01_20(individu, period, parameters):
         est_parent = individu.has_role(Famille.PARENT)
         intensite_activite = individu('types_intensite_activite', period)
         nb_heures_semaine = individu('agepi_temps_travail_semaine', period)
         nb_heures_mensuelles = individu('heures_remunerees_volume', period)
-        nb_enfants_eligibles = individu.famille('pe_nbenf', period)
+        nb_enfants_eligibles = individu.famille('agepi_nbenf', period)
         eligibilite_agepi = individu('agepi_eligible', period)
 
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
@@ -325,12 +327,14 @@ class agepi_mayotte(Variable):
         parametres_montants = parameters(period).prestations.agepi.montants.mayotte
         montants_min_mayotte = parametres_montants.minimum.calc(nb_enfants_eligibles)
         montants_max_mayotte = parametres_montants.maximum.calc(nb_enfants_eligibles)
+        intensite_hebdo_seuil = parameters(period).prestations.agepi.intensite_hebdomadaire_seuil
+        intensite_mensuelle_seuil = parameters(period).prestations.agepi.intensite_mensuelle_seuil
 
         montants_min_intensite = montants_min_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
         montants_max_intensite = montants_max_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
 
-        condition_montants_min = ((nb_heures_semaine < 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles < 64) * intensite_mensuelle)
-        condition_montants_max = ((nb_heures_semaine >= 15) * intensite_hebdomadaire) + ((nb_heures_mensuelles >= 64) * intensite_mensuelle)
+        condition_montants_min = ((nb_heures_semaine < intensite_hebdo_seuil) * intensite_hebdomadaire) + ((nb_heures_mensuelles < intensite_mensuelle_seuil) * intensite_mensuelle)
+        condition_montants_max = ((nb_heures_semaine >= intensite_hebdo_seuil) * intensite_hebdomadaire) + ((nb_heures_mensuelles >= intensite_mensuelle_seuil) * intensite_mensuelle)
 
         montant_avec_intensite = (condition_montants_min * montants_min_intensite) + (condition_montants_max * montants_max_intensite)
 
@@ -352,9 +356,9 @@ class agepi(Variable):
         "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014",
         ]
 
-    def formula(individu, period, parameters):
+    def formula_2014_01_20(individu, period):
 
-        agepi_mayotte = ('agepi_mayotte', period)
-        agepi_hors_mayotte = ('agepi_hors_mayotte', period)
+        agepi_mayotte = individu('agepi_mayotte', period)
+        agepi_hors_mayotte = individu('agepi_hors_mayotte', period)
 
         return agepi_hors_mayotte + agepi_mayotte

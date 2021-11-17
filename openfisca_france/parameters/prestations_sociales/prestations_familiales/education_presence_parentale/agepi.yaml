@@ -1,11 +1,24 @@
+description: Paramètres utiles au calcul de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI
+reference: [
+  "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20",
+  "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014",
+  ]
 age_enfant_maximum:
   values:
-    2013-01-01:
+    2014-01-20:
       value: 10
 duree_de_formation_minimum:
   values:
-    2013-01-01:
+    2014-01-20:
       value: 40
+intensite_hebdomadaire_seuil:
+  values:
+    2014-01-20:
+      value: 15
+intensite_mensuelle_seuil:
+  values:
+    2014-01-20:
+      value: 64
 montants:
   hors_mayotte:
     minimum:
@@ -13,44 +26,44 @@ montants:
         type: single_amount
       brackets:
         - threshold:
-            2013-01-01:
+            2014-01-20:
               value: 1
           amount:
-            2013-01-01:
+            2014-01-20:
               value: 170
         - threshold:
-            2013-01-01:
+            2014-01-20:
               value: 2
           amount:
-            2013-01-01:
+            2014-01-20:
               value: 195
         - threshold:
-            2013-01-01:
+            2014-01-20:
               value: 3
           amount:
-            2013-01-01:
+            2014-01-20:
               value: 220
     maximum:
       metadata:
         type: single_amount
       brackets:
         - threshold:
-            2013-01-01:
+            2014-01-20:
               value: 1
           amount:
-            2013-01-01:
+            2014-01-20:
               value: 400
         - threshold:
-            2013-01-01:
+            2014-01-20:
               value: 2
           amount:
-            2013-01-01:
+            2014-01-20:
               value: 460
         - threshold:
-            2013-01-01:
+            2014-01-20:
               value: 3
           amount:
-            2013-01-01:
+            2014-01-20:
               value: 520
   mayotte:
     minimum:
@@ -58,42 +71,42 @@ montants:
         type: single_amount
       brackets:
         - threshold:
-            2013-01-01:
+            2014-01-20:
               value: 1
           amount:
-            2013-01-01:
+            2014-01-20:
               value: 85
         - threshold:
-            2013-01-01:
+            2014-01-20:
               value: 2
           amount:
-            2013-01-01:
+            2014-01-20:
               value: 97.5
         - threshold:
-            2013-01-01:
+            2014-01-20:
               value: 3
           amount:
-            2013-01-01:
+            2014-01-20:
               value: 110
     maximum:
       metadata:
         type: single_amount
       brackets:
         - threshold:
-            2013-01-01:
+            2014-01-20:
               value: 1
           amount:
-            2013-01-01:
+            2014-01-20:
               value: 200
         - threshold:
-            2013-01-01:
+            2014-01-20:
               value: 2
           amount:
-            2013-01-01:
+            2014-01-20:
               value: 230
         - threshold:
-            2013-01-01:
+            2014-01-20:
               value: 3
           amount:
-            2013-01-01:
+            2014-01-20:
               value: 260
