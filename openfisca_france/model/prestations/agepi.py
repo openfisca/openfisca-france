@@ -87,15 +87,7 @@ class en_contrat_aide(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class reside_en_region_mayotte(Variable):
-    value_type = bool
-    entity = Individu
-    label = "L'individu réside en région Mayotte"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
-class TypesActiviteCondition(Enum):
+class TypesContrat(Enum):
     __order__ = 'aucune_activite cdi cdd ctt formation'  # Needed to preserve the enum order in Python 2
     aucune_activite = "AUCUNE ACTIVITE"
     cdi = "CDI"
@@ -106,8 +98,8 @@ class TypesActiviteCondition(Enum):
 
 class types_activite_condition(Variable):
     value_type = Enum
-    possible_values = TypesActiviteCondition
-    default_value = TypesActiviteCondition.aucune_activite
+    possible_values = TypesContrat
+    default_value = TypesContrat.aucune_activite
     entity = Individu
     label = "Les types d'activité éligibles à l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI "
     definition_period = MONTH
@@ -191,11 +183,7 @@ class agepi_eligible(Variable):
         categories_eligibles = ((pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_1)
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_2)
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_3)
-                                + (not_(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_6))
-                                * (categorie_4_stagiaire_formation_professionnelle + categorie_5_contrat_aide)
-                                * (not_(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_7))
-                                * (not_(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_8))
-                                * (not_(pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.pas_de_categorie)))
+                                + (categorie_4_stagiaire_formation_professionnelle + categorie_5_contrat_aide))
 
         #  5
         lieux_activite_eligibles = individu('emploi_ou_formation_en_france', period)
@@ -213,13 +201,13 @@ class agepi_eligible(Variable):
         dates_demandes_agepi_eligibles = agepi_date_de_demande <= date_limite_eligibilite_contrat
 
         #  7
-        resident_en_mayotte = individu('reside_en_region_mayotte', period) == 1
-        ne_resident_pas_en_mayotte = not_(resident_en_mayotte)
+        mayotte = individu.menage('residence_mayotte', period)
+        hors_mayotte = not_(mayotte)
 
         allocation_individu = individu('allocation_retour_emploi', period)
 
-        allocation_minimale_hors_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_hors_mayotte * ne_resident_pas_en_mayotte
-        allocation_minimale_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_mayotte * resident_en_mayotte
+        allocation_minimale_hors_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_hors_mayotte * hors_mayotte
+        allocation_minimale_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_mayotte * mayotte
 
         allocation_minimale_en_fonction_de_la_region = allocation_minimale_hors_mayotte + allocation_minimale_mayotte
 
@@ -233,11 +221,10 @@ class agepi_eligible(Variable):
         #  8
         reprises_types_activites = individu('types_activite_condition', period)
 
-        reprises_types_activites_aucune_activite = not_(reprises_types_activites == TypesActiviteCondition.aucune_activite)
-        reprises_types_activites_formation = reprises_types_activites == TypesActiviteCondition.formation
-        reprises_types_activites_cdi = reprises_types_activites == TypesActiviteCondition.cdi
-        reprises_types_activites_cdd = reprises_types_activites == TypesActiviteCondition.cdd
-        reprises_types_activites_ctt = reprises_types_activites == TypesActiviteCondition.ctt
+        reprises_types_activites_formation = reprises_types_activites == TypesContrat.formation
+        reprises_types_activites_cdi = reprises_types_activites == TypesContrat.cdi
+        reprises_types_activites_cdd = reprises_types_activites == TypesContrat.cdd
+        reprises_types_activites_ctt = reprises_types_activites == TypesContrat.ctt
 
         #  La formation doit être supérieure ou égale à 40 heures
         duree_formation = individu('heures_remunerees_volume', period)
@@ -250,11 +237,10 @@ class agepi_eligible(Variable):
         reprises_types_activites_cdd_eligible = reprises_types_activites_cdd * periode_de_contrat_3_mois_minimum
         reprises_types_activites_ctt_eligible = reprises_types_activites_ctt * periode_de_contrat_3_mois_minimum
 
-        types_et_duree_activite_eligible = reprises_types_activites_aucune_activite \
-            * (reprises_types_activites_formation_eligible
-            + reprises_types_activites_cdi
-            + reprises_types_activites_cdd_eligible
-            + reprises_types_activites_ctt_eligible)
+        types_et_duree_activite_eligible = (reprises_types_activites_formation_eligible
+                                            + reprises_types_activites_cdi
+                                            + reprises_types_activites_cdd_eligible
+                                            + reprises_types_activites_ctt_eligible)
 
         eligible_agepi = (parents_isoles
             * condition_nb_enfants
@@ -291,10 +277,11 @@ class agepi_hors_mayotte(Variable):
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
         intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
 
-        hors_mayotte = individu('reside_en_region_mayotte', period) == 0
+        hors_mayotte = not_(individu.menage('residence_mayotte', period))
 
-        montants_min_hors_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte.minimum.calc(nb_enfants_eligibles)
-        montants_max_hors_mayotte = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte.maximum.calc(nb_enfants_eligibles)
+        parametres_montants = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte
+        montants_min_hors_mayotte = parametres_montants.minimum.calc(nb_enfants_eligibles)
+        montants_max_hors_mayotte = parametres_montants.maximum.calc(nb_enfants_eligibles)
 
         montants_min_intensite = montants_min_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
         montants_max_intensite = montants_max_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
@@ -333,10 +320,11 @@ class agepi_mayotte(Variable):
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
         intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
 
-        mayotte = individu('reside_en_region_mayotte', period) == 1
+        mayotte = individu.menage('residence_mayotte', period)
 
-        montants_min_mayotte = parameters(period).prestations.agepi.montants.mayotte.minimum.calc(nb_enfants_eligibles)
-        montants_max_mayotte = parameters(period).prestations.agepi.montants.mayotte.maximum.calc(nb_enfants_eligibles)
+        parametres_montants = parameters(period).prestations.agepi.montants.mayotte
+        montants_min_mayotte = parametres_montants.minimum.calc(nb_enfants_eligibles)
+        montants_max_mayotte = parametres_montants.maximum.calc(nb_enfants_eligibles)
 
         montants_min_intensite = montants_min_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
         montants_max_intensite = montants_max_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
@@ -349,3 +337,24 @@ class agepi_mayotte(Variable):
         montants = mayotte * (est_parent * montant_avec_intensite)
 
         return eligibilite_agepi * montants
+
+
+class agepi(Variable):
+    value_type = float
+    entity = Individu
+    label = "Montant de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    reference = [
+        "Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
+        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20",
+        "2. Aide à la garde d’enfants pour les parents isolés (AGEPI)",
+        "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014",
+        ]
+
+    def formula(individu, period, parameters):
+
+        agepi_mayotte = ('agepi_mayotte', period)
+        agepi_hors_mayotte = ('agepi_hors_mayotte', period)
+
+        return agepi_hors_mayotte + agepi_mayotte
