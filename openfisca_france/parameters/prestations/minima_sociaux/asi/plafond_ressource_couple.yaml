@@ -34,3 +34,7 @@ values:
     reference: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44460.pdf
   2020-04-01:
     value: 15353.94
+  2021-04-01:
+    value: 16800.00
+    reference: https://www.legifrance.gouv.fr/eli/decret/2020/12/30/SSAS2033498D/jo/article_1
+
