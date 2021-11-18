@@ -36,6 +36,8 @@ values:
     value: 8.15
   2018-04-01:
     value: 8.23
+  2021-04-01:
+    value: 8.46
 metadata:
   short_label: Montant plein Mayotte
   label_en: Special UI scheme
@@ -55,4 +57,6 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034678220&categorieLien=id
     2018-04-01:
       href: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031781118&cidTexte=LEGITEXT000006072050&dateTexte=20180420&fastPos=1&fastReqId=505933634&oldAction=rechCodeArticle
+    2021-04-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000043415805&categorieLien=id
 documentation: Le prestations.minima_sociaux.ass.montant_plein de la métropole est pris par défaut lorsque la valeur spécifique à Mayotte est non répertoriée.
