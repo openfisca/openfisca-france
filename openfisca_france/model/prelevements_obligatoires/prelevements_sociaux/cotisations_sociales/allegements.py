@@ -434,6 +434,7 @@ class allegement_cotisation_maladie(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     label = "Allègement des cotisations employeur d’assurance maladie sur les bas et moyens salaires (Ex-CICE)"
     reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559"
 
@@ -452,7 +453,7 @@ class allegement_cotisation_maladie(Variable):
 
 def compute_allegement_cotisation_maladie(individu, period, parameters):
     """
-        Le calcul de l'allègement de cotisation maladie sur les bas et moyens salires (Ex-CICE).
+        Le calcul de l'allègement de cotisation maladie sur les bas et moyens salaires (Ex-CICE).
     """
     allegement_mmid = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.alleg_gen.mmid
 
