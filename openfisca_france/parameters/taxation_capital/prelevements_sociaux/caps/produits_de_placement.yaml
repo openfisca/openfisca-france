@@ -3,3 +3,5 @@ unit: /1
 values:
   2004-07-01:
     value: 0.003
+  2019-01-01:
+    value: null
