@@ -1,5 +1,14 @@
 # Changelog
 
+### 80.3.1 [#1714](https://github.com/openfisca/openfisca-france/pull/1714)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 2018/01/01
+* Zones impactées : `parameters.prelevements_sociaux.reductions_cotisations_sociales.fillon`.
+* Détails :
+  - Mise à jour des paramètres
+  - Ajout des références législatives correspondantes
+
 ## 80.3.0 [#1710](https://github.com/openfisca/openfisca-france/pull/1710)
 
 * Évolution du système socio-fiscal.
