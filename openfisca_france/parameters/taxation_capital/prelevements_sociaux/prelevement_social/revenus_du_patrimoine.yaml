@@ -12,3 +12,5 @@ values:
     value: 0.054
   2013-01-01:
     value: 0.045
+  2018-01-01:
+    value: null
