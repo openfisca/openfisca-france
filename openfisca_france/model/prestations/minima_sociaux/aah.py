@@ -390,7 +390,6 @@ class caah(Variable):
     entity = Individu
     set_input = set_input_divide_by_period
     definition_period = MONTH
-    set_input = set_input_divide_by_period
 
     def formula_2019_12_01(individu, period, parameters):
         eligibilite_caah = individu('eligibilite_caah', period)
