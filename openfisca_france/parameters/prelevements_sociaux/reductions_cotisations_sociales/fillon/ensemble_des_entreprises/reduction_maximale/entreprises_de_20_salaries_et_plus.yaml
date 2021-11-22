@@ -26,10 +26,16 @@ metadata:
       title: Article D241-7 du Code de la Sécurité Sociale
       ref: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042869486/2020-12-30/
     2020-01-01:
-      title: Article D241-7 du Code de la Sécurité Sociale
+    - title: Décret 2020-2 du 02/01/2020, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039749436&idArticle=&categorieLien=id
+    - title: Article D241-7 du Code de la Sécurité Sociale
       ref: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000041460935/2020-01-01/
     2019-01-01: 
-      title: Article D241-7 du Code de la Sécurité Sociale
+    - title: Décret 2018-1356 du 28/12/2018, art. 1 et 4
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037884638&categorieLien=id
+    - title: Loi 2018-1203 du 22/12/2018 (LFSS pour 2019), art. 8
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037849612&cidTexte=JORFTEXT000037847585
+    - title: Article D241-7 du Code de la Sécurité Sociale
       href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000038043333/2019-01-01/
     2018-01-01:
     - title: Article D241-7 du Code de la Sécurité Sociale
