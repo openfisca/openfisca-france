@@ -1,5 +1,13 @@
 # Changelog
 
+### 80.3.2 [#1715](https://github.com/openfisca/openfisca-france/pull/1715)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : `parameters.prelevements_sociaux.reductions_cotisations_sociales.fillon`.
+* Détails :
+  - Corrige une erreur humaine dans la PR precedente: suppression de décrets
+
 ### 80.3.1 [#1714](https://github.com/openfisca/openfisca-france/pull/1714)
 
 * Évolution du système socio-fiscal.
