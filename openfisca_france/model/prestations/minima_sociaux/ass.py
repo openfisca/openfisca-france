@@ -84,13 +84,18 @@ class ass_base_ressources_individu(Variable):
         previous_year = Period(('year', period.start, 1)).offset(-1)
         # N-1
         last_year = period.last_year
+        # last month
+        last_month = period.start.period('month').offset(-1)
 
         salaire_imposable = calculateWithAbatement(individu, parameters, period, 'salaire_imposable')
-        revenus_stage_formation_pro = calculateWithAbatement(individu, parameters, period, 'revenus_stage_formation_pro')
-        aah = calculateWithAbatement(individu, parameters, period, 'aah')
-        retraite_nette = calculateWithAbatement(individu, parameters, period, 'retraite_nette')
-        pensions_alimentaires_percues = calculateWithAbatement(individu, parameters, period, 'pensions_alimentaires_percues')
-        indemnites_stage = calculateWithAbatement(individu, parameters, period, 'indemnites_stage')
+        retraite_imposable = calculateWithAbatement(individu, parameters, period, 'retraite_imposable')
+
+        revenus_stage_formation_pro = ((individu('revenus_stage_formation_pro', previous_year, options=[ADD]))
+                                      * (individu('revenus_stage_formation_pro', last_month) == 0))
+
+        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', previous_year, options=[ADD])
+        indemnites_stage = individu('indemnites_stage', previous_year, options=[ADD])
+        rente_accident_travail = individu('rente_accident_travail', previous_year, options=[ADD])
 
         pensions_invalidite = individu('pensions_invalidite', previous_year, options=[ADD])
         revenus_locatifs = individu('revenus_locatifs', previous_year, options=[ADD])
@@ -110,11 +115,11 @@ class ass_base_ressources_individu(Variable):
 
         return (
             salaire_imposable
-            + retraite_nette
+            + retraite_imposable
             + pensions_invalidite
             + pensions_alimentaires_percues
+            + rente_accident_travail
             - abs_(pensions_alimentaires_versees_individu)
-            + aah
             + indemnites_stage
             + revenus_stage_formation_pro
             + revenus_tns()
