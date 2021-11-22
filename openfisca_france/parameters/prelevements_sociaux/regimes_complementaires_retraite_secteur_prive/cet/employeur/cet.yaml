@@ -12,16 +12,10 @@ brackets:
     2001-01-01:
       value: 0.0022
     2019-01-01:
-      value: 0.0
+      value: null
   threshold:
     1997-01-01:
       value: 0.0
-- rate:
-    1997-01-01:
-      value: 0.0
-  threshold:
-    1997-01-01:
-      value: 8.0
 metadata:
   ux_name: Barème employeur
   last_review:
