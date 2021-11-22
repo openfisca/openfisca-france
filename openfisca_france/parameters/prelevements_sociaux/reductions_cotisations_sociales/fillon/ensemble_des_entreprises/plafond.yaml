@@ -1,4 +1,4 @@
-description: Plafond (en nombre de SMIC) des allégements Fillon ou allègements bas salaires (toutes entreprises, depuis 2003) des cotisations de Sécurité sociale (SS)
+description: Plafond (en nombre de SMIC) des allègements Fillon ou allègements bas salaires (toutes entreprises, depuis 2003) des cotisations de Sécurité sociale (SS)
 unit: /1
 values:
   2005-07-01:
@@ -6,10 +6,12 @@ values:
 metadata:
   ux_name: Plafond (en nombre de SMIC)
   last_review:
-    2020-01-01
+    2021-11-19
   reference:
     2005-07-01:
-      title: Décret 2005-88 du 04/02/2005
+    - title: Article D241-7 du Code de la Sécurité Sociale
+      href: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006185779/
+    - title: Décret 2005-88 du 04/02/2005
       href: https://www.legifrance.gouv.fr/eli/decret/2005/2/4/2005-88/jo/texte
     2005-01-01:
       title: Loi 2004-1484 (LF pour 2005) du 30/12/2004
