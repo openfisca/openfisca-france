@@ -49,6 +49,8 @@ baremes:
           2019-01-01:
             value: 48
       - threshold:
+          2021-01-01:
+            value: 10801.0
           2019-01-01:
             value: 10700
         amount:
@@ -91,6 +93,8 @@ baremes:
           2019-01-01:
             value: 63
       - threshold:
+          2021-01-01:
+            value: 10801.0
           2019-01-01:
             value: 10700
         amount:
@@ -133,8 +137,16 @@ baremes:
           2019-01-01:
             value: 76
       - threshold:
+          2021-01-01:
+            value: 10801.0
           2019-01-01:
             value: 10700
         amount:
           2019-01-01:
             value: 0
+aide_exceptionnelle :
+  values :
+    2021-12-01:
+      value : 100
+    2022-01-01:
+      value : null 
