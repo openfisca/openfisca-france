@@ -12,6 +12,10 @@ premiere_part:
       value: 10988.0
     2020-01-01:
       value: 11098.0
+    2021-01-01:
+      value: 11120.0
+    2022-01-01:
+      value: 11276.0
 demi_part_supp:
   description: Majoration par demi-part supplémentaire du plafond de revenu fiscal de référence pour l'exonération de la taxe d'habitation
   unit: currency
@@ -24,3 +28,7 @@ demi_part_supp:
       value: 2934.0
     2020-01-01:
       value: 2963.0
+    2021-01-01:
+      value: 2969.0
+    2022-01-01:
+      value: 3011.0
