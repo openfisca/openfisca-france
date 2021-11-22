@@ -142,10 +142,10 @@ class maladie_maternite_artisan_commercant_taux(Variable):
 						max_((assiette_pss) - 0.4, 0),
 						0.7)
 						/ (1.1 - 0.4))
-					+ (0.007 * (~(assiette_pss > 5)) * ((assiette_pss - 5) / assiette_pss))
+					- (0.007 * (assiette_pss > 5) * ((assiette_pss - 5) / assiette_pss))
                     )
 
-        return artisan * taux
+        return artisan * where(assiette_pss != 0, taux,0)
 
     def formula_2018_01_01(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
@@ -169,7 +169,7 @@ class maladie_maternite_artisan_commercant_taux(Variable):
 						max_((assiette_pss) - 0.4, 0),
 						0.7)
 						/ (1.1 - 0.4))
-					+ (0.007 * (~(assiette_pss > 5)))
+					- (0.007 * (assiette_pss > 5))
                     )
 
         return artisan * taux
