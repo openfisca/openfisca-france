@@ -104,6 +104,37 @@ class contribution_exceptionnelle_solidarite(Variable):
             )
         return cotisation
 
+class indemnite_compensatrice_csg(Variable):
+    value_type = float
+    entity = Individu
+    label = "Indemnité compensatrice créée en 2018 pour compenser les effets de la hausse de la CSG"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2018_01_01(individu, period, parameters):
+        remuneration_principale = individu('remuneration_principale', period)
+        categorie_salarie = individu('categorie_salarie', period)
+        eligible = ((categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)) > 0
+        indem = remuneration_principale * 0.0076
+
+        return indem * eligible
+
+class indemnite_compensatrice_csg2(Variable):
+    value_type = float
+    entity = Individu
+    label = "Indemnité compensatrice créée en 2018 pour compenser les effets de la hausse de la CSG"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2018_01_01(individu, period, parameters):
+        remuneration_principale = individu('remuneration_principale', period.this_year, options=[ADD])
+        categorie_salarie = individu('categorie_salarie', period)
+        eligible = ((categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)) > 0
+        ces = individu('contribution_exceptionnelle_solidarite', period.last_year, options=[ADD])
+        cot  = individu('chomage_salarie', period.last_year, options=[ADD]) + individu('mmid_salarie', period.last_year, options=[ADD])
+        indem = (max_(((remuneration_principale * 0.016702) - cot - ces), 0) * 1.1053) / 12
+
+        return indem * eligible
 
 class fonds_emploi_hospitalier(Variable):
     value_type = float
@@ -286,6 +317,7 @@ class rafp_employeur(Variable):
         primes_fonction_publique = individu('primes_fonction_publique', period)
         supplement_familial_traitement = individu('supplement_familial_traitement', period)
         indemnite_residence = individu('indemnite_residence', period)
+        indemnite_compensatrice_csg = individu('indemnite_compensatrice_csg', period)
         gipa = individu('gipa', period)
         avantage_en_nature = individu('avantage_en_nature', period)
 
@@ -301,7 +333,7 @@ class rafp_employeur(Variable):
         _P = parameters(period)
         bareme_rafp_employeur = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
 
-        base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence + avantage_en_nature
+        base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence + indemnite_compensatrice_csg + avantage_en_nature
         assiette = (min_(base_imposable, taux_plafond_tib * traitement_indiciaire_brut) + gipa) * eligible
         # Même régime pour les fonctions publiques d'Etat et des collectivité locales
         rafp_employeur = eligible * bareme_rafp_employeur.calc(assiette)

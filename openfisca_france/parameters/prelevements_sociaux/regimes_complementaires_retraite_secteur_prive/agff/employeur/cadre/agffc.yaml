@@ -4,7 +4,7 @@ brackets:
     2001-04-01:
       value: 0.012
     2019-01-01:
-      value: 0
+      value: null
   threshold:
     2001-04-01:
       value: 0.0
@@ -12,7 +12,7 @@ brackets:
     2001-04-01:
       value: 0.013
     2019-01-01:
-      value: 0
+      value: null
   threshold:
     2001-04-01:
       value: 1.0
@@ -21,6 +21,8 @@ brackets:
 - rate:
     2001-04-01:
       value: 0.0
+    2019-01-01:
+      value: null
   threshold:
     2001-04-01:
       value: 4.0
