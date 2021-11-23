@@ -66,6 +66,22 @@ class contexte_activite_pole_emploi(Variable):
     definition_period = MONTH
 
 
+class formation_validee_par_PoleEmploi(Variable):
+    value_type = bool
+    entity = Individu
+    label = "La formation de l'individu est validée par Pôle emploi"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
+class formation_financee_ou_cofinancee(Variable):
+    value_type = bool
+    entity = Individu
+    label = "La formation de l'individu est financée ou cofinancée (compte personnel de formation (CPF), fonds propres, Pôle Emploi, un tiers)"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
 class TypesActiviteEnRechercheEmploi(Enum):
     __order__ = 'indetermine entretien_embauche concours_public examen_certifiant prestation_accompagnement immersion_professionnelle_PMSMP'  # Needed to preserve the enum order in Python 2
     indetermine = "INDETERMINE"
@@ -155,7 +171,7 @@ class amob_distances_et_durees_aller_retour_eligibles(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    label = "Distance ou la durée éligibles entre le lieu d'activité et de résidence pour l'aide à la mobilité de Pôle Emploi - AGEPI"
+    label = "Distance ou la durée éligibles entre le lieu d'activité et de résidence pour l'aide à la mobilité de Pôle Emploi - AMOB"
     reference = [
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
         ]
@@ -173,43 +189,30 @@ class amob_distances_et_durees_aller_retour_eligibles(Variable):
         reside_en_metropole = lieu_de_residence == TypesLieuResidence.metropole
         residence_renseignee = not_(lieu_de_residence == TypesLieuResidence.non_renseigne)
 
-        distances_et_durees_aller_retour_eligibles = ((((distance_aller_retour * reside_en_metropole) > distance_minimum_en_metropole)
-                                                    + (distance_aller_retour * not_(reside_en_metropole) > distance_minimum_hors_metropole)
-                                                    + temps_de_trajet > temps_de_trajet_max)) * residence_renseignee
+        distances_et_durees_aller_retour_eligibles = (((distance_aller_retour > distance_minimum_en_metropole) * reside_en_metropole)
+                                                    + ((distance_aller_retour > distance_minimum_hors_metropole) * not_(reside_en_metropole))
+                                                    + ((temps_de_trajet > temps_de_trajet_max) * residence_renseignee))
 
         return distances_et_durees_aller_retour_eligibles
 
 
-class amob_eligible(Variable):
+class amob_activites_eligibles(Variable):
     value_type = bool
     entity = Individu
-    label = "Eligibilité à l'aide à la mobilité de Pôle Emploi - AGEPI"
     definition_period = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
+    label = "Les types d'activités éligibles pour l'aide à la mobilité de Pôle Emploi - AMOB"
     reference = [
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
         ]
-    documentation = '''
-        1- L'individu doit être en recherche d'emploi, reprise d'emploi ou dans un contexte d'entrée en formation
-            1- en cas d’entretien d’embauche ou de reprise d’activité, ceux-ci doivent concerner un CDI, CDD ou CTT >= 3 mois
-        2- L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé", 6, 7 ou 8
-        3- L'individu est non indemnisé ou son allocation est inférieure ou égale à l'ARE minimale
-        4- L'emploi ou la formation se situe en France
-        5- L'individu ne doit pas avoir dépassé son plafond de 5000€ d'aide annuel
-        6-  
-            6.1 - Son "activité" doit être à plus de 60 km aller-retour de son lieu de résidence
-            6.2 - Ou 20 km lorsque l'individu réside en dehors de la métropole
-            6.3 - Ou 2 heures de trajet aller-retour
-        7- 
-        8-
-    '''
 
     def formula_2021_06_09(individu, period, parameters):
 
-        #  1
         contexte = individu('contexte_activite_pole_emploi', period) #  ENUM formation, reprise_emploi, recherche_emploi...
         activite_en_recherche_emploi = individu('types_activite_en_recherche_emploi', period) #  ENUM entretien embauche, concours ...
-        reprises_emploi_types_activites = individu('types_reprises_activite', period) #  ENUM cdi, cdd, ctt, formation
+        reprises_emploi_types_activites = individu('types_activite_condition', period) #  ENUM cdi, cdd, ctt, formation
+        formation_validee = individu('formation_validee_par_PoleEmploi', period)
+        formation_financee = individu('formation_financee_ou_cofinancee', period)
 
         #  Contexte
         en_formation = contexte == ContexteActivitePoleEmploi.formation
@@ -232,12 +235,43 @@ class amob_eligible(Variable):
 
         reprises_cdd_ctt_eligibles = (reprises_types_activites_cdd + reprises_types_activites_ctt) * duree_de_contrat_3_mois_minimum
 
-        types_et_duree_activite_eligibles = ((reprises_types_activites_cdi + reprises_cdd_ctt_eligibles) * (en_reprise_emploi + en_entretien_embauche)
-                                           + (reprises_types_activites_formation * en_formation))
+        types_et_duree_activite_eligibles = (((reprises_types_activites_cdi + reprises_cdd_ctt_eligibles) * (en_reprise_emploi + en_entretien_embauche))
+                                            + (reprises_types_activites_formation * en_formation * formation_validee * formation_financee))
 
         activites_eligibles = (types_et_duree_activite_eligibles
-                              + activites_en_recherche_emploi_eligibles
-                              + reprises_types_activites_formation)
+                              + activites_en_recherche_emploi_eligibles)
+
+        return activites_eligibles
+
+
+class amob_eligible(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Eligibilité à l'aide à la mobilité de Pôle Emploi - AMOB"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    reference = [
+        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+        ]
+    documentation = '''
+        1- L'individu doit être en recherche d'emploi, reprise d'emploi ou dans un contexte d'entrée en formation
+            1- en cas d’entretien d’embauche ou de reprise d’activité, ceux-ci doivent concerner un CDI, CDD ou CTT >= 3 mois
+        2- L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé", 6, 7 ou 8
+        3- L'individu est non indemnisé ou son allocation est inférieure ou égale à l'ARE minimale
+        4- L'emploi ou la formation se situe en France
+        5- L'individu ne doit pas avoir dépassé son plafond de 5000€ d'aide annuel
+        6-  
+            6.1 - Son "activité" doit être à plus de 60 km aller-retour de son lieu de résidence
+            6.2 - Ou 20 km lorsque l'individu réside en dehors de la métropole
+            6.3 - Ou 2 heures de trajet aller-retour
+        7- La formation doit être validée par Pôle Emploi
+        8-
+    '''
+
+    def formula_2021_06_09(individu, period, parameters):
+
+        #  1
+        activites_eligibles = individu('amob_activites_eligibles', period)
 
         #  2
         categories_eligibles = individu('amob_categories_eligibles', period)
