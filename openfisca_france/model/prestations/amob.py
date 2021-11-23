@@ -1,10 +1,22 @@
+from datetime import date
+
 import numpy as np
 from openfisca_core.populations import ADD
 
 from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, \
-    set_input_dispatch_by_period, set_input_divide_by_period
+    set_input_dispatch_by_period, set_input_divide_by_period, min_
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
 from openfisca_france.model.prestations.agepi import TypesCategoriesDemandeurEmploi, TypesContrat
+
+
+class amob_date_demande(Variable):
+    value_type = date
+    default_value = date(1870, 1, 1)
+    entity = Individu
+    label = "Date de demande d'évaluation à l'éligibilité de l'aide à la mobilité (AMOB) - (date du fait générateur)"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
 
 
 class distance_aller_retour_activite_domicile(Variable):
@@ -219,8 +231,11 @@ class amob_activites_eligibles(Variable):
         en_reprise_emploi = contexte == ContexteActivitePoleEmploi.reprise_emploi
         en_recherche_emploi = contexte == ContexteActivitePoleEmploi.recherche_emploi
 
+        dates_demandes_amob_eligibles = individu('amob_calcul_condition_date_de_depot', period)
+
         # Activites en recherche d'emploi
         en_entretien_embauche = (activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.entretien_embauche) * en_recherche_emploi
+
         activites_en_recherche_emploi_eligibles = not_((activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.entretien_embauche)
                                                      + (activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.indetermine)) \
                                                      * en_recherche_emploi
@@ -244,6 +259,50 @@ class amob_activites_eligibles(Variable):
         return activites_eligibles
 
 
+class amob_calcul_condition_date_de_depot(Variable):
+    value_type = bool
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    label = "Calcul de la condition de date de dépot pour l'aide à la mobilité de Pôle Emploi - AMOB"
+    reference = [
+        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+        ]
+
+    def formula_2021_06_09(individu, period):
+
+        contrat_de_travail_debut = individu('contrat_de_travail_debut', period)  # numpy.datetime64
+        contrat_de_travail_debut_en_mois = contrat_de_travail_debut.astype('M8[M]')
+
+        date_limite_eligibilite_contrat = min_((contrat_de_travail_debut_en_mois + 1) + (contrat_de_travail_debut - contrat_de_travail_debut_en_mois),
+                                               (contrat_de_travail_debut_en_mois + 2) - np.timedelta64(1, 'D'))
+
+        amob_date_de_demande = individu("amob_date_demande", period)
+
+        return amob_date_de_demande <= date_limite_eligibilite_contrat
+
+
+class amob_contextes_eligibles(Variable):
+    value_type = bool
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    label = "Contextes éligibles à l'aide à la mobilité de Pôle Emploi - AMOB"
+    reference = [
+        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+        ]
+
+    def formula_2021_06_09(individu, period):
+
+        contexte = individu('contexte_activite_pole_emploi', period)
+        dates_demandes_amob_eligibles = individu('amob_calcul_condition_date_de_depot', period)
+        en_recherche_emploi = contexte == ContexteActivitePoleEmploi.recherche_emploi
+        en_reprise_emploi = contexte == ContexteActivitePoleEmploi.reprise_emploi
+        en_formation = contexte == ContexteActivitePoleEmploi.formation
+
+        return en_recherche_emploi + ((en_reprise_emploi + en_formation) * dates_demandes_amob_eligibles )
+
+
 class amob_eligible(Variable):
     value_type = bool
     entity = Individu
@@ -254,8 +313,7 @@ class amob_eligible(Variable):
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
         ]
     documentation = '''
-        1- L'individu doit être en recherche d'emploi, reprise d'emploi ou dans un contexte d'entrée en formation
-            1- en cas d’entretien d’embauche ou de reprise d’activité, ceux-ci doivent concerner un CDI, CDD ou CTT >= 3 mois
+        1- L'individu doit être dans un contexte de recherche d'emploi, reprise d'emploi ou d'entrée en formation
         2- L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé", 6, 7 ou 8
         3- L'individu est non indemnisé ou son allocation est inférieure ou égale à l'ARE minimale
         4- L'emploi ou la formation se situe en France
@@ -265,37 +323,42 @@ class amob_eligible(Variable):
             6.2 - Ou 20 km lorsque l'individu réside en dehors de la métropole
             6.3 - Ou 2 heures de trajet aller-retour
         7- La formation doit être validée par Pôle Emploi
-        8-
+
     '''
 
     def formula_2021_06_09(individu, period, parameters):
 
         #  1
-        activites_eligibles = individu('amob_activites_eligibles', period)
+        contextes_eligibles = individu('amob_contextes_eligibles', period)
 
         #  2
-        categories_eligibles = individu('amob_categories_eligibles', period)
+        activites_eligibles = individu('amob_activites_eligibles', period)
 
         #  3
-        montants_allocation_eligibles = individu('amob_montants_allocation_eligibles', period)
+        categories_eligibles = individu('amob_categories_eligibles', period)
 
         #  4
-        lieux_activite_eligibles = individu('emploi_ou_formation_en_france', period)
+        montants_allocation_eligibles = individu('amob_montants_allocation_eligibles', period)
 
         #  5
-        montant_eligible = individu('amob_plafond_disponible', period) >= 0
+        lieux_activite_eligibles = individu('emploi_ou_formation_en_france', period)
 
         #  6
+        montant_eligible = individu('amob_plafond_disponible', period) >= 0
+
+        #  7
         distances_et_durees_aller_retour_eligibles = individu('amob_distances_et_durees_aller_retour_eligibles', period)
 
-        eligible_amob = (categories_eligibles
-            * montants_allocation_eligibles
-            * activites_eligibles
-            * lieux_activite_eligibles
-            * montant_eligible
-            * distances_et_durees_aller_retour_eligibles)
 
-        return eligible_amob
+        eligibilite_amob = (contextes_eligibles
+                       * activites_eligibles
+                       * categories_eligibles
+                       * montants_allocation_eligibles
+                       * lieux_activite_eligibles
+                       * montant_eligible
+                       * distances_et_durees_aller_retour_eligibles)
+
+        return eligibilite_amob
 
 
 class amob_calcul(Variable):

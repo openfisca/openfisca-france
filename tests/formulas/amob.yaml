@@ -203,13 +203,15 @@
         stagiaire: False
         en_contrat_aide: False
         allocation_retour_emploi: 14.77
-        contexte_activite_pole_emploi: recherche_emploi
-        types_activite_en_recherche_emploi: examen_certifiant
-        types_activite_condition: aucune_activite
+        contexte_activite_pole_emploi: reprise_emploi
+        types_activite_en_recherche_emploi: indetermine
+        types_activite_condition: cdi
         contrat_de_travail_duree: 0
         emploi_ou_formation_en_france: True
         formation_validee_par_PoleEmploi: False
         formation_financee_ou_cofinancee: False
+        contrat_de_travail_debut: '2021-01-08'
+        amob_date_demande: '2021-02-08'
   output:
     amob_eligible: True
 #    amob_calcul: 156
