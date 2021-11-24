@@ -186,7 +186,7 @@
     amob: 0
 
 
-- name: Test 10
+- name: Test 10 - Calcul AMOB en contexte recherche d'emploi avec un demande au 7ème jour
   period: 2021-11
   input:
     menage:
@@ -203,15 +203,15 @@
         stagiaire: False
         en_contrat_aide: False
         allocation_retour_emploi: 14.77
-        contexte_activite_pole_emploi: reprise_emploi
-        types_activite_en_recherche_emploi: indetermine
-        types_activite_condition: cdi
+        contexte_activite_pole_emploi: recherche_emploi
+        types_activite_en_recherche_emploi: concours_public
+        types_activite_condition: aucune_activite
         contrat_de_travail_duree: 0
         emploi_ou_formation_en_france: True
-        formation_validee_par_PoleEmploi: False
-        formation_financee_ou_cofinancee: False
+        formation_validee_par_PoleEmploi: True
+        formation_financee_ou_cofinancee: True
         contrat_de_travail_debut: '2021-01-08'
-        amob_date_demande: '2021-02-08'
+        amob_date_demande: '2021-01-15'
   output:
     amob_eligible: True
 #    amob_calcul: 156

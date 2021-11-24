@@ -231,8 +231,6 @@ class amob_activites_eligibles(Variable):
         en_reprise_emploi = contexte == ContexteActivitePoleEmploi.reprise_emploi
         en_recherche_emploi = contexte == ContexteActivitePoleEmploi.recherche_emploi
 
-        dates_demandes_amob_eligibles = individu('amob_calcul_condition_date_de_depot', period)
-
         # Activites en recherche d'emploi
         en_entretien_embauche = (activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.entretien_embauche) * en_recherche_emploi
 
@@ -259,15 +257,21 @@ class amob_activites_eligibles(Variable):
         return activites_eligibles
 
 
-class amob_calcul_condition_date_de_depot(Variable):
+class amob_calcul_condition_date_de_depot_formation_reprise(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    label = "Calcul de la condition de date de dépot pour l'aide à la mobilité de Pôle Emploi - AMOB"
+    label = "Calcul de la condition de date de dépot dans un contexte de formation ou de reprise d'emploi pour l'aide à la mobilité de Pôle Emploi - AMOB"
     reference = [
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
         ]
+    documentation = '''
+        Calcul de la condition de date de dépot dans un contexte de formation ou de reprise d'emploi :
+        La demande doit être faite au plus tard dans le mois (de date à date) suivant :
+            - la reprise d'emploi 
+            - l’entrée en formation ou en stage en entreprise lorsque celui est prévu dans le parcours de formation
+    '''
 
     def formula_2021_06_09(individu, period):
 
@@ -277,6 +281,34 @@ class amob_calcul_condition_date_de_depot(Variable):
         date_limite_eligibilite_contrat = min_((contrat_de_travail_debut_en_mois + 1) + (contrat_de_travail_debut - contrat_de_travail_debut_en_mois),
                                                (contrat_de_travail_debut_en_mois + 2) - np.timedelta64(1, 'D'))
 
+        amob_date_de_demande = individu("amob_date_demande", period)
+
+        return amob_date_de_demande <= date_limite_eligibilite_contrat
+
+
+class amob_calcul_condition_date_de_depot_recherche(Variable):
+    value_type = bool
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    label = "Calcul de la condition de date de dépot dans un contexte de recherche d'emploi pour l'aide à la mobilité de Pôle Emploi - AMOB"
+    reference = [
+        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+        ]
+    documentation = '''
+        Calcul de la condition de date de dépot dans un contexte de recherche d'emploi :
+        La demande doit être faite de préférence avant :
+            - l’entretien d’embauche, 
+            - la prestation d’accompagnement,
+            - la participation à un concours public,
+            - ou à un examen certifiant
+        et au plus tard dans un délai de 7 jours de date à date, après ceux-ci
+    '''
+
+    def formula_2021_06_09(individu, period, parameters):
+
+        contrat_de_travail_debut = individu('contrat_de_travail_debut', period)  # numpy.datetime64
+        date_limite_eligibilite_contrat = contrat_de_travail_debut + parameters(period).prestations.amob.delai_max
         amob_date_de_demande = individu("amob_date_demande", period)
 
         return amob_date_de_demande <= date_limite_eligibilite_contrat
@@ -295,12 +327,13 @@ class amob_contextes_eligibles(Variable):
     def formula_2021_06_09(individu, period):
 
         contexte = individu('contexte_activite_pole_emploi', period)
-        dates_demandes_amob_eligibles = individu('amob_calcul_condition_date_de_depot', period)
+        dates_demandes_amob_eligibles_formation_reprise = individu('amob_calcul_condition_date_de_depot_formation_reprise', period)
+        dates_demandes_amob_eligibles_recherche = individu('amob_calcul_condition_date_de_depot_recherche', period)
         en_recherche_emploi = contexte == ContexteActivitePoleEmploi.recherche_emploi
         en_reprise_emploi = contexte == ContexteActivitePoleEmploi.reprise_emploi
         en_formation = contexte == ContexteActivitePoleEmploi.formation
 
-        return en_recherche_emploi + ((en_reprise_emploi + en_formation) * dates_demandes_amob_eligibles )
+        return (en_recherche_emploi * dates_demandes_amob_eligibles_recherche) + ((en_reprise_emploi + en_formation) * dates_demandes_amob_eligibles_formation_reprise )
 
 
 class amob_eligible(Variable):
@@ -314,6 +347,8 @@ class amob_eligible(Variable):
         ]
     documentation = '''
         1- L'individu doit être dans un contexte de recherche d'emploi, reprise d'emploi ou d'entrée en formation
+            1.1 - Pour une formation ou une reprise d'emploi, la demande doit être faite au plus tard dans le mois suivant
+            1.2 - Pour une recherche d'emploi, la demande doit être faite avant l'entretien d'embauche ou au plus tard dans un délai de 7 jours
         2- L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé", 6, 7 ou 8
         3- L'individu est non indemnisé ou son allocation est inférieure ou égale à l'ARE minimale
         4- L'emploi ou la formation se situe en France

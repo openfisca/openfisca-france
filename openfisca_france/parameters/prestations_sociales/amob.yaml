@@ -24,3 +24,6 @@ distance_minimum:
   hors_metropole:
     2021-06-08:
       value: 20
+delai_max :
+  2021-06-08:
+    value: 7
