@@ -187,7 +187,7 @@
 
 
 - name: Test 10 - Calcul AMOB en contexte recherche d'emploi avec un demande au 7ème jour
-  period: 2021-11
+  period: 2021-12
   input:
     menage:
       personne_de_reference: Camille
@@ -212,7 +212,15 @@
         formation_financee_ou_cofinancee: True
         contrat_de_travail_debut: '2021-01-08'
         amob_date_demande: '2021-01-15'
+        amob:
+          2021-10: 1000
+          2021-07: 500
+          2021-01: 250
   output:
     amob_eligible: True
-#    amob_calcul: 156
-#    amob_plafond_disponible: 4844
+    amob:
+      2021-12 : 148.2
+    amob_plafond_disponible:
+      2024-01: 5000
+      2021-12: 3250
+      2021-08: 4750

@@ -396,7 +396,7 @@ class amob_eligible(Variable):
         return eligibilite_amob
 
 
-class amob_calcul(Variable):
+class amob(Variable):
     value_type = float
     entity = Individu
     label = "Calcul du montant de l'aide à la mobilité - AMOB"
@@ -438,8 +438,11 @@ class amob_plafond_disponible(Variable):
 
         annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
         montant_max = parameters(period).prestations.amob.montants.maximum
-        montant_deja_percu = individu('amob_calcul', annee_glissante, options=[ADD])
+        montant_deja_percu = individu('amob', annee_glissante, options=[ADD])
+
+        print('montant_deja_percu', montant_deja_percu)
 
         montant_plafonne = montant_max - montant_deja_percu
+        print('montant_plafonne', montant_plafonne)
 
         return montant_plafonne
