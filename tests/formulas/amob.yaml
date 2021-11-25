@@ -224,3 +224,90 @@
       2024-01: 5000
       2021-12: 3250
       2021-08: 4750
+
+
+- name: Test 11 - Calcul AMOB et son plafond
+  period: 2021-11
+  input:
+    menage:
+      personne_de_reference: Camille
+      residence: martinique
+    individus:
+      Camille:
+        age: 29
+        distance_aller_retour_activite_domicile: 21
+        amob_duree_trajet: 120
+        nuitees: 3
+        repas: 9
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        allocation_retour_emploi: 14.77
+        contexte_activite_pole_emploi: recherche_emploi
+        types_activite_en_recherche_emploi: concours_public
+        types_activite_condition: aucune_activite
+        contrat_de_travail_duree: 0
+        emploi_ou_formation_en_france: True
+        formation_validee_par_PoleEmploi: True
+        formation_financee_ou_cofinancee: True
+        contrat_de_travail_debut: '2021-01-08'
+        amob_date_demande: '2021-01-15'
+        amob:
+          2021-10: 100
+          2021-09: 100
+          2021-08: 100
+          2021-07: 100
+          2021-06: 100
+          2021-05: 100
+          2021-04: 100
+          2021-03: 100
+          2021-02: 100
+          2021-01: 100
+          2020-12: 100
+          2020-11: 100
+  output:
+    amob_eligible: True
+    amob:
+      2021-11 : 148.2
+    amob_plafond_disponible:
+      2021-11: 3900
+      2021-12: 3800
+      2022-01: 3700
+
+- name: Test 12 - Calcul AMOB montant (148.2€) -> réel (48.2€) car aide restante de 100€ avec 4900€ déjà touchés (Plafond Max = 5000€ sur une année glissante)
+  period: 2021-12
+  input:
+    menage:
+      personne_de_reference: Camille
+      residence: martinique
+    individus:
+      Camille:
+        age: 29
+        distance_aller_retour_activite_domicile: 21
+        amob_duree_trajet: 120
+        nuitees: 3
+        repas: 9
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        allocation_retour_emploi: 14.77
+        contexte_activite_pole_emploi: recherche_emploi
+        types_activite_en_recherche_emploi: concours_public
+        types_activite_condition: aucune_activite
+        contrat_de_travail_duree: 0
+        emploi_ou_formation_en_france: True
+        formation_validee_par_PoleEmploi: True
+        formation_financee_ou_cofinancee: True
+        contrat_de_travail_debut: '2021-01-08'
+        amob_date_demande: '2021-01-15'
+        amob:
+          2021-10: 900
+          2021-07: 2000
+          2021-01: 2000
+  output:
+    amob_eligible: True
+    amob:
+      2021-12 : 100
+    amob_montants_plafonds_disponibles:
+      2021-12: 100
+      2021-08: 1000 # il me dit 3000€ de dispo

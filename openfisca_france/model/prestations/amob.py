@@ -352,45 +352,36 @@ class amob_eligible(Variable):
         2- L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé", 6, 7 ou 8
         3- L'individu est non indemnisé ou son allocation est inférieure ou égale à l'ARE minimale
         4- L'emploi ou la formation se situe en France
-        5- L'individu ne doit pas avoir dépassé son plafond de 5000€ d'aide annuel
-        6-  
+        5-  
             6.1 - Son "activité" doit être à plus de 60 km aller-retour de son lieu de résidence
             6.2 - Ou 20 km lorsque l'individu réside en dehors de la métropole
             6.3 - Ou 2 heures de trajet aller-retour
-        7- La formation doit être validée par Pôle Emploi
-
+        6- La formation doit être validée par Pôle Emploi
     '''
 
     def formula_2021_06_09(individu, period, parameters):
 
         #  1
         contextes_eligibles = individu('amob_contextes_eligibles', period)
-
-        #  2
         activites_eligibles = individu('amob_activites_eligibles', period)
 
-        #  3
+        #  2
         categories_eligibles = individu('amob_categories_eligibles', period)
 
-        #  4
+        #  3
         montants_allocation_eligibles = individu('amob_montants_allocation_eligibles', period)
 
-        #  5
+        #  4
         lieux_activite_eligibles = individu('emploi_ou_formation_en_france', period)
 
         #  6
-        montant_eligible = individu('amob_plafond_disponible', period) >= 0
-
-        #  7
         distances_et_durees_aller_retour_eligibles = individu('amob_distances_et_durees_aller_retour_eligibles', period)
-
 
         eligibilite_amob = (contextes_eligibles
                        * activites_eligibles
                        * categories_eligibles
                        * montants_allocation_eligibles
                        * lieux_activite_eligibles
-                       * montant_eligible
                        * distances_et_durees_aller_retour_eligibles)
 
         return eligibilite_amob
@@ -409,6 +400,7 @@ class amob(Variable):
     def formula_2021_06_09(individu, period, parameters):
 
         eligibilite_amob = individu('amob_eligible', period)
+        plafond_amob_disponibles = individu('amob_montants_plafonds_disponibles', period)
         distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
         nb_nuitees = individu('nuitees', period)
         nb_repas = individu('repas', period)
@@ -419,12 +411,17 @@ class amob(Variable):
         montants_frais_hebergement =  montant.hebergement * nb_nuitees
         montants_frais_repas = montant.repas * nb_repas
 
-        montants = montants_frais_deplacement + montants_frais_hebergement + montants_frais_repas
+        montants_calcules = montants_frais_deplacement + montants_frais_hebergement + montants_frais_repas
 
-        return eligibilite_amob * montants
+        plafonds_depasses = (plafond_amob_disponibles - montants_calcules) < 0
+        montants_plafonds_depasses =  np.fabs((plafond_amob_disponibles - montants_calcules) * plafonds_depasses)
+
+        montants_autorises = montants_calcules - montants_plafonds_depasses
+
+        return eligibilite_amob * montants_autorises
 
 
-class amob_plafond_disponible(Variable):
+class amob_montants_plafonds_disponibles(Variable):
     value_type = float
     entity = Individu
     label = "Montant disponible plafonné à 5000€ pour l'aide à la mobilité - AMOB"
@@ -442,7 +439,6 @@ class amob_plafond_disponible(Variable):
 
         print('montant_deja_percu', montant_deja_percu)
 
-        montant_plafonne = montant_max - montant_deja_percu
-        print('montant_plafonne', montant_plafonne)
+        montant_disponible = montant_max - montant_deja_percu
 
-        return montant_plafonne
+        return montant_disponible
