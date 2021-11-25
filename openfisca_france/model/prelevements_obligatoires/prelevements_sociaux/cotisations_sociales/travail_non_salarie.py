@@ -114,6 +114,7 @@ class formation_artisan_commercant(Variable):
         commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
         return -bareme_artisan.calc(assiette * artisan) - bareme_commercant.calc(assiette * commercant)
 
+
 class maladie_maternite_artisan_commercant_taux(Variable):
     value_type = float
     entity = Individu
@@ -126,24 +127,17 @@ class maladie_maternite_artisan_commercant_taux(Variable):
         artisan = (
             (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
             + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) 
+            )
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
             + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
             ) * individu('rpns_imposables', period)
         assiette_pss = assiette / plafond_securite_sociale_annuel
         taux = (
-				0.0085 
-					+ ((0.041 - 0.0085) * min_(
-						max_(assiette_pss, 0),
-						0.4)
-						/ 0.4)
-					+ ((0.072 - 0.041) * min_(
-						max_((assiette_pss) - 0.4, 0),
-						0.7)
-						/ (1.1 - 0.4))
-					- (0.007 * (assiette_pss > 5) * ((assiette_pss - 5) / assiette_pss))
-                    )
+            0.0085 + ((0.041 - 0.0085) * min_(max_(assiette_pss, 0), 0.4) / 0.4)
+            + ((0.072 - 0.041) * min_(max_((assiette_pss) - 0.4, 0), 0.7) / (1.1 - 0.4))
+            - (0.007 * (assiette_pss > 5) * ((assiette_pss - 5) / assiette_pss))
+            )
 
         return artisan * where(assiette_pss != 0, taux,0)
 
@@ -160,17 +154,10 @@ class maladie_maternite_artisan_commercant_taux(Variable):
             ) * individu('rpns_imposables', period)
         assiette_pss = assiette / plafond_securite_sociale_annuel
         taux = (
-				0.0085 
-					+ ((0.041 - 0.0085) * min_(
-						max_(assiette_pss, 0),
-						0.4)
-						/ 0.4)
-					+ ((0.072 - 0.041) * min_(
-						max_((assiette_pss) - 0.4, 0),
-						0.7)
-						/ (1.1 - 0.4))
-					- (0.007 * (assiette_pss > 5))
-                    )
+            0.0085 + ((0.041 - 0.0085) * min_(max_(assiette_pss, 0), 0.4) / 0.4)
+			+ ((0.072 - 0.041) * min_(max_((assiette_pss) - 0.4, 0), 0.7) / (1.1 - 0.4))
+			- (0.007 * (assiette_pss > 5))
+            )
 
         return artisan * taux
 
@@ -185,16 +172,7 @@ class maladie_maternite_artisan_commercant_taux(Variable):
             (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
             + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
             ) * individu('rpns_imposables', period)
-        taux = 	(
-            0.03 + (0.065 - 0.03) * min_(
-                max_(
-                    assiette / plafond_securite_sociale_annuel,
-                    0
-                    ),
-                0.7
-                )
-            / 0.7
-            ) + 0.007
+        taux = 	(0.03 + (0.065 - 0.03) * min_(max_(assiette / plafond_securite_sociale_annuel, 0), 0.7) / 0.7) + 0.007
 
         return artisan * taux
 
@@ -419,7 +397,6 @@ class maladie_maternite_profession_liberale(Variable):
             )
 
     def formula_2012_12_31(individu, period, parameters):
-        plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
             (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)

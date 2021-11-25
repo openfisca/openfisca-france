@@ -23,7 +23,7 @@
     nbptr: 1.0
     rfr: 50000.0
     irpp: 0.0
-    prelevements_sociaux_revenus_capital: -8250.0
+    prelevements_sociaux_revenus_capital: -8600.0
 
 - name: Cas d'un foyer fiscal sujet à la fois au PFU sur plus-values et à des taxations hors barème et hors PFU sur plus-values
   period: 2019
@@ -50,7 +50,7 @@
     nbptr: 1.0
     rfr: 60000.0
     irpp: -10000.0
-    prelevements_sociaux_revenus_capital: -9900.0
+    prelevements_sociaux_revenus_capital: -10320.0
 
 - name: Cas d'imposition hors barème de plus-values non imposable au PFU
   period: 2018
@@ -77,4 +77,4 @@
     nbptr: 1.0
     rfr: 50000.0
     irpp: -12800.0
-    prelevements_sociaux_revenus_capital: -8250.0
+    prelevements_sociaux_revenus_capital: -8600.0

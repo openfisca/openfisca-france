@@ -174,15 +174,14 @@ class paje_base(Variable):
 
             return plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif)
 
-        def plafond_apres_ajustement_apres_2018(plafond_de_base,maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif):
+        def plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif):
             plafond = (
-               plafond_de_base
+                plafond_de_base
                 + min_(nombre_enfants, 2) * maj_plafond_2_premiers_enfants
                 + max_(nombre_enfants - 2, 0) * maj_plafond_par_enfant_sup
                 + (couple_biactif + parent_isole) * maj_plafond_seul_biactif
                 )
             return plafond
-
 
         a_un_enfant_eligible = famille.any(famille.members('enfant_eligible_paje', period))
         date_plus_jeune = famille.reduce(famille.members('date_naissance', period), maximum, datetime64('1066-01-01'))
@@ -203,7 +202,7 @@ class paje_base(Variable):
         montant_taux_plein = select(
             [sujet_a_reforme_2018, sujet_a_reforme_2014, ne_avant_avril_2014],
             [montant_taux_plein_apres_2018, montant_taux_plein_2014_2018, montant_taux_plein_avant_2014]
-        )
+            )
 
         ressources = famille('prestations_familiales_base_ressources', period)
         montant_taux_partiel = montant_taux_plein / 2
@@ -264,7 +263,7 @@ class paje_naissance(Variable):
         diff_mois_naissance_periode = (date_naissance_i.astype('datetime64[M]') - datetime64(period.start, 'M'))
         nb_enfants_eligible = famille.sum(diff_mois_naissance_periode.astype('int') == 0, role = Famille.ENFANT)
 
-        nbenf = af_nbenf # + nb_enfants_eligible  # ici pas besoin d'ajouter, le/les enfants sont déjà nés
+        nbenf = af_nbenf  # + nb_enfants_eligible  # ici pas besoin d'ajouter, le/les enfants sont déjà nés
 
         taux_plafond = (
             (nbenf > 0)
@@ -309,11 +308,12 @@ class paje_naissance(Variable):
         diff_mois_naissance_periode = (date_naissance_i.astype('datetime64[M]') - datetime64(period.start, 'M'))
         nb_enfants_eligible = famille.sum(diff_mois_naissance_periode.astype('int') == 0, role = Famille.ENFANT)
 
-        nbenf = af_nbenf # + nb_enfants_eligible  # ici pas besoin d'ajouter, le/les enfants sont déjà nés
+        nbenf = af_nbenf  # + nb_enfants_eligible  # ici pas besoin d'ajouter, le/les enfants sont déjà nés
 
         majoration_isole_biactif = isole | biactivite
 
-        plafond_de_ressources = ( P.paje.base.apres_2014.taux_partiel.plaf
+        plafond_de_ressources = (
+            P.paje.base.apres_2014.taux_partiel.plaf
             + P.paje.base.apres_2014.taux_partiel.plaf * nbenf * P.paje.base.apres_2014.plaf_tx_par_enf
             + P.paje.base.apres_2014.taux_partiel.plaf_maj * majoration_isole_biactif
             )

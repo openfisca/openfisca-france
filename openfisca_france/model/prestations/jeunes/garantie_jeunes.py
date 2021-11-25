@@ -9,7 +9,7 @@ class garantie_jeunes_neet(Variable):
     set_input = set_input_divide_by_period
     reference = ['https://fr.wikipedia.org/wiki/NEET']
 
-    def formula(individu, period):
+    def formula_2017_01_01(individu, period):
         not_in_employment = individu('salaire_net', period) == 0
 
         activite = individu('activite', period)
@@ -33,7 +33,7 @@ class garantie_jeunes_montant(Variable):
         "https://www.service-public.fr/particuliers/vosdroits/F32700"
         ]
 
-    def formula(individu, period, parameters):
+    def formula_2017_01_01(individu, period, parameters):
         params = parameters(period).prestations.minima_sociaux.rsa
         montant_base = params.montant_de_base_du_rsa
         taux_1_personne = params.forfait_logement.taux_1_personne
@@ -73,7 +73,7 @@ class garantie_jeunes_eligibilite_age(Variable):
     label = "Éligibilité en fonction de l'âge à la Garantie Jeune"
     set_input = set_input_dispatch_by_period
 
-    def formula(individu, period, parameters):
+    def formula_2017_01_01(individu, period, parameters):
         params_age = parameters(period).prestations.garantie_jeunes.critere_age.age
         age = individu('age', period)
 
@@ -87,7 +87,7 @@ class garantie_jeunes_eligibilite_ressources(Variable):
     label = "Éligibilité en fonction du niveau de ressources à la Garantie Jeune"
     set_input = set_input_dispatch_by_period
 
-    def formula(individu, period, parameters):
+    def formula_2017_01_01(individu, period, parameters):
         three_previous_months = period.last_3_months
         params = parameters(period).prestations.minima_sociaux.rsa
         montant_base = params.montant_de_base_du_rsa
@@ -109,14 +109,14 @@ class garantie_jeunes_eligibilite_ressources(Variable):
             'pensions_invalidite',
             'aah',
             'remuneration_apprenti',
-            'chomage_net', # A éclaircir : cette ressource n'est pas mentionné dans la liste des ressources figurant dans la loi, mais plusieurs sites mentionnent leur prise en compte (dont service-public.fr, site de pole emploi)
+            'chomage_net',  # A éclaircir : cette ressource n'est pas mentionné dans la liste des ressources figurant dans la loi, mais plusieurs sites mentionnent leur prise en compte (dont service-public.fr, site de pole emploi)
             ]
 
         # Calcul sur les trois derniers mois (normalement c'est le niveau de ressources moyen le plus faible entre les 3 derniers mois et les 6 derniers mois)
         niveau_ressources_individuelles_3_mois = sum(
             individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_individuelles
             )
-        
+
         rsa = individu.famille('rsa', three_previous_months, options = [ADD])
         ppa = individu.famille('ppa', three_previous_months, options = [ADD])
         rsa_ppa_demandeurs = (
@@ -128,6 +128,7 @@ class garantie_jeunes_eligibilite_ressources(Variable):
 
         return (niveau_ressources <= plafond_condition_ressources)
 
+
 class garantie_jeunes(Variable):
     value_type = float
     entity = Individu
@@ -136,9 +137,9 @@ class garantie_jeunes(Variable):
     label = "Montant de la Garantie Jeune"
     reference = ["https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/", "https://www.service-public.fr/particuliers/vosdroits/F32700"]
 
-    def formula(individu, period, parameters):
+    def formula_2017_01_01(individu, period, parameters):
         montant = individu('garantie_jeunes_montant', period)
         neet = individu('garantie_jeunes_neet', period)
         age_ok = individu('garantie_jeunes_eligibilite_age', period)
-        garantie_jeunes_eligibilite_ressources = individu('garantie_jeunes_eligibilite_ressources',period)
+        garantie_jeunes_eligibilite_ressources = individu('garantie_jeunes_eligibilite_ressources', period)
         return montant * neet * age_ok * garantie_jeunes_eligibilite_ressources

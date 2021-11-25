@@ -236,6 +236,7 @@ class salaire_imposable(Variable):
             + rev_microsocial_declarant1
             + indemnite_fin_contrat
             + complementaire_sante_salarie
+            + indemnite_compensatrice_csg
             )
 
 
