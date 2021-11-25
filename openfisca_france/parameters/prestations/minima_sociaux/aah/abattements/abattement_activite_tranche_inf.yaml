@@ -1,0 +1,5 @@
+description: Taux d'abattement des revenus d'activité du bénéficiaire pour la tranche de revenus inférieure à 30% du SMIC
+unit: /1
+values:
+  2010-09-01:
+    value: 0.8
