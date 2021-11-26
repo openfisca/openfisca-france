@@ -31,7 +31,11 @@ class aah_date_debut_hospitalisation(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-
+# TODO: - Prendre en compte les abattements temporaires sur les ressources en cas de changement de situation
+#       - La formule du calcul de la base de ressource est celle en vigueur à partir de 2011, avant 2011:
+#           - les abattements sur les revenus d'activité de l'allocataire diffèrent (art. D821-9 du CSS)
+#           - l'abattement pour les personnes invalides (défini dans l'art. 157 du CGI) sur le revenu net global est pris en compte (art. R821-4 du CSS)
+#           - l'évaluation de tous les revenus est annuelle (pas d'évaluation trimestrielle avant 2011)
 class aah_base_ressources(Variable):
     value_type = float
     label = "Base ressources de l'allocation adulte handicapé"
@@ -39,13 +43,7 @@ class aah_base_ressources(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-# TODO: - Prendre en compte les abattements temporaires sur les ressources en cas de changement de situation
-#       - La formule du calcul de la base de ressource est celle en vigueur à partir de 2011, avant 2011:
-#           - les abattements sur les revenus d'activité de l'allocataire diffèrent (art. D821-9 du CSS)
-#           - l'abattement pour les personnes invalides (défini dans l'art. 157 du CGI) sur le revenu net global est pris en compte (art. R821-4 du CSS)
-#           - l'évaluation de tous les revenus est annuelle (pas d'évaluation trimestrielle avant 2011)
-
-    def formula(individu, period, parameters): # Valide à compter du 01/01/2011
+    def formula(individu, period, parameters):
         law = parameters(period)
         aah = law.prestations.minima_sociaux.aah.abattements
 
