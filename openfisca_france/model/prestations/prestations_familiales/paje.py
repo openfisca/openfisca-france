@@ -257,13 +257,11 @@ class paje_naissance(Variable):
         bmaf = P.af.bmaf
         prime_naissance = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
 
-        date_naissance_i = famille.members('date_naissance', period)
+        # Versée au 7ème mois de grossesse
+        diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
+        nb_enfants_eligibles = famille.sum(diff_mois_naissance_periode_i.astype('int') == 2, role = Famille.ENFANT)
 
-        # A CHANGER: Versée au 7ème mois de grossesse, non à la naissance
-        diff_mois_naissance_periode = (date_naissance_i.astype('datetime64[M]') - datetime64(period.start, 'M'))
-        nb_enfants_eligible = famille.sum(diff_mois_naissance_periode.astype('int') == 0, role = Famille.ENFANT)
-
-        nbenf = af_nbenf  # + nb_enfants_eligible  # ici pas besoin d'ajouter, le/les enfants sont déjà nés
+        nbenf = af_nbenf + nb_enfants_eligibles  # Ajouter les enfants à naître
 
         taux_plafond = (
             (nbenf > 0)
@@ -283,7 +281,7 @@ class paje_naissance(Variable):
 
         eligible_prime_naissance = (base_ressources <= plafond_de_ressources)
 
-        return prime_naissance * eligible_prime_naissance * nb_enfants_eligible
+        return prime_naissance * eligible_prime_naissance * nb_enfants_eligibles
 
     def formula_2014_04_01(famille, period, parameters):
         '''
@@ -302,13 +300,11 @@ class paje_naissance(Variable):
         bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations.prestations_familiales.af.bmaf
         prime_naissance = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
 
-        date_naissance_i = famille.members('date_naissance', period)
+        # Versée au 7ème mois de grossesse
+        diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
+        nb_enfants_eligibles = famille.sum(diff_mois_naissance_periode_i.astype('int') == 2, role = Famille.ENFANT)
 
-        # A CHANGER: Versée au 7ème mois de grossesse, non à la naissance
-        diff_mois_naissance_periode = (date_naissance_i.astype('datetime64[M]') - datetime64(period.start, 'M'))
-        nb_enfants_eligible = famille.sum(diff_mois_naissance_periode.astype('int') == 0, role = Famille.ENFANT)
-
-        nbenf = af_nbenf  # + nb_enfants_eligible  # ici pas besoin d'ajouter, le/les enfants sont déjà nés
+        nbenf = af_nbenf + nb_enfants_eligibles  # Ajouter les enfants à naître
 
         majoration_isole_biactif = isole | biactivite
 
@@ -320,7 +316,7 @@ class paje_naissance(Variable):
 
         eligible_prime_naissance = (base_ressources <= plafond_de_ressources)
 
-        return prime_naissance * eligible_prime_naissance * nb_enfants_eligible
+        return prime_naissance * eligible_prime_naissance * nb_enfants_eligibles
 
     def formula_2004_01_01(famille, period, parameters):
         '''
@@ -337,11 +333,11 @@ class paje_naissance(Variable):
         bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations.prestations_familiales.af.bmaf
         nais_prime = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
 
-        age_en_mois_i = famille.members('age_en_mois', period)
-        # Versée au 7e mois de grossesse dans l'année donc les enfants concernés sont les enfants qui ont -2 mois
-        nb_enfants_7e_mois_grossese = famille.sum(age_en_mois_i == -2, role = Famille.ENFANT)
+        # Versée au 7ème mois de grossesse
+        diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
+        nb_enfants_eligibles = famille.sum(diff_mois_naissance_periode_i.astype('int') == 2, role = Famille.ENFANT)
 
-        nbenf = af_nbenf + nb_enfants_7e_mois_grossese  # On ajoute l'enfant à  naître;
+        nbenf = af_nbenf + nb_enfants_eligibles  # Ajouter le/les enfants à naître
 
         plaf_tx = (
             (nbenf > 0)
@@ -361,7 +357,7 @@ class paje_naissance(Variable):
 
         elig = (base_ressources <= plaf)
 
-        return nais_prime * elig * nb_enfants_7e_mois_grossese
+        return nais_prime * elig * nb_enfants_eligibles
 
 
 class paje_prepare(Variable):
