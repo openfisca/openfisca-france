@@ -39,19 +39,26 @@ class aah_base_ressources(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
+# TODO: - Prendre en compte les abattements temporaires sur les ressources en cas de changement de situation
+#       - La formule du calcul de la base de ressource est celle en vigueur à partir de 2011, avant 2011:
+#           - les abattements sur les revenus d'activité de l'allocataire diffèrent (art. D821-9 du CSS)
+#           - l'abattement pour les personnes invalides (défini dans l'art. 157 du CGI) sur le revenu net global est pris en compte (art. R821-4 du CSS)
+#           - l'évaluation de tous les revenus est annuelle (pas d'évaluation trimestrielle avant 2011)
+
+    def formula(individu, period, parameters): # Valide à compter du 01/01/2011
         law = parameters(period)
+        aah = law.prestations.minima_sociaux.aah.abattements
 
         en_activite = individu('salaire_imposable', period) > 0
 
         def assiette_conjoint(revenus_conjoint):
-            return 0.9 * (1 - 0.2) * revenus_conjoint
+            return (1 - law.impot_revenu.tspr.abatpro.taux) * (1 - aah.abattement_conjoint) * revenus_conjoint
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic_h_b * law.marche_travail.salaire_minimum.nb_heure_travail_mensuel
-            tranche1 = min_(0.3 * smic_brut_annuel, revenus_demandeur)
+            tranche1 = min_(aah.tranche_smic * smic_brut_annuel, revenus_demandeur)
             tranche2 = revenus_demandeur - tranche1
-            return (1 - 0.8) * tranche1 + (1 - 0.4) * tranche2
+            return (1 - aah.abattement_activite_tranche_inf) * tranche1 + (1 - aah.abattement_activite_tranche_sup) * tranche2
 
         def base_ressource_eval_trim():
             three_previous_months = period.first_month.start.period('month', 3).offset(-3)
@@ -259,7 +266,7 @@ class aah_eligible(Variable):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         eligible_aah = (
-            ((taux_incapacite >= law.taux_incapacite) + (taux_incapacite >= 0.5) * rsdae)
+            ((taux_incapacite >= law.taux_incapacite) + (taux_incapacite >= law.taux_incapacite_rsdae) * rsdae)
             * (age <= law.age_legal_retraite)
             * ((age >= law.age_minimal) + ((age >= 16) * (autonomie_financiere)))
             )
