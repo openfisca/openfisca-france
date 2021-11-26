@@ -400,7 +400,7 @@
 
 - name: PAJE - PPN - Cas N°1
   description: Montant PAJE
-  period: 2018-06
+  period: 2018-04
   absolute_error_margin: 0.03
   input:
     famille:
@@ -429,12 +429,12 @@
           2017: 15000
           2018: 15000
       enfant1:
-        date_naissance: 2018-04-10
+        date_naissance: 2018-06-10
   output:
     paje: 941.66 / (1 - 0.005) + 0
 - name: PAJE - PPN - Cas N°2
   description: Montant PAJE
-  period: 2018-06
+  period: 2018-04
   absolute_error_margin: 0.03
   input:
     famille:
@@ -463,14 +463,14 @@
           2017: 15000
           2018: 15000
       enfant1:
-        date_naissance: 2018-04-10
+        date_naissance: 2018-06-10
       enfant2:
-        date_naissance: 2018-04-10
+        date_naissance: 2018-06-10
   output:
     paje: 1883.32  / (1 - 0.005) + 0
 - name: PAJE - PPN - Cas N°3
   description: Montant PAJE
-  period: 2018-06
+  period: 2018-04
   absolute_error_margin: 0.03
   input:
     famille:
@@ -499,16 +499,16 @@
           2017: 15000
           2018: 15000
       enfant1:
-        date_naissance: 2018-04-10
+        date_naissance: 2018-06-10
       enfant2:
-        date_naissance: 2018-04-10
+        date_naissance: 2018-06-10
       enfant3:
-        date_naissance: 2018-04-10
+        date_naissance: 2018-06-10
   output:
     paje: 2824.98 / ( 1 - 0.005 ) + 0
 - name: PAJE - PPN Non Passant - Cas N°1
   description: Montant PAJE
-  period: 2018-06
+  period: 2018-04
   absolute_error_margin: 0.02
   input:
     famille:
@@ -537,13 +537,13 @@
           2017: 20000
           2018: 20000
       enfant1:
-        date_naissance: 2018-04-10
+        date_naissance: 2018-06-10
   output:
     paje: 0
 
 - name: PAJE - PPN Non Passant - Cas N°2
   description: Montant PAJE
-  period: 2018-06
+  period: 2018-04
   absolute_error_margin: 0.02
   input:
     famille:
@@ -574,6 +574,6 @@
       enfant1:
         date_naissance: 2016-03-10
       enfant2:
-        date_naissance: 2018-04-10
+        date_naissance: 2018-06-10
   output:
     paje: 0
