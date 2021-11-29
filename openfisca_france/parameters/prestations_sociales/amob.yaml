@@ -27,3 +27,7 @@ distance_minimum:
 delai_max :
   2021-06-08:
     value: 7
+duree_de_formation_minimum:
+  values:
+    2014-01-20:
+      value: 40
