@@ -153,15 +153,16 @@ class aide_mobilite_eligible(Variable):
         1- L'individu doit être dans un contexte de recherche d'emploi, reprise d'emploi ou d'entrée en formation
             1.1 - Pour une formation ou une reprise d'emploi, la demande doit être faite au plus tard dans le mois suivant
             1.2 - Pour une recherche d'emploi, la demande doit être faite avant l'entretien d'embauche ou au plus tard dans un délai de 7 jours
-        2- L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé", 6, 7 ou 8
-        3- L'individu est non indemnisé ou son allocation est inférieure ou égale à l'ARE minimale
-        4- L'emploi ou la formation se situe en France
-        5-  
-            5.1 - Son "activité" doit être à plus de 60 km aller-retour de son lieu de résidence
-            5.2 - Ou 20 km lorsque l'individu réside en dehors de la métropole
-            5.3 - Ou 2 heures de trajet aller-retour
-        6- La formation doit être validée par Pôle Emploi
-            6.1 - Ne doit pas concerncer :
+        2- Sa reprise d'emploi ou son entretien d'emploi, cela doit concerner un cdi, cdd ou ctt de plus de 3 mois ou une formation de plus de 40h validée et financée
+        3- L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé", 6, 7 ou 8
+        4- L'individu est non indemnisé ou son allocation est inférieure ou égale à l'ARE minimale
+        5- L'emploi ou la formation se situe en France
+        6-
+            6.1 - Son "activité" doit être à plus de 60 km aller-retour de son lieu de résidence
+            6.2 - Ou 20 km lorsque l'individu réside en dehors de la métropole
+            6.3 - Ou 2 heures de trajet aller-retour
+        7- La formation doit être validée par Pôle Emploi
+            7.1 - Ne doit pas concerncer :
                     - le bilan de compétences
                     - le permis de conduire B (code et/ou conduite)
                     - l’accompagnement à la création d’entreprise
@@ -189,8 +190,9 @@ class aide_mobilite_eligible(Variable):
         en_formation = contexte == ContexteActivitePoleEmploi.formation
 
         contextes_eligibles = (en_recherche_emploi * dates_demandes_amob_eligibles_recherche) \
-                              + ((en_reprise_emploi + en_formation) * dates_demandes_amob_eligibles_formation_reprise)
+            + ((en_reprise_emploi + en_formation) * dates_demandes_amob_eligibles_formation_reprise)
 
+        #  2
         activite_en_recherche_emploi = individu('types_activite_en_recherche_emploi', period)
         reprises_emploi_types_activites = individu('types_contrat', period)
         formation_validee = individu('formation_validee_par_PoleEmploi', period)
@@ -200,8 +202,8 @@ class aide_mobilite_eligible(Variable):
         en_entretien_embauche = (activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.entretien_embauche) * en_recherche_emploi
 
         activites_en_recherche_emploi_eligibles = not_((activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.entretien_embauche)
-                                                     + (activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.indetermine)) \
-                                                     * en_recherche_emploi
+            + (activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.indetermine)) \
+            * en_recherche_emploi
 
         reprises_types_activites_formation = reprises_emploi_types_activites == TypesContrat.formation
         reprises_types_activites_cdi = reprises_emploi_types_activites == TypesContrat.cdi
@@ -226,7 +228,7 @@ class aide_mobilite_eligible(Variable):
 
         activites_eligibles = (types_et_duree_activite_eligibles + activites_en_recherche_emploi_eligibles)
 
-        #  2
+        #  4
         pe_categorie_demandeur_emploi = individu('pole_emploi_categorie_demandeur_emploi', period)
 
         stagiaire_formation_professionnelle = individu('stagiaire', period)
@@ -246,7 +248,7 @@ class aide_mobilite_eligible(Variable):
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_7)
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_8))
 
-        #  3
+        #  5
         epsilon = 0.0001
         lieu_de_residence = individu.menage('residence', period)
         mayotte = lieu_de_residence == TypesLieuResidence.mayotte
@@ -264,10 +266,10 @@ class aide_mobilite_eligible(Variable):
 
         montants_allocation_eligibles = are_individu_inferieure_are_min + are_individu_egale_are_min
 
-        #  4
+        #  6
         lieux_activite_eligibles = individu('emploi_ou_formation_en_france', period)
 
-        #  6
+        #  7
         temps_de_trajet = individu('aide_mobilite_duree_trajet', period)
         distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
 
@@ -317,17 +319,15 @@ class aide_mobilite(Variable):
         montant = parameters(period).prestations.amob.montants
 
         montants_frais_deplacement = montant.deplacement * distance_aller_retour
-        montants_frais_hebergement =  montant.hebergement * nb_nuitees
+        montants_frais_hebergement = montant.hebergement * nb_nuitees
         montants_frais_repas = montant.repas * nb_repas
 
         montants_calcules = montants_frais_deplacement + montants_frais_hebergement + montants_frais_repas
-
         plafonds_depasses = (plafond_amob_disponibles - montants_calcules) < 0
-        montants_apres_depassement_plafond =  np.fabs((plafond_amob_disponibles - montants_calcules) * plafonds_depasses)
+        montants_depassement_plafond = np.fabs((plafond_amob_disponibles - montants_calcules) * plafonds_depasses)
+        montants_autorises = montants_calcules - montants_depassement_plafond
 
-        montants_autorises = montants_calcules - montants_apres_depassement_plafond
-
-        return eligibilite_amob * montants_autorises
+        return montants_autorises * eligibilite_amob
 
 
 class aide_mobilite_montants_plafonds_disponibles(Variable):
@@ -342,10 +342,8 @@ class aide_mobilite_montants_plafonds_disponibles(Variable):
 
     def formula_2021_06_09(individu, period, parameters):
 
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
-        print('annee_glissante : ', annee_glissante)
+        annee_glissante = period.start.period('year').offset(-1)
         montant_max = parameters(period).prestations.amob.montants.maximum
         montant_deja_percu = individu('aide_mobilite', annee_glissante, options=[ADD])
-        print('montant_deja_percu : ', montant_deja_percu)
-        print('plafond_disponible : ', montant_max - montant_deja_percu)
+
         return montant_max - montant_deja_percu

@@ -1,232 +1,131 @@
-- name: Test 01 - Vérifie le calcul de l'AMOB pour un individu avec une allocation < ARE min hors Mayotte
-  period: 2022-01
-  input:
-    menage:
-      personne_de_reference: Camille
-      residence_mayotte: False
-    individus:
-      Camille:
-        age: 29
-        distance_aller_retour_activite_domicile: 60
-        nuitees: 3
-        repas: 9
-        pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
-        allocation_retour_emploi: 29.55
-  output:
-    amob_eligible: True
-    amob: 156
-
-
-- name: Test 02 - Vérifie le calcul de l'AMOB pour un individu avec une allocation = ARE min hors Mayotte
-  period: 2022-01
-  input:
-    menage:
-      personne_de_reference: Camille
-      residence_mayotte: False
-    individus:
-      Camille:
-        age: 29
-        distance_aller_retour_activite_domicile: 60
-        nuitees: 3
-        repas: 9
-        pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
-        allocation_retour_emploi: 29.56
-  output:
-    amob_eligible: True
-    amob: 156
-
-
-- name: Test 03 - Vérifie le calcul de l'AMOB pour un individu avec une allocation > ARE min hors Mayotte
-  period: 2022-01
-  input:
-    menage:
-      personne_de_reference: Camille
-      residence_mayotte: False
-    individus:
-      Camille:
-        age: 29
-        distance_aller_retour_activite_domicile: 60
-        nuitees: 3
-        repas: 9
-        pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
-        allocation_retour_emploi: 29.57
-  output:
-    amob_eligible: False
-    amob: 0
-
-
-- name: Test 04 - Vérifie le calcul de l'AMOB pour un individu avec une allocation < ARE min hors Mayotte
-  period: 2022-01
-  input:
-    menage:
-      personne_de_reference: Camille
-      residence_mayotte: True
-    individus:
-      Camille:
-        age: 29
-        distance_aller_retour_activite_domicile: 60
-        nuitees: 3
-        repas: 9
-        pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
-        allocation_retour_emploi: 14.76
-  output:
-    amob_eligible: True
-    amob: 156
-
-
-- name: Test 05 - Vérifie le calcul de l'AMOB pour un individu avec une allocation = ARE min hors Mayotte
-  period: 2022-01
-  input:
-    menage:
-      personne_de_reference: Camille
-      residence_mayotte: True
-    individus:
-      Camille:
-        age: 29
-        distance_aller_retour_activite_domicile: 60
-        nuitees: 3
-        repas: 9
-        pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
-        allocation_retour_emploi: 14.77
-  output:
-    amob_eligible: True
-    amob: 156
-
-
-- name: Test 06 - Vérifie le calcul de l'AMOB pour un individu avec une allocation > ARE min hors Mayotte
-  period: 2022-01
-  input:
-    menage:
-      personne_de_reference: Camille
-      residence_mayotte: True
-    individus:
-      Camille:
-        age: 29
-        distance_aller_retour_activite_domicile: 60
-        nuitees: 3
-        repas: 9
-        pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
-        allocation_retour_emploi: 14.78
-  output:
-    amob_eligible: False
-    amob: 0
-
-
-- name: Test 07 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie 4 stagiaire de formation professionnelle
-  period: 2022-01
-  input:
-    menage:
-      personne_de_reference: Camille
-      residence_mayotte: False
-    individus:
-      Camille:
-        age: 29
-        distance_aller_retour_activite_domicile: 60
-        nuitees: 3
-        repas: 9
-        pole_emploi_categorie_demandeur_emploi: categorie_4
-        stagiaire: True
-        en_contrat_aide: False
-        allocation_retour_emploi: 29.56
-  output:
-    amob_eligible: True
-    amob: 156
-
-- name: Test 08 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie 5 contrat aidé
-  period: 2022-01
-  input:
-    menage:
-      personne_de_reference: Camille
-      residence_mayotte: False
-    individus:
-      Camille:
-        age: 29
-        distance_aller_retour_activite_domicile: 60
-        nuitees: 3
-        repas: 9
-        pole_emploi_categorie_demandeur_emploi: categorie_5
-        stagiaire: False
-        en_contrat_aide: True
-        allocation_retour_emploi: 29.56
-  output:
-    amob_eligible: True
-    amob: 156
-
-
-- name: Test 09 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie non éligible
-  period: 2022-01
-  input:
-    menage:
-      personne_de_reference: Camille
-      residence_mayotte: False
-    individus:
-      Camille:
-        age: 29
-        distance_aller_retour_activite_domicile: 60
-        nuitees: 3
-        repas: 9
-        pole_emploi_categorie_demandeur_emploi: pas_de_categorie
-        stagiaire: False
-        en_contrat_aide: True
-        allocation_retour_emploi: 29.56
-  output:
-    amob_eligible: False
-    amob: 0
-
-
-- name: Test 10 - Calcul AMOB en contexte recherche d'emploi avec un demande au 7ème jour
+- name: Test 01 - Vérifie le calcul de l'AMOB pour un individu avec une allocation = ARE min hors Mayotte et allocation > ARE min hors Mayotte
   period: 2021-12
   input:
-#    menage:
-#     personne_de_reference: Camille
-      residence: martinique
-#    individus:
-#      Camille:
-      age: 29
-      distance_aller_retour_activite_domicile: 21
-      aide_mobilite_duree_trajet: 120
-      nuitees: 3
-      repas: 9
-      pole_emploi_categorie_demandeur_emploi: categorie_1
-      stagiaire: False
-      en_contrat_aide: False
-      allocation_retour_emploi: 14.77
-      contexte_activite_pole_emploi: recherche_emploi
-      types_activite_en_recherche_emploi: concours_public
-      types_contrat: aucune_activite
-      contrat_de_travail_duree: 0
-      emploi_ou_formation_en_france: True
-      formation_validee_par_PoleEmploi: True
-      formation_financee_ou_cofinancee: True
-      contrat_de_travail_debut: '2021-01-08'
-      amob_date_demande: '2021-01-15'
-      amob:
-        2021-10: 1000
-        2021-07: 500
-        2021-01: 250
+    residence: [metropole, metropole]
+    age: [29, 29]
+    distance_aller_retour_activite_domicile: [61, 61]
+    aide_mobilite_duree_trajet: [120, 120]
+    nuitees: [3, 3]
+    repas: [9, 9]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
+    stagiaire: [False, False]
+    en_contrat_aide: [False, False]
+    allocation_retour_emploi: [29.56, 29.57]
+    contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
+    types_activite_en_recherche_emploi: [concours_public, concours_public]
+    types_contrat: [aucune_activite, aucune_activite]
+    contrat_de_travail_duree: [0, 0]
+    emploi_ou_formation_en_france: [True, True]
+    formation_validee_par_PoleEmploi: [True, True]
+    formation_financee_ou_cofinancee: [True, True]
+    contrat_de_travail_debut: ['', '']
+    date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
+    aide_mobilite_date_demande: ['2021-01-15', '2021-01-15']
+    aide_mobilite:
+      2021-07: [2000, 2000]
+      2021-01: [2000, 2000]
   output:
-    amob_eligible: True
-    amob:
-      2021-12 : 148.2
-    amob_plafond_disponible:
-      2024-01: 5000
-      2021-12: 3250
-      2021-08: 4750
+    aide_mobilite_eligible: [True, False]
+    aide_mobilite: [156.2, 0]
+    aide_mobilite_montants_plafonds_disponibles: [1000, 1000]
 
 
-- name: Test 11 - Calcul AMOB montant (148.2€) -> réel (48.2€) car aide restante de 100€ avec 4900€ déjà touchés (Plafond Max = 5000€ sur une année glissante)
+- name: Test 02 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie 4 stagiaire de formation professionnelle / ou non
+  period: 2021-12
+  input:
+    residence: [martinique, martinique]
+    age: [29, 29]
+    distance_aller_retour_activite_domicile: [21, 21]
+    aide_mobilite_duree_trajet: [120, 120]
+    nuitees: [3, 3]
+    repas: [9, 9]
+    pole_emploi_categorie_demandeur_emploi: [categorie_4, categorie_4]
+    stagiaire: [True, False]
+    en_contrat_aide: [False, False]
+    allocation_retour_emploi: [14.77, 14.77]
+    contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
+    types_activite_en_recherche_emploi: [concours_public, concours_public]
+    types_contrat: [aucune_activite, aucune_activite]
+    contrat_de_travail_duree: [0, 0]
+    emploi_ou_formation_en_france: [True, True]
+    formation_validee_par_PoleEmploi: [True, True]
+    formation_financee_ou_cofinancee: [True, True]
+    contrat_de_travail_debut: ['', '']
+    date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
+    aide_mobilite_date_demande: ['2021-01-15', '2021-01-15']
+    aide_mobilite:
+      2021-07: [2000, 2000]
+      2021-01: [2000, 2000]
+  output:
+    aide_mobilite_eligible: [True, False]
+    aide_mobilite: [148.2, 0]
+    aide_mobilite_montants_plafonds_disponibles: [1000, 1000]
+
+- name: Test 03 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie 5 contrat aidé / ou non
+  period: 2021-12
+  input:
+    residence: [martinique, martinique]
+    age: [29, 29]
+    distance_aller_retour_activite_domicile: [21, 21]
+    aide_mobilite_duree_trajet: [120, 120]
+    nuitees: [3, 3]
+    repas: [9, 9]
+    pole_emploi_categorie_demandeur_emploi: [categorie_5, categorie_5]
+    stagiaire: [False, False]
+    en_contrat_aide: [True, False]
+    allocation_retour_emploi: [14.77, 14.77]
+    contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
+    types_activite_en_recherche_emploi: [concours_public, concours_public]
+    types_contrat: [aucune_activite, aucune_activite]
+    contrat_de_travail_duree: [0, 0]
+    emploi_ou_formation_en_france: [True, True]
+    formation_validee_par_PoleEmploi: [True, True]
+    formation_financee_ou_cofinancee: [True, True]
+    contrat_de_travail_debut: ['', '']
+    date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
+    aide_mobilite_date_demande: ['2021-01-15', '2021-01-16']
+    aide_mobilite:
+      2021-07: [2000, 2000]
+      2021-01: [2000, 2000]
+  output:
+    aide_mobilite_eligible: [True, False]
+    aide_mobilite: [148.2, 0]
+    aide_mobilite_montants_plafonds_disponibles: [1000, 1000]
+
+
+- name: Test 04 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie non éligible
+  period: 2021-12
+  input:
+    residence: martinique
+    age: 29
+    distance_aller_retour_activite_domicile: 21
+    aide_mobilite_duree_trajet: 120
+    nuitees: 3
+    repas: 9
+    pole_emploi_categorie_demandeur_emploi: categorie_test
+    stagiaire: False
+    en_contrat_aide: False
+    allocation_retour_emploi: 14.77
+    contexte_activite_pole_emploi: recherche_emploi
+    types_activite_en_recherche_emploi: concours_public
+    types_contrat: aucune_activite
+    contrat_de_travail_duree: 0
+    emploi_ou_formation_en_france: True
+    formation_validee_par_PoleEmploi: True
+    formation_financee_ou_cofinancee: True
+    contrat_de_travail_debut: ''
+    date_debut_type_activite_en_recherche_emploi: '2021-01-08'
+    aide_mobilite_date_demande: '2021-01-15'
+    aide_mobilite:
+      2021-07: 2000
+      2021-01: 2000
+  output:
+    aide_mobilite_eligible: False
+    aide_mobilite: 0
+    aide_mobilite_montants_plafonds_disponibles: 1000
+
+
+- name: Test 05 - Calcul AMOB en contexte recherche d'emploi avec un demande au 7ème jour et 8ème jour
   period: 2021-12
   input:
     residence: [martinique, martinique]
@@ -246,20 +145,19 @@
     emploi_ou_formation_en_france: [True, True]
     formation_validee_par_PoleEmploi: [True, True]
     formation_financee_ou_cofinancee: [True, True]
-    contrat_de_travail_debut: ['2021-01-08', '2021-01-08']
-    aide_mobilite_date_demande: ['2021-01-15', '2021-01-15']
+    contrat_de_travail_debut: ['', '']
+    date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
+    aide_mobilite_date_demande: ['2021-01-15', '2021-01-16']
     aide_mobilite:
-      2021-11: [900, 0]
       2021-07: [2000, 2000]
       2021-01: [2000, 2000]
   output:
-    aide_mobilite_eligible: [True, True]
-    aide_mobilite: [100, 148.2]
-    aide_mobilite_montants_plafonds_disponibles:
-      2021-12: [100, 1000]
+    aide_mobilite_eligible: [True, False]
+    aide_mobilite: [148.2, 0]
+    aide_mobilite_montants_plafonds_disponibles: [1000, 1000]
 
 
-- name: Test 12 - Calcul AMOB montant (148.2€) -> réel (48.2€) car aide restante de 100€ avec 4900€ déjà touchés (Plafond Max = 5000€ sur une année glissante)
+- name: Test 06 - Calcul AMOB montant (148.2€) -> réel (48.2€) car aide restante de 100€ avec 4900€ déjà touchés (Plafond Max = 5000€ sur une année glissante)
   period: 2021-12
   input:
     residence: [martinique, martinique]
@@ -272,29 +170,27 @@
     stagiaire: [False, False]
     en_contrat_aide: [False, False]
     allocation_retour_emploi: [14.77, 14.77]
-    contexte_activite_pole_emploi: [formation, recherche_emploi]
-    types_activite_en_recherche_emploi: [indetermine, concours_public]
-    types_contrat: [formation, aucune_activite]
-    dispositifs_formation: [autre, autre]
+    contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
+    types_activite_en_recherche_emploi: [concours_public, concours_public]
+    types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
-    heures_remunerees_volume: [40, 0]
     emploi_ou_formation_en_france: [True, True]
     formation_validee_par_PoleEmploi: [True, True]
     formation_financee_ou_cofinancee: [True, True]
-    contrat_de_travail_debut: ['2021-01-08', '2021-01-08']
+    contrat_de_travail_debut: ['', '']
+    date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-15', '2021-01-15']
     aide_mobilite:
-      2021-10: [900, 0]
+      2021-11: [900, 0]
       2021-07: [2000, 2000]
       2021-01: [2000, 2000]
   output:
     aide_mobilite_eligible: [True, True]
     aide_mobilite: [100, 148.2]
-    aide_mobilite_montants_plafonds_disponibles:
-      2021-12: [100, 1000]
+    aide_mobilite_montants_plafonds_disponibles: [100, 1000]
 
 
-- name: Test 13 - Calcul AMOB en fonction de différentes formations et durées
+- name: Test 07 - Calcul AMOB en fonction de différentes formations et durées
   period: 2021-12
   input:
     residence: [martinique, martinique, martinique]
@@ -317,19 +213,21 @@
     formation_validee_par_PoleEmploi: [True, True, True]
     formation_financee_ou_cofinancee: [True, True, True]
     contrat_de_travail_debut: ['2021-01-08', '2021-01-08', '2021-01-15']
+    date_debut_type_activite_en_recherche_emploi: ['', '', '']
     aide_mobilite_date_demande: ['2021-01-15', '2021-01-15', '2021-01-15']
     aide_mobilite:
-      2021-10: [900, 0, 0]
+      2021-11: [800, 0, 0]
       2021-07: [2000, 2000, 2000]
       2021-01: [2000, 2000, 2000]
+      2020-12: [100, 0, 0]
+      2020-11: [100, 0, 0]
   output:
     aide_mobilite_eligible: [False, True, False]
     aide_mobilite: [0, 148.2, 0]
-    aide_mobilite_montants_plafonds_disponibles:
-      2021-12: [100, 1000, 1000]
+    aide_mobilite_montants_plafonds_disponibles: [100, 1000, 1000]
 
 
-- name: Test 14 - Calcul AMOB en fonction de la date de demande (reprise/recherche) - (1 mois / 7 jours)
+- name: Test 08 - Calcul AMOB en fonction de la date de demande (reprise/recherche) - (1 mois / 7 jours)
   period: 2021-12
   input:
     residence: [martinique, martinique, martinique, martinique]
@@ -360,11 +258,10 @@
   output:
     aide_mobilite_eligible: [True, False, True, False]
     aide_mobilite: [148.2, 0, 100, 0]
-    aide_mobilite_montants_plafonds_disponibles:
-      2021-12: [1000, 1000, 100, 1000]
+    aide_mobilite_montants_plafonds_disponibles: [1000, 1000, 100, 1000]
 
 
-- name: Test 15 - Calcul AMOB
+- name: Test 09 - Calcul AMOB
   period: 2021-12
   input:
     residence: [martinique, martinique, metropole, martinique]
@@ -395,5 +292,4 @@
   output:
     aide_mobilite_eligible: [True, False, True, False]
     aide_mobilite: [148.2, 0, 100, 0]
-    aide_mobilite_montants_plafonds_disponibles:
-      2021-12: [1000, 1000, 100, 1000]
+    aide_mobilite_montants_plafonds_disponibles: [1000, 1000, 100, 1000]
