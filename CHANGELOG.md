@@ -1,5 +1,13 @@
 # Changelog
 
+### 80.3.3 [#1713](https://github.com/openfisca/openfisca-france/pull/1713)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2021.
+* Zones impactées : `openfisca_france\parameters\cs\cmu\plafond_base.yaml`.
+* Détails :
+  - Ajoute le montant du plafond de base de la Complementaire Santé Solidaire revalorisé pour Avril 2021
+
 ### 80.3.2 [#1715](https://github.com/openfisca/openfisca-france/pull/1715)
 
 * Changement mineur.
