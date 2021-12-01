@@ -1,5 +1,13 @@
 # Changelog
 
+### 80.3.4 [#1720](https://github.com/openfisca/openfisca-france/pull/1720)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/reductions_cotisations_sociales/fillon/ensemble_des_entreprises/reduction_maximale/`.
+* Détails :
+  - Corrige des références de paramètres qui contenaient par erreur l'attribut "ref" au lieu de "href".
+
 ### 80.3.3 [#1713](https://github.com/openfisca/openfisca-france/pull/1713)
 
 * Évolution du système socio-fiscal.
