@@ -21,13 +21,10 @@
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-15', '2021-01-15']
-    aide_mobilite:
-      2021-07: [2000, 2000]
-      2021-01: [2000, 2000]
+    aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
     aide_mobilite_eligible: [True, False]
     aide_mobilite: [156.2, 0]
-    aide_mobilite_montants_plafonds_disponibles: [1000, 1000]
 
 
 - name: Test 02 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie 4 stagiaire de formation professionnelle / ou non
@@ -53,13 +50,10 @@
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-15', '2021-01-15']
-    aide_mobilite:
-      2021-07: [2000, 2000]
-      2021-01: [2000, 2000]
+    aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
     aide_mobilite_eligible: [True, False]
     aide_mobilite: [148.2, 0]
-    aide_mobilite_montants_plafonds_disponibles: [1000, 1000]
 
 - name: Test 03 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie 5 contrat aidé / ou non
   period: 2021-12
@@ -84,13 +78,10 @@
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-15', '2021-01-16']
-    aide_mobilite:
-      2021-07: [2000, 2000]
-      2021-01: [2000, 2000]
+    aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
     aide_mobilite_eligible: [True, False]
     aide_mobilite: [148.2, 0]
-    aide_mobilite_montants_plafonds_disponibles: [1000, 1000]
 
 
 - name: Test 04 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie non éligible
@@ -116,13 +107,10 @@
     contrat_de_travail_debut: ''
     date_debut_type_activite_en_recherche_emploi: '2021-01-08'
     aide_mobilite_date_demande: '2021-01-15'
-    aide_mobilite:
-      2021-07: 2000
-      2021-01: 2000
+    aide_mobilite_montant_percu_12_derniers_mois: 0
   output:
     aide_mobilite_eligible: False
     aide_mobilite: 0
-    aide_mobilite_montants_plafonds_disponibles: 1000
 
 
 - name: Test 05 - Calcul AMOB en contexte recherche d'emploi avec un demande au 7ème jour et 8ème jour
@@ -148,13 +136,10 @@
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-15', '2021-01-16']
-    aide_mobilite:
-      2021-07: [2000, 2000]
-      2021-01: [2000, 2000]
+    aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
     aide_mobilite_eligible: [True, False]
     aide_mobilite: [148.2, 0]
-    aide_mobilite_montants_plafonds_disponibles: [1000, 1000]
 
 
 - name: Test 06 - Calcul AMOB montant (148.2€) -> réel (48.2€) car aide restante de 100€ avec 4900€ déjà touchés (Plafond Max = 5000€ sur une année glissante)
@@ -180,14 +165,10 @@
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-15', '2021-01-15']
-    aide_mobilite:
-      2021-11: [900, 0]
-      2021-07: [2000, 2000]
-      2021-01: [2000, 2000]
+    aide_mobilite_montant_percu_12_derniers_mois: [4900, 4000]
   output:
     aide_mobilite_eligible: [True, True]
     aide_mobilite: [100, 148.2]
-    aide_mobilite_montants_plafonds_disponibles: [100, 1000]
 
 
 - name: Test 07 - Calcul AMOB en fonction de différentes formations et durées
@@ -215,16 +196,10 @@
     contrat_de_travail_debut: ['2021-01-08', '2021-01-08', '2021-01-15']
     date_debut_type_activite_en_recherche_emploi: ['', '', '']
     aide_mobilite_date_demande: ['2021-01-15', '2021-01-15', '2021-01-15']
-    aide_mobilite:
-      2021-11: [800, 0, 0]
-      2021-07: [2000, 2000, 2000]
-      2021-01: [2000, 2000, 2000]
-      2020-12: [100, 0, 0]
-      2020-11: [100, 0, 0]
+    aide_mobilite_montant_percu_12_derniers_mois: [5000, 4000, 4000]
   output:
     aide_mobilite_eligible: [False, True, False]
     aide_mobilite: [0, 148.2, 0]
-    aide_mobilite_montants_plafonds_disponibles: [100, 1000, 1000]
 
 
 - name: Test 08 - Calcul AMOB en fonction de la date de demande (reprise/recherche) - (1 mois / 7 jours)
@@ -252,13 +227,10 @@
     contrat_de_travail_debut: ['2021-01-01', '2021-01-01', '', '']
     date_debut_type_activite_en_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
     aide_mobilite_date_demande: ['2021-01-15', '2021-02-02', '2021-01-04', '2021-01-09']
-    aide_mobilite:
-      2021-07: [2000, 2000, 2900, 2000]
-      2021-01: [2000, 2000, 2000, 2000]
+    aide_mobilite_montant_percu_12_derniers_mois: [4000, 4000, 4900, 4000]
   output:
     aide_mobilite_eligible: [True, False, True, False]
     aide_mobilite: [148.2, 0, 100, 0]
-    aide_mobilite_montants_plafonds_disponibles: [1000, 1000, 100, 1000]
 
 
 - name: Test 09 - Calcul AMOB
@@ -286,10 +258,7 @@
     contrat_de_travail_debut: ['2021-01-01', '2021-01-01', '', '']
     date_debut_type_activite_en_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
     aide_mobilite_date_demande: ['2021-01-15', '2021-02-02', '2021-01-04', '2021-01-09']
-    aide_mobilite:
-      2021-07: [2000, 2000, 2900, 2000]
-      2021-01: [2000, 2000, 2000, 2000]
+    aide_mobilite_montant_percu_12_derniers_mois: [4000, 4000, 4900, 4000]
   output:
     aide_mobilite_eligible: [True, False, True, False]
     aide_mobilite: [148.2, 0, 100, 0]
-    aide_mobilite_montants_plafonds_disponibles: [1000, 1000, 100, 1000]

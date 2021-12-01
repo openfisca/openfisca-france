@@ -1,8 +1,5 @@
 from datetime import date
-
 import numpy as np
-from openfisca_core.populations import ADD
-
 from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, \
     set_input_dispatch_by_period, set_input_divide_by_period, min_
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
@@ -17,6 +14,14 @@ class aide_mobilite_date_demande(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+
+
+class aide_mobilite_montant_percu_12_derniers_mois(Variable):
+    value_type = float
+    entity = Individu
+    label = "Le montant de l'aide à la mobilité déjà perçu au cours des 12 derniers mois"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class date_debut_type_activite_en_recherche_emploi(Variable):
@@ -161,12 +166,11 @@ class aide_mobilite_eligible(Variable):
             6.1 - Son "activité" doit être à plus de 60 km aller-retour de son lieu de résidence
             6.2 - Ou 20 km lorsque l'individu réside en dehors de la métropole
             6.3 - Ou 2 heures de trajet aller-retour
-        7- La formation doit être validée par Pôle Emploi
-            7.1 - Ne doit pas concerncer :
-                    - le bilan de compétences
-                    - le permis de conduire B (code et/ou conduite)
-                    - l’accompagnement à la création d’entreprise
-                    - l’accompagnement à la validation des acquis de l’expérience (VAE)
+        7 - Les dispositifs suivants ne donne pas lieu au versement de l'aide à la mobilité :
+            - le bilan de compétences
+            - le permis de conduire B (code et/ou conduite)
+            - l’accompagnement à la création d’entreprise
+            - l’accompagnement à la validation des acquis de l’expérience (VAE)
     '''
 
     def formula_2021_06_09(individu, period, parameters):
@@ -228,7 +232,7 @@ class aide_mobilite_eligible(Variable):
 
         activites_eligibles = (types_et_duree_activite_eligibles + activites_en_recherche_emploi_eligibles)
 
-        #  4
+        #  3
         pe_categorie_demandeur_emploi = individu('pole_emploi_categorie_demandeur_emploi', period)
 
         stagiaire_formation_professionnelle = individu('stagiaire', period)
@@ -248,7 +252,7 @@ class aide_mobilite_eligible(Variable):
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_7)
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_8))
 
-        #  5
+        #  4
         epsilon = 0.0001
         lieu_de_residence = individu.menage('residence', period)
         mayotte = lieu_de_residence == TypesLieuResidence.mayotte
@@ -266,24 +270,25 @@ class aide_mobilite_eligible(Variable):
 
         montants_allocation_eligibles = are_individu_inferieure_are_min + are_individu_egale_are_min
 
-        #  6
+        #  5
         lieux_activite_eligibles = individu('emploi_ou_formation_en_france', period)
 
-        #  7
+        #  6
         temps_de_trajet = individu('aide_mobilite_duree_trajet', period)
         distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
 
         amob_parametres = parameters(period).prestations.amob
         distance_minimum_en_metropole = amob_parametres.distance_minimum.metropole
         distance_minimum_hors_metropole = amob_parametres.distance_minimum.hors_metropole
-        temps_de_trajet_max = amob_parametres.duree_trajet_minimum
+        temps_de_trajet_min = amob_parametres.duree_trajet_minimum
         reside_en_metropole = lieu_de_residence == TypesLieuResidence.metropole
         residence_renseignee = not_(lieu_de_residence == TypesLieuResidence.non_renseigne)
 
         distances_et_durees_aller_retour_eligibles = (((distance_aller_retour > distance_minimum_en_metropole) * reside_en_metropole)
                                                     + ((distance_aller_retour > distance_minimum_hors_metropole) * not_(reside_en_metropole))
-                                                    + ((temps_de_trajet > temps_de_trajet_max) * residence_renseignee))
+                                                    + ((temps_de_trajet > temps_de_trajet_min) * residence_renseignee))
 
+        #  7
         dispositifs_formations = individu('dispositifs_formation', period)
         dispositifs_formations_eligibles = dispositifs_formations == DispositifsDeFormation.autre
 
@@ -311,7 +316,8 @@ class aide_mobilite(Variable):
     def formula_2021_06_09(individu, period, parameters):
 
         eligibilite_amob = individu('aide_mobilite_eligible', period)
-        plafond_amob_disponibles = individu('aide_mobilite_montants_plafonds_disponibles', period)
+        montant_max = parameters(period).prestations.amob.montants.maximum
+        montant_amob_deja_percu = min_(montant_max, np.fabs(individu('aide_mobilite_montant_percu_12_derniers_mois', period)))
         distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
         nb_nuitees = individu('nuitees', period)
         nb_repas = individu('repas', period)
@@ -322,28 +328,9 @@ class aide_mobilite(Variable):
         montants_frais_hebergement = montant.hebergement * nb_nuitees
         montants_frais_repas = montant.repas * nb_repas
 
-        montants_calcules = montants_frais_deplacement + montants_frais_hebergement + montants_frais_repas
-        plafonds_depasses = (plafond_amob_disponibles - montants_calcules) < 0
-        montants_depassement_plafond = np.fabs((plafond_amob_disponibles - montants_calcules) * plafonds_depasses)
-        montants_autorises = montants_calcules - montants_depassement_plafond
+        montants_theoriques = montants_frais_deplacement + montants_frais_hebergement + montants_frais_repas
+        montants_max_attribuables = montant_max - montant_amob_deja_percu
 
-        return montants_autorises * eligibilite_amob
+        montants_reels = min_(montants_theoriques, montants_max_attribuables)
 
-
-class aide_mobilite_montants_plafonds_disponibles(Variable):
-    value_type = float
-    entity = Individu
-    label = "Montant disponible plafonné à 5000€ pour l'aide à la mobilité - AMOB"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-    reference = [
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
-        ]
-
-    def formula_2021_06_09(individu, period, parameters):
-
-        annee_glissante = period.start.period('year').offset(-1)
-        montant_max = parameters(period).prestations.amob.montants.maximum
-        montant_deja_percu = individu('aide_mobilite', annee_glissante, options=[ADD])
-
-        return montant_max - montant_deja_percu
+        return montants_reels * eligibilite_amob
