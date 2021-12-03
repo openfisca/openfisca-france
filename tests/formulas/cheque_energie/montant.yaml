@@ -175,3 +175,36 @@
     cheque_energie_montant:
     - 144
     - 227
+
+- name: Test le montant du chèque énergie
+  period: 2021-12
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1]
+    menages:
+      menage_0:
+        personne_de_reference: [parent1]
+        conjoint: [parent2]
+        depcom: 69381
+        statut_occupation_logement: locataire_vide
+      menage_1:
+        personne_de_reference: [enfant1]
+        depcom: 69381
+        statut_occupation_logement: locataire_vide
+    individus:
+      parent1:
+        age: 38
+      parent2:
+        age: 35
+      enfant1:
+        age: 20
+  output:
+    menages:
+      menage_0:
+        cheque_energie: 240
+      menage_1:
+        cheque_energie: 0
