@@ -91,7 +91,7 @@ class remuneration_apprenti(Variable):
 class exoneration_cotisations_employeur_apprenti(Variable):
     value_type = float
     entity = Individu
-    label = "Exonération de cot. employeur pour emploi d'un apprenti"
+    label = "Exonération de cotisations employeur pour un apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
     set_input = set_input_divide_by_period
