@@ -142,7 +142,7 @@ class credit_impot_competitivite_emploi(Variable):
 class aide_premier_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Aide à l'embauche d'un premier salarié"
+    label = "Aide à l'embauche du premier salarié"
     definition_period = MONTH
     calculate_output = calculate_output_add
     set_input = set_input_divide_by_period
@@ -206,8 +206,8 @@ class aide_premier_salarie(Variable):
 class aide_embauche_pme(Variable):
     value_type = float
     entity = Individu
-    label = "Aide à l'embauche d'un salarié pour les PME"
-    reference = "http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
+    label = "Aide à l'embauche TPE/PME"
+    reference = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031909980/"
     definition_period = MONTH
     calculate_output = calculate_output_add
     set_input = set_input_divide_by_period
@@ -306,7 +306,7 @@ class smic_proratise(Variable):
 class allegement_fillon(Variable):
     value_type = float
     entity = Individu
-    label = "Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
+    label = "Réduction générale des cotisations patronales (dite réduction Fillon)"
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542"
     definition_period = MONTH
     calculate_output = calculate_output_add

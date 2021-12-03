@@ -1,5 +1,16 @@
 # Changelog
 
+### 80.3.5 [#1596](https://github.com/openfisca/openfisca-france/pull/1596)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/`
+  - `model/revenus/activite/salarie.py`
+* Détails :
+  - Précise et ordonnance le texte de labels de variables d'activité.
+
 ### 80.3.4 [#1720](https://github.com/openfisca/openfisca-france/pull/1720)
 
 * Changement mineur.
