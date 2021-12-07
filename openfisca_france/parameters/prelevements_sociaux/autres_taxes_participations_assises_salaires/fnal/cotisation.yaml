@@ -6,17 +6,18 @@ brackets:
     1986-01-01:
       value: 0.001
     2015-01-01:
-      value: 0
+      value: null
   threshold:
     1972-07-01:
       value: 0
 - rate:
     1972-07-01:
-      value: 0
+      value: null
   threshold:
     1972-07-01:
       value: 1
 metadata:
+  last_review: 2021-12-07
   reference: 
     1972-07-01:
       title: Décret 72-526 du 29/06/1972, art. 29

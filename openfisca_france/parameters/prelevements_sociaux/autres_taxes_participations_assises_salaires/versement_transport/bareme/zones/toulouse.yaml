@@ -1,5 +1,4 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+description: Versement transport (VT) pour la zone de Toulouse
 values:
   1974-01-01:
     value: 0.0091
@@ -13,3 +12,7 @@ values:
     value: 0.018
   2011-07-01:
     value: 0.02
+metadata:
+  unit: /1
+  reference:
+    2011-07-01: Lettre circulaire ACOSS 2011-0000075
