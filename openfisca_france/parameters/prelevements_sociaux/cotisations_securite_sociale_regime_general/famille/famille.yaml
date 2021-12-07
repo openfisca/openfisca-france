@@ -57,7 +57,7 @@ metadata:
   threshold_unit: PSS
   reference:
     2014-01-01:
-      - title: Article D241-3-1 du Code de la sécurité sociale (abrogé)
+      - title: Article D241-3-1 du Code de la sécurité sociale
         href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036475197/2018-01-01/
       - title: Article D242-7 du Code de la sécurité sociale (abrogé)
         href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000028435883/2014-01-01/ 
