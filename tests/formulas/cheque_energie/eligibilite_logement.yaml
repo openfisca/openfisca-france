@@ -5,19 +5,3 @@
     statut_occupation_logement: proprietaire
   output:
     cheque_energie_eligibilite_logement: false
-
-- period: 2021-04
-  input:
-    individus:
-      _: {}
-    familles:
-      _:
-        enfants: [_]
-    menages:
-      _:
-        personne_de_reference: [_]
-    foyers_fiscaux:
-      _:
-        personnes_a_charge: [_]
-  output:
-    cheque_energie_eligibilite_logement: false
