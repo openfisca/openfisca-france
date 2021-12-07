@@ -15,7 +15,7 @@
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
-    emploi_ou_formation_en_france: [True, True]
+    lieu_emploi_ou_formation: [metropole, martinique]
     formation_validee_par_PoleEmploi: [True, True]
     formation_financee_ou_cofinancee: [True, True]
     contrat_de_travail_debut: ['', '']
@@ -44,7 +44,7 @@
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
-    emploi_ou_formation_en_france: [True, True]
+    lieu_emploi_ou_formation: [la_reunion, guyane]
     formation_validee_par_PoleEmploi: [True, True]
     formation_financee_ou_cofinancee: [True, True]
     contrat_de_travail_debut: ['', '']
@@ -72,7 +72,7 @@
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
-    emploi_ou_formation_en_france: [True, True]
+    lieu_emploi_ou_formation: [guadeloupe, saint_martin]
     formation_validee_par_PoleEmploi: [True, True]
     formation_financee_ou_cofinancee: [True, True]
     contrat_de_travail_debut: ['', '']
@@ -101,7 +101,7 @@
     types_activite_en_recherche_emploi: concours_public
     types_contrat: aucune_activite
     contrat_de_travail_duree: 0
-    emploi_ou_formation_en_france: True
+    lieu_emploi_ou_formation: saint_bartelemy
     formation_validee_par_PoleEmploi: True
     formation_financee_ou_cofinancee: True
     contrat_de_travail_debut: ''
@@ -130,7 +130,7 @@
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
-    emploi_ou_formation_en_france: [True, True]
+    lieu_emploi_ou_formation: [mayotte, france_hors_corse]
     formation_validee_par_PoleEmploi: [True, True]
     formation_financee_ou_cofinancee: [True, True]
     contrat_de_travail_debut: ['', '']
@@ -159,7 +159,7 @@
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
-    emploi_ou_formation_en_france: [True, True]
+    lieu_emploi_ou_formation: [metropole, metropole]
     formation_validee_par_PoleEmploi: [True, True]
     formation_financee_ou_cofinancee: [True, True]
     contrat_de_travail_debut: ['', '']
@@ -190,7 +190,7 @@
     dispositifs_formation: [permis_conduire_b, autre, autre]
     contrat_de_travail_duree: [0, 0, 0]
     heures_remunerees_volume: [40, 40, 39]
-    emploi_ou_formation_en_france: [True, True, True]
+    lieu_emploi_ou_formation: [metropole, metropole, metropole]
     formation_validee_par_PoleEmploi: [True, True, True]
     formation_financee_ou_cofinancee: [True, True, True]
     contrat_de_travail_debut: ['2021-01-08', '2021-01-08', '2021-01-15']
@@ -221,7 +221,7 @@
     dispositifs_formation: [autre, autre, autre, autre]
     contrat_de_travail_duree: [0, 0, 0, 0]
     heures_remunerees_volume: [0, 0, 0, 0]
-    emploi_ou_formation_en_france: [True, True, True, True]
+    lieu_emploi_ou_formation: [metropole, metropole, metropole, metropole]
     formation_validee_par_PoleEmploi: [True, True, True, True]
     formation_financee_ou_cofinancee: [True, True, True, True]
     contrat_de_travail_debut: ['2021-01-01', '2021-01-01', '', '']
@@ -252,7 +252,7 @@
     dispositifs_formation: [autre, autre, autre, autre]
     contrat_de_travail_duree: [0, 0, 3, 0]
     heures_remunerees_volume: [40, 0, 0, 0]
-    emploi_ou_formation_en_france: [True, True, True, True]
+    lieu_emploi_ou_formation: [metropole, metropole, metropole, metropole]
     formation_validee_par_PoleEmploi: [True, True, True, True]
     formation_financee_ou_cofinancee: [True, True, True, True]
     contrat_de_travail_debut: ['2021-01-01', '2021-01-01', '', '']
@@ -262,3 +262,34 @@
   output:
     aide_mobilite_eligible: [True, False, True, False]
     aide_mobilite: [148.2, 0, 100, 0]
+
+
+- name: Test 10 - Calcul AMOB éligibilité bon de transport
+  period: 2021-12
+  input:
+    residence: [martinique, martinique, metropole, metropole]
+    age: [29, 29, 29, 29]
+    distance_aller_retour_activite_domicile: [21, 21, 61, 21]
+    aide_mobilite_duree_trajet: [120, 120, 120, 120]
+    nuitees: [3, 3, 3, 3]
+    repas: [9, 9, 9, 9]
+    pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_5, categorie_9]
+    stagiaire: [False, False, False, False]
+    en_contrat_aide: [False, False, True, False]
+    allocation_retour_emploi: [14.77, 14.77, 29.56, 34.77]
+    contexte_activite_pole_emploi: [formation, reprise_emploi, recherche_emploi, recherche_emploi]
+    types_activite_en_recherche_emploi: [indetermine, indetermine, entretien_embauche, concours_public]
+    types_contrat: [formation, cdi, cdd, aucun]
+    dispositifs_formation: [autre, autre, autre, autre]
+    contrat_de_travail_duree: [0, 0, 3, 0]
+    heures_remunerees_volume: [40, 0, 0, 0]
+    lieu_emploi_ou_formation: [metropole, metropole, metropole, france_hors_dom_corse]
+    formation_validee_par_PoleEmploi: [True, True, True, True]
+    formation_financee_ou_cofinancee: [True, True, True, True]
+    contrat_de_travail_debut: ['2021-01-01', '2021-01-01', '', '']
+    date_debut_type_activite_en_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
+    aide_mobilite_date_demande: ['2021-01-15', '2021-02-02', '2021-01-04', '2021-01-04']
+  output:
+    aide_mobilite_eligible: [True, False, True, False]
+    aide_mobilite: [148.2, 0, 156.2, 0]
+    aide_mobilite_bon_de_transport: [False, False, False, True]

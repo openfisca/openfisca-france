@@ -3,7 +3,8 @@ import numpy as np
 from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, \
     set_input_dispatch_by_period, set_input_divide_by_period, min_
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
-from openfisca_france.model.prestations.agepi import TypesCategoriesDemandeurEmploi, TypesContrat
+from openfisca_france.model.prestations.agepi import TypesCategoriesDemandeurEmploi, TypesContrat, \
+    TypesLieuEmploiFormation
 
 
 class aide_mobilite_date_demande(Variable):
@@ -127,22 +128,85 @@ class formation_financee_ou_cofinancee(Variable):
 
 
 class TypesActiviteEnRechercheEmploi(Enum):
-    __order__ = 'indetermine entretien_embauche concours_public examen_certifiant prestation_accompagnement immersion_professionnelle_PMSMP'  # Needed to preserve the enum order in Python 2
-    indetermine = "INDETERMINE"
-    entretien_embauche = "ENTRETIEN_EMBAUCHE"
-    concours_public = "CONCOURS_PUBLIC"
-    examen_certifiant = "EXAMEN_CERTIFIANT"
-    prestation_accompagnement = "PRESTATION_ACCOMPAGNEMENT"
-    immersion_professionnelle_PMSMP = "IMMERSION_PROFESSIONNELLE_PMSMP"
+    __order__ = 'indeterminee entretien_embauche concours_public examen_certifiant prestation_accompagnement immersion_professionnelle_PMSMP'  # Needed to preserve the enum order in Python 2
+    indeterminee = "Activité indéterminée"
+    entretien_embauche = "Entretien d'embauche"
+    concours_public = "Concours public"
+    examen_certifiant = "Examen certifiant"
+    prestation_accompagnement = "Prestation d'accompagnement"
+    immersion_professionnelle_PMSMP = "Immersion professionnelle PMSMP"
 
 
 class types_activite_en_recherche_emploi(Variable):
     value_type = Enum
     possible_values = TypesActiviteEnRechercheEmploi
-    default_value = TypesActiviteEnRechercheEmploi.indetermine
+    default_value = TypesActiviteEnRechercheEmploi.indeterminee
     entity = Individu
     label = "Les types d'activité dans un contexte de recherche d'emploi pour l'aide à la mobilité de Pôle Emploi - AMOB"
     definition_period = MONTH
+
+
+class aide_mobilite_categories_demandeur_emploi_eligibles(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Le demandeur d'emploi appartient à une catégorie éligible pour l'aide à la mobilité - AMOB"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    reference = [
+        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+        ]
+
+    def formula_2021_06_09(individu, period, parameters):
+
+        pe_categorie_demandeur_emploi = individu('pole_emploi_categorie_demandeur_emploi', period)
+
+        stagiaire_formation_professionnelle = individu('stagiaire', period)
+        contrat_aide = individu('en_contrat_aide', period)
+
+        categorie_4 = pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_4
+        categorie_4_stagiaire_formation_professionnelle = categorie_4 * stagiaire_formation_professionnelle
+
+        categorie_5 = pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_5
+        categorie_5_contrat_aide = categorie_5 * contrat_aide
+
+        categories_eligibles = ((pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_1)
+                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_2)
+                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_3)
+                                + (categorie_4_stagiaire_formation_professionnelle + categorie_5_contrat_aide)
+                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_6)
+                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_7)
+                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_8))
+
+        return categories_eligibles
+
+
+class aide_mobilite_allocations_eligibles(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Le demandeur d'emploi touche un montant d'allocation éligible pour l'aide à la mobilité - AMOB"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    reference = [
+        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+        ]
+
+    def formula_2021_06_09(individu, period, parameters):
+        epsilon = 0.0001
+        lieu_de_residence = individu.menage('residence', period)
+        mayotte = lieu_de_residence == TypesLieuResidence.mayotte
+        hors_mayotte = not_(mayotte)
+
+        allocation_individu = individu('allocation_retour_emploi', period)
+
+        allocation_minimale_hors_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_hors_mayotte * hors_mayotte
+        allocation_minimale_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_mayotte * mayotte
+
+        allocation_minimale_en_fonction_de_la_region = allocation_minimale_hors_mayotte + allocation_minimale_mayotte
+
+        are_individu_egale_are_min = np.fabs(allocation_individu - allocation_minimale_en_fonction_de_la_region) < epsilon
+        are_individu_inferieure_are_min = allocation_individu < allocation_minimale_en_fonction_de_la_region
+
+        return are_individu_inferieure_are_min + are_individu_egale_are_min
 
 
 class aide_mobilite_eligible(Variable):
@@ -206,13 +270,12 @@ class aide_mobilite_eligible(Variable):
         en_entretien_embauche = (activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.entretien_embauche) * en_recherche_emploi
 
         activites_en_recherche_emploi_eligibles = not_((activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.entretien_embauche)
-            + (activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.indetermine)) \
+            + (activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.indeterminee)) \
             * en_recherche_emploi
 
         reprises_types_activites_formation = reprises_emploi_types_activites == TypesContrat.formation
         reprises_types_activites_cdi = reprises_emploi_types_activites == TypesContrat.cdi
-        reprises_types_activites_cdd = reprises_emploi_types_activites == TypesContrat.cdd
-        reprises_types_activites_ctt = reprises_emploi_types_activites == TypesContrat.ctt
+        reprises_types_activites_cdd_ctt = (reprises_emploi_types_activites == TypesContrat.cdd) + (reprises_emploi_types_activites == TypesContrat.ctt)
 
         #  La formation doit être supérieure ou égale à 40 heures
         duree_formation = individu('heures_remunerees_volume', period)
@@ -221,7 +284,7 @@ class aide_mobilite_eligible(Variable):
         #  Le durée de contrat de l'emploi doit être d'au moins 3 mois
         duree_de_contrat_3_mois_minimum = individu('contrat_de_travail_duree', period) >= 3
 
-        reprises_cdd_ctt_eligibles = (reprises_types_activites_cdd + reprises_types_activites_ctt) * duree_de_contrat_3_mois_minimum
+        reprises_cdd_ctt_eligibles = reprises_types_activites_cdd_ctt * duree_de_contrat_3_mois_minimum
 
         types_et_duree_activite_eligibles = (((reprises_types_activites_cdi + reprises_cdd_ctt_eligibles) * (en_reprise_emploi + en_entretien_embauche))
                                             + (reprises_types_activites_formation
@@ -233,47 +296,16 @@ class aide_mobilite_eligible(Variable):
         activites_eligibles = (types_et_duree_activite_eligibles + activites_en_recherche_emploi_eligibles)
 
         #  3
-        pe_categorie_demandeur_emploi = individu('pole_emploi_categorie_demandeur_emploi', period)
-
-        stagiaire_formation_professionnelle = individu('stagiaire', period)
-        contrat_aide = individu('en_contrat_aide', period)
-
-        categorie_4 = pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_4
-        categorie_4_stagiaire_formation_professionnelle = categorie_4 * stagiaire_formation_professionnelle
-
-        categorie_5 = pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_5
-        categorie_5_contrat_aide = categorie_5 * contrat_aide
-
-        categories_eligibles = ((pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_1)
-                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_2)
-                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_3)
-                                + (categorie_4_stagiaire_formation_professionnelle + categorie_5_contrat_aide)
-                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_6)
-                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_7)
-                                + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_8))
+        categories_eligibles = individu('aide_mobilite_categories_demandeur_emploi_eligibles', period)
 
         #  4
-        epsilon = 0.0001
-        lieu_de_residence = individu.menage('residence', period)
-        mayotte = lieu_de_residence == TypesLieuResidence.mayotte
-        hors_mayotte = not_(mayotte)
-
-        allocation_individu = individu('allocation_retour_emploi', period)
-
-        allocation_minimale_hors_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_hors_mayotte * hors_mayotte
-        allocation_minimale_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_mayotte * mayotte
-
-        allocation_minimale_en_fonction_de_la_region = allocation_minimale_hors_mayotte + allocation_minimale_mayotte
-
-        are_individu_egale_are_min = np.fabs(allocation_individu - allocation_minimale_en_fonction_de_la_region) < epsilon
-        are_individu_inferieure_are_min = allocation_individu < allocation_minimale_en_fonction_de_la_region
-
-        montants_allocation_eligibles = are_individu_inferieure_are_min + are_individu_egale_are_min
+        montants_allocations_eligibles = individu('aide_mobilite_allocations_eligibles', period)
 
         #  5
-        lieux_activite_eligibles = individu('emploi_ou_formation_en_france', period)
+        lieux_activite_eligibles = not_(individu('lieu_emploi_ou_formation', period) == TypesLieuEmploiFormation.non_renseigne)
 
         #  6
+        lieu_de_residence = individu.menage('residence', period)
         temps_de_trajet = individu('aide_mobilite_duree_trajet', period)
         distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
 
@@ -295,7 +327,7 @@ class aide_mobilite_eligible(Variable):
         eligibilite_amob = (contextes_eligibles
                        * activites_eligibles
                        * categories_eligibles
-                       * montants_allocation_eligibles
+                       * montants_allocations_eligibles
                        * lieux_activite_eligibles
                        * distances_et_durees_aller_retour_eligibles
                        * dispositifs_formations_eligibles)
@@ -334,3 +366,27 @@ class aide_mobilite(Variable):
         montants_reels = min_(montants_theoriques, montants_max_attribuables)
 
         return montants_reels * eligibilite_amob
+
+
+class aide_mobilite_bon_de_transport(Variable):
+    value_type = float
+    entity = Individu
+    label = "Attribution d'un bon de transport dans un contexte précis - AMOB"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    reference = [
+        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+        ]
+
+    def formula_2021_06_09(individu, period):
+
+        contexte = individu('contexte_activite_pole_emploi', period)
+        en_recherche_emploi = contexte == ContexteActivitePoleEmploi.recherche_emploi
+        lieux_activite_eligibles = individu('lieu_emploi_ou_formation', period) == TypesLieuEmploiFormation.france_hors_dom_corse
+        categories_non_eligibles = not_(individu('aide_mobilite_categories_demandeur_emploi_eligibles', period))
+        allocation_non_eligible = not_(individu('aide_mobilite_allocations_eligibles', period))
+
+        return (en_recherche_emploi
+            * lieux_activite_eligibles
+            * categories_non_eligibles
+            * allocation_non_eligible)
