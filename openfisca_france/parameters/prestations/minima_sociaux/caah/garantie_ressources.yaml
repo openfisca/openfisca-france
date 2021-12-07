@@ -42,12 +42,7 @@ values:
     value: 998.31
   2018-11-01:
     value: 1039.31
-<<<<<<< HEAD
   2019-11-01:
     value: 1079.31
   2019-12-01:
     value: null
-=======
-  2021-04-01:
-    value: 1082.91
->>>>>>> 4ec10dc42 (Revalorisation des prestations familiales et l'ASPA)
