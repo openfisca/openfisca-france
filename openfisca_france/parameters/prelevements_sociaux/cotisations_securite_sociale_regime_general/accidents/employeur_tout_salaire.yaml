@@ -20,9 +20,6 @@ metadata:
   last_review:
     2020-01-01
   reference:
-    2020-01-01:
-      title: Arrêté du 15/02/2017
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034104339&categorieLien=id
     2018-01-01: 
       title: Arrêté du 30/12/2017
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036341681&categorieLien=id
@@ -36,13 +33,11 @@ metadata:
       title: Loi 90-86 du 23/01/1990, art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006756669&cidTexte=JORFTEXT000000707200
   official_journal_date:
-    2020-01-01: 2017-03-01
     2018-01-01: 2017-12-31
     2016-01-01: 2015-12-22
     2008-01-01: 2008-12-27
     1991-01-01: 1990-01-25
   notes:
-    2020-01-01: Suppression du taux bureau, remplacé par le taux "Fonctions support de nature administrative" pour les entreprises en tarification collective ou mixte. Voir Notes.
     1991-01-01: Cotisation déplafonnée avec réduction des taux.
   description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
 documentation: |
