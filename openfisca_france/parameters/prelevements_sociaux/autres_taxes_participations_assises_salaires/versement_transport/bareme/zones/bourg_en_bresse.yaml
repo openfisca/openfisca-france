@@ -8,7 +8,7 @@ values:
     value: 0.0075
   2017-07-01:
     value: 0.008
-  metadata:
+metadata:
     unit: /1
     reference:
       2017-07-01: Lettre circulaire ACOSS 2016­0000014 du 24/05/2016
