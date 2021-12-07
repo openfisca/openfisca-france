@@ -1,5 +1,14 @@
 # Changelog
 
+## 80.4.0 [#1725](https://github.com/openfisca/openfisca-france/pull/1725)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/prestations/cheque_energie.py`.
+* Détails :
+  - Correction de la variable `cheque_energie`.
+
 ### 80.3.5 [#1596](https://github.com/openfisca/openfisca-france/pull/1596)
 
 * Changement mineur.
