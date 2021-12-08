@@ -6,13 +6,13 @@ brackets:
     1986-01-01:
       value: 0.001
     2015-01-01:
-      value: null
+      value: 0
   threshold:
     1972-07-01:
       value: 0
 - rate:
     1972-07-01:
-      value: null
+      value: 0
   threshold:
     1972-07-01:
       value: 1

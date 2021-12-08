@@ -8,19 +8,19 @@ brackets:
       1994-01-01:
         value: 0.0116
       2001-04-01:
-        value: null
+        value: 0.0
     threshold:
       1984-01-01:
         value: 0.0
   - rate:
       1984-01-01:
-        value: null
+        value: 0.0
       1984-04-01:
         value: 0.012
       1994-01-01:
         value: 0.0129
       2001-04-01:
-        value: null
+        value: 0.0
     threshold:
       1984-04-01:
         value: 1.0
@@ -36,15 +36,14 @@ metadata:
   last_review: 2021-12-07
   ux_name: Barème employeur
   reference:
-    2001-04-01: Accord Arrco-Agirc du 10/02/2001, ch. III (https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/conventions_accords/accords_Agirc_Arcco_10022001.pdf)
+    2001-04-01: 
+      - title: Accord Arrco-Agirc du 10/02/2001, ch. III
+        href: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/conventions_accords/accords_Agirc_Arcco_10022001.pdf
     1994-01-01: Convention et règlement UNEDIC du 01/01/94 agréés par arrêté du 04/01/94
-    1992-01-01: Protocole d'accord du 5/12/1991 (avenants n° 1 et 8 du 13/12/91, agréés)
-    1990-10-01: Compromis du 25/06/1990 (Dupeyroux 1993, p. 791)
     1984-04-01: Convention et règlement Unedic du 24/02/84 agréés par arrêté du 28/03/84
     1984-01-01: Accord du 10/01/1984
   official_journal_date:
     1994-01-01: 1994-01-08
-    1992-01-01: 1992-01-07
     1984-04-01: 1984-04-04
   notes: La tranche A correspond au salaire en-dessous du PSS et tranche B le salaire de 1 à 4 plafonds.
 
