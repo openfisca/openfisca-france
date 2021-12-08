@@ -417,6 +417,7 @@
     individus:
       parent1:
         age: 38
+        date_naissance: 1980-01-01
         revenu_assimile_salaire:
           2015: 28000
           2016: 28000
@@ -424,6 +425,7 @@
           2018: 28000
       parent2:
         age: 35
+        date_naissance: 1982-01-01
         revenu_assimile_salaire:
           2015: 15000
           2016: 15000
@@ -451,6 +453,7 @@
     individus:
       parent1:
         age: 38
+        date_naissance: 1980-01-01
         revenu_assimile_salaire:
           2015: 28000
           2016: 28000
@@ -458,6 +461,7 @@
           2018: 28000
       parent2:
         age: 35
+        date_naissance: 1982-01-01
         revenu_assimile_salaire:
           2015: 15000
           2016: 15000
@@ -468,11 +472,11 @@
       enfant2:
         date_naissance: 2018-01-01
   output:
-    paje: 1846.16 / (1 - 0.005) + 92.31 / (1 - 0.005)
+    paje: 1846.16 / (1 - 0.005) + 2 * (92.31 / (1 - 0.005))
 - name: PAJE - PPN - Cas N°3
   description: Montant PAJE
   period: 2018-03
-  absolute_error_margin: 0.03
+  absolute_error_margin: 0.05
   input:
     famille:
       parents: [parent1, parent2]
@@ -487,6 +491,7 @@
     individus:
       parent1:
         age: 38
+        date_naissance: 1980-01-01
         revenu_assimile_salaire:
           2015: 28000
           2016: 28000
@@ -494,6 +499,7 @@
           2018: 28000
       parent2:
         age: 35
+        date_naissance: 1982-01-01
         revenu_assimile_salaire:
           2015: 15000
           2016: 15000
@@ -506,7 +512,7 @@
       enfant3:
         date_naissance: 2018-01-01
   output:
-    paje: 2769.24 / (1 - 0.005) + 92.31 / (1 - 0.005)
+    paje: 2769.24 / (1 - 0.005) + 3 * (92.31 / (1 - 0.005))
 - name: PAJE - PPN Non Passant - Cas N°1
   description: Montant PAJE
   period: 2018-01
@@ -525,6 +531,7 @@
     individus:
       parent1:
         age: 38
+        date_naissance: 1980-01-01
         revenu_assimile_salaire:
           2015: 35000
           2016: 35000
@@ -532,6 +539,7 @@
           2018: 35000
       parent2:
         age: 35
+        date_naissance: 1982-01-01
         revenu_assimile_salaire:
           2015: 20000
           2016: 20000
@@ -560,6 +568,7 @@
     individus:
       parent1:
         age: 38
+        date_naissance: 1980-01-01
         revenu_assimile_salaire:
           2015: 25000
           2016: 25000
@@ -567,6 +576,7 @@
           2018: 25000
       parent2:
         age: 35
+        date_naissance: 1982-01-01
         revenu_assimile_salaire:
           2015: 35000
           2016: 35000
@@ -574,6 +584,7 @@
           2018: 35000
       enfant1:
         age: 1
+        date_naissance: 2017-01-01
       enfant2:
         date_naissance: 2018-01-01
   output:

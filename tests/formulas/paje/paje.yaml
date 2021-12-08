@@ -1,3 +1,7 @@
+# Dans ces tests on spécifie l'âge des parents mais la date de naissance des enfants
+# car la PAJE peut être attribuée à des enfants nés le même jour (jumeaux) et la date
+# de naissance précise est donc indispensable
+
 - name: Avant le 1er avril 2014, le montant de base de la PAJE est proprotionnel à la BMAF
   period: 2013-01
   relative_error_margin: 0.01
@@ -8,13 +12,13 @@
       parent2:
         age: 40
       enfant1:
-        age: 1
+        date_naissance: 2012-01-01
       parent3:
         age: 40
       parent4:
         age: 40
       enfant2:
-        age: 2
+        date_naissance: 2011-01-01
     familles:
       famille_0:
         parents: [parent1, parent2]
@@ -41,6 +45,36 @@
   output:
     paje_base: 0.4595 * 399.0
 
+- name: Grossesses gémellaires vs enfants successifs
+  period: 2013-01
+  relative_error_margin: 0.01
+  input:
+    individus:
+      parent1:
+        age: 40
+      parent2:
+        age: 40
+      enfant1:
+        date_naissance: 2012-01-01
+      enfant2:
+        date_naissance: 2012-01-01
+      parent3:
+        age: 40
+      parent4:
+        age: 40
+      enfant3:
+        date_naissance: 2012-01-01
+      enfant4:
+        date_naissance: 2011-01-01
+    familles:
+      famille_0:
+        parents: [parent1, parent2]
+        enfants: [enfant1, enfant2]
+      famille_1:
+        parents: [parent3, parent4]
+        enfants: [enfant3, enfant4]
+  output:
+    paje_base: [366.68, 183.34]
 
 - name: À partir du 1er avril 2013, le montant de base de la PAJE est gelé
   period: 2015-01
@@ -52,13 +86,13 @@
       parent2:
         age: 40
       enfant1:
-        age: 1
+        date_naissance: 2014-01-01
       parent3:
         age: 40
       parent4:
         age: 40
       enfant2:
-        age: 2
+        date_naissance: 2013-01-01
     familles:
       famille_0:
         parents: [parent1, parent2]

@@ -83,7 +83,7 @@ input:
         2015: true
       age: 2
       age_en_mois: 24
-      date_naissance: '2013-08-09'
+      date_naissance: '2013-08-10'
       enfant_place: false
       etudiant: 0
       inapte_travail: 0

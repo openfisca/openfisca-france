@@ -3,6 +3,7 @@ from numpy import round, floor, datetime64, maximum
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 from openfisca_core.periods import Instant
+import numpy as np
 
 
 # Prestations familiales
@@ -154,6 +155,13 @@ class paje_base(Variable):
 
         a_un_enfant_eligible = famille.any(famille.members('enfant_eligible_paje', period))
         date_plus_jeune = famille.reduce(famille.members('date_naissance', period), maximum, datetime64('1066-01-01'))
+        # On veut obtenir *pour chaque individu* la date du plus jeune membre de la famille de cet individu
+        # on va donc projeter date_plus_jeune vers un array de la taille des individus
+        date_plus_jeune_i = famille.project(date_plus_jeune)
+        # Pour chaque individu, est-il né à la même date que l'enfant le plus jeune de sa famille ?
+        ne_a_date_plus_jeune_i = np.equal(date_plus_jeune_i, famille.members('date_naissance', period))
+        # Et donc famille.sum() de cette quantité nous donne le nombre de naissances à cette date
+        enfants_multiples = famille.sum(ne_a_date_plus_jeune_i)
         sujet_a_reforme_2014 = date_plus_jeune >= datetime64('2014-04-01')
         sujet_a_reforme_2018 = date_plus_jeune >= datetime64('2018-04-01')
         ne_avant_avril_2014 = True
@@ -177,7 +185,7 @@ class paje_base(Variable):
             * (ressources > plafond_taux_plein) * montant_taux_partiel
             )
 
-        return a_un_enfant_eligible * montant
+        return a_un_enfant_eligible * enfants_multiples * montant
 
 
 class enfant_eligible_paje(Variable):

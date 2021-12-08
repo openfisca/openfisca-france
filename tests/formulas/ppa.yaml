@@ -236,6 +236,7 @@
           2015-11: 500
           2015-10: 500
       enfant1:
+        date_naissance: 2014-01-01
         age: 2
     foyers_fiscaux:
       foyer_fiscal_0:
