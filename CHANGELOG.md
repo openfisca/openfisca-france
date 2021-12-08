@@ -1,5 +1,20 @@
 # Changelog
 
+### 80.4.1 [#1726](https://github.com/openfisca/openfisca-france/pull/1726)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/fnal`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/versement_transport`
+  - `parameters/prelevements_sociaux/cotisations_regime_assurance_chomage`
+  - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/accidents`
+  - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/famille`
+  - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/csa`
+* Détails :
+  - Met à jour certaines valeurs et références de cotisations employeur, dont : la Contribution apprentissage, la Contribution solidarité autonomie, les cotisations famille, la contribution au dialogue social et le versement transport
+
 ## 80.4.0 [#1725](https://github.com/openfisca/openfisca-france/pull/1725)
 
 * Évolution du système socio-fiscal.
