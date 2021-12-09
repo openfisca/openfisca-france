@@ -242,7 +242,6 @@ class asi(Variable):
             + individu.has_role(Famille.CONJOINT) * conjoint_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
             )
 
-
     def formula_2007(individu, period, parameters):
         maries = individu.famille('maries', period)
         en_couple = individu.famille('en_couple', period)

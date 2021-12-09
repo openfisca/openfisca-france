@@ -1132,12 +1132,14 @@ class type_conges(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+
 class cer_ou_ppae(Variable):
     value_type = bool
     entity = Individu
     label = "Avoir un CER (Contrat d’engagement réciproque) et/ou un PPAE (Projet personnalisé d’accès à l’emploi) en cours"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
 
 class formation(Variable):
     value_type = bool
@@ -1146,12 +1148,14 @@ class formation(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+
 class duree_contrat_ou_formation(Variable):
     value_type = int
     entity = Individu
     label = "Durée en mois du CDD ou de la formation"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
 
 class creation_ou_reprise_entreprise(Variable):
     value_type = bool

@@ -54,6 +54,7 @@
       parents: [parent1]
       aide_logement: 0
       rsa: 0
+  output:
     acs_plafond: 12083.81
     cmu_base_ressources: 10000
 
@@ -78,7 +79,7 @@
       declarants: [parent1]
   output:
     age: 46
-    complementaire_sante_solidaire: 14
+    css_participation_forfaitaire: 14
 
 - name: "CSS: Montant de cotisation CSS d'une personne dans la tranche 30 à 49 ans, régime Alsace Moselle"
   period: 2019-11
@@ -102,7 +103,7 @@
       declarants: [parent1]
   output:
     age: 46
-    complementaire_sante_solidaire: 4.90
+    css_participation_forfaitaire: 4.90
 
 - name: "CSS: Plafond CMU pour deux personnes"
   period: 2019-11
@@ -267,7 +268,7 @@
       declarants: [parent1, parent2]
   output:
     age: [58, 68]
-    complementaire_sante_solidaire: 21 + 25
+    css_participation_forfaitaire: 21 + 25
 
 - name: "CSS: Montant de cotisation CSS de deux personnes dans les tranche 50 à 59 ans et 60 à 69 ans, régime Alsace Moselle"
   period: 2019-11
@@ -294,7 +295,7 @@
       declarants: [parent1, parent2]
   output:
     age: [58, 68]
-    complementaire_sante_solidaire: 7.30 + 8.70
+    css_participation_forfaitaire: 7.30 + 8.70
 
 - name: "CSS: Plafond CMU pour cinq personnes"
   period: 2019-11
@@ -498,7 +499,7 @@
       personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
     age: [25, 35, 10, 4, 8]
-    complementaire_sante_solidaire: 8 + 14 + 8 + 8 + 8
+    css_participation_forfaitaire: 8 + 14 + 8 + 8 + 8
 
 - name: "CSS: Montant de cotisation CSS de deux personnes dans les tranches moins de 29 ans et 30 à 49 ans, régime Alsace Moselle"
   period: 2019-11
@@ -537,7 +538,7 @@
       personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
     age: [25, 35, 10, 4, 8]
-    complementaire_sante_solidaire: 2.80 + 4.90 + 2.80 + 2.80 + 2.80
+    css_participation_forfaitaire: 2.80 + 4.90 + 2.80 + 2.80 + 2.80
 
 - name: "CSS: Montant de cotisation CSS de deux personnes dans les tranche plus de 70 ans et 60 à 69 ans, hors régime Alsace Moselle"
   period: 2019-11
@@ -564,10 +565,10 @@
       declarants: [parent1, parent2]
   output:
     age: [83, 68]
-    complementaire_sante_solidaire: 30 + 25
+    css_participation_forfaitaire: 30 + 25
 
 - name: "CSS: Montant de cotisation CSS de deux personnes dans les tranche plus de 70 ans et 60 à 69 ans, régime Alsace Moselle"
-  period: 2019-10
+  period: 2019-11
   absolute_error_margin: 0.1
   input:
     individus:
@@ -591,5 +592,5 @@
       declarants: [parent1, parent2]
   output:
     age: [83, 68]
-    complementaire_sante_solidaire: 10.50 + 8.70
+    css_participation_forfaitaire: 10.50 + 8.70
     acs: 0
