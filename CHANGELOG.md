@@ -1,5 +1,13 @@
 # Changelog
 
+### 80.4.2 [#1727](https://github.com/openfisca/openfisca-france/pull/1727)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage/apprentissage_contribution_supplementaire/plus_de_250_entre_3_et_4pc.yaml`.
+* Détails :
+  - Suppression d'une date dupliquée.
+  - 
 ### 80.4.1 [#1726](https://github.com/openfisca/openfisca-france/pull/1726)
 
 * Évolution du système socio-fiscal.
