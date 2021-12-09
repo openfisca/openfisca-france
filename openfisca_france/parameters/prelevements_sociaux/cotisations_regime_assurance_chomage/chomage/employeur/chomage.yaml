@@ -128,18 +128,14 @@ metadata:
   rate_unit: /1
   threshold_unit: PSS
   ux_name: Barème employeur
+  last_review: 2021-12-07
   reference:
-    2018-10-01:
-      title: Loi 2017-1836 du 30/12/2017, art. 8 VI. (LFSS pour 2018)
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358456&cidTexte=JORFTEXT000036339090
-    2018-01-01:
-      title: Loi 2017-1836 du 30/12/2017, art. 8 VI. (LFSS pour 2018)
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358456&cidTexte=JORFTEXT000036339090
-    2017-10-01: Circulaire Unedic 2017-21 du 24/07/2017. Convention relative à l'assurance chômage du 14/04/2017 (arrêté ministériel du 04/05/2017)
+    2017-10-01: 
+      - title: Circulaire Unedic 2017-21 du 24/07/2017
+        href: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Ci2017-21.pdf)
+      - title: Convention relative à l'assurance chômage du 14/04/2017 (arrêté ministériel du 04/05/2017)
     2007-01-01: Circulaire Unedic 2007-02 du 18/01/2007. Convention du 18/01/2006
     2006-01-01: Circulaire Unedic 2006-08 du 27/03/2006. Convention du 18/01/2006, agréé par l'arrêté du 23/02/2006
-    2005-01-01: Convention du 01/01/2004
-    2004-01-01: Convention du 01/01/2005
     2003-01-01: Convention du 01/01/2001, avenant du 27/12/2002
     2002-07-01: Convention du 01/01/2001, avenant du 19/06/2002
     2002-01-01: Convention du 01/01/2001 agréé par l'arrêté du 04/12/2000
@@ -147,15 +143,15 @@ metadata:
     1997-01-01: Convention et règlement Unedic du 01/01/1997 agréés par l'arrêté du 18/02/1997
     1993-08-01: Convention et règlement Unedic du 01/01/93 agréés par l'arrêté du 04/01/93. Avenant n°1 du 30/12/92
     1992-08-01:
-    - Protocole d'accord du 18/07/1992 (avenants du 24/07/92, agréés)
-    - accord du 30/12/1992
+    - title: Protocole d'accord du 18/07/1992 (avenants du 24/07/92, agréés)
+    - title: accord du 30/12/1992
     1992-01-01: Protocole d'accord du 05/12/1991 (avenants n° 1 et 8 du 13/12/91, agréés)
     1991-01-01: Convention et règlement Unedic du 01/01/1990 agréés par arrêté du 14/05/1990 . Protocole d'accord du 22/12/1989 - Circ. 90-08 du 06/06/1990
     1990-10-01: Compromis du 25/06/1990 (Dupeyroux 1993, p791)
     1988-01-01: Convention et Règlement UNEDIC du 19/11/1985. Accord et Convention UNEDIC du 30/12/1987
     1985-11-01:
-    - Protocole du 18/07/1985 (agréé)
-    - avenant du 29/10/1985
+    - title: Protocole du 18/07/1985 (agréé)
+    - title: avenant du 29/10/1985
     1985-07-01:
     - Arrêté du 12/08/1985
     - Protocole d'accord du 18/07/1985 (agréé)
@@ -178,8 +174,6 @@ metadata:
     1962-01-01: Décision conseil adm. 27 nov. 1961
     1959-01-01: Convention du 31/12/1958
   official_journal_date:
-    2018-10-01: 2017-12-31
-    2018-01-01: 2017-12-31
     2017-10-01: 2017-05-06
     2006-01-01: 2006-03-02
     2002-01-01: 2000-12-06

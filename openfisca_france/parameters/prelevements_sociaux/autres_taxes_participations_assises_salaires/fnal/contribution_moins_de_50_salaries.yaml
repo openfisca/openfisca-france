@@ -13,6 +13,7 @@ brackets:
     2020-01-01:
       value: 1
 metadata:
+  last_review: 2021-12-07
   threshold_unit: currency
   rate_unit: /1
   reference:

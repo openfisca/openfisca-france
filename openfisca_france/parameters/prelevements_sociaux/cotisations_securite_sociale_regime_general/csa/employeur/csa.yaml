@@ -1,7 +1,8 @@
 description: Taux employeur de la Contribution de solidarité autonomie (CSA) du régime général de la sécurité sociale (SS)
-unit: /1
 brackets:
 - rate:
+    2021-01-01:
+      value: 0.003
     2004-07-01:
       value: 0.003
   threshold:
@@ -9,9 +10,12 @@ brackets:
       value: 0.0
 metadata:
   ux_name: Barème employeur
-  last_review:
-    2004-07-01
+  last_review: 2021-12-07
+  unit: /1
   reference:
+    2021-01-01:
+      title: Article L1374-40 du Code de la Sécurité sociale 
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042675240
     2004-07-01:
       title: Loi 2004-626 du 26/06/2004, art. 11
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006682208&cidTexte=JORFTEXT000000622485
@@ -19,6 +23,5 @@ metadata:
     2004-07-01: 2004-07-01
   description_en: "SSC for autonomy (CSA: Solidarity Contribution for Autonomy)"
 documentation: |
-  Notes :
   Parfois le taux de maladie (MMID) est présenté en incluant le taux de CSA (notamment sur le site de l'URSSAFF). Ici nous distinguons les deux.
   L'art. 11 de la Loi 2004-626 du 26/06/2004 a été transféré et devient l'article L.14-10-4 du Code de l'action sociale et des familles.

@@ -1,5 +1,4 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+description: Versement transport (VT) pour la zone de Lyon
 values:
   1974-01-01:
     value: 0.0075
@@ -15,3 +14,11 @@ values:
     value: 0.0163
   2003-01-01:
     value: 0.0175
+  2016-01-01:
+    value: 0.0185
+metadata:
+  unit: /1
+  last_review: 2021-12-07
+  reference:
+    2016-01-01:
+      title: Lettre circulaire ACOSS 2015-0000024 du 07/05/2015
