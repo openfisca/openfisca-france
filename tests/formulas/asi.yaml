@@ -100,10 +100,10 @@
   input:
     age: 62
     asi_aspa_base_ressources_individu: 500
-    asi_eligibilite: True
+    asi_eligibilite: true
   output:
     asi: 300
-#Source: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite  
+#Source: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
 
 - name: Cas test de l'ASI après la réforme de 2020 - Couple marié (7)
   period: 2021-10
