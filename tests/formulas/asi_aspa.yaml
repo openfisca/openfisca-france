@@ -15,7 +15,7 @@
   input:
     age: 62
     asi_aspa_base_ressources_individu: 8000/12
-    aspa_eligibilite: True
+    aspa_eligibilite: true
   output:
     aspa: (10881.75 - 8000)/12
 # Source :  https://www.info-retraite.fr/portail-info/sites/PortailInformationnel/home/mes-droits-a-la-retraite/age-et-montant-de-ma-retraite/montants-minimums/allocations-de-solidarite-aspa-a.html
