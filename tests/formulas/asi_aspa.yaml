@@ -1,4 +1,4 @@
-- name: Absence de double compte des revenus du capital des cases 2EE et 2DC dans la base ressource de l'ASI et de l'ASPA (2016) (1)
+- name: Absence de double compte des revenus du capital des cases 2EE et 2DC dans la base ressource de l'ASI et de l'ASPA (2016)
   period: 2016-10
   absolute_error_margin: 1
   input:
@@ -9,18 +9,18 @@
   output:
     asi_aspa_base_ressources: 2000
 
-- name: Cas test Célibataire ASPA après la réforme de 2020 (2)
+- name: Cas test Célibataire ASPA après la réforme de 2020
   period: 2021-11
   absolute_error_margin: 1
   input:
     age: 62
     asi_aspa_base_ressources_individu: 8000/12
-    aspa_eligibilite: true
+    aspa_eligibilite: True
   output:
     aspa: (10881.75 - 8000)/12
 # Source :  https://www.info-retraite.fr/portail-info/sites/PortailInformationnel/home/mes-droits-a-la-retraite/age-et-montant-de-ma-retraite/montants-minimums/allocations-de-solidarite-aspa-a.html
 
-- name: Cas test Couple ASPA 2 éligibles après la réforme de 2020 (3)
+- name: Cas test Couple ASPA 2 éligibles après la réforme de 2020
   period: 2021-10
   absolute_error_margin: 1
   input:
@@ -55,7 +55,7 @@
 # Source :  https://www.info-retraite.fr/portail-info/sites/PortailInformationnel/home/mes-droits-a-la-retraite/age-et-montant-de-ma-retraite/montants-minimums/allocations-de-solidarite-aspa-a.html
 
 
-- name: Cas test Couple ASPA 1 éligible après la réforme de 2020 (4)
+- name: Cas test Couple ASPA 1 éligible après la réforme de 2020
   period: 2021-10
   absolute_error_margin: 1
   input:
@@ -88,7 +88,7 @@
   output:
     aspa: [324.5]
 
-- name: Cas test Couple ASPA 1 éligible après la réforme de 2020, plafond MAX (5)
+- name: Cas test Couple ASPA 1 éligible après la réforme de 2020, plafond MAX
   period: 2021-10
   absolute_error_margin: 1
   input:
@@ -97,15 +97,13 @@
       maries: true
     individus:
       parent1:
-        age: 65
+        age: 56
         asi_aspa_base_ressources_individu: 0
         aspa_eligibilite: true
-        asi_eligibilite: false
       parent2:
-        age: 65
+        age: 56
         asi_aspa_base_ressources_individu: 0
         aspa_eligibilite: false
-        #asi_eligibilite: false
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -123,39 +121,3 @@
   output:
     aspa: [906.81]
 # Source :  https://www.info-retraite.fr/portail-info/sites/PortailInformationnel/home/mes-droits-a-la-retraite/age-et-montant-de-ma-retraite/montants-minimums/allocations-de-solidarite-aspa-a.html
-
-
-# CUMUL ASI & ASPA 
-- name: Cas test Couple un ASI + un ASPA après la réforme de 2020 (6)
-  period: 2021-10
-  absolute_error_margin: 1
-  input:
-    famille:
-      parents: [parent1, parent2]
-      maries: true
-    individus:
-      parent1:
-        age: 65
-        asi_aspa_base_ressources_individu: 1000
-        aspa_eligibilite: true
-      parent2:
-        age: 54
-        asi_aspa_base_ressources_individu: 0
-        asi_eligibilite: true
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - parent2
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - parent2
-  output:
-    asi: [0, 0]
-    aspa: [555.87]
