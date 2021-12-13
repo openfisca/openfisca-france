@@ -1,5 +1,13 @@
 # Changelog
 
+### 80.4.4 [#1729](https://github.com/openfisca/openfisca-france/pull/1729)
+
+* Évolution du système  Changement mineur.
+* Périodes concernées : à partir du 01/01/2021
+* Zones impactées : `openfisca_france/parameters/taxation_locale/taxe_habitation`.
+* Détails :
+  - Ajoute des paramètres omis pour 2021
+
 ### 80.4.3 [#1728](https://github.com/openfisca/openfisca-france/pull/1728)
 
 * Changement mineur.
