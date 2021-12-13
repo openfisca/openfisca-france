@@ -177,7 +177,7 @@
     - 227
 
 - name: Test le montant du chèque énergie
-  period: 2021-12
+  period: 2021
   input:
     famille:
       parents: [parent1, parent2]
