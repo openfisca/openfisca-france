@@ -174,7 +174,7 @@ class maladie_maternite_artisan_commercant_taux(Variable):
             ) * individu('rpns_imposables', period)
         taux = (0.03 + (0.065 - 0.03) * min_(max_(assiette / plafond_securite_sociale_annuel, 0), 0.7) / 0.7) + 0.007
 
-        return artisan * where(assiette_pss != 0, taux, 0)
+        return artisan * taux
 
 
 class maladie_maternite_artisan_commercant(Variable):
