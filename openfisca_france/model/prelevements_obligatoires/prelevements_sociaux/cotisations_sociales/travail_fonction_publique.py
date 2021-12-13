@@ -104,10 +104,11 @@ class contribution_exceptionnelle_solidarite(Variable):
             )
         return cotisation
 
+
 class indemnite_compensatrice_csg(Variable):
     value_type = float
     entity = Individu
-    label = "Indemnité compensatrice créée en 2018 pour compenser les effets de la hausse de la CSG"
+    label = "Indemnité compensatrice créée en 2018 pour compenser les effets de la hausse de la CSG - Calcul pour les fonctionnnaires recrutés à partir de 2018"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -119,22 +120,6 @@ class indemnite_compensatrice_csg(Variable):
 
         return indem * eligible
 
-class indemnite_compensatrice_csg2(Variable):
-    value_type = float
-    entity = Individu
-    label = "Indemnité compensatrice créée en 2018 pour compenser les effets de la hausse de la CSG"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula_2018_01_01(individu, period, parameters):
-        remuneration_principale = individu('remuneration_principale', period.this_year, options=[ADD])
-        categorie_salarie = individu('categorie_salarie', period)
-        eligible = ((categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)) > 0
-        ces = individu('contribution_exceptionnelle_solidarite', period.last_year, options=[ADD])
-        cot  = individu('chomage_salarie', period.last_year, options=[ADD]) + individu('mmid_salarie', period.last_year, options=[ADD])
-        indem = (max_(((remuneration_principale * 0.016702) - cot - ces), 0) * 1.1053) / 12
-
-        return indem * eligible
 
 class fonds_emploi_hospitalier(Variable):
     value_type = float
