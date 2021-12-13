@@ -36,7 +36,7 @@ brackets:
     2015-01-01:
       value: 0.0465
     2019-01-01:
-      value: 0.0
+      value: null
   threshold:
     1962-01-01:
       value: 0.0
@@ -84,13 +84,15 @@ brackets:
     2015-01-01:
       value: 0.1215
     2019-01-01:
-      value: 0.0
+      value: null
   threshold:
     1962-01-01:
       value: 1.0
 - rate:
     1962-01-01:
       value: 0.0
+    2019-01-01:
+      value: null
   threshold:
     1962-01-01:
       value: 3.0
