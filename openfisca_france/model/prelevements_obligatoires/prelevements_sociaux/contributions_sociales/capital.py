@@ -388,7 +388,7 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
         return -assiette_csg_revenus_capital * total
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
-         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
+        assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = P.prelevements_solidarite.produits_de_placement
