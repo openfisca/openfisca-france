@@ -1,5 +1,17 @@
 # Changelog
 
+### 80.4.5 [#1730](https://github.com/openfisca/openfisca-france/pull/1730)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux`.
+  - `tests/calculateur_impots`
+  - `openfisca_france/parameters/prelevements_sociaux`
+* Détails :
+  - Corrige la date d'application de modifications du calcul des prélèvements sociaux sur le revenu du capital
+  - Corrige le calcul des cotisations sociales pour les travailleurs non salariés
+
 ### 80.4.4 [#1729](https://github.com/openfisca/openfisca-france/pull/1729)
 
 * Évolution du système  Changement mineur.
