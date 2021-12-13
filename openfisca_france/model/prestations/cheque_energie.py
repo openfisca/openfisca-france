@@ -84,7 +84,7 @@ class cheque_energie(Variable):
 
     def formula_2017(menage, period):
         eligible = menage('cheque_energie_eligibilite_logement', period)
-        declarant = menage.sum(menage.members('age',period.first_month)*0 +1,role = FoyerFiscal.DECLARANT) > 0 # une colocation de personnes à la charge de leurs parents n'est pas éligible aux chèques énergie, par exemple
+        declarant = menage.sum(menage.members('age', period.first_month) * 0 + 1, role = FoyerFiscal.DECLARANT) > 0  # une colocation de personnes à la charge de leurs parents n'est pas éligible aux chèques énergie, par exemple
         montant = menage('cheque_energie_montant', period.this_year)
         return declarant * eligible * montant
 
