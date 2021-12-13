@@ -12,8 +12,6 @@ premiere_part:
       value: 27706.0
     2021-01-01:
       value: 27761.0
-    2022-01-01:
-      value: 28150.0
 deux_premieres_demi_parts_supp:
   description: Plafond de revenu fiscal de référence pour le dégrèvement d'office à taux plein - deux premières demi-parts supplémentaires
   unit: currency
@@ -26,8 +24,6 @@ deux_premieres_demi_parts_supp:
       value: 8210.0
     2021-01-01:
       value: 8225.0
-    2022-01-01:
-      value: 8340.0
 autres_demi_parts_supp:
   description: Plafond de revenu fiscal de référence pour le dégrèvement d'office à taux plein - autres demi-parts supplémentaires
   unit: currency
@@ -40,5 +36,3 @@ autres_demi_parts_supp:
       value: 6157.0
     2021-01-01:
       value: 6169.0
-    2022-01-01:
-      value: 6255.0
