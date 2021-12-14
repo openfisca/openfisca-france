@@ -6,3 +6,6 @@ values:
   2016-01-01:
     value: 305.0
     reference: https://www.legifrance.gouv.fr/eli/arrete/2020/1/3/LOGL1934006A/jo/article_1
+  2022-01-01:
+    value: 311.0
+
