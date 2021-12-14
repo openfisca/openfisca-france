@@ -538,6 +538,6 @@ class revenus_capital(Variable):
             max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', period))
             + max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period))
             + max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period))
-            )
+            ) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return revenus_capitaux
