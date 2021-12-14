@@ -1,5 +1,17 @@
 # Changelog
 
+### 80.4.6 [#1731](https://github.com/openfisca/openfisca-france/pull/1731)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/prestations/`
+  - `tests/formulas/`
+* Détails :
+- Mets à jour le chèque énergie et ajoute l'aide exceptionnelle de 2021
+- Améliore le calcul de la paje
+- Améliore le calcul de l'aspa
+
 ### 80.4.5 [#1730](https://github.com/openfisca/openfisca-france/pull/1730)
 
 * Amélioration technique.

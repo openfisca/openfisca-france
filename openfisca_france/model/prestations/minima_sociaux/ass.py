@@ -92,7 +92,7 @@ class ass_base_ressources_individu(Variable):
 
         pensions_invalidite = individu('pensions_invalidite', previous_year, options=[ADD])
         revenus_locatifs = individu('revenus_locatifs', previous_year, options=[ADD])
-        revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capital = individu('revenus_capital', period)
 
         def revenus_tns():
             revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', previous_year, options=[ADD])

@@ -35,7 +35,6 @@ cache_blacklist = set([
     'bourse_criteres_sociaux_points_de_charge_charges_familiale',
     'bourse_criteres_sociaux_points_de_charge_distance_domicile_familial',
     'cheque_energie',
-    'garantie_jeunes_max',
     'garantie_jeunes_neet',
     'garantie_jeunes_eligibilite_age',
     'locapass_eligibilite_etudiant',

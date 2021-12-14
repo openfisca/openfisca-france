@@ -245,6 +245,7 @@ class ppa_ressources_hors_activite_individu(Variable):
         def ressources_percues_au_cours_du_mois_considere():
             ressources = [
                 'asi',
+                'caah',
                 'chomage_net',
                 'retraite_nette',
                 'retraite_combattant',

@@ -40,6 +40,7 @@ class asi_aspa_base_ressources_individu(Variable):
             'revenus_stage_formation_pro',
             'rsa_base_ressources_patrimoine_individu',
             'salaire_de_base',
+            'traitement_indiciaire_brut'
             ]
 
         # Revenus du foyer fiscal que l'on projette sur le premier invidividu
@@ -91,8 +92,8 @@ class asi_aspa_base_ressources_individu(Variable):
 
             abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire
             salaire_de_base = individu('salaire_de_base', three_previous_months, options = [ADD])
-
-            return min_(salaire_de_base, abattement_forfaitaire)
+            traitement_indiciaire_brut = individu('traitement_indiciaire_brut', three_previous_months, options = [ADD])
+            return min_(salaire_de_base + traitement_indiciaire_brut, abattement_forfaitaire)
 
         base_ressources_3_mois = sum(
             max_(0, individu(ressource_type, three_previous_months, options = [ADD]))
