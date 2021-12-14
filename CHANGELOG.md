@@ -1,5 +1,15 @@
 # Changelog
 
+### 80.4.7 [#1719](https://github.com/openfisca/openfisca-france/pull/1719)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations/minima_sociaux/aah/`
+  - `openfisca_france/model/prestations/minima_sociaux/aah.py`
+* Détails :
+- Améliore le calcul de l'AAH
+
 ### 80.4.6 [#1731](https://github.com/openfisca/openfisca-france/pull/1731)
 
 * Amélioration technique.

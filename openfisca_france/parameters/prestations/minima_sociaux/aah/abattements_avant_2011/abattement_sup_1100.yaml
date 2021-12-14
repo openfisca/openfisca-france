@@ -1,0 +1,5 @@
+description: Taux d'abattement des revenus d'activité du bénéficiaire pour la tranche de revenus supérieure à 1100 fois le SMIC horaire brut
+unit: /1
+values:
+  2001-01-01: #2005-07-01
+    value: 0.1

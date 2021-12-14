@@ -1,0 +1,5 @@
+description: Taux d'abattement des revenus d'activité du bénéficiaire pour la tranche de revenus inférieure à 30% du SMIC
+unit: /1
+values:
+  2000-01-01:  # Débute le 2011-01-01 dans la législation, mais la formule du calcul des ressources ne prend pas en compte l'historique pour l'instant
+    value: 0.8
