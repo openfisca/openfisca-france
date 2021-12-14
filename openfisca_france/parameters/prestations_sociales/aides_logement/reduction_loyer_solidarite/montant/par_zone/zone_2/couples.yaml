@@ -12,6 +12,8 @@ values:
     value: 49.57
   2021-10-01:
     value: 56.26
+  2022-01-01:
+    value: 54.49
   2022-10-01:
     value: 52.16
 metadata:
@@ -38,6 +40,9 @@ metadata:
     2021-10-01:
       title: Arrêté du 17/09/2021, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044138120
+    2022-01-01:
+      title: Arrêté du 20/12/2021, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044560604
     2022-10-01:
       title: Arrêté du 27/09/2022, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046349828
