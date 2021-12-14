@@ -245,6 +245,7 @@ class ppa_ressources_hors_activite_individu(Variable):
         def ressources_percues_au_cours_du_mois_considere():
             ressources = [
                 'asi',
+                'caah',
                 'chomage_net',
                 'retraite_nette',
                 'retraite_combattant',
@@ -258,12 +259,10 @@ class ppa_ressources_hors_activite_individu(Variable):
             return sum(individu(ressource, period) for ressource in ressources)
 
         def ressources_percues_il_y_a_deux_ans():
-            ressources_individuelles_mensuelles = [
-                'revenus_capital',
-                'revenus_locatifs',
-                ]
+            revenus_capital = individu('revenus_capital', period.offset(-2, 'year').this_year, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+            revenus_locatifs = individu('revenus_locatifs', period.offset(-2, 'year').this_year, options = [ADD])
 
-            revenus_annuels = sum(individu(ressource, period.offset(-2, 'year').this_year, options = [ADD]) for ressource in ressources_individuelles_mensuelles)
+            revenus_annuels = revenus_capital + revenus_locatifs
             plus_values_annuelles = (
                 individu.foyer_fiscal('assiette_csg_plus_values', period.offset(-2, 'year').this_year)
                 + individu.foyer_fiscal('rente_viagere_titre_onereux', period.offset(-2, 'year').this_year, options = [ADD])
