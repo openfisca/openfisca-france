@@ -1,6 +1,6 @@
 # Changelog
 
-### [#1733](https://github.com/openfisca/openfisca-france/pull/1733)
+### 80.4.8 [#1733](https://github.com/openfisca/openfisca-france/pull/1733)
 
 * Correction d'un crash.
 * Périodes concernées : toutes.
