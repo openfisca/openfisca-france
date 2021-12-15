@@ -1,5 +1,13 @@
 # Changelog
 
+### 80.4.10 [#1735](https://github.com/openfisca/openfisca-france/pull/1735)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `contributions_sociales/crds/activite/abattement`.
+* Détails :
+  - Corrige erreur de frappe
+
 ### 80.4.9 [#1732](https://github.com/openfisca/openfisca-france/pull/1732)
 
 * Changement mineur.
