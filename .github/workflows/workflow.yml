@@ -141,7 +141,7 @@ jobs:
 
   # GitHub Actions does not have a halt job option, to stop from deploying if no functional changes were found.
   # We build a separate job to substitute the halt option.
-  # The `deploy` job is dependent on the output of the `check-for-functional-changes`job.
+  # The `deploy` job is dependent on the output of the `check-for-functional-changes` job.
   check-for-functional-changes:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
