@@ -1,0 +1,457 @@
+from openfisca_france.model.base import *
+from openfisca_core import periods
+from numpy import logical_or as or_, logical_and as and_
+
+## Les éligibilités séparées de l'indemnité inflation
+#######################################################
+
+# 1 : Non-Salariés
+class eligibilite_indemnite_inflation_non_salarie(Variable):
+    entity = Individu
+    value_type = bool
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    label = u"Eligibilité à l'indemnité inflation en tant que non-salarié"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+
+        oct_2021 = periods.period("2021-10")
+        
+        # non-salarié
+        eligibilite_cat_non_sal = (individu('categorie_non_salarie', oct_2021.this_year) != TypesCategorieNonSalarie.non_pertinent)
+
+        # revenu d'activité inférieure à € 2000 nets par mois en 2020 (selon déclaration annuelle des revenus)
+
+        annee_2020 = periods.period("2020")
+        jan_sep_2021 = periods.period("month:2021-01:9")
+
+        # Q (p. 10) : création de l'activité sur la période janvier-octobre 2021 => condition satisfaite ?
+        #revenu_net_2020 = individu('revenus_nets_du_travail', annee_2020) - individu('salaire_net', annee_2020)
+
+        # chiffre d'affaires
+        rev_net_auto = individu('rpns_auto_entrepreneur_revenus_net', annee_2020, options = [ADD])
+        rev_net_micro = individu('rpns_micro_entreprise_revenus_net', annee_2020, options = [ADD])
+
+        rev_net = (rev_net_auto + rev_net_micro) / 12
+        #rev_net = rev_net_auto / 12
+
+        chiffre_d_affaires_auto = individu('rpns_auto_entrepreneur_chiffre_affaires', jan_sep_2021, options = [ADD])
+        chiffre_d_affaires_micro = individu('rpns_micro_entreprise_chiffre_affaires', jan_sep_2021.this_year) * 9 / 12
+
+        chiffre_d_affaires = (chiffre_d_affaires_auto + chiffre_d_affaires_micro) / 9
+
+        eligibilite_rev_net = rev_net <= 2000
+
+        eligibilite_micro_artisan = and_(chiffre_d_affaires_micro >= 900, chiffre_d_affaires_micro <= 4000) 
+        eligibilite_micro_commercant = and_(chiffre_d_affaires_micro >= 900, chiffre_d_affaires_micro <= 6897) 
+        eligibilite_micro_prof_lib = and_(chiffre_d_affaires_micro >= 900, chiffre_d_affaires_micro <= 3030) 
+
+        eligibilite_micro = (eligibilite_micro_artisan + eligibilite_micro_commercant + eligibilite_micro_prof_lib) > 0
+        
+        return eligibilite_cat_non_sal * or_(and_(rev_net <= 2000, rev_net > 0),
+                                             eligibilite_micro)
+
+# 2 : Salariés
+class eligibilite_indemnite_inflation_salarie_prive(Variable):
+    entity = Individu
+    value_type = bool
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    label = u"Eligibilité à l'indemnité inflation en tant que salarié privé"
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+
+    def formula(individu, period, parameters):
+
+        oct_2021 = periods.period("2021-10")
+        
+        # salariés du secteur privé, exercant une activité en octobre 2021 / Q : Alternance ?
+        eligibilite_activite = individu('activite', oct_2021) == TypesActivite.actif
+        eligibilite_alternance = individu('alternant', oct_2021) > 0
+        eligibilite = (eligibilite_activite + eligibilite_alternance) > 0
+
+        # rémunération moyenne inférieure à € 2000 nets par mois avant IR
+        # ou brut inférieure à € 2600 par mois
+        # du janvier à octobre 2021
+
+        jan_oct_2021 = periods.period("month:2021-01:10")
+
+        salaire_net_jan_oct_2021 = individu('salaire_net', jan_oct_2021, options=[ADD]) / 10
+
+        elig_sal = salaire_net_jan_oct_2021 <= 2000
+
+        # pas non-salarié :
+        pas_autre = individu("eligibilite_indemnite_inflation_non_salarie", period) == 0
+
+        return eligibilite * elig_sal * pas_autre
+
+# 3 : Public
+class eligibilite_indemnite_inflation_public(Variable):
+    entity = Individu
+    value_type = bool
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    label = u"Eligibilité à l'indemnité inflation en tant qu'agent public"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+
+        oct_2021 = periods.period("2021-10")
+        
+        # agent public
+        eligibilite_public = ((individu('categorie_salarie', oct_2021) == TypesCategorieSalarie.public_titulaire_etat) + \
+                             (individu('categorie_salarie', oct_2021) == TypesCategorieSalarie.public_titulaire_militaire) + \
+                             (individu('categorie_salarie', oct_2021) == TypesCategorieSalarie.public_titulaire_territoriale) + \
+                             (individu('categorie_salarie', oct_2021) == TypesCategorieSalarie.public_titulaire_hospitaliere) + \
+                             (individu('categorie_salarie', oct_2021) == TypesCategorieSalarie.public_non_titulaire) ) > 0
+
+        # rémunération moyenne inférieure à € 2000 nets par mois avant IR
+        # ou brut inférieure à € 2600 par mois
+        # du janvier à octobre 2021
+
+        jan_oct_2021 = periods.period("month:2021-01:10")
+
+        remun_net_jan_oct_2021 = individu('salaire_net', jan_oct_2021, options = [ADD]) / 10
+
+        # pas non-salarié, salarié :
+        pas_autre = (individu("eligibilite_indemnite_inflation_non_salarie", period) +
+        individu("eligibilite_indemnite_inflation_salarie_prive", period)) == 0
+
+        return eligibilite_public * (remun_net_jan_oct_2021 <= 2000) * pas_autre
+
+# 4 : Retraité
+class eligibilite_indemnite_inflation_retraite(Variable):
+    entity = Individu
+    value_type = bool
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    label = u"Eligibilité à l'indemnité inflation en tant que retraité"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+
+        oct_2021 = periods.period("2021-10")
+        annee_2021 = periods.period("2021")
+
+        # bénéficiaire d'une pension de retraite en octobre 2021
+        # Q : par statut de retraité ?
+        eligibilite_retraite = (individu('activite', oct_2021) == TypesActivite.retraite)
+
+        # bénéficiaire du minimum vieillesse en octobre 2021
+        # par éligibilité a l'ASPA ?
+        eligibilite_aspa = (individu.famille('aspa', oct_2021) > 0)
+
+        # pension/aspa nette inférieur à € 2000 par mois (mais quelle période ?)
+        # pensions_nettes ? => retraites et pensions et aussi chômage...
+        # dans la note : "base du montant des pensions de retraite de base et complémentaire (AGIRRC-ARRCO),
+        # y compris les pensions de réversion"
+        pension = individu('pensions_nettes', annee_2021) / 12
+        min_vi = individu.famille('aspa', annee_2021, options = [ADD]) / 12
+
+        # pas non-salarié, salarié, agent public :
+        pas_autre = (individu("eligibilite_indemnite_inflation_non_salarie", period) +
+        individu("eligibilite_indemnite_inflation_salarie_prive", period) +
+        individu("eligibilite_indemnite_inflation_public", period)) == 0
+
+        return or_(and_(eligibilite_retraite, pension <= 2000), 
+                   and_(eligibilite_aspa, min_vi <= 2000)) * pas_autre
+
+# 5 : Min Soc, Prest Soc
+class eligibilite_indemnite_inflation_prest_soc(Variable):
+    entity = Individu
+    value_type = bool
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    label = u"Eligibilité à l'indemnité inflation en tant que bénéficiaire des prestations sociales"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+
+        oct_2021 = periods.period("2021-10")
+
+        # pension d'invalidité <= 2000 par mois
+        eligibilite_pension_invalidite = (individu('pensions_invalidite', oct_2021) <= 2000) * (individu('pensions_invalidite', oct_2021) > 0)
+
+        # allocataire de l'AAH; RSA; ASI; PreParE; sans critère de montant
+        eligibilite_allocations = (individu('aah', oct_2021) +
+                                   individu.famille('rsa', oct_2021) * individu.has_role(Famille.PARENT) + #PARENT DEMANDEUR
+                                   individu('asi', oct_2021) +
+                                   individu.famille('paje_prepare', oct_2021) * individu.has_role(Famille.PARENT))
+
+        # pas non-salarié, salarié, agent public, retraité :
+        pas_autre = (individu("eligibilite_indemnite_inflation_non_salarie", period) +
+        individu("eligibilite_indemnite_inflation_salarie_prive", period) +
+        individu("eligibilite_indemnite_inflation_public", period) +
+        individu("eligibilite_indemnite_inflation_retraite", period)) == 0
+
+        return ((eligibilite_pension_invalidite + eligibilite_allocations) > 0) * pas_autre
+
+# 6 : Jeunes
+class eligibilite_indemnite_inflation_jeune(Variable):
+    entity = Individu
+    value_type = bool
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    label = u"Eligibilité à l'indemnité inflation en tant que jeune"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+
+        oct_2021 = periods.period("2021-10")
+
+        # au moins 16 ans
+        eligibilite_age = individu('age', oct_2021) >= 16
+
+        # étudiant boursier
+        eligibilite_etudiant_boursier = individu('bourse_criteres_sociaux', oct_2021) > 0
+
+        # étudiant non-boursier & AL
+        eligibilite_etudiant_nb_al = and_(and_(individu('etudiant', oct_2021), individu('bourse_criteres_sociaux', oct_2021) == 0), 
+                                          and_(individu.famille('aide_logement', oct_2021) > 0, individu.has_role(Famille.DEMANDEUR)))
+
+        # apprenti ou contrat de professionnalisation
+        # Q : rémunération apprenti/contrat prof. - où trouver les chiffres nets ? salaire_net ?
+        eligibilite_apprenti = or_(and_(individu('apprenti', oct_2021), individu('remuneration_apprenti', oct_2021) <= 2000), 
+                                   and_(individu('professionnalisation', oct_2021), individu('professionnalisation', oct_2021) <= 2000))
+        
+        # stagiaire formation prof.
+        # Q : pas de variable pour le statut ? revenus nets ?
+        eligibilite_stage_prof = and_(individu('revenus_stage_formation_pro', oct_2021) > 0, 
+                                      individu('revenus_stage_formation_pro', oct_2021) < 2000)
+
+        # jeune en rechere d'emploi, pqrcours contractualisé d'accompagnement, garantie jeunes
+        eligibilite_emploi_gj = individu('garantie_jeunes', oct_2021) > 0
+
+        # pas non-salarié, salarié, agent public, retraité, MinSoc/PrestSoc :
+        pas_autre = (individu("eligibilite_indemnite_inflation_non_salarie", period) +
+        individu("eligibilite_indemnite_inflation_salarie_prive", period) +
+        individu("eligibilite_indemnite_inflation_public", period) +
+        individu("eligibilite_indemnite_inflation_retraite", period) +
+        individu("eligibilite_indemnite_inflation_prest_soc", period)) == 0
+
+        return eligibilite_age * ((eligibilite_etudiant_boursier + 
+                                   eligibilite_etudiant_nb_al +
+                                   eligibilite_apprenti +
+                                   eligibilite_stage_prof +
+                                   eligibilite_emploi_gj) > 0) * pas_autre
+
+# 7 : Demandeur d'Emploi
+class eligibilite_indemnite_inflation_demandeur_emploi(Variable):
+    entity = Individu
+    value_type = bool
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    label = u"Eligibilité à l'indemnité inflation en tant que demandeur d'emploi"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+
+        oct_2021 = periods.period("2021-10")
+
+        # chômeur en octobre 2021
+        eligibilite_chomeur = (individu('activite', oct_2021) == TypesActivite.chomeur)
+
+        allocation = individu('chomage_net', oct_2021)
+
+        # pas non-salarié, salarié, agent public, retraité, MinSoc/PrestSoc, jeune :
+        pas_autre = (individu("eligibilite_indemnite_inflation_non_salarie", period) +
+        individu("eligibilite_indemnite_inflation_salarie_prive", period) +
+        individu("eligibilite_indemnite_inflation_public", period) +
+        individu("eligibilite_indemnite_inflation_retraite", period) +
+        individu("eligibilite_indemnite_inflation_prest_soc", period) +
+        individu("eligibilite_indemnite_inflation_jeune", period)) == 0
+
+        return eligibilite_chomeur * (allocation <= 2000) * pas_autre
+                                        
+class eligibilite_indemnite_inflation_salarie_prive_menage(Variable):
+    entity = Menage
+    value_type = float
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+
+    def formula(menage, period):
+        elig_i = menage.members('eligibilite_indemnite_inflation_salarie_prive', period)
+        elig = menage.sum(elig_i)
+
+        return elig
+
+class eligibilite_indemnite_inflation_non_salarie_menage(Variable):
+    entity = Menage
+    value_type = float
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+
+    def formula(menage, period):
+        elig_i = menage.members('eligibilite_indemnite_inflation_non_salarie', period)
+        elig = menage.sum(elig_i)
+
+        return elig
+
+class eligibilite_indemnite_inflation_public_menage(Variable):
+    entity = Menage
+    value_type = float
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+
+    def formula(menage, period):
+        elig_i = menage.members('eligibilite_indemnite_inflation_public', period)
+        elig = menage.sum(elig_i)
+
+        return elig
+
+class eligibilite_indemnite_inflation_demandeur_emploi_menage(Variable):
+    entity = Menage
+    value_type = float
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+
+    def formula(menage, period):
+        elig_i = menage.members('eligibilite_indemnite_inflation_demandeur_emploi', period)
+        elig = menage.sum(elig_i)
+
+        return elig
+
+class eligibilite_indemnite_inflation_retraite_menage(Variable):
+    entity = Menage
+    value_type = float
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+
+    def formula(menage, period):
+        elig_i = menage.members('eligibilite_indemnite_inflation_retraite', period)
+        elig = menage.sum(elig_i)
+
+        return elig
+
+class eligibilite_indemnite_inflation_prest_soc_menage(Variable):
+    entity = Menage
+    value_type = float
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+
+    def formula(menage, period):
+        elig_i = menage.members('eligibilite_indemnite_inflation_prest_soc', period)
+        elig = menage.sum(elig_i)
+
+        return elig
+
+class eligibilite_indemnite_inflation_jeune_menage(Variable):
+    entity = Menage
+    value_type = float
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+
+    def formula(menage, period):
+        elig_i = menage.members('eligibilite_indemnite_inflation_jeune', period)
+        elig = menage.sum(elig_i)
+
+        return elig
+
+## L'éligibilité finale de l'indemnité inflation
+###################################################
+
+class eligibilite_indemnite_inflation(Variable):
+    entity = Individu
+    value_type = bool
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    label = u"Eligibilité à l'indemnité inflation"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+
+        eligible_salarie_prive = individu('eligibilite_indemnite_inflation_salarie_prive', period)
+        eligible_non_salarie = individu('eligibilite_indemnite_inflation_non_salarie', period)
+        eligible_public = individu('eligibilite_indemnite_inflation_public', period)
+        eligible_demandeur_emploi = individu('eligibilite_indemnite_inflation_demandeur_emploi', period)
+        eligible_retraite = individu('eligibilite_indemnite_inflation_retraite', period)
+        eligible_prest_soc = individu('eligibilite_indemnite_inflation_prest_soc', period)
+        eligible_jeune = individu('eligibilite_indemnite_inflation_jeune', period)
+
+        return (eligible_salarie_prive +
+            eligible_non_salarie +
+            eligible_public +
+            eligible_demandeur_emploi +
+            eligible_retraite +
+            eligible_prest_soc +
+            eligible_jeune) > 0
+
+class eligibilite_indemnite_inflation_menage(Variable):
+    entity = Menage
+    value_type = bool
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    label = u"Eligibilité à l'indemnité inflation"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        elig_i = menage.members('eligibilite_indemnite_inflation', period)
+        elig = menage.sum(elig_i)
+
+        return elig > 0
+
+class nombre_indemnite_inflation_menage(Variable):
+    entity = Menage
+    value_type = float
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    label = u"Nombre d'éligibles à l'indemnité inflation"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        elig_i = menage.members('eligibilite_indemnite_inflation', period)
+        elig = menage.sum(elig_i)
+
+        return elig
+
+## L'aide finale de l'indemnité inflation
+############################################
+
+class indemnite_inflation(Variable):
+    entity = Individu
+    value_type = float
+    label = u"Aide exceptionnelle de 100 euros pour les individus gagnant € 2000 ou moins"
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    definition_period = YEAR
+    set_input = set_input_divide_by_period
+    end = "2021-12-31"
+
+    def formula_2021_01_01(individu, period, parameters):
+        montant_indemnite = parameters(period).indemnite_inflation
+        eligibilite_indemnite_inflation = individu('eligibilite_indemnite_inflation', period.this_year)
+        
+        return montant_indemnite * (eligibilite_indemnite_inflation > 0)
+
+class indemnite_inflation_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Aide exceptionnelle de 100 euros pour les individus gagnant € 2000 ou moins"
+    definition_period = YEAR
+    set_input = set_input_divide_by_period
+
+    def formula(menage, period):
+        indinf_i = menage.members('indemnite_inflation', period)
+        indinf = menage.sum(indinf_i)
+
+        return indinf
+
+class moyen_indemnite_inflation_menage(Variable):
+    entity = Menage
+    value_type = float
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    label = u"Moyen indemnité inflation"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        elig_i = menage.members('indemnite_inflation', period)
+        elig = menage.sum(elig_i)
+
+        nb_men = menage.sum((elig_i) > -1)
+
+        return elig / nb_men
+
+class personnes_menage(Variable):
+    entity = Menage
+    value_type = float
+    reference = "https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix"
+    label = u"Moyen indemnité inflation"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        elig_i = menage.members('indemnite_inflation', period)
+        elig = menage.sum(elig_i)
+
+        nb_men = menage.sum((elig_i) > -1)
+
+        return nb_men

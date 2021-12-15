@@ -1,0 +1,8 @@
+description: Indemnité Inflation 2021
+reference: https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix
+unit: currency
+values:
+  2021-01-01:
+    value: 100
+  2022-01-01:
+    value: null
