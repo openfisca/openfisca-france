@@ -190,15 +190,6 @@ jobs:
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
-      - name: Add SSH key & Deploy the Web API
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: |
-          mkdir -p /home/runner/.ssh
-          ssh-keyscan fr.openfisca.org >> /home/runner/.ssh/known_hosts
-          echo "${{ secrets.FRANCE_API_DEPLOY_KEY }}" > /home/runner/.ssh/france_api_deploy
-          chmod 600 /home/runner/.ssh/france_api_deploy
-          ssh -i /home/runner/.ssh/france_api_deploy -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
 
   check-api-version:
     runs-on: ubuntu-latest
