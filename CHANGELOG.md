@@ -1,5 +1,14 @@
 # Changelog
 
+### 80.4.8 [#1733](https://github.com/openfisca/openfisca-france/pull/1733)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `.github/workflows/workflow.yml`
+* Détails :
+  - Corrige le statut du déploiement d'`openfisca-france`.
+    * Supprime de GitHub Action un mode de déploiement obsolète pour l'API Web.
+
 ### 80.4.7 [#1719](https://github.com/openfisca/openfisca-france/pull/1719)
 
 * Amélioration technique.
@@ -8,7 +17,7 @@
   - `openfisca_france/parameters/prestations/minima_sociaux/aah/`
   - `openfisca_france/model/prestations/minima_sociaux/aah.py`
 * Détails :
-- Améliore le calcul de l'AAH
+  - Améliore le calcul de l'AAH
 
 ### 80.4.6 [#1731](https://github.com/openfisca/openfisca-france/pull/1731)
 
@@ -18,9 +27,9 @@
   - `openfisca_france/model/prestations/`
   - `tests/formulas/`
 * Détails :
-- Mets à jour le chèque énergie et ajoute l'aide exceptionnelle de 2021
-- Améliore le calcul de la paje
-- Améliore le calcul de l'aspa
+  - Mets à jour le chèque énergie et ajoute l'aide exceptionnelle de 2021
+  - Améliore le calcul de la paje
+  - Améliore le calcul de l'aspa
 
 ### 80.4.5 [#1730](https://github.com/openfisca/openfisca-france/pull/1730)
 
