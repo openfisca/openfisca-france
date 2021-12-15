@@ -16,38 +16,28 @@ class eligibilite_indemnite_inflation_non_salarie(Variable):
     def formula(individu, period, parameters):
 
         oct_2021 = periods.period("2021-10")
-        
+
         # non-salarié
         eligibilite_cat_non_sal = (individu('categorie_non_salarie', oct_2021.this_year) != TypesCategorieNonSalarie.non_pertinent)
 
         # revenu d'activité inférieure à € 2000 nets par mois en 2020 (selon déclaration annuelle des revenus)
-
         annee_2020 = periods.period("2020")
         jan_sep_2021 = periods.period("month:2021-01:9")
-
-        # Q (p. 10) : création de l'activité sur la période janvier-octobre 2021 => condition satisfaite ?
-        #revenu_net_2020 = individu('revenus_nets_du_travail', annee_2020) - individu('salaire_net', annee_2020)
 
         # chiffre d'affaires
         rev_net_auto = individu('rpns_auto_entrepreneur_revenus_net', annee_2020, options = [ADD])
         rev_net_micro = individu('rpns_micro_entreprise_revenus_net', annee_2020, options = [ADD])
 
         rev_net = (rev_net_auto + rev_net_micro) / 12
-        #rev_net = rev_net_auto / 12
 
-        chiffre_d_affaires_auto = individu('rpns_auto_entrepreneur_chiffre_affaires', jan_sep_2021, options = [ADD])
         chiffre_d_affaires_micro = individu('rpns_micro_entreprise_chiffre_affaires', jan_sep_2021.this_year) * 9 / 12
 
-        chiffre_d_affaires = (chiffre_d_affaires_auto + chiffre_d_affaires_micro) / 9
-
-        eligibilite_rev_net = rev_net <= 2000
-
-        eligibilite_micro_artisan = and_(chiffre_d_affaires_micro >= 900, chiffre_d_affaires_micro <= 4000) 
-        eligibilite_micro_commercant = and_(chiffre_d_affaires_micro >= 900, chiffre_d_affaires_micro <= 6897) 
-        eligibilite_micro_prof_lib = and_(chiffre_d_affaires_micro >= 900, chiffre_d_affaires_micro <= 3030) 
+        eligibilite_micro_artisan = and_(chiffre_d_affaires_micro >= 900, chiffre_d_affaires_micro <= 4000)
+        eligibilite_micro_commercant = and_(chiffre_d_affaires_micro >= 900, chiffre_d_affaires_micro <= 6897)
+        eligibilite_micro_prof_lib = and_(chiffre_d_affaires_micro >= 900, chiffre_d_affaires_micro <= 3030)
 
         eligibilite_micro = (eligibilite_micro_artisan + eligibilite_micro_commercant + eligibilite_micro_prof_lib) > 0
-        
+
         return eligibilite_cat_non_sal * or_(and_(rev_net <= 2000, rev_net > 0),
                                              eligibilite_micro)
 
@@ -62,22 +52,40 @@ class eligibilite_indemnite_inflation_salarie_prive(Variable):
 
     def formula(individu, period, parameters):
 
-        oct_2021 = periods.period("2021-10")
-        
-        # salariés du secteur privé, exercant une activité en octobre 2021 / Q : Alternance ?
+        # éligibilité statut
         eligibilite_activite = individu('activite', oct_2021) == TypesActivite.actif
         eligibilite_alternance = individu('alternant', oct_2021) > 0
         eligibilite = (eligibilite_activite + eligibilite_alternance) > 0
 
-        # rémunération moyenne inférieure à € 2000 nets par mois avant IR
+        # éligibilité salaire
+        # rémunération moyenne inférieure à € 2000 nets par mois travaillé avant IR
         # ou brut inférieure à € 2600 par mois
         # du janvier à octobre 2021
+        rev_periods = ["2021-01",
+        "2021-02",
+        "2021-03",
+        "2021-04",
+        "2021-05",
+        "2021-06",
+        "2021-07",
+        "2021-08",
+        "2021-09",
+        "2021-10"]
 
-        jan_oct_2021 = periods.period("month:2021-01:10")
+        nsal = 0
+        tsal = 0
 
-        salaire_net_jan_oct_2021 = individu('salaire_net', jan_oct_2021, options=[ADD]) / 10
+        for rp in rev_periods:
+            per = periods.period(rp)
+            sal = individu('salaire_net', per, options=[ADD])
 
-        elig_sal = salaire_net_jan_oct_2021 <= 2000
+            if sal > 0:
+                nsal += 1
+                tsal += sal
+
+        sal_plafond = 2000 * max(1, nsal)
+
+        elig_sal = tsal <= sal_plafond
 
         # pas non-salarié :
         pas_autre = individu("eligibilite_indemnite_inflation_non_salarie", period) == 0
@@ -95,7 +103,7 @@ class eligibilite_indemnite_inflation_public(Variable):
     def formula(individu, period, parameters):
 
         oct_2021 = periods.period("2021-10")
-        
+
         # agent public
         eligibilite_public = ((individu('categorie_salarie', oct_2021) == TypesCategorieSalarie.public_titulaire_etat) + \
                              (individu('categorie_salarie', oct_2021) == TypesCategorieSalarie.public_titulaire_militaire) + \
@@ -103,19 +111,41 @@ class eligibilite_indemnite_inflation_public(Variable):
                              (individu('categorie_salarie', oct_2021) == TypesCategorieSalarie.public_titulaire_hospitaliere) + \
                              (individu('categorie_salarie', oct_2021) == TypesCategorieSalarie.public_non_titulaire) ) > 0
 
-        # rémunération moyenne inférieure à € 2000 nets par mois avant IR
+        # éligibilité rémuneration
+        # rémunération moyenne inférieure à € 2000 nets par mois travaillé avant IR
         # ou brut inférieure à € 2600 par mois
         # du janvier à octobre 2021
+        rev_periods = ["2021-01",
+        "2021-02",
+        "2021-03",
+        "2021-04",
+        "2021-05",
+        "2021-06",
+        "2021-07",
+        "2021-08",
+        "2021-09",
+        "2021-10"]
 
-        jan_oct_2021 = periods.period("month:2021-01:10")
+        nsal = 0
+        tsal = 0
 
-        remun_net_jan_oct_2021 = individu('salaire_net', jan_oct_2021, options = [ADD]) / 10
+        for rp in rev_periods:
+            per = periods.period(rp)
+            sal = individu('salaire_net', per, options=[ADD])
+
+            if sal > 0:
+                nsal += 1
+                tsal += sal
+
+        sal_plafond = 2000 * max(1, nsal)
+
+        elig_sal = tsal <= sal_plafond
 
         # pas non-salarié, salarié :
         pas_autre = (individu("eligibilite_indemnite_inflation_non_salarie", period) +
         individu("eligibilite_indemnite_inflation_salarie_prive", period)) == 0
 
-        return eligibilite_public * (remun_net_jan_oct_2021 <= 2000) * pas_autre
+        return eligibilite_public * elig_sal * pas_autre
 
 # 4 : Retraité
 class eligibilite_indemnite_inflation_retraite(Variable):
@@ -150,7 +180,7 @@ class eligibilite_indemnite_inflation_retraite(Variable):
         individu("eligibilite_indemnite_inflation_salarie_prive", period) +
         individu("eligibilite_indemnite_inflation_public", period)) == 0
 
-        return or_(and_(eligibilite_retraite, pension <= 2000), 
+        return or_(and_(eligibilite_retraite, pension <= 2000),
                    and_(eligibilite_aspa, min_vi <= 2000)) * pas_autre
 
 # 5 : Min Soc, Prest Soc
@@ -201,17 +231,17 @@ class eligibilite_indemnite_inflation_jeune(Variable):
         eligibilite_etudiant_boursier = individu('bourse_criteres_sociaux', oct_2021) > 0
 
         # étudiant non-boursier & AL
-        eligibilite_etudiant_nb_al = and_(and_(individu('etudiant', oct_2021), individu('bourse_criteres_sociaux', oct_2021) == 0), 
+        eligibilite_etudiant_nb_al = and_(and_(individu('etudiant', oct_2021), individu('bourse_criteres_sociaux', oct_2021) == 0),
                                           and_(individu.famille('aide_logement', oct_2021) > 0, individu.has_role(Famille.DEMANDEUR)))
 
         # apprenti ou contrat de professionnalisation
         # Q : rémunération apprenti/contrat prof. - où trouver les chiffres nets ? salaire_net ?
-        eligibilite_apprenti = or_(and_(individu('apprenti', oct_2021), individu('remuneration_apprenti', oct_2021) <= 2000), 
+        eligibilite_apprenti = or_(and_(individu('apprenti', oct_2021), individu('remuneration_apprenti', oct_2021) <= 2000),
                                    and_(individu('professionnalisation', oct_2021), individu('professionnalisation', oct_2021) <= 2000))
-        
+
         # stagiaire formation prof.
         # Q : pas de variable pour le statut ? revenus nets ?
-        eligibilite_stage_prof = and_(individu('revenus_stage_formation_pro', oct_2021) > 0, 
+        eligibilite_stage_prof = and_(individu('revenus_stage_formation_pro', oct_2021) > 0,
                                       individu('revenus_stage_formation_pro', oct_2021) < 2000)
 
         # jeune en rechere d'emploi, pqrcours contractualisé d'accompagnement, garantie jeunes
@@ -224,7 +254,7 @@ class eligibilite_indemnite_inflation_jeune(Variable):
         individu("eligibilite_indemnite_inflation_retraite", period) +
         individu("eligibilite_indemnite_inflation_prest_soc", period)) == 0
 
-        return eligibilite_age * ((eligibilite_etudiant_boursier + 
+        return eligibilite_age * ((eligibilite_etudiant_boursier +
                                    eligibilite_etudiant_nb_al +
                                    eligibilite_apprenti +
                                    eligibilite_stage_prof +
@@ -256,7 +286,7 @@ class eligibilite_indemnite_inflation_demandeur_emploi(Variable):
         individu("eligibilite_indemnite_inflation_jeune", period)) == 0
 
         return eligibilite_chomeur * (allocation <= 2000) * pas_autre
-                                        
+
 class eligibilite_indemnite_inflation_salarie_prive_menage(Variable):
     entity = Menage
     value_type = float
@@ -410,7 +440,7 @@ class indemnite_inflation(Variable):
     def formula_2021_01_01(individu, period, parameters):
         montant_indemnite = parameters(period).indemnite_inflation
         eligibilite_indemnite_inflation = individu('eligibilite_indemnite_inflation', period.this_year)
-        
+
         return montant_indemnite * (eligibilite_indemnite_inflation > 0)
 
 class indemnite_inflation_menage(Variable):
