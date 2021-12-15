@@ -1,0 +1,54 @@
+description: Taux global de la Contribution Sociale Généralisée (CSG) imposable sur les pensions de retraite et d'invalidité
+unit: /1
+values:
+  2018-01-01:
+    value: 0.083
+  2005-01-01:
+    value: 0.066
+  1998-01-01:
+    value: 0.062
+  1997-01-01:
+    value: 0.034
+  1993-07-01:
+    value: 0.024
+  1991-02-01:
+    value: 0.011
+metadata:
+  ux_name: Taux global
+  last_review: 2021-12-15
+  reference:
+    2018-01-01:
+    - title: Article 154 quinquies du CGI
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000036431149/2018-01-01/
+    - title: Loi 2017-1836 du 30/12/2017, art. 8 (LFSS pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358456&cidTexte=JORFTEXT000036339090
+    - title: Loi 2017-1837 du 30/12/2017, art. 67 (LF pour 2018)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377512&cidTexte=JORFTEXT000036339197
+    2005-01-01:
+      title: Loi 2004-810 du 13/08/2004, art. 72
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006759004&cidTexte=JORFTEXT000000625158
+    1998-01-01:
+      title: Loi 97-1164 du 19/12/1997, art. 5 (LFSS pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757359&cidTexte=JORFTEXT000000569121
+    1997-01-01: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
+    1993-07-01:
+      title: Loi 93-859 du 22/06/1993, art. 42 (LFR pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006318786&cidTexte=JORFTEXT000000362947
+    1991-02-01: Loi 90-1168 du 29/12/90, art. 127 à 135 (LF pour 1991)
+  official_journal_date:
+    2018-01-01: 2017-12-31
+    2005-01-01: 2004-08-17
+    1998-01-01: 1997-12-23
+    1997-01-01: 1996-12-29
+    1993-07-01: 1993-06-23
+    1991-02-01: 1990-12-30
+  notes:
+    2019-01-01: La hausse de CSG est annulée pour les retraités les plus modestes par la loi 2018-1213 portant mesures d'urgences économiques et sociales. Dans les faits, cela crée un taux intermédiaire de 6,6 % qui vient s'ajouter au taux zéro, au taux réduit et au taux normal.
+    1991-02-01: Une circulaire ministérielle du 16/01/1991 relative à la mise en œuvre de la CSG fournit des indications sur les assiettes et les exonérations.
+  description_en: CSG - rates on work incomes
+documentation: |
+  Notes :
+  L'art. 2.III de la loi 93-1352 publiée au JO le 30/12/1993 (LF pour 1994) a annulé la déductibilité prévue et a donc empêché l'application de la déductibilité de la CSG pour les revenus 1993.
+  (ii) La mise en place de la CSG a été accompagnée d'une baisse de la cotisation vieillesse et d'une remise forfaitaire. Voir feuille "CNAV".
+  Référence du Codes général des impôts :
+  La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.
