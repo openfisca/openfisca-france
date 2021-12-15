@@ -1,5 +1,14 @@
 # Changelog
 
+### 80.4.9 [#1732](https://github.com/openfisca/openfisca-france/pull/1732)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/contributions_sociales`.
+* Détails :
+  - Ajout de références
+  - Mise en forme et corrections de typos
+
 ### 80.4.8 [#1733](https://github.com/openfisca/openfisca-france/pull/1733)
 
 * Correction d'un crash.

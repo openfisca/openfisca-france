@@ -1,10 +1,10 @@
-description: Taux de la de la Contribution Sociale Généralisée (CSG) imposable sur les allocations chômage
+description: Taux plein de la de la Contribution Sociale Généralisée (CSG) imposable sur les allocations chômage
 unit: /1
 values:
   1997-01-01:
     value: 0.024
 metadata:
-  ux_name: Taux
+  ux_name: Taux plein
   last_review:
     2021-07-22
   reference:
