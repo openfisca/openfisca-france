@@ -1,5 +1,12 @@
 # Changelog
 
+### 80.4.11 [#1734](https://github.com/openfisca/openfisca-france/pull/1734)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : parameters/impot_revenu/abattements_rni/enfant_marie.
+* Détails :
+  -  Corrige une série d'erreurs introduite par #1683 (https://github.com/openfisca/openfisca-france/pull/1683)
 ### 80.4.10 [#1735](https://github.com/openfisca/openfisca-france/pull/1735)
 
 * Correction d'un crash.
