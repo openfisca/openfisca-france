@@ -4,6 +4,7 @@
     residence: [metropole, metropole]
     age: [29, 29]
     distance_aller_retour_activite_domicile: [61, 61]
+    nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
     nuitees: [3, 3]
     repas: [9, 9]
@@ -33,6 +34,7 @@
     residence: [martinique, martinique]
     age: [29, 29]
     distance_aller_retour_activite_domicile: [21, 21]
+    nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
     nuitees: [3, 3]
     repas: [9, 9]
@@ -61,6 +63,7 @@
     residence: [martinique, martinique]
     age: [29, 29]
     distance_aller_retour_activite_domicile: [21, 21]
+    nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
     nuitees: [3, 3]
     repas: [9, 9]
@@ -90,6 +93,7 @@
     residence: martinique
     age: 29
     distance_aller_retour_activite_domicile: 21
+    nombre_allers_retours: 1
     aide_mobilite_duree_trajet: 120
     nuitees: 3
     repas: 9
@@ -119,6 +123,7 @@
     residence: [martinique, martinique]
     age: [29, 29]
     distance_aller_retour_activite_domicile: [21, 21]
+    nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
     nuitees: [3, 3]
     repas: [9, 9]
@@ -148,6 +153,7 @@
     residence: [martinique, martinique]
     age: [29, 29]
     distance_aller_retour_activite_domicile: [21, 21]
+    nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
     nuitees: [3, 3]
     repas: [9, 9]
@@ -177,6 +183,7 @@
     residence: [martinique, martinique, martinique]
     age: [29, 29, 29]
     distance_aller_retour_activite_domicile: [21, 21, 21]
+    nombre_allers_retours: [1, 1, 1]
     aide_mobilite_duree_trajet: [120, 120, 120]
     nuitees: [3, 3, 3]
     repas: [9, 9, 9]
@@ -208,6 +215,7 @@
     residence: [martinique, martinique, martinique, martinique]
     age: [29, 29, 29, 29]
     distance_aller_retour_activite_domicile: [21, 21, 21, 21]
+    nombre_allers_retours: [1, 1, 1, 1]
     aide_mobilite_duree_trajet: [120, 120, 120, 120]
     nuitees: [3, 3, 3, 3]
     repas: [9, 9, 9, 9]
@@ -224,9 +232,9 @@
     lieu_emploi_ou_formation: [metropole, metropole, metropole, metropole]
     formation_validee_par_PoleEmploi: [True, True, True, True]
     formation_financee_ou_cofinancee: [True, True, True, True]
-    contrat_de_travail_debut: ['2021-01-01', '2021-01-01', '', '']
+    contrat_de_travail_debut: ['2021-01-02', '2021-01-01', '', '']
     date_debut_type_activite_en_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
-    aide_mobilite_date_demande: ['2021-01-15', '2021-02-02', '2021-01-04', '2021-01-09']
+    aide_mobilite_date_demande: ['2021-01-01', '2021-02-02', '2021-01-04', '2021-01-09']
     aide_mobilite_montant_percu_12_derniers_mois: [4000, 4000, 4900, 4000]
   output:
     aide_mobilite_eligible: [True, False, True, False]
@@ -239,6 +247,7 @@
     residence: [martinique, martinique, metropole, martinique]
     age: [29, 29, 29, 29]
     distance_aller_retour_activite_domicile: [21, 21, 61, 21]
+    nombre_allers_retours: [1, 1, 1, 1]
     aide_mobilite_duree_trajet: [120, 120, 120, 120]
     nuitees: [3, 3, 3, 3]
     repas: [9, 9, 9, 9]
@@ -270,6 +279,7 @@
     residence: [martinique, martinique, metropole, metropole]
     age: [29, 29, 29, 29]
     distance_aller_retour_activite_domicile: [21, 21, 61, 21]
+    nombre_allers_retours: [1, 1, 1, 1]
     aide_mobilite_duree_trajet: [120, 120, 120, 120]
     nuitees: [3, 3, 3, 3]
     repas: [9, 9, 9, 9]
@@ -293,3 +303,32 @@
     aide_mobilite_eligible: [True, False, True, False]
     aide_mobilite: [148.2, 0, 156.2, 0]
     aide_mobilite_bon_de_transport: [False, False, False, True]
+
+
+- name: Test 11 - Vérifie le calcul de l'AMOB
+  period: 2021-12
+  input:
+    residence: metropole
+    distance_aller_retour_activite_domicile: 61
+    nombre_allers_retours: 5
+    aide_mobilite_duree_trajet: null
+    nuitees: 12
+    repas: 42
+    pole_emploi_categorie_demandeur_emploi: categorie_1
+    stagiaire: null
+    en_contrat_aide: null
+    allocation_retour_emploi: 0
+    contexte_activite_pole_emploi: reprise_emploi
+    types_activite_en_recherche_emploi: null
+    types_contrat: cdi
+    contrat_de_travail_duree: null
+    lieu_emploi_ou_formation: metropole
+    formation_validee_par_PoleEmploi: null
+    formation_financee_ou_cofinancee: null
+    contrat_de_travail_debut: '2021-01-01'
+    date_debut_type_activite_en_recherche_emploi: null
+    aide_mobilite_date_demande: '2021-01-15'
+    aide_mobilite_montant_percu_12_derniers_mois: 4500
+  output:
+    aide_mobilite_eligible: True
+    aide_mobilite: 500.0

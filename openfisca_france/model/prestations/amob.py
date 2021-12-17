@@ -32,6 +32,7 @@ class date_debut_type_activite_en_recherche_emploi(Variable):
     label = "Date de début d'une activité en recherche d'emploi (exemple : entretien d'emauche, concours public, examen certifiant)"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
 
 
 class distance_aller_retour_activite_domicile(Variable):
@@ -40,6 +41,15 @@ class distance_aller_retour_activite_domicile(Variable):
     reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
     label = "Distance en kilomètres entre le lieu de l’entretien d’embauche, la reprise d’emploi, la formation, la prestation d’accompagnement, " \
             "l’immersion professionnelle (PMSMP), le concours public ou l’examen certifiant et le lieu de résidence du demandeur d'emploi"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
+class nombre_allers_retours(Variable):
+    entity = Individu
+    value_type = float
+    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+    label = "Nombre d'aller/retour pour le calcul de l'aide à la mobilité de Pôle emploi - AMOB"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -351,12 +361,13 @@ class aide_mobilite(Variable):
         montant_max = parameters(period).prestations.amob.montants.maximum
         montant_amob_deja_percu = min_(montant_max, np.fabs(individu('aide_mobilite_montant_percu_12_derniers_mois', period)))
         distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
+        nb_aller_retour = individu('nombre_allers_retours', period)
         nb_nuitees = individu('nuitees', period)
         nb_repas = individu('repas', period)
 
         montant = parameters(period).prestations.amob.montants
 
-        montants_frais_deplacement = montant.deplacement * distance_aller_retour
+        montants_frais_deplacement = montant.deplacement * distance_aller_retour * nb_aller_retour
         montants_frais_hebergement = montant.hebergement * nb_nuitees
         montants_frais_repas = montant.repas * nb_repas
 
@@ -369,7 +380,7 @@ class aide_mobilite(Variable):
 
 
 class aide_mobilite_bon_de_transport(Variable):
-    value_type = float
+    value_type = bool
     entity = Individu
     label = "Attribution d'un bon de transport dans un contexte précis - AMOB"
     definition_period = MONTH
