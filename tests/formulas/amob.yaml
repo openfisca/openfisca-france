@@ -15,13 +15,13 @@
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     types_contrat: [aucune_activite, aucune_activite]
-    contrat_de_travail_duree: [0, 0]
+    contrat_de_travail_duree: [null, null]
     lieu_emploi_ou_formation: [metropole, martinique]
-    formation_validee_par_PoleEmploi: [True, True]
-    formation_financee_ou_cofinancee: [True, True]
-    contrat_de_travail_debut: ['', '']
+    formation_validee_par_PoleEmploi: [null, null]
+    formation_financee_ou_cofinancee: [null, null]
+    contrat_de_travail_debut: [null, null]
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
-    aide_mobilite_date_demande: ['2021-01-15', '2021-01-15']
+    aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
     aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
     aide_mobilite_eligible: [True, False]
@@ -51,7 +51,7 @@
     formation_financee_ou_cofinancee: [True, True]
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
-    aide_mobilite_date_demande: ['2021-01-15', '2021-01-15']
+    aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
     aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
     aide_mobilite_eligible: [True, False]
@@ -80,7 +80,7 @@
     formation_financee_ou_cofinancee: [True, True]
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
-    aide_mobilite_date_demande: ['2021-01-15', '2021-01-16']
+    aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
     aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
     aide_mobilite_eligible: [True, False]
@@ -110,7 +110,7 @@
     formation_financee_ou_cofinancee: True
     contrat_de_travail_debut: ''
     date_debut_type_activite_en_recherche_emploi: '2021-01-08'
-    aide_mobilite_date_demande: '2021-01-15'
+    aide_mobilite_date_demande: '2021-01-14'
     aide_mobilite_montant_percu_12_derniers_mois: 0
   output:
     aide_mobilite_eligible: False
@@ -140,7 +140,7 @@
     formation_financee_ou_cofinancee: [True, True]
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
-    aide_mobilite_date_demande: ['2021-01-15', '2021-01-16']
+    aide_mobilite_date_demande: ['2021-01-14', '2021-01-15']
     aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
     aide_mobilite_eligible: [True, False]
@@ -170,7 +170,7 @@
     formation_financee_ou_cofinancee: [True, True]
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
-    aide_mobilite_date_demande: ['2021-01-15', '2021-01-15']
+    aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
     aide_mobilite_montant_percu_12_derniers_mois: [4900, 4000]
   output:
     aide_mobilite_eligible: [True, True]
@@ -202,7 +202,7 @@
     formation_financee_ou_cofinancee: [True, True, True]
     contrat_de_travail_debut: ['2021-01-08', '2021-01-08', '2021-01-15']
     date_debut_type_activite_en_recherche_emploi: ['', '', '']
-    aide_mobilite_date_demande: ['2021-01-15', '2021-01-15', '2021-01-15']
+    aide_mobilite_date_demande: ['2021-01-14', '2021-01-14', '2021-01-14']
     aide_mobilite_montant_percu_12_derniers_mois: [5000, 4000, 4000]
   output:
     aide_mobilite_eligible: [False, True, False]
@@ -234,7 +234,7 @@
     formation_financee_ou_cofinancee: [True, True, True, True]
     contrat_de_travail_debut: ['2021-01-02', '2021-01-01', '', '']
     date_debut_type_activite_en_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
-    aide_mobilite_date_demande: ['2021-01-01', '2021-02-02', '2021-01-04', '2021-01-09']
+    aide_mobilite_date_demande: ['2021-01-01', '2021-02-02', '2021-01-07', '2021-01-08']
     aide_mobilite_montant_percu_12_derniers_mois: [4000, 4000, 4900, 4000]
   output:
     aide_mobilite_eligible: [True, False, True, False]
@@ -298,7 +298,7 @@
     formation_financee_ou_cofinancee: [True, True, True, True]
     contrat_de_travail_debut: ['2021-01-01', '2021-01-01', '', '']
     date_debut_type_activite_en_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
-    aide_mobilite_date_demande: ['2021-01-15', '2021-02-02', '2021-01-04', '2021-01-04']
+    aide_mobilite_date_demande: ['2021-01-14', '2021-02-02', '2021-01-04', '2021-01-04']
   output:
     aide_mobilite_eligible: [True, False, True, False]
     aide_mobilite: [148.2, 0, 156.2, 0]
@@ -327,7 +327,7 @@
     formation_financee_ou_cofinancee: null
     contrat_de_travail_debut: '2021-01-01'
     date_debut_type_activite_en_recherche_emploi: null
-    aide_mobilite_date_demande: '2021-01-15'
+    aide_mobilite_date_demande: '2021-01-24'
     aide_mobilite_montant_percu_12_derniers_mois: 4500
   output:
     aide_mobilite_eligible: True
