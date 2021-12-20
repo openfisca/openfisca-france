@@ -198,7 +198,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
             )
 
         return cotisations_employeur_main_d_oeuvre
-   
+
     def formula(individu, period, parameters):
         conge_individuel_formation_cdd = individu('conge_individuel_formation_cdd', period)
         contribution_developpement_apprentissage = individu(
@@ -548,7 +548,7 @@ class taxe_apprentissage(Variable):
         # En 2019 on a une année blanche, mais la formule et le taux sont inchangés
         if (period.start.year == 2019):
             cotisation = 0
-    
+
         return cotisation * redevable_taxe_apprentissage
 
 
