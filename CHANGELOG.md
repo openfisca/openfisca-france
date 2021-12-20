@@ -1,5 +1,11 @@
 # Changelog
 
+### 80.4.12 [#1712](https://github.com/openfisca/openfisca-france/pull/1712)
+
+* Amélioration technique
+* Détails :
+  -  Déclencher le workflow GitHub Actions pour les pull-requests externes ( le push suffit au déclenchement du workflow pour les PR internes à l'organisation).
+
 ### 80.4.11 [#1734](https://github.com/openfisca/openfisca-france/pull/1734)
 
 * Correction d'un crash.
