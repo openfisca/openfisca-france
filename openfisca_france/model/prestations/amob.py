@@ -260,7 +260,7 @@ class aide_mobilite_eligible(Variable):
                                                (contrat_de_travail_debut_en_mois + 2) - np.timedelta64(1, 'D'))
         dates_demandes_amob_eligibles_formation_reprise = amob_date_de_demande <= date_contrat_limite_contexte_formation_reprise
 
-        date_limite_contrat_contexte_recherche = date_debut_type_activite_recherche_emploi + (parameters(period).prestations.amob.delai_max-1) #7 jours de date à date
+        date_limite_contrat_contexte_recherche = date_debut_type_activite_recherche_emploi + (parameters(period).prestations.amob.delai_max - 1)  # 7 jours de date à date
         dates_demandes_amob_eligibles_recherche = amob_date_de_demande <= date_limite_contrat_contexte_recherche
 
         en_recherche_emploi = contexte == ContexteActivitePoleEmploi.recherche_emploi
@@ -327,7 +327,7 @@ class aide_mobilite_eligible(Variable):
         residence_renseignee = not_(lieu_de_residence == TypesLieuResidence.non_renseigne)
 
         distances_et_durees_aller_retour_eligibles = (((distance_aller_retour > distance_minimum_en_metropole) * reside_en_metropole)
-                                                    + ((distance_aller_retour > distance_minimum_hors_metropole) * not_(reside_en_metropole))
+                                                    + ((distance_aller_retour > distance_minimum_hors_metropole) * (not_(reside_en_metropole) * residence_renseignee))
                                                     + ((temps_de_trajet > temps_de_trajet_min) * residence_renseignee))
 
         #  7

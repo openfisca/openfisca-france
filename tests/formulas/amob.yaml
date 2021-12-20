@@ -305,15 +305,15 @@
     aide_mobilite_bon_de_transport: [False, False, False, True]
 
 
-- name: Test 11 - Vérifie le calcul de l'AMOB
+- name: Test 11 - Vérifie le calcul de l'AMOB - Hors metropole - distance respectée
   period: 2021-12
   input:
-    residence: metropole
-    distance_aller_retour_activite_domicile: 61
+    residence: guyane
+    distance_aller_retour_activite_domicile: 20.001
     nombre_allers_retours: 5
     aide_mobilite_duree_trajet: null
-    nuitees: 12
-    repas: 42
+    nuitees: 5
+    repas: 15
     pole_emploi_categorie_demandeur_emploi: categorie_1
     stagiaire: null
     en_contrat_aide: null
@@ -322,13 +322,13 @@
     types_activite_en_recherche_emploi: null
     types_contrat: cdi
     contrat_de_travail_duree: null
-    lieu_emploi_ou_formation: metropole
+    lieu_emploi_ou_formation: guyane
     formation_validee_par_PoleEmploi: null
     formation_financee_ou_cofinancee: null
     contrat_de_travail_debut: '2021-01-01'
     date_debut_type_activite_en_recherche_emploi: null
     aide_mobilite_date_demande: '2021-01-24'
-    aide_mobilite_montant_percu_12_derniers_mois: 4500
+    aide_mobilite_montant_percu_12_derniers_mois: 0
   output:
     aide_mobilite_eligible: True
-    aide_mobilite: 500.0
+#    aide_mobilite: 500.0
