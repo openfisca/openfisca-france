@@ -42,7 +42,7 @@ class redevable_taxe_apprentissage(Variable):
     value_type = bool
     entity = Individu
     label = "Entreprise redevable de la taxe d'apprentissage"
-    reference = "https://www.economie.gouv.fr/entreprises/taxe-apprentissage" # TODO: Coder les exonerations selon la masse salariale
+    reference = "https://www.economie.gouv.fr/entreprises/taxe-apprentissage"  # TODO: Coder les exonerations selon la masse salariale
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -169,7 +169,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2019_01_01(individu, period, parameters):
-    # En 2019, la taxe d'apprentissage et la CFP sont regroupées dans la CUFPA
+        # En 2019, la taxe d'apprentissage et la CFP sont regroupées dans la CUFPA
         conge_individuel_formation_cdd = individu('conge_individuel_formation_cdd', period)
         contribution_developpement_apprentissage = individu(
             'contribution_developpement_apprentissage', period)
@@ -181,7 +181,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
         prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
         versement_transport = individu('versement_transport', period, options = [ADD])
-        
+
         contribution_unique_formation_professionnelle_alternance = individu('contribution_unique_formation_professionnelle_alternance', period, options = [ADD])
 
         cotisations_employeur_main_d_oeuvre = (
@@ -198,7 +198,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
             )
 
         return cotisations_employeur_main_d_oeuvre
-        
+   
     def formula(individu, period, parameters):
         conge_individuel_formation_cdd = individu('conge_individuel_formation_cdd', period)
         contribution_developpement_apprentissage = individu(
@@ -214,7 +214,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
 
         taxe_apprentissage = individu('taxe_apprentissage', period, options = [ADD])
         versement_transport = individu('versement_transport', period, options = [ADD])
-        
+
         cotisations_employeur_main_d_oeuvre = (
             conge_individuel_formation_cdd
             + contribution_developpement_apprentissage
@@ -373,7 +373,7 @@ class formation_professionnelle(Variable):
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2019-01-01' # Remplacé par la contribution_formation_professionnelle
+    end = '2019-01-01'  # Remplacé par la contribution_formation_professionnelle
 
     def formula_2016_01_01(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
@@ -437,15 +437,15 @@ class contribution_formation_professionnelle(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     # Initiée en 2019: avec la Taxe d'apprentissage, elles forment la CUFPA (contribution unique à la formation professionnelle et à l'alternance)
-    
+
     def formula_2019_01_01(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
         apprenti = individu('apprenti', period)
-        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period) #assiette CSA
+        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.formation.contribution_formation_professionnelle
-        
+
         taux_contribution = (
-            (effectif_entreprise >= 11)  * contribution.taux_11_salaries_et_plus
+            (effectif_entreprise >= 11) * contribution.taux_11_salaries_et_plus
             + (effectif_entreprise < 11) * not_(apprenti) * contribution.taux_moins_de_11_salaries
             )
 
@@ -638,4 +638,3 @@ class taxe_salaires(Variable):
                 })
 
         return - cotisation * assujettissement
-
