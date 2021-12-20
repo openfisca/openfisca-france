@@ -30,7 +30,6 @@
     taxe_apprentissage: -.0068 * 1467
     contribution_supplementaire_apprentissage: 0 # parce que ratio alternants >= 0.05 -> non applicable
 
-
 - period: 2016-06 # Test 3
   name: Taxe d'apprentissage / CSA ratio 0.036
   relative_error_margin: 0.001
@@ -47,7 +46,6 @@
     taxe_apprentissage: -.0068 * 1467
     contribution_supplementaire_apprentissage: -.0005 * 1467
 
-
 - period: 2016-06 # Test 4
   name: Taxe d'apprentissage / CSA. Grosse entreprise, faible ratio alternants
   relative_error_margin: 0.001
@@ -62,7 +60,6 @@
     ratio_alternants: 0.0008
   output:
     contribution_supplementaire_apprentissage: -.006 * 1467
-
 
 - period: 2016-06 # Test 5
   name: Taxe d'apprentissage / CSA pour une association
@@ -128,7 +125,7 @@
     taxe_apprentissage: -0.0068 * 1467
     contribution_supplementaire_apprentissage: 0
     contribution_formation_professionnelle: 0
-    
+
 - period: 2020-06 # Test 9
   description: Contribution de Formation Professionnelle (CFP) > 11 salaries
   relative_error_margin: 0.001
@@ -144,7 +141,7 @@
     taxe_apprentissage: -0.0068 * 1467
     contribution_supplementaire_apprentissage: -0.002* 1467
     contribution_formation_professionnelle: -0.01 * 1467
-    contribution_unique_formation_professionnelle_alternance: -0.0068 * 1467 + ( -0.01 * 1467)
+    contribution_unique_formation_professionnelle_alternance: -0.0068 * 1467 - 0.01 * 1467
 
 - period: 2019-06 # Test 10
   description: Test année blanche (2019) de taxe apprentissage
