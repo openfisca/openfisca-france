@@ -42,6 +42,7 @@ class redevable_taxe_apprentissage(Variable):
     value_type = bool
     entity = Individu
     label = "Entreprise redevable de la taxe d'apprentissage"
+    reference = "https://www.economie.gouv.fr/entreprises/taxe-apprentissage" # TODO: Coder les exonerations selon la masse salariale
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -176,6 +177,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
         financement_organisations_syndicales = individu('financement_organisations_syndicales', period)
         fnal = individu('fnal', period)
         formation_professionnelle = individu('formation_professionnelle', period)
+        contribution_formation_professionnelle = individu('contribution_formation_professionnelle', period)
         participation_effort_construction = individu('participation_effort_construction', period, options = [ADD])
         prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
@@ -190,6 +192,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
             + financement_organisations_syndicales
             + fnal
             + formation_professionnelle
+            + contribution_formation_professionnelle
             + participation_effort_construction
             + prevoyance_obligatoire_cadre
             + complementaire_sante_employeur
@@ -341,7 +344,7 @@ class formation_professionnelle(Variable):
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2019-01-01'
+    end = '2019-01-01' # Remplacé par la contribution_formation_professionnelle
 
     def formula_2016_01_01(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
@@ -395,6 +398,29 @@ class formation_professionnelle(Variable):
             variable_name = 'formation_professionnelle',
             )
         return cotisation_0_9 + cotisation_10_19 + cotisation_20
+
+
+class contribution_formation_professionnelle(Variable):
+    value_type = float
+    entity = Individu
+    label = "Contribution à la formation professionnelle (CFP)"
+    reference = "https://www.urssaf.fr/portail/home/espaces-dedies/contributions-de-formation-profe/la-contribution-a-la-formation-p.html"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    # Initiée en 2019: avec la Taxe d'apprentissage, elles forment la CUFPA (contribution unique à la formation professionnelle et à l'alternance)
+    
+    def formula_2019_01_01(individu, period, parameters):
+        effectif_entreprise = individu('effectif_entreprise', period)
+        apprenti = individu('apprenti', period)
+        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period) #assiette CSA
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.formation.contribution_formation_professionnelle
+        
+        taux_contribution = (
+            (effectif_entreprise >= 11)  * contribution.taux_11_salaries_et_plus
+            + (effectif_entreprise < 11) * not_(apprenti) * contribution.taux_moins_de_11_salaries
+            )
+
+        return - taux_contribution * assiette_cotisations_sociales
 
 
 class participation_effort_construction(Variable):
