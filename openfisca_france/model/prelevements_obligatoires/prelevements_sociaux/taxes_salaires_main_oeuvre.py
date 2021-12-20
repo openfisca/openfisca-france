@@ -168,6 +168,37 @@ class cotisations_employeur_main_d_oeuvre(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    def formula_2019_01_01(individu, period, parameters):
+    # En 2019, la taxe d'apprentissage et la CFP sont regroupées dans la CUFPA
+        conge_individuel_formation_cdd = individu('conge_individuel_formation_cdd', period)
+        contribution_developpement_apprentissage = individu(
+            'contribution_developpement_apprentissage', period)
+        contribution_supplementaire_apprentissage = individu(
+            'contribution_supplementaire_apprentissage', period)
+        financement_organisations_syndicales = individu('financement_organisations_syndicales', period)
+        fnal = individu('fnal', period)
+        participation_effort_construction = individu('participation_effort_construction', period, options = [ADD])
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
+        complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
+        versement_transport = individu('versement_transport', period, options = [ADD])
+        
+        contribution_unique_formation_professionnelle_alternance = individu('contribution_unique_formation_professionnelle_alternance', period, options = [ADD])
+
+        cotisations_employeur_main_d_oeuvre = (
+            conge_individuel_formation_cdd
+            + contribution_developpement_apprentissage
+            + contribution_supplementaire_apprentissage
+            + financement_organisations_syndicales
+            + fnal
+            + participation_effort_construction
+            + prevoyance_obligatoire_cadre
+            + complementaire_sante_employeur
+            + versement_transport
+            + contribution_unique_formation_professionnelle_alternance
+            )
+
+        return cotisations_employeur_main_d_oeuvre
+        
     def formula(individu, period, parameters):
         conge_individuel_formation_cdd = individu('conge_individuel_formation_cdd', period)
         contribution_developpement_apprentissage = individu(
@@ -177,14 +208,13 @@ class cotisations_employeur_main_d_oeuvre(Variable):
         financement_organisations_syndicales = individu('financement_organisations_syndicales', period)
         fnal = individu('fnal', period)
         formation_professionnelle = individu('formation_professionnelle', period)
-        contribution_formation_professionnelle = individu('contribution_formation_professionnelle', period)
         participation_effort_construction = individu('participation_effort_construction', period, options = [ADD])
         prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
 
         taxe_apprentissage = individu('taxe_apprentissage', period, options = [ADD])
         versement_transport = individu('versement_transport', period, options = [ADD])
-
+        
         cotisations_employeur_main_d_oeuvre = (
             conge_individuel_formation_cdd
             + contribution_developpement_apprentissage
@@ -192,7 +222,6 @@ class cotisations_employeur_main_d_oeuvre(Variable):
             + financement_organisations_syndicales
             + fnal
             + formation_professionnelle
-            + contribution_formation_professionnelle
             + participation_effort_construction
             + prevoyance_obligatoire_cadre
             + complementaire_sante_employeur
@@ -523,14 +552,28 @@ class taxe_apprentissage(Variable):
         return cotisation * redevable_taxe_apprentissage
 
 
+class contribution_unique_formation_professionnelle_alternance(Variable):
+    value_type = float
+    entity = Individu
+    label = "Contribution Unique à la Formation Professionnelle et à l'Alternance (CUFPA)"
+    definition_period = MONTH
+    reference = "https://www.legifrance.gouv.fr/conv_coll/id/KALIARTI000041698592/?idConteneur=KALICONT000042181870"
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        contribution_formation_professionnelle = individu('contribution_formation_professionnelle', period)
+        taxe_apprentissage = individu('taxe_apprentissage', period, options = [ADD])
+
+        return contribution_formation_professionnelle + taxe_apprentissage
+
+
 class taxe_salaires(Variable):
     value_type = float
     entity = Individu
     label = "Taxe sur les salaires"
+    reference = "http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-# Voir
-# http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf
 
     def formula(individu, period, parameters):
         assujettie_taxe_salaires = individu('assujettie_taxe_salaires', period)
@@ -595,3 +638,4 @@ class taxe_salaires(Variable):
                 })
 
         return - cotisation * assujettissement
+
