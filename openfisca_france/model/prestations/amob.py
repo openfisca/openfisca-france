@@ -288,7 +288,7 @@ class aide_mobilite_eligible(Variable):
         reprises_types_activites_cdd_ctt = (reprises_emploi_types_activites == TypesContrat.cdd) + (reprises_emploi_types_activites == TypesContrat.ctt)
 
         #  La formation doit être supérieure ou égale à 40 heures
-        duree_formation = individu('heures_remunerees_volume', period)
+        duree_formation = individu('duree_formation', period)
         periode_formation_eligible = duree_formation >= parameters(period).prestations.amob.duree_de_formation_minimum
 
         #  Le durée de contrat de l'emploi doit être d'au moins 3 mois
