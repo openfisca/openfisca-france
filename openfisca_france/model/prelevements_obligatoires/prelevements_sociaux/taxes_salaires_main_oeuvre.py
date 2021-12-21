@@ -546,7 +546,7 @@ class taxe_apprentissage(Variable):
             )
 
         # En 2019 on a une année blanche, mais la formule et le taux sont inchangés
-        if (period.start.year == 2019):
+        if period.start.year == 2019:
             cotisation = 0
 
         return cotisation * redevable_taxe_apprentissage
