@@ -114,6 +114,7 @@ values:
     value: null
 metadata:
   ux_name: Revalorisation SJR
+  ipp_csv_id: sr_gr
   unit: /1
   reference:
     1995-04-01: Dir. 25-95 -décision ASF du 01/03/1995

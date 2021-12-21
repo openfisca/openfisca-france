@@ -80,6 +80,7 @@ values:
     value: 116.0
 metadata:
   ux_name: Lic. Démission/ARPE
+  ipp_csv_id: arpe_min
   unit: currency
   reference:
     2017-10-01: Circulaire de la CNAMTS CIR 18-2017 du 17/10/2017

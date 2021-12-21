@@ -14,6 +14,7 @@ values:
     value: 1592.6399999999999
 metadata:
   ux_name: Plafond personne seule
+  ipp_csv_id: solid_plaf_seul
   unit: currency
   reference:
     2015-01-01:

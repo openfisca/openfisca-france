@@ -40,6 +40,7 @@ values:
     value: 28.83
 metadata:
   ux_name: Montant journalier
+  ipp_csv_id: aer_fixe
   unit: currency
   reference:
     2020-04-01:

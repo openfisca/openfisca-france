@@ -2,6 +2,6 @@ description: Montant minimal après dégressivité de la partie fixe de l'alloca
 metadata:
   ux_name: Montant minimal après dégressivité
   order:
-    - tous
-    - plus_52_ans_sous_conditions
+  - tous
+  - plus_52_ans_sous_conditions
   description_en: UI scheme - lump-sum and minimum

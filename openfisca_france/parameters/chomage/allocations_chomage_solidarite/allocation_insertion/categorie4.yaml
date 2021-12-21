@@ -12,6 +12,7 @@ values:
     value: 30.0
 metadata:
   ux_name: Catégorie 4
+  ipp_csv_id: ai_service
   unit: currency
   reference:
     2006-11-16:

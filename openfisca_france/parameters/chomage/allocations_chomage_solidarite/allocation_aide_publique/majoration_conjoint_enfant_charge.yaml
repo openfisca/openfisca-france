@@ -22,6 +22,7 @@ values:
     value: 2.5
 metadata:
   ux_name: Majoration
+  ipp_csv_id: aide_pu_maj
   unit: currency 
   reference:
     1979-04-02:

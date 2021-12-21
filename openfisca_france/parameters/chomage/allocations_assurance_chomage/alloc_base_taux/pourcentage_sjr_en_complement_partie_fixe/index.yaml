@@ -2,6 +2,6 @@ description: Pourcentage du SJR (en complément de partie fixe) - Allocation de 
 metadata:
   ux_name: Pourcentage du SJR (en complément de partie fixe)
   order:
-    - si_affiliation_entre_3_6_mois
-    - si_affiliation_6_mois
+  - si_affiliation_entre_3_6_mois
+  - si_affiliation_6_mois
   description_en: UI scheme - rates and maximum

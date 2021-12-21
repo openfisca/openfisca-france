@@ -114,6 +114,7 @@ values:
     value: 21.05
 metadata:
   ux_name: Montant minimum
+  ipp_csv_id: gr_min
   unit: currency
   reference:
     1995-04-01: Dir. 25-95 -décision ASF du 01/03/1995

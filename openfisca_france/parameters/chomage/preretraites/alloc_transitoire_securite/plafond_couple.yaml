@@ -14,6 +14,7 @@ values:
     value: 2289.42
 metadata:
   ux_name: Plafond couple
+  ipp_csv_id: solid_plaf_couple
   unit: currency
   reference:
     2015-01-01:

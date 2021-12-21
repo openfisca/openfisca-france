@@ -24,6 +24,7 @@ values:
     value: 40.0
 metadata:
   ux_name: Catégorie 6
+  ipp_csv_id: ai_femme
   unit: currency
   reference:
     2006-11-16:

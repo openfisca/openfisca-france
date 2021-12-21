@@ -78,6 +78,7 @@ values:
     value: 0.0743
 metadata:
   ux_name: Revalorisation du salaire de référence
+  ipp_csv_id: sr_fne
   unit: /1
   reference:
     2010-07-01: Circulaire 2010-10 - décision du 29/06/2010

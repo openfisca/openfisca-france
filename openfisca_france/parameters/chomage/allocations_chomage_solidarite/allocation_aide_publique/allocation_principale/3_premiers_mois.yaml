@@ -26,6 +26,7 @@ values:
     value: 6.05
 metadata:
   ux_name: 3 premiers mois
+  ipp_csv_id: aide_pu_0_3
   unit: currency 
   reference:
     1979-04-02:

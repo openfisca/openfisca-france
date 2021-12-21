@@ -2,6 +2,6 @@ description: Plafond de ressources mensuel de l'allocation de solidarité spéci
 metadata:
   ux_name: Plafond de ressources mensuel
   order:
-    - personne_seule
-    - couple
+  - personne_seule
+  - couple
   description_en: Special UI scheme

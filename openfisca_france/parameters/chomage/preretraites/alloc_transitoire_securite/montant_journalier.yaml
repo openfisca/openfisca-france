@@ -14,6 +14,7 @@ values:
     value: 33.18
 metadata:
   ux_name: Montant journalier
+  ipp_csv_id: solid_fixe
   unit: currency
   reference:
     2015-01-01:

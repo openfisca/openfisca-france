@@ -80,6 +80,7 @@ values:
     value: 58.0
 metadata:
   ux_name: Progress mi temps
+  ipp_csv_id: arpe_min_mi
   unit: currency
   reference:
     2017-10-01: Circulaire de la CNAMTS CIR 18-2017 du 17/10/2017

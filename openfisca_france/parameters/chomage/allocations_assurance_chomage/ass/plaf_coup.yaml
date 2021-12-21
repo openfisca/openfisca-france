@@ -4,7 +4,7 @@ values:
     value: 110.0
 metadata:
   ux_name: Multiple couple
-  unit: sans unité
+  unit: Ratio
   reference:
   description_en: Special UI scheme
 documentation: |
