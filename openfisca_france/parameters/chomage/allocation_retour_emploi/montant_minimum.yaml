@@ -1,6 +1,4 @@
-description: Montant minimum journalier de l'allocation chômage 
-reference: https://www.ipp.eu/baremes-ipp/chomage/allocations_assurance_chomage/alloc_base/
-unit: currency
+description: Montant minimum journalier de l'allocation chômage
 values:
   2020-07-01:
     value: 29.38
@@ -26,3 +24,6 @@ values:
     value: 26.93
   2008-07-01:
     value: 26.66
+metadata:
+  ux_name: Montant minimum journalier
+  unit: currency
