@@ -44,6 +44,7 @@ values:
     value: 20.0
 metadata:
   ux_name: Catégorie 5/diverses
+  ipp_csv_id: ai_detenu
   unit: currency
   reference:
     2006-11-16:

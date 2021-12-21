@@ -2,10 +2,10 @@ description: Montant minimum (en % SJR) d'allocation journalière spéciale d'as
 metadata:
   ux_name: Montant minimum
   order:
-    - 1er_trimsestre
-    - 2nd_trimestre
-    - 3eme_trimestre
-    - 4eme_trismestre
-    - valable_tout_temps_en_smic
-    - valable_tt_tps_en_smic_partie_fixe
+  - 1er_trimsestre
+  - 2nd_trimestre
+  - 3eme_trimestre
+  - 4eme_trismestre
+  - valable_tout_temps_en_smic
+  - valable_tt_tps_en_smic_partie_fixe
   description_en: Special UI scheme for economic layoffs (1979-1983)

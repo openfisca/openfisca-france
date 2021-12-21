@@ -40,6 +40,7 @@ values:
     value: 1383.84
 metadata:
   ux_name: Plafond mensuel seul
+  ipp_csv_id: aer_plaf_seul
   unit: currency
   reference:
     2020-04-01:

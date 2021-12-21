@@ -12,6 +12,7 @@ values:
     value: 20.0
 metadata:
   ux_name: Catégorie 3
+  ipp_csv_id: ai_soutien
   unit: currency
   reference:
     2006-11-16:

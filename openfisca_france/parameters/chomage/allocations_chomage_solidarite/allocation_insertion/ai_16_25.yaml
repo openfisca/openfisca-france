@@ -11,8 +11,9 @@ values:
   1979-07-01:
     value: null
 metadata:
-  unit: currency
   ux_name: 16-25 ans
+  ipp_csv_id: ai_16_25
+  unit: currency
   reference:
     2006-11-16:
       title: Loi 2005-1719, art. 154, du 30/12/2005
