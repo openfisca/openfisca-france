@@ -1,1 +1,4 @@
-description: Allocation de solidarité spécifique
+description: Allocation de solidarité spécifique (ASS)
+metadata:
+  ux_name: ASS
+  description_en: Special UI scheme
