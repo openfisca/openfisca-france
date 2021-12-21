@@ -1,72 +1,79 @@
-description: Montant journalier majoré de l'allocation de solidarité spécifique (ASS)
-unit: currency
+description: Plafond de ressources mensuel d'un couple pour l'allocation de solidarité spécifique (ASS)
 values:
+  2020-04-01:
+    value: 1857.9
+  2019-04-01:
+    value: 1841.4
+  2018-04-01:
+    value: 1812.8
+  2017-04-01:
+    value: 1795.2
   2016-04-01:
-    value: null
+    value: 1789.7
   2015-01-01:
-    value: 23.32
+    value: 1787.5
   2014-01-01:
-    value: 23.12
+    value: 1772.1
   2013-01-01:
-    value: 22.82
+    value: 1749.0
   2012-01-01:
-    value: 22.44
+    value: 1719.3000000000002
   2011-01-01:
-    value: 22.07
+    value: 2289.42
   2010-01-01:
-    value: 21.74
+    value: 1665.4
   2009-01-01:
-    value: 21.48
+    value: 1645.6000000000001
   2008-01-01:
-    value: 21.16
+    value: 1621.4
   2007-01-01:
-    value: 20.83
+    value: 1596.1
   2006-01-01:
-    value: 20.46
+    value: 1567.5
   2005-01-01:
-    value: 20.1
+    value: 1540.0
   2004-01-01:
-    value: 19.76
+    value: 1513.6
   2003-01-01:
-    value: 19.47
+    value: 1491.6000000000001
   2002-01-01:
-    value: 19.19
+    value: 1469.6
   2001-01-01:
-    value: 123.38
+    value: 9452.300000000001
   2000-01-01:
-    value: 120.76
+    value: 9247.699999999999
   1999-01-01:
-    value: 118.39
+    value: 9066.2
   1998-01-01:
-    value: 114.94
+    value: 8802.199999999999
   1997-07-01:
-    value: 108.43
+    value: 8303.9
   1994-07-01:
-    value: 106.3
+    value: 8141.1
   1993-01-01:
-    value: 104.73
+    value: 8021.2
   1992-07-01:
-    value: 103.38
+    value: 7917.8
   1992-01-01:
-    value: 101.55
+    value: 7778.099999999999
   1991-07-01:
-    value: 100.54
+    value: 7701.1
   1991-01-01:
-    value: 99.74
+    value: 7639.5
   1990-01-01:
-    value: 98.07
+    value: 7511.900000000001
   1988-11-01:
-    value: 95.4
+    value: 7307.300000000001
   1987-04-01:
-    value: 92.6
+    value: 7095.0
   1985-04-01:
-    value: 86.0
+    value: 4730.0
   1984-10-01:
-    value: 82.8
+    value: 4554.0
   1984-04-01:
-    value: 80.0
+    value: 4400.0
 metadata:
-  ux_name: Montant journalier majoré
+  ux_name: Couple
   unit: currency
   reference:
     2020-04-01:
