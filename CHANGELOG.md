@@ -1,5 +1,27 @@
 # Changelog
 
+### 80.5.1 [#1738](https://github.com/openfisca/openfisca-france/pull/1738)
+
+* Changement mineur.
+* Zones impactées : `openfisca_france/parameters/impot_revenu/abattements_rni/enfant_marie/montant.yaml`.
+* Détails :
+  - Correction d'une typo dans le jour d'une date (91 remplacé par 01).
+
+## 80.5.0 [#1737](https://github.com/openfisca/openfisca-france/pull/1737)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées :  à partir du 01/01/0291
+* Zones impactées : 
+  - `model/prelevements_obligatoires/prelevements_sociaux/taxes_salaires_main_oeuvre.py`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/formation`
+ 
+* Détails :
+  - Ajout d'une formule de calcul de la CFP (Contribution à la Formation Professionnelle qui remplace la PEFPC).
+  - Ajout d'une formule de calcul de la CUFPA (contribution_unique_formation_professionnelle_alternance), qui est la somme de la taxe d'apprentissage et de la CFP
+  - Modification du calcul de la Taxe d'apprentissage: on a une année blanche en 2019, mais ni le calcul, ni le taux ne changent: on enlève le taux à 0.0 en 2019 dans les paramètres et on le remplace par une exception dans la formule de calcul
+  - Ajout de tests et de références pour tous ces cas
+
 ### 80.4.12 [#1712](https://github.com/openfisca/openfisca-france/pull/1712)
 
 * Amélioration technique
