@@ -1,5 +1,12 @@
 # Changelog
 
+### 80.5.2 [#1739](https://github.com/openfisca/openfisca-france/pull/1739)
+
+* Changement mineur.
+* Zones impactées : `parametres/impots_revenu/abattements_rni/enfant_marie/montant.yaml`.
+* Détails :
+  - Corrige quelques typos
+
 ### 80.5.1 [#1738](https://github.com/openfisca/openfisca-france/pull/1738)
 
 * Changement mineur.
