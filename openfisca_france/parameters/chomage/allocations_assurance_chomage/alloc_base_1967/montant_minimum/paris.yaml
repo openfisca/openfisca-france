@@ -20,6 +20,7 @@ values:
     value: 380.0
 metadata:
   ux_name: Paris
+  ipp_csv_id: base_min_paris
   unit: currency
   reference:
     1967-01-09:

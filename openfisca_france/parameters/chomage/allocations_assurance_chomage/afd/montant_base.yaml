@@ -37,6 +37,7 @@ values:
 metadata:
   ux_name: Montant de base
   unit: currency
+  ipp_csv_id: afd_fixe
   reference:
     1994-07-01:
       title: Décret 94-627 du 22/07/1994

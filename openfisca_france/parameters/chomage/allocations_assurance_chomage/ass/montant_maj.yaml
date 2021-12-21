@@ -67,6 +67,7 @@ values:
     value: 80.0
 metadata:
   ux_name: Montant journalier majoré
+  ipp_csv_id: ass_maj
   unit: currency
   reference:
     2020-04-01:

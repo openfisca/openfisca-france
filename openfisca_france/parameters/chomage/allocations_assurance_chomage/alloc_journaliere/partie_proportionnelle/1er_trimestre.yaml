@@ -4,6 +4,7 @@ values:
     value: 0.65
 metadata:
   ux_name: 1er Trimestre
+  ipp_csv_id: journ_1
   unit: /1
   reference:
     1984-03-21: Ordonnance 84-198 du 21/03/1984

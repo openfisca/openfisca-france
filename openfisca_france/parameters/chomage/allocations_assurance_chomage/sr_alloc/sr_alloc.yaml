@@ -112,6 +112,7 @@ values:
     value: 0.07    
 metadata:
   ux_name: Revalorisation
+  ipp_csv_id: sr_alloc
   unit: /1
   reference:
     2020-07-01: 
