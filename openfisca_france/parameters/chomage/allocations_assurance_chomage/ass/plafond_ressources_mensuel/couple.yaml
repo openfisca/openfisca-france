@@ -74,6 +74,7 @@ values:
     value: 4400.0
 metadata:
   ux_name: Couple
+  ipp_csv_id: ass_plaf_couple
   unit: currency
   reference:
     2020-04-01:

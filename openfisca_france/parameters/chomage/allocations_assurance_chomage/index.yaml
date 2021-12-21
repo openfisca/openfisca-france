@@ -1,4 +1,14 @@
 description: Allocations d'assurance chômage
 metadata:
   ux_name: Allocations chômage
+  order:
+  - alloc_base
+  - alloc_base_taux
+  - alloc_base_1967
+  - aud
+  - sr_alloc
+  - sr_61
+  - afd
+  - alloc_journaliere
+  - ass
   description_en: Unemployment insurance (earnings related benefits)

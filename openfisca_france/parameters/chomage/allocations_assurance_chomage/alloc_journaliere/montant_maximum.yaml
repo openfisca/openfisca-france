@@ -6,6 +6,7 @@ values:
     value: 0.9
 metadata:
   ux_name: Montant maximum
+  ipp_csv_id: journ_max_prct
   unit: /1
   reference:
     1984-03-21: Ordonnance 84-198 du 21/03/1984

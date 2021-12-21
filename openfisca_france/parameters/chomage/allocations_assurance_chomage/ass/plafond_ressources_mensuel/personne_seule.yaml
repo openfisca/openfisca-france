@@ -74,6 +74,7 @@ values:
     value: 2800.0
 metadata:
   ux_name: Personne seule
+  ipp_csv_id: ass_plaf_seul
   unit: currency
   reference:
     2020-04-01:

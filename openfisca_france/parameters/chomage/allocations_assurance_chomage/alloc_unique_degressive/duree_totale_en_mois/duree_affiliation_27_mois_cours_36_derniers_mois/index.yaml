@@ -1,0 +1,7 @@
+description: Durée totale (affiliation de 27 mois au cours des 36 derniers mois) de l'allocation unique dégressive des allocations d'assurance chômage
+metadata:
+  ux_name: Durée d'affiliation de 27 mois au cours des 36 derniers mois
+  order:
+  - 50_55_ans
+  - 55_ans_plus
+  description_en: UI scheme - degressive schedule

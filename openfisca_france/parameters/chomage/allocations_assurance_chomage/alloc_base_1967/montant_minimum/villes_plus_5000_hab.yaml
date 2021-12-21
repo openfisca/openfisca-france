@@ -20,6 +20,7 @@ values:
     value: 370.0
 metadata:
   ux_name: Moins de 5000 hab.
+  ipp_csv_id: base_min_p5000
   unit: currency
   reference:
     1967-01-09:

@@ -4,6 +4,7 @@ values:
     value: 0.75
 metadata:
   ux_name: 1er trimestre
+  ipp_csv_id: journ_min_1
   unit: /1
   reference:
     1979-10-01: Circulaire 79-36 - décision du 21/09/1979
