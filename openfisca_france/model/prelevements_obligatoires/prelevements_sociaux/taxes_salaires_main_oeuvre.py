@@ -373,7 +373,7 @@ class formation_professionnelle(Variable):
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2019-01-01'  # Remplacé par la contribution_formation_professionnelle
+    end = '2018-12-31'  # Remplacé par la contribution_formation_professionnelle
 
     def formula_2016_01_01(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
