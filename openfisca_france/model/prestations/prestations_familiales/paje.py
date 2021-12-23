@@ -907,14 +907,14 @@ class paje_colca(Variable):
 
         condition = (age_m_benjamin < 12 * paje.colca.age) * (age_m_benjamin >= 0)
         nbenf = af_nbenf
-        paje = (paje_base > 0)
+        paje_non_nul = (paje_base > 0)
 
         paje_colca = (
             opt_colca
             * condition
             * (nbenf >= 3)
             * af.bmaf
-            * (paje * paje.colca.avecab + not_(paje) * paje.colca.sansab)
+            * (paje_non_nul * paje.colca.avecab + not_(paje_non_nul) * paje.colca.sansab)
             )
 
         return paje_colca
