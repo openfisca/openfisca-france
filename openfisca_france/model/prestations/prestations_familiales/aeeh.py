@@ -43,7 +43,7 @@ class aeeh(Variable):
         # Indicatrice d'isolement pour les indidivus
         isole = famille.project(isole)
 
-        enfant_handicape = handicap * (age < prestations_familiales.aeeh.age_maximum_de_l_enfant)
+        enfant_handicape = handicap * (age < prestations_familiales.education_presence_parentale.aeeh.age_maximum_de_l_enfant)
 
         montant_par_enfant = enfant_handicape * prestations_familiales.prestations_generales.af.bmaf * (
             base
