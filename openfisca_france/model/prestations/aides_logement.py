@@ -1119,7 +1119,7 @@ class aide_logement_R0(Variable):
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations_sociales.aides_logement
-        pfam_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales
+        pfam_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.prestations_generales
         minim_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.minima_sociaux
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
