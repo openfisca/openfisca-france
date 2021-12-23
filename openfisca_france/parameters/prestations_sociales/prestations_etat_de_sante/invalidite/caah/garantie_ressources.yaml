@@ -1,0 +1,48 @@
+description: Garantie de ressources pour les personnes handicapées (complément ressources + aah)
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: currency
+values:
+  2005-07-01:
+    value: 776.79
+  2006-07-01:
+    value: 789.59
+  2007-01-01:
+    value: 800.58
+  2008-01-01:
+    value: 807.41
+  2008-09-01:
+    value: 831.91
+  2009-04-01:
+    value: 846.27
+  2009-09-01:
+    value: 860.94
+  2010-04-01:
+    value: 875.94
+  2010-09-01:
+    value: 891.26
+  2011-04-01:
+    value: 906.92
+  2011-09-01:
+    value: 922.93
+  2012-04-01:
+    value: 939.29
+  2012-09-01:
+    value: 955.9
+  2013-09-01:
+    value: 969.49
+  2014-09-01:
+    value: 979.76
+  2015-09-01:
+    value: 986.96
+  2016-04-01:
+    value: 987.77
+  2017-04-01:
+    value: 990.2
+  2018-04-01:
+    value: 998.31
+  2018-11-01:
+    value: 1039.31
+  2019-11-01:
+    value: 1079.31
+  2019-12-01:
+    value: null
