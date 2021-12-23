@@ -11,7 +11,7 @@ class ppa_eligibilite(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        P = parameters(period).prestations
+        P = parameters(period).prestations_sociales
         age_min = P.minima_sociaux.ppa.age_min
         condition_age_i = famille.members('age', period) >= age_min
         condition_age = famille.any(condition_age_i)

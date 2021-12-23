@@ -1553,9 +1553,9 @@ class aides_logement_loyer_minimal_al(Variable):
     def formula(famille, period, parameters):
         N = famille('aides_logement_nb_part', period)
 
-        prestations = parameters(period).prestations
-        bareme = prestations_sociales.al_param_accal.bareme_loyer_minimum_lo
-        majoration_loyer = prestations_sociales.al_param.majoration_du_loyer_minimum_lo
+        prestations = parameters(period).prestations_sociales
+        bareme = prestations.al_param_accal.bareme_loyer_minimum_lo
+        majoration_loyer = prestations.al_param.majoration_du_loyer_minimum_lo
 
         baseRessource = famille('aide_logement_base_ressources', period)
 
@@ -1574,9 +1574,9 @@ class aides_logement_loyer_minimal_apl(Variable):
     def formula_2007_11_01(famille, period, parameters):
         N = famille('aides_logement_nb_part', period)
 
-        prestations = parameters(period).prestations
-        bareme = prestations_sociales.al_param_accal.bareme_loyer_minimum_lo_apl1
-        majoration_loyer = prestations_sociales.al_param_accal.majoration_du_loyer_minimum_lo_apl1 * N
+        prestations = parameters(period).prestations_sociales
+        bareme = prestations.al_param_accal.bareme_loyer_minimum_lo_apl1
+        majoration_loyer = prestations.al_param_accal.majoration_du_loyer_minimum_lo_apl1 * N
 
         baseRessource = famille('aide_logement_base_ressources', period)
 
