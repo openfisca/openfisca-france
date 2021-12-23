@@ -97,7 +97,7 @@ class formation_artisan_commercant(Variable):
 
     def formula_2015(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        formation = parameters(period).prelevements_sociaux.formation_ac
+        formation = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.formation_ac
         # Artisan
         bareme_artisan = MarginalRateTaxScale(name = 'formation_artisan')
         bareme_artisan.add_bracket(0, formation.artisans_sous_pss)
