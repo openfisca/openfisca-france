@@ -128,8 +128,8 @@ class aspa_eligibilite(Variable):
         inapte_travail = individu('inapte_travail', period)
         taux_incapacite = individu('taux_incapacite', period)
         aah = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
-        aspa =parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa
-        
+        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa
+
         condition_invalidite = (taux_incapacite > aspa.taux_incapacite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= aspa.age_min)
         condition_age_anticipe = (age >= aah.age_legal_retraite) * condition_invalidite
@@ -296,7 +296,7 @@ class aspa(Variable):
         asi_aspa_nb_alloc = famille('asi_aspa_nb_alloc', period)
         base_ressources = famille('asi_aspa_base_ressources', period)
         asi = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.asi
-        aspa =parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa
+        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa
 
         demandeur_eligible_asi = famille.demandeur('asi_eligibilite', period)
         demandeur_eligible_aspa = famille.demandeur('aspa_eligibilite', period)
