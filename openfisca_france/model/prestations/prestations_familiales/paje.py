@@ -252,10 +252,11 @@ class paje_naissance(Variable):
         base_ressources = famille('prestations_familiales_base_ressources', period)
         isole = not_(famille('en_couple', period))
         biactivite = famille('biactivite', period)
-        P = parameters(period).prestations_sociales.prestations_familiales
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        paje = parameters(period).prestations_sociales.prestations_familiales.paje
 
-        bmaf = P.af.bmaf
-        prime_naissance = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
+        bmaf = af.bmaf
+        prime_naissance = round(100 * paje.prime_naissance.prime_tx * bmaf) / 100
 
         # Versée au 7ème mois de grossesse
         diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
@@ -265,17 +266,17 @@ class paje_naissance(Variable):
 
         taux_plafond = (
             (nbenf > 0)
-            + P.paje.base.apres_2018.taux_majoration_2_premiers_enf * min_(nbenf, 2)
-            + P.paje.base.apres_2018.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
+            + paje.base.apres_2018.taux_majoration_2_premiers_enf * min_(nbenf, 2)
+            + paje.base.apres_2018.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
             )
 
         majoration_isole_biactif = isole | biactivite
 
         plafond_de_ressources = (
-            P.paje.base.apres_2018.taux_partiel.plaf
+            paje.base.apres_2018.taux_partiel.plaf
             * taux_plafond
             + (taux_plafond > 0)
-            * P.paje.base.apres_2018.taux_partiel.plaf_maj
+            * paje.base.apres_2018.taux_partiel.plaf_maj
             * majoration_isole_biactif
             )
 
@@ -293,12 +294,13 @@ class paje_naissance(Variable):
         base_ressources = famille('prestations_familiales_base_ressources', period)
         isole = not_(famille('en_couple', period))
         biactivite = famille('biactivite', period)
-        P = parameters(period).prestations_sociales.prestations_familiales
+        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         # Le montant de la PAJE est gelé depuis avril 2013.
         date_gel_paje = Instant((2013, 4, 1))
-        bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations_sociales.prestations_familiales.prestations_generales.af.bmaf
-        prime_naissance = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
+        bmaf = af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations_sociales.prestations_familiales.prestations_generales.af.bmaf
+        prime_naissance = round(100 * paje.prime_naissance.prime_tx * bmaf) / 100
 
         # Versée au 7ème mois de grossesse
         diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
@@ -309,9 +311,9 @@ class paje_naissance(Variable):
         majoration_isole_biactif = isole | biactivite
 
         plafond_de_ressources = (
-            P.paje.base.apres_2014.taux_partiel.plaf
-            + P.paje.base.apres_2014.taux_partiel.plaf * nbenf * P.paje.base.apres_2014.plaf_tx_par_enf
-            + P.paje.base.apres_2014.taux_partiel.plaf_maj * majoration_isole_biactif
+            paje.base.apres_2014.taux_partiel.plaf
+            + paje.base.apres_2014.taux_partiel.plaf * nbenf * paje.base.apres_2014.plaf_tx_par_enf
+            + paje.base.apres_2014.taux_partiel.plaf_maj * majoration_isole_biactif
             )
 
         eligible_prime_naissance = (base_ressources <= plafond_de_ressources)
@@ -326,12 +328,13 @@ class paje_naissance(Variable):
         base_ressources = famille('prestations_familiales_base_ressources', period)
         isole = not_(famille('en_couple', period))
         biactivite = famille('biactivite', period)
-        P = parameters(period).prestations_sociales.prestations_familiales
+        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         # Le montant de la PAJE est gelé depuis avril 2013.
         date_gel_paje = Instant((2013, 4, 1))
-        bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations_sociales.prestations_familiales.prestations_generales.af.bmaf
-        nais_prime = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
+        bmaf = af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations_sociales.prestations_familiales.prestations_generales.af.bmaf
+        nais_prime = round(100 * paje.prime_naissance.prime_tx * bmaf) / 100
 
         # Versée au 7ème mois de grossesse
         diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
@@ -341,17 +344,17 @@ class paje_naissance(Variable):
 
         plaf_tx = (
             (nbenf > 0)
-            + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2)
-            + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
+            + paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2)
+            + paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
             )
 
         majo = isole | biactivite
 
         plaf = (
-            P.paje.base.avant_2014.plafond_ressources_0_enf
+            paje.base.avant_2014.plafond_ressources_0_enf
             * plaf_tx
             + (plaf_tx > 0)
-            * P.paje.base.avant_2014.majoration_biact_parent_isoles
+            * paje.base.avant_2014.majoration_biact_parent_isoles
             * majo
             )
 
@@ -417,7 +420,8 @@ class paje_cmg(Variable):
         assistant_maternel = famille('ass_mat', period)
         garde_a_domicile = famille('gar_dom', period)
         paje_prepare = famille('paje_prepare', period)
-        P = parameters(period).prestations_sociales.prestations_familiales
+        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         aah_i = famille.members('aah', period)
         aah = famille.sum(aah_i)
@@ -427,7 +431,7 @@ class paje_cmg(Variable):
 
     # condition de revenu minimal
 
-        cond_age_enf = (nb_enf(famille, period, 0, P.paje.clmg.age2 - 1) > 0)
+        cond_age_enf = (nb_enf(famille, period, 0, paje.clmg.age2 - 1) > 0)
 
         # TODO:    cond_rpns    =
         # TODO: RSA insertion, alloc insertion, ass
@@ -444,15 +448,15 @@ class paje_cmg(Variable):
     # Les plafonds de ressource
 
         seuil_revenus_1 = (
-            (nombre_enfants == 1) * P.paje.clmg.seuil11
-            + (nombre_enfants >= 2) * P.paje.clmg.seuil12
-            + max_(nombre_enfants - 2, 0) * P.paje.clmg.seuil1sup
+            (nombre_enfants == 1) * paje.clmg.seuil11
+            + (nombre_enfants >= 2) * paje.clmg.seuil12
+            + max_(nombre_enfants - 2, 0) * paje.clmg.seuil1sup
             )
 
         seuil_revenus_2 = (
-            (nombre_enfants == 1) * P.paje.clmg.seuil21
-            + (nombre_enfants >= 2) * P.paje.clmg.seuil22
-            + max_(nombre_enfants - 2, 0) * P.paje.clmg.seuil2sup
+            (nombre_enfants == 1) * paje.clmg.seuil21
+            + (nombre_enfants >= 2) * paje.clmg.seuil22
+            + max_(nombre_enfants - 2, 0) * paje.clmg.seuil2sup
             )
 
     #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
@@ -467,24 +471,24 @@ class paje_cmg(Variable):
     # calcul du montant
 
         montant_cmg = (
-            P.af.bmaf * (
-                1.0 * (nb_enf(famille, period, 0, P.paje.clmg.age1 - 1) > 0)
-                + 0.5 * (nb_enf(famille, period, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
+            af.bmaf * (
+                1.0 * (nb_enf(famille, period, 0, paje.clmg.age1 - 1) > 0)
+                + 0.5 * (nb_enf(famille, period, paje.clmg.age1, paje.clmg.age2 - 1) > 0)
                 ) * (
                     emploi_direct * (
-                        (base_ressources < seuil_revenus_1) * P.paje.clmg.taux_recours_emploi_1er_plafond
-                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * P.paje.clmg.taux_recours_emploi_2e_plafond
-                        + (base_ressources >= seuil_revenus_2) * P.paje.clmg.taux_recours_emploi_supp_2e_plafond
+                        (base_ressources < seuil_revenus_1) * paje.clmg.taux_recours_emploi_1er_plafond
+                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.clmg.taux_recours_emploi_2e_plafond
+                        + (base_ressources >= seuil_revenus_2) * paje.clmg.taux_recours_emploi_supp_2e_plafond
                         )
                     + assistant_maternel * (
-                        (base_ressources < seuil_revenus_1) * P.paje.clmg.ass_mat1
-                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * P.paje.clmg.ass_mat2
-                        + (base_ressources >= seuil_revenus_2) * P.paje.clmg.ass_mat3
+                        (base_ressources < seuil_revenus_1) * paje.clmg.ass_mat1
+                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.clmg.ass_mat2
+                        + (base_ressources >= seuil_revenus_2) * paje.clmg.ass_mat3
                         )
                     + garde_a_domicile * (
-                        (base_ressources < seuil_revenus_1) * P.paje.clmg.domi1
-                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * P.paje.clmg.domi2
-                        + (base_ressources >= seuil_revenus_2) * P.paje.clmg.domi3)
+                        (base_ressources < seuil_revenus_1) * paje.clmg.domi1
+                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.clmg.domi2
+                        + (base_ressources >= seuil_revenus_2) * paje.clmg.domi3)
                     )
             )
 
@@ -530,8 +534,9 @@ class paje_cmg(Variable):
         gar_dom = famille('gar_dom', period)
         paje_clca_taux_partiel = famille('paje_clca_taux_partiel', period)
         paje_clca_taux_plein = famille('paje_clca_taux_plein', period)
-        P = parameters(period).prestations_sociales.prestations_familiales
-        P_n_2 = parameters(period.offset(-2, 'year')).prestations_sociales.prestations_familiales
+        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        P_n_2_af = parameters(period.offset(-2, 'year')).prestations_sociales.prestations_familiales.prestations_generales.af
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         aah_i = famille.members('aah', period)
         aah = famille.sum(aah_i)
@@ -547,8 +552,8 @@ class paje_cmg(Variable):
 
         # condition de revenu minimal
 
-        bmaf_n_2 = P_n_2.af.bmaf
-        cond_age_enf = (nb_enf(famille, period, 0, P.paje.clmg.age2 - 1) > 0)
+        bmaf_n_2 = P_n_2_af.bmaf
+        cond_age_enf = (nb_enf(famille, period, 0, paje.clmg.age2 - 1) > 0)
         cond_sal = (salaire_imposable + hsup > 12 * bmaf_n_2 * (1 + en_couple))
     # TODO:    cond_rpns    =
         cond_act = cond_sal  # | cond_rpns
@@ -559,21 +564,21 @@ class paje_cmg(Variable):
         nbenf = af_nbenf
 
         seuil1 = (
-            P.paje.clmg.seuil11
+            paje.clmg.seuil11
             * (nbenf == 1)
-            + P.paje.clmg.seuil12
+            + paje.clmg.seuil12
             * (nbenf >= 2)
             + max_(nbenf - 2, 0)
-            * P.paje.clmg.seuil1sup
+            * paje.clmg.seuil1sup
             )
 
         seuil2 = (
-            P.paje.clmg.seuil21
+            paje.clmg.seuil21
             * (nbenf == 1)
-            + P.paje.clmg.seuil22
+            + paje.clmg.seuil22
             * (nbenf >= 2)
             + max_(nbenf - 2, 0)
-            * P.paje.clmg.seuil2sup
+            * paje.clmg.seuil2sup
             )
 
     #        Si vous bénéficiez du Clca taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
@@ -584,26 +589,26 @@ class paje_cmg(Variable):
         seuil2 = seuil2 * (1 - .5 * paje_clca_taux_partiel)
 
         clmg = (
-            P.af.bmaf
+            af.bmaf
             * (
-                1.0 * (nb_enf(famille, period, 0, P.paje.clmg.age1 - 1) > 0)
-                + 0.5 * (nb_enf(famille, period, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
+                1.0 * (nb_enf(famille, period, 0, paje.clmg.age1 - 1) > 0)
+                + 0.5 * (nb_enf(famille, period, paje.clmg.age1, paje.clmg.age2 - 1) > 0)
                 )
             * (
                 empl_dir * (
-                    (base_ressources < seuil1) * P.paje.clmg.taux_recours_emploi_1er_plafond
-                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.taux_recours_emploi_2e_plafond
-                    + (base_ressources >= seuil2) * P.paje.clmg.taux_recours_emploi_supp_2e_plafond
+                    (base_ressources < seuil1) * paje.clmg.taux_recours_emploi_1er_plafond
+                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.clmg.taux_recours_emploi_2e_plafond
+                    + (base_ressources >= seuil2) * paje.clmg.taux_recours_emploi_supp_2e_plafond
                     )
                 + ass_mat * (
-                    (base_ressources < seuil1) * P.paje.clmg.ass_mat1
-                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.ass_mat2
-                    + (base_ressources >= seuil2) * P.paje.clmg.ass_mat3
+                    (base_ressources < seuil1) * paje.clmg.ass_mat1
+                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.clmg.ass_mat2
+                    + (base_ressources >= seuil2) * paje.clmg.ass_mat3
                     )
                 + gar_dom * (
-                    (base_ressources < seuil1) * P.paje.clmg.domi1
-                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.domi2
-                    + (base_ressources >= seuil2) * P.paje.clmg.domi3
+                    (base_ressources < seuil1) * paje.clmg.domi1
+                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.clmg.domi2
+                    + (base_ressources >= seuil2) * paje.clmg.domi3
                     )
                 )
             )
@@ -657,10 +662,10 @@ class ape_avant_cumul(Variable):
         inactif = famille('inactif', period)
         partiel1 = famille('partiel1', period)
         partiel2 = famille('partiel2', period)
-        P = parameters(period).prestations_sociales.prestations_familiales
-        ape = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale
+        ape = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.ape
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
-        elig = (nb_enf(famille, period, 0, ape.age_max_enfant - 1) >= 1) & (nb_enf(famille, period, 0, P.af.age2) >= 2)        # Inactif
+        elig = (nb_enf(famille, period, 0, ape.age_max_enfant - 1) >= 1) & (nb_enf(famille, period, 0, af.age2) >= 2)        # Inactif
         # Temps partiel 1
         # Salarié:
         # Temps de travail ne dépassant pas 50 % de la durée du travail fixée dans l'entreprise
@@ -802,11 +807,12 @@ class paje_clca(Variable):
         partiel1 = famille('partiel1', period)
         partiel2 = famille('partiel2', period)
 
-        P = parameters(period).prestations_sociales.prestations_familiales
+        aje = parameters(period).prestations_sociales.prestations_familiales.paje
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
-        paje = paje_base >= 0
+        paje_non_nul = paje_base >= 0
         # durée de versement :
-        # Pour un seul enfant à charge, le CLCA est versé pendant une période de 6 mois (P.paje.clca.duree1)
+        # Pour un seul enfant à charge, le CLCA est versé pendant une période de 6 mois (paje.clca.duree1)
         # à partir de la naissance ou de la cessation des IJ maternité et paternité.
         # A partir du 2ème enfant, il est versé jusqu’au mois précédant le 3ème anniversaire
         # de l’enfant.
@@ -817,22 +823,22 @@ class paje_clca(Variable):
         age_en_mois_i = famille.members('age_en_mois', period)
         age_m_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
 
-        condition1 = (af_nbenf == 1) * (age_m_benjamin >= 0) * (age_m_benjamin < P.paje.clca.duree1)
+        condition1 = (af_nbenf == 1) * (age_m_benjamin >= 0) * (age_m_benjamin < paje.clca.duree1)
         age_benjamin = floor(age_m_benjamin / 12)
-        condition2 = (age_benjamin <= (P.paje.base.age_max_enfant - 1))
+        condition2 = (age_benjamin <= (paje.base.age_max_enfant - 1))
         condition = (af_nbenf >= 2) * condition2 + condition1
 
         paje_clca = (
-            (condition * P.af.bmaf) * (
-                not_(paje) * (
-                    inactif * P.paje.clca.sansab_tx_inactif
-                    + partiel1 * P.paje.clca.sansab_tx_partiel1
-                    + partiel2 * P.paje.clca.sansab_tx_partiel2
+            (condition * af.bmaf) * (
+                not_(paje_non_nul) * (
+                    inactif * paje.clca.sansab_tx_inactif
+                    + partiel1 * paje.clca.sansab_tx_partiel1
+                    + partiel2 * paje.clca.sansab_tx_partiel2
                     )
-                + paje * (
-                    inactif * P.paje.clca.avecab_tx_inactif
-                    + partiel1 * P.paje.clca.avecab_tx_partiel1
-                    + partiel2 * P.paje.clca.avecab_tx_partiel2
+                + paje_non_nul * (
+                    inactif * paje.clca.avecab_tx_inactif
+                    + partiel1 * paje.clca.avecab_tx_partiel1
+                    + partiel2 * paje.clca.avecab_tx_partiel2
                     )
                 )
             )
@@ -892,12 +898,13 @@ class paje_colca(Variable):
         opt_colca = famille('opt_colca', period)
         paje_base = famille('paje_base', period)
 
-        P = parameters(period).prestations_sociales.prestations_familiales
+        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         age_en_mois_i = famille.members('age_en_mois', period)
         age_m_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
 
-        condition = (age_m_benjamin < 12 * P.paje.colca.age) * (age_m_benjamin >= 0)
+        condition = (age_m_benjamin < 12 * paje.colca.age) * (age_m_benjamin >= 0)
         nbenf = af_nbenf
         paje = (paje_base > 0)
 
@@ -905,8 +912,8 @@ class paje_colca(Variable):
             opt_colca
             * condition
             * (nbenf >= 3)
-            * P.af.bmaf
-            * (paje * P.paje.colca.avecab + not_(paje) * P.paje.colca.sansab)
+            * af.bmaf
+            * (paje * paje.colca.avecab + not_(paje) * paje.colca.sansab)
             )
 
         return paje_colca
