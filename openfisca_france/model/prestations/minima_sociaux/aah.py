@@ -41,7 +41,7 @@ class aah_base_ressources(Variable):
 
     def formula(individu, period, parameters):
         law = parameters(period)
-        aah = law.prestations_sociales.minima_sociaux.aah.abattements
+        aah = law.prestations_sociales.prestations_etat_de_sante.aah.abattements
 
         en_activite = individu('salaire_imposable', period) > 0
 
@@ -259,7 +259,7 @@ class aah_eligible(Variable):
     '''
 
     def formula(individu, period, parameters):
-        law = parameters(period).prestations_sociales.minima_sociaux.aah
+        law = parameters(period).prestations_sociales.prestations_etat_de_sante.aah
         taux_incapacite = individu('taux_incapacite', period)
         rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
 
@@ -303,13 +303,13 @@ class aah_plafond_ressources(Variable):
 
         en_couple = individu.famille('en_couple', period)
         af_nbenf = individu.famille('af_nbenf', period)
-        montant_max = law.minima_sociaux.aah.montant
+        montant_max = law.prestations_etat_de_sante.aah.montant
 
         return montant_max * (
             + 1
             + en_couple
-            * law.minima_sociaux.aah.majoration_plafond_couple
-            + law.minima_sociaux.aah.majoration_plafond_personne_a_charge
+            * law.prestations_etat_de_sante.aah.majoration_plafond_couple
+            + law.prestations_etat_de_sante.aah.majoration_plafond_personne_a_charge
             * af_nbenf
             )
 
@@ -333,7 +333,7 @@ class aah_base(Variable):
         aah_base_ressources = individu('aah_base_ressources', period)
         plaf_ress_aah = individu('aah_plafond_ressources', period)
         # Le montant de l'AAH est plafonné au montant de base.
-        montant_max = law.minima_sociaux.aah.montant
+        montant_max = law.prestations_etat_de_sante.aah.montant
         montant_aah = min_(montant_max, max_(0, plaf_ress_aah - aah_base_ressources))
 
         aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
@@ -352,7 +352,7 @@ class aah(Variable):
 
     def formula(individu, period, parameters):
         aah_base = individu('aah_base', period)
-        aah_parameters = parameters(period).prestations_sociales.minima_sociaux.aah
+        aah_parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.aah
         m_2 = datetime64(period.offset(-60, 'day').start)
 
         aah_date_debut_hospitalisation = individu("aah_date_debut_hospitalisation", period)
@@ -372,7 +372,7 @@ class eligibilite_caah(Variable):
     def formula_2015_07_01(individu, period, parameters):
         annee_precedente = period.start.period('year').offset(-1)
         prestations = parameters(period).prestations
-        taux_incapacite_min = prestations_sociales.minima_sociaux.aah.taux_incapacite
+        taux_incapacite_min = prestations_sociales.prestations_etat_de_sante.aah.taux_incapacite
         aah = individu('aah', period)
         asi_eligibilite = individu('asi_eligibilite', period)
         asi = individu('asi', period)  # montant asi de la famille
@@ -413,7 +413,7 @@ class caah(Variable):
         law = parameters(period).prestations
 
         garantie_ressources = law.minima_sociaux.caah.garantie_ressources
-        aah_montant = law.minima_sociaux.aah.montant
+        aah_montant = law.prestations_etat_de_sante.aah.montant
 
         aah = individu('aah', period)
         asi_eligibilite = individu('asi_eligibilite', period)
@@ -424,7 +424,7 @@ class caah(Variable):
         al = individu.famille('aide_logement_montant', period)
         taux_incapacite = individu('taux_incapacite', period)
 
-        elig_cpl = ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.minima_sociaux.aah.taux_incapacite)
+        elig_cpl = ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.prestations_etat_de_sante.aah.taux_incapacite)
         # TODO: & logement indépendant & inactif 12 derniers mois
         # & capa de travail < 5%
         compl_ress = elig_cpl * max_(garantie_ressources - aah_montant, 0)
@@ -442,7 +442,7 @@ class caah(Variable):
         law = parameters(period).prestations
 
         cpltx = law.minima_sociaux.caah.taux_montant_complement_ressources
-        aah_montant = law.minima_sociaux.aah.montant
+        aah_montant = law.prestations_etat_de_sante.aah.montant
 
         aah = individu('aah', period)
         asi_eligibilite = individu('asi_eligibilite', period)
@@ -453,7 +453,7 @@ class caah(Variable):
         taux_incapacite = individu('taux_incapacite', period)
 
         # TODO: & logement indépendant
-        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.minima_sociaux.aah.taux_incapacite)
+        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.prestations_etat_de_sante.aah.taux_incapacite)
 
         ancien_caah = cpltx * aah_montant * elig_ancien_caah
         # En fait le taux cpltx perdure jusqu'en 2008
@@ -473,8 +473,8 @@ class complement_ressources_aah(Variable):
     def formula_2015_07_01(individu, period, parameters):
         prestations = parameters(period).prestations
         garantie_ressources = prestations_sociales.minima_sociaux.caah.garantie_ressources
-        aah_montant = prestations_sociales.minima_sociaux.aah.montant
-        taux_capacite_travail_max = prestations_sociales.minima_sociaux.aah.taux_capacite_travail
+        aah_montant = prestations_sociales.prestations_etat_de_sante.aah.montant
+        taux_capacite_travail_max = prestations_sociales.prestations_etat_de_sante.aah.taux_capacite_travail
         taux_capacite_travail = individu('taux_capacite_travail', period)
 
         return (taux_capacite_travail < taux_capacite_travail_max) * max_(garantie_ressources - aah_montant, 0)
