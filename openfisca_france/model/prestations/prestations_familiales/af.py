@@ -287,9 +287,9 @@ class af_allocation_forfaitaire(Variable):
     def formula_2003_07_01(famille, period, parameters):
         af_nbenf = famille('af_nbenf', period)
         af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
-        P = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
-        bmaf = P.bmaf
-        af_forfait = round_(bmaf * P.majoration_enfants.taux_allocation_forfaitaire, 2)
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+
+        af_forfait = round_(af.bmaf * af.majoration_enfants.taux_allocation_forfaitaire, 2)
         af_allocation_forfaitaire = ((af_nbenf >= 2) * af_forfaitaire_nbenf) * af_forfait
 
         af_forfaitaire_taux_modulation = famille('af_allocation_forfaitaire_taux_modulation', period)

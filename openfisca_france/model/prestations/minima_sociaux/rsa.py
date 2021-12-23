@@ -560,10 +560,10 @@ class rsa_montant(Variable):
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
         rsa_base_ressources = famille('rsa_base_ressources', period)
 
-        P = parameters(period).prestations_sociales.minima_sociaux.rsa
-        seuil_non_versement = P.rsa_nv
+        rsa = parameters(period).prestations_sociales.minima_sociaux.rsa
+        seuil_non_versement = rsa.rsa_nv
 
-        montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite
+        montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + rsa.pente * rsa_revenu_activite
 
         montant = max_(montant, 0)
         montant = montant * (montant >= seuil_non_versement)
