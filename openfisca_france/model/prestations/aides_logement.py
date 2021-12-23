@@ -253,6 +253,27 @@ class etat_logement(Variable):
     definition_period = MONTH
 
 
+class assistant_maternel(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Assistant maternel"
+    definition_period = MONTH
+
+
+class assistant_familial(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Assistant familial"
+    definition_period = MONTH
+
+
+class journaliste(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Journaliste"
+    definition_period = MONTH
+
+
 class aide_logement_date_pret_conventionne(Variable):
     value_type = date
     default_value = date.max
@@ -568,7 +589,9 @@ class aide_logement_base_ressources_individu(Variable):
         period_frais = period.last_year
         annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
 
-        salaire_imposable = individu('salaire_imposable', annee_glissante, options=[ADD])
+        # salaire imposable pour les journaliste et les assistants mat/fam apres l'aplication de l'abattement forfaitaire
+        # dans le cas des frais réels déclaré superieur a Zero.
+        salaire_imposable = individu('al_abattement_forfaitaire_assistants_et_journalistes', annee_glissante, options=[ADD])
         chomage_imposable = individu('chomage_imposable', annee_glissante, options=[ADD])
         f1tt = individu('f1tt', period.n_2)
         f3vj = individu('f3vj', period.n_2)
@@ -886,6 +909,26 @@ class aide_logement_biactivite(Variable):
         deux_parents = famille.nb_persons(role=Famille.PARENT) == 2
 
         return deux_parents * famille.all(condition_ressource_i, role=Famille.PARENT)
+
+
+class al_abattement_forfaitaire_assistants_et_journalistes(Variable):
+    value_type = float
+    entity = Individu
+    label = "L'application de l'abattement forfaitaire pour les journaliste et les assistants maternels et familials."
+    definition_period = MONTH
+
+    def formula_2019_01(individu, period, parameters):
+        assistant_maternel = individu('assistant_maternel', period)
+        assistant_familial = individu('assistant_familial', period)
+        journaliste = individu('journaliste', period)
+        salaire_imposable = individu('salaire_imposable', period)
+        abat = parameters(period).prestations.al_assistant_journaliste.abattement.montant
+
+        montant_abattement = select([assistant_maternel, assistant_familial, journaliste],
+            [abat.assistant_maternel, abat.assistant_familial, abat.journaliste],
+            default=0)
+
+        return max_(0, salaire_imposable - montant_abattement)
 
 
 class aide_logement_base_ressources(Variable):
