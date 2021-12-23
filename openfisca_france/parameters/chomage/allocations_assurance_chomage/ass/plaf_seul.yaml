@@ -5,7 +5,7 @@ values:
     value: 70.0
 metadata:
   ux_name: Multiple personne seule
-  unit: Ratio
+  unit: /1
   reference:
   description_en: Special UI scheme
 documentation: |
