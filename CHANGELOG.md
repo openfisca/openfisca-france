@@ -1,5 +1,14 @@
 # Changelog
 
+## 80.6.0 [#1743](https://github.com/openfisca/openfisca-france/pull/1743)
+
+* Amélioration technique.
+* Zones impactées : `parameters/prelevements_sociaux/contributions_sociales/`.
+* Détails :
+  - Réorganisation des fichiers selon l'arborescence IPP
+  - Ajoute les champs `order` et `ipp_csv_id`
+  - Ajoute quelques valeurs si elles manquaient
+
 ### 80.5.2 [#1739](https://github.com/openfisca/openfisca-france/pull/1739)
 
 * Changement mineur.
