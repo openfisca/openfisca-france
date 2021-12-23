@@ -365,7 +365,7 @@ class al_nb_personnes_a_charge(Variable):
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
         def al_nb_enfants():
-            age_min_enfant = parameters(period).prestations_sociales.prestations_familiales.af.age1
+            age_min_enfant = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af.age1
             return nb_enf(famille, period, age_min_enfant, age_max_enfant - 1)  # La limite sur l'age max est stricte.
 
         def al_nb_adultes_handicapes():
@@ -834,8 +834,8 @@ class aide_logement_biactivite(Variable):
                inclus.
         '''
 
-        pfam = parameters(period).prestations_sociales.prestations_familiales
-        base_annuelle_allocations_famililales = 12 * pfam.af.bmaf
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        base_annuelle_allocations_famililales = 12 * af.bmaf
 
         condition_ressource_i = (
             famille.members('salaire_imposable', period, options = [ADD])
@@ -1302,7 +1302,7 @@ class crds_logement(Variable):
 
     def formula(famille, period, parameters):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
-        crds = parameters(period).prestations_sociales.prestations_familiales.af.crds
+        crds = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af.crds
         return -aide_logement_montant_brut * crds
 
 

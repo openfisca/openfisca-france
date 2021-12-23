@@ -12,7 +12,7 @@ class asf_elig_enfant(Variable):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
 
-        af = parameters(period).prestations_sociales.prestations_familiales.af
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         eligibilite = (
             # Âge compatible avec les prestations familiales
@@ -49,7 +49,7 @@ class asf_montant(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        af = parameters(period).prestations_sociales.prestations_familiales.af
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         asf = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.asf
 
         asf_par_enfant = (

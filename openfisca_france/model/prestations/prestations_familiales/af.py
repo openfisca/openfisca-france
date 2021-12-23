@@ -48,7 +48,7 @@ class af_allocation_forfaitaire_nb_enfants(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        pfam = parameters(period).prestations_sociales.prestations_familiales.af
+        pfam = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         af_forfaitaire_nbenf = nb_enf(famille, period, pfam.age3, pfam.age3)
 
         return af_forfaitaire_nbenf
@@ -96,7 +96,7 @@ class af_base(Variable):
         eligibilite_dom = famille('af_eligibilite_dom', period)
         af_nbenf = famille('af_nbenf', period)
 
-        pfam = parameters(period).prestations_sociales.prestations_familiales.af
+        pfam = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         eligibilite = or_(eligibilite_base, eligibilite_dom)
 

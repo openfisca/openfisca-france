@@ -113,7 +113,7 @@ class paje_base(Variable):
         date_gel_paje = Instant((2013, 4, 1))
         date_degel_paje = Instant((2018, 4, 1))
         periode_de_gel = date_degel_paje > period.start > date_gel_paje
-        indice = parameters(date_gel_paje).prestations_sociales.prestations_familiales.af.bmaf if periode_de_gel else pfam.af.bmaf
+        indice = parameters(date_gel_paje).prestations_sociales.prestations_familiales.prestations_generales.af.bmaf if periode_de_gel else pfam.af.bmaf
         # Le taux ne dépend pas de l'année en cours mais de la réforme en vigueur pour l'année de naissance:
         montant_taux_plein_avant_2014 = indice * pfam.paje.base.avant_2014.taux_allocation_base
         montant_taux_plein_2014_2018 = indice * pfam.paje.base.apres_2014.taux_allocation_base
@@ -297,7 +297,7 @@ class paje_naissance(Variable):
 
         # Le montant de la PAJE est gelé depuis avril 2013.
         date_gel_paje = Instant((2013, 4, 1))
-        bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations_sociales.prestations_familiales.af.bmaf
+        bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations_sociales.prestations_familiales.prestations_generales.af.bmaf
         prime_naissance = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
 
         # Versée au 7ème mois de grossesse
@@ -330,7 +330,7 @@ class paje_naissance(Variable):
 
         # Le montant de la PAJE est gelé depuis avril 2013.
         date_gel_paje = Instant((2013, 4, 1))
-        bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations_sociales.prestations_familiales.af.bmaf
+        bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations_sociales.prestations_familiales.prestations_generales.af.bmaf
         nais_prime = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
 
         # Versée au 7ème mois de grossesse

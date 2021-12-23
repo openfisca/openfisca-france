@@ -32,7 +32,7 @@ class ppa_plancher_revenu_activite_etudiant(Variable):
         return (
             169
             * P.marche_travail.salaire_minimum.smic_h_b
-            * P.prestations_sociales.prestations_familiales.af.seuil_rev_taux
+            * P.prestations_sociales.prestations_familiales.prestations_generales.af.seuil_rev_taux
             )
 
 

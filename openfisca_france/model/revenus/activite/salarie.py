@@ -842,15 +842,15 @@ class af_nbenf_fonc(Variable):
         smic_mensuel_brut = law.marche_travail.salaire_minimum.smic_h_b * nbh_travaillees
 
         autonomie_financiere = (salaire_de_base_mensualise >= (
-            law.prestations_sociales.prestations_familiales.af.seuil_rev_taux
+            law.prestations_sociales.prestations_familiales.prestations_generales.af.seuil_rev_taux
             * smic_mensuel_brut
             ))
 
         age = famille.members('age', period)
 
         condition_enfant = (
-            (age >= law.prestations_sociales.prestations_familiales.af.age1)
-            * (age <= law.prestations_sociales.prestations_familiales.af.age2)
+            (age >= law.prestations_sociales.prestations_familiales.prestations_generales.af.age1)
+            * (age <= law.prestations_sociales.prestations_familiales.prestations_generales.af.age2)
             * not_(autonomie_financiere)
             )
 
