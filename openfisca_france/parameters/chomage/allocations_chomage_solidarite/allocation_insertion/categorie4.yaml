@@ -1,0 +1,115 @@
+description: Allocation d'insertion (AI) pour la Catégorie 4
+values:
+  1983-01-01:
+    value: null
+  1981-10-01:
+    value: 45.34
+  1980-04-01:
+    value: 34.5
+  1979-10-01:
+    value: 32.0
+  1979-07-01:
+    value: 30.0
+metadata:
+  ux_name: Catégorie 4
+  ipp_csv_id: ai_service
+  unit: currency
+  reference:
+    2006-11-16:
+      title: Loi 2005-1719, art. 154, du 30/12/2005
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006322579&cidTexte=JORFTEXT000000634802
+    2006-01-01:
+      title: Décret 2005-1700 du 29/12/2005
+      href: https://www.legifrance.gouv.fr/eli/decret/2005/12/29/2005-1700/jo/texte
+    2005-01-01:
+      title: Décret 2004-1537 du 30/12/2004
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000805739
+    2004-01-01:
+      title: Décret 2003-1374 du 31/12/2003
+      href: https://www.legifrance.gouv.fr/eli/decret/2003/12/31/2003-1374/jo/texte
+    2003-01-01:
+      title: Décret 2002-1615 du 31/12/2002
+      href: https://www.legifrance.gouv.fr/eli/decret/2002/12/31/2002-1615/jo/texte
+    2002-01-01:
+      title: Décret 2001-1354 du 28/12/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000775182&categorieLien=id
+    2001-01-01:
+      title: Décret 2000-1260 du 26/12/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000388703&categorieLien=id
+    2000-01-01:
+      title: Décret 99-1044 du 14/12/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000580251&categorieLien=id
+    1999-01-01:
+      title: Décret 98-1180 du 23/12/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000575730&categorieLien=id
+    1998-01-01:
+      title: Décret 98-151 du 10/03/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000739809
+    1986-07-01:
+      title: Décret 86-110 du 24/01/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684315&categorieLien=id
+    1986-01-01:
+      title: Décret 86-110 du 24/01/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684315&categorieLien=id
+    1985-04-01:
+      title: Décret 85-600 du 10/06/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517158
+    1984-10-01:
+      title: Décret 84-1180 du 26/12/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000885896&categorieLien=id
+    1984-04-01:
+      title: Décret 84-417 du 30/05/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000520452
+    1983-01-01:
+      title: Décret 82-991 du 24/11/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701672&categorieLien=id
+    1981-10-01: Circulaire Unédic 80-40 du 23/09/1980
+    1980-04-01: Conseil d'administration de l'Unédic du 27/03/1980
+    1979-10-01: Circulaire Unédic 79-36 de septembre 1979
+    1979-07-01: Arrêté du 02/05/1979 portant agrément de la convention du 27/03/1979
+  official_journal_date:
+    2006-11-16: 2005-12-31
+    2006-01-01: 2005-12-30
+    2005-01-01: 2005-01-01
+    2004-01-01: 2004-01-01
+    2003-01-01: 2003-01-01
+    2002-01-01: 2001-12-30
+    2001-01-01: 2000-12-27
+    2000-01-01: 1999-12-15
+    1999-01-01: 1998-12-24
+    1998-01-01: 1998-03-11
+    1986-07-01: 1986-01-25
+    1986-01-01: 1986-01-25
+    1985-04-01: 1985-06-14
+    1984-10-01: 1984-12-27
+    1984-04-01: 1984-06-05
+    1983-01-01: 1982-11-25
+    1979-07-01: 1979-05-20
+  notes:
+    2006-11-16: Remplacée par allocation temporaire d'attente (ATA).
+    1992-01-01: "Allocation d'insertion abrogée pour femmes et jeunes: valable pour détenus libérés, apatrides, salariés expatriés…etc"
+  description_en: Insertion allowance (AI)
+documentation: |
+  Notes :
+  L'Allocation d'insertion (AI) était appelée allocation forfaitaire journalière jusqu'en 1984, pour ceux qui ne peuvent prétendre ni à l'allocation de base, ni à l'allocation spécifique.
+  Remplacée par allocation temporaire d'attente (ATA) depuis le 16/11/2006.
+  Précisions:
+  A partir de 1979 et jusqu'en 1984:
+  1) Jeunes de plus de 16 ans ayant diplôme de l'enseignement technologique de niveau III, IV, V et V bis; diplôme délivré par un centre de formation professionnelle agréé; ont effectué un stage visé par la Loi 78-698 du 6 juillet 1978, et qui sont à la recherche d'un emploi dans les 12 mois suivant la fin de leur stage ou l'obtention de leur diplôme, et depuis au moins 6 mois
+  2) Jeunes de plus de 16 ans ayant obtenu une licence ou diplôme reconnu équivalent; un diplôme de l'enseignement technologique des niveaux I et II; un diplôme de sortie d'une école professionnelle de l'Etat; un diplôme de centre de formation professionnelle dont les stages sont agréés ou conventionnés et conduisent à une qualification professionnelle, à l'exception de ceux visés en 1); le diplôme du baccalauréat; ont achevé un cycle complet de l'enseignement technologique; effectué un stage agréé ou conventionné de préformation ou de formation professionnelle, à la recherche d'un emploi dans les 12 mois suivant la date d'obtention du diplôme ou d'échèvement du cycle ou du stage, et depuis plus de 6 mois
+  3) Jeunes gens entre 16-25 ans apportant une aide indispensable à leur famille; ont eu une activité, notamment la poursuite d'étude, après leur 16ème anniversaire, et sont à la recherche d'un emploi
+  4) Jeunes gens ayant accompli le service national, à la recherche d'un emploi dans les 12 mois suivant leur libération
+  5) Détenus libérés (sous certaines conditions) à la recherche d'un emploi dans les 12 mois suivant leur libération
+  6) Femmes sans emploi et veuves, divorcées, séparées judiciairement ou celibataire assumant la charge d'au moins un enfant, et qui sont dans cette situation depuis moins de 2 ans, ont accompli un stage visé par la Loi 78-698 du 6 juillet 1978, ou ont un diplôme, achevé un stage ou un cycle décrit dans catégories 1 et 2, et sont à la recherche d'un emploi depuis 6 mois
+  7) Femmes ayant accompli stage agréé de plus de 500 heures, à la recherche d'un emploi dans les 12 mois suivant la fin du stage et depuis plus de 6 mois, moins la moitié de la durée du stage
+  A partir de 1984:
+  Jeunes à la recherche d'un premier emploi regroupent:
+  jeunes pouvant se prévaloir de certains diplômes ou formations (16-25 ans ayant diplôme technologique homologué à la recherche d'un emploi moins de 12 mois après obtention diplôme; 16-25 ans ayant accompli stage de formation professionnelle conduisant soit à un
+  diplôme de l'enseignement technologique homologué, soit à une qualification professionnelle reconnue dans les classifications d'une convention collective de branche, à la recherche d'un emploi dans les 12 mois après la fin du stage; 18-25 ans ayant accompli un cycle complet de l'enseignement secondaire ou supérieur au cours des 12 derniers mois précédant inscription)
+  jeunes venant d'accomplir depuis moins de 6 mois leur service national
+  jeunes soutiens de famille (si l'aide est jugée indispensable et que les ressources de la famille ne dépassent pas 200*SMIC)
+  Jeunes justifiant d'une certaine activité professionnelle regroupent:
+  jeunes pouvant justifier d'une activité salariée d'au moins 3 mois et de moins de 6 mois si la fin de contrat est intervenue dans les 12 mois précédant l'inscription comme demandeur d'emploi
+  Catégories diverses regroupent: détenus libérés, travailleurs salariés expatriés non couverts par le régime d'assurance chômage, rapatriés, apatrides, réfugiés, salariés victimes d'accidents du travail ou maladie professionnelle en attente d'un stage de reconversion
+  A partir du 01/01/1992, seuls bénéficiaires sont les catégories diverses = détenus libérés, apatrides, réfugiés, travailleurs salariés expatriés, salariés victimes d'un accident du travail ou d'une maladie professionnelle en attente d'un stage de réadaptation, de rééducation, ou de formation professionnelle
+  Sources: Légifrance, Droit de la sécurité sociale (Jean Jacques Dupeyroux, DALLOZ)

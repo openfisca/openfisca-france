@@ -1,0 +1,42 @@
+description: Montant minimum de l'allocation de base d'assurance chômage (1958-1967) pour les villes de moinss de 5000 habitants
+values:
+  1968-01-01:
+    value: null
+  1967-01-09:
+    value: 6.4
+  1965-12-27:
+    value: 6.0
+  1964-11-02:
+    value: 5.6
+  1963-09-23:
+    value: 5.0
+  1962-06-18:
+    value: 4.4
+  1960-09-26:
+    value: 3.85
+  1960-03-01:
+    value: 3.8
+  1958-12-31:
+    value: 350.0
+metadata:
+  ux_name: Moins de 5000 hab.
+  ipp_csv_id: base_min_m5000
+  unit: currency
+  reference:
+    1967-01-09:
+    - Ordonnance 67-580 du 13/07/1967
+    - Avenant du 10/07/1967
+    1965-12-27: Circulaire Unedic 66-41 - décision du 24/11/1966
+    1964-11-02: Circulaire Unedic 65-50 - décision du 25/11/1965
+    1963-09-23: Circulaire Unedic 64-26 - décision du 26/11/1964
+    1962-06-18: Circulaire Unedic 63-41 - décision du 28/11/1963
+    1960-09-26: Circulaire Unedic 62-23 - décision du 26/06/1962
+    1960-03-01: Circulaire Unedic 60-48 - décision du 13/10/1960
+    1958-12-31: Circulaire Unedic 60-19 - décision du 28/03/1960
+  official_journal_date:
+    1967-01-09: 1967-07-19
+  description_en: UI scheme (1958-1967)
+documentation: |
+  Art. 8 du règlement de la Convention du 31/12/1958
+  Sources :
+  Consultation des circulaires Unedic au service de documentation de l'Unedic.

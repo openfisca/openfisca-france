@@ -1,0 +1,6 @@
+description: Prime transitoire de solidarité (PTS) des allocations chômage pour les personnes en préretraite
+metadata:
+  ux_name: Prime transitoire de solidarité
+  order:
+  - montant_mensuel
+  description_en: Transitional solidarity premium (PTS)

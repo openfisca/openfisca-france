@@ -1,0 +1,6 @@
+description: Revalorisation du salaire de référence pour le calcul FNE des Allocations chômage pour les personnes en préretraite
+metadata:
+  ux_name: Revalorisation FNE
+  order:
+  - revalorisation_sr
+  description_en: Indexation of reference wage for FNE early retirement benefit

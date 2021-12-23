@@ -1,0 +1,6 @@
+description: Revalorisation du salaire de références des chômeurs de plus de 61 ans (1965-1973) pour les allocations chômage
+metadata:
+  ux_name: Revalorisation chômeurs >61 ans
+  order:
+  - taux
+  description_en: Indexation of UI reference wage for older unemployed - above age 61 (1965-1973)

@@ -30,7 +30,7 @@ class ass(Variable):
         ass_base_ressources = individu.famille('ass_base_ressources', period)
         en_couple = individu.famille('en_couple', period)
         residence_mayotte = individu.menage('residence_mayotte', period)
-        ass_params = parameters(period).prestations.minima_sociaux.ass
+        ass_params = parameters(period).chomage.allocations_assurance_chomage.ass
 
         elig = individu('ass_eligibilite_individu', period)
 
@@ -164,8 +164,8 @@ def calculateWithAbatement(individu, parameters, period, ressourceName):
     # Les ressources interrompues sont abattues différement si elles sont substituées ou non.
     # http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020398006&cidTexte=LEGITEXT000006072050
 
-    tx_abat_partiel = parameters(period).prestations.minima_sociaux.ass.abat_rev_subst_conj
-    tx_abat_total = parameters(period).prestations.minima_sociaux.ass.abat_rev_non_subst_conj
+    tx_abat_partiel = parameters(period).chomage.allocations_assurance_chomage.ass.abat_rev_subst_conj
+    tx_abat_total = parameters(period).chomage.allocations_assurance_chomage.ass.abat_rev_non_subst_conj
 
     tx_abat_applique = where(has_ressources_substitution, tx_abat_partiel, tx_abat_total)
 
@@ -225,7 +225,7 @@ class ass_eligibilite_individu(Variable):
         ]
 
     def formula(individu, period, parameters):
-        age_max = parameters(period).prestations.minima_sociaux.ass.age_max
+        age_max = parameters(period).chomage.allocations_assurance_chomage.ass.age_max
         sous_age_limite = individu('age_en_mois', period) <= age_max
 
         demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
@@ -236,7 +236,7 @@ class ass_eligibilite_individu(Variable):
         return demandeur_emploi_non_indemnise * ass_precondition_remplie * sous_age_limite
 
     def formula_2017_01_01(individu, period, parameters):
-        age_max = parameters(period).prestations.minima_sociaux.ass.age_max
+        age_max = parameters(period).chomage.allocations_assurance_chomage.ass.age_max
         sous_age_limite = individu('age_en_mois', period) <= age_max
 
         aah_eligible = individu('aah', period) > 0

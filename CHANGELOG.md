@@ -1,5 +1,34 @@
 # Changelog
 
+# 82.0.0 [#1740](https://github.com/openfisca/openfisca-france/pull/1740)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées et Détails :
+- Déplace `parameters/allocation_retour_emploi` -> `parameters/chomage/allocation_retour_emploi`
+- Ajoute `parameters/chomage/allocations_assurance_chomage/` comprenant:
+  - alloc_base
+  - alloc_base_taux
+  - alloc_base_1967
+  - alloc_unique_degressive
+  - sr_alloc (revalorisation)
+  - reval_chomeurs_plus_61ans
+  - afd (aide de fin de droits)
+  - alloc_journaliere
+  - ass (allocation solidarité spécifique)
+ 
+- Déplace l'ASS de `parameters/prestations/minima_sociaux/ass` vers `parameters/chomage/allocations_assurance_chomage/ass`
+- Ajoute `parameters/chomage/allocations_chomage_solidarite/` comprenant:
+  - allocation_aide_publique
+  - allocation_insertion
+- Ajoute `parameters/chomage/preretraites/` comprenant:
+  - alloc_transitoire_securite
+  - prime_transitoire_solidarite
+  - alloc_equivalent_retraite
+  - garanties_ressources
+  - sr_fne
+  - fne_arpe
+
 # 81.0.0 [#1746](https://github.com/openfisca/openfisca-france/pull/1746)
 
 * Amélioration technique. 

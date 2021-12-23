@@ -1,0 +1,11 @@
+description: Allocations chômage pour les personnes en préretraite
+metadata:
+  ux_name: Préretraites
+  order:
+  - alloc_transitoire_securite
+  - prime_transitoire_solidarite
+  - alloc_equivalent_retraite
+  - garanties_ressources
+  - sr_fne
+  - fne_arpe
+  description_en: Early retirement benefits

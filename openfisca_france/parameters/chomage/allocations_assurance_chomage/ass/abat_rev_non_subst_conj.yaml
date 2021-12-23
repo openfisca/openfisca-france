@@ -1,0 +1,12 @@
+description: Abattement appliqué aux revenus interrompus et non substitués du conjoint pour l'allocation de solidarité spécifique (ASS)
+values:
+  2005-01-01:
+    value: 0.0
+  2008-05-01:
+    value: 1.0
+metadata:
+  ux_name: Abattement revenus interrompus et non substitués
+  unit: /1
+  description_en: Special UI scheme
+documentation: |
+  Pas de pension de retraite, ni de chômage, etc.

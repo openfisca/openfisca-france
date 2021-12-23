@@ -1,0 +1,7 @@
+description: Partie fixe de l'allocation de base d'assurance chômage
+metadata:
+  ux_name: Partie fixe
+  order:
+  - si_affiliation_entre_3_6_mois
+  - si_affiliation_6_mois
+  description_en: UI scheme - lump-sum and minimum
