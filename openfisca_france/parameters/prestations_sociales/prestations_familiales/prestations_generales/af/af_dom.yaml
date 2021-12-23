@@ -17,7 +17,7 @@ age_1er_enf_tranche_2_dom:
       value: 15.0
     1999-01-01:
       value: 16.0
-duree_pendant_laquelle_la_majoration_pour_les_plus_de_20_ans_est_versee_en_annee:
+duree_majoration_plus_de_20_ans:
   reference: https://www.ipp.eu/outils/baremes-ipp/
   values:
     1991-08-06:

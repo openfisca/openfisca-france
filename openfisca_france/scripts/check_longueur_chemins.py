@@ -11,7 +11,7 @@ import os
 def extract_paths_too_long(root_dir):
     root_dir = root_dir.rstrip(os.sep)
 
-    with open("chemins_trop_longs.json", "w") as outfile:
+    with open("chemins_trop_longs.txt", "w") as outfile:
         for path, dirs, files in os.walk(root_dir):
             relative_path = path[len(root_dir) + 1:]
             for dir in dirs:
