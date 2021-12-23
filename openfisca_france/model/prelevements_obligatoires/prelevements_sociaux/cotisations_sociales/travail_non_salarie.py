@@ -76,7 +76,7 @@ class deces_artisan_commercant(Variable):
     def formula_2015(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'deces')
-        deces = parameters(period).prelevements_sociaux.deces_ac.artisans
+        deces = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.deces_ac.artisans  # à changer lors de l'harmonisation
         bareme.add_bracket(0, deces.sous_pss)
         bareme.add_bracket(1, 0)
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
