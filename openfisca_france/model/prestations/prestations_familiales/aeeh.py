@@ -45,7 +45,7 @@ class aeeh(Variable):
 
         enfant_handicape = handicap * (age < prestations_familiales.aeeh.age_maximum_de_l_enfant)
 
-        montant_par_enfant = enfant_handicape * prestations_familiales.af.bmaf * (
+        montant_par_enfant = enfant_handicape * prestations_familiales.prestations_generales.af.bmaf * (
             base
             + (niveau_handicap == 1) * complement_d_allocation._children['1ere_categorie']
             + (niveau_handicap == 2) * (complement_d_allocation._children['1ere_categorie'] + majoration._children['2e_categorie'] * isole)
@@ -96,7 +96,7 @@ class aes(Variable):
 
         enfant_handicape = handicap * (age < prestations_familiales.education_presence_parentale.aes.age_maximum_de_l_enfant)
 
-        montant_par_enfant = enfant_handicape * prestations_familiales.af.bmaf * (
+        montant_par_enfant = enfant_handicape * prestations_familiales.prestations_generales.af.bmaf * (
             base
             + (niveau_handicap == 1) * complement_d_allocation._children['1ere_categorie']
             + (niveau_handicap == 2) * complement_d_allocation._children['1ere_categorie']

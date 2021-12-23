@@ -23,7 +23,7 @@ class api(Variable):
         rsa_base_ressources = famille('rsa_base_ressources', period)
         af_majoration = famille('af_majoration', period)
         rsa = famille('rsa', period)
-        af = parameters(period).prestations_sociales.prestations_familiales.af
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         api = parameters(period).prestations_sociales.minima_sociaux.api
 
         # TODO:

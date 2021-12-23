@@ -34,7 +34,7 @@ class aefa(Variable):
         condition = (ass > 0) + (aer > 0) + (api > 0) + (rsa > 0)
         condition_majoration = rsa > 0
 
-        af = parameters(period).prestations_sociales.prestations_familiales.af
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         janvier = period.first_month
         af_nbenf = famille('af_nbenf', janvier)
         nb_parents = famille('nb_parents', janvier)
