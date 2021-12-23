@@ -1,5 +1,15 @@
 # Changelog
 
+# 81.0.0 [#1746](https://github.com/openfisca/openfisca-france/pull/1746)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux`.
+* Détails :
+  -  On déplace les fichiers pour respecter l'arborescence IPP en vue de l'harmonisation à venir
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - Chaque commit correspond à 1 déplacement d'un sous-dossier (et donc d'1 thème)
+
 ## 80.6.0 [#1743](https://github.com/openfisca/openfisca-france/pull/1743)
 
 * Amélioration technique.
