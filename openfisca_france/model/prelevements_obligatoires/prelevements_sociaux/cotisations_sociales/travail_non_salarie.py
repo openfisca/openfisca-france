@@ -419,7 +419,7 @@ class retraite_complementaire_profession_liberale(Variable):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'retraite_complementaire')
         bareme.add_bracket(0, .09)  # TODO taux à la louche car hétérogène
-        bareme.add_bracket(5, 0)  #TODO on peut améliorer le calcul car on a les parametres
+        bareme.add_bracket(5, 0)  # TODO on peut améliorer le calcul car on a les parametres
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
