@@ -186,7 +186,7 @@ class af_majoration_enfant(Variable):
         af_base = individu.famille('af_base', period)
         age_aine = individu.famille('af_age_aine', period)
 
-        af = parameters(period).prestations_sociales.prestations_familialesprestations_generales.af
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         montant_enfant_seul = af.bmaf * (
             (af.af_dom.age_1er_enf_tranche_1_dom <= age)
