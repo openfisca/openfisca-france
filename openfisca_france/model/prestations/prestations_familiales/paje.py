@@ -807,7 +807,7 @@ class paje_clca(Variable):
         partiel1 = famille('partiel1', period)
         partiel2 = famille('partiel2', period)
 
-        aje = parameters(period).prestations_sociales.prestations_familiales.paje
+        paje = parameters(period).prestations_sociales.prestations_familiales.paje
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         paje_non_nul = paje_base >= 0
