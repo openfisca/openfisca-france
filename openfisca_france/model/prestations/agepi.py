@@ -1,5 +1,6 @@
 from datetime import date
 import numpy as np
+from openfisca_core.model_api import select
 
 from openfisca_france.model.base import Famille, Individu, Variable, Enum, MONTH, \
     set_input_dispatch_by_period, set_input_divide_by_period, min_, not_
@@ -48,12 +49,57 @@ class agepi_percue_12_derniers_mois(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class emploi_ou_formation_en_france(Variable):
-    value_type = bool
+class TypesLieuEmploiFormation(Enum):
+    non_renseigne = "Non renseigné"
+    metropole = "Métropole"
+    france_hors_dom_corse = "France hors DOM et hors Corse"
+    guadeloupe = "Guadeloupe"
+    martinique = "Martinique"
+    guyane = "Guyane"
+    la_reunion = "La réunion"
+    saint_pierre_et_miquelon = "Saint Pierre et Miquelon"
+    mayotte = "Mayotte"
+    saint_bartelemy = "Saint Bartelemy"
+    saint_martin = "Saint Martin"
+
+
+class lieu_emploi_ou_formation(Variable):
+    value_type = Enum
+    possible_values = TypesLieuEmploiFormation
+    default_value = TypesLieuEmploiFormation.non_renseigne
     entity = Individu
-    label = "L'emploi ou la formation de l'individu se situe en France"
+    label = "Zone de l'emploi ou de la formation"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
+    def formula(individu, period, parameters):
+        return select(
+            [
+                individu('lieu_emploi_formation_metropole', period),
+                individu('lieu_emploi_formation_france_hors_dom_corse', period),
+                individu('lieu_emploi_formation_guadeloupe', period),
+                individu('lieu_emploi_formation_martinique', period),
+                individu('lieu_emploi_formation_guyane', period),
+                individu('lieu_emploi_formation_reunion', period),
+                individu('lieu_emploi_formation_saint_pierre_et_miquelon', period),
+                individu('lieu_emploi_formation_mayotte', period),
+                individu('lieu_emploi_formation_saint_bartelemy', period),
+                individu('lieu_emploi_formation_saint_martin', period)
+                ],
+            [
+                TypesLieuEmploiFormation.metropole,
+                TypesLieuEmploiFormation.france_hors_dom_corse,
+                TypesLieuEmploiFormation.guadeloupe,
+                TypesLieuEmploiFormation.martinique,
+                TypesLieuEmploiFormation.guyane,
+                TypesLieuEmploiFormation.la_reunion,
+                TypesLieuEmploiFormation.saint_pierre_et_miquelon,
+                TypesLieuEmploiFormation.mayotte,
+                TypesLieuEmploiFormation.saint_bartelemy,
+                TypesLieuEmploiFormation.saint_martin
+                ],
+            default=TypesLieuEmploiFormation.non_renseigne
+            )
 
 
 class TypesCategoriesDemandeurEmploi(Enum):
@@ -190,7 +236,7 @@ class agepi_eligible(Variable):
                                 + (categorie_4_stagiaire_formation_professionnelle + categorie_5_contrat_aide))
 
         #  5
-        lieux_activite_eligibles = individu('emploi_ou_formation_en_france', period)
+        lieux_activite_eligibles = not_(individu('lieu_emploi_ou_formation', period) == TypesLieuEmploiFormation.non_renseigne)
 
         #  6
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)  # numpy.datetime64

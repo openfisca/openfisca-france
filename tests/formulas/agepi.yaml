@@ -12,15 +12,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: False
         en_contrat_aide: False
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: cdd
-        heures_remunerees_volume: 0
+        types_contrat: cdd
+        duree_formation: null
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 10
+        agepi_temps_travail_en_heure: 10
       Jean:
         age: 12
       Marie:
@@ -53,15 +53,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: False
         en_contrat_aide: False
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: cdd
-        heures_remunerees_volume: 0
+        types_contrat: cdd
+        duree_formation: null
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 10
+        agepi_temps_travail_en_heure: 10
       Paul:
         age: 30
       Jean:
@@ -95,15 +95,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: False
         en_contrat_aide: False
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: cdd
-        heures_remunerees_volume: 0
+        types_contrat: cdd
+        duree_formation: null
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 10
+        agepi_temps_travail_en_heure: 10
       Jean:
         age: 12
       Marie:
@@ -135,15 +135,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_6
         stagiaire: False
         en_contrat_aide: False
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: cdd
-        heures_remunerees_volume: 0
+        types_contrat: cdd
+        duree_formation: null
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 10
+        agepi_temps_travail_en_heure: 10
       Jean:
         age: 12
       Marie:
@@ -175,15 +175,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_4
         stagiaire: True
         en_contrat_aide: False
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: cdd
-        heures_remunerees_volume: 0
+        types_contrat: cdd
+        duree_formation: null
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 10
+        agepi_temps_travail_en_heure: 10
       Jean:
         age: 12
       Marie:
@@ -215,15 +215,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_5
         stagiaire: False
         en_contrat_aide: True
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: cdd
-        heures_remunerees_volume: 0
+        types_contrat: cdd
+        duree_formation: null
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 10
+        agepi_temps_travail_en_heure: 10
       Jean:
         age: 12
       Marie:
@@ -255,15 +255,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: False
         en_contrat_aide: False
-        emploi_ou_formation_en_france: False
+        lieu_emploi_ou_formation: non_renseigne
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: cdd
-        heures_remunerees_volume: 0
+        types_contrat: cdd
+        duree_formation: null
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 10
+        agepi_temps_travail_en_heure: 10
       Jean:
         age: 12
       Marie:
@@ -295,15 +295,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: False
         en_contrat_aide: False
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-02-02'
         allocation_retour_emploi: 0
-        types_activite_condition: cdd
-        heures_remunerees_volume: 0
+        types_contrat: cdd
+        duree_formation: null
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 10
+        agepi_temps_travail_en_heure: 10
       Jean:
         age: 12
       Marie:
@@ -340,15 +340,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: False
         en_contrat_aide: False
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: cdd
-        heures_remunerees_volume: 0
+        types_contrat: cdd
+        duree_formation: null
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 10
+        agepi_temps_travail_en_heure: 10
       Jean:
         age: 12
       Marie:
@@ -395,15 +395,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: False
         en_contrat_aide: False
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: formation
-        heures_remunerees_volume: 63
+        types_contrat: cdd
+        duree_formation: null
         contrat_de_travail_duree: 3
-        types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 10
+        types_intensite_activite: mensuelle
+        agepi_temps_travail_en_heure: 63
       Jean:
         age: 12
       Marie:
@@ -435,15 +435,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: False
         en_contrat_aide: False
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: cdd
-        heures_remunerees_volume: 64
+        types_contrat: cdd
+        duree_formation: null
         contrat_de_travail_duree: 3
         types_intensite_activite: mensuelle
-        agepi_temps_travail_semaine: 0
+        agepi_temps_travail_en_heure: 64
       Jean:
         age: 9
       Marie:
@@ -475,15 +475,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: False
         en_contrat_aide: False
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: cdd
-        heures_remunerees_volume: 64
+        types_contrat: cdd
+        duree_formation: null
         contrat_de_travail_duree: 3
         types_intensite_activite: mensuelle
-        agepi_temps_travail_semaine: 0
+        agepi_temps_travail_en_heure: 64
       Jean:
         age: 9
       Marie:
@@ -501,7 +501,7 @@
     agepi: [230, 0, 0]
 
 
-- name: Test 13 - Individu eligible 2 enfants, reprise formation > 40h, < 15h/sem, catégorie 4, Mayotte
+- name: Test 13 - Individu eligible 2 enfants, reprise formation >= 40h, catégorie 4, Mayotte
   period: 2022-01
   input:
     menage:
@@ -515,15 +515,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_4
         stagiaire: True
         en_contrat_aide: False
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: formation
-        heures_remunerees_volume: 40
+        types_contrat: formation
+        duree_formation: 40
         contrat_de_travail_duree: 0
-        types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 14
+        types_intensite_activite: mensuelle
+        agepi_temps_travail_en_heure: 40
       Jean:
         age: 9
       Marie:
@@ -555,15 +555,15 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: False
         en_contrat_aide: False
-        emploi_ou_formation_en_france: True
+        lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_activite_condition: cdi
-        heures_remunerees_volume: 0
+        types_contrat: cdi
+        duree_formation: null
         contrat_de_travail_duree: 0
         types_intensite_activite: hebdomadaire
-        agepi_temps_travail_semaine: 15
+        agepi_temps_travail_en_heure: 15
       Jean:
         age: 12
       Marie:
@@ -579,3 +579,43 @@
     agepi_eligible: [True, False, False]
     agepi_nbenf: 1
     agepi: [400, 0, 0]
+
+
+- name: Test 15 - Individu eligible, 1 enfant, reprise CDI, Mayotte, ressource < ARE Min Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      enfants: [Jean, Marie]
+      residence_mayotte: True
+    individus:
+      Camille:
+        age: 29
+        agepi_percue_12_derniers_mois: False
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        lieu_emploi_ou_formation: metropole
+        contrat_de_travail_debut: '2021-01-01'
+        agepi_date_demande: '2021-01-02'
+        allocation_retour_emploi: 14.77
+        types_contrat: cdi
+        duree_formation: null
+        contrat_de_travail_duree: 0
+        types_intensite_activite: hebdomadaire
+        agepi_temps_travail_en_heure: 8
+      Jean:
+        age: 12
+      Marie:
+        age: 8
+    familles:
+      famille1:
+        parents: Camille
+        enfants: [Jean, Marie]
+    foyer_fiscal:
+      declarants: Camille
+      personnes_a_charge: [Jean, Marie]
+  output:
+    agepi_eligible: [True, False, False]
+    agepi_nbenf: 1
+    agepi: [85, 0, 0]

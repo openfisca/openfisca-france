@@ -19,6 +19,10 @@ intensite_mensuelle_seuil:
   values:
     2014-01-20:
       value: 64
+duree_cdd_ctt_minimum:
+  values:
+    2014-01-20:
+      value: 3
 montants:
   hors_mayotte:
     minimum:
