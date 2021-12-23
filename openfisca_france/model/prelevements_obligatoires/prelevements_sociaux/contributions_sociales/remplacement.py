@@ -480,9 +480,9 @@ class casa(Variable):
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
         seuils_csg = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils_csg.seuil_rfr1 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr1
-        seuil_reduction = seuils_csg.seuil_rfr2 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr2
-        seuil_taux_intermediaire = seuils_csg.seuil_rfr3 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr3
+        seuil_exoneration = seuils_csg.seuil_rfr1 + (nbptr - 1) * seuils_csg.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils_csg.seuil_rfr2 + (nbptr - 1) * seuils_csg.seuil_rfr2.demi_part_suppl_rfr2
+        seuil_taux_intermediaire = seuils_csg.seuil_rfr3 + (nbptr - 1) * seuils_csg.seuil_rfr3.demi_part_suppl_rfr3
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr <= seuil_taux_intermediaire, rfr > seuil_taux_intermediaire],
@@ -501,8 +501,8 @@ class casa(Variable):
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
         seuils_csg = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils_csg.seuil_rfr1 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr1
-        seuil_reduction = seuils_csg.seuil_rfr2 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr2
+        seuil_exoneration = seuils_csg.seuil_rfr1 + (nbptr - 1) * seuils_csg.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils_csg.seuil_rfr2 + (nbptr - 1) * seuils_csg.seuil_rfr2.demi_part_suppl_rfr2
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
