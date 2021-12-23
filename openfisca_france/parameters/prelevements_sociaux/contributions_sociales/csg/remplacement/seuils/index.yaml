@@ -3,7 +3,7 @@ metadata:
   ux_name: Seuils
   order:
   - seuil_ir
-  - seuil_rfr_1
-  - seuil_rfr_2
-  - seuil_rfr_3
+  - seuil_rfr1
+  - seuil_rfr2
+  - seuil_rfr3
   description_en:
