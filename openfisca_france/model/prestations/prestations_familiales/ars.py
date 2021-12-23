@@ -48,6 +48,6 @@ class ars(Variable):
 
         # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
         # ars_diff = (ars_plaf_res + arsbase - base_ressources) / arsnbenf
-        ars = (arsnbenf > 0) * max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res) / max_(1, arsnbenf)))
+        ars_montant = (arsnbenf > 0) * max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res) / max_(1, arsnbenf)))
 
-        return ars * (ars >= ars.montant_seuil_non_versement)
+        return ars_montant * (ars_montant >= ars.montant_seuil_non_versement)
