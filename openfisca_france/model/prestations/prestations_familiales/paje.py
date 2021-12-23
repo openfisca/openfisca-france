@@ -695,19 +695,20 @@ class apje_avant_cumul(Variable):
         base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
         biactivite = famille('biactivite', period, options = [ADD])
         isole = not_(famille('en_couple', period))
-        P = parameters(period).prestations_sociales.prestations_familiales
-        P_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales
+        Papje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance
+        Paf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales
+        P_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.prestations_generales
 
         # TODO: APJE courte voir doc ERF 2006
-        nbenf = nb_enf(famille, period, 0, P.apje.age_max_dernier_enf - 1)
-        bmaf = P.af.bmaf
+        nbenf = nb_enf(famille, period, 0, Papje.age_max_dernier_enf - 1)
+        bmaf = Paf.af.bmaf
         bmaf_n_2 = P_n_2.af.bmaf
-        base = round(P.apje.taux * bmaf, 2)
-        base2 = round(P.apje.taux * bmaf_n_2, 2)
+        base = round(Papje.taux * bmaf, 2)
+        base2 = round(Papje.taux * bmaf_n_2, 2)
 
-        plaf_tx = (nbenf > 0) + P.apje.taux_enfant_1_et_2 * min_(nbenf, 2) + P.apje.taux_enfant_3_et_plus * max_(nbenf - 2, 0)
+        plaf_tx = (nbenf > 0) + Papje.taux_enfant_1_et_2 * min_(nbenf, 2) + Papje.taux_enfant_3_et_plus * max_(nbenf - 2, 0)
         majo = isole | biactivite
-        plaf = P.apje.plaf * plaf_tx + P.apje.plaf_maj * majo
+        plaf = Papje.plaf * plaf_tx + Papje.plaf_maj * majo
         plaf2 = plaf + 12 * base2
 
         apje = (nbenf >= 1) * ((base_ressources <= plaf) * base + (base_ressources > plaf) * max_(plaf2 - base_ressources, 0) / 12.0)
