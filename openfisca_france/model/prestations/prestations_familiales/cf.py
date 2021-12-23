@@ -109,6 +109,7 @@ class cf_plafond(Variable):
 
     def formula(famille, period, parameters):
         pfam = parameters(period).prestations_sociales.prestations_familiales
+        pars = parameters(period).prestations_sociales.prestations_familialeseducation_presence_parentale
 
         eligibilite_base = famille('cf_eligibilite_base', period)
         eligibilite_dom = famille('cf_eligibilite_dom', period)
@@ -140,10 +141,10 @@ class cf_plafond(Variable):
             )
 
         # Calcul du taux à appliquer au plafond de base pour les DOM
-        taux_plafond_dom = 1 + cf_nbenf * pfam.ars.majoration_par_enf_supp
+        taux_plafond_dom = 1 + cf_nbenf * pars.ars.majoration_par_enf_supp
 
         # Calcul du plafond pour les DOM
-        plafond_dom = pfam.ars.plafond_ressources * taux_plafond_dom
+        plafond_dom = pars.ars.plafond_ressources * taux_plafond_dom
 
         plafond = (
             eligibilite_base
