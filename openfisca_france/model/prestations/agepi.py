@@ -24,16 +24,20 @@ class agepi_nbenf(Variable):
         return nb_enfants_eligibles
 
 
-class agepi_temps_travail_semaine(Variable):
+class agepi_temps_travail_en_heure(Variable):
     value_type = float
     entity = Individu
-    label = "Temps de travail par semaine pour le calcul de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI"
+    label = "Temps de travail en heures pour le calcul de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2014_01_20(individu, period):
-        heures_remunerees_volume = individu('heures_remunerees_volume', period)
-        return heures_remunerees_volume / 52 * 12  # Passage en heures par semaine
+
+class duree_formation(Variable):
+    value_type = float
+    entity = Individu
+    label = "Durée de la formation en heures"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class agepi_percue_12_derniers_mois(Variable):
@@ -88,20 +92,20 @@ class en_contrat_aide(Variable):
 
 
 class TypesContrat(Enum):
-    __order__ = 'aucune_activite cdi cdd ctt formation'  # Needed to preserve the enum order in Python 2
-    aucune_activite = "AUCUNE ACTIVITE"
-    cdi = "CDI"
-    cdd = "CDD"
-    ctt = "CTT"
-    formation = "FORMATION"
+    __order__ = 'aucun cdi cdd ctt formation'  # Needed to preserve the enum order in Python 2
+    aucun = "Aucun contrat"
+    cdi = "Contrat à durée indéterminé (CDI)"
+    cdd = "Contrat à durée déterminé (CDD)"
+    ctt = "Contrat de travail temporaire (CTT)"
+    formation = "Formation"
 
 
-class types_activite_condition(Variable):
+class types_contrat(Variable):
     value_type = Enum
     possible_values = TypesContrat
-    default_value = TypesContrat.aucune_activite
+    default_value = TypesContrat.aucun
     entity = Individu
-    label = "Les types d'activité éligibles à l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI "
+    label = "Types de contrat"
     definition_period = MONTH
 
 
@@ -192,13 +196,13 @@ class agepi_eligible(Variable):
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)  # numpy.datetime64
         contrat_de_travail_debut_en_mois = contrat_de_travail_debut.astype('M8[M]')
 
-        date_limite_eligibilite_contrat = min_(
+        date_demande_limite = min_(
             (contrat_de_travail_debut_en_mois + 1) + (contrat_de_travail_debut - contrat_de_travail_debut_en_mois),
             (contrat_de_travail_debut_en_mois + 2) - np.timedelta64(1, 'D')
             )
 
         agepi_date_de_demande = individu("agepi_date_demande", period)
-        dates_demandes_agepi_eligibles = agepi_date_de_demande <= date_limite_eligibilite_contrat
+        dates_demandes_agepi_eligibles = agepi_date_de_demande <= date_demande_limite
 
         #  7
         mayotte = individu.menage('residence_mayotte', period)
@@ -219,7 +223,7 @@ class agepi_eligible(Variable):
         montants_are_eligibles = are_individu_inferieure_are_min + are_individu_egale_are_min
 
         #  8
-        reprises_types_activites = individu('types_activite_condition', period)
+        reprises_types_activites = individu('types_contrat', period)
 
         reprises_types_activites_formation = reprises_types_activites == TypesContrat.formation
         reprises_types_activites_cdi = reprises_types_activites == TypesContrat.cdi
@@ -227,17 +231,17 @@ class agepi_eligible(Variable):
         reprises_types_activites_ctt = reprises_types_activites == TypesContrat.ctt
 
         #  La formation doit être supérieure ou égale à 40 heures
-        duree_formation = individu('heures_remunerees_volume', period)
+        duree_formation = individu('duree_formation', period)
         periode_formation_eligible = duree_formation >= parameters(period).prestations.agepi.duree_de_formation_minimum
 
         #  Le durée de contrat de l'emploi doit être d'au moins 3 mois
-        periode_de_contrat_3_mois_minimum = individu('contrat_de_travail_duree', period) >= 3
+        periode_de_contrat_3_mois_minimum = individu('contrat_de_travail_duree', period) >= parameters(period).prestations.agepi.duree_cdd_ctt_minimum
 
         reprises_types_activites_formation_eligible = reprises_types_activites_formation * periode_formation_eligible
         reprises_types_activites_cdd_eligible = reprises_types_activites_cdd * periode_de_contrat_3_mois_minimum
         reprises_types_activites_ctt_eligible = reprises_types_activites_ctt * periode_de_contrat_3_mois_minimum
 
-        types_et_duree_activite_eligible = (reprises_types_activites_formation_eligible
+        types_et_duree_activite_eligibles = (reprises_types_activites_formation_eligible
                                             + reprises_types_activites_cdi
                                             + reprises_types_activites_cdd_eligible
                                             + reprises_types_activites_ctt_eligible)
@@ -249,7 +253,7 @@ class agepi_eligible(Variable):
             * lieux_activite_eligibles
             * dates_demandes_agepi_eligibles
             * montants_are_eligibles
-            * types_et_duree_activite_eligible)
+            * types_et_duree_activite_eligibles)
 
         return eligible_agepi
 
@@ -269,8 +273,7 @@ class agepi_hors_mayotte(Variable):
     def formula_2014_01_20(individu, period, parameters):
         est_parent = individu.has_role(Famille.PARENT)
         intensite_activite = individu('types_intensite_activite', period)
-        nb_heures_semaine = individu('agepi_temps_travail_semaine', period)
-        nb_heures_mensuelles = individu('heures_remunerees_volume', period)
+        nb_heures = individu('agepi_temps_travail_en_heure', period)
         nb_enfants_eligibles = individu.famille('agepi_nbenf', period)
         eligibilite_agepi = individu('agepi_eligible', period)
 
@@ -288,8 +291,8 @@ class agepi_hors_mayotte(Variable):
         montants_min_intensite = montants_min_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
         montants_max_intensite = montants_max_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
 
-        condition_montants_min = ((nb_heures_semaine < intensite_hebdo_seuil) * intensite_hebdomadaire) + ((nb_heures_mensuelles < intensite_mensuelle_seuil) * intensite_mensuelle)
-        condition_montants_max = ((nb_heures_semaine >= intensite_hebdo_seuil) * intensite_hebdomadaire) + ((nb_heures_mensuelles >= intensite_mensuelle_seuil) * intensite_mensuelle)
+        condition_montants_min = ((nb_heures < intensite_hebdo_seuil) * intensite_hebdomadaire) + ((nb_heures < intensite_mensuelle_seuil) * intensite_mensuelle)
+        condition_montants_max = ((nb_heures >= intensite_hebdo_seuil) * intensite_hebdomadaire) + ((nb_heures >= intensite_mensuelle_seuil) * intensite_mensuelle)
 
         montant_avec_intensite = (condition_montants_min * montants_min_intensite) + (condition_montants_max * montants_max_intensite)
 
@@ -314,8 +317,7 @@ class agepi_mayotte(Variable):
     def formula_2014_01_20(individu, period, parameters):
         est_parent = individu.has_role(Famille.PARENT)
         intensite_activite = individu('types_intensite_activite', period)
-        nb_heures_semaine = individu('agepi_temps_travail_semaine', period)
-        nb_heures_mensuelles = individu('heures_remunerees_volume', period)
+        nb_heures = individu('agepi_temps_travail_en_heure', period)
         nb_enfants_eligibles = individu.famille('agepi_nbenf', period)
         eligibilite_agepi = individu('agepi_eligible', period)
 
@@ -333,8 +335,8 @@ class agepi_mayotte(Variable):
         montants_min_intensite = montants_min_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
         montants_max_intensite = montants_max_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
 
-        condition_montants_min = ((nb_heures_semaine < intensite_hebdo_seuil) * intensite_hebdomadaire) + ((nb_heures_mensuelles < intensite_mensuelle_seuil) * intensite_mensuelle)
-        condition_montants_max = ((nb_heures_semaine >= intensite_hebdo_seuil) * intensite_hebdomadaire) + ((nb_heures_mensuelles >= intensite_mensuelle_seuil) * intensite_mensuelle)
+        condition_montants_min = ((nb_heures < intensite_hebdo_seuil) * intensite_hebdomadaire) + ((nb_heures < intensite_mensuelle_seuil) * intensite_mensuelle)
+        condition_montants_max = ((nb_heures >= intensite_hebdo_seuil) * intensite_hebdomadaire) + ((nb_heures >= intensite_mensuelle_seuil) * intensite_mensuelle)
 
         montant_avec_intensite = (condition_montants_min * montants_min_intensite) + (condition_montants_max * montants_max_intensite)
 
