@@ -1,5 +1,14 @@
 # Changelog
 
+
+### 82.0.1 [#1745](https://github.com/openfisca/openfisca-france/pull/1745)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `.github/workflows/validate_yaml.yml`.
+* Détails :
+  - Ajoute un workflow GitHub de validation (non bloquante) des paramètres YAML.
+
 # 82.0.0 [#1740](https://github.com/openfisca/openfisca-france/pull/1740)
 
 * Amélioration technique.
