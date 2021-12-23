@@ -26,9 +26,6 @@ metadata:
   rate_unit: /1
   threshold_unit: PSS
   ipp_csv_id: csg_abt
-metadata:
-  ux_name: Abattement
-  last_review: 2021-12-15
   reference:
     2012-01-01:
       - title: Article L136-2 du Code de la Sécurité sociale
