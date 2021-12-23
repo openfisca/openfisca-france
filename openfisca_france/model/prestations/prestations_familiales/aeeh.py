@@ -33,9 +33,9 @@ class aeeh(Variable):
         isole = not_(famille('en_couple', janvier))
         prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
 
-        base = prestations_familiales.aeeh.base
-        complement_d_allocation = prestations_familiales.aeeh.complement_d_allocation
-        majoration = prestations_familiales.aeeh.majoration_pour_parent_isole
+        base = prestations_familiales.education_presence_parentale.aeeh.base
+        complement_d_allocation = prestations_familiales.education_presence_parentale.aeeh.complement_d_allocation
+        majoration = prestations_familiales.education_presence_parentale.aeeh.majoration_pour_parent_isole
 
         age = famille.members('age', janvier)
         handicap = famille.members('handicap', janvier)
