@@ -25,7 +25,7 @@ metadata:
   last_review: 2021-12-15
   rate_unit: /1
   threshold_unit: PSS
-  ipp_csv_id: csg_abt_0_4
+  ipp_csv_id: csg_abt
   reference:
     2012-01-01:
       - title: Article L136-2 du Code de la Sécurité sociale
