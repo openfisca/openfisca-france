@@ -109,7 +109,7 @@ class cf_plafond(Variable):
 
     def formula(famille, period, parameters):
         pfam = parameters(period).prestations_sociales.prestations_familiales
-        pars = parameters(period).prestations_sociales.prestations_familialeseducation_presence_parentale
+        pars = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale
 
         eligibilite_base = famille('cf_eligibilite_base', period)
         eligibilite_dom = famille('cf_eligibilite_dom', period)
