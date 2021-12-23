@@ -4,7 +4,7 @@ values:
     value: 33.0
 metadata:
   ux_name: 55 ans et plus
-  unit: months
+  unit: month
   reference:
     1997-01-01: Arrêt du 18/02/1997 portant agrément de la convention du 01/01/1997
     1993-08-01: Arrêté du 19/08/1993 portant agrément de l'avenant n° 3 à la convention du 01/01/1983 relative à l'assurance chômage et de l'avenant n° 3 au règlement annexé à cette convention
