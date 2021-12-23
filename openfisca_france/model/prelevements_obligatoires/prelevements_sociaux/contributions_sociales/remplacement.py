@@ -89,7 +89,7 @@ class csg_deductible_chomage(Variable):
         parameters = parameters(period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
-        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
         seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
         seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
 
@@ -147,7 +147,7 @@ class csg_imposable_chomage(Variable):
 
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
-        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
         seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
         seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
 
@@ -195,7 +195,7 @@ class crds_chomage(Variable):
         parameters = parameters(period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
-        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
         seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
         seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
 
@@ -287,7 +287,7 @@ class csg_deductible_retraite(Variable):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
-        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
         seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
         seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
         seuil_taux_intermediaire = seuils.seuil_rfr3.seuil_rfr3 + (nbptr - 1) * seuils.seuil_rfr3.demi_part_suppl_rfr3
@@ -312,7 +312,7 @@ class csg_deductible_retraite(Variable):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
-        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
         seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
         seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
 
@@ -353,7 +353,7 @@ class csg_imposable_retraite(Variable):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
-        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
         seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
         seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
         seuil_taux_intermediaire = seuils.seuil_rfr3.seuil_rfr3 + (nbptr - 1) * seuils.seuil_rfr3.demi_part_suppl_rfr3
@@ -378,7 +378,7 @@ class csg_imposable_retraite(Variable):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
-        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
         seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
         seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
 
@@ -419,7 +419,7 @@ class crds_retraite(Variable):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
-        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
         seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
         seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
         seuil_taux_intermediaire = seuils.seuil_rfr3.seuil_rfr3 + (nbptr - 1) * seuils.seuil_rfr3.demi_part_suppl_rfr3
@@ -442,7 +442,7 @@ class crds_retraite(Variable):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
-        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
         seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
         seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
 
@@ -479,7 +479,7 @@ class casa(Variable):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
-        seuils_csg = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuils_csg = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
         seuil_exoneration = seuils_csg.seuil_rfr1 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr1
         seuil_reduction = seuils_csg.seuil_rfr2 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr2
         seuil_taux_intermediaire = seuils_csg.seuil_rfr3 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr3
@@ -500,7 +500,7 @@ class casa(Variable):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
-        seuils_csg = parameters.prelevements_sociaux.contributions_sociales.csg.seuils
+        seuils_csg = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
         seuil_exoneration = seuils_csg.seuil_rfr1 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr1
         seuil_reduction = seuils_csg.seuil_rfr2 + (nbptr - 1) * seuils_csg.demi_part_suppl_rfr2
 
@@ -519,7 +519,7 @@ class casa(Variable):
         retraite_brute = individu('retraite_brute', period)
         ir = individu.foyer_fiscal('irpp', period = period.last_year)
         parameters = parameters(period)
-        seuil_exoneration = parameters.prelevements_sociaux.contributions_sociales.csg.seuils.seuil_ir
+        seuil_exoneration = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils.seuil_ir
 
         bareme = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.casa
         casa = (
