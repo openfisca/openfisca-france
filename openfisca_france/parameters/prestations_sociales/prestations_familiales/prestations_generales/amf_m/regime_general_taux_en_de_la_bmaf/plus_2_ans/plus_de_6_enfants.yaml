@@ -1,0 +1,8 @@
+description: plus_de_6_enfants_tous_plus_de_2_ans.yaml
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1974-07-01:
+    value: 0.5
+  1978-01-01:
+    value: null

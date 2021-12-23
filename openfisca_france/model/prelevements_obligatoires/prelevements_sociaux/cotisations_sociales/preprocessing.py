@@ -24,7 +24,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     # Création de commun
     # Apprentissage (avec effacement)
     commun.children.update(autres.apprentissage.children)
-    del commun.children['apprentissage_contribution_supplementaire']  # n'est pas un barème et est utilisé directement
+    del commun.children['csa']  # n'est pas un barème et est utilisé directement
 
     # Formation
     commun.children.update(autres.formation.pefpc.children)

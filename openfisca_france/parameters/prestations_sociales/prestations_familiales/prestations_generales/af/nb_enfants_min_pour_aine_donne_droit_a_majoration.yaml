@@ -1,0 +1,5 @@
+description: nombre_d_enfant_a_partir_duquel_l_aine_donne_droit_a_majoration
+reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  1984-01-01:
+    value: 3.0

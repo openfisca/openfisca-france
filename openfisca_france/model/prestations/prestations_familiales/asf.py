@@ -12,12 +12,12 @@ class asf_elig_enfant(Variable):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         eligibilite = (
             # Âge compatible avec les prestations familiales
-            (age >= pfam.af.age1)
-            * (age < pfam.af.age3)
+            (age >= af.age1)
+            * (age < af.age3)
             * not_(autonomie_financiere)  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
             )
 
@@ -49,12 +49,13 @@ class asf_montant(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        pfam = parameters(period).prestations.prestations_familiales
+        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        asf = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.asf
 
         asf_par_enfant = (
             famille.members('asf_elig_enfant', period)
-            * pfam.af.bmaf
-            * pfam.asf.taux_1_parent
+            * af.bmaf
+            * asf.taux_1_parent
             )
 
         montant = famille.sum(asf_par_enfant, role = Famille.ENFANT)
@@ -72,9 +73,9 @@ class asf(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        pfam = parameters(period).prestations.prestations_familiales
+        asf = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.asf
 
         asf_elig = famille('asf_elig', period)
         montant = famille('asf_montant', period)
 
-        return asf_elig * (montant > pfam.asf.seuil) * montant
+        return asf_elig * (montant > asf.seuil) * montant

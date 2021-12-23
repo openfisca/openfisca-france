@@ -1,0 +1,6 @@
+description: part_du_tarif_dependance_gir_1_2_de_l_etablissement_d_accueil
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  2002-01-01:
+    value: 0.5

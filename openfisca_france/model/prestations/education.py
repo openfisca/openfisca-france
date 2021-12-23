@@ -93,7 +93,7 @@ class bourse_college(Variable):
         P = parameters(period).bourses_education.bourse_college
 
         # On prends en compte la BMAF du premier janvier de l'année de la rentrée scolaire
-        bmaf_1er_janvier = parameters(period.this_year.first_month).prestations.prestations_familiales.af.bmaf
+        bmaf_1er_janvier = parameters(period.this_year.first_month).prestations_sociales.prestations_familiales.prestations_generales.af.bmaf
 
         scolarite_i = famille.members('scolarite', period)
         nb_enfants_college = famille.sum(scolarite_i == TypesScolarite.college, role = Famille.ENFANT)
@@ -262,7 +262,7 @@ class bourse_lycee(Variable):
         P = parameters(period).bourses_education.bourse_lycee.apres_2016
 
         # On prends en compte la BMAF du premier janvier de l'année de la rentrée scolaire
-        bmaf_1er_janvier = parameters(period.this_year.first_month).prestations.prestations_familiales.af.bmaf
+        bmaf_1er_janvier = parameters(period.this_year.first_month).prestations_sociales.prestations_familiales.prestations_generales.af.bmaf
 
         scolarite_i = famille.members('scolarite', period)
         nb_enfants_lycee = famille.sum(scolarite_i == TypesScolarite.lycee, role = Famille.ENFANT)
@@ -417,4 +417,4 @@ class detention_carte_des_metiers(Variable):
         ]
 
     def formula(individu, period, parameters):
-        return individu('alternant', period) * (individu('age', period) < parameters(period).prestations.carte_des_metiers.age_maximal)
+        return individu('alternant', period) * (individu('age', period) < parameters(period).prestations_sociales.carte_des_metiers.age_maximal)

@@ -1,0 +1,8 @@
+description: points_par_enfant_plus_2_ans_et_2_a_6_enfants
+reference: https://www.ipp.eu/outils/baremes-ipp/
+unit: /1
+values:
+  1974-07-01:
+    value: 0.1
+  1978-01-01:
+    value: null

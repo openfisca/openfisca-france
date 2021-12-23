@@ -2151,7 +2151,7 @@ class rpns_micro_entreprise_benefice(Variable):
 # The following formulas take into account 'cotisation sociales'. However, it seems that for all prestations,
 # the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'.
 # Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore
-# we are not using the following formulas for calculating prestations.
+# we are not using the following formulas for calculating prestations_sociales.
 
 
 class rpns_auto_entrepreneur_revenus_net(Variable):
