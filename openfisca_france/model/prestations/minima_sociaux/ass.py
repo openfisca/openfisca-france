@@ -30,11 +30,7 @@ class ass(Variable):
         ass_base_ressources = individu.famille('ass_base_ressources', period)
         en_couple = individu.famille('en_couple', period)
         residence_mayotte = individu.menage('residence_mayotte', period)
-<<<<<<< HEAD
         ass_params = parameters(period).chomage.allocations_assurance_chomage.ass
-=======
-        ass_params = parameters(period).prestations_sociales.minima_sociaux.ass
->>>>>>> fcb44d101 (Renomme `prestations` en `prestations_sociales`)
 
         elig = individu('ass_eligibilite_individu', period)
 
@@ -229,11 +225,7 @@ class ass_eligibilite_individu(Variable):
         ]
 
     def formula(individu, period, parameters):
-<<<<<<< HEAD
         age_max = parameters(period).chomage.allocations_assurance_chomage.ass.age_max
-=======
-        age_max = parameters(period).prestations_sociales.minima_sociaux.ass.age_max
->>>>>>> fcb44d101 (Renomme `prestations` en `prestations_sociales`)
         sous_age_limite = individu('age_en_mois', period) <= age_max
 
         demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
@@ -244,11 +236,7 @@ class ass_eligibilite_individu(Variable):
         return demandeur_emploi_non_indemnise * ass_precondition_remplie * sous_age_limite
 
     def formula_2017_01_01(individu, period, parameters):
-<<<<<<< HEAD
         age_max = parameters(period).chomage.allocations_assurance_chomage.ass.age_max
-=======
-        age_max = parameters(period).prestations_sociales.minima_sociaux.ass.age_max
->>>>>>> fcb44d101 (Renomme `prestations` en `prestations_sociales`)
         sous_age_limite = individu('age_en_mois', period) <= age_max
 
         aah_eligible = individu('aah', period) > 0
