@@ -2,6 +2,6 @@ description: Garanties de ressources (1972-1999) des allocations chômage pour l
 metadata:
   ux_name: Garanties de ressources
   order:
-  - revalorisation_sjr
+  - revalorisation
   - montant_minimum
   description_en: Minimum income guarantee (1972-1999)
