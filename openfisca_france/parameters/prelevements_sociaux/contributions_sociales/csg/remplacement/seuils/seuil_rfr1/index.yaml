@@ -1,0 +1,7 @@
+description: Seuil de RFR 1 (taux nul) de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
+metadata:
+  ux_name: Seuil de RFR1
+  order:
+  - seuil_rfr1
+  - demi_part_suppl_rfr1
+  description_en:

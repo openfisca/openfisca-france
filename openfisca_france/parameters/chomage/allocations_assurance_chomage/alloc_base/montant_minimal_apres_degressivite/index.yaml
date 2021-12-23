@@ -1,0 +1,7 @@
+description: Montant minimal après dégressivité de la partie fixe de l'allocation de base d'assurance chômage
+metadata:
+  ux_name: Montant minimal après dégressivité
+  order:
+  - tous
+  - plus_52_ans_sous_conditions
+  description_en: UI scheme - lump-sum and minimum

@@ -1,0 +1,14 @@
+description: Allocations d'assurance chômage
+metadata:
+  ux_name: Allocations chômage
+  order:
+  - alloc_base
+  - alloc_base_taux
+  - alloc_base_1967
+  - alloc_unique_degressive
+  - sr_alloc
+  - reval_chomeurs_plus_61ans
+  - afd
+  - alloc_journaliere
+  - ass
+  description_en: Unemployment insurance (earnings related benefits)

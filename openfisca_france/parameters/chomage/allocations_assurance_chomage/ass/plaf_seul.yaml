@@ -1,0 +1,11 @@
+description: Multiple pour une personne seule, pour passer du montant journalier à taux plein au plafond de ressources mensuel de l'allocation de solidarité spécifique (ASS)
+unit: currency
+values:
+  2005-01-01:
+    value: 70.0
+metadata:
+  ux_name: Multiple personne seule
+  unit: /1
+  reference:
+  description_en: Special UI scheme
+documentation: |

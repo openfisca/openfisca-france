@@ -1,0 +1,7 @@
+description: Seuil de RFR 3 (taux intermédiaire) de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
+metadata:
+  ux_name: Seuil de RFR3
+  order:
+  - seuil_rfr3
+  - demi_part_suppl_rfr3
+  description_en:

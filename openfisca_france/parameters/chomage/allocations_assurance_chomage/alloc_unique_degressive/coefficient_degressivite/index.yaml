@@ -1,0 +1,10 @@
+description: Coefficients de degressivité de l'allocation unique dégressive des allocations chômage
+metadata:
+  ux_name: Coefficients de degressivité
+  order:
+  - duree_affiliation_4_mois_cours_8_derniers_mois
+  - duree_affiliation_6_mois_cours_12_derniers_mois
+  - duree_affiliation_8_mois_cours_12_derniers_mois
+  - duree_affiliation_14_mois_cours_24_derniers_mois
+  - duree_affiliation_27_mois_cours_36_derniers_mois
+  description_en: UI scheme - degressive schedule

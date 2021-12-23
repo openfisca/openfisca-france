@@ -1,0 +1,6 @@
+description: Allocation de fin de droits
+metadata:
+  ux_name: Allocation de fin de droits
+  order:
+  - montant_base
+  description_en: UI for long term unemployment ("Allocation de fin de droits")

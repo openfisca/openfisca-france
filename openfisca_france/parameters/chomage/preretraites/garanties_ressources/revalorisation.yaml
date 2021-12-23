@@ -1,0 +1,195 @@
+description: Revalorisation (du salaire journalier de référence) des garanties de ressources (1972-1999) des allocations chômage pour les personnes en préretraite
+values:
+  2000-01-01:
+    value: null
+  1999-01-01:
+    value: 0.01
+  1998-01-01:
+    value: 0.0135
+  1997-01-01:
+    value: 0.013
+  1996-01-01:
+    value: 0.015
+  1995-04-01:
+    value: 0.01
+  1994-07-01:
+    value: 0.08
+  1993-01-01:
+    value: 0.012
+  1992-07-01:
+    value: 0.016
+  1992-01-01:
+    value: 0.015
+  1991-07-01:
+    value: 0.0125
+  1991-01-01:
+    value: 0.0185
+  1990-07-01:
+    value: 0.015
+  1990-01-01:
+    value: 0.016
+  1989-07-01:
+    value: 0.021
+  1989-01-01:
+    value: 0.013
+  1988-07-01:
+    value: 0.0165
+  1988-01-01:
+    value: 0.015
+  1987-07-01:
+    value: 0.0175
+  1987-01-01:
+    value: 0.012
+  1986-07-01:
+    value: 0.005
+  1986-01-01:
+    value: 0.018
+  1985-07-01:
+    value: 0.023
+  1984-10-01:
+    value: 0.02
+  1983-04-01:
+    value: 0.04
+  1982-11-01:
+    value: 0.016
+  1982-04-01:
+    value: 0.0831
+  1981-10-01:
+    value: 0.0743
+  1981-07-01:
+    value: null
+  1981-04-01:
+    value: 0.0664
+  1980-10-01:
+    value: 0.0824
+  1980-04-01:
+    value: 0.0713
+  1979-10-01:
+    value: 0.062
+  1979-07-01:
+    value: null
+  1979-04-02:
+    value: 0.05
+  1978-10-02:
+    value: 0.074
+  1978-04-03:
+    value: 0.061
+  1978-02-20:
+    value: null
+  1977-10-03:
+    value: 0.056
+  1977-04-04:
+    value: 0.064
+  1976-10-04:
+    value: 0.07
+  1976-04-05:
+    value: 0.06
+  1976-02-23:
+    value: null
+  1975-10-06:
+    value: 0.07
+  1975-06-02:
+    value: 0.06
+  1975-01-13:
+    value: null
+  1974-12-30:
+    value: 0.07
+  1974-07-01:
+    value: 0.1
+  1974-01-14:
+    value: null
+  1973-12-31:
+    value: 0.08
+  1973-07-02:
+    value: 0.06
+  1973-02-01:
+    value: null
+  1973-01-01:
+    value: 0.06
+  1972-11-06:
+    value: null
+  1972-07-03:
+    value: 0.06
+  1972-01-31:
+    value: null
+metadata:
+  ux_name: Revalorisation SJR
+  ipp_csv_id: sr_gr
+  unit: /1
+  reference:
+    1995-04-01: Dir. 25-95 -décision ASF du 01/03/1995
+    1994-07-01: Dir. 24-94 -décision ASF du 08/06/1994
+    1994-01-01: Dir. 13-94 -décision ASF du 15/02/94
+    1993-01-01: Dir. 20-93 -décision ASF du 08/12/1992
+    1992-07-01: Dir. 29-92 -décision ASF du 05/06/1992
+    1992-01-01: Dir. 11-92 -décision ASF du 10/12/1991
+    1991-07-01: Dir. 23-91 – décision ASF du 10/06/1991
+    1991-01-01: Dir. 23-91 - décision ASF du 05/12/1990
+    1990-07-01: Dir. 23-90 -décision ASF du 07/06/1990
+    1990-01-01: Dir. 23-90 -décision ASF du 23/11/1989
+    1989-07-01: Dir. 61-89 -décision ASF du 06/06/1989
+    1989-01-01: Dir. 42-89 - décision ASF du 02/12/1988
+    1988-07-01: Dir. 64-88 -décision ASF du 07/06/1988
+    1988-01-01: Dir. 59-87 -décision ASF de 1987
+    1987-07-01: Dir. 59-87 -décision ASF du 11/06/1987
+    1987-01-01: Dir. 34-87 -décision ASF du 09/12/1986
+    1986-07-01: Dir. 72-86 -décision ASF du 20/06/1986
+    1986-01-01: Dir. 28-86 -décision ASF du 10/12/1985
+    1985-07-01: Dir. 75-85 -décision ASF du 21/06/1984
+    1985-01-01: Dir. 35-85 -décision ASF du 21/12/1984
+    1984-10-01: Dir. 35-85 -décision ASF du 22/10/1984
+    1984-04-01: Circulaire 84-12 -décision ASF du 18/04/1984
+    1983-10-01:
+    - Circulaire 83-50 -décision du 20/10/1983
+    - title: Décret 83-714 du 02/08/1983
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000310067
+    - Arrêté du 28 mars 1984 portant agrément de la convention du 24-02-1984
+    1983-04-01: Circulaire 83-21 -décision du 25/04/1983
+    1982-11-01:
+      title: Décret 82-991 du 24/11/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701672&categorieLien=id
+    1982-04-01: Circulaire 82-23 -décision du 02/04/1982
+    1981-10-01: Circulaire 81-45 - décision du 29/09/1981
+    1981-07-01: Circulaire 81-38 -décision du 01/07/1981
+    1981-04-01: Circulaire 81-21 -décision du 26/03/1981
+    1980-10-01: Circulaire 80-40 -décision du 09/09/1980
+    1980-04-01: Circulaire 80-17 -décision du 27/03/1980
+    1979-10-01: Circulaire 79-36 -décision du 21/09/1979
+    1979-07-01: Réglement annexé à la Convention du 27/03/1979
+    1979-04-02: Circulaire 79-15 - décision du 29/03/1979
+    1978-10-02: Circulaire 78-36 - décision du 02/10/1978
+    1978-04-03: Circulaire 78-14 - décision du 21/03/1978
+    1977-10-03: Circulaire 77-28 - décision du 23/09/1977
+    1977-04-04: Circulaire 77-14 - décision du 13/04/1977
+    1976-10-04: Circulaire 76-20 - décision du 21/09/1976
+    1976-04-05: Circulaire 76-06 - décision du 25/03/1976
+    1975-10-06: Circulaire 75-36 - décision du 23/09/1975
+    1975-06-02: Circulaire 75-24 - décision du 02/06/1975
+    1974-12-30: Circulaire 74-31 - décision du 23/12/1974
+    1974-07-01: Circulaire 74-11 - décision du 03/07/1974
+    1973-12-31: Circulaire 73-30 - décision du 04/12/1973
+    1973-07-02: Circulaire 73-16 - décision du 28/06/1973
+    1973-01-01: Circulaire 72-35 - décision du 28/11/1972
+    1972-07-03: Circulaire 72-19 - décision du 20/06/ 1972
+    1972-01-31: Accord du 27/03/1972
+  official_journal_date:
+    1982-11-01: 1982-11-25
+  notes:
+    1999-01-01: Les individus ayant cessé leur activité à 50 ans (sidérurgie) atteignent 65 ans en 1999 (d’où la disparition du régime à cette date)
+    1983-10-01: Suppression de la garantie de ressources sauf dans certains cas (principalement ceux qui en bénéficiaient avant la 01/01/1983 ou qui en ont fait la demande avant cette date)
+  description_en: Minimum income guarantee (1972-1999)
+documentation: |
+  Notes :
+  Allocation de ressources destinée aux plus de 60 ans, licenciés après leur 60ème anniversaire, justifiant de 15 ans d'affiliation au régime d'assurance chômage (10 ans depuis 1973), qui n'ont pas liquidé leur pension de retraite,
+  et qui bénéficient des allocations d'assurance chômage depuis un certain délai (6mois pour les personnées licenciées avant 61 ans, 3 mois entre 61 et 64 ans, sans délai après 64 ans, depuis l'avenant du 25/06/1973).
+  A partir du nouvel accord du 13 juin 1977, garantie de ressources étendue non plus seulement aux salariés de plus de 60 ans licenciés, mais aussi aux salariés de plus de 60 ans démissionnaires
+  A partir de la convention du 27/03/1979, garantie de ressources peut être étendue aux salariés licenciés après 55 ans qui ne sont plus en cours d'indemnisation mais qui justifient de 10 ans d'appartenance au régime d'assurance chômage,
+  selon décision d'une commission Assedic, et aux salariés pour motif économiques ne justifiant pas de 10 ans d'affiliation, pendant 1 an pour ceux qui ont été licenciés après 60 ans, et pendant un an moins le nombre de jours servis par
+   allocations d'assurance chômage pour ceux licenciés avant 60 ans.
+  La garantie de ressources correspond à 70% du SJR calculé sur les 3 derniers mois d'activité avant la rupture du contrat. A partir du 08/07/1983, la garantie de ressources est supprimée sauf pour ceux qui en bénéficiaient avant cette date.
+  Pour ceux qui ont commencé à en bénéficier en 1983, le taux de remplacement est désormais égal à 65% SJR sous le plafond de la Sécurité sociale, et à 50% SJR au-dessus.
+  Avant 1979, le montant minimal correspond à 115% du total de l'allocation d'aide publiqe et de l'allocation d'assurance minimale
+  Sources:
+  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe B.
+  Document Revalorisations depuis avril 1978 du service juridique de l'Unedic
+  Consultation des circulaires et des directives au service de documentation de l'Unedic

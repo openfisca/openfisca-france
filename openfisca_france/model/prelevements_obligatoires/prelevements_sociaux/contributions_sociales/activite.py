@@ -157,7 +157,7 @@ class forfait_social(Variable):
 
     def formula_2009_01_01(individu, period, parameters):
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
-        parametres = parameters(period).prelevements_sociaux.forfait_social
+        parametres = parameters(period).prelevements_sociaux.contributions_assises_specifiquement_accessoires_salaire.forfait_social
         taux_plein = parametres.taux_plein
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
 
@@ -165,7 +165,7 @@ class forfait_social(Variable):
 
     def formula_2012_08_01(individu, period, parameters):
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
-        parametres = parameters(period).prelevements_sociaux.forfait_social
+        parametres = parameters(period).prelevements_sociaux.contributions_assises_specifiquement_accessoires_salaire.forfait_social
         taux_plein = parametres.taux_plein
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
 

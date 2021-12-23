@@ -1,0 +1,192 @@
+description: Montant minimal ARE-formation de l'allocation de base d'assurance chômage
+values:
+  2020-07-01:
+    value: 21.04
+  2019-07-01:
+    value: 20.96
+  2018-07-01:
+    value: 20.81
+  2017-07-01:
+    value: 20.67
+  2015-07-01:
+    value: 20.54
+  2014-07-01:
+    value: 20.48
+  2013-07-01:
+    value: 20.34
+  2012-07-01:
+    value: 20.22
+  2011-07-01:
+    value: 19.82
+  2010-07-01:
+    value: 19.53
+  2009-07-01:
+    value: 19.3
+  2008-07-01:
+    value: 19.11
+  2007-07-01:
+    value: 18.64
+  2006-07-01:
+    value: 18.28
+  2005-07-01:
+    value: 17.92
+  2004-07-01:
+    value: null
+  2003-07-01:
+    value: 17.74
+  2002-07-01:
+    value: 17.73
+  1968-07-22:
+    value: null
+metadata:
+  unit: currency
+  ux_name: Montant minimal ARE-formation
+  reference:
+    2020-07-01: Circulaire 2020-09 du 01/07/2020
+    2019-07-01: Circulaire 2019-08 du 27/06/2019
+    2018-07-01: Circulaire 2018-14 du 16/07/2018
+    2017-07-01: Circulaire 2017-14 du 29/06/2017
+    2015-07-01: Circulaire 2015-14 du 01/07/2015
+    2014-07-01: Circulaire 2014-20 du 04/07/2014
+    2013-07-01: Circulaire 2013-11 du 01/07/2013
+    2012-07-01: Circulaire 2012-18 du 11/07/2012
+    2011-07-01: Circulaire 2011-28 du 01/08/2011
+    2010-07-01: Circulaire 2010-10 du 02/07/2010
+    2009-07-01:
+    - Circulaire 2009-17 du 10/07/2009
+    - Circulaire 2009-16 du 09/07/2009
+    2008-07-01: Circulaire 2008-04 du 01/07/2008
+    2007-07-01: Circulaire 2007-09 du 26/06/2007
+    2006-07-01: Circulaire 2006-13 du 21/07/2006
+    2005-07-01: Arrêté du 23/02/2006 portant agrément de la convention du 18/01/2006
+    2004-07-01:
+    - Arrêté du 28/05/2004 portant agrément de la convention du 01/01/2004
+    - Circulaire 04-13 - décision du 25/06/2004
+    2003-07-01:
+    - Arrêté du 17/12/2003 portant agrément de l'avenant 3 à la convention du 01/01/2004
+    - Circulaire 03-09 - décision du 02/07/2003
+    2002-07-01:
+    - Protocole du 27/12/2002
+    - Circulaire 02-15 - décision du 03/07/2002
+    2001-07-01:
+    - Arrêté du 04/12/2000 portant agrément de la Convention Unédic du 01/01/2001
+    - Circulaire 01-16 - décision du 04/07/2001
+    2000-07-01:
+    - Circulaire Unédic 00-10 du 07/07/2000
+    - Arrêté du 04/12/2000 portant agrément de la convention du 01/01/2001
+    1999-07-01:
+    - Arrêté du 18/02/1997 portant agrément de la Convention Unédic du 01/01/1997
+    - Circulaire 99-12 - décision du 01/07/1999
+    1998-07-01:
+    - Circulaire 98-13 - décision du 01/07/1998
+    - Circulaire DH/FH 1 98-545 du 26/08/1998 relative à diverses revalorisations concernant les allocations pour perte d'emploi
+    1997-07-01: Circulaire 97-12 du 16/07/1997
+    1996-07-01:
+    - Arrêté du 18/02/1997 portant agrément de la convention du 01/01/1997
+    - Circulaire 96-13 - décision du 04/07/1996
+    1995-07-01:
+    - Arrêté du 04/01/1994 portant agrément de la convention du 01/01/1994
+    - Circulaire 95-12 - décision du 29/06/1995
+    1994-07-01:
+    - Arrêté du 04/01/1994 portant agrément de la convention du 01/01/1994
+    - Circulaire 94-08 - décision du 28/06/1994
+    1992-07-01:
+    - Arrêté du 04/01/1994 portant agrément de la convention du 01/01/1994
+    - Circulaire 92-13 - décision du 30/07/1992
+    1991-07-01:
+    - Arrêté du 17/08/1992 portant agrément de l'avenant n°2 du 24/07/1992 à la convention du 01/01/1990 et de l'avenant n°10 du 24/07/1992 au règlement annexé à cette convention
+    - Arrêt du 04/01/1993 portant agrément de la convention du 01/01/1993
+    - Circulaire 91-15 - décision du 12/07/1991
+    1990-10-01:
+    - Arrêté du 27/02/1991 portant agrément de l'avenant n°4 du 10/01/1991 au règlement annexé à la convention du 01/01/1990
+    - Circulaire 90-16 - décision du 05/10/1990
+    1989-10-01:
+    - Arrêté du 14/05/1990 portant agrément de la convention du 01/01/1990
+    - Circulaire 89-18 - décision du 03/10/1989
+    1988-10-01:
+    - Arrêté du 30/01/1989 portant agrément de l'accord du 07/12/1988 relatif aux annexes VIII et X au règlement annexé à la convention du 06/07/1988
+    - Circulaire 88-15 - décision du 11/10/1988
+    1987-10-01:
+    - Arrêté du 21/08/1988 portant agrément de la convention du 06/07/1988
+    - Circulaire 87-16 - décision du 22/09/1987
+    1987-04-01: Circulaire 87-09 - décision du 31/03/1987
+    1986-10-01: Circulaire 86-28 - décision du 07/10/1986
+    1986-04-01:
+    - Arrété du 11/12/1985 portant agrément de la convention du 19/11/1985
+    - Circulaire 86-49 - décision du 25/03/1986
+    1985-10-01: Circulaire 85-28 - décision du 30/09/1985
+    1985-04-01: Circulaire 85-10 - décision du 24/04/1985
+    1984-10-01: Circulaire 84-26 - décision du 27/09/1984
+    1984-04-01:
+    - Arrêté du 24/02/1984 portant agrément de la convention du 24/02/1984
+    - Circulaire 84-12 - décision du 18/04/1982
+    1983-10-01: Circulaire 83-50 - décision du 20/10/1983
+    1983-04-01: Circulaire 83-21 - décision du 25/04/1983
+    1982-11-01:
+      title: Décret 82-991 du 24/11/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701672&categorieLien=id
+    1982-04-01: Circulaire 82-23 - décision du 02/04/1982
+    1981-10-01: Circulaire 81-45 - décision du 29/09/1981
+    1981-07-01: Circulaire 81-38 -
+    1981-04-01: Circulaire 81-21 - décision du 26/03/1981
+    1980-10-01: Circulaire 80-40 - décision du 09/09/1980
+    1980-04-01: Circulaire 80-17 - décision du 27/03/1980
+    1979-10-01: Circulaire 79-36 - décision du 21/09/1979
+    1979-07-01:
+    - Loi cadre 79-32 du 16/01/1979
+    - Arrêté du 02/05/1979 portant agrément de la convention du 27/03/1979
+    1979-04-02: Circulaire 79-15 - décision du 29/03/1979
+    1978-10-02: Circulaire 78-36 - décision du 02/10/1978
+    1978-04-03: Circulaire 78-14 - décision du 21/03/1978
+    1977-10-03: Circulaire 77-28 - décision du 23/09/1977
+    1977-04-04: Circulaire 77-14 - décision du 13/04/1977
+    1976-10-04: Circulaire 76-20 - décision du 21/09/1976
+    1976-04-05: Circulaire 76-06 - décision du 25/03/1976
+    1975-10-06: Circulaire 75-36 - décision du 23/09/1975
+    1975-06-02: Circulaire 75-23 - décision du 21/05/1975
+    1974-12-30: Circulaire 74-32 - décision du 20/12/1974
+    1974-07-01: Circulaire 74-12 - décision du 03/07/1974
+    1973-07-02: Circulaire 73-17 - décision du 26/06/1973
+    1972-11-06: Circulaire 72-33 - décision du 23/10/1972
+    1971-10-11: Circulaire 71-17 - décision du 28/09/1971
+    1971-03-29: Circulaire 71-06 - décision du 23/03/1971
+    1970-01-05: Circulaire 69-36 - décision du 04/12/1969
+    1968-07-22: Circulaire 68-35 - décision du 25/06/1968
+  official_journal_date:
+    2005-07-01: 2006-03-02
+    2004-07-01: 2004-05-29
+    2003-07-01: 2003-12-27
+    2001-07-01: 2000-12-06
+    2000-07-01: 2000-12-06
+    1999-07-01: 1997-03-20
+    1996-07-01: 1997-03-20
+    1995-07-01: 1994-01-08
+    1994-07-01: 1994-01-08
+    1992-07-01: 1994-01-08
+    1991-07-01: 1992-08-18; 1993-01-04
+    1990-10-01: 1991-03-26
+    1989-10-01: 1990-05-15
+    1988-10-01: 1989-02-24
+    1987-10-01: 1988-09-22
+    1986-04-01: 1986-01-24
+    1984-04-01: 1984-04-04
+    1979-07-01: 1979-01-17; 1979-05-20
+  notes:
+    2004-07-01: Valeur inconnue de l'allocation journalière versée pendant une période de formation.
+    2001-07-01: "Nouvelle convention: création de l'Allocation de retour à l'emploi qui remplace AUD"
+    1992-07-01: Protocole d'accord du 18/07/1992 et Convention du 01/01/1993 créent l'allocation unique dégressive
+    1984-04-01: "Nouvelle convention: régime d'assurance et de solidarité à nouveau séparés"
+    1979-07-01: "Nouvelle convention: fusion des régimes d'assurance et de solidarité"
+  description_en: "UI scheme: lump-sum and minimum"
+documentation: |
+  Notes :
+  Allocation égale au maximum entre un premier pourcentage du salaire journalier de référence, plus une partie fixe, ou un pourcentage plus élevé du salaire journalier de référence sans partie fixe
+  Montants fixes et allocation minimale réduits proportionnellement si salarié travaillait à temps partiel
+  Avant 1979
+  Salaire de référence pris seulement sur les 3 derniers mois d'activité, et divisé par 90 pour obtenir le salaire journalier de référence
+  Majoration de 15% du taux des allocations d'assurance s'applique pour les 3 premiers mois, revient donc à remplacer 35% par 40%. Après avenant de 1973, majoration de trois mois portée à 6 mois pour les 50-55 ans, 12mois pour 55-58ans, 24mois pour 58ans et plus.
+  Montant maximal en pourcentage du salaire de référence correspond au maximum des allocations d'assurance et d'aide publique cumulées
+  En 1968, montant minimum en Ancien Franc
+  En 1984: si affiliation entre 3-6 mois, montants minimum et maximum de l'alloc sont minorés de 25% et alloc = partie pptionnelle + partie fixe
+  En 1992: montant minimal après degressivité plus élevé pr plus de 52 ans, au chômage depuis plus d'un an, ayant été affilié depuis au moins 20 ans, justifiant d'une année continue ou deux années discontinues d'appartenance à une/plusieurs entreprises au cours des 5 dernières années
+  Seuil exoneration CSG/CRDS = (Smic horaire * 35)/7 approximativement

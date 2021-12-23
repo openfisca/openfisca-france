@@ -1,0 +1,139 @@
+description: Revalorisation du salaire de référence pour le calcul des allocations de préretraites FNE-ARPE pour les personnes au chômage 
+values:
+  2010-07-01:
+    value: 0.012
+  2009-07-01:
+    value: 0.01
+  2008-07-01:
+    value: 0.025
+  2007-07-01:
+    value: 0.0195
+  2006-01-01:
+    value: 0.018
+  2005-01-01:
+    value: 0.02
+  2004-01-01:
+    value: 0.017
+  2003-01-01:
+    value: 0.015
+  2001-01-01:
+    value: 0.022
+  2000-01-01:
+    value: 0.005
+  1999-01-01:
+    value: 0.012
+  1998-01-01:
+    value: 0.011
+  1997-01-01:
+    value: 0.012
+  1996-01-01:
+    value: 0.02
+  1995-07-01:
+    value: 0.005
+  1995-01-01:
+    value: 0.012
+  1994-01-01:
+    value: 0.02
+  1993-01-01:
+    value: 0.013
+  1992-07-01:
+    value: 0.018
+  1992-01-01:
+    value: 0.01
+  1991-07-01:
+    value: 0.008
+  1991-01-01:
+    value: 0.017
+  1990-07-01:
+    value: 0.013
+  1990-01-01:
+    value: 0.0215
+  1989-07-01:
+    value: 0.012
+  1988-07-01:
+    value: 0.013
+  1988-01-01:
+    value: 0.026
+  1987-07-01:
+    value: 0.01
+  1987-01-01:
+    value: 0.018
+  1986-10-01:
+    value: 0.005
+  1986-07-01:
+    value: 0.0
+  1986-01-01:
+    value: 0.013
+  1985-01-01:
+    value: 0.028
+  1984-10-01:
+    value: 0.022
+  1984-04-01:
+    value: 0.018
+  1983-04-01:
+    value: 0.04
+  1982-04-01:
+    value: 0.0831
+  1981-10-01:
+    value: 0.0743
+metadata:
+  ux_name: Revalorisation du salaire de référence
+  ipp_csv_id: sr_fne
+  unit: /1
+  reference:
+    2010-07-01: Circulaire 2010-10 - décision du 29/06/2010
+    2009-07-01: Circulaire 2009-16 du 09/07/2009 -décision du 26/06/2009
+    2008-07-01: Circulaire 2008-04 du 01/07/2008 - décision du 24/06/2008
+    2007-07-01: Circulaire 2007-09 du 26/06/2007 - décision du 21/06/2007
+    2006-01-01: Arrêté du 23/12/2005
+    2005-01-01: Arrêté du 16/12/2004
+    2004-01-01: Arrêté du 23/12/2003
+    2003-01-01: Arrêté du 31/12/2002
+    2002-01-01: Arrêté du 25/12/2002
+    2001-01-01: Arrêté du 26/12/2000
+    2000-01-01: Arrêté du 29/12/1999
+    1999-01-01: Arrêté du 29/12/1998
+    1998-01-01: Arrêté du 29/12/1997
+    1997-01-01: Arrêté du 30/12/1996
+    1996-01-01: Arrêté du 30/01/1996
+    1995-07-01: Arrêté du 31/07/1995
+    1995-01-01: Arrêté du 27/01/1995
+    1994-01-01: Arrêté du 24/01/1994
+    1993-01-01: Arrêté du 22/01/1993
+    1992-07-01: Loi du 31/12/1991
+    1992-01-01: Loi du 31/12/1991
+    1991-07-01: Loi du 31/07/1991
+    1991-01-01: Loi du 18/01/1991
+    1990-07-01: Loi du 23/01/1990
+    1990-01-01: Loi du 23/01/1990
+    1989-07-01: Loi du 13/01/1989
+    1989-01-01: Loi du 13/01/1989
+    1988-07-01: Loi du 05/01/1988
+    1988-01-01: Loi du 05/01/1988
+    1987-07-01: Loi du 27/01/1987
+    1987-01-01: Loi du 27/01/1987
+    1986-10-01: Arrêté du 01/12/1986
+    1986-07-01:
+      title: Décret 86-791 du 30/06/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699775
+    1986-01-01: Arrêté du 15/01/1986
+    1985-07-01: Arrêté du 12/03/1985
+    1985-01-01: Arrêté du 12/03/1985
+    1984-10-01:
+      title: Décret 84-523 du 28/06/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699391&categorieLien=id
+    1984-04-01:
+      title: Décret 84-495 du 25/06/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000337265&categorieLien=id
+    1983-10-01: Arrêté du 27/12/1983
+    1983-04-01: Arrêté du 01/07/1983
+    1982-04-01: Arrêté du 26/08/1982
+    1981-10-01: Arrêté du 08/02/1982
+  description_en: Indexation of reference wage for FNE early retirement benefit
+documentation: |
+  Notes :
+  La revalorisation du salaire de référence (SR) des préretraites du FNE est
+  décidée par les pouvoirs publics et depuis 1987 la revalorisation est la même que pour les retraites
+  du régime général (voir les décrets 98-1024 du 12 novembre 1998 et 93-451 du 24 mars 1993).
+  Sources:
+  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe B.

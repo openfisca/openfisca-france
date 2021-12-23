@@ -1,11 +1,12 @@
 description: Taux de la Contribution au remboursement de la dette sociale (CRDS) sur les revenus d'activité
-unit: /1
 values:
   1996-02-01:
     value: 0.005
 metadata:
   ux_name: Taux
   last_review: 2021-12-15
+  unit: /1
+  ipp_csv_id: crds
   reference:
     1996-02-01: 
       - title : Ordonnance 96-50 du 24/01/96, art. 19

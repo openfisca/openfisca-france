@@ -1,0 +1,7 @@
+description: Contribution Sociale Généralisée (CSG) sur les allocations chômage
+metadata:
+  ux_name: Allocations chômage
+  order:
+  - taux_global
+  - deductible
+  description_en:

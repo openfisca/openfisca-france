@@ -1,0 +1,7 @@
+description: Allocation principale d'aide publique
+metadata:
+  ux_name: Allocation principale
+  order:
+  - 3_premiers_mois
+  - apres_3_mois
+  description_en: Public aid allowance (1967-1979)

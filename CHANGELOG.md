@@ -1,5 +1,53 @@
 # Changelog
 
+# 82.0.0 [#1740](https://github.com/openfisca/openfisca-france/pull/1740)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées et Détails :
+- Déplace `parameters/allocation_retour_emploi` -> `parameters/chomage/allocation_retour_emploi`
+- Ajoute `parameters/chomage/allocations_assurance_chomage/` comprenant:
+  - alloc_base
+  - alloc_base_taux
+  - alloc_base_1967
+  - alloc_unique_degressive
+  - sr_alloc (revalorisation)
+  - reval_chomeurs_plus_61ans
+  - afd (aide de fin de droits)
+  - alloc_journaliere
+  - ass (allocation solidarité spécifique)
+ 
+- Déplace l'ASS de `parameters/prestations/minima_sociaux/ass` vers `parameters/chomage/allocations_assurance_chomage/ass`
+- Ajoute `parameters/chomage/allocations_chomage_solidarite/` comprenant:
+  - allocation_aide_publique
+  - allocation_insertion
+- Ajoute `parameters/chomage/preretraites/` comprenant:
+  - alloc_transitoire_securite
+  - prime_transitoire_solidarite
+  - alloc_equivalent_retraite
+  - garanties_ressources
+  - sr_fne
+  - fne_arpe
+
+# 81.0.0 [#1746](https://github.com/openfisca/openfisca-france/pull/1746)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux`.
+* Détails :
+  -  On déplace les fichiers pour respecter l'arborescence IPP en vue de l'harmonisation à venir
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - Chaque commit correspond à 1 déplacement d'un sous-dossier (et donc d'1 thème)
+
+## 80.6.0 [#1743](https://github.com/openfisca/openfisca-france/pull/1743)
+
+* Amélioration technique.
+* Zones impactées : `parameters/prelevements_sociaux/contributions_sociales/`.
+* Détails :
+  - Réorganisation des fichiers selon l'arborescence IPP
+  - Ajoute les champs `order` et `ipp_csv_id`
+  - Ajoute quelques valeurs si elles manquaient
+
 ### 80.5.2 [#1739](https://github.com/openfisca/openfisca-france/pull/1739)
 
 * Changement mineur.

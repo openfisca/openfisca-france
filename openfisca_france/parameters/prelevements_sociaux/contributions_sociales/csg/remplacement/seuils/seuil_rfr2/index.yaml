@@ -1,0 +1,7 @@
+description: Seuil de RFR 2 (taux réduit) de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
+metadata:
+  ux_name: Seuil de RFR2
+  order:
+  - seuil_rfr2
+  - demi_part_suppl_rfr2
+  description_en:

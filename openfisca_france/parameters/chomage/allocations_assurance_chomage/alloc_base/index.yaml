@@ -1,0 +1,9 @@
+description: Allocation de base d'assurance chômage - partie fixe et minimum
+metadata:
+  ux_name: Partie fixe et minimum
+  order:
+  - partie_fixe
+  - montant_minimum
+  - montant_minimal_apres_degressivite
+  - montant_minimal_are_formation
+  description_en: UI scheme - lump-sum and minimum

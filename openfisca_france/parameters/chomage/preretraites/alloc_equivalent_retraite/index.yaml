@@ -1,0 +1,8 @@
+description: Allocation équivalent retraite (AER) des allocations chômage pour les personnes en préretraite
+metadata:
+  ux_name: Préretraites
+  order:
+  - montant_journalier
+  - plafond_seul
+  - plafond_couple
+  description_en: Early retirement benefits
