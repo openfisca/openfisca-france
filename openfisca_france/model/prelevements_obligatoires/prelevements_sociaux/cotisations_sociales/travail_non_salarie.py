@@ -202,7 +202,7 @@ class retraite_complementaire_artisan_commercant(Variable):
 
     def formula_2013(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        retraite_complementaire = parameters(period).prelevements_sociaux.ret_comp_ac.artisans_industriels_commercants
+        retraite_complementaire = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.ret_comp_ac.artisans_industriels_commercants
         montant_du_plafond_rci = retraite_complementaire.montant_du_plafond_rci
         bareme = MarginalRateTaxScale(name = 'retraite_complementaire')
         bareme.add_bracket(0, retraite_complementaire.sous_plafond_rci)
