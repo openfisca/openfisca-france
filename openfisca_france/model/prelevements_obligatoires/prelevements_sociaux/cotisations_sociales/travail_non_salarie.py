@@ -224,7 +224,7 @@ class vieillesse_artisan_commercant(Variable):
 
     def formula_2014(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        vieillesse_artisan_commercant = parameters(period).prelevements_sociaux.ret_ac
+        vieillesse_artisan_commercant = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.ret_ac
         bareme = MarginalRateTaxScale(name = 'vieillesse')
         bareme.add_bracket(0, vieillesse_artisan_commercant.artisans.sous_pss + vieillesse_artisan_commercant.tous_independants.tout_salaire)
         bareme.add_bracket(1, vieillesse_artisan_commercant.tous_independants.tout_salaire)
