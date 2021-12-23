@@ -1,5 +1,4 @@
 description: Abattement de la Contribution Sociale Généralisée (CSG) déductible sur les revenus d'activité
-unit: /1
 brackets:
   - rate:
       1991-02-01:
@@ -12,6 +11,10 @@ brackets:
       1998-01-01:
         value: 0.0
   - rate:
+      1991-02-01:
+        value: 0.05
+      2005-01-01:
+        value: 0.03
       2011-01-01:
         value: null
     threshold:
@@ -20,6 +23,9 @@ brackets:
 metadata:
   ux_name: Abattement
   last_review: 2021-12-15
+  rate_unit: /1
+  threshold_unit: PSS
+  ipp_csv_id: csg_abt_0_4
   reference:
     2012-01-01:
       - title: Article L136-2 du Code de la Sécurité sociale
