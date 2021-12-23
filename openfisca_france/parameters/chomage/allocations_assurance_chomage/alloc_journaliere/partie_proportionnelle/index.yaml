@@ -3,7 +3,7 @@ metadata:
   ux_name: Allocation journalière spéciale
   order:
   - 1er_trimestre
-  - 2nd_trimestre
+  - 2eme_trimestre
   - 3eme_trimestre
   - 4eme_trimestre
   description_en: Special UI scheme for economic layoffs (1979-1983)

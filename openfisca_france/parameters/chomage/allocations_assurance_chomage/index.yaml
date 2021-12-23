@@ -5,9 +5,9 @@ metadata:
   - alloc_base
   - alloc_base_taux
   - alloc_base_1967
-  - aud
+  - alloc_unique_degressive
   - sr_alloc
-  - sr_61
+  - reval_chomeurs_plus_61ans
   - afd
   - alloc_journaliere
   - ass

@@ -4,6 +4,6 @@ metadata:
   order:
   - partie_fixe
   - partie_proportionnelle
-  - montant_minimum_en_sjr
-  - montant_maximum_en_sjr
+  - montant_minimum
+  - montant_maximum
   description_en: Special UI scheme for economic layoffs (1979-1983)

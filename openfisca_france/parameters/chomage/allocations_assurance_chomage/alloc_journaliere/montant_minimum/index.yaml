@@ -2,8 +2,8 @@ description: Montant minimum (en % SJR) d'allocation journalière spéciale d'as
 metadata:
   ux_name: Montant minimum
   order:
-  - 1er_trimsestre
-  - 2nd_trimestre
+  - 1er_trimestre
+  - 2me_trimestre
   - 3eme_trimestre
   - 4eme_trismestre
   - valable_tout_temps_en_smic
