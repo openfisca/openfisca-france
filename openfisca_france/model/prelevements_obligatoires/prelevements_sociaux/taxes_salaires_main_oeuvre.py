@@ -89,7 +89,7 @@ class contribution_supplementaire_apprentissage(Variable):
         ratio_alternants = individu('ratio_alternants', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
-        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.apprentissage_contribution_supplementaire
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.csa
 
         multiplier = (salarie_regime_alsace_moselle * contribution.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
 
@@ -111,7 +111,7 @@ class contribution_supplementaire_apprentissage(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         ratio_alternants = individu('ratio_alternants', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
-        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.apprentissage_contribution_supplementaire
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.csa
 
         multiplier = (salarie_regime_alsace_moselle * contribution.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
 
@@ -131,7 +131,7 @@ class contribution_supplementaire_apprentissage(Variable):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         ratio_alternants = individu('ratio_alternants', period)
-        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.apprentissage_contribution_supplementaire
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.csa
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .04)
         taux_conditionnel = (
@@ -149,7 +149,7 @@ class contribution_supplementaire_apprentissage(Variable):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         ratio_alternants = individu('ratio_alternants', period)
-        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.apprentissage_contribution_supplementaire
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.csa
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .03)
         taux_conditionnel = (
