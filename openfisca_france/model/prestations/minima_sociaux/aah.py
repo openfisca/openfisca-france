@@ -412,7 +412,7 @@ class caah(Variable):
     def formula_2005_07_01(individu, period, parameters):
         law = parameters(period).prestations
 
-        garantie_ressources = law.minima_sociaux.caah.garantie_ressources
+        garantie_ressources = law.prestations_etat_de_sante.invalidite.caah.garantie_ressources
         aah_montant = law.prestations_etat_de_sante.invalidite.aah.montant
 
         aah = individu('aah', period)
@@ -441,7 +441,7 @@ class caah(Variable):
     def formula_2002_01_01(individu, period, parameters):
         law = parameters(period).prestations
 
-        cpltx = law.minima_sociaux.caah.taux_montant_complement_ressources
+        cpltx = law.prestations_etat_de_sante.invalidite.caah.taux_montant_complement_ressources
         aah_montant = law.prestations_etat_de_sante.invalidite.aah.montant
 
         aah = individu('aah', period)
@@ -472,7 +472,7 @@ class complement_ressources_aah(Variable):
 
     def formula_2015_07_01(individu, period, parameters):
         prestations = parameters(period).prestations
-        garantie_ressources = prestations_sociales.minima_sociaux.caah.garantie_ressources
+        garantie_ressources = prestations_sociales.prestations_etat_de_sante.invalidite.caah.garantie_ressources
         aah_montant = prestations_sociales.prestations_etat_de_sante.invalidite.aah.montant
         taux_capacite_travail_max = prestations_sociales.prestations_etat_de_sante.invalidite.aah.taux_capacite_travail
         taux_capacite_travail = individu('taux_capacite_travail', period)
@@ -491,7 +491,7 @@ class mva(Variable):
     def formula_2015_07_01(individu, period, parameters):
         prestations = parameters(period).prestations
         al = individu.famille('aide_logement_montant', period)  # montant allocs logement de la famille
-        mva_montant = prestations_sociales.minima_sociaux.caah.majoration_vie_autonome
+        mva_montant = prestations_sociales.prestations_etat_de_sante.invalidite.caah.majoration_vie_autonome
 
         return mva_montant * (al > 0)
 
