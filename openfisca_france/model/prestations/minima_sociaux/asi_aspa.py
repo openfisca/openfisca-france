@@ -86,8 +86,8 @@ class asi_aspa_base_ressources_individu(Variable):
 
             taux_abattement_forfaitaire = where(
                 aspa_couple,
-                law.prestations_sociales.minima_sociaux.aspa.abattement_forfaitaire_tx_couple,
-                law.prestations_sociales.minima_sociaux.aspa.abattement_forfaitaire_tx_seul
+                law.prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa.abattement_forfaitaire_tx_couple,
+                law.prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa.abattement_forfaitaire_tx_seul
                 )
 
             abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire
@@ -127,10 +127,12 @@ class aspa_eligibilite(Variable):
         age = individu('age', period)
         inapte_travail = individu('inapte_travail', period)
         taux_incapacite = individu('taux_incapacite', period)
-        P = parameters(period).prestations_sociales.minima_sociaux
-        condition_invalidite = (taux_incapacite > P.aspa.taux_incapacite_aspa_anticipe) + inapte_travail
-        condition_age_base = (age >= P.aspa.age_min)
-        condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
+        aah = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        aspa =parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa
+        
+        condition_invalidite = (taux_incapacite > aspa.taux_incapacite_aspa_anticipe) + inapte_travail
+        condition_age_base = (age >= aspa.age_min)
+        condition_age_anticipe = (age >= aah.age_legal_retraite) * condition_invalidite
         condition_age = condition_age_base + condition_age_anticipe
         condition_nationalite = individu('asi_aspa_condition_nationalite', period)
 
@@ -174,7 +176,7 @@ class asi_aspa_condition_nationalite(Variable):
         ressortissant_eee = individu('ressortissant_eee', period)
         ressortissant_suisse = individu('nationalite', period) == b'CH'
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
-        duree_min_titre_sejour = parameters(period).prestations_sociales.minima_sociaux.aspa.duree_min_titre_sejour
+        duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa.duree_min_titre_sejour
 
         return or_(ressortissant_eee, ressortissant_suisse, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
@@ -210,7 +212,8 @@ class asi(Variable):
         en_couple = individu.famille('en_couple', period)
         asi_aspa_nb_alloc = individu.famille('asi_aspa_nb_alloc', period)
         base_ressources = individu.famille('asi_aspa_base_ressources', period)
-        P = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite
+        asi = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.asi
+        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa
 
         demandeur_eligible_asi = individu.famille.demandeur('asi_eligibilite', period)
         demandeur_eligible_aspa = individu.famille.demandeur('aspa_eligibilite', period)
@@ -229,27 +232,27 @@ class asi(Variable):
         elig5 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & not_(maries)
 
         montant_max = (
-            elig1 * P.asi.montant_seul
-            + elig2 * P.asi.montant_couple
-            + elig3 * 2 * P.asi.montant_seul
-            + elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_annuel_couple / 2)
-            + elig5 * (P.asi.montant_seul + P.aspa.montant_annuel_couple / 2)) / 12
+            elig1 * asi.montant_seul
+            + elig2 * asi.montant_couple
+            + elig3 * 2 * asi.montant_seul
+            + elig4 * (asi.montant_couple / 2 + aspa.montant_annuel_couple / 2)
+            + elig5 * (asi.montant_seul + aspa.montant_annuel_couple / 2)) / 12
 
         ressources = base_ressources + montant_max
 
         plafond_ressources = (
-            elig1 * (P.asi.plafond_ressource_seul * not_(en_couple) + P.asi.plafond_ressource_couple * en_couple)
-            + elig2 * P.asi.plafond_ressource_couple
-            + elig3 * P.asi.plafond_ressource_couple
-            + elig4 * P.aspa.plafond_ressources_couple
-            + elig5 * P.aspa.plafond_ressources_couple) / 12
+            elig1 * (asi.plafond_ressource_seul * not_(en_couple) + asi.plafond_ressource_couple * en_couple)
+            + elig2 * asi.plafond_ressource_couple
+            + elig3 * asi.plafond_ressource_couple
+            + elig4 * aspa.plafond_ressources_couple
+            + elig5 * aspa.plafond_ressources_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
         diff = (
             (elig1 | elig2 | elig3) * (montant_max - depassement)
-            + elig4 * (P.asi.montant_couple / 12 / 2 - depassement / 2)
-            + elig5 * (P.asi.montant_seul / 12 - depassement / 2)
+            + elig4 * (asi.montant_couple / 12 / 2 - depassement / 2)
+            + elig5 * (asi.montant_seul / 12 - depassement / 2)
             )
 
         # Montant mensuel servi (sous réserve d'éligibilité)
@@ -292,7 +295,8 @@ class aspa(Variable):
         en_couple = famille('en_couple', period)
         asi_aspa_nb_alloc = famille('asi_aspa_nb_alloc', period)
         base_ressources = famille('asi_aspa_base_ressources', period)
-        P = parameters(period).prestations_sociales.minima_sociaux
+        asi = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.asi
+        aspa =parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa
 
         demandeur_eligible_asi = famille.demandeur('asi_eligibilite', period)
         demandeur_eligible_aspa = famille.demandeur('aspa_eligibilite', period)
@@ -311,26 +315,26 @@ class aspa(Variable):
         elig = elig1 | elig2 | elig3 | elig4
 
         montant_max = (
-            elig1 * P.aspa.montant_annuel_seul
-            + elig2 * P.aspa.montant_annuel_couple
-            + elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_annuel_couple / 2)
-            + elig4 * (P.asi.montant_seul + P.aspa.montant_annuel_couple / 2)
+            elig1 * aspa.montant_annuel_seul
+            + elig2 * aspa.montant_annuel_couple
+            + elig3 * (asi.montant_couple / 2 + aspa.montant_annuel_couple / 2)
+            + elig4 * (asi.montant_seul + aspa.montant_annuel_couple / 2)
             ) / 12
 
         ressources = base_ressources + montant_max
 
         plafond_ressources = (
             elig1
-            * (P.aspa.plafond_ressources_seul * not_(en_couple) + P.aspa.plafond_ressources_couple * en_couple)
+            * (aspa.plafond_ressources_seul * not_(en_couple) + aspa.plafond_ressources_couple * en_couple)
             + (elig2 | elig3 | elig4)
-            * P.aspa.plafond_ressources_couple
+            * aspa.plafond_ressources_couple
             ) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
         diff = (
             (elig1 | elig2) * (montant_max - depassement)
-            + (elig3 | elig4) * (P.aspa.montant_annuel_couple / 12 / 2 - depassement / 2)
+            + (elig3 | elig4) * (aspa.montant_annuel_couple / 12 / 2 - depassement / 2)
             )
 
         # Montant mensuel servi (sous réserve d'éligibilité)
