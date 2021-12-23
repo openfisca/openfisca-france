@@ -84,8 +84,8 @@ class aes(Variable):
         isole = not_(famille('en_couple', janvier))
         prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
 
-        base = prestations_familiales.aes.base
-        complement_d_allocation = prestations_familiales.aes.complement_d_allocation
+        base = prestations_familiales.education_presence_parentale.aes.base
+        complement_d_allocation = prestations_familiales.education_presence_parentale.aes.complement_d_allocation
         complement_d_allocation._children['6e_categorie_1'] = complement_d_allocation._children['6e_categorie_2']
 
         age = famille.members('age', janvier)
@@ -94,7 +94,7 @@ class aes(Variable):
         # Indicatrice d'isolement pour les indidivus
         isole = famille.project(isole)
 
-        enfant_handicape = handicap * (age < prestations_familiales.aes.age_maximum_de_l_enfant)
+        enfant_handicape = handicap * (age < prestations_familiales.education_presence_parentale.aes.age_maximum_de_l_enfant)
 
         montant_par_enfant = enfant_handicape * prestations_familiales.af.bmaf * (
             base
