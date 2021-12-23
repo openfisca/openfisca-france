@@ -86,8 +86,8 @@ class asi_aspa_base_ressources_individu(Variable):
 
             taux_abattement_forfaitaire = where(
                 aspa_couple,
-                law.prestations.minima_sociaux.aspa.abattement_forfaitaire_tx_couple,
-                law.prestations.minima_sociaux.aspa.abattement_forfaitaire_tx_seul
+                law.prestations_sociales.minima_sociaux.aspa.abattement_forfaitaire_tx_couple,
+                law.prestations_sociales.minima_sociaux.aspa.abattement_forfaitaire_tx_seul
                 )
 
             abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire
@@ -127,7 +127,7 @@ class aspa_eligibilite(Variable):
         age = individu('age', period)
         inapte_travail = individu('inapte_travail', period)
         taux_incapacite = individu('taux_incapacite', period)
-        P = parameters(period).prestations.minima_sociaux
+        P = parameters(period).prestations_sociales.minima_sociaux
         condition_invalidite = (taux_incapacite > P.aspa.taux_incapacite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= P.aspa.age_min)
         condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
@@ -174,7 +174,7 @@ class asi_aspa_condition_nationalite(Variable):
         ressortissant_eee = individu('ressortissant_eee', period)
         ressortissant_suisse = individu('nationalite', period) == b'CH'
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
-        duree_min_titre_sejour = parameters(period).prestations.minima_sociaux.aspa.duree_min_titre_sejour
+        duree_min_titre_sejour = parameters(period).prestations_sociales.minima_sociaux.aspa.duree_min_titre_sejour
 
         return or_(ressortissant_eee, ressortissant_suisse, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
@@ -210,7 +210,7 @@ class asi(Variable):
         en_couple = individu.famille('en_couple', period)
         asi_aspa_nb_alloc = individu.famille('asi_aspa_nb_alloc', period)
         base_ressources = individu.famille('asi_aspa_base_ressources', period)
-        P = parameters(period).prestations.minima_sociaux
+        P = parameters(period).prestations_sociales.minima_sociaux
 
         demandeur_eligible_asi = individu.famille.demandeur('asi_eligibilite', period)
         demandeur_eligible_aspa = individu.famille.demandeur('aspa_eligibilite', period)
@@ -292,7 +292,7 @@ class aspa(Variable):
         en_couple = famille('en_couple', period)
         asi_aspa_nb_alloc = famille('asi_aspa_nb_alloc', period)
         base_ressources = famille('asi_aspa_base_ressources', period)
-        P = parameters(period).prestations.minima_sociaux
+        P = parameters(period).prestations_sociales.minima_sociaux
 
         demandeur_eligible_asi = famille.demandeur('asi_eligibilite', period)
         demandeur_eligible_aspa = famille.demandeur('aspa_eligibilite', period)

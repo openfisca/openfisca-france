@@ -14,7 +14,7 @@ class cf_enfant_a_charge(Variable):
         autonomie_financiere = individu('autonomie_financiere', period)
         age = individu('age', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        pfam = parameters(period).prestations_sociales.prestations_familiales
 
         condition_age = (age >= 0) * (age < pfam.cf.age_max)
         condition_situation = est_enfant_dans_famille * not_(autonomie_financiere)
@@ -34,7 +34,7 @@ class cf_enfant_eligible(Variable):
         age = individu('age', period)
         rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        pfam = parameters(period).prestations_sociales.prestations_familiales
 
         condition_enfant = (
             (age >= pfam.cf.age_min)
@@ -59,7 +59,7 @@ class cf_dom_enfant_eligible(Variable):
         age = individu('age', period)
         rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        pfam = parameters(period).prestations_sociales.prestations_familiales
 
         condition_age = (age >= pfam.cf.age_minimal_dom) * (age < pfam.cf.age_maximal_dom)
         condition_situation = cf_enfant_a_charge * rempli_obligation_scolaire
@@ -78,7 +78,7 @@ class cf_dom_enfant_trop_jeune(Variable):
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         age = individu('age', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        pfam = parameters(period).prestations_sociales.prestations_familiales
 
         condition_age = (age >= 0) * (age < pfam.cf.age_min)
 
@@ -108,7 +108,7 @@ class cf_plafond(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        pfam = parameters(period).prestations.prestations_familiales
+        pfam = parameters(period).prestations_sociales.prestations_familiales
 
         eligibilite_base = famille('cf_eligibilite_base', period)
         eligibilite_dom = famille('cf_eligibilite_dom', period)
@@ -164,7 +164,7 @@ class cf_majore_plafond(Variable):
 
     def formula_2014_04_01(famille, period, parameters):
         plafond_base = famille('cf_plafond', period)
-        pfam = parameters(period).prestations.prestations_familiales
+        pfam = parameters(period).prestations_sociales.prestations_familiales
         return plafond_base * pfam.cf.plafond_cf_majore
 
 
@@ -234,7 +234,7 @@ class cf_non_majore_avant_cumul(Variable):
         ressources = famille('cf_base_ressources', period)
         plafond = famille('cf_plafond', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        pfam = parameters(period).prestations_sociales.prestations_familiales
 
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
@@ -276,7 +276,7 @@ class cf_majore_avant_cumul(Variable):
         ressources = famille('cf_base_ressources', period)
         plafond_majore = famille('cf_majore_plafond', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        pfam = parameters(period).prestations_sociales.prestations_familiales
 
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 

@@ -23,8 +23,8 @@ class api(Variable):
         rsa_base_ressources = famille('rsa_base_ressources', period)
         af_majoration = famille('af_majoration', period)
         rsa = famille('rsa', period)
-        af = parameters(period).prestations.prestations_familiales.af
-        api = parameters(period).prestations.minima_sociaux.api
+        af = parameters(period).prestations_sociales.prestations_familiales.af
+        api = parameters(period).prestations_sociales.minima_sociaux.api
 
         # TODO:
         #    Majoration pour isolement
@@ -112,7 +112,7 @@ class psa(Variable):
         d’être âgé de plus de 25 ans ou d’avoir au moins un enfant à charge).
         La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
         '''
-        P = parameters(period).prestations.minima_sociaux.rmi
+        P = parameters(period).prestations_sociales.minima_sociaux.rmi
         api = famille('api', period)
         rsa = famille('rsa', period)
         af_nbenf = famille('af_nbenf', period)

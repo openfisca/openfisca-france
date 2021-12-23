@@ -25,7 +25,7 @@ class autonomie_financiere(Variable):
         nbh_travaillees = 169
         smic_mensuel_brut = _P.marche_travail.salaire_minimum.smic_h_b * nbh_travaillees
 
-        return salaire_net_mensualise >= (_P.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
+        return salaire_net_mensualise >= (_P.prestations_sociales.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
 
 
 class prestations_familiales_enfant_a_charge(Variable):
@@ -41,7 +41,7 @@ class prestations_familiales_enfant_a_charge(Variable):
         age = individu('age', period)
         rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
 
-        pfam = parameters(period).prestations.prestations_familiales
+        pfam = parameters(period).prestations_sociales.prestations_familiales
 
         condition_enfant = (
             (age >= pfam.enfants.age_minimal)
@@ -104,7 +104,7 @@ class biactivite(Variable):
         '''
         annee_fiscale_n_2 = period.n_2
 
-        pfam = parameters(annee_fiscale_n_2).prestations.prestations_familiales
+        pfam = parameters(annee_fiscale_n_2).prestations_sociales.prestations_familiales
         seuil_rev = 12 * pfam.af.bmaf
 
         condition_ressource = (

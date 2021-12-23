@@ -31,7 +31,7 @@ class aeeh(Variable):
         """
         janvier = period.this_year.first_month
         isole = not_(famille('en_couple', janvier))
-        prestations_familiales = parameters(period).prestations.prestations_familiales
+        prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
 
         base = prestations_familiales.aeeh.base
         complement_d_allocation = prestations_familiales.aeeh.complement_d_allocation
@@ -82,7 +82,7 @@ class aes(Variable):
     def formula_2002_04_01(famille, period, parameters):
         janvier = period.this_year.first_month
         isole = not_(famille('en_couple', janvier))
-        prestations_familiales = parameters(period).prestations.prestations_familiales
+        prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
 
         base = prestations_familiales.aes.base
         complement_d_allocation = prestations_familiales.aes.complement_d_allocation

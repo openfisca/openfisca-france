@@ -10,7 +10,7 @@ class aide_permis_pro_btp(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        params = parameters(period).prestations.aide_permis_pro_btp
+        params = parameters(period).prestations_sociales.aide_permis_pro_btp
 
         rfr = individu.foyer_fiscal('rfr', period.this_year)
         montant = select(

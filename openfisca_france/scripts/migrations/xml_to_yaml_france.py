@@ -27,7 +27,7 @@ param_files = [
     'fonc.xml',
     'impot_revenu.xml',
     'prelevements_sociaux.xml',
-    'prestations.xml',
+    'prestations_sociales.xml',
     'taxation_capital.xml',
     'tns.xml',
     ]

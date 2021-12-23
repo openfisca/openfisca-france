@@ -41,7 +41,7 @@ class aah_base_ressources(Variable):
 
     def formula(individu, period, parameters):
         law = parameters(period)
-        aah = law.prestations.minima_sociaux.aah.abattements
+        aah = law.prestations_sociales.minima_sociaux.aah.abattements
 
         en_activite = individu('salaire_imposable', period) > 0
 
@@ -259,7 +259,7 @@ class aah_eligible(Variable):
     '''
 
     def formula(individu, period, parameters):
-        law = parameters(period).prestations.minima_sociaux.aah
+        law = parameters(period).prestations_sociales.minima_sociaux.aah
         taux_incapacite = individu('taux_incapacite', period)
         rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
 
@@ -352,7 +352,7 @@ class aah(Variable):
 
     def formula(individu, period, parameters):
         aah_base = individu('aah_base', period)
-        aah_parameters = parameters(period).prestations.minima_sociaux.aah
+        aah_parameters = parameters(period).prestations_sociales.minima_sociaux.aah
         m_2 = datetime64(period.offset(-60, 'day').start)
 
         aah_date_debut_hospitalisation = individu("aah_date_debut_hospitalisation", period)
@@ -372,7 +372,7 @@ class eligibilite_caah(Variable):
     def formula_2015_07_01(individu, period, parameters):
         annee_precedente = period.start.period('year').offset(-1)
         prestations = parameters(period).prestations
-        taux_incapacite_min = prestations.minima_sociaux.aah.taux_incapacite
+        taux_incapacite_min = prestations_sociales.minima_sociaux.aah.taux_incapacite
         aah = individu('aah', period)
         asi_eligibilite = individu('asi_eligibilite', period)
         asi = individu('asi', period)  # montant asi de la famille
@@ -472,9 +472,9 @@ class complement_ressources_aah(Variable):
 
     def formula_2015_07_01(individu, period, parameters):
         prestations = parameters(period).prestations
-        garantie_ressources = prestations.minima_sociaux.caah.garantie_ressources
-        aah_montant = prestations.minima_sociaux.aah.montant
-        taux_capacite_travail_max = prestations.minima_sociaux.aah.taux_capacite_travail
+        garantie_ressources = prestations_sociales.minima_sociaux.caah.garantie_ressources
+        aah_montant = prestations_sociales.minima_sociaux.aah.montant
+        taux_capacite_travail_max = prestations_sociales.minima_sociaux.aah.taux_capacite_travail
         taux_capacite_travail = individu('taux_capacite_travail', period)
 
         return (taux_capacite_travail < taux_capacite_travail_max) * max_(garantie_ressources - aah_montant, 0)
@@ -491,7 +491,7 @@ class mva(Variable):
     def formula_2015_07_01(individu, period, parameters):
         prestations = parameters(period).prestations
         al = individu.famille('aide_logement_montant', period)  # montant allocs logement de la famille
-        mva_montant = prestations.minima_sociaux.caah.majoration_vie_autonome
+        mva_montant = prestations_sociales.minima_sociaux.caah.majoration_vie_autonome
 
         return mva_montant * (al > 0)
 
