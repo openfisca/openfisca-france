@@ -658,8 +658,9 @@ class ape_avant_cumul(Variable):
         partiel1 = famille('partiel1', period)
         partiel2 = famille('partiel2', period)
         P = parameters(period).prestations_sociales.prestations_familiales
+        ape = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale
 
-        elig = (nb_enf(famille, period, 0, P.ape.age_max_enfant - 1) >= 1) & (nb_enf(famille, period, 0, P.af.age2) >= 2)        # Inactif
+        elig = (nb_enf(famille, period, 0, ape.age_max_enfant - 1) >= 1) & (nb_enf(famille, period, 0, P.af.age2) >= 2)        # Inactif
         # Temps partiel 1
         # Salarié:
         # Temps de travail ne dépassant pas 50 % de la durée du travail fixée dans l'entreprise
@@ -673,7 +674,7 @@ class ape_avant_cumul(Variable):
         # Salarié: Temps de travail compris entre 50 et 80 % de la durée du travail fixée dans l'entreprise.
         # Temps de travail compris entre 77 et 122 heures par mois et un revenu professionnel mensuel ne dépassant pas
         #  (smic_8.27*169*136 %)
-        ape = elig * (inactif * P.ape.taux_inactivite + partiel1 * P.ape.taux_activite_sup_50 + partiel2 * P.ape.taux_activite_sup_80)
+        ape = elig * (inactif * ape.taux_inactivite + partiel1 * ape.taux_activite_sup_50 + partiel2 * ape.taux_activite_sup_80)
         # Cummul APE APJE CF
         return ape  # annualisé
 
