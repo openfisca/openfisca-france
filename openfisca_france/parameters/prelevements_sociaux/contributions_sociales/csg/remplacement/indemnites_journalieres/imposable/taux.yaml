@@ -1,0 +1,17 @@
+description: Taux de la Contribution Sociale Généralisée (CSG) imposable sur les indemnités journalières (IJ)
+values:
+  1997-01-01:
+    value: 0.024
+metadata:
+  ux_name: Taux
+  unit: /1
+  last_review:
+    1997-01-01
+  reference:
+    1997-01-01: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
+  official_journal_date:
+    1997-01-01: 1996-12-29
+  description_en:
+documentation: |
+  Référence du Codes général des impôts :
+  La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.

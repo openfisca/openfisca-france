@@ -1,5 +1,4 @@
 description: Taux déductible de la Contribution Sociale Généralisée (CSG) déductible sur les revenus d'activité
-unit: /1
 values:
   1991-02-01:
     value: null
@@ -11,7 +10,9 @@ values:
     value: 0.068
 metadata:
   ux_name: Taux
+  unit: /1
   last_review: 2021-10-06
+  ipp_csv_id: csg_act_ded
   reference:
     2018-01-01:
     - title: Article 154 quinquies du CGI

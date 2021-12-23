@@ -1,0 +1,31 @@
+description: Taux réduit de la Contribution Sociale Généralisée (CSG) déductible sur les pensions de retraite et d'invalidité
+values:
+  1991-02-01:
+    value: null
+  1997-01-01:
+    value: 0.01
+  1998-01-01:
+    value: 0.038
+metadata:
+  ux_name: Taux réduit
+  ipp_csv_id: csg_pens_red_deductible
+  unit: /1
+  last_review:
+    2021-10-06
+  reference:
+    1991-02-01: Loi 90-1168 du 29/12/90, art. 127 à 135 (LF pour 1991)
+  official_journal_date:
+    1991-02-01: 1990-12-30
+  notes:
+  description_en:
+documentation: |
+  Référence du Codes général des impôts :
+  La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.
+  Notes :
+  Pour les pensions de retraite et d'invalidité, à partir de 2015, le seuil de RFR 1 est le seuil d'exonération de CSG, et le seuil de RFR 2 est le seuil d'assujettissement au taux fort de la CSG ;
+  les retraités dont le RFR est compris entre le seuil 1 et le seuil 2 sont assujettis au taux réduit de CSG.
+  À partir de 2019, le seuil de RFR 3 est le seuil d'assujettissement au taux plein de CSG ;
+  les retraités dont le RFR est compris entre le seuil 2 et le seuil 3 sont assujettis au taux intermédiaire de CSG.
+  Le RFR est le revenu fiscal de référence de l'année N-2.
+  (1) Seuils de RFR pour exonération : art. L136-8-III du Code de la Sécurité Sociale (CSS)
+  (2) Seuils de RFR pour réduction : art. L136-8-III bis du Code de la Sécurité Sociale (CSS)

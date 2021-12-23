@@ -1,4 +1,7 @@
 description: Contribution Sociale Généralisée (CSG) sur les revenus d'activité
 metadata:
   ux_name: Revenus d'activité
-  description_en: Social contributions
+  order:
+  - taux_global
+  - deductible
+  description_en: CSG - rates on work incomes
