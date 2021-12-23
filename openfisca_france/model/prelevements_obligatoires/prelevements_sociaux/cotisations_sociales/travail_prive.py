@@ -315,7 +315,7 @@ class agirc_gmp_salarie(Variable):
             )
 
         gmp = parameters(period).prelevements_sociaux.regimes_complementaires_retraite_secteur_prive.gmp
-        cotisation_forfaitaire_temps_plein = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale
+        cotisation_forfaitaire_temps_plein = gmp.cotisation_forfaitaire_mensuelle.part_salariale
         cotisation_forfaitaire = cotisation_forfaitaire_temps_plein * quotite
 
         # Sachant:
@@ -347,7 +347,7 @@ class agirc_gmp_employeur(Variable):
             )
 
         gmp = parameters(period).prelevements_sociaux.regimes_complementaires_retraite_secteur_prive.gmp
-        cotisation_forfaitaire_temps_plein = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_patronale
+        cotisation_forfaitaire_temps_plein = gmp.cotisation_forfaitaire_mensuelle.part_patronale
         cotisation_forfaitaire = cotisation_forfaitaire_temps_plein * quotite
 
         # Sachant:
