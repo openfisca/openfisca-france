@@ -10,7 +10,7 @@ class locapass_eligibilite(Variable):
     reference = 'https://www.actionlogement.fr/l-avance-loca-pass'
 
     def formula(individu, period, parameters):
-        params = parameters(period).action_logement.locapass
+        params = parameters(period).prestations_sociales.aides_logement.action_logement.locapass
 
         eligibilite_individu = individu('locapass_eligibilite_individu', period)
         eligibilite_logement = individu.menage('locapass_eligibilite_logement', period)
@@ -68,7 +68,7 @@ class locapass_eligibilite_jeunes(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        age_max = parameters(period).action_logement.locapass.jeunes.age_max
+        age_max = parameters(period).prestations_sociales.aides_logement.action_logement.locapass.jeunes.age_max
         eligibilite_age = age <= age_max
 
         activite = individu('activite', period)
