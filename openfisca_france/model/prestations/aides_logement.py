@@ -110,7 +110,7 @@ class aide_logement_montant_brut_crds(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2018(famille, period, parameters):
-        rls = parameters(period).prestations_sociales.reduction_loyer_solidarite
+        rls = parameters(period).prestations_sociales.aides_logement.reduction_loyer_solidarite
         aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
         reduction_loyer_solidarite = famille('reduction_loyer_solidarite', period)
 
