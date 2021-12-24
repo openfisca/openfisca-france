@@ -190,24 +190,3 @@ jobs:
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
-
-  check-api-version:
-    runs-on: ubuntu-latest
-    needs: [ deploy ]
-    outputs:
-      version-match: ${{ steps.check-api-version.outputs.version-match }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7.12
-      - name: Cache build
-        id: restore-build
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
-      - name: Check api version
-        id: check-api-version
-        run: python ${GITHUB_WORKSPACE}/.github/check-api-version.py
