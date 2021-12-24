@@ -1,0 +1,6 @@
+description: age_maximal_pour_les_personnes_a_charge_en_apprentissage_en_stage_de_formation_ou_donnant_droit_a_l_aes_1
+reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  1985-12-22:
+    value: 20.0
+unit: year
