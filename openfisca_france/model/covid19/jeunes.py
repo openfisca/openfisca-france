@@ -44,7 +44,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
     '''
 
     def formula_2021_02_05(individu, period, parameters):
-        age_limite = parameters(period).covid19.aide_jeunes_diplomes_anciens_boursiers.age_limite
+        age_limite = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.covid19.aide_jeunes_diplomes_anciens_boursiers.age_limite
         condition_age = individu("age", period) < age_limite
 
         niveau_diplome = individu("plus_haut_diplome_niveau", period)
@@ -88,7 +88,7 @@ class aide_jeunes_diplomes_anciens_boursiers_montant(Variable):
         aide_jeunes_diplomes_anciens_boursiers_eligibilite = individu("aide_jeunes_diplomes_anciens_boursiers_eligibilite", period)
 
         bourse_precedente = individu("aide_jeunes_diplomes_anciens_boursiers_base_ressources", period)
-        parameters_aide = parameters(period).covid19.aide_jeunes_diplomes_anciens_boursiers
+        parameters_aide = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.covid19.aide_jeunes_diplomes_anciens_boursiers
 
         part_bourse = bourse_precedente * parameters_aide.taux_bourse
 

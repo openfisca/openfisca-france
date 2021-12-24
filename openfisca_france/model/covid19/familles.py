@@ -12,7 +12,7 @@ class covid_aide_exceptionnelle_famille_montant(Variable):
 
     def formula_2020_05(famille, period, parameters):
 
-        montants = parameters(period).covid19.aide_exceptionnelle_famille
+        montants = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.covid19.aide_exceptionnelle_famille
         rsa = famille('rsa', period) > 0
         ass = famille.sum(famille.members('ass', period)) > 0
         al = famille('aide_logement', period) > 0
