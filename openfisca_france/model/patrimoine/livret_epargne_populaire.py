@@ -15,7 +15,7 @@ class livret_epargne_populaire_plafond(Variable):
         ]
 
     def formula(individu, period, parameters):
-        params = parameters(period).epargne.livret_epargne_populaire
+        params = parameters(period).marche_travail.epargne.livret_epargne_populaire
         residence = individu.menage('residence', period)
         bareme = params.baremes[residence]
 
@@ -53,7 +53,7 @@ class livret_epargne_populaire_taux(Variable):
     def formula(individu, period, parameters):
         eligibilite = individu('livret_epargne_populaire_eligibilite', period)
 
-        epargne = parameters(period).epargne
+        epargne = parameters(period).marche_travail.epargne
         base_livret_a = epargne.livret_a.taux
         majoration = epargne.livret_epargne_populaire.majoration_base_livret_a
         return 100 * eligibilite * (base_livret_a + majoration)

@@ -1,5 +1,16 @@
 # Changelog
 
+# 88.0.0 [#1753](https://github.com/openfisca/openfisca-france/pull/1753)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/`.
+* Détails :
+  -  On déplace les fichiers pour respecter l'arborescence IPP en vue de l'harmonisation à venir
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - Chaque commit correspond à 1 déplacement d'un sous-dossier (et donc d'1 thème)
+  - Ce travail vise à nettoyer la racine de `parameters`.
+
 # 87.0.0 [#1752](https://github.com/openfisca/openfisca-france/pull/1752)
 
 * Amélioration technique. 

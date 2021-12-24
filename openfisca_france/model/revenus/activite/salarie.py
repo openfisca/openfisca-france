@@ -758,7 +758,7 @@ class indemnite_residence(Variable):
         TypesZoneApl = zone_apl.possible_values
         _P = parameters(period)
 
-        P = _P.fonc.indem_resid
+        P = _P.prestations_sociales.fonc.indem_resid
         min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
         taux = P.taux.zone1 * (zone_apl == TypesZoneApl.zone_1) + P.taux.zone2 * (zone_apl == TypesZoneApl.zone_2) + P.taux.zone3 * (zone_apl == TypesZoneApl.zone_3)
         plancher = min_zone_1 * (zone_apl == TypesZoneApl.zone_1) + min_zone_2 * (zone_apl == TypesZoneApl.zone_2) + min_zone_3 * (zone_apl == TypesZoneApl.zone_3)
@@ -788,7 +788,7 @@ class indice_majore(Variable):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         _P = parameters(period)
 
-        traitement_annuel_brut = _P.fonc.IM_100
+        traitement_annuel_brut = _P.prestations_sociales.fonc.IM_100
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
@@ -873,7 +873,7 @@ class supplement_familial_traitement(Variable):
 
         fonc_nbenf = individu.famille('af_nbenf_fonc', period) * individu.has_role(Famille.DEMANDEUR)
 
-        P = _P.fonc.supplement_familial
+        P = _P.prestations_sociales.fonc.supplement_familial
         part_fixe_1 = P.fixe.enf1
         part_fixe_2 = P.fixe.enf2
         part_fixe_supp = P.fixe.enfsupp
@@ -898,7 +898,7 @@ class supplement_familial_traitement(Variable):
         indice_maj_min = P.IM_min
         indice_maj_max = P.IM_max
 
-        traitement_brut_mensuel_min = _traitement_brut_mensuel(indice_maj_min, _P.fonc.IM_100)
+        traitement_brut_mensuel_min = _traitement_brut_mensuel(indice_maj_min, _P.prestations_sociales.fonc.IM_100)
         plancher_mensuel_1 = part_fixe
         plancher_mensuel_2 = part_fixe + traitement_brut_mensuel_min * pct_variable_2
         plancher_mensuel_3 = part_fixe + traitement_brut_mensuel_min * pct_variable_3
@@ -911,7 +911,7 @@ class supplement_familial_traitement(Variable):
             + plancher_mensuel_supp * max_(0, fonc_nbenf - 3)
             )
 
-        traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, _P.fonc.IM_100)
+        traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, _P.prestations_sociales.fonc.IM_100)
         plafond_mensuel_1 = part_fixe
         plafond_mensuel_2 = part_fixe + traitement_brut_mensuel_max * pct_variable_2
         plafond_mensuel_3 = part_fixe + traitement_brut_mensuel_max * pct_variable_3
