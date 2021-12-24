@@ -2,6 +2,10 @@ description: Solidarité et insertion
 metadata:
   order:
   - minima_sociaux
+<<<<<<< HEAD
   - minimum_vieillesse
+=======
+  - minimum_vieillesse_droits_non_contributifs_de_retraite
+>>>>>>> 16996de04 (Déplace `prestations_sociales.al_etudiant`  vers)
   - autre_solidarite
   description_en: Solidarity and insertion
