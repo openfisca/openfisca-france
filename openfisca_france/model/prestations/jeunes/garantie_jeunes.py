@@ -41,7 +41,7 @@ class garantie_jeunes_montant(Variable):
         salaire_minimum = parameters(period).marche_travail.salaire_minimum
         smic_mensuel_brut = salaire_minimum.smic_h_b * salaire_minimum.nb_heure_travail_mensuel
 
-        degressivite = parameters(period).prestations_sociales.garantie_jeunes.degressivite
+        degressivite = parameters(period).prestations_sociales.aides_jeunes.garantie_jeunes.degressivite
         plafond = degressivite.plafond_en_pourcentage_du_smic_brut * smic_mensuel_brut
         seuil_degressivite = degressivite.seuil
 
@@ -74,7 +74,7 @@ class garantie_jeunes_eligibilite_age(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2017_01_01(individu, period, parameters):
-        params_age = parameters(period).prestations_sociales.garantie_jeunes.critere_age.age
+        params_age = parameters(period).prestations_sociales.aides_jeunes.garantie_jeunes.critere_age.age
         age = individu('age', period)
 
         return (params_age.minimum <= age) * (age <= params_age.maximum)
