@@ -86,8 +86,8 @@ class asi_aspa_base_ressources_individu(Variable):
 
             taux_abattement_forfaitaire = where(
                 aspa_couple,
-                law.prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa.abattement_forfaitaire_tx_couple,
-                law.prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa.abattement_forfaitaire_tx_seul
+                law.prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.abattement_forfaitaire_tx_couple,
+                law.prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.abattement_forfaitaire_tx_seul
                 )
 
             abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire
@@ -128,7 +128,7 @@ class aspa_eligibilite(Variable):
         inapte_travail = individu('inapte_travail', period)
         taux_incapacite = individu('taux_incapacite', period)
         aah = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
-        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa
+        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa
 
         condition_invalidite = (taux_incapacite > aspa.taux_incapacite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= aspa.age_min)
@@ -176,7 +176,7 @@ class asi_aspa_condition_nationalite(Variable):
         ressortissant_eee = individu('ressortissant_eee', period)
         ressortissant_suisse = individu('nationalite', period) == b'CH'
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
-        duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa.duree_min_titre_sejour
+        duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.duree_min_titre_sejour
 
         return or_(ressortissant_eee, ressortissant_suisse, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
@@ -213,7 +213,7 @@ class asi(Variable):
         asi_aspa_nb_alloc = individu.famille('asi_aspa_nb_alloc', period)
         base_ressources = individu.famille('asi_aspa_base_ressources', period)
         asi = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.asi
-        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa
+        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa
 
         demandeur_eligible_asi = individu.famille.demandeur('asi_eligibilite', period)
         demandeur_eligible_aspa = individu.famille.demandeur('aspa_eligibilite', period)
@@ -296,7 +296,7 @@ class aspa(Variable):
         asi_aspa_nb_alloc = famille('asi_aspa_nb_alloc', period)
         base_ressources = famille('asi_aspa_base_ressources', period)
         asi = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.asi
-        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa
+        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa
 
         demandeur_eligible_asi = famille.demandeur('asi_eligibilite', period)
         demandeur_eligible_aspa = famille.demandeur('aspa_eligibilite', period)

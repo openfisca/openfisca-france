@@ -43,7 +43,7 @@ class aefa(Variable):
         else:
             nbPAC = af_nbenf
 
-        aefa = parameters(period).prestations_sociales.minima_sociaux.aefa
+        aefa = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.aefa
 
         # TODO check nombre de PAC pour une famille
         majoration = 1 + (condition_majoration * (

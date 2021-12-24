@@ -377,7 +377,7 @@ class al_nb_personnes_a_charge(Variable):
             age = famille.members('age', period)
 
             # Parametres
-            plafond_ressource = parameters(period.n_2.stop).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa.plafond_ressources_seul * 1.25
+            plafond_ressource = parameters(period.n_2.stop).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.plafond_ressources_seul * 1.25
             taux_incapacite_minimum = 0.8
 
             adulte_handicape = (
@@ -432,7 +432,7 @@ class aide_logement_base_ressources_patrimoine(Variable):
         valeur_locative_terrains_non_loues = famille.sum(valeur_locative_terrains_non_loues_i)
 
         # Les abatements sont les mêmes que pour le RSA
-        abattements = parameters(period).prestations_sociales.minima_sociaux.rsa.patrimoine
+        abattements = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.patrimoine
 
         capitaux_non_productifs = livret_a + epargne_revenus_non_imposables
         foncier = valeur_patrimoine_loue + valeur_immo_non_loue + valeur_terrains_non_loues
@@ -868,7 +868,7 @@ class aide_logement_base_ressources(Variable):
 
         base_ressources_parents = famille.sum(base_ressources_i, role = Famille.PARENT)
         ressources_patrimoine = famille('aide_logement_base_ressources_patrimoine', period)
-        abattement_ressources_enfant = parameters(period.n_2.stop).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa.plafond_ressources_seul * 1.25
+        abattement_ressources_enfant = parameters(period.n_2.stop).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.plafond_ressources_seul * 1.25
         base_ressources_enfants = famille.sum(
             max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
 
@@ -943,7 +943,7 @@ class aide_logement_base_ressources(Variable):
             )
         base_ressources_parents = famille.sum(base_ressources, role = Famille.PARENT)
         ressources_patrimoine = famille('aide_logement_base_ressources_patrimoine', period)
-        abattement_ressources_enfant = parameters(period.n_2.stop).prestations_sociales.solidarite_insertion.minimum_vieillesse_droits_non_contributifs_de_retraite.aspa.plafond_ressources_seul * 1.25
+        abattement_ressources_enfant = parameters(period.n_2.stop).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.plafond_ressources_seul * 1.25
         base_ressources_enfants = famille.sum(
             max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
 
@@ -1120,7 +1120,7 @@ class aide_logement_R0(Variable):
     def formula(famille, period, parameters):
         al = parameters(period).prestations_sociales.aides_logement
         pfam_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.prestations_generales
-        minim_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.minima_sociaux
+        minim_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.solidarite_insertion.minima_sociaux
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_dom = famille.demandeur.menage('residence_dom', period)

@@ -33,7 +33,7 @@ class covid_aide_exceptionnelle_tpe_montant(Variable):
 
     def formula_2020_03(individu, period, parameters):
         eligibilite_fse = individu('covid_aide_exceptionnelle_tpe_eligible', period)
-        plafond_fse = parameters(period).covid19.aide_exceptionnelle_tpe.plafond
+        plafond_fse = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.covid19.aide_exceptionnelle_tpe.plafond
         chiffre_d_affaire = individu('rpns_auto_entrepreneur_chiffre_affaires', period)
         period_1 = period.offset(-1, 'year')
         chiffre_d_affaire_annee_mois_un_an_avant = individu('rpns_auto_entrepreneur_chiffre_affaires', period_1)
@@ -72,7 +72,7 @@ class covid_activite_partielle_montant(Variable):
         eligibilite_activite_partielle = individu('covid_activite_partielle_eligible', period)
         heures = individu('heures_remunerees_volume', period)
         salaire_horaire = individu('salaire_de_base', period) / heures
-        indemnite_ap = parameters(period).covid19.indemnite_ap
+        indemnite_ap = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.covid19.indemnite_ap
         indemnite_horaire = max(
             indemnite_ap.taux * salaire_horaire,
             indemnite_ap.plancher
