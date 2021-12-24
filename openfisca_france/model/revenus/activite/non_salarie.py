@@ -2166,7 +2166,7 @@ class rpns_auto_entrepreneur_revenus_net(Variable):
         rpns_auto_entrepreneur_CA_achat_revente = individu('rpns_auto_entrepreneur_CA_achat_revente', period)
         rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period)
         rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period)
-        bareme_cs_ae = parameters(period).tns.auto_entrepreneur
+        bareme_cs_ae = parameters(period).taxation_societes.tns.auto_entrepreneur
 
         rpns_auto_entrepreneur_charges_sociales = (
             (bareme_cs_ae.achat_revente * rpns_auto_entrepreneur_CA_achat_revente)
@@ -2185,7 +2185,7 @@ class rpns_micro_entreprise_revenus_net(Variable):
 
     def formula(individu, period, parameters):
         rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period)
-        taux_cotisations_sociales = parameters(period).tns.micro_entreprise.cotisations_sociales
+        taux_cotisations_sociales = parameters(period).taxation_societes.tns.micro_entreprise.cotisations_sociales
         rpns_micro_entreprise_charges_sociales = rpns_micro_entreprise_benefice * taux_cotisations_sociales
         revenus = rpns_micro_entreprise_benefice - rpns_micro_entreprise_charges_sociales
 
