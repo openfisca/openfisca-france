@@ -1,0 +1,10 @@
+description: Autre solidarité des prestations sociales de solidarité insertion
+metadata:
+  ux_name: Autre solidarité
+  order:
+  - ata
+  - ada
+  - aefa
+  - cheque_energie
+  - covid19
+  description_en: Other solidarity
