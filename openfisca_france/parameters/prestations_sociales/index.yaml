@@ -1,1 +1,7 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Prestations sociales
+metadata:
+  order:
+  - prestations_familiales
+  - aides_logement
+  - prestations_etat_de_sante
+  - solidarite_insertion

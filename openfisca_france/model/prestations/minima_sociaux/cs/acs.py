@@ -16,7 +16,7 @@ class acs_montant_i(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2009_08_01(individu, period, parameters):
-        P = parameters(period).cs.acs
+        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.acs
         age = individu('age', period)
         montant_si_pac = select(
             [(age <= 15) * (age >= 0), age <= 25],
@@ -53,7 +53,7 @@ class acs_plafond(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        P = parameters(period).cs.acs
+        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.acs
         cmu_c_plafond = famille('cmu_c_plafond', period)
 
         return cmu_c_plafond * (1 + P.majoration_plafond_acs)

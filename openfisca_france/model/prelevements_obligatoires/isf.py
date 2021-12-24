@@ -834,6 +834,6 @@ class bouclier_fiscal(Variable):
     def formula_2006(foyer_fiscal, period, parameters):
         bouclier_sumimp = foyer_fiscal('bouclier_sumimp', period)
         bouclier_rev = foyer_fiscal('bouclier_rev', period)
-        P = parameters(period).bouclier_fiscal
+        P = parameters(period).impot_revenu.bouclier_fiscal
 
         return max_(0, bouclier_sumimp - (bouclier_rev * P.taux))

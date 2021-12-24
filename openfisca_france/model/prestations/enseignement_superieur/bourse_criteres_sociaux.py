@@ -15,7 +15,7 @@ class bourse_criteres_sociaux(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        montants = parameters(period).bourses_enseignement_superieur.criteres_sociaux.montants
+        montants = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.montants
         echelon = individu('bourse_criteres_sociaux_echelon', period)
 
         return montants.calc(echelon)
@@ -61,7 +61,7 @@ class bourse_criteres_sociaux_eligibilite_nationalite(Variable):
         ressortissant_eee = individu('ressortissant_eee', period)
 
         nationalite = individu('nationalite', period)
-        ressortissant_pays_eligible = sum([nationalite == str.encode(etat) for etat in parameters(period).bourses_enseignement_superieur.criteres_sociaux.nationalites_hors_eee])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
+        ressortissant_pays_eligible = sum([nationalite == str.encode(etat) for etat in parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.nationalites_hors_eee])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
         return ressortissant_eee + ressortissant_pays_eligible
 
@@ -101,7 +101,7 @@ class bourse_criteres_sociaux_eligibilite_age(Variable):
     def formula(individu, period, parameters):
         age = individu('age', period)
         nb_enf = individu.famille('bourse_criteres_sociaux_nombre_enfants_parent_etudiant', period)
-        age_maximum = parameters(period).bourses_enseignement_superieur.criteres_sociaux.age_maximum
+        age_maximum = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.age_maximum
         handicap = individu('handicap', period)
 
         return (age <= (age_maximum + nb_enf)) + (handicap)
@@ -206,7 +206,7 @@ class bourse_criteres_sociaux_etudiant_autonome(Variable):
 
         smic_mensuel_brut = legislation.marche_travail.salaire_minimum.smic_h_b * legislation.marche_travail.salaire_minimum.nb_heure_travail_mensuel
         smic_mensuel_net = smic_mensuel_brut * 8.11 / 10.25
-        seuil_ressources = legislation.bourses_enseignement_superieur.criteres_sociaux.seuil_ressources_etudiant_autonome * smic_mensuel_net
+        seuil_ressources = legislation.prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.seuil_ressources_etudiant_autonome * smic_mensuel_net
         eligible_couple = en_couple * (seuil_ressources <= ressources)
 
         is_parent = individu.has_role(Famille.PARENT)
@@ -248,7 +248,7 @@ class bourse_criteres_sociaux_points_de_charge_distance_domicile_familial(Variab
 
     def formula(individu, period, parameters):
         distance = individu('bourse_criteres_sociaux_distance_domicile_familial', period)
-        bareme = parameters(period).bourses_enseignement_superieur.criteres_sociaux.points_de_charge.distance_domicile_familial
+        bareme = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.points_de_charge.distance_domicile_familial
         return bareme.calc(distance)
 
 
@@ -306,7 +306,7 @@ class bourse_criteres_sociaux_points_de_charge_charges_familiale(Variable):
         nb_enf_hors_ens_sup = nb_enf - nb_enf_ens_sup
         nb_autre_enf_ens_sup = nb_enf_ens_sup - 1
 
-        pts = parameters(period).bourses_enseignement_superieur.criteres_sociaux.points_de_charge.charges_familiales
+        pts = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.points_de_charge.charges_familiales
         pts_enf = (nb_enf_hors_ens_sup > 0) * nb_enf_hors_ens_sup * pts.points_par_enfant_a_charge
         pts_ens_sup = (nb_autre_enf_ens_sup > 0) * nb_autre_enf_ens_sup * pts.points_par_enfant_a_charge_etudiant_enseignement_superieur
         return pts_enf + pts_ens_sup
@@ -327,7 +327,7 @@ class bourse_criteres_sociaux_echelon(Variable):
 
     def formula(individu, period, parameters):
         points_de_charge = individu('bourse_criteres_sociaux_points_de_charge', period)
-        baremes = parameters(period).bourses_enseignement_superieur.criteres_sociaux.plafond_ressources
+        baremes = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.plafond_ressources
         plafond_echelon_0bis = baremes.echelon_0bis.calc(points_de_charge)
         plafond_echelon_1 = baremes.echelon_1.calc(points_de_charge)
         plafond_echelon_2 = baremes.echelon_2.calc(points_de_charge)

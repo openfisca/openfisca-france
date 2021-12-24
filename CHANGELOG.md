@@ -1,5 +1,17 @@
 # Changelog
 
+# 87.0.0 [#1752](https://github.com/openfisca/openfisca-france/pull/1752)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales`.
+* Détails :
+  -  On déplace les fichiers pour respecter l'arborescence IPP en vue de l'harmonisation à venir
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - Chaque commit correspond à 1 déplacement d'un sous-dossier (et donc d'1 thème)
+  - Ce travail vise à finaliser le dossier `parameters/prestations_sociales/`.
+  - Ajout du sous-dossier `parameters/prestations_sociales/aides-jeunes/`
+
 ### 86.0.1 [#1736](https://github.com/openfisca/openfisca-france/pull/1736)
 
 * Correction d'un crash.

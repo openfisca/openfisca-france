@@ -11,7 +11,7 @@ class gratuite_musees_monuments(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        condition_age = (age >= parameters(period).divers.gratuite_musees_monuments.age_min) * (age <= parameters(period).divers.gratuite_musees_monuments.age_max)
+        condition_age = (age >= parameters(period).prestations_sociales.gratuite_musees_monuments.age_min) * (age <= parameters(period).prestations_sociales.gratuite_musees_monuments.age_max)
 
         condition_nationalite = individu('resident_ue', period)
 
