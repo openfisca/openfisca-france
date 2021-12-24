@@ -21,7 +21,7 @@ class aide_mobilite_parcoursup(Variable):
         en_terminale = individu("annee_etude", period) == TypesClasse.terminale
         boursier = individu.famille("bourse_lycee", period) > 0
 
-        montant = parameters(period).prestations_sociales.aide_mobilite_parcoursup.montant
+        montant = parameters(period).prestations_sociales.aides_jeunes.aide_mobilite_parcoursup.montant
 
         return montant * sortie_academie * en_terminale * boursier
 
