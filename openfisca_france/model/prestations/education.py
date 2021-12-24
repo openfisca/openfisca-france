@@ -417,4 +417,4 @@ class detention_carte_des_metiers(Variable):
         ]
 
     def formula(individu, period, parameters):
-        return individu('alternant', period) * (individu('age', period) < parameters(period).prestations_sociales.carte_des_metiers.age_maximal)
+        return individu('alternant', period) * (individu('age', period) < parameters(period).prestations_sociales.aides_jeunes.carte_des_metiers.age_maximal)
