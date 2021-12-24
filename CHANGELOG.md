@@ -1,5 +1,16 @@
 # Changelog
 
+# 86.0.0 [#1751](https://github.com/openfisca/openfisca-france/pull/1751)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales`.
+* Détails :
+  -  On déplace les fichiers pour respecter l'arborescence IPP en vue de l'harmonisation à venir
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - Chaque commit correspond à 1 déplacement d'un sous-dossier (et donc d'1 thème)
+  - Ce travail vise à remplir le sous-dossier `parameters/prestations_sociales/aides_logement`.
+
 # 85.0.0 [#1750](https://github.com/openfisca/openfisca-france/pull/1750)
 
 * Amélioration technique. 

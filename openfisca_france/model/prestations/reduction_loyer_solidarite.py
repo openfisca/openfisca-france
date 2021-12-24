@@ -13,7 +13,7 @@ class reduction_loyer_solidarite_plafond_ressources(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        rls = parameters(period).prestations_sociales.reduction_loyer_solidarite
+        rls = parameters(period).prestations_sociales.aides_logement.reduction_loyer_solidarite
         personnes_a_charge_al = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
@@ -64,7 +64,7 @@ class reduction_loyer_solidarite_montant(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        rls = parameters(period).prestations_sociales.reduction_loyer_solidarite
+        rls = parameters(period).prestations_sociales.aides_logement.reduction_loyer_solidarite
         personnes_a_charge_al = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
