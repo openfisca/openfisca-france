@@ -26,7 +26,7 @@ class condition_rfr_exoneration_th(Variable):
         fiscaux multiples, la condition relative au revenu fiscal de référence doit être respectée pour tous les foyers
         fiscaux du ménage, d'où cette variable intermédiaire
         '''
-        P = parameters(period).taxation_locale.taxe_habitation
+        P = parameters(period).taxation_indirecte.taxe_habitation
         rfr = foyer_fiscal('rfr', period.last_year)
         nbptr = foyer_fiscal('nbptr', period.last_year)
         seuil_th = P.exon_plaf_rfr.premiere_part + P.exon_plaf_rfr.demi_part_supp * max_(0, (nbptr - 1) * 2)
@@ -69,7 +69,7 @@ class exonere_taxe_habitation(Variable):
         condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
         condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
 
-        P = parameters(period).taxation_locale.taxe_habitation
+        P = parameters(period).taxation_indirecte.taxe_habitation
 
         exon_non_soumis_a_condition_rfr = (asi > 0) + (aspa > 0)
         exon_soumis_a_condition_rfr = ((age_personne_de_reference >= P.exon_age_min) + (age_conjoint >= P.exon_age_min) + (statut_marital == TypesStatutMarital.veuf)) * (isf_ifi == 0) + (aah > 0)
@@ -142,7 +142,7 @@ class abattement_personnes_condition_modeste_th_commune(Variable):
         enfant_i = menage.members.has_role(Famille.ENFANT)
         nb_enfants = menage.sum(enfant_i)
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
-        P = parameters(period).taxation_locale.taxe_habitation
+        P = parameters(period).taxation_indirecte.taxe_habitation
         abt_condition_modeste_th_commune = menage('abt_condition_modeste_th_commune', period)
         valeur_locative_moyenne_th_commune = menage('valeur_locative_moyenne_th_commune', period)
         taux_plafond_general = P.seuil_valeur_locative_abattement_condition_modeste
@@ -171,7 +171,7 @@ class abattement_personnes_condition_modeste_th_epci(Variable):
         enfant_i = menage.members.has_role(Famille.ENFANT)
         nb_enfants = menage.sum(enfant_i)
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
-        P = parameters(period).taxation_locale.taxe_habitation
+        P = parameters(period).taxation_indirecte.taxe_habitation
         abt_condition_modeste_th_epci = menage('abt_condition_modeste_th_epci', period)
         valeur_locative_moyenne_th_epci = menage('valeur_locative_moyenne_th_epci', period)
         taux_plafond_general = P.seuil_valeur_locative_abattement_condition_modeste
@@ -252,7 +252,7 @@ class taxe_habitation_commune_epci_avant_degrevement(Variable):
         base_nette_th_commune = menage('base_nette_th_commune', period)
         base_nette_th_epci = menage('base_nette_th_epci', period)
         exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
-        P = parameters(period).taxation_locale.taxe_habitation
+        P = parameters(period).taxation_indirecte.taxe_habitation
         taux_frais_assiette = P.frais_assiette
         return (base_nette_th_commune * taux_th_commune + base_nette_th_epci * taux_th_epci) * not_(exonere_taxe_habitation) * (1 + taux_frais_assiette)
 
@@ -266,7 +266,7 @@ class plafond_taxe_habitation_eligibilite(Variable):
     end = '2019-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
-        P_plaf = parameters(period).taxation_locale.taxe_habitation.plafonnement
+        P_plaf = parameters(period).taxation_indirecte.taxe_habitation.plafonnement
         rfr_i = menage.members.foyer_fiscal('rfr', period.last_year)
         rfr_menage = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         nbptr_i = menage.members.foyer_fiscal('nbptr', period.last_year)
@@ -287,7 +287,7 @@ class plafond_taxe_habitation(Variable):
 
     def formula_2017_01_01(menage, period, parameters):
         plafond_taxe_habitation_eligibilite = menage('plafond_taxe_habitation_eligibilite', period)
-        P_plaf = parameters(period).taxation_locale.taxe_habitation.plafonnement
+        P_plaf = parameters(period).taxation_indirecte.taxe_habitation.plafonnement
         rfr_i = menage.members.foyer_fiscal('rfr', period.last_year)
         rfr_menage = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         nbptr_i = menage.members.foyer_fiscal('nbptr', period.last_year)
@@ -328,7 +328,7 @@ class degrevement_plafonnement_taxe_habitation(Variable):
         taux_th_commune_2000 = menage('taux_th_commune', annee_2000)
         taux_th_epci_2000 = menage('taux_th_epci', annee_2000)
 
-        P = parameters(period).taxation_locale.taxe_habitation
+        P = parameters(period).taxation_indirecte.taxe_habitation
         reduction_degrevement = base_reduction_degrevement * (taux_th_commune + taux_th_epci - (taux_th_commune_2000 + taux_th_epci_2000) * P.plafonnement.coeff_multiplicateur_taux_2000)
         reduction_degrevement = reduction_degrevement * (reduction_degrevement > P.plafonnement.valeur_minimale_reduction_degrevement)
 
@@ -382,7 +382,7 @@ class degrevement_office_taxe_habitation(Variable):
         '''
 
         # Calcul de l'éligibilité en fonction du revenu fiscal de référence et de la perception de l'ISF-IFI
-        P_degrev = parameters(period).taxation_locale.taxe_habitation.degrevement_d_office
+        P_degrev = parameters(period).taxation_indirecte.taxe_habitation.degrevement_d_office
         isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period.last_year)
         isf_ifi_menage = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         rfr_i = menage.members.foyer_fiscal('rfr', period.last_year)
@@ -408,7 +408,7 @@ class degrevement_office_taxe_habitation(Variable):
         '''
 
         # Calcul de l'éligibilité en fonction du revenu fiscal de référence et de la perception de l'ISF-IFI
-        P_degrev = parameters(period).taxation_locale.taxe_habitation.degrevement_d_office
+        P_degrev = parameters(period).taxation_indirecte.taxe_habitation.degrevement_d_office
         isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period.last_year)
         isf_ifi_menage = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         rfr_i = menage.members.foyer_fiscal('rfr', period.last_year)
@@ -440,7 +440,7 @@ class prelevement_base_imposition_elevee_taxe_habitation(Variable):
 
     def formula_2017_01_01(menage, period, parameters):
 
-        P = parameters(period).taxation_locale.taxe_habitation.prelevement_base_imposition_elevee
+        P = parameters(period).taxation_indirecte.taxe_habitation.prelevement_base_imposition_elevee
         exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
         degrevement_plafonnement_taxe_habitation = menage('degrevement_plafonnement_taxe_habitation', period)
         degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
