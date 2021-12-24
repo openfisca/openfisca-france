@@ -361,7 +361,7 @@ class al_nb_personnes_a_charge(Variable):
         tantes, neveux, nièces).
         '''
 
-        age_max_enfant = parameters(period).prestations_sociales.prestations_familiales.cf.age_max
+        age_max_enfant = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf.age_max
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
         def al_nb_enfants():

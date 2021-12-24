@@ -1,5 +1,16 @@
 # Changelog
 
+# 84.0.0 [#1749](https://github.com/openfisca/openfisca-france/pull/1749)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales`.
+* Détails :
+  -  On déplace les fichiers pour respecter l'arborescence IPP en vue de l'harmonisation à venir
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - Chaque commit correspond à 1 déplacement d'un sous-dossier (et donc d'1 thème)
+  - Ce travail vise à remplir le sous-dossier `parameters/prestations_sociales/prestations_familiales`.
+
 # 83.0.0 [#1747](https://github.com/openfisca/openfisca-france/pull/1747)
 
 * Amélioration technique. 

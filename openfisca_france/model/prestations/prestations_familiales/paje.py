@@ -107,7 +107,7 @@ class paje_base(Variable):
         couple_biactif = famille('biactivite', period)
         parent_isole = not_(famille('en_couple', period))
         nombre_enfants = famille('af_nbenf', period)
-        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         # Le montant, précédemment indexé sur la BMAF, est gelé en 2013, et dégelé en 2018
@@ -227,7 +227,7 @@ class enfant_eligible_paje(Variable):
     def formula(individu, period, parameters):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
-        age_limite = parameters(period).prestations_sociales.prestations_familiales.paje.base.age_max_enfant
+        age_limite = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje.base.age_max_enfant
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
@@ -254,7 +254,7 @@ class paje_naissance(Variable):
         isole = not_(famille('en_couple', period))
         biactivite = famille('biactivite', period)
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
-        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
 
         bmaf = af.bmaf
         prime_naissance = round(100 * paje.prime_naissance.prime_tx * bmaf) / 100
@@ -295,7 +295,7 @@ class paje_naissance(Variable):
         base_ressources = famille('prestations_familiales_base_ressources', period)
         isole = not_(famille('en_couple', period))
         biactivite = famille('biactivite', period)
-        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         # Le montant de la PAJE est gelé depuis avril 2013.
@@ -329,7 +329,7 @@ class paje_naissance(Variable):
         base_ressources = famille('prestations_familiales_base_ressources', period)
         isole = not_(famille('en_couple', period))
         biactivite = famille('biactivite', period)
-        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         # Le montant de la PAJE est gelé depuis avril 2013.
@@ -421,7 +421,7 @@ class paje_cmg(Variable):
         assistant_maternel = famille('ass_mat', period)
         garde_a_domicile = famille('gar_dom', period)
         paje_prepare = famille('paje_prepare', period)
-        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         aah_i = famille.members('aah', period)
@@ -535,7 +535,7 @@ class paje_cmg(Variable):
         gar_dom = famille('gar_dom', period)
         paje_clca_taux_partiel = famille('paje_clca_taux_partiel', period)
         paje_clca_taux_plein = famille('paje_clca_taux_plein', period)
-        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         P_n_2_af = parameters(period.offset(-2, 'year')).prestations_sociales.prestations_familiales.prestations_generales.af
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
@@ -808,7 +808,7 @@ class paje_clca(Variable):
         partiel1 = famille('partiel1', period)
         partiel2 = famille('partiel2', period)
 
-        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         paje_non_nul = paje_base >= 0
@@ -899,7 +899,7 @@ class paje_colca(Variable):
         opt_colca = famille('opt_colca', period)
         paje_base = famille('paje_base', period)
 
-        paje = parameters(period).prestations_sociales.prestations_familiales.paje
+        paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
         age_en_mois_i = famille.members('age_en_mois', period)
