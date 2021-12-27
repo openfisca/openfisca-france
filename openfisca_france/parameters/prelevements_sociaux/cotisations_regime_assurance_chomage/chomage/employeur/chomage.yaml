@@ -63,6 +63,8 @@ brackets:
         value: 0.002
       1959-01-01:
         value: 0.008
+        metadata:
+          ipp_csv_id: chom_p_0_1
     threshold:
       1959-01-01:
         value: 0.0
@@ -115,6 +117,8 @@ brackets:
         value: 0.0192
       1959-01-01:
         value: null
+        metadata:
+          ipp_csv_id: chom_p_1_4
     threshold:
       1975-07-01:
         value: 1.0
