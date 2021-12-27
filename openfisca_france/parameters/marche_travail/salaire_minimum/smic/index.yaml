@@ -1,0 +1,8 @@
+description: SMIC (Salaire minimum de croissance) - Marché du travail
+metadata:
+  ux_name: SMIC
+  order:
+  - smic_h_b
+  - nb_heures_travail_mensuel
+  - smic_brut_mensuel
+  description_en: Minimum wage

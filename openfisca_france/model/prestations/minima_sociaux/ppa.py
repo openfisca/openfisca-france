@@ -31,7 +31,7 @@ class ppa_plancher_revenu_activite_etudiant(Variable):
 
         return (
             169
-            * P.marche_travail.salaire_minimum.smic_h_b
+            * P.marche_travail.salaire_minimum.smic.smic_b_horaire
             * P.prestations_sociales.prestations_familiales.prestations_generales.af.seuil_rev_taux
             )
 
@@ -159,7 +159,7 @@ class ppa_revenu_activite_individu(Variable):
 
     def formula(individu, period, parameters):
         P = parameters(period)
-        smic_horaire = P.marche_travail.salaire_minimum.smic_h_b
+        smic_horaire = P.marche_travail.salaire_minimum.smic.smic_b_horaire
 
         ressources = [
             'salaire_net',
@@ -240,7 +240,7 @@ class ppa_ressources_hors_activite_individu(Variable):
 
     def formula(individu, period, parameters):
         P = parameters(period)
-        smic_horaire = P.marche_travail.salaire_minimum.smic_h_b
+        smic_horaire = P.marche_travail.salaire_minimum.smic.smic_b_horaire
 
         def ressources_percues_au_cours_du_mois_considere():
             ressources = [
@@ -345,7 +345,7 @@ class ppa_bonification(Variable):
 
     def formula(individu, period, parameters):
         P = parameters(period)
-        smic_horaire = P.marche_travail.salaire_minimum.smic_h_b
+        smic_horaire = P.marche_travail.salaire_minimum.smic.smic_b_horaire
         ppa_base = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.montant_de_base
         revenu_activite = individu('ppa_revenu_activite_individu', period)
         seuil_1 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire

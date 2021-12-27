@@ -204,7 +204,7 @@ class bourse_criteres_sociaux_etudiant_autonome(Variable):
         ressources = individu('bourse_criteres_sociaux_etudiant_autonome_ressource_mensuelle', period)
         legislation = parameters(period)
 
-        smic_mensuel_brut = legislation.marche_travail.salaire_minimum.smic_h_b * legislation.marche_travail.salaire_minimum.nb_heure_travail_mensuel
+        smic_mensuel_brut = legislation.marche_travail.salaire_minimum.smic.smic_b_horaire * legislation.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
         smic_mensuel_net = smic_mensuel_brut * 8.11 / 10.25
         seuil_ressources = legislation.prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.seuil_ressources_etudiant_autonome * smic_mensuel_net
         eligible_couple = en_couple * (seuil_ressources <= ressources)

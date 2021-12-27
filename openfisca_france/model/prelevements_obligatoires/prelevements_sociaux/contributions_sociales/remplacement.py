@@ -110,12 +110,12 @@ class csg_deductible_chomage(Variable):
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.deductible,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             )
-        nbh_travail = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
+        nbh_travail = parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
 
         cho_seuil_exo = (
             parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.min_exo
             * nbh_travail
-            * parameters.marche_travail.salaire_minimum.smic_h_b
+            * parameters.marche_travail.salaire_minimum.smic.smic_b_horaire
             )
 
         csg_deductible_chomage = max_(
@@ -168,11 +168,11 @@ class csg_imposable_chomage(Variable):
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             )
-        nbh_travail = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
+        nbh_travail = parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
         cho_seuil_exo = (
             parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.min_exo
             * nbh_travail
-            * parameters.marche_travail.salaire_minimum.smic_h_b
+            * parameters.marche_travail.salaire_minimum.smic.smic_b_horaire
             )
         csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chomage_brut + montant_csg), 0), 0)
         return - csg_imposable_chomage
@@ -208,10 +208,10 @@ class crds_chomage(Variable):
                 TypesTauxCSGRemplacement.taux_plein,
                 )
             )
-        smic_h_b = parameters.marche_travail.salaire_minimum.smic_h_b
+        smic_h_b = parameters.marche_travail.salaire_minimum.smic.smic_b_horaire
         # salaire_mensuel_reference = chomage_brut / .7
         # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)
-        heures_mensuelles = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
+        heures_mensuelles = parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
 
         cho_seuil_exo = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.min_exo * heures_mensuelles * smic_h_b
         eligible = (

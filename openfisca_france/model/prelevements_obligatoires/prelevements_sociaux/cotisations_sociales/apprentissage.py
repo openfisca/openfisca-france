@@ -43,7 +43,7 @@ class remuneration_apprenti(Variable):
     def formula(individu, period, parameters):
         age = individu('age', period)
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
-        smic = parameters(period).marche_travail.salaire_minimum.smic_h_b * 52 * 35 / 12
+        smic = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire * 52 * 35 / 12
         anciennete_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')

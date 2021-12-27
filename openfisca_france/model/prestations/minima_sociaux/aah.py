@@ -49,7 +49,7 @@ class aah_base_ressources(Variable):
             return (1 - law.impot_revenu.tspr.abatpro.taux) * (1 - aah.abattement_conjoint) * revenus_conjoint
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
-            smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic_h_b * law.marche_travail.salaire_minimum.nb_heure_travail_mensuel
+            smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
             tranche1 = min_(aah.tranche_smic * smic_brut_annuel, revenus_demandeur)
             tranche2 = revenus_demandeur - tranche1
             return (1 - aah.abattement_activite_tranche_inf) * tranche1 + (1 - aah.abattement_activite_tranche_sup) * tranche2

@@ -39,7 +39,7 @@ class garantie_jeunes_montant(Variable):
         taux_1_personne = params.forfait_logement.taux_1_personne
         garantie_jeunes_max = montant_base * (1 - taux_1_personne)
         salaire_minimum = parameters(period).marche_travail.salaire_minimum
-        smic_mensuel_brut = salaire_minimum.smic_h_b * salaire_minimum.nb_heure_travail_mensuel
+        smic_mensuel_brut = salaire_minimum.smic.smic_b_horaire * salaire_minimum.smic.nb_heures_travail_mensuel
 
         degressivite = parameters(period).prestations_sociales.aides_jeunes.garantie_jeunes.degressivite
         plafond = degressivite.plafond_en_pourcentage_du_smic_brut * smic_mensuel_brut
