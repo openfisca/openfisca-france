@@ -4,7 +4,7 @@ metadata:
   order:
   - pss
   - contributions_sociales
-  - cotisations_securite_sociale_ss_regime_general
+  - cotisations_securite_sociale_regime_general
   - cotisations_regime_assurance_chomage
   - regimes_complementaires_retraite_secteur_prive
   - cotisations_secteur_public
