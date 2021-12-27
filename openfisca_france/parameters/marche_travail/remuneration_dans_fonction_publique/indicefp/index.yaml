@@ -1,8 +1,7 @@
-description: Rémunération dans la fonction publique - Marché du travail
+description: Point d'indice de la Fonction Publique (Rémunération dans la fonction publique - Marché du travail)
 metadata:
-  ux_name: Rémunération Fonction publique
+  ux_name: Point d'indice
   order:
-  - sft
-  - indicefp
-  - gipa
-  description_en: Pays in the public sector
+  - point_indice_en_euros
+  - point_indice_en_nominal
+  description_en: Index point of public sector (1970-2017)
