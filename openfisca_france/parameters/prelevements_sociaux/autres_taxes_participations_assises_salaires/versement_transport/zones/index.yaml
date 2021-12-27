@@ -1,0 +1,15 @@
+description: Versement transport (VT), parmi les autres taxes et participations assises sur les salaires
+metadata:
+  ux_name: Versement transport (VT)
+  order:
+  - paris
+  - essonne
+  - hauts_de_seine
+  - seine_saint_denis
+  - val_de_marne
+  - val_d_oise
+  - lyon
+  - marseille
+  - toulouse
+  - bourg_en_bresse
+  description_en: Transport tax (VT) (contribution to public transports)

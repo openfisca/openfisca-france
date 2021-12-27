@@ -1,4 +1,7 @@
 description: Versement transport (VT), parmi les autres taxes et participations assises sur les salaires
 metadata:
   ux_name: Versement transport
+  order:
+  - taux_maximal
+  - zones
   description_en: Transportation payroll tax

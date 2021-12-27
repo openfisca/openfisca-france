@@ -1,6 +1,4 @@
-description: Taux maximal hors Île-de-France
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+description: Taux maximal sur tout salaires (hors Ile-de-France) du Versement transport (VT), parmi les autres taxes et participations assises sur les salaires
 values:
   1993-04-01:
     value: 0.015
@@ -9,7 +7,10 @@ values:
   2003-01-01:
     value: 0.0175
 metadata:
+  ux_name: Tout salaire
   last_review: 2021-12-07
+  ipp_csv_id: vt_p_0_
+  unit: /1
   reference:
     2003-01-01: 
       title: Lettre circulaire URSSAF 2002-218
