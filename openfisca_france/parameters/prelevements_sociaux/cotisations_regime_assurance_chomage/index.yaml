@@ -1,4 +1,8 @@
 description: Cotisations au régime de l'assurance chômage
 metadata:
   ux_name: Cotisations chômage
+  order:
+  - chomage
+  - ags
+  - asf
   description_en: Unemployment insurance scheme contributions
