@@ -1,16 +1,22 @@
-description: Taxe exceptionnelle de solidarité sur les hautes rémunérations versées par les entreprises
+description: Barème de la Taxe exceptionnelle de solidarité sur les hautes rémunérations (TEHR) versées par les entreprises
 brackets:
 - rate:
     2013-01-01:
       value: 0.5
     2015-01-01:
       value: null
+    metadata:
+      ipp_csv_id: tehr_seuil
   threshold:
     2013-01-01:
       value: 1000000.0
     2015-01-01:
       value: null
+    metadata:
+      ipp_csv_id: tehr_tx
 metadata:
+  ux_name: Taux
+  last_review: 2021-12-27
   threshold_unit: currency
   rate_unit: /1
   reference:
@@ -23,3 +29,11 @@ metadata:
   official_journal_date:
     2015-01-01: 2013-12-30
     2013-01-01: 2013-12-30
+  description_en: Exceptional solidarity tax on high wages ("75% tax")
+documentation: |
+  Note :
+  Cette taxe correspond à la nouvelle version de la "taxe à 75%" proposée par F. Hollande durant la campagne présidentielle.
+  La TEHR a vocation a être temporaire (prélevée seulement sur les rémunérations versées en 2013 et 2014).
+  Assiette :
+  Il s'agit des montants bruts de rémunération individuelle. Voir art. 15(II.) de la Loi 2013-1278
+
