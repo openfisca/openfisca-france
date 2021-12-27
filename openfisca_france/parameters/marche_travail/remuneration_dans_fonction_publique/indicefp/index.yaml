@@ -1,0 +1,8 @@
+description: Rémunération dans la fonction publique - Marché du travail
+metadata:
+  ux_name: Rémunération Fonction publique
+  order:
+  - sft
+  - indicefp
+  - gipa
+  description_en: Pays in the public sector
