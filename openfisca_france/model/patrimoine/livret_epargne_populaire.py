@@ -55,5 +55,5 @@ class livret_epargne_populaire_taux(Variable):
 
         epargne = parameters(period).marche_travail.epargne
         base_livret_a = epargne.livret_a.taux
-        majoration = epargne.livret_epargne_populaire.majoration_base_livret_a
+        majoration = epargne.livret_a.majoration_base
         return 100 * eligibilite * (base_livret_a + majoration)
