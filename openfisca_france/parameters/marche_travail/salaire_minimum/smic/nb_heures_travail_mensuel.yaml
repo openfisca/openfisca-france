@@ -21,7 +21,7 @@ metadata:
       title: Décret 2018-1173 du 19/12/2018
       href: https://www.legifrance.gouv.fr/eli/decret/2018/12/19/2018-1173/jo/texte
     2018-01-01:
-      title: Décret 2017-1719 du 20/12/2017
+      title: Décret 2017-1719 du 20/12/2017
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036240563
     2017-01-01:
       title: Décret 2016-1818 du 22/12/2016
@@ -345,15 +345,15 @@ metadata:
     1971-01-01: Abattement pour les jeunes de moins de 17 ans (-20%) et de moins de 18 ans (-10%). Décret 71-101 du 02/02/1971 pour la plasturgie
   description_en: Minimum wage - SMIC
 documentation: |
-Sources de la législation :
-Journal Officiel via www.legifrance.gouv.fr depuis 1990; Insee de 1980 à 1989; site web législation CNAV et www.legifrance.gouv.fr de 1970 à 1980;
-Barème social périodique entre 1976 et 2001.
-Notes :
-La durée légale du travail est de 40 h de 1950 à 1982, puis de 39h puis de 35h à partir de 1999.
-Plusieurs SMIC mensuels coïncident entre 1999 et 2005 (voir feuille GMR).
-Attention aux arrondis pour passer du smic horaire au smic mensuel (173h et 1/3 d'heure)
-Les montants des DOM-TOM ne sont pas indiqués. Les abattements pour les moins de 18 ans sont à clarifier
-(1) Changement de durée légale du travail le 1er février 1982 : on passe de 40 à 39 heures / semaine. Smic légal pour 39h = 3067,35 F.
-mais art. 3 de l'Ordonnance 82-41 du 16/01/82 (JO 17/01/82) précise que si l'horaire hebdomadaire est effectivement réduit à 39h, la rémunération mensuelle ne peut être inférieure à 3145,94 F
-(2) Attention : passage aux 35 heures. Existence d'un régime transitoire et d'un régime définitif pour les entreprises de plus de 20 salariés. dans l'ancien système.
-Pour les entreprises de moins de 20 salariés, ancien système. Le Smic donné ici correspond au Smic mensuel pour 39 heures.
+  Sources de la législation :
+  Journal Officiel via www.legifrance.gouv.fr depuis 1990; Insee de 1980 à 1989; site web législation CNAV et www.legifrance.gouv.fr de 1970 à 1980;
+  Barème social périodique entre 1976 et 2001.
+  Notes :
+  La durée légale du travail est de 40 h de 1950 à 1982, puis de 39h puis de 35h à partir de 1999.
+  Plusieurs SMIC mensuels coïncident entre 1999 et 2005 (voir feuille GMR).
+  Attention aux arrondis pour passer du smic horaire au smic mensuel (173h et 1/3 d'heure)
+  Les montants des DOM-TOM ne sont pas indiqués. Les abattements pour les moins de 18 ans sont à clarifier
+  (1) Changement de durée légale du travail le 1er février 1982 : on passe de 40 à 39 heures / semaine. Smic légal pour 39h = 3067,35 F.
+  mais art. 3 de l'Ordonnance 82-41 du 16/01/82 (JO 17/01/82) précise que si l'horaire hebdomadaire est effectivement réduit à 39h, la rémunération mensuelle ne peut être inférieure à 3145,94 F
+  (2) Attention : passage aux 35 heures. Existence d'un régime transitoire et d'un régime définitif pour les entreprises de plus de 20 salariés. dans l'ancien système.
+  Pour les entreprises de moins de 20 salariés, ancien système. Le Smic donné ici correspond au Smic mensuel pour 39 heures.
