@@ -54,7 +54,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['fnal_contribution_plus_de_20_salaries'] = commun.children.pop('contribution_plus_de_20_salaries')
     commun.children['fnal_contribution_plus_de_50_salaries'] = commun.children.pop('contribution_plus_de_50_salaries')
     commun.children['fnal_cotisation'] = commun.children.pop('cotisation')
-    commun.children['fnal_cotisation'] = commun.children.pop('tout_employeur')
+    del commun.children['tout_employeur']
 
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
 
