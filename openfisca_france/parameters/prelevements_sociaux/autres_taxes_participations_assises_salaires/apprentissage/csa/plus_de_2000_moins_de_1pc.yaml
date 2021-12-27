@@ -1,5 +1,4 @@
 description: Taux pour les entreprises de plus de 2000 salariés et avec moins de 1% d'alternants
-unit: /1
 values:
   2011-01-01:
     value: 0.003
@@ -11,6 +10,7 @@ values:
     value: 0.006
 metadata:
   last_review: 2021-12-07
+  unit: /1
   reference:
     2014-01-01:
       - title: Article 230H - II-1º du CGI

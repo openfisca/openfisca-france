@@ -3,7 +3,7 @@ metadata:
   ux_name: Taxes d'apprentissage
   order:
   - apprentissage_taxe
-  - apprentissage_alsace_moselle
+  - apprentissage_taxe_alsace_moselle
   - apprentissage_contribution_additionnelle
-  - csa
+  - cotisation_supplementaire
   description_en: Apprenticeship tax (tax for the financing of apprenticeship)
