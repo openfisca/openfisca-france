@@ -1,0 +1,6 @@
+description: Gratification minimale d'un stagiaire (en % du Plafond de la Sécurité Sociale) - Marché du travail
+metadata:
+  ux_name: Gratification stagiaire
+  order:
+  - taux_gratification_min
+  description_en: Minimum compensation for interns
