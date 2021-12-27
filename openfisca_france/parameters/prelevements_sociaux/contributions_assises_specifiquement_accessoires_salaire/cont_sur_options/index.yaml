@@ -1,1 +1,7 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Contributions sur options et actions attribuées gratuitement (Taxes sur les accessoires du salaire)
+metadata:
+  ux_name: Options et actions
+  order:
+  - employeur
+  - salarie
+  description_en: Contribution levied on options and shares granted for free
