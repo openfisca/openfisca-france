@@ -31,9 +31,9 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     # Construction (avec renommage et effacement)
     commun.children.update(autres.construction.children)
-    commun.children['construction_plus_de_10_salaries'] = commun.children.pop('taux_plus_de_10_salaries')
-    commun.children['construction_plus_de_20_salaries'] = commun.children.pop('taux_plus_de_20_salaries')
-    commun.children['construction_plus_de_50_salaries'] = commun.children.pop('taux_plus_de_50_salaries')
+    commun.children['construction_plus_de_10_salaries'] = commun.children.pop('10_19_salaries')
+    commun.children['construction_plus_de_20_salaries'] = commun.children.pop('plus_20_salaries')
+    commun.children['construction_plus_de_50_salaries'] = commun.children.pop('plus_50_salaries')
     del commun.children['seuil']
     # Autres thématiques
     commun.children.update(chomage.ags.employeur.children)
