@@ -7,6 +7,9 @@ values:
   2015-01-01:
     value: null
 metadata:
+  ux_name: Taux
+  ipp_csv_id: dif_p10_p_0_
+  unit: /1
   reference:
     2015-01-01:
       title: Décret 2014-1240 du 24/10/2014, art. 9

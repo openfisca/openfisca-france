@@ -1,4 +1,4 @@
-description: Congés de formation
+description: Congés individuels de formation (plus de 10 salariés) - Participation des employeurs à la formation professionnelle continue (PEFPC)
 values:
   1972-01-01:
     value: null
@@ -11,6 +11,9 @@ values:
   2015-01-01:
     value: null
 metadata:
+  ux_name: Taux normal
+  ipp_csv_id: congform_p10_p_0_
+  unit: /1
   reference:
     2015-01-01:
       title: Décret 2014-1240 du 24/10/2014, art. 9

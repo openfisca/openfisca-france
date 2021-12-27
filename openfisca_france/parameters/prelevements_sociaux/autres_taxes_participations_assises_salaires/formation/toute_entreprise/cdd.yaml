@@ -1,9 +1,11 @@
-description: Taux pour les salariés en contrat à durée déterminée
-unit: /1
+description: Taux pour les salariés en contrat à durée déterminée (CDD) des taxes pour les congés individuels de formation, parmi les autres taxes et participations assises sur les salaires
 values:
   1990-07-14:
     value: 0.01
 metadata:
+  ux_name: Taux pour les CDD
+  unit: /1
+  ipp_csv_id: formcdd_p_0_
   reference:
     1990-07-14:
       title: Loi 90-613 du 12/07/1990, art. 25

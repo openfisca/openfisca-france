@@ -1,4 +1,4 @@
-description: Contribution sur contrats d'insertion en alternance
+description: Contribution sur contrats d'insertion en alternance (Moins de 10 salariés) -  Participation des employeurs à la formation professionnelle continue (PEFPC)
 values:
   1972-01-01:
     value: null
@@ -9,6 +9,9 @@ values:
   2008-05-01:
     value: null
 metadata:
+  ux_name: Taux
+  unit: /1
+  ipp_csv_id: altern_m10_p_0_
   reference:
     1993-01-01:
     - title: Loi 93-121 du 27/01/1993 , art. 92

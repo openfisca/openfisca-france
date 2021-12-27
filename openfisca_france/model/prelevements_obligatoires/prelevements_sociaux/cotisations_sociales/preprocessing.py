@@ -28,7 +28,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     del commun.children['cotisation_supplementaire']
 
     # Formation
-    commun.children.update(autres.formation.pefpc.children)
+    commun.children.update(autres.formation.employeur_tout_salaire.children)
 
     # Construction (avec renommage et effacement)
     commun.children.update(autres.construction.children)
