@@ -442,11 +442,11 @@ class contribution_formation_professionnelle(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         apprenti = individu('apprenti', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.formation.contribution_formation_professionnelle
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.contribution_unique_formation.contrib_formation_pro
 
         taux_contribution = (
-            (effectif_entreprise >= 11) * contribution.taux_11_salaries_et_plus
-            + (effectif_entreprise < 11) * not_(apprenti) * contribution.taux_moins_de_11_salaries
+            (effectif_entreprise >= 11) * contribution.11_salaries_et_plus
+            + (effectif_entreprise < 11) * not_(apprenti) * contribution.moins_11_salaries
             )
 
         return - taux_contribution * assiette_cotisations_sociales
