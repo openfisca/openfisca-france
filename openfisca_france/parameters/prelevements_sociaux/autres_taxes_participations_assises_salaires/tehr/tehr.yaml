@@ -5,15 +5,18 @@ brackets:
       value: 0.5
     2015-01-01:
       value: null
+      metadata:
+        ipp_csv_id: tehr_tx
   threshold:
     2013-01-01:
       value: 1000000.0
     2015-01-01:
       value: null
+      metadata:
+        ipp_csv_id: tehr_seuil
 metadata:
   ux_name: Taux
   last_review: 2021-12-27
-  ipp_csv_id: tehr
   threshold_unit: currency
   rate_unit: /1
   reference:
