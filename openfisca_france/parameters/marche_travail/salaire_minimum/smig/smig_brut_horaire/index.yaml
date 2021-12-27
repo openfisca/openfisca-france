@@ -1,0 +1,7 @@
+description: SMIG horaire brut (Salaire minimum garanti - 1950-1969) - Marché du travail
+metadata:
+  ux_name: SMIG Horaire
+  order:
+  - zone_sans_abattement
+  - zone_abattement_maximale
+  description_en: Minimum wage - SMIG (1950-1969)
