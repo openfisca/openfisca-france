@@ -14,6 +14,8 @@ brackets:
       value: 1
 metadata:
   last_review: 2021-12-07
+  ux_name: Entreprises de moins de 50 salariés
+  ipp_csv_id: fnal_p_m50_0_1
   threshold_unit: currency
   rate_unit: /1
   reference:

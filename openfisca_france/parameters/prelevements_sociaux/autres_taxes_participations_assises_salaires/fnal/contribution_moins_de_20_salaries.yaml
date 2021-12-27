@@ -17,7 +17,9 @@ brackets:
     2015-01-01:
       value: 1
 metadata:
+  ux_name: Entreprises de moins de 20 salariés
   threshold_unit: currency
+  ipp_csv_id: fnal_p_m20_0_1
   rate_unit: /1
   reference:
     2015-01-01:

@@ -7,7 +7,9 @@ brackets:
     2020-01-01:
       value: 0
 metadata:
+  ux_name: Entreprises de plus de 50 salariés
   last_review: 2021-12-07
+  ipp_csv_id: fnal_p_p50_0_
   threshold_unit: currency
   rate_unit: /1
   reference:
