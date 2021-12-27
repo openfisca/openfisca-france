@@ -280,7 +280,7 @@ class quotite_de_travail(Variable):
         contrat_de_travail = individu('contrat_de_travail', period)
         TypesContratDeTravail = contrat_de_travail.possible_values
         parameters = parameters(period)
-        heures_temps_plein = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
+        heures_temps_plein = parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
         forfait_jours_remuneres_volume = individu('forfait_jours_remuneres_volume', period)
         heures_remunerees_volume = individu('heures_remunerees_volume', period)
         return switch(

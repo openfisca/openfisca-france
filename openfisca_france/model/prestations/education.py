@@ -21,7 +21,7 @@ class bourse_college_echelon(Variable):
 
         # Les plafonds sont estimés en multiples du SMIC au 1er juillet de l'année n_2
         juillet_n_2 = period.n_2.first_month.offset(6, MONTH)
-        smic_juillet_n_2 = parameters(juillet_n_2).marche_travail.salaire_minimum.smic_h_b
+        smic_juillet_n_2 = parameters(juillet_n_2).marche_travail.salaire_minimum.smic.smic_b_horaire
 
         P_e3 = P.echelon_3
         plafonds_echelon_3_en_pourcent_smic = select(
@@ -186,7 +186,7 @@ class bourse_lycee_echelon(Variable):
 
         # Les plafonds sont estimés en multiples du SMIC au 1er juillet de l'année n_2
         juillet_n_2 = period.n_2.first_month.offset(6, MONTH)
-        smic_juillet_n_2 = parameters(juillet_n_2).marche_travail.salaire_minimum.smic_h_b
+        smic_juillet_n_2 = parameters(juillet_n_2).marche_travail.salaire_minimum.smic.smic_b_horaire
 
         P_e6 = P.echelon_6
         plafonds_echelon_6_en_pourcent_smic = select(

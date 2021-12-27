@@ -1,0 +1,63 @@
+description: Indice 2 de la Garantie Individuelle du Pouvoir d'Achat (GIPA) - Rémunération dans la fonction publique - Marché du travail
+values:
+  2019-01-01:
+    value: 56.2323  
+  2018-01-01:
+    value: 56.2044
+  2017-01-01:
+    value: 55.7302
+  2012-01-01:
+    value: 55.5635
+  2011-01-01:
+    value: 55.4253
+  2010-01-01:
+    value: 55.026
+  2009-01-01:
+    value: 54.6791
+  2008-01-01:
+    value: 54.3753
+metadata:
+  ux_name: Indice 2
+  unit: currency
+  reference:
+    2020-01-01: Arrêté du 23 octobre 2020
+    2019-01-01: Arrêté du 8 octobre 2019
+    2018-01-01: Arrêté du 5 novembre 2018
+    2017-01-01: Arrêté du 17/11/2017
+    2016-01-01: Arrêté du 27 juin 2016
+    2015-01-01: Arrêté du 4 février 2015
+    2014-01-01: Arrêté du 3 mars 2014
+    2013-01-01: Arrêté du 18 avril 2013
+    2012-01-01: Arrêté du 20 mars 2012
+    2011-01-01: Arrêté du 23 mars 2011
+    2010-01-01: Arrêté du 3 mai 2010
+    2009-01-01: Arrêté du 20/05/2009
+    2008-01-01:
+      title: Décret 2008-539 du 06/06/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000018934143
+  official_journal_date:
+    2020-01-01: 2020-10-25
+    2019-01-01: 2019-10-10
+    2018-01-01: 2018-11-07
+    2017-01-01: 2017-11-18
+    2016-01-01: 2016-06-28
+    2015-01-01: 2015-02-13
+    2014-01-01: 2014-03-12
+    2013-01-01: 2013-05-04
+    2012-01-01: 2012-04-12
+    2011-01-01: 2011-04-06
+    2010-01-01: 2010-05-22
+    2009-01-01: 2009-05-23
+    2008-01-01: 2008-06-07
+  notes:
+    2008-01-01: '"Ce dispositif n’a pas vocation à être pérenne, des mesures spécifiques étant prévues pour en traiter les causes."'
+  description_en: Guarantee of purchasing power (GIPA) (2008-2017)
+documentation: |
+  Notes :
+  GIPA = Garantie Individuelle du Pouvoir d'Achat - compense l'érosion des bas salaires de la FP due à l'inflation
+  G = TIB de l'année de début de la période de référence * (1 + inflation sur la période de référence) - TIB de l'année de fin de la période de référence.
+  (1) La période de référence s'étend sur 4 ans, du 31/12 de l'année de la date d'effet moins cinq ans, au 31/12 de l'année précédent la date d'effet (article 5 - décret n°2008-539)
+  (2) Inflation sur la période de référence = (Moyenne IPC de l'année de fin de la période de référence/Moyenne IPC de l'année de début de la période de référence) ― 1
+  (3) Le TIB de l'année pris en compte correspond à l'indice majoré détenu au 31 décembre de chacune des deux années bornant la période de référence multiplié par la valeur moyenne annuelle du point pour chacune de ces deux années.
+  (4) Les indices 1 et 2 réfèrent à la valeur annuelle moyenne du point d'indice, respectivement en début et en fin de période de référence
+  (5) Les bénéficiaires du GIPA ont un indice sommital maximum qui correspond à HEB

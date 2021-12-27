@@ -1,5 +1,14 @@
 # Changelog
 
+# 89.0.0 [#1754](https://github.com/openfisca/openfisca-france/pull/1754)
+
+* Évolution du système socio-fiscal. | Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/marche_travail`.
+* Détails :
+  - Harmonisation des paramètres déjà présent
+  - Ajout des paramètres issus des barèmes-ipp
+
 # 88.0.0 [#1753](https://github.com/openfisca/openfisca-france/pull/1753)
 
 * Amélioration technique. 

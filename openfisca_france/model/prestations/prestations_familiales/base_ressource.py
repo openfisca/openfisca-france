@@ -23,7 +23,7 @@ class autonomie_financiere(Variable):
         _P = parameters(period)
 
         nbh_travaillees = 169
-        smic_mensuel_brut = _P.marche_travail.salaire_minimum.smic_h_b * nbh_travaillees
+        smic_mensuel_brut = _P.marche_travail.salaire_minimum.smic.smic_b_horaire * nbh_travaillees
 
         return salaire_net_mensualise >= (_P.prestations_sociales.prestations_familiales.prestations_generales.af.seuil_rev_taux * smic_mensuel_brut)
 

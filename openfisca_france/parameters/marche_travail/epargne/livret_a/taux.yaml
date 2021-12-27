@@ -1,5 +1,4 @@
 description: Taux du livret A
-unit: /1
 values:
   1818-05-22:
     value: 0.05
@@ -85,3 +84,16 @@ values:
     value: 0.0075
   2020-02-01:
     value: 0.005
+metadata:
+  last_review: 2021-12-27
+  ux_name: Taux
+  unit: /1
+  reference:
+    2021-01-27:
+      title: JORF n°0036 du 11 février 2021
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000043114027/
+    2020-02-01: 
+      title: JORF n°0020 du 24 janvier 2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041460493
+documentation: |
+  Notes : Informations Service Public https://www.service-public.fr/particuliers/vosdroits/F2365

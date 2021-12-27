@@ -1,0 +1,8 @@
+description: Garantie Individuelle du Pouvoir d'Achat (GIPA) - Rémunération dans la fonction publique - Marché du travail
+metadata:
+  ux_name: Garantie Individuelle du Pouvoir d'Achat
+  order:
+  - indice_1
+  - indice_2
+  - inflation
+  description_en: Guarantee of purchasing power (GIPA) (2008-2017)

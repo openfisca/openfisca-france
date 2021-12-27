@@ -1,1 +1,6 @@
 description: Marché du travail
+metadata:
+  ux_name: Marché du travail
+  order:
+  - salaire_minimum
+  - remuneration_dans_fonction_publique

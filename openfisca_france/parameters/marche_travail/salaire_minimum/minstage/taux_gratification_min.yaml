@@ -1,0 +1,30 @@
+description: Gratification minimale d'un stagiaire (en % du Plafond de la Sécurité Sociale) - Marché du travail
+values:
+  2015-09-01:
+    value: 0.15
+  2015-01-01:
+    value: 0.1375
+  2008-02-01:
+    value: 0.125
+metadata:
+  ux_name: Part du PSS
+  last_review: 2021-12-27
+  unit: /1
+  reference:
+    2015-09-01:
+      - title: Décret 2014-1420 du 27/11/2014
+        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029813186
+      - title: Article L124-6 du Code de l'Education
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029234400/
+    2014-12-01:
+      title: Décret 2014-1420 du 27/11/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029813186
+    2006-07-01:
+      title: Décret 2006-757 du 29/06/2006
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000241055
+  official_journal_date:
+    2015-09-01: 2014-11-30
+    2014-12-01: 2014-11-30
+    2006-07-01: 2006-06-30
+  description_en: Minimum compensation for interns
+

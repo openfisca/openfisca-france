@@ -736,7 +736,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
                 (period.start.year if period.start.month >= 7 else period.start.year - 1,
                 7, 1))
 
-            smic_horaire_brut = parameters(last_july_first).marche_travail.salaire_minimum.smic_h_b
+            smic_horaire_brut = parameters(last_july_first).marche_travail.salaire_minimum.smic.smic_b_horaire
             travailleur_non_salarie = individu('travailleur_non_salarie', period)
             return travailleur_non_salarie * 1500 * smic_horaire_brut
 
@@ -780,7 +780,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
 
         age_demandeur = individu.famille.demandeur('age', period)
         age_conjoint = individu.famille.conjoint('age', period)
-        smic_horaire_brut_n2 = parameters(last_day_reference_year).marche_travail.salaire_minimum.smic_h_b
+        smic_horaire_brut_n2 = parameters(last_day_reference_year).marche_travail.salaire_minimum.smic.smic_b_horaire
 
         salaire_imposable_i = individu.famille.members('salaire_imposable', period.offset(-1))
         somme_salaires = individu.famille.sum(salaire_imposable_i, role = Famille.PARENT)

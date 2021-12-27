@@ -1,0 +1,14 @@
+description: Montant du supplément familial de traitement (SFT) (Rémunération dans la fonction publique - Marché du travail)
+metadata:
+  ux_name: Supplément familial de traitement
+  order:
+  - part_fixe_1
+  - part_fixe_2
+  - part_fixe_3
+  - part_fixe_4
+  - taux_2
+  - taux_3
+  - taux_4
+  - im_plancher
+  - im_plafond
+  description_en: Family income supplement (SFT) (1985-2017)

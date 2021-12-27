@@ -1,0 +1,10 @@
+description: Garanties minimales de ressources (GMR) - Marché du travail
+metadata:
+  ux_name: Garanties minimales de ressources 
+  order:
+  - rtt_avant_30_06_99_gmr1
+  - rtt_avant_30_06_00_gmr2
+  - rtt_avant_30_06_01_gmr3
+  - rtt_avant_30_06_02_gmr4
+  - rtt_apres_01_07_02_gmr5
+  description_en: Minimal ressources guarantee - GMR (2000-2004)

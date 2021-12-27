@@ -76,7 +76,7 @@ class coefficient_proratisation(Variable):
             weekmask='1111100'
             )
 
-        duree_legale_mensuelle = parameters(period).marche_travail.salaire_minimum.nb_heure_travail_mensuel
+        duree_legale_mensuelle = parameters(period).marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
 
         heures_temps_plein = switch(heures_duree_collective_entreprise,
                                     {0: duree_legale_mensuelle, 1: heures_duree_collective_entreprise})
@@ -295,8 +295,8 @@ class smic_proratise(Variable):
     def formula(individu, period, parameters):
         coefficient_proratisation = individu('coefficient_proratisation', period)
         parameters = parameters(period)
-        smic_horaire_brut = parameters.marche_travail.salaire_minimum.smic_h_b
-        nbh_travail = parameters.marche_travail.salaire_minimum.nb_heure_travail_mensuel
+        smic_horaire_brut = parameters.marche_travail.salaire_minimum.smic.smic_b_horaire
+        nbh_travail = parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
 
         smic_proratise = coefficient_proratisation * smic_horaire_brut * nbh_travail
 

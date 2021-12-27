@@ -1,0 +1,7 @@
+description:  Salaire minimum garanti - SMIG (1950-1969) - Marché du travail
+metadata:
+  ux_name: SMIG
+  order:
+  - smig_brut_horaire
+  - smig_brut_mensuel
+  description_en: Minimum wage - SMIG (1950-1969)

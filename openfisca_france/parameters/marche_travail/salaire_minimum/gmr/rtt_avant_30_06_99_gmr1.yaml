@@ -1,0 +1,42 @@
+description: RTT avant 30/06/99 (GMR1) - Garanties minimales de ressources (GMR) - Marché du travail
+values:
+  2005-07-01:
+    value: null
+  2004-07-01:
+    value: 1178.54
+  2003-07-01:
+    value: 1136.15
+  2002-07-01:
+    value: 1100.67
+  2002-01-01:
+    value: 1081.26
+  2001-07-01:
+    value: 7092.27
+  2000-07-01:
+    value: 6895.74
+  2000-01-01:
+    value: 6797.18
+metadata:
+  ux_name: RTT avant 30/06/99 (GMR1)
+  ipp_csv_id: GMR1
+  unit: currency
+  reference:
+    2005-07-01:
+      title: Loi 2000-37 du 19/01/2000, art. 32.
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006658125&cidTexte=JORFTEXT000000398162
+    2004-07-01: 
+      title: Ordonnance 2004-602 du 24/06/2004, art. 9
+    2003-07-01:
+      title: Loi 2003-47 du 17/01/2003, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006658848&cidTexte=JORFTEXT000000594652
+    2000-01-01:
+      title: Loi 2000-37 du 19/01/2000, art. 32
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006658125&cidTexte=JORFTEXT000000398162
+  official_journal_date:
+    2004-07-01: 2004-06-26
+    2003-07-01: 2003-01-18
+    2000-01-01: 2000-01-20
+  description_en: Minimal ressources guarantee - GMR (2000-2004)
+documentation: |
+  Notes:
+  Garanties minimales de ressources (GMR) sont des niveaux différents de Smic selon la date de passage aux 35h. Convergence des GMR et du SMIC au 1er juillet 2005.

@@ -30,7 +30,7 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
 
         self.open_api_config = {
             "variable_example": "rsa_montant",
-            "parameter_example": "marche_travail.salaire_minimum.smic_h_b",
+            "parameter_example": "marche_travail.salaire_minimum.smic.smic_b_horaire",
             "simulation_example": couple,
             }
 

@@ -1,0 +1,7 @@
+description: Point d'indice de la Fonction Publique (Rémunération dans la fonction publique - Marché du travail)
+metadata:
+  ux_name: Point d'indice
+  order:
+  - point_indice_en_euros
+  - point_indice_en_nominal
+  description_en: Index point of public sector (1970-2017)
