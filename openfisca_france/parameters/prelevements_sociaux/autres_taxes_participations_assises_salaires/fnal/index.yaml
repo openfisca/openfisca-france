@@ -3,8 +3,8 @@ metadata:
   ux_name: Fonds national d'aide au logement (FNAL)
   order:
   - tout_employeur
-  - entreprises_moins_20_salaries
-  - entreprises_plus_20_salaries
-  - entreprises_moins_50_salaries
-  - entreprises_plus_50_salaries
+  - contribution_moins_de_20_salaries
+  - contribution_plus_de_20_salaries
+  - contribution_moins_de_50_salaries
+  - contribution_plus_de_50_salaries
   description_en: Other payroll and workforce taxes

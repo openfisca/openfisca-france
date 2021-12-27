@@ -2,6 +2,6 @@ description: Contribution unique à la formation professionnelle et à l'alterna
 metadata:
   ux_name: CUFPA
   order:
-  - form_pro
+  - contrib_formation_pro
   - taxe_apprentissage
   description_en: Unique employer's participation to lifelong professional training and apprenticeship
