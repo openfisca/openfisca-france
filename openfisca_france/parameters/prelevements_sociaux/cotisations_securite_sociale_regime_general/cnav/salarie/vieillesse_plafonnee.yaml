@@ -40,6 +40,8 @@ brackets:
       value: 1.0
 metadata:
   ux_name: Taux sous plafond
+  ipp_csv_id:
+    rate: cnav_s_0_1
   last_review:
     2021-10-11
   rate_unit: /1
