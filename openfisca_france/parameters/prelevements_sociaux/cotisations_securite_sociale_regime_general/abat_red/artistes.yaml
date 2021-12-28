@@ -2,9 +2,10 @@ description: Abattement de Cotisations de sécurité sociale (SS) du régime gé
 values:
   1975-01-01:
     value: 0.3
-unit: /1
 metadata:
   ux_name: Artistes
+  ipp_csv_id: abat_a
+  unit: /1
   last_review:
     2016-01-01
   reference:
