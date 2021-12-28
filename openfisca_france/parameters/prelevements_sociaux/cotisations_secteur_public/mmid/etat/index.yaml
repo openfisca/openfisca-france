@@ -1,7 +1,7 @@
-description: Cotisations maladie spécifiques à la fonction publique
+description: Cotisations maladie spécifiques à la fonction publique - Fonction publique d'Etat
 metadata:
-  ux_name: Cotisations maladie
+  ux_name: Fonction publique d'Etat
   order:
-  - etat
-  - colloc
+  - sous_plafond
+  - tout_traitement
   description_en: Health insurance contributions
