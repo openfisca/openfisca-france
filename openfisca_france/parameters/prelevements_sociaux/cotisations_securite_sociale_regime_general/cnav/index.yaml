@@ -2,7 +2,7 @@ description: Cotisations de sécurité sociale (SS) du régime général pour la
 metadata:
   ux_name: Branche assurance vieillesse (CNAV)
   order:
-  - salaries
-  - employeurs
+  - salarie
+  - employeur
   - remise_forfaitaire_mensuelle_cotisation_salariale
   description_en: SSCs for old-age benefits (1967-2016)

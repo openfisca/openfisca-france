@@ -3,5 +3,5 @@ metadata:
   ux_name: Barème salarié
   order:
   - maladie
-  - reduction_plus_65ans
+  - reduction_plus_65_ans
   description_en: SSCs of the sickness scheme

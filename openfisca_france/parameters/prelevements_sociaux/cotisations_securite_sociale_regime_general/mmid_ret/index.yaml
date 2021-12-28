@@ -2,6 +2,6 @@ description:  Cotisations spéciales assurance maladie
 metadata:
   ux_name: Branche assurance maladie
   order:
-  - avantages_retraite
+  - avantages_de_retraite
   description_en: Special SSC on pension benefits for sickness insurance
 

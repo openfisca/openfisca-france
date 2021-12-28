@@ -13,7 +13,7 @@ values:
 metadata:
   ux_name: Presse périodique
   ipp_csv_id: acc_pp_p_0_1
-  unit: 1
+  unit: /1
   last_review:
     1974-01-01
   reference:
