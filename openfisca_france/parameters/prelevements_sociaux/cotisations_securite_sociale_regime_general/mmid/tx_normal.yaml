@@ -1,57 +1,13 @@
-description: Barème employeur des cotisations du régime d'assurance maladie
-brackets:
-- rate:
-    1967-10-01:
-      value: 0.095
-    1970-08-01:
-      value: 0.1025
-    1971-01-01:
-      value: 0.1045
-    1976-10-01:
-      value: 0.1095
-    1979-01-01:
-      value: 0.0895
-    1981-11-01:
-      value: 0.0545
-    1984-01-01:
-      value: null
-  threshold:
-    1967-10-01:
-      value: 0.0
-    1984-01-01:
-      value: null
-- rate:
-    1967-10-01:
-      value: 0.02
-    1976-01-01:
-      value: 0.025
-    1979-01-01:
-      value: 0.045
-    1981-11-01:
-      value: 0.08
-    1984-01-01:
-      value: 0.126
-    1992-01-01:
-      value: 0.128
-    2016-01-01:
-      value: 0.1284
-    2017-01-01:
-      value: 0.1289
-    2018-01-01:
-      value: 0.13
-  threshold:
-    1967-10-01:
-      value: 1.0
-    1984-01-01:
-      value: 0.0
+description: Taux normal (salaire supérieur à 2,5 Smic) des cotisations du régime d'assurance maladie
+values:
+  2019-01-01:
+    value: 0.13
 metadata:
-  ux_name: Barème employeur
-  ipp_csv_id:
-    rate: mmid_p_0_1, mmid_p_0_
+  ux_name: Taux normal
+  ipp_csv_id: mmid_p_250_
   last_review:
-    2021-10-29
-  rate_unit: /1
-  threshold_unit: PSS
+    1977-01-01
+  unit: /1
   reference:
     2019-01-01:
       title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018), art. 9
@@ -127,4 +83,4 @@ documentation: |
   En pratique, la plupart des salariés étant payés à la fin du mois, le nouveau taux a été appliqué à la majorité des rémunérations versées en novembre 1981; c'est pourquoi nous avons reporté le 1er novembre 1981 comme date d'effet.
   Cependant, l'ancien taux a été appliqué à toute rémunération versée avant le 14 novembre 1981.
   Les accomptes de paie, décalages de paie, rappels de salaire et indemnités de congés payés appellent des précisions quant à l'application de cette règle: voir Mémento pratique Francis Lefebvre, Paie 2012 (§28232 et 2825).
-  A partir de 2019, le taux réduit et le taux normal constitue bien des taux globaux d'imposition, et non des taux d'imposition par tranche, contrairement à précédemment.
+  A partir de 2019, le taux réduit et le taux normal constituent bien des taux globaux d'imposition, et non des taux d'imposition par tranche, contrairement à précédemment.

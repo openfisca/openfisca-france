@@ -1,6 +1,6 @@
 description: Barème salarié des cotisations du régime d'assurance maladie
 brackets:
-- rate: # Sous PSS
+- rate:
     1967-10-01:
       value: 0.025
     1976-10-01:
@@ -14,7 +14,7 @@ brackets:
       value: 0.0
     1980-01-01:
       value: null
-- rate: # Tout salaire
+- rate:
     2018-01-01:
       value: null
     1998-01-01:
@@ -44,8 +44,10 @@ brackets:
       value: null
 metadata:
   ux_name: Barème salarié
+  ipp_csv_id:
+    rate: mmid_s_0_1, mmid_s_0_
   last_review:
-    2021-08-10
+    2021-10-29
   rate_unit: /1
   threshold_unit: PSS
   reference:
@@ -53,6 +55,8 @@ metadata:
       title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018), art. 9
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358458&cidTexte=JORFTEXT000036339090
     2018-01-01:
+    - title: Article D242-3 du Code de la Sécurité Sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036679615/
     - title: Décret
       href: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1732212D/jo/texte
     - title: Décret 2017-1891 du 30/12/2017, art. 1
@@ -63,34 +67,17 @@ metadata:
     2016-01-01:
       title: Décret 2015-1852 du 29/12/2015
       href: https://www.legifrance.gouv.fr/eli/decret/2015/12/29/2015-1852/jo/texte
-    1998-01-01:
-      title: Décret 97-1249 du 29/12/1997
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000753405&categorieLien=id
-    1997-01-01:
-      title: Décret 96-1167 du 26/12/1996
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000197223&categorieLien=id
     1992-01-01:
       title: Décret 91-1388 du 31/12/1991
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000539214&categorieLien=id
-    1991-07-01:
-      title: Décret 91-614 du 28/06/1991
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000719897&categorieLien=id
-    1987-07-01:
-      title: Décret 87-453 du 29/06/1987
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516870&categorieLien=id
     1984-01-01: Décret 83-1198 du 30/12/1983
     1981-11-01:
       title: Décret 81-1013 du 13/11/1981
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000503485&categorieLien=id
-    1980-01-01: Décret 79-650 du 30/07/1979
     1979-08-01: Décret 79-650 du 30/07/1979
     1979-01-01: Décret 78-1213 du 26/12/1978
-    1977-07-01: Décret 77-677 du 29/06/1977
     1976-10-01: Décret 76-894 du 29/09/1976
     1976-01-01: Décret 75-1273 du 29/12/1975
-    1971-01-01: Décret 70-1316 du 23/12/1970
-    1970-08-01: Décret 70-680 du 30/07/1970
-    1968-07-01: Décret 68-579 du 29/06/1968
     1967-10-01:
       title: Décret 67-803 du 20/09/1967
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000330826
@@ -117,6 +104,11 @@ metadata:
     1968-07-01: 1968-06-30
     1967-10-01: 1967-09-24
   notes:
+    2019-01-01: Taux global de cotisation. À cela s'ajoute un allègement pour les salaires inférieurs à 2,5 Smic (Il s'agit de la transformation du CICE et CITS en baisse pérenne de cotisations employeur).
+    2018-01-01: Suppression des cotisations salariales MMID.
+    1981-11-01: Voir la note (ii) sur la date d'effet du nouveau taux.
+  description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+notes:
     2019-01-01: Taux réduit pour salaire inférieur à 2,5 Smic constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
     2018-01-01: Suppression des cotisations salariales MMID.
     1981-11-01: Voir la note (ii) sur la date d'effet du nouveau taux.
