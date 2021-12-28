@@ -2,6 +2,6 @@ description: Cotisations maladie spécifiques à la fonction publique (Fonction 
 metadata:
   ux_name: Fonction publique hospitalière et Collectivités locales
   order:
-  - etat
-  - colloc
+  - sous_plafond
+  - tout_traitement
   description_en: Health insurance contributions - local governments and hospital administration
