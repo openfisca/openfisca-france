@@ -2,5 +2,5 @@ description: Cotisations employeur au régime de Retraite additionnelle de la fo
 metadata:
   ux_name: Employeur
   order:
-  - raft
+  - rafp
   description_en: Contributions to the scheme of Additional pension

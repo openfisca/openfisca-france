@@ -22,8 +22,6 @@ brackets:
       value: 0.027
     1971-01-01:
       value: 0.021
-      metadata:
-        ipp_csv_id: ircantec_p_0_1_theo
   threshold:
     1971-01-01:
       value: 0.0
@@ -49,8 +47,6 @@ brackets:
       value: 0.0988
     2017-01-01:
       value: 0.1004
-      metadata:
-        ipp_csv_id: ircantec_p_1_4ou8_75_theo
   threshold:
     1971-01-01:
       value: 1.0
@@ -62,6 +58,8 @@ brackets:
       value: 8.0
 metadata:
   ux_name: Contribution employeur
+  ipp_csv_id:
+    rate: ircantec_p_0_1_theo, ircantec_p_1_4ou8_75_theo
   threshold_unit: PSS
   rate_unit: /1
   last_review: 2021-08-24

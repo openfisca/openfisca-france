@@ -3,5 +3,5 @@ metadata:
   ux_name: Régime de retraite
   order:
   - cotisations_employes
-  - cotisations_employeurs
+  - cotisations_employeur
   description_en: Contributions to the SNCF scheme (public railway company)

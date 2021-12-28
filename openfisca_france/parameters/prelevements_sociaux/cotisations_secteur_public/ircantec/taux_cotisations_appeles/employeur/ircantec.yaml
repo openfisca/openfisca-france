@@ -30,8 +30,6 @@ brackets:
       value: 0.016800000000000002
     1971-01-01:
       value: 0.0126
-      metadata:
-        ipp_csv_id: ircantec_p_0_1
   threshold:
     1971-01-01:
       value: 0.0
@@ -57,8 +55,6 @@ brackets:
       value: 0.11549999999999999
     1971-01-01:
       value: null
-      metadata:
-        ipp_csv_id: ircantec_p_1_8
   threshold:
     1971-01-01:
       value: 1.0
@@ -75,14 +71,14 @@ brackets:
       value: 0.066
     1971-01-01:
       value: 0.0495
-      metadata:
-        ipp_csv_id: ircantec_p_1_4_75
   threshold:
     1971-01-01:
       value: 8.0
 metadata:
   ux_name: Contribution employeur
   last_review: 2021-08-24
+  ipp_csv_id:
+    rate: ircantec_p_0_1, ircantec_p_1_8, ircantec_p_1_4_75
   threshold_unit: PSS
   rate_unit: /1
   reference:

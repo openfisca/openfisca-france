@@ -3,5 +3,4 @@ metadata:
   ux_name: Cotisations retraite
   order:
   - ati
-  - pension
   description_en: Contributions for pensions - central government
