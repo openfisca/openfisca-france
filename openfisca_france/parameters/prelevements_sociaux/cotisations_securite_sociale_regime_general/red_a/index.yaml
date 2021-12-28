@@ -1,4 +1,10 @@
 description: Cotisations de sécurité sociale (SS) des artistes du spectacle (1960-1974)
 metadata:
-  ux_name: Cotisations artistes 
+  ux_name: Cotisations artistes
+  order:
+  - assurance_maladie
+  - assurance_vieillesse
+  - accidents_travail
+  - allocations_familiales
+  - assurances_sociales_avant_1967
   description_en: SSCs for artists (1960-1974)

@@ -1,5 +1,4 @@
 description: Taux employé des cotisations de sécurité sociale (SS) des artistes du spectacle (1960-1974) pour l'assurance maladie, sur tout salaire
-unit: /1
 values:
   1960-01-01:
     value: null
@@ -7,6 +6,8 @@ values:
     value: 0.007
 metadata:
   ux_name: Taux employé
+  ipp_csv_id: mmid_a_s_0_
+  unit: /1
   last_review:
     1967-01-01
   reference:

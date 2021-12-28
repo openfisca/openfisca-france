@@ -1,5 +1,4 @@
 description: Cotisations employé (de pluss de 65 ans, en Alscace-Moselle) Cotisations de sécurité sociale (SS) des artistes du spectacle, assurances sociales avant 1967, sous le plafond de la sécurité sociale (PSS)
-unit: /1
 values:
   1960-01-01:
     value: 0.021
@@ -7,6 +6,8 @@ values:
     value: null
 metadata:
   ux_name: Plus de 65 ans
+  ipp_csv_id: css_a_s65_s_0_1
+  unit: /1
   last_review:
     1967-01-01
   reference:
