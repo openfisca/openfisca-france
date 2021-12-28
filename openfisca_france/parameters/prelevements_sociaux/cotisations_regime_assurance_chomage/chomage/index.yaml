@@ -2,6 +2,6 @@ description: Cotisations au régime de l'assurance chômage
 metadata:
   ux_name: Cotisations assurance chômage
   order:
-  - salaries
-  - employeurs
+  - salarie
+  - employeur
   description_en: Unemployment insurance scheme contribution
