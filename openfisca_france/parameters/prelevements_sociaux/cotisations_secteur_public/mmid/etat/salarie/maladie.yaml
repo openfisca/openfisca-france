@@ -9,13 +9,12 @@ brackets:
     1981-11-01:
       value: 0.08
     1984-01-01:
-      value: 0.115
-    2018-01-01:
-      value: 0.0988
+      value: 0.097
   threshold:
     1967-10-01:
       value: 0.0
 metadata:
-  ux_name: Fonction publique hospitalière et Collectivités locales
-  description: Cotisations maladie spécifiques à la fonction publique hospitalière et Collectivités locales
+  ux_name: fonction publique d'Etat
+  description: Cotisations maladie spécifiques à la fonction publique d'Etat
   last_review: 2021-08-24
+

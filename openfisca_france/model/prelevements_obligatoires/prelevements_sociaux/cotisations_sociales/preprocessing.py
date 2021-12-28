@@ -111,7 +111,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['fonc'].children['colloc'].children['hospitaliere'] = public.cnracl.employeur.hospitaliere
     pat.children['fonc'].children['colloc'].children['territoriale'] = public.cnracl.employeur.territoriale
     pat.children['fonc'].children['colloc'].children.update(public.cnracl.employeur.children)
-    pat.children['fonc'].children['colloc'].children.update(public.mmid.colloc.children)
+    pat.children['fonc'].children['colloc'].children.update(public.mmid.colloc.tout_traitement.children)
     pat.children['fonc'].children['colloc'].children.update(public.rafp.employeur.children)
 
     # Renaming
@@ -234,6 +234,7 @@ def build_sal(node_json):
 
     # Collectivités Locales
     sal.children['fonc'].children['colloc'].children.update(public.cnracl.salarie.children)
+    sal.children['fonc'].children['colloc'].children.update(public.mmid.colloc.tout_traitement.salarie.children)
     sal.children['public_titulaire_territoriale'] = sal.children['fonc'].children['colloc']
     sal.children['public_titulaire_hospitaliere'] = sal.children['fonc'].children['colloc']
 
