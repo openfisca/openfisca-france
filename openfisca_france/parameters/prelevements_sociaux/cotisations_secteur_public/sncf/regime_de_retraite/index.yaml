@@ -1,1 +1,7 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Régime de retraite des cotisations du régime de la SNCF - Cotisations spécifiques à la fonction publique
+metadata:
+  ux_name: Régime de retraite
+  order:
+  - cotisations_employes
+  - cotisations_employeurs
+  description_en: Contributions to the SNCF scheme (public railway company)
