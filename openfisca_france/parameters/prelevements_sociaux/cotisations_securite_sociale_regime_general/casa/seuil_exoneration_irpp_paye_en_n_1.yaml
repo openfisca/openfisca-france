@@ -1,17 +1,11 @@
-description: Contribution additionnelle solidarité autonomie (CASA) sur les pensions de retraite, préretraite et d'invalidité
-brackets:
-- rate:
-    2013-04-01:
-      value: 0.003
-  threshold:
-    2013-04-01:
-      value: 0.0
+description: Seuil d'exonération (sur l'IRPP payé en N-1) de la Contribution SS additionnelle solidarité autonomie (CASA)
+values:
+  2013-04-01:
+    value: 61.0
 metadata:
-  ux_name: Taux CASA
-  rate_unit: /1
-  threshold_unit: PSS
-  ipp_csv_id: 
-    rate: casa_pens
+  ux_name: Seuil d'exonération (sur l'IRPP payé en N-1)
+  unit: currency
+  ipp_csv_id: casa_seuil
   last_review:
     2021-12-07
   reference:

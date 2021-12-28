@@ -1,17 +1,24 @@
-description: Contribution additionnelle solidarité autonomie (CASA) sur les pensions de retraite, préretraite et d'invalidité
-brackets:
-- rate:
-    2013-04-01:
-      value: 0.003
-  threshold:
-    2013-04-01:
-      value: 0.0
+description: Seuil d'exonération (RFR pour 1 part de QF en N-2) de la Contribution SS additionnelle solidarité autonomie (CASA)
+values:
+  2021-01-01:
+    value: 14914.0
+  2020-01-01:
+    value: 14781.0
+  2019-01-01:
+    value: 14548.0
+  2018-01-01:
+    value: 14404.0
+  2017-01-01:
+    value: 14375.0
+  2016-04-01:
+    value: 13956.0
+  2015-01-01:
+    value: 13900.0
+  2013-04-01:
+    value: null
 metadata:
-  ux_name: Taux CASA
-  rate_unit: /1
-  threshold_unit: PSS
-  ipp_csv_id: 
-    rate: casa_pens
+  ux_name: Seuil d'exonération (RFR pour 1 part de QF en N-2)
+  unit: currency
   last_review:
     2021-12-07
   reference:
