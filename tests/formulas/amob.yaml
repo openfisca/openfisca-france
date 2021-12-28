@@ -9,8 +9,8 @@
     nuitees: [3, 3]
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
-    stagiaire: [False, False]
-    en_contrat_aide: [False, False]
+    stagiaire: [false, false]
+    en_contrat_aide: [false, false]
     allocation_retour_emploi: [29.56, 29.57]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
@@ -24,7 +24,7 @@
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
     aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
-    aide_mobilite_eligible: [True, False]
+    aide_mobilite_eligible: [true, false]
     aide_mobilite: [156.2, 0]
 
 
@@ -39,22 +39,22 @@
     nuitees: [3, 3]
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_4, categorie_4]
-    stagiaire: [True, False]
-    en_contrat_aide: [False, False]
+    stagiaire: [true, false]
+    en_contrat_aide: [false, false]
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
     lieu_emploi_ou_formation: [la_reunion, guyane]
-    formation_validee_par_PoleEmploi: [True, True]
-    formation_financee_ou_cofinancee: [True, True]
+    formation_validee_par_PoleEmploi: [true, true]
+    formation_financee_ou_cofinancee: [true, true]
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
     aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
-    aide_mobilite_eligible: [True, False]
+    aide_mobilite_eligible: [true, false]
     aide_mobilite: [148.2, 0]
 
 - name: Test 03 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie 5 contrat aidé / ou non
@@ -68,22 +68,22 @@
     nuitees: [3, 3]
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_5, categorie_5]
-    stagiaire: [False, False]
-    en_contrat_aide: [True, False]
+    stagiaire: [false, false]
+    en_contrat_aide: [true, false]
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
     lieu_emploi_ou_formation: [guadeloupe, saint_martin]
-    formation_validee_par_PoleEmploi: [True, True]
-    formation_financee_ou_cofinancee: [True, True]
+    formation_validee_par_PoleEmploi: [true, true]
+    formation_financee_ou_cofinancee: [true, true]
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
     aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
-    aide_mobilite_eligible: [True, False]
+    aide_mobilite_eligible: [true, false]
     aide_mobilite: [148.2, 0]
 
 
@@ -98,22 +98,22 @@
     nuitees: 3
     repas: 9
     pole_emploi_categorie_demandeur_emploi: categorie_test
-    stagiaire: False
-    en_contrat_aide: False
+    stagiaire: false
+    en_contrat_aide: false
     allocation_retour_emploi: 14.77
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
     types_contrat: aucune_activite
     contrat_de_travail_duree: 0
     lieu_emploi_ou_formation: saint_bartelemy
-    formation_validee_par_PoleEmploi: True
-    formation_financee_ou_cofinancee: True
+    formation_validee_par_PoleEmploi: true
+    formation_financee_ou_cofinancee: true
     contrat_de_travail_debut: ''
     date_debut_type_activite_en_recherche_emploi: '2021-01-08'
     aide_mobilite_date_demande: '2021-01-14'
     aide_mobilite_montant_percu_12_derniers_mois: 0
   output:
-    aide_mobilite_eligible: False
+    aide_mobilite_eligible: false
     aide_mobilite: 0
 
 
@@ -128,22 +128,22 @@
     nuitees: [3, 3]
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
-    stagiaire: [False, False]
-    en_contrat_aide: [False, False]
+    stagiaire: [false, false]
+    en_contrat_aide: [false, false]
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
     lieu_emploi_ou_formation: [mayotte, france_hors_corse]
-    formation_validee_par_PoleEmploi: [True, True]
-    formation_financee_ou_cofinancee: [True, True]
+    formation_validee_par_PoleEmploi: [true, true]
+    formation_financee_ou_cofinancee: [true, true]
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-15']
     aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
-    aide_mobilite_eligible: [True, False]
+    aide_mobilite_eligible: [true, false]
     aide_mobilite: [148.2, 0]
 
 
@@ -158,22 +158,22 @@
     nuitees: [3, 3]
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
-    stagiaire: [False, False]
-    en_contrat_aide: [False, False]
+    stagiaire: [false, false]
+    en_contrat_aide: [false, false]
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
     lieu_emploi_ou_formation: [metropole, metropole]
-    formation_validee_par_PoleEmploi: [True, True]
-    formation_financee_ou_cofinancee: [True, True]
+    formation_validee_par_PoleEmploi: [true, true]
+    formation_financee_ou_cofinancee: [true, true]
     contrat_de_travail_debut: ['', '']
     date_debut_type_activite_en_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
     aide_mobilite_montant_percu_12_derniers_mois: [4900, 4000]
   output:
-    aide_mobilite_eligible: [True, True]
+    aide_mobilite_eligible: [true, true]
     aide_mobilite: [100, 148.2]
 
 
@@ -188,8 +188,8 @@
     nuitees: [3, 3, 3]
     repas: [9, 9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1]
-    stagiaire: [False, False, False]
-    en_contrat_aide: [False, False, False]
+    stagiaire: [false, false, false]
+    en_contrat_aide: [false, false, false]
     allocation_retour_emploi: [14.77, 14.77, 14.77]
     contexte_activite_pole_emploi: [formation, formation, formation]
     types_activite_en_recherche_emploi: [indetermine, indetermine, indetermine]
@@ -198,14 +198,14 @@
     contrat_de_travail_duree: [0, 0, 0]
     duree_formation: [40, 40, 39]
     lieu_emploi_ou_formation: [metropole, metropole, metropole]
-    formation_validee_par_PoleEmploi: [True, True, True]
-    formation_financee_ou_cofinancee: [True, True, True]
+    formation_validee_par_PoleEmploi: [true, true, true]
+    formation_financee_ou_cofinancee: [true, true, true]
     contrat_de_travail_debut: ['2021-01-08', '2021-01-08', '2021-01-15']
     date_debut_type_activite_en_recherche_emploi: ['', '', '']
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14', '2021-01-14']
     aide_mobilite_montant_percu_12_derniers_mois: [5000, 4000, 4000]
   output:
-    aide_mobilite_eligible: [False, True, False]
+    aide_mobilite_eligible: [false, true, false]
     aide_mobilite: [0, 148.2, 0]
 
 
@@ -220,8 +220,8 @@
     nuitees: [3, 3, 3, 3]
     repas: [9, 9, 9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_1, categorie_1]
-    stagiaire: [False, False, False, False]
-    en_contrat_aide: [False, False, False, False]
+    stagiaire: [false, false, false, false]
+    en_contrat_aide: [false, false, false, false]
     allocation_retour_emploi: [14.77, 14.77, 14.77, 14.77]
     contexte_activite_pole_emploi: [reprise_emploi, reprise_emploi, recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [indetermine, indetermine, concours_public, concours_public]
@@ -230,14 +230,14 @@
     contrat_de_travail_duree: [0, 0, 0, 0]
     duree_formation: [0, 0, 0, 0]
     lieu_emploi_ou_formation: [metropole, metropole, metropole, metropole]
-    formation_validee_par_PoleEmploi: [True, True, True, True]
-    formation_financee_ou_cofinancee: [True, True, True, True]
+    formation_validee_par_PoleEmploi: [true, true, true, true]
+    formation_financee_ou_cofinancee: [true, true, true, true]
     contrat_de_travail_debut: ['2021-01-02', '2021-01-01', '', '']
     date_debut_type_activite_en_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
     aide_mobilite_date_demande: ['2021-01-01', '2021-02-02', '2021-01-07', '2021-01-08']
     aide_mobilite_montant_percu_12_derniers_mois: [4000, 4000, 4900, 4000]
   output:
-    aide_mobilite_eligible: [True, False, True, False]
+    aide_mobilite_eligible: [true, false, true, false]
     aide_mobilite: [148.2, 0, 100, 0]
 
 
@@ -252,8 +252,8 @@
     nuitees: [3, 3, 3, 3]
     repas: [9, 9, 9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_5, categorie_1]
-    stagiaire: [False, False, False, False]
-    en_contrat_aide: [False, False, True, False]
+    stagiaire: [false, false, false, false]
+    en_contrat_aide: [false, false, true, false]
     allocation_retour_emploi: [14.77, 14.77, 29.56, 14.77]
     contexte_activite_pole_emploi: [formation, reprise_emploi, recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [indetermine, indetermine, entretien_embauche, concours_public]
@@ -262,14 +262,14 @@
     contrat_de_travail_duree: [0, 0, 3, 0]
     duree_formation: [40, 0, 0, 0]
     lieu_emploi_ou_formation: [metropole, metropole, metropole, metropole]
-    formation_validee_par_PoleEmploi: [True, True, True, True]
-    formation_financee_ou_cofinancee: [True, True, True, True]
+    formation_validee_par_PoleEmploi: [true, true, true, true]
+    formation_financee_ou_cofinancee: [true, true, true, true]
     contrat_de_travail_debut: ['2021-01-01', '2021-01-01', '', '']
     date_debut_type_activite_en_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
     aide_mobilite_date_demande: ['2021-01-15', '2021-02-02', '2021-01-04', '2021-01-09']
     aide_mobilite_montant_percu_12_derniers_mois: [4000, 4000, 4900, 4000]
   output:
-    aide_mobilite_eligible: [True, False, True, False]
+    aide_mobilite_eligible: [true, false, true, false]
     aide_mobilite: [148.2, 0, 100, 0]
 
 
@@ -284,8 +284,8 @@
     nuitees: [3, 3, 3, 3]
     repas: [9, 9, 9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1, categorie_5, categorie_9]
-    stagiaire: [False, False, False, False]
-    en_contrat_aide: [False, False, True, False]
+    stagiaire: [false, false, false, false]
+    en_contrat_aide: [false, false, true, false]
     allocation_retour_emploi: [14.77, 14.77, 29.56, 34.77]
     contexte_activite_pole_emploi: [formation, reprise_emploi, recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [indetermine, indetermine, entretien_embauche, concours_public]
@@ -294,15 +294,15 @@
     contrat_de_travail_duree: [0, 0, 3, 0]
     duree_formation: [40, 0, 0, 0]
     lieu_emploi_ou_formation: [metropole, metropole, metropole, france_hors_dom_corse]
-    formation_validee_par_PoleEmploi: [True, True, True, True]
-    formation_financee_ou_cofinancee: [True, True, True, True]
+    formation_validee_par_PoleEmploi: [true, true, true, true]
+    formation_financee_ou_cofinancee: [true, true, true, true]
     contrat_de_travail_debut: ['2021-01-01', '2021-01-01', '', '']
     date_debut_type_activite_en_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
     aide_mobilite_date_demande: ['2021-01-14', '2021-02-02', '2021-01-04', '2021-01-04']
   output:
-    aide_mobilite_eligible: [True, False, True, False]
+    aide_mobilite_eligible: [true, false, true, false]
     aide_mobilite: [148.2, 0, 156.2, 0]
-    aide_mobilite_bon_de_transport: [False, False, False, True]
+    aide_mobilite_bon_de_transport: [false, false, false, true]
 
 
 - name: Test 11 - Vérifie le calcul de l'AMOB - Hors metropole - distance respectée
@@ -330,5 +330,4 @@
     aide_mobilite_date_demande: '2021-01-24'
     aide_mobilite_montant_percu_12_derniers_mois: 0
   output:
-    aide_mobilite_eligible: True
-#    aide_mobilite: 500.0
+    aide_mobilite_eligible: true
