@@ -5,8 +5,6 @@ brackets:
         value: 0.05
       1968-01-01:
         value: null
-        metadata:
-          ipp_csv_id: vf1
     threshold:
       1949-01-01:
         value: 0
@@ -16,9 +14,7 @@ brackets:
       1957-01-01:
         value: 0.10
       1968-01-01:
-        value: null
-        metadata:
-          ipp_csv_id: vf_maj
+        value: null    
     threshold:
       1949-01-01:
         value: null
@@ -26,17 +22,13 @@ brackets:
         value: 3000000.0
       1968-01-01:
         value: null
-        metadata:
-          ipp_csv_id: vf_plaf1  
   - rate:
       1949-01-01:
         value: null
       1957-01-01:
         value: 0.16
       1968-01-01:
-        value: null
-        metadata:
-          ipp_csv_id: vf_maj2
+        value: null   
     threshold:
       1949-01-01:
         value: null
@@ -44,12 +36,13 @@ brackets:
         value: 6000000.0
       1968-01-01:
         value: null
-        metadata:
-          ipp_csv_id: vf_plaf2
 metadata:
-  ux_name:
+  ux_name: Barème
   rate_unit: /1
   threshold_unit: currency
+  ipp_csv_id:
+    rate: vf1, vf_maj, vf_maj2
+    threshold: vf_plaf1, vf_plaf2
   reference:
     1968-01-01: Loi 68-878 du 09/10/1968
     1957-01-01:

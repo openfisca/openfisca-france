@@ -9,8 +9,6 @@ brackets:
 - rate:
     1968-11-01:
       value: 0.0425
-      metadata:
-        ipp_csv_id: taxsal1
   threshold:
     1968-11-01:
       value: 30000.0
@@ -78,13 +76,9 @@ brackets:
       value: 8004.0
     2021-01-01:
       value: 8020.0
-      metadata:
-        ipp_csv_id: taxsal_plaf1
 - rate:
     1968-11-01:
       value: 0.0935
-      metadata:
-        ipp_csv_id: taxsal_maj2
   threshold:
     1968-11-01:
       value: 60000.0
@@ -152,8 +146,6 @@ brackets:
       value: 15981.0
     2021-01-01:
       value: 16013.0
-      metadata:
-        ipp_csv_id: taxsal_plaf2
 - rate:
     1968-11-01:
       value: null
@@ -161,8 +153,6 @@ brackets:
       value: 0.1575
     2018-01-01:
       value: null
-      metadata:
-        ipp_csv_id: taxsal_maj3
   threshold:
     2013-01-01:
       value: 150000.0
@@ -176,11 +166,12 @@ brackets:
       value: 152279
     2018-01-01:
       value: null
-      metadata:
-        ipp_csv_id: taxsal_plaf3
 metadata:
-  threshold_unit: currency
   rate_unit: /1
+  threshold_unit: currency
+  ipp_csv_id:
+    rate: taxsal1, taxsal2, taxsal3
+    threshold: taxsal_plaf1, taxsal_plaf2, taxsal_plaf3
   reference:
     2020-01-01: 
     - title: BOI-TPS-TS-40 du 24/06/2020 
