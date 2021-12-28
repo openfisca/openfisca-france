@@ -7,10 +7,14 @@ brackets:
       value: 0.01
     1967-10-01:
       value: 0.015
+    1986-01-11:
+      value: null
   threshold:
     1989-09-01:
       value: 0.0
 - rate:
+    1946-07-01:
+      value: null
     1986-01-11:
       value: 0.015
     1989-09-01:
@@ -42,6 +46,8 @@ metadata:
   ux_name: Barème salarié
   last_review:
     2021-08-05
+  ipp_csv_id:
+    rate: am_s_0_1, am_s_0_
   rate_unit: /1
   threshold_unit: PSS
   reference:

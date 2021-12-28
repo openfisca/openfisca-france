@@ -1,6 +1,7 @@
 description: Cotisations sur les avantages vieillesse du régime local d'assurance maladie d'Alsace et Moselle
-unit: /1
 values:
+  1946-07-01:
+    value: null
   1989-09-01:
     value: 0.007
   1994-01-01:
@@ -20,7 +21,9 @@ values:
   2012-01-01:
     value: 0.015
 metadata:
-  ux_name: Cotisations sur les avantages vieillesse
+  ux_name: Cotis. Avantages vieillesse
+  ipp_csv_id: am_pens
+  unit: /1
   last_review:
     1986-01-01
   reference:
