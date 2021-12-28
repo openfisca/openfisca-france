@@ -7,8 +7,6 @@ brackets:
       value: 0.01
     1967-10-01:
       value: 0.015
-    1986-01-11:
-      value: null
   threshold:
     1989-09-01:
       value: 0.0
