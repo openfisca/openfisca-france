@@ -1,10 +1,8 @@
 from datetime import date
 import numpy as np
 from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, \
-    set_input_dispatch_by_period, set_input_divide_by_period, min_
+    set_input_dispatch_by_period, set_input_divide_by_period, min_, select
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
-from openfisca_france.model.prestations.agepi import TypesCategoriesDemandeurEmploi, TypesContrat, \
-    TypesLieuEmploiFormation
 
 
 class aide_mobilite_date_demande(Variable):
@@ -23,6 +21,120 @@ class aide_mobilite_montant_percu_12_derniers_mois(Variable):
     label = "Le montant de l'aide à la mobilité déjà perçu au cours des 12 derniers mois"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
+
+class TypesCategoriesDemandeurEmploi(Enum):
+    __order__ = 'pas_de_categorie categorie_1 categorie_2 categorie_3 categorie_4 categorie_5 categorie_6 categorie_7 categorie_8' \
+                # Needed to preserve the enum order in Python 2
+    pas_de_categorie = "Aucune catégorie"
+    categorie_1 = "Catégorie 1 - Personnes sans emploi, immédiatement disponibles en recherche de CDI plein temps."
+    categorie_2 = "Catégorie 2 - Personnes sans emploi, immédiatement disponibles en recherche de CDI à temps partiel."
+    categorie_3 = "Catégorie 3 - Personnes sans emploi, immédiatement disponibles en recherche de CDD."
+    categorie_4 = "Catégorie 4 - Personnes sans emploi, non immédiatement disponibles et à la recherche d’un emploi."
+    categorie_5 = "Catégorie 5 - Personnes non immédiatement disponibles, parce que titulaires d'un ou de plusieurs emplois, et à la recherche d'un autre emploi."
+    categorie_6 = "Catégorie 6 - Personnes non immédiatement disponibles, en recherche d'un autre emploi en CDI à plein temps."
+    categorie_7 = "Catégorie 7 - Personnes non immédiatement disponibles, en recherche d'un autre emploi en CDI à temps partiel."
+    categorie_8 = "Catégorie 8 - Personnes non immédiatement disponibles, en recherche d'un autre emploi en CDD."
+
+
+class pole_emploi_categorie_demandeur_emploi(Variable):
+    reference = [
+        "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-n2016-33-du-6-octobr.html?type=dossiers/2016/bope-n2016-80-du-17-novembre-201#",
+        "Annexe 3 : la fiche 3 - Les effets de l’inscription"
+        ]
+    value_type = Enum
+    possible_values = TypesCategoriesDemandeurEmploi
+    default_value = TypesCategoriesDemandeurEmploi.pas_de_categorie
+    entity = Individu
+    label = "Le classement des demandeurs d’emploi dans les différentes catégories d’inscription à Pôle Emploi"
+    definition_period = MONTH
+
+
+class TypesContrat(Enum):
+    __order__ = 'aucun cdi cdd ctt formation'  # Needed to preserve the enum order in Python 2
+    aucun = "Aucun contrat"
+    cdi = "Contrat à durée indéterminé (CDI)"
+    cdd = "Contrat à durée déterminé (CDD)"
+    ctt = "Contrat de travail temporaire (CTT)"
+    formation = "Formation"
+
+
+class types_contrat(Variable):
+    value_type = Enum
+    possible_values = TypesContrat
+    default_value = TypesContrat.aucun
+    entity = Individu
+    label = "Types de contrat"
+    definition_period = MONTH
+
+
+class duree_formation(Variable):
+    value_type = float
+    entity = Individu
+    label = "Durée de la formation en heures"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+
+class en_contrat_aide(Variable):
+    value_type = bool
+    entity = Individu
+    label = "L'individu est en contrat aidé"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
+class TypesLieuEmploiFormation(Enum):
+    non_renseigne = "Non renseigné"
+    metropole = "Métropole"
+    france_hors_dom_corse = "France hors DOM et hors Corse"
+    guadeloupe = "Guadeloupe"
+    martinique = "Martinique"
+    guyane = "Guyane"
+    la_reunion = "La réunion"
+    saint_pierre_et_miquelon = "Saint Pierre et Miquelon"
+    mayotte = "Mayotte"
+    saint_bartelemy = "Saint Bartelemy"
+    saint_martin = "Saint Martin"
+
+
+class lieu_emploi_ou_formation(Variable):
+    value_type = Enum
+    possible_values = TypesLieuEmploiFormation
+    default_value = TypesLieuEmploiFormation.non_renseigne
+    entity = Individu
+    label = "Zone de l'emploi ou de la formation"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula(individu, period, parameters):
+        return select(
+            [
+                individu('lieu_emploi_formation_metropole', period),
+                individu('lieu_emploi_formation_france_hors_dom_corse', period),
+                individu('lieu_emploi_formation_guadeloupe', period),
+                individu('lieu_emploi_formation_martinique', period),
+                individu('lieu_emploi_formation_guyane', period),
+                individu('lieu_emploi_formation_reunion', period),
+                individu('lieu_emploi_formation_saint_pierre_et_miquelon', period),
+                individu('lieu_emploi_formation_mayotte', period),
+                individu('lieu_emploi_formation_saint_bartelemy', period),
+                individu('lieu_emploi_formation_saint_martin', period)
+                ],
+            [
+                TypesLieuEmploiFormation.metropole,
+                TypesLieuEmploiFormation.france_hors_dom_corse,
+                TypesLieuEmploiFormation.guadeloupe,
+                TypesLieuEmploiFormation.martinique,
+                TypesLieuEmploiFormation.guyane,
+                TypesLieuEmploiFormation.la_reunion,
+                TypesLieuEmploiFormation.saint_pierre_et_miquelon,
+                TypesLieuEmploiFormation.mayotte,
+                TypesLieuEmploiFormation.saint_bartelemy,
+                TypesLieuEmploiFormation.saint_martin
+                ],
+            default=TypesLieuEmploiFormation.non_renseigne
+            )
 
 
 class date_debut_type_activite_en_recherche_emploi(Variable):
