@@ -97,15 +97,15 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['fonc'].children['contract'].children.update(commun.children)
 
     # Etat
-    pat.children['fonc'].children['militaire'].children.update(public.mmid.etat.tout_traitement.employeur.children)
-    # pat.children['fonc'].children['militaire'].children.update(public.mmid.etat.sous_plafond.employeur.children)
+    pat.children['fonc'].children['etat'].children.update(public.mmid.etat.tout_traitement.employeur.children)
+    pat.children['fonc'].children['etat'].children.update(public.mmid.etat.sous_plafond.employeur.children)
     pat.children['fonc'].children['etat'].children.update(public.rafp.employeur.children)
     pat.children['fonc'].children['etat'].children.update(public.retraite.ati.children)
     pat.children['fonc'].children['etat'].children.update(public.retraite.pension.employeur.civils.children)
 
     # Militaires
     pat.children['fonc'].children['militaire'].children.update(public.mmid.etat.tout_traitement.employeur.children)
-    # pat.children['fonc'].children['militaire'].children.update(public.mmid.etat.sous_plafond.employeur.children)
+    pat.children['fonc'].children['militaire'].children.update(public.mmid.etat.sous_plafond.employeur.children)
     pat.children['fonc'].children['militaire'].children.update(public.rafp.employeur.children)
     pat.children['fonc'].children['militaire'].children.update(public.retraite.pension.employeur.militaires.children)
 
@@ -114,7 +114,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['fonc'].children['colloc'].children['territoriale'] = public.cnracl.employeur.territoriale
     pat.children['fonc'].children['colloc'].children.update(public.cnracl.employeur.children)
     pat.children['fonc'].children['colloc'].children.update(public.mmid.colloc.tout_traitement.employeur.children)
-    # pat.children['fonc'].children['colloc'].children.update(public.mmid.colloc.sous_plafond.employeur.children)
+    pat.children['fonc'].children['colloc'].children.update(public.mmid.colloc.sous_plafond.employeur.children)
     pat.children['fonc'].children['colloc'].children.update(public.rafp.employeur.children)
 
     # Renaming

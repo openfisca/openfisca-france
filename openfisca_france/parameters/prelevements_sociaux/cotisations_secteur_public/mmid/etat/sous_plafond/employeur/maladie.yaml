@@ -1,6 +1,12 @@
 description: Barème des cotisations maladie spécifiques (employeur, sous plafond) de la Fonction publique d'Etat
 brackets:
 - rate:
+    1967-01-01:
+      value: 0.0
+  threshold:
+    1967-10-01:
+      value: 1.0
+- rate:
     1984-01-01:
       value: null
     1981-11-01:
@@ -16,12 +22,6 @@ brackets:
   threshold:
     1967-10-01:
       value: 0.0
-- rate:
-    1984-01-01:
-      value: 0.0
-  threshold:
-    1967-10-01:
-      value: 1.0
 metadata:
   ux_name: Barème
   ipp_csv_id: mmid_e_p_0_1
