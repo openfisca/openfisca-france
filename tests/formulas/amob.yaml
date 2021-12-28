@@ -1,0 +1,214 @@
+- name: Test 01 - Vérifie le calcul de l'AMOB pour un individu avec une allocation < ARE min hors Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      residence_mayotte: False
+    individus:
+      Camille:
+        age: 29
+        distance_aller_retour_activite_domicile: 60
+        nuitees: 3
+        repas: 9
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        allocation_retour_emploi: 29.55
+  output:
+    amob_eligible: True
+    amob: 156
+
+
+- name: Test 02 - Vérifie le calcul de l'AMOB pour un individu avec une allocation = ARE min hors Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      residence_mayotte: False
+    individus:
+      Camille:
+        age: 29
+        distance_aller_retour_activite_domicile: 60
+        nuitees: 3
+        repas: 9
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        allocation_retour_emploi: 29.56
+  output:
+    amob_eligible: True
+    amob: 156
+
+
+- name: Test 03 - Vérifie le calcul de l'AMOB pour un individu avec une allocation > ARE min hors Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      residence_mayotte: False
+    individus:
+      Camille:
+        age: 29
+        distance_aller_retour_activite_domicile: 60
+        nuitees: 3
+        repas: 9
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        allocation_retour_emploi: 29.57
+  output:
+    amob_eligible: False
+    amob: 0
+
+
+- name: Test 04 - Vérifie le calcul de l'AMOB pour un individu avec une allocation < ARE min hors Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      residence_mayotte: True
+    individus:
+      Camille:
+        age: 29
+        distance_aller_retour_activite_domicile: 60
+        nuitees: 3
+        repas: 9
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        allocation_retour_emploi: 14.76
+  output:
+    amob_eligible: True
+    amob: 156
+
+
+- name: Test 05 - Vérifie le calcul de l'AMOB pour un individu avec une allocation = ARE min hors Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      residence_mayotte: True
+    individus:
+      Camille:
+        age: 29
+        distance_aller_retour_activite_domicile: 60
+        nuitees: 3
+        repas: 9
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        allocation_retour_emploi: 14.77
+  output:
+    amob_eligible: True
+    amob: 156
+
+
+- name: Test 06 - Vérifie le calcul de l'AMOB pour un individu avec une allocation > ARE min hors Mayotte
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      residence_mayotte: True
+    individus:
+      Camille:
+        age: 29
+        distance_aller_retour_activite_domicile: 60
+        nuitees: 3
+        repas: 9
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        allocation_retour_emploi: 14.78
+  output:
+    amob_eligible: False
+    amob: 0
+
+
+- name: Test 07 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie 4 stagiaire de formation professionnelle
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      residence_mayotte: False
+    individus:
+      Camille:
+        age: 29
+        distance_aller_retour_activite_domicile: 60
+        nuitees: 3
+        repas: 9
+        pole_emploi_categorie_demandeur_emploi: categorie_4
+        stagiaire: True
+        en_contrat_aide: False
+        allocation_retour_emploi: 29.56
+  output:
+    amob_eligible: True
+    amob: 156
+
+- name: Test 08 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie 5 contrat aidé
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      residence_mayotte: False
+    individus:
+      Camille:
+        age: 29
+        distance_aller_retour_activite_domicile: 60
+        nuitees: 3
+        repas: 9
+        pole_emploi_categorie_demandeur_emploi: categorie_5
+        stagiaire: False
+        en_contrat_aide: True
+        allocation_retour_emploi: 29.56
+  output:
+    amob_eligible: True
+    amob: 156
+
+
+- name: Test 09 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie non éligible
+  period: 2022-01
+  input:
+    menage:
+      personne_de_reference: Camille
+      residence_mayotte: False
+    individus:
+      Camille:
+        age: 29
+        distance_aller_retour_activite_domicile: 60
+        nuitees: 3
+        repas: 9
+        pole_emploi_categorie_demandeur_emploi: pas_de_categorie
+        stagiaire: False
+        en_contrat_aide: True
+        allocation_retour_emploi: 29.56
+  output:
+    amob_eligible: False
+    amob: 0
+
+
+- name: Test 10
+  period: 2021-11
+  input:
+    menage:
+      personne_de_reference: Camille
+      residence: metropole
+    individus:
+      Camille:
+        age: 29
+        distance_aller_retour_activite_domicile: 60
+        amob_duree_trajet: 121
+        nuitees: 3
+        repas: 9
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        stagiaire: False
+        en_contrat_aide: False
+        allocation_retour_emploi: 14.77
+        contexte_activite_pole_emploi: recherche_emploi
+        types_activite_en_recherche_emploi: entretien_embauche
+        types_reprises_activite: cdd
+        contrat_de_travail_duree: 3
+        emploi_ou_formation_en_france: True
+  output:
+    amob_eligible: True
+    amob_calcul: 156
+#    amob_plafond_disponible: 4844

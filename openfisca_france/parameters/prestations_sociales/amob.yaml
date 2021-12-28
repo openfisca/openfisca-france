@@ -1,0 +1,26 @@
+montants:
+  derogatoire:
+    2021-06-08:
+      value: 1500
+  maximum:
+    2021-06-08:
+      value: 5000
+  deplacement:
+    2021-06-08:
+      value: 0.20
+  hebergement:
+    2021-06-08:
+      value: 30
+  repas:
+    2021-06-08:
+      value: 6
+duree_trajet_minimum:
+  2021-06-08:
+    value: 120
+distance_minimum:
+  metropole:
+    2021-06-08:
+      value: 60
+  hors_metropole:
+    2021-06-08:
+      value: 20
