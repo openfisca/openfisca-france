@@ -1,5 +1,6 @@
-description: Pourcentage du salaire de base
-unit: /1
+description: Indemnité de fin de contrat (CDD) en pourcentage du salaire de base
 values:
   1990-01-01:
     value: 0.1
+metadata:
+  unit: /1
