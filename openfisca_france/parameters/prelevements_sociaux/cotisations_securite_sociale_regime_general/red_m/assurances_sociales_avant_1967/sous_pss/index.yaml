@@ -1,4 +1,9 @@
 description: Cotisations de sécurité sociale (SS) des professions médicales à temps partiel, pour les assurances sociales (avant 1967), sous le plafond de la sécurité sociale (PSS)
 metadata:
   ux_name: Sous PSS
+  order:
+  order:
+  - employe_hors_am
+  - employe_am
+  - employeur
   description_en: SSCs for physicians working part-time (1961-1974)

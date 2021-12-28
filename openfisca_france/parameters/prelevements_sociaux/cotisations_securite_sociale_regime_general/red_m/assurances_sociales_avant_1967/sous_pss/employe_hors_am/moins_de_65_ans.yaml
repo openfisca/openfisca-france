@@ -1,5 +1,4 @@
 description: Taux employé (de moins de 65 ans, hors Alsace-Moselle) des cotisations de sécurité sociale (SS) des professions médicales à temps partiel, pour les assurances sociales (avant 1967), sous le plafond de la sécurité sociale (PSS)
-unit: /1
 values:
   1961-05-01:
     value: 0.014
@@ -7,6 +6,8 @@ values:
     value: null
 metadata:
   ux_name: Moins de 65 ans
+  ipp_csv_id: css_m_am_i65_s_0_1
+  unit: /1
   last_review:
     1967-01-01
   reference:

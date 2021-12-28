@@ -1,5 +1,4 @@
 description: Taux employeur des cotisations de sécurité sociale (SS) des professions médicales à temps partiel (1961-1974), pour les accidents du travail, sous le plafond de la sécurité sociale (PSS)
-unit: /1
 values:
   1961-05-01:
     value: 0.018
@@ -15,6 +14,8 @@ values:
     value: 0.0147
 metadata:
   ux_name: Taux employeur
+  ipp_csv_id: acc_m_p_0_1
+  unit: /1
   last_review:
     1974-01-01
   reference:

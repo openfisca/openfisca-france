@@ -6,7 +6,9 @@ values:
   1967-10-01:
     value: null
 metadata:
-  ux_name: Moins de 65 ans
+  ux_name: Plus de 65 ans
+  ipp_csv_id: css_m_i65_s_0_1
+  unit: /1
   last_review:
     1967-01-01
   reference:
