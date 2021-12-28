@@ -1,39 +1,31 @@
-description: Barème des pensions civiles (TI et NBI) - cotisations employeur retraite spécifiques à la fonction publique
-brackets:
-- rate:
-    2006-01-01:
-      value: 0.499
-    2007-01-01:
-      value: 0.5074
-    2008-01-01:
-      value: 0.5571
-    2009-01-01:
-      value: 0.6014
-    2009-12-01:
-      value: 0.4014
-    2010-01-01:
-      value: 0.6214
-    2011-01-01:
-      value: 0.6539
-    2012-01-01:
-      value: 0.6859
-    2013-01-01:
-      value: 0.7428
-    2013-12-01:
-      value: 0.4428
-    2014-01-01:
-      value: 0.7428
-    1995-01-01:
-        value: null
-  threshold:
-    1995-01-01:
-      value: 0.0
+description: Taux implicite des Cotisations retraites de l'Etat-employeur
+values:
+  2006-01-01:
+    value: null
+  2005-01-01:
+    value: 0.594
+  2004-01-01:
+    value: 0.568
+  2003-01-01:
+    value: 0.527
+  2002-01-01:
+    value: 0.523
+  2001-01-01:
+    value: 0.487
+  2000-01-01:
+    value: 0.492
+  1999-01-01:
+    value: 0.486
+  1997-01-01:
+    value: 0.474
+  1996-01-01:
+    value: 0.462
+  1995-01-01:
+    value: 0.486
 metadata:
-  ux_name: Barème
-  ipp_csv_id: txexp_civ_p
-  rate_unit: /1
-  threshold_unit: PSS
-  last_review: 2021-08-24
+  ux_name: Taux implicite
+  ipp_csv_id: tximp_pu_p
+  unit: /1
   reference:
     2014-01-01:
       title: Décret 2012-1507 du 27/12/2012
