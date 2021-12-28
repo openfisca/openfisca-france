@@ -1,10 +1,11 @@
 description: Taux employé des ctisations de sécurité sociale (SS) des journalistes pigistes (1964-1974) pour l'assurance vieillesse, sous le plafond de la sécurité sociale (PSS)
-unit: /1
 values:
   1967-10-01:
     value: 0.024
 metadata:
   ux_name: Taux employé
+  ipp_csv_id: ret_j_s_0_1
+  unit: /1
   last_review:
     1967-01-01
   reference:

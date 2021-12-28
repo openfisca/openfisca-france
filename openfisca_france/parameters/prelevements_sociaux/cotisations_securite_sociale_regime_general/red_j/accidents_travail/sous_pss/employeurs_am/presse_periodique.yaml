@@ -1,5 +1,4 @@
 description: Taux employeur (pour la presse périodique, en Alsace-Moselle) de cotisations de sécurité sociale (SS) des journalistes pigistes (1964-1974) pour les accidents du travail, sous le plafond de la sécurité sociale (PSS)
-unit: /1
 values:
   1964-01-01:
     value: null
@@ -9,6 +8,8 @@ values:
     value: 0.0144
 metadata:
   ux_name: Presse périodique
+  ipp_csv_id: acc_pp_am_p_0_1
+  unit: /1
   last_review:
     1974-01-01
   reference:

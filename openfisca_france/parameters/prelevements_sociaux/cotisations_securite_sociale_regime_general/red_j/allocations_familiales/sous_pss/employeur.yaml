@@ -1,5 +1,4 @@
 description: Taux employeur des cotisations de sécurité sociale (SS) des journalistes pigistes (1964-1974) pour les allocations familiales, sous le plafond de la sécurité sociale (PSS)
-unit: /1
 values:
   1964-01-01:
     value: 0.108
@@ -11,6 +10,8 @@ values:
     value: 0.072
 metadata:
   ux_name: Taux employeur
+  ipp_csv_id: fam_j_p_0_1
+  unit: /1
   last_review:
     1974-01-01
   reference:
