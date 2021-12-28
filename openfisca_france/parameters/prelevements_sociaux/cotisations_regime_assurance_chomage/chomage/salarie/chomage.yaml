@@ -65,8 +65,6 @@ brackets:
         value: 0.0005
       1959-01-01:
         value: 0.002
-        metadata:
-          ipp_csv_id: chom_s_0_1
     threshold:
       1959-01-01:
         value: 0.0
@@ -121,8 +119,6 @@ brackets:
         value: 0.0044
       1975-07-01:
         value: 0.0048
-        metadata:
-          ipp_csv_id: chom_s_1_4
     threshold:
       1975-07-01:
         value: 1.0
@@ -141,6 +137,8 @@ brackets:
 metadata:
   rate_unit: /1
   threshold_unit: PSS
+  ipp_csv_id: 
+    rate: chom_s_0_1, chom_s_1_4
   ux_name: Taux salarié
   reference:
     2018-10-01:

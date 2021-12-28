@@ -63,8 +63,6 @@ brackets:
         value: 0.002
       1959-01-01:
         value: 0.008
-        metadata:
-          ipp_csv_id: chom_p_0_1
     threshold:
       1959-01-01:
         value: 0.0
@@ -117,8 +115,6 @@ brackets:
         value: 0.0192
       1959-01-01:
         value: null
-        metadata:
-          ipp_csv_id: chom_p_1_4
     threshold:
       1975-07-01:
         value: 1.0
@@ -130,6 +126,8 @@ brackets:
         value: 4.0
 metadata:
   rate_unit: /1
+  ipp_csv_id: 
+    rate: chom_p_0_1, chom_p_1_4
   threshold_unit: PSS
   ux_name: Barème employeur
   last_review: 2021-12-07

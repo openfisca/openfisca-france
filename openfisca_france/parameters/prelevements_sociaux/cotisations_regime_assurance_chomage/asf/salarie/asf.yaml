@@ -9,8 +9,6 @@ brackets:
         value: 0.008
       2001-04-01:
         value: 0.0
-        metadata:
-          ipp_csv_id: asf_s_0_1
     threshold:
       1984-01-01:
         value: 0.0
@@ -21,8 +19,6 @@ brackets:
         value: 0.0089
       2001-04-01:
         value: 0.0
-        metadata:
-          ipp_csv_id: asf_s_1_4
     threshold:
       1984-04-01:
         value: 1.0
@@ -34,6 +30,8 @@ brackets:
         value: 4.0
 metadata:
   rate_unit: /1
+  ipp_csv_id:
+    rate: asf_s_0_1, asf_s_1_4
   threshold_unit: PSS
   ux_name: Barème salarié
   reference:
