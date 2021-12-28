@@ -1,16 +1,18 @@
 description: Barème des mono-exposés pour les cotisations additionnelles de sécurité sociale (SS) du régime général au titre de la pénibilité (2015-2017)
-unit: /1
 brackets:
 - rate:
     2015-01-01:
       value: 0.001
     2017-01-01:
       value: 0.002
+    2018-01-01:
+      value: null
   threshold:
     2015-01-01:
       value: 0.0
 metadata:
   ux_name: Barème pour mono-exposés
+  rate_unit: /1
   last_review:
     2028-01-01
   reference:

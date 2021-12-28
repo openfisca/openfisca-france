@@ -1,5 +1,4 @@
 description: Coefficient multiplicateur pour poly-exposés des cotisations de sécurité sociale (SS) du régime général au titre de la pénibilité (2015-2017)
-unit: /1
 values:
   2015-01-01:
     value: 2.0
@@ -7,6 +6,7 @@ values:
     value: null
 metadata:
   ux_name: Coefficient multiplicateur pour poly-exposés
+  unit: /1
   last_review:
     2028-01-01
   reference:
