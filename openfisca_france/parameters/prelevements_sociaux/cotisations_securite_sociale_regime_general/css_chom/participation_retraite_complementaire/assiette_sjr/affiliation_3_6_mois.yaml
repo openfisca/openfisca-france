@@ -1,12 +1,15 @@
 description: Assiette de la participation des Cotisations de retraite complémentaire (affiliation 3-6 mois) des Cotisations de sécurité sociale (SS) du régime général sur les allocations chômage
-unit: /1
 values:
+  1985-04-01:
+    value: null
   1988-03-01:
     value: 0.4
   1990-01-01:
     value: 1.0
 metadata:
   ux_name: Affiliation 3-6 mois
+  ipp_csv_id: chom_ret_ass_3_6
+  unit: /1
   last_review:
     1990-01-01
   reference:
