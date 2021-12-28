@@ -1,11 +1,11 @@
 description: Taux élevé des Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
-unit: /1
 values:
   2012-01-01:
     value: 0.05
   2015-01-01: expected
 metadata:
   ux_name: Taux élevé
+  unit: /1
   last_review:
     2015-01-01
   reference:
