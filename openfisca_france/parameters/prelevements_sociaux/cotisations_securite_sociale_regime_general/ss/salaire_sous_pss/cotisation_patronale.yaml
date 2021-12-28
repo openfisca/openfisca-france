@@ -1,5 +1,4 @@
 description: Cotisations patronale de sécurité sociale (SS) de 1930-1966, sous le plafond de la sécurité sociale (PSS)
-unit: /1
 values:
   1930-07-01:
     value: 0.04
@@ -23,6 +22,8 @@ values:
     value: null
 metadata:
   ux_name: Cotisation patronale
+  ipp_csv_id: css_p_0_1
+  unit: /1
   last_review:
     1967-01-01
   reference:
