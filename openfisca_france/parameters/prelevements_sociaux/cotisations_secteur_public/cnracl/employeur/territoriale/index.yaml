@@ -2,5 +2,5 @@ description: Cotisations employeur du Fonds de compensation de la cessation prog
 metadata:
   ux_name: FCCPA
   order:
-  - fccpa
+  - fcppa
   description_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
