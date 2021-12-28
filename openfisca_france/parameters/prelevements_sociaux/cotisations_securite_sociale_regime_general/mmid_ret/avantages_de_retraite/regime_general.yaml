@@ -1,5 +1,4 @@
 description: Cotisations spéciales assurance maladie sur les avantages retraite (régime général)
-unit: /1
 values:
   1980-07-01:
     value: 0.01
@@ -13,6 +12,8 @@ values:
     value: null
 metadata:
   ux_name: Régime général
+  ipp_csv_id: mmid_ret
+  unit: /1
   last_review:
     1998-01-01
   reference:
