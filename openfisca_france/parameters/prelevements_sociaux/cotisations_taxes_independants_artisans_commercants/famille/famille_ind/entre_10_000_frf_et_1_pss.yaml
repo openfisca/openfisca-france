@@ -8,7 +8,6 @@ metadata:
   ux_name: Entre 10 000 FRF et 1 PSS
   ipp_csv_id: fam_inde_10000_1
   unit: /1
-  threshold_unit: PSS
   reference:
     2018-01-01:
       title: Décret 2017-1894 du 30/12/2017, art. 4
