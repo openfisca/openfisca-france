@@ -126,6 +126,8 @@ brackets:
         value: 4.0
 metadata:
   rate_unit: /1
+  ipp_csv_id: 
+    rate: chom_p_0_1, chom_p_1_4
   threshold_unit: PSS
   ux_name: Barème employeur
   last_review: 2021-12-07

@@ -137,6 +137,8 @@ brackets:
 metadata:
   rate_unit: /1
   threshold_unit: PSS
+  ipp_csv_id: 
+    rate: chom_s_0_1, chom_s_1_4
   ux_name: Taux salarié
   reference:
     2018-10-01:
