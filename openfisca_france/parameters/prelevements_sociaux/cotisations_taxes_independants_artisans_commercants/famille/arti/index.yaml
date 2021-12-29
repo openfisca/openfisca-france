@@ -1,0 +1,6 @@
+description: Cotisations (artisans) de sécurité sociale (SS) pour les prestations familiales, des employeurs et travailleurs indépendants
+metadata:
+  ux_name: Artisans
+  order:
+  - famille
+  description_en: SSCs for family benefits (independent workers)

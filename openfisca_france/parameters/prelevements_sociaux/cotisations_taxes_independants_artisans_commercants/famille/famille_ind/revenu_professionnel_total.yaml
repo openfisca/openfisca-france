@@ -1,26 +1,21 @@
-description: Cotisations (commerçants) de sécurité sociale (SS) pour les prestations familiales, des employeurs et travailleurs indépendants
-brackets:
-- rate:
-    2015-01-01:
-      value: null
-    2014-01-01:
-      value: 0.0525
-    1998-01-01:
-      value: 0.054
-    1990-01-01:
-      value: 0.049
-    1989-01-01:
-      value: 0.035
-    1974-04-01:
-      value: null
-  threshold:
-    2003-01-01:
-      value: 0.0
+description: Cotisations sur le revenu professionnel (déplafonné) de sécurité sociale (SS) pour les prestations familiales, des employeurs et travailleurs indépendants
+values:
+  2015-01-01:
+    value: null
+  2014-01-01:
+    value: 0.0525
+  1998-01-01:
+    value: 0.054
+  1990-01-01:
+    value: 0.049
+  1989-01-01:
+    value: 0.035
+  1974-04-01:
+    value: null
 metadata:
-  ux_name: Commerçants
+  ux_name: Revenu professionnel total
   ipp_csv_id: fam_inde_0_
-  rate_unit: /1
-  threshold_unit: PSS
+  unit: /1
   reference:
     2018-01-01:
       title: Décret 2017-1894 du 30/12/2017, art. 4
