@@ -139,14 +139,15 @@
       2018: 0
 
 - name: 1 UC - RFR < 5600 en 2017
-  period: 2017
+  period: 2017-11
   input:
-    cheque_energie_unites_consommation: 1
+    cheque_energie_unites_consommation:
+      2017: 1
     rfr:
       2016: 5599
   output:
     cheque_energie:
-      2017: 0
+      2017-11: 0
 
 - name: Plusieurs foyers
   period: 2018
@@ -177,7 +178,7 @@
     - 227
 
 - name: Test le montant du chèque énergie
-  period: 2021
+  period: 2021-12
   input:
     famille:
       parents: [parent1, parent2]
@@ -205,6 +206,8 @@
   output:
     menages:
       menage_0:
-        cheque_energie: 240
+        cheque_energie:
+          2021-12: 240
       menage_1:
-        cheque_energie: 0
+        cheque_energie:
+          2021-12: 0
