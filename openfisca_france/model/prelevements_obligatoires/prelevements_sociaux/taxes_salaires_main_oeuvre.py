@@ -33,7 +33,7 @@ class conge_individuel_formation_cdd(Variable):
         TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
 
-        conge_individuel_formation = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.formation.conge_individuel_formation
+        conge_individuel_formation = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.formation.toute_entreprise
         cotisation = - conge_individuel_formation.cdd * (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * assiette_cotisations_sociales
         return cotisation
 
@@ -442,12 +442,10 @@ class contribution_formation_professionnelle(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         apprenti = individu('apprenti', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.formation.contribution_formation_professionnelle
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.contribution_unique_formation.contrib_formation_pro
 
-        taux_contribution = (
-            (effectif_entreprise >= 11) * contribution.taux_11_salaries_et_plus
-            + (effectif_entreprise < 11) * not_(apprenti) * contribution.taux_moins_de_11_salaries
-            )
+        taux_contribution = ((effectif_entreprise >= 11) * contribution.onze_et_plus_salaries
+            + (effectif_entreprise < 11) * not_(apprenti) * contribution.moins_11_salaries)
 
         return - taux_contribution * assiette_cotisations_sociales
 
@@ -606,7 +604,7 @@ class taxe_salaires(Variable):
                 factor = 1 / 12,
                 round_base_decimals = 2
                 )
-            + round_(taxe_salaires.taux.metro * base, 2)
+            + round_(taxe_salaires.metro * base, 2)
             )
 
         # Une franchise et une décôte s'appliquent à cette taxe

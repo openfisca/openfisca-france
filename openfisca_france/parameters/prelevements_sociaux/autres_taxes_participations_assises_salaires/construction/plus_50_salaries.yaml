@@ -1,0 +1,18 @@
+description: Plus de 20 salariés, participation des employeurs à l'effort de construction (PEEC)
+brackets:
+- rate:
+    2020-01-01:
+      value: 0.0045
+  threshold:
+    2020-01-01:
+      value: 0.0
+metadata:
+  ux_name: Plus de 50 salariés
+  ipp_csv_id: cons_p50_0_
+  unit: /1
+  reference:
+    2020-01-01:
+      title: Loi 2019-486 du 22/05/2019, art. 11
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000038496156
+  official_journal_date:
+    2020-01-01: 2019-05-23

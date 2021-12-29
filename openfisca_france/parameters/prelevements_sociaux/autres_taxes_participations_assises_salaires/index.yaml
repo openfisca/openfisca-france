@@ -1,4 +1,15 @@
 description: Autres taxes et participations assises sur les salaires
 metadata:
   ux_name: Taxes et participations
+  order:
+  - vfs
+  - taxsal
+  - construction
+  - fnal
+  - formation
+  - apprentissage
+  - contribution_unique_formation
+  - versement_transport
+  - tehr
+  - fin_syndic
   description_en: Other payroll and workforce taxes

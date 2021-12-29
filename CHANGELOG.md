@@ -1,5 +1,14 @@
 # Changelog
 
+# 90.0.0 [#1755](https://github.com/openfisca/openfisca-france/pull/1755)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+
 # 89.0.0 [#1754](https://github.com/openfisca/openfisca-france/pull/1754)
 
 * Évolution du système socio-fiscal. | Amélioration technique.

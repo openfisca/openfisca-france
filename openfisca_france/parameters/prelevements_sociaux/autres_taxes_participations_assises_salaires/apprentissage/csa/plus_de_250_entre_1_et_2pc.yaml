@@ -11,6 +11,8 @@ values:
     value: 0.002
 metadata:
   last_review: 2021-12-07
+  ipp_csv_id: apprencsa_p_0_
+  unit: /1
   reference:
     2015-01-01:
       - title: Article 230H - II-2º du CGI

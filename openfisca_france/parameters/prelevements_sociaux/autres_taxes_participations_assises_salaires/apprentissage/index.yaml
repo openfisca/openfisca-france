@@ -1,4 +1,9 @@
-description: Taxes d'apprentissages sur les salaires, parmi les autres taxes et participations assises sur les salaires
+description: Taxes d'apprentissage sur les salaires, parmi les autres taxes et participations assises sur les salaires
 metadata:
-  ux_name: Taxes d'apprentissages
+  ux_name: Taxes d'apprentissage
+  order:
+  - apprentissage_taxe
+  - apprentissage_taxe_alsace_moselle
+  - apprentissage_contribution_additionnelle
+  - cotisation_supplementaire
   description_en: Apprenticeship tax (tax for the financing of apprenticeship)

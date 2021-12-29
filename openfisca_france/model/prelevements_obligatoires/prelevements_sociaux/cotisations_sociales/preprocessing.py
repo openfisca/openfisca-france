@@ -25,15 +25,16 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     # Apprentissage (avec effacement)
     commun.children.update(autres.apprentissage.children)
     del commun.children['csa']  # n'est pas un barème et est utilisé directement
+    del commun.children['cotisation_supplementaire']
 
     # Formation
-    commun.children.update(autres.formation.pefpc.children)
+    commun.children.update(autres.formation.employeur_tout_salaire.children)
 
     # Construction (avec renommage et effacement)
     commun.children.update(autres.construction.children)
-    commun.children['construction_plus_de_10_salaries'] = commun.children.pop('taux_plus_de_10_salaries')
-    commun.children['construction_plus_de_20_salaries'] = commun.children.pop('taux_plus_de_20_salaries')
-    commun.children['construction_plus_de_50_salaries'] = commun.children.pop('taux_plus_de_50_salaries')
+    commun.children['construction_plus_de_10_salaries'] = commun.children.pop('10_19_salaries')
+    commun.children['construction_plus_de_20_salaries'] = commun.children.pop('plus_20_salaries')
+    commun.children['construction_plus_de_50_salaries'] = commun.children.pop('plus_50_salaries')
     del commun.children['seuil']
     # Autres thématiques
     commun.children.update(chomage.ags.employeur.children)
@@ -53,6 +54,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['fnal_contribution_plus_de_20_salaries'] = commun.children.pop('contribution_plus_de_20_salaries')
     commun.children['fnal_contribution_plus_de_50_salaries'] = commun.children.pop('contribution_plus_de_50_salaries')
     commun.children['fnal_cotisation'] = commun.children.pop('cotisation')
+    del commun.children['tout_employeur']
 
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
 
