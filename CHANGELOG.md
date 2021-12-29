@@ -1,5 +1,14 @@
 # Changelog
 
+### 91.0.1 [#1760](https://github.com/openfisca/openfisca-france/pull/1760)
+
+* Changement mineur.
+* Périodes concernées : 01/2014.
+* Zones impactées : `openfisca_france/parameters/impot_revenu/reductions_impots/rpinel/taux.yaml`.
+* Détails :
+  - Corrige les dates des paramètres afin qu'elles aient toutes un jour.
+    Dans tout OpenFisca-France seuls les taux de Pinel avaient ce problème.
+
 # 91.0.0 [#1756](https://github.com/openfisca/openfisca-france/pull/1756)
 
 * Amélioration technique. 
