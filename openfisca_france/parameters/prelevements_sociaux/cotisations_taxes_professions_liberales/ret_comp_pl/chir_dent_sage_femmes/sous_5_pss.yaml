@@ -1,38 +1,16 @@
-description: Taux entre 0,85 et 5 PSS de la cotisation des Chirurgiens-dentistes (+ sages femmes depuis janvier 2009) pour la retraite complémentaire, Professions libérales
+description: Régime supplémentaire (sous 5 PSS) pour les chirurgiens dentistes conventionnés de la cotisation des Chirurgiens-dentistes (+ sages femmes depuis janvier 2009) pour la retraite complémentaire, Professions libérales
 values:
+  2019-01-01:
+    value: 0.00725
   2018-01-01:
-    value: 0.1065
-  2017-01-01:
-    value: 0.106
-  2016-01-01:
-    value: 0.105
-  2015-01-01:
-    value: 0.104
-  2014-01-01:
-    value: 0.103
-  2013-01-01:
-    value: 0.102
-  2012-01-01:
-    value: 0.1005
-  2011-01-01:
-    value: 0.1
-  2010-01-01:
-    value: 0.0995
-  2009-01-01:
-    value: 0.099
-  2004-01-01:
-    value: 0.095
-  2002-01-01:
-    value: 0.09
-  2001-01-01:
-    value: 0.083
-  1997-01-01:
-    value: 0.08
+    value: 0.011
+  2008-01-01:
+    value: 0.0075
   1949-01-01:
     value: null
 metadata:
-  ux_name: Taux entre 0,85 et 5 PSS
-  ipp_csv_id: retc_chird_85_5
+  ux_name: Taux sous 5 PSS
+  ipp_csv_id: asv_chird_0_5
   unit: /1
   reference:
     2019-01-01:
