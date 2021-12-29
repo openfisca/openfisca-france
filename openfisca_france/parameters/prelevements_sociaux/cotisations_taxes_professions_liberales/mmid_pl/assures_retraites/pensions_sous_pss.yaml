@@ -1,4 +1,4 @@
-rdescription: Taux sur pension (sous 1 PSS) de cotisation de sécurité sociale (SS) pour les assurés retraités, branche maladie, maternité, invalidité, décès, Professions libérales
+description: Taux sur pension (sous 1 PSS) de cotisation de sécurité sociale (SS) pour les assurés retraités, branche maladie, maternité, invalidité, décès, Professions libérales
 values:
   1974-10-01:
     value: 0.0625
