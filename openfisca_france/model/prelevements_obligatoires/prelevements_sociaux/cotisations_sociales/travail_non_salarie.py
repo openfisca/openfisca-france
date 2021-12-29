@@ -258,10 +258,7 @@ class vieillesse_artisan_commercant(Variable):
         bareme.add_bracket(0, sous_pss + vieillesse_artisan_commercant.tous_independants.tout_salaire)
         bareme.add_bracket(1, vieillesse_artisan_commercant.tous_independants.tout_salaire)
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
-        assiette = (
-            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
-            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) * individu('rpns_imposables', period)
+        assiette = (artisan + commercant) * individu('rpns_imposables', period)
         return -bareme.calc(assiette)
 
 
