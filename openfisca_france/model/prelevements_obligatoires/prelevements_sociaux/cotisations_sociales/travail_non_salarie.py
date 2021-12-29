@@ -293,7 +293,7 @@ class formation_profession_liberale(Variable):
     def formula(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'formation_profession_liberale')
-        taux = parameters(period).prelevements_sociaux.cotisations_taxes_professions_liberales.formation_pl.formation_professionnelle.sous_pss
+        taux = parameters(period).prelevements_sociaux.cotisations_taxes_professions_liberales.formation_pl.sous_pss
         bareme.add_bracket(0, taux)
         bareme.add_bracket(1, 0)
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
