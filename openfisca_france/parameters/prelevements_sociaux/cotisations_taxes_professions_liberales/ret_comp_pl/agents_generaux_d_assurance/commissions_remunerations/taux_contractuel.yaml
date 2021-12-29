@@ -1,40 +1,12 @@
-description: commissions_et_remunerations_brutes_dans_la_limite_d_un_plafond
-reference: https://www.ipp.eu/outils/baremes-ipp/
-taux_contractuel:
-  reference: https://www.ipp.eu/outils/baremes-ipp/
-  unit: /1
-  values:
-    1968-01-01:
-      value: 0.036
-    1971-01-01:
-      value: 0.063
-taux_effectif:
-  reference: https://www.ipp.eu/outils/baremes-ipp/
-  unit: /1
-  values:
-    1968-01-01:
-      value: 0.036
-    1971-01-01:
-      value: 0.063
-    1993-01-01:
-      value: 0.0693
-    1998-01-01:
-      value: 0.080325
-    2002-01-01:
-      value: 0.081585
-    2004-01-01:
-      value: 0.09
-taux_invalidite_deces:
-  reference: https://www.ipp.eu/outils/baremes-ipp/
-  unit: /1
-  values:
-    2004-01-01:
-      value: 0.01
-    2012-01-01:
-      value: 0.007
+description: Taux contractuel de la cotisation sur commissions et rémunérations brutes dans la limite d'un plafond des Agents généraux d'assurance pour la retraite complémentaire, Professions libérales
+values:
+  1968-01-01:
+    value: 0.036
+  1971-01-01:
+    value: 0.063
 metadata:
-  ux_name: Colmar-Metz
-  ipp_csv_id: retc_not_cm_0_
+  ux_name: Taux contractuel
+  ipp_csv_id: retc_ass_contr_0_
   unit: /1
   reference:
     2019-01-01:
