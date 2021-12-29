@@ -98,16 +98,14 @@ class deces_artisan_commercant(Variable):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         deces_ac = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.deces_ac
         montant_commercant = deces_ac.commercants_industriels.montant_forfaitaire_total
+        categorie_non_salarie = individu('categorie_non_salarie', period)
         # Artisan
         bareme_artisan = MarginalRateTaxScale(name = 'deces_artisan')
         bareme_artisan.add_bracket(0, deces_ac.artisans.sous_pss)
         bareme_artisan.add_bracket(1, 0)
         bareme_artisan.multiply_thresholds(plafond_securite_sociale_annuel)
-        assiette = (
-            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
-            ) * individu('rpns_imposables', period)
-        # Typ
-        categorie_non_salarie = individu('categorie_non_salarie', period)
+        assiette = individu('rpns_imposables', period)
+        # Type
         artisan = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
         commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
 
