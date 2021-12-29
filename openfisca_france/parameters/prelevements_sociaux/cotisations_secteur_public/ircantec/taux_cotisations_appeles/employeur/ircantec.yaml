@@ -1,0 +1,153 @@
+description: Taux de cotisation appelés des cotisations employeur à la Retraite complémentaire des agents non titulaires de la Fonction publique et des élus locaux (IRCANTEC) spécifiques à la fonction publique
+brackets:
+- base:
+    1971-01-01:
+      value: 1.25
+  rate:
+    2017-01-01:
+      value: 0.041999999999999996
+    2016-01-01:
+      value: 0.0408
+    2015-01-01:
+      value: 0.039599999999999996
+    2014-01-01:
+      value: 0.038024999999999996
+    2013-01-01:
+      value: 0.03675
+    2012-01-01:
+      value: 0.03525
+    2011-01-01:
+      value: 0.034125
+    1992-01-01:
+      value: 0.03375
+    1991-04-01:
+      value: 0.0324
+    1989-01-01:
+      value: 0.02943
+    1988-01-01:
+      value: 0.021
+    1983-01-01:
+      value: 0.016800000000000002
+    1971-01-01:
+      value: 0.0126
+  threshold:
+    1971-01-01:
+      value: 0.0
+- base:
+    1971-01-01:
+      value: 1.25
+  rate:
+    2017-01-01:
+      value: 0.1255
+    2016-01-01:
+      value: 0.1235
+    2015-01-01:
+      value: 0.12175
+    2014-01-01:
+      value: 0.11975
+    2013-01-01:
+      value: 0.11825000000000001
+    2012-01-01:
+      value: 0.117
+    2011-01-01:
+      value: 0.11599999999999999
+    1992-01-01:
+      value: 0.11549999999999999
+    1971-01-01:
+      value: null
+  threshold:
+    1971-01-01:
+      value: 1.0
+- rate:
+    1992-01-01:
+      value: null
+    1991-04-01:
+      value: 0.11087999999999999
+    1989-01-01:
+      value: 0.100716
+    1988-01-01:
+      value: 0.0825
+    1983-01-01:
+      value: 0.066
+    1971-01-01:
+      value: 0.0495
+  threshold:
+    1971-01-01:
+      value: 8.0
+metadata:
+  ux_name: Contribution employeur
+  last_review: 2021-08-24
+  ipp_csv_id:
+    rate: ircantec_p_0_1, ircantec_p_1_8, ircantec_p_1_4_75
+  threshold_unit: PSS
+  rate_unit: /1
+  reference:
+    2017-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    2016-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    2015-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    2014-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    2013-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    2012-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    2011-01-01:
+      title: Décret 2008-996 du 23/09/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+    1992-01-01: Arrêté du 30/12/1991
+    1991-04-01: Arrêté du 28/03/1991
+    1989-01-01:
+    - Décret 88-1248 du 30/12/1988
+    - Arrêté du 30/12/1988
+    1988-01-01: Arrêté du 17/12/1987
+    1983-01-01: Arrêté du 21/12/1982
+    1971-01-01:
+    - Arrêté du 14/01/1971
+    - title: Décret 70-1277 du 23/12/1970
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000306984
+  official_journal_date:
+    2017-01-01: 2008-09-24
+    2016-01-01: 2008-09-24
+    2015-01-01: 2008-09-24
+    2014-01-01: 2008-09-24
+    2013-01-01: 2008-09-24
+    2012-01-01: 2008-09-24
+    2011-01-01: 2008-09-24
+    1992-01-01: 1992-01-03
+    1991-04-01: 1991-03-30
+    1989-01-01: 1989-01-03
+    1988-01-01: 1987-12-28
+    1983-01-01: 1982-12-29
+    1971-01-01: 1971-01-19; 1970-12-30
+  description_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
+documentation: |
+  Notes :
+  L'IRCANTEC est le régime de retraite complémentaire des non-titulaires de la fonction publique.
+  Les non-titulaires versent leurs cotisations pour leurs avantages de retraite de base au régime général (CNAV).
+  L'IRCANTEC remplace deux institutions de retraite complémentaire: IPACTE et l'IGRANTE. Références législatives relatives à ces deux régimes :
+  IPACTE:
+  Décret 51-1445 du 12/12/1951
+  IGRANTE:
+  Décret 59-1569 du 31/12/1959
+  Article 2 (2° et 3°), articles 7, 8, 9 et 10 du décret du 12/12/1951 ;
+  Article 2 (2° et 3°) du décret du 9/06/1955 ;
+  Articles 2, 3, 4 et 5 du décret du 31/12/1959.
+  Le Décret 2008-996 modifie l'article 7 du Décret 70-1277 du 23/12/1970portant création d'un régime de retraites complémentaire des assurances sociales en faveur des agents non titulaires de l'Etat et des collectivités publiques.
+
+  Assiette :
+  Tranche A: sous 1 PSS
+  Tranche B: entre 1 et 4,75 PSS jusqu'en 1991 ; entre 1 et 8 PSS à partir de 1992 (Décret 91-1375 du 30/12/1991, JO 31/12/1991)
+
+  Les taux de cotisation appelés sont utilisés pour le calcul des cotisations. Les taux de cotisation théoriques sont utilisés pour le calcul des points.
+  Les taux de cotisation appelés se calculent en appliquant le taux d'appel aux taux de cotisation théoriques.
+
+

@@ -1,4 +1,8 @@
 description: Cotisations au régime de Retraite additionnelle de la fonction publique (RAFP)
 metadata:
-  ux_name: Retraite additionnelle de la fonction publique (RAFP)
+  ux_name: RAFP
+  order:
+  - salarie
+  - employeur
+  - rafp_plaf_assiette
   description_en: Contributions to the scheme of Additional pension

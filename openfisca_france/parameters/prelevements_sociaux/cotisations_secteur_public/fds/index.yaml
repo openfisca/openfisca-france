@@ -1,0 +1,6 @@
+description: Cotisations salarié au Fonds de solidarité (FDS) (1982-2017) spécifiques à la fonction publique
+metadata:
+  ux_name: Cotisations FDS
+  order:
+  - salarie
+  description_en: Contributions to the Solidarity Fund (FDS)

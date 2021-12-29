@@ -1,3 +1,4 @@
+description: Barème des cotisations employeur au régime de Retraite additionnelle de la fonction publique (RAFP)
 brackets:
 - rate:
     2005-01-01:
@@ -6,6 +7,20 @@ brackets:
     2005-01-01:
       value: 0.0
 metadata:
-  ux_name: Cotisations employeur
-  description: Cotisations employeur au régime de Retraite additionnelle de la fonction publique (RAFP)
+  ux_name: Barème
+  ipp_csv_id: rafp_p
+  rate_unit: /1
+  threshold_unit: PSS
   last_review: 2021-08-24
+  reference:
+    2005-01-01:
+      title: Décret 2004-569 du 18/06/2004
+      href: https://www.legifrance.gouv.fr/eli/decret/2004/6/18/2004-569/jo/texte
+  official_journal_date:
+    2005-01-01: 2004-06-19
+  description_en: Contributions to the scheme of Additional pension of the public sector (RAFP)
+documentation: |
+  Note :
+  Le RAFP est un régime obligatoire à points permettant aux fonctionnaires d'acquérir une retraite additionnelle.
+  Assiette :
+  Ensemble des rémunérations soumises à CSG mais non soumises au régime de retraite de base de la fonction publique (i.e. primes et indemnités). L'assiette est plafonnée à un pourcentage du traitement indiciaire brut de l'année. Seule la garantie individuelle du pouvoir d'achat (GIPA) n'est pas soumise à ce plafonnement.

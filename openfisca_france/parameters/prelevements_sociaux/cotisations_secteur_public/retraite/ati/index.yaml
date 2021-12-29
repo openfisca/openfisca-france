@@ -1,0 +1,6 @@
+description: Cotisations retraite spécifiques à la fonction publique
+metadata:
+  ux_name: Cotisations retraite
+  order:
+  - ati
+  description_en: Contributions for pensions - central government
