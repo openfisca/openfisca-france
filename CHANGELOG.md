@@ -1,5 +1,14 @@
 # Changelog
 
+# 91.0.0 [#1756](https://github.com/openfisca/openfisca-france/pull/1756)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/contributions_assises_specifiquement_accessoires_salaire`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+
 # 90.0.0 [#1755](https://github.com/openfisca/openfisca-france/pull/1755)
 
 * Amélioration technique. 
