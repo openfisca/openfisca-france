@@ -20,7 +20,7 @@ class categorie_non_salarie(Variable):
     possible_values = TypesCategorieNonSalarie
     default_value = TypesCategorieNonSalarie.non_pertinent
     entity = Individu
-    label = "Type du travailleur salarié (artisant, commercant, profession libérale, etc)"
+    label = "Type du travailleur salarié (artisan, commercant, profession libérale, etc)"
     definition_period = YEAR
 
 
@@ -87,12 +87,8 @@ class deces_artisan_commercant(Variable):
         bareme_commercant.add_bracket(1, 0)
         bareme_commercant.multiply_thresholds(plafond_securite_sociale_annuel)
         # Calcul du montant
+        assiette = individu('rpns_imposables', period)
         categorie_non_salarie = individu('categorie_non_salarie', period)
-        assiette = (
-            (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
-            + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-            ) * individu('rpns_imposables', period)
-
         artisan = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
         commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
         return -bareme_artisan.calc(assiette * artisan) - bareme_commercant.calc(assiette * commercant)
