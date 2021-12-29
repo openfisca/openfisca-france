@@ -1,6 +1,6 @@
 description: Taux (sous PSS) de participation à la formation professionnelle continue des Artisans
 values:
- 2008-01-01:
+  2008-01-01:
     value: 0.0029
   2004-01-01:
     value: 0.0024
