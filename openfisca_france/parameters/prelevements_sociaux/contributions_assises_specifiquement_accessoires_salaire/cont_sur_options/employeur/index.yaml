@@ -1,1 +1,9 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Contributions patronales sur options et actions attribuées gratuitement (Taxes sur les accessoires du salaire)
+metadata:
+  ux_name: Employeur
+  order:
+  - taux_plein
+  - taux_reduit
+  - taux_stock_options
+  - taux_attributions_gratuites_options
+  description_en: Contribution levied on options and shares granted for free

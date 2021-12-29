@@ -1,10 +1,12 @@
-description: Taux réduit 2 du forfait social des contributions assises spécifiquement sur les accessoires du salaire
+description: Taux réduit 3 du forfait social des contributions assises spécifiquement sur les accessoires du salaire
 values:
-  2016-01-01:
-    value: 0.16
+  2019-01-01:
+    value: 0.1
+  2009-01-01:
+    value: null
 metadata:
-  ux_name: Taux Réduit 2
-  ipp_csv_id: forf_soc_tx3
+  ux_name: Taux Réduit 3
+  ipp_csv_id: forf_soc_tx4
   unit: /1
   reference:
     2019-01-01:
