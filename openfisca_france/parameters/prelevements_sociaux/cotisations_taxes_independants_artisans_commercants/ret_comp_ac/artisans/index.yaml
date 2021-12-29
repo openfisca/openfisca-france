@@ -1,1 +1,9 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Cotisation de sécurité sociale (SS) pour la retraite complémentaire des indépendants artisans
+metadata:
+  ux_name: Artisans
+  order:
+  - sous_1_pss
+  - entre_1_et_4_pss
+  - sous_3_pss
+  - sous_4_pss
+  description_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
