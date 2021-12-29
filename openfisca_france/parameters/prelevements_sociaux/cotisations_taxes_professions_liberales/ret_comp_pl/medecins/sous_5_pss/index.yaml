@@ -1,1 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Cotisation (sous 5 PSS) des Médecins pour la retraite complémentaire, Professions libérales
+metadata:
+  ux_name: Sous 5 PSS
+  order:
+  - reg_supp_oblig_pour_conventionnes_asv
+  description_en: Contribution for complementary pension scheme (professionals)

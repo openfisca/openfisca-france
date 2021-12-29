@@ -1,1 +1,7 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Cotisation des Médecins pour la retraite complémentaire, Professions libérales
+metadata:
+  ux_name: Médecins
+  order:
+  - sous_3_5_pss
+  - sous_5_pss
+  description_en: Contribution for complementary pension scheme (professionals)

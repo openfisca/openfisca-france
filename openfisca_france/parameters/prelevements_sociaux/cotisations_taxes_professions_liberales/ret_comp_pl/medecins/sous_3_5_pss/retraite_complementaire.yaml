@@ -1,29 +1,34 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+description: Taux de la cotisation (sous 3,5 PSS) des Médecins pour la retraite complémentaire, Professions libérales
 values:
-  1983-01-01:
-    value: 0.02
-  1991-01-01:
-    value: 0.05
-  1996-01-01:
-    value: 0.075
-  1997-01-01:
-    value: 0.081
-  1999-01-01:
-    value: 0.087
-  2000-01-01:
-    value: 0.09
-  2009-01-01:
-    value: 0.092
-  2013-01-01:
-    value: 0.093
-  2015-01-01:
-    value: 0.095
+  2018-01-01:
+    value: 0.098
+  2017-01-01:
+    value: 0.097
   2016-01-01:
     value: 0.096
+  2015-01-01:
+    value: 0.095
+  2013-01-01:
+    value: 0.093
+  2009-01-01:
+    value: 0.092
+  2000-01-01:
+    value: 0.09
+  1999-01-01:
+    value: 0.087
+  1997-01-01:
+    value: 0.081
+  1996-01-01:
+    value: 0.075
+  1991-01-01:
+    value: 0.05
+  1983-01-01:
+    value: 0.02
+  1949-01-01:
+    value: null
 metadata:
-  ux_name: Colmar-Metz
-  ipp_csv_id: retc_not_cm_0_
+  ux_name: Taux
+  ipp_csv_id: retc_med_0_35
   unit: /1
   reference:
     2019-01-01:

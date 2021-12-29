@@ -2,6 +2,6 @@ description: Cotisation des Chirurgiens-dentistes (+ sages femmes depuis janvier
 metadata:
   ux_name: Chirurgiens-dentistes (+ sages femmes depuis janvier 2009)
   order:
-  - entre_085_5_pss
+  - entre_0_85_et_5_pss
   - sous_5_pss
   description_en: Contribution for complementary pension scheme (professionals)
