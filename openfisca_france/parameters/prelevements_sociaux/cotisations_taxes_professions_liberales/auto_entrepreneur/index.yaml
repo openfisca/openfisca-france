@@ -1,4 +1,7 @@
-description: Cotisations et taxes des professions libérales
+description: Cotisations et taxes des professions libérales - Régimes des auto-entrepreneurs
 metadata:
-  ux_name: Professions libérales
-  description_en: "Contributions and taxes on self-employed: professionals (lawyers, physicians, etc) and \"auto-entrepreneurs\" "
+  ux_name: Régimes des auto-entrepreneurs
+  order:
+  - cotisations_prestations
+  - formation_professionnelle_micro_entrepreneur
+  description_en: Self-employed specific scheme (auto-entrepreneurs)
