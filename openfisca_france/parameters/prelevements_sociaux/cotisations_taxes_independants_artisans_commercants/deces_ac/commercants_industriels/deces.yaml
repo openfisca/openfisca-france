@@ -1,20 +1,39 @@
-description: Taux total Commerçant des cotisations invalidité-décès de sécurité sociale (SS) des indépendants artisans-commerçants
+description: Montant fixe de la partie deces des cotisations invalidité-décès de sécurité sociale (SS) des indépendants artisans-commerçants
 values:
-  1975-01-01:
-    value: null
   2004-08-24:
-    value: 0.015
-  2007-01-01:
-    value: 0.013
-  2013-01-01:
-    value: 0.011
-  2015-01-01:
-    value: 0.013
+    value: null
+  1994-01-01:
+    value: 32.0
+  1992-01-01:
+    value: 48.0
+  1991-01-01:
+    value: 58.0
+  1990-01-01:
+    value: 78.0
+  1989-01-01:
+    value: 76.0
+  1988-01-01:
+    value: 74.0
+  1987-01-01:
+    value: 72.0
+  1986-01-01:
+    value: 70.0
+  1985-01-01:
+    value: 68.0
+  1984-01-01:
+    value: 64.0
+  1983-01-01:
+    value: 60.0
+  1982-01-01:
+    value: 56.0
+  1980-01-01:
+    value: 68.0
+  1975-01-01:
+    value: 77.0
 metadata:
-  ux_name: Taux total Commerçant
-  rate_unit: /1
-  threshold_unit: PSS
-  ipp_csv_id: id_ic_0_1
+  ux_name: Montant des cotisations décès
+  unit: currency
+  ipp_csv_id: deces_ic_0_1
   reference:
     2015-01-01:
       title: Décret 2014-775 du 4/07/2014 - art. 2
