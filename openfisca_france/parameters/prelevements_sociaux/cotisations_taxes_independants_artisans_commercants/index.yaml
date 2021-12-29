@@ -2,10 +2,10 @@ description: Cotisations et taxes des indépendants artisans commerçants indust
 metadata:
   ux_name: Indépendants Artisans et commerçants 
   order:
-  - mmid_ac
+  - mmid
   - ret_ac
   - ret_comp_ac
   - deces_ac
   - formation_ac
-  - famille_ind
+  - famille
   description_en: 'Contributions and taxes on self-employed: sales retailers and craftsmen'

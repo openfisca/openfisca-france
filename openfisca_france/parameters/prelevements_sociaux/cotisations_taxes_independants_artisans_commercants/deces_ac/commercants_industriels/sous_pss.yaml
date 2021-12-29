@@ -12,8 +12,7 @@ values:
     value: 0.013
 metadata:
   ux_name: Taux total Commerçant
-  rate_unit: /1
-  threshold_unit: PSS
+  unit: /1
   ipp_csv_id: id_ic_0_1
   reference:
     2015-01-01:

@@ -5,7 +5,7 @@ metadata:
   - revenu_professionnel_total
   - sous_pss
   - sous_10_000_frf
-  - entre_10_000_frf_1_pss
-  - si_revenu_activite_110_pss
-  - si_revenu_activite_140_pss
+  - entre_10_000_frf_et_1_pss
+  - si_revenu_d_activite_110_pss
+  - si_revenu_d_activite_140_pss
   description_en: SSCs for family benefits (independent workers)
