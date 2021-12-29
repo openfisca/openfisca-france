@@ -2,6 +2,6 @@ description: Cotisation de sécurité sociale (SS) retraite complémentaire des 
 metadata:
   ux_name: Infirmiers, masseurs-kiné, orthophonistes, orthoptistes
   order:
-  - commissions_remunerations_brutes_entre_seuil_plancher_seuil_plafond
+  - commissions_remunerations
   - sous_5_pss
   description_en: Contribution for complementary pension scheme (professionals)

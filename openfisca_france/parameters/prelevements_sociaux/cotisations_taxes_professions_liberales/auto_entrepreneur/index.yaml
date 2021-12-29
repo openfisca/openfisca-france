@@ -3,5 +3,5 @@ metadata:
   ux_name: Régimes des auto-entrepreneurs
   order:
   - cotisations_prestations
-  - formation_professionnelle_micro_entrepreneur
+  - formation_professionnelle
   description_en: Self-employed specific scheme (auto-entrepreneurs)
