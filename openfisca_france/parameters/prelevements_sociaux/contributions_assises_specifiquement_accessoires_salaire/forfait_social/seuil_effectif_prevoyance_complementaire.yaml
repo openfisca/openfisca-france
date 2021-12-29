@@ -1,5 +1,4 @@
-description: Seuil des effectifs de l'entreprise à partir duquel les contributions patronales de prévoyance
-  complémentaire rentrent dans l'assiette du FNAL à taux réduit
+description: Seuil des effectifs de l'entreprise à partir duquel les contributions patronales de prévoyance complémentaire rentrent dans l'assiette du FNAL à taux réduit
 values:
   2009-01-01:
     value: 0.0
@@ -7,3 +6,6 @@ values:
     value: 10.0
   2016-01-01:
     value: 11.0
+metadata:
+  ux_name: Seuil des effectifs
+  unit: people

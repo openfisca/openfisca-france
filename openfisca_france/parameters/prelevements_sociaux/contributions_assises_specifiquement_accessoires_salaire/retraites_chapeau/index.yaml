@@ -1,1 +1,10 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Contribution spéciale sur les contributions versées par l'employeur pour les régimes de retraites supplémentaires à prestations définies
+metadata:
+  ux_name: Retraites Chapeau
+  order:
+  - taux_1
+  - taux_2
+  - taux_3
+  - majoration
+  - droits_certains
+  description_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
