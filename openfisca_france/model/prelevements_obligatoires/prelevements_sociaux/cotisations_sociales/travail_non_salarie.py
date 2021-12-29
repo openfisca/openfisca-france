@@ -250,14 +250,12 @@ class vieillesse_artisan_commercant(Variable):
         vieillesse_artisan_commercant = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.ret_ac
         bareme = MarginalRateTaxScale(name = 'vieillesse')
         categorie_non_salarie = individu('categorie_non_salarie', period)
-        # Les taux sous_pss sont les mêmes pour artisans et commercants, mais tant qu'on a 2 paramètres distincts, il faut le prendre en compte dans la formule
-        artisan = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
-        commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
-        sous_pss = (vieillesse_artisan_commercant.artisans.sous_pss) * artisan + (vieillesse_artisan_commercant.industriels_et_commercants.sous_pss) * commercant
-        # Barème final
-        bareme.add_bracket(0, sous_pss + vieillesse_artisan_commercant.tous_independants.tout_salaire)
+        # Les taux sous_pss sont les mêmes pour artisans et commercants
+        bareme.add_bracket(0, vieillesse_artisan_commercant.artisans.sous_pss + vieillesse_artisan_commercant.tous_independants.tout_salaire)
         bareme.add_bracket(1, vieillesse_artisan_commercant.tous_independants.tout_salaire)
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
+        artisan = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+        commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
         assiette = (artisan + commercant) * individu('rpns_imposables', period)
         return -bareme.calc(assiette)
 
