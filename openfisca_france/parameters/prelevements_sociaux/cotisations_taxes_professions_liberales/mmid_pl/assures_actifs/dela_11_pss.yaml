@@ -1,24 +1,35 @@
-rdescription: Taux sur pension (sous 1 PSS) de cotisation de sécurité sociale (SS) pour les assurés retraités, branche maladie, maternité, invalidité, décès, Professions libérales
+description: Taux (au-delà de 1,1 PSS) de cotisation de sécurité sociale (SS) pour les assurés actifs, branche maladie, maternité, invalidité, décès, Professions libérales
 values:
-  1974-10-01:
-    value: 0.0625
-  1975-04-01:
-    value: 0.067
-  1975-10-01:
-    value: 0.069
-  1976-10-01:
-    value: 0.0735
-  1977-10-01:
-    value: 0.0765
-  1979-04-01:
-    value: 0.0465
-  1981-04-01:
-    value: 0.03
+  2018-01-01:
+    value: 0.065
+  2013-01-01:
+    value: null
+  2001-01-01:
+    value: 0.059
+  1998-01-01:
+    value: 0.053
+  1997-01-01:
+    value: 0.09
+  1995-04-01:
+    value: 0.098
+  1992-04-01:
+    value: 0.0945
+  1991-10-01:
+    value: 0.0975
+  1991-08-01:
+    value: 0.0915
+  1989-04-01:
+    value: 0.0885
+  1987-07-01:
+    value: 0.0865
+  1984-01-01:
+    value: 0.0845
   1981-10-01:
+    value: 0.0795
+  1970-04-01:
     value: null
 metadata:
-  ux_name: Taux sur pension sous PSS
-  ipp_csv_id: mmid_plib_pens_0_1
+  ux_name: Au-delà de 1,1 PSS
   unit: /1
   reference:
     2018-01-01:
