@@ -295,7 +295,8 @@ class rev_microsocial(Variable):
 
         P = _P.cotsoc.sal.microsocial.cotisations_prestations
         total = assiette_service + assiette_vente + assiette_proflib
-        prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.cipav
+        prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.servi
+        # TODO Activités libérales relevant de la CIPAV - quelle assiette ? * P.cipav
         return total - prelsoc_ms
 
 
