@@ -123,7 +123,7 @@ class formation_artisan_commercant(Variable):
         formation = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.formation_ac
         # Artisan
         bareme_artisan = MarginalRateTaxScale(name = 'formation_artisan')
-        bareme_artisan.add_bracket(0, formation.artisans_sous_pss)
+        bareme_artisan.add_bracket(0, formation.artisans.sous_pss)
         bareme_artisan.add_bracket(1, 0)
         bareme_artisan.multiply_thresholds(plafond_securite_sociale_annuel)
         # Commercant
