@@ -1,5 +1,14 @@
 # Changelog
 
+# 93.0.0 [#1758](https://github.com/openfisca/openfisca-france/pull/17578)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_secteur_public`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+  
 # 92.0.0 [#1757](https://github.com/openfisca/openfisca-france/pull/1757)
 
 * Amélioration technique. 
