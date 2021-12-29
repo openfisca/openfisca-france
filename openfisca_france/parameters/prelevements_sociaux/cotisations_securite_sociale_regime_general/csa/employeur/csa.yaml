@@ -1,8 +1,6 @@
-description: Taux employeur de la Contribution de solidarité autonomie (CSA) du régime général de la sécurité sociale (SS)
+description: Taux employeur (sur tout salaire) de la Contribution de solidarité autonomie (CSA) du régime général de la sécurité sociale (SS)
 brackets:
 - rate:
-    2021-01-01:
-      value: 0.003
     2004-07-01:
       value: 0.003
   threshold:
@@ -11,6 +9,7 @@ brackets:
 metadata:
   ux_name: Barème employeur
   last_review: 2021-12-07
+  ipp_csv_id: csa_p_0_
   unit: /1
   reference:
     2021-01-01:

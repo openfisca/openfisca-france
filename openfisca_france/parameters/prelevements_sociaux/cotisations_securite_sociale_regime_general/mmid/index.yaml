@@ -1,4 +1,14 @@
 description: Cotisations du régime d'assurance maladie
 metadata:
   ux_name: Cotisations Assurance Maladie
+  order:
+  - employeur
+  - salarie
+  - tx_red
+  - tx_normal
   description_en: SSCs of the sickness scheme
+documentation: |
+  Le taux réduit sous 2,5 SMIC est codé dans reductions_cotisations_sociales.alleg_gen.
+  Au lieu de calculer le taux réduit, on calcule la cotisation normale et on déduit cet allègement.
+  Les taux normaux et réduits ici sont issus de l'harmonisation avec l'IPP
+

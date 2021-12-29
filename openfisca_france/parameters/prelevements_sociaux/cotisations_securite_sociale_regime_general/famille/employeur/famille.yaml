@@ -52,6 +52,8 @@ brackets:
       value: 0.0
 metadata:
   ux_name: Barème employeur
+  ipp_csv_id:
+    rate: fam_p_0_1, fam_p_0_
   last_review: 2021-12-07
   rate_unit: /1
   threshold_unit: PSS

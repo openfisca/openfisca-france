@@ -2,9 +2,10 @@ description: Abattement de Cotisations de sécurité sociale (SS) du régime gé
 values:
   1975-01-01:
     value: 0.2
-unit: /1
 metadata:
   ux_name: Abattement
+  unit: /1
+  ipp_csv_id: abat_j
   last_review:
     2016-01-01
   reference:

@@ -1,5 +1,4 @@
 description: Cotisations spéciales assurance maladie sur les avantages retraite (régimes complémentaires)
-unit: /1
 values:
   1980-07-01:
     value: 0.02
@@ -13,6 +12,8 @@ values:
     value: 0.01
 metadata:
   ux_name: Régimes complémentaires
+  ipp_csv_id: mmid_ret_comp
+  unit: /1
   last_review:
     1998-01-01
   reference:

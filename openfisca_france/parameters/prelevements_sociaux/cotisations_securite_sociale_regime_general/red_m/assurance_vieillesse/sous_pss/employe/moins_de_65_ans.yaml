@@ -1,10 +1,11 @@
 description: Taux employé (de moins de 65 ans) des cotisations de sécurité sociale (SS) des professions médicales à temps partiel (1961-1974), pour l'assurance vieillesse, sous le plafond de la sécurité sociale (PSS)
-unit: /1
 values:
   1967-10-01:
     value: 0.021
 metadata:
   ux_name: Moins de 65 ans
+  ipp_csv_id: ret_m_s_0_1
+  unit: /1
   last_review:
     1974-01-01
   reference:

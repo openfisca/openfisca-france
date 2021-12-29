@@ -1,4 +1,10 @@
 description: Cotisations de sécurité sociale (SS) des journalistes pigistes (1964-1974)
 metadata:
   ux_name: Journalistes Pigistes
+  order:
+  - assurance_maladie
+  - assurance_vieillesse
+  - accidents_travail
+  - allocations_familiales
+  - assurances_sociales_avant_1967
   description_en: SSCs for freelance journalists (1964-1974)

@@ -1,10 +1,11 @@
 description: Taux employeur de cotisations de sécurité sociale (SS) des journalistes pigistes (1964-1974) pour l'assurance maladie, tout salaire
-unit: /1
 values:
   1967-10-01:
     value: 0.016
 metadata:
   ux_name: Taux employeur
+  ipp_csv_id: mmid_j_p_0_
+  unit: /1
   last_review:
     1967-01-01
   reference:

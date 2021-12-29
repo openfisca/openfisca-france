@@ -1,6 +1,7 @@
 description: Cotisations sur les allocations chômage et préretraite du régime local d'assurance maladie d'Alsace et Moselle (depuis 1967)
-unit: /1
 values:
+  1946-07-01:
+    value: null
   1997-01-01:
     value: 0.01
   1998-07-01:
@@ -18,7 +19,9 @@ values:
   2012-01-01:
     value: 0.015
 metadata:
-  ux_name: Cotisations sur les allocations chômage et préretraite
+  ux_name: Cotis. sur les allocs chômage et préretraite
+  ipp_csv_id: am_cho
+  unit: /1
   last_review:
     1986-01-01
   reference:

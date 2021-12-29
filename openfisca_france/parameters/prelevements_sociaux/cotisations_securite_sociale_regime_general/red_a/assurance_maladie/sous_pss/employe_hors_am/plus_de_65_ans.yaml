@@ -1,5 +1,4 @@
 description: Taux employé (de plus de 65 ans, hors Alsace-Moselle) des cotisations de sécurité sociale (SS) des artistes du spectacle (1960-1974) pour l'assurance maladie, sous le plafond de la sécurité sociale (PSS)
-unit: /1
 values:
   1960-01-01:
     value: null
@@ -9,6 +8,8 @@ values:
     value: 0.0105
 metadata:
   ux_name: Plus de 65 ans
+  ipp_csv_id: mmid_a_am_s65_s_0_1
+  unit: /1
   last_review:
     1969-01-01
   reference:

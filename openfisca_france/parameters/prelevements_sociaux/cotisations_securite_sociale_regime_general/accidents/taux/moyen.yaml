@@ -7,6 +7,7 @@ metadata:
   ux_name: Taux moyen
   last_review:
     2015-01-01
+  unit: /1
   reference:
   official_journal_date:
   notes:

@@ -1,5 +1,4 @@
 description: Barème de base des cotisations patronales de sécurité sociale (SS) du régime général au titre de la pénibilité (2015-2017)
-unit: /1
 brackets:
 - rate:
     2018-01-01:
@@ -13,6 +12,7 @@ brackets:
       value: 0.0
 metadata:
   ux_name: Barème pour poly-exposés
+  unit: /1
   last_review:
     2028-01-01
   reference:

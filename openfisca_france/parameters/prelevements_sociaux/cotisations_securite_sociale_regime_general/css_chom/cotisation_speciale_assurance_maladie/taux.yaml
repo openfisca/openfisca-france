@@ -12,6 +12,8 @@ values:
     value: null
 metadata:
   ux_name: Taux
+  unit: /1
+  ipp_csv_id: chom_mmid_tx
   last_review:
     1997-01-01
   reference:
