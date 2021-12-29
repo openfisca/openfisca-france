@@ -11,7 +11,7 @@ values:
   2017-01-01:
     value: 0.006
 metadata:
-  unit: Taux sur tout salaire
+  ux_name:: Taux sur tout salaire
   unit: /1
   reference:
     2017-01-01:

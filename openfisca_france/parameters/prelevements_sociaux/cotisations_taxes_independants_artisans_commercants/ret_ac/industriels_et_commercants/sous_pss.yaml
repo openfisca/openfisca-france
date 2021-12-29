@@ -33,7 +33,7 @@ values:
   2016-01-01:
     value: 0.1715
 metadata:
-  unit: Taux sous PSS
+  ux_name: Taux sous PSS
   ipp_csv_id: ret_ic_0_1
   unit: /1
   reference:
