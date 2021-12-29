@@ -276,14 +276,12 @@ def build_sal(node_json):
     sal.children['arti'].children.update(indep.famille.arti.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['arti'].children.update(indep.formation.arti.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['arti'].children.update(indep.mmid.arti.children)  # À harmoniser ! + Créer params depuis IPP
-    sal.children['arti'].children.update(indep.deces.arti.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['arti'].children.update(indep.retraite.arti.children)  # À harmoniser ! + Créer params depuis IPP
     # Comind
     sal.add_child('comind', ParameterNode("comind", data=dict(description='Cotisations sociales salariales des commercants et indépendants')))
     sal.children['comind'].children.update(indep.famille.comind.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['comind'].children.update(indep.formation.comind.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['comind'].children.update(indep.mmid.comind.children)  # À harmoniser ! + Créer params depuis IPP
-    sal.children['comind'].children.update(indep.deces.comind.children)  # À harmoniser ! + Créer params depuis IPP
     sal.children['comind'].children.update(indep.retraite.comind.children)  # À harmoniser ! + Créer params depuis IPP
     # Microsocial
     sal.add_child('microsocial', ParameterNode("microsocial", data=dict(description='Cotisations sociales salariales des professions libérales')))
