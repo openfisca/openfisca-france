@@ -82,7 +82,7 @@ metadata:
     1973-01-01:
       title: Loi 72-554 du 03/07/1972
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000322308
-  date_parution_jo:
+  official_journal_date:
     2017-01-01: 2015-12-31
     2016-01-01: 2014-12-19; 2015-12-31
     2015-01-01: 2012-07-03
