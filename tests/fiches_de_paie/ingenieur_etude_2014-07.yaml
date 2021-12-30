@@ -57,7 +57,7 @@
     agirc_gmp_employeur: -41.17
     agirc_employeur: 0
     apec_employeur: -1.08
-    arrco_employeur: -137.4
+    arrco_employeur: -137.25
     chomage_employeur: -120
     cotisation_exceptionnelle_temporaire_employeur: -6.60
     vieillesse_deplafonnee_employeur: -3000 * 0.0175  # est aggrégé avec maladie et csa
