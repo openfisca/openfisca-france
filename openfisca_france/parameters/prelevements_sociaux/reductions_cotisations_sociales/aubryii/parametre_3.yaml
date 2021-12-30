@@ -13,6 +13,8 @@ values:
     value: null
 metadata:
   ux_name: Paramètre 3
+  ipp_csv_id: aubry2_3
+  unit: currency
   last_review:
     2003-07-01
   reference:

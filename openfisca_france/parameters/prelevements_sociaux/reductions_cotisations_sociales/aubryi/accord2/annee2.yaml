@@ -1,5 +1,4 @@
 description: Année 2 de l'accord 2 des aides incitatives à la RTT (Aubry I) (1998-2006) des réductions de cotisation sociales
-unit: currency-FRF
 values:
   1998-07-01:
     value: 12000.0
@@ -11,6 +10,7 @@ values:
     value: null
 metadata:
   ux_name: Année 2
+  unit: currency
   last_review:
     2002-01-01
   description_en: Incentives to the reduction of worked time ("RTT") (Aubry I)
