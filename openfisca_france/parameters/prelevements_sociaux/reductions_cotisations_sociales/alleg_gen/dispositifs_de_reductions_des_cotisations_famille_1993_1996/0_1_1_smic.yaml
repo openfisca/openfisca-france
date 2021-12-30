@@ -1,5 +1,4 @@
 description: Dispositifs de réductions (entre 0 et 1,1 SMIC) des cotisations famille (1993-1996) des allègements généraux de cotisations de Sécurité sociale (SS)
-unit: /1
 values:
   1993-07-01:
     value: 0.054
@@ -7,6 +6,8 @@ values:
     value: null
 metadata:
   ux_name: De 0 à 1,1 SMIC
+  ipp_csv_id: tx_csp_exo_fam_1_1
+  unit: /1
   last_review:
     1996-10-01
   reference:

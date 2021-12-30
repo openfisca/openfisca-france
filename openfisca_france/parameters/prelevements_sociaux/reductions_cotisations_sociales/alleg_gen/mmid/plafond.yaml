@@ -1,4 +1,4 @@
-description: Plafond de rémunération en nombre de SMIC soumise à l'allègement des cotisations du régime d'assurance maladie (à partir de 2019)
+description: Plafond de rémunération (en nombre de SMIC) soumise à l'allègement des cotisations du régime d'assurance maladie (à partir de 2019)
 values:
   2019-01-01:
     value: 2.5

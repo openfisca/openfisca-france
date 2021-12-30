@@ -1,5 +1,4 @@
 description: Taux max (au SMIC) des ristournes Juppé (I, II et III) (1995-2003) des allègements généraux de cotisations de Sécurité sociale (SS)
-unit: /1
 values:
   1995-09-01:
     value: 0.128
@@ -9,6 +8,8 @@ values:
     value: null
 metadata:
   ux_name: Taux max (au SMIC)
+  ipp_csv_id: tx_juppe_1
+  unit: /1
   last_review:
     2003-07-01
   reference:
