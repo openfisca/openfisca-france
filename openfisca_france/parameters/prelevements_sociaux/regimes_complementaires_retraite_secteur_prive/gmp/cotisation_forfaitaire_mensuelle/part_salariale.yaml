@@ -1,74 +1,76 @@
-description: Part salariale de la cotisation forfaitaire mensuelle en euros pour la garantie minimale de points (GMP) aux régimes complémentaires de retraite (secteur privé) (1989-2018)
+description: Part salariale de la cotisation forfaitaire mensuelle pour la garantie minimale de points (GMP) aux régimes complémentaires de retraite (secteur privé) (1989-2018)
 values:
-  1989-01-01:
-    value: 59.229
-  1990-01-01:
-    value: 63.917
-  1991-01-01:
-    value: 66.585
-  1992-01-01:
-    value: 68.26875
-  1993-01-01:
-    value: 68.902
-  1994-01-01:
-    value: 93.461
-  1995-01-01:
-    value: 104.2096
-  1996-01-01:
-    value: 107.303571429
-  1997-01-01:
-    value: 102.025
-  1998-01-01:
-    value: 108.28125
-  1999-01-01:
-    value: 115.74
-  2000-01-01:
-    value: 123.703125
-  2001-01-01:
-    value: 125.574768187
-  2002-01-01:
-    value: 19.453125
-  2003-01-01:
-    value: 19.78125
-  2004-01-01:
-    value: 20.25
-  2005-01-01:
-    value: 20.75
-  2006-01-01:
-    value: 21.56
-  2007-01-01:
-    value: 22.35
-  2008-01-01:
-    value: 23.11
-  2009-01-01:
-    value: 23.52
-  2010-01-01:
-    value: 23.82
-  2011-01-01:
-    value: 24.35
-  2012-01-01:
-    value: 24.9
-  2013-01-01:
-    value: 25.13
-  2014-01-01:
-    value: 25.17
-  2016-01-01:
-    value: 25.84
-  2017-01-01:
-    value: 26.71
-  2018-01-01:
-    reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2017/201710dt_parametres_Agirc-Arrco.pdf
-    value: 27.60
   2019-01-01:
     value: null
+  2018-01-01:
+    value: 27.6
+  2017-01-01:
+    value: 26.71
+  2016-01-01:
+    value: 25.84
+  2014-01-01:
+    value: 25.17
+  2013-01-01:
+    value: 25.13
+  2012-01-01:
+    value: 24.9
+  2011-01-01:
+    value: 24.35
+  2010-01-01:
+    value: 23.82
+  2009-01-01:
+    value: 23.52
+  2008-01-01:
+    value: 23.11
+  2007-01-01:
+    value: 22.35
+  2006-01-01:
+    value: 21.56
+  2005-01-01:
+    value: 20.75
+  2004-01-01:
+    value: 20.25
+  2003-01-01:
+    value: 19.78125
+  2002-01-01:
+    value: 19.453125
+  2001-01-01:
+    value: 125.5747681875
+  2000-01-01:
+    value: 123.703125
+  1999-01-01:
+    value: 115.74
+  1998-01-01:
+    value: 108.28125
+  1997-01-01:
+    value: 102.025
+  1996-01-01:
+    value: 107.3035714285714
+  1995-01-01:
+    value: 104.2096153846154
+  1994-01-01:
+    value: 93.46111111111111
+  1993-01-01:
+    value: 68.90208333333332
+  1992-01-01:
+    value: 68.26875
+  1991-01-01:
+    value: 66.58541666666666
+  1990-01-01:
+    value: 63.91666666666666
+  1989-01-01:
+    value: 59.22916666666666
 metadata:
   ux_name: Part salariale
+  ipp_csv_id: gmp_cot_f_m_s
   last_review:
     2021-07-30
   unit: currency
   reference:
     2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
-    2018-01-01: Circulaire 2017-07-DT du 16/10/2017
+    2018-01-01:
+      title: Circulaire 2017-07-DT du 16/10/2017
+      href: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2017/201710dt_parametres_Agirc-Arrco.pdf
     2017-01-01: Circulaire 2016-4-DT du 10/10/2016
     2016-01-01: Circulaire 2015-15-DRJ du 28/12/2015
     2015-01-01: Circulaire 2014-16-DRJ du 18/12/2014

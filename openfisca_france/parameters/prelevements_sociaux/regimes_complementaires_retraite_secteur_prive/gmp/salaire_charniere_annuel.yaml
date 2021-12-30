@@ -64,6 +64,7 @@ values:
     value: null
 metadata:
   ux_name: salaire charnière annuel
+  ipp_csv_id: gmp_sal_char
   last_review:
     2021-07-30
   unit: currency
