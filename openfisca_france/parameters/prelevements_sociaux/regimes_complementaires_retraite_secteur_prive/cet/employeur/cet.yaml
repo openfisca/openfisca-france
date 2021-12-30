@@ -16,7 +16,7 @@ brackets:
   threshold:
     1997-01-01:
       value: 0.0
-  - rate:
+- rate:
     1997-01-01:
       value: 0.0
   threshold:
