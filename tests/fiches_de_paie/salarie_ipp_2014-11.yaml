@@ -30,7 +30,7 @@ output:
   ags: -13.80
   apec_employeur: -1.09 - 0.57
   cotisation_exceptionnelle_temporaire_employeur: -10.12
-  arrco_employeur: -138.53
+  arrco_employeur: -138.38
   agirc_employeur: -199.75
   agirc_gmp_employeur: 0
   chomage_employeur: -120.99 - 63.01
