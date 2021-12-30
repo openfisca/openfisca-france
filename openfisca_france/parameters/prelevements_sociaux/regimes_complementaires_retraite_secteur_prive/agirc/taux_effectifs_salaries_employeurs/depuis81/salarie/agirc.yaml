@@ -10,7 +10,7 @@ brackets:
       value: 0.0
     2019-01-01:
       value: null
-- rate: # Tranche B (après 81)
+- rate:
     2019-01-01:
       value: null
     1996-01-01:
@@ -38,7 +38,7 @@ brackets:
       value: 1.0
     2019-01-01:
       value: null
-- rate: # Tranche C (après 81)
+- rate:
     2019-01-01:
       value: null
     2015-01-01:
@@ -62,6 +62,11 @@ brackets:
     1991-01-01:
       value: 0.0234
     1948-01-01:
+      value: null
+  threshold:
+    1948-01-01:
+      value: 4.0
+    2019-01-01:
       value: null
 - rate:
     1948-01-01:
@@ -110,7 +115,7 @@ metadata:
     1953-01-01: Référence non trouvée
     1952-01-01: Référence non trouvée
     1948-01-01: Convention AGIRC du 14/03/1947
-  official_jourrnal_date:
+  official_journal_date:
     1986-01-01: 1987-05-13
   notes:
     2019-01-01: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)

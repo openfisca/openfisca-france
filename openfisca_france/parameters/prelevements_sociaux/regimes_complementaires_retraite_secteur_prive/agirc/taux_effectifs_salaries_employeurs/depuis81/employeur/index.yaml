@@ -2,6 +2,5 @@ description: Taux effectifs (Entreprises après 1981) des cotisations retraites 
 metadata:
   ux_name: Entreprises après 1981
   order:
-  - salarie
-  - employeur
+  - agirc
   description_en: Pension contributions for executives (AGIRC)

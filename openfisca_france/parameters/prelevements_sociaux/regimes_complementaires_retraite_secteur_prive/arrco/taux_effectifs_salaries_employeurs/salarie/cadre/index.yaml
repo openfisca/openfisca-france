@@ -2,5 +2,5 @@ description: Barème salarié (cadre) des cotisations retraites des non-cadres (
 metadata:
   ux_name: Cadre
   order:
-  - arcco
+  - arrco
   description_en: Pension contributions for non-executives (ARRCO)
