@@ -1,16 +1,19 @@
 description: Taux du crédit d'impot sur la compétitivité et l'emploi (CICE, 2013-2018) des cotisations de Sécurité sociale (SS)
-unit: /1
 values:
-  2013-01-01:
-    value: 0.04
-  2014-01-01:
+  2019-01-01:
+    value: null
+  2018-01-01:
     value: 0.06
   2017-01-01:
     value: 0.07
-  2018-01-01:
+  2014-01-01:
     value: 0.06
+  2013-01-01:
+    value: 0.04
 metadata:
   ux_name: Taux
+  ipp_csv_id: cice_tx
+  unit: /1
   last_review:
     2018-01-01
   reference:
