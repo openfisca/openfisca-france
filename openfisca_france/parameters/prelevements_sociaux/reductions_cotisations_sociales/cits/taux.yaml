@@ -1,5 +1,4 @@
 description: Taux du crédit d'impôt de taxe sur les salaires (CITS) (2017-2018), dans les réductions sur les cotisations de Sécurité sociale (SS)
-unit: /1
 values:
   2019-01-01:
     value: null
@@ -7,6 +6,7 @@ values:
     value: 0.04
 metadata:
   ux_name: Taux
+  unit: /1
   last_review:
     2019-01-01
   reference:
