@@ -1,57 +1,107 @@
-description: Barème employeur pour les salariés cadres, des cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
+description: Barème employeur pour les employeurs non-cadre, des cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
 brackets:
 - rate:
-    1962-01-01:
-      value: 0.015
-    1967-01-01:
-      value: 0.024
-    1971-01-01:
-      value: 0.0246
-    1972-01-01:
-      value: 0.0252
-    1973-01-01:
-      value: 0.0258
-    1974-01-01:
-      value: 0.0264
-    1983-01-01:
-      value: 0.0276
-    1987-01-01:
-      value: 0.0282
-    1988-01-01:
-      value: 0.0288
-    1991-01-01:
-      value: 0.02952
-    1992-01-01:
-      value: 0.03
-    1996-01-01:
-      value: 0.03375
-    1997-01-01:
-      value: 0.0375
-    1998-01-01:
-      value: 0.04125
-    1999-01-01:
-      value: 0.045
-    2014-01-01:
-      value: 0.0458
-    2015-01-01:
-      value: 0.0465
     2019-01-01:
       value: null
+    2015-01-01:
+      value: 0.0465
+    2014-01-01:
+      value: 0.04575
+    1999-01-01:
+      value: 0.045
+    1998-01-01:
+      value: 0.04125
+    1997-01-01:
+      value: 0.0375
+    1996-01-01:
+      value: 0.033749999999999995
+    1992-01-01:
+      value: 0.03
+    1991-01-01:
+      value: 0.029519999999999998
+    1988-01-01:
+      value: 0.0288
+    1987-01-01:
+      value: 0.0282
+    1983-01-01:
+      value: 0.0276
+    1974-01-01:
+      value: 0.026400000000000003
+    1973-01-01:
+      value: 0.025799999999999997
+    1972-01-01:
+      value: 0.0252
+    1971-01-01:
+      value: 0.024599999999999997
+    1967-01-01:
+      value: 0.024
+    1962-01-01:
+      value: 0.015
   threshold:
     1962-01-01:
       value: 0.0
-- rate:
-    1962-01-01:
-      value: 0.0
+- rate:        
     2019-01-01:
       value: null
+    2015-01-01:
+      value: 0.1215
+    2014-01-01:
+      value: 0.12075
+    2005-01-01:
+      value: 0.12
+    2004-01-01:
+      value: 0.10500000000000001
+    2002-01-01:
+      value: 0.09
+    2000-01-01:
+      value: 0.075
+    1999-01-01:
+      value: 0.045
+    1998-01-01:
+      value: 0.04125
+    1997-01-01:
+      value: 0.0375
+    1996-01-01:
+      value: 0.033749999999999995
+    1992-01-01:
+      value: 0.03
+    1991-01-01:
+      value: 0.029519999999999998
+    1988-01-01:
+      value: 0.0288
+    1987-01-01:
+      value: 0.0282
+    1983-01-01:
+      value: 0.0276
+    1974-01-01:
+      value: 0.026400000000000003
+    1973-01-01:
+      value: 0.025799999999999997
+    1972-01-01:
+      value: 0.0252
+    1971-01-01:
+      value: 0.024599999999999997
+    1967-01-01:
+      value: 0.024
+    1962-01-01:
+      value: 0.015
   threshold:
     1962-01-01:
       value: 1.0
+- rate:
+    1962-01-01:
+      value: 0.0
+    2019-01-01:
+      value: null
+  threshold:
+    1962-01-01:
+      value: 3.0
 metadata:
-  ux_name: Cadre
+  ux_name: Non-cadre - Tranches 1 et 2(avant 97)
+  ipp_csv_id:
+    rate: arrco_p_0_1, arrco_p_1_3
   last_review:
-    2021-07-30
+    2021-01-01
   rate_unit: /1
   threshold_unit: PSS
   reference:

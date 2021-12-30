@@ -1,95 +1,23 @@
-description: Barème salarié non-cadre des cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
+description: Tranche 2 (après 1997) du barème salarié pour les employeurs non-cadre, des cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
 brackets:
-- rate:
-    1962-01-01:
-      value: 0.01
-    1967-01-01:
-      value: 0.016
-    1971-01-01:
-      value: 0.0164
-    1972-01-01:
-      value: 0.0168
-    1973-01-01:
-      value: 0.0172
-    1974-01-01:
-      value: 0.0176
-    1983-01-01:
-      value: 0.0184
-    1987-01-01:
-      value: 0.0188
-    1988-01-01:
-      value: 0.0192
-    1991-01-01:
-      value: 0.01968
-    1996-01-01:
-      value: 0.0225
-    1997-01-01:
-      value: 0.025
-    1998-01-01:
-      value: 0.0275
-    1999-01-01:
-      value: 0.03
-    2014-01-01:
-      value: 0.0305
+- rate:        
+    2019-01-01:
+      value: null
     2015-01-01:
-      value: 0.031
-    2019-01-01:
-      value: null
-  threshold:
-    1962-01-01:
-      value: 0.0
-    2019-01-01:
-      value: null
-- rate:
-    1962-01-01:
-      value: 0.01
-    1967-01-01:
-      value: 0.016
-    1971-01-01:
-      value: 0.0164
-    1972-01-01:
-      value: 0.0168
-    1973-01-01:
-      value: 0.0172
-    1974-01-01:
-      value: 0.0176
-    1983-01-01:
-      value: 0.0184
-    1987-01-01:
-      value: 0.0188
-    1988-01-01:
-      value: 0.0192
-    1991-01-01:
-      value: 0.01968
-    1992-01-01:
-      value: 0.02
-    1996-01-01:
-      value: 0.0225
-    1997-01-01:
-      value: 0.025
-    1998-01-01:
-      value: 0.0275
-    1999-01-01:
-      value: 0.03
+      value: 0.08100000000000002
+    2014-01-01:
+      value: 0.08050000000000002
     2000-01-01:
-      value: 0.05
-    2002-01-01:
-      value: 0.06
-    2004-01-01:
+      value: 0.08000000000000002
+    1999-01-01:
+      value: 0.07500000000000001
+    1997-01-01:
       value: 0.07
-    2005-01-01:
-      value: 0.08
-    2014-01-01:
-      value: 0.0805
-    2015-01-01:
-      value: 0.081
-    2019-01-01:
+    1962-01-01:
       value: null
   threshold:
     1962-01-01:
       value: 1.0
-    2019-01-01:
-      value: null
 - rate:
     1962-01-01:
       value: 0.0
@@ -98,12 +26,12 @@ brackets:
   threshold:
     1962-01-01:
       value: 3.0
-    2019-01-01:
-      value: null
 metadata:
-  ux_name: Non-cadre
+  ux_name: Non-cadre - Tranche 2 (après 97)
+  ipp_csv_id:
+    rate: arrco_ap97_s_1_3
   last_review:
-    2021-07-30
+    2021-01-01
   rate_unit: /1
   threshold_unit: PSS
   reference:
@@ -123,6 +51,7 @@ metadata:
     1988-01-01: Accords ARRCO du 12/11/86
     1987-01-01: Accords ARRCO du 12/11/86
     1983-01-01: Lettre-circulaire ARRCO 82-28 du 09/07/82
+    1982-01-01: (pas de référence)
   notes:
     2019-01-01: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
     1982-01-01: "BSP : \"Le plus souvent, répartition employeur/salarié = 60/40 comme à l'UNIRS\""
@@ -138,3 +67,4 @@ documentation: |
   Sources :
   Document faxé par l'ARRCO "Paramètres de fonctionnement pratique depuis la création de l'Arrco au titre des opérations obligatoires (1962-1999)"
   Site web de l'Arrco depuis 1999.
+

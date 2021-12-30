@@ -1,40 +1,42 @@
-description: Barème salarié cadres des cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
+description: Barème salarié cadre des cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
 brackets:
 - rate:
-    1962-01-01:
-      value: 0.01
-    1967-01-01:
-      value: 0.016
-    1971-01-01:
-      value: 0.0164
-    1972-01-01:
-      value: 0.0168
-    1973-01-01:
-      value: 0.0172
-    1974-01-01:
-      value: 0.0176
-    1983-01-01:
-      value: 0.0184
-    1987-01-01:
-      value: 0.0188
-    1988-01-01:
-      value: 0.0192
-    1991-01-01:
-      value: 0.01968
-    1996-01-01:
-      value: 0.0225
-    1997-01-01:
-      value: 0.025
-    1998-01-01:
-      value: 0.0275
-    1999-01-01:
-      value: 0.03
-    2014-01-01:
-      value: 0.0305
-    2015-01-01:
-      value: 0.031
     2019-01-01:
       value: null
+    2015-01-01:
+      value: 0.031
+    2014-01-01:
+      value: 0.0305
+    1999-01-01:
+      value: 0.03
+    1998-01-01:
+      value: 0.027500000000000004
+    1997-01-01:
+      value: 0.025
+    1996-01-01:
+      value: 0.0225
+    1992-01-01:
+      value: 0.020000000000000004
+    1991-01-01:
+      value: 0.019680000000000003
+    1988-01-01:
+      value: 0.019200000000000002
+    1987-01-01:
+      value: 0.0188
+    1983-01-01:
+      value: 0.0184
+    1974-01-01:
+      value: 0.0176
+    1973-01-01:
+      value: 0.0172
+    1972-01-01:
+      value: 0.016800000000000002
+    1971-01-01:
+      value: 0.016399999999999998
+    1967-01-01:
+      value: 0.016
+    1962-01-01:
+      value: 0.010000000000000002
   threshold:
     1962-01-01:
       value: 0.0
@@ -51,7 +53,9 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  ux_name: Cadre
+  ux_name: Cadre - Tranche 1
+  ipp_csv_id:
+    rate: arrco_s_0_1
   last_review:
     2021-07-30
   rate_unit: /1
