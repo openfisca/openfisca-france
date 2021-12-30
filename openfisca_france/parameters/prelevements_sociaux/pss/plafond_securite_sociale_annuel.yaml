@@ -1,5 +1,4 @@
 description: Plafond annuel de la Sécurité sociale (SS)
-unit: currency
 values:
   1930-07-01:
     value: 10800.0
@@ -169,6 +168,8 @@ values:
     value: 41136.0
 metadata:
   ux_name: Annuel
+  ipp_csv_id: pss_a
+  unit: currency
   last_review:
     2021-01-01
   reference:

@@ -1,5 +1,4 @@
 description: Plafond mensuel de la Sécurité sociale (SS)
-unit: currency
 values:
   1930-07-01:
     value: null
@@ -185,6 +184,8 @@ values:
     value: 3428.0
 metadata:
   ux_name: Plafond mensuel
+  ipp_csv_id: pss_m
+  unit: currency
   last_review:
     2021-01-01
   reference:
