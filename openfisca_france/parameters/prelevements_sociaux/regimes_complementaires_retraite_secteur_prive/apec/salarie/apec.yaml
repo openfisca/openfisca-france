@@ -13,6 +13,8 @@ brackets:
       value: 0.00016
     1975-01-01:
       value: 0.00024
+    2011-01-01:
+      value: null
   threshold:
     1971-01-01:
       value: 1.0
@@ -24,6 +26,8 @@ brackets:
       value: 4.0
 metadata:
   ux_name: Barème salarié
+  ipp_csv_id:
+    rate: apec_s_0_4, apec_s_1_4
   last_review:
     2021-07-30
   rate_unit: /1
