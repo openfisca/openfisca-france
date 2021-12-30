@@ -1,5 +1,4 @@
 description: Réduction maximale des allégements Fillon ou allègements bas salaires (entreprises restées aux 39h hedbomadaires au 30/06/2003, depuis 2003) des cotisations de Sécurité sociale (SS)
-unit: /1
 values:
   2003-07-01:
     value: 0.208
@@ -9,6 +8,8 @@ values:
     value: null
 metadata:
   ux_name: Réduction maximale
+  ipp_csv_id: tx_trans_39
+  unit: /1
   last_review:
     2021-11-19
   reference:
