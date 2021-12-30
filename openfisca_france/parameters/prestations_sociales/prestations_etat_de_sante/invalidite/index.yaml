@@ -1,0 +1,9 @@
+description: Prestations sociales liées à l'Invalidité
+metadata:
+  ux_name: Invalidité
+  order:
+  - aah
+  - caah
+  - asi_cond
+  - asi_m_plaf
+  description_en: Disability

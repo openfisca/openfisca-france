@@ -1,2 +1,6 @@
-description: Allocation pour adulte handicapé (AAH)
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Prestations sociales liées à l'Invalidité - Allocation pour adulte handicapé (AAH)
+metadata:
+  ux_name: AAH
+  order:
+  -
+  description_en: Disability
