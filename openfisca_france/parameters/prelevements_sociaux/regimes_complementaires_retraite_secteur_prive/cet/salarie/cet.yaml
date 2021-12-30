@@ -21,9 +21,13 @@ brackets:
 - rate:
     1997-01-01:
       value: 0.0
+    2019-01-01:
+      value: null
   threshold:
     1997-01-01:
       value: 8.0
+    2019-01-01:
+      value: null
 metadata:
   ux_name: Barème salarié
   ipp_csv_id: cet_s_0_8

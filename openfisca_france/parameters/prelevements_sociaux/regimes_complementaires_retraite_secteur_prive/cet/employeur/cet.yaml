@@ -16,12 +16,18 @@ brackets:
   threshold:
     1997-01-01:
       value: 0.0
+    2019-01-01:
+      value: null
 - rate:
     1997-01-01:
       value: 0.0
+    2019-01-01:
+      value: null
   threshold:
     1997-01-01:
       value: 8.0
+    2019-01-01:
+      value: null
 metadata:
   ux_name: Barème employeur
   ipp_csv_id: cet_p_0_8
