@@ -13,8 +13,6 @@ brackets:
       value: 0.00016
     1975-01-01:
       value: 0.00024
-    2011-01-01:
-      value: null
   threshold:
     1971-01-01:
       value: 1.0
