@@ -1,101 +1,40 @@
-description: Barème employeur des cotisations retraites des cades (AGIRC) aux régimes complémentaires de retraite (secteur privé) (1948-2018)
-brackets:
-- rate:
-    1948-01-01:
-      value: 0.0
-  threshold:
-    1948-01-01:
-      value: 0.0
-- rate: # Tranche B (avant 81)
-    1948-01-01:
-      value: 0.06
-    1952-01-01:
-      value: 0.0468
-    1953-01-01:
-      value: 0.048
-    1955-01-01:
-      value: 0.051
-    1961-01-01:
-      value: 0.054
-    1965-01-01:
-      value: 0.056999999999999995
-    1966-01-01:
-      value: 0.06
-    1979-01-01:
-      value: 0.0618
-    1986-01-01:
-      value: 0.0636
-    1987-01-01:
-      value: 0.066
-    1989-01-01:
-      value: 0.06804
-    1990-01-01:
-      value: 0.0702
-    1994-01-01:
-      value: 0.0843
-    1995-01-01:
-      value: 0.1
-    1996-01-01:
-      value: 0.10625
-    1997-01-01:
-      value: 0.1125
-    1998-01-01:
-      value: 0.11875
-    1999-01-01:
-      value: 0.125
-    2006-01-01:
-      value: 0.126
-    2014-01-01:
-      value: 0.1268
-    2015-01-01:
-      value: 0.1275
-    2019-01-01:
-      value: null
-  threshold:
-    1948-01-01:
-      value: 1.0
-- rate: # Tranche C (avant 81)
-    1948-01-01:
-      value: 0.0
-    1991-01-01:
-      value: 0.0702
-    1994-01-01:
-      value: 0.0847
-    1995-01-01:
-      value: 0.1
-    1996-01-01:
-      value: 0.10625
-    1997-01-01:
-      value: 0.1125
-    1998-01-01:
-      value: 0.11875
-    1999-01-01:
-      value: 0.125
-    2006-01-01:
-      value: 0.126
-    2014-01-01:
-      value: 0.1268
-    2015-01-01:
-      value: 0.1275
-    2019-01-01:
-      value: null
-  threshold:
-    1948-01-01:
-      value: 4.0
-- rate:
-    1948-01-01:
-      value: 0.0
-  threshold:
-    1948-01-01:
-      value: 8.0
+description: Taux d'appel des cotisations retraites des cades (AGIRC) aux régimes complémentaires de retraite (secteur privé) (1948-2018)
+values:
+  2019-01-01:
+    value: null
+  1995-01-01:
+    value: 1.25
+  1994-01-01:
+    value: 1.21
+  1990-01-01:
+    value: 1.17
+  1989-01-01:
+    value: 1.134
+  1987-01-01:
+    value: 1.1
+  1986-01-01:
+    value: 1.06
+  1979-01-01:
+    value: 1.03
+  1966-01-01:
+    value: 1.0
+  1965-01-01:
+    value: 0.95
+  1961-01-01:
+    value: 0.9
+  1955-01-01:
+    value: 0.85
+  1953-01-01:
+    value: 0.8
+  1952-01-01:
+    value: 0.78
+  1948-01-01:
+    value: 1.0
 metadata:
-  ux_name: Barème employeur
-  ipp_csv_id:
-    rate: agirc_p_1_4, agirc_p_4_8
+  ux_name: Taux d'appel
   last_review:
     2021-07-30
-  rate_unit: /1
-  threshold_unit: PSS
+  unit: /1
   reference:
     2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
     2017-01-01: AGIRC-ARRCO Circulaire 2016-11-DRJ du 16/12/2016
