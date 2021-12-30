@@ -1,5 +1,4 @@
 description: Plafond (en nombre de SMIC) de l'allègement des cotisations pour la branche famille des cotisations de Sécurité sociale (SS)
-unit: /1
 values:
   2015-01-01:
     value: 1.6
@@ -7,6 +6,8 @@ values:
     value: 3.5
 metadata:
   ux_name: Plafond (en nombre de SMIC)
+  unit: SMIC
+  ipp_csv_id: pss_red_fam
   last_review:
     2021-11-19
   reference:
