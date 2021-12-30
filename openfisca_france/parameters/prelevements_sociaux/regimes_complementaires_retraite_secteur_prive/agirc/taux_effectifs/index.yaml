@@ -1,0 +1,7 @@
+description: Taux effectifs des cotisations retraites des cades (AGIRC) aux régimes complémentaires de retraite (secteur privé) (1948-2018)
+metadata:
+  ux_name: Taux effectifs
+  order:
+  - entreprises_avant_01_01_1981
+  - entreprises_apres_01_01_1981
+  description_en: Pension contributions for executives (AGIRC)

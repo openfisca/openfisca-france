@@ -6,7 +6,7 @@ brackets:
   threshold:
     1948-01-01:
       value: 0.0
-- rate:
+- rate: # Tranche B (avant 81)
     1948-01-01:
       value: 0.06
     1952-01-01:
@@ -18,7 +18,7 @@ brackets:
     1961-01-01:
       value: 0.054
     1965-01-01:
-      value: 0.0569
+      value: 0.056999999999999995
     1966-01-01:
       value: 0.06
     1979-01-01:
@@ -54,7 +54,7 @@ brackets:
   threshold:
     1948-01-01:
       value: 1.0
-- rate:
+- rate: # Tranche C (avant 81)
     1948-01-01:
       value: 0.0
     1991-01-01:
@@ -90,6 +90,8 @@ brackets:
       value: 8.0
 metadata:
   ux_name: Barème employeur
+  ipp_csv_id:
+    rate: agirc_p_1_4, agirc_p_4_8
   last_review:
     2021-07-30
   rate_unit: /1
