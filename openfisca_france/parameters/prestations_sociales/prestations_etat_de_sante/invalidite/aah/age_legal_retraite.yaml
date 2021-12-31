@@ -1,5 +1,4 @@
 description: Âge légal de départ à la retraite
-unit: year
 values:
   1983-07-01:
     value: 60.0
@@ -13,3 +12,6 @@ values:
     value: 61.583
   2017-01-01:
     value: 62.0
+metadata:
+  ux_name: Âge Retraite
+  unit: year

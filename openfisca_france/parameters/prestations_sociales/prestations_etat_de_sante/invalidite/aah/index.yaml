@@ -2,5 +2,13 @@ description: Prestations sociales liées à l'Invalidité - Allocation pour adul
 metadata:
   ux_name: AAH
   order:
-  -
+  - age_minimal
+  - age_maximal
+  - montant
+  - pourcentage_aah
+  - abattement_special
+  - abattement_conjoint
+  - travail_esat
+  - travail_ordinaire
+  - majoration_plafond
   description_en: Disability
