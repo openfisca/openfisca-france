@@ -1,6 +1,7 @@
 description: Majoration de plafond pour personne à charge (en pourcentage du plafond de base)
 values:
-  2005-01-01:
+  # 2005-01-01:
+  2000-01-01:
     value: 0.5
 metadata:
   ux_name: Par enfant supplémentaire

@@ -1,5 +1,6 @@
 description: Taux d'abattement sur les revenus du conjoint et les pensions et rentes viagères pour bénéficier de l'Allocation pour adulte handicapé (AAH)
 values:
+  # 2011-01-01:
   2000-01-01:
     value: 0.2
 metadata:

@@ -1,9 +1,9 @@
 description: Plafond de ressources pour l'AAH, en multiples du montant de base
 values:
-  2011-01-01:
-    value: 3.0
   2005-07-01:
     value: 12.0
+  2011-01-01:
+    value: 3.0
 metadata:
   ux_name: Plafond de ressources
   ipp_csv_id: plaf_ressources_aah_activite
