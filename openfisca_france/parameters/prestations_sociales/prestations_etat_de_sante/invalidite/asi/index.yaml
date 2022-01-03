@@ -1,2 +1,10 @@
-description: Allocation supplémentaire d'invalidité
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Allocation supplémentaire d'invalidité (ASI)
+metadata:
+  ux_name: ASI
+  order:
+  - taux_minimum_d_invalidite
+  - montant_seul
+  - montant_couple
+  - plafond_ressource_seul
+  - plafond_ressource_couple
+  description_en: Supplementary disability allowance (ASI)
