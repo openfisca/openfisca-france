@@ -210,8 +210,8 @@ class apa_etablissement(Variable):
         base_ressources_apa_etablissement = base_ressources_apa / proratisation_couple_etablissement
         dependance_tarif_etablissement_gir_5_6 = individu('dependance_tarif_etablissement_gir_5_6', period)
         dependance_tarif_etablissement_gir_dependant = individu('dependance_tarif_etablissement_gir_dependant', period)
-        seuil_inf_inst = parameters.apa_institution.seuil_revenu_en_part_mtp.seuil_inferieur
-        seuil_sup_inst = parameters.apa_institution.seuil_revenu_en_part_mtp.seuil_superieur
+        seuil_inf_inst = parameters.apa_institution.seuil_inferieur
+        seuil_sup_inst = parameters.apa_institution.seuil_superieur
         majoration_tierce_personne = parameters.apa_mtp.mtp
 
         conditions_ressources = [
