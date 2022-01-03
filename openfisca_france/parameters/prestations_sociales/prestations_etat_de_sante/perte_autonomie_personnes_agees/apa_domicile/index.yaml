@@ -6,7 +6,7 @@ metadata:
   - seuil_revenu_en_part_mtp
   - part_plafond_apa_domicile
   - division_ressources_menage_couples
-  - taux_participation
+  - taux_de_participation
   - condition_age
   - seuil_versement_en_part_smic_brut_horaire
   - majorations

@@ -2,9 +2,9 @@ description: Accord 4 des aides incitatives à la RTT (Aubry I) (1998-2006) des 
 metadata:
   ux_name: Accord 4
   order:
-  - annee_1
-  - annee_2
-  - annee_3
-  - annee_4
-  - annee_5
+  - annee1
+  - annee2
+  - annee3
+  - annee4
+  - annee5
   description_en: Incentives to the reduction of worked time ("RTT") (Aubry I)
