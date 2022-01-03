@@ -1,5 +1,16 @@
 # Changelog
 
+### 94.0.1 [#1767](https://github.com/openfisca/openfisca-france/pull/1767)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées:
+    - `parameters/prestations_sociales/prestations_etat_de_sante/asi`
+    -  `parameters/prestations_sociales/prestations_etat_de_sante/caah`
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp (ajout de références)
+  - Pas de modification de chemins: version mineure
+
 # 94.0.0 [#1759](https://github.com/openfisca/openfisca-france/pull/1759)
 
 * Amélioration technique. 
