@@ -1,0 +1,8 @@
+description: Plafond du cumul AAH et rémunération par l'Esat (en part du SMIC) pour l'Allocation pour adulte handicapé (AAH)
+metadata:
+  ux_name: Plafond du cumul AAH et rémunération par l'Esat 
+  order:
+  - seul
+  - couple
+  - majoration
+  description_en: Disability

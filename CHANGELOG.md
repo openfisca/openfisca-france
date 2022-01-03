@@ -1,5 +1,14 @@
 # Changelog
 
+# 98.0.0 [#1766](https://github.com/openfisca/openfisca-france/pull/1766)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+
 # 97.0.0 [#1769](https://github.com/openfisca/openfisca-france/pull/1769)
 
 * Amélioration technique. 

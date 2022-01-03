@@ -1,0 +1,8 @@
+description: Base de calcul pour les bénéficiaires travaillant dans un établissement et service d'aide par le travail (Esat) pour l'Allocation pour adulte handicapé (AAH)
+metadata:
+  ux_name: Base de calcul pour Esat
+  order:
+  - plafond_ressources_en_multiple_montant_base
+  - plafond
+  - abattement_esat
+  description_en: Disability
