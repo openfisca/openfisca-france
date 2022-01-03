@@ -1,5 +1,14 @@
 # Changelog
 
+# 95.0.0 [#1762](https://github.com/openfisca/openfisca-france/pull/1762)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_taxes_professions_liberales`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+
 ### 94.0.1 [#1767](https://github.com/openfisca/openfisca-france/pull/1767)
 
 * Amélioration technique. 
