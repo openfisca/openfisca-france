@@ -1,5 +1,4 @@
 description: Taux minimum d'invalidité
-unit: /1
 values:
   2006-01-01:
     value: 0.6666
