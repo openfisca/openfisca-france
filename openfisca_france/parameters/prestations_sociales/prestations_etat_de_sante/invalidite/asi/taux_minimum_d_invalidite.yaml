@@ -10,7 +10,7 @@ metadata:
     2006-01-01:
       title: Décret 2007-57 du 12/01/2007
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000613344
-  date_parution_jo:
+  official_journal_date:
     2006-01-01: 2007-01-13
   description_en: "Supplementary disability allowance (ASI): General conditions"
 documentation: |
