@@ -41,7 +41,7 @@ class apa_domicile_participation(Variable):
         proratisation_couple = (
             1
             + en_couple
-            * (autonomie.apa_domicile.divison_des_ressources_du_menage_pour_les_couples - 1)
+            * (autonomie.apa_domicile.divison_ressources_menage_couples - 1)
             )
 
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
@@ -73,7 +73,7 @@ class apa_domicile_participation(Variable):
         proratisation_couple = (
             1
             + en_couple
-            * (parameters.apa_domicile.divison_des_ressources_du_menage_pour_les_couples - 1)
+            * (parameters.apa_domicile.divison_ressources_menage_couples - 1)
             )
 
         base_ressources_apa_domicile = base_ressources_apa / proratisation_couple
@@ -204,7 +204,7 @@ class apa_etablissement(Variable):
         proratisation_couple_etablissement = (
             1
             + en_couple
-            * (parameters.apa_institution.divison_des_ressources_du_menage_pour_les_couples - 1)
+            * (parameters.apa_institution.divison_ressources_menage_couples - 1)
             )
 
         base_ressources_apa_etablissement = base_ressources_apa / proratisation_couple_etablissement
@@ -336,7 +336,7 @@ class apa_urgence_domicile(Variable):
         period = period.first_month
         autonomie = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
         majoration_tierce_personne = autonomie.apa_mtp.mtp
-        plafond_gir1 = autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_1
+        plafond_gir1 = autonomie.apa_domicile.plafond_apa_domicile_en_part_mtp.gir_1
         part_urgence_domicile = autonomie.apa_domicile.apa_d_urgence.part_du_plafond_de_l_apa_a_domicile
         return part_urgence_domicile * plafond_gir1 * majoration_tierce_personne
 
@@ -372,10 +372,10 @@ class dependance_plan_aide_domicile_accepte(Variable):
         dependance_plan_aide_domicile = individu('dependance_plan_aide_domicile', period)
         parameters_autonomie = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
 
-        plafond_gir1 = parameters_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_1
-        plafond_gir2 = parameters_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_2
-        plafond_gir3 = parameters_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_3
-        plafond_gir4 = parameters_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_4
+        plafond_gir1 = parameters_autonomie.apa_domicile.plafond_apa_domicile_en_part_mtp.gir_1
+        plafond_gir2 = parameters_autonomie.apa_domicile.plafond_apa_domicile_en_part_mtp.gir_2
+        plafond_gir3 = parameters_autonomie.apa_domicile.plafond_apa_domicile_en_part_mtp.gir_3
+        plafond_gir4 = parameters_autonomie.apa_domicile.plafond_apa_domicile_en_part_mtp.gir_4
         majoration_tierce_personne = parameters_autonomie.apa_mtp.mtp
 
         condition_plafond_par_gir = [
