@@ -41,7 +41,7 @@ class apa_domicile_participation(Variable):
         proratisation_couple = (
             1
             + en_couple
-            * (autonomie.apa_domicile.divison_ressources_menage_couples - 1)
+            * (autonomie.apa_domicile.division_ressources_menage_couples - 1)
             )
 
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
@@ -73,7 +73,7 @@ class apa_domicile_participation(Variable):
         proratisation_couple = (
             1
             + en_couple
-            * (parameters.apa_domicile.divison_ressources_menage_couples - 1)
+            * (parameters.apa_domicile.division_ressources_menage_couples - 1)
             )
 
         base_ressources_apa_domicile = base_ressources_apa / proratisation_couple
@@ -204,7 +204,7 @@ class apa_etablissement(Variable):
         proratisation_couple_etablissement = (
             1
             + en_couple
-            * (parameters.apa_institution.divison_ressources_menage_couples - 1)
+            * (parameters.apa_institution.division_ressources_menage_couples - 1)
             )
 
         base_ressources_apa_etablissement = base_ressources_apa / proratisation_couple_etablissement
