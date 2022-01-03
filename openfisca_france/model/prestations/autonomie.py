@@ -351,7 +351,7 @@ class apa_urgence_institution(Variable):
     def formula_2002(individu, period, parameters):
         period = period.start.offset('first-of', 'month').period('month')
         dependance_tarif_etablissement_gir_1_2 = individu('dependance_tarif_etablissement_gir_1_2', period)
-        part_urgence_institution = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees.apa_institution.apa_d_urgence.part
+        part_urgence_institution = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees.apa_institution.part_tarif_dependance
         apa_urgence_institution = part_urgence_institution * dependance_tarif_etablissement_gir_1_2
         return apa_urgence_institution
 
