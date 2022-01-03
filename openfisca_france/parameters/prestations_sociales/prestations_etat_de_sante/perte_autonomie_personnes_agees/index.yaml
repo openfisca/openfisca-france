@@ -1,6 +1,5 @@
 description: Perte d'autonomie des personnes âgées
 metadata:
-<<<<<<< HEAD
   ux_name: Perte d'autonomie
   order:
   - psd
@@ -8,12 +7,3 @@ metadata:
   - apa_domicile
   - apa_institution
   description_en: Long term care for the elderly
-=======
-  ux_name: Perte d'autonomie des personnes âgées
-  # order:
-  # - psd
-  # - apa_mtp
-  # - apa_dom
-  # - apa_instit
-  description_en: Long term care for elderly
->>>>>>> db906bc02 (Validation yaml)
