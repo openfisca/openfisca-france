@@ -1,9 +1,10 @@
-description: Âge d'ouverture des droits à l'Allocation personnalisée d'autonomie à domicile (APA)
+description: Âge d'ouverture des droits à l'Allocation personnalisée d'autonomie en institution (APA)
 values:
   2002-01-01:
     value: 60.0
 metadata:
   ux_name: Âge minimum
+  ipp_csv_id: condition_age
   unit: year
   reference:
     2002-01-01:

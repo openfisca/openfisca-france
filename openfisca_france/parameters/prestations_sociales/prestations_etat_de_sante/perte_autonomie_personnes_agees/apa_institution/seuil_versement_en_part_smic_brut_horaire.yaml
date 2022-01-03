@@ -1,9 +1,10 @@
-description: Seuil de versement (en part du SMIC brut horaire) de l'Allocation personnalisée d'autonomie à domicile (APA)
+description: Seuil de versement (en part du SMIC brut horaire) de l'Allocation personnalisée d'autonomie en institution (APA)
 values:
   2002-01-01:
     value: 3.0
 metadata:
   ux_name: Seuil de versement
+  ipp_csv_id: seuil_versement_en_part_smic_brut_horaire
   unit: SMIC
   reference:
     2002-01-01:
