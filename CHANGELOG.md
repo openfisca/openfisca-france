@@ -1,5 +1,14 @@
 # Changelog
 
+# 97.0.0 [#1769](https://github.com/openfisca/openfisca-france/pull/1769)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+
 # 96.0.1 [#1737](https://github.com/openfisca/openfisca-france/pull/1737)
 
 * Changement mineur.

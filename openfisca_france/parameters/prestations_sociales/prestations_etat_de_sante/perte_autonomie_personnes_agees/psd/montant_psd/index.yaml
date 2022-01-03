@@ -1,0 +1,7 @@
+description: Montant mensuel versé de la Prestation spécifique dépendance (PSD, 1997-2001), Perte d'autonomie des personnes âgées
+metadata:
+  ux_name: Montant mensuel versé
+  order:
+  - maximal
+  - seuils
+  description_en: Attendance allowance (PSD, 1997-2001))

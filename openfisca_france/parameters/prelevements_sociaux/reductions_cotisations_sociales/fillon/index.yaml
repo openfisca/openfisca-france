@@ -2,9 +2,7 @@ description: Allégements Fillon ou allègements bas salaires (depuis 2003) des 
 metadata:
   ux_name: Allègements Fillon
   order:
-  - plafond
-  - entreprises_19_salaries_plus
-  - entreprises_moins_19_salaries
-  - entreprises_20_salaries_plus
-  - entreprises_moins_20_salaries
+  - ensemble_des_entreprises
+  - entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003
+  - entreprises_restees_aux_39_heures_hebdomadaires_au_30_06_2003
   description_en: General SSC reductions, so-called Fillon reductions (2003-2016)

@@ -1,0 +1,7 @@
+description: Seuil de ressources de la Prestation spécifique dépendance (PSD, 1997-2001), Perte d'autonomie des personnes âgées
+metadata:
+  ux_name: Seuil de ressources
+  order:
+  - personne_seule
+  - personne_en_couple
+  description_en: Attendance allowance (PSD, 1997-2001))

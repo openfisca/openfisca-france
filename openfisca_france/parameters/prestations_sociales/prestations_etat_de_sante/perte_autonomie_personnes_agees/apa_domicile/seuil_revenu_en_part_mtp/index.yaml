@@ -1,0 +1,7 @@
+description: Seuil de revenu (en part de la MTP mensuelle) de l'Allocation personnalisée d'autonomie à domicile (APA)
+metadata:
+  ux_name: Seuil de revenu
+  order:
+  - seuil_inferieur
+  - seuil_superieur
+  description_en: Attendance allowance for individuals living at home (APA)

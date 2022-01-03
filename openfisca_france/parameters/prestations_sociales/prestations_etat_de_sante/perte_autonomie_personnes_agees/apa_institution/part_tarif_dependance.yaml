@@ -1,9 +1,10 @@
-description: Taux reste à vivre - Allocation personnalisée d'autonomie en institution (APA)
+description: APA provisoire -  Part du tarif dépendance GIR 1-2 de l'Allocation personnalisée d'autonomie en institution (APA)
 values:
   2002-01-01:
-    value: 0.1
+    value: 0.5
 metadata:
-  ux_name: Taux reste à vivre
+  ux_name: Part du tarif dépendance GIR 1-2
+  ipp_csv_id: part_tarif_dependance_gir_1_2_etablissement_accueil
   unit: /1
   reference:
     2002-01-01:

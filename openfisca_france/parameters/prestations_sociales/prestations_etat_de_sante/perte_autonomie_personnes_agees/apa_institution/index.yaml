@@ -1,0 +1,10 @@
+description: Allocation personnalisée d'autonomie en institution (APA)
+metadata:
+  ux_name: Perte d'autonomie
+  order:
+  - seuil_inferieur
+  - seuil_superieur
+  - part_tarif_dependance
+  - condition_age
+  - seuil_versement_en_part_smic_brut_horaire
+  description_en: Attendance allowance for individuals living in a nursing home (APA)

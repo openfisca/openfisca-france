@@ -1,10 +1,11 @@
-description: Taux reste à vivre - Allocation personnalisée d'autonomie en institution (APA)
+description: Seuil supérieur (en part de la MTP)  de l'Allocation personnalisée d'autonomie en institution (APA)
 values:
   2002-01-01:
-    value: 0.1
+    value: 3.4
 metadata:
-  ux_name: Taux reste à vivre
+  ux_name: Seuil supérieur
   unit: /1
+  ipp_csv_id: seuil_superieur
   reference:
     2002-01-01:
       - title: Art. R232-19 du CASF
