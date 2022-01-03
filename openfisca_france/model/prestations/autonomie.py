@@ -136,7 +136,7 @@ class apa_eligibilite(Variable):
         period = period.start.offset('first-of', 'month').period('month')
         parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
         age = individu('age', period)
-        apa_age_min = parameters.age_ouverture_des_droits.age_d_ouverture_des_droits
+        apa_age_min = parameters.apa_domicile.condition_age
 
         gir = individu('gir', period)
         eligibilite_gir = (
