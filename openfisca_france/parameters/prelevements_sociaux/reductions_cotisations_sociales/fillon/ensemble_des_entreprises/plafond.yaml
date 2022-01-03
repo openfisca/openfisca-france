@@ -1,10 +1,11 @@
 description: Plafond (en nombre de SMIC) des allègements Fillon ou allègements bas salaires (toutes entreprises, depuis 2003) des cotisations de Sécurité sociale (SS)
-unit: /1
 values:
   2005-07-01:
     value: 1.6
 metadata:
-  ux_name: Plafond (en nombre de SMIC)
+  ux_name: Plafond
+  ipp_csv_id: plaf_fillon
+  unit: SMIC
   last_review:
     2021-11-19
   reference:

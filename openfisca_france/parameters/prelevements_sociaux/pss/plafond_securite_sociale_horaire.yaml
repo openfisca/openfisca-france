@@ -1,5 +1,4 @@
 description: Plafond horaire de la Sécurité sociale (SS)
-unit: currency
 values:
   2009-01-01:
     value: 21.0
@@ -11,6 +10,7 @@ values:
     value: 24.0
 metadata:
   ux_name: Plafond horaire
+  unit: currency
   last_review:
     2015-01-01
   reference:

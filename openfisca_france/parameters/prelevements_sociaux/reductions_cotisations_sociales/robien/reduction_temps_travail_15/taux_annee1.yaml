@@ -1,5 +1,4 @@
 description: Taux de la 1ère année pour une réduction du temps de travail de 15%, allègements Robien (1996-2005) des cotisations de Sécurité sociale (SS)
-unit: /1
 values:
   1996-07-01:
     value: 0.5
@@ -7,6 +6,7 @@ values:
     value: null
 metadata:
   ux_name: Taux (1ère année)
+  unit: /1
   last_review:
     1998-07-01
   reference:

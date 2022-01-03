@@ -1,5 +1,4 @@
 description: Plafond (en nombre de SMIC) des ristournes Juppé (I, II et III) (1995-2003) des allègements généraux de cotisations de Sécurité sociale (SS)
-unit:
 values:
   1995-09-01:
     value: 1.2
@@ -10,7 +9,9 @@ values:
   2003-07-01:
     value: null
 metadata:
-  ux_name: Plafond en nombre de SMIC
+  ux_name: Plafond
+  ipp_csv_id: plaf_juppe
+  unit: SMIC
   last_review:
     2003-07-01
   reference:

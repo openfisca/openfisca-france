@@ -1,10 +1,11 @@
 description: Réduction du taux avec l'allègement des cotisations pour la branche famille des cotisations de Sécurité sociale (SS)
-unit: /1
 values:
   2015-01-01:
     value: 0.018
 metadata:
   ux_name: Réduction du taux
+  ipp_csv_id: tx_red_fam
+  unit: /1
   last_review:
     2021-11-19
   reference:

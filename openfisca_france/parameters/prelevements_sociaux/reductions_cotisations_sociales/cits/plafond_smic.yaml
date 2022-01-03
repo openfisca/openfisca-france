@@ -5,7 +5,8 @@ values:
   2017-01-01:
     value: 2.5
 metadata:
-  ux_name: Plafond (en nombre de SMIC)
+  ux_name: Plafond
+  unit: SMIC
   last_review:
     2019-01-01
   reference:

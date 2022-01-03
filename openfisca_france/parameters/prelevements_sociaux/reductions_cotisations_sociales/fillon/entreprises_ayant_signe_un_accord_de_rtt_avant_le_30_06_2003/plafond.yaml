@@ -1,5 +1,4 @@
 description: Plafond (en nombre de SMIC) des allégements Fillon ou allègements bas salaires (entreprises ayant signé un accord de RTT avant le 30/06/2003, depuis 2003) des cotisations de Sécurité sociale (SS)
-unit: /1
 values:
   2003-07-01:
     value: 1.7
@@ -8,7 +7,9 @@ values:
   2005-07-01:
     value: null
 metadata:
-  ux_name: Plafond (en nombre de SMIC)
+  ux_name: Plafond
+  unit: SMIC
+  ipp_csv_id: plaf_trans_35
   last_review:
     2021-11-19
   reference:
