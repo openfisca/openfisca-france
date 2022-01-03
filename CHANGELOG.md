@@ -1,5 +1,14 @@
 # Changelog
 
+### 98.0.1 [#1770](https://github.com/openfisca/openfisca-france/pull/1770)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/10/2021.
+* Zones impactées : `parameters/marche_travail/salaire_minimum/smic/*`.
+* Détails :
+  - Revalorise le SMIC à partir de janvier 2022.
+  - Complète le SMIC mensuel par sa revalorisation d'octobre 2021.
+
 # 98.0.0 [#1766](https://github.com/openfisca/openfisca-france/pull/1766)
 
 * Amélioration technique. 
@@ -18,7 +27,7 @@
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
 
-# 96.0.1 [#1737](https://github.com/openfisca/openfisca-france/pull/1737)
+### 96.0.1 [#1737](https://github.com/openfisca/openfisca-france/pull/1737)
 
 * Changement mineur.
 * Zones impactées : `parameters/prelevements_sociaux/autres_taxes_salaires/apprentissage`.
