@@ -1,9 +1,9 @@
-description: Part du plafond de l'APA à domicile (Allocation personnalisée d'autonomie à domicile)
+description: Taux Minimum de participation de l'Allocation personnalisée d'autonomie à domicile (APA)
 values:
   2002-01-01:
-    value: 0.5
+    value: 0.0
 metadata:
-  ux_name: Part du plafond
+  ux_name: Minimum
   unit: /1
   reference:
     2016-03-01:

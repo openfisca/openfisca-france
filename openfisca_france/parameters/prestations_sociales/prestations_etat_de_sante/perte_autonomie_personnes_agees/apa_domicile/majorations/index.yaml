@@ -1,0 +1,7 @@
+description: Majorations (en part de la MTP mensuelle) de l'Allocation personnalisée d'autonomie à domicile (APA)
+metadata:
+  ux_name: Majorations
+  order:
+  - majoration_repit
+  - majoration_hospitalisation
+  description_en: Attendance allowance for individuals living at home (APA)

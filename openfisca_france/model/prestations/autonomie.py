@@ -35,8 +35,8 @@ class apa_domicile_participation(Variable):
         seuil_inf = autonomie.apa_domicile.seuil_revenu_en_part_mtp.seuil_inferieur
         seuil_sup = autonomie.apa_domicile.seuil_revenu_en_part_mtp.seuil_superieur
         majoration_tierce_personne = autonomie.apa_mtp.mtp
-        taux_min_participation = autonomie.apa_domicile.taux_de_participation_minimum
-        taux_max_participation = autonomie.apa_domicile.taux_de_participation_maximum
+        taux_min_participation = autonomie.apa_domicile.taux_de_participation.minimum
+        taux_max_participation = autonomie.apa_domicile.taux_de_participation.maximum
 
         proratisation_couple = (
             1
