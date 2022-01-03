@@ -1,5 +1,12 @@
 # Changelog
 
+# 96.0.1 [#1737](https://github.com/openfisca/openfisca-france/pull/1737)
+
+* Changement mineur.
+* Zones impactées : `parameters/prelevements_sociaux/autres_taxes_salaires/apprentissage`.
+* Détails :
+  - Ajoute des commentaires
+
 # 96.0.0 [#1763](https://github.com/openfisca/openfisca-france/pull/1763)
 
 * Amélioration technique. 
