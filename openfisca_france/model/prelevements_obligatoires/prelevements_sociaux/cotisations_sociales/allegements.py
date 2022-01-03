@@ -371,9 +371,9 @@ def compute_allegement_fillon(individu, period, parameters):
     else:
         seuil = fillon.ensemble_des_entreprises.plafond
         tx_max = (
-            fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_20_salaries_et_plus
+            fillon.ensemble_des_entreprises.entreprises_de_20_salaries_et_plus
             * not_(majoration)
-            + fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_moins_de_20_salaries
+            + fillon.ensemble_des_entreprises.entreprises_de_moins_de_20_salaries
             * majoration
             )
 
