@@ -337,7 +337,7 @@ class apa_urgence_domicile(Variable):
         autonomie = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
         majoration_tierce_personne = autonomie.apa_mtp.mtp
         plafond_gir1 = autonomie.apa_domicile.plafond_apa_domicile_en_part_mtp.gir_1
-        part_urgence_domicile = autonomie.apa_domicile.apa_d_urgence.part_du_plafond_de_l_apa_a_domicile
+        part_urgence_domicile = autonomie.apa_domicile.part_plafond_apa_domicile
         return part_urgence_domicile * plafond_gir1 * majoration_tierce_personne
 
 
