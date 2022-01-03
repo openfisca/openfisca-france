@@ -2,7 +2,7 @@ description: Moyenne des produits de base de l'office des 3 dernières années, 
 metadata:
   ux_name: Moyenne 3 dernières années
   order:
-  - section_allocation_variable
+  - section_a_allocation_variable
   - section_u_allocation_uniforme
   - colmar_metz
   description_en: Contribution for complementary pension scheme (professionals)
