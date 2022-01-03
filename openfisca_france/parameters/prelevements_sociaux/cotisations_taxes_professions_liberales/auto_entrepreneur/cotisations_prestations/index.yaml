@@ -1,0 +1,8 @@
+description: Cotisations pour prestations sociales et taxes des professions libérales - Régimes des auto-entrepreneurs
+metadata:
+  ux_name: Cotisations pour prestations sociales
+  order:
+  - vente
+  - servi
+  - cipav
+  description_en: Self-employed specific scheme (auto-entrepreneurs)

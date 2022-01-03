@@ -1,0 +1,10 @@
+description: Cotisation pour formation professionnelle - Régimes des auto-entrepreneurs
+metadata:
+  ux_name: Formation professionnelle
+  order:
+  - ventecom_chiffre_affaires
+  - servicecom_chiffre_affaires
+  - artisans_hors_alsace_chiffre_affaires
+  - artisans_alsace_chiffre_affaires
+  - professions_liberales_chiffre_affaires
+  description_en: Self-employed specific scheme (auto-entrepreneurs)
