@@ -52,6 +52,8 @@ values:
     value: 19302
   2021-01-01:
     value: 19476
+  2022-01-01:
+    value: 19515
 metadata:
   ux_name: Majoration par enfant
   description_en: "Back-to-school allowance (ARS): Thresholds for means-testing"
@@ -120,6 +122,9 @@ metadata:
     2021-01-01:
       title: Arrêté du 14/12/2020, art. 5
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694995
+    2022-01-01:
+      title: Arrêté du 16/12/2021, art. 4
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044572377
   official_journal_date:
     1978-07-13: "1985-12-21"
     1997-07-01: "1997-05-27"
