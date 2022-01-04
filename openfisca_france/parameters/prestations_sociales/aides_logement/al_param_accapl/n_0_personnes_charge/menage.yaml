@@ -1,11 +1,11 @@
-description: 5ème tranche (et début 6ème tranche) de revenus, Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
+description: N d'un Ménage (0 personnes à charge), Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
 values:
   2007-07-01:
-    value: 6331.29
+    value: 1.8
 metadata:
-  ux_name: 5ème tranche (et début 6ème tranche)
-  ipp_csv_id: seuil_tr5_lo_apl
-  unit: currency
+  ux_name: Ménage
+  ipp_csv_id: n_coup_apl
+  unit: /1
   reference:
     2007-07-01:
       title: Arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement et de la prime de déménagement 
