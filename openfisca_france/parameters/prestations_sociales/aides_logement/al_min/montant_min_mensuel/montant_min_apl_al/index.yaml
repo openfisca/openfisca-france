@@ -1,0 +1,7 @@
+description: Montant minimal mensuel versé (APL ou AL) des allocations logement
+metadata:
+  ux_name: APL ou AL
+  order:
+  - apl
+  - non_apl
+  description_en: Minimal amount
