@@ -28,3 +28,6 @@ values:
     reference: https://www.legifrance.gouv.fr/eli/arrete/2019/12/20/SSAS1934813A/jo/article_1
   2021-01-01:
     value: 69933.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2020/12/14/SSAS2032692A/jo/article_1 - 58279 + 5827 * 2
+  2022-01-01:
+    value: 70074.0
