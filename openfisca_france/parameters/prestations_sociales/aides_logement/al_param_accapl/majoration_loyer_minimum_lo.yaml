@@ -1,10 +1,10 @@
-description: 5ème tranche (et début 6ème tranche) de revenus, Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
+description: Majoration du loyer minimum (Lo), Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
 values:
   2007-07-01:
-    value: 6331.29
+    value: 45.57
 metadata:
-  ux_name: 5ème tranche (et début 6ème tranche)
-  ipp_csv_id: seuil_tr5_lo_apl
+  ux_name: Majoration du loyer minimum (Lo)
+  ipp_csv_id: maj_lo_apl
   unit: currency
   reference:
     2007-07-01:

@@ -6,6 +6,6 @@ metadata:
   - multiplicateur_n
   - n_0_personnes_charge
   - taux_loyer_minimum_lo_apl_accession
-  - seuils_revenus
+  - seuils_de_revenus
   - majoration_loyer_minimum_lo
   description_en: Parameters for new home-buyers (APL)

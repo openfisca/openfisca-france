@@ -1,11 +1,11 @@
-description: 5ème tranche (et début 6ème tranche) de revenus, Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
+description: 5ème tranche du taux pour le loyer minimum (Lo), Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
 values:
   2007-07-01:
-    value: 6331.29
+    value: 0.32
 metadata:
-  ux_name: 5ème tranche (et début 6ème tranche)
-  ipp_csv_id: seuil_tr5_lo_apl
-  unit: currency
+  ux_name: 5ème tranche
+  ipp_csv_id: lo_apl_tx5
+  unit: /1
   reference:
     2007-07-01:
       title: Arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement et de la prime de déménagement 

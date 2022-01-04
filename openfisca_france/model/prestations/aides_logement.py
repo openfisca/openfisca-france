@@ -1479,10 +1479,10 @@ class aides_logement_foyer_k_apl(Variable):
         param = parameters(period).prestations_sociales.aides_logement.al_param_accal
         param1 = parameters(period).prestations_sociales.aides_logement.al_param_accapl.multiplicateur_n
 
-        r_apl1 = param1.dans_la_formule_de_kl_numerateur
+        r_apl1 = param1.dans_formule_kl_numerateur
 
         coef_k = param.constante_du_coefficient_k_apl1
-        multi_n = param1.dans_la_formule_de_kl
+        multi_n = param1.dans_formule_kl
 
         R = famille('aide_logement_base_ressources', period)
         N = famille('aides_logement_nb_part', period)
