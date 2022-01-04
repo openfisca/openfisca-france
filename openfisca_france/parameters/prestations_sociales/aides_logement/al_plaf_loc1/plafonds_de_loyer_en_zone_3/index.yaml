@@ -1,6 +1,6 @@
-description: Plafonds de loyer en zone 1 (avant la réforme de 2001) des Allocations logement (AL)
+description: Plafonds de loyer en zone 3 (avant la réforme de 2001) des Allocations logement (AL)
 metadata:
-  ux_name: Zone 1
+  ux_name: Zone 3
   order:
   - menage_seul
   - menage_ou_isole

@@ -1,21 +1,21 @@
-description: Ménage seul - Plafonds de loyer en zone 2 (avant la réforme de 2001) des Allocations logement (AL)
+description: Ménage ou isolé avec 2 enfants - Plafonds de loyer en zone 3 (avant la réforme de 2001) des Allocations logement (AL)
 values:
+  1994-07-01:
+    value: 1652.0
+  1997-07-01:
+    value: 1710.0
+  1998-07-01:
+    value: 1751.0
+  1999-07-01:
+    value: 1835.0
+  2000-07-01:
+    value: 1853.0
   2001-01-01:
     value: null
-  2000-07-01:
-    value: 1696.0
-  1999-07-01:
-    value: 1679.0
-  1998-07-01:
-    value: 1662.0
-  1997-07-01:
-    value: 1623.0
-  1994-07-01:
-    value: 1568.0
 metadata:
-  ux_name: Ménage seul
+  ux_name: Avec 2 enfants
   unit: currency
-  ipp_csv_id: plaf_loy_coup_z2_acc
+  ipp_csv_id: plaf_loy_enf2_z3_acc
   reference:
     2001-01-01:
       title: Décret 2000-1269 du 26/12/2000
