@@ -1,47 +1,49 @@
-description: Montant forfaitaire (colocataires ou des propriétaires) au titre des charges, pour les allocations logement
+description: Montant forfaitaire (Cas général) au titre des charges, pour les allocations logement
 values:
-  1994-07-01:
-    value: 142.0
-  1997-07-01:
-    value: 145.0
-  1998-07-01:
-    value: 147.0
-  1999-07-01:
-    value: 149.0
-  2000-07-01:
-    value: 150.0
-  2001-07-01:
-    value: 23.25
-  2002-07-01:
-    value: 23.48
-  2007-01-01:
-    value: 23.9
-  2008-01-01:
-    value: 24.56
-  2009-01-01:
-    value: 25.28
-  2010-01-01:
-    value: 25.36
-  2011-01-01:
-    value: 25.64
-  2012-01-01:
-    value: 25.9
-  2013-01-01:
-    value: 26.46
-  2014-10-01:
-    value: 26.61
-  2017-10-01:
-    value: 26.83
-  2019-10-01:
-    value: 26.91
-  2020-10-01:
-    value: 26.99
   2021-10-01:
-    value: 27.10
+    value: 54.22
+  2020-10-01:
+    value: 53.99
+  2019-10-01:
+    value: 53.83
+  2017-10-01:
+    value: 53.67
+  2015-10-01:
+    value: 53.27
+  2014-10-01:
+    value: 53.23
+  2013-01-01:
+    value: 52.93
+  2012-01-01:
+    value: 51.82
+  2011-01-01:
+    value: 51.31
+  2010-01-01:
+    value: 50.75
+  2009-01-01:
+    value: 50.59
+  2008-01-01:
+    value: 49.14
+  2007-01-01:
+    value: 47.82
+  2002-07-01:
+    value: 46.97
+  2001-07-01:
+    value: 46.5
+  2000-07-01:
+    value: 300.0
+  1999-07-01:
+    value: 297.0
+  1998-07-01:
+    value: 293.0
+  1997-07-01:
+    value: 289.0
+  1994-07-01:
+    value: 282.0
 metadata:
-  ux_name: Cas des colocataires ou des propriétaires 
+  ux_name: Cas général
   last_review: 2022-01-04
-  ipp_csv_id: plaf_char_col
+  ipp_csv_id: plaf_char_gen
   unit: currency
   reference:
     2020-10-01:

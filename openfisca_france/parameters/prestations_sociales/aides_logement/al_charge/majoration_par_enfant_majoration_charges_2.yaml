@@ -1,47 +1,49 @@
-description: Montant forfaitaire (colocataires ou des propriétaires) au titre des charges, pour les allocations logement
+description: Majoration forfaitaire au titre des charges, par enfants, pour les allocations logement
 values:
-  1994-07-01:
-    value: 142.0
-  1997-07-01:
-    value: 145.0
-  1998-07-01:
-    value: 147.0
-  1999-07-01:
-    value: 149.0
-  2000-07-01:
-    value: 150.0
-  2001-07-01:
-    value: 23.25
-  2002-07-01:
-    value: 23.48
-  2007-01-01:
-    value: 23.9
-  2008-01-01:
-    value: 24.56
-  2009-01-01:
-    value: 25.28
-  2010-01-01:
-    value: 25.36
-  2011-01-01:
-    value: 25.64
-  2012-01-01:
-    value: 25.9
-  2013-01-01:
-    value: 26.46
-  2014-10-01:
-    value: 26.61
-  2017-10-01:
-    value: 26.83
-  2019-10-01:
-    value: 26.91
-  2020-10-01:
-    value: 26.99
   2021-10-01:
-    value: 27.10
+    value: 12.29
+  2020-10-01:
+    value: 12.24
+  2019-10-01:
+    value: 12.20
+  2017-10-01:
+    value: 12.16
+  2015-10-01:
+    value: 12.07
+  2014-10-01:
+    value: 12.06
+  2013-01-01:
+    value: 11.99
+  2012-01-01:
+    value: 11.74
+  2011-01-01:
+    value: 11.62
+  2010-01-01:
+    value: 11.49
+  2009-01-01:
+    value: 11.45
+  2008-01-01:
+    value: 11.12
+  2007-01-01:
+    value: 10.82
+  2002-07-01:
+    value: 10.63
+  2001-07-01:
+    value: 10.52
+  2000-07-01:
+    value: 66.0
+  1999-07-01:
+    value: 65.0
+  1998-07-01:
+    value: 64.0
+  1997-07-01:
+    value: 63.0
+  1994-07-01:
+    value: 61.0
 metadata:
-  ux_name: Cas des colocataires ou des propriétaires 
+  ux_name: Majoration par enfants
   last_review: 2022-01-04
-  ipp_csv_id: plaf_char_col
+  ipp_csv_id: plaf_maj
   unit: currency
   reference:
     2020-10-01:
