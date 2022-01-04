@@ -1233,8 +1233,8 @@ class aide_logement_taux_loyer(Variable):
 
         # TODO: paramètres en dur ??
         TL = where(RL >= 0.75,
-            al.taux_participation_loyer.taux_tranche_3 * (RL - 0.75) + al.taux_participation_loyer.taux_tranche_2 * (0.75 - 0.45),
-            max_(0, al.taux_participation_loyer.taux_tranche_2 * (RL - 0.45))
+            al.al_plaf_loc2.taux_participation_loyer.taux_tranche_3 * (RL - 0.75) + al.al_plaf_loc2.taux_participation_loyer.taux_tranche_2 * (0.75 - 0.45),
+            max_(0, al.al_plaf_loc2.taux_participation_loyer.taux_tranche_2 * (RL - 0.45))
             )
 
         return TL
