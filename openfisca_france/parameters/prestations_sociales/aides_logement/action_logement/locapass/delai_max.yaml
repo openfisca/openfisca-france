@@ -1,0 +1,10 @@
+description: Nombre de mois maximum entre la date d'entrée dans un logement et la date courante pour être éligible à l'aide locapass
+values:
+  2021-01-01:
+    value: 2
+metadata:
+  ux_name: Délai max
+  unit: month
+  reference:
+    2021-01-01:
+      https://www.actionlogement.fr/l-avance-loca-pass
