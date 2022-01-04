@@ -1,6 +1,5 @@
 description: Pourcentage perçu à partir du 60ème jour d'hospitalisation ou d'incarcération de l'Allocation pour adulte handicapé (AAH)
 values:
-  # 2005-07-01:
   2000-01-01:
     value: 0.3
 metadata:

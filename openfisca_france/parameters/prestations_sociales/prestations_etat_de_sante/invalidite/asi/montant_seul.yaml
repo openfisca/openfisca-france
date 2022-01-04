@@ -28,8 +28,6 @@ values:
     value: 4913.20
   2019-04-01:
     value: 4991.81
-  # 2020-04-01:
-  #   value: null
 metadata:
   ux_name: Montant Seul
   unit: currency

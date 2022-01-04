@@ -6,7 +6,10 @@ plafond_ressources:
     2014-09-05:
       value: 17000
     2021-01-01:
-      value: 17280 # Date approximative
+      value: 17280
+  metadata:
+    notes:
+      2021-01-01: Date approximative
   par_demi_part_supplementaire:
     2014-09-05:
       value: 4320
