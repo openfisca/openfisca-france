@@ -14,7 +14,7 @@ class locapass_eligibilite(Variable):
 
         eligibilite_individu = individu('locapass_eligibilite_individu', period)
         eligibilite_logement = individu.menage('locapass_eligibilite_logement', period)
-        eligibilite_date_entree_logement = individu.menage('date_entree_logement', period) >= datetime64(period.offset(-params.delai_max_en_mois_apres_entree_logement, 'month').start)
+        eligibilite_date_entree_logement = individu.menage('date_entree_logement', period) >= datetime64(period.offset(-params.delai_max, 'month').start)
         return eligibilite_individu * eligibilite_logement * eligibilite_date_entree_logement
 
 
@@ -68,7 +68,7 @@ class locapass_eligibilite_jeunes(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        age_max = parameters(period).prestations_sociales.aides_logement.action_logement.locapass.jeunes.age_max
+        age_max = parameters(period).prestations_sociales.aides_logement.action_logement.locapass.age_max
         eligibilite_age = age <= age_max
 
         activite = individu('activite', period)
