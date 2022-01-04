@@ -9,7 +9,7 @@ metadata:
 brackets:
 - threshold:
     2020-07-22:
-      value: 0 # ou 0bis
+      value: 0
   amount:
     2020-07-22:
       value: 103.2
