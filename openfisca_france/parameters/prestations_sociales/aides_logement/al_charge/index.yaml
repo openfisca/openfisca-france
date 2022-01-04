@@ -1,1 +1,7 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Majoration forfaitaire au titre des charges, pour les allocations logement
+metadata:
+  ux_name: Charges
+  order:
+  - personne_isolee_menage_seul
+  - majoration_par_enfant_majoration_charges_2
+  description_en: Lump sum extra allowance for charges
