@@ -1,0 +1,10 @@
+description: Âge maximum (sauf salariés du secteur privé non agricole) pour être éligible à l'aide locapass
+values:
+  2021-01-01:
+    value: 30
+metadata:
+  ux_name: Âge max
+  unit: year
+  reference:
+    2021-01-01:
+      https://www.actionlogement.fr/l-avance-loca-pass
