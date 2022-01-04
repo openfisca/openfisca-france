@@ -1,5 +1,14 @@
 # Changelog
 
+### 98.0.2 [#1773](https://github.com/openfisca/openfisca-france/pull/1773)
+
+*  Amélioration technique. 
+* Zones impactées : `parameters`.
+* Détails :
+  - Déplace les commentaires YAML dans le champ `notes`
+  - Supprimes les commentaires inutiles
+  - Les commentaires spécifiques à l'AAH sont repris dans l'issue [1771](https://github.com/openfisca/openfisca-france/issues/1771)
+  
 ### 98.0.1 [#1770](https://github.com/openfisca/openfisca-france/pull/1770)
 
 * Évolution du système socio-fiscal.
