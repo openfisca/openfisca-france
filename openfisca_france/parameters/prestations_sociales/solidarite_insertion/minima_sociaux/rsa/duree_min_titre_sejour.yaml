@@ -11,4 +11,7 @@ eee:
   unit: year
   values:
     2009-06-01:
-      value: 0.25 # 3/12 (3 mois)
+      value: 0.25
+metadata:
+  notes:
+    2009-06-01: 3/12 (3 mois)
