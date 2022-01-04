@@ -1,0 +1,9 @@
+description: Plafonds de loyer (après la réforme de 2001) des Allocations logement (AL)
+metadata:
+  ux_name: Plafonds de loyer (après 2001)
+  order:
+  - zone_1
+  - zone_2
+  - zone_3
+  - taux_participation_fam
+  description_en: Parameters for the rental sector (after the 2001 reform)
