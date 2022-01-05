@@ -1132,11 +1132,11 @@ class aide_logement_R0(Variable):
             montant_de_base = minim_n_2.rmi.montant_de_base_du_rmi
 
         R1 = montant_de_base * (
-            al.r1.personne_isolee * not_(couple) * (al_nb_pac == 0)
-            + al.r1.couple_sans_enf * couple * (al_nb_pac == 0)
-            + al.r1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
-            + al.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
-            + al.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al.al_param_r0.r1.personne_isolee * not_(couple) * (al_nb_pac == 0)
+            + al.al_param_r0.r1.couple_sans_enf * couple * (al_nb_pac == 0)
+            + al.al_param_r0.r1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
+            + al.al_param_r0.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
+            + al.al_param_r0.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         R2 = pfam_n_2.af.bmaf * (
