@@ -94,9 +94,9 @@ class deces_artisan_commercant(Variable):
         return -bareme_artisan.calc(assiette * artisan) - bareme_commercant.calc(assiette * commercant)
 
     def formula_1975(individu, period, parameters):
-        # Avant 2004, le montant était forfaitaire pour les commerçants
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         deces_ac = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.deces_ac
+        # Avant 2004, le montant était forfaitaire pour les commerçants
         montant_commercant = deces_ac.commercants_industriels.montant_forfaitaire_total
         categorie_non_salarie = individu('categorie_non_salarie', period)
         # Artisan
