@@ -1185,12 +1185,12 @@ class aide_logement_taux_famille(Variable):
 
         TF_metropole = (
             al.al_plaf_loc2.tf.personnes_isolees * (not_(couple)) * (al_nb_pac == 0)
-            + al.al_plaf_loc2.tf.taux_2_adulte * (couple) * (al_nb_pac == 0)
+            + al.al_plaf_loc2.tf.couples_sans_enfant * (couple) * (al_nb_pac == 0)
             + al.al_plaf_loc2.tf.personnes_seules_couples_avec_1_enfant * (al_nb_pac == 1)
             + al.al_plaf_loc2.tf.personnes_seules_couples_avec_2_enfants * (al_nb_pac == 2)
             + al.al_plaf_loc2.tf.personnes_seules_couples_avec_3_enfants * (al_nb_pac == 3)
             + al.al_plaf_loc2.tf.personnes_seules_couples_avec_4_enfants * (al_nb_pac >= 4)
-            + al.al_plaf_loc2.tf.variation_tf_par_enfant_supplementaire* (al_nb_pac > 4) * (al_nb_pac - 4)
+            + al.al_plaf_loc2.tf.variation_tf_par_enfant_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
         TF_dom = (
@@ -1231,10 +1231,10 @@ class aide_logement_taux_loyer(Variable):
 
         RL = L / loyer_reference
 
-        # TODO: paramètres en dur ??
-        TL = where(RL >= 0.75,
-            al.taux_participation_loyer.taux_tranche_3 * (RL - 0.75) + al.taux_participation_loyer.taux_tranche_2 * (0.75 - 0.45),
-            max_(0, al.taux_participation_loyer.taux_tranche_2 * (RL - 0.45))
+        TL = where(RL >= al.al_plaf_loc2.tl.debut_3eme_tranche_calcul_tl,
+            al.al_plaf_loc2.tl.tl_3eme_tranche * (RL - al.al_plaf_loc2.tl.debut_3eme_tranche_calcul_tl)
+            + al.al_plaf_loc2.tl.tl_2eme_tranche * (al.al_plaf_loc2.tl.debut_3eme_tranche_calcul_tl - al.al_plaf_loc2.tl.debut_2eme_tranche_calcul_tl_fin_1ere_tranche),
+            max_(0, al.al_plaf_loc2.tl.tl_2eme_tranche * (RL - al.al_plaf_loc2.tl.debut_2eme_tranche_calcul_tl_fin_1ere_tranche))
             )
 
         return TL
