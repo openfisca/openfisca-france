@@ -1,11 +1,7 @@
-description: R2 (% de la BMAF)
-reference: https://www.ipp.eu/outils/baremes-ipp/
-description: Paramètres de calcul du montant forfaitaire R0 (que l'on déduit des ressources) - secteur locatif (après 2001)
+description: R2 (en % de la BMAF) - secteur locatif (après 2001)
 metadata:
-  ux_name:
+  ux_name: R2
   order:
-  - r0
-  - r1_en_rsa_socle_1
-  - r2_en_bmaf_1
-  - plafond_r0
+  - personnes_isolees_ou_couples_avec_2_enf
+  - majoration_par_enf_supp_a_charge
   description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
