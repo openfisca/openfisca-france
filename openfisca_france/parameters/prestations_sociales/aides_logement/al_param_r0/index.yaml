@@ -1,6 +1,6 @@
 description: Paramètres de calcul du montant forfaitaire R0 (que l'on déduit des ressources) - secteur locatif (après 2001)
 metadata:
-  ux_name:
+  ux_name: Calcul du montant forfaitaire R0
   order:
   - r0
   - r1_en_rsa_socle_1
