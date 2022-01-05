@@ -1132,17 +1132,17 @@ class aide_logement_R0(Variable):
             montant_de_base = minim_n_2.rmi.montant_de_base_du_rmi
 
         R1 = montant_de_base * (
-            al.al_param_r0.r1.personne_isolee * not_(couple) * (al_nb_pac == 0)
-            + al.al_param_r0.r1.couple_sans_enf * couple * (al_nb_pac == 0)
-            + al.al_param_r0.r1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
-            + al.al_param_r0.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
-            + al.al_param_r0.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al.al_param_r0.r1_en_rsa_socle_1.personne_isolee * not_(couple) * (al_nb_pac == 0)
+            + al.al_param_r0.r1_en_rsa_socle_1.couple_sans_enf * couple * (al_nb_pac == 0)
+            + al.al_param_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
+            + al.al_param_r0.r1_en_rsa_socle_1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
+            + al.al_param_r0.r1_en_rsa_socle_1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         R2 = pfam_n_2.af.bmaf * (
-            al.al_param_r0.r2.taux3_dom * residence_dom * (al_nb_pac == 1)
-            + al.al_param_r0.r2.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2)
-            + al.al_param_r0.r2.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al.al_param_r0.r2_en_bmaf_1.taux3_dom * residence_dom * (al_nb_pac == 1)
+            + al.al_param_r0.r2_en_bmaf_1.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2)
+            + al.al_param_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         R0 = round_(12 * (R1 - R2) * (1 - al.autres.abat_sal))
