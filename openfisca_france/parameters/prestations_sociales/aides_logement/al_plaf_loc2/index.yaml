@@ -3,6 +3,7 @@ metadata:
   ux_name: Plafonds de loyer (après 2001)
   order:
   - par_zone
+  - montant_forfaitaire_participation_minimale_po
   - montant_proportionnel_participation_minimale_po
   - montant_forfaitaire
   description_en: Parameters for the rental sector (after the 2001 reform)
