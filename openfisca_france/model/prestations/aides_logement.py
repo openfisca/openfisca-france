@@ -1156,15 +1156,15 @@ class aide_logement_R0(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
         R0 = (
-            al.R0.taux_seul * not_(couple) * (al_nb_pac == 0)
-            + al.R0.taux_couple * couple * (al_nb_pac == 0)
-            + al.R0.taux1pac * (al_nb_pac == 1)
-            + al.R0.taux2pac * (al_nb_pac == 2)
-            + al.R0.taux3pac * (al_nb_pac == 3)
-            + al.R0.taux4pac * (al_nb_pac == 4)
-            + al.R0.taux5pac * (al_nb_pac == 5)
-            + al.R0.taux6pac * (al_nb_pac == 6)
-            + al.R0.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
+            al.al_param_r0.r0.taux_seul * not_(couple) * (al_nb_pac == 0)
+            + al.al_param_r0.r0.taux_couple * couple * (al_nb_pac == 0)
+            + al.al_param_r0.r0.taux1pac * (al_nb_pac == 1)
+            + al.al_param_r0.r0.taux2pac * (al_nb_pac == 2)
+            + al.al_param_r0.r0.taux3pac * (al_nb_pac == 3)
+            + al.al_param_r0.r0.taux4pac * (al_nb_pac == 4)
+            + al.al_param_r0.r0.taux5pac * (al_nb_pac == 5)
+            + al.al_param_r0.r0.taux6pac * (al_nb_pac == 6)
+            + al.al_param_r0.r0.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
             )
 
         return R0
