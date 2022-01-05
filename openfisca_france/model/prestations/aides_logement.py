@@ -1178,7 +1178,7 @@ class aide_logement_taux_famille(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement.al_plaf_loc2
+        al = parameters(period).prestations_sociales.aides_logement
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_dom = famille.demandeur.menage('residence_dom', period)
@@ -1233,8 +1233,8 @@ class aide_logement_taux_loyer(Variable):
 
         # TODO: paramètres en dur ??
         TL = where(RL >= 0.75,
-            al.al_plaf_loc2.taux_participation_loyer.taux_tranche_3 * (RL - 0.75) + al.al_plaf_loc2.taux_participation_loyer.taux_tranche_2 * (0.75 - 0.45),
-            max_(0, al.al_plaf_loc2.taux_participation_loyer.taux_tranche_2 * (RL - 0.45))
+            al.taux_participation_loyer.taux_tranche_3 * (RL - 0.75) + al.taux_participation_loyer.taux_tranche_2 * (0.75 - 0.45),
+            max_(0, al.taux_participation_loyer.taux_tranche_2 * (RL - 0.45))
             )
 
         return TL
