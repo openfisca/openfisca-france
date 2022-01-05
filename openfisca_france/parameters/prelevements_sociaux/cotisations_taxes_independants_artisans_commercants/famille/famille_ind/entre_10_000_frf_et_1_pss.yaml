@@ -44,9 +44,6 @@ metadata:
     1983-01-01: 1982-12-29
     1982-04-01: 1982-03-31
     1974-04-01: 1974-04-23
-  notes:
-    2018-01-01: "Modulation des taux selon le revenu : si 110 % PSS < revenu d'activité ( r ) < 140 % PSS, taux égal à [(T1)/ (0,3 × PSS)] × (r - 1,1 × PSS), où T1 = 3,10 %"
-    2015-01-01: "Modulation des taux selon le revenu : si 110 % PSS < revenu d'activité ( r ) < 140 % PSS, taux égal à [(T2 - T1) /(0,3 x PSS)] x (r - 1,1 x PSS) + T1 , où T2 = 5,25 %, T1 = 2,15 %"
   description_en: SSCs for family benefits (independent workers)
 documentation: |
   Notes :
