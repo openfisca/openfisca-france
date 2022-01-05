@@ -137,7 +137,7 @@ class aide_logement_montant_brut(Variable):
         zone_apl = famille.demandeur.menage('zone_apl', period)
         loyer_plafond = famille('aide_logement_loyer_plafond', period)
 
-        coefficients = parameters(period).prestations_sociales.aides_logement.loyers_plafond.par_zone[zone_apl]
+        coefficients = parameters(period).prestations_sociales.aides_logement.al_plaf_loc2.par_zone[zone_apl]
         loyer_degressivite = round_(loyer_plafond * (coefficients.degressivite), 2)
         loyer_suppression = round_(loyer_plafond * (coefficients.suppression), 2)
 
@@ -1037,11 +1037,11 @@ class aide_logement_loyer_plafond(Variable):
         chambre = famille.demandeur.menage('logement_chambre', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
 
-        loyers_plafond = al.loyers_plafond.par_zone[zone_apl]
+        al_plaf_loc2 = al.al_plaf_loc2.par_zone[zone_apl]
 
-        plafond_personne_seule = loyers_plafond.personnes_seules
-        plafond_couple = loyers_plafond.couples
-        plafond_famille = loyers_plafond.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * loyers_plafond.majoration_par_enf_supp
+        plafond_personne_seule = al_plaf_loc2.personnes_seules
+        plafond_couple = al_plaf_loc2.couples
+        plafond_famille = al_plaf_loc2.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * al_plaf_loc2.majoration_par_enf_supp
 
         plafond = select(
             [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
@@ -1049,8 +1049,8 @@ class aide_logement_loyer_plafond(Variable):
             default = plafond_couple
             )
 
-        coeff_coloc = where(coloc, al.loyers_plafond.colocation, 1)
-        coeff_chambre = where(chambre, al.loyers_plafond.chambre, 1)
+        coeff_coloc = where(coloc, al.al_plaf_loc2.colocation, 1)
+        coeff_chambre = where(chambre, al.al_plaf_loc2.chambre, 1)
 
         return round_(plafond * coeff_coloc * coeff_chambre, 2)
 
@@ -1216,7 +1216,7 @@ class aide_logement_taux_loyer(Variable):
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations_sociales.aides_logement
-        z2 = al.loyers_plafond.par_zone.zone_2
+        z2 = al.al_plaf_loc2.par_zone.zone_2
 
         L = famille('aide_logement_loyer_retenu', period)
         couple = famille('al_couple', period)
@@ -1612,7 +1612,7 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
 
     def formula(famille, period, parameters):
         zone_apl = famille.demandeur.menage('zone_apl', period)
-        plafonds = parameters(period).prestations_sociales.aides_logement.al_plaf_loc2[zone_apl]
+        plafonds = parameters(period).prestations_sociales.aides_logement.al_plafonds_accession[zone_apl]
 
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
