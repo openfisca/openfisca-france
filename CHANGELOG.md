@@ -1,8 +1,21 @@
 # Changelog
 
+### 98.0.3 [#1768](https://github.com/openfisca/openfisca-france/pull/1768)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2022.
+* Zones impactées : 
+  - `parameters/impot_revenu/bareme.yaml`
+  - `parameters/impot_revenu/decote/`
+  - `parameters/impot_revenu/plafond_qf/`
+* Détails :
+  - Met à jour l'impôt sur les revenus des personnes physiques pour 2022.
+    - Revalorise les seuils du barème de l'irpp, de décote et les plafonds de réductions suite à l'application du quotient familial.
+  - La réfaction est inchangée pour la Guadeloupe, la Martinique, la Réunion, la Guyane et Mayotte. 
+
 ### 98.0.2 [#1773](https://github.com/openfisca/openfisca-france/pull/1773)
 
-*  Amélioration technique. 
+* Amélioration technique. 
 * Zones impactées : `parameters`.
 * Détails :
   - Déplace les commentaires YAML dans le champ `notes`
