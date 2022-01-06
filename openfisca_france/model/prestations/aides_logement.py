@@ -1640,7 +1640,7 @@ class aides_logement_foyer_conventionne_plafond(Variable):
 
     def formula(famille, period, parameters):
         zone_apl = famille.demandeur.menage('zone_apl', period)
-        plafonds = parameters(period).prestations_sociales.aides_logement.al_plafonds_logement_foyer.conventionne[zone_apl]
+        plafonds = parameters(period).prestations_sociales.aides_logement.al_plaf_logement_foyer.conventionne[zone_apl]
 
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
@@ -1668,8 +1668,8 @@ class aides_logement_foyer_plafond_mensualite(Variable):
 
     # Temporairement limitée à après 2017 pour pallier des carences de valeurs de paramètres
     def formula_2017_10(famille, period, parameters):
-        plafond_crous = parameters(period).prestations_sociales.aides_logement.al_plafonds_logement_foyer_crous
-        plafond_foyer = parameters(period).prestations_sociales.aides_logement.al_plafonds_logement_foyer
+        plafond_crous = parameters(period).prestations_sociales.aides_logement.al_plaf_logement_foyer_crous
+        plafond_foyer = parameters(period).prestations_sociales.aides_logement.al_plaf_logement_foyer
 
         statut_couple = where(famille('al_couple', period), 'couple', 'personne_isolee')
 
