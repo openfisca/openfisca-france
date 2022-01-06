@@ -1,5 +1,16 @@
 # Changelog
 
+# 99.0.0 [#1761](https://github.com/openfisca/openfisca-france/pull/1761)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - Supprime les paramètres/barèmes en doublons
+  - Certains paramètres méritent une adaptation de la variable correspondante pour être pris en compte
+
 ### 98.0.3 [#1768](https://github.com/openfisca/openfisca-france/pull/1768)
 
 * Évolution du système socio-fiscal.
