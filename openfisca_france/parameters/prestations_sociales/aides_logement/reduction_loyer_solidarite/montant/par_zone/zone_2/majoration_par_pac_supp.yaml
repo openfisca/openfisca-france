@@ -1,21 +1,42 @@
-description: Zone 2 - Majoration par personne à charge supplémentaire
-unit: currency
+description: Majoration par personne à charge supplémentaire, Réduction du loyer de solidarité en zone 2
 values:
   2018-01-01:
-    reference: https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801551A/jo/article_2
     value: 5.56
   2019-01-01:
-    reference: https://www.legifrance.gouv.fr/eli/arrete/2018/12/27/LOGL1831321A/jo/texte
     value: 5.65
   2020-01-01:
     value: 8.65
-    reference: https://www.legifrance.gouv.fr/eli/arrete/2019/12/31/LOGL1934007A/jo/article_1
   2020-10-01:
     value: 5.96
-    reference: https://www.legifrance.gouv.fr/eli/arrete/2020/9/30/LOGL2020748A/jo/article_1
   2021-01-01:
     value: 8.12
-    reference: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042709416
   2021-10-01:
     value: 9.04
-    reference: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044138120
+metadata:
+  ux_name: Majoration par personne à charge supplémentaire
+  ipp_csv_id: rls_z2_pac_supplementaire
+  unit: currency
+  reference:
+    2018-01-01:
+      - title: Arrêté du 27/02/2018, art. 2
+        href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036650016
+    2019-01-01:  
+      - title: Arrêté du 27/12/2018, art. 1
+        href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037880880
+    2020-01-01:
+      - title: Arrêté du 31/12/2019, art. 1
+        href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039728511
+    2020-10-01:
+      - title: Arrêté du 30/09/2020, art. 1
+        href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042383417
+    2021-01-01:
+      - title: Arrêté du 17/12/2020, art. 1
+        href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042709416
+    2021-10-01:
+      - title: Arrêté du 17/12/2020, art. 1
+        href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044138120
+  date_parution_jo:
+    2018-01-01: 2018-02-28
+    2019-01-01: 2018-12-29
+  notes:
+    2018-01-01: Création de la réduction de loyer de solidarité par la loi de finances pour 2018. Elle entre en vigueur le 01/02/2018.
