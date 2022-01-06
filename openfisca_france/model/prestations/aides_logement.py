@@ -1668,7 +1668,7 @@ class aides_logement_foyer_plafond_mensualite(Variable):
 
     # Temporairement limitée à après 2017 pour pallier des carences de valeurs de paramètres
     def formula_2017_10(famille, period, parameters):
-        plafond_crous = parameters(period).prestations_sociales.aides_logement.al_plaf_logement_foyer_crous
+        plafond_crous = parameters(period).prestations_sociales.aides_logement.al_plaf_logement_foyer.crous
         plafond_foyer = parameters(period).prestations_sociales.aides_logement.al_plaf_logement_foyer
 
         statut_couple = where(famille('al_couple', period), 'couple', 'personne_isolee')
