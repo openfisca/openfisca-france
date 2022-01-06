@@ -1037,11 +1037,11 @@ class aide_logement_loyer_plafond(Variable):
         chambre = famille.demandeur.menage('logement_chambre', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
 
-        al_plaf_loc2 = al.al_loc2.par_zone[zone_apl]
+        al_loc2 = al.al_loc2.par_zone[zone_apl]
 
-        plafond_personne_seule = al_plaf_loc2.personnes_seules
-        plafond_couple = al_plaf_loc2.couples
-        plafond_famille = al_plaf_loc2.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * al_plaf_loc2.majoration_par_enf_supp
+        plafond_personne_seule = al_loc2.personnes_seules
+        plafond_couple = al_loc2.couples
+        plafond_famille = al_loc2.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * al_loc2.majoration_par_enf_supp
 
         plafond = select(
             [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
