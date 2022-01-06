@@ -30,7 +30,7 @@
     foyer_fiscal:
       declarants: parent1
   output:
-    aide_logement: 219.58
+    aide_logement: 211.0
 
 - name: "Cas 1, Etudiant moins de 28 ans, Boursier en logement CROUS"
   period: 2021-02
