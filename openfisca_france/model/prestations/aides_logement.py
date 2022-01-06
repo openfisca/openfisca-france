@@ -605,13 +605,13 @@ class aide_logement_base_ressources_individu(Variable):
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
-        rpns = individu('rpns_imposables', period.n_2)
+        #rpns = individu('rpns_imposables', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
         rpns_pvct = individu('rpns_pvct', period.n_2)
         rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
         rpns_mvlt = individu('moins_values_long_terme_non_salaries', period.n_2)
 
-        rpns = rpns + rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
+        rpns = rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
         # TO DO : compléter la formule pour prendre en compte la disposition particulière concernant les indépendants ayant commencé une activité entre N-2 et N.
         # Non implémentée car diffile à comprendre ce qui est fait exactement
 
@@ -941,6 +941,7 @@ class aide_logement_base_ressources(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2021_01_01(famille, period, parameters):
+        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
         biactivite = famille('aide_logement_biactivite', period)
         Pr = parameters(period).prestations_sociales.aides_logement.ressources
         age_etudiant_max = parameters(period).prestations_sociales.aides_logement.allocations_logement.autres.age_max_etudiant
@@ -954,6 +955,45 @@ class aide_logement_base_ressources(Variable):
 
         demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        # Ressources N-2
+        indemnites_journalieres_atexa_i = famille.members('indemnites_journalieres_atexa', period.n_2, options=[ADD])
+        gains_exceptionnels_i = famille.members('gains_exceptionnels', period.n_2, options=[ADD])
+        benefice_agricole_i_n_2 = famille.members('rpns_benefice_exploitant_agricole', period.n_2)
+        benefice_micro_entreprise_i_n_2 = famille.members('rpns_micro_entreprise_benefice', period.n_2)
+        benefice_auto_entrepreneur_i_n_2 = famille.members('rpns_auto_entrepreneur_benefice', period.n_2, options=[ADD])
+        rpns_autres_revenus_i_n_2 = famille.members('rpns_autres_revenus', period.n_2)
+        # En l'absence de benefices TNS en N-2, on recupère les bénéfices de l'année glissante à compter de M-1
+        benefice_agricole_i_m_12 = famille.members('rpns_benefice_exploitant_agricole', annee_glissante)
+        benefice_micro_entreprise_i_m_12 = famille.members('rpns_micro_entreprise_benefice', annee_glissante)
+        benefice_auto_entrepreneur_i_m_12 = famille.members('rpns_auto_entrepreneur_benefice', annee_glissante,
+                                                            options=[ADD])
+        rpns_autres_revenus_i_m_12 = famille.members('rpns_autres_revenus', annee_glissante)
+        benefice_agricole_i = where(benefice_agricole_i_n_2 > 0, benefice_agricole_i_n_2, benefice_agricole_i_m_12)
+        benefice_micro_entreprise_i = where(benefice_micro_entreprise_i_n_2 > 0, benefice_micro_entreprise_i_n_2,
+                                            benefice_micro_entreprise_i_m_12)
+        benefice_auto_entrepreneur_i = where(benefice_auto_entrepreneur_i_n_2 > 0, benefice_auto_entrepreneur_i_n_2,
+                                             benefice_auto_entrepreneur_i_m_12)
+        rpns_autres_revenus_i = where(rpns_autres_revenus_i_n_2 > 0, rpns_autres_revenus_i_n_2,
+                                     rpns_autres_revenus_i_m_12)
+
+        ressources_n_2_i = (
+            indemnites_journalieres_atexa_i
+            + gains_exceptionnels_i
+            + benefice_agricole_i
+            + benefice_micro_entreprise_i
+            + benefice_auto_entrepreneur_i
+            + rpns_autres_revenus_i
+            )
+        ressources_n_2 = famille.sum(ressources_n_2_i, role=Famille.PARENT)
+        f4ba = famille.demandeur.foyer_fiscal('f4ba', period.n_2)
+        plus_values_gains_divers = famille.demandeur.foyer_fiscal('plus_values_gains_divers', period.n_2)
+        deficit_exercice = famille.demandeur.foyer_fiscal('deficit_exercice', period.n_2)
+        ressources_n_2 += (
+            f4ba
+            + plus_values_gains_divers
+            - deficit_exercice
+            )
 
         # Revenus du foyer fiscal
         aide_logement_base_revenus_fiscaux = (
@@ -979,6 +1019,7 @@ class aide_logement_base_ressources(Variable):
             + ressources_patrimoine
             + aide_logement_base_revenus_fiscaux
             + pensions_alimentaires_versees
+            + ressources_n_2
             )
 
         # Abattement forfaitaire pour double activité
