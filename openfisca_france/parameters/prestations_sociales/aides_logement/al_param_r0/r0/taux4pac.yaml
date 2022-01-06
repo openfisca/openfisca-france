@@ -1,5 +1,4 @@
 description: Taux pour une personne seule ou couple ayant trois personnes à charge du montant forfaitaire R0 (Article 2 ter de l'arrêté du 3 juillet 1978) - secteur locatif (après 2001)
-unit: currency
 values:
   2015-01-01:
     value: 8547.0
