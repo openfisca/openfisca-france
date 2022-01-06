@@ -1,0 +1,8 @@
+description: Age minimal - Définition des personnes à charge pour les Allocations logement (AL)
+metadata:
+  ux_name: Age minimal
+  order:
+  - ascendants_leur_conjoint_2
+  - ascendants_leur_conjoint_s_ils_sont_titulaires_aspa
+  - ascendants_leurs_conjoints_qui_sont_invalides_anciens_deportes_internes_2
+  description_en: Definition of dependants
