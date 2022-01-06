@@ -174,7 +174,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement
+        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
 
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
@@ -1030,7 +1030,7 @@ class aide_logement_loyer_plafond(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement
+        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
         coloc = famille.demandeur.menage('coloc', period)
@@ -1118,7 +1118,7 @@ class aide_logement_R0(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement
+        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
         pfam_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.prestations_generales
         minim_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.solidarite_insertion.minima_sociaux
         couple = famille('al_couple', period)
@@ -1151,7 +1151,7 @@ class aide_logement_R0(Variable):
 
     # cf Décret n° 2014-1739 du 29 décembre 2014 relatif au calcul des aides personnelles au logement
     def formula_2015_01_01(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement
+        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
@@ -1178,7 +1178,7 @@ class aide_logement_taux_famille(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement
+        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_dom = famille.demandeur.menage('residence_dom', period)
@@ -1215,7 +1215,7 @@ class aide_logement_taux_loyer(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations_sociales.aides_logement
+        al = parameters(period).prestations_sociales.aides_logement.allocations_logement
         z2 = al.al_loc2.par_zone.zone_2
 
         L = famille('aide_logement_loyer_retenu', period)
