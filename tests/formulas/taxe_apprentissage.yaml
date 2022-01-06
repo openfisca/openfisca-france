@@ -104,7 +104,7 @@
     effectif_entreprise: 8
     categorie_salarie: prive_non_cadre # non cadre
     ratio_alternants: 0.0178
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
   output:
     taxe_apprentissage: -0.0068 * 1467
     contribution_supplementaire_apprentissage: 0
@@ -136,7 +136,7 @@
     effectif_entreprise: 250
     categorie_salarie: prive_non_cadre # non cadre
     ratio_alternants: 0.0178
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
   output:
     taxe_apprentissage: -0.0068 * 1467
     contribution_supplementaire_apprentissage: -0.002* 1467
@@ -153,7 +153,7 @@
     effectif_entreprise: 250
     categorie_salarie: prive_non_cadre # non cadre
     ratio_alternants: 0.0178
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
   output:
     taxe_apprentissage: 0
     contribution_supplementaire_apprentissage: -0.002* 1467

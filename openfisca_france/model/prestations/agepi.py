@@ -19,7 +19,7 @@ class agepi_nbenf(Variable):
 
     def formula_2014_01_20(famille, period, parameters):
         age_membres_famille = famille.members('age', period)
-        age_eligibles = (age_membres_famille < parameters(period).prestations.agepi.age_enfant_maximum) * (age_membres_famille > 0)
+        age_eligibles = (age_membres_famille < parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.age_enfant_maximum) * (age_membres_famille > 0)
         nb_enfants_eligibles = famille.sum(age_eligibles, role=Famille.ENFANT)
 
         return nb_enfants_eligibles
@@ -256,8 +256,8 @@ class agepi_eligible(Variable):
 
         allocation_individu = individu('allocation_retour_emploi', period)
 
-        allocation_minimale_hors_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_hors_mayotte * hors_mayotte
-        allocation_minimale_mayotte = parameters(period).allocation_retour_emploi.montant_minimum_mayotte * mayotte
+        allocation_minimale_hors_mayotte = parameters(period).chomage.allocation_retour_emploi.montant_minimum_hors_mayotte * hors_mayotte
+        allocation_minimale_mayotte = parameters(period).chomage.allocation_retour_emploi.montant_minimum_mayotte * mayotte
 
         allocation_minimale_en_fonction_de_la_region = allocation_minimale_hors_mayotte + allocation_minimale_mayotte
 
@@ -278,10 +278,10 @@ class agepi_eligible(Variable):
 
         #  La formation doit être supérieure ou égale à 40 heures
         duree_formation = individu('duree_formation', period)
-        periode_formation_eligible = duree_formation >= parameters(period).prestations.agepi.duree_de_formation_minimum
+        periode_formation_eligible = duree_formation >= parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.duree_de_formation_minimum
 
         #  Le durée de contrat de l'emploi doit être d'au moins 3 mois
-        periode_de_contrat_3_mois_minimum = individu('contrat_de_travail_duree', period) >= parameters(period).prestations.agepi.duree_cdd_ctt_minimum
+        periode_de_contrat_3_mois_minimum = individu('contrat_de_travail_duree', period) >= parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.duree_cdd_ctt_minimum
 
         reprises_types_activites_formation_eligible = reprises_types_activites_formation * periode_formation_eligible
         reprises_types_activites_cdd_eligible = reprises_types_activites_cdd * periode_de_contrat_3_mois_minimum
@@ -331,8 +331,8 @@ class agepi_hors_mayotte(Variable):
         parametres_montants = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.hors_mayotte
         montants_min_hors_mayotte = parametres_montants.minimum.calc(nb_enfants_eligibles)
         montants_max_hors_mayotte = parametres_montants.maximum.calc(nb_enfants_eligibles)
-        intensite_hebdo_seuil = parameters(period).prestations.agepi.intensite_hebdomadaire_seuil
-        intensite_mensuelle_seuil = parameters(period).prestations.agepi.intensite_mensuelle_seuil
+        intensite_hebdo_seuil = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.intensite_hebdomadaire_seuil
+        intensite_mensuelle_seuil = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.intensite_mensuelle_seuil
 
         montants_min_intensite = montants_min_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
         montants_max_intensite = montants_max_hors_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
@@ -372,11 +372,11 @@ class agepi_mayotte(Variable):
 
         mayotte = individu.menage('residence_mayotte', period)
 
-        parametres_montants = parameters(period).prestations.agepi.montants.mayotte
+        parametres_montants = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants.mayotte
         montants_min_mayotte = parametres_montants.minimum.calc(nb_enfants_eligibles)
         montants_max_mayotte = parametres_montants.maximum.calc(nb_enfants_eligibles)
-        intensite_hebdo_seuil = parameters(period).prestations.agepi.intensite_hebdomadaire_seuil
-        intensite_mensuelle_seuil = parameters(period).prestations.agepi.intensite_mensuelle_seuil
+        intensite_hebdo_seuil = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.intensite_hebdomadaire_seuil
+        intensite_mensuelle_seuil = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.intensite_mensuelle_seuil
 
         montants_min_intensite = montants_min_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
         montants_max_intensite = montants_max_mayotte * (intensite_hebdomadaire + intensite_mensuelle)
