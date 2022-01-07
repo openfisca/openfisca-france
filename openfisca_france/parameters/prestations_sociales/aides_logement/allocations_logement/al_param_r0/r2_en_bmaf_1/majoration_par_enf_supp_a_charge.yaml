@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   ux_name: Majoration par enfant supplémentaire
-  unit: BMAF
+  unit: /1
   ipp_csv_id: r2_enfsupp
   reference:
     2015-01-01: Arrêté du 29/12/2014 fixant les montants du paramètre R0 pour le calcul des aides personnelles au logement, art. 2
