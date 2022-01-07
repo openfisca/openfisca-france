@@ -7,7 +7,7 @@ metadata:
   unit: /1
   reference:
     2001-07-01: Arrêté du 31/07/2001
-  date_parution_jo:
+  official_journal_date:
     2001-07-01: 2001-08-02
   notes:
     2001-01-01: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
