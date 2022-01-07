@@ -60,7 +60,7 @@
   output:
     zone_apl: zone_3
     aide_logement_base_ressources: 6900
-    aide_logement: 171.86
+    aide_logement: 181.39
 
 - name: "Cas 3 AL Reforme 2019"
   period: 2021-01
@@ -119,7 +119,7 @@
   output:
     zone_apl: zone_3
     aide_logement_base_ressources: 9600
-    aide_logement: 91.05
+    aide_logement: 100.71
 
 - name: "Cas 4 AL Reforme 2019"
   period: 2021-01
@@ -165,7 +165,7 @@
   output:
     zone_apl: zone_3
     aide_logement_base_ressources: 21600
-    aide_logement: 38.37
+    aide_logement: 53.64
 
 - name: "Cas 5 AL Reforme 2019"
   period: 2021-01
@@ -198,7 +198,7 @@
   output:
     zone_apl: zone_3
     aide_logement_base_ressources: 5000
-    aide_logement: 204.81
+    aide_logement: 213.80
 
 - name: "Cas 6 AL Reforme 2019"
   period: 2021-01
@@ -255,7 +255,7 @@
   output:
     zone_apl: zone_3
     aide_logement_base_ressources: 12500
-    aide_logement: 0.0
+    aide_logement: 11.48
 
 - name: "Cas 7 AL Reforme 2019"
   period: 2021-01
@@ -333,7 +333,7 @@
   output:
     zone_apl: zone_3
     aide_logement_base_ressources: 11500
-    aide_logement: 170.91
+    aide_logement: 195.72
     reduction_loyer_solidarite: 51.59
 
 - name: "Cas 8 AL Reforme 2019"
@@ -434,7 +434,7 @@
   output:
     zone_apl: zone_2
     aide_logement_base_ressources: 11400
-    aide_logement: 409.81
+    aide_logement: 417.48
     reduction_loyer_solidarite: 80.13
 
 - name: "Cas 9 AL Reforme 2019"
@@ -550,7 +550,7 @@
   output:
     zone_apl: zone_2
     aide_logement_base_ressources: 6200
-    aide_logement: 211.0
+    aide_logement: 219.58
 
 - name: "Cas 11 AL Reforme 2019"
   period: 2021-01
@@ -607,7 +607,7 @@
   output:
     zone_apl: zone_2
     aide_logement_base_ressources: 7700
-    aide_logement: 124.7
+    aide_logement: 134.51
     reduction_loyer_solidarite: 40.51
 
 - name: "Cas 12 AL Reforme 2019: stagiaire étudiant"
@@ -657,4 +657,4 @@
     foyer_fiscal:
       declarants: [personne1]
   output:
-    aide_logement: 164.2
+    aide_logement: 172.78
