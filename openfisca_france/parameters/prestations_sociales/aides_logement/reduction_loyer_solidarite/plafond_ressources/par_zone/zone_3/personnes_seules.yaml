@@ -4,10 +4,6 @@ values:
     value: 820.0
   2019-01-01:
     value: 828.0
-  2020-01-01:
-    value: 1201.0
-  2021-01-01:
-    value: 1212.0
 metadata:
   ux_name: Personne isolée
   ipp_csv_id: plafond_ressources_rls_z3_personne_isolee
