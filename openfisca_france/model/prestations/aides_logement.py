@@ -1145,7 +1145,7 @@ class aide_logement_R0(Variable):
             + al.al_param_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
-        R0 = round_(12 * (R1 - R2) * (1 - al.allocations_logement.autres.abat_sal))
+        R0 = round_(12 * (R1 - R2) * (1 - al.autres.abat_sal))
 
         return R0
 
