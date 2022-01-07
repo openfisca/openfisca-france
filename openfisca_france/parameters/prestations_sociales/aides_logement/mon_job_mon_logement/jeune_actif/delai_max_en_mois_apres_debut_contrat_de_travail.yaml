@@ -1,0 +1,9 @@
+description: Nombre de mois maximum entre la date de début de contrat de travail et la date courante pour être éligible à l'aide mon job mon logement en tant que jeune actif
+values:
+  2021-02-18:
+    value: 6
+metadata:
+  ux_name: Délai Max
+  unit: month
+  reference:
+    2021-02-18: https://www.actionlogement.fr/aide-mon-job-mon-logement

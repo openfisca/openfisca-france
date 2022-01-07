@@ -1,0 +1,9 @@
+description: Pourcentage maximum du SMIC mensuel brut pour être éligible à l'aide mon job mon logement
+values:
+  2021-02-18:
+    value: 1.5
+metadata:
+  ux_name: Revenu max
+  unit: /1
+  reference:
+    2021-02-18: https://www.actionlogement.fr/aide-mon-job-mon-logement
