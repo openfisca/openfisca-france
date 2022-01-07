@@ -23,6 +23,8 @@ build: clean deps
 	@# of OpenFisca-France, the same we put in the hands of users and reusers.
 	python setup.py bdist_wheel
 	find dist -name "*.whl" -exec pip install --force-reinstall {}[dev] \;
+	@# Build also the tar.gz
+	python setup.py bdist
 	pip install openfisca-core[web-api]
 
 check-syntax-errors:

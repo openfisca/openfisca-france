@@ -1,5 +1,13 @@
 # Changelog
 
+### 99.0.1 [#1778](https://github.com/openfisca/openfisca-france/pull/1778)
+
+* Amélioration technique. 
+* Périodes concernées : aucune.
+* Zones impactées : build.
+* Détails :
+  - Pour pouvoir publier sur Conda-Forge, publie une archive des sources en tar.gz sur PyPi en plus du .whl.
+
 # 99.0.0 [#1761](https://github.com/openfisca/openfisca-france/pull/1761)
 
 * Amélioration technique. 
