@@ -2,6 +2,6 @@ description: Mesure du loyer pour les étudiants logeant en résidence universit
 metadata:
   ux_name: Étudiants en RU
   order:
-  - loyer_considere_comme_paye_par_etudiants_logeant_en_residence_universitaire
-  - autres_dont_etudiants_en_chambres_rehabilitees_residences_universitaires
+  - loyer_considere_comme_paye_par_les_etudiants_logeant_en_residence_universitaire
+  - autres_dont_les_etudiants_en_chambres_rehabilitees_de_residences_universitaires
   description_en: Measure of rent for students living in university residences

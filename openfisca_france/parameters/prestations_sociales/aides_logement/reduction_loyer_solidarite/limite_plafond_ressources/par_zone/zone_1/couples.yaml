@@ -10,7 +10,7 @@ values:
     value: 1615.0
 metadata:
   ux_name: Couple
-  last-review: 2022-01-07
+  last_review: 2022-01-07
   unit: currency
   reference:
     2018-01-01:

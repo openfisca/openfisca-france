@@ -2,6 +2,6 @@ description: Majoration forfaitaire au titre des charges, pour les allocations l
 metadata:
   ux_name: Charges
   order:
-  - personne_isolee_menage_seul
-  - majoration_par_enfant_majoration_charges_2
+  - personne_isolee_ou_menage_seul
+  - majoration_par_enfant
   description_en: Lump sum extra allowance for charges

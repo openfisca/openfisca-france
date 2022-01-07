@@ -1,15 +1,13 @@
 description: Intervalles de ressources considérés, Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire
-intervalles_ressources_consideres:
-  description: 
-  values:
-    2002-07-01:
-      value: 100.0
-    2001-07-01:
-      value: 76.22
-    1997-02-01:
-      value: 500.0
-    1972-07-01:
-      value: null
+values:
+  2002-07-01:
+    value: 100.0
+  2001-07-01:
+    value: 76.22
+  1997-02-01:
+    value: 500.0
+  1972-07-01:
+    value: null
 metadata:
   ux_name: Intervalles de ressources considérés
   ipp_csv_id: interv_ress

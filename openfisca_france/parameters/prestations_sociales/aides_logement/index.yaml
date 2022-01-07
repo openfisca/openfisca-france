@@ -1,17 +1,12 @@
-description: Allocations logement (AL)
+description: Aides pour le logement
 metadata:
-  ux_name: Allocs. Logement
+  ux_name: Aides Logement
   order:
-  - al_pac
-  - al_param_acc_univ
-  - al_param_r0
-  - al_param_accapl
-  - al_plaf_acc
-  - al_loc1
-  - al_loc2
-  - al_plaf_logement_foyer
-  - al_charge
-  - al_etudiant
-  - al_min
-  - al_rls
+  - action_logement
+  - allocations_logement
+  - logement_social
+  - reduction_loyer_solidarite
+  - ressources
+  - visale
+  - mon_job_mon_logement
   description_en: Housing allowances

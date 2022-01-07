@@ -4,4 +4,4 @@ metadata:
   order:
   - montant
   - plafond_ressources
-  - fraction_baise_aide_logement
+  - fraction_baisse_aide_logement
