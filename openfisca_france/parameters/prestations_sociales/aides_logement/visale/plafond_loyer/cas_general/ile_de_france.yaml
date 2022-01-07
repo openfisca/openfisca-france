@@ -1,0 +1,11 @@
+description: Montant maximum du loyer éligible à la caution Visale dans le cas général pour les personnes logeant en Île-de-France
+values:
+  2018-06-19:
+    value: 1500
+metadata:
+  ux_name: En Île-de-France
+  unit: currency
+  reference:
+    2018-06-19: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
+documentation: |
+  Autres refs: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
