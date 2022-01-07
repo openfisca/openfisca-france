@@ -21,10 +21,9 @@ build: clean deps
 	@# Install OpenFisca-France for deployment and publishing.
 	@# `make build` allows us to be be sure tests are run against the packaged version
 	@# of OpenFisca-France, the same we put in the hands of users and reusers.
-	python setup.py bdist_wheel
-	find dist -name "*.whl" -exec pip install --force-reinstall {}[dev] \;
-	@# Build also the tar.gz
-	python setup.py bdist
+	python -m build
+	pip uninstall --yes openfisca-france
+	find dist -name "*.whl" -exec pip install {}[dev] \;
 	pip install openfisca-core[web-api]
 
 check-syntax-errors:
