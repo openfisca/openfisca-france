@@ -8,7 +8,7 @@ clean:
 	find . -name '*.pyc' -exec rm \{\} \;
 
 deps:
-	pip install --upgrade pip twine wheel
+	pip install --upgrade pip build twine
 
 install: deps
 	@# Install OpenFisca-France for development.
