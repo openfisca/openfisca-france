@@ -7,7 +7,7 @@ values:
 metadata:
   ux_name: Personnes isolées ou couples avec 2 enfants
   ipp_csv_id: r2_enf2
-  unit: BMAF
+  unit: /1
   reference:
     2015-01-01: Arrêté du 29/12/2014 fixant les montants du paramètre R0 pour le calcul des aides personnelles au logement, art. 2
     2001-01-01: Arrêté du 26/12/2000, art. 2
