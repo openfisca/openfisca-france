@@ -1,0 +1,9 @@
+description: Montant de l'aide mon job mon logement
+values:
+  2021-02-18:
+    value: 1000
+metadata:
+  ux_name: Montant
+  unit: currency
+  reference:
+    2021-02-18: https://www.actionlogement.fr/aide-mon-job-mon-logement
