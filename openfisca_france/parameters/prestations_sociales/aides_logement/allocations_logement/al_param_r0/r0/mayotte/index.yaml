@@ -1,6 +1,6 @@
-description: Montant forfaitaire R0 (Article 2 ter de l'arrêté du 3 juillet 1978) - secteur locatif (après 2001)
+description: Montant forfaitaire R0 pour Mayotte (Article 2 ter de l'arrêté du 3 juillet 1978) - secteur locatif (après 2001)
 metadata:
-  ux_name: R0
+  ux_name: Mayotte
   order:
   - taux1pac
   - taux2pac

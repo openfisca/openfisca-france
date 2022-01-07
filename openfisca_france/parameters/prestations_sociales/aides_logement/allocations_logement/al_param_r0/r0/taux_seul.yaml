@@ -8,8 +8,6 @@ values:
     value: 4575.0
   2020-01-01:
     value: 4588.0
-  2021-01-01:
-    value: 4274.0
 metadata:
   ux_name:  Personne seule sans personne à charge
   ipp_csv_id: r0_seul
