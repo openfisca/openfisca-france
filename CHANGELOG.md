@@ -1,5 +1,13 @@
 # Changelog
 
+### 99.0.2 [#1779](https://github.com/openfisca/openfisca-france/pull/1779)
+
+* Amélioration technique. 
+* Périodes concernées : aucune.
+* Zones impactées : build.
+* Détails :
+  - Pour pouvoir publier sur Conda-Forge, utilise [build](https://packaging.python.org/en/latest/tutorials/packaging-projects/) pour le packaging.
+
 ### 99.0.1 [#1778](https://github.com/openfisca/openfisca-france/pull/1778)
 
 * Amélioration technique. 
