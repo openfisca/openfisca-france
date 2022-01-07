@@ -19,7 +19,7 @@ class mon_job_mon_logement_eligibilite_logement(Variable):
 
     def formula(individu, period, parameters):
         statut_occupation_logement = individu.menage('statut_occupation_logement', period)
-        params = parameters(period).prestations_sociales.aides_logement.mon_job_mon_logement
+        params = parameters(period).prestations_sociales.aides_logement.action_logement.mon_job_mon_logement
 
         locataire = ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
                      + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
@@ -35,7 +35,7 @@ class mon_job_mon_logement_eligibilite_jeunes_actifs(Variable):
     label = "Éligibilité à l'aide mon job mon logement pour les jeunes actifs"
 
     def formula(individu, period, parameters):
-        params = parameters(period).prestations_sociales.aides_logement.mon_job_mon_logement.jeune_actif
+        params = parameters(period).prestations_sociales.aides_logement.action_logement.mon_job_mon_logement.jeune_actif
 
         eligibilite_activite = (individu('activite', period) == TypesActivite.actif) + individu('alternant', period)
         smic_mensuel_brut = individu("smic_proratise", period)
@@ -54,7 +54,7 @@ class mon_job_mon_logement_eligibilite(Variable):
     label = "Éligibilité à l'aide mon job mon logement"
 
     def formula(individu, period, parameters):
-        params = parameters(period).prestations_sociales.aides_logement.mon_job_mon_logement
+        params = parameters(period).prestations_sociales.aides_logement.action_logement.mon_job_mon_logement
         eligibilite_activite = (individu('activite', period) == TypesActivite.actif) + individu('alternant', period)
         smic_mensuel_brut = individu("smic_proratise", period)
         eligibilite_salaire = individu("salaire_de_base", period) <= smic_mensuel_brut * params.pourcentage_maximum_smic
@@ -73,6 +73,6 @@ class mon_job_mon_logement(Variable):
     reference = "https://www.actionlogement.fr/aide-mon-job-mon-logement"
 
     def formula(individu, period, parameters):
-        montant = parameters(period).prestations_sociales.aides_logement.mon_job_mon_logement.montant
+        montant = parameters(period).prestations_sociales.aides_logement.action_logement.mon_job_mon_logement.montant
         eligibilite = individu('mon_job_mon_logement_eligibilite', period) + individu('mon_job_mon_logement_eligibilite_jeunes_actifs', period)
         return montant * eligibilite
