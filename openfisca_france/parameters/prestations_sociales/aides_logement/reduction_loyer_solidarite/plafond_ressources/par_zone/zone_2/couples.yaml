@@ -4,10 +4,6 @@ values:
     value: 1032.0
   2019-01-01:
     value: 1042.0
-  2020-01-01:
-    value: 1512.0
-  2021-01-01:
-    value: 1526.0
 metadata:
   ux_name: Couple
   ipp_csv_id: plafond_ressources_rls_z2_couple

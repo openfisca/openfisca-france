@@ -4,10 +4,6 @@ values:
     value: 263.0
   2019-01-01:
     value: 266.0
-  2020-01-01:
-    value: 385.0
-  2021-01-01:
-    value: 389.0
 metadata:
   ux_name: Majoration par personne à charge supplémentaire
   ipp_csv_id: plafond_ressources_rls_z2_pac_supplementaire

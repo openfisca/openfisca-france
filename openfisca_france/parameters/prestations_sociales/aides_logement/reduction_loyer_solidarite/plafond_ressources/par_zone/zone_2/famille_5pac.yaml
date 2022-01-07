@@ -4,10 +4,6 @@ values:
     value: 2472.0
   2019-01-01:
     value: 2497.0
-  2020-01-01:
-    value: 3624.0
-  2021-01-01:
-    value: 3658.0
 metadata:
   ux_name: Famille avec 5 personnes à charge
   ipp_csv_id: plafond_ressources_rls_z2_famille_5pac

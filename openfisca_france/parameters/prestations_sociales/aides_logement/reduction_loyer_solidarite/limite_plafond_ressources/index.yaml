@@ -1,0 +1,5 @@
+description: Limite des plafonds de ressources de la Réduction de loyer de solidarité (RLS)
+metadata:
+  ux_name: Limite des plafonds de ressources
+  order:
+  - par_zone
