@@ -1,0 +1,11 @@
+description: Cotisations de sécurité sociale (SS) pour les prestations familiales, des employeurs et travailleurs indépendants
+metadata:
+  ux_name: Indépendants
+  order:
+  - revenu_professionnel_total
+  - sous_pss
+  - sous_10_000_frf
+  - entre_10_000_frf_et_1_pss
+  - si_revenu_d_activite_110_pss
+  - si_revenu_d_activite_140_pss
+  description_en: SSCs for family benefits (independent workers)

@@ -1,1 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Cotisation de sécurité sociale (SS) de la branche vieillesse des indépendants artisans
+metadata:
+  ux_name: Artisans
+  order:
+  - sous_pss
+  description_en: SSCs for old-age insurance (sales retailers and craftsmen)

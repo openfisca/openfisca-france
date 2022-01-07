@@ -1,4 +1,6 @@
-description: Cotisations et taxes des indépendants artisans-commerçants
+description: Cotisation de sécurité sociale (SS), branche maladie, maternité, invalidité, décès, Artisans-Commerçants
 metadata:
-  ux_name: Indépendants artisans-commerçants
-  description_en: 'Contributions and taxes on self-employed: sales retailers and craftsmen'
+  ux_name: Branche Maladie Maternité Invalidité Décès
+  order:
+  - mmid_ac
+  description_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
