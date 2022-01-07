@@ -2,8 +2,8 @@ description: R1 (en % du RMI puis RSA socle) - secteur locatif (après 2001)
 metadata:
   ux_name: R1
   order:
-  - personnes_isolees
-  - couples_sans_enf
+  - personne_isolee
+  - couple_sans_enf
   - personne_isolee_ou_couple_avec_1_enf
   - personne_isolee_ou_couple_avec_2_enf
   - majoration_enfant_a_charge_supp

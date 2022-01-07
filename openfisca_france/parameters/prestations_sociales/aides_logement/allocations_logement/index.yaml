@@ -1,0 +1,15 @@
+description: Prestations sociales
+metadata:
+  order:
+  - al_pac
+  - al_param_acc_univ
+  - al_param_r0
+  - al_param_accapl
+  - al_plaf_acc
+  - al_loc1
+  - al_loc2
+  - al_plaf_logement_foyer
+  - al_charge
+  - al_etudiant
+  - al_min
+  description_en: Allowances

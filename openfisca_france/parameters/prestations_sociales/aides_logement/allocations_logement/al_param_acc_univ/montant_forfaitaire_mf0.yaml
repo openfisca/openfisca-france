@@ -1,18 +1,13 @@
 description: Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire
-montant_forfaitaire_mf0montant_forfaitaire_mf0:
-  description: Montant forfaitaire Mf0
-  values:
-    2017-10-01:
-      value: 5.0
-    1972-07-01:
-      value: null
-  metadata:
-    ipp_csv_id: mf0
-    unit: currency-EUR
+values:
+  2017-10-01:
+    value: 5.0
+  1972-07-01:
+    value: null
 metadata:
-  ux_name:
-  ipp_csv_id:
-  unit:
+  ux_name: Montant forfaitaire Mf0
+  ipp_csv_id: mf0
+  unit: currency
   reference:
     2017-10-01:
     - title: Décret 2017-1413 du 28/09/2017 (modif art. D542-5 du CSS)

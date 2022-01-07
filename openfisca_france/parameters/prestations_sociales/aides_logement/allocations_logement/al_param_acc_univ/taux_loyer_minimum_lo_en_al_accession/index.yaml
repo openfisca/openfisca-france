@@ -2,17 +2,9 @@ description: Paramètres de calcul pour les accédants et les étudiants logés 
 metadata:
   ux_name: Paramètres d'accession
   order:
-  - constante_coefficient_k
-  - multiplicateur_n_dans_formule_k
-  - menage_0_personnes_charge
-  - 1_personne_charge
-  - 2_personnes_charge
-  - 3_personnes_charge
-  - 4_personnes_charge
-  - majoration_n_par_personne_charge_supplementaire
-  - taux_loyer_minimum_lo_en_al_accession
-  - seuils
-  - majoration_loyer_minimum_lo
-  - intervalles_ressources_consideres
-  - montant_forfaitaire_mf0
+  - 1ere_tranche
+  - 2eme_tranche
+  - 3eme_tranche
+  - 4eme_tranche
+  - 5eme_tranche
   description_en: Parameters for new home-buyers and students residences

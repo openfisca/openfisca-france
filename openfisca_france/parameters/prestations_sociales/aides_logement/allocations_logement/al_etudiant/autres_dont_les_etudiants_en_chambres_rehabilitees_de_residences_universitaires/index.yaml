@@ -2,6 +2,6 @@ description: Mesure du loyer autres, dont les étudiants en chambres réhabilit�
 metadata:
   ux_name: Autres
   order:
-  - loyer_considere_comme_paye_par_etudiants_logeant_en_residence_universitaire
-  - autres_dont_etudiants_en_chambres_rehabilitees_residences_universitaires
+  - personnes_isolees
+  - menages
   description_en: Measure of rent for students living in university residences

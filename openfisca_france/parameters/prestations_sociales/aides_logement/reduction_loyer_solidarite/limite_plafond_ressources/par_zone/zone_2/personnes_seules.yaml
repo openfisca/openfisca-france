@@ -10,7 +10,7 @@ values:
     value: 1251.0
 metadata:
   ux_name: Personne isolée
-  last-review: 2022-01-06
+  last_review: 2022-01-06
   unit: currency
   reference:
     2018-01-01:
