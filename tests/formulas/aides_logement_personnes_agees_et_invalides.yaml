@@ -20,7 +20,7 @@
       declarants: [personne1]
   output:
     aide_logement_base_ressources: 9500
-    aide_logement: 94.13
+    aide_logement: 103.79
 
 - name: "Personne âgée née en 1931, pas d'application de l'abattement spécial accordé aux personnes âgées"
   period: 2021-02
@@ -43,7 +43,7 @@
       declarants: [personne1]
   output:
     aide_logement_base_ressources: 7800
-    aide_logement: 146.43
+    aide_logement: 154.77
 
 - name: "Personne salariée infirme, application de l'abattement spécial accordé aux personnes invalides"
   period: 2021-02
@@ -74,7 +74,7 @@
         2019: true
   output:
     aide_logement_base_ressources: 8200
-    aide_logement: 134.13
+    aide_logement: 142.71
 
 - name: "Personne salariée infirme, application de l'abattement spécial accordé aux personnes invalides"
   period: 2021-02
@@ -122,4 +122,4 @@
       caseP:
         2019: true
   output:
-    aide_logement: 248.43
+    aide_logement: 257.41
