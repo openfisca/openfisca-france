@@ -1,0 +1,18 @@
+description:  Montant maximum du loyer pour l'éligibilité automatique à Visale pour les personnes disposant d'un statut étudiant et logeant en Île-de-France
+values:
+  2018-06-19:
+    value: 800
+  2016-01-01:
+    value: 425
+metadata:
+  ux_name: En Île-de-France
+  unit: currency
+  reference:
+    2018-06-19: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
+    2016-01-01:
+      - title: Pour la date (Etudiant)
+        href: https://www.fage.org/idees/idees-social/idees-social-crous-aide-logement/idees-social-garantie-locative-visale.html
+      - title: Pour le montant (pas encore actualisé à la date d'écriture) (Etudiant)
+        href: https://www.crous-paris.fr/logement/les-aides-au-logement/visale-caution-locative
+documentation: |
+  Autres refs: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
