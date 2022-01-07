@@ -1,16 +1,9 @@
-description: Taux pour une personne seule ou couple ayant trois personnes à charge du montant forfaitaire R0 (Article 2 ter de l'arrêté du 3 juillet 1978) - secteur locatif (après 2001)
+description: Mayotte, Taux pour une personne seule ou couple ayant trois personnes à charge du montant forfaitaire R0 (Article 2 ter de l'arrêté du 3 juillet 1978) - secteur locatif (après 2001)
 values:
-  2015-01-01:
-    value: 8242.0
-  2016-01-01:
-    value: 8274.0
-  2019-01-01:
-    value: 8298.0
-  2020-01-01:
-    value: 8322.0
+  2021-01-01:
+    value: 8283.0
 metadata:
-  ux_name: Personne seule ou couple ayant trois personnes à charge
-  ipp_csv_id: r0_3pac
+  ux_name: Personne seule ou couple ayant 4 personnes à charge
   unit: currency
   reference:
     2021-01-01:

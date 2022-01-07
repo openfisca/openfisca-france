@@ -8,8 +8,6 @@ values:
     value: 8606.0
   2020-01-01:
     value: 8631.0
-  2021-01-01:
-    value: 8283.0
 metadata:
   ux_name: Personne seule ou couple ayant 4 personnes à charge
   ipp_csv_id: r0_4pac

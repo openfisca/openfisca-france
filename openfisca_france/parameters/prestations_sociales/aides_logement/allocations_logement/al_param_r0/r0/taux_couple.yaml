@@ -8,8 +8,6 @@ values:
     value: 6553.0
   2020-01-01:
     value: 6572.0
-  2021-01-01:
-    value: 6122.0
 metadata:
   ux_name: Taux couple
   ipp_csv_id: r0_couple

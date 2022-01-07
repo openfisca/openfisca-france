@@ -8,8 +8,6 @@ values:
     value: 7992.0
   2020-01-01:
     value: 8015.0
-  2021-01-01:
-    value: 7432.0 
 metadata:
   ux_name: Personne seule ou couple ayant deux personnes à charge
   ipp_csv_id: r0_2pac
