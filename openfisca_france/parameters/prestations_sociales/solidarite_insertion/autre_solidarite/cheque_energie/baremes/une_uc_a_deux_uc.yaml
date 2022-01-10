@@ -37,9 +37,9 @@ brackets:
         value: 10801.0
       2019-01-01:
         value: 10700
-        amount:
-          2019-01-01:
-            value: 0
+    amount:
+      2019-01-01:
+        value: 0
 metadata:
   ux_name: Foyer fiscal comptant entre 1 et 2 UC
   ipp_csv_id: 
