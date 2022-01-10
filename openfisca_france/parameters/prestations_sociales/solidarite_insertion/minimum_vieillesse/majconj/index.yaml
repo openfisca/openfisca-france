@@ -1,1 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Majoration pour conjoint à charge - droits non-contributifs de retraite
+metadata:
+  ux_name: Majoration pour conjoint à charge
+  order:
+  - montant_majoration_conjoint_charge
+  description_en: Social minima for elderly
