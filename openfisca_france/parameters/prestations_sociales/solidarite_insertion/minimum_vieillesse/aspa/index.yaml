@@ -1,2 +1,5 @@
-description: Allocation solidarité aux personne agées (ASPA - Minimum vieillesse)
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Allocation solidarité aux personne agées (ASPA) - Minimum vieillesse
+metadata:
+  ux_name: ASPA
+  order:
+  description_en: Solidarity income for elderly (ASPA)

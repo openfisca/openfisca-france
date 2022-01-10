@@ -244,8 +244,8 @@ class asi(Variable):
             elig1 * (asi.plafond_ressource_seul * not_(en_couple) + asi.plafond_ressource_couple * en_couple)
             + elig2 * asi.plafond_ressource_couple
             + elig3 * asi.plafond_ressource_couple
-            + elig4 * aspa.plafond_ressources_couple
-            + elig5 * aspa.plafond_ressources_couple) / 12
+            + elig4 * aspa.plafond_ressources.couples
+            + elig5 * aspa.plafond_ressources.couples) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
@@ -325,9 +325,9 @@ class aspa(Variable):
 
         plafond_ressources = (
             elig1
-            * (aspa.plafond_ressources_seul * not_(en_couple) + aspa.plafond_ressources_couple * en_couple)
+            * (aspa.plafond_ressources.personnes_seules * not_(en_couple) + aspa.plafond_ressources.couples * en_couple)
             + (elig2 | elig3 | elig4)
-            * aspa.plafond_ressources_couple
+            * aspa.plafond_ressources.couples
             ) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
