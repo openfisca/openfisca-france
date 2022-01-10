@@ -3,4 +3,5 @@ metadata:
   ux_name: Majoration pour conjoint à charge
   order:
   - montant_majoration_conjoint_charge
+  - plafond_conjoint_pour_maj_pac
   description_en: Social minima for elderly
