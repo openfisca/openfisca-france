@@ -1,11 +1,11 @@
-description: Taux de la majoration du montant maximal (en % de la base RSA) par personne supplémentaire (au-delà de la 1ère), Prime d'Activité (PPA)
+description: Taux de la majoration du montant maximal (en % de la base RSA) pour la 1ère personne supplémentaire (1), Prime d'Activité (PPA)
 values:
   2015-10-01:
-    value: 0.3
+    value: 0.5
 metadata:
-  ux_name: Majoration par personne supplémentaire (au-delà de la 1ère)
+  ux_name: Majoration pour la 1ère personne supplémentaire (1)
   last_review: 2022-01-10
-  ipp_csv_id: pa_maj3
+  ipp_csv_id: pa_maj1
   unit: /1
   reference:
     2015-10-01:

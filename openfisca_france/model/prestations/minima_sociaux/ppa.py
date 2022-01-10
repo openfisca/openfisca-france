@@ -99,9 +99,9 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
         # Dans la formule "ppa_forfait_logement", le montant forfaitaire se calcule pour trois personnes dans le cas où le foyer se compose de trois personnes ou plus.
         taux_non_majore = (
             1
-            + (nb_personnes >= 2) * ppa.pa_m.majoration_montant_maximal.couple_1_enfant_deuxieme_enfant
-            + (nb_personnes >= 3) * ppa.taux_troisieme_personne
-            + (nb_personnes >= 4) * where(nb_parents == 1, ppa.pa_m.majoration_montant_maximal.par_enfant_supplementaire, ppa.taux_troisieme_personne)
+            + (nb_personnes >= 2) * ppa.pa_m.majoration_montant_maximal.couples_seul_avec_enfant
+            + (nb_personnes >= 3) * ppa.pa_m.majoration_montant_maximal.couple_1_enfant_2e_enfant
+            + (nb_personnes >= 4) * where(nb_parents == 1, ppa.pa_m.majoration_montant_maximal.par_enfant_supplementaire, ppa.pa_m.majoration_montant_maximal.couple_1_enfant_2e_enfant)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
             + max_(nb_personnes - 4, 0) * ppa.pa_m.majoration_montant_maximal.par_enfant_supplementaire
             )
@@ -387,8 +387,8 @@ class ppa_forfait_logement(Variable):
         # sauf dans le cas où le foyer se compose de trois personnes ou plus, où le montant forfaitaire se calcule pour trois personnes seulement.
         taux_non_majore = (
             1
-            + (np_pers >= 2) * ppa.pa_m.majoration_montant_maximal.couple_1_enfant_deuxieme_enfant
-            + (np_pers >= 3) * ppa.taux_troisieme_personne
+            + (np_pers >= 2) * ppa.pa_m.majoration_montant_maximal.couples_seul_avec_enfant
+            + (np_pers >= 3) * ppa.pa_m.majoration_montant_maximal.couple_1_enfant_2e_enfant
             )
 
         montant_base = ppa.pa_m.montant_de_base * taux_non_majore
