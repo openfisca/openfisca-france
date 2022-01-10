@@ -2,10 +2,6 @@ description: Paramètres des Personnes isolées pour le calcul du montant de la 
 metadata:
   ux_name: Personnes isolées
   order:
-  - montant_de_base
-  - majoration_montant_maximal_en_base_rsa
-  - majoration_isolement_en_base_rsa
-  - majoration_ressources_revenus_activite
-  - bonification
-  - montant_minimum_verse
+  - femmes_enceintes
+  - par_enfant_charge
   description_en: "Activity prenium (PA) : accomodation allowance"

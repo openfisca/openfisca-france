@@ -1,5 +1,4 @@
 description: Tranches de taux d'accident du travail
-unit: currency
 brackets:
 - rate:
     2018-01-01:

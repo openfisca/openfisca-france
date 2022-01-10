@@ -2,7 +2,7 @@ description: Bonification de la Prime Pour l'Activité (PA ou PPA)
 metadata:
   ux_name: Bonification
   order:
-  - montant_maximal_bonification_en_base_rsa
-  - seuil_salaire_minimum_beneficier_bonification_en_multiple_smic_horaire_brut
-  - seuil_salaire_beneficier_bonification_maximale_en_multiple_smic_horaire_brut
+  - seuil_bonification
+  - seuil_max_bonification
+  - taux_bonification_max
   description_en: "Activity prenium (PA) : accomodation allowance"
