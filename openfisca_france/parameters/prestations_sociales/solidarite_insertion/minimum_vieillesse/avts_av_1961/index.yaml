@@ -1,1 +1,9 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Allocation aux vieux travailleurs salariés, AVTS (1941-1961)
+metadata:
+  ux_name: AVTS avant 1961
+  order:
+  - villes_de_plus_de_5000_ha
+  - villes_de_moins_de_5000_ha
+  - majoration_pour_conjoint
+  - region_parisienne
+  description_en: Allowance for elderly workers (AVTS, 1941-1961)

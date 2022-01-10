@@ -1,2 +1,8 @@
-description: salaire_forfaitaire_de_l_assurance_vieillesse_des_parents_au_foyer_avpf
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Salaire forfaitaire de l'Assurance vieillesse des parents au foyer (AVPF)
+metadata:
+  ux_name: Salaire forfaitaire
+  order:
+  - metropole
+  - guadeloupe_guyane_martinique
+  - reunion
+  description_en: Elderly insurance for stay-at-home parents (AVPF)

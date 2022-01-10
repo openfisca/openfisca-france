@@ -1,0 +1,7 @@
+description: Plafonds annuels de l'Allocation supplémentaire - Minimum vieillesse
+metadata:
+  ux_name: Plafonds
+  order:
+  - plafond_seul
+  - plafond_menage
+  description_en: Extra allowance (AS)

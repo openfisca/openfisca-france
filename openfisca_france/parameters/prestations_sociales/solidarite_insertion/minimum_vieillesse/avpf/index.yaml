@@ -1,1 +1,7 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Assurance vieillesse des parents au foyer (AVPF)
+metadata:
+  ux_name: AVPF
+  order:
+  - salaire_forfaitaire
+  - taux
+  description_en: Elderly insurance for stay-at-home parents (AVPF)
