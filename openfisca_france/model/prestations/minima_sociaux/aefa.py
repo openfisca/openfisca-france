@@ -52,7 +52,7 @@ class aefa(Variable):
             + nbPAC * aefa.tx_3pac * max_(nbPAC - 2, 0)
             ))
 
-        montant_aefa = aefa.mon_seul * majoration
+        montant_aefa = aefa.montant_prime * majoration
         montant_aefa += aefa.prime_exceptionnelle
 
         return condition * montant_aefa
