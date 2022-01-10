@@ -1,1 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Allocation temporaire d'attente (ATA)
+metadata:
+  ux_name: ATA
+  order:
+  - montant_journalier
+  description_en: Temporary waiting allowance (ATA)
