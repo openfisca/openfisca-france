@@ -1,2 +1,7 @@
-description: Prime Pour l'Activité
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Prime Pour l'Activité (PA ou PPA)
+metadata:
+  ux_name: PPA
+  order:
+  - pa_m
+  - pa_fl
+  description_en: "Activity prenium (PA) : accomodation allowance"
