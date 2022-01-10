@@ -1,0 +1,69 @@
+description: 1 Unité de consommation - Barèmes des montants du chèque énergie, prestations sociales de solidarité insertion
+brackets:
+  - threshold:
+      2017-01-01:
+        value: 0
+    amount:
+      2017-01-01:
+        value: 144
+      2019-01-01:
+        value: 194
+  - threshold:
+      2017-01-01:
+        value: 5600
+    amount:
+      2017-01-01:
+        value: 96
+      2019-01-01:
+        value: 146
+  - threshold:
+      2017-01-01:
+        value: 6700
+    amount:
+      2017-01-01:
+        value: 48
+      2019-01-01:
+        value: 113
+  - threshold:
+      2017-01-01:
+        value: 7700
+    amount:
+      2017-01-01:
+        value: 0
+      2019-01-01:
+        value: 48
+  - threshold:
+      2021-01-01:
+        value: 10801.0
+      2019-01-01:
+        value: 10700
+    amount:
+      2019-01-01:
+        value: 0
+metadata:
+  ux_name: Foyer fiscal composé d'une personne
+  ipp_csv_id:
+    amount: chq_energie_1UC_rfr5600, chq_energie_1UC_rfr6700, chq_energie_1UC_rfr7700, chq_energie_1UC_rfr10700
+    threshold: plaf_chq_energie
+  type: single_amount
+  threshold_unit: currency
+  amount_unit: currency
+  reference:
+    2019-01-01:
+      title: Arrêté du 26 décembre 2018 modifiant le plafond et la valeur faciale du chèque énergie
+      href: https://www.legifrance.gouv.fr/eli/arrete/2018/12/26/TRER1832961A/jo/texte
+    2018-01-01:
+      title: Décret n° 2016-555 du 6 mai 2016 relatif au chèque énergie
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/5/6/DEVR1604032D/jo/texte
+  official_journal_date:
+    2019-01-01: 2019-12-28
+    2018-01-01: 2016-05-08
+  notes:
+    2019-01-01: Le plafond d'éligibilité est agrandi avec la création d'une 4ème catégorie de revenus éligibles. Les montants accordés sont augmentés de 50 euros.
+    2018-01-01: Le chèque énergie, en phase d'expérimentation depuis 2016 dans certains territoires, entre en vigueur au 1er Janvier 2018
+  description_en: "Help for energy expenses voucher"
+documentation: |
+  Notes:
+  (1) Le chèque est codifié aux articles R.124-1 à R.124-17 du code de l’énergie.
+  (2) Les dépenses payables avec le chèque énergie sont les factures d'énergie, les charges de chauffage pour certains logements et certains travaux de rénovation énergétique. Les professionnels concernés ont l’obligation d’accepter le chèque énergie, conformément à l’article L. 124-1 du code de l’énergie. Le chèque énergie est valable jusqu’au 31 mars de l’année suivant sa date d’émission. Le chèque énergie est cumulable avec MaPrimeRénov'.
+  (3) Le revenu fiscal de référence est rapporté au nombre d'unités de consommation (UC) qui composent le foyer. La première personne compte pour une unité, la deuxième pour 0,5 et chaque personne supplémentaire pour 0,3 (les enfants en garde partagée n'apportent que 0,15 UC).

@@ -47,12 +47,12 @@ class aefa(Variable):
 
         # TODO check nombre de PAC pour une famille
         majoration = 1 + (condition_majoration * (
-            (nb_parents == 2) * aefa.tx_2p
-            + nbPAC * aefa.tx_supp * (nb_parents <= 2)
-            + nbPAC * aefa.tx_3pac * max_(nbPAC - 2, 0)
+            (nb_parents == 2) * aefa.taux_majoration.tx_2p
+            + nbPAC * aefa.taux_majoration.tx_supp * (nb_parents <= 2)
+            + nbPAC * aefa.taux_majoration.tx_3pac * max_(nbPAC - 2, 0)
             ))
 
-        montant_aefa = aefa.mon_seul * majoration
+        montant_aefa = aefa.montant_prime * majoration
         montant_aefa += aefa.prime_exceptionnelle
 
         return condition * montant_aefa

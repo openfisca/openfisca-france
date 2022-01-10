@@ -1,0 +1,29 @@
+description: Taux au delà de la troisième personne à charge incluse de l'Aide exceptionnelle de fin d'année (AEFA)
+values:
+  2003-12-30:
+    value: 0.4
+metadata:
+  ux_name: Au-delà 3e personne à charge incluse
+  last_review:
+    2021-09-28
+  unit: /1
+  reference:
+    2003-12-30:
+    - title: Décret 2003-1283 du 26/12/2003, art. 1
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006226757
+  official_journal_date:
+    2003-01-01: 2003-12-30
+  notes:
+    2003-01-01: Idem en 2017
+  description_en: "Exceptional end-of-year benefit (AEFA): amount"
+documentation: |
+  Notes :
+  (1) Le montant de l'aide mentionnée à l'article 3 est égal à 152,45 euros pour une personne seule, majoré de 50 % lorsque le foyer se compose de deux personnes et de 30 % pour chaque personne supplémentaire présente au foyer, à condition que ces personnes soient le conjoint, le partenaire lié par un pacte civil de solidarité ou le concubin de l'intéressé ou soient à sa charge.
+  Lorsque le foyer comporte plus de deux enfants ou personnes de moins de vingt-cinq ans à charge, à l'exception du conjoint, du partenaire lié par un pacte civil de solidarité ou du concubin de l'intéressé, la majoration à laquelle ouvre droit chacun des enfants ou chacune des personnes est portée à 40 % à partir du troisième enfant ou de la troisième personne
+  (2) la prime existe depuis 1988 mais nous n'avons pu remonter que jusqu'à 2003
+  https://www.service-public.fr/particuliers/vosdroits/F1325
+  Décret 2015-1870 du 30/12/2015
+  Décret 2014-1709 du 30/12/2014
+  Décret 2013-1294 du 30/12/2013
+  Décret 2010-1677 du 29/12/2010
+  Décret 2003-1283 du 26/12/2003

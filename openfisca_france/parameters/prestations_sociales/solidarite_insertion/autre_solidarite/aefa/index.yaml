@@ -1,2 +1,7 @@
-description: Aide exceptionnelle de fin d'année
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Aide exceptionnelle de fin d'année (AEFA)
+metadata:
+  ux_name: AEFA
+  order:
+  - montant_prime
+  - taux_majoration
+  description_en: "Exceptional end-of-year benefit (AEFA): amount"
