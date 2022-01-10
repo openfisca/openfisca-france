@@ -61,8 +61,8 @@ class api(Variable):
 
         # moins de 20 ans avant inclusion dans rsa
         # moins de 25 ans après inclusion dans rsa
-        api1 = eligib * af.bmaf * (api.api_m.femmes_enceintes_sans_enfant_a_charge + api.api_m.supplement_par_enfant * nb_enf(famille, period, af.age1, api.age_pac - 1))
-        rsa = (api.age_pac >= 25)  # dummy passage au rsa majoré
+        api1 = eligib * af.bmaf * (api.api_m.femmes_enceintes_sans_enfant_a_charge + api.api_m.supplement_par_enfant * nb_enf(famille, period, af.age1, api.api_cond.age_pac - 1))
+        rsa = (api.api_cond.age_pac >= 25)  # dummy passage au rsa majoré
         br_api = rsa_base_ressources + af_majoration * not_(rsa)
         # On pourrait mensualiser RMI, BRrmi et forfait logement
         api = max_(0, api1 - rsa_forfait_logement / 12 - br_api / 12 - rsa / 12)
