@@ -1,8 +1,8 @@
-description: Conditions générales de l'Allocation parent isolé (API)
+description: Forfait logement de l'Allocation parent isolé (API)
 metadata:
-  ux_name: Montants
+  ux_name: Forfait Logement
   order:
-  - femmes_enceintes_sans_enfant_charge
-  - personne_isolee_avec_enfant_charge
-  - supplement_par_enfant
+  - femmes_enceintes
+  - couple_1_enfant
+  - couples_2_enfants_plus
   description_en: "Single parent allowance (API): General conditions"
