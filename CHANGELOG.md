@@ -1,5 +1,30 @@
 # Changelog
 
+## 103.1.0 [#1761](https://github.com/openfisca/openfisca-france/pull/1761
+Cette branche dépend de la branche `harm_prestas_sociales4_al` (PR #1772)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+- `parameters/prestations_sociales/aides_logement/visale`.
+- `parameters/prestations_sociales/aides_logement/mon_job_mon_logement`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+  
+# 103.0.0 [#1772](https://github.com/openfisca/openfisca-france/pull/1772)  
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/aides_logement`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - Mise à jour de:
+       - `al_charge` 
+       - `al_etudiant`
+       - `al_plafonds_logement_foyer`
+       - `reduction_loyer_solidarite`
+  
 ### 102.0.1 [#1783](https://github.com/openfisca/openfisca-france/pull/1783)
 
 * Changement mineur.
