@@ -121,7 +121,7 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
         ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
 
         taux_majore = (
-            ppa.majoration_isolement_femme_enceinte
+            ppa.pa_m.majoration_isolement.femmes_enceintes
             + ppa.majoration_isolement_enf_charge
             * nb_enfants
             )
