@@ -235,8 +235,8 @@ class asi(Variable):
             elig1 * asi.montant_seul
             + elig2 * asi.montant_couple
             + elig3 * 2 * asi.montant_seul
-            + elig4 * (asi.montant_couple / 2 + aspa.montant_annuel_couple / 2)
-            + elig5 * (asi.montant_seul + aspa.montant_annuel_couple / 2)) / 12
+            + elig4 * (asi.montant_couple / 2 + aspa.montant_maximum_annuel.couples / 2)
+            + elig5 * (asi.montant_seul + aspa.montant_maximum_annuel.couples / 2)) / 12
 
         ressources = base_ressources + montant_max
 
@@ -315,10 +315,10 @@ class aspa(Variable):
         elig = elig1 | elig2 | elig3 | elig4
 
         montant_max = (
-            elig1 * aspa.montant_annuel_seul
-            + elig2 * aspa.montant_annuel_couple
-            + elig3 * (asi.montant_couple / 2 + aspa.montant_annuel_couple / 2)
-            + elig4 * (asi.montant_seul + aspa.montant_annuel_couple / 2)
+            elig1 * aspa.montant_maximum_annuel.personnes_seules
+            + elig2 * aspa.montant_maximum_annuel.couples
+            + elig3 * (asi.montant_couple / 2 + aspa.montant_maximum_annuel.couples / 2)
+            + elig4 * (asi.montant_seul + aspa.montant_maximum_annuel.couples / 2)
             ) / 12
 
         ressources = base_ressources + montant_max
@@ -334,7 +334,7 @@ class aspa(Variable):
 
         diff = (
             (elig1 | elig2) * (montant_max - depassement)
-            + (elig3 | elig4) * (aspa.montant_annuel_couple / 12 / 2 - depassement / 2)
+            + (elig3 | elig4) * (aspa.montant_maximum_annuel.couples / 12 / 2 - depassement / 2)
             )
 
         # Montant mensuel servi (sous réserve d'éligibilité)

@@ -1,43 +1,43 @@
-description: Plafond de ressources annuelles pour un couple de l'Allocation solidarité aux personne agées (ASPA) - Minimum vieillesse
+description: Montant annuel maximal pour une personne seule de l'Allocation solidarité aux personne agées (ASPA)
 values:
   2006-01-01:
-    value: 13137.69
+    value: 7323.48
   2007-01-01:
-    value: 13374.16
+    value: 7455.3
   2008-01-01:
-    value: 13521.27
+    value: 7537.3
   2008-09-01:
-    value: 13629.44
+    value: 7597.59
   2009-04-01:
-    value: 13765.73
+    value: 8125.59
   2010-04-01:
-    value: 13889.62
+    value: 8507.49
   2011-04-01:
-    value: 14181.3
+    value: 8907.34
   2012-04-01:
-    value: 14479.1
+    value: 9325.98
   2013-04-01:
-    value: 14667.32
+    value: 9447.21
   2014-04-01:
-    value: 14755.32
+    value: 9503.89
   2014-10-01:
-    value: 14904.0
+    value: 9600.0
   2016-04-01:
-    value: 14918.9
+    value: 9609.6
   2017-04-01:
-    value: 14963.65
+    value: 9638.42
   2018-04-01:
-    value: 15522.54
+    value: 9998.40
   2019-01-01:
-    value: 16174.59
+    value: 10418.40
   2020-01-01:
-    value: 16826.64
+    value: 10838.40
   2021-01-01:
-    value: 16893.94
+    value: 10881.75
 metadata:
-  ux_name: Couple
+  ux_name: Personnes seules
   last_review: 2021-01-01
-  ipp_csv_id: plaf_mv_men_aspa
+  ipp_csv_id: aspa_seul
   unit: currency
   reference:
     2021-01-01:
@@ -105,8 +105,7 @@ metadata:
   description_en: Solidarity income for elderly (ASPA)
 documentation: |
   Notes :
-  (1) Ou lorsque un seul des conjoints bénéficie de l'ASPA.
-  (2) Ou lorsqu'un seul conjoint est bénéficiaire de l'ASPA et l'autre de l'allocation supplémentaire d'invalidité.
+  Pour une personne seule ou lorsque un seul des conjoints bénéficie de l'ASPA.
   L'ASPA vise à remplacer le minimum vieillesse et une série de dispositifs destinés aux personnes âgées disposant de faibles ressources.
   L'ASPA est ouverte à toute personne de plus de 65 ans, cette condition d'âge étant abaissée à l'âge minimun de départ en retraite pour les personnes reconnues inaptes au travail (incapcité d'au moins 50%) et les bénéficiaires d'une retraite anticipée pour handicap. Par ailleurs, le demandeur doit satisfaire aux conditions de ressources et de résidence (régulière en métropole ou dans les départements d'outre-mer).
   https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029619577/#LEGIARTI000020562591
