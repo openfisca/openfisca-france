@@ -12,7 +12,7 @@ class ppa_eligibilite(Variable):
 
     def formula(famille, period, parameters):
         ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
-        age_min = ppa.age_min
+        age_min = ppa.pa_cond.age_min
         condition_age_i = famille.members('age', period) >= age_min
         condition_age = famille.any(condition_age_i)
 
@@ -178,7 +178,7 @@ class ppa_revenu_activite_individu(Variable):
         revenus_activites = revenus_mensualises + revenus_tns_annualises
 
         # L'aah est pris en compte comme revenu d'activité si revenu d'activité hors aah > 29 * smic horaire brut
-        seuil_aah_activite = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
+        seuil_aah_activite = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_cond.seuil_aah_activite * smic_horaire
         aah_activite = (revenus_activites >= seuil_aah_activite) * individu('aah', period)
 
         return revenus_activites + aah_activite
@@ -280,7 +280,7 @@ class ppa_ressources_hors_activite_individu(Variable):
         revenus_activites = individu('ppa_revenu_activite_individu', period)
 
         # L'AAH est prise en compte comme revenu d'activité si revenu d'activité hors aah > 29 * smic horaire brut
-        seuil_aah_activite = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
+        seuil_aah_activite = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_cond.seuil_aah_activite * smic_horaire
         aah_hors_activite = (revenus_activites < seuil_aah_activite) * individu('aah', period)
 
         return ressources_hors_activite_mensuel_i + aah_hors_activite
