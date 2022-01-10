@@ -1,11 +1,12 @@
-description: Pente appliquée aux revenus d'activité pour la Prime d'Activité (PPA)
+description: Majoration des ressources sur les revenus d'activité (Pente) pour la Prime d'Activité (PPA)
 values:
   2015-10-01:
     value: 0.62
   2018-08-01:
     value: 0.61
 metadata:
-  ux_name: Pente
+  ux_name: Majoration des ressources sur les revenus d'activité
+  ipp_csv_id: pa_maj_revenu
   unit: /1
   reference:
     2018-08-01:

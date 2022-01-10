@@ -413,7 +413,7 @@ class ppa_fictive_ressource_activite(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        pente = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.pente
+        pente = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.majoration_ressources_revenus_activite
         ppa_revenu_activite = famille('ppa_revenu_activite', period)
 
         return pente * ppa_revenu_activite

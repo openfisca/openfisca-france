@@ -3,8 +3,8 @@ metadata:
   ux_name: Montant
   order:
   - montant_de_base
-  - majoration_montant_maximal_en_base_rsa
-  - majoration_isolement_en_base_rsa
+  - majoration_montant_maximal
+  - majoration_isolement
   - majoration_ressources_revenus_activite
   - bonification
   - montant_minimum_verse
