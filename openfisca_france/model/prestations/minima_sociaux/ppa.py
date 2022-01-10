@@ -122,7 +122,7 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
 
         taux_majore = (
             ppa.pa_m.majoration_isolement.femmes_enceintes
-            + ppa.majoration_isolement_enf_charge
+            + ppa.pa_m.majoration_isolement.par_enfant_charge
             * nb_enfants
             )
 

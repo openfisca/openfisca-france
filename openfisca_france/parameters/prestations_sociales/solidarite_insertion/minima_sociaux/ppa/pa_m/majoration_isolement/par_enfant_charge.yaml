@@ -1,11 +1,11 @@
-reference: Majoration pour les Parents isolés ou femmes enceintes (en % de la base RSA) de la Prime d'activité (PA)
+reference: Majoration par enfant à charge (en % de la base RSA) de la Prime d'activité (PA)
 values:
   2015-10-01:
-    value: 1.28412
+    value: 0.42804
 metadata:
-  ux_name: Parents isolés / femmes enceintes
+  ux_name: Majoration par enfant à charge
   unit: /1
-  ipp_csv_id: pa_maj5
+  ipp_csv_id: pa_maj6
   reference:
     2021-04-01:
       title: Décret 2021-528 du 29/04/2021, art. 1
