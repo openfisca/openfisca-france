@@ -106,7 +106,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
             + max_(nb_personnes - 4, 0) * ppa.taux_personne_supp
             )
 
-        return ppa.montant_de_base * taux_non_majore
+        return ppa.pa_m.montant_de_base * taux_non_majore
 
 
 class ppa_montant_forfaitaire_familial_majore(Variable):
@@ -126,7 +126,7 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
             * nb_enfants
             )
 
-        return ppa.montant_de_base * taux_majore
+        return ppa.pa_m.montant_de_base * taux_majore
 
 
 class ppa_revenu_activite(Variable):
@@ -346,7 +346,7 @@ class ppa_bonification(Variable):
     def formula(individu, period, parameters):
         P = parameters(period)
         smic_horaire = P.marche_travail.salaire_minimum.smic.smic_b_horaire
-        ppa_base = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.montant_de_base
+        ppa_base = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_de_base
         revenu_activite = individu('ppa_revenu_activite_individu', period)
         seuil_1 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire
         seuil_2 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
@@ -391,7 +391,7 @@ class ppa_forfait_logement(Variable):
             + (np_pers >= 3) * ppa.taux_troisieme_personne
             )
 
-        montant_base = ppa.montant_de_base * taux_non_majore
+        montant_base = ppa.pa_m.montant_de_base * taux_non_majore
 
         montant_forfait = montant_base * (
             (np_pers == 1) * params.forfait_logement.taux_1_personne
