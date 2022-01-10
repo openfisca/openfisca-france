@@ -1,0 +1,8 @@
+description: Aide exceptionnelle pour la famille de solidarité COVID-19
+metadata:
+  ux_name: Aide Famille
+  order:
+  - base
+  - base_jeune
+  - par_enfant
+  description_en: Exceptional benefit - COVID-19 crisis
