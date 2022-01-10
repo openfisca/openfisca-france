@@ -1,4 +1,4 @@
-description: Seuil de salaire (en multiple du smic horaire brut) pour bénéficier de la bonification maximale de la Prime d'Activité (PPA)
+description: Seuil de salaire (en multiple du smic horaire brut) pour bénéficier de la bonification maximale de la Prime pour l'Activité (PPA)
 values:
   2015-10-01:
     value: 95.0

@@ -1,4 +1,4 @@
-description: Taux de la majoration du montant maximal (en % de la base RSA) pour la 1ère personne supplémentaire (1), Prime d'Activité (PPA)
+description: Taux de la majoration du montant maximal (en % de la base RSA) pour la 1ère personne supplémentaire (1), Prime pour l'Activité (PPA)
 values:
   2015-10-01:
     value: 0.5

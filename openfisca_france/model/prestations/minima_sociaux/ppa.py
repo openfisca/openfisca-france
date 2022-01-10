@@ -361,7 +361,7 @@ class ppa_bonification(Variable):
 class ppa_forfait_logement(Variable):
     value_type = float
     entity = Famille
-    label = "Forfait logement intervenant dans le calcul de la prime d'activité"
+    label = "Forfait logement intervenant dans le calcul de la Prime pour l'Activité"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?idArticle=LEGIARTI000031675988&cidTexte=LEGITEXT000006073189"
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -422,7 +422,7 @@ class ppa_fictive_ressource_activite(Variable):
 class ppa_fictive_montant_forfaitaire(Variable):
     value_type = float
     entity = Famille
-    label = "Montant forfaitaire de la prime d'activité fictive"
+    label = "Montant forfaitaire de la Prime pour l'Activité fictive"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -476,7 +476,7 @@ class ppa(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
-    # Prime d'activité sur service-public.fr
+    # Prime pour l'Activité sur service-public.fr
     reference = "https://www.service-public.fr/particuliers/vosdroits/F2882"
 
     def formula_2016_01_01(famille, period, parameters):
@@ -500,7 +500,7 @@ class ppa_mois_demande(Variable):
 class ppa_indice_du_mois_trimestre_reference(Variable):
     value_type = int
     entity = Famille
-    label = "Nombre de mois par rapport au mois de du précédent recalcul de la prime d'activité"
+    label = "Nombre de mois par rapport au mois de du précédent recalcul de la Prime pour l'Activité"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 

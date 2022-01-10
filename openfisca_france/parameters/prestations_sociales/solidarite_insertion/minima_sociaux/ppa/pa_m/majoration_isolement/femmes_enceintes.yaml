@@ -1,4 +1,4 @@
-reference: Majoration pour les Parents isolés ou femmes enceintes (en % de la base RSA) de la Prime d'activité (PA)
+reference: Majoration pour les Parents isolés ou femmes enceintes (en % de la base RSA) de la Prime pour l'Activité (PA)
 values:
   2015-10-01:
     value: 1.28412
@@ -41,6 +41,6 @@ metadata:
     2016-04-01: 2016-05-03
     2016-01-01: 2015-12-22
   notes: 
-    2019-01-01: Revalorisation de la prime d'activité suite à la loi 2018-1213 du 24/12/2018 portant mesures d'urgence économique et sociale. La prime d'activité augmente de 90 euros au niveau du Smic, via une augmentation de la bonification individuelle.
-    2016-01-01: Création de la prime d'activité.
+    2019-01-01: Revalorisation de la Prime pour l'Activité suite à la loi 2018-1213 du 24/12/2018 portant mesures d'urgence économique et sociale. La Prime pour l'Activité augmente de 90 euros au niveau du Smic, via une augmentation de la bonification individuelle.
+    2016-01-01: Création de la Prime pour l'Activité.
   description_en: "Active solidarity income - Activity premium (PA) : Amounts"

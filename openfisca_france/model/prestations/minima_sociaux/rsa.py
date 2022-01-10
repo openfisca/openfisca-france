@@ -792,7 +792,7 @@ class rsa_forfait_asf(Variable):
     reference = [
         "Pour le revenu de solidarité active, article R262-10-1 du code de l'action sociale et des familles",
         "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000029006452&cidTexte=LEGITEXT000006074069&dateTexte=20190204",
-        "Pour la prime d'activité, article R844-4 du code de la sécurité sociale",
+        "Pour la Prime pour l'Activité, article R844-4 du code de la sécurité sociale",
         "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000031676000&cidTexte=LEGITEXT000006073189&dateTexte=20190204"
         ]
 
