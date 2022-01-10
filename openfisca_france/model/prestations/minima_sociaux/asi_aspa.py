@@ -86,8 +86,8 @@ class asi_aspa_base_ressources_individu(Variable):
 
             taux_abattement_forfaitaire = where(
                 aspa_couple,
-                law.prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.abattement_forfaitaire_tx_couple,
-                law.prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.abattement_forfaitaire_tx_seul
+                law.prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.abattement_forfaitaire.couples,
+                law.prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.abattement_forfaitaire.personnes_seules
                 )
 
             abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire
@@ -235,8 +235,8 @@ class asi(Variable):
             elig1 * asi.montant_seul
             + elig2 * asi.montant_couple
             + elig3 * 2 * asi.montant_seul
-            + elig4 * (asi.montant_couple / 2 + aspa.montant_annuel_couple / 2)
-            + elig5 * (asi.montant_seul + aspa.montant_annuel_couple / 2)) / 12
+            + elig4 * (asi.montant_couple / 2 + aspa.montant_maximum_annuel.couples / 2)
+            + elig5 * (asi.montant_seul + aspa.montant_maximum_annuel.couples / 2)) / 12
 
         ressources = base_ressources + montant_max
 
@@ -244,8 +244,8 @@ class asi(Variable):
             elig1 * (asi.plafond_ressource_seul * not_(en_couple) + asi.plafond_ressource_couple * en_couple)
             + elig2 * asi.plafond_ressource_couple
             + elig3 * asi.plafond_ressource_couple
-            + elig4 * aspa.plafond_ressources_couple
-            + elig5 * aspa.plafond_ressources_couple) / 12
+            + elig4 * aspa.plafond_ressources.couples
+            + elig5 * aspa.plafond_ressources.couples) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
@@ -315,26 +315,26 @@ class aspa(Variable):
         elig = elig1 | elig2 | elig3 | elig4
 
         montant_max = (
-            elig1 * aspa.montant_annuel_seul
-            + elig2 * aspa.montant_annuel_couple
-            + elig3 * (asi.montant_couple / 2 + aspa.montant_annuel_couple / 2)
-            + elig4 * (asi.montant_seul + aspa.montant_annuel_couple / 2)
+            elig1 * aspa.montant_maximum_annuel.personnes_seules
+            + elig2 * aspa.montant_maximum_annuel.couples
+            + elig3 * (asi.montant_couple / 2 + aspa.montant_maximum_annuel.couples / 2)
+            + elig4 * (asi.montant_seul + aspa.montant_maximum_annuel.couples / 2)
             ) / 12
 
         ressources = base_ressources + montant_max
 
         plafond_ressources = (
             elig1
-            * (aspa.plafond_ressources_seul * not_(en_couple) + aspa.plafond_ressources_couple * en_couple)
+            * (aspa.plafond_ressources.personnes_seules * not_(en_couple) + aspa.plafond_ressources.couples * en_couple)
             + (elig2 | elig3 | elig4)
-            * aspa.plafond_ressources_couple
+            * aspa.plafond_ressources.couples
             ) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
         diff = (
             (elig1 | elig2) * (montant_max - depassement)
-            + (elig3 | elig4) * (aspa.montant_annuel_couple / 12 / 2 - depassement / 2)
+            + (elig3 | elig4) * (aspa.montant_maximum_annuel.couples / 12 / 2 - depassement / 2)
             )
 
         # Montant mensuel servi (sous réserve d'éligibilité)

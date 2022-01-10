@@ -377,7 +377,7 @@ class al_nb_personnes_a_charge(Variable):
             age = famille.members('age', period)
 
             # Parametres
-            plafond_ressource = parameters(period.n_2.stop).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.plafond_ressources_seul * 1.25
+            plafond_ressource = parameters(period.n_2.stop).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.plafond_ressources.personnes_seules * 1.25
             taux_incapacite_minimum = 0.8
 
             adulte_handicape = (
@@ -868,7 +868,7 @@ class aide_logement_base_ressources(Variable):
 
         base_ressources_parents = famille.sum(base_ressources_i, role = Famille.PARENT)
         ressources_patrimoine = famille('aide_logement_base_ressources_patrimoine', period)
-        abattement_ressources_enfant = parameters(period.n_2.stop).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.plafond_ressources_seul * 1.25
+        abattement_ressources_enfant = parameters(period.n_2.stop).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.plafond_ressources.personnes_seules * 1.25
         base_ressources_enfants = famille.sum(
             max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
 
@@ -943,7 +943,7 @@ class aide_logement_base_ressources(Variable):
             )
         base_ressources_parents = famille.sum(base_ressources, role = Famille.PARENT)
         ressources_patrimoine = famille('aide_logement_base_ressources_patrimoine', period)
-        abattement_ressources_enfant = parameters(period.n_2.stop).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.plafond_ressources_seul * 1.25
+        abattement_ressources_enfant = parameters(period.n_2.stop).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.plafond_ressources.personnes_seules * 1.25
         base_ressources_enfants = famille.sum(
             max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
 

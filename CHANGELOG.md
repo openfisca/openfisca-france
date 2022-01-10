@@ -1,6 +1,6 @@
 # Changelog
 
-### 100.0.1 [#1779](https://github.com/openfisca/openfisca-france/pull/1779)
+### 101.0.1 [#1779](https://github.com/openfisca/openfisca-france/pull/1779)
 
 * Amélioration technique. 
 * Périodes concernées : aucune.
@@ -8,6 +8,17 @@
 * Détails :
   - Pour pouvoir publier sur Conda-Forge, utilise [build](https://packaging.python.org/en/latest/tutorials/packaging-projects/) pour le packaging.
 
+# 101.0.0 [#1781](https://github.com/openfisca/openfisca-france/pull/1781)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Découpe les fichiers en "1 fichier = 1 paramètre"
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - Ajoute des références et met à jour si besoin
+  
 # 100.0.0 [#1780](https://github.com/openfisca/openfisca-france/pull/1780)
 
 * Amélioration technique. 

@@ -1,0 +1,167 @@
+description: Montant de la majoration pour conjoint à charge - droits non-contributifs de retraite
+values:
+  1948-07-01:
+    value: 14500.0
+  1948-10-01:
+    value: 19200.0
+  1949-04-01:
+    value: 19500.0
+  1950-01-01:
+    value: 22500.0
+  1951-01-01:
+    value: 26000.0
+  1951-10-01:
+    value: 29900.0
+  1954-01-01:
+    value: 32900.0
+  1956-01-01:
+    value: 36190.0
+  1960-01-01:
+    value: 361.9
+  1962-04-01:
+    value: 600.0
+  1963-07-01:
+    value: 700.0
+  1964-01-01:
+    value: 900.0
+  1964-11-01:
+    value: 1000.0
+  1965-07-01:
+    value: 1100.0
+  1966-01-01:
+    value: 1150.0
+  1966-07-01:
+    value: 1250.0
+  1967-01-01:
+    value: 1300.0
+  1967-10-01:
+    value: 1400.0
+  1968-01-01:
+    value: 1450.0
+  1968-07-01:
+    value: 1550.0
+  1969-10-01:
+    value: 1650.0
+  1970-10-01:
+    value: 1750.0
+  1971-10-01:
+    value: 1850.0
+  1972-10-01:
+    value: 2100.0
+  1973-07-01:
+    value: 2250.0
+  1974-01-01:
+    value: 2450.0
+  1974-07-01:
+    value: 3000.0
+  1975-01-01:
+    value: 3250.0
+  1975-04-01:
+    value: 3500.0
+  1976-01-01:
+    value: 3750.0
+  1976-07-01:
+    value: 4000.0
+  2002-01-01:
+    value: 609.8
+metadata:
+  ux_name: Montant
+  ipp_csv_id: maj_avts_conj
+  last_review: 2021-01-01
+  unit: currency
+  reference:
+    2011-01-01:
+      title: Loi 2010-1330 du 09/11/2010, art. 51
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023024002&cidTexte=JORFTEXT000023022127
+    1976-07-01:
+    - Décret 85-1353, art. 1 du 17/12/1985 (crée art. L811-10 du CSS)
+    - Décret 85-1354, art. 1 du 17/12/1985 (crée art D811-10 et D811-12 du CSS)Décret 76-559 du 25/06/1976
+    1976-01-01: Décret 75-1341 du 31/12/1975
+    1975-04-01: Décret 75-209 du 28/03/1975
+    1975-01-01: Décret 74-1126 du 26/12/19874
+    1974-07-01: Décret 74-611 du 27/06/1974
+    1974-01-01: Décret 73-1137 du 21/12/1973
+    1973-07-01: Décret 73-691 du 18/07/1973
+    1972-10-01: Décret 72-929 du 11/10/1972
+    1972-01-01: Décret 71-1106 du 30/12/1971
+    1971-10-01: Décret 71-705 du 27/08/1971
+    1971-01-01: Décret 70-1004 du 30/10/1970
+    1970-10-01: Décret 70-879 du 29/09/1970
+    1970-01-01: Décret 69-879 du 26/09/1969
+    1969-10-01: Décret 69-878 du 26/09/1969
+    1969-01-01: Décret 69-60 du 20/01/1969
+    1968-07-01: Décret 68-585 du 29/06/1968
+    1968-02-01: Décret 68-101 du 31/01/1968
+    1968-01-01: Décret 67-1168 du 22/12/1967
+    1967-10-01: Décret 67-969 du 27/10/1967
+    1967-01-01: Décret 67-35 du 11/01/1967
+    1966-07-01: Décret 66-452 du 30/06/1966
+    1966-01-01: Décret 67-1153 du 24/12/1965
+    1965-07-01: Décret 65-12 du 08/01/1965
+    1964-11-01: Décret 65-12 du 08/01/1965
+    1964-01-01: Décret 63-921 du 06/09/1963
+    1963-07-01: Décret 63-921 du 06/09/1963
+    1962-04-01: Décret 62-440 du 14/04/1962
+    1960-01-01:
+      title: Loi 56-331 du 27/03/1956
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
+    1956-01-01:
+      title: Loi 56-331 du 27/03/1956
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
+    1954-01-01: Loi 54-301 du 20/03/1954
+    1951-10-01: Loi 15-1126 du 26/09/1951
+    1951-01-01:
+      title: Loi 51-374 du 27/03/1951
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336226
+    1950-01-01:
+      title: Loi 50-147 du 03/02/1950
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000878353
+    1949-04-01: Loi 49-922 du 13/07/1949
+    1948-10-01: Loi 49-244 du 24/02/1949
+    1948-07-01:
+      title: Loi 48-1306 du 23/08/1948
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684490
+  official_journal_date:
+    2011-01-01: 2010-11-10
+    1976-07-01: 1985-12-21; 1976-06-27
+    1976-01-01: 1976-01-03
+    1975-04-01: 1975-04-02
+    1975-01-01: 1974-12-29
+    1974-07-01: 1974-06-28
+    1974-01-01: 1973-12-23
+    1973-07-01: 1973-07-19
+    1972-10-01: 1972-10-12
+    1972-01-01: 1971-12-31
+    1971-10-01: 1971-08-29
+    1971-01-01: 1970-11-01
+    1970-10-01: 1970-10-01
+    1970-01-01: 1979-09-27
+    1969-10-01: 1979-09-27
+    1969-01-01: 1969-01-21
+    1968-07-01: 1968-07-03
+    1968-02-01: 1968-02-01
+    1968-01-01: 1967-12-28
+    1967-10-01: 1967-11-04
+    1967-01-01: 1967-01-12
+    1966-07-01: 1966-07-01
+    1966-01-01: 1965-12-30
+    1965-07-01: 1965-01-10
+    1964-11-01: 1965-01-10
+    1964-01-01: 1963-09-08
+    1963-07-01: 1963-09-08
+    1962-04-01: 1962-04-15
+    1960-01-01: 1956-03-31
+    1956-01-01: 1956-03-31
+    1954-01-01: 1954-03-21
+    1951-10-01: 1951-09-27
+    1951-01-01: 1951-03-29
+    1950-01-01: 1950-02-04
+    1949-04-01: 1949-07-14
+    1948-10-01: 1949-02-25
+    1948-07-01: 1948-08-24
+  notes:
+    2011-01-01: La majoration pour conjoint à charge n'est plus attribuée depuis le 1er janvier 2011. Cependant, le paiement de cette prestation est poursuivi pour les bénéficiaires au 31 décembre 2010, tant que le conjoint à charge remplit la condition de ressources.
+    2002-01-01: Passage à l'euro
+  description_en: Additive allowance for spouse care (amount)
+documentation: |
+  Conditions d'attribution : La majoration pour conjoint à charge était attribuée au titulaire d'une pension de retraite et aux bénéficiaires de l'AVTS, de l'AMF ou d'une rente garantie. Le conjoint est considéré à charge dès lors que ses revenus personnels sont inférieurs aux montants précisés dans l'onglet suivant. Il doit être âgé de plus de 65 ans (plus de 60 ans en cas d'inaptitude au travail).

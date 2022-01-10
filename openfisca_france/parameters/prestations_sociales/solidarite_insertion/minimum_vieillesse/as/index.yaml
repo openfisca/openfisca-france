@@ -1,1 +1,8 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Allocation supplémentaire - Minimum vieillesse
+metadata:
+  ux_name: Allocation supplémentaire
+  order:
+  - allocation_supplementaire
+  - complement_exceptionnel
+  - plafond_ressources
+  description_en: Extra allowance (AS)

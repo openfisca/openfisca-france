@@ -1,0 +1,7 @@
+description: Montant maximum annuel de l'Allocation solidarité aux personne agées (ASPA) - Minimum vieillesse
+metadata:
+  ux_name: Montant maximum annuel
+  order:
+  - personnes_seules
+  - couples
+  description_en: Solidarity income for elderly (ASPA)
