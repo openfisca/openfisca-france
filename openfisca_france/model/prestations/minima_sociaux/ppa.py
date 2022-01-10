@@ -413,7 +413,7 @@ class ppa_fictive_ressource_activite(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        pente = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pente
+        pente = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.pente
         ppa_revenu_activite = famille('ppa_revenu_activite', period)
 
         return pente * ppa_revenu_activite
@@ -480,7 +480,7 @@ class ppa(Variable):
     reference = "https://www.service-public.fr/particuliers/vosdroits/F2882"
 
     def formula_2016_01_01(famille, period, parameters):
-        seuil_non_versement = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.seuil_non_versement
+        seuil_non_versement = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_minimum_verse
         # éligibilité étudiants
 
         ppa_eligibilite_etudiants = famille('ppa_eligibilite_etudiants', period)

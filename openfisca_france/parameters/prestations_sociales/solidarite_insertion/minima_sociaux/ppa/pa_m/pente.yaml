@@ -1,13 +1,12 @@
-description: Seuil de non versement de la PPA
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+description: Pente appliquée aux revenus d'activité pour la Prime d'Activité (PPA)
 values:
   2015-10-01:
-    value: 15.0
+    value: 0.62
+  2018-08-01:
+    value: 0.61
 metadata:
-  ux_name: Montant minimum versé
-  ipp_csv_id: pa_montant_min
-  unit: currency
+  ux_name: Pente
+  unit: /1
   reference:
     2018-08-01:
       - title: Décret n° 2018-836
