@@ -361,7 +361,7 @@ class rsa_enfant_a_charge(Variable):
             montant_base_rsa = P_rsa.montant_de_base_du_rsa
             taux_personne_supp = P_rsa.majoration_rsa.taux_personne_supp
         else:
-            age_pac = P_rmi.age_pac
+            age_pac = P_rmi.rmi_cond.age_pac
             majo_rsa = P_rmi.majo_rsa
             montant_base_rsa = P_rmi.rmi
             taux_personne_supp = P_rmi.txps
