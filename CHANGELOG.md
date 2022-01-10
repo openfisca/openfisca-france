@@ -1,5 +1,17 @@
 # Changelog
 
+# 100.0.0 [#1780](https://github.com/openfisca/openfisca-france/pull/1780)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/solidarite_insertion/autre_solidarite`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Découpe les fichiers en "1 fichier = 1 paramètre"
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - Ajoute des références et met à jour si besoin
+  - Ajoute le paramètre pour l'indemnité inflation de 2021
+
 ### 99.0.1 [#1778](https://github.com/openfisca/openfisca-france/pull/1778)
 
 * Amélioration technique. 
