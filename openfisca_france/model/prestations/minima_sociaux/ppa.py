@@ -348,9 +348,9 @@ class ppa_bonification(Variable):
         smic_horaire = P.marche_travail.salaire_minimum.smic.smic_b_horaire
         ppa_base = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_de_base
         revenu_activite = individu('ppa_revenu_activite_individu', period)
-        seuil_1 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire
-        seuil_2 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
-        bonification_max = round_(P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base, 2)
+        seuil_1 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.seuil_bonification * smic_horaire
+        seuil_2 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.seuil_max_bonification * smic_horaire
+        bonification_max = round_(P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.taux_bonification_max * ppa_base, 2)
         bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
         bonification = max_(bonification, 0)
         bonification = min_(bonification, bonification_max)
