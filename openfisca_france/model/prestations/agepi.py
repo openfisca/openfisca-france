@@ -13,7 +13,7 @@ class pe_nbenf(Variable):
         ]
 
     def formula(famille, period, parameters):
-        agepi = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi
+        agepi = parameters(period).prestations.prestations_familiales.education_presence_parentale.agepi
         return famille.sum(famille.members('age', period) < agepi.age_enfant_maximum, role = Famille.ENFANT)
 
 
@@ -45,7 +45,7 @@ class agepi(Variable):
         nb_heures = famille.sum(famille.members('agepi_temps_travail_semaine', period), role = Famille.PARENT)
         nbenf = famille('pe_nbenf', period)
 
-        montants = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi.montants
+        montants = parameters(period).prestations.prestations_familiales.education_presence_parentale.agepi.montants
         montant_moins_de_15h = montants.moins_de_15h_par_semaine.calc(nbenf)
         montant_plus_de_15h = montants.plus_de_15h_par_semaine.calc(nbenf)
 

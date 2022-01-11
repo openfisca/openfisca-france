@@ -14,7 +14,7 @@ class cf_enfant_a_charge(Variable):
         autonomie_financiere = individu('autonomie_financiere', period)
         age = individu('age', period)
 
-        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
+        cf = parameters(period).prestations.prestations_familiales.prestations_generales.cf
 
         condition_age = (age >= 0) * (age < cf.age_max)
         condition_situation = est_enfant_dans_famille * not_(autonomie_financiere)
@@ -34,8 +34,8 @@ class cf_enfant_eligible(Variable):
         age = individu('age', period)
         rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
 
-        enfants = parameters(period).prestations_sociales.prestations_familiales.enfants
-        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
+        enfants = parameters(period).prestations.prestations_familiales.enfants
+        cf = parameters(period).prestations.prestations_familiales.prestations_generales.cf
 
         condition_enfant = (
             (age >= cf.age_min)
@@ -60,7 +60,7 @@ class cf_dom_enfant_eligible(Variable):
         age = individu('age', period)
         rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
 
-        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
+        cf = parameters(period).prestations.prestations_familiales.prestations_generales.cf
 
         condition_age = (age >= cf.age_minimal_dom) * (age < cf.age_maximal_dom)
         condition_situation = cf_enfant_a_charge * rempli_obligation_scolaire
@@ -79,7 +79,7 @@ class cf_dom_enfant_trop_jeune(Variable):
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         age = individu('age', period)
 
-        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
+        cf = parameters(period).prestations.prestations_familiales.prestations_generales.cf
 
         condition_age = (age >= 0) * (age < cf.age_min)
 
@@ -109,8 +109,8 @@ class cf_plafond(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
-        ars = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.ars
+        cf = parameters(period).prestations.prestations_familiales.prestations_generales.cf
+        ars = parameters(period).prestations.prestations_familiales.education_presence_parentale.ars
 
         eligibilite_base = famille('cf_eligibilite_base', period)
         eligibilite_dom = famille('cf_eligibilite_dom', period)
@@ -166,7 +166,7 @@ class cf_majore_plafond(Variable):
 
     def formula_2014_04_01(famille, period, parameters):
         plafond_base = famille('cf_plafond', period)
-        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
+        cf = parameters(period).prestations.prestations_familiales.prestations_generales.cf
         return plafond_base * cf.plafond_cf_majore
 
 
@@ -236,8 +236,8 @@ class cf_non_majore_avant_cumul(Variable):
         ressources = famille('cf_base_ressources', period)
         plafond = famille('cf_plafond', period)
 
-        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
-        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
+        af = parameters(period).prestations.prestations_familiales.prestations_generales.af
+        cf = parameters(period).prestations.prestations_familiales.prestations_generales.cf
 
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
@@ -279,8 +279,8 @@ class cf_majore_avant_cumul(Variable):
         ressources = famille('cf_base_ressources', period)
         plafond_majore = famille('cf_majore_plafond', period)
 
-        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
-        cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
+        af = parameters(period).prestations.prestations_familiales.prestations_generales.af
+        cf = parameters(period).prestations.prestations_familiales.prestations_generales.cf
 
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 

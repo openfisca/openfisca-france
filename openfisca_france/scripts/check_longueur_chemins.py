@@ -23,7 +23,7 @@ def extract_paths_too_long(root_dir):
                     # Ignore hidden files.
                     continue
                 relative_file_path = os.path.join(relative_path, file)
-                if len(relative_file_path) > 150:
+                if len(relative_file_path) > 120:  # 150
                     outfile.write("{} here: {}\n".format(
                         len(relative_file_path),
                         relative_file_path,

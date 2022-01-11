@@ -34,14 +34,14 @@ class garantie_jeunes_montant(Variable):
         ]
 
     def formula_2017_01_01(individu, period, parameters):
-        params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
+        params = parameters(period).prestations.solidarite_insertion.minima_sociaux.rsa
         montant_base = params.montant_de_base_du_rsa
         taux_1_personne = params.forfait_logement.taux_1_personne
         garantie_jeunes_max = montant_base * (1 - taux_1_personne)
         salaire_minimum = parameters(period).marche_travail.salaire_minimum
         smic_mensuel_brut = salaire_minimum.smic.smic_b_horaire * salaire_minimum.smic.nb_heures_travail_mensuel
 
-        degressivite = parameters(period).prestations_sociales.aides_jeunes.garantie_jeunes.degressivite
+        degressivite = parameters(period).prestations.aides_jeunes.garantie_jeunes.degressivite
         plafond = degressivite.plafond_en_pourcentage_du_smic_brut * smic_mensuel_brut
         seuil_degressivite = degressivite.seuil
 
@@ -74,7 +74,7 @@ class garantie_jeunes_eligibilite_age(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2017_01_01(individu, period, parameters):
-        params_age = parameters(period).prestations_sociales.aides_jeunes.garantie_jeunes.critere_age.age
+        params_age = parameters(period).prestations.aides_jeunes.garantie_jeunes.critere_age.age
         age = individu('age', period)
 
         return (params_age.minimum <= age) * (age <= params_age.maximum)
@@ -89,7 +89,7 @@ class garantie_jeunes_eligibilite_ressources(Variable):
 
     def formula_2017_01_01(individu, period, parameters):
         three_previous_months = period.last_3_months
-        params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
+        params = parameters(period).prestations.solidarite_insertion.minima_sociaux.rsa
         montant_base = params.montant_de_base_du_rsa
         taux_1_personne = params.forfait_logement.taux_1_personne
         plafond_condition_ressources = montant_base * (1 - taux_1_personne)

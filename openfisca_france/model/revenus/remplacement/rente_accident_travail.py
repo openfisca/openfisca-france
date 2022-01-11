@@ -76,7 +76,7 @@ class indemnite_accident_travail(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        indem_at = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.accident_travail.rente.taux
+        indem_at = parameters(period).prestations.solidarite_insertion.minima_sociaux.accident_travail.rente.taux
         taux_incapacite = individu('taux_accident_travail', period)
 
         return indem_at.indemnite_accident_travail.calc(taux_incapacite * 100)
@@ -91,7 +91,7 @@ class rente_accident_travail_base(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        param_rente_at = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.accident_travail.rente.taux
+        param_rente_at = parameters(period).prestations.solidarite_insertion.minima_sociaux.accident_travail.rente.taux
         taux_incapacite = individu('taux_accident_travail', period)
         taux = param_rente_at.bareme.calc(taux_incapacite)
         taux_rente_accident_travail = select([taux_incapacite < param_rente_at.taux_minimum], [0], default=taux)
@@ -116,7 +116,7 @@ class rente_accident_travail_apres_rachat(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        rente_at = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.accident_travail.rente.taux
+        rente_at = parameters(period).prestations.solidarite_insertion.minima_sociaux.accident_travail.rente.taux
         age = min_(max_(individu('age', period), 16), 100)
         rente_accident_travail_rachat = individu('rente_accident_travail_rachat', period)
         conversion_rente_capital = rente_at.capital_representatif[age]
@@ -135,7 +135,7 @@ class rente_accident_travail_rachat(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        rente_at = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.accident_travail.rente.taux
+        rente_at = parameters(period).prestations.solidarite_insertion.minima_sociaux.accident_travail.rente.taux
         demande_rachat = individu('demande_rachat', period)
         age = min_(max_(individu('age', period), 16), 100)
         conversion_rente_capital = rente_at.capital_representatif[age]
@@ -163,7 +163,7 @@ class pcrtp(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        rente_at = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.accident_travail.rente.taux
+        rente_at = parameters(period).prestations.solidarite_insertion.minima_sociaux.accident_travail.rente.taux
         taux_incapacite = individu('taux_accident_travail', period)
         pcrtp_nombre_actes_assistance = individu('pcrtp_nombre_actes_assistance', period)
         montant_pcrtp = rente_at.pcrtp[pcrtp_nombre_actes_assistance]
@@ -181,7 +181,7 @@ class rente_accident_travail_salaire_utile(Variable):
 
     def formula(individu, period, parameters):
         previous_year = period.start.period('year').offset(-1)
-        rente_at = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.accident_travail.rente
+        rente_at = parameters(period).prestations.solidarite_insertion.minima_sociaux.accident_travail.rente
 
         salaire_net = individu('salaire_net', previous_year, options=[ADD])
         rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', previous_year, options=[ADD])

@@ -9,7 +9,7 @@ class cheque_energie_unites_consommation(Variable):
     definition_period = YEAR
 
     def formula_2017(menage, period, parameters):
-        uc = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.unites_consommation
+        uc = parameters(period).prestations.solidarite_insertion.autre_solidarite.cheque_energie.unites_consommation
         nb_personnes = menage.nb_persons()
         gardes_alternees = menage.sum(menage.members('garde_alternee', period.first_month))
 
@@ -60,7 +60,7 @@ class cheque_energie_montant(Variable):
     definition_period = YEAR
 
     def formula_2017(menage, period, parameters):
-        baremes = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.baremes
+        baremes = parameters(period).prestations.solidarite_insertion.autre_solidarite.cheque_energie.baremes
 
         uc_menage = menage('cheque_energie_unites_consommation', period)
         rfr = menage.sum(menage.members.foyer_fiscal('rfr', period.n_2), role = FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -99,6 +99,6 @@ class aide_exceptionnelle_cheque_energie(Variable):
 
     def formula_2021_12_01(menage, period, parameters):
         cheque_energie = menage('cheque_energie', period.this_year)
-        montant_aide = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.aide_exceptionnelle
+        montant_aide = parameters(period).prestations.solidarite_insertion.autre_solidarite.cheque_energie.aide_exceptionnelle
 
         return montant_aide * (cheque_energie > 0)

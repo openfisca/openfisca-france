@@ -11,7 +11,7 @@ class ppa_eligibilite(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
+        ppa = parameters(period).prestations.solidarite_insertion.minima_sociaux.ppa
         age_min = ppa.pa_cond.age_min
         condition_age_i = famille.members('age', period) >= age_min
         condition_age = famille.any(condition_age_i)
@@ -32,7 +32,7 @@ class ppa_plancher_revenu_activite_etudiant(Variable):
         return (
             169
             * P.marche_travail.salaire_minimum.smic.smic_b_horaire
-            * P.prestations_sociales.prestations_familiales.prestations_generales.af.seuil_rev_taux
+            * P.prestations.prestations_familiales.prestations_generales.af.seuil_rev_taux
             )
 
 
@@ -92,7 +92,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
         nb_parents = famille('nb_parents', period)
         nb_enfants = famille('rsa_nb_enfants', period)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)  # noqa F841
-        ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
+        ppa = parameters(period).prestations.solidarite_insertion.minima_sociaux.ppa
 
         nb_personnes = nb_parents + nb_enfants
 
@@ -118,7 +118,7 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
 
     def formula(famille, period, parameters):
         nb_enfants = famille('rsa_nb_enfants', period)
-        ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
+        ppa = parameters(period).prestations.solidarite_insertion.minima_sociaux.ppa
 
         taux_majore = (
             ppa.pa_m.majoration_isolement.femmes_enceintes
@@ -178,7 +178,7 @@ class ppa_revenu_activite_individu(Variable):
         revenus_activites = revenus_mensualises + revenus_tns_annualises
 
         # L'aah est pris en compte comme revenu d'activité si revenu d'activité hors aah > 29 * smic horaire brut
-        seuil_aah_activite = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_cond.seuil_aah_activite * smic_horaire
+        seuil_aah_activite = P.prestations.solidarite_insertion.minima_sociaux.ppa.pa_cond.seuil_aah_activite * smic_horaire
         aah_activite = (revenus_activites >= seuil_aah_activite) * individu('aah', period)
 
         return revenus_activites + aah_activite
@@ -280,7 +280,7 @@ class ppa_ressources_hors_activite_individu(Variable):
         revenus_activites = individu('ppa_revenu_activite_individu', period)
 
         # L'AAH est prise en compte comme revenu d'activité si revenu d'activité hors aah > 29 * smic horaire brut
-        seuil_aah_activite = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_cond.seuil_aah_activite * smic_horaire
+        seuil_aah_activite = P.prestations.solidarite_insertion.minima_sociaux.ppa.pa_cond.seuil_aah_activite * smic_horaire
         aah_hors_activite = (revenus_activites < seuil_aah_activite) * individu('aah', period)
 
         return ressources_hors_activite_mensuel_i + aah_hors_activite
@@ -346,11 +346,11 @@ class ppa_bonification(Variable):
     def formula(individu, period, parameters):
         P = parameters(period)
         smic_horaire = P.marche_travail.salaire_minimum.smic.smic_b_horaire
-        ppa_base = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_de_base
+        ppa_base = P.prestations.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_de_base
         revenu_activite = individu('ppa_revenu_activite_individu', period)
-        seuil_1 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.seuil_bonification * smic_horaire
-        seuil_2 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.seuil_max_bonification * smic_horaire
-        bonification_max = round_(P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.taux_bonification_max * ppa_base, 2)
+        seuil_1 = P.prestations.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.seuil_bonification * smic_horaire
+        seuil_2 = P.prestations.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.seuil_max_bonification * smic_horaire
+        bonification_max = round_(P.prestations.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.taux_bonification_max * ppa_base, 2)
         bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
         bonification = max_(bonification, 0)
         bonification = min_(bonification, bonification_max)
@@ -380,8 +380,8 @@ class ppa_forfait_logement(Variable):
 
         avantage_al = aide_logement > 0
 
-        params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-        ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
+        params = parameters(period).prestations.solidarite_insertion.minima_sociaux.rsa
+        ppa = parameters(period).prestations.solidarite_insertion.minima_sociaux.ppa
 
         # Le montant forfaitaire se calcule de la même manière que celle de la formule 'ppa_montant_forfaitaire_familial_non_majore',
         # sauf dans le cas où le foyer se compose de trois personnes ou plus, où le montant forfaitaire se calcule pour trois personnes seulement.
@@ -413,7 +413,7 @@ class ppa_fictive_ressource_activite(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        pente = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.majoration_ressources_revenus_activite
+        pente = parameters(period).prestations.solidarite_insertion.minima_sociaux.ppa.pa_m.majoration_ressources_revenus_activite
         ppa_revenu_activite = famille('ppa_revenu_activite', period)
 
         return pente * ppa_revenu_activite
@@ -480,7 +480,7 @@ class ppa(Variable):
     reference = "https://www.service-public.fr/particuliers/vosdroits/F2882"
 
     def formula_2016_01_01(famille, period, parameters):
-        seuil_non_versement = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_minimum_verse
+        seuil_non_versement = parameters(period).prestations.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_minimum_verse
         # éligibilité étudiants
 
         ppa_eligibilite_etudiants = famille('ppa_eligibilite_etudiants', period)

@@ -48,7 +48,7 @@ class af_allocation_forfaitaire_nb_enfants(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        af = parameters(period).prestations.prestations_familiales.prestations_generales.af
         af_forfaitaire_nbenf = nb_enf(famille, period, af.age3, af.age3)
 
         return af_forfaitaire_nbenf
@@ -96,7 +96,7 @@ class af_base(Variable):
         eligibilite_dom = famille('af_eligibilite_dom', period)
         af_nbenf = famille('af_nbenf', period)
 
-        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        af = parameters(period).prestations.prestations_familiales.prestations_generales.af
 
         eligibilite = or_(eligibilite_base, eligibilite_dom)
 
@@ -159,7 +159,7 @@ class af_age_aine(Variable):
     is_period_size_independent = True
 
     def formula(famille, period, parameters):
-        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        af = parameters(period).prestations.prestations_familiales.prestations_generales.af
 
         age = famille.members('age', period)
         pfam_enfant_a_charge = famille.members('prestations_familiales_enfant_a_charge', period)
@@ -186,7 +186,7 @@ class af_majoration_enfant(Variable):
         af_base = individu.famille('af_base', period)
         age_aine = individu.famille('af_age_aine', period)
 
-        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        af = parameters(period).prestations.prestations_familiales.prestations_generales.af
 
         montant_enfant_seul = af.bmaf * (
             (af.af_dom.age_1er_enf_tranche_1_dom <= age)
@@ -287,7 +287,7 @@ class af_allocation_forfaitaire(Variable):
     def formula_2003_07_01(famille, period, parameters):
         af_nbenf = famille('af_nbenf', period)
         af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
-        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        af = parameters(period).prestations.prestations_familiales.prestations_generales.af
 
         af_forfait = round_(af.bmaf * af.majoration_enfants.taux_allocation_forfaitaire, 2)
         af_allocation_forfaitaire = ((af_nbenf >= 2) * af_forfaitaire_nbenf) * af_forfait
@@ -330,7 +330,7 @@ class af(Variable):
 
 
 def plafonds_helper(famille, period, parameters, nb_enf_tot):
-    af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+    af = parameters(period).prestations.prestations_familiales.prestations_generales.af
     modulation = af.modulation
 
     plafond1 = (
@@ -347,7 +347,7 @@ def plafonds_helper(famille, period, parameters, nb_enf_tot):
 
 
 def taux_helper(famille, period, parameters, nb_enf_tot):
-    af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+    af = parameters(period).prestations.prestations_familiales.prestations_generales.af
     modulation = af.modulation
 
     base_ressources = famille('prestations_familiales_base_ressources', period)

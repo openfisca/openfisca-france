@@ -26,8 +26,8 @@ class cmu_forfait_logement_base(Variable):
 
     def formula(famille, period, parameters):
         cmu_nbp_foyer = famille('cmu_nbp_foyer', period)
-        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement
-        law_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
+        P = parameters(period).prestations.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement
+        law_rsa = parameters(period).prestations.solidarite_insertion.minima_sociaux.rmi
 
         return forfait_logement(cmu_nbp_foyer, P, law_rsa)
 
@@ -42,8 +42,8 @@ class cmu_forfait_logement_al(Variable):
     def formula(famille, period, parameters):
         nb_personnes_foyer = famille('cmu_nbp_foyer', period)
         aide_logement = famille('aide_logement', period)
-        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement_al
-        law_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
+        P = parameters(period).prestations.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement_al
+        law_rsa = parameters(period).prestations.solidarite_insertion.minima_sociaux.rmi
 
         return (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
 
@@ -71,7 +71,7 @@ class cmu_nb_pac(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu
+        P = parameters(period).prestations.solidarite_insertion.minima_sociaux.cs.cmu
         age = famille.members('age', period)
         return famille.sum((age >= 0) * (age <= P.age_limite_pac), role = Famille.ENFANT)
 
@@ -95,7 +95,7 @@ class cmu_c_plafond(Variable):
         - Pour savoir quel coefficient est attribué à chaque enfant, il faut trier les enfants de chaque famille par age.
         """
 
-        cmu = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu
+        cmu = parameters(period).prestations.solidarite_insertion.minima_sociaux.cs.cmu
         age_i = famille.members('age_en_mois', period)
         is_couple = (famille('nb_parents', period) == 2)
         is_enfant = famille.members.has_role(Famille.ENFANT)
