@@ -361,7 +361,7 @@ class rsa_enfant_a_charge(Variable):
             montant_base_rsa = P_rsa.montant_de_base_du_rsa
             taux_personne_supp = P_rsa.majoration_rsa.taux_personne_supp
         else:
-            age_pac = P_rmi.age_pac
+            age_pac = P_rmi.rmi_cond.age_pac
             majo_rsa = P_rmi.majo_rsa
             montant_base_rsa = P_rmi.rmi
             taux_personne_supp = P_rmi.txps
@@ -651,7 +651,7 @@ class rsa_condition_nationalite(Variable):
         ressortissant_eee = individu('ressortissant_eee', period)
         ressortissant_suisse = individu('nationalite', period) == b'CH'
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
-        duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi.duree_min_titre_sejour
+        duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi.rmi_cond.duree_min_titre_sejour
         return or_(ressortissant_eee, ressortissant_suisse, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
