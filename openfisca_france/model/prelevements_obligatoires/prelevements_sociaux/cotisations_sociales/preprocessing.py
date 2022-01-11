@@ -15,7 +15,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun = ParameterNode("commun", data=dict(description='Cotisations sociales employeur communes à plusieurs régimes'))  # Génère commun
 
     # Réindexation : nouveaux chemins suite à l'harmonisation avec les répertoires des barèmes IPP
-    autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
+    autres = node_json.prelevements_sociaux.autres_taxes_sur_salaires
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
     chomage = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
     regime_general = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general

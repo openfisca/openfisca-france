@@ -273,7 +273,7 @@ class tehr(Variable):
 
     def formula(individu, period, parameters):
         salaire_de_base = individu('salaire_de_base', period, options = [ADD])  # TODO: check base
-        bareme_tehr = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.tehr.tehr
+        bareme_tehr = parameters(period).prelevements_sociaux.autres_taxes_sur_salaires.tehr.tehr
         return -bareme_tehr.calc(salaire_de_base)
 
 

@@ -33,7 +33,7 @@ class conge_individuel_formation_cdd(Variable):
         TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
 
-        conge_individuel_formation = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.formation.toute_entreprise
+        conge_individuel_formation = parameters(period).prelevements_sociaux.autres_taxes_sur_salaires.formation.toute_entreprise
         cotisation = - conge_individuel_formation.cdd * (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * assiette_cotisations_sociales
         return cotisation
 
@@ -89,7 +89,7 @@ class contribution_supplementaire_apprentissage(Variable):
         ratio_alternants = individu('ratio_alternants', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
-        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.csa
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_sur_salaires.apprentissage.csa
 
         multiplier = (salarie_regime_alsace_moselle * contribution.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
 
@@ -111,7 +111,7 @@ class contribution_supplementaire_apprentissage(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         ratio_alternants = individu('ratio_alternants', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
-        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.csa
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_sur_salaires.apprentissage.csa
 
         multiplier = (salarie_regime_alsace_moselle * contribution.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
 
@@ -131,7 +131,7 @@ class contribution_supplementaire_apprentissage(Variable):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         ratio_alternants = individu('ratio_alternants', period)
-        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.csa
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_sur_salaires.apprentissage.csa
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .04)
         taux_conditionnel = (
@@ -149,7 +149,7 @@ class contribution_supplementaire_apprentissage(Variable):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         effectif_entreprise = individu('effectif_entreprise', period)
         ratio_alternants = individu('ratio_alternants', period)
-        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.csa
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_sur_salaires.apprentissage.csa
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .03)
         taux_conditionnel = (
@@ -442,7 +442,7 @@ class contribution_formation_professionnelle(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         apprenti = individu('apprenti', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-        contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.contribution_unique_formation.contrib_formation_pro
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_sur_salaires.contribution_unique_formation.contrib_formation_pro
 
         taux_contribution = ((effectif_entreprise >= 11) * contribution.onze_et_plus_salaries
             + (effectif_entreprise < 11) * not_(apprenti) * contribution.moins_11_salaries)
@@ -588,7 +588,7 @@ class taxe_salaires(Variable):
         # La taxe est due notamment par les : [...] organismes sans but lucratif
         assujettissement = assujettie_taxe_salaires + entreprise_est_association_non_lucrative
 
-        taxe_salaires = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.taxsal
+        taxe_salaires = parameters(period).prelevements_sociaux.autres_taxes_sur_salaires.taxsal
         bareme = taxe_salaires.taux_maj
         base = assiette_cotisations_sociales + (
             - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire

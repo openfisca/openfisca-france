@@ -180,13 +180,13 @@ class exoneration_cotisations_employeur_zfu(Variable):
         bareme_by_name = parameters(period).cotsoc.cotisations_employeur['prive_non_cadre']
 
         if period.start.year < 2007:
-            fnal_contrib = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_plus_de_10_salaries
+            fnal_contrib = parameters(period).prelevements_sociaux.autres_taxes_sur_salaires.fnal.contribution_plus_de_10_salaries
             fnal_contrib_seuil = 10
         elif period.start.year >= 2007 and period.start.year < 2020:
-            fnal_contrib = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_plus_de_20_salaries
+            fnal_contrib = parameters(period).prelevements_sociaux.autres_taxes_sur_salaires.fnal.contribution_plus_de_20_salaries
             fnal_contrib_seuil = 20
         else:
-            fnal_contrib = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_plus_de_50_salaries
+            fnal_contrib = parameters(period).prelevements_sociaux.autres_taxes_sur_salaires.fnal.contribution_plus_de_50_salaries
             fnal_contrib_seuil = 50
 
         if period.start.year < 2019:
@@ -199,7 +199,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
             + bareme_by_name['vieillesse_plafonnee'].rates[0]
             + taux_maladie
             + bareme_by_name['famille'].rates[0]
-            + parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.cotisation.rates[0]
+            + parameters(period).prelevements_sociaux.autres_taxes_sur_salaires.fnal.cotisation.rates[0]
             + fnal_contrib.rates[0] * (effectif_entreprise >= fnal_contrib_seuil)
             + taux_versement_transport
             )
