@@ -182,7 +182,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
         versement_transport = individu('versement_transport', period, options = [ADD])
 
-        contribution_unique_formation_professionnelle_alternance = individu('contribution_unique_formation_professionnelle_alternance', period, options = [ADD])
+        contrib_unique_formation_professionnelle_alternance = individu('contrib_unique_formation_professionnelle_alternance', period, options = [ADD])
 
         cotisations_employeur_main_d_oeuvre = (
             conge_individuel_formation_cdd
@@ -194,7 +194,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
             + prevoyance_obligatoire_cadre
             + complementaire_sante_employeur
             + versement_transport
-            + contribution_unique_formation_professionnelle_alternance
+            + contrib_unique_formation_professionnelle_alternance
             )
 
         return cotisations_employeur_main_d_oeuvre
@@ -442,7 +442,7 @@ class contribution_formation_professionnelle(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         apprenti = individu('apprenti', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-        contribution = parameters(period).prelevements_sociaux.autres_taxes_salaires.contribution_unique_formation.contrib_formation_pro
+        contribution = parameters(period).prelevements_sociaux.autres_taxes_salaires.contrib_unique_formation.contrib_formation_pro
 
         taux_contribution = ((effectif_entreprise >= 11) * contribution.onze_et_plus_salaries
             + (effectif_entreprise < 11) * not_(apprenti) * contribution.moins_11_salaries)
@@ -550,7 +550,7 @@ class taxe_apprentissage(Variable):
         return cotisation * redevable_taxe_apprentissage
 
 
-class contribution_unique_formation_professionnelle_alternance(Variable):
+class contrib_unique_formation_professionnelle_alternance(Variable):
     value_type = float
     entity = Individu
     label = "Contribution Unique à la Formation Professionnelle et à l'Alternance (CUFPA)"
