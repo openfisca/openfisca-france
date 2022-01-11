@@ -488,7 +488,7 @@ class casa(Variable):
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr <= seuil_taux_intermediaire, rfr > seuil_taux_intermediaire],
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
             )
-        bareme = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.casa
+        bareme = parameters.prelevements_sociaux.cotis_securite_sociale_regime_gen.casa
         casa = (
             ((taux_csg_retraite == TypesTauxCSGRetraite.taux_plein) + (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire))
             * bareme.pensions_retraite_preretraite_invalidite.calc(retraite_brute)
@@ -508,7 +508,7 @@ class casa(Variable):
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
             [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_plein]
             )
-        bareme = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.casa
+        bareme = parameters.prelevements_sociaux.cotis_securite_sociale_regime_gen.casa
         casa = (
             (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein)
             * bareme.pensions_retraite_preretraite_invalidite.calc(retraite_brute)
@@ -521,7 +521,7 @@ class casa(Variable):
         parameters = parameters(period)
         seuil_exoneration = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils.seuil_ir
 
-        bareme = parameters.prelevements_sociaux.cotisations_securite_sociale_regime_general.casa
+        bareme = parameters.prelevements_sociaux.cotis_securite_sociale_regime_gen.casa
         casa = (
             (ir > seuil_exoneration)
             * bareme.pensions_retraite_preretraite_invalidite.calc(retraite_brute)

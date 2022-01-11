@@ -18,7 +18,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     autres = node_json.prelevements_sociaux.autres_taxes_salaires
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
     chomage = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
-    regime_general = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
+    regime_general = node_json.prelevements_sociaux.cotis_securite_sociale_regime_gen
     public = node_json.prelevements_sociaux.cotisations_secteur_public
 
     # Création de commun
@@ -173,7 +173,7 @@ def build_sal(node_json):
     # Réindexation: nouveaux chemins
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
     chomage = node_json.prelevements_sociaux.cotisations_regime_assurance_chomage
-    regime_general = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
+    regime_general = node_json.prelevements_sociaux.cotis_securite_sociale_regime_gen
     public = node_json.prelevements_sociaux.cotisations_secteur_public
     indep = node_json.prelevements_sociaux.cotisations_taxes_indep_ac
     liberal = node_json.prelevements_sociaux.cotisations_taxes_professions_liberales

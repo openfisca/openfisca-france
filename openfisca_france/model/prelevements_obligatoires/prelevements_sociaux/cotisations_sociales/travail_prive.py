@@ -92,7 +92,7 @@ class indemnite_fin_contrat(Variable):
         # Pour l'instant, cette variable d'entrée peut les remplacer
         # Elle est cependant fixée à False par défaut
         indemnite_fin_contrat_due = individu('indemnite_fin_contrat_due', period)
-        taux = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.indemnite_fin_contrat.taux
+        taux = parameters(period).prelevements_sociaux.cotis_securite_sociale_regime_gen.indemnite_fin_contrat.taux
 
         result = (
             # CDD
@@ -123,7 +123,7 @@ class reintegration_titre_restaurant_employeur(Variable):
         valeur_unitaire = individu("titre_restaurant_valeur_unitaire", period)
         volume = individu("titre_restaurant_volume", period)
         taux_employeur = individu('titre_restaurant_taux_employeur', period)
-        cantines_titres_restaurants = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.assiette.cantines_titres_restaurants
+        cantines_titres_restaurants = parameters(period).prelevements_sociaux.cotis_securite_sociale_regime_gen.assiette.cantines_titres_restaurants
 
         taux_minimum_exoneration = cantines_titres_restaurants.taux_minimum_exoneration
         taux_maximum_exoneration = cantines_titres_restaurants.taux_maximum_exoneration
@@ -1038,7 +1038,7 @@ class taux_accident_travail(Variable):
     def formula_2012_01_01(individu, period, parameters):
         exposition_accident = individu('exposition_accident', period)
         TypesExpositionAccident = exposition_accident.possible_values
-        accident = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.accidents.taux
+        accident = parameters(period).prelevements_sociaux.cotis_securite_sociale_regime_gen.accidents.taux
         return select(
             [
                 exposition_accident == TypesExpositionAccident.faible,
