@@ -75,7 +75,7 @@ class deces_artisan_commercant(Variable):
 
     def formula_2004(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        deces_ac = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.deces_ac
+        deces_ac = parameters(period).prelevements_sociaux.cotisations_taxes_indep_ac.deces_ac
         # Artisan
         bareme_artisan = MarginalRateTaxScale(name = 'deces_artisan')
         bareme_artisan.add_bracket(0, deces_ac.artisans.sous_pss)
@@ -95,7 +95,7 @@ class deces_artisan_commercant(Variable):
 
     def formula_1975(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        deces_ac = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.deces_ac
+        deces_ac = parameters(period).prelevements_sociaux.cotisations_taxes_indep_ac.deces_ac
         # Avant 2004, le montant était forfaitaire pour les commerçants
         montant_commercant = deces_ac.commercants_industriels.montant_forfaitaire_total
         categorie_non_salarie = individu('categorie_non_salarie', period)
@@ -120,7 +120,7 @@ class formation_artisan_commercant(Variable):
 
     def formula_2015(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        formation = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.formation_ac
+        formation = parameters(period).prelevements_sociaux.cotisations_taxes_indep_ac.formation_ac
         # Artisan
         bareme_artisan = MarginalRateTaxScale(name = 'formation_artisan')
         bareme_artisan.add_bracket(0, formation.artisans.sous_pss)
@@ -225,7 +225,7 @@ class retraite_complementaire_artisan_commercant(Variable):
 
     def formula_2013(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        retraite_complementaire = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.ret_comp_ac.art_ind_com
+        retraite_complementaire = parameters(period).prelevements_sociaux.cotisations_taxes_indep_ac.ret_comp_ac.art_ind_com
         montant_du_plafond_rci = retraite_complementaire.montant_du_plafond_rci
         bareme = MarginalRateTaxScale(name = 'retraite_complementaire')
         bareme.add_bracket(0, retraite_complementaire.sous_plafond_rci)
@@ -247,7 +247,7 @@ class vieillesse_artisan_commercant(Variable):
 
     def formula_2014(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
-        vieillesse_artisan_commercant = parameters(period).prelevements_sociaux.cotisations_taxes_independants_artisans_commercants.ret_ac
+        vieillesse_artisan_commercant = parameters(period).prelevements_sociaux.cotisations_taxes_indep_ac.ret_ac
         bareme = MarginalRateTaxScale(name = 'vieillesse')
         categorie_non_salarie = individu('categorie_non_salarie', period)
         # Les taux sous_pss sont les mêmes pour artisans et commercants
