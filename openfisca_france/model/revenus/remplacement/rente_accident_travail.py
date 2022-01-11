@@ -79,7 +79,7 @@ class indemnite_accident_travail(Variable):
         indem_at = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.accident_travail.rente.taux
         taux_incapacite = individu('taux_accident_travail', period)
 
-        return indem_at.indemnite_accident_travail.baremes.calc(taux_incapacite * 100)
+        return indem_at.indemnite_accident_travail.calc(taux_incapacite * 100)
 
 
 class rente_accident_travail_base(Variable):

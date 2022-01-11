@@ -56,13 +56,13 @@ class api(Variable):
         # Le droit à l'allocation est réétudié tous les 3 mois.
         # # Calcul de l'année et mois de naissance du benjamin
 
-        condition = (floor(age_en_mois_enfant / 12) <= api.age_limite - 1)
-        eligib = isole * ((enceinte != 0) | (nb_enf(famille, period, 0, api.age_limite - 1) > 0)) * condition
+        condition = (floor(age_en_mois_enfant / 12) <= api.api_cond.age_limite - 1)
+        eligib = isole * ((enceinte != 0) | (nb_enf(famille, period, 0, api.api_cond.age_limite - 1) > 0)) * condition
 
         # moins de 20 ans avant inclusion dans rsa
         # moins de 25 ans après inclusion dans rsa
-        api1 = eligib * af.bmaf * (api.base + api.supplement_par_enfant * nb_enf(famille, period, af.age1, api.age_pac - 1))
-        rsa = (api.age_pac >= 25)  # dummy passage au rsa majoré
+        api1 = eligib * af.bmaf * (api.api_m.femmes_enceintes_sans_enfant_a_charge + api.api_m.supplement_par_enfant * nb_enf(famille, period, af.age1, api.api_cond.age_pac - 1))
+        rsa = (api.api_cond.age_pac >= 25)  # dummy passage au rsa majoré
         br_api = rsa_base_ressources + af_majoration * not_(rsa)
         # On pourrait mensualiser RMI, BRrmi et forfait logement
         api = max_(0, api1 - rsa_forfait_logement / 12 - br_api / 12 - rsa / 12)

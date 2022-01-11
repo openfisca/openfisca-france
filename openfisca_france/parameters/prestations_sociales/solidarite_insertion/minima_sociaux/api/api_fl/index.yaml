@@ -1,0 +1,8 @@
+description: Forfait logement de l'Allocation parent isolé (API)
+metadata:
+  ux_name: Forfait Logement
+  order:
+  - femmes_enceintes
+  - couple_1_enfant
+  - couples_2_enfants_plus
+  description_en: "Single parent allowance (API): General conditions"

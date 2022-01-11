@@ -12,7 +12,7 @@ class ppa_eligibilite(Variable):
 
     def formula(famille, period, parameters):
         ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
-        age_min = ppa.age_min
+        age_min = ppa.pa_cond.age_min
         condition_age_i = famille.members('age', period) >= age_min
         condition_age = famille.any(condition_age_i)
 
@@ -99,14 +99,14 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
         # Dans la formule "ppa_forfait_logement", le montant forfaitaire se calcule pour trois personnes dans le cas où le foyer se compose de trois personnes ou plus.
         taux_non_majore = (
             1
-            + (nb_personnes >= 2) * ppa.taux_deuxieme_personne
-            + (nb_personnes >= 3) * ppa.taux_troisieme_personne
-            + (nb_personnes >= 4) * where(nb_parents == 1, ppa.taux_personne_supp, ppa.taux_troisieme_personne)
+            + (nb_personnes >= 2) * ppa.pa_m.majoration_montant_maximal.couples_seul_avec_enfant
+            + (nb_personnes >= 3) * ppa.pa_m.majoration_montant_maximal.couple_1_enfant_2e_enfant
+            + (nb_personnes >= 4) * where(nb_parents == 1, ppa.pa_m.majoration_montant_maximal.par_enfant_supplementaire, ppa.pa_m.majoration_montant_maximal.couple_1_enfant_2e_enfant)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
-            + max_(nb_personnes - 4, 0) * ppa.taux_personne_supp
+            + max_(nb_personnes - 4, 0) * ppa.pa_m.majoration_montant_maximal.par_enfant_supplementaire
             )
 
-        return ppa.montant_de_base * taux_non_majore
+        return ppa.pa_m.montant_de_base * taux_non_majore
 
 
 class ppa_montant_forfaitaire_familial_majore(Variable):
@@ -121,12 +121,12 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
         ppa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa
 
         taux_majore = (
-            ppa.majoration_isolement_femme_enceinte
-            + ppa.majoration_isolement_enf_charge
+            ppa.pa_m.majoration_isolement.femmes_enceintes
+            + ppa.pa_m.majoration_isolement.par_enfant_charge
             * nb_enfants
             )
 
-        return ppa.montant_de_base * taux_majore
+        return ppa.pa_m.montant_de_base * taux_majore
 
 
 class ppa_revenu_activite(Variable):
@@ -178,7 +178,7 @@ class ppa_revenu_activite_individu(Variable):
         revenus_activites = revenus_mensualises + revenus_tns_annualises
 
         # L'aah est pris en compte comme revenu d'activité si revenu d'activité hors aah > 29 * smic horaire brut
-        seuil_aah_activite = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
+        seuil_aah_activite = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_cond.seuil_aah_activite * smic_horaire
         aah_activite = (revenus_activites >= seuil_aah_activite) * individu('aah', period)
 
         return revenus_activites + aah_activite
@@ -280,7 +280,7 @@ class ppa_ressources_hors_activite_individu(Variable):
         revenus_activites = individu('ppa_revenu_activite_individu', period)
 
         # L'AAH est prise en compte comme revenu d'activité si revenu d'activité hors aah > 29 * smic horaire brut
-        seuil_aah_activite = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
+        seuil_aah_activite = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_cond.seuil_aah_activite * smic_horaire
         aah_hors_activite = (revenus_activites < seuil_aah_activite) * individu('aah', period)
 
         return ressources_hors_activite_mensuel_i + aah_hors_activite
@@ -346,11 +346,11 @@ class ppa_bonification(Variable):
     def formula(individu, period, parameters):
         P = parameters(period)
         smic_horaire = P.marche_travail.salaire_minimum.smic.smic_b_horaire
-        ppa_base = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.montant_de_base
+        ppa_base = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_de_base
         revenu_activite = individu('ppa_revenu_activite_individu', period)
-        seuil_1 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire
-        seuil_2 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
-        bonification_max = round_(P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base, 2)
+        seuil_1 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.seuil_bonification * smic_horaire
+        seuil_2 = P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.seuil_max_bonification * smic_horaire
+        bonification_max = round_(P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.taux_bonification_max * ppa_base, 2)
         bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
         bonification = max_(bonification, 0)
         bonification = min_(bonification, bonification_max)
@@ -361,7 +361,7 @@ class ppa_bonification(Variable):
 class ppa_forfait_logement(Variable):
     value_type = float
     entity = Famille
-    label = "Forfait logement intervenant dans le calcul de la prime d'activité"
+    label = "Forfait logement intervenant dans le calcul de la Prime pour l'Activité"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?idArticle=LEGIARTI000031675988&cidTexte=LEGITEXT000006073189"
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -387,11 +387,11 @@ class ppa_forfait_logement(Variable):
         # sauf dans le cas où le foyer se compose de trois personnes ou plus, où le montant forfaitaire se calcule pour trois personnes seulement.
         taux_non_majore = (
             1
-            + (np_pers >= 2) * ppa.taux_deuxieme_personne
-            + (np_pers >= 3) * ppa.taux_troisieme_personne
+            + (np_pers >= 2) * ppa.pa_m.majoration_montant_maximal.couples_seul_avec_enfant
+            + (np_pers >= 3) * ppa.pa_m.majoration_montant_maximal.couple_1_enfant_2e_enfant
             )
 
-        montant_base = ppa.montant_de_base * taux_non_majore
+        montant_base = ppa.pa_m.montant_de_base * taux_non_majore
 
         montant_forfait = montant_base * (
             (np_pers == 1) * params.forfait_logement.taux_1_personne
@@ -413,7 +413,7 @@ class ppa_fictive_ressource_activite(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        pente = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pente
+        pente = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.majoration_ressources_revenus_activite
         ppa_revenu_activite = famille('ppa_revenu_activite', period)
 
         return pente * ppa_revenu_activite
@@ -422,7 +422,7 @@ class ppa_fictive_ressource_activite(Variable):
 class ppa_fictive_montant_forfaitaire(Variable):
     value_type = float
     entity = Famille
-    label = "Montant forfaitaire de la prime d'activité fictive"
+    label = "Montant forfaitaire de la Prime pour l'Activité fictive"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -476,11 +476,11 @@ class ppa(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
-    # Prime d'activité sur service-public.fr
+    # Prime pour l'Activité sur service-public.fr
     reference = "https://www.service-public.fr/particuliers/vosdroits/F2882"
 
     def formula_2016_01_01(famille, period, parameters):
-        seuil_non_versement = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.seuil_non_versement
+        seuil_non_versement = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_minimum_verse
         # éligibilité étudiants
 
         ppa_eligibilite_etudiants = famille('ppa_eligibilite_etudiants', period)
@@ -500,7 +500,7 @@ class ppa_mois_demande(Variable):
 class ppa_indice_du_mois_trimestre_reference(Variable):
     value_type = int
     entity = Famille
-    label = "Nombre de mois par rapport au mois de du précédent recalcul de la prime d'activité"
+    label = "Nombre de mois par rapport au mois de du précédent recalcul de la Prime pour l'Activité"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 

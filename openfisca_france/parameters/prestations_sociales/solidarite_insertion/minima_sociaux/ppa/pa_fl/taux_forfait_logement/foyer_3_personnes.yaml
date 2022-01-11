@@ -1,0 +1,19 @@
+description: Taux du forfait logement pour un foyer de 3 personnes, pour la Prime Pour l'Activité (PA ou PPA)
+values:
+  2015-10-01:
+    value: 0.165
+metadata:
+  ux_name: Foyer 3 pers.
+  last_review: 2022-01-10
+  ipp_csv_id: pa_logt3
+  unit: /1
+  reference:
+    2016-01-01: 
+      - title: Art. R262-9 du CASF (modifié par Décret 2015-1709 du 21/12/2015, art. 2)
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031694445/
+  official_journal_date:
+    2016-01-01: 2015-12-22
+  description_en: "Activity prenium (PA) : accomodation allowance"
+documentation: |
+  Notes :
+  Il faut appliquer ces taux au montant du RSA en tenant compte de la composition du foyer

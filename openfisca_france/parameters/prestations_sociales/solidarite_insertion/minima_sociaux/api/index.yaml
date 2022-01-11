@@ -1,2 +1,8 @@
-description: Allocation parent isolé
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Allocation parent isolé (API)
+metadata:
+  ux_name: API
+  order:
+  - api_cond
+  - api_m
+  - api_fl
+  description_en: "Single parent allowance (API): General conditions"

@@ -1,2 +1,9 @@
-description: Minima sociaux
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Prestations sociales - Minima sociaux
+metadata:
+  ux_name: Minima sociaux
+  order:
+  - rmi
+  - api
+  - rsa
+  - ppa
+  description_en: Minimum incomes

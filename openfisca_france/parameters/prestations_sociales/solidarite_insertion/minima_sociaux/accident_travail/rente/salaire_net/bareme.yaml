@@ -1,6 +1,4 @@
-description: Barème utilisé pour la détermination de rente_accident_travail_salaire_utile (cf. formule)
-reference: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=7392B9902E4B974EAE8783FAF2D69849.tplgfr30s_1?idArticle=LEGIARTI000006750376&cidTexte=LEGITEXT000006073189&dateTexte=20180823
-unit: currency
+description: Barème de réduction du salaire net utilisé pour le calcul des rentes post accident du travail - Minima sociaux
 brackets:
 - rate:
     2018-01-01:
@@ -20,3 +18,13 @@ brackets:
   threshold:
     2018-01-01:
       value: 8
+metadata:
+  ux_name: Barème
+  rate_unit: /1
+  threshold_unit: SMIC
+  reference: 
+    2018-01-01:
+      title: Article R434-28 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=7392B9902E4B974EAE8783FAF2D69849.tplgfr30s_1?idArticle=LEGIARTI000006750376&cidTexte=LEGITEXT000006073189&dateTexte=20180823
+documentation: |
+  Barème utilisé pour la détermination de rente_accident_travail_salaire_utile (cf. formule)

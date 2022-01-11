@@ -1,5 +1,15 @@
 # Changelog
 
+# 102.0.0 [#1782](https://github.com/openfisca/openfisca-france/pull/1782)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/minima_sociaux`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - Le RSA et RMI seront traités dans une prochaine PR pour limiter la revue
+
 ### 101.0.1 [#1779](https://github.com/openfisca/openfisca-france/pull/1779)
 
 * Amélioration technique. 
