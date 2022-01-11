@@ -364,8 +364,8 @@ def compute_allegement_fillon(individu, period, parameters):
 
     # Du 2003-07-01 au 2005-06-30
     if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
-        seuil = fillon.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
-        tx_max = fillon.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
+        seuil = fillon.entreprises_accord_rtt.plafond
+        tx_max = fillon.entreprises_accord_rtt.reduction_maximale
     # Après le 2005-07-01
 
     else:
