@@ -147,7 +147,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
     def formula(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         contrat_de_travail_type = individu('contrat_de_travail_type', period)
-        TypesContratDeTravailDuree = contrat_de_travail_type.possible_values
+        TypesContrat = contrat_de_travail_type.possible_values
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
         contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
         effectif_entreprise = individu('effectif_entreprise', period)
@@ -164,8 +164,8 @@ class exoneration_cotisations_employeur_zfu(Variable):
         duree_cdd_eligible = (contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D'))
         # TODO: move to parameters file
         contrat_de_travail_eligible = (contrat_de_travail_debut <= datetime64("2014-12-31")) * (
-            (contrat_de_travail_type == TypesContratDeTravailDuree.cdi) + (
-                (contrat_de_travail_type == TypesContratDeTravailDuree.cdd) * (duree_cdd_eligible)
+            (contrat_de_travail_type == TypesContrat.cdi) + (
+                (contrat_de_travail_type == TypesContrat.cdd) * (duree_cdd_eligible)
                 )
             )
         # TODO: move to parameters file
@@ -330,7 +330,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
     def formula(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
         contrat_de_travail_type = individu('contrat_de_travail_type', period)
-        TypesContratDeTravailDuree = contrat_de_travail_type.possible_values
+        TypesContrat = contrat_de_travail_type.possible_values
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
         contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
         effectif_entreprise = individu('effectif_entreprise', period)
@@ -340,8 +340,8 @@ class exoneration_cotisations_employeur_zrr(Variable):
         duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
         # TODO: move to parameters file
         contrat_de_travail_eligible = (
-            contrat_de_travail_type == TypesContratDeTravailDuree.cdi) + (
-            (contrat_de_travail_type == TypesContratDeTravailDuree.cdd) * (duree_cdd_eligible)
+            contrat_de_travail_type == TypesContrat.cdi) + (
+            (contrat_de_travail_type == TypesContrat.cdd) * (duree_cdd_eligible)
             )
 
         duree_validite = (
@@ -379,15 +379,15 @@ class exoneration_is_creation_zrr(Variable):
         entreprise_benefice = individu('entreprise_benefice', period, options = [ADD])
         # TODO: MODIFIER avec création d'entreprise
         contrat_de_travail_type = individu('contrat_de_travail_type', decembre)
-        TypesContratDeTravailDuree = contrat_de_travail_type.possible_values
+        TypesContrat = contrat_de_travail_type.possible_values
 
         contrat_de_travail_debut = individu('contrat_de_travail_debut', decembre)
         contrat_de_travail_fin = individu('contrat_de_travail_fin', decembre)
         duree_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
         # TODO: move to parameters file
         contrat_de_travail_eligible = (
-            contrat_de_travail_type == TypesContratDeTravailDuree.cdi) + (
-            (contrat_de_travail_type == TypesContratDeTravailDuree.cdd) * (duree_eligible)
+            contrat_de_travail_type == TypesContrat.cdi) + (
+            (contrat_de_travail_type == TypesContrat.cdd) * (duree_eligible)
             )
         zone_revitalisation_rurale = individu('zone_revitalisation_rurale', decembre)
 

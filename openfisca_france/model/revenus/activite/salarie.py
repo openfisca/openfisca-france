@@ -294,19 +294,21 @@ class contrat_de_travail_fin(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class TypesContratDeTravailDuree(Enum):
-    __order__ = 'cdi cdd ctt'  # Needed to preserve the enum order in Python 2
-    cdi = "Contrat de travail à durée indéterminée"
-    cdd = "Contrat de travail à durée déterminée"
-    ctt = "Contrat de travail temporaire"
+class TypesContrat(Enum):
+    __order__ = 'aucun cdi cdd ctt formation'  # Needed to preserve the enum order in Python 2
+    aucun = "Aucun contrat"
+    cdi = "Contrat de travail à durée indéterminée (CDI)"
+    cdd = "Contrat de travail à durée déterminée (CDD)"
+    ctt = "Contrat de travail temporaire (CTT)"
+    formation = "Formation"
 
 
 class contrat_de_travail_type(Variable):
     value_type = Enum
-    possible_values = TypesContratDeTravailDuree
-    default_value = TypesContratDeTravailDuree.cdi
+    possible_values = TypesContrat
+    default_value = TypesContrat.cdi
     entity = Individu
-    label = "Type (durée determinée ou indéterminée) du contrat de travail"
+    label = "Type du contrat de travail"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 

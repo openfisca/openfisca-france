@@ -151,7 +151,7 @@ class aide_premier_salarie(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         apprenti = individu('apprenti', period)
         contrat_de_travail_type = individu('contrat_de_travail_type', period)
-        TypesContratDeTravailDuree = contrat_de_travail_type.possible_values
+        TypesContrat = contrat_de_travail_type.possible_values
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
         contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
         coefficient_proratisation = individu('coefficient_proratisation', period)
@@ -169,10 +169,10 @@ class aide_premier_salarie(Variable):
         # Si CDD, durée du contrat doit être > 1 an
         eligible_duree = or_(
             # durée indéterminée
-            contrat_de_travail_type == TypesContratDeTravailDuree.cdi,
+            contrat_de_travail_type == TypesContrat.cdi,
             # durée déterminée supérieure à 1 an
             and_(
-                contrat_de_travail_type == TypesContratDeTravailDuree.cdd,
+                contrat_de_travail_type == TypesContrat.cdd,
                 # > 6 mois
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
                 # Initialement, la condition était d'un contrat >= 12 mois,
@@ -216,7 +216,7 @@ class aide_embauche_pme(Variable):
         effectif_entreprise = individu('effectif_entreprise', period)
         apprenti = individu('apprenti', period)
         contrat_de_travail_type = individu('contrat_de_travail_type', period)
-        TypesContratDeTravailDuree = contrat_de_travail_type.possible_values
+        TypesContrat = contrat_de_travail_type.possible_values
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
         contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
         coefficient_proratisation = individu('coefficient_proratisation', period)
@@ -251,11 +251,11 @@ class aide_embauche_pme(Variable):
         # Si CDD, durée du contrat doit être > 1 an
         eligible_duree = or_(
             # durée indéterminée
-            contrat_de_travail_type == TypesContratDeTravailDuree.cdi,
+            contrat_de_travail_type == TypesContrat.cdi,
             # durée déterminée supérieure à 1 an
             and_(
                 # CDD
-                contrat_de_travail_type == TypesContratDeTravailDuree.cdd,
+                contrat_de_travail_type == TypesContrat.cdd,
                 # > 6 mois
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
                 )

@@ -4,6 +4,7 @@ from openfisca_core.model_api import select
 
 from openfisca_france.model.base import Famille, Individu, Variable, Enum, MONTH, \
     set_input_dispatch_by_period, set_input_divide_by_period, min_, not_
+from openfisca_france.model.revenus.activite.salarie import TypesContrat
 
 
 class agepi_nbenf(Variable):
@@ -135,24 +136,6 @@ class en_contrat_aide(Variable):
     label = "L'individu est en contrat aidé"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-
-
-class TypesContrat(Enum):
-    __order__ = 'aucun cdi cdd ctt formation'  # Needed to preserve the enum order in Python 2
-    aucun = "Aucun contrat"
-    cdi = "Contrat à durée indéterminé (CDI)"
-    cdd = "Contrat à durée déterminé (CDD)"
-    ctt = "Contrat de travail temporaire (CTT)"
-    formation = "Formation"
-
-
-class types_contrat(Variable):
-    value_type = Enum
-    possible_values = TypesContrat
-    default_value = TypesContrat.aucun
-    entity = Individu
-    label = "Types de contrat"
-    definition_period = MONTH
 
 
 class TypesIntensiteActivite(Enum):
