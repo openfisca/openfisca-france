@@ -1,6 +1,5 @@
 from datetime import date
 import numpy as np
-from openfisca_core.model_api import select
 
 from openfisca_france.model.base import Famille, Individu, Variable, Enum, MONTH, \
     set_input_dispatch_by_period, set_input_divide_by_period, min_, not_
