@@ -213,7 +213,7 @@ class agepi_eligible(Variable):
         montants_are_eligibles = are_individu_inferieure_are_min + are_individu_egale_are_min
 
         #  L'individu est en reprise d'emploi du type CDI, CDD ou CTT d'au moins 3 mois consécutifs ou en processus d'entrée en formation d'une durée supérieure ou égale à 40 heures
-        reprises_types_activites = individu('types_contrat', period)
+        reprises_types_activites = individu('contrat_de_travail_type', period)
 
         reprises_types_activites_formation = reprises_types_activites == TypesContrat.formation
         reprises_types_activites_cdi = reprises_types_activites == TypesContrat.cdi

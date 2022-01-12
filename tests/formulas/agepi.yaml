@@ -16,7 +16,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: cdd
+        contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 10
@@ -56,7 +56,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: cdd
+        contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 10
@@ -97,7 +97,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: cdd
+        contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 10
@@ -136,7 +136,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: cdd
+        contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 10
@@ -175,7 +175,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: cdd
+        contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 10
@@ -214,7 +214,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: cdd
+        contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 10
@@ -253,7 +253,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: cdd
+        contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 10
@@ -292,7 +292,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-02-02'
         allocation_retour_emploi: 0
-        types_contrat: cdd
+        contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 10
@@ -336,7 +336,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: cdd
+        contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 10
@@ -390,7 +390,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: cdd
+        contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: mensuelle
         agepi_temps_travail_en_heure: 63
@@ -429,7 +429,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: cdd
+        contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: mensuelle
         agepi_temps_travail_en_heure: 64
@@ -468,7 +468,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: cdd
+        contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: mensuelle
         agepi_temps_travail_en_heure: 64
@@ -507,7 +507,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: formation
+        contrat_de_travail_type: formation
         duree_formation: 40
         contrat_de_travail_duree: 0
         types_intensite_activite: mensuelle
@@ -547,7 +547,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 0
-        types_contrat: cdi
+        contrat_de_travail_type: cdi
         contrat_de_travail_duree: 0
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 15
@@ -586,7 +586,7 @@
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         allocation_retour_emploi: 14.77
-        types_contrat: cdi
+        contrat_de_travail_type: cdi
         contrat_de_travail_duree: 0
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 8
