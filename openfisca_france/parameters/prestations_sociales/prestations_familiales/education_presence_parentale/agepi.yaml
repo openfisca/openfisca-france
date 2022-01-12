@@ -4,28 +4,35 @@ reference: [
   "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014",
   ]
 age_enfant_maximum:
+  description: L'enfant doit être agé de moins de 10 ans
   values:
     2014-01-20:
       value: 10
 duree_de_formation_minimum:
+  description: La formation doit être supérieure ou égale à 40 heures
   values:
     2014-01-20:
       value: 40
 intensite_hebdomadaire_seuil:
+  description: L'intensité de formation inférieure à 15h/semaine ou comprise entre 15 et 35 heures/semaine
   values:
     2014-01-20:
       value: 15
 intensite_mensuelle_seuil:
+  description: L'intensité de formation inférieur à 64 heures/mois
   values:
     2014-01-20:
       value: 64
 duree_cdd_ctt_minimum:
+  description: La durée de contrat doit être d'au moins 3 mois
   values:
     2014-01-20:
       value: 3
 montants:
+  description: Les différents montants de l'AGEPI en fonction de la région, de l'intensité et du nombre d'enfants de moins de 10 ans à charge
   hors_mayotte:
     minimum:
+      description: Les différents montants minimums de l'AGEPI en fonction de l'intensité et du nombre d'enfants de moins de 10 ans à charge hors région Mayotte
       metadata:
         type: single_amount
       brackets:
@@ -48,6 +55,7 @@ montants:
             2014-01-20:
               value: 220
     maximum:
+      description: Les différents montants maximums de l'AGEPI en fonction de l'intensité et du nombre d'enfants de moins de 10 ans à charge hors région Mayotte
       metadata:
         type: single_amount
       brackets:
@@ -71,6 +79,7 @@ montants:
               value: 520
   mayotte:
     minimum:
+      description: Les différents montants minimums de l'AGEPI en fonction de l'intensité et du nombre d'enfants de moins de 10 ans à charge en région Mayotte
       metadata:
         type: single_amount
       brackets:
@@ -93,6 +102,7 @@ montants:
             2014-01-20:
               value: 110
     maximum:
+      description: Les différents montants maximums de l'AGEPI en fonction de l'intensité et du nombre d'enfants de moins de 10 ans à charge en région Mayotte
       metadata:
         type: single_amount
       brackets:
