@@ -145,16 +145,6 @@ class agepi_eligible(Variable):
         "Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
         ]
-    documentation = '''
-        1- L'individu élève seul son enfant (parent isolé)
-        2- L'âge du ou des enfants dont il a la garde est inférieur à 10 ans (condition de garde d'enfant)
-        3- L'individu n'a pas touché l'AGEPI dans les 12 derniers mois (condition de durée entre faits générateurs)
-        4- L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé"
-        5- L'emploi ou la formation se situe en France
-        6- L'individu effectue sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
-        7- L'individu est non indemnisé ou son ARE est inférieure ou égale à l'ARE minimale
-        8- L'individu est en reprise d'emploi du type CDI, CDD ou CTT d'au moins 3 mois consécutifs ou en processus d'entrée en formation d'une durée supérieure ou égale à 40 heures
-    '''
 
     def formula_2014_01_20(individu, period, parameters):
 
@@ -162,16 +152,16 @@ class agepi_eligible(Variable):
 
         epsilon = 0.0001
 
-        #  1
+        #  L'individu élève seul son enfant (parent isolé)
         parents_isoles = individu.famille('nb_parents', period) == 1
 
-        #  2
+        #  L'âge du ou des enfants dont il a la garde est inférieur à 10 ans (condition de garde d'enfant)
         condition_nb_enfants = individu.famille('agepi_nbenf', period) > 0
 
-        #  3
+        #  L'individu n'a pas touché l'AGEPI dans les 12 derniers mois (condition de durée entre faits générateurs)
         agepi_non_percues = not_(individu('agepi_percue_12_derniers_mois', period))
 
-        #  4
+        #  L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé"
         pe_categorie_demandeur_emploi = individu('pole_emploi_categorie_demandeur_emploi', period)
 
         stagiaire_formation_professionnelle = individu('stagiaire', period)
@@ -188,10 +178,10 @@ class agepi_eligible(Variable):
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_3)
                                 + (categorie_4_stagiaire_formation_professionnelle + categorie_5_contrat_aide))
 
-        #  5
+        #  L'emploi ou la formation se situe en France
         lieux_activite_eligibles = not_(individu('lieu_emploi_ou_formation', period) == TypesLieuEmploiFormation.non_renseigne)
 
-        #  6
+        #  L'individu effectue sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)  # numpy.datetime64
         contrat_de_travail_debut_en_mois = contrat_de_travail_debut.astype('M8[M]')
 
@@ -203,7 +193,7 @@ class agepi_eligible(Variable):
         agepi_date_de_demande = individu("agepi_date_demande", period)
         dates_demandes_agepi_eligibles = agepi_date_de_demande <= date_demande_limite
 
-        #  7
+        #  L'individu est non indemnisé ou son ARE est inférieure ou égale à l'ARE minimale
         mayotte = individu.menage('residence_mayotte', period)
         hors_mayotte = not_(mayotte)
 
@@ -222,7 +212,7 @@ class agepi_eligible(Variable):
 
         montants_are_eligibles = are_individu_inferieure_are_min + are_individu_egale_are_min
 
-        #  8
+        #  L'individu est en reprise d'emploi du type CDI, CDD ou CTT d'au moins 3 mois consécutifs ou en processus d'entrée en formation d'une durée supérieure ou égale à 40 heures
         reprises_types_activites = individu('types_contrat', period)
 
         reprises_types_activites_formation = reprises_types_activites == TypesContrat.formation
