@@ -31,7 +31,7 @@ L'ensembles des endpoints sont décrits dans la [documentation Swagger](https://
 
 ## Installation
 
-Ce paquet requiert [Python 3.7](https://www.python.org/downloads/release/python-370/) et [pip](https://pip.pypa.io/en/stable/installing/).
+Ce paquet requiert [Python 3.7](https://www.python.org/downloads/release/python-370/) et [pip](https://pip.pypa.io/en/stable/installing/) ou [conda](https://www.anaconda.com/products/individual).
 
 Plateformes supportées :
 - distributions GNU/Linux (en particulier Debian and Ubuntu) ;
@@ -40,9 +40,17 @@ Plateformes supportées :
 
 Pour les autres OS : si vous pouvez exécuter Python et Numpy, l'installation d'OpenFisca devrait fonctionner.
 
+### Installez un environnement virtuel avec Conda
+
+- Créer un environnement : `conda create --name openfisca python=3.7`
+- Activer le : `conda activate myenv`
+- Installer OpenFisca : `conda install -c openfisca.org openfisca-france`
+
+Se référer à la [documentation conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+
 ### Installez un environnement virtuel avec Pew
 
-Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.pypa.io/en/stable/) (_virtualenv_) avec un gestionnaire de _virtualenv_ tel que [Pew](https://github.com/berdario/pew).
+Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.pypa.io/en/stable/) (_virtualenv_) avec un gestionnaire de _virtualenv_ tel que [Pew](https://github.com/berdario/pew). Attention ce gestionnaire d'environnement bénéficie d'une [maintenance réduite](https://github.com/berdario/pew/issues/218). Vous pouvez utiliser [venv](https://docs.python.org/3/library/venv.html).
 
 - Un _[virtualenv](https://virtualenv.pypa.io/en/stable/)_ crée un environnement pour les besoins spécifiques du projet sur lequel vous travaillez.
 - Un gestionnaire de _virtualenv_, tel que [Pew](https://github.com/berdario/pew), vous permet de facilement créer, supprimer et naviguer entre différents projets.
