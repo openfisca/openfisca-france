@@ -1,0 +1,8 @@
+description: Plafonds d'annuités de remboursement pour les accédants à la propriété des Allocations logement (AL)
+metadata:
+  ux_name: Plafonds accédants à la propriété
+  order:
+  - zone_1
+  - zone_2
+  - zone_3
+  description_en: Annual ceiling of reimbursement for new homebuyers

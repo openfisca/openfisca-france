@@ -21,12 +21,12 @@ class visale_eligibilite(Variable):
         age = menage.personne_de_reference('age', period)
         majeur = menage.personne_de_reference('majeur', period)
 
-        eligibilite_age = majeur * (age <= parameters(period).prestations_sociales.aides_logement.visale.eligibilite.age_max)
+        eligibilite_age = majeur * (age <= parameters(period).prestations_sociales.aides_logement.action_logement.visale.eligibilite.age_max)
 
         etudiant = menage.personne_de_reference('etudiant', period)
         ressortissant_eee = menage.personne_de_reference('ressortissant_eee', period)
         nationalite = menage.personne_de_reference('nationalite', period)
-        ressortissant_pays_eligible = sum([nationalite == str.encode(etat) for etat in parameters(period).prestations_sociales.aides_logement.visale.eligibilite.residence_hors_eee])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
+        ressortissant_pays_eligible = sum([nationalite == str.encode(etat) for etat in parameters(period).prestations_sociales.aides_logement.action_logement.visale.eligibilite.residence_hors_eee])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
         eligibilite_nationalite = ressortissant_eee + ressortissant_pays_eligible + etudiant  # Sont éligibles les « étudiant‧e‧s hors Union Européenne justifiant d’un visa long séjour valant titre de séjour mention étudiant ou passeport talent en cours de validité, ou d’un titre de séjour mention étudiant en cours de validité ». Vu qu'il s'agit d'une aide au logement, on suppose que le visa long séjour (4 mois à 1 an) est acquis, et on ignore donc les cas où un étudiant hors UE vient pour une durée de moins de 4 mois sans visa (ex : étudiante néo-zélandaise en visa touristique de 90 jours, l'éligibilité à Visale sera indiquée à tort comme positive).
 
@@ -60,14 +60,14 @@ class visale_montant_max(Variable):
         etudiant = menage.personne_de_reference('etudiant', period)  # le cas où un ménage est constitué d'une personne étudiante et d'une personne non étudiante n'est pas spécifié dans la documentation Visale
         minimum_etudiant = where(
             residence_ile_de_france,
-            parameters(period).prestations_sociales.aides_logement.visale.plafond_loyer.etudiant.ile_de_france,
-            parameters(period).prestations_sociales.aides_logement.visale.plafond_loyer.etudiant.hors_ile_de_france,
+            parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.etudiant.ile_de_france,
+            parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.etudiant.hors_ile_de_france,
             )
 
         plafond_loyer = where(
             residence_ile_de_france,
-            parameters(period).prestations_sociales.aides_logement.visale.plafond_loyer.cas_general.ile_de_france,
-            parameters(period).prestations_sociales.aides_logement.visale.plafond_loyer.cas_general.hors_ile_de_france,
+            parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.cas_general.ile_de_france,
+            parameters(period).prestations_sociales.aides_logement.action_logement.visale.plafond_loyer.cas_general.hors_ile_de_france,
             )
 
         moitie_des_ressources = menage('visale_base_ressources', period) / 2
@@ -124,7 +124,7 @@ class visale_base_ressources(Variable):
         revenus_familles_abattus = sum(
             menage.sum(menage.members.famille(ressource, period), role = Famille.DEMANDEUR)
             for ressource in ressources_famille_abattues
-            ) * parameters(period).prestations_sociales.aides_logement.visale.quote_part_aides_logement
+            ) * parameters(period).prestations_sociales.aides_logement.action_logement.visale.quote_part_aides_logement
 
         return revenus_individus + revenus_foyers_fiscaux + revenus_familles + revenus_familles_abattus
 

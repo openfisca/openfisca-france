@@ -1,0 +1,4 @@
+description: Montant (coefficient de degressivité) du plafond de loyer en zone 2 (après la réforme de 2001) des Allocations Logement (AL)
+values:
+  2016-07-01:
+    value: 2.5

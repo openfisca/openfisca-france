@@ -1,11 +1,40 @@
 # Changelog
 
+# 103.0.0 [#1772](https://github.com/openfisca/openfisca-france/pull/1772)
+ 
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/aides_logement`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - Mise à jour de:
+       - `al_charge` 
+       - `al_etudiant`
+       - `al_plafonds_logement_foyer`
+       - `reduction_loyer_solidarite`
+
+## 102.1.0 [#1761](https://github.com/openfisca/openfisca-france/pull/1761
+
+Cette branche dépend de la branche `harm_prestas_sociales4_al` (PR #1772)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+- `parameters/prestations_sociales/aides_logement/visale`.
+- `parameters/prestations_sociales/aides_logement/mon_job_mon_logement`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+  -   
 ### 102.0.1 [#1783](https://github.com/openfisca/openfisca-france/pull/1783)
 
 * Changement mineur.
 * Zones impactées : `CHANGELOG.md`.
 * Détails :
   - Indique que la version 80.4.6 comporte des changements non rétrocompatibles et les détaille.
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline 7e262b0f90601a4d^..c508f65e67356e7a | grep "variable_name"
 
 # 102.0.0 [#1782](https://github.com/openfisca/openfisca-france/pull/1782)
 
@@ -16,6 +45,8 @@
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
   - Le RSA et RMI seront traités dans une prochaine PR pour limiter la revue
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 ### 101.0.1 [#1779](https://github.com/openfisca/openfisca-france/pull/1779)
 
@@ -35,7 +66,9 @@
   - Découpe les fichiers en "1 fichier = 1 paramètre"
   - Tous les chemins sont updatés pour ne pas casser le code
   - Ajoute des références et met à jour si besoin
-  
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
+
 # 100.0.0 [#1780](https://github.com/openfisca/openfisca-france/pull/1780)
 
 * Amélioration technique. 
@@ -66,6 +99,8 @@
   - Tous les chemins sont updatés pour ne pas casser le code
   - Supprime les paramètres/barèmes en doublons
   - Certains paramètres méritent une adaptation de la variable correspondante pour être pris en compte
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 ### 98.0.3 [#1768](https://github.com/openfisca/openfisca-france/pull/1768)
 
@@ -78,7 +113,7 @@
 * Détails :
   - Met à jour l'impôt sur les revenus des personnes physiques pour 2022.
     - Revalorise les seuils du barème de l'irpp, de décote et les plafonds de réductions suite à l'application du quotient familial.
-  - La réfaction est inchangée pour la Guadeloupe, la Martinique, la Réunion, la Guyane et Mayotte. 
+  - La réfaction est inchangée pour la Guadeloupe, la Martinique, la Réunion, la Guyane et Mayotte.
 
 ### 98.0.2 [#1773](https://github.com/openfisca/openfisca-france/pull/1773)
 
@@ -106,6 +141,8 @@
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 97.0.0 [#1769](https://github.com/openfisca/openfisca-france/pull/1769)
 
@@ -115,6 +152,8 @@
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 ### 96.0.1 [#1737](https://github.com/openfisca/openfisca-france/pull/1737)
 
@@ -131,6 +170,8 @@
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 95.0.0 [#1762](https://github.com/openfisca/openfisca-france/pull/1762)
 
@@ -140,6 +181,8 @@
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 ### 94.0.1 [#1767](https://github.com/openfisca/openfisca-france/pull/1767)
 
@@ -160,6 +203,8 @@
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 93.0.0 [#1758](https://github.com/openfisca/openfisca-france/pull/1758)
 
@@ -169,6 +214,8 @@
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
   
 # 92.0.0 [#1757](https://github.com/openfisca/openfisca-france/pull/1757)
 
@@ -178,6 +225,8 @@
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 ### 91.0.1 [#1760](https://github.com/openfisca/openfisca-france/pull/1760)
 
@@ -196,6 +245,8 @@
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 90.0.0 [#1755](https://github.com/openfisca/openfisca-france/pull/1755)
 
@@ -205,6 +256,8 @@
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 89.0.0 [#1754](https://github.com/openfisca/openfisca-france/pull/1754)
 
@@ -214,6 +267,8 @@
 * Détails :
   - Harmonisation des paramètres déjà présent
   - Ajout des paramètres issus des barèmes-ipp
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 88.0.0 [#1753](https://github.com/openfisca/openfisca-france/pull/1753)
 
@@ -225,6 +280,8 @@
   - Tous les chemins sont updatés pour ne pas casser le code
   - Chaque commit correspond à 1 déplacement d'un sous-dossier (et donc d'1 thème)
   - Ce travail vise à nettoyer la racine de `parameters`.
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 87.0.0 [#1752](https://github.com/openfisca/openfisca-france/pull/1752)
 
@@ -237,6 +294,8 @@
   - Chaque commit correspond à 1 déplacement d'un sous-dossier (et donc d'1 thème)
   - Ce travail vise à finaliser le dossier `parameters/prestations_sociales/`.
   - Ajout du sous-dossier `parameters/prestations_sociales/aides-jeunes/`
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 ### 86.0.1 [#1736](https://github.com/openfisca/openfisca-france/pull/1736)
 
@@ -257,6 +316,8 @@
   - Tous les chemins sont updatés pour ne pas casser le code
   - Chaque commit correspond à 1 déplacement d'un sous-dossier (et donc d'1 thème)
   - Ce travail vise à remplir le sous-dossier `parameters/prestations_sociales/aides_logement`.
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 85.0.0 [#1750](https://github.com/openfisca/openfisca-france/pull/1750)
 
@@ -268,6 +329,8 @@
   - Tous les chemins sont updatés pour ne pas casser le code
   - Chaque commit correspond à 1 déplacement d'un sous-dossier (et donc d'1 thème)
   - Ce travail vise à remplir le sous-dossier `parameters/prestations_sociales/solidarite_insertion`.
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 84.0.0 [#1749](https://github.com/openfisca/openfisca-france/pull/1749)
 
@@ -279,6 +342,8 @@
   - Tous les chemins sont updatés pour ne pas casser le code
   - Chaque commit correspond à 1 déplacement d'un sous-dossier (et donc d'1 thème)
   - Ce travail vise à remplir le sous-dossier `parameters/prestations_sociales/prestations_familiales`.
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 83.0.0 [#1747](https://github.com/openfisca/openfisca-france/pull/1747)
 
@@ -327,6 +392,8 @@
     - garanties_ressources
     - sr_fne
     - fne_arpe
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 81.0.0 [#1746](https://github.com/openfisca/openfisca-france/pull/1746)
 
@@ -337,6 +404,8 @@
   - On déplace les fichiers pour respecter l'arborescence IPP en vue de l'harmonisation à venir
   - Tous les chemins sont updatés pour ne pas casser le code
   - Chaque commit correspond à 1 déplacement d'un sous-dossier (et donc d'1 thème)
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 ## 80.6.0 [#1743](https://github.com/openfisca/openfisca-france/pull/1743)
 

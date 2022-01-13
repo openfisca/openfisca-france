@@ -1,0 +1,10 @@
+description: Plafond de R0 pour le calcul du montant forfaitaire R0 (que l'on déduit des ressources) - secteur locatif (après 2001)
+metadata:
+  ux_name: Plafond de R0
+  order:
+  - foyers_sans_personne_charge_en_r0
+  - foyers_avec_1_personne_charge_en_r0
+  - foyers_avec_2_personnes_charge_en_r0
+  - foyers_avec_3_personnes_charge_en_r0
+  - foyers_avec_4_personnes_charge_plus_en_r0
+  description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)

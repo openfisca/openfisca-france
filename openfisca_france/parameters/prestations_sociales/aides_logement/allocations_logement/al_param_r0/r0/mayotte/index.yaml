@@ -1,0 +1,13 @@
+description: Montant forfaitaire R0 pour Mayotte (Article 2 ter de l'arrêté du 3 juillet 1978) - secteur locatif (après 2001)
+metadata:
+  ux_name: Mayotte
+  order:
+  - taux1pac
+  - taux2pac
+  - taux3pac
+  - taux4pac
+  - taux5pac
+  - taux6pac
+  - taux_couple
+  - taux_seul
+  description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)

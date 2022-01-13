@@ -1,2 +1,10 @@
-description: Allocations logement
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Aides pour le logement
+metadata:
+  ux_name: Aides Logement
+  order:
+  - action_logement
+  - allocations_logement
+  - logement_social
+  - reduction_loyer_solidarite
+  - ressources
+  description_en: Housing allowances

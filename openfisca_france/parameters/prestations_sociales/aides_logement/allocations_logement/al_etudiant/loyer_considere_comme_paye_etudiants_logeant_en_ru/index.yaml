@@ -1,0 +1,7 @@
+description: Mesure du loyer pour un Loyer considéré comme payé par les étudiants logeant en résidence universitaire, allocations logement (AL)
+metadata:
+  ux_name: Loyer payé par les étudiants
+  order:
+  - personnes_isolees
+  - menages
+  description_en: Measure of rent for students living in university residences

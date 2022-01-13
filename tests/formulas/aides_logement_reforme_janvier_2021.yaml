@@ -506,7 +506,7 @@
   output:
     zone_apl: zone_3
     aide_logement_base_ressources: 9100
-    aide_logement: 129
+    aide_logement: 129.0
 
 - name: "Cas 10 AL Reforme 2019"
   period: 2021-01

@@ -1,0 +1,7 @@
+description: Réduction de loyer de solidarité (RLS)
+metadata:
+  ux_name: RLS
+  order:
+  - montant
+  - plafond_ressources
+  - fraction_baisse_aide_logement
