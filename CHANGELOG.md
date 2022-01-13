@@ -1,5 +1,12 @@
 # Changelog
 
+### 102.0.1 [#1783](https://github.com/openfisca/openfisca-france/pull/1783)
+
+* Changement mineur.
+* Zones impactées : `CHANGELOG.md`.
+* Détails :
+  - Indique que la version 80.4.6 comporte des changements non rétrocompatibles et les détaille.
+
 # 102.0.0 [#1782](https://github.com/openfisca/openfisca-france/pull/1782)
 
 * Amélioration technique. 
@@ -420,15 +427,35 @@
 
 ### 80.4.6 [#1731](https://github.com/openfisca/openfisca-france/pull/1731)
 
-* Amélioration technique.
+> Cette version est **non-rétrocompatible** (versionnée en patch par erreur). Ses évolutions sont détaillées ci-dessous. 
+
+* ~~Amélioration technique.~~ Évolution du système socio-fiscal **non rétrocompatible**
 * Périodes concernées : toutes.
-* Zones impactées :
-  - `openfisca_france/model/prestations/`
-  - `tests/formulas/`
+* Zones impactées : 
+  - `model/prestations/cheque_energie.py`
+  - `model/prestations/jeunes/garantie_jeunes.py`
+  - `model/prestations/minima_sociaux/` : `asi_aspa.py`, `aah.py`, `ass.py`, `ppa.py`, `rsa.py`
+  - `model/prestations/prestations_familiales/paje.py`
+  - `model/revenus/capital/financier.py`
+  - `model/mesures.py`
+  - `parameters/cheque_energie.yaml`
+  - `parameters/impot_revenu/plafond_qf/general.yaml`
+  - `parameters/prestations/prestations_familiales/paje/base/`
 * Détails :
-  - Mets à jour le chèque énergie et ajoute l'aide exceptionnelle de 2021
+  - Met à jour le chèque énergie et ajoute l'aide exceptionnelle de 2021.
+    - `cheque_energie` et `cheque_energie_eligibilite_logement` évoluent de variables mensuelles à annuelles.
+    - Introduit `aide_exceptionnelle_cheque_energie`.
   - Améliore le calcul de la paje
-  - Améliore le calcul de l'aspa
+    - La formule `paje_naissance` du 01/01/2004 s'étend désormais au 01/04/2014 (était 01/01/2015).
+    - Des paramètres sont supprimés de `parameters/prestations/prestations_familiales/paje/base/apres_2018/`
+      - `majoration_biact_parent_isoles.yaml` est supprimé au bénéfice de `taux_partiel/plaf_maj.yaml`.
+      - `plafond_ressources_0_enf.yaml` est supprimé au bénéfice de `taux_partiel/plaf.yaml`.
+      - `plaf_tx_par_enf.yaml` est supprimé au bénéfice de `parameters/prestations/prestations_familiales/paje/base/apres_2014/plaf_tx_par_enf.yaml`.
+  - Améliore le calcul de l'aspa.
+  - Met à jour le calcul de la garantie jeunes.
+    - `garantie_jeunes_max` est supprimée. Son calcul est intégré à `garantie_jeunes_montant` (01/01/2017+).
+    - `garantie_jeunes_neet` et `garantie_jeunes_eligibilite_age` sont datées et commencent à partir du 01/01/2017. 
+    - Introduit `garantie_jeunes_eligibilite_ressources`.
 
 ### 80.4.5 [#1730](https://github.com/openfisca/openfisca-france/pull/1730)
 
