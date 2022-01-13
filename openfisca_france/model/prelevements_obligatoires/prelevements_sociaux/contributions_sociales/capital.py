@@ -144,11 +144,13 @@ class assiette_csg_plus_values(Variable):
         f3sl = foyer_fiscal('f3sl', period)
         f3va_2014 = foyer_fiscal('f3va_2014', period)
         f3we = foyer_fiscal('f3we', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3sg + f3sl + f3va_2014 + f3vz + f3we
+        return f3vg + f3sg + f3sl + f3va_2014 + f3vz + f3we + rpns_pvce
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -162,11 +164,13 @@ class assiette_csg_plus_values(Variable):
         f3va_2016_i = foyer_fiscal.members('f3va_2016', period)
         f3va_2016 = foyer_fiscal.sum(f3va_2016_i)
         f3we = foyer_fiscal('f3we', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3sg + f3sl + f3va_2016 + f3vz + f3we
+        return f3vg + f3sg + f3sl + f3va_2016 + f3vz + f3we + rpns_pvce
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -180,11 +184,13 @@ class assiette_csg_plus_values(Variable):
         f3va = foyer_fiscal('f3va', period)
         f3we = foyer_fiscal('f3we', period)
         f3ua = foyer_fiscal('f3ua', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3sg + f3sl + f3va + f3ua + f3vz + f3we
+        return f3vg + f3sg + f3sl + f3va + f3ua + f3vz + f3we + rpns_pvce
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
 
