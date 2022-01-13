@@ -1,5 +1,12 @@
 # Changelog
 
+### 102.0.1 [#1783](https://github.com/openfisca/openfisca-france/pull/1783)
+
+* Changement mineur.
+* Zones impactées : `CHANGELOG.md`.
+* Détails :
+  - Indique que la version 80.4.6 comporte des changements non rétrocompatibles et les détaille.
+
 # 102.0.0 [#1782](https://github.com/openfisca/openfisca-france/pull/1782)
 
 * Amélioration technique. 
