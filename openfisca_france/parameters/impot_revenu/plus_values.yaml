@@ -59,7 +59,7 @@ pea2:
     2012-01-01:
       value: 0.19
 pvce:
-  description: Plus value de cession (RPNS) 16%
+  description: Plus value de cession (RPNS)
   reference: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000036428314/2018-01-01/
   unit: /1
   values:
