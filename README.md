@@ -43,7 +43,7 @@ Pour les autres OS : si vous pouvez exécuter Python et Numpy, l'installation d'
 ### Installez un environnement virtuel avec Conda
 
 - Créer un environnement : `conda create --name openfisca python=3.7`
-- Activer le : `conda activate myenv`
+- Activer le : `conda activate openfisca`
 - Installer OpenFisca : `conda install -c openfisca.org openfisca-france`
 
 Se référer à la [documentation conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
