@@ -24,6 +24,7 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Config conda
+      # Add conda-forge for OpenFisca-Code
         run: |
           conda config --add channels conda-forge
           conda config --set channel_priority strict
