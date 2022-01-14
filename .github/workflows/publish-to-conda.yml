@@ -21,6 +21,8 @@ jobs:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
           channels: conda-forge
+          auto-activate-base: true
+          activate-environment: ""
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0 # Fetch all the tags
@@ -30,11 +32,12 @@ jobs:
           # conda config --add channels conda-forge
           # conda config --set channel_priority strict
           # conda activate base
+          # conda remove -y ripgrep
         run: |
-          conda install -c conda-forge conda-build anaconda-client
-          conda remove -y ripgrep
+          conda install conda-build anaconda-client
+          conda info
           mkdir ~/cb
-          conda build -c conda-forge --croot ~/cb .conda
+          conda build --croot ~/cb .conda
           anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca
       - name: Conda info
         shell: bash -l {0}
