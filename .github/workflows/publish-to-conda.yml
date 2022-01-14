@@ -25,12 +25,12 @@ jobs:
           fetch-depth: 0 # Fetch all the tags
       - name: Config conda
       # Add conda-forge for OpenFisca-Code
+          # conda init powershell
+          # conda config --add channels conda-forge
+          # conda config --set channel_priority strict
+          # conda activate base
         run: |
-          conda init powershell
-          conda config --add channels conda-forge
-          conda config --set channel_priority strict
-          conda activate base
-          conda install conda-build anaconda-client
+          conda install -c conda-forge conda-build anaconda-client
           conda remove -y ripgrep
       - name: Conda info
         shell: bash -l {0}
@@ -41,6 +41,6 @@ jobs:
       - name: build
         run: |
           mkdir ~/cb
-          conda build --croot ~/cb .conda
+          conda build -c conda-forge --croot ~/cb .conda
       - name: publish
         run: anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca
