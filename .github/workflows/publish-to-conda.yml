@@ -28,7 +28,9 @@ jobs:
         run: |
           conda config --add channels conda-forge
           conda config --set channel_priority strict
+          conda activate base
           conda install conda-build anaconda-client
+          conda remove -y ripgrep
       - name: Conda info
         shell: bash -l {0}
         run: conda info
