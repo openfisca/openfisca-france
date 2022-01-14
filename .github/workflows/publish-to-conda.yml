@@ -23,6 +23,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0 # Fetch all the tags
+      - name: Config conda
+        run: |
+          conda config --add channels conda-forge
+          conda config --set channel_priority strict
+          conda install conda-build anaconda-client
       - name: Conda info
         shell: bash -l {0}
         run: conda info
@@ -30,6 +35,8 @@ jobs:
         shell: pwsh
         run: conda list
       - name: build
-        run: conda install conda-build anaconda-client && conda build .conda
+        run: |
+        mkdir /conda-bld
+        conda build --croot /conda-bld .conda
       - name: publish
         run: anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca
