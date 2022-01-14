@@ -26,6 +26,7 @@ jobs:
       - name: Config conda
       # Add conda-forge for OpenFisca-Code
         run: |
+          conda init powershell
           conda config --add channels conda-forge
           conda config --set channel_priority strict
           conda activate base
