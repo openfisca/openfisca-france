@@ -51,13 +51,6 @@ pea:
         value: 0.16
       2012-01-01:
         value: 0.19
-pea2:
-  description: Clôture PEA ou PEA-PME entre 2 ans et 5 ans (3VT)
-  reference: openfisca
-  unit: /1
-  values:
-    2012-01-01:
-      value: 0.19
 pvce:
   description: Plus value de cession (RPNS)
   reference:
