@@ -37,7 +37,7 @@ jobs:
         run: conda list
       - name: build
         run: |
-          mkdir /conda-bld
-          conda build --croot /conda-bld .conda
+          mkdir ~/cb
+          conda build --croot ~/cb .conda
       - name: publish
         run: anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca
