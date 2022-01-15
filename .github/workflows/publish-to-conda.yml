@@ -36,6 +36,5 @@ jobs:
       - name: gcm rg
         run: gcm rg
       - name: Conda build
-        run: |
-          conda config --set anaconda_upload yes
-          # conda build --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
+        run: conda config --set anaconda_upload yes
+      # conda build --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
