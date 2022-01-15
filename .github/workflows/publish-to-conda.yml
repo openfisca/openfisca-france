@@ -39,7 +39,7 @@ jobs:
           conda info
           mkdir ~/cb
           conda config --set anaconda_upload yes
-          conda build -t ${{ secrets.ANACONDA_TOKEN }} -u openfisca --croot ~/cb .conda
+          conda build --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca --croot ~/cb .conda
       - name: Conda info
         shell: bash -l {0}
         run: conda info
