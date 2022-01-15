@@ -18,7 +18,6 @@ jobs:
         os: ["windows-latest"] # ubuntu-latest
         python-version: ["3.7"]
     steps:
-      - continue-on-error: true
       - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
@@ -32,8 +31,10 @@ jobs:
       - name: Config build
         run: conda install conda-build
       - name: rg
+        continue-on-error: true
         run: where rg
       - name: gcm rg
+        continue-on-error: true
         run: gcm rg
       - name: Conda build
         run: conda config --set anaconda_upload yes
