@@ -15,9 +15,10 @@ jobs:
       matrix:
         # , "macos-latest", "windows-latest" : Windows failed due to too long filename,
         # See https://github.com/conda-forge/staged-recipes/issues/17519
-        os: ["ubuntu-latest"]
+        os: ["windows-latest"] # ubuntu-latest
         python-version: ["3.7"]
     steps:
+      - continue-on-error: true
       - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
@@ -29,8 +30,12 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Config build
+        run: conda install conda-build
+      - name: rg
+        run: where rg
+      - name: gcm rg
+        run: gcm rg
+      - name: Conda build
         run: |
-          conda install conda-build anaconda-client
-          conda info
           conda config --set anaconda_upload yes
-          conda build --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
+          # conda build --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
