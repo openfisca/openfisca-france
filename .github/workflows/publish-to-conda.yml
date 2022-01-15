@@ -22,37 +22,15 @@ jobs:
         with:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
+          # Add conda-forge for OpenFisca-Core
           channels: conda-forge
-          #auto-activate-base: true
           activate-environment: true
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0 # Fetch all the tags
-      - name: Config conda
-      # Add conda-forge for OpenFisca-Code
-          # conda init powershell
-          # conda config --add channels conda-forge
-          # conda config --set channel_priority strict
-          # conda activate base
-          # conda remove -y ripgrep
-          # anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca
-          # mkdir ~/cb
-          # --croot ~/cb
+      - name: Config build
         run: |
           conda install conda-build anaconda-client
           conda info
-          
           conda config --set anaconda_upload yes
           conda build --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
-      - name: Conda info
-        shell: bash -l {0}
-        run: conda info
-      - name: Conda list
-        shell: pwsh
-        run: conda list
-      - name: build
-        run: |
-          mkdir ~/cb
-          conda build -c conda-forge --croot ~/cb .conda
-      - name: publish
-        run: anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca
