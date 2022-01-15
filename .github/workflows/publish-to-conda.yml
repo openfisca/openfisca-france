@@ -37,5 +37,7 @@ jobs:
         continue-on-error: true
         run: gcm rg
       - name: Conda build
-        run: conda config --set anaconda_upload yes
-      # conda build --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
+        run: |
+          conda config --set anaconda_upload yes
+          mv C:\Miniconda\envs\true\Library\bin\rg.exe C:\Miniconda\envs\true\Library\bin\rg-desactivate.exe
+          conda build --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
