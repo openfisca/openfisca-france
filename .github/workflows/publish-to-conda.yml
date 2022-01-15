@@ -33,12 +33,13 @@ jobs:
           # conda config --set channel_priority strict
           # conda activate base
           # conda remove -y ripgrep
+          # anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca
         run: |
           conda install conda-build anaconda-client
           conda info
           mkdir ~/cb
-          conda build --croot ~/cb .conda
-          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca
+          conda config --set anaconda_upload yes
+          conda build -t ${{ secrets.ANACONDA_TOKEN }} -u openfisca --croot ~/cb .conda
       - name: Conda info
         shell: bash -l {0}
         run: conda info
