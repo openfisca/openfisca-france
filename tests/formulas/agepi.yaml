@@ -4,14 +4,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: False
+      residence_mayotte: false
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
+        stagiaire: false
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -32,7 +32,7 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [True, False, False]
+    agepi_eligible: [true, false, false]
     agepi_nbenf: 1
     agepi: [170, 0, 0]
 
@@ -44,14 +44,14 @@
       personne_de_reference: Camille
       conjoint: Paul
       enfants: [Jean, Marie]
-      residence_mayotte: False
+      residence_mayotte: false
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
+        stagiaire: false
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -74,7 +74,7 @@
       declarants: [Camille, Paul]
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [False, False, False, False]
+    agepi_eligible: [false, false, false, false]
     agepi_nbenf: 1
     agepi: [0, 0, 0, 0]
 
@@ -85,14 +85,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: False
+      residence_mayotte: false
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: True
+        agepi_percue_12_derniers_mois: true
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
+        stagiaire: false
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -113,7 +113,7 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [False, False, False]
+    agepi_eligible: [false, false, false]
     agepi_nbenf: 1
     agepi: [0, 0, 0]
 
@@ -124,14 +124,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: False
+      residence_mayotte: false
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: True
+        agepi_percue_12_derniers_mois: true
         pole_emploi_categorie_demandeur_emploi: categorie_6
-        stagiaire: False
-        en_contrat_aide: False
+        stagiaire: false
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -152,7 +152,7 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [False, False, False]
+    agepi_eligible: [false, false, false]
     agepi_nbenf: 1
     agepi: [0, 0, 0]
 
@@ -163,14 +163,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: False
+      residence_mayotte: false
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_4
-        stagiaire: True
-        en_contrat_aide: False
+        stagiaire: true
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -191,7 +191,7 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [True, False, False]
+    agepi_eligible: [true, false, false]
     agepi_nbenf: 1
     agepi: [170, 0, 0]
 
@@ -202,14 +202,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: False
+      residence_mayotte: false
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_5
-        stagiaire: False
-        en_contrat_aide: True
+        stagiaire: false
+        en_contrat_aide: true
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -230,7 +230,7 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [True, False, False]
+    agepi_eligible: [true, false, false]
     agepi_nbenf: 1
     agepi: [170, 0, 0]
 
@@ -241,14 +241,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: False
+      residence_mayotte: false
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
+        stagiaire: false
+        en_contrat_aide: false
         lieu_emploi_ou_formation: non_renseigne
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -269,7 +269,7 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [False, False, False]
+    agepi_eligible: [false, false, false]
     agepi_nbenf: 1
     agepi: [0, 0, 0]
 
@@ -280,14 +280,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: False
+      residence_mayotte: false
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
+        stagiaire: false
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-02-02'
@@ -308,7 +308,7 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [False, False, False]
+    agepi_eligible: [false, false, false]
     agepi_nbenf: 1
     agepi: [0, 0, 0]
 
@@ -320,7 +320,7 @@
       menage_1:
         personne_de_reference: Camille
         enfants: [Jean, Marie]
-        residence_mayotte: False
+        residence_mayotte: false
       menage_2:
         personne_de_reference: Paul
         conjoint: Elodie
@@ -328,10 +328,10 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
+        stagiaire: false
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -367,7 +367,7 @@
         declarants: [Elodie, Paul]
         personnes_a_charge: [Aileen, Sebastien]
   output:
-    agepi_eligible: [True, False, False, False, False, False, False]
+    agepi_eligible: [true, false, false, false, false, false, false]
     agepi_nbenf: [1, 2]
     agepi: [170, 0, 0, 0, 0, 0, 0 ]
 
@@ -378,14 +378,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: False
+      residence_mayotte: false
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
+        stagiaire: false
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -406,7 +406,7 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [True, False, False]
+    agepi_eligible: [true, false, false]
     agepi_nbenf: 1
     agepi: [170, 0, 0]
 
@@ -417,14 +417,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: False
+      residence_mayotte: false
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
+        stagiaire: false
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -445,7 +445,7 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [True, False, False]
+    agepi_eligible: [true, false, false]
     agepi_nbenf: 2
     agepi: [460, 0, 0]
 
@@ -456,14 +456,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: True
+      residence_mayotte: true
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
+        stagiaire: false
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -484,7 +484,7 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [True, False, False]
+    agepi_eligible: [true, false, false]
     agepi_nbenf: 2
     agepi: [230, 0, 0]
 
@@ -495,14 +495,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: True
+      residence_mayotte: true
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_4
-        stagiaire: True
-        en_contrat_aide: False
+        stagiaire: true
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -524,7 +524,7 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [True, False, False]
+    agepi_eligible: [true, false, false]
     agepi_nbenf: 2
     agepi: [97.5, 0, 0]
 
@@ -535,14 +535,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: False
+      residence_mayotte: false
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
+        stagiaire: false
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -563,7 +563,7 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [True, False, False]
+    agepi_eligible: [true, false, false]
     agepi_nbenf: 1
     agepi: [400, 0, 0]
 
@@ -574,14 +574,14 @@
     menage:
       personne_de_reference: Camille
       enfants: [Jean, Marie]
-      residence_mayotte: True
+      residence_mayotte: true
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: False
+        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: False
-        en_contrat_aide: False
+        stagiaire: false
+        en_contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -602,6 +602,6 @@
       declarants: Camille
       personnes_a_charge: [Jean, Marie]
   output:
-    agepi_eligible: [True, False, False]
+    agepi_eligible: [true, false, false]
     agepi_nbenf: 1
     agepi: [85, 0, 0]
