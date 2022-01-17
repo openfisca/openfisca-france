@@ -1,10 +1,10 @@
 name: publish_conda
 
-on: [push]
+# on: [push]
 
-#on:
-#  release:
-#    types: [published]
+on:
+  release:
+    types: [published]
 
 jobs:
   publish-to-conda:
