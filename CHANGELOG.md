@@ -15,9 +15,19 @@ git log --oneline 500832d46fc6^..281c8b368c1bceb| grep "variable_name"
 
 # 105.0.0 [#1789](https://github.com/openfisca/openfisca-france/pull/1789)
 
-* Amélioration technique. 
+# XXX.0.1 [#1786](https://github.com/openfisca/openfisca-france/pull/1786)
+
+* Amélioration technique.
+* Périodes concernées : aucune.
+* Zones impactées : aucune.
+* Détails :
+  - Ajout de la publication vers [conda](https://anaconda.org/search?q=openfisca-france)
+
+# 103.0.0 [#1772](https://github.com/openfisca/openfisca-france/pull/1772)
+
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
 - `parameters/prestations_sociales/prestations_familiales/prestations_generales`
 - `parameters/prestations_sociales/prestations_familiales/def_biactif`
 - `parameters/prestations_sociales/prestations_familiales/def_pac`
@@ -27,7 +37,7 @@ git log --oneline 500832d46fc6^..281c8b368c1bceb| grep "variable_name"
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
-  - 
+  -
 * Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
 git log --oneline 66724eff27e8feb0^..60136e4a68e04 | grep "variable_name"
 
@@ -43,7 +53,7 @@ git log --oneline 66724eff27e8feb0^..60136e4a68e04 | grep "variable_name"
 
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 09/06/2021.
-* Zones impactées : 
+* Zones impactées :
   * model/prestations/aide_mobilite.py
   * model/prestations/agepi.py
   * model/revenus/activite/salarie.py
