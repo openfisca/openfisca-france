@@ -53,7 +53,6 @@ class agepi_percue_12_derniers_mois(Variable):
 class TypesLieuEmploiFormation(Enum):
     non_renseigne = "Non renseigné"
     metropole = "Métropole"
-    france_hors_dom_corse = "France hors DOM et hors Corse"
     guadeloupe = "Guadeloupe"
     martinique = "Martinique"
     guyane = "Guyane"
