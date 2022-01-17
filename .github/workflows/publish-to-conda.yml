@@ -29,7 +29,9 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Update meta.yaml
-        run: python3 .github/get_pypi_info.py
+        run: |
+          python3 -m pip install requests
+          python3 .github/get_pypi_info.py
       - name: Conda Config
         run: |
           conda install conda-build
