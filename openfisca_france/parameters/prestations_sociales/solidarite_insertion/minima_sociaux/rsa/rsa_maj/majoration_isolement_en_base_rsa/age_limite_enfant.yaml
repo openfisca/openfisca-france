@@ -1,0 +1,9 @@
+description: Âge limite du benjamin pour un versement sans condition de durée pour le RSA
+values:
+  1997-01-01:
+    value: 0.0
+  2009-06-01:
+    value: 3.0
+metadata:
+  ux_name: Âge limite du benjamin
+  unit: year
