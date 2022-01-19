@@ -395,7 +395,7 @@ class rsa_enfant_a_charge(Variable):
             * (age <= age_pac)
             * where(
                 ouvre_droit_majoration(),
-                ressources < (majo_rsa.femmes_enceintes - 1 + majo_rsa.pac_enf_sup) * montant_base_rsa,
+                ressources < (majo_rsa.femmes_enceintes - 1 + majo_rsa.par_enfant_a_charge) * montant_base_rsa,
                 ressources < taux_personne_supp * montant_base_rsa
                 )
             )
