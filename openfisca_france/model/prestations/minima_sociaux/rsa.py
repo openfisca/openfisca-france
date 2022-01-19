@@ -359,7 +359,7 @@ class rsa_enfant_a_charge(Variable):
             age_pac = P_rsa.rsa_cond.age_pac
             majo_rsa = P_rsa.majo_rsa
             montant_base_rsa = P_rsa.montant_de_base_du_rsa
-            taux_personne_supp = P_rsa.majoration_rsa.taux_personne_supp
+            taux_personne_supp = P_rsa.rsa_maj.majoration_rsa.taux_personne_supp
         else:
             age_pac = P_rmi.rmi_cond.age_pac
             majo_rsa = P_rmi.rmi_maj.majo_rsa
@@ -838,8 +838,8 @@ class rsa_forfait_logement(Variable):
         if period.start.date >= date(2009, 6, 1):
             params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
             montant_base = params.montant_de_base_du_rsa
-            taux_2p = 1 + params.majoration_rsa.taux_deuxieme_personne
-            taux_3p = taux_2p + params.majoration_rsa.taux_troisieme_personne
+            taux_2p = 1 + params.rsa_maj.majoration_rsa.taux_deuxieme_personne
+            taux_3p = taux_2p + params.rsa_maj.majoration_rsa.taux_troisieme_personne
             forf_logement_taux_1p = params.forfait_logement.taux_1_personne
             forf_logement_taux_2p = params.forfait_logement.taux_2_personnes * taux_2p
             forf_logement_taux_3p = params.forfait_logement.taux_3_personnes_ou_plus * taux_3p
@@ -966,11 +966,11 @@ class rsa_socle(Variable):
 
         taux = (
             1
-            + (nb_personnes >= 2) * rsa.majoration_rsa.taux_deuxieme_personne
-            + (nb_personnes >= 3) * rsa.majoration_rsa.taux_troisieme_personne
-            + (nb_personnes >= 4) * where(nb_parents == 1, rsa.majoration_rsa.taux_personne_supp, rsa.majoration_rsa.taux_troisieme_personne)
+            + (nb_personnes >= 2) * rsa.rsa_maj.majoration_rsa.taux_deuxieme_personne
+            + (nb_personnes >= 3) * rsa.rsa_maj.majoration_rsa.taux_troisieme_personne
+            + (nb_personnes >= 4) * where(nb_parents == 1, rsa.rsa_maj.majoration_rsa.taux_personne_supp, rsa.rsa_maj.majoration_rsa.taux_troisieme_personne)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
-            + max_(nb_personnes - 4, 0) * rsa.majoration_rsa.taux_personne_supp
+            + max_(nb_personnes - 4, 0) * rsa.rsa_maj.majoration_rsa.taux_personne_supp
             )
 
         socle = rsa.montant_de_base_du_rsa
