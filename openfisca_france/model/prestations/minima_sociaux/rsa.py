@@ -561,7 +561,7 @@ class rsa_montant(Variable):
         rsa_base_ressources = famille('rsa_base_ressources', period)
 
         rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-        seuil_non_versement = rsa.rsa_nv
+        seuil_non_versement = rsa.rmi_maj.rsa_nv
 
         montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + rsa.pente * rsa_revenu_activite
 
