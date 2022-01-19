@@ -4,6 +4,8 @@ values:
     value: 1.284
   2016-01-01:
     value: 1.28412
+  1997-01-01:
+    value: 0.0
 metadata:
   ux_name: Parents isolés ou femmes enceintes 
   unit: /1
