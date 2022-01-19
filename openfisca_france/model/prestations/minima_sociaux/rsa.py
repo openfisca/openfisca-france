@@ -357,12 +357,12 @@ class rsa_enfant_a_charge(Variable):
         # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
         if period.start.date >= date(2009, 6, 1):
             age_pac = P_rsa.rsa_cond.age_pac
-            majo_rsa = P_rsa.rsa_maj.majoration_montant_max_rsa
+            majo_rsa = P_rsa.rsa_maj.majoration_isolement_en_base_rsa
             montant_base_rsa = P_rsa.rsa_m.montant_de_base_du_rsa
             taux_personne_supp = P_rsa.rsa_maj.majoration_montant_max_rsa.taux_personne_supp
         else:
             age_pac = P_rmi.rmi_cond.age_pac
-            majo_rsa = P_rmi.rmi_maj.majo_rsa
+            majo_rsa = P_rmi.rmi_maj.majoration_isolement_en_base_rsa
             montant_base_rsa = P_rmi.rmi_m.rmi
             taux_personne_supp = P_rmi.rmi_maj.txps
 
