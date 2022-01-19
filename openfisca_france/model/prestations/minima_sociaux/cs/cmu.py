@@ -191,7 +191,7 @@ def forfait_logement(nbp_foyer, P, law_rsa):
     '''
     Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux
     '''
-    montant_rsa_socle = law_rsa.rmi * (
+    montant_rsa_socle = law_rsa.rmi_m.rmi * (
         1
         + law_rsa.rmi_maj.txp2 * (nbp_foyer >= 2)
         + law_rsa.rmi_maj.txp3 * (nbp_foyer >= 3)

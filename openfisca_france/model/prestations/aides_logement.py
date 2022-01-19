@@ -445,7 +445,7 @@ class aide_logement_base_ressources_patrimoine(Variable):
         famille_percoit_aah = famille.any(membres_famille_percoit_aah)
         famille_percoit_aeeh = famille('aeeh', period) > 0
 
-        seuil_valorisation = parameters(period).prestations_sociales.aides_logement.allocations_logement.autres.rsa_cond.patrimoine.seuil_valorisation
+        seuil_valorisation = parameters(period).prestations_sociales.aides_logement.allocations_logement.autres.patrimoine.seuil_valorisation
 
         return not_(est_locataire_foyer) * not_(famille_percoit_aah) * not_(famille_percoit_aeeh) * (
             (patrimoine > seuil_valorisation) * (
