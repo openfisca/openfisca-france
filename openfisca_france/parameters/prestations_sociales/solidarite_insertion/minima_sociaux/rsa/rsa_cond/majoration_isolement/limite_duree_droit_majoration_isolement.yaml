@@ -1,11 +1,11 @@
-description: Âge limite de l'enfant (en année) pour prolongation du droit à la majoration pour isolement du Revenu de solidarité active (RSA)
+description: Limite de durée du droit, Majoration pour isolement (en mois), Conditions générales du Revenu de solidarité active (RSA)
 values:
   2009-06-01:
-    value: 3.0
+    value: 18.0
 metadata:
-  ux_name: Âge limite de l'enfant
-  ipp_csv_id: rsa_maj_ageenf_max
-  unit: year
+  ux_name:  Limite de durée du droit
+  ipp_csv_id: limite_dureet_rsa
+  unit: month
   reference:
     2010-09-01:
       title: Décret 2010-961 du 25/08/2010, art. 1 (crée art. D262-25-1 du CASF)
@@ -22,4 +22,4 @@ metadata:
     2009-06-01: RSA créé par Loi 2008-1249 du 01/12/2008
   description_en: "Active solidarity income (RSA): General conditions"
 documentation: |
-  Âge limite de l'enfant pour prolongation du droit à la majoration pour isolement.
+  Limite de durée du droit par rapport au moment où le droit aurait pu être ouvert.
