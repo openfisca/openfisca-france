@@ -840,9 +840,9 @@ class rsa_forfait_logement(Variable):
             montant_base = params.montant_de_base_du_rsa
             taux_2p = 1 + params.rsa_maj.majoration_rsa.taux_deuxieme_personne
             taux_3p = taux_2p + params.rsa_maj.majoration_rsa.taux_troisieme_personne
-            forf_logement_taux_1p = params.forfait_logement.taux_1_personne
-            forf_logement_taux_2p = params.forfait_logement.taux_2_personnes * taux_2p
-            forf_logement_taux_3p = params.forfait_logement.taux_3_personnes_ou_plus * taux_3p
+            forf_logement_taux_1p = params.rsa_fl.forfait_logement.taux_1_personne
+            forf_logement_taux_2p = params.rsa_fl.forfait_logement.taux_2_personnes * taux_2p
+            forf_logement_taux_3p = params.rsa_fl.forfait_logement.taux_3_personnes_ou_plus * taux_3p
         else:
             params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
             montant_base = params.rmi

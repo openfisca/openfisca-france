@@ -394,9 +394,9 @@ class ppa_forfait_logement(Variable):
         montant_base = ppa.pa_m.montant_de_base * taux_non_majore
 
         montant_forfait = montant_base * (
-            (np_pers == 1) * params.forfait_logement.taux_1_personne
-            + (np_pers == 2) * params.forfait_logement.taux_2_personnes
-            + (np_pers >= 3) * params.forfait_logement.taux_3_personnes_ou_plus
+            (np_pers == 1) * params.rsa_fl.forfait_logement.taux_1_personne
+            + (np_pers == 2) * params.rsa_fl.forfait_logement.taux_2_personnes
+            + (np_pers >= 3) * params.rsa_fl.forfait_logement.taux_3_personnes_ou_plus
             )
 
         montant_al = avantage_al * min_(aide_logement, montant_forfait)
