@@ -111,7 +111,7 @@ class rsa_base_ressources_individu(Variable):
 
         # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
         # sans condition de revenu de substitution.
-        montant_de_base_du_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.montant_de_base_du_rsa
+        montant_de_base_du_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_m.montant_de_base_du_rsa
         montant_forfaitaire_neutralisation = 3 * montant_de_base_du_rsa
         revenus_non_pros = sum(
             max_(
@@ -350,7 +350,7 @@ class rsa_enfant_a_charge(Variable):
 
         ressources = (
             individu('rsa_base_ressources_individu', period)
-            + (1 - P_rsa.pente)
+            + (1 - P_rsa.rsa_m.pente)
             * individu('rsa_revenu_activite_individu', period)
             )
 
@@ -358,7 +358,7 @@ class rsa_enfant_a_charge(Variable):
         if period.start.date >= date(2009, 6, 1):
             age_pac = P_rsa.rsa_cond.age_pac
             majo_rsa = P_rsa.rsa_maj.majo_rsa
-            montant_base_rsa = P_rsa.montant_de_base_du_rsa
+            montant_base_rsa = P_rsa.rsa_m.montant_de_base_du_rsa
             taux_personne_supp = P_rsa.rsa_maj.majoration_rsa.taux_personne_supp
         else:
             age_pac = P_rmi.rmi_cond.age_pac
@@ -563,7 +563,7 @@ class rsa_montant(Variable):
         rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
         seuil_non_versement = rsa.rsa_maj.rsa_nv
 
-        montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + rsa.pente * rsa_revenu_activite
+        montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + rsa.rsa_m.pente * rsa_revenu_activite
 
         montant = max_(montant, 0)
         montant = montant * (montant >= seuil_non_versement)
@@ -679,9 +679,9 @@ class rsa_eligibilite(Variable):
             rsa_jeune_condition_i = False
         else:
             # Les jeunes de moins de 25 ans sont éligibles sous condition d'activité suffisante
-            # à partir de 2010 rendue ici par rsa.rsa_jeune == 1
+            # à partir de 2010 rendue ici par rsa.rsa_m.rsa_jeune == 1
             rsa_jeune_condition_i = (
-                (rsa.rsa_jeune == 1)
+                (rsa.rsa_m.rsa_jeune == 1)
                 * (age_i > rsa.rsa_cond.age_min_rsa_jeune)
                 * (age_i < rsa.rsa_cond.age_max_rsa_jeune)
                 * rsa_jeune_condition_heures_travail_remplie_i
@@ -837,7 +837,7 @@ class rsa_forfait_logement(Variable):
         # Il faudrait uniformiser, mais les taux légaux pour le RMI commencent par "1", et ne passent pas en python
         if period.start.date >= date(2009, 6, 1):
             params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-            montant_base = params.montant_de_base_du_rsa
+            montant_base = params.rsa_m.montant_de_base_du_rsa
             taux_2p = 1 + params.rsa_maj.majoration_rsa.taux_deuxieme_personne
             taux_3p = taux_2p + params.rsa_maj.majoration_rsa.taux_troisieme_personne
             forf_logement_taux_1p = params.rsa_fl.forfait_logement.taux_1_personne
@@ -973,7 +973,7 @@ class rsa_socle(Variable):
             + max_(nb_personnes - 4, 0) * rsa.rsa_maj.majoration_rsa.taux_personne_supp
             )
 
-        socle = rsa.montant_de_base_du_rsa
+        socle = rsa.rsa_m.montant_de_base_du_rsa
 
         return eligib * socle * taux
 
@@ -1012,6 +1012,6 @@ class rsa_socle_majore(Variable):
 
         rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
         taux = rsa.rsa_maj.majo_rsa.pac0 + rsa.rsa_maj.majo_rsa.pac_enf_sup * nbenf
-        socle = rsa.montant_de_base_du_rsa
+        socle = rsa.rsa_m.montant_de_base_du_rsa
 
         return eligib * socle * taux

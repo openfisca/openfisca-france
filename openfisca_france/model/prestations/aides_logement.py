@@ -1127,7 +1127,7 @@ class aide_logement_R0(Variable):
 
         n_2 = period.start.offset(-2, 'year')
         if n_2.date >= date(2009, 6, 1):
-            montant_de_base = minim_n_2.rsa.montant_de_base_du_rsa
+            montant_de_base = minim_n_2.rsa.rsa_m.montant_de_base_du_rsa
         else:
             montant_de_base = minim_n_2.rmi.rmi_m.montant_de_base_du_rmi
 

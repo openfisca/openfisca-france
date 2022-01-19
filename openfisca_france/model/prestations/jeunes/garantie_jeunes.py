@@ -35,7 +35,7 @@ class garantie_jeunes_montant(Variable):
 
     def formula_2017_01_01(individu, period, parameters):
         params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-        montant_base = params.montant_de_base_du_rsa
+        montant_base = params.rsa_m.montant_de_base_du_rsa
         taux_1_personne = params.rsa_fl.forfait_logement.taux_1_personne
         garantie_jeunes_max = montant_base * (1 - taux_1_personne)
         salaire_minimum = parameters(period).marche_travail.salaire_minimum
@@ -90,7 +90,7 @@ class garantie_jeunes_eligibilite_ressources(Variable):
     def formula_2017_01_01(individu, period, parameters):
         three_previous_months = period.last_3_months
         params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-        montant_base = params.montant_de_base_du_rsa
+        montant_base = params.rsa_m.montant_de_base_du_rsa
         taux_1_personne = params.rsa_fl.forfait_logement.taux_1_personne
         plafond_condition_ressources = montant_base * (1 - taux_1_personne)
 
