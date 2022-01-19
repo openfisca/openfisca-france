@@ -363,7 +363,7 @@ class rsa_enfant_a_charge(Variable):
         else:
             age_pac = P_rmi.rmi_cond.age_pac
             majo_rsa = P_rmi.majo_rsa
-            montant_base_rsa = P_rmi.rmi
+            montant_base_rsa = P_rmi.rmi_m.rmi
             taux_personne_supp = P_rmi.txps
 
         # Règle CAF: Si un enfant touche des ressources, et que son impact global
@@ -994,7 +994,7 @@ class rsa_socle(Variable):
             + max_(nb_personnes - 4, 0) * rmi.txps
             )
 
-        socle = rmi.rmi
+        socle = rmi.rmi_m.rmi
 
         return eligib * socle * taux
 

@@ -1129,7 +1129,7 @@ class aide_logement_R0(Variable):
         if n_2.date >= date(2009, 6, 1):
             montant_de_base = minim_n_2.rsa.montant_de_base_du_rsa
         else:
-            montant_de_base = minim_n_2.rmi.montant_de_base_du_rmi
+            montant_de_base = minim_n_2.rmi.rmi_m.montant_de_base_du_rmi
 
         R1 = montant_de_base * (
             al.al_param_r0.r1_en_rsa_socle_1.personne_isolee * not_(couple) * (al_nb_pac == 0)
