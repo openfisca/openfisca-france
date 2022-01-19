@@ -1011,7 +1011,7 @@ class rsa_socle_majore(Variable):
         nbenf = famille('rsa_nb_enfants', period)
 
         rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-        taux = rsa.rsa_maj.majoration_isolement_en_base_rsa.femmes_enceintes + rsa.rsa_maj.majoration_montant_max_rsa.pac_enf_sup * nbenf
+        taux = rsa.rsa_maj.majoration_isolement_en_base_rsa.femmes_enceintes + rsa.rsa_maj.majoration_isolement_en_base_rsa.par_enfant_a_charge * nbenf
         socle = rsa.rsa_m.montant_de_base_du_rsa
 
         return eligib * socle * taux
