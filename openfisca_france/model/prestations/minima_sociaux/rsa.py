@@ -356,7 +356,7 @@ class rsa_enfant_a_charge(Variable):
 
         # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
         if period.start.date >= date(2009, 6, 1):
-            age_pac = P_rsa.age_pac
+            age_pac = P_rsa.rsa_cond.age_pac
             majo_rsa = P_rsa.majo_rsa
             montant_base_rsa = P_rsa.montant_de_base_du_rsa
             taux_personne_supp = P_rsa.majoration_rsa.taux_personne_supp
@@ -639,7 +639,7 @@ class rsa_condition_nationalite(Variable):
         ressortissant_eee = individu('ressortissant_eee', period)
 
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
-        duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.duree_min_titre_sejour
+        duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_cond.duree_min_titre_sejour
 
         eligibilite_eee_suisse = (ressortissant_eee + ressortissant_suisse) * duree_possession_titre_sejour >= duree_min_titre_sejour.eee
         eligibilite_non_eee = not_(ressortissant_eee) * duree_possession_titre_sejour >= duree_min_titre_sejour.non_eee
@@ -682,13 +682,13 @@ class rsa_eligibilite(Variable):
             # à partir de 2010 rendue ici par rsa.rsa_jeune == 1
             rsa_jeune_condition_i = (
                 (rsa.rsa_jeune == 1)
-                * (age_i > rsa.age_min_rsa_jeune)
-                * (age_i < rsa.age_max_rsa_jeune)
+                * (age_i > rsa.rsa_cond.age_min_rsa_jeune)
+                * (age_i < rsa.rsa_cond.age_max_rsa_jeune)
                 * rsa_jeune_condition_heures_travail_remplie_i
                 )
 
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
-        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
+        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.rsa_cond.age_pac)
 
         return (
             famille.any((condition_age_i | rsa_jeune_condition_i) * not_(etudiant_i), role = Famille.PARENT)
