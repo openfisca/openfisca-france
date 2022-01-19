@@ -164,7 +164,7 @@ class rsa_base_ressources_individu(Variable):
 
         # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
         # sans condition de revenu de substitution.
-        neutral_max_forfaitaire = 3 * parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi.rmi
+        neutral_max_forfaitaire = 3 * parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi.rmi_m.rmi
 
         revenus_non_pros = sum(
             max_(
