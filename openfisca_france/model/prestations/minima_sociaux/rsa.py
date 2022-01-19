@@ -364,7 +364,7 @@ class rsa_enfant_a_charge(Variable):
             age_pac = P_rmi.rmi_cond.age_pac
             majo_rsa = P_rmi.rmi_maj.majo_rsa
             montant_base_rsa = P_rmi.rmi_m.rmi
-            taux_personne_supp = P_rmi.txps
+            taux_personne_supp = P_rmi.rmi_maj.txps
 
         # Règle CAF: Si un enfant touche des ressources, et que son impact global
         # (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors
@@ -987,11 +987,11 @@ class rsa_socle(Variable):
         rmi = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
         taux = (
             1
-            + (nb_personnes >= 2) * rmi.txp2
-            + (nb_personnes >= 3) * rmi.txp3
-            + (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3)
+            + (nb_personnes >= 2) * rmi.rmi_maj.txp2
+            + (nb_personnes >= 3) * rmi.rmi_maj.txp3
+            + (nb_personnes >= 4) * where(nb_parents == 1, rmi.rmi_maj.txps, rmi.rmi_maj.txp3)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
-            + max_(nb_personnes - 4, 0) * rmi.txps
+            + max_(nb_personnes - 4, 0) * rmi.rmi_maj.txps
             )
 
         socle = rmi.rmi_m.rmi

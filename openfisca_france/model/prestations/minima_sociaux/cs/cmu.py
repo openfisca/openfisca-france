@@ -193,8 +193,8 @@ def forfait_logement(nbp_foyer, P, law_rsa):
     '''
     montant_rsa_socle = law_rsa.rmi * (
         1
-        + law_rsa.txp2 * (nbp_foyer >= 2)
-        + law_rsa.txp3 * (nbp_foyer >= 3)
+        + law_rsa.rmi_maj.txp2 * (nbp_foyer >= 2)
+        + law_rsa.rmi_maj.txp3 * (nbp_foyer >= 3)
         )
 
     return 12 * montant_rsa_socle * select(
