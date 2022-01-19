@@ -1,0 +1,7 @@
+description: Montant pour les personnes isolées (en % de la base) du Revenu de solidarité active (RSA)
+metadata:
+  ux_name: Montant pour les personnes isolées
+  order:
+  - parents_isoles_2_femmes_enceintes
+  - par_enfant_charge
+  description_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
