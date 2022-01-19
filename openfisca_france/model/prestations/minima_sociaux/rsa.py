@@ -803,7 +803,7 @@ class rsa_forfait_asf(Variable):
 
         asf_verse = famille('asf', period)
         montant_verse_par_enfant = prestations_familiales.bmaf.bmaf * prestations_familiales.education_presence_parentale.asf.taux_1_parent
-        montant_retenu_rsa_par_enfant = prestations_familiales.bmaf.bmaf * minima_sociaux.rmi.forfait_asf.taux1
+        montant_retenu_rsa_par_enfant = prestations_familiales.bmaf.bmaf * minima_sociaux.rmi.rmi_maj.forfait_asf.taux1
 
         asf_retenue = asf_verse * (montant_retenu_rsa_par_enfant / montant_verse_par_enfant)
 
