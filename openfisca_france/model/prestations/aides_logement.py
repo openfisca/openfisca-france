@@ -432,7 +432,7 @@ class aide_logement_base_ressources_patrimoine(Variable):
         valeur_locative_terrains_non_loues = famille.sum(valeur_locative_terrains_non_loues_i)
 
         # Les abatements sont les mêmes que pour le RSA
-        abattements = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.patrimoine
+        abattements = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_cond.patrimoine
 
         capitaux_non_productifs = livret_a + epargne_revenus_non_imposables
         foncier = valeur_patrimoine_loue + valeur_immo_non_loue + valeur_terrains_non_loues
@@ -445,7 +445,7 @@ class aide_logement_base_ressources_patrimoine(Variable):
         famille_percoit_aah = famille.any(membres_famille_percoit_aah)
         famille_percoit_aeeh = famille('aeeh', period) > 0
 
-        seuil_valorisation = parameters(period).prestations_sociales.aides_logement.allocations_logement.autres.patrimoine.seuil_valorisation
+        seuil_valorisation = parameters(period).prestations_sociales.aides_logement.allocations_logement.autres.rsa_cond.patrimoine.seuil_valorisation
 
         return not_(est_locataire_foyer) * not_(famille_percoit_aah) * not_(famille_percoit_aeeh) * (
             (patrimoine > seuil_valorisation) * (
