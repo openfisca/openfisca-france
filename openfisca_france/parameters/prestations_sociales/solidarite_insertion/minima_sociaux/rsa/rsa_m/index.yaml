@@ -1,0 +1,6 @@
+description: Montant de base du Revenu de solidarité active (RSA)
+metadata:
+  ux_name: Montant de base
+  order:
+  - montant_de_base_du_rsa
+  description_en: "Active solidarity income (RSA): Basic amount"

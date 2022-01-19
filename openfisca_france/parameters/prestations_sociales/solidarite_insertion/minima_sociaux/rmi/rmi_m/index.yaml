@@ -3,4 +3,4 @@ metadata:
   ux_name: Montant de base
   order:
   - montant_de_base_du_rmi
-  description_en: "Minimum insertion income (RMI): General conditions"
+  description_en: "Minimum insertion income (RMI): Basic amount"
