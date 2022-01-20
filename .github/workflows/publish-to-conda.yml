@@ -30,8 +30,8 @@ jobs:
           fetch-depth: 0 # Fetch all the tags
       - name: Update meta.yaml
         run: |
-          python3 -m pip install requests
-          python3 .github/get_pypi_info.py
+          python3 -m pip install requests argparse
+          python3 .github/get_pypi_info.py -p OpenFisca-France
       - name: Conda Config
         run: |
           conda install conda-build anaconda-client

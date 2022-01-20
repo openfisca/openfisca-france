@@ -1,3 +1,4 @@
+import argparse
 import requests
 
 
@@ -7,6 +8,8 @@ def get_info(package_name: str = "") -> dict:
     ::package_name:: Name of package to get infos from.
     ::return:: A dict with last_version, url and sha256
     """
+    if package_name == "":
+        raise ValueError("Package name not provided.")
     resp = requests.get(f"https://pypi.org/pypi/{package_name}/json").json()
     version = resp["info"]["version"]
     # print(resp["releases"][version][0])
@@ -21,8 +24,8 @@ def get_info(package_name: str = "") -> dict:
 
 def replace_in_file(filepath: str, info: dict):
     '''
-    ::filepath:: Chemin vers le fichier meta.yaml, contenant le nom de fichier
-    ::info:: Dictionnaire contenant les informations à renseigner
+    ::filepath:: Path to meta.yaml, with filename
+    ::info:: Dict with information to populate
     '''
     with open(filepath, "rt") as fin:
         meta = fin.read()
@@ -34,7 +37,11 @@ def replace_in_file(filepath: str, info: dict):
         fout.write(meta)
     print(f"File {filepath} writen.")  # noqa: T001
 
-
-info = get_info("OpenFisca-France")
-print("Information sur le dernier package PyPi:", info)  # noqa: T001
-replace_in_file(".conda/meta.yaml", info)
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--package", type=str, default="", required=True, help="The name of the package")
+    parser.add_argument("-f", "--filename", type=str, default=".conda/meta.yaml",help="Path to meta.yaml, with filename")
+    args = parser.parse_args()
+    info = get_info(args.package)
+    print("Information of the last published PyPi package :", info)  # noqa: T001
+    replace_in_file(args.filename, info)
