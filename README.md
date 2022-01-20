@@ -169,7 +169,8 @@ Ceci vous permet d'obtenir en une seule installation :
 - Le gestionnaire de paquets [Anaconda.org](https://docs.anaconda.com/anacondaorg/user-guide/)
 - Le gestionnaire d'environnement Python virtuel : [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 
-Voici les étapes à suivre
+Voici les étapes à suivre : 
+
 - Installer la version communautaire/gratuite en suivant la procédure décrite sur [le site Anaconda](https://www.anaconda.com/products/individual). A noter que Anaconda occupe beaucoup d'espace disque (>2 Go), vous pouvez installer à la place [Miniconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html) qui occupe beaucoup moins d'espace disque.
 - Depuis le menu démarrer, exécuter `Anaconda Powershell Prompt`.
 - Exécuter les commandes suivantes dans le shell:
