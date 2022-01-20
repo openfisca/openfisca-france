@@ -231,7 +231,7 @@ jobs:
 
   test-on-windows:
     runs-on: "windows-latest"
-    needs: [ publish-to-conda ]
+    needs: [ build ]  # Remettre publish-to-conda
     strategy:
       fail-fast: false
     steps:
