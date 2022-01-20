@@ -13,7 +13,7 @@ def get_info(package_name: str = "") -> dict:
     resp = requests.get(f"https://pypi.org/pypi/{package_name}/json").json()
     version = resp["info"]["version"]
     for v in resp["releases"][version]:
-        if v["packagetype"] == "sdist":
+        if v["packagetype"] == "sdist":  # for .tag.gz
             return {
                 "last_version": version,
                 "url": v["url"],
