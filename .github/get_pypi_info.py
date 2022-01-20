@@ -37,10 +37,11 @@ def replace_in_file(filepath: str, info: dict):
         fout.write(meta)
     print(f"File {filepath} writen.")  # noqa: T001
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--package", type=str, default="", required=True, help="The name of the package")
-    parser.add_argument("-f", "--filename", type=str, default=".conda/meta.yaml",help="Path to meta.yaml, with filename")
+    parser.add_argument("-f", "--filename", type=str, default=".conda/meta.yaml", help="Path to meta.yaml, with filename")
     args = parser.parse_args()
     info = get_info(args.package)
     print("Information of the last published PyPi package :", info)  # noqa: T001
