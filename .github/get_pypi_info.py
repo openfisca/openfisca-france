@@ -12,7 +12,6 @@ def get_info(package_name: str = "") -> dict:
         raise ValueError("Package name not provided.")
     resp = requests.get(f"https://pypi.org/pypi/{package_name}/json").json()
     version = resp["info"]["version"]
-    # print(resp["releases"][version][0])
     for v in resp["releases"][version]:
         if v["packagetype"] == "sdist":
             return {
