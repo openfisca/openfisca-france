@@ -4,7 +4,11 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        python-version: ["3.7.12", "3.8", "3.9"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -17,10 +21,10 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}
           restore-keys: |  # in case of a cache miss (systematically unless the same commit is built repeatedly), the keys below will be used to restore dependencies from previous builds, and the cache will be stored at the end of the job, making up-to-date dependencies available for all jobs of the workflow; see more at https://docs.github.com/en/actions/advanced-guides/caching-dependencies-to-speed-up-workflows#example-using-the-cache-action
-            build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}
-            build-${{ env.pythonLocation }}-
+            build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ matrix.os }}
+            build-${{ env.pythonLocation }}-${{ matrix.os }}
       - name: Build package
         run: make build
       - name: Cache release
@@ -55,7 +59,7 @@ jobs:
         run: "${GITHUB_WORKSPACE}/.github/lint-changed-yaml-tests.sh"
 
   test-python:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     needs: [ build ]
     strategy:
       fail-fast: false
@@ -197,19 +201,16 @@ jobs:
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
 
   publish-to-conda:
-    name: publish-to-conda (${{ matrix.python-version }}, ${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+    name: publish-to-conda
+    runs-on: "ubuntu-latest"
     needs: [ deploy ]
     strategy:
       fail-fast: false
-      matrix:
-        os: ["ubuntu-latest"]
-        python-version: ["3.7"]
     steps:
       - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.7"
           # Add conda-forge for OpenFisca-Core
           channels: conda-forge
           activate-environment: true
