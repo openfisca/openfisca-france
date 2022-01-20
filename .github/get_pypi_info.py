@@ -34,7 +34,7 @@ def replace_in_file(filepath: str, info: dict):
     meta = meta.replace("PYPI_SHA256", info["sha256"])
     with open(filepath, "wt") as fout:
         fout.write(meta)
-    print(f"File {filepath} writen.")  # noqa: T001
+    print(f"File {filepath} has been updated with informations from PyPi.")  # noqa: T001
 
 
 if __name__ == '__main__':
