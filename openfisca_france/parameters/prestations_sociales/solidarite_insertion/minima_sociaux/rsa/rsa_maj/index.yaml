@@ -2,7 +2,7 @@ description: Revenu de solidarité active (RSA,  majorations (montant de base et
 metadata:
   ux_name: Majorations et montant minimum
   order:
-  - majoration_rsa
+  - majoration_montant_max_rsa
   - majoration_isolement_en_base_rsa
   - majoration_ressources_revenus_activite
   - montant_minimum_verse
