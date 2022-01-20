@@ -190,3 +190,37 @@ jobs:
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
+
+  publish-to-conda:
+    name: publish-to-conda (${{ matrix.python-version }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    needs: [ deploy ]
+    strategy:
+      fail-fast: false
+      matrix:
+        # ,  "windows-latest" : Windows failed due to too long filename,
+        # See https://github.com/conda-forge/staged-recipes/issues/17519
+        os: ["ubuntu-latest"] # "macos-latest", ubuntu-latest
+        python-version: ["3.7"]
+    steps:
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: ${{ matrix.python-version }}
+          # Add conda-forge for OpenFisca-Core
+          channels: conda-forge
+          activate-environment: true
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Fetch all the tags
+      - name: Update meta.yaml
+        run: |
+          python3 -m pip install requests argparse
+          python3 .github/get_pypi_info.py -p OpenFisca-France
+      - name: Conda Config
+        run: |
+          conda install conda-build anaconda-client
+          conda info
+          conda config --set anaconda_upload yes
+      - name: Conda build
+        run: conda build --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
