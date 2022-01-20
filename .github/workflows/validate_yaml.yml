@@ -1,9 +1,10 @@
 name: Validate YAML
 
 on:
-  - pull_request
-  - push
-  - workflow_dispatch
+  push:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
   validate_yaml:
