@@ -136,11 +136,11 @@ class lieu_emploi_ou_formation(Variable):
             )
 
 
-class date_debut_type_activite_en_recherche_emploi(Variable):
+class date_debut_recherche_emploi(Variable):
     value_type = date
-    default_value = date(2021, 6, 9)
+    default_value = date(1, 1, 1)
     entity = Individu
-    label = "Date de début d'une activité en recherche d'emploi (exemple : entretien d'emauche, concours public, examen certifiant)"
+    label = "Date de début d'une activité en recherche d'emploi selon Pôle Emploi (exemple : entretien d'emauche, concours public, examen certifiant)"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
@@ -363,7 +363,7 @@ class aide_mobilite_eligible(Variable):
         #  1
         contexte = individu('contexte_activite_pole_emploi', period)
         contrat_travail_debut = individu('contrat_de_travail_debut', period)
-        date_debut_type_activite_recherche_emploi = individu('date_debut_type_activite_en_recherche_emploi', period)
+        date_debut_type_activite_recherche_emploi = individu('date_debut_recherche_emploi', period)
         contrat_de_travail_debut_en_mois = contrat_travail_debut.astype('M8[M]')
         amob_date_de_demande = individu("aide_mobilite_date_demande", period)
 
