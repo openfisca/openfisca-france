@@ -846,9 +846,9 @@ class rsa_forfait_logement(Variable):
         else:
             params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
             montant_base = params.rmi_m.rmi
-            forf_logement_taux_1p = params.rmi_fl.forfait_logement.taux1
-            forf_logement_taux_2p = params.rmi_fl.forfait_logement.taux2
-            forf_logement_taux_3p = params.rmi_fl.forfait_logement.taux3
+            forf_logement_taux_1p = params.rmi_fl.forfait_logement.taux_1_personne
+            forf_logement_taux_2p = params.rmi_fl.forfait_logement.taux_2_personnes
+            forf_logement_taux_3p = params.rmi_fl.forfait_logement.taux_3_personnes_ou_plus
 
         montant_forfait = montant_base * (
             (np_pers == 1) * forf_logement_taux_1p
