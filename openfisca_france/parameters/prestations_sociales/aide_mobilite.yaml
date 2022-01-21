@@ -62,5 +62,11 @@ duree_de_formation_minimum:
   description: La durée de formation doit être d'au minimum 40 heures.
   reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
   values:
-    2014-01-20:
+    2021-06-08:
       value: 40
+duree_de_contrat_minimum:
+  description: La durée de contrat doit être supérieure ou égale à 3 mois.
+  reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
+  values:
+    2021-06-08:
+      value: 3

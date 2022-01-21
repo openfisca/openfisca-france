@@ -40,7 +40,7 @@ class pole_emploi_categorie_demandeur_emploi(Variable):
     reference = [
         "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-n2016-33-du-6-octobr.html?type=dossiers/2016/bope-n2016-80-du-17-novembre-201#",
         "Annexe 3 : la fiche 3 - Les effets de l’inscription"
-        ]
+    ]
     value_type = Enum
     possible_values = TypesCategoriesDemandeurEmploi
     default_value = TypesCategoriesDemandeurEmploi.pas_de_categorie
@@ -314,9 +314,9 @@ class aide_mobilite_allocations_eligibles(Variable):
         hors_mayotte = not_(mayotte)
 
         allocation_individu = individu('allocation_retour_emploi', period)
-
-        allocation_minimale_hors_mayotte = parameters(period).chomage.allocation_retour_emploi.montant_minimum * hors_mayotte
-        allocation_minimale_mayotte = parameters(period).chomage.allocation_retour_emploi.montant_minimum_mayotte * mayotte
+        allocations = parameters(period).chomage.allocation_retour_emploi
+        allocation_minimale_hors_mayotte = allocations.montant_minimum * hors_mayotte
+        allocation_minimale_mayotte = allocations.montant_minimum_mayotte * mayotte
 
         allocation_minimale_en_fonction_de_la_region = allocation_minimale_hors_mayotte + allocation_minimale_mayotte
 
@@ -360,12 +360,12 @@ class aide_mobilite_eligible(Variable):
         date_debut_type_activite_recherche_emploi = individu('date_debut_recherche_emploi', period)
         contrat_de_travail_debut_en_mois = contrat_travail_debut.astype('M8[M]')
         amob_date_de_demande = individu("aide_mobilite_date_demande", period)
-
+        parametres_amob = parameters(period).prestations_sociales.aide_mobilite
         date_contrat_limite_contexte_formation_reprise = min_((contrat_de_travail_debut_en_mois + 1) + (contrat_travail_debut - contrat_de_travail_debut_en_mois),
                                                (contrat_de_travail_debut_en_mois + 2) - timedelta64(1, 'D'))
         dates_demandes_amob_eligibles_formation_reprise = amob_date_de_demande <= date_contrat_limite_contexte_formation_reprise
 
-        date_limite_contrat_contexte_recherche = date_debut_type_activite_recherche_emploi + (parameters(period).prestations_sociales.aide_mobilite.delai_max - 1)  # 7 jours de date à date
+        date_limite_contrat_contexte_recherche = date_debut_type_activite_recherche_emploi + (parametres_amob.delai_max - 1)  # 7 jours de date à date
         dates_demandes_amob_eligibles_recherche = amob_date_de_demande <= date_limite_contrat_contexte_recherche
 
         en_recherche_emploi = contexte == ContexteActivitePoleEmploi.recherche_emploi
@@ -394,10 +394,10 @@ class aide_mobilite_eligible(Variable):
 
         #  La formation doit être supérieure ou égale à 40 heures
         duree_formation = individu('duree_formation', period)
-        periode_formation_eligible = duree_formation >= parameters(period).prestations_sociales.aide_mobilite.duree_de_formation_minimum
+        periode_formation_eligible = duree_formation >= parametres_amob.duree_de_formation_minimum
 
         #  Le durée de contrat de l'emploi doit être d'au moins 3 mois
-        duree_de_contrat_3_mois_minimum = individu('contrat_de_travail_duree', period) >= 3
+        duree_de_contrat_3_mois_minimum = individu('contrat_de_travail_duree', period) >= parametres_amob.duree_de_contrat_minimum
 
         reprises_cdd_ctt_eligibles = reprises_types_activites_cdd_ctt * duree_de_contrat_3_mois_minimum
 
@@ -424,15 +424,12 @@ class aide_mobilite_eligible(Variable):
         temps_de_trajet = individu('aide_mobilite_duree_trajet', period)
         distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
 
-        amob_parametres = parameters(period).prestations_sociales.aide_mobilite
-        distance_minimum_en_metropole = amob_parametres.distance_minimum.metropole
-        distance_minimum_hors_metropole = amob_parametres.distance_minimum.hors_metropole
-        temps_de_trajet_min = amob_parametres.duree_trajet_minimum
+        temps_de_trajet_min = parametres_amob.duree_trajet_minimum
         reside_en_metropole = lieu_de_residence == TypesLieuResidence.metropole
         residence_renseignee = not_(lieu_de_residence == TypesLieuResidence.non_renseigne)
 
-        distances_et_durees_aller_retour_eligibles = (((distance_aller_retour > distance_minimum_en_metropole) * reside_en_metropole)
-                                                    + ((distance_aller_retour > distance_minimum_hors_metropole) * (not_(reside_en_metropole) * residence_renseignee))
+        distances_et_durees_aller_retour_eligibles = (((distance_aller_retour > parametres_amob.distance_minimum.metropole) * reside_en_metropole)
+                                                    + ((distance_aller_retour > parametres_amob.distance_minimum.hors_metropole) * (not_(reside_en_metropole) * residence_renseignee))
                                                     + ((temps_de_trajet > temps_de_trajet_min) * residence_renseignee))
 
         #  7
@@ -461,14 +458,15 @@ class aide_mobilite(Variable):
     def formula_2021_06_09(individu, period, parameters):
 
         eligibilite_amob = individu('aide_mobilite_eligible', period)
-        montant_max = parameters(period).prestations_sociales.aide_mobilite.montants.maximum
+        parametres_amob = parameters(period).prestations_sociales.aide_mobilite
+        montant_max = parametres_amob.montants.maximum
         montant_amob_deja_percu = min_(montant_max, fabs(individu('aide_mobilite_montant_percu_12_derniers_mois', period)))
         distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
         nb_aller_retour = individu('nombre_allers_retours', period)
         nb_nuitees = individu('nuitees', period)
         nb_repas = individu('repas', period)
 
-        montant = parameters(period).prestations_sociales.aide_mobilite.montants
+        montant = parametres_amob.montants
 
         montants_frais_deplacement = montant.deplacement * distance_aller_retour * nb_aller_retour
         montants_frais_hebergement = montant.hebergement * nb_nuitees
