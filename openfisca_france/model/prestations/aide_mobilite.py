@@ -6,7 +6,7 @@ from numpy import fabs, timedelta64
 
 class aide_mobilite_date_demande(Variable):
     value_type = date
-    default_value = date(1870, 1, 1)
+    default_value = date(2021, 6, 9)
     entity = Individu
     label = "Date de demande d'évaluation à l'éligibilité de l'aide à la mobilité (AMOB) - (date du fait générateur)"
     definition_period = MONTH
@@ -106,7 +106,7 @@ class lieu_emploi_ou_formation(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def formula(individu, period, parameters):
+    def formula_2021_06_09(individu, period):
         return select(
             [
                 individu('lieu_emploi_formation_metropole', period),
@@ -138,7 +138,7 @@ class lieu_emploi_ou_formation(Variable):
 
 class date_debut_type_activite_en_recherche_emploi(Variable):
     value_type = date
-    default_value = date(1870, 1, 1)
+    default_value = date(2021, 6, 9)
     entity = Individu
     label = "Date de début d'une activité en recherche d'emploi (exemple : entretien d'emauche, concours public, examen certifiant)"
     definition_period = MONTH
