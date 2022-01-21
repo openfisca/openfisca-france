@@ -273,9 +273,7 @@ class aide_mobilite_categories_demandeur_emploi_eligibles(Variable):
     label = "Le demandeur d'emploi appartient à une catégorie éligible pour l'aide à la mobilité - AMOB"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = [
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
-        ]
+    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
 
     def formula_2021_06_09(individu, period, parameters):
 
@@ -307,9 +305,7 @@ class aide_mobilite_allocations_eligibles(Variable):
     label = "Le demandeur d'emploi touche un montant d'allocation éligible pour l'aide à la mobilité - AMOB"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = [
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
-        ]
+    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
 
     def formula_2021_06_09(individu, period, parameters):
         epsilon = 0.0001
@@ -336,9 +332,7 @@ class aide_mobilite_eligible(Variable):
     label = "Eligibilité à l'aide à la mobilité de Pôle Emploi - AMOB"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = [
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
-        ]
+    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
     documentation = '''
         1- L'individu doit être dans un contexte de recherche d'emploi, reprise d'emploi ou d'entrée en formation
             1.1 - Pour une formation ou une reprise d'emploi, la demande doit être faite au plus tard dans le mois suivant
@@ -462,9 +456,7 @@ class aide_mobilite(Variable):
     label = "Calcul du montant de l'aide à la mobilité - AMOB"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = [
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
-        ]
+    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
 
     def formula_2021_06_09(individu, period, parameters):
 
@@ -496,9 +488,7 @@ class aide_mobilite_bon_de_transport(Variable):
     label = "Attribution d'un bon de transport dans un contexte précis - AMOB"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = [
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
-        ]
+    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
 
     def formula_2021_06_09(individu, period):
 
