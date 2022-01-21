@@ -357,12 +357,14 @@ class rsa_enfant_a_charge(Variable):
         # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
         if period.start.date >= date(2009, 6, 1):
             age_pac = P_rsa.rsa_cond.age_pac
-            majo_rsa = P_rsa.rsa_maj.majoration_isolement_en_base_rsa
+            majo_rsa_femmes_enceintes = P_rsa.rsa_maj.majoration_isolement_en_base_rsa.femmes_enceintes
+            majo_rsa_par_enfant_a_charge = P_rsa.rsa_maj.majoration_isolement_en_base_rsa.par_enfant_a_charge
             montant_base_rsa = P_rsa.rsa_m.montant_de_base_du_rsa
             taux_personne_supp = P_rsa.rsa_maj.maj_montant_max.par_enfant_supplementaire
         else:
             age_pac = P_rmi.rmi_cond.age_pac
-            majo_rsa = P_rmi.rmi_maj.majoration_isolement_en_base_rsa
+            majo_rsa_femmes_enceintes = 0
+            majo_rsa_par_enfant_a_charge = 0
             montant_base_rsa = P_rmi.rmi_m.rmi
             taux_personne_supp = P_rmi.rmi_maj.maj_montant_max.par_enfant_supplementaire
 
@@ -395,7 +397,7 @@ class rsa_enfant_a_charge(Variable):
             * (age <= age_pac)
             * where(
                 ouvre_droit_majoration(),
-                ressources < (majo_rsa.femmes_enceintes - 1 + majo_rsa.par_enfant_a_charge) * montant_base_rsa,
+                ressources < (majo_rsa_femmes_enceintes - 1 + majo_rsa_par_enfant_a_charge) * montant_base_rsa,
                 ressources < taux_personne_supp * montant_base_rsa
                 )
             )
