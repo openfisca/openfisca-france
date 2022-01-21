@@ -4996,7 +4996,7 @@ statut_marital == TypesStatutMarital.celibataire
 Sinon, importez-le dans votre formule avec l'attribut `possible_values` de la variable qui le calcule :
 
 ```py
-TypesContratDeTravailType = contrat_de_travail_type.possible_values
+TypesContratDeTravailType = contrat_de_travail_duree.possible_values
 contrat_travail == TypesContratDeTravailType.cdi
 ```
 #### Effets sur la Web API
