@@ -40,7 +40,7 @@ class pole_emploi_categorie_demandeur_emploi(Variable):
     reference = [
         "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-n2016-33-du-6-octobr.html?type=dossiers/2016/bope-n2016-80-du-17-novembre-201#",
         "Annexe 3 : la fiche 3 - Les effets de l’inscription"
-    ]
+        ]
     value_type = Enum
     possible_values = TypesCategoriesDemandeurEmploi
     default_value = TypesCategoriesDemandeurEmploi.pas_de_categorie
