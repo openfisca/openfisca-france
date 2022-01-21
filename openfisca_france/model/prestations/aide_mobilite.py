@@ -372,7 +372,7 @@ class aide_mobilite_eligible(Variable):
                                                (contrat_de_travail_debut_en_mois + 2) - np.timedelta64(1, 'D'))
         dates_demandes_amob_eligibles_formation_reprise = amob_date_de_demande <= date_contrat_limite_contexte_formation_reprise
 
-        date_limite_contrat_contexte_recherche = date_debut_type_activite_recherche_emploi + (parameters(period).prestations_sociales.amob.delai_max - 1)  # 7 jours de date à date
+        date_limite_contrat_contexte_recherche = date_debut_type_activite_recherche_emploi + (parameters(period).prestations_sociales.aide_mobilite.delai_max - 1)  # 7 jours de date à date
         dates_demandes_amob_eligibles_recherche = amob_date_de_demande <= date_limite_contrat_contexte_recherche
 
         en_recherche_emploi = contexte == ContexteActivitePoleEmploi.recherche_emploi
@@ -401,7 +401,7 @@ class aide_mobilite_eligible(Variable):
 
         #  La formation doit être supérieure ou égale à 40 heures
         duree_formation = individu('duree_formation', period)
-        periode_formation_eligible = duree_formation >= parameters(period).prestations_sociales.amob.duree_de_formation_minimum
+        periode_formation_eligible = duree_formation >= parameters(period).prestations_sociales.aide_mobilite.duree_de_formation_minimum
 
         #  Le durée de contrat de l'emploi doit être d'au moins 3 mois
         duree_de_contrat_3_mois_minimum = individu('contrat_de_travail_duree', period) >= 3
@@ -431,7 +431,7 @@ class aide_mobilite_eligible(Variable):
         temps_de_trajet = individu('aide_mobilite_duree_trajet', period)
         distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
 
-        amob_parametres = parameters(period).prestations_sociales.amob
+        amob_parametres = parameters(period).prestations_sociales.aide_mobilite
         distance_minimum_en_metropole = amob_parametres.distance_minimum.metropole
         distance_minimum_hors_metropole = amob_parametres.distance_minimum.hors_metropole
         temps_de_trajet_min = amob_parametres.duree_trajet_minimum
@@ -470,14 +470,14 @@ class aide_mobilite(Variable):
     def formula_2021_06_09(individu, period, parameters):
 
         eligibilite_amob = individu('aide_mobilite_eligible', period)
-        montant_max = parameters(period).prestations_sociales.amob.montants.maximum
+        montant_max = parameters(period).prestations_sociales.aide_mobilite.montants.maximum
         montant_amob_deja_percu = min_(montant_max, np.fabs(individu('aide_mobilite_montant_percu_12_derniers_mois', period)))
         distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
         nb_aller_retour = individu('nombre_allers_retours', period)
         nb_nuitees = individu('nuitees', period)
         nb_repas = individu('repas', period)
 
-        montant = parameters(period).prestations_sociales.amob.montants
+        montant = parameters(period).prestations_sociales.aide_mobilite.montants
 
         montants_frais_deplacement = montant.deplacement * distance_aller_retour * nb_aller_retour
         montants_frais_hebergement = montant.hebergement * nb_nuitees
