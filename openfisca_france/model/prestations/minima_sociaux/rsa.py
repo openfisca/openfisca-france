@@ -987,7 +987,7 @@ class rsa_socle(Variable):
         rmi = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
         taux = (
             1
-            + (nb_personnes >= 2) * rmi.rmi_maj.txp2
+            + (nb_personnes >= 2) * rmi.rmi_maj.maj_montant_max.couples
             + (nb_personnes >= 3) * rmi.rmi_maj.txp3
             + (nb_personnes >= 4) * where(nb_parents == 1, rmi.rmi_maj.maj_montant_max.par_enfant_supplementaire, rmi.rmi_maj.txp3)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.

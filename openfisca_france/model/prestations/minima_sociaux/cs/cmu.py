@@ -193,7 +193,7 @@ def forfait_logement(nbp_foyer, P, law_rsa):
     '''
     montant_rsa_socle = law_rsa.rmi_m.rmi * (
         1
-        + law_rsa.rmi_maj.txp2 * (nbp_foyer >= 2)
+        + law_rsa.rmi_maj.maj_montant_max.couples * (nbp_foyer >= 2)
         + law_rsa.rmi_maj.txp3 * (nbp_foyer >= 3)
         )
 
