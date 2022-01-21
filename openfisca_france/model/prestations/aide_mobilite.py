@@ -1,8 +1,7 @@
-from openfisca_france.model.base import date
-import numpy as np
 from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, \
-    set_input_dispatch_by_period, set_input_divide_by_period, min_, select
+    set_input_dispatch_by_period, set_input_divide_by_period, min_, select, date
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
+from numpy import fabs, timedelta64
 
 
 class aide_mobilite_date_demande(Variable):
@@ -325,7 +324,7 @@ class aide_mobilite_allocations_eligibles(Variable):
 
         allocation_minimale_en_fonction_de_la_region = allocation_minimale_hors_mayotte + allocation_minimale_mayotte
 
-        are_individu_egale_are_min = np.fabs(allocation_individu - allocation_minimale_en_fonction_de_la_region) < epsilon
+        are_individu_egale_are_min = fabs(allocation_individu - allocation_minimale_en_fonction_de_la_region) < epsilon
         are_individu_inferieure_are_min = allocation_individu < allocation_minimale_en_fonction_de_la_region
 
         return are_individu_inferieure_are_min + are_individu_egale_are_min
@@ -369,7 +368,7 @@ class aide_mobilite_eligible(Variable):
         amob_date_de_demande = individu("aide_mobilite_date_demande", period)
 
         date_contrat_limite_contexte_formation_reprise = min_((contrat_de_travail_debut_en_mois + 1) + (contrat_travail_debut - contrat_de_travail_debut_en_mois),
-                                               (contrat_de_travail_debut_en_mois + 2) - np.timedelta64(1, 'D'))
+                                               (contrat_de_travail_debut_en_mois + 2) - timedelta64(1, 'D'))
         dates_demandes_amob_eligibles_formation_reprise = amob_date_de_demande <= date_contrat_limite_contexte_formation_reprise
 
         date_limite_contrat_contexte_recherche = date_debut_type_activite_recherche_emploi + (parameters(period).prestations_sociales.aide_mobilite.delai_max - 1)  # 7 jours de date à date
@@ -471,7 +470,7 @@ class aide_mobilite(Variable):
 
         eligibilite_amob = individu('aide_mobilite_eligible', period)
         montant_max = parameters(period).prestations_sociales.aide_mobilite.montants.maximum
-        montant_amob_deja_percu = min_(montant_max, np.fabs(individu('aide_mobilite_montant_percu_12_derniers_mois', period)))
+        montant_amob_deja_percu = min_(montant_max, fabs(individu('aide_mobilite_montant_percu_12_derniers_mois', period)))
         distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
         nb_aller_retour = individu('nombre_allers_retours', period)
         nb_nuitees = individu('nuitees', period)
