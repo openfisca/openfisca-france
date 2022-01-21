@@ -34,7 +34,7 @@ class cmu_forfait_logement_base(Variable):
 
         montant_rsa_socle = law_rmi_rsa.rsa_m.montant_de_base_du_rsa * (
             1
-            + law_rmi_rsa.rsa_maj.maj_montant_max.couples * (nbp_foyer >= 2)
+            + law_rmi_rsa.rsa_maj.maj_montant_max.couples_celibataire_avec_enfant * (nbp_foyer >= 2)
             + law_rmi_rsa.rsa_maj.maj_montant_max.couple_1_enfant_ou_2e_enfant * (nbp_foyer >= 3)
             )
 
@@ -75,7 +75,7 @@ class cmu_forfait_logement_al(Variable):
 
         montant_rsa_socle = law_rmi_rsa.rsa_m.montant_de_base_du_rsa * (
             1
-            + law_rmi_rsa.rsa_maj.maj_montant_max.couples * (nbp_foyer >= 2)
+            + law_rmi_rsa.rsa_maj.maj_montant_max.couples_celibataire_avec_enfant * (nbp_foyer >= 2)
             + law_rmi_rsa.rsa_maj.maj_montant_max.couple_1_enfant_ou_2e_enfant * (nbp_foyer >= 3)
             )
 
