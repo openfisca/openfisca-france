@@ -232,7 +232,7 @@ class dispositifs_formation(Variable):
     definition_period = MONTH
 
 
-class formation_validee_par_PoleEmploi(Variable):
+class formation_validee_pole_emploi(Variable):
     value_type = bool
     entity = Individu
     label = "La formation de l'individu est validée par Pôle emploi"
@@ -378,7 +378,7 @@ class aide_mobilite_eligible(Variable):
         #  2
         activite_en_recherche_emploi = individu('types_activite_en_recherche_emploi', period)
         reprises_emploi_types_activites = individu('types_contrat', period)
-        formation_validee = individu('formation_validee_par_PoleEmploi', period)
+        formation_validee = individu('formation_validee_pole_emploi', period)
         formation_financee = individu('formation_financee_ou_cofinancee', period)
 
         # Activites en recherche d'emploi

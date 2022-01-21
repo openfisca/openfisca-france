@@ -17,7 +17,7 @@
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [null, null]
     lieu_emploi_ou_formation: [metropole, martinique]
-    formation_validee_par_PoleEmploi: [null, null]
+    formation_validee_pole_emploi: [null, null]
     formation_financee_ou_cofinancee: [null, null]
     contrat_de_travail_debut: [null, null]
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
@@ -47,7 +47,7 @@
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
     lieu_emploi_ou_formation: [la_reunion, guyane]
-    formation_validee_par_PoleEmploi: [true, true]
+    formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
     contrat_de_travail_debut: ['', '']
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
@@ -76,7 +76,7 @@
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
     lieu_emploi_ou_formation: [guadeloupe, saint_martin]
-    formation_validee_par_PoleEmploi: [true, true]
+    formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
     contrat_de_travail_debut: ['', '']
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
@@ -106,7 +106,7 @@
     types_contrat: aucune_activite
     contrat_de_travail_duree: 0
     lieu_emploi_ou_formation: saint_bartelemy
-    formation_validee_par_PoleEmploi: true
+    formation_validee_pole_emploi: true
     formation_financee_ou_cofinancee: true
     contrat_de_travail_debut: ''
     date_debut_recherche_emploi: '2021-01-08'
@@ -136,7 +136,7 @@
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
     lieu_emploi_ou_formation: [mayotte, france_hors_corse]
-    formation_validee_par_PoleEmploi: [true, true]
+    formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
     contrat_de_travail_debut: ['', '']
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
@@ -166,7 +166,7 @@
     types_contrat: [aucune_activite, aucune_activite]
     contrat_de_travail_duree: [0, 0]
     lieu_emploi_ou_formation: [metropole, metropole]
-    formation_validee_par_PoleEmploi: [true, true]
+    formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
     contrat_de_travail_debut: ['', '']
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
@@ -198,7 +198,7 @@
     contrat_de_travail_duree: [0, 0, 0]
     duree_formation: [40, 40, 39]
     lieu_emploi_ou_formation: [metropole, metropole, metropole]
-    formation_validee_par_PoleEmploi: [true, true, true]
+    formation_validee_pole_emploi: [true, true, true]
     formation_financee_ou_cofinancee: [true, true, true]
     contrat_de_travail_debut: ['2021-01-08', '2021-01-08', '2021-01-15']
     date_debut_recherche_emploi: ['', '', '']
@@ -230,7 +230,7 @@
     contrat_de_travail_duree: [0, 0, 0, 0]
     duree_formation: [0, 0, 0, 0]
     lieu_emploi_ou_formation: [metropole, metropole, metropole, metropole]
-    formation_validee_par_PoleEmploi: [true, true, true, true]
+    formation_validee_pole_emploi: [true, true, true, true]
     formation_financee_ou_cofinancee: [true, true, true, true]
     contrat_de_travail_debut: ['2021-01-02', '2021-01-01', '', '']
     date_debut_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
@@ -262,7 +262,7 @@
     contrat_de_travail_duree: [0, 0, 3, 0]
     duree_formation: [40, 0, 0, 0]
     lieu_emploi_ou_formation: [metropole, metropole, metropole, metropole]
-    formation_validee_par_PoleEmploi: [true, true, true, true]
+    formation_validee_pole_emploi: [true, true, true, true]
     formation_financee_ou_cofinancee: [true, true, true, true]
     contrat_de_travail_debut: ['2021-01-01', '2021-01-01', '', '']
     date_debut_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
@@ -294,7 +294,7 @@
     contrat_de_travail_duree: [0, 0, 3, 0]
     duree_formation: [40, 0, 0, 0]
     lieu_emploi_ou_formation: [metropole, metropole, metropole, france_hors_dom_corse]
-    formation_validee_par_PoleEmploi: [true, true, true, true]
+    formation_validee_pole_emploi: [true, true, true, true]
     formation_financee_ou_cofinancee: [true, true, true, true]
     contrat_de_travail_debut: ['2021-01-01', '2021-01-01', '', '']
     date_debut_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
@@ -323,7 +323,7 @@
     types_contrat: cdi
     contrat_de_travail_duree: null
     lieu_emploi_ou_formation: guyane
-    formation_validee_par_PoleEmploi: null
+    formation_validee_pole_emploi: null
     formation_financee_ou_cofinancee: null
     contrat_de_travail_debut: '2021-01-01'
     date_debut_recherche_emploi: null
