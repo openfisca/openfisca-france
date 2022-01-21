@@ -24,12 +24,19 @@ class cmu_forfait_logement_base(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    def formula_2009_06_01(famille, period, parameters):
+        cmu_nbp_foyer = famille('cmu_nbp_foyer', period)
+        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement
+        law_rmi_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
+
+        return forfait_logement(cmu_nbp_foyer, P, law_rmi_rsa)
+    
     def formula(famille, period, parameters):
         cmu_nbp_foyer = famille('cmu_nbp_foyer', period)
         P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement
-        law_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
+        law_rmi_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
 
-        return forfait_logement(cmu_nbp_foyer, P, law_rsa)
+        return forfait_logement(cmu_nbp_foyer, P, law_rmi_rsa)
 
 
 class cmu_forfait_logement_al(Variable):
@@ -39,13 +46,21 @@ class cmu_forfait_logement_al(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    def formula_2009_06_01(famille, period, parameters):
+        nb_personnes_foyer = famille('cmu_nbp_foyer', period)
+        aide_logement = famille('aide_logement', period)
+        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement_al
+        law_rmi_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
+
+        return (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rmi_rsa))
+    
     def formula(famille, period, parameters):
         nb_personnes_foyer = famille('cmu_nbp_foyer', period)
         aide_logement = famille('aide_logement', period)
         P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement_al
-        law_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
+        law_rmi_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
 
-        return (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
+        return (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rmi_rsa))
 
 
 class cmu_nbp_foyer(Variable):
@@ -187,14 +202,14 @@ class cmu_c(Variable):
 # Helper functions
 
 
-def forfait_logement(nbp_foyer, P, law_rsa):
+def forfait_logement(nbp_foyer, P, law_rmi_rsa):
     '''
     Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux
     '''
-    montant_rsa_socle = law_rsa.rmi_m.rmi * (
+    montant_rsa_socle = law_rmi_rsa.rmi_m.rmi * (
         1
-        + law_rsa.rmi_maj.maj_montant_max.couples * (nbp_foyer >= 2)
-        + law_rsa.rmi_maj.maj_montant_max.couple_1_enfant_ou_2e_enfant * (nbp_foyer >= 3)
+        + law_rmi_rsa.rmi_maj.maj_montant_max.couples * (nbp_foyer >= 2)
+        + law_rmi_rsa.rmi_maj.maj_montant_max.couple_1_enfant_ou_2e_enfant * (nbp_foyer >= 3)
         )
 
     return 12 * montant_rsa_socle * select(
