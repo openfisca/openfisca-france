@@ -1,9 +1,9 @@
-description: Taux de Majoration montant maximal, pour Couples ou célibataire avec un enfant (en % de la base) du Revenu de solidarité active (RSA)
+description: Taux de Majoration montant maximal, pour Célibataires avec un enfant ou Couples (en % de la base) du Revenu de solidarité active (RSA)
 values:
   2009-06-01:
     value: 0.5
 metadata:
-  ux_name: Couples ou célibataire avec un enfant
+  ux_name: Célibataire avec un enfant ou Couples
   unit: /1
   ipp_csv_id: rsa_rmi_coup
   reference:
