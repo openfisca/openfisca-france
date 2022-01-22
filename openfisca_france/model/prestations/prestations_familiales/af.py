@@ -106,8 +106,8 @@ class af_base(Variable):
             * af.af_dom.taux_enfant_seul
             )
 
-        deux_enfants = (af_nbenf >= 2) * af.taux.enf2
-        plus_de_trois_enfants = max_(af_nbenf - 2, 0) * af.taux.enf3
+        deux_enfants = (af_nbenf >= 2) * af.af_cm.taux.enf2
+        plus_de_trois_enfants = max_(af_nbenf - 2, 0) * af.af_cm.taux.enf3
         taux_total = un_seul_enfant + deux_enfants + plus_de_trois_enfants
         montant_base = eligibilite * round_(af.bmaf * taux_total, 2)
         coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
@@ -331,7 +331,7 @@ class af(Variable):
 
 def plafonds_helper(famille, period, parameters, nb_enf_tot):
     af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
-    modulation = af.modulation
+    modulation = af.af_cond_ress
 
     plafond1 = (
         modulation.plafond_tranche_1_base
@@ -348,7 +348,7 @@ def plafonds_helper(famille, period, parameters, nb_enf_tot):
 
 def taux_helper(famille, period, parameters, nb_enf_tot):
     af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
-    modulation = af.modulation
+    modulation = af.af_cm.modulation
 
     base_ressources = famille('prestations_familiales_base_ressources', period)
 
