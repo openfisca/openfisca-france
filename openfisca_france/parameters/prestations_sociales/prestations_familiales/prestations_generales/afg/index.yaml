@@ -1,4 +1,5 @@
 description: Allocation pour frais de garde (AFG, 1976-1977)
+metadata:
   ux_name: AFG
   order:
   - afg_c
