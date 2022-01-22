@@ -1,11 +1,6 @@
-description: Prestations familiales générales
-metadata:
-  ux_name: Prestations générales
+description: Allocation pour frais de garde (AFG, 1976-1977)
+  ux_name: AFG
   order:
-  - af_cm
-  - icaf
-  - asu
-  - afg
-  - amf
-  - cf
-  description_en: General benefits
+  - afg_c
+  - afg_plaf
+  description_en: "Child care costs allowance (AFG): General conditions and amounts"
