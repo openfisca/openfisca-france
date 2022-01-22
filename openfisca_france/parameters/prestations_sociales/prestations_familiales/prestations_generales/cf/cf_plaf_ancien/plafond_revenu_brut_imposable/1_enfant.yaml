@@ -30,6 +30,6 @@ metadata:
     1978-07-01: 1978-07-12
     1978-01-01: 1977-07-13; 1977-11-17
   description_en: "Family complement (CF): Thresholds for means-testing"
-  documentation: |
+documentation: |
   Notes :
   Le brut imposable est calculé à partir du net imposable dans le cas de salariés n'ayant d'autres sources de revenus que leurs salaires et ne bénéficiant pas d'un abattement supplémentaire pour frais professionnels, ie abattements de 10% puis de 20% uniquement
