@@ -2,7 +2,7 @@ description: Taux du Régime agricole (en % de la BMAF) de l'Allocation de la m�
 metadata:
   ux_name: Régime agricole
   order:
-   - enfant_plus_moins_2_ans
+  - enfant_plus_moins_2_ans
   - plus_enfant_sans_moins_2_ans
   - deux_enfants_plus_2_ans
   - 3_enfants_plus_2_ans
