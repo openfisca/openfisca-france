@@ -197,11 +197,11 @@ class af_majoration_enfant(Variable):
             )
 
         montant_plusieurs_enfants = af.bmaf * (
-            (af.maj_age_deux_enfants.age1 <= age)
-            * (age < af.maj_age_deux_enfants.age2)
-            * af.maj_age_deux_enfants.taux1
-            + (af.maj_age_deux_enfants.age2 <= age)
-            * af.maj_age_deux_enfants.taux2
+            (af.af_maj.maj_age_deux_enfants.age1 <= age)
+            * (age < af.af_maj.maj_age_deux_enfants.age2)
+            * af.af_maj.maj_age_deux_enfants.taux1
+            + (af.af_maj.maj_age_deux_enfants.age2 <= age)
+            * af.af_maj.maj_age_deux_enfants.taux2
             )
 
         montant = (af_nbenf == 1) * montant_enfant_seul + (af_nbenf > 1) * montant_plusieurs_enfants
