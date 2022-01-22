@@ -1,0 +1,10 @@
+description: Allocations Familiales (AF)
+metadata:
+  ux_name: Allocations Familiales
+  order:
+  - af_cm
+  - af_cond_ress
+  - af_cond_ress_ancien
+  - af_maj
+  - af_maj_dom
+  description_en: Family allowances (AF)
