@@ -16,7 +16,7 @@ class cf_enfant_a_charge(Variable):
 
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
-        condition_age = (age >= 0) * (age < cf.age_max)
+        condition_age = (age >= 0) * (age < cf.cf_cm.age_max)
         condition_situation = est_enfant_dans_famille * not_(autonomie_financiere)
 
         return condition_age * condition_situation
@@ -38,12 +38,12 @@ class cf_enfant_eligible(Variable):
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
         condition_enfant = (
-            (age >= cf.age_min)
+            (age >= cf.cf_cm.age_min)
             * (age < enfants.age_intermediaire)
             * rempli_obligation_scolaire
             )
 
-        condition_jeune = (age >= enfants.age_intermediaire) * (age < cf.age_max)
+        condition_jeune = (age >= enfants.age_intermediaire) * (age < cf.cf_cm.age_max)
 
         return or_(condition_enfant, condition_jeune) * cf_enfant_a_charge
 
@@ -62,7 +62,7 @@ class cf_dom_enfant_eligible(Variable):
 
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
-        condition_age = (age >= cf.age_minimal_dom) * (age < cf.age_maximal_dom)
+        condition_age = (age >= cf.cf_cm.age_minimal_dom) * (age < cf.cf_cm.age_maximal_dom)
         condition_situation = cf_enfant_a_charge * rempli_obligation_scolaire
 
         return condition_age * condition_situation
@@ -81,7 +81,7 @@ class cf_dom_enfant_trop_jeune(Variable):
 
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
-        condition_age = (age >= 0) * (age < cf.age_min)
+        condition_age = (age >= 0) * (age < cf.cf_cm.age_min)
 
         return condition_age * est_enfant_dans_famille
 
