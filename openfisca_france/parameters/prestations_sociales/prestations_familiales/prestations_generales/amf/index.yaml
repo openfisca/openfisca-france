@@ -1,0 +1,8 @@
+description: Prestations familiales générales
+metadata:
+  ux_name: Prestations générales
+  order:
+  - amf_plaf
+  - amf_m
+  - amf_maj
+  description_en: General benefits
