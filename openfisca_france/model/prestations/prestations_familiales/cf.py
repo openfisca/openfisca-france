@@ -244,7 +244,7 @@ class cf_non_majore_avant_cumul(Variable):
         # Montant
         montant = (
             af.bmaf * (
-                cf.taux_cf_base * eligibilite_base
+                cf.cf_cm.complement_familial.taux_cf_base * eligibilite_base
                 + cf.taux_base_dom * eligibilite_dom
                 )
             )
@@ -287,7 +287,7 @@ class cf_majore_avant_cumul(Variable):
         # Montant
         montant = (
             af.bmaf * (
-                cf.taux_cf_majore * eligibilite_base
+                cf.cf_cm.complement_familial.taux_cf_majore * eligibilite_base
                 + cf.taux_majore_dom * eligibilite_dom
                 )
             )
