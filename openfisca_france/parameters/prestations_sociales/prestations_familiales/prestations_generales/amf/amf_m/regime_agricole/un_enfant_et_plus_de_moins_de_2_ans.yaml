@@ -1,0 +1,33 @@
+description: Taux du Régime agricole (en % de la BMAF) pour un enfant et plus, de moins de 2 ans, de l'Allocation de la mère au foyer (AMF, 1955-1977)
+values:
+  1956-10-01:
+    value: 0.15
+  1974-07-01:
+    value: 0.5
+  1978-01-01:
+    value: null
+metadata:
+  ux_name: 1+ enfants (<2 ans)
+  ipp_csv_id: tx_agri_1enf_02ans
+  unit: /1
+  reference:
+    1978-01-01:
+      title: Loi 77-765 du 12/07/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
+    1974-07-01:
+    - Loi 72-8 du 03/01/1972
+    - Décret 72-528 et 530 du 9/06/1972 (AMF)
+    1955-06-01:
+    - Loi 55-1045 du 06/08/1955, art. 2
+    - Décret 55-1429 du 02/11/1955
+  official_journal_date:
+    1978-01-01: 1977-07-13
+    1974-07-01: 1972-01-05; 1972-06-30
+    1955-06-01: 1955-05-09; 1955-11-03
+  notes:
+    1978-01-01: Remplacé par "complément familial" depuis 01/01/1978
+    1955-06-01: Création de l'AMF
+  description_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"
+documentation: |
+  Notes
+  Le salaire de base auquel s'appliquent ces taux est le même qu'en matière d'allocation de salaire unique
