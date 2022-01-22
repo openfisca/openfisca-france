@@ -62,7 +62,7 @@ class cf_dom_enfant_eligible(Variable):
 
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
-        condition_age = (age >= cf.cf_cm.age_minimal_dom) * (age < cf.cf_cm.age_maximal_dom)
+        condition_age = (age >= cf.cf_cm_dom.age_minimal_dom) * (age < cf.cf_cm_dom.age_maximal_dom)
         condition_situation = cf_enfant_a_charge * rempli_obligation_scolaire
 
         return condition_age * condition_situation
@@ -245,7 +245,7 @@ class cf_non_majore_avant_cumul(Variable):
         montant = (
             af.bmaf * (
                 cf.cf_cm.complement_familial.taux_cf_base * eligibilite_base
-                + cf.taux_base_dom * eligibilite_dom
+                + cf.cf_cm_dom.complement_familial_dom.taux_base_dom * eligibilite_dom
                 )
             )
 
@@ -288,7 +288,7 @@ class cf_majore_avant_cumul(Variable):
         montant = (
             af.bmaf * (
                 cf.cf_cm.complement_familial.taux_cf_majore * eligibilite_base
-                + cf.taux_majore_dom * eligibilite_dom
+                + cf.cf_cm_dom.complement_familial_dom.taux_majore_dom * eligibilite_dom
                 )
             )
 
