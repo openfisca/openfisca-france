@@ -126,7 +126,7 @@ class cf_plafond(Variable):
             1
             + cf.cf_plaf.majoration.deux_premiers_enf
             * min_(cf_nbenf, 2)
-            + cf.cf_plaf.majoration.3eme_enf_et_plus
+            + cf.cf_plaf.majoration.troisieme_enf_et_plus
             * max_(cf_nbenf - 2, 0)
             )
 
