@@ -1,7 +1,7 @@
-
 description: Prestations familiales
 metadata:
-  order: Familiales
+  ux_name: Familiales
+  order:
   - def_pac
   - def_biactif
   - bmaf
