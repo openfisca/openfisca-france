@@ -124,9 +124,9 @@ class cf_plafond(Variable):
         # Calcul du taux à appliquer au plafond de base pour la France métropolitaine
         taux_plafond_metropole = (
             1
-            + cf.majoration_plafond_2_premiers_enf
+            + cf.cf_plaf.majoration.deux_premiers_enf
             * min_(cf_nbenf, 2)
-            + cf.majoration_plafond_3eme_enf_et_plus
+            + cf.cf_plaf.majoration.3eme_enf_et_plus
             * max_(cf_nbenf - 2, 0)
             )
 
@@ -135,9 +135,9 @@ class cf_plafond(Variable):
 
         # Calcul du plafond pour la France métropolitaine
         plafond_metropole = (
-            cf.plafond_de_ressources_0_enfant
+            cf.cf_plaf.plafond_ressources_0_enfant
             * taux_plafond_metropole
-            + cf.majoration_plafond_biact_isole
+            + cf.cf_plaf.majoration.biactifs_isoles
             * majoration_plafond
             )
 
@@ -167,7 +167,7 @@ class cf_majore_plafond(Variable):
     def formula_2014_04_01(famille, period, parameters):
         plafond_base = famille('cf_plafond', period)
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
-        return plafond_base * cf.plafond_cf_majore
+        return plafond_base * cf.cf_plaf.plafond_cf_majore
 
 
 class cf_base_ressources(Variable):
