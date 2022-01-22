@@ -1,0 +1,7 @@
+description: Taux du Régime général (en % de la BMAF) de l'Allocation de la mère au foyer (AMF, 1955-1977)
+
+values:
+  1974-07-01:
+    value: 0.5
+  1978-01-01:
+    value: null
