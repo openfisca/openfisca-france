@@ -1,12 +1,12 @@
-description: Montant de la Majoration du montant de l'Allocation de salaire unique (ASU, 1941-1977)
+description: Montant mensuel pour 1 enfant de plus de 2 ans de l'Allocation de salaire unique (ASU, 1941-1977)
 values:
   1976-07-01:
-    value: 194.1
+    value: 97.25
   1978-01-01:
     value: null
 metadata:
-  ux_name: Montant
-  ipp_csv_id: majo_montant
+  ux_name: 1 enfant(>2 ans)
+  ipp_csv_id: montant_1_enf_plus2ans
   unit: currency
   reference:
     1978-01-01:
@@ -27,5 +27,3 @@ documentation: |
   Notes :
   L'Allocation de salaire unique est instituée en 1941 par la loi du 29 mars 1941 parue au JO du 11 avril 1941 page 1555
   l'ASU ne peut se cumuler avec l'allocation de la mère au foyer.
-  L'ASU est versée tant que l'âge du plus jeune enfant est inférieur à
-  La base est identique à celle des allocations familiales (au salaire moyen départemental) jusqu'en 1954, puis une base inférieure à celle des AF est créée en 1955(égale à 180 FRF en 1959 pour la région parisienne, 162FRF pour la dernière zone contre 210FRF et 189FRF respectivement pour les AF)
