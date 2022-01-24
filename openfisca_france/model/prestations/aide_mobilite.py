@@ -1,4 +1,5 @@
 from numpy import fabs, timedelta64
+from openfisca_core.populations import ADD
 
 from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, \
     set_input_dispatch_by_period, set_input_divide_by_period, min_, select, date
@@ -13,14 +14,6 @@ class aide_mobilite_date_demande(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
-
-
-class aide_mobilite_montant_percu_12_derniers_mois(Variable):
-    value_type = float
-    entity = Individu
-    label = "Le montant de l'aide à la mobilité déjà perçu au cours des 12 derniers mois"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
 
 
 class TypesCategoriesDemandeurEmploi(Enum):
@@ -450,8 +443,13 @@ class aide_mobilite(Variable):
 
         eligibilite_amob = individu('aide_mobilite_eligible', period)
         parametres_amob = parameters(period).prestations_sociales.aide_mobilite
+
+        annee_glissante = period.start.period('year').offset(-1)
+
+        aide_mobilite_12_derniers_mois = individu('aide_mobilite', annee_glissante, options=[ADD])
+
         montant_max = parametres_amob.montants.maximum
-        montant_amob_deja_percu = min_(montant_max, fabs(individu('aide_mobilite_montant_percu_12_derniers_mois', period)))
+        montant_amob_deja_percu = min_(montant_max, fabs(aide_mobilite_12_derniers_mois))
         distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
         nb_aller_retour = individu('nombre_allers_retours', period)
         nb_nuitees = individu('nuitees', period)

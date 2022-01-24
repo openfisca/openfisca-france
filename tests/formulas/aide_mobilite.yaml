@@ -22,7 +22,6 @@
     contrat_de_travail_debut: [null, null]
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
-    aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
     aide_mobilite_eligible: [true, false]
     aide_mobilite: [156.2, 0]
@@ -52,7 +51,6 @@
     contrat_de_travail_debut: ['', '']
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
-    aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
     aide_mobilite_eligible: [true, false]
     aide_mobilite: [148.2, 0]
@@ -81,7 +79,6 @@
     contrat_de_travail_debut: ['', '']
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
-    aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
     aide_mobilite_eligible: [true, false]
     aide_mobilite: [148.2, 0]
@@ -111,7 +108,6 @@
     contrat_de_travail_debut: ''
     date_debut_recherche_emploi: '2021-01-08'
     aide_mobilite_date_demande: '2021-01-14'
-    aide_mobilite_montant_percu_12_derniers_mois: 0
   output:
     aide_mobilite_eligible: false
     aide_mobilite: 0
@@ -141,7 +137,6 @@
     contrat_de_travail_debut: ['', '']
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-15']
-    aide_mobilite_montant_percu_12_derniers_mois: [0, 0]
   output:
     aide_mobilite_eligible: [true, false]
     aide_mobilite: [148.2, 0]
@@ -171,7 +166,20 @@
     contrat_de_travail_debut: ['', '']
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
-    aide_mobilite_montant_percu_12_derniers_mois: [4900, 4000]
+    aide_mobilite:
+      2021-11: [100, 0]
+      2021-10: [100, 0]
+      2021-09: [100, 0]
+      2021-08: [100, 0]
+      2021-07: [100, 0]
+      2021-06: [100, 0]
+      2021-05: [3800, 0]
+      2021-04: [100, 0]
+      2021-03: [100, 0]
+      2021-02: [100, 0]
+      2021-01: [100, 0]
+      2020-12: [100, 0]
+      2020-11: [100, 0]
   output:
     aide_mobilite_eligible: [true, true]
     aide_mobilite: [100, 148.2]
@@ -203,7 +211,6 @@
     contrat_de_travail_debut: ['2021-01-08', '2021-01-08', '2021-01-15']
     date_debut_recherche_emploi: ['', '', '']
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14', '2021-01-14']
-    aide_mobilite_montant_percu_12_derniers_mois: [5000, 4000, 4000]
   output:
     aide_mobilite_eligible: [false, true, false]
     aide_mobilite: [0, 148.2, 0]
@@ -235,7 +242,8 @@
     contrat_de_travail_debut: ['2021-01-02', '2021-01-01', '', '']
     date_debut_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
     aide_mobilite_date_demande: ['2021-01-01', '2021-02-02', '2021-01-07', '2021-01-08']
-    aide_mobilite_montant_percu_12_derniers_mois: [4000, 4000, 4900, 4000]
+    aide_mobilite:
+      2020-12: [0, 0, 4900, 0]
   output:
     aide_mobilite_eligible: [true, false, true, false]
     aide_mobilite: [148.2, 0, 100, 0]
@@ -267,7 +275,8 @@
     contrat_de_travail_debut: ['2021-01-01', '2021-01-01', '', '']
     date_debut_recherche_emploi: ['', '', '2021-01-01', '2021-01-01']
     aide_mobilite_date_demande: ['2021-01-15', '2021-02-02', '2021-01-04', '2021-01-09']
-    aide_mobilite_montant_percu_12_derniers_mois: [4000, 4000, 4900, 4000]
+    aide_mobilite:
+      2020-12: [ 0, 0, 4900, 0 ]
   output:
     aide_mobilite_eligible: [true, false, true, false]
     aide_mobilite: [148.2, 0, 100, 0]
@@ -328,6 +337,5 @@
     contrat_de_travail_debut: '2021-01-01'
     date_debut_recherche_emploi: null
     aide_mobilite_date_demande: '2021-01-24'
-    aide_mobilite_montant_percu_12_derniers_mois: 0
   output:
     aide_mobilite_eligible: true
