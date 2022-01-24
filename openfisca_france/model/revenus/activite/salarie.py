@@ -276,6 +276,16 @@ class contrat_de_travail(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class date_debut_recherche_emploi(Variable):
+    value_type = date
+    default_value = date(1, 1, 1)
+    entity = Individu
+    label = "Date de début d'une activité en recherche d'emploi selon Pôle Emploi (exemple : entretien d'emauche, concours public, examen certifiant)"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+
+
 class contrat_de_travail_debut(Variable):
     value_type = date
     default_value = date(1870, 1, 1)
