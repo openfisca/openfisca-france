@@ -1,9 +1,4 @@
-description: Majorations pour âge des Allocations Familiales (AF)
+description: Majorations pour âge à partir de 2 enfants des Allocations Familiales (AF)
 metadata:
-  ux_name: Majorations pour âge
-  order:
-  - majoration_enfants
-  - nb_enfants_min_pour_majoration_forfaitaire_plus_20ans
-  - duree_majoration_plus_de_20_ans
-  - nb_enfants_min_pour_aine_donne_droit_a_majoration
+  ux_name: Majorations à partir de 2 enfants
   description_en: "Family allowances (AF): Extra allowances"
