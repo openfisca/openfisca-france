@@ -191,10 +191,10 @@ class af_majoration_enfant(Variable):
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
         montant_enfant_seul = bmaf * (
-            (af.af_maj_dom.age_1er_enf_tranche_1_dom <= age)
-            * (age < af.af_maj_dom.age_1er_enf_tranche_2_dom)
+            (af.af_maj_dom.tranches_age.age_debut_premiere_tranche <= age)
+            * (age < af.af_maj_dom.tranches_age.age_debut_deuxieme_tranche)
             * af.af_maj_dom.taux_1er_enf_tranche_1_dom
-            + (af.af_maj_dom.age_1er_enf_tranche_2_dom <= age)
+            + (af.af_maj_dom.tranches_age.age_debut_deuxieme_tranche <= age)
             * af.af_maj_dom.taux_1er_enf_tranche_2_dom
             )
 
