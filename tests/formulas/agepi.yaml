@@ -605,38 +605,3 @@
     agepi_eligible: [true, false, false]
     agepi_nbenf: 1
     agepi: [85, 0, 0]
-
-
-- name: toto
-  period: 2022-02
-  input:
-    individus:
-      demandeur:
-        pole_emploi_categorie_demandeur_emploi: categorie_1
-        # duree_formation: 40 / types_intensite_activite: mensuelle
-        agepi_temps_travail_en_heure: 40
-      mini_1:
-        age: 1
-      mini_2:
-        age: 2
-      mini_3:
-        age: 3
-      mini_4:
-        age: 4
-    menages:
-      nous:
-        personne_de_reference: demandeur
-        enfants: [mini_1, mini_2, mini_3, mini_4]
-    familles:
-      nous:
-        parents: demandeur
-        enfants: [mini_1, mini_2, mini_3, mini_4]
-    foyers_fiscaux:
-      nous:
-        declarants: demandeur
-        personnes_a_charge: [mini_1, mini_2, mini_3, mini_4]
-  output:
-    allocation_retour_emploi: [0, 0, 0, 0, 0]
-    en_couple: False
-    agepi_eligible: [True, False, False, False, False]
-    agepi: [620, 0, 0, 0, 0]  # 400 + 220
