@@ -4,5 +4,5 @@ metadata:
   order:
   - 1_enfant
   - enfant_supplementaire
-  - 1_enfant_biactifs_parents_isoles
+  - 1_enfant_biactifs_isoles
   description_en: "Family complement (CF): Thresholds for means-testing"

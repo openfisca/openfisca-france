@@ -6,7 +6,7 @@ metadata:
   - tranches_age
   - majoration_premier_enfant
   - majoration_partir_deuxieme_enfant
-  - nombre_minimal_enfant_avoir_droit_majoration_forfaitaire_plus_20_ans
-  - duree_pendant_laquelle_majoration_plus_20_ans_est_versee_en_annee
-  - nombre_enfant_partir_duquel_aine_donne_droit_majoration
+  - nb_min_enfant_avoir_droit_maj_forfaitaire_plus_20_ans
+  - duree_majoration_plus_de_20_ans
+  - nb_enfant_pour_aine_donne_droit_majoration
   description_en: Family allowances (AF)
