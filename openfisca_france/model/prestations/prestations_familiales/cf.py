@@ -34,7 +34,7 @@ class cf_enfant_eligible(Variable):
         age = individu('age', period)
         rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
 
-        enfants = parameters(period).prestations_sociales.prestations_familiales.enfants
+        enfants = parameters(period).prestations_sociales.prestations_familiales.def_pac.enfants
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
         condition_enfant = (

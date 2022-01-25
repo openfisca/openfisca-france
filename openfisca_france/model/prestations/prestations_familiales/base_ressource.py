@@ -44,14 +44,14 @@ class prestations_familiales_enfant_a_charge(Variable):
         pfam = parameters(period).prestations_sociales.prestations_familiales
 
         condition_enfant = (
-            (age >= pfam.enfants.age_minimal)
-            * (age < pfam.enfants.age_intermediaire)
+            (age >= pfam.def_pac.enfants.age_minimal)
+            * (age < pfam.def_pac.enfants.age_intermediaire)
             * rempli_obligation_scolaire
             )
 
         condition_jeune = (
-            (age >= pfam.enfants.age_intermediaire)
-            * (age < pfam.enfants.age_limite)
+            (age >= pfam.def_pac.enfants.age_intermediaire)
+            * (age < pfam.def_pac.enfants.age_limite)
             * not_(autonomie_financiere)
             )
 
