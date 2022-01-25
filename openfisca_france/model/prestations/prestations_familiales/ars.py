@@ -18,7 +18,6 @@ class ars(Variable):
         af_nbenf = famille('af_nbenf', septembre)
         base_ressources = famille('prestations_familiales_base_ressources', janvier)
         ars = parameters(septembre).prestations_sociales.prestations_familiales.education_presence_parentale.ars
-        af = parameters(septembre).prestations_sociales.prestations_familiales.prestations_generales.af
         # TODO: convention sur la mensualisation
         # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
         # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée.
