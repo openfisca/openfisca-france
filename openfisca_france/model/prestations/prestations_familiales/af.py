@@ -104,7 +104,7 @@ class af_base(Variable):
         un_seul_enfant = (
             eligibilite_dom
             * (af_nbenf == 1)
-            * af.af_maj_dom.taux_enfant_seul
+            * af.af_maj_dom.allocations_familiales_un_enfant
             )
 
         deux_enfants = (af_nbenf >= 2) * af.af_cm.taux.enf2
