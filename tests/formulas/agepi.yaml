@@ -11,7 +11,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -51,7 +51,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -92,7 +92,7 @@
         agepi_percue_12_derniers_mois: true
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -131,7 +131,7 @@
         agepi_percue_12_derniers_mois: true
         pole_emploi_categorie_demandeur_emploi: categorie_6
         stagiaire: false
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -170,7 +170,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_4
         stagiaire: true
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -209,7 +209,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_5
         stagiaire: false
-        en_contrat_aide: true
+        contrat_aide: true
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -248,7 +248,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: non_renseigne
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -287,7 +287,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-02-02'
@@ -331,7 +331,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -385,7 +385,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -424,7 +424,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -463,7 +463,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -502,7 +502,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_4
         stagiaire: true
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -542,7 +542,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -581,7 +581,7 @@
         agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
-        en_contrat_aide: false
+        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
@@ -605,3 +605,38 @@
     agepi_eligible: [true, false, false]
     agepi_nbenf: 1
     agepi: [85, 0, 0]
+
+
+- name: toto
+  period: 2022-02
+  input:
+    individus:
+      demandeur:
+        pole_emploi_categorie_demandeur_emploi: categorie_1
+        # duree_formation: 40 / types_intensite_activite: mensuelle
+        agepi_temps_travail_en_heure: 40
+      mini_1:
+        age: 1
+      mini_2:
+        age: 2
+      mini_3:
+        age: 3
+      mini_4:
+        age: 4
+    menages:
+      nous:
+        personne_de_reference: demandeur
+        enfants: [mini_1, mini_2, mini_3, mini_4]
+    familles:
+      nous:
+        parents: demandeur
+        enfants: [mini_1, mini_2, mini_3, mini_4]
+    foyers_fiscaux:
+      nous:
+        declarants: demandeur
+        personnes_a_charge: [mini_1, mini_2, mini_3, mini_4]
+  output:
+    allocation_retour_emploi: [0, 0, 0, 0, 0]
+    en_couple: False
+    agepi_eligible: [True, False, False, False, False]
+    agepi: [620, 0, 0, 0, 0]  # 400 + 220

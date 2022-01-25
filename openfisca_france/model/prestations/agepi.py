@@ -1,8 +1,7 @@
-from datetime import date
-import numpy as np
+from numpy import fabs, timedelta64
 
 from openfisca_france.model.base import Famille, Individu, Variable, Enum, MONTH, \
-    set_input_dispatch_by_period, set_input_divide_by_period, min_, not_
+    set_input_dispatch_by_period, set_input_divide_by_period, date, min_, not_
 from openfisca_france.model.revenus.activite.salarie import TypesContrat
 
 
@@ -100,7 +99,7 @@ class pole_emploi_categorie_demandeur_emploi(Variable):
     definition_period = MONTH
 
 
-class en_contrat_aide(Variable):
+class contrat_aide(Variable):
     value_type = bool
     entity = Individu
     label = "L'individu est en contrat aidé"
@@ -165,7 +164,7 @@ class agepi_eligible(Variable):
         pe_categorie_demandeur_emploi = individu('pole_emploi_categorie_demandeur_emploi', period)
 
         stagiaire_formation_professionnelle = individu('stagiaire', period)
-        contrat_aide = individu('en_contrat_aide', period)
+        contrat_aide = individu('contrat_aide', period)
 
         categorie_4 = pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_4
         categorie_4_stagiaire_formation_professionnelle = categorie_4 * stagiaire_formation_professionnelle
@@ -187,7 +186,7 @@ class agepi_eligible(Variable):
 
         date_demande_limite = min_(
             (contrat_de_travail_debut_en_mois + 1) + (contrat_de_travail_debut - contrat_de_travail_debut_en_mois),
-            (contrat_de_travail_debut_en_mois + 2) - np.timedelta64(1, 'D')
+            (contrat_de_travail_debut_en_mois + 2) - timedelta64(1, 'D')
             )
 
         agepi_date_de_demande = individu("agepi_date_demande", period)
@@ -207,7 +206,7 @@ class agepi_eligible(Variable):
 
         #  Montant ARE minimum en fonction de la région (Mayotte / hors Mayotte)
 
-        are_individu_egale_are_min = np.fabs(allocation_individu - allocation_minimale_en_fonction_de_la_region) < epsilon
+        are_individu_egale_are_min = fabs(allocation_individu - allocation_minimale_en_fonction_de_la_region) < epsilon
         are_individu_inferieure_are_min = allocation_individu < allocation_minimale_en_fonction_de_la_region
 
         montants_are_eligibles = are_individu_inferieure_are_min + are_individu_egale_are_min
