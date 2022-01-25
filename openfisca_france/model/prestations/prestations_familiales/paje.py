@@ -535,7 +535,7 @@ class paje_cmg(Variable):
         paje_clca_taux_partiel = famille('paje_clca_taux_partiel', period)
         paje_clca_taux_plein = famille('paje_clca_taux_plein', period)
         paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
-        P_n_2_af = parameters(period.offset(-2, 'year')).prestations_sociales.prestations_familiales.prestations_generales.bmaf
+        P_n_2_af = parameters(period.offset(-2, 'year')).prestations_sociales.prestations_familiales.bmaf
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
         aah_i = famille.members('aah', period)
