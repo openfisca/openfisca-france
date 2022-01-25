@@ -49,12 +49,12 @@ class asf_montant(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
         asf = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.asf
 
         asf_par_enfant = (
             famille.members('asf_elig_enfant', period)
-            * af.bmaf
+            * bmaf
             * asf.taux_1_parent
             )
 

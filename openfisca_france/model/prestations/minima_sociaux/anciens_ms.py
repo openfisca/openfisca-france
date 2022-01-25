@@ -24,6 +24,7 @@ class api(Variable):
         af_majoration = famille('af_majoration', period)
         rsa = famille('rsa', period)
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
         api = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.api
 
         # TODO:
@@ -61,7 +62,7 @@ class api(Variable):
 
         # moins de 20 ans avant inclusion dans rsa
         # moins de 25 ans après inclusion dans rsa
-        api1 = eligib * af.bmaf * (api.api_m.femmes_enceintes_sans_enfant_a_charge + api.api_m.supplement_par_enfant * nb_enf(famille, period, af.af_cm.age1, api.api_cond.age_pac - 1))
+        api1 = eligib * bmaf * (api.api_m.femmes_enceintes_sans_enfant_a_charge + api.api_m.supplement_par_enfant * nb_enf(famille, period, af.af_cm.age1, api.api_cond.age_pac - 1))
         rsa = (api.api_cond.age_pac >= 25)  # dummy passage au rsa majoré
         br_api = rsa_base_ressources + af_majoration * not_(rsa)
         # On pourrait mensualiser RMI, BRrmi et forfait logement

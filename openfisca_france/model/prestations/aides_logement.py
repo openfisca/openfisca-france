@@ -834,8 +834,8 @@ class aide_logement_biactivite(Variable):
                inclus.
         '''
 
-        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
-        base_annuelle_allocations_famililales = 12 * af.bmaf
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+        base_annuelle_allocations_famililales = 12 * bmaf
 
         condition_ressource_i = (
             famille.members('salaire_imposable', period, options = [ADD])
@@ -1119,7 +1119,7 @@ class aide_logement_R0(Variable):
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations_sociales.aides_logement.allocations_logement
-        pfam_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.prestations_generales
+        pfam_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.bmaf
         minim_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.solidarite_insertion.minima_sociaux
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
@@ -1139,7 +1139,7 @@ class aide_logement_R0(Variable):
             + al.al_param_r0.r1_en_rsa_socle_1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
-        R2 = pfam_n_2.af.bmaf * (
+        R2 = pfam_n_2.bmaf * (
             al.al_param_r0.r2_en_bmaf_1.taux3_dom * residence_dom * (al_nb_pac == 1)
             + al.al_param_r0.r2_en_bmaf_1.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2)
             + al.al_param_r0.r2_en_bmaf_1.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)

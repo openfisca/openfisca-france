@@ -104,8 +104,8 @@ class biactivite(Variable):
         '''
         annee_fiscale_n_2 = period.n_2
 
-        af = parameters(annee_fiscale_n_2).prestations_sociales.prestations_familiales.prestations_generales.af
-        seuil_rev = 12 * af.bmaf
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+        seuil_rev = 12 * bmafs
 
         condition_ressource = (
             famille.members('rpns_imposables', annee_fiscale_n_2)
