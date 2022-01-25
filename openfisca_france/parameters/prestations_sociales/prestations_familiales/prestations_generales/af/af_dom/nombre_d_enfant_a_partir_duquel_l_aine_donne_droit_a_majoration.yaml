@@ -1,0 +1,32 @@
+
+nombre_d_enfant_a_partir_duquel_l_aine_donne_droit_a_majoration:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  values:
+    1991-08-06:
+      value: 3.0
+nombre_minimal_d_enfant_pour_avoir_droit_a_la_majoration_forfaitaire_pour_les_plus_de_20_ans:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  values:
+    1991-08-06:
+      value: 3.0
+taux_1er_enf_tranche_1_dom:
+  description: 1ère majoration pour âge
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    1991-08-06:
+      value: 0.0369
+taux_1er_enf_tranche_2_dom:
+  description: 2ème majoration pour âge
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    1991-08-06:
+      value: 0.0567
+taux_enfant_seul:
+  description: Un seul enfant à charge (DOM)
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    1991-08-06:
+      value: 0.0588

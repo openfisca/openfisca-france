@@ -1,0 +1,15 @@
+
+taux_1er_enf_tranche_2_dom:
+  description: 2ème majoration pour âge
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    1991-08-06:
+      value: 0.0567
+taux_enfant_seul:
+  description: Un seul enfant à charge (DOM)
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+  values:
+    1991-08-06:
+      value: 0.0588
