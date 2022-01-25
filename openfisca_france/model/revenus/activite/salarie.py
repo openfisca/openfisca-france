@@ -935,7 +935,7 @@ class af_nbenf_fonc(Variable):
         smic_mensuel_brut = law.marche_travail.salaire_minimum.smic.smic_b_horaire * nbh_travaillees
 
         autonomie_financiere = (salaire_de_base_mensualise >= (
-            law.prestations_sociales.prestations_familiales.prestations_generales.af.seuil_rev_taux
+            law.prestations_sociales.prestations_familiales.def_pac.seuil_rev_taux
             * smic_mensuel_brut
             ))
 
