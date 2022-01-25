@@ -1,0 +1,8 @@
+description: Logement et cadre de vie, prestations familiales
+metadata:
+  ux_name: Logement et cadre de vie
+  order:
+  - pd
+  - pjm_c_plaf
+  - pjm_prets
+  description_en: Housing and living environment
