@@ -1,10 +1,9 @@
-description: Allocations Familiales (AF)
+description: Majorations des Allocations Familiales (AF)
 metadata:
-  ux_name: Allocations Familiales
+  ux_name: Majorations
   order:
-  - af_cm
-  - af_cond_ress
-  - af_cond_ress_ancien
-  - af_maj
-  - af_maj_dom
-  description_en: Family allowances (AF)
+  - majoration_enfants
+  - nb_enfants_min_pour_majoration_forfaitaire_plus_20ans
+  - duree_majoration_plus_de_20_ans
+  - nb_enfants_min_pour_aine_donne_droit_a_majoration
+  description_en: "Family allowances (AF): Extra allowances"

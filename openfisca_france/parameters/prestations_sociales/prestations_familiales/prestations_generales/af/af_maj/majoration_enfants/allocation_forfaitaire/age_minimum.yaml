@@ -1,14 +1,12 @@
-description: Âge de début de la 1ère tranche pour la majoration pour les enfants (en % de la BMAF) des Allocations Familiales (AF)
+description: Âge minimal pour toucher l'allocation forfaitaire de la majoration pour les enfants (en % de la BMAF) des Allocations Familiales (AF)
 values:
-  1984-01-01:
-    value: 10.0
-  1999-01-01:
-    value: 11.0
-  2008-05-01:
-    value: 14.0
+  1986-01-01:
+    value: null
+  2003-07-01:
+    value: 20.0
 metadata:
-  ux_name: Âge début 1ère tranche
-  ipp_csv_id: maj_enf_age1
+  ux_name: Âge minimum
+  ipp_csv_id: maj_forf_age
   unit: year
   reference:
     2015-07-01:
@@ -52,3 +50,4 @@ documentation: |
   (3) Création de cette majoration au 1er mai 2008 et concerne les nouveaux bénéficiaires potentiels de l'ancien système, soit les enfants nés après le 31 avril 1997. Ne s'appliquera qu'à partir du 1er mai 2011. Pour les familles avec 3+ enfants, la majoration est valable pour tout enfant de plus de 14 ans (pas le cas si 2 enfants)
   (4) Majoration à appliquer à chaque enfant entre 20 et 21 ans si avant le 20ème anniversaire de l'enfant, la famille avait 3 enfants ouvrant droit aux allocations familiales.
   (5) Il faut appliquer à ces taux la modulation liée à la tranche de revenu à laquelle appartient le demandeur de l'AF (à savoir, 100% pour la 1ère tranche, 50% pour la 2ème et 25% pour la 3e. cfAF_cond)
+

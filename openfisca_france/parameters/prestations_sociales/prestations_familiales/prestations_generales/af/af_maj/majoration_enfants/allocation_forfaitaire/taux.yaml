@@ -1,15 +1,13 @@
-description: Âge de début de la 1ère tranche pour la majoration pour les enfants (en % de la BMAF) des Allocations Familiales (AF)
+description: Taux de l'allocation forfaitaire de la majoration pour les enfants (en % de la BMAF) des Allocations Familiales (AF)
 values:
-  1984-01-01:
-    value: 10.0
-  1999-01-01:
-    value: 11.0
-  2008-05-01:
-    value: 14.0
+  1986-01-01:
+    value: null
+  2003-07-01:
+    value: 0.20234
 metadata:
-  ux_name: Âge début 1ère tranche
-  ipp_csv_id: maj_enf_age1
-  unit: year
+  ux_name: Taux
+  ipp_csv_id: maj_forf_tx
+  unit: /1
   reference:
     2015-07-01:
     - title: Décret 2015-611 du 03/06/2015
