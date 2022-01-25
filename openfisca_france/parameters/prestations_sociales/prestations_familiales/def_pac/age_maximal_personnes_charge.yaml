@@ -1,11 +1,17 @@
-description: Revenu plafond pour les personnes à charge n'étant plus sous l'obligation scolaire (en % du SMIC), pour les prestations familiales
+description: Âge maximal pour les personnes à charge pour les prestations familiales
 values:
   1985-12-22:
-    value: 0.55
+    value: 17.0
+  1990-07-01:
+    value: 18.0
+  1998-01-01:
+    value: 19.0
+  1999-01-01:
+    value: 20.0
 metadata:
-  ux_name: Revenu plafond
-  ipp_csv_id: af_plaf_revenf
-  unit: SMIC
+  ux_name: Âge maximal
+  ipp_csv_id: age_max_pac
+  unit: year
   reference:
     2000-02-01:
       title: Décret 2000-71 du 28/01/2000, art. 1 (modif art. R512-2 du CSS)
@@ -30,4 +36,4 @@ metadata:
   description_en: Definition of dependants
 documentation: |
   Notes :
-  En vertu de l'article R512-2 du CSS*, la base à appliquer à ce pourcentage est le SMIC horaire défini aux articles L141-1 à L141-9 du Code du Travail, multiplié par 169.
+  Les âges maxima sont différents pour le complément familial et les aides au logement.Cf. les feuilles de barème associées à ces dispositifs.
