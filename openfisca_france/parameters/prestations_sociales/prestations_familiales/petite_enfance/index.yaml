@@ -1,0 +1,10 @@
+description: Prestations familiales pour la petite enfance
+metadata:
+  order:
+  - apn_t_maj
+  - aprn_t
+  - apje
+  - aa_m
+  - paje
+  - plaf_cmg
+  description_en: Early childhood
