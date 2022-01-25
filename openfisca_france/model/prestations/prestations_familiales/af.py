@@ -104,7 +104,7 @@ class af_base(Variable):
         un_seul_enfant = (
             eligibilite_dom
             * (af_nbenf == 1)
-            * af.af_dom.taux_enfant_seul
+            * af.af_maj_dom.taux_enfant_seul
             )
 
         deux_enfants = (af_nbenf >= 2) * af.af_cm.taux.enf2
@@ -191,11 +191,11 @@ class af_majoration_enfant(Variable):
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
         montant_enfant_seul = bmaf * (
-            (af.af_dom.age_1er_enf_tranche_1_dom <= age)
-            * (age < af.af_dom.age_1er_enf_tranche_2_dom)
-            * af.af_dom.taux_1er_enf_tranche_1_dom
-            + (af.af_dom.age_1er_enf_tranche_2_dom <= age)
-            * af.af_dom.taux_1er_enf_tranche_2_dom
+            (af.af_maj_dom.age_1er_enf_tranche_1_dom <= age)
+            * (age < af.af_maj_dom.age_1er_enf_tranche_2_dom)
+            * af.af_maj_dom.taux_1er_enf_tranche_1_dom
+            + (af.af_maj_dom.age_1er_enf_tranche_2_dom <= age)
+            * af.af_maj_dom.taux_1er_enf_tranche_2_dom
             )
 
         montant_plusieurs_enfants = bmaf * (

@@ -1,0 +1,12 @@
+description: : Majorations pour les DOM desAllocations Familiales (AF)
+metadata:
+  ux_name: Majorations DOM 
+  order:
+  - allocations_familiales_enfant_en_bmaf
+  - tranches_age
+  - majoration_premier_enfant_en_bmaf_dom
+  - majoration_partir_deuxieme_enfant_en_bmaf_dom
+  - nombre_minimal_enfant_avoir_droit_majoration_forfaitaire_plus_20_ans
+  - duree_pendant_laquelle_majoration_plus_20_ans_est_versee_en_annee
+  - nombre_enfant_partir_duquel_aine_donne_droit_majoration
+  description_en: Family allowances (AF)
