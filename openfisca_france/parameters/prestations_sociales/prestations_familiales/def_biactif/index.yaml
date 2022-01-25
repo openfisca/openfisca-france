@@ -1,1 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Définition d'un couple bi-actif pour les prestations familiales
+metadata:
+  ux_name: Couple bi-actif
+  order:
+  - revenu_professionnel_plancher_couples_biactifs
+  description_en: Definition of a biactive couple
