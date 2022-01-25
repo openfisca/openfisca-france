@@ -211,7 +211,7 @@ class af_majoration_enfant(Variable):
         # Attention ! Ne fonctionne pas pour les enfants du même âge (typiquement les jumeaux...)
         pas_aine = or_(af_nbenf != 2, (af_nbenf == 2) * not_(age == age_aine))
 
-        coeff_garde_alternee = where(garde_alternee, af.facteur_garde_alternee, 1)
+        coeff_garde_alternee = where(garde_alternee, af.af_cm.facteur_garde_alternee, 1)
 
         return (
             pfam_enfant_a_charge
