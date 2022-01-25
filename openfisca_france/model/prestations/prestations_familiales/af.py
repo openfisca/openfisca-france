@@ -49,7 +49,7 @@ class af_allocation_forfaitaire_nb_enfants(Variable):
 
     def formula(famille, period, parameters):
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
-        af_forfaitaire_nbenf = nb_enf(famille, period, af.age3, af.age3)
+        af_forfaitaire_nbenf = nb_enf(famille, period, af.af_cm.age3, af.af_cm.age3)
 
         return af_forfaitaire_nbenf
 
@@ -164,7 +164,7 @@ class af_age_aine(Variable):
         age = famille.members('age', period)
         pfam_enfant_a_charge = famille.members('prestations_familiales_enfant_a_charge', period)
 
-        condition_eligibilite = pfam_enfant_a_charge * (age <= af.age2)
+        condition_eligibilite = pfam_enfant_a_charge * (age <= af.af_cm.age2)
         age_enfants_eligiles = age * condition_eligibilite
 
         return famille.max(age_enfants_eligiles, role = Famille.ENFANT)

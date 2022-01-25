@@ -666,7 +666,7 @@ class ape_avant_cumul(Variable):
         ape = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.ape
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
-        elig = (nb_enf(famille, period, 0, ape.age_max_enfant - 1) >= 1) & (nb_enf(famille, period, 0, af.age2) >= 2)        # Inactif
+        elig = (nb_enf(famille, period, 0, ape.age_max_enfant - 1) >= 1) & (nb_enf(famille, period, 0, af.af_cm.age2) >= 2)        # Inactif
         # Temps partiel 1
         # Salarié:
         # Temps de travail ne dépassant pas 50 % de la durée du travail fixée dans l'entreprise

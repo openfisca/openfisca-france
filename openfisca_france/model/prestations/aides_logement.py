@@ -365,7 +365,7 @@ class al_nb_personnes_a_charge(Variable):
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
         def al_nb_enfants():
-            age_min_enfant = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af.age1
+            age_min_enfant = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.age1
             return nb_enf(famille, period, age_min_enfant, age_max_enfant - 1)  # La limite sur l'age max est stricte.
 
         def al_nb_adultes_handicapes():

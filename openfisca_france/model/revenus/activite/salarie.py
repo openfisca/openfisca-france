@@ -942,8 +942,8 @@ class af_nbenf_fonc(Variable):
         age = famille.members('age', period)
 
         condition_enfant = (
-            (age >= law.prestations_sociales.prestations_familiales.prestations_generales.af.age1)
-            * (age <= law.prestations_sociales.prestations_familiales.prestations_generales.af.age2)
+            (age >= law.prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.age1)
+            * (age <= law.prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.age2)
             * not_(autonomie_financiere)
             )
 
