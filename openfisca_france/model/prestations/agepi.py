@@ -108,11 +108,10 @@ class contrat_aide(Variable):
 
 
 class TypesIntensiteActivite(Enum):
-    __order__ = 'intensite_non_valide sans_intensite hebdomadaire mensuelle'  # Needed to preserve the enum order in Python 2
-    intensite_non_valide = "INTENSITE_NON_VALIDE"
-    sans_intensite = "SANS_INTENSITE"
-    hebdomadaire = "HEBDOMADAIRE"
-    mensuelle = "MENSUELLE"
+    __order__ = 'sans_intensite hebdomadaire mensuelle'  # Needed to preserve the enum order in Python 2
+    sans_intensite = "Intensité d'emploi ou de formation inconnue"
+    hebdomadaire = "Intensité d'emploi ou de formation hebdomadaire"
+    mensuelle = "Intensité d'emploi ou de formation mensuelle"
 
 
 class types_intensite_activite(Variable):
