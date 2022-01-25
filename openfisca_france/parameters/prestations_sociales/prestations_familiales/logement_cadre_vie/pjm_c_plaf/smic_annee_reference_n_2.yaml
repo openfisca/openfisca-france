@@ -1,13 +1,23 @@
-description: Majoration par enfant supplémentaire pour le Prêt aux jeunes ménages (PJM)
+description: Smic de l'année de référence (n-2) pour le Prêt aux jeunes ménages (PJM)
 values:
   1978-01-01:
-    value: 0.25
-  1985-05-16:
+    value: 8.58
+  1978-07-01:
+    value: 9.58
+  1979-04-01:
+    value: 10.85
+  1980-07-01:
+    value: 14.0
+  1981-07-01:
+    value: 16.72
+  1982-07-01:
+    value: 19.64
+  1983-01-01:
     value: null
 metadata:
-  ux_name: Majoration par enfant supplémentaire
-  ipp_csv_id: palf_enfsup
-  unit: /1
+  ux_name: Smic année (n-2)
+  ipp_csv_id: smic_ref
+  unit: currency
   reference:
     1985-05-16:
       title: Décret 85-526 du 13/05/1985

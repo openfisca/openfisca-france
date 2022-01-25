@@ -1,13 +1,29 @@
-description: Majoration par enfant supplémentaire pour le Prêt aux jeunes ménages (PJM)
+description: Plafond de ressources - sans enfant pour le Prêt aux jeunes ménages (PJM)
 values:
   1978-01-01:
-    value: 0.25
+    value: 36560.0
+  1978-07-01:
+    value: 40820.0
+  1979-04-01:
+    value: 46220.0
+  1980-07-01:
+    value: 59640.0
+  1981-07-01:
+    value: 71227.2
+  1982-07-01:
+    value: 83666.40000000001
+  1983-01-01:
+    value: 53564.0
+  1983-07-01:
+    value: 57935.0
+  1984-07-01:
+    value: 63323.0
   1985-05-16:
     value: null
 metadata:
-  ux_name: Majoration par enfant supplémentaire
-  ipp_csv_id: palf_enfsup
-  unit: /1
+  ux_name: Plafond de ressources - sans enfant
+  ipp_csv_id: plaf_0enf
+  unit: currency
   reference:
     1985-05-16:
       title: Décret 85-526 du 13/05/1985
