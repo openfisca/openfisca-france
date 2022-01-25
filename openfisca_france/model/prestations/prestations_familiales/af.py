@@ -193,9 +193,9 @@ class af_majoration_enfant(Variable):
         montant_enfant_seul = bmaf * (
             (af.af_maj_dom.tranches_age.age_debut_premiere_tranche <= age)
             * (age < af.af_maj_dom.tranches_age.age_debut_deuxieme_tranche)
-            * af.af_maj_dom.taux_1er_enf_tranche_1_dom
+            * af.af_maj_dom.majoration_premier_enfant.taux_tranche_1
             + (af.af_maj_dom.tranches_age.age_debut_deuxieme_tranche <= age)
-            * af.af_maj_dom.taux_1er_enf_tranche_2_dom
+            * af.af_maj_dom.majoration_premier_enfant.taux_tranche_2
             )
 
         montant_plusieurs_enfants = bmaf * (

@@ -1,0 +1,7 @@
+description: Majoration pour le premier enfant (en % de la BMAF) pour les DOM des Allocations Familiales (AF)
+metadata:
+  ux_name: Majoration 1er enfant
+  order:
+  - taux_tranche_1
+  - taux_tranche_2
+  description_en: Family allowances (AF)
