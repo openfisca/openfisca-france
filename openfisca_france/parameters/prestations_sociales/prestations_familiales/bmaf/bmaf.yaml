@@ -16,7 +16,7 @@ values:
     value: 406.21
   2013-04-01:
     value: 403.79
-  2012-01-01:
+  2012-04-01:
     value: 399.0
   2011-01-01:
     value: 395.04
@@ -495,7 +495,7 @@ metadata:
     2017-04-01: Revalorisation de 0,3 %
     2016-04-01: Revalorisation de 0,1 %
     2014-04-01: Revalorisation de 0,6 %
-    2012-04-01: La BMAF est à partir de décembre 2011 revalorisée au 1er avril de chaque année suivant l'évolution de l'indice des prix (sauf pour 2012 où par dérogation, la revalorisation reste au 1er janvier) Cf. LFSS 2012 (loi 2011-1906 du 21/12/2011) &Article L 551-1 du CSS en vigueur à partir du 23/12/2011
+    2012-04-01: La BMAF est à partir de décembre 2011 revalorisée au 1er avril de chaque année suivant l'évolution de l'indice des prix. Cf. LFSS 2012 (loi 2011-1906 du 21/12/2011) &Article L 551-1 du CSS en vigueur à partir du 23/12/2011
     2009-01-01: Pas de revalorisation en 2010, Décret 2009-1733 du 29/12/2009.
     1995-01-01: Pas de revalorisation en 1996
     1990-07-01: Revalorisation de 1,35%
