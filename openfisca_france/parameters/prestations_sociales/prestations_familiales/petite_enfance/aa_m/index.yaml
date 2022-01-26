@@ -2,5 +2,5 @@ description: Allocation d'adoption (AA), prestations familiales pour la petite e
 metadata:
   ux_name: Allocation d'adoption
   order:
-  - montant_allocation_adoption_en_bmaf
+  - montant_allocation_adoption
   description_en: "Adoption allowance (AA): General conditions and amounts"
