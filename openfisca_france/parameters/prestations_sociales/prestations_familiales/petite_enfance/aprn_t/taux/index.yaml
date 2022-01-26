@@ -1,0 +1,8 @@
+description: Taux (en % de la base) de l'Allocations prénatales (APrN, 1976-1985)
+metadata:
+  ux_name: Taux
+  order:
+  - 1er_examen
+  - 2e_examen
+  - 3e_examen
+  description_en: "Prenatal allowance (APrN): Rate and payment"

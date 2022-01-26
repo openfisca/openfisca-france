@@ -1,1 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Allocations prénatales (APrN, 1976-1985)
+metadata:
+  ux_name: Allocations prénatales
+  order:
+  - taux_en_base
+  description_en: "Prenatal allowance (APrN): Rate and payment"
