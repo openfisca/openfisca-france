@@ -708,11 +708,9 @@ class apje_avant_cumul(Variable):
         nbenf = nb_enf(famille, period, 0, Papje.age_limite_enfants_ouvrant_droit_apje - 1)
         bmaf = Paf.bmaf
         bmaf_n_2 = P_n_2.bmaf
-        
-        base = round(Papje.taux * bmaf, 2)
-        base2 = round(Papje.taux * bmaf_n_2, 2)
-
-        plaf_tx = (nbenf > 0) + Papje.taux_enfant_1_et_2 * min_(nbenf, 2) + Papje.taux_enfant_3_et_plus * max_(nbenf - 2, 0)
+        base = round(Papje.apje_cm.taux_apje * bmaf, 2)
+        base2 = round(Papje.apje_cm.taux_apje * bmaf_n_2, 2)
+        plaf_tx = (nbenf > 0) + Papje.apje_cm.taux_apje_enfant_1_et_2 * min_(nbenf, 2) + Papje.apje_cm.taux_apje_enfant_3_et_plus * max_(nbenf - 2, 0)
         majo = isole | biactivite
         plaf = Papje.plaf * plaf_tx + Papje.plaf_maj * majo
         plaf2 = plaf + 12 * base2
