@@ -700,7 +700,8 @@ class apje_avant_cumul(Variable):
         base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
         biactivite = famille('biactivite', period, options = [ADD])
         isole = not_(famille('en_couple', period))
-        Papje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance
+        
+        Papje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.apje
         Paf = parameters(period).prestations_sociales.prestations_familiales.bmaf
         P_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.bmaf
 
@@ -712,7 +713,7 @@ class apje_avant_cumul(Variable):
         base2 = round(Papje.apje_cm.taux_apje * bmaf_n_2, 2)
         plaf_tx = (nbenf > 0) + Papje.apje_cm.taux_apje_enfant_1_et_2 * min_(nbenf, 2) + Papje.apje_cm.taux_apje_enfant_3_et_plus * max_(nbenf - 2, 0)
         majo = isole | biactivite
-        plaf = Papje.plaf * plaf_tx + Papje.plaf_maj * majo
+        plaf = Papje.apje_plaf.plaf * plaf_tx + Papje.apje_plaf.majoration_plafond_ressources_0_enfant.plaf_maj * majo
         plaf2 = plaf + 12 * base2
 
         apje = (nbenf >= 1) * ((base_ressources <= plaf) * base + (base_ressources > plaf) * max_(plaf2 - base_ressources, 0) / 12.0)
