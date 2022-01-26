@@ -227,7 +227,7 @@ class enfant_eligible_paje(Variable):
     def formula(individu, period, parameters):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
-        age_limite = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje.base.age_max_enfant
+        age_limite = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje.paje_cm.age_limite_enfant_adopte_non
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
@@ -825,7 +825,7 @@ class paje_clca(Variable):
 
         condition1 = (af_nbenf == 1) * (age_m_benjamin >= 0) * (age_m_benjamin < paje.clca.duree1)
         age_benjamin = floor(age_m_benjamin / 12)
-        condition2 = (age_benjamin <= (paje.base.age_max_enfant - 1))
+        condition2 = (age_benjamin <= (paje.paje_cm.age_limite_enfant_adopte_non - 1))
         condition = (af_nbenf >= 2) * condition2 + condition1
 
         paje_clca = (
