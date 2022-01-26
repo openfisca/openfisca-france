@@ -1,17 +1,12 @@
-description: Taux 1er versement de l'Allocations postnatales (APN, 1975-1984)
+description: Nombre de fractions de versement de l'Allocations postnatales (APN, 1975-1984)
 values:
   1975-04-25:
-    value: 1.3
-  1980-07-01:
-    value: 1.84
-  1983-01-01:
-    value: 1.71
+    value: 3.0
   1985-01-01:
     value: null
 metadata:
-  ux_name: 1er versement
-  ipp_csv_id: tx_versement1
-  unit: /1
+  ux_name: Nombre de fractions de versement
+  ipp_csv_id: nb_frac
   reference:
     1983-01-01: Décret 82-1138 du 29/12/1982, art. 3(modif art. L516 du CSS)
     1980-07-01: Loi 80-545 du 17 juillet 1980

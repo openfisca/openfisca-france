@@ -1,1 +1,9 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Taux et versement de l'Allocations postnatales (APN, 1975-1984)
+metadata:
+  ux_name: APN
+  order:
+  - taux_base_calcul_verse
+  - nombre_fractions_versement
+  - taux
+  - majoration_naissance_adoption
+  description_en: "Postnatal allowance (APN): Rate and payment"

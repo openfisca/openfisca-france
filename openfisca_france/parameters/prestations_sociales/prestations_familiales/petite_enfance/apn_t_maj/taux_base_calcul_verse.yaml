@@ -1,16 +1,14 @@
-description: Taux 1er versement de l'Allocations postnatales (APN, 1975-1984)
+description: Taux de la base de calcul versé de l'Allocations postnatales (APN, 1975-1984)
 values:
   1975-04-25:
-    value: 1.3
-  1980-07-01:
-    value: 1.84
+    value: 2.6
   1983-01-01:
-    value: 1.71
+    value: 2.42
   1985-01-01:
     value: null
 metadata:
-  ux_name: 1er versement
-  ipp_csv_id: tx_versement1
+  ux_name: Taux de la base de calcul versé
+  ipp_csv_id: tx_base
   unit: /1
   reference:
     1983-01-01: Décret 82-1138 du 29/12/1982, art. 3(modif art. L516 du CSS)
