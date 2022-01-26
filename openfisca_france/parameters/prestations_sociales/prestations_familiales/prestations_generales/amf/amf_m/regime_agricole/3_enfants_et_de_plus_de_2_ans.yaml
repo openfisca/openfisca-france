@@ -7,7 +7,7 @@ values:
 metadata:
   ux_name: 3+ enfants (>2 ans)
   ipp_csv_id: tx_agri_3enf_02ans
-  unit: /1
+  unit: BMAF
   reference:
     1978-01-01:
       title: Loi 77-765 du 12/07/1977

@@ -7,7 +7,7 @@ values:
 metadata:
   ux_name: Tranche 2
   ipp_csv_id: maj_enf_tx2
-  unit: /1
+  unit: BMAF
   reference:
     2015-07-01:
     - title: Décret 2015-611 du 03/06/2015

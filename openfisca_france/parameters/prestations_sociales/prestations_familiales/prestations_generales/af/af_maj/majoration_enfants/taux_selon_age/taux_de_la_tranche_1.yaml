@@ -7,7 +7,7 @@ values:
 metadata:
   ux_name: Tranche 1
   ipp_csv_id: maj_enf_tx1
-  unit: /1
+  unit: BMAF
   reference:
     2008-05-01:
     - title: Décret 2008-409 du 28/04/2008, art. 1 (modif art. R521-1 du CSS)

@@ -15,7 +15,7 @@ values:
 metadata:
   ux_name: Taux majoré
   ipp_csv_id: tx_cf_maj
-  unit: /1
+  unit: BMAF
   reference:
     2018-04-01: Circulaire DSS/SD2B/2018/81 du 22/03/2018
     2017-04-01: Circulaire DSS/SD2B/2017/97 du 21/03/2017

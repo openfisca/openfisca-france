@@ -7,7 +7,7 @@ values:
 metadata:
   ux_name: Personne âgée ou infirme
   ipp_csv_id: tx_vieux
-  unit: /1
+  unit: BMAF
   reference:
     1995-01-01: art. R542-31 du CSS
     1976-08-01:

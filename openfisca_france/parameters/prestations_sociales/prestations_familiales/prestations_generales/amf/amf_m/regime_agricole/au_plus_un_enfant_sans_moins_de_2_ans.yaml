@@ -9,7 +9,7 @@ values:
 metadata:
   ux_name: Max 1 enfant sans moins de 2 ans
   ipp_csv_id: tx_agri_2ans
-  unit: /1
+  unit: BMAF
   reference:
     1978-01-01:
       title: Loi 77-765 du 12/07/1977

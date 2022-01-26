@@ -18,7 +18,7 @@ values:
     value: 0.6248
 metadata:
   ux_name: Taux majoré
-  unit: /1
+  unit: BMAF
   reference:
     2020-04-01:
       title: Décret 2017-551 du 2017-04-14 - art. 2 et 4

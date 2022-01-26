@@ -7,7 +7,7 @@ values:
 metadata:
   ux_name: 1 enfant
   ipp_csv_id: tx_1enf
-  unit: /1
+  unit: BMAF
   reference:
     1995-01-01: art. R542-31 du CSS
     1976-08-01:

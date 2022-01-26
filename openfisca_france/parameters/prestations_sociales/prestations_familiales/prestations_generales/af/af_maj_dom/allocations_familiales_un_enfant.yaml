@@ -4,7 +4,7 @@ values:
     value: 0.0588
 metadata:
   ux_name: Un enfant à charge
-  unit: /1
+  unit: BMAF
   reference:
     1999-01-01:
       title: Décret 98-1214 du 29/12/1998

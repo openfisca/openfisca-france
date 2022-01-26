@@ -12,7 +12,7 @@ values:
     value: null
 metadata:
   ux_name: 6e enfant et plus
-  unit: /1
+  unit: BMAF
   reference:
     1999-01-01:
       title: Décret 98-1214 du 29/12/1998
