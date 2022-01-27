@@ -122,10 +122,10 @@ class paje_base(Variable):
 
         # Avant réforme d'avril 2014 (enfants nés avant avril 2014)
         def plafond_avant_avril_2014():
-            plafond_de_base = paje.base.avant_2014.plafond_ressources_0_enf
-            maj_plafond_2_premiers_enfants = paje.base.avant_2014.taux_majoration_2_premiers_enf * plafond_de_base
-            maj_plafond_par_enfant_sup = paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * plafond_de_base
-            maj_plafond_seul_biactif = paje.base.avant_2014.majoration_biact_parent_isoles
+            plafond_de_base = paje.paje_plaf.avant_2014.plafond_ressources_0_enf
+            maj_plafond_2_premiers_enfants = paje.paje_plaf.avant_2014.taux_majoration_2_premiers_enf * plafond_de_base
+            maj_plafond_par_enfant_sup = paje.paje_plaf.avant_2014.taux_majoration_3eme_enf_et_plus * plafond_de_base
+            maj_plafond_seul_biactif = paje.paje_plaf.avant_2014.majoration_biact_parent_isoles
 
             plafond = (
                 plafond_de_base
@@ -137,16 +137,16 @@ class paje_base(Variable):
 
         # A partir de la réforme de 2014 et jusqu'à la réforme de 2018 (enfants nés entre le 1er avril 2014 et le 1er avril 2018)
         def plafond_taux_plein_2014_2018():
-            plafond_de_base = paje.base.apres_2014.taux_plein.plaf
-            maj_plafond_seul_biactif = paje.base.apres_2014.taux_plein.plaf_maj
-            maj_plafond_par_enfant = plafond_de_base * paje.base.apres_2014.plaf_tx_par_enf
+            plafond_de_base = paje.paje_plaf.apres_2014.taux_plein.plaf
+            maj_plafond_seul_biactif = paje.paje_plaf.apres_2014.taux_plein.plaf_maj
+            maj_plafond_par_enfant = plafond_de_base * paje.paje_plaf.apres_2014.plaf_tx_par_enf
 
             return plafond_apres_ajustement_2014_2018(plafond_de_base, maj_plafond_par_enfant, maj_plafond_seul_biactif)
 
         def plafond_taux_partiel_2014_2018():
-            plafond_de_base = paje.base.apres_2014.taux_partiel.plaf
-            maj_plafond_seul_biactif = paje.base.apres_2014.taux_partiel.plaf_maj
-            maj_plafond_par_enfant = plafond_de_base * paje.base.apres_2014.plaf_tx_par_enf
+            plafond_de_base = paje.paje_plaf.apres_2014.taux_partiel.plaf
+            maj_plafond_seul_biactif = paje.paje_plaf.apres_2014.taux_partiel.plaf_maj
+            maj_plafond_par_enfant = plafond_de_base * paje.paje_plaf.apres_2014.plaf_tx_par_enf
 
             return plafond_apres_ajustement_2014_2018(plafond_de_base, maj_plafond_par_enfant, maj_plafond_seul_biactif)
 
@@ -160,18 +160,18 @@ class paje_base(Variable):
 
         # A partir de la réforme d'avril 2018 (enfants nés apres avril 2018)
         def plafond_taux_plein_apres_2018():
-            plafond_de_base = paje.base.apres_2018.taux_plein.plaf
-            maj_plafond_2_premiers_enfants = paje.base.apres_2018.taux_majoration_2_premiers_enf * plafond_de_base
-            maj_plafond_par_enfant_sup = paje.base.apres_2018.taux_majoration_3eme_enf_et_plus * plafond_de_base
-            maj_plafond_seul_biactif = paje.base.apres_2018.taux_plein.plaf_maj
+            plafond_de_base = paje.paje_plaf.apres_2018.taux_plein.plaf
+            maj_plafond_2_premiers_enfants = paje.paje_plaf.apres_2018.taux_majoration_2_premiers_enf * plafond_de_base
+            maj_plafond_par_enfant_sup = paje.paje_plaf.apres_2018.taux_majoration_3eme_enf_et_plus * plafond_de_base
+            maj_plafond_seul_biactif = paje.paje_plaf.apres_2018.taux_plein.plaf_maj
 
             return plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif)
 
         def plafond_taux_partiel_apres_2018():
-            plafond_de_base = paje.base.apres_2018.taux_partiel.plaf
-            maj_plafond_2_premiers_enfants = paje.base.apres_2018.taux_majoration_2_premiers_enf * plafond_de_base
-            maj_plafond_par_enfant_sup = paje.base.apres_2018.taux_majoration_3eme_enf_et_plus * plafond_de_base
-            maj_plafond_seul_biactif = paje.base.apres_2018.taux_partiel.plaf_maj
+            plafond_de_base = paje.paje_plaf.apres_2018.taux_partiel.plaf
+            maj_plafond_2_premiers_enfants = paje.paje_plaf.apres_2018.taux_majoration_2_premiers_enf * plafond_de_base
+            maj_plafond_par_enfant_sup = paje.paje_plaf.apres_2018.taux_majoration_3eme_enf_et_plus * plafond_de_base
+            maj_plafond_seul_biactif = paje.paje_plaf.apres_2018.taux_partiel.plaf_maj
 
             return plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif)
 
@@ -265,17 +265,17 @@ class paje_naissance(Variable):
 
         taux_plafond = (
             (nbenf > 0)
-            + paje.base.apres_2018.taux_majoration_2_premiers_enf * min_(nbenf, 2)
-            + paje.base.apres_2018.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
+            + paje.paje_plaf.apres_2018.taux_majoration_2_premiers_enf * min_(nbenf, 2)
+            + paje.paje_plaf.apres_2018.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
             )
 
         majoration_isole_biactif = isole | biactivite
 
         plafond_de_ressources = (
-            paje.base.apres_2018.taux_partiel.plaf
+            paje.paje_plaf.apres_2018.taux_partiel.plaf
             * taux_plafond
             + (taux_plafond > 0)
-            * paje.base.apres_2018.taux_partiel.plaf_maj
+            * paje.paje_plaf.apres_2018.taux_partiel.plaf_maj
             * majoration_isole_biactif
             )
 
@@ -310,9 +310,9 @@ class paje_naissance(Variable):
         majoration_isole_biactif = isole | biactivite
 
         plafond_de_ressources = (
-            paje.base.apres_2014.taux_partiel.plaf
-            + paje.base.apres_2014.taux_partiel.plaf * nbenf * paje.base.apres_2014.plaf_tx_par_enf
-            + paje.base.apres_2014.taux_partiel.plaf_maj * majoration_isole_biactif
+            paje.paje_plaf.apres_2014.taux_partiel.plaf
+            + paje.paje_plaf.apres_2014.taux_partiel.plaf * nbenf * paje.paje_plaf.apres_2014.plaf_tx_par_enf
+            + paje.paje_plaf.apres_2014.taux_partiel.plaf_maj * majoration_isole_biactif
             )
 
         eligible_prime_naissance = (base_ressources <= plafond_de_ressources)
@@ -343,17 +343,17 @@ class paje_naissance(Variable):
 
         plaf_tx = (
             (nbenf > 0)
-            + paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2)
-            + paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
+            + paje.paje_plaf.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2)
+            + paje.paje_plaf.avant_2014.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
             )
 
         majo = isole | biactivite
 
         plaf = (
-            paje.base.avant_2014.plafond_ressources_0_enf
+            paje.paje_plaf.avant_2014.plafond_ressources_0_enf
             * plaf_tx
             + (plaf_tx > 0)
-            * paje.base.avant_2014.majoration_biact_parent_isoles
+            * paje.paje_plaf.avant_2014.majoration_biact_parent_isoles
             * majo
             )
 
