@@ -1,0 +1,32 @@
+description: Montant (en % de la BMAF) de la Prime à l'adoption de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 2.2975
+  2005-08-01:
+    value: 4.595
+metadata:
+  ux_name: Montant prime adoption
+  ipp_csv_id: tx_paje_adopt
+  unit: BMAF
+  reference:
+    2005-08-01:
+    - title: Loi 2005-744 du 04/07/2005, art. 8 (modif art. L531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006242678&cidTexte=JORFTEXT000000262154
+    - title: Décret 2005-1172 du 12/09/2005, art. 1 (modif art. D531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006245153&cidTexte=JORFTEXT000000606227
+    2004-01-01:
+    - title: Loi 2003-1199 du 18/12/2003, art. 60 II (modif art. L531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
+    - title: Décret 2003-1394 du 31/12/2003, art. 1 (crée art. D531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
+  official_journal_date:
+    2005-08-01: 2005-07-05; 2005-09-17
+    2004-01-01: 2003-12-19; 2004-01-01
+  notes:
+    2005-08-01: "Loi : Le montant de la prime devient majoré en cas d'adoption.; Décret : précise le nouveau taux pour la prime à l'adoption.; Taux toujours non modifiés en 2016"
+    2004-01-01: La PAJE entre en vigueur de manière progressive jusqu'à fin 2006 (cf. art. 60, VIII de la loi).
+  description_en: "Early childhood benefit (PAJE) -- Birth and adoption premium : conditions and amounts"
+documentation: |
+  Notes :
+  Prime versée "avant la fin du dernier jour du mois civil suivant le sixième mois de la grossesse" (cf. art. D531-2 du CSS)
+  A partir du 1er avril 2014, les montants de prime à la naissance et de prime à l'adoption sont gelés à leur montant calculé à partir de la BMAF en vigueur au 1er avril 2013. Cf. III. de l'art. 74 de la loi 2013-1203 du 23 décembre 2013 de financement de la sécurité sociale pour 2014. Ce paragraphe III. est abrogé par la loi 2017-1836 du 30/12/2017 avec application de l'abrogation à compter du 1er avril 2018.
