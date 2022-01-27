@@ -1,11 +1,11 @@
-description: Limite d'âge (stricte) pour bénéficier de l'allocation de base de la Prestation d'accueil du jeune enfant (PAJE)
+description: Durée de versement pour les enfants adoptés (en année) de l'allocation de base de la Prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
     value: 3.0
 metadata:
-  ux_name: Limite d'âge
+  ux_name: Durée versement enfants adoptés
   unit: year
-  ipp_csv_id: paje_ab_age_min
+  ipp_csv_id: duree_adopt
   reference:
     2018-04-01:
       title: Décret n° 2018-312 du 26 avril 2018, art. 1 (modifie art. D531-3 du CSS)
