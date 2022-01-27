@@ -255,8 +255,7 @@ class paje_naissance(Variable):
         biactivite = famille('biactivite', period)
         paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
-
-        prime_naissance = round(100 * paje.prime_naissance.prime_tx * bmaf) / 100
+        prime_naissance = round(100 * paje.paje_cm2.montant.prime_naissance * bmaf) / 100
 
         # Versée au 7ème mois de grossesse
         diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
@@ -300,7 +299,7 @@ class paje_naissance(Variable):
         # Le montant de la PAJE est gelé depuis avril 2013.
         date_gel_paje = Instant((2013, 4, 1))
         bmaf = fam_bmaf.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations_sociales.prestations_familiales.bmaf.bmaf
-        prime_naissance = round(100 * paje.prime_naissance.prime_tx * bmaf) / 100
+        prime_naissance = round(100 * paje.paje_cm2.montant.prime_naissance * bmaf) / 100
 
         # Versée au 7ème mois de grossesse
         diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
@@ -334,7 +333,7 @@ class paje_naissance(Variable):
         # Le montant de la PAJE est gelé depuis avril 2013.
         date_gel_paje = Instant((2013, 4, 1))
         bmaf = fam_bmaf.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations_sociales.prestations_familiales.bmaf.bmaf
-        nais_prime = round(100 * paje.prime_naissance.prime_tx * bmaf) / 100
+        nais_prime = round(100 * paje.paje_cm2.montant.prime_naissance * bmaf) / 100
 
         # Versée au 7ème mois de grossesse
         diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
