@@ -116,7 +116,7 @@ class paje_base(Variable):
         periode_de_gel = date_degel_paje > period.start > date_gel_paje
         indice = parameters(date_gel_paje).prestations_sociales.prestations_familiales.bmaf.bmaf if periode_de_gel else bmaf
         # Le taux ne dépend pas de l'année en cours mais de la réforme en vigueur pour l'année de naissance:
-        montant_taux_plein_avant_2014 = indice * paje.paje_cm.montant.allocation_base_taux_plein
+        montant_taux_plein_avant_2014 = indice * paje.base.avant_2014.taux_allocation_base
         montant_taux_plein_2014_2018 = indice * paje.base.apres_2014.taux_allocation_base
         montant_taux_plein_apres_2018 = indice * paje.base.apres_2018.taux_allocation_base
 
