@@ -118,7 +118,7 @@ class paje_base(Variable):
         # Le taux ne dépend pas de l'année en cours mais de la réforme en vigueur pour l'année de naissance:
         montant_taux_plein_avant_2014 = indice * paje.paje_cm.montant.allocation_base_taux_plein.avant_2014.taux
         montant_taux_plein_2014_2018 = indice * paje.paje_cm.montant.allocation_base_taux_plein.apres_2014.taux
-        montant_taux_plein_apres_2018 = indice * paje.base.apres_2018.taux_allocation_base
+        montant_taux_plein_apres_2018 = indice * paje.paje_cm.montant.allocation_base_taux_plein.apres_2018.taux
 
         # Avant réforme d'avril 2014 (enfants nés avant avril 2014)
         def plafond_avant_avril_2014():
