@@ -12,7 +12,8 @@ L'upload automatique est fait de la façon suivante par la CI uniquement si l'é
 - Ecriture de ces informations par ce même script dans le fichier `.conda/meta.yaml`.
 - Exécution de `conda build` pour construire et publier le paquet conformément au fichier `.conda/meta.yaml`. Cette étape nécessite la variable de CI ANACONDA_TOKEN.
 
-Pour valider que tout a fonctionné, une étape `test-on-windows` a été ajouté en fin de CI. Cette étape récupère le paquet conda sur une machine Windows et exécute les tests.
+Pour valider que tout a fonctionné, une étape `test-on-windows` a été ajoutée en fin de CI. Cette étape récupère le paquet conda sur une machine Windows et exécute les tests.
+
 
 ## Etapes préparatoires pour arriver à cette automatisation
 
