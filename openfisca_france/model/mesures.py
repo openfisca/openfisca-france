@@ -102,11 +102,11 @@ class revenus_nets_du_travail(Variable):
         salaire_net = individu('salaire_net', period, options = [ADD])
         # Non salariés
         revenu_non_salarie = individu('rpns_imposables', period, options = [ADD])
-        csg_non_salarie = individu('csg_non_salarie', period)
+        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period)
         crds_non_salarie = individu('crds_non_salarie', period)
         revenu_non_salarie_net = (
             revenu_non_salarie
-            + csg_non_salarie
+            + csg_imposable_non_salarie
             + crds_non_salarie
             )
         return salaire_net + revenu_non_salarie_net

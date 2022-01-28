@@ -340,7 +340,7 @@ class assiette_csg_crds_non_salarie(Variable):
         return assiette_cotisation
 
 
-class csg_non_salarie(Variable):
+class csg_imposable_non_salarie(Variable):
     value_type = float
     entity = Individu
     label = "Assiette CSG des personnes non salariées"
@@ -349,7 +349,19 @@ class csg_non_salarie(Variable):
     def formula(individu, period, parameters):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
         csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
-        taux = csg.deductible.taux + csg.imposable.taux
+        taux = csg.imposable.taux
+        return - taux * assiette_csg_crds_non_salarie
+
+class csg_deductible_non_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = "Assiette CSG des personnes non salariées"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
+        csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.activite
+        taux = csg.deductible.taux
         return - taux * assiette_csg_crds_non_salarie
 
 
