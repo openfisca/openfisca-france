@@ -18,7 +18,8 @@ Pour valider que tout a fonctionné, une étape `test-on-windows` a été ajout�
 ## Etapes préparatoires pour arriver à cette automatisation
 
 - Création d'un compte sur https://anaconda.org.
-- Création d'un token sur https://anaconda.org/openfisca.org/settings/access avec le droit _Allow write access to the API site_. Attention il expire le 2023/01/13.
+- Création d'un token sur https://anaconda.org/openfisca/settings/access avec le droit _Allow write access to the API site_. Attention il expire le 2023/01/13.
+
 - Mis en place du token dans GitHub Action sous le nom de variable ANACONDA_TOKEN.
 
 ### Publication manuelle du package
