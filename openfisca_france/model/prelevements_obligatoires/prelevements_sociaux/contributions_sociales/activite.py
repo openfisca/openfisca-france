@@ -352,6 +352,7 @@ class csg_imposable_non_salarie(Variable):
         taux = csg.imposable.taux
         return - taux * assiette_csg_crds_non_salarie
 
+
 class csg_deductible_non_salarie(Variable):
     value_type = float
     entity = Individu
