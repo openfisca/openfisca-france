@@ -2,7 +2,7 @@ from numpy import fabs, timedelta64
 from openfisca_core.populations import ADD
 
 from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, \
-    set_input_dispatch_by_period, set_input_divide_by_period, min_, select, date
+    set_input_dispatch_by_period, set_input_divide_by_period, min_, date
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
 
 
