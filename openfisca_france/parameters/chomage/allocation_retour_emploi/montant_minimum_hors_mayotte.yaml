@@ -1,5 +1,7 @@
 description: Montant minimum journalier de l'allocation chômage
 values:
+  2021-07-01:
+    value: 29.56
   2020-07-01:
     value: 29.38
   2019-07-01:
@@ -24,6 +26,11 @@ values:
     value: 26.93
   2008-07-01:
     value: 26.66
+
 metadata:
   ux_name: Montant minimum journalier
   unit: currency
+  2021-07-01:
+    reference:
+      - https://www.service-public.fr/particuliers/actualites/A15021
+      - https://www.unedic.org/indemnisation/vos-questions-sur-indemnisation-assurance-chomage/comment-est-calculee-mon-allocation-chomage

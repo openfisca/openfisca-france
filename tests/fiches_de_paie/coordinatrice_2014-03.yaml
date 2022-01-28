@@ -8,7 +8,7 @@ input:
   contrat_de_travail: temps_plein
   contrat_de_travail_debut: '2013-07-02'
   contrat_de_travail_fin: '2014-12-31'
-  contrat_de_travail_duree: cdi
+  contrat_de_travail_type: cdi
   effectif_entreprise: 250
   heures_non_remunerees_volume: 0
   code_postal_entreprise: '13299'

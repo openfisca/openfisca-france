@@ -7,7 +7,7 @@
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 0
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
   output:
     credit_impot_competitivite_emploi: 87.5
 
@@ -20,7 +20,7 @@
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 0
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
   output:
     credit_impot_competitivite_emploi: 218.6
 
@@ -33,7 +33,7 @@
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 0
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
   output:
     credit_impot_competitivite_emploi: 0
 
@@ -46,7 +46,7 @@
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 0
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_duree: cdi
+    contrat_de_travail_type: cdi
     entreprise_est_association_non_lucrative: 1
   output:
     credit_impot_competitivite_emploi: 0
