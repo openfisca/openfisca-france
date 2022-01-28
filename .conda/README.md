@@ -14,6 +14,9 @@ L'upload automatique est fait de la façon suivante par la CI uniquement si l'é
 
 Pour valider que tout a fonctionné, une étape `test-on-windows` a été ajoutée en fin de CI. Cette étape récupère le paquet conda sur une machine Windows et exécute les tests.
 
+**A noter** : Le paquet OpenFisca-France est aussi publié sur `conda-forge`, pour cela voir [le feedstock](https://github.com/openfisca/openfisca-france-feedstock/tree/master/recipe)
+
+C'est le channel `conda-forge` qui est le channel stable à conseiller aux utilisateurs. Le channel `openfisca` reçoit les derniers paquets de façon automatique.
 
 ## Etapes préparatoires pour arriver à cette automatisation
 
@@ -30,7 +33,7 @@ _Cela fonctionne aussi sous macOS et Linux, à condition d'adapter les chemins._
 
 - Editer `.conda/meta.yaml` pour vérifier son contenu.
 - Installer [MiniConda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html) si vous n'avez pas déjà [AnaConda](https://www.anaconda.com/products/individual).
-- Puis dans le terminal saisissez les instructions suivantes : 
+- Puis dans le terminal saisissez les instructions suivantes :
     - `conda install -c anaconda conda-build anaconda-client` Pour installer les outils indispensable.
     - `conda build --croot c:\temp .conda` L'option `--croot ` est nécessaire sous Windows à cause des chemins trop long.
     - `conda install -c anaconda anaconda-client` Pour installer l'outil en ligne de commande.
