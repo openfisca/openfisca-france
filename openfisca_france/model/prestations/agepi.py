@@ -110,13 +110,17 @@ class TypesIntensiteActivite(Enum):
     mensuelle = "Intensité d'emploi ou de formation mensuelle"
 
 
-class types_intensite_activite(Variable):
+class type_intensite_activite(Variable):
     value_type = Enum
     possible_values = TypesIntensiteActivite
     default_value = TypesIntensiteActivite.inconnue
     entity = Individu
-    label = "Les types d'intensité pour le calcul de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI"
+    label = "Le type d'intensité d'activité au regard de Pôle Emploi"
     definition_period = MONTH
+    documentation = '''
+    L'intensité d'activité est évaluée en fonction de son type (hebdomadaire, ...)
+    et du nombre d'heures requises.
+    '''
 
 
 class agepi_date_demande(Variable):
@@ -254,7 +258,7 @@ class agepi_hors_mayotte(Variable):
 
     def formula_2014_01_20(individu, period, parameters):
         est_parent = individu.has_role(Famille.PARENT)
-        intensite_activite = individu('types_intensite_activite', period)
+        intensite_activite = individu('type_intensite_activite', period)
         nb_heures = individu('agepi_temps_travail_en_heure', period)
         nb_enfants_eligibles = individu.famille('agepi_nbenf', period)
         eligibilite_agepi = individu('agepi_eligible', period)
@@ -299,7 +303,7 @@ class agepi_mayotte(Variable):
 
     def formula_2014_01_20(individu, period, parameters):
         est_parent = individu.has_role(Famille.PARENT)
-        intensite_activite = individu('types_intensite_activite', period)
+        intensite_activite = individu('type_intensite_activite', period)
         nb_heures = individu('agepi_temps_travail_en_heure', period)
         nb_enfants_eligibles = individu.famille('agepi_nbenf', period)
         eligibilite_agepi = individu('agepi_eligible', period)
