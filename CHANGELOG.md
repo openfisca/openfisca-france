@@ -1,5 +1,27 @@
 # Changelog
 
+# 104.0.0 [#1711](https://github.com/openfisca/openfisca-france/pull/1711)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 20/01/2014
+  * Zones impactées : 
+    - `model/prestations/agepi.py`
+    - `model/revenus/activite/salarie.py`
+    - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
+    - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/exonerations.py`
+    - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
+    - `model/prelevements_obligatoires/prelevements_sociaux/taxes_salaires_main_oeuvre.py `
+    - `model/prestations/aide_permis_demandeur_emploi.py`
+    - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/agepi.yaml`
+    - `parameters/chomage/allocation_retour_emploi/`
+  
+* Détails :
+  - Complète l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI
+    - Ajoute les conditions d'éligibilité et les montants en fonction du pays de résidence (Mayotte / Hors Mayotte)
+  - Renomme `contrat_de_travail_duree` en `contrat_de_travail_type`
+    - Nouvelle variable `contrat_de_travail_duree` représente une durée en mois (et non plus `CDI`, `CDD`...)
+  - Renomme `TypesContratDeTravailDuree` en `TypesContrat`
+
 # 103.0.0 [#1772](https://github.com/openfisca/openfisca-france/pull/1772)
  
 * Amélioration technique. 
@@ -14,19 +36,17 @@
        - `al_plafonds_logement_foyer`
        - `reduction_loyer_solidarite`
 
-## 102.1.0 [#1761](https://github.com/openfisca/openfisca-france/pull/1761
-
-Cette branche dépend de la branche `harm_prestas_sociales4_al` (PR #1772)
+## 102.1.0 [#1761](https://github.com/openfisca/openfisca-france/pull/1761)
 
 * Amélioration technique. 
 * Périodes concernées : toutes.
 * Zones impactées : 
-- `parameters/prestations_sociales/aides_logement/visale`.
-- `parameters/prestations_sociales/aides_logement/mon_job_mon_logement`.
+  - `parameters/prestations_sociales/aides_logement/visale`.
+  - `parameters/prestations_sociales/aides_logement/mon_job_mon_logement`.
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
-  -   
+
 ### 102.0.1 [#1783](https://github.com/openfisca/openfisca-france/pull/1783)
 
 * Changement mineur.
