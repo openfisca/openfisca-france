@@ -129,7 +129,7 @@ class types_intensite_activite(Variable):
 
 class agepi_date_demande(Variable):
     value_type = date
-    default_value = date(1870, 1, 1)
+    default_value = date(1, 1, 1)
     entity = Individu
     label = "Date de demande d'évaluation à l'éligibilité à l'AGEPI (date du fait générateur)"
     definition_period = MONTH
