@@ -2,70 +2,70 @@ description: Les différents paramètres pour le calcul de l'aide à la mobilit�
 reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
 montants:
   derogatoire:
-    description: Dérogation limitée à un sous‑plafond annuel de 1 500 euros
+    description: Montant annuel maximum de l'aide mobilité de Pôle Emploi dans le cadre d'une dérogation.
     reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
     values:
       2021-06-08:
         value: 1500
   maximum:
-    description: Le demandeur d’emploi peut bénéficier de l’aide à la mobilité, tous types de frais confondus, dans la limite d’un plafond annuel de 5 000 euros.
+    description: Montant annuel maximum de l'aide mobilité de Pôle Emploi.
     reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
     values:
       2021-06-08:
         value: 5000
   deplacement:
-    description: Le montant maximum de la prise en charge des frais de déplacement est calculé sur la base d’une indemnité kilométrique égale à 0,20 euros par kilomètre parcouru multiplié par le nombre de kilomètres aller-retour.
+    description: Montant de prise en charge des frais de déplacement par kilomètre pour l'aide mobilité de Pôle Emploi.
     reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
     values:
       2021-06-08:
         value: 0.20
   hebergement:
-    description: La prise en charge des frais d'hébergement correspond, dans la limite des frais engagés, à 30 euros par nuitée.
+    description: Montant de prise en charge des frais d'hébergement par nuitée pour l'aide mobilité de Pôle Emploi.
     reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
     values:
       2021-06-08:
         value: 30
   repas:
-    description: La prise en charge des frais de repas correspond à un montant forfaitaire fixé à 6 euros par jour.
+    description: Montant de prise en charge des frais de repas par jour pour l'aide mobilité de Pôle Emploi.
     reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
     values:
       2021-06-08:
         value: 6
 duree_trajet_minimum:
-  description: Le concours public ou l’examen certifiant doit être situé à deux heures (120 minutes) de trajet aller‑retour du lieu de résidence du demandeur d’emploi.
+  description: Temps (en minutes) du trajet aller‑retour entre le lieu de travail et le lieu de résidence pour être éligible à l'aide mobilité de Pôle Emploi.
   reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
   values:
     2021-06-08:
       value: 120
 distance_minimum:
-  description: Distances minimums requises pour être éligible à l'aide à la mobilité de Pôle Emploi en fonction du lieu de résidence.
+  description: Distances (en kilomètres) minimales requises pour être éligible à l'aide mobilité de Pôle Emploi en fonction du lieu de résidence.
   reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
   metropole:
-    description: Le concours public ou l’examen certifiant doit être situé à plus de 60 kilomètres lorsque le demandeur d’emploi réside en métropole.
+    description: Distance (en kilomètres) minimale requises pour être éligible à l'aide mobilité de Pôle Emploi en métropole.
     reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
     values:
       2021-06-08:
         value: 60
   hors_metropole:
-    description: Le concours public ou l’examen certifiant doit être situé à plus de 20 kilomètres lorsque le demandeur d’emploi réside en dehors de la métropole.
+    description: Distance (en kilomètres) minimale requises pour être éligible à l'aide mobilité de Pôle Emploi en dehors de la métropole.
     reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
     values:
       2021-06-08:
         value: 20
 delai_max :
-  description: La demande d’aide à la mobilité doit être faite au plus tard dans un délai de 7 jours.
+  description: Délai (en jours) de demande maximum, de date à date, après l'action de reclassement pour être éligible à d’aide à la mobilité de Pôle Emploi.
   reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
   values:
     2021-06-08:
       value: 7
 duree_de_formation_minimum:
-  description: La durée de formation doit être d'au minimum 40 heures.
+  description: La durée (en heures) minimale de formation pour être éligible à l'aide mobilité de Pôle Emploi.
   reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
   values:
     2021-06-08:
       value: 40
 duree_de_contrat_minimum:
-  description: La durée de contrat doit être supérieure ou égale à 3 mois.
+  description: La durée (en mois) minimale de contrat pour être éligible à l'aide mobilité de Pôle Emploi.
   reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021#"
   values:
     2021-06-08:
