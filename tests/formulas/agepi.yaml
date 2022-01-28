@@ -36,7 +36,7 @@
     agepi: [170, 0, 0]
 
 
-- name: Test 02 - Individu non éligible n'élevant pas seul son enfant dont l'âge est inférieur à 10 ans
+- name: Test 02 - Individu inéligible à l'AGEPI n'élevant pas seul son enfant dont l'âge est inférieur à 10 ans
   period: 2022-01
   input:
     menage:
@@ -79,7 +79,7 @@
     agepi: [0, 0, 0, 0]
 
 
-- name: Test 03 - Vérifie le non cumul de l'aide AGEPI
+- name: Test 03 - Inéligibilité pour cumul d'AGEPI d'un individu à 1 des enfants de moins de 10 ans
   period: 2022-01
   input:
     menage:
@@ -91,13 +91,11 @@
         age: 29
         agepi:
           month:2021-01:12: 170
+        allocation_retour_emploi: 0
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: false
-        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 0
         contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         type_intensite_activite: hebdomadaire
@@ -119,7 +117,7 @@
     agepi: [0, 0, 0]
 
 
-- name: Test 04 - Vérifie si l'individu appartient à une catégorie éligible à l'AGEPI
+- name: Test 04 - Inéligibilité à l'AGEPI d'un demandeur d'emploi hors catégories éligibles
   period: 2022-01
   input:
     menage:
@@ -159,7 +157,7 @@
     agepi: [0, 0, 0]
 
 
-- name: Test 05 - Vérifie si l'individu est de catégorie 4 et stagiaire de formation professionnelle
+- name: Test 05 - Individu éligible à l'AGEPI de catégorie 4 et stagiaire de formation professionnelle
   period: 2022-01
   input:
     menage:
@@ -199,7 +197,7 @@
     agepi: [170, 0, 0]
 
 
-- name: Test 06 - Vérifie si l'individu est de catégorie 5 et en contrat aidé
+- name: Test 06 - Individu éligible à l'AGEPI de catégorie 5 et en contrat aidé
   period: 2022-01
   input:
     menage:
@@ -239,7 +237,7 @@
     agepi: [170, 0, 0]
 
 
-- name: Test 07 - Vérifie si la reprise d'emploi ou de formation a lieu en France
+- name: Test 07 - Individu inéligible à l'AGEPI et dont la reprise d'emploi ou de formation a lieu en France
   period: 2022-01
   input:
     menage:
@@ -279,7 +277,7 @@
     agepi: [0, 0, 0]
 
 
-- name: Test 08 - Vérifie si l'individu a effectué sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
+- name: Test 08 - Individu inéligible à l'AGEPI n'ayant pas effectué sa demande dans le mois qui suit sa reprise d'emploi ou de formation
   period: 2022-01
   input:
     menage:
@@ -379,7 +377,7 @@
     agepi: [170, 0, 0, 0, 0, 0, 0 ]
 
 
-- name: Test 10 - Individu eligible, 1 enfant, reprise CDD < 64h/mois, hors Mayotte
+- name: Test 10 - Individu éligible, 1 enfant, reprise CDD < 64h/mois, hors Mayotte
   period: 2022-01
   input:
     menage:
@@ -419,7 +417,7 @@
     agepi: [170, 0, 0]
 
 
-- name: Test 11 - Individu eligible 2 enfants, reprise CDD >= 64h/mois, hors Mayotte
+- name: Test 11 - Individu éligible 2 enfants, reprise CDD >= 64h/mois, hors Mayotte
   period: 2022-01
   input:
     menage:
@@ -459,7 +457,7 @@
     agepi: [460, 0, 0]
 
 
-- name: Test 12 - Individu eligible 2 enfants, reprise CDD >= 64h/mois, Mayotte
+- name: Test 12 - Individu éligible 2 enfants, reprise CDD >= 64h/mois, Mayotte
   period: 2022-01
   input:
     menage:
@@ -499,7 +497,7 @@
     agepi: [230, 0, 0]
 
 
-- name: Test 13 - Individu eligible 2 enfants, reprise formation >= 40h, catégorie 4, Mayotte
+- name: Test 13 - Individu éligible 2 enfants, reprise formation >= 40h, catégorie 4, Mayotte
   period: 2022-01
   input:
     menage:
@@ -540,7 +538,7 @@
     agepi: [97.5, 0, 0]
 
 
-- name: Test 14 - Individu eligible, 1 enfant, reprise CDI, hors Mayotte
+- name: Test 14 - Individu éligible, 1 enfant, reprise CDI, hors Mayotte
   period: 2022-01
   input:
     menage:
@@ -580,7 +578,7 @@
     agepi: [400, 0, 0]
 
 
-- name: Test 15 - Individu eligible, 1 enfant, reprise CDI, Mayotte, ressource < ARE Min Mayotte
+- name: Test 15 - Individu éligible, 1 enfant, reprise CDI, Mayotte, ressource < ARE Min Mayotte
   period: 2022-01
   input:
     menage:

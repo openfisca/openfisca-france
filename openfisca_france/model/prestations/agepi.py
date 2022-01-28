@@ -145,17 +145,17 @@ class agepi_eligible(Variable):
         ]
 
     def formula_2014_01_20(individu, period, parameters):
-        #  L'individu élève seul son enfant (parent isolé)
+        # L'individu élève seul son enfant (parent isolé)
         parents_isoles = individu.famille('nb_parents', period) == 1
 
-        #  L'âge du ou des enfants dont il a la garde est inférieur à 10 ans (condition de garde d'enfant)
+        # L'âge du ou des enfants dont il a la garde est inférieur à 10 ans (condition de garde d'enfant)
         condition_nb_enfants = individu.famille('agepi_nbenf', period) > 0
 
-        #  L'individu n'a pas touché l'AGEPI dans les 12 derniers mois (condition de durée entre faits générateurs)
+        # L'individu n'a pas touché l'AGEPI dans les 12 derniers mois (condition de durée entre faits générateurs)
         annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
         agepi_non_percues = not_(individu('agepi', annee_glissante, options=[ADD]))
 
-        #  L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé"
+        # L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé"
         pe_categorie_demandeur_emploi = individu('pole_emploi_categorie_demandeur_emploi', period)
 
         stagiaire_formation_professionnelle = individu('stagiaire', period)
@@ -172,10 +172,10 @@ class agepi_eligible(Variable):
                                 + (pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_3)
                                 + (categorie_4_stagiaire_formation_professionnelle + categorie_5_contrat_aide))
 
-        #  L'emploi ou la formation se situe en France
+        # L'emploi ou la formation se situe en France
         lieux_activite_eligibles = not_(individu('lieu_emploi_ou_formation', period) == TypesLieuEmploiFormation.non_renseigne)
 
-        #  L'individu effectue sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
+        # L'individu effectue sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
         contrat_de_travail_debut = individu('contrat_de_travail_debut', period)  # numpy.datetime64
         contrat_de_travail_debut_en_mois = contrat_de_travail_debut.astype('M8[M]')
 
@@ -187,7 +187,7 @@ class agepi_eligible(Variable):
         agepi_date_de_demande = individu("agepi_date_demande", period)
         dates_demandes_agepi_eligibles = agepi_date_de_demande <= date_demande_limite
 
-        #  L'individu est non indemnisé ou son ARE est inférieure ou égale à l'ARE minimale
+        # L'individu est non indemnisé ou son ARE est inférieure ou égale à l'ARE minimale
         mayotte = individu.menage('residence_mayotte', period)
         hors_mayotte = not_(mayotte)
 
@@ -199,15 +199,15 @@ class agepi_eligible(Variable):
 
         allocation_minimale_en_fonction_de_la_region = allocation_minimale_hors_mayotte + allocation_minimale_mayotte
 
-        #  Montant ARE minimum en fonction de la région (Mayotte / hors Mayotte)
-        #  (et diminution de la précision car une comparaison : 14.77 <= 14.77 renvoyait un False)
+        # Montant ARE minimum en fonction de la région (Mayotte / hors Mayotte)
+        # (et diminution de la précision car une comparaison : 14.77 <= 14.77 renvoyait un False)
         epsilon = 0.0001
         are_individu_egale_are_min = fabs(allocation_individu - allocation_minimale_en_fonction_de_la_region) < epsilon
         are_individu_inferieure_are_min = allocation_individu < allocation_minimale_en_fonction_de_la_region
 
         montants_are_eligibles = are_individu_inferieure_are_min + are_individu_egale_are_min
 
-        #  L'individu est en reprise d'emploi du type CDI, CDD ou CTT d'au moins 3 mois consécutifs ou en processus d'entrée en formation d'une durée supérieure ou égale à 40 heures
+        # L'individu est en reprise d'emploi du type CDI, CDD ou CTT d'au moins 3 mois consécutifs ou en processus d'entrée en formation d'une durée supérieure ou égale à 40 heures
         reprises_types_activites = individu('contrat_de_travail_type', period)
 
         reprises_types_activites_formation = reprises_types_activites == TypesContrat.formation
@@ -215,12 +215,12 @@ class agepi_eligible(Variable):
         reprises_types_activites_cdd = reprises_types_activites == TypesContrat.cdd
         reprises_types_activites_ctt = reprises_types_activites == TypesContrat.ctt
 
-        #  La formation doit être supérieure ou égale à 40 heures
+        # La formation doit être supérieure ou égale à 40 heures
         duree_formation = individu('duree_formation', period)
         parametres_agepi = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi
         periode_formation_eligible = duree_formation >= parametres_agepi.duree_de_formation_minimum
 
-        #  Le durée de contrat de l'emploi doit être d'au moins 3 mois
+        # Le durée de contrat de l'emploi doit être d'au moins 3 mois
         periode_de_contrat_3_mois_minimum = individu('contrat_de_travail_duree', period) >= parametres_agepi.duree_cdd_ctt_minimum
 
         reprises_types_activites_formation_eligible = reprises_types_activites_formation * periode_formation_eligible
