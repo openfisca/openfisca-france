@@ -1,4 +1,4 @@
-- name: Test 01 - Vérifie l'éligibilité à l'AGEPI pour une famille avec 1 enfant éligible
+- name: Test 01 - Famille éligible à l'AGEPI avec 1 enfant éligible
   period: 2022-01
   input:
     menage:
@@ -8,18 +8,16 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        stagiaire: false
-        contrat_aide: false
         lieu_emploi_ou_formation: metropole
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 0
         contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 10
+        agepi_percue_12_derniers_mois: false
+        allocation_retour_emploi: 0
       Jean:
         age: 12
       Marie:
@@ -37,7 +35,7 @@
     agepi: [170, 0, 0]
 
 
-- name: Test 02 - Vérifie si l'individu élève seul son enfant dont l'age est inférieur à 10 ans
+- name: Test 02 - Individu non éligible n'élevant pas seul son enfant dont l'âge est inférieur à 10 ans
   period: 2022-01
   input:
     menage:
@@ -605,3 +603,5 @@
     agepi_eligible: [true, false, false]
     agepi_nbenf: 1
     agepi: [85, 0, 0]
+
+
