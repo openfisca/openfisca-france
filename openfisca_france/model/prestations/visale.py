@@ -169,7 +169,6 @@ class visale_base_ressources_individuelle(Variable):
 
         ressources_individu_annuelles = [
             'rpns_imposables',
-            'cotisations_non_salarie',
             'csg_non_salarie',
             'crds_non_salarie',
             ]
