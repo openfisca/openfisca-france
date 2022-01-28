@@ -176,7 +176,7 @@ Voici les étapes à suivre :
 - Exécuter les commandes suivantes dans le shell:
   - Créer un environnement virtuel dédié : `conda create --name openfisca python=3.7`
   - Activer l'environnement : `conda activate openfisca`
-  - Installer OpenFisca : `conda install -c openfisca.org openfisca-france`
+  - Installer OpenFisca : `conda install -c openfisca openfisca-france`
 
 :tada: OpenFisca-France est prêt à être utilisé !
 
