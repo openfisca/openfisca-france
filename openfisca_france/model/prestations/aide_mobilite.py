@@ -100,35 +100,6 @@ class lieu_emploi_ou_formation(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def formula_2021_06_09(individu, period):
-        return select(
-            [
-                individu('lieu_emploi_formation_metropole', period),
-                individu('lieu_emploi_formation_france_hors_dom_corse', period),
-                individu('lieu_emploi_formation_guadeloupe', period),
-                individu('lieu_emploi_formation_martinique', period),
-                individu('lieu_emploi_formation_guyane', period),
-                individu('lieu_emploi_formation_reunion', period),
-                individu('lieu_emploi_formation_saint_pierre_et_miquelon', period),
-                individu('lieu_emploi_formation_mayotte', period),
-                individu('lieu_emploi_formation_saint_bartelemy', period),
-                individu('lieu_emploi_formation_saint_martin', period)
-                ],
-            [
-                TypesLieuEmploiFormation.metropole,
-                TypesLieuEmploiFormation.france_hors_dom_corse,
-                TypesLieuEmploiFormation.guadeloupe,
-                TypesLieuEmploiFormation.martinique,
-                TypesLieuEmploiFormation.guyane,
-                TypesLieuEmploiFormation.la_reunion,
-                TypesLieuEmploiFormation.saint_pierre_et_miquelon,
-                TypesLieuEmploiFormation.mayotte,
-                TypesLieuEmploiFormation.saint_bartelemy,
-                TypesLieuEmploiFormation.saint_martin
-                ],
-            default=TypesLieuEmploiFormation.non_renseigne
-            )
-
 
 class distance_aller_retour_activite_domicile(Variable):
     entity = Individu
