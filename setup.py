@@ -1,7 +1,11 @@
 #! /usr/bin/env python
 
 from setuptools import setup, find_packages
+from pathlib import Path
 
+# Read the contents of your README file for PyPi
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
 
 setup(
     name = "OpenFisca-France",
@@ -15,12 +19,16 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Topic :: Scientific/Engineering :: Information Analysis",
         ],
     description = "French tax and benefit system for OpenFisca",
     keywords = "benefit france microsimulation social tax",
     license = "http://www.fsf.org/licensing/licenses/agpl-3.0.html",
     url = "https://github.com/openfisca/openfisca-france",
+    long_description=long_description,
+    long_description_content_type='text/markdown',
 
     data_files = [
         (
