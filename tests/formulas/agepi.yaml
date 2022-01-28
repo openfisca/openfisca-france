@@ -16,7 +16,8 @@
         contrat_de_travail_duree: 3
         types_intensite_activite: hebdomadaire
         agepi_temps_travail_en_heure: 10
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         allocation_retour_emploi: 0
       Jean:
         age: 12
@@ -46,7 +47,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
@@ -87,7 +89,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: true
+        agepi:
+          month:2021-01:12: 170
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
@@ -126,7 +129,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: true
+        agepi:
+          month:2021-01:12: 170
         pole_emploi_categorie_demandeur_emploi: categorie_6
         stagiaire: false
         contrat_aide: false
@@ -165,7 +169,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         pole_emploi_categorie_demandeur_emploi: categorie_4
         stagiaire: true
         contrat_aide: false
@@ -204,7 +209,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         pole_emploi_categorie_demandeur_emploi: categorie_5
         stagiaire: false
         contrat_aide: true
@@ -243,7 +249,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
@@ -282,7 +289,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
@@ -326,7 +334,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
@@ -380,7 +389,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
@@ -419,7 +429,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
@@ -458,7 +469,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
@@ -497,7 +509,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         pole_emploi_categorie_demandeur_emploi: categorie_4
         stagiaire: true
         contrat_aide: false
@@ -537,7 +550,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
@@ -576,7 +590,8 @@
     individus:
       Camille:
         age: 29
-        agepi_percue_12_derniers_mois: false
+        agepi:
+          month:2021-01:12: 0
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
@@ -603,5 +618,3 @@
     agepi_eligible: [true, false, false]
     agepi_nbenf: 1
     agepi: [85, 0, 0]
-
-

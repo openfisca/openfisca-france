@@ -1,7 +1,7 @@
 from numpy import fabs, timedelta64
 
 from openfisca_france.model.base import Famille, Individu, Variable, Enum, MONTH, \
-    set_input_dispatch_by_period, set_input_divide_by_period, date, min_, not_
+    set_input_dispatch_by_period, set_input_divide_by_period, date, min_, not_, ADD
 from openfisca_france.model.revenus.activite.salarie import TypesContrat
 
 
@@ -39,14 +39,6 @@ class duree_formation(Variable):
     label = "Durée de la formation en heures"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-
-
-class agepi_percue_12_derniers_mois(Variable):
-    value_type = bool
-    entity = Individu
-    label = "L'individu a t-il perçu une AGEPI dans les 12 derniers mois"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
 
 
 class TypesLieuEmploiFormation(Enum):
@@ -149,11 +141,6 @@ class agepi_eligible(Variable):
         ]
 
     def formula_2014_01_20(individu, period, parameters):
-
-        #  Diminution de la précision car la comparaison : 14.77 <= 14.77 me renvoyait un False
-
-        epsilon = 0.0001
-
         #  L'individu élève seul son enfant (parent isolé)
         parents_isoles = individu.famille('nb_parents', period) == 1
 
@@ -161,7 +148,8 @@ class agepi_eligible(Variable):
         condition_nb_enfants = individu.famille('agepi_nbenf', period) > 0
 
         #  L'individu n'a pas touché l'AGEPI dans les 12 derniers mois (condition de durée entre faits générateurs)
-        agepi_non_percues = not_(individu('agepi_percue_12_derniers_mois', period))
+        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
+        agepi_non_percues = not_(individu('agepi', annee_glissante, options=[ADD]))
 
         #  L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé"
         pe_categorie_demandeur_emploi = individu('pole_emploi_categorie_demandeur_emploi', period)
@@ -208,7 +196,8 @@ class agepi_eligible(Variable):
         allocation_minimale_en_fonction_de_la_region = allocation_minimale_hors_mayotte + allocation_minimale_mayotte
 
         #  Montant ARE minimum en fonction de la région (Mayotte / hors Mayotte)
-
+        #  (et diminution de la précision car une comparaison : 14.77 <= 14.77 renvoyait un False)
+        epsilon = 0.0001
         are_individu_egale_are_min = fabs(allocation_individu - allocation_minimale_en_fonction_de_la_region) < epsilon
         are_individu_inferieure_are_min = allocation_individu < allocation_minimale_en_fonction_de_la_region
 
