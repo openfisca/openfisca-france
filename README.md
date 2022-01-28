@@ -171,7 +171,7 @@ Ceci vous permet d'obtenir en une seule installation :
 
 Voici les étapes à suivre : 
 
-- Installer la version communautaire/gratuite en suivant la procédure décrite sur [le site Anaconda](https://www.anaconda.com/products/individual). A noter que Anaconda occupe beaucoup d'espace disque (>2 Go), vous pouvez installer à la place [Miniconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html) qui occupe beaucoup moins d'espace disque. Cependant vous n'aurez pas l'interface graphique [Anaconda Navigator](https://docs.anaconda.com/anaconda/navigator/index.html) qui vous permet de gérer vos environnements. Si vous êtes habituée à gérer les choses en ligne de commande, préfèrer Miniconda.
+- Installer la version communautaire/gratuite en suivant la procédure décrite sur [le site Anaconda](https://www.anaconda.com/products/individual). A noter que Anaconda occupe beaucoup d'espace disque (>2 Go), vous pouvez installer à la place [Miniconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html) qui occupe beaucoup moins d'espace disque. Cependant vous n'aurez pas l'interface graphique [Anaconda Navigator](https://docs.anaconda.com/anaconda/navigator/index.html) qui vous permet de gérer vos environnements. Si vous êtes habituée à gérer les choses en ligne de commande, préfèrez Miniconda.
 - Depuis le menu démarrer, exécuter `Anaconda Powershell Prompt`.
 - Exécuter les commandes suivantes dans le shell:
   - Créer un environnement virtuel dédié : `conda create --name openfisca python=3.7`
