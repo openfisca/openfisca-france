@@ -169,16 +169,23 @@ Ceci vous permet d'obtenir en une seule installation :
 - Le gestionnaire de paquets [Anaconda.org](https://docs.anaconda.com/anacondaorg/user-guide/)
 - Le gestionnaire d'environnement Python virtuel : [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 
-Voici les étapes à suivre : 
+Voici les étapes à suivre :
 
 - Installer la version communautaire/gratuite en suivant la procédure décrite sur [le site Anaconda](https://www.anaconda.com/products/individual). A noter que Anaconda occupe beaucoup d'espace disque (>2 Go), vous pouvez installer à la place [Miniconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html) qui occupe beaucoup moins d'espace disque. Cependant vous n'aurez pas l'interface graphique [Anaconda Navigator](https://docs.anaconda.com/anaconda/navigator/index.html) qui vous permet de gérer vos environnements. Si vous êtes habituée à gérer les choses en ligne de commande, préfèrez Miniconda.
-- Depuis le menu démarrer, exécuter `Anaconda Powershell Prompt`.
+- Depuis le menu démarrer, exécuter `Anaconda Powershell Prompt`. Ou utiliser votre shell préféré avec Miniconda, il vous faudra peut-être utiliser la commande `conda init`, mais conda vous le dira.
 - Exécuter les commandes suivantes dans le shell:
+  - Ajouter `conda-forge` comme channel par défaut : `conda config --add channels conda-forge && conda config --set channel_priority strict `
   - Créer un environnement virtuel dédié : `conda create --name openfisca python=3.7`
   - Activer l'environnement : `conda activate openfisca`
-  - Installer OpenFisca : `conda install -c openfisca openfisca-france`
+  - Installer OpenFisca : `conda install openfisca-france`
 
 :tada: OpenFisca-France est prêt à être utilisé !
+
+Ensuite, pour quitter l'environnement OpenFisca : `conda deactivate`
+
+Pour y revenir : `conda activate openfisca`
+
+A noter que OpenFisca-France est présent sur [conda-forge](https://anaconda.org/conda-forge/openfisca-france) et sur un _channel_ dédié [openfisca](https://anaconda.org/openfisca/openfisca-france). C'est conda-forge qui est mis en avant dans cette documentation, car accessible par défaut dans les installations Anaconda.
 
 #### Prochaines étapes
 
