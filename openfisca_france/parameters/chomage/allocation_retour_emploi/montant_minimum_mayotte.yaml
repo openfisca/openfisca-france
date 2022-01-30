@@ -10,8 +10,8 @@ values:
 metadata:
   ux_name: Montant minimum journalier
   unit: currency
-  2021-07-01:
-    reference:
+  reference:
+    2021-07-01:
       - https://www.service-public.fr/particuliers/actualites/A15021
       - https://www.unedic.org/espace-presse/actualites/les-allocations-dassurance-chomage-sont-revalorisees-de-060-partir-du-1er
 
