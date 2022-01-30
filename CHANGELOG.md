@@ -1,5 +1,13 @@
 # Changelog
 
+### 104.0.1 [#1792](https://github.com/openfisca/openfisca-france/pull/1792)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/chomage/allocation_retour_emploi/`.
+* Détails :
+  - Corrige le format des références dans les metadata de l'ARE afin que les dates soient à l'intérieur.
+
 # 104.0.0 [#1711](https://github.com/openfisca/openfisca-france/pull/1711)
 
 * Évolution du système socio-fiscal
