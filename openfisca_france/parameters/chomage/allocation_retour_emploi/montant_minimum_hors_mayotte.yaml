@@ -30,7 +30,7 @@ values:
 metadata:
   ux_name: Montant minimum journalier
   unit: currency
-  2021-07-01:
-    reference:
+  reference:
+    2021-07-01:
       - https://www.service-public.fr/particuliers/actualites/A15021
       - https://www.unedic.org/indemnisation/vos-questions-sur-indemnisation-assurance-chomage/comment-est-calculee-mon-allocation-chomage
