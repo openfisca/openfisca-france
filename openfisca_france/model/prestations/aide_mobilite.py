@@ -2,7 +2,8 @@ from numpy import fabs, timedelta64
 from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, ADD, \
     set_input_dispatch_by_period, set_input_divide_by_period, min_, date
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
-from openfisca_france.model.revenus.activite.salarie import TypesContrat, TypesLieuEmploiFormation
+from openfisca_france.model.revenus.activite.salarie import TypesContrat, TypesLieuEmploiFormation, \
+    TypesCategoriesDemandeurEmploi
 
 
 class aide_mobilite_date_demande(Variable):
@@ -13,33 +14,6 @@ class aide_mobilite_date_demande(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
-
-
-class TypesCategoriesDemandeurEmploi(Enum):
-    __order__ = 'pas_de_categorie categorie_1 categorie_2 categorie_3 categorie_4 categorie_5 categorie_6 categorie_7 categorie_8' \
-                # Needed to preserve the enum order in Python 2
-    pas_de_categorie = "Aucune catégorie"
-    categorie_1 = "Catégorie 1 - Personnes sans emploi, immédiatement disponibles en recherche de CDI plein temps."
-    categorie_2 = "Catégorie 2 - Personnes sans emploi, immédiatement disponibles en recherche de CDI à temps partiel."
-    categorie_3 = "Catégorie 3 - Personnes sans emploi, immédiatement disponibles en recherche de CDD."
-    categorie_4 = "Catégorie 4 - Personnes sans emploi, non immédiatement disponibles et à la recherche d’un emploi."
-    categorie_5 = "Catégorie 5 - Personnes non immédiatement disponibles, parce que titulaires d'un ou de plusieurs emplois, et à la recherche d'un autre emploi."
-    categorie_6 = "Catégorie 6 - Personnes non immédiatement disponibles, en recherche d'un autre emploi en CDI à plein temps."
-    categorie_7 = "Catégorie 7 - Personnes non immédiatement disponibles, en recherche d'un autre emploi en CDI à temps partiel."
-    categorie_8 = "Catégorie 8 - Personnes non immédiatement disponibles, en recherche d'un autre emploi en CDD."
-
-
-class pole_emploi_categorie_demandeur_emploi(Variable):
-    reference = [
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-n2016-33-du-6-octobr.html?type=dossiers/2016/bope-n2016-80-du-17-novembre-201#",
-        "Annexe 3 : la fiche 3 - Les effets de l’inscription"
-        ]
-    value_type = Enum
-    possible_values = TypesCategoriesDemandeurEmploi
-    default_value = TypesCategoriesDemandeurEmploi.pas_de_categorie
-    entity = Individu
-    label = "Le classement des demandeurs d’emploi dans les différentes catégories d’inscription à Pôle Emploi"
-    definition_period = MONTH
 
 
 class en_contrat_aide(Variable):
