@@ -13,7 +13,7 @@
     allocation_retour_emploi: 29.56
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
-    types_contrat: aucune_activite
+    contrat_de_travail_type: aucune_activite
     lieu_emploi_ou_formation: metropole
     date_debut_recherche_emploi: '2021-01-08'
     aide_mobilite_date_demande: '2021-01-14'
@@ -37,7 +37,7 @@
     allocation_retour_emploi: 29.57
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
-    types_contrat: aucune_activite
+    contrat_de_travail_type: aucune_activite
     lieu_emploi_ou_formation: martinique
     date_debut_recherche_emploi: '2021-01-08'
     aide_mobilite_date_demande: '2021-01-14'
@@ -61,7 +61,7 @@
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
-    types_contrat: [aucune_activite, aucune_activite]
+    contrat_de_travail_type: [aucune_activite, aucune_activite]
     lieu_emploi_ou_formation: [la_reunion, guyane]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
@@ -87,7 +87,7 @@
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
-    types_contrat: [aucune_activite, aucune_activite]
+    contrat_de_travail_type: [aucune_activite, aucune_activite]
     lieu_emploi_ou_formation: [guadeloupe, saint_martin]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
@@ -113,7 +113,7 @@
     allocation_retour_emploi: 14.77
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
-    types_contrat: aucune_activite
+    contrat_de_travail_type: aucune_activite
     lieu_emploi_ou_formation: saint_bartelemy
     formation_validee_pole_emploi: true
     formation_financee_ou_cofinancee: true
@@ -139,7 +139,7 @@
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
-    types_contrat: [aucune_activite, aucune_activite]
+    contrat_de_travail_type: [aucune_activite, aucune_activite]
     lieu_emploi_ou_formation: [mayotte, france_hors_corse]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
@@ -165,7 +165,7 @@
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
-    types_contrat: [aucune_activite, aucune_activite]
+    contrat_de_travail_type: [aucune_activite, aucune_activite]
     lieu_emploi_ou_formation: [metropole, metropole]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
@@ -205,7 +205,7 @@
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [formation, formation]
     types_activite_en_recherche_emploi: [indetermine, indetermine]
-    types_contrat: [formation, formation]
+    contrat_de_travail_type: [formation, formation]
     dispositifs_formation: [autre, autre]
     duree_formation: [40, 39]
     lieu_emploi_ou_formation: [metropole, metropole]
@@ -233,7 +233,7 @@
     allocation_retour_emploi: 14.77
     contexte_activite_pole_emploi: formation
     types_activite_en_recherche_emploi: indetermine
-    types_contrat: formation
+    contrat_de_travail_type: formation
     dispositifs_formation: permis_conduire_b
     duree_formation: 40
     lieu_emploi_ou_formation: metropole
@@ -261,7 +261,7 @@
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
-    types_contrat: [aucun, aucun]
+    contrat_de_travail_type: [aucun, aucun]
     dispositifs_formation: [autre, autre]
     lieu_emploi_ou_formation: [metropole, metropole]
     formation_validee_pole_emploi: [true, true]
@@ -290,7 +290,7 @@
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [reprise_emploi, reprise_emploi]
     types_activite_en_recherche_emploi: [indetermine, indetermine]
-    types_contrat: [cdi, cdi]
+    contrat_de_travail_type: [cdi, cdi]
     dispositifs_formation: [autre, autre]
     lieu_emploi_ou_formation: [metropole, metropole]
     formation_validee_pole_emploi: [true, true]
@@ -318,7 +318,7 @@
     allocation_retour_emploi: [29.56, 34.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [entretien_embauche, concours_public]
-    types_contrat: [cdd, aucun]
+    contrat_de_travail_type: [cdd, aucun]
     dispositifs_formation: [autre, autre]
     contrat_de_travail_duree: [3, 0]
     lieu_emploi_ou_formation: [metropole, france_hors_dom_corse]
@@ -343,7 +343,7 @@
     pole_emploi_categorie_demandeur_emploi: categorie_1
     allocation_retour_emploi: 0
     contexte_activite_pole_emploi: reprise_emploi
-    types_contrat: cdi
+    contrat_de_travail_type: cdi
     lieu_emploi_ou_formation: guyane
     contrat_de_travail_debut: '2021-01-01'
     aide_mobilite_date_demande: '2021-01-24'
