@@ -76,7 +76,7 @@ class contexte_activite_pole_emploi(Variable):
     possible_values = ContexteActivitePoleEmploi
     default_value = ContexteActivitePoleEmploi.indetermine
     entity = Individu
-    label = "Les différents contextes d'activité pour le calcul de l'aide à la mobilité de Pôle Emploi - AMOB "
+    label = "Le contexte d'activité au sens de Pôle Emploi"
     definition_period = MONTH
 
 
