@@ -8,7 +8,7 @@ from openfisca_france.model.revenus.activite.salarie import TypesContrat, TypesL
 
 class aide_mobilite_date_demande(Variable):
     value_type = date
-    default_value = date(2021, 6, 9)
+    default_value = date(1, 1, 1)
     entity = Individu
     label = "Date de demande d'évaluation à l'éligibilité de l'aide à la mobilité (AMOB) - (date du fait générateur)"
     definition_period = MONTH
