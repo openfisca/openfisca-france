@@ -2,7 +2,7 @@
   period: 2021-12
   input:
     residence: metropole
-    distance_aller_retour_activite_domicile: 61
+    distance_activite_domicile: 62 / 2
     nombre_allers_retours: 1
     aide_mobilite_duree_trajet: 120
     nuitees: 3
@@ -19,14 +19,14 @@
     aide_mobilite_date_demande: '2021-01-14'
   output:
     aide_mobilite_eligible: true
-    aide_mobilite: 156.2
+    aide_mobilite: 150.2
 
 
 - name: Test 02 - Vérifie le calcul de l'AMOB pour un individu avec une ARE > ARE min hors Mayotte
   period: 2021-12
   input:
     residence: martinique
-    distance_aller_retour_activite_domicile: 61
+    distance_activite_domicile: 62 / 2
     nombre_allers_retours: 1
     aide_mobilite_duree_trajet: 120
     nuitees: 3
@@ -50,7 +50,7 @@
   period: 2021-12
   input:
     residence: [martinique, martinique]
-    distance_aller_retour_activite_domicile: [21, 21]
+    distance_activite_domicile: [11, 11]
     nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
     nuitees: [3, 3]
@@ -69,14 +69,14 @@
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
   output:
     aide_mobilite_eligible: [true, false]
-    aide_mobilite: [148.2, 0]
+    aide_mobilite: [146.2, 0]
 
 
 - name: Test 04 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie 5 contrat aidé / ou non
   period: 2021-12
   input:
     residence: [guadeloupe, saint_martin]
-    distance_aller_retour_activite_domicile: [21, 21]
+    distance_activite_domicile: [11, 11]
     nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
     nuitees: [3, 3]
@@ -95,14 +95,14 @@
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
   output:
     aide_mobilite_eligible: [true, false]
-    aide_mobilite: [148.2, 0]
+    aide_mobilite: [146.2, 0]
 
 
 - name: Test 05 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie non éligible
   period: 2021-12
   input:
     residence: martinique
-    distance_aller_retour_activite_domicile: 21
+    distance_activite_domicile: 21 / 2
     nombre_allers_retours: 1
     aide_mobilite_duree_trajet: 120
     nuitees: 3
@@ -128,7 +128,7 @@
   period: 2021-12
   input:
     residence: [martinique, martinique]
-    distance_aller_retour_activite_domicile: [21, 21]
+    distance_activite_domicile: [11, 11]
     nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
     nuitees: [3, 3]
@@ -147,14 +147,14 @@
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-15']
   output:
     aide_mobilite_eligible: [true, false]
-    aide_mobilite: [148.2, 0]
+    aide_mobilite: [146.2, 0]
 
 
 - name: Test 07 - Calcul AMOB montant (148.2€ théorique) -> (48.2€ réel) car aide restante de 100€ avec 4900€ déjà touchés (Plafond Max = 5000€ sur une année glissante)
   period: 2021-12
   input:
     residence: [martinique, martinique]
-    distance_aller_retour_activite_domicile: [21, 21]
+    distance_activite_domicile: [11, 11]
     nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
     nuitees: [3, 3]
@@ -187,14 +187,14 @@
       2020-11: [100, 0]
   output:
     aide_mobilite_eligible: [true, true]
-    aide_mobilite: [100, 148.2]
+    aide_mobilite: [100, 146.2]
 
 
 - name: Test 08 - Calcul AMOB pour des durées de formation égale et inférieure à 40 heures
   period: 2021-12
   input:
     residence: [martinique, martinique]
-    distance_aller_retour_activite_domicile: [21, 21]
+    distance_activite_domicile: [11, 11]
     nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
     nuitees: [3, 3]
@@ -215,14 +215,14 @@
     aide_mobilite_date_demande: ['2021-01-14', '2021-01-14']
   output:
     aide_mobilite_eligible: [true, false]
-    aide_mobilite: [148.2, 0]
+    aide_mobilite: [146.2, 0]
 
 
 - name: Test 09 - Calcul AMOB pour une formation de permis de conduire B
   period: 2021-12
   input:
     residence: martinique
-    distance_aller_retour_activite_domicile: 21
+    distance_activite_domicile: 21 / 2
     nombre_allers_retours: 1
     aide_mobilite_duree_trajet: 120
     nuitees: 3
@@ -250,7 +250,7 @@
   period: 2021-12
   input:
     residence: [martinique, martinique]
-    distance_aller_retour_activite_domicile: [21, 21]
+    distance_activite_domicile: [11, 11]
     nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
     nuitees: [3, 3]
@@ -272,14 +272,14 @@
       2020-12: [0, 0]
   output:
     aide_mobilite_eligible: [true, false]
-    aide_mobilite: [148.2, 0]
+    aide_mobilite: [146.2, 0]
 
 
 - name: Test 11 - Calcul AMOB dans le cas d'une reprise d'emploi en fonction de la date de demande (au plus tard dans le mois suivant la reprise d’emploi)
   period: 2021-12
   input:
     residence: [martinique, martinique]
-    distance_aller_retour_activite_domicile: [21, 21]
+    distance_activite_domicile: [11, 11]
     nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
     nuitees: [3, 3]
@@ -301,14 +301,14 @@
       2020-12: [0, 0]
   output:
     aide_mobilite_eligible: [true, false]
-    aide_mobilite: [148.2, 0]
+    aide_mobilite: [146.2, 0]
 
 
 - name: Test 12 - Calcul AMOB éligibilité bon de transport
   period: 2021-12
   input:
     residence: [metropole, metropole]
-    distance_aller_retour_activite_domicile: [61, 21]
+    distance_activite_domicile: [31, 11]
     nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [20, 120]
     nuitees: [3, 3]
@@ -328,7 +328,7 @@
     aide_mobilite_date_demande: ['2021-01-04', '2021-01-04']
   output:
     aide_mobilite_eligible: [true, false]
-    aide_mobilite: [156.2, 0]
+    aide_mobilite: [150.2, 0]
     aide_mobilite_bon_de_transport: [false, true]
 
 
@@ -336,7 +336,7 @@
   period: 2021-12
   input:
     residence: guyane
-    distance_aller_retour_activite_domicile: 20.001
+    distance_activite_domicile: 20.001 / 2
     nombre_allers_retours: 5
     nuitees: 5
     repas: 15

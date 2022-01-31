@@ -16,7 +16,7 @@ class aide_mobilite_date_demande(Variable):
     reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
 
 
-class distance_aller_retour_activite_domicile(Variable):
+class distance_activite_domicile(Variable):
     entity = Individu
     value_type = float
     reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
@@ -288,7 +288,7 @@ class aide_mobilite_eligible(Variable):
         #  6
         lieu_de_residence = individu.menage('residence', period)
         temps_de_trajet = individu('aide_mobilite_duree_trajet', period)
-        distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
+        distance_aller_retour = individu('distance_activite_domicile', period) * 2
 
         temps_de_trajet_min = parametres_amob.duree_trajet_minimum
         reside_en_metropole = lieu_de_residence == TypesLieuResidence.metropole
@@ -332,7 +332,7 @@ class aide_mobilite(Variable):
 
         montant_max = parametres_amob.montants.maximum
         montant_amob_deja_percu = min_(montant_max, fabs(aide_mobilite_12_derniers_mois))
-        distance_aller_retour = individu('distance_aller_retour_activite_domicile', period)
+        distance_aller_retour = individu('distance_activite_domicile', period)
         nb_aller_retour = individu('nombre_allers_retours', period)
         nb_nuitees = individu('nuitees', period)
         nb_repas = individu('repas', period)
@@ -349,7 +349,7 @@ class aide_mobilite(Variable):
         montants_reels = min_(montants_theoriques, montants_max_attribuables)
 
         return montants_reels * eligibilite_amob
-9
+
 
 class aide_mobilite_bon_de_transport(Variable):
     value_type = bool
