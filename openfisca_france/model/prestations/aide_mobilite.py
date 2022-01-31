@@ -316,7 +316,7 @@ class aide_mobilite_eligible(Variable):
 class aide_mobilite(Variable):
     value_type = float
     entity = Individu
-    label = "Calcul du montant de l'aide à la mobilité - AMOB"
+    label = "Montant de l'aide à la mobilité de Pôle emploi - AMOB"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
