@@ -122,7 +122,7 @@ class agepi_eligible(Variable):
         mayotte = individu.menage('residence_mayotte', period)
         hors_mayotte = not_(mayotte)
 
-        allocation_individu = individu('allocation_retour_emploi', period)
+        allocation_individu = individu('allocation_retour_emploi_journaliere', period)
 
         parametres_are = parameters(period).chomage.allocation_retour_emploi
         allocation_minimale_hors_mayotte = parametres_are.montant_minimum_hors_mayotte * hors_mayotte

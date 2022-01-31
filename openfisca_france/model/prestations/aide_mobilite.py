@@ -183,7 +183,7 @@ class aide_mobilite_allocations_eligibles(Variable):
         mayotte = lieu_de_residence == TypesLieuResidence.mayotte
         hors_mayotte = not_(mayotte)
 
-        allocation_individu = individu('allocation_retour_emploi', period)
+        allocation_individu = individu('allocation_retour_emploi_journaliere', period)
         allocations = parameters(period).chomage.allocation_retour_emploi
         allocation_minimale_hors_mayotte = allocations.montant_minimum_hors_mayotte * hors_mayotte
         allocation_minimale_mayotte = allocations.montant_minimum_mayotte * mayotte

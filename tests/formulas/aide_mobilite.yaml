@@ -10,7 +10,7 @@
     pole_emploi_categorie_demandeur_emploi: categorie_1
     stagiaire: false
     contrat_aide: false
-    allocation_retour_emploi: 29.56
+    allocation_retour_emploi_journaliere: 29.56
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
     contrat_de_travail_type: aucune_activite
@@ -34,7 +34,7 @@
     pole_emploi_categorie_demandeur_emploi: categorie_1
     stagiaire: false
     contrat_aide: false
-    allocation_retour_emploi: 29.57
+    allocation_retour_emploi_journaliere: 29.57
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
     contrat_de_travail_type: aucune_activite
@@ -58,7 +58,7 @@
     pole_emploi_categorie_demandeur_emploi: [categorie_4, categorie_4]
     stagiaire: [true, false]
     contrat_aide: [false, false]
-    allocation_retour_emploi: [14.77, 14.77]
+    allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     contrat_de_travail_type: [aucune_activite, aucune_activite]
@@ -84,7 +84,7 @@
     pole_emploi_categorie_demandeur_emploi: [categorie_5, categorie_5]
     stagiaire: [false, false]
     contrat_aide: [true, false]
-    allocation_retour_emploi: [14.77, 14.77]
+    allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     contrat_de_travail_type: [aucune_activite, aucune_activite]
@@ -110,7 +110,7 @@
     pole_emploi_categorie_demandeur_emploi: categorie_test
     stagiaire: false
     contrat_aide: false
-    allocation_retour_emploi: 14.77
+    allocation_retour_emploi_journaliere: 14.77
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
     contrat_de_travail_type: aucune_activite
@@ -136,7 +136,7 @@
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
     stagiaire: [false, false]
     contrat_aide: [false, false]
-    allocation_retour_emploi: [14.77, 14.77]
+    allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     contrat_de_travail_type: [aucune_activite, aucune_activite]
@@ -162,7 +162,7 @@
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
     stagiaire: [false, false]
     contrat_aide: [false, false]
-    allocation_retour_emploi: [14.77, 14.77]
+    allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     contrat_de_travail_type: [aucune_activite, aucune_activite]
@@ -202,7 +202,7 @@
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
     stagiaire: [false, false]
     contrat_aide: [false, false]
-    allocation_retour_emploi: [14.77, 14.77]
+    allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [formation, formation]
     types_activite_en_recherche_emploi: [indetermine, indetermine]
     contrat_de_travail_type: [formation, formation]
@@ -230,7 +230,7 @@
     pole_emploi_categorie_demandeur_emploi: categorie_1
     stagiaire: false
     contrat_aide: false
-    allocation_retour_emploi: 14.77
+    allocation_retour_emploi_journaliere: 14.77
     contexte_activite_pole_emploi: formation
     types_activite_en_recherche_emploi: indetermine
     contrat_de_travail_type: formation
@@ -258,7 +258,7 @@
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
     stagiaire: [false, false]
     contrat_aide: [false, false]
-    allocation_retour_emploi: [14.77, 14.77]
+    allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     contrat_de_travail_type: [aucun, aucun]
@@ -287,7 +287,7 @@
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
     stagiaire: [false, false]
     contrat_aide: [false, false]
-    allocation_retour_emploi: [14.77, 14.77]
+    allocation_retour_emploi_journaliere: [14.77, 14.77]
     contexte_activite_pole_emploi: [reprise_emploi, reprise_emploi]
     types_activite_en_recherche_emploi: [indetermine, indetermine]
     contrat_de_travail_type: [cdi, cdi]
@@ -315,7 +315,7 @@
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_9]
     stagiaire: [false, false]
-    allocation_retour_emploi: [29.56, 34.77]
+    allocation_retour_emploi_journaliere: [29.56, 34.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [entretien_embauche, concours_public]
     contrat_de_travail_type: [cdd, aucun]
@@ -341,7 +341,7 @@
     nuitees: 5
     repas: 15
     pole_emploi_categorie_demandeur_emploi: categorie_1
-    allocation_retour_emploi: 0
+    allocation_retour_emploi_journaliere: 0
     contexte_activite_pole_emploi: reprise_emploi
     contrat_de_travail_type: cdi
     lieu_emploi_ou_formation: guyane
