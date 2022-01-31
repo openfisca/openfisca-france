@@ -9,7 +9,7 @@
       Camille:
         age: 29
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         contrat_de_travail_type: cdd
@@ -18,7 +18,7 @@
         agepi_temps_travail_en_heure: 10
         agepi:
           month:2021-01:12: 0
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
       Jean:
         age: 12
       Marie:
@@ -48,9 +48,9 @@
         age: 29
         agepi:
           month:2021-01:12: 170
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
         pole_emploi_categorie_demandeur_emploi: categorie_1
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
         contrat_de_travail_type: cdd
@@ -89,10 +89,10 @@
         pole_emploi_categorie_demandeur_emploi: categorie_6
         stagiaire: false
         contrat_aide: false
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
         contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         type_intensite_activite: hebdomadaire
@@ -129,10 +129,10 @@
         pole_emploi_categorie_demandeur_emploi: categorie_4
         stagiaire: true
         contrat_aide: false
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
         contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         type_intensite_activite: hebdomadaire
@@ -169,10 +169,10 @@
         pole_emploi_categorie_demandeur_emploi: categorie_5
         stagiaire: false
         contrat_aide: true
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
         contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         type_intensite_activite: hebdomadaire
@@ -212,7 +212,7 @@
         lieu_emploi_ou_formation: non_renseigne
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
         contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         type_intensite_activite: hebdomadaire
@@ -249,10 +249,10 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-02-02'
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
         contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         type_intensite_activite: hebdomadaire
@@ -295,10 +295,10 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
         contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         type_intensite_activite: hebdomadaire
@@ -350,10 +350,10 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
         contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         type_intensite_activite: mensuelle
@@ -390,10 +390,10 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
         contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         type_intensite_activite: mensuelle
@@ -430,10 +430,10 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
         contrat_de_travail_type: cdd
         contrat_de_travail_duree: 3
         type_intensite_activite: mensuelle
@@ -470,10 +470,10 @@
         pole_emploi_categorie_demandeur_emploi: categorie_4
         stagiaire: true
         contrat_aide: false
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
         contrat_de_travail_type: formation
         duree_formation: 40
         contrat_de_travail_duree: 0
@@ -511,10 +511,10 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 0
+        allocation_retour_emploi_journaliere: 0
         contrat_de_travail_type: cdi
         contrat_de_travail_duree: 0
         type_intensite_activite: hebdomadaire
@@ -551,10 +551,10 @@
         pole_emploi_categorie_demandeur_emploi: categorie_1
         stagiaire: false
         contrat_aide: false
-        lieu_emploi_ou_formation: metropole
+        lieu_emploi_ou_formation: metropole_hors_corse
         contrat_de_travail_debut: '2021-01-01'
         agepi_date_demande: '2021-01-02'
-        allocation_retour_emploi: 14.77
+        allocation_retour_emploi_journaliere: 14.77
         contrat_de_travail_type: cdi
         contrat_de_travail_duree: 0
         type_intensite_activite: hebdomadaire

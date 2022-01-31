@@ -30,6 +30,7 @@ class conge_individuel_formation_cdd(Variable):
     # TODO: date de début
     def formula(individu, period, parameters):
         contrat_de_travail_type = individu('contrat_de_travail_type', period)
+
         TypesContrat = contrat_de_travail_type.possible_values
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
 

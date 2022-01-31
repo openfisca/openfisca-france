@@ -1,12 +1,26 @@
 # Changelog
 
-### 104.0.3 [#1793](https://github.com/openfisca/openfisca-france/pull/1793)
+### 104.1.1 [#1793](https://github.com/openfisca/openfisca-france/pull/1793)
 
 * Changement mineur.
 * Périodes concernées : toutes.
 * Zones impactées : `openfisca_france/parameters/prestations_sociales/aides_logement/action_logement/visale/plafond_loyer/etudiant/`.
 * Détails :
   - Correction d'une URL en 404 : Remplacement de l'extension ".html" par ".htm" pour qu'elle fonctionne.
+
+## 104.1.0 [#1765](https://github.com/openfisca/openfisca-france/pull/1765)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 09/06/2021.
+* Zones impactées : 
+  * model/prestations/aide_mobilite.py
+  * model/prestations/agepi.py
+  * model/revenus/activite/salarie.py
+  * model/revenus/remplacement/chomage.py
+  * parameters/prestations_sociales/aide_mobilite.yaml
+* Détails :
+  * Ajout de l'aide à la mobilité de Pôle Emploi.
+  * Ajout des variables : `date_debut_recherche_emploi`, `contrat_aide`, `duree_formation`, `lieu_emploi_ou_formation`, `pole_emploi_categorie_demandeur_emploi`, `allocation_retour_emploi_journaliere`
 
 ### 104.0.2 [#1787](https://github.com/openfisca/openfisca-france/pull/1787)
 

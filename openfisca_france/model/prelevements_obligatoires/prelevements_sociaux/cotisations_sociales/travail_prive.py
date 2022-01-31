@@ -96,7 +96,9 @@ class indemnite_fin_contrat(Variable):
 
         result = (
             # CDD
+
             (contrat_de_travail_type == TypesContrat.cdd)
+
             # non fonction publique
             * (
                 (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
