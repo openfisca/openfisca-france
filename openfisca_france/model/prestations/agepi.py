@@ -34,14 +34,6 @@ class agepi_temps_travail_en_heure(Variable):
     set_input = set_input_divide_by_period
 
 
-class duree_formation(Variable):
-    value_type = float
-    entity = Individu
-    label = "Durée de la formation en heures"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-
 class contrat_aide(Variable):
     value_type = bool
     entity = Individu
