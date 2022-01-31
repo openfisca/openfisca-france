@@ -262,7 +262,7 @@ class aide_mobilite_eligible(Variable):
         duree_formation = individu('duree_formation', period)
         periode_formation_eligible = duree_formation >= parametres_amob.duree_de_formation_minimum
 
-        #  Le durée de contrat de l'emploi doit être d'au moins 3 mois
+        #  La durée de contrat de l'emploi doit être d'au moins 3 mois
         duree_de_contrat_3_mois_minimum = individu('contrat_de_travail_duree', period) >= parametres_amob.duree_de_contrat_minimum
 
         reprises_cdd_ctt_eligibles = reprises_types_activites_cdd_ctt * duree_de_contrat_3_mois_minimum
