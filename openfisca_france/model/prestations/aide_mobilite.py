@@ -354,7 +354,7 @@ class aide_mobilite(Variable):
 class aide_mobilite_bon_de_transport(Variable):
     value_type = bool
     entity = Individu
-    label = "Attribution d'un bon de transport dans un contexte précis - AMOB"
+    label = "Eligibilité à un bon de transport, part de l'aide à la mobilité de Pôle emploi (AMOB)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
