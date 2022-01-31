@@ -1,5 +1,13 @@
 # Changelog
 
+### 104.0.3 [#1793](https://github.com/openfisca/openfisca-france/pull/1793)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/aides_logement/action_logement/visale/plafond_loyer/etudiant/`.
+* Détails :
+  - Correction d'une URL en 404 : Remplacement de l'extension ".html" par ".htm" pour qu'elle fonctionne.
+
 ### 104.0.2 [#1787](https://github.com/openfisca/openfisca-france/pull/1787)
 
 * Changement mineur.
