@@ -2,7 +2,7 @@ from numpy import fabs, timedelta64
 from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, ADD, \
     set_input_dispatch_by_period, set_input_divide_by_period, min_, date
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
-from openfisca_france.model.revenus.activite.salarie import TypesContrat
+from openfisca_france.model.revenus.activite.salarie import TypesContrat, TypesLieuEmploiFormation
 
 
 class aide_mobilite_date_demande(Variable):
@@ -46,30 +46,6 @@ class en_contrat_aide(Variable):
     value_type = bool
     entity = Individu
     label = "L'individu est en contrat aidé"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
-class TypesLieuEmploiFormation(Enum):
-    non_renseigne = "Non renseigné"
-    metropole = "Métropole"
-    france_hors_dom_corse = "France hors DOM et hors Corse"
-    guadeloupe = "Guadeloupe"
-    martinique = "Martinique"
-    guyane = "Guyane"
-    la_reunion = "La réunion"
-    saint_pierre_et_miquelon = "Saint Pierre et Miquelon"
-    mayotte = "Mayotte"
-    saint_bartelemy = "Saint Bartelemy"
-    saint_martin = "Saint Martin"
-
-
-class lieu_emploi_ou_formation(Variable):
-    value_type = Enum
-    possible_values = TypesLieuEmploiFormation
-    default_value = TypesLieuEmploiFormation.non_renseigne
-    entity = Individu
-    label = "Zone de l'emploi ou de la formation"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 

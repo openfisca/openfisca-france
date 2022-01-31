@@ -331,6 +331,30 @@ class duree_formation(Variable):
     set_input = set_input_divide_by_period
 
 
+class TypesLieuEmploiFormation(Enum):
+    non_renseigne = "Non renseigné"
+    metropole = "Métropole"
+    france_hors_dom_corse = "France hors DOM et hors Corse"
+    guadeloupe = "Guadeloupe"
+    martinique = "Martinique"
+    guyane = "Guyane"
+    la_reunion = "La réunion"
+    saint_pierre_et_miquelon = "Saint Pierre et Miquelon"
+    mayotte = "Mayotte"
+    saint_bartelemy = "Saint Bartelemy"
+    saint_martin = "Saint Martin"
+
+
+class lieu_emploi_ou_formation(Variable):
+    value_type = Enum
+    possible_values = TypesLieuEmploiFormation
+    default_value = TypesLieuEmploiFormation.non_renseigne
+    entity = Individu
+    label = "Zone de l'emploi ou de la formation"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
 class contrat_de_travail_duree(Variable):
     value_type = float
     default_value = 0.
