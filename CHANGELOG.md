@@ -1,5 +1,21 @@
 # Changelog
 
+### 104.0.2 [#1787](https://github.com/openfisca/openfisca-france/pull/1787)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/mesures.py`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
+  - `openfisca_france/parameters/impot_revenu/plus_values.yaml`
+  - `tests/calculateur_impots/yaml/regime_benef_reel_agricole_avec_cga.yaml`
+  - `tests/calculateur_impots/yaml/rpns_pv.yaml`
+* Détails :
+  - Correction des taux d'imposition et des formules concernant les plus-values de cession pour les non-salariés (RPNS).
+  - Ces PV sont soumises aux prélèvements sociaux applicables sur les revenus du patrimoine.
+
 ### 104.0.1 [#1792](https://github.com/openfisca/openfisca-france/pull/1792)
 
 * Changement mineur.
@@ -12,7 +28,7 @@
 
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 20/01/2014
-  * Zones impactées : 
+  * Zones impactées :
     - `model/prestations/agepi.py`
     - `model/revenus/activite/salarie.py`
     - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements.py`
@@ -22,7 +38,7 @@
     - `model/prestations/aide_permis_demandeur_emploi.py`
     - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/agepi.yaml`
     - `parameters/chomage/allocation_retour_emploi/`
-  
+
 * Détails :
   - Complète l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI
     - Ajoute les conditions d'éligibilité et les montants en fonction du pays de résidence (Mayotte / Hors Mayotte)
@@ -31,24 +47,24 @@
   - Renomme `TypesContratDeTravailDuree` en `TypesContrat`
 
 # 103.0.0 [#1772](https://github.com/openfisca/openfisca-france/pull/1772)
- 
-* Amélioration technique. 
+
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations_sociales/aides_logement`.
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
   - Tous les chemins sont updatés pour ne pas casser le code
   - Mise à jour de:
-       - `al_charge` 
+       - `al_charge`
        - `al_etudiant`
        - `al_plafonds_logement_foyer`
        - `reduction_loyer_solidarite`
 
 ## 102.1.0 [#1761](https://github.com/openfisca/openfisca-france/pull/1761)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `parameters/prestations_sociales/aides_logement/visale`.
   - `parameters/prestations_sociales/aides_logement/mon_job_mon_logement`.
 * Détails :
@@ -66,7 +82,7 @@ git log --oneline 7e262b0f90601a4d^..c508f65e67356e7a | grep "variable_name"
 
 # 102.0.0 [#1782](https://github.com/openfisca/openfisca-france/pull/1782)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations_sociales/minima_sociaux`.
 * Détails :
@@ -78,7 +94,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 ### 101.0.1 [#1779](https://github.com/openfisca/openfisca-france/pull/1779)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : aucune.
 * Zones impactées : build.
 * Détails :
@@ -86,7 +102,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 101.0.0 [#1781](https://github.com/openfisca/openfisca-france/pull/1781)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse`.
 * Détails :
@@ -99,7 +115,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 100.0.0 [#1780](https://github.com/openfisca/openfisca-france/pull/1780)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations_sociales/solidarite_insertion/autre_solidarite`.
 * Détails :
@@ -111,7 +127,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 ### 99.0.1 [#1778](https://github.com/openfisca/openfisca-france/pull/1778)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : aucune.
 * Zones impactées : build.
 * Détails :
@@ -119,7 +135,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 99.0.0 [#1761](https://github.com/openfisca/openfisca-france/pull/1761)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants`.
 * Détails :
@@ -134,7 +150,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2022.
-* Zones impactées : 
+* Zones impactées :
   - `parameters/impot_revenu/bareme.yaml`
   - `parameters/impot_revenu/decote/`
   - `parameters/impot_revenu/plafond_qf/`
@@ -145,13 +161,13 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 ### 98.0.2 [#1773](https://github.com/openfisca/openfisca-france/pull/1773)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Zones impactées : `parameters`.
 * Détails :
   - Déplace les commentaires YAML dans le champ `notes`
   - Supprimes les commentaires inutiles
   - Les commentaires spécifiques à l'AAH sont repris dans l'issue [1771](https://github.com/openfisca/openfisca-france/issues/1771)
-  
+
 ### 98.0.1 [#1770](https://github.com/openfisca/openfisca-france/pull/1770)
 
 * Évolution du système socio-fiscal.
@@ -163,7 +179,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 98.0.0 [#1766](https://github.com/openfisca/openfisca-france/pull/1766)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah`.
 * Détails :
@@ -174,7 +190,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 97.0.0 [#1769](https://github.com/openfisca/openfisca-france/pull/1769)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees`.
 * Détails :
@@ -192,7 +208,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 96.0.0 [#1763](https://github.com/openfisca/openfisca-france/pull/1763)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prelevements_sociaux/reductions_cotisations_sociales`.
 * Détails :
@@ -203,7 +219,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 95.0.0 [#1762](https://github.com/openfisca/openfisca-france/pull/1762)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prelevements_sociaux/cotisations_taxes_professions_liberales`.
 * Détails :
@@ -214,7 +230,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 ### 94.0.1 [#1767](https://github.com/openfisca/openfisca-france/pull/1767)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées:
     - `parameters/prestations_sociales/prestations_etat_de_sante/asi`
@@ -225,7 +241,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 94.0.0 [#1759](https://github.com/openfisca/openfisca-france/pull/1759)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general`.
 * Détails :
@@ -236,7 +252,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 93.0.0 [#1758](https://github.com/openfisca/openfisca-france/pull/1758)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prelevements_sociaux/cotisations_secteur_public`.
 * Détails :
@@ -244,10 +260,10 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
   - Tous les chemins sont updatés pour ne pas casser le code
 * Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
 git log --oneline commit_debut^..commit_fin | grep "variable_name"
-  
+
 # 92.0.0 [#1757](https://github.com/openfisca/openfisca-france/pull/1757)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prelevements_sociaux/cotisations_regime_assurance_chomage`.
 * Détails :
@@ -267,7 +283,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 91.0.0 [#1756](https://github.com/openfisca/openfisca-france/pull/1756)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prelevements_sociaux/contributions_assises_specifiquement_accessoires_salaire`.
 * Détails :
@@ -278,7 +294,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 90.0.0 [#1755](https://github.com/openfisca/openfisca-france/pull/1755)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires`.
 * Détails :
@@ -300,7 +316,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 88.0.0 [#1753](https://github.com/openfisca/openfisca-france/pull/1753)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/`.
 * Détails :
@@ -313,7 +329,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 87.0.0 [#1752](https://github.com/openfisca/openfisca-france/pull/1752)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations_sociales`.
 * Détails :
@@ -336,7 +352,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 86.0.0 [#1751](https://github.com/openfisca/openfisca-france/pull/1751)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations_sociales`.
 * Détails :
@@ -349,7 +365,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 85.0.0 [#1750](https://github.com/openfisca/openfisca-france/pull/1750)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations_sociales`.
 * Détails :
@@ -362,7 +378,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 84.0.0 [#1749](https://github.com/openfisca/openfisca-france/pull/1749)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations_sociales`.
 * Détails :
@@ -375,7 +391,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 83.0.0 [#1747](https://github.com/openfisca/openfisca-france/pull/1747)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations_sociales`.
 * Détails :
@@ -408,7 +424,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
     - afd (aide de fin de droits)
     - alloc_journaliere
     - ass (allocation solidarité spécifique)
-   
+
   - Déplace l'ASS de `parameters/prestations/minima_sociaux/ass` vers `parameters/chomage/allocations_assurance_chomage/ass`
   - Ajoute `parameters/chomage/allocations_chomage_solidarite/` comprenant :
     - allocation_aide_publique
@@ -425,7 +441,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 # 81.0.0 [#1746](https://github.com/openfisca/openfisca-france/pull/1746)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prelevements_sociaux`.
 * Détails :
@@ -462,11 +478,11 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 * Évolution du système socio-fiscal.
 * Périodes concernées :  à partir du 01/01/0291
-* Zones impactées : 
+* Zones impactées :
   - `model/prelevements_obligatoires/prelevements_sociaux/taxes_salaires_main_oeuvre.py`
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage`
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/formation`
- 
+
 * Détails :
   - Ajout d'une formule de calcul de la CFP (Contribution à la Formation Professionnelle qui remplace la PEFPC).
   - Ajout d'une formule de calcul de la CUFPA (contribution_unique_formation_professionnelle_alternance), qui est la somme de la taxe d'apprentissage et de la CFP
@@ -524,11 +540,11 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 ### 80.4.6 [#1731](https://github.com/openfisca/openfisca-france/pull/1731)
 
-> Cette version est **non-rétrocompatible** (versionnée en patch par erreur). Ses évolutions sont détaillées ci-dessous. 
+> Cette version est **non-rétrocompatible** (versionnée en patch par erreur). Ses évolutions sont détaillées ci-dessous.
 
 * ~~Amélioration technique.~~ Évolution du système socio-fiscal **non rétrocompatible**
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `model/prestations/cheque_energie.py`
   - `model/prestations/jeunes/garantie_jeunes.py`
   - `model/prestations/minima_sociaux/` : `asi_aspa.py`, `aah.py`, `ass.py`, `ppa.py`, `rsa.py`
@@ -551,14 +567,14 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
   - Améliore le calcul de l'aspa.
   - Met à jour le calcul de la garantie jeunes.
     - `garantie_jeunes_max` est supprimée. Son calcul est intégré à `garantie_jeunes_montant` (01/01/2017+).
-    - `garantie_jeunes_neet` et `garantie_jeunes_eligibilite_age` sont datées et commencent à partir du 01/01/2017. 
+    - `garantie_jeunes_neet` et `garantie_jeunes_eligibilite_age` sont datées et commencent à partir du 01/01/2017.
     - Introduit `garantie_jeunes_eligibilite_ressources`.
 
 ### 80.4.5 [#1730](https://github.com/openfisca/openfisca-france/pull/1730)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux`.
   - `tests/calculateur_impots`
   - `openfisca_france/parameters/prelevements_sociaux`
@@ -594,7 +610,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage`
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/fnal`
   - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/versement_transport`
@@ -701,7 +717,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 * Zones impactées :
   - `model/prestations/mon_job_mon_logement.py`
   - `parameters/prestations/mon_job_mon_logement.yaml`
-  
+
 * Détails :
   - Change les valeurs enregistrées dans la variable par des paramètres pour l'aide mon job mon logement.
 
