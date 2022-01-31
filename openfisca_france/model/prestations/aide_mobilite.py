@@ -48,9 +48,7 @@ class aide_mobilite_duree_trajet(Variable):
 class nuitees(Variable):
     entity = Individu
     value_type = int
-    reference = [
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
-        ]
+    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
     label = "Nombre de nuitées pour le calcul de l'aide à la mobilité de Pôle emploi - AMOB"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -59,9 +57,7 @@ class nuitees(Variable):
 class repas(Variable):
     entity = Individu
     value_type = int
-    reference = [
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
-        ]
+    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
     label = "Nombre de repas pour le calcul de l'aide à la mobilité de Pôle emploi - AMOB"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
