@@ -22,7 +22,7 @@ class ars(Variable):
         # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
         # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée.
 
-        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
+        bmaf = parameters(septembre).prestations_sociales.prestations_familiales.bmaf.bmaf
         # On doit prendre l'âge en septembre
         enf_05 = nb_enf(famille, septembre, ars.age_entree_primaire - 1, ars.age_entree_primaire - 1)  # 5 ans et 6 ans avant le 31 décembre
         # enf_05 = 0
