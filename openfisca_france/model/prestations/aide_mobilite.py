@@ -169,10 +169,10 @@ class aide_mobilite_categories_demandeur_emploi_eligibles(Variable):
         return categories_eligibles
 
 
-class aide_mobilite_allocations_eligibles(Variable):
+class aide_mobilite_ressources_eligibles(Variable):
     value_type = bool
     entity = Individu
-    label = "Le demandeur d'emploi touche un montant d'allocation éligible pour l'aide à la mobilité - AMOB"
+    label = "Le demandeur d'emploi perçoit une indemnité éligible pour l'aide à la mobilité - AMOB"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
@@ -284,7 +284,7 @@ class aide_mobilite_eligible(Variable):
         categories_eligibles = individu('aide_mobilite_categories_demandeur_emploi_eligibles', period)
 
         #  4
-        montants_allocations_eligibles = individu('aide_mobilite_allocations_eligibles', period)
+        montants_allocations_eligibles = individu('aide_mobilite_ressources_eligibles', period)
 
         #  5
         lieux_activite_eligibles = not_(individu('lieu_emploi_ou_formation', period) == TypesLieuEmploiFormation.non_renseigne)
@@ -369,7 +369,7 @@ class aide_mobilite_bon_de_transport(Variable):
         en_recherche_emploi = contexte == ContexteActivitePoleEmploi.recherche_emploi
         lieux_activite_eligibles = individu('lieu_emploi_ou_formation', period) == TypesLieuEmploiFormation.metropole_hors_corse
         categories_non_eligibles = not_(individu('aide_mobilite_categories_demandeur_emploi_eligibles', period))
-        allocation_non_eligible = not_(individu('aide_mobilite_allocations_eligibles', period))
+        allocation_non_eligible = not_(individu('aide_mobilite_ressources_eligibles', period))
 
         return (en_recherche_emploi
             * lieux_activite_eligibles
