@@ -373,15 +373,6 @@ class contrat_de_travail_duree(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class contrat_de_travail_duree(Variable):
-    value_type = float
-    default_value = 0.
-    entity = Individu
-    label = "Durée du contrat de travail en mois"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
 class TypesCategoriesDemandeurEmploi(Enum):
     # http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-n2016-33-du-6-octobre-2016-bope-n2016-80.html?type=dossiers/2016/bope-n2016-80-du-17-novembre-201
     # https://allocation-chomage.fr/categorie-chomeur/

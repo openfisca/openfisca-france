@@ -178,7 +178,7 @@ class aide_premier_salarie(Variable):
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
                 # Initialement, la condition était d'un contrat >= 12 mois,
                 # pour les demandes transmises jusqu'au 26 janvier.
-                )
+                 )
             )
 
         eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
