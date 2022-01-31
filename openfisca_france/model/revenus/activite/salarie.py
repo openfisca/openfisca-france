@@ -323,6 +323,14 @@ class contrat_de_travail_type(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class duree_formation(Variable):
+    value_type = float
+    entity = Individu
+    label = "Durée de la formation en heures"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+
 class contrat_de_travail_duree(Variable):
     value_type = float
     default_value = 0.

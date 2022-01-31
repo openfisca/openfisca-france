@@ -1,9 +1,9 @@
 from numpy import fabs, timedelta64
 from openfisca_core.populations import ADD
-
 from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, \
     set_input_dispatch_by_period, set_input_divide_by_period, min_, date
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
+from openfisca_france.model.revenus.activite.salarie import TypesContrat
 
 
 class aide_mobilite_date_demande(Variable):
@@ -41,32 +41,6 @@ class pole_emploi_categorie_demandeur_emploi(Variable):
     entity = Individu
     label = "Le classement des demandeurs d’emploi dans les différentes catégories d’inscription à Pôle Emploi"
     definition_period = MONTH
-
-
-class TypesContrat(Enum):
-    __order__ = 'aucun cdi cdd ctt formation'  # Needed to preserve the enum order in Python 2
-    aucun = "Aucun contrat"
-    cdi = "Contrat à durée indéterminé (CDI)"
-    cdd = "Contrat à durée déterminé (CDD)"
-    ctt = "Contrat de travail temporaire (CTT)"
-    formation = "Formation"
-
-
-class types_contrat(Variable):
-    value_type = Enum
-    possible_values = TypesContrat
-    default_value = TypesContrat.aucun
-    entity = Individu
-    label = "Types de contrat"
-    definition_period = MONTH
-
-
-class duree_formation(Variable):
-    value_type = float
-    entity = Individu
-    label = "Durée de la formation en heures"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
 
 
 class en_contrat_aide(Variable):
@@ -332,7 +306,7 @@ class aide_mobilite_eligible(Variable):
 
         #  2
         activite_en_recherche_emploi = individu('types_activite_en_recherche_emploi', period)
-        reprises_emploi_types_activites = individu('types_contrat', period)
+        reprises_emploi_types_activites = individu('contrat_de_travail_type', period)
         formation_validee = individu('formation_validee_pole_emploi', period)
         formation_financee = individu('formation_financee_ou_cofinancee', period)
 
