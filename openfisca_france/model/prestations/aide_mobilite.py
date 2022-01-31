@@ -353,7 +353,7 @@ class aide_mobilite(Variable):
         montants_reels = min_(montants_theoriques, montants_max_attribuables)
 
         return montants_reels * eligibilite_amob
-
+9
 
 class aide_mobilite_bon_de_transport(Variable):
     value_type = bool
@@ -367,7 +367,7 @@ class aide_mobilite_bon_de_transport(Variable):
 
         contexte = individu('contexte_activite_pole_emploi', period)
         en_recherche_emploi = contexte == ContexteActivitePoleEmploi.recherche_emploi
-        lieux_activite_eligibles = individu('lieu_emploi_ou_formation', period) == TypesLieuEmploiFormation.france_hors_dom_corse
+        lieux_activite_eligibles = individu('lieu_emploi_ou_formation', period) == TypesLieuEmploiFormation.metropole_hors_corse
         categories_non_eligibles = not_(individu('aide_mobilite_categories_demandeur_emploi_eligibles', period))
         allocation_non_eligible = not_(individu('aide_mobilite_allocations_eligibles', period))
 

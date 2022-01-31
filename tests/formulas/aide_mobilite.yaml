@@ -14,7 +14,7 @@
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
     contrat_de_travail_type: aucune_activite
-    lieu_emploi_ou_formation: metropole
+    lieu_emploi_ou_formation: metropole_hors_corse
     date_debut_recherche_emploi: '2021-01-08'
     aide_mobilite_date_demande: '2021-01-14'
   output:
@@ -25,7 +25,7 @@
 - name: Test 02 - Vérifie le calcul de l'AMOB pour un individu avec une ARE > ARE min hors Mayotte
   period: 2021-12
   input:
-    residence: metropole
+    residence: martinique
     distance_aller_retour_activite_domicile: 61
     nombre_allers_retours: 1
     aide_mobilite_duree_trajet: 120
@@ -62,7 +62,7 @@
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     contrat_de_travail_type: [aucune_activite, aucune_activite]
-    lieu_emploi_ou_formation: [la_reunion, guyane]
+    lieu_emploi_ou_formation: [martinique, martinique]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
@@ -75,7 +75,7 @@
 - name: Test 04 - Vérifie le calcul de l'AMOB pour un individu avec une catégorie 5 contrat aidé / ou non
   period: 2021-12
   input:
-    residence: [martinique, martinique]
+    residence: [guadeloupe, saint_martin]
     distance_aller_retour_activite_domicile: [21, 21]
     nombre_allers_retours: [1, 1]
     aide_mobilite_duree_trajet: [120, 120]
@@ -114,7 +114,7 @@
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
     contrat_de_travail_type: aucune_activite
-    lieu_emploi_ou_formation: saint_bartelemy
+    lieu_emploi_ou_formation: martinique
     formation_validee_pole_emploi: true
     formation_financee_ou_cofinancee: true
     date_debut_recherche_emploi: '2021-01-08'
@@ -140,7 +140,7 @@
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     contrat_de_travail_type: [aucune_activite, aucune_activite]
-    lieu_emploi_ou_formation: [mayotte, france_hors_corse]
+    lieu_emploi_ou_formation: [martinique, martinique]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
@@ -166,7 +166,7 @@
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     contrat_de_travail_type: [aucune_activite, aucune_activite]
-    lieu_emploi_ou_formation: [metropole, metropole]
+    lieu_emploi_ou_formation: [martinique, martinique]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
     date_debut_recherche_emploi: ['2021-01-08', '2021-01-08']
@@ -208,7 +208,7 @@
     contrat_de_travail_type: [formation, formation]
     dispositifs_formation: [autre, autre]
     duree_formation: [40, 39]
-    lieu_emploi_ou_formation: [metropole, metropole]
+    lieu_emploi_ou_formation: [martinique, martinique]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
     contrat_de_travail_debut: ['2021-01-08', '2021-01-15']
@@ -236,7 +236,7 @@
     contrat_de_travail_type: formation
     dispositifs_formation: permis_conduire_b
     duree_formation: 40
-    lieu_emploi_ou_formation: metropole
+    lieu_emploi_ou_formation: martinique
     formation_validee_pole_emploi: true
     formation_financee_ou_cofinancee: true
     contrat_de_travail_debut: '2021-01-08'
@@ -263,7 +263,7 @@
     types_activite_en_recherche_emploi: [concours_public, concours_public]
     contrat_de_travail_type: [aucun, aucun]
     dispositifs_formation: [autre, autre]
-    lieu_emploi_ou_formation: [metropole, metropole]
+    lieu_emploi_ou_formation: [martinique, martinique]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
     date_debut_recherche_emploi: ['2021-01-01', '2021-01-01']
@@ -292,7 +292,7 @@
     types_activite_en_recherche_emploi: [indetermine, indetermine]
     contrat_de_travail_type: [cdi, cdi]
     dispositifs_formation: [autre, autre]
-    lieu_emploi_ou_formation: [metropole, metropole]
+    lieu_emploi_ou_formation: [martinique, martinique]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
     contrat_de_travail_debut: ['2021-01-02', '2021-01-01']
@@ -321,7 +321,7 @@
     contrat_de_travail_type: [cdd, aucun]
     dispositifs_formation: [autre, autre]
     contrat_de_travail_duree: [3, 0]
-    lieu_emploi_ou_formation: [metropole, france_hors_dom_corse]
+    lieu_emploi_ou_formation: [metropole_hors_corse, metropole_hors_corse]
     formation_validee_pole_emploi: [true, true]
     formation_financee_ou_cofinancee: [true, true]
     date_debut_recherche_emploi: ['2021-01-01', '2021-01-01']

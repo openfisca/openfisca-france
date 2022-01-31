@@ -342,8 +342,8 @@ class duree_formation(Variable):
 
 class TypesLieuEmploiFormation(Enum):
     non_renseigne = "Non renseigné"
-    metropole = "Métropole"
-    france_hors_dom_corse = "France hors DOM et hors Corse"
+    metropole_hors_corse = "Métropole hors Corse"
+    corse = "Corse"
     guadeloupe = "Guadeloupe"
     martinique = "Martinique"
     guyane = "Guyane"
