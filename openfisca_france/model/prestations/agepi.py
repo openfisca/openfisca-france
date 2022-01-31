@@ -34,14 +34,6 @@ class agepi_temps_travail_en_heure(Variable):
     set_input = set_input_divide_by_period
 
 
-class contrat_aide(Variable):
-    value_type = bool
-    entity = Individu
-    label = "L'individu est en contrat aidé"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
 class TypesIntensiteActivite(Enum):
     __order__ = 'inconnue hebdomadaire mensuelle'  # Needed to preserve the enum order in Python 2
     inconnue = "Intensité d'emploi ou de formation inconnue"

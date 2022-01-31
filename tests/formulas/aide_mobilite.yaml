@@ -9,7 +9,7 @@
     repas: 9
     pole_emploi_categorie_demandeur_emploi: categorie_1
     stagiaire: false
-    en_contrat_aide: false
+    contrat_aide: false
     allocation_retour_emploi: 29.56
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
@@ -33,7 +33,7 @@
     repas: 9
     pole_emploi_categorie_demandeur_emploi: categorie_1
     stagiaire: false
-    en_contrat_aide: false
+    contrat_aide: false
     allocation_retour_emploi: 29.57
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
@@ -57,7 +57,7 @@
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_4, categorie_4]
     stagiaire: [true, false]
-    en_contrat_aide: [false, false]
+    contrat_aide: [false, false]
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
@@ -83,7 +83,7 @@
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_5, categorie_5]
     stagiaire: [false, false]
-    en_contrat_aide: [true, false]
+    contrat_aide: [true, false]
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
@@ -109,7 +109,7 @@
     repas: 9
     pole_emploi_categorie_demandeur_emploi: categorie_test
     stagiaire: false
-    en_contrat_aide: false
+    contrat_aide: false
     allocation_retour_emploi: 14.77
     contexte_activite_pole_emploi: recherche_emploi
     types_activite_en_recherche_emploi: concours_public
@@ -135,7 +135,7 @@
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
     stagiaire: [false, false]
-    en_contrat_aide: [false, false]
+    contrat_aide: [false, false]
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
@@ -161,7 +161,7 @@
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
     stagiaire: [false, false]
-    en_contrat_aide: [false, false]
+    contrat_aide: [false, false]
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
@@ -201,7 +201,7 @@
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
     stagiaire: [false, false]
-    en_contrat_aide: [false, false]
+    contrat_aide: [false, false]
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [formation, formation]
     types_activite_en_recherche_emploi: [indetermine, indetermine]
@@ -229,7 +229,7 @@
     repas: 9
     pole_emploi_categorie_demandeur_emploi: categorie_1
     stagiaire: false
-    en_contrat_aide: false
+    contrat_aide: false
     allocation_retour_emploi: 14.77
     contexte_activite_pole_emploi: formation
     types_activite_en_recherche_emploi: indetermine
@@ -257,7 +257,7 @@
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
     stagiaire: [false, false]
-    en_contrat_aide: [false, false]
+    contrat_aide: [false, false]
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [recherche_emploi, recherche_emploi]
     types_activite_en_recherche_emploi: [concours_public, concours_public]
@@ -286,7 +286,7 @@
     repas: [9, 9]
     pole_emploi_categorie_demandeur_emploi: [categorie_1, categorie_1]
     stagiaire: [false, false]
-    en_contrat_aide: [false, false]
+    contrat_aide: [false, false]
     allocation_retour_emploi: [14.77, 14.77]
     contexte_activite_pole_emploi: [reprise_emploi, reprise_emploi]
     types_activite_en_recherche_emploi: [indetermine, indetermine]

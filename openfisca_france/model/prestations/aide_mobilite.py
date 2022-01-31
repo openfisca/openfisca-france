@@ -16,14 +16,6 @@ class aide_mobilite_date_demande(Variable):
     reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
 
 
-class en_contrat_aide(Variable):
-    value_type = bool
-    entity = Individu
-    label = "L'individu est en contrat aidé"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
 class distance_aller_retour_activite_domicile(Variable):
     entity = Individu
     value_type = float
@@ -158,7 +150,7 @@ class aide_mobilite_categories_demandeur_emploi_eligibles(Variable):
         pe_categorie_demandeur_emploi = individu('pole_emploi_categorie_demandeur_emploi', period)
 
         stagiaire_formation_professionnelle = individu('stagiaire', period)
-        contrat_aide = individu('en_contrat_aide', period)
+        contrat_aide = individu('contrat_aide', period)
 
         categorie_4 = pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_4
         categorie_4_stagiaire_formation_professionnelle = categorie_4 * stagiaire_formation_professionnelle

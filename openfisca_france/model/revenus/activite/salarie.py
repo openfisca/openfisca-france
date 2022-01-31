@@ -323,6 +323,15 @@ class contrat_de_travail_type(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class contrat_aide(Variable):
+    value_type = bool
+    entity = Individu
+    label = "L'individu est en contrat aidé"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    reference = "https://dares.travail-emploi.gouv.fr/definitions-et-concepts/contrats-aides"
+
+
 class duree_formation(Variable):
     value_type = float
     entity = Individu
