@@ -169,15 +169,16 @@ class aide_premier_salarie(Variable):
         # Si CDD, durée du contrat doit être > 1 an
         eligible_duree = or_(
             # durée indéterminée
+
             contrat_de_travail_type == TypesContrat.cdi,
             # durée déterminée supérieure à 1 an
-            and_(
-                contrat_de_travail_type == TypesContrat.cdd,
+            and_(contrat_de_travail_type == TypesContrat.cdd,
+
                 # > 6 mois
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
                 # Initialement, la condition était d'un contrat >= 12 mois,
                 # pour les demandes transmises jusqu'au 26 janvier.
-                )
+                 )
             )
 
         eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
