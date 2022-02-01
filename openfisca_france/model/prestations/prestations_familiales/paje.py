@@ -811,7 +811,7 @@ class paje_clca(Variable):
 
         paje_non_nul = paje_base >= 0
         # durée de versement :
-        # Pour un seul enfant à charge, le CLCA est versé pendant une période de 6 mois (paje.clca.duree1)
+        # Pour un seul enfant à charge, le CLCA est versé pendant une période de 6 mois (paje.paje_clca.duree1)
         # à partir de la naissance ou de la cessation des IJ maternité et paternité.
         # A partir du 2ème enfant, il est versé jusqu’au mois précédant le 3ème anniversaire
         # de l’enfant.
@@ -822,7 +822,7 @@ class paje_clca(Variable):
         age_en_mois_i = famille.members('age_en_mois', period)
         age_m_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
 
-        condition1 = (af_nbenf == 1) * (age_m_benjamin >= 0) * (age_m_benjamin < paje.clca.duree1)
+        condition1 = (af_nbenf == 1) * (age_m_benjamin >= 0) * (age_m_benjamin < paje.paje_clca.duree1)
         age_benjamin = floor(age_m_benjamin / 12)
         condition2 = (age_benjamin <= (paje.paje_cm.age_limite_enfant_adopte_non - 1))
         condition = (af_nbenf >= 2) * condition2 + condition1
@@ -830,14 +830,14 @@ class paje_clca(Variable):
         paje_clca = (
             (condition * bmaf) * (
                 not_(paje_non_nul) * (
-                    inactif * paje.clca.sansab_tx_inactif
-                    + partiel1 * paje.clca.sansab_tx_partiel1
-                    + partiel2 * paje.clca.sansab_tx_partiel2
+                    inactif * paje.paje_clca.sansab_tx_inactif
+                    + partiel1 * paje.paje_clca.sansab_tx_partiel1
+                    + partiel2 * paje.paje_clca.sansab_tx_partiel2
                     )
                 + paje_non_nul * (
-                    inactif * paje.clca.avecab_tx_inactif
-                    + partiel1 * paje.clca.avecab_tx_partiel1
-                    + partiel2 * paje.clca.avecab_tx_partiel2
+                    inactif * paje.paje_clca.avecab_tx_inactif
+                    + partiel1 * paje.paje_clca.avecab_tx_partiel1
+                    + partiel2 * paje.paje_clca.avecab_tx_partiel2
                     )
                 )
             )
