@@ -160,10 +160,10 @@ class paje_base(Variable):
 
         # A partir de la réforme d'avril 2018 (enfants nés apres avril 2018)
         def plafond_taux_plein_apres_2018():
-            plafond_de_base = paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_plein.plaf
+            plafond_de_base = paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_plein.plafond_ressources_0_enfant
             maj_plafond_2_premiers_enfants = paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_majoration_2_premiers_enf * plafond_de_base
             maj_plafond_par_enfant_sup = paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_majoration_3eme_enf_et_plus * plafond_de_base
-            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_plein.plaf_maj
+            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_plein.biactifs_parents_isoles
 
             return plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif)
 
