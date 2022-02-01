@@ -1,10 +1,18 @@
 # Changelog
 
+# XXX.0.1 [#1786](https://github.com/openfisca/openfisca-france/pull/1786)
+
+* Amélioration technique.
+* Périodes concernées : aucune.
+* Zones impactées : aucune.
+* Détails :
+  - Ajout de la publication vers [conda](https://anaconda.org/search?q=openfisca-france)
+
 # 106.0.0 [#1790](https://github.com/openfisca/openfisca-france/pull/1790)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
 - `parameters/prestations_sociales/prestations_familiales/petite_enfance`.
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
@@ -14,16 +22,6 @@
 git log --oneline 500832d46fc6^..281c8b368c1bceb| grep "variable_name"
 
 # 105.0.0 [#1789](https://github.com/openfisca/openfisca-france/pull/1789)
-
-# XXX.0.1 [#1786](https://github.com/openfisca/openfisca-france/pull/1786)
-
-* Amélioration technique.
-* Périodes concernées : aucune.
-* Zones impactées : aucune.
-* Détails :
-  - Ajout de la publication vers [conda](https://anaconda.org/search?q=openfisca-france)
-
-# 103.0.0 [#1772](https://github.com/openfisca/openfisca-france/pull/1772)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
@@ -40,7 +38,6 @@ git log --oneline 500832d46fc6^..281c8b368c1bceb| grep "variable_name"
   -
 * Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
 git log --oneline 66724eff27e8feb0^..60136e4a68e04 | grep "variable_name"
-
 ### 104.1.1 [#1793](https://github.com/openfisca/openfisca-france/pull/1793)
 
 * Changement mineur.
