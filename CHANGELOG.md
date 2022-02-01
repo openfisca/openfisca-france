@@ -1,6 +1,6 @@
 # Changelog
 
-# XXX.0.1 [#1786](https://github.com/openfisca/openfisca-france/pull/1786)
+### 105.0.1 [#1786](https://github.com/openfisca/openfisca-france/pull/1786)
 
 * Amélioration technique.
 * Périodes concernées : aucune.
