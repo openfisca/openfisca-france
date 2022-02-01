@@ -139,14 +139,14 @@ class paje_base(Variable):
         def plafond_taux_plein_2014_2018():
             plafond_de_base = paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_plein.plafond_ressources_0_enfant
             maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_plein.plafond_ressources_0_enfant
-            maj_plafond_par_enfant = plafond_de_base * paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.plaf_tx_par_enf
+            maj_plafond_par_enfant = plafond_de_base * paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.majorations_enfants.majoration_enfant_supplementaire
 
             return plafond_apres_ajustement_2014_2018(plafond_de_base, maj_plafond_par_enfant, maj_plafond_seul_biactif)
 
         def plafond_taux_partiel_2014_2018():
             plafond_de_base = paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.plafond_ressources_0_enfant
             maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.biactifs_parents_isoles
-            maj_plafond_par_enfant = plafond_de_base * paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.plaf_tx_par_enf
+            maj_plafond_par_enfant = plafond_de_base * paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.majorations_enfants.majoration_enfant_supplementaire
 
             return plafond_apres_ajustement_2014_2018(plafond_de_base, maj_plafond_par_enfant, maj_plafond_seul_biactif)
 
@@ -311,7 +311,7 @@ class paje_naissance(Variable):
 
         plafond_de_ressources = (
             paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.plafond_ressources_0_enfant
-            + paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.plafond_ressources_0_enfant * nbenf * paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.plaf_tx_par_enf
+            + paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.plafond_ressources_0_enfant * nbenf * paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.majorations_enfants.majoration_enfant_supplementaire
             + paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.biactifs_parents_isoles * majoration_isole_biactif
             )
 
