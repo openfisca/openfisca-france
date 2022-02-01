@@ -1,0 +1,379 @@
+description: Salaire mensuel de base dans le département de la Seine, Base mensuelle de calcul des allocations familiales (BMAF)
+values:
+  1955-01-01:
+    value: null
+  1948-09-01:
+    value: 120.0
+  1948-01-01:
+    value: 105.0
+  1947-12-01:
+    value: 85.0
+  1947-08-01:
+    value: 70.0
+  1947-07-01:
+    value: 62.5
+  1947-02-01:
+    value: 62.15
+  1946-07-01:
+    value: 56.5
+  1944-08-01:
+    value: 45.0
+  1944-01-01:
+    value: 22.5
+  1942-01-01:
+    value: 17.0
+  1939-04-01:
+    value: 15.0
+metadata:
+  ux_name: Salaire mensuel dans la Seine
+  ipp_csv_id: bmaf_seine
+  unit: currency
+  reference:
+    2021-04-01: 
+      title: Circulaire DSS/2B/2021/65 du 19/ 03/2021
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2021/2021.5.sante.pdf#page=140
+    2020-04-01: Circulaire DSS/SD2B/2020/33 du 18/02/2020
+    2019-04-01: Circulaire DSS/SD2B/2019/65 du 25/03/2019
+    2018-04-01: Circulaire DSS/SD2B/2018/81 du 22/03/2018
+    2017-04-01: Circulaire DSS/SD2B/2017/97 du 21/03/2017, Circulaire DSS/SD2B/2017/97 du 21/03/2017
+    2016-04-01: Circulaire DSS/SD2B/2016/77 du 15/03/2016
+    2014-04-01:
+      title: Loi 2013-1203 du 23/12/2013
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028372809
+    2013-04-01:
+      title: Loi 2011-1906 du 21/12/2011, art. 104 (modif art. L551-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025007754&cidTexte=JORFTEXT000025005833
+    2012-04-01:
+      title: Loi 2011-1906 du 21/12/2011, art. 104 (modif art. L551-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025007754&cidTexte=JORFTEXT000025005833
+    2011-01-01:
+      title: Décret 2010-1766 du 30/12/2010
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000023335483
+    2009-01-01:
+      title: Décret 2008-1559 du 31/12/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/12/31/2008-1559/jo/texte
+    2008-01-01:
+      title: Décret 2007-1755 du 13/12/2007
+      href: https://www.legifrance.gouv.fr/eli/decret/2007/12/13/2007-1755/jo/texte
+    2007-01-01:
+      title: Décret 2006-1754 du 23/12/2006
+      href: https://www.legifrance.gouv.fr/eli/decret/2006/12/23/2006-1754/jo/texte
+    2006-01-01:
+      title: Décret 2005-1769 du 30/12/2005
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000265455
+    2005-01-01:
+      title: Décret 2004-1458 du 23/12/2004
+      href: https://www.legifrance.gouv.fr/eli/decret/2004/12/23/2004-1458/jo/texte
+    2004-01-01:
+      title: Décret 2003-1251 du 23/12/2003
+      href: https://www.legifrance.gouv.fr/eli/decret/2003/12/23/2003-1251/jo/texte
+    2003-01-01:
+      title: Décret 2002-1567 du 23/12/2002
+      href: https://www.legifrance.gouv.fr/eli/decret/2002/12/23/2002-1567/jo/texte
+    2002-01-01:
+      title: Décret 2001-1241 du 21/12/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000215370&categorieLien=id
+    2001-01-01:
+      title: Décret 2001-8 du 04/01/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000402688
+    2000-01-01:
+      title: Décret 99-1222 du 30/12/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000214482
+    1999-01-01:
+      title: Décret 98-1200 du 28/12/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000208596&categorieLien=id
+    1998-01-01:
+      title: Décret 98-3 du 05/01/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000738325
+    1997-01-01:
+      title: Décret 96-1246 du 26/12/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000198996&categorieLien=id
+    1995-01-01:
+      title: Décret 94-1231 du 30/12/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000349513
+    1994-01-01:
+      title: Décret 93-1344 du 29/12/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336684&categorieLien=id
+    1993-01-01:
+      title: Décret 93-144 du 02/02/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000711910
+    1992-07-01:
+      title: Décret 91-1376 du 30/12/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000703215
+    1992-01-01:
+      title: Décret 91-1376 du 30/12/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000703215
+    1991-07-01:
+      title: Décret 91-766 du 07/08/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000312429
+    1991-01-01:
+      title: Décret 91-170 du 13/02/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000882247&categorieLien=id
+    1990-07-01:
+      title: Décret 90-64 du 15/01/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000342807&categorieLien=id
+    1990-01-01:
+      title: Décret 90-64 du 15/01/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000342807&categorieLien=id
+    1989-07-01:
+      title: Décret 89-600 du 28/08/1989
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000885994&categorieLien=id
+    1989-01-01:
+      title: Décret 89-36 du 25/01/1989
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699656&categorieLien=id
+    1988-07-01:
+      title: Décret 88-912 du 05/09/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000006073415
+    1988-01-01:
+      title: Décret 87-1174 du 24/12/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000523037&categorieLien=id
+    1987-07-01:
+      title: Décret 87-627 du 04/08/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000881535
+    1986-07-01:
+      title: Décret 86-150 du 30/01/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000518125
+    1986-01-01:
+      title: Décret 86-150 du 30/01/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000518125
+    1985-07-01:
+      title: Décret 85-758 du 18/07/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000501272&categorieLien=id
+    1985-01-01:
+      title: Décret 85-286 du 28/02/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516036&categorieLien=id
+    1984-07-01:
+      title: Décret 84-644 du 17/07/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516026&categorieLien=id
+    1984-01-01:
+      title: Décret 84-128 du 22/02/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000332467&categorieLien=id
+    1983-07-01:
+      title: Décret 83-554 du 30/06/1983
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000503754
+    1983-01-01:
+      title: Décret 82-1136 du 29/12/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000515807&categorieLien=id
+    1982-07-01:
+      title: Décret 82-703 du 09/08/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699451
+    1981-07-01: Arrêté du 22/04/1981
+    1978-07-01:
+      title: Décret 78-728 du 11/07/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516812&categorieLien=id
+    1978-01-01:
+      title: Décret 78-30 du 10/01/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000863672
+    1977-07-01:
+      title: Décret 77-692 du 30/06/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000700666
+    1976-08-01:
+      title: Décret 76-768 du 16/08/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000688994
+    1975-08-01:
+      title: Décret 75-709 du 30/07/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000335268
+    1975-04-01:
+      title: Décret 75-211 du 28/03/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000883644
+    1974-08-01:
+      title: Décret 74-717 du 14/08/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000498215
+    1973-08-01: Décret 73-843 du 28/08/1973
+    1973-01-01:
+      title: Décret 72-1248 du 30/12/1972
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000879760
+    1972-08-01:
+      title: Décret 72-701 du 28/07/1972
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000500378
+    1971-08-01:
+      title: Décret 71-624 du 28/07/1971
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000693590
+    1970-08-01:
+      title: Décret 70-678 du 30/07/1970
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000494588
+    1969-08-01: Décret 69-793 du 12/08/1969
+    1968-02-01:
+      title: Décret 68-150 du 16/02/1968
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000702289
+    1967-08-01: Décret 67-659 du 4/08/1967
+    1966-08-01:
+      title: Décret 66-574 du 30/07/1966
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000876780
+    1965-08-01:
+      title: Décret 65-573 du 13/07/1965
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000852885
+    1964-08-01: Décret 64-584 du 23/06/1964
+    1963-08-01:
+      title: Décret 63-743 du 23/07/1963
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000680099
+    1962-11-01:
+      title: Décret 62-1268 du 30/10/1962
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000680089
+    1962-08-01:
+      title: Décret 61-1440 du 27/12/1961
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000681535
+    1962-01-01:
+      title: Décret 61-1440 du 27/12/1961
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000681535
+    1961-08-01:
+      title: Décret 61-170 du 16/02/1961
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000869737
+    1961-01-01:
+      title: Décret 61-170 du 16/02/1961
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000869737
+    1960-08-01: Décret 60-967 du 08/09/1960
+    1959-08-01:
+      title: Décret 59-911 du 31/07/1959
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000673772
+    1958-01-01: Loi 57-1344 du 30/12/1957, art. 7 §1 (modif art. L 544 du CSS)
+    1955-01-01: Décret 54-1323 du 31/12/1954
+    1953-01-01:
+      title: Décret 53-101 du 12/02/1953
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000868568
+    1952-04-01: Loi 52-4 du 03/01/1952, art. 2
+    1951-10-01: Loi 51-1126 du 26/09/1951, art. 9 et 10
+    1951-04-01: Loi 51-520 du 09/05/1951, art. 2, 4 et 5
+    1950-12-01: Loi 50-1598 du 30/12/1950
+    1950-10-01:
+      title: Décret 50-1220 du 30/09/1950
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000675486
+    1950-07-01: Loi 50-948 du 08/08/1950, art. 7
+    1950-04-01:
+      title: Décret 50-667 du 14/06/1950
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000302148
+    1949-10-01: Arrêté du 13/02/1950
+    1948-09-01: Loi 48-1555 du 06/10/1948, art. 1
+    1948-01-01: Loi 48-354 du 02/03/1948 , art. 1
+    1947-12-01: Loi 47-2441 du 31/12/1947, art. 5 (modif loi 47-1127 art. 17)
+    1947-08-01: Loi 47-1127 du 25/06/1947, art. 17
+    1947-02-01: Loi 47-614 du 31/03/1947
+    1946-07-01: Loi 46-1835 du 22/08/1946
+  official_journal_date:
+    2014-04-01: 2013-12-24
+    2013-04-01: 2011-12-22
+    2012-04-01: 2011-12-22
+    2011-01-01: 2010-12-31
+    2009-01-01: 2009-01-01
+    2008-01-01: 2007-12-15
+    2007-01-01: 2006-12-30
+    2006-01-01: 2005-12-31
+    2005-01-01: 2001-12-30
+    2004-01-01: 2003-12-26
+    2003-01-01: 2002-12-29
+    2002-01-01: 2001-12-23
+    2001-01-01: 2001-01-05
+    2000-01-01: 2000-01-01
+    1999-01-01: 1998-12-29
+    1998-01-01: 1998-01-06
+    1997-01-01: 1997-01-01
+    1995-01-01: 1995-01-03
+    1994-01-01: 1993-12-30
+    1993-01-01: 1993-02-04
+    1992-07-01: 1991-12-31
+    1992-01-01: 1991-12-31
+    1991-07-01: 1991-08-08
+    1991-01-01: 1991-02-16
+    1990-07-01: 1990-01-17
+    1990-01-01: 1990-01-17
+    1989-07-01: 1989-08-29
+    1989-01-01: 1989-01-26
+    1988-07-01: 1988-09-07
+    1988-01-01: 1988-01-09
+    1987-07-01: 1987-08-05
+    1986-07-01: 1986-02-02
+    1986-01-01: 1986-02-02
+    1985-07-01: 1985-07-19
+    1985-01-01: 1985-01-05
+    1984-07-01: 1984-07-18
+    1984-01-01: 1984-02-24
+    1983-07-01: 1983-07-01
+    1983-01-01: 1982-12-30
+    1982-07-01: 1982-08-11
+    1981-07-01: 1981-04-29
+    1978-07-01: 1978-07-12
+    1978-01-01: 1978-01-11
+    1977-07-01: 1977-07-01
+    1976-08-01: 1976-08-17
+    1975-08-01: 1975-08-08
+    1975-04-01: 1975-04-02
+    1974-08-01: 1974-08-15
+    1973-08-01: 1973-08-30
+    1973-01-01: 1972-12-31
+    1972-08-01: 1972-08-01
+    1971-08-01: 1971-07-29
+    1970-08-01: 1970-07-31
+    1969-08-01: 1969-08-14
+    1968-02-01: 1968-02-17
+    1967-08-01: 1967-08-06
+    1966-08-01: 1966-07-31
+    1965-08-01: 1965-07-14
+    1964-08-01: 1964-06-24
+    1963-08-01: 1963-07-24
+    1962-11-01: 1962-10-31
+    1962-08-01: 1961-12-28
+    1962-01-01: 1961-12-28
+    1961-08-01: 1961-02-18
+    1961-01-01: 1961-02-18
+    1960-08-01: 1960-09-10
+    1959-08-01: 1959-08-01
+    1958-01-01: 1957-12-31
+    1955-01-01: 1955-01-01
+    1953-01-01: 1953-02-14
+    1952-04-01: 1952-01-04
+    1951-10-01: 1951-09-27
+    1951-04-01: 1951-05-10
+    1950-12-01: 1950-12-31
+    1950-10-01: 1950-10-03
+    1950-07-01: 1950-08-12
+    1950-04-01: 1950-06-15
+    1949-10-01: 1950-02-15
+    1948-09-01: 1948-10-07
+    1948-01-01: 1948-03-03
+    1947-12-01: 1948-01-06
+    1947-08-01: 1947-06-26
+    1947-02-01: 1947-04-06
+    1946-07-01: 1946-08-23
+  notes:
+    2021-04-01: Revalorisation de 0,1%
+    2020-04-01: Revalorisation de 0,3%
+    2019-04-01: Revalorisation de 0,3% (sous-revalorisation par rapport au niveau de l'inflation)
+    2018-04-01: Revalorisation de 1 %
+    2017-04-01: Revalorisation de 0,3 %
+    2016-04-01: Revalorisation de 0,1 %
+    2014-04-01: Revalorisation de 0,6 %
+    2012-04-01: La BMAF est à partir de décembre 2011 revalorisée au 1er avril de chaque année suivant l'évolution de l'indice des prix (sauf pour 2012 où par dérogation, la revalorisation reste au 1er janvier) Cf. LFSS 2012 (loi 2011-1906 du 21/12/2011) &Article L 551-1 du CSS en vigueur à partir du 23/12/2011
+    2009-01-01: Pas de revalorisation en 2010, Décret 2009-1733 du 29/12/2009.
+    1995-01-01: Pas de revalorisation en 1996
+    1990-07-01: Revalorisation de 1,35%
+    1990-01-01: Revalorisation de 2,24%
+    1989-07-01: Revalorisation de 1,01%
+    1989-01-01: Revalorisation de 1,11%
+    1988-07-01: Revalorisation de 1,42%
+    1988-01-01: Revalorisation de 2,66%
+    1987-07-01: Revalorisation de 1%
+    1986-07-01: Revalorisation de 1,25%
+    1986-01-01: Revalorisation de 1,25%
+    1985-07-01: Revalorisation de 2,5%
+    1985-01-01: Revalorisation de 3,4%
+    1984-07-01: Revalorisation de 2,35%
+    1984-01-01: Revalorisation de 2,35%
+    1983-07-01: Revalorisation de 4%
+    1983-01-01: Revalorisation de 7,5%
+    1973-08-01: Ce décret n'est pas référencé sur légifrance (mais présent page 9442 du JO)
+    1969-08-01: Ce décret n'est pas référencé sur légifrance (mais présent page 8186 du JO)
+    1964-08-01: Ce décret n'est pas référencé sur légifrance (mais présent page 5462 du JO)
+    1960-08-01: Sur le site internet Légifrance la date du décret est le 31/08/1960, la date ici référencée est celle du PDF
+    1953-01-01: La sécurité sociale, son histoire à partir des textes indique p.223 qu'il s'agit d'un arrêté (en contradiction avec le Journal Officiel)
+    1951-04-01: Cette loi n'est pas référencée sur légifrance (mais présente page 4862 du JO)
+    1950-12-01: Revalorisation de 20 %
+    1950-10-01: La sécurité sociale, son histoire à partir des textes indique p.223 qu'il s'agit d'un arrêté (en contradiction avec le Journal Officiel)
+    1947-07-01: Arrêté du 21 août 1947 d'après La sécurité sociale, son histoire à partir des textes p.223
+    1947-02-01: Revalorisation de 10 % pour les salariés du régime général
+    1946-07-01: Fixation du régime des prestations familiales (allocations de maternité, allocations familiales, allocations de salaire unique et allocations prénatales). Journal Officiel introuvable
+  description_en: Monthly basis for the computation of family allowances (BMAF)
+documentation: |
+  Notes :
+  Le régime des prestations familiales est fixé par la loi 46-1835 du 22 août 1946
+  Sources :
+  Légifrance et La sécurité sociale, son histoire à partir des textes, p. 223 (1945-1961) et p. 405 (1959-1967)

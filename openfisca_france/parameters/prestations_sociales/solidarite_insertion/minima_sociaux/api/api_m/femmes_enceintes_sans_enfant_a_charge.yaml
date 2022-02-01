@@ -9,7 +9,7 @@ values:
 metadata:
   ux_name: Femmes enceintes sans enfant à charge
   ipp_csv_id: api_enceinte
-  unit: /1
+  unit: BMAF
   reference:
     2009-06-01:
       title: Décret 2009-404 du 15/04/2009, art. 4 (abroge l'art. R524-2 du CSS)

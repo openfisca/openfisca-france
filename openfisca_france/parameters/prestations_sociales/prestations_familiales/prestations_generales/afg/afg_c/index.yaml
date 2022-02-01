@@ -1,0 +1,7 @@
+description: Conditions générales et montants de l'Allocation pour frais de garde (AFG, 1976-1977)
+metadata:
+  ux_name: Conditions générales et montants
+  order:
+  - nombre_minimal_enfants_charge
+  - montant_mensuel_maximum
+  description_en: "Child care costs allowance (AFG): General conditions and amounts"

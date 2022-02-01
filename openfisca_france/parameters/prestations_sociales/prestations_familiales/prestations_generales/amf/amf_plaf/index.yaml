@@ -1,0 +1,9 @@
+description: Plafond de ressources des Allocation de la mère au foyer (AMF, 1955-1977)
+metadata:
+  ux_name: Plafond de ressources
+  order:
+  - plafond_ressources_droit_amf_3_enfants
+  - majoration_plafond_droit_amf
+  - plafond_ressources_majoration_0_enfant
+  - majoration_plafond_majoration
+  description_en: "Allowance for stay-at-home-mother (AMF): Thresholds for means-testing"

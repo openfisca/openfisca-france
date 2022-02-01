@@ -39,7 +39,7 @@ class aefa(Variable):
         af_nbenf = famille('af_nbenf', janvier)
         nb_parents = famille('nb_parents', janvier)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
+            nbPAC = nb_enf(famille, janvier, af.af_cm.age1, af.af_cm.age3)
         else:
             nbPAC = af_nbenf
 

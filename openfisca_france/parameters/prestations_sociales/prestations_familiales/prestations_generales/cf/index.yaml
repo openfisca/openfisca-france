@@ -1,2 +1,9 @@
-description: Complément familial
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Complément familial (CF)
+metadata:
+  ux_name: CF
+  order:
+  - cf_cm
+  - cf_plaf_nouveau
+  - cf_plaf_ancien
+  - cf_cm_dom
+  description_en: "Family complement (CF)"

@@ -1,0 +1,53 @@
+description: Smic de l'année de référence (n-2) pour le Prêt aux jeunes ménages (PJM)
+values:
+  1978-01-01:
+    value: 8.58
+  1978-07-01:
+    value: 9.58
+  1979-04-01:
+    value: 10.85
+  1980-07-01:
+    value: 14.0
+  1981-07-01:
+    value: 16.72
+  1982-07-01:
+    value: 19.64
+  1983-01-01:
+    value: null
+metadata:
+  ux_name: Smic année (n-2)
+  ipp_csv_id: smic_ref
+  unit: currency
+  reference:
+    1985-05-16:
+      title: Décret 85-526 du 13/05/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000700484&categorieLien=id
+    1984-07-01:
+      title: Décret 82-1139 du 29/12/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701668
+    1983-07-01:
+      title: Décret 82-1139 du 29/12/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000701668
+    1982-07-01: Références manquantes
+    1979-04-01:
+      title: Décret 76-117 du 03/02/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000307312
+    1978-07-01:
+      title: Décret 77-1452 du 27/12/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000696375
+    1978-01-01: Arrêté du 17/11/1972Loi 75-6 du 03/01/1975Décret 76-117 du 03/02/1976Décret 77-1452 (modif Décret 76-117)
+  official_journal_date:
+    1985-05-16: 1985-05-16
+    1984-07-01: 1982-12-30
+    1983-07-01: 1982-12-30
+    1978-07-01: 1977-12-29
+    1978-01-01: 1972-11-18; 1975-01-04; 1976-02-05; 1977-12-29
+  notes:
+    1985-05-16: Décret 85-526 abroge le décret 76-117.
+    1983-07-01: Le plafonnement n'est plus indexé sur le SMIC du 1er juillet de l'année de ref mais selon le coeff de revalorisation des pensions d'invalidité
+    1978-01-01: Le décret 77-1452 institue un plafond propre au prêt aux jeunes ménages. Il n'est plus conditionné au plafond de ressources de l'allocation pour frais de garde
+  description_en: "Loans to young household (PJM): Thresholds for means-testing"
+documentation: |
+  Notes :
+  (1) Le plafond se calcule sur la base du SMIC en vigueur au 1er juillet de l'année de référence selon la formule suivante pour les couples sans enfants: (SMIC*4260*25%)*4
+  (2) Le prêt aux jeunes ménages a un plafond dès sa création en 1975, ce-dernier est d'abord institué par le décret 76-117 de la manière suivante "Art 6 - Sous réserve des conditions prévues à l'article précédent, les jeunes ménages ne peuvent prétendre à un prêt que si leur revenu net global apprécié dans les mêmes conditions que pour l'allocation pour frais de garde ne dépasse pas les plafonds de ressources prévus par l'octroi de cette prestation." L'article 5 du même décret explicite notamment les conditions d'âge (au moins l'un des conjoints doit avoir moins de 26 ans) .

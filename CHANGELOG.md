@@ -1,5 +1,23 @@
 # Changelog
 
+# 105.0.0 [#1789](https://github.com/openfisca/openfisca-france/pull/1789)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+- `parameters/prestations_sociales/prestations_familiales/prestations_generales`
+- `parameters/prestations_sociales/prestations_familiales/def_biactif`
+- `parameters/prestations_sociales/prestations_familiales/def_pac`
+- `parameters/prestations_sociales/prestations_familiales/enfants`
+- `parameters/prestations_sociales/prestations_familiales/logement_cadre_vie`
+
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+  - 
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline 66724eff27e8feb0^..60136e4a68e04 | grep "variable_name"
+
 ### 104.1.1 [#1793](https://github.com/openfisca/openfisca-france/pull/1793)
 
 * Changement mineur.

@@ -25,7 +25,7 @@ class autonomie_financiere(Variable):
         nbh_travaillees = 169
         smic_mensuel_brut = _P.marche_travail.salaire_minimum.smic.smic_b_horaire * nbh_travaillees
 
-        return salaire_net_mensualise >= (_P.prestations_sociales.prestations_familiales.prestations_generales.af.seuil_rev_taux * smic_mensuel_brut)
+        return salaire_net_mensualise >= (_P.prestations_sociales.prestations_familiales.def_pac.revenu_plafond_pac_non_scolaire * smic_mensuel_brut)
 
 
 class prestations_familiales_enfant_a_charge(Variable):
@@ -44,14 +44,14 @@ class prestations_familiales_enfant_a_charge(Variable):
         pfam = parameters(period).prestations_sociales.prestations_familiales
 
         condition_enfant = (
-            (age >= pfam.enfants.age_minimal)
-            * (age < pfam.enfants.age_intermediaire)
+            (age >= pfam.def_pac.enfants.age_minimal)
+            * (age < pfam.def_pac.enfants.age_intermediaire)
             * rempli_obligation_scolaire
             )
 
         condition_jeune = (
-            (age >= pfam.enfants.age_intermediaire)
-            * (age < pfam.enfants.age_limite)
+            (age >= pfam.def_pac.enfants.age_intermediaire)
+            * (age < pfam.def_pac.enfants.age_limite)
             * not_(autonomie_financiere)
             )
 
@@ -104,8 +104,8 @@ class biactivite(Variable):
         '''
         annee_fiscale_n_2 = period.n_2
 
-        af = parameters(annee_fiscale_n_2).prestations_sociales.prestations_familiales.prestations_generales.af
-        seuil_rev = 12 * af.bmaf
+        bmaf = parameters(annee_fiscale_n_2).prestations_sociales.prestations_familiales.bmaf.bmaf
+        seuil_rev = 12 * bmaf
 
         condition_ressource = (
             famille.members('rpns_imposables', annee_fiscale_n_2)

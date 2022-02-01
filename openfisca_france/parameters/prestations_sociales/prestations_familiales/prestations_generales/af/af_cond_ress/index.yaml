@@ -1,0 +1,9 @@
+description: Plafond de ressources des Allocations Familiales (AF)
+metadata:
+  ux_name: Plafond de ressources
+  order:
+  - plafond_tranche_1
+  - plafond_tranche_2
+  - majoration_plafond_par_enfant_supplementaire
+  description_en: "Family allowances (AF): General conditions and amount"
+  

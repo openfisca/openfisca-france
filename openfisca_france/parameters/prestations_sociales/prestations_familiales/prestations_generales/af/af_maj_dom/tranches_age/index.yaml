@@ -1,0 +1,7 @@
+description: Tranches d'âge pour la majoration pour les DOM des Allocations Familiales (AF)
+metadata:
+  ux_name: Tranches d'âge
+  order:
+  - age_debut_premiere_tranche
+  - age_debut_deuxieme_tranche
+  description_en: Family allowances (AF)

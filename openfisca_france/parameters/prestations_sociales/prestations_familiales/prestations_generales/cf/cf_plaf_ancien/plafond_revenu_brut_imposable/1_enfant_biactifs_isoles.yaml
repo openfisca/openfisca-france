@@ -1,0 +1,36 @@
+description: Plafonds de ressources pour un revenu, 1 enfant, biactifs et parents isolés (brut imposable) entre 1978 et 1986 du Complément familial (CF)
+values:
+  1978-01-01:
+    value: 52048.0
+  1978-07-01:
+    value: 58826.0
+  1983-01-01:
+    value: 102572.0
+  1986-07-01:
+    value: 139460.0
+metadata:
+  ux_name: 1 enfant, biactifs et parents isolés
+  ipp_csv_id: plaf_1enf_biact
+  unit: currency
+  reference:
+    1986-07-01:
+    - Loi 04/01/1985 (art. L 524-526 du CSS)
+    - title: Décret 85-477 du 26/04/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516768
+    - title: Décret 85-478 du 26/04/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000700301
+    1983-01-01: Décret 82-1137 du 29/12/82 (Taux)
+    1978-07-01:
+      title: Décret 78-728 du 11/07/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516812&categorieLien=id
+    1978-01-01: Loi 77-765 du 12/07/1977Décret 77-1265 du 16/11/1977
+  official_journal_date:
+    1986-07-01: 1985-05-04
+    1983-01-01: 1982-12-30
+    1978-07-01: 1978-07-12
+    1978-01-01: 1977-07-13; 1977-11-17
+  description_en: "Family complement (CF): Thresholds for means-testing"
+documentation: |
+  Notes :
+  Le brut imposable est calculé à partir du net imposable dans le cas de salariés n'ayant d'autres sources de revenus que leurs salaires et ne bénéficiant pas d'un abattement supplémentaire pour frais professionnels, ie abattements de 10% puis de 20% uniquement
+  Deux revenus chacun égaux à 6 fois la bmaf en vigueur le 01/07 de ladite année.

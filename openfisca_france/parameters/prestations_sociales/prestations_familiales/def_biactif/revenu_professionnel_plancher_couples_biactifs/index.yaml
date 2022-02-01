@@ -1,0 +1,7 @@
+description: Définition du revenu professionnel plancher pour les couples biactifs, pour les prestations familiales
+metadata:
+  ux_name: Revenu professionnel plancher
+  order:
+  - en_pourcentage_pss
+  - en_nombre_fois_bmaf
+  description_en: Definition of a biactive couple

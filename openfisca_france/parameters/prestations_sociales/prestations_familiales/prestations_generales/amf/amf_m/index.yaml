@@ -1,0 +1,12 @@
+description: Taux et montant mensuel de l'Allocation de la mère au foyer (AMF, 1955-1977)
+metadata:
+  ux_name: Taux et montant mensuel
+  order:
+  - regime_general_taux
+  - regime_agricole_taux
+  - 2_enfants_charge
+  - 3_enfants_charge
+  - 4_enfants_charge
+  - 5_enfants_charge
+  - 6_enfants_charge
+  description_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"

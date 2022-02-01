@@ -1,0 +1,6 @@
+description: Plafond de ressources (1998) des Allocations Familiales (AF)
+metadata:
+  ux_name: Plafond de ressources
+  order:
+  - 0_enfant_couples_monoactifs
+  description_en: "Family allowances (AF): Thresholds for means-testing"

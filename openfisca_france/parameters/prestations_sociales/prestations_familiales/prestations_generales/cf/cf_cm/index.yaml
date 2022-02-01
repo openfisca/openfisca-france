@@ -1,0 +1,9 @@
+description: Conditions générales et montants du Complément familial (CF)
+metadata:
+  ux_name: Conditions générales et montants
+  order:
+  - age_minimal_enfants_pris_en_compte
+  - age_maximal_enfants_pris_en_compte
+  - nombre_enfants_minimal
+  - complement_familial
+  description_en: "Family complement (CF): General conditions and amounts"

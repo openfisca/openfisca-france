@@ -1,0 +1,8 @@
+description: Allocation de la mère au foyer (AMF, 1955-1977)
+metadata:
+  ux_name: AMF
+  order:
+  - amf_plaf
+  - amf_m
+  - amf_maj
+  description_en: Allowance for stay-at-home-mother (AMF)

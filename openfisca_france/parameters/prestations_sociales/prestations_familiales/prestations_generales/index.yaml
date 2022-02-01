@@ -1,0 +1,12 @@
+description: Prestations familiales générales
+metadata:
+  ux_name: Prestations générales
+  order:
+  - af_cm
+  - icaf
+  - asu
+  - afg
+  - amf
+  - cf
+  description_en: General benefits
+  

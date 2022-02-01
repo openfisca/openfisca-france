@@ -1,0 +1,7 @@
+description: Plafond de ressources pour majoration du Complément familial (CF)
+metadata:
+  ux_name: Plafond de ressources pour majoration
+  order:
+  - couple_avec_1_revenu
+  - biactifs_isoles
+  description_en: "Family complement (CF): Extra allowances"

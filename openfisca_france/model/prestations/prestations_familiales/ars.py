@@ -18,12 +18,11 @@ class ars(Variable):
         af_nbenf = famille('af_nbenf', septembre)
         base_ressources = famille('prestations_familiales_base_ressources', janvier)
         ars = parameters(septembre).prestations_sociales.prestations_familiales.education_presence_parentale.ars
-        af = parameters(septembre).prestations_sociales.prestations_familiales.prestations_generales.af
         # TODO: convention sur la mensualisation
         # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
         # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée.
 
-        bmaf = af.bmaf
+        bmaf = parameters(septembre).prestations_sociales.prestations_familiales.bmaf.bmaf
         # On doit prendre l'âge en septembre
         enf_05 = nb_enf(famille, septembre, ars.age_entree_primaire - 1, ars.age_entree_primaire - 1)  # 5 ans et 6 ans avant le 31 décembre
         # enf_05 = 0

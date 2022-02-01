@@ -1,0 +1,9 @@
+description: Plafond de ressources pour la majoration du salaire unique, pour l'Allocation de salaire unique (ASU, 1941-1977)
+metadata:
+  ux_name: Majoration du salaire unique
+  order:
+  - sans_enfant
+  - 1_enfant
+  - 2_enfants
+  - par_enfant_supplementaire
+  description_en: "Single earner allowance (ASU): Thresholds for means-testing"

@@ -1,0 +1,36 @@
+description: Taux Tranche 1 de la majoration pour le premier enfant (en % de la BMAF) pour les DOM des Allocations Familiales (AF)
+values:
+  1991-08-06:
+    value: 0.0369
+metadata:
+  ux_name: Taux de la tranche 1
+  unit: BMAF
+  reference:
+    1999-01-01:
+      title: Décret 98-1214 du 29/12/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209409&categorieLien=id
+    1993-01-01:
+      title: Décret 92-1433 du 30/12/1992 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776615&cidTexte=JORFTEXT000000360323
+    1992-07-01:
+      title: Décret 92-135 du 11/02/1992 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776396&cidTexte=JORFTEXT000000357327
+    1992-02-12:
+      title: Décret 92-135 du 11/02/1992 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776396&cidTexte=JORFTEXT000000357327
+    1991-08-06:
+      title: Décret 91-761 du 5/08/1991 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775833&cidTexte=JORFTEXT000000571496
+  official_journal_date:
+    1999-01-01: 1998-12-30
+    1993-01-01: 1992-12-31
+    1992-07-01: 1992-02-12
+    1992-02-12: 1992-02-12
+    1991-08-06: 1991-08-06
+  notes:
+    1999-01-01: "Modifie : Code de la sécurité sociale - Article D521-1"
+    1993-01-01: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006738573&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte=19930630
+  description_en: "Family allowances (AF): Extra allowances for oversea territories"
+documentation: |
+  Notes :
+  A partir du 01/01/1993, les taux et majorations à partir du 2ème enfant sont les mêmes qu'en métropôle (cf article D. 521-1)

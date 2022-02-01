@@ -1,0 +1,8 @@
+description: Plafonds de ressources pour un revenu (brut imposable) entre 1978 et 1986 du Complément familial (CF)
+metadata:
+  ux_name: Pour un revenu (brut imposable)
+  order:
+  - 1_enfant
+  - enfant_supplementaire
+  - 1_enfant_biactifs_isoles
+  description_en: "Family complement (CF): Thresholds for means-testing"

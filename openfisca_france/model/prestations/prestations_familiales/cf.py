@@ -16,7 +16,7 @@ class cf_enfant_a_charge(Variable):
 
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
-        condition_age = (age >= 0) * (age < cf.age_max)
+        condition_age = (age >= 0) * (age < cf.cf_cm.age_max)
         condition_situation = est_enfant_dans_famille * not_(autonomie_financiere)
 
         return condition_age * condition_situation
@@ -34,16 +34,16 @@ class cf_enfant_eligible(Variable):
         age = individu('age', period)
         rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
 
-        enfants = parameters(period).prestations_sociales.prestations_familiales.enfants
+        enfants = parameters(period).prestations_sociales.prestations_familiales.def_pac.enfants
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
         condition_enfant = (
-            (age >= cf.age_min)
+            (age >= cf.cf_cm.age_min)
             * (age < enfants.age_intermediaire)
             * rempli_obligation_scolaire
             )
 
-        condition_jeune = (age >= enfants.age_intermediaire) * (age < cf.age_max)
+        condition_jeune = (age >= enfants.age_intermediaire) * (age < cf.cf_cm.age_max)
 
         return or_(condition_enfant, condition_jeune) * cf_enfant_a_charge
 
@@ -62,7 +62,7 @@ class cf_dom_enfant_eligible(Variable):
 
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
-        condition_age = (age >= cf.age_minimal_dom) * (age < cf.age_maximal_dom)
+        condition_age = (age >= cf.cf_cm_dom.age_minimal_dom) * (age < cf.cf_cm_dom.age_maximal_dom)
         condition_situation = cf_enfant_a_charge * rempli_obligation_scolaire
 
         return condition_age * condition_situation
@@ -81,7 +81,7 @@ class cf_dom_enfant_trop_jeune(Variable):
 
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
-        condition_age = (age >= 0) * (age < cf.age_min)
+        condition_age = (age >= 0) * (age < cf.cf_cm.age_min)
 
         return condition_age * est_enfant_dans_famille
 
@@ -124,9 +124,9 @@ class cf_plafond(Variable):
         # Calcul du taux à appliquer au plafond de base pour la France métropolitaine
         taux_plafond_metropole = (
             1
-            + cf.majoration_plafond_2_premiers_enf
+            + cf.cf_plaf.majoration.deux_premiers_enf
             * min_(cf_nbenf, 2)
-            + cf.majoration_plafond_3eme_enf_et_plus
+            + cf.cf_plaf.majoration.troisieme_enf_et_plus
             * max_(cf_nbenf - 2, 0)
             )
 
@@ -135,9 +135,9 @@ class cf_plafond(Variable):
 
         # Calcul du plafond pour la France métropolitaine
         plafond_metropole = (
-            cf.plafond_de_ressources_0_enfant
+            cf.cf_plaf.plafond_ressources_0_enfant
             * taux_plafond_metropole
-            + cf.majoration_plafond_biact_isole
+            + cf.cf_plaf.majoration.biactifs_isoles
             * majoration_plafond
             )
 
@@ -167,7 +167,7 @@ class cf_majore_plafond(Variable):
     def formula_2014_04_01(famille, period, parameters):
         plafond_base = famille('cf_plafond', period)
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
-        return plafond_base * cf.plafond_cf_majore
+        return plafond_base * cf.cf_plaf.plafond_cf_majore
 
 
 class cf_base_ressources(Variable):
@@ -236,16 +236,16 @@ class cf_non_majore_avant_cumul(Variable):
         ressources = famille('cf_base_ressources', period)
         plafond = famille('cf_plafond', period)
 
-        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
         # Montant
         montant = (
-            af.bmaf * (
-                cf.taux_cf_base * eligibilite_base
-                + cf.taux_base_dom * eligibilite_dom
+            bmaf * (
+                cf.cf_cm.complement_familial.taux_cf_base * eligibilite_base
+                + cf.cf_cm_dom.complement_familial_dom.taux_base_dom * eligibilite_dom
                 )
             )
 
@@ -279,16 +279,16 @@ class cf_majore_avant_cumul(Variable):
         ressources = famille('cf_base_ressources', period)
         plafond_majore = famille('cf_majore_plafond', period)
 
-        af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
         # Montant
         montant = (
-            af.bmaf * (
-                cf.taux_cf_majore * eligibilite_base
-                + cf.taux_majore_dom * eligibilite_dom
+            bmaf * (
+                cf.cf_cm.complement_familial.taux_cf_majore * eligibilite_base
+                + cf.cf_cm_dom.complement_familial_dom.taux_majore_dom * eligibilite_dom
                 )
             )
 
