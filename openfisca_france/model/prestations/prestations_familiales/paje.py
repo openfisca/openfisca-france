@@ -168,10 +168,10 @@ class paje_base(Variable):
             return plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif)
 
         def plafond_taux_partiel_apres_2018():
-            plafond_de_base = paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_partiel.plaf
+            plafond_de_base = paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_partiel.plafond_ressources_0_enfant
             maj_plafond_2_premiers_enfants = paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_majoration_2_premiers_enf * plafond_de_base
             maj_plafond_par_enfant_sup = paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_majoration_3eme_enf_et_plus * plafond_de_base
-            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_partiel.plaf_maj
+            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_partiel.biactifs_parents_isoles
 
             return plafond_apres_ajustement_apres_2018(plafond_de_base, maj_plafond_2_premiers_enfants, maj_plafond_par_enfant_sup, maj_plafond_seul_biactif)
 
@@ -272,10 +272,10 @@ class paje_naissance(Variable):
         majoration_isole_biactif = isole | biactivite
 
         plafond_de_ressources = (
-            paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_partiel.plaf
+            paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_partiel.plafond_ressources_0_enfant
             * taux_plafond
             + (taux_plafond > 0)
-            * paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_partiel.plaf_maj
+            * paje.paje_plaf.ne_adopte_a_partir_1er_avril_2018.taux_partiel.biactifs_parents_isoles
             * majoration_isole_biactif
             )
 
