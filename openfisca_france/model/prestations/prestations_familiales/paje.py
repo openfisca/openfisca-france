@@ -125,7 +125,7 @@ class paje_base(Variable):
             plafond_de_base = paje.paje_plaf.ne_adopte_avant_1er_avril_2014.plafond_ressources_0_enfant
             maj_plafond_2_premiers_enfants = paje.paje_plaf.ne_adopte_avant_1er_avril_2014.taux_majoration_2_premiers_enf * plafond_de_base
             maj_plafond_par_enfant_sup = paje.paje_plaf.ne_adopte_avant_1er_avril_2014.taux_majoration_3eme_enf_et_plus * plafond_de_base
-            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_avant_1er_avril_2014.majoration_biact_parent_isoles
+            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_avant_1er_avril_2014.biactifs_parents_isoles
 
             plafond = (
                 plafond_de_base
@@ -353,7 +353,7 @@ class paje_naissance(Variable):
             paje.paje_plaf.ne_adopte_avant_1er_avril_2014.plafond_ressources_0_enfant
             * plaf_tx
             + (plaf_tx > 0)
-            * paje.paje_plaf.ne_adopte_avant_1er_avril_2014.majoration_biact_parent_isoles
+            * paje.paje_plaf.ne_adopte_avant_1er_avril_2014.biactifs_parents_isoles
             * majo
             )
 
