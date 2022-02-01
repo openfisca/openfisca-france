@@ -903,7 +903,7 @@ class paje_colca(Variable):
         age_en_mois_i = famille.members('age_en_mois', period)
         age_m_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
 
-        condition = (age_m_benjamin < 12 * paje.colca.age) * (age_m_benjamin >= 0)
+        condition = (age_m_benjamin < 12 * paje.paje_clca.colca.age) * (age_m_benjamin >= 0)
         nbenf = af_nbenf
         paje_non_nul = (paje_base > 0)
 
@@ -912,7 +912,7 @@ class paje_colca(Variable):
             * condition
             * (nbenf >= 3)
             * bmaf
-            * (paje_non_nul * paje.colca.avecab + not_(paje_non_nul) * paje.colca.sansab)
+            * (paje_non_nul * paje.paje_clca.colca.avecab + not_(paje_non_nul) * paje.paje_clca.colca.sansab)
             )
 
         return paje_colca
