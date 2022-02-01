@@ -912,7 +912,7 @@ class paje_colca(Variable):
             * condition
             * (nbenf >= 3)
             * bmaf
-            * (paje_non_nul * paje.paje_clca.colca.avecab + not_(paje_non_nul) * paje.paje_clca.colca.sansab)
+            * (paje_non_nul * paje.paje_clca.colca.taux_plein_duree_arret_predeterminee + not_(paje_non_nul) * paje.paje_clca.colca.sansab)
             )
 
         return paje_colca
