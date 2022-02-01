@@ -830,9 +830,9 @@ class paje_clca(Variable):
         paje_clca = (
             (condition * bmaf) * (
                 not_(paje_non_nul) * (
-                    inactif * paje.paje_clca.sansab_tx_inactif
-                    + partiel1 * paje.paje_clca.sansab_tx_partiel1
-                    + partiel2 * paje.paje_clca.sansab_tx_partiel2
+                    inactif * paje.paje_clca.non_beneficiaires_enfant_ne_adopte_avant_04_2014.taux_plein
+                    + partiel1 * paje.paje_clca.non_beneficiaires_enfant_ne_adopte_avant_04_2014.taux_partiel_50
+                    + partiel2 * paje.paje_clca.non_beneficiaires_enfant_ne_adopte_avant_04_2014.taux_partiel_50_80
                     )
                 + paje_non_nul * (
                     inactif * paje.paje_clca.beneficiaires_enfant_ne_adopte_apres_04_2014.taux_plein
