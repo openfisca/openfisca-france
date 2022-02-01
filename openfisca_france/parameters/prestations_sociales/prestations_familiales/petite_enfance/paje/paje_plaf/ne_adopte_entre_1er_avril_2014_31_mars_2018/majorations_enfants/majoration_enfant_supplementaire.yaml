@@ -4,8 +4,6 @@ values:
     value: 0.
   2014-04-01:
     value: 0.22
-  2021-04-01:
-    value: null
 metadata:
   ux_name: Majoration pour enfant supplémentaire
   ipp_csv_id: maj_plaf_paje_enf_entre_20140401_20180331

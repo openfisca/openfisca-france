@@ -16,8 +16,6 @@ values:
     value: 8349.0
   2021-01-01:
     value: 8424.0
-  2021-04-01:
-    value: null
 metadata:
   ux_name: Biactifs et parents isolés
   ipp_csv_id: maj_plaf_paje_bi_abplein_entre_20140401_20180331

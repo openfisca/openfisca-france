@@ -16,8 +16,6 @@ values:
     value: 25307.0
   2021-01-01:
     value: 25535.0
-  2021-04-01:
-    value: null
 metadata:
   ux_name: Plafond de ressources - 0 enfant
   ipp_csv_id: plaf_paje_0enf_abplein_entre_20140401_20180331
