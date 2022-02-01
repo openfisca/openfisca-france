@@ -699,7 +699,7 @@ class apje_avant_cumul(Variable):
         base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
         biactivite = famille('biactivite', period, options = [ADD])
         isole = not_(famille('en_couple', period))
-        
+
         Papje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.apje
         Paf = parameters(period).prestations_sociales.prestations_familiales.bmaf
         P_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.bmaf
