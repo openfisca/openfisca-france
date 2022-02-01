@@ -1,2 +1,8 @@
-description: Allocation de base
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Plafonds de ressources - Allocation de base, prime à la naissance, prime à l'adoption de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  ux_name:
+  order:
+  - ne_adopte_a_partir_1er_avril_2018
+  - ne_adopte_entre_1er_avril_2014_31_mars_2018
+  - ne_adopte_avant_1er_avril_2014
+  description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
