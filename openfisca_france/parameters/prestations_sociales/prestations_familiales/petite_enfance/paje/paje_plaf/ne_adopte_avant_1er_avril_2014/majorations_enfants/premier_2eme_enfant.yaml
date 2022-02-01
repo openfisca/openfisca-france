@@ -1,7 +1,5 @@
 description: Majorations enfants (à appliquer au plafond 0 enfant correspondant au cas de figure) pour les 2 premiers enfants nés ou adoptés avant le 01/04/2014 de la Prestation d'accueil du jeune enfant (PAJE)
 values:
-  2018-01-01:
-    value: null
   2004-01-01:
     value: 0.25
 metadata:

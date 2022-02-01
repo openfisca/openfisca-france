@@ -26,8 +26,6 @@ values:
     value: 28583.0
   2016-01-01:
     value: 28697.0
-  2018-01-01:
-    value: null
 metadata:
   ux_name: Plafond de ressources - 0 enfant
   unit: currency
