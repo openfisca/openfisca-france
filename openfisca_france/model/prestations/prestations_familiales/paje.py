@@ -137,8 +137,8 @@ class paje_base(Variable):
 
         # A partir de la réforme de 2014 et jusqu'à la réforme de 2018 (enfants nés entre le 1er avril 2014 et le 1er avril 2018)
         def plafond_taux_plein_2014_2018():
-            plafond_de_base = paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_plein.plaf
-            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_plein.plaf_maj
+            plafond_de_base = paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_plein.plafond_ressources_0_enfant
+            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_plein.plafond_ressources_0_enfant_maj
             maj_plafond_par_enfant = plafond_de_base * paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.plaf_tx_par_enf
 
             return plafond_apres_ajustement_2014_2018(plafond_de_base, maj_plafond_par_enfant, maj_plafond_seul_biactif)
