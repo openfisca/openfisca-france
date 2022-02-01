@@ -144,8 +144,8 @@ class paje_base(Variable):
             return plafond_apres_ajustement_2014_2018(plafond_de_base, maj_plafond_par_enfant, maj_plafond_seul_biactif)
 
         def plafond_taux_partiel_2014_2018():
-            plafond_de_base = paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.plaf
-            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.plaf_maj
+            plafond_de_base = paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.plafond_ressources_0_enfant
+            maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.biactifs_parents_isoles
             maj_plafond_par_enfant = plafond_de_base * paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.plaf_tx_par_enf
 
             return plafond_apres_ajustement_2014_2018(plafond_de_base, maj_plafond_par_enfant, maj_plafond_seul_biactif)
@@ -310,9 +310,9 @@ class paje_naissance(Variable):
         majoration_isole_biactif = isole | biactivite
 
         plafond_de_ressources = (
-            paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.plaf
-            + paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.plaf * nbenf * paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.plaf_tx_par_enf
-            + paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.plaf_maj * majoration_isole_biactif
+            paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.plafond_ressources_0_enfant
+            + paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.plafond_ressources_0_enfant * nbenf * paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.plaf_tx_par_enf
+            + paje.paje_plaf.ne_adopte_entre_1er_avril_2014_31_mars_2018.taux_partiel.biactifs_parents_isoles * majoration_isole_biactif
             )
 
         eligible_prime_naissance = (base_ressources <= plafond_de_ressources)
