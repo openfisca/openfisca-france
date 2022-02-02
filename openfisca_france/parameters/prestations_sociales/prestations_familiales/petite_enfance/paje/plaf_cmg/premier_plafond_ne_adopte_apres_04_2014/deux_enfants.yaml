@@ -6,8 +6,6 @@ values:
     value: 23420.0
   2015-01-01:
     value: 23326.0
-  2004-01-01:
-    value: null
 metadata:
   ux_name: Deux enfants
   ipp_csv_id: clcmg_03ans_rev2_apres_2014

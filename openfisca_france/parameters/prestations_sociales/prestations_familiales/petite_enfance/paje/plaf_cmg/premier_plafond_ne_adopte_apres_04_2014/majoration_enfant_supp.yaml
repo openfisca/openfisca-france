@@ -6,8 +6,6 @@ values:
     value: 2911.0
   2015-01-01:
     value: 2900.0
-  2004-01-01:
-    value: null
 metadata:
   ux_name: Majoration enfant supp.
   ipp_csv_id: clcmg_03ans_rev3_apres_2014
