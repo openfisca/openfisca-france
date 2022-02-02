@@ -480,9 +480,9 @@ class paje_cmg(Variable):
                         + (base_ressources >= seuil_revenus_2) * paje.paje_cmg.taux_recours_emploi_supp_2e_plafond
                         )
                     + assistant_maternel * (
-                        (base_ressources < seuil_revenus_1) * paje.paje_cmg.ass_mat1
-                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.paje_cmg.ass_mat2
-                        + (base_ressources >= seuil_revenus_2) * paje.paje_cmg.ass_mat3
+                        (base_ressources < seuil_revenus_1) * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_premier_plafond
+                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_second_plafond
+                        + (base_ressources >= seuil_revenus_2) * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.apres_second_plafond
                         )
                     + garde_a_domicile * (
                         (base_ressources < seuil_revenus_1) * paje.paje_cmg.domi1
@@ -600,9 +600,9 @@ class paje_cmg(Variable):
                     + (base_ressources >= seuil2) * paje.paje_cmg.taux_recours_emploi_supp_2e_plafond
                     )
                 + ass_mat * (
-                    (base_ressources < seuil1) * paje.paje_cmg.ass_mat1
-                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.paje_cmg.ass_mat2
-                    + (base_ressources >= seuil2) * paje.paje_cmg.ass_mat3
+                    (base_ressources < seuil1) * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_premier_plafond
+                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_second_plafond
+                    + (base_ressources >= seuil2) * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.apres_second_plafond
                     )
                 + gar_dom * (
                     (base_ressources < seuil1) * paje.paje_cmg.domi1
