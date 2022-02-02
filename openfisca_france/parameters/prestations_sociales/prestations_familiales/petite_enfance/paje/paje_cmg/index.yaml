@@ -4,7 +4,7 @@ metadata:
   order:
   - remuneration_brute_maximale_assistante_maternelle
   - complement_libre_choix_mode_garde
-  - taux_recours_une_assistante_maternelle_une_association_une_entreprise_une_microcreche
-  - taux_recours_une_garde_domicile
+  - assistante_mat_asso_entreprise_microcreche
+  - garde_domicile
   - majoration_plafond_une_personne_isolee
   description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
