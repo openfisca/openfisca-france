@@ -1,1 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Majoration (en % de la BMAF) Prestation partagée d'éducation de l'enfant (PreParE) de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  ux_name: PreParE majorée
+  order:
+  - taux
+  description_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
