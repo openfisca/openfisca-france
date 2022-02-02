@@ -453,9 +453,9 @@ class paje_cmg(Variable):
             )
 
         seuil_revenus_2 = (
-            (nombre_enfants == 1) * paje.paje_cmg.seuil21
-            + (nombre_enfants >= 2) * paje.paje_cmg.seuil22
-            + max_(nombre_enfants - 2, 0) * paje.paje_cmg.seuil2sup
+            (nombre_enfants == 1) * paje.plaf_cmg.premier_plafond_ne_adopte_apres_04_2014.enfant
+            + (nombre_enfants >= 2) * paje.plaf_cmg.premier_plafond_ne_adopte_apres_04_2014.deux_enfants
+            + max_(nombre_enfants - 2, 0) * paje.plaf_cmg.premier_plafond_ne_adopte_apres_04_2014.majoration_enfant_supp
             )
 
     #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
@@ -572,12 +572,12 @@ class paje_cmg(Variable):
             )
 
         seuil2 = (
-            paje.paje_cmg.seuil21
+            paje.plaf_cmg.premier_plafond_ne_adopte_apres_04_2014.enfant
             * (nbenf == 1)
-            + paje.paje_cmg.seuil22
+            + paje.plaf_cmg.premier_plafond_ne_adopte_apres_04_2014.deux_enfants
             * (nbenf >= 2)
             + max_(nbenf - 2, 0)
-            * paje.paje_cmg.seuil2sup
+            * paje.plaf_cmg.premier_plafond_ne_adopte_apres_04_2014.majoration_enfant_supp
             )
 
     #        Si vous bénéficiez du Clca taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
