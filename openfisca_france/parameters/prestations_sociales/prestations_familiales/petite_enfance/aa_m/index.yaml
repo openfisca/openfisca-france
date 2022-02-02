@@ -1,1 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Allocation d'adoption (AA), prestations familiales pour la petite enfance
+metadata:
+  ux_name: Allocation d'adoption
+  order:
+  - montant_allocation_adoption
+  description_en: "Adoption allowance (AA): General conditions and amounts"

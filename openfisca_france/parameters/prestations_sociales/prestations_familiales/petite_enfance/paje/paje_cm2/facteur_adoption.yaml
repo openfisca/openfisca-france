@@ -1,0 +1,6 @@
+description: Prime à l'Adoption, Facteur multiplicatif du montant de la Prime à la naissance (en % de la BMAF) de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 2.0
+metadata:
+  unit: /1

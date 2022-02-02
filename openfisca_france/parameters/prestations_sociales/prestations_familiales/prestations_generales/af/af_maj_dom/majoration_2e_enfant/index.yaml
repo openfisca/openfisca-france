@@ -6,7 +6,7 @@ metadata:
   - taux_3eme_enfant
   - taux_4eme_enfant
   - taux_5eme_enfant
-  - taux_6eme_enfant_plus
+  - taux_6eme_enfant_et_plus
   - taux_maj_1ere_tranche_age
   - taux_maj_2eme_tranche_age
   description_en: Family allowances (AF)

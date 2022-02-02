@@ -1,2 +1,12 @@
-description: Prestation d'accueil du jeune enfant
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  ux_name: PAJE
+  order:
+  - paje_cm
+  - paje_cm2
+  - paje_plaf
+  - paje_cmg
+  - plaf_cmg
+  - paje_clca
+  - paje_prepare
+  description_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"

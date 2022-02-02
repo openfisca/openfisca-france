@@ -1,0 +1,8 @@
+description: Taux (en % de la BMAF) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  ux_name: Taux
+  order:
+  - revenus_inferieurs_45_plaf
+  - revenus_superieurs_45_plaf
+  - revenus_superieurs_plaf
+  description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"

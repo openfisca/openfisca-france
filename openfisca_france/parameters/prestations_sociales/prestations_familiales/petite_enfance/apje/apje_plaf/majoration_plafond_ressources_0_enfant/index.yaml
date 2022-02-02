@@ -1,0 +1,8 @@
+description: Majoration (en € ou en % du plafond de ressources avec 0 enfant),de l'Allocation pour jeune enfant (APJE)
+metadata:
+  ux_name: Majoration de plafond
+  order:
+  - biactifs_et_parents_isoles
+  - taux_enfant_1_et_2
+  - taux_enfant_3_et_plus
+  description_en: "Allowance for Young Children (APJE): Thresholds for means-testing"

@@ -1,0 +1,10 @@
+description: Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  ux_name: CMG
+  order:
+  - remuneration_brute_maximale_assistante_maternelle
+  - complement_libre_choix_mode_garde
+  - assistante_mat_asso_entreprise_microcreche
+  - garde_domicile
+  - majoration_plafond_une_personne_isolee
+  description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"

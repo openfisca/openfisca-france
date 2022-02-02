@@ -1,2 +1,7 @@
 description: Allocation pour jeune enfant (APJE)
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  ux_name: APJE
+  order:
+  - apje_cm
+  - apje_plaf
+  description_en: "Allowance for Young Children (APJE): General conditions and amount"

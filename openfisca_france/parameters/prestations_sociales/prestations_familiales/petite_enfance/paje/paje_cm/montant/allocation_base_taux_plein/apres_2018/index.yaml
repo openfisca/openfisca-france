@@ -1,0 +1,6 @@
+description: Taux Plein (enfants nés après 2018) de l'allocation de base de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  ux_name: Après 2018
+  order:
+  - taux
+  description_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"

@@ -1,0 +1,6 @@
+description: Complément optionnel libre choix d'activité de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  ux_name: COLCA
+  order:
+  - taux_plein_duree_arret_predeterminee
+  description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"

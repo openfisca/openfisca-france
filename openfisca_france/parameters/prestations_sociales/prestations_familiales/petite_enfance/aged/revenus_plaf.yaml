@@ -1,5 +1,4 @@
-description: Plafond des revenus nets catégoriels annuels
-unit: /1
+description: Plafond des revenus nets catégoriels annuels, Allocation de garde d'enfant à domicile (AGED)
 values:
   2001-07-01:
     value: 224317.0
@@ -11,3 +10,5 @@ values:
     value: 35335.0
   2004-07-01:
     value: null
+metadata:
+  unit: /1

@@ -1,0 +1,8 @@
+description: Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcrèche (en % de la BMAF) Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  ux_name: Recours à une assistante maternelle, une association, une entreprise ou une microcrèche
+  order:
+  - sous_premier_plafond
+  - sous_second_plafond
+  - apres_second_plafond
+  description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"

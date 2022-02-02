@@ -1,0 +1,7 @@
+description: Majorations enfants (à appliquer au plafond 0 enfant correspondant au cas de figure) pour enfants nés ou adoptés avant le 01/04/2014 de la Prestation d'accueil du jeune enfant (PAJE)
+metadata:
+  ux_name: Majorations enfants
+  order:
+  - premier_2eme_enfant
+  - troisieme_enfant_plus
+  description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
