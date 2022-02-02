@@ -447,9 +447,9 @@ class paje_cmg(Variable):
     # Les plafonds de ressource
 
         seuil_revenus_1 = (
-            (nombre_enfants == 1) * paje.paje_cmg.seuil11
-            + (nombre_enfants >= 2) * paje.paje_cmg.seuil12
-            + max_(nombre_enfants - 2, 0) * paje.paje_cmg.seuil1sup
+            (nombre_enfants == 1) * paje.plaf_cmg.premier_plafond_ne_adopte_avant_04_2014.enfant
+            + (nombre_enfants >= 2) * paje.plaf_cmg.premier_plafond_ne_adopte_avant_04_2014.deux_enfants
+            + max_(nombre_enfants - 2, 0) * paje.plaf_cmg.premier_plafond_ne_adopte_avant_04_2014.majoration_enfant_supp
             )
 
         seuil_revenus_2 = (
@@ -563,12 +563,12 @@ class paje_cmg(Variable):
         nbenf = af_nbenf
 
         seuil1 = (
-            paje.paje_cmg.seuil11
+            paje.plaf_cmg.premier_plafond_ne_adopte_avant_04_2014.enfant
             * (nbenf == 1)
-            + paje.paje_cmg.seuil12
+            + paje.plaf_cmg.premier_plafond_ne_adopte_avant_04_2014.deux_enfants
             * (nbenf >= 2)
             + max_(nbenf - 2, 0)
-            * paje.paje_cmg.seuil1sup
+            * paje.plaf_cmg.premier_plafond_ne_adopte_avant_04_2014.majoration_enfant_supp
             )
 
         seuil2 = (
