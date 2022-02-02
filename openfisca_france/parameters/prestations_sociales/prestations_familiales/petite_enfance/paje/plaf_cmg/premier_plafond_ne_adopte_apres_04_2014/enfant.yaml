@@ -6,8 +6,6 @@ values:
     value: 20509.0
   2015-01-01:
     value: 20247.0
-  2004-01-01:
-    value: null
 metadata:
   ux_name: Un enfant
   ipp_csv_id: clcmg_03ans_rev1_apres_2014
