@@ -3,7 +3,7 @@ values:
   2004-01-01:
     value: 1.4381
 metadata:
-  ux_name: Taux sous le second plafond
+  ux_name: Taux < 2nd plafond
   unit: BMAF
   reference:
     2008-05-01:

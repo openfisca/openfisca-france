@@ -1,7 +1,7 @@
-description: Taux après le second plafond pour recours à une assistante maternelle, une association, une entreprise ou une microcrèche (en % de la BMAF) Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+description: Taux après le second plafond pour recours à une garde à domicile (en % de la BMAF) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
-    value: 1.1505
+    value: 1.51
 metadata:
   ux_name: Taux > 2nd plafond
   unit: BMAF

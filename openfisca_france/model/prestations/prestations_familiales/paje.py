@@ -485,9 +485,9 @@ class paje_cmg(Variable):
                         + (base_ressources >= seuil_revenus_2) * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.apres_second_plafond
                         )
                     + garde_a_domicile * (
-                        (base_ressources < seuil_revenus_1) * paje.paje_cmg.domi1
-                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.paje_cmg.domi2
-                        + (base_ressources >= seuil_revenus_2) * paje.paje_cmg.domi3)
+                        (base_ressources < seuil_revenus_1) * paje.paje_cmg.garde_domicile.sous_premier_plafond
+                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.paje_cmg.garde_domicile.sous_second_plafond
+                        + (base_ressources >= seuil_revenus_2) * paje.paje_cmg.garde_domicile.apres_second_plafond)
                     )
             )
 
@@ -605,9 +605,9 @@ class paje_cmg(Variable):
                     + (base_ressources >= seuil2) * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.apres_second_plafond
                     )
                 + gar_dom * (
-                    (base_ressources < seuil1) * paje.paje_cmg.domi1
-                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.paje_cmg.domi2
-                    + (base_ressources >= seuil2) * paje.paje_cmg.domi3
+                    (base_ressources < seuil1) * paje.paje_cmg.garde_domicile.sous_premier_plafond
+                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.paje_cmg.garde_domicile.sous_second_plafond
+                    + (base_ressources >= seuil2) * paje.paje_cmg.garde_domicile.apres_second_plafond
                     )
                 )
             )
