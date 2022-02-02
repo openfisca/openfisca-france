@@ -430,7 +430,7 @@ class paje_cmg(Variable):
 
     # condition de revenu minimal
 
-        cond_age_enf = (nb_enf(famille, period, 0, paje.paje_cmg.age2 - 1) > 0)
+        cond_age_enf = (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.reduite - 1) > 0)
 
         # TODO:    cond_rpns    =
         # TODO: RSA insertion, alloc insertion, ass
@@ -471,8 +471,8 @@ class paje_cmg(Variable):
 
         montant_cmg = (
             bmaf * (
-                1.0 * (nb_enf(famille, period, 0, paje.paje_cmg.age1 - 1) > 0)
-                + 0.5 * (nb_enf(famille, period, paje.paje_cmg.age1, paje.paje_cmg.age2 - 1) > 0)
+                1.0 * (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1) > 0)
+                + 0.5 * (nb_enf(famille, period, paje.paje_cmg.limite_age.pleine, paje.paje_cmg.limite_age.reduite - 1) > 0)
                 ) * (
                     emploi_direct * (
                         (base_ressources < seuil_revenus_1) * paje.paje_cmg.taux_recours_emploi_1er_plafond
@@ -552,7 +552,7 @@ class paje_cmg(Variable):
         # condition de revenu minimal
 
         bmaf_n_2 = P_n_2_af.bmaf
-        cond_age_enf = (nb_enf(famille, period, 0, paje.paje_cmg.age2 - 1) > 0)
+        cond_age_enf = (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.reduite - 1) > 0)
         cond_sal = (salaire_imposable + hsup > 12 * bmaf_n_2 * (1 + en_couple))
     # TODO:    cond_rpns    =
         cond_act = cond_sal  # | cond_rpns
@@ -590,8 +590,8 @@ class paje_cmg(Variable):
         clmg = (
             bmaf
             * (
-                1.0 * (nb_enf(famille, period, 0, paje.paje_cmg.age1 - 1) > 0)
-                + 0.5 * (nb_enf(famille, period, paje.paje_cmg.age1, paje.paje_cmg.age2 - 1) > 0)
+                1.0 * (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1) > 0)
+                + 0.5 * (nb_enf(famille, period, paje.paje_cmg.limite_age.pleine, paje.paje_cmg.limite_age.reduite - 1) > 0)
                 )
             * (
                 empl_dir * (
