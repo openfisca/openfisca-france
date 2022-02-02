@@ -3,7 +3,7 @@ metadata:
   ux_name: CF
   order:
   - cf_cm
-  - cf_plaf_nouveau
+  - cf_plaf
   - cf_plaf_ancien
   - cf_cm_dom
   description_en: "Family complement (CF)"

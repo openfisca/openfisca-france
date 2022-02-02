@@ -2,8 +2,8 @@ description: Taux du Régime agricole (en % de la BMAF) de l'Allocation de la m�
 metadata:
   ux_name: Régime agricole
   order:
-  - enfant_plus_moins_2_ans
-  - plus_enfant_sans_moins_2_ans
-  - deux_enfants_plus_2_ans
-  - 3_enfants_plus_2_ans
+  - au_plus_un_enfant_sans_moins_de_2_ans
+  - un_enfant_et_plus_de_moins_de_2_ans
+  - deux_enfants_de_plus_de_2_ans
+  - 3_enfants_et_de_plus_de_2_ans
   description_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"

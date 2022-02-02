@@ -3,5 +3,5 @@ metadata:
   ux_name: Majoration
   order:
   - base
-  - majoration
+  - montant
   description_en: "Single earner allowance (ASU): Monthly amount"

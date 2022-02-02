@@ -2,6 +2,6 @@ description: Plafonds de ressources entre 1978 et 1986 du Complément familial (
 metadata:
   ux_name: Plafonds de ressources (1978-1986)
   order:
-  - plafond_ressources_revenu_brut_imposable
+  - plafond_revenu_brut_imposable
   - majoration_plafond_ressources_enfant_supplementaire
   description_en: "Family complement (CF): Thresholds for means-testing"

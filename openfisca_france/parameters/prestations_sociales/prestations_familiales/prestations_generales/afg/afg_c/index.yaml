@@ -2,6 +2,6 @@ description: Conditions générales et montants de l'Allocation pour frais de ga
 metadata:
   ux_name: Conditions générales et montants
   order:
-  - nombre_minimal_enfants_charge
+  - nombre_minimal_enfants_a_charge
   - montant_mensuel_maximum
   description_en: "Child care costs allowance (AFG): General conditions and amounts"

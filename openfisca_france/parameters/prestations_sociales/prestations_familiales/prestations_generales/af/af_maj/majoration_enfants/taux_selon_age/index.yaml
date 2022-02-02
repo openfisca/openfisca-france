@@ -2,6 +2,6 @@ description: Taux appliqués aux différentes tranches d'âge, de la majoration 
 metadata:
   ux_name: Taux 
   order:
-  - tranches_d_age
-  - taux_selon_age
+  - taux_de_la_tranche_1
+  - taux_de_la_tranche_2
   description_en: "Family allowances (AF): Extra allowances"
