@@ -430,7 +430,7 @@ class paje_cmg(Variable):
 
     # condition de revenu minimal
 
-        cond_age_enf = (nb_enf(famille, period, 0, paje.clmg.age2 - 1) > 0)
+        cond_age_enf = (nb_enf(famille, period, 0, paje.paje_cmg.age2 - 1) > 0)
 
         # TODO:    cond_rpns    =
         # TODO: RSA insertion, alloc insertion, ass
@@ -447,15 +447,15 @@ class paje_cmg(Variable):
     # Les plafonds de ressource
 
         seuil_revenus_1 = (
-            (nombre_enfants == 1) * paje.clmg.seuil11
-            + (nombre_enfants >= 2) * paje.clmg.seuil12
-            + max_(nombre_enfants - 2, 0) * paje.clmg.seuil1sup
+            (nombre_enfants == 1) * paje.paje_cmg.seuil11
+            + (nombre_enfants >= 2) * paje.paje_cmg.seuil12
+            + max_(nombre_enfants - 2, 0) * paje.paje_cmg.seuil1sup
             )
 
         seuil_revenus_2 = (
-            (nombre_enfants == 1) * paje.clmg.seuil21
-            + (nombre_enfants >= 2) * paje.clmg.seuil22
-            + max_(nombre_enfants - 2, 0) * paje.clmg.seuil2sup
+            (nombre_enfants == 1) * paje.paje_cmg.seuil21
+            + (nombre_enfants >= 2) * paje.paje_cmg.seuil22
+            + max_(nombre_enfants - 2, 0) * paje.paje_cmg.seuil2sup
             )
 
     #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
@@ -471,23 +471,23 @@ class paje_cmg(Variable):
 
         montant_cmg = (
             bmaf * (
-                1.0 * (nb_enf(famille, period, 0, paje.clmg.age1 - 1) > 0)
-                + 0.5 * (nb_enf(famille, period, paje.clmg.age1, paje.clmg.age2 - 1) > 0)
+                1.0 * (nb_enf(famille, period, 0, paje.paje_cmg.age1 - 1) > 0)
+                + 0.5 * (nb_enf(famille, period, paje.paje_cmg.age1, paje.paje_cmg.age2 - 1) > 0)
                 ) * (
                     emploi_direct * (
-                        (base_ressources < seuil_revenus_1) * paje.clmg.taux_recours_emploi_1er_plafond
-                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.clmg.taux_recours_emploi_2e_plafond
-                        + (base_ressources >= seuil_revenus_2) * paje.clmg.taux_recours_emploi_supp_2e_plafond
+                        (base_ressources < seuil_revenus_1) * paje.paje_cmg.taux_recours_emploi_1er_plafond
+                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.paje_cmg.taux_recours_emploi_2e_plafond
+                        + (base_ressources >= seuil_revenus_2) * paje.paje_cmg.taux_recours_emploi_supp_2e_plafond
                         )
                     + assistant_maternel * (
-                        (base_ressources < seuil_revenus_1) * paje.clmg.ass_mat1
-                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.clmg.ass_mat2
-                        + (base_ressources >= seuil_revenus_2) * paje.clmg.ass_mat3
+                        (base_ressources < seuil_revenus_1) * paje.paje_cmg.ass_mat1
+                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.paje_cmg.ass_mat2
+                        + (base_ressources >= seuil_revenus_2) * paje.paje_cmg.ass_mat3
                         )
                     + garde_a_domicile * (
-                        (base_ressources < seuil_revenus_1) * paje.clmg.domi1
-                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.clmg.domi2
-                        + (base_ressources >= seuil_revenus_2) * paje.clmg.domi3)
+                        (base_ressources < seuil_revenus_1) * paje.paje_cmg.domi1
+                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.paje_cmg.domi2
+                        + (base_ressources >= seuil_revenus_2) * paje.paje_cmg.domi3)
                     )
             )
 
@@ -552,7 +552,7 @@ class paje_cmg(Variable):
         # condition de revenu minimal
 
         bmaf_n_2 = P_n_2_af.bmaf
-        cond_age_enf = (nb_enf(famille, period, 0, paje.clmg.age2 - 1) > 0)
+        cond_age_enf = (nb_enf(famille, period, 0, paje.paje_cmg.age2 - 1) > 0)
         cond_sal = (salaire_imposable + hsup > 12 * bmaf_n_2 * (1 + en_couple))
     # TODO:    cond_rpns    =
         cond_act = cond_sal  # | cond_rpns
@@ -563,21 +563,21 @@ class paje_cmg(Variable):
         nbenf = af_nbenf
 
         seuil1 = (
-            paje.clmg.seuil11
+            paje.paje_cmg.seuil11
             * (nbenf == 1)
-            + paje.clmg.seuil12
+            + paje.paje_cmg.seuil12
             * (nbenf >= 2)
             + max_(nbenf - 2, 0)
-            * paje.clmg.seuil1sup
+            * paje.paje_cmg.seuil1sup
             )
 
         seuil2 = (
-            paje.clmg.seuil21
+            paje.paje_cmg.seuil21
             * (nbenf == 1)
-            + paje.clmg.seuil22
+            + paje.paje_cmg.seuil22
             * (nbenf >= 2)
             + max_(nbenf - 2, 0)
-            * paje.clmg.seuil2sup
+            * paje.paje_cmg.seuil2sup
             )
 
     #        Si vous bénéficiez du Clca taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
@@ -590,24 +590,24 @@ class paje_cmg(Variable):
         clmg = (
             bmaf
             * (
-                1.0 * (nb_enf(famille, period, 0, paje.clmg.age1 - 1) > 0)
-                + 0.5 * (nb_enf(famille, period, paje.clmg.age1, paje.clmg.age2 - 1) > 0)
+                1.0 * (nb_enf(famille, period, 0, paje.paje_cmg.age1 - 1) > 0)
+                + 0.5 * (nb_enf(famille, period, paje.paje_cmg.age1, paje.paje_cmg.age2 - 1) > 0)
                 )
             * (
                 empl_dir * (
-                    (base_ressources < seuil1) * paje.clmg.taux_recours_emploi_1er_plafond
-                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.clmg.taux_recours_emploi_2e_plafond
-                    + (base_ressources >= seuil2) * paje.clmg.taux_recours_emploi_supp_2e_plafond
+                    (base_ressources < seuil1) * paje.paje_cmg.taux_recours_emploi_1er_plafond
+                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.paje_cmg.taux_recours_emploi_2e_plafond
+                    + (base_ressources >= seuil2) * paje.paje_cmg.taux_recours_emploi_supp_2e_plafond
                     )
                 + ass_mat * (
-                    (base_ressources < seuil1) * paje.clmg.ass_mat1
-                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.clmg.ass_mat2
-                    + (base_ressources >= seuil2) * paje.clmg.ass_mat3
+                    (base_ressources < seuil1) * paje.paje_cmg.ass_mat1
+                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.paje_cmg.ass_mat2
+                    + (base_ressources >= seuil2) * paje.paje_cmg.ass_mat3
                     )
                 + gar_dom * (
-                    (base_ressources < seuil1) * paje.clmg.domi1
-                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.clmg.domi2
-                    + (base_ressources >= seuil2) * paje.clmg.domi3
+                    (base_ressources < seuil1) * paje.paje_cmg.domi1
+                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.paje_cmg.domi2
+                    + (base_ressources >= seuil2) * paje.paje_cmg.domi3
                     )
                 )
             )
