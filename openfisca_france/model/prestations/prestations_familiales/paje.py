@@ -475,9 +475,9 @@ class paje_cmg(Variable):
                 + 0.5 * (nb_enf(famille, period, paje.paje_cmg.limite_age.pleine, paje.paje_cmg.limite_age.reduite - 1) > 0)
                 ) * (
                     emploi_direct * (
-                        (base_ressources < seuil_revenus_1) * paje.paje_cmg.taux_recours_emploi_1er_plafond
-                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.paje_cmg.taux_recours_emploi_2e_plafond
-                        + (base_ressources >= seuil_revenus_2) * paje.paje_cmg.taux_recours_emploi_supp_2e_plafond
+                        (base_ressources < seuil_revenus_1) * paje.paje_cmg.complement_libre_choix_mode_garde.revenus_inferieurs_45_plaf
+                        + ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_45_plaf
+                        + (base_ressources >= seuil_revenus_2) * paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_plaf
                         )
                     + assistant_maternel * (
                         (base_ressources < seuil_revenus_1) * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_premier_plafond
@@ -595,9 +595,9 @@ class paje_cmg(Variable):
                 )
             * (
                 empl_dir * (
-                    (base_ressources < seuil1) * paje.paje_cmg.taux_recours_emploi_1er_plafond
-                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.paje_cmg.taux_recours_emploi_2e_plafond
-                    + (base_ressources >= seuil2) * paje.paje_cmg.taux_recours_emploi_supp_2e_plafond
+                    (base_ressources < seuil1) * paje.paje_cmg.complement_libre_choix_mode_garde.revenus_inferieurs_45_plaf
+                    + ((base_ressources >= seuil1) & (base_ressources < seuil2)) * paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_45_plaf
+                    + (base_ressources >= seuil2) * paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_plaf
                     )
                 + ass_mat * (
                     (base_ressources < seuil1) * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_premier_plafond
