@@ -2,5 +2,5 @@ description: Majorations enfants (à appliquer au plafond 0 enfant correspondant
 metadata:
   ux_name: Majorations enfants
   order:
-  - majoration_enfant_supplementaire
+  - majoration_enfant_supp
   description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"

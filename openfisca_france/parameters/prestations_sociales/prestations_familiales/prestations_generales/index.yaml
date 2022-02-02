@@ -2,7 +2,7 @@ description: Prestations familiales générales
 metadata:
   ux_name: Prestations générales
   order:
-  - af_cm
+  - af
   - icaf
   - asu
   - afg

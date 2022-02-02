@@ -4,5 +4,5 @@ metadata:
   order:
   - mois_grossesse_ouverture_droits
   - age_limite_enfants_ouvrant_droit_apje
-  - montant_apje_en_bmaf
+  - taux
   description_en: "Allowance for Young Children (APJE): General conditions and amount"

@@ -2,7 +2,7 @@ description: Plafonds de ressources pour Enfants nés ou adoptés avant le 01/04
 metadata:
   ux_name: Nés ou adoptés avant le 01/04/2014
   order:
-  - taux_partiel
-  - taux_plein
+  - plafond_ressources_0_enfant
+  - biactifs_parents_isoles
   - majorations_enfants
   description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
