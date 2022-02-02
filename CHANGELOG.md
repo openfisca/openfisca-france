@@ -1,5 +1,18 @@
 # Changelog
 
+# 106.0.0 [#1790](https://github.com/openfisca/openfisca-france/pull/1790)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+- `parameters/prestations_sociales/prestations_familiales/petite_enfance`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline 500832d46fc6^..281c8b368c1bceb| grep "variable_name"
+
 # 105.0.0 [#1789](https://github.com/openfisca/openfisca-france/pull/1789)
 
 * Amélioration technique. 
