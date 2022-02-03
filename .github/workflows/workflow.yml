@@ -1,26 +1,34 @@
 name: OpenFisca France
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: ["ubuntu-latest"]  # On peut ajouter "macos-latest" si besoin
+        python-version: ["3.7.9", "3.8.9", "3.9.9"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.12
+          python-version: ${{ matrix.python-version }}
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}
           restore-keys: |  # in case of a cache miss (systematically unless the same commit is built repeatedly), the keys below will be used to restore dependencies from previous builds, and the cache will be stored at the end of the job, making up-to-date dependencies available for all jobs of the workflow; see more at https://docs.github.com/en/actions/advanced-guides/caching-dependencies-to-speed-up-workflows#example-using-the-cache-action
-            build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}
-            build-${{ env.pythonLocation }}-
+            build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ matrix.os }}
+            build-${{ env.pythonLocation }}-${{ matrix.os }}
       - name: Build package
         run: make build
       - name: Cache release
@@ -28,7 +36,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: dist
-          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}
 
   lint-files:
     runs-on: ubuntu-latest
@@ -40,13 +48,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.12
+          python-version: 3.7.9
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-latest
       - run: make check-syntax-errors
       - run: make check-style
       - name: Lint Python files
@@ -55,20 +63,25 @@ jobs:
         run: "${GITHUB_WORKSPACE}/.github/lint-changed-yaml-tests.sh"
 
   test-python:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     needs: [ build ]
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ "ubuntu-latest" ]  # On peut ajouter "macos-latest" si besoin
+        python-version: ["3.7.9", "3.8.9", "3.9.9"]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.12
+          python-version: ${{ matrix.python-version }}
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}
       - run: |
           shopt -s globstar
           openfisca test tests/**/*.py
@@ -89,13 +102,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.12
+          python-version: 3.7.9
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-latest
       - name: Split YAML tests
         id: yaml-test
         env:
@@ -115,13 +128,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.12
+          python-version: 3.7.9
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-latest
       - name: Test the Web API
         run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
 
@@ -135,7 +148,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.12
+          python-version: 3.7.9
       - name: Check version number has been properly updated
         run: "${GITHUB_WORKSPACE}/.github/is-version-number-acceptable.sh"
 
@@ -155,7 +168,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.12
+          python-version: 3.7.9
       - id: stop-early
         run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
 
@@ -173,20 +186,69 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.12
+          python-version: 3.7.9
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-latest
       - name: Cache release
         id: restore-release
         uses: actions/cache@v2
         with:
           path: dist
-          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-latest
       - name: Upload a Python package to PyPi
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
+
+  publish-to-conda:
+    runs-on: "ubuntu-latest"
+    needs: [ deploy ]
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: "3.7.9"
+          # Add conda-forge for OpenFisca-Core
+          channels: conda-forge
+          activate-environment: true
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Fetch all the tags
+      - name: Update meta.yaml
+        run: |
+          python3 -m pip install requests argparse
+          python3 .github/get_pypi_info.py -p OpenFisca-France
+      - name: Conda Config
+        run: |
+          conda install conda-build anaconda-client
+          conda info
+          conda config --set anaconda_upload yes
+      - name: Conda build
+        run: conda build --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
+
+  test-on-windows:
+    runs-on: "windows-latest"
+    needs: [ publish-to-conda ]
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: "3.9.9"
+          # Add conda-forge for OpenFisca-Core
+          channels: conda-forge
+          activate-environment: true
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Fetch all the tags
+      - name: Install with conda
+        run: conda install -c openfisca openfisca-france-dev
+      - name: openfisca test
+        run: openfisca test --country-package openfisca_france tests

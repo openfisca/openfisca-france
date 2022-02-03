@@ -31,18 +31,18 @@ L'ensembles des endpoints sont décrits dans la [documentation Swagger](https://
 
 ## Installation
 
-Ce paquet requiert [Python 3.7](https://www.python.org/downloads/release/python-370/) et [pip](https://pip.pypa.io/en/stable/installing/).
+Ce paquet requiert [Python 3.7](https://www.python.org/downloads/release/python-370/) et [pip](https://pip.pypa.io/en/stable/installing/) ou [conda](https://www.anaconda.com/products/individual).
 
 Plateformes supportées :
 - distributions GNU/Linux (en particulier Debian and Ubuntu) ;
 - Mac OS X ;
-- Windows (nous recommandons d'utiliser [ConEmu](https://conemu.github.io/) à la place de la console par défaut) ;
+- Windows : Nous recommandons d'utiliser [conda](https://www.anaconda.com/products/individual), voir la procédure ci-dessous [Installez un environnement virtuel avec conda](./README.md#installez-un-environnement-virtuel-avec-conda)  ; OpenFisca fonctionne également dans le [sous-système Windows pour Linux (WSL)](https://docs.microsoft.com/fr-fr/windows/wsl/install). Dans ce dernier cas, il suffit de suivre la procédure pour Linux car vous êtes alors dans un environnement Linux.
 
 Pour les autres OS : si vous pouvez exécuter Python et Numpy, l'installation d'OpenFisca devrait fonctionner.
 
 ### Installez un environnement virtuel avec Pew
 
-Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.pypa.io/en/stable/) (_virtualenv_) avec un gestionnaire de _virtualenv_ tel que [Pew](https://github.com/berdario/pew).
+Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.pypa.io/en/stable/) (_virtualenv_) avec un gestionnaire de _virtualenv_ tel que [Pew](https://github.com/berdario/pew). Vous pouvez aussi utiliser le gestionnaire d'environnemnt officiel de Python : [venv](https://docs.python.org/3/library/venv.html).
 
 - Un _[virtualenv](https://virtualenv.pypa.io/en/stable/)_ crée un environnement pour les besoins spécifiques du projet sur lequel vous travaillez.
 - Un gestionnaire de _virtualenv_, tel que [Pew](https://github.com/berdario/pew), vous permet de facilement créer, supprimer et naviguer entre différents projets.
@@ -159,6 +159,33 @@ Vous pouvez vous assurer que votre installation s'est bien passée en exécutant
 pytest tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
 ```
 :tada: OpenFisca-France est prêt à être utilisé !
+
+### Installez un environnement virtuel avec conda
+
+Nous conseillons cette procédure pour les personnes utilisant Windows et n'ayant pas d'environnement Python fonctionnel. Elle fonctionne également sous Linux et macOS.
+
+Ceci vous permet d'obtenir en une seule installation :
+- Python
+- Le gestionnaire de paquets [Anaconda.org](https://docs.anaconda.com/anacondaorg/user-guide/)
+- Le gestionnaire d'environnement Python virtuel : [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+
+Voici les étapes à suivre :
+
+- Installer la version communautaire/gratuite en suivant la procédure décrite sur [le site Anaconda](https://www.anaconda.com/products/individual). A noter que Anaconda occupe beaucoup d'espace disque (>2 Go), vous pouvez installer à la place [Miniconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html) qui occupe beaucoup moins d'espace disque. Cependant vous n'aurez pas l'interface graphique [Anaconda Navigator](https://docs.anaconda.com/anaconda/navigator/index.html) qui vous permet de gérer vos environnements. Si vous êtes habituée à gérer les choses en ligne de commande, préfèrez Miniconda.
+- Depuis le menu démarrer, exécuter `Anaconda Powershell Prompt`. Ou utiliser votre shell préféré avec Miniconda, il vous faudra peut-être utiliser la commande `conda init`, mais conda vous le dira.
+- Exécuter les commandes suivantes dans le shell:
+  - Ajouter `conda-forge` comme channel par défaut : `conda config --add channels conda-forge && conda config --set channel_priority strict `
+  - Créer un environnement virtuel dédié : `conda create --name openfisca python=3.7`
+  - Activer l'environnement : `conda activate openfisca`
+  - Installer OpenFisca : `conda install openfisca-france`
+
+:tada: OpenFisca-France est prêt à être utilisé !
+
+Ensuite, pour quitter l'environnement OpenFisca : `conda deactivate`
+
+Pour y revenir : `conda activate openfisca`
+
+A noter que OpenFisca-France est présent sur [conda-forge](https://anaconda.org/conda-forge/openfisca-france) et sur un _channel_ dédié [openfisca](https://anaconda.org/openfisca/openfisca-france). C'est conda-forge qui est mis en avant dans cette documentation, car accessible par défaut dans les installations Anaconda.
 
 #### Prochaines étapes
 
