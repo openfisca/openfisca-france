@@ -1,21 +1,17 @@
 # Changelog
 
-### 105.0.1 [#1786](https://github.com/openfisca/openfisca-france/pull/1786)
+### 106.0.1 [#1786](https://github.com/openfisca/openfisca-france/pull/1786)
 
-* Amélioration technique. Ajout de la publication vers [conda](https://anaconda.org/search?q=openfisca-france)
+* Amélioration technique.
 * Périodes concernées : aucune.
 * Zones impactées : aucune.
 * Détails :
-  - Mise à jour du setup.py pour mieux gérer le readme et la license.
-  - Mise à jour du README.md pour les explications sur l'utilisation de Conda.
-  - Ajout du fichier .conda/README.md pour les explications sur la publication Conda.
-  - Ajout du dossier .conda pour les fichiers spécifique à Conda.
-  - Ajout d'une étape de CI pour publier le paquet.
-  - J'ai fait plusieurs modifications sur le workflow Github Action :
-    - Passage de la version de Python  3.7.12 à 3.7.9 car la 3.7.12 n'est pas disponible sur tous les environnements : https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json.
+  - Ajout de la publication vers [conda](https://anaconda.org/search?q=openfisca-france)
+  - Ajout du dossier .conda pour les fichiers spécifiques à Conda.
+  - Plusieurs modifications sur le workflow Github Action :
     - Changement de la règle de déclenchement pour éviter les exécutions en double sur les PR.
     - Ajout des tests sur plusieurs versions de Python.
-    - Aout d'un test sur Windows en utilisant le paquet conda, après publication.
+    - Ajout d'un test sur Windows en utilisant le paquet conda, après publication.
 
 # 106.0.0 [#1790](https://github.com/openfisca/openfisca-france/pull/1790)
 
