@@ -1,5 +1,17 @@
 # Changelog
 
+# 107.0.0 [#1764](https://github.com/openfisca/openfisca-france/pull/1764)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline ac24f6a2ecc268d1b86^..7e0f5daa357f7dc0d732ad2| grep "variable_name"
+
 ### 106.0.1 [#1786](https://github.com/openfisca/openfisca-france/pull/1786)
 
 * Amélioration technique.
