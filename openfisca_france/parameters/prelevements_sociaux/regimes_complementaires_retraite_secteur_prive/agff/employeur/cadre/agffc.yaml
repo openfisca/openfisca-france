@@ -1,4 +1,4 @@
-description: Barème pour les employeurs, pour leurs salariés cadres, des cotisations aux régimes complémentaires de retraite (secteur privé) pour la structure financière de l'AGFF (2001-2018)
+description: Barème (Tranches A, B et C) pour les employeurs, pour leurs salariés cadres, des cotisations aux régimes complémentaires de retraite (secteur privé) pour la structure financière de l'AGFF (2001-2018)
 brackets:
 - rate:
     2001-04-01:
@@ -29,7 +29,9 @@ brackets:
     2016-01-01:
       value: 8.0
 metadata:
-  ux_name: Cadre
+  ux_name: Barème Cadre
+  ipp_csv_id:
+    rate: agff_p_0_1, agff_p_1_4
   last_review:
     2021-07-30
   rate_unit: /1

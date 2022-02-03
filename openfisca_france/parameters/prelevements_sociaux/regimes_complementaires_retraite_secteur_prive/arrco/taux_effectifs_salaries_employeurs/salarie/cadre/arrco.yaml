@@ -1,0 +1,94 @@
+description: Barème salarié cadre des cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
+brackets:
+- rate:
+    2019-01-01:
+      value: null
+    2015-01-01:
+      value: 0.031
+    2014-01-01:
+      value: 0.0305
+    1999-01-01:
+      value: 0.03
+    1998-01-01:
+      value: 0.027500000000000004
+    1997-01-01:
+      value: 0.025
+    1996-01-01:
+      value: 0.0225
+    1992-01-01:
+      value: 0.020000000000000004
+    1991-01-01:
+      value: 0.019680000000000003
+    1988-01-01:
+      value: 0.019200000000000002
+    1987-01-01:
+      value: 0.0188
+    1983-01-01:
+      value: 0.0184
+    1974-01-01:
+      value: 0.0176
+    1973-01-01:
+      value: 0.0172
+    1972-01-01:
+      value: 0.016800000000000002
+    1971-01-01:
+      value: 0.016399999999999998
+    1967-01-01:
+      value: 0.016
+    1962-01-01:
+      value: 0.010000000000000002
+  threshold:
+    1962-01-01:
+      value: 0.0
+    2019-01-01:
+      value: null
+- rate:
+    1962-01-01:
+      value: 0.0
+    2019-01-01:
+      value: null
+  threshold:
+    1962-01-01:
+      value: 1.0
+    2019-01-01:
+      value: null
+metadata:
+  ux_name: Cadre - Tranche 1
+  ipp_csv_id:
+    rate: arrco_s_0_1
+  last_review:
+    2021-07-30
+  rate_unit: /1
+  threshold_unit: PSS
+  reference:
+    2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+    2015-01-01: Accord AGIRC-ARRCO du 13/03/2013
+    2014-01-01: Accord AGIRC-ARRCO du 13/03/2013
+    2005-01-01: Accord ARRCO du 25/04/1996, art. 26
+    2004-01-01: Accord ARRCO du 25/04/1996, art. 26
+    2002-01-01: Accord ARRCO du 25/04/1996, art. 26
+    2000-01-01: Accord ARRCO du 25/04/1996, art. 26
+    1999-01-01: Accord ARRCO du 25/04/1996, art. 26
+    1998-01-01: Accord ARRCO du 25/04/1996, art. 26
+    1997-01-01: Accords du 9/02/94 et du 25/04/1996
+    1996-01-01: Accord ARRCO du 10/02/1993
+    1992-01-01: Accords ARRCO du 12/11/86 et du 01/12/89
+    1991-01-01: Accords ARRCO du 12/11/86 et du 01/12/89
+    1988-01-01: Accords ARRCO du 12/11/86
+    1987-01-01: Accords ARRCO du 12/11/86
+    1983-01-01: Lettre-circulaire ARRCO 82-28 du 09/07/82
+  notes:
+    2019-01-01: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
+    1982-01-01: "BSP : \"Le plus souvent, répartition employeur/salarié = 60/40 comme à l'UNIRS\""
+  description_en: Pension contributions for non-executives (ARRCO)
+documentation: |
+  Notes :
+  Tranche 1: Sous PSS
+  Tranche 2: Entre 1 et 3 PSS.
+  Taux contractuels: taux qui servent à calculer les points de retraite des salariés.
+  Taux d'appel: taux appliqué au taux contractuels pour obtenir le taux effectif de cotisation.
+  Champ :
+  Tous les salariés (cadres et non-cadres) cotisent à l'Arrco sur la tranche 1, mais seuls les non-cadres cotisent sur la tranche 2.
+  Sources :
+  Document faxé par l'ARRCO "Paramètres de fonctionnement pratique depuis la création de l'Arrco au titre des opérations obligatoires (1962-1999)"
+  Site web de l'Arrco depuis 1999.
