@@ -242,4 +242,3 @@ class cmu_c(Variable):
             * or_(eligibilite_basique, eligibilite_rsa)
             )
 
-# Helper functions
