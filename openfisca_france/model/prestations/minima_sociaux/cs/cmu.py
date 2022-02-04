@@ -18,14 +18,14 @@ from openfisca_france.model.base import (
 
 
 class cmu_forfait_logement_base(Variable):
-    '''
-    Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux
-    '''
     value_type = float
     entity = Famille
     label = "Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    documentation = '''
+    Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux.
+    '''
 
     def formula_2009_06_01(famille, period, parameters):
         nbp_foyer = famille('cmu_nbp_foyer', period)
