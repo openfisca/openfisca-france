@@ -1,0 +1,8 @@
+description: Majoration montant maximal (en % de la base) du Revenu de solidarité active (RSA)
+metadata:
+  ux_name: Majoration montant maximal
+  order:
+  - taux_deuxieme_personne
+  - taux_personne_supp
+  - taux_troisieme_personne
+  description_en: "Active solidarity income (RSA): Extra allowance and minimal amount"

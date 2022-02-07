@@ -1,0 +1,7 @@
+description: Conditions générales du Revenu minimum d'insertion (RMI)
+metadata:
+  ux_name: Conditions générales
+  order:
+  - condition_age_allocataire
+  - nombre_minimal_enfant_si_condition_age_n_est_pas_respectee
+  description_en: "Minimum insertion income (RMI): General conditions"

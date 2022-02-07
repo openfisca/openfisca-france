@@ -1,5 +1,18 @@
 # Changelog
 
+# 108.0.0 [#1784](https://github.com/openfisca/openfisca-france/pull/1784)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa`
+  - `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rmi`
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline b8a00d4fae6782f3^..542ec486ddcf1a28c3c6 | grep "variable_name"
+
 # 107.0.0 [#1764](https://github.com/openfisca/openfisca-france/pull/1764)
 
 * Amélioration technique. 

@@ -1,0 +1,8 @@
+description: Taux (en % du montant forfaitaire du RMI) du Forfait logement du Revenu minimum d'insertion (RMI)
+metadata:
+  ux_name: Forfait logement
+  order:
+  - taux_1_personne
+  - taux_2_personnes
+  - taux_3_personnes_ou_plus
+  description_en: "Minimum insertion income (RMI): Accomodation allowance"

@@ -1,0 +1,13 @@
+description: La date de début du RSA jeune
+values:
+  2009-06-01:
+    value: 0
+  2010-01-01:
+    value: 1
+metadata:
+  ux_name: Date début
+  unit: currency
+  reference:
+    2010-01-01:
+      title:
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000021642861/

@@ -1,0 +1,8 @@
+description: Taux du forfait logement - Revenu de solidarité active (RSA)
+metadata:
+  ux_name: Forfait logement
+  order:
+  - taux_1_personne
+  - taux_2_personnes
+  - taux_3_personnes_ou_plus
+  description_en: "Active solidarity income (RSA): accomodation allowance"

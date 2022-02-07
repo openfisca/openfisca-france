@@ -1,0 +1,24 @@
+description: Âge minimum de l'allocataire, Conditions générales du Revenu minimum d'insertion (RMI)
+values:
+  1989-01-01:
+    value: 25.0
+  2009-06-01:
+    value: null
+metadata:
+  ux_name: Âge minimum
+  ipp_csv_id: age_rmi
+  unit: year
+  reference:
+    2009-06-01:
+      title: Loi 2008-1249 du 01/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019860428
+    1989-01-01:
+      title: Loi 88-1088 du 01/12/1988, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006756315&cidTexte=JORFTEXT000000875188
+  official_journal_date:
+    2009-06-01: 2008-12-03
+    1989-01-01: 1988-12-03
+  notes:
+    2009-06-01: Création du RSA qui remplace le RMI
+    1989-01-01: Création du RMI
+  description_en: "Minimum insertion income (RMI): General conditions"

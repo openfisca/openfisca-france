@@ -1,0 +1,10 @@
+description: Conditions générales du Revenu de solidarité active (RSA)
+metadata:
+  ux_name: Conditions générales
+  order:
+  - age_minimum_allocataire
+  - nombre_minimal_enfants
+  - majoration_isolement
+  - duree_min_titre_sejour
+  - rsa_jeune_en_heure
+  description_en: "Active solidarity income (RSA): General conditions"

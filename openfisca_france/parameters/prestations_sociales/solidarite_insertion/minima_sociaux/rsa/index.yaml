@@ -1,2 +1,9 @@
 description: Revenu de solidarité active
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  ux_name: RSA
+  order:
+  - rsa_cond
+  - rsa_m
+  - rsa_maj
+  - rsa_fl
+  description_en: Active solidarity income (RSA)

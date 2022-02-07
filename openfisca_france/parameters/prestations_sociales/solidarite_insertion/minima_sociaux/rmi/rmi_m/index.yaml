@@ -1,0 +1,6 @@
+description: Montant de base du Revenu minimum d'insertion (RMI)
+metadata:
+  ux_name: Montant de base
+  order:
+  - montant_de_base_du_rmi
+  description_en: "Minimum insertion income (RMI): Basic amount"

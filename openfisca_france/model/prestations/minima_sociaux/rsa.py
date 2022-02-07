@@ -111,7 +111,7 @@ class rsa_base_ressources_individu(Variable):
 
         # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
         # sans condition de revenu de substitution.
-        montant_de_base_du_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.montant_de_base_du_rsa
+        montant_de_base_du_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_m.montant_de_base_du_rsa
         montant_forfaitaire_neutralisation = 3 * montant_de_base_du_rsa
         revenus_non_pros = sum(
             max_(
@@ -164,7 +164,7 @@ class rsa_base_ressources_individu(Variable):
 
         # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
         # sans condition de revenu de substitution.
-        neutral_max_forfaitaire = 3 * parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi.rmi
+        neutral_max_forfaitaire = 3 * parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi.rmi_m.montant_de_base_du_rmi
 
         revenus_non_pros = sum(
             max_(
@@ -350,21 +350,23 @@ class rsa_enfant_a_charge(Variable):
 
         ressources = (
             individu('rsa_base_ressources_individu', period)
-            + (1 - P_rsa.pente)
+            + (1 - P_rsa.rsa_m.pente)
             * individu('rsa_revenu_activite_individu', period)
             )
 
         # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
         if period.start.date >= date(2009, 6, 1):
-            age_pac = P_rsa.age_pac
-            majo_rsa = P_rsa.majo_rsa
-            montant_base_rsa = P_rsa.montant_de_base_du_rsa
-            taux_personne_supp = P_rsa.majoration_rsa.taux_personne_supp
+            age_pac = P_rsa.rsa_cond.age_pac
+            majo_rsa_femmes_enceintes = P_rsa.rsa_maj.majoration_isolement_en_base_rsa.femmes_enceintes
+            majo_rsa_par_enfant_a_charge = P_rsa.rsa_maj.majoration_isolement_en_base_rsa.par_enfant_a_charge
+            montant_base_rsa = P_rsa.rsa_m.montant_de_base_du_rsa
+            taux_personne_supp = P_rsa.rsa_maj.maj_montant_max.par_enfant_supplementaire
         else:
-            age_pac = P_rmi.age_pac
-            majo_rsa = P_rmi.majo_rsa
-            montant_base_rsa = P_rmi.rmi
-            taux_personne_supp = P_rmi.txps
+            age_pac = P_rmi.rmi_cond.age_pac
+            majo_rsa_femmes_enceintes = 0
+            majo_rsa_par_enfant_a_charge = 0
+            montant_base_rsa = P_rmi.rmi_m.montant_de_base_du_rmi
+            taux_personne_supp = P_rmi.rmi_maj.maj_montant_max.par_enfant_supplementaire
 
         # Règle CAF: Si un enfant touche des ressources, et que son impact global
         # (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors
@@ -395,7 +397,7 @@ class rsa_enfant_a_charge(Variable):
             * (age <= age_pac)
             * where(
                 ouvre_droit_majoration(),
-                ressources < (majo_rsa.pac0 - 1 + majo_rsa.pac_enf_sup) * montant_base_rsa,
+                ressources < (majo_rsa_femmes_enceintes - 1 + majo_rsa_par_enfant_a_charge) * montant_base_rsa,
                 ressources < taux_personne_supp * montant_base_rsa
                 )
             )
@@ -561,9 +563,9 @@ class rsa_montant(Variable):
         rsa_base_ressources = famille('rsa_base_ressources', period)
 
         rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-        seuil_non_versement = rsa.rsa_nv
+        seuil_non_versement = rsa.rsa_maj.montant_minimum_verse
 
-        montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + rsa.pente * rsa_revenu_activite
+        montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + rsa.rsa_m.pente * rsa_revenu_activite
 
         montant = max_(montant, 0)
         montant = montant * (montant >= seuil_non_versement)
@@ -616,11 +618,11 @@ class rsa_base_ressources_patrimoine_individu(Variable):
 
         return (
             + livret_a * taux_livret_a / 12
-            + epargne_revenus_non_imposables * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_imposable / 12
+            + epargne_revenus_non_imposables * rsa.rsa_cond.patrimoine.taux_interet_forfaitaire_epargne_non_imposable / 12
             + revenus_capital
             + revenus_locatifs
-            + valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue
-            + valeur_locative_terrains_non_loues * rsa.patrimoine.abattement_valeur_locative_terrains_non_loues
+            + valeur_locative_immo_non_loue * rsa.rsa_cond.patrimoine.abattement_valeur_locative_immo_non_loue
+            + valeur_locative_terrains_non_loues * rsa.rsa_cond.patrimoine.abattement_valeur_locative_terrains_non_loues
             + plus_values / 12
             )
 
@@ -639,7 +641,7 @@ class rsa_condition_nationalite(Variable):
         ressortissant_eee = individu('ressortissant_eee', period)
 
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
-        duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.duree_min_titre_sejour
+        duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_cond.duree_min_titre_sejour
 
         eligibilite_eee_suisse = (ressortissant_eee + ressortissant_suisse) * duree_possession_titre_sejour >= duree_min_titre_sejour.eee
         eligibilite_non_eee = not_(ressortissant_eee) * duree_possession_titre_sejour >= duree_min_titre_sejour.non_eee
@@ -651,7 +653,7 @@ class rsa_condition_nationalite(Variable):
         ressortissant_eee = individu('ressortissant_eee', period)
         ressortissant_suisse = individu('nationalite', period) == b'CH'
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
-        duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi.duree_min_titre_sejour
+        duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi.rmi_cond.duree_min_titre_sejour
         return or_(ressortissant_eee, ressortissant_suisse, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
@@ -679,16 +681,16 @@ class rsa_eligibilite(Variable):
             rsa_jeune_condition_i = False
         else:
             # Les jeunes de moins de 25 ans sont éligibles sous condition d'activité suffisante
-            # à partir de 2010 rendue ici par rsa.rsa_jeune == 1
+            # à partir de 2010 rendue ici par rsa.rsa_cond.rsa_jeune == 1
             rsa_jeune_condition_i = (
-                (rsa.rsa_jeune == 1)
-                * (age_i > rsa.age_min_rsa_jeune)
-                * (age_i < rsa.age_max_rsa_jeune)
+                (rsa.rsa_cond.rsa_jeune == 1)
+                * (age_i > rsa.rsa_cond.age_min_rsa_jeune)
+                * (age_i < rsa.rsa_cond.age_max_rsa_jeune)
                 * rsa_jeune_condition_heures_travail_remplie_i
                 )
 
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
-        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
+        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.rsa_cond.age_pac)
 
         return (
             famille.any((condition_age_i | rsa_jeune_condition_i) * not_(etudiant_i), role = Famille.PARENT)
@@ -803,7 +805,7 @@ class rsa_forfait_asf(Variable):
 
         asf_verse = famille('asf', period)
         montant_verse_par_enfant = prestations_familiales.bmaf.bmaf * prestations_familiales.education_presence_parentale.asf.taux_1_parent
-        montant_retenu_rsa_par_enfant = prestations_familiales.bmaf.bmaf * minima_sociaux.rmi.forfait_asf.taux1
+        montant_retenu_rsa_par_enfant = prestations_familiales.bmaf.bmaf * minima_sociaux.rsa.rsa_maj.forfait_asf.taux1
 
         asf_retenue = asf_verse * (montant_retenu_rsa_par_enfant / montant_verse_par_enfant)
 
@@ -837,18 +839,18 @@ class rsa_forfait_logement(Variable):
         # Il faudrait uniformiser, mais les taux légaux pour le RMI commencent par "1", et ne passent pas en python
         if period.start.date >= date(2009, 6, 1):
             params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-            montant_base = params.montant_de_base_du_rsa
-            taux_2p = 1 + params.majoration_rsa.taux_deuxieme_personne
-            taux_3p = taux_2p + params.majoration_rsa.taux_troisieme_personne
-            forf_logement_taux_1p = params.forfait_logement.taux_1_personne
-            forf_logement_taux_2p = params.forfait_logement.taux_2_personnes * taux_2p
-            forf_logement_taux_3p = params.forfait_logement.taux_3_personnes_ou_plus * taux_3p
+            montant_base = params.rsa_m.montant_de_base_du_rsa
+            taux_2p = 1 + params.rsa_maj.maj_montant_max.couples_celibataire_avec_enfant
+            taux_3p = taux_2p + params.rsa_maj.maj_montant_max.couple_1_enfant_ou_2e_enfant
+            forf_logement_taux_1p = params.rsa_fl.forfait_logement.taux_1_personne
+            forf_logement_taux_2p = params.rsa_fl.forfait_logement.taux_2_personnes * taux_2p
+            forf_logement_taux_3p = params.rsa_fl.forfait_logement.taux_3_personnes_ou_plus * taux_3p
         else:
             params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
-            montant_base = params.rmi
-            forf_logement_taux_1p = params.forfait_logement.taux1
-            forf_logement_taux_2p = params.forfait_logement.taux2
-            forf_logement_taux_3p = params.forfait_logement.taux3
+            montant_base = params.rmi_m.montant_de_base_du_rmi
+            forf_logement_taux_1p = params.rmi_fl.forfait_logement.taux_1_personne
+            forf_logement_taux_2p = params.rmi_fl.forfait_logement.taux_2_personnes
+            forf_logement_taux_3p = params.rmi_fl.forfait_logement.taux_3_personnes_ou_plus
 
         montant_forfait = montant_base * (
             (np_pers == 1) * forf_logement_taux_1p
@@ -966,14 +968,14 @@ class rsa_socle(Variable):
 
         taux = (
             1
-            + (nb_personnes >= 2) * rsa.majoration_rsa.taux_deuxieme_personne
-            + (nb_personnes >= 3) * rsa.majoration_rsa.taux_troisieme_personne
-            + (nb_personnes >= 4) * where(nb_parents == 1, rsa.majoration_rsa.taux_personne_supp, rsa.majoration_rsa.taux_troisieme_personne)
+            + (nb_personnes >= 2) * rsa.rsa_maj.maj_montant_max.couples_celibataire_avec_enfant
+            + (nb_personnes >= 3) * rsa.rsa_maj.maj_montant_max.couple_1_enfant_ou_2e_enfant
+            + (nb_personnes >= 4) * where(nb_parents == 1, rsa.rsa_maj.maj_montant_max.par_enfant_supplementaire, rsa.rsa_maj.maj_montant_max.couple_1_enfant_ou_2e_enfant)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
-            + max_(nb_personnes - 4, 0) * rsa.majoration_rsa.taux_personne_supp
+            + max_(nb_personnes - 4, 0) * rsa.rsa_maj.maj_montant_max.par_enfant_supplementaire
             )
 
-        socle = rsa.montant_de_base_du_rsa
+        socle = rsa.rsa_m.montant_de_base_du_rsa
 
         return eligib * socle * taux
 
@@ -987,14 +989,14 @@ class rsa_socle(Variable):
         rmi = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
         taux = (
             1
-            + (nb_personnes >= 2) * rmi.txp2
-            + (nb_personnes >= 3) * rmi.txp3
-            + (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3)
+            + (nb_personnes >= 2) * rmi.rmi_maj.maj_montant_max.couples
+            + (nb_personnes >= 3) * rmi.rmi_maj.maj_montant_max.couple_1_enfant_ou_2e_enfant
+            + (nb_personnes >= 4) * where(nb_parents == 1, rmi.rmi_maj.maj_montant_max.par_enfant_supplementaire, rmi.rmi_maj.maj_montant_max.couple_1_enfant_ou_2e_enfant)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
-            + max_(nb_personnes - 4, 0) * rmi.txps
+            + max_(nb_personnes - 4, 0) * rmi.rmi_maj.maj_montant_max.par_enfant_supplementaire
             )
 
-        socle = rmi.rmi
+        socle = rmi.rmi_m.rmi
 
         return eligib * socle * taux
 
@@ -1011,7 +1013,7 @@ class rsa_socle_majore(Variable):
         nbenf = famille('rsa_nb_enfants', period)
 
         rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-        taux = rsa.majo_rsa.pac0 + rsa.majo_rsa.pac_enf_sup * nbenf
-        socle = rsa.montant_de_base_du_rsa
+        taux = rsa.rsa_maj.majoration_isolement_en_base_rsa.femmes_enceintes + rsa.rsa_maj.majoration_isolement_en_base_rsa.par_enfant_a_charge * nbenf
+        socle = rsa.rsa_m.montant_de_base_du_rsa
 
         return eligib * socle * taux

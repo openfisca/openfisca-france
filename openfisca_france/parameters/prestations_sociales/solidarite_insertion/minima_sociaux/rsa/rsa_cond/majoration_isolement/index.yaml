@@ -1,0 +1,8 @@
+description: Majoration pour isolement (en mois), Conditions générales du Revenu de solidarité active (RSA)
+metadata:
+  ux_name: Majoration pour isolement
+  order:
+  - duree_du_droit
+  - limite_duree_droit_majoration_isolement
+  - age_limite_enfant
+  description_en: "Active solidarity income (RSA): General conditions"

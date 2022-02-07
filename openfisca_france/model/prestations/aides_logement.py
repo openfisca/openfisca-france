@@ -432,7 +432,7 @@ class aide_logement_base_ressources_patrimoine(Variable):
         valeur_locative_terrains_non_loues = famille.sum(valeur_locative_terrains_non_loues_i)
 
         # Les abatements sont les mêmes que pour le RSA
-        abattements = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.patrimoine
+        abattements = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_cond.patrimoine
 
         capitaux_non_productifs = livret_a + epargne_revenus_non_imposables
         foncier = valeur_patrimoine_loue + valeur_immo_non_loue + valeur_terrains_non_loues
@@ -1127,9 +1127,9 @@ class aide_logement_R0(Variable):
 
         n_2 = period.start.offset(-2, 'year')
         if n_2.date >= date(2009, 6, 1):
-            montant_de_base = minim_n_2.rsa.montant_de_base_du_rsa
+            montant_de_base = minim_n_2.rsa.rsa_m.montant_de_base_du_rsa
         else:
-            montant_de_base = minim_n_2.rmi.montant_de_base_du_rmi
+            montant_de_base = minim_n_2.rmi.rmi_m.montant_de_base_du_rmi
 
         R1 = montant_de_base * (
             al.al_param_r0.r1_en_rsa_socle_1.personne_isolee * not_(couple) * (al_nb_pac == 0)
