@@ -241,4 +241,3 @@ class cmu_c(Variable):
             * not_(residence_mayotte)
             * or_(eligibilite_basique, eligibilite_rsa)
             )
-
