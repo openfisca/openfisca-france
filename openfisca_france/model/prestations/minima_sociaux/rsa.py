@@ -164,7 +164,7 @@ class rsa_base_ressources_individu(Variable):
 
         # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
         # sans condition de revenu de substitution.
-        neutral_max_forfaitaire = 3 * parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi.rmi_m.rmi
+        neutral_max_forfaitaire = 3 * parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_m.montant_de_base_du_rsa
 
         revenus_non_pros = sum(
             max_(
@@ -365,7 +365,7 @@ class rsa_enfant_a_charge(Variable):
             age_pac = P_rmi.rmi_cond.age_pac
             majo_rsa_femmes_enceintes = 0
             majo_rsa_par_enfant_a_charge = 0
-            montant_base_rsa = P_rmi.rmi_m.rmi
+            montant_base_rsa = P_rsa.rsa_m.montant_de_base_du_rsa
             taux_personne_supp = P_rmi.rmi_maj.maj_montant_max.par_enfant_supplementaire
 
         # Règle CAF: Si un enfant touche des ressources, et que son impact global
@@ -847,7 +847,7 @@ class rsa_forfait_logement(Variable):
             forf_logement_taux_3p = params.rsa_fl.forfait_logement.taux_3_personnes_ou_plus * taux_3p
         else:
             params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
-            montant_base = params.rmi_m.rmi
+            montant_base = params.rsa_m.montant_de_base_du_rsa
             forf_logement_taux_1p = params.rmi_fl.forfait_logement.taux_1_personne
             forf_logement_taux_2p = params.rmi_fl.forfait_logement.taux_2_personnes
             forf_logement_taux_3p = params.rmi_fl.forfait_logement.taux_3_personnes_ou_plus
@@ -996,7 +996,7 @@ class rsa_socle(Variable):
             + max_(nb_personnes - 4, 0) * rmi.rmi_maj.maj_montant_max.par_enfant_supplementaire
             )
 
-        socle = rmi.rmi_m.rmi
+        socle = rsa.rsa_m.montant_de_base_du_rsa
 
         return eligib * socle * taux
 
