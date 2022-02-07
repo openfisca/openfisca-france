@@ -63,7 +63,7 @@ class cmu_forfait_logement_base(Variable):
 class cmu_forfait_logement_al(Variable):
     value_type = float
     entity = Famille
-    label = "Forfait logement applicable en cas d'aide au logement"
+    label = "Forfait logement applicable en cas d'aide au logement, pour la métropole"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
