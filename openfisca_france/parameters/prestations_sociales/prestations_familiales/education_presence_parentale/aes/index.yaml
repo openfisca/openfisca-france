@@ -1,1 +1,8 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Conditions et montants de l'Allocation d'éducation spéciale (AES, 1976-2005)
+metadata:
+  ux_name: AES
+  order:
+  - age_maximum_enfant
+  - montant_bmaf_en_euros
+  - complement_allocation
+  description_en: "Special education allowance (AES): Conditions and amounts"
