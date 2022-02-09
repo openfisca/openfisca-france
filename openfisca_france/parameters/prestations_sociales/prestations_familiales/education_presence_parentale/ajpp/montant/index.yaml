@@ -1,0 +1,7 @@
+description: Montant (en % de la BMAF) de l'Allocation journalière de présence parentale (AJPP)
+metadata:
+  ux_name: Montant
+  order:
+  - couple
+  - personne_seule
+  description_en: "Daily parental presence allowance (AJPP): Amounts"

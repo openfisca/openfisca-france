@@ -3,6 +3,6 @@ metadata:
   ux_name: AES
   order:
   - age_maximum_enfant
-  - montant_bmaf_en_euros
+  - base
   - complement_allocation
   description_en: "Special education allowance (AES): Conditions and amounts"
