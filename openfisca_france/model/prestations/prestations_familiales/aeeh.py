@@ -34,7 +34,7 @@ class aeeh(Variable):
         prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
 
         base = prestations_familiales.education_presence_parentale.aeeh.base
-        complement_d_allocation = prestations_familiales.education_presence_parentale.aeeh.complement_d_allocation
+        complement_d_allocation = prestations_familiales.education_presence_parentale.aeeh.complement_allocation
         majoration = prestations_familiales.education_presence_parentale.aeeh.majoration_pour_parent_isole
 
         age = famille.members('age', janvier)
