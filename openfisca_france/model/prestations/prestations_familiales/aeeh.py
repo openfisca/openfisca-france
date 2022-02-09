@@ -35,7 +35,7 @@ class aeeh(Variable):
 
         base = prestations_familiales.education_presence_parentale.aeeh.base
         complement_d_allocation = prestations_familiales.education_presence_parentale.aeeh.complement_allocation
-        majoration = prestations_familiales.education_presence_parentale.aeeh.majoration_pour_parent_isole
+        majoration = prestations_familiales.education_presence_parentale.aeeh.majoration_parent_isole
 
         age = famille.members('age', janvier)
         handicap = famille.members('handicap', janvier)

@@ -3,7 +3,7 @@ metadata:
   ux_name: AEEH
   order:
   - age_maximum_enfant
-  - montant_bmaf
+  - base
   - complement_allocation
   - majoration_parent_isole
   description_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
