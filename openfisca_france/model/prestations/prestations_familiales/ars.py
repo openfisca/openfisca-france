@@ -37,7 +37,7 @@ class ars(Variable):
         arsnbenf = enf_primaire + enf_college + enf_lycee
 
         # Plafond en fonction du nb d'enfants A CHARGE (Cf. article R543)
-        ars_plaf_res = ars.plafond_ressources * (1 + af_nbenf * ars.majoration_par_enf_supp)
+        ars_plaf_res = ars.plafond_ressources * (1 + af_nbenf * ars.ars_plaf.majoration_par_enf_supp)
 
         arsbase = bmaf * (
             ars.ars_m.taux_primaire * enf_primaire
