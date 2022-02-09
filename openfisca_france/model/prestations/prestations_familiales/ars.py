@@ -24,15 +24,15 @@ class ars(Variable):
 
         bmaf = parameters(septembre).prestations_sociales.prestations_familiales.bmaf.bmaf
         # On doit prendre l'âge en septembre
-        enf_05 = nb_enf(famille, septembre, ars.age_entree_primaire - 1, ars.age_entree_primaire - 1)  # 5 ans et 6 ans avant le 31 décembre
+        enf_05 = nb_enf(famille, septembre, ars.ars_cond.age_entree_primaire - 1, ars.ars_cond.age_entree_primaire - 1)  # 5 ans et 6 ans avant le 31 décembre
         # enf_05 = 0
         # Un enfant scolarisé qui n'a pas encore atteint l'âge de 6 ans
         # avant le 1er février 2012 peut donner droit à l'ARS à condition qu'il
         # soit inscrit à l'école primaire. Il faudra alors présenter un
         # certificat de scolarité.
-        enf_primaire = enf_05 + nb_enf(famille, septembre, ars.age_entree_primaire, ars.age_entree_college - 1)
-        enf_college = nb_enf(famille, septembre, ars.age_entree_college, ars.age_entree_lycee - 1)
-        enf_lycee = nb_enf(famille, septembre, ars.age_entree_lycee, ars.age_sortie_lycee)
+        enf_primaire = enf_05 + nb_enf(famille, septembre, ars.ars_cond.age_entree_primaire, ars.ars_cond.age_entree_college - 1)
+        enf_college = nb_enf(famille, septembre, ars.ars_cond.age_entree_college, ars.ars_cond.age_entree_lycee - 1)
+        enf_lycee = nb_enf(famille, septembre, ars.ars_cond.age_entree_lycee, ars.ars_cond.age_sortie_lycee)
 
         arsnbenf = enf_primaire + enf_college + enf_lycee
 
