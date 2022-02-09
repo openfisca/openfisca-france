@@ -1,2 +1,7 @@
-description: Allocation de soutien familial
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Allocation de soutien familial (ASF)
+metadata:
+  ux_name: ASF
+  order:
+  - montant_asf
+  - montant_asf_dans_calcul_rsa_ppa
+  description_en: "Family support allowance (ASF): Amounts"
