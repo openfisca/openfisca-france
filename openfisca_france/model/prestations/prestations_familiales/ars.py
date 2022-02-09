@@ -49,4 +49,4 @@ class ars(Variable):
         # ars_diff = (ars_plaf_res + arsbase - base_ressources) / arsnbenf
         ars_montant = (arsnbenf > 0) * max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res) / max_(1, arsnbenf)))
 
-        return ars_montant * (ars_montant >= .ars.montant_minimum_verse)
+        return ars_montant * (ars_montant >= ars.montant_minimum_verse)
