@@ -1,11 +1,13 @@
-description: Années d'activité précédant la demande d'Allocation parentale d'éducation (APE)
+description: Intervalle pour le 3e enfant (en mois) considéré pour le calcul du nombre d'années d'activité précédant la demande d'Allocation parentale d'éducation (APE, 1985-2004)
 values:
   1985-01-01:
-    value: 2.0
+    value: 30.0
+  1987-04-01:
+    value: 120.0
 metadata:
-  ux_name: Années d'activité précédant la demande
-  unit: year
-  ipp_csv_id: min_annee_act
+  ux_name: Pour le 3e enfant
+  unit: month
+  ipp_csv_id: intervalle_3enf
   reference:
     2004-01-01:
       title: Loi 2003-1199 du 18/12/2003, art. 60 (modif art. L511-1 du CSS)
