@@ -1,0 +1,8 @@
+description: Montants de l'Allocation de rentrée scolaire (ARS)
+metadata:
+  ux_name: Montants
+  order:
+  - enfants_entre_6_10_ans_
+  - enfants_entre_11_14_ans
+  - enfants_15_ans
+  description_en: B"Back-to-school allowance (ARS): Amounts"

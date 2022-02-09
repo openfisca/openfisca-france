@@ -40,9 +40,9 @@ class ars(Variable):
         ars_plaf_res = ars.plafond_ressources * (1 + af_nbenf * ars.majoration_par_enf_supp)
 
         arsbase = bmaf * (
-            ars.taux_primaire * enf_primaire
-            + ars.taux_college * enf_college
-            + ars.taux_lycee * enf_lycee
+            ars.ars_m.taux_primaire * enf_primaire
+            + ars.ars_m.taux_college * enf_college
+            + ars.ars_m.taux_lycee * enf_lycee
             )
 
         # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
