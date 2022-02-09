@@ -1,18 +1,15 @@
-
-taux_inactivite:
-  description: Cessation complète d'activité à plein temps en % de la base mensuelle des allocations familiales (BMAF)
-  reference: https://www.ipp.eu/outils/baremes-ipp/
-  unit: /1
-  values:
-    1985-01-01:
-      value: 0.624
-    1986-07-01:
-      value: 0.902
-    1987-04-01:
-      value: 1.4257
+description: Montant mensuel (en % de la BMAF) à taux plein (pour cessation complète d'activité à plein temps), pour l'Allocation parentale d'éducation (APE, 1985-2004)
+values:
+  1985-01-01:
+    value: 0.624
+  1986-07-01:
+    value: 0.902
+  1987-04-01:
+    value: 1.4257
 metadata:
-  ux_name: Nb min enfants pris en charge
-  ipp_csv_id: ape_nenf_min
+  ux_name: Taux plein - Inactif
+  unit: BMAF
+  ipp_csv_id: ape_taux_base
   reference:
     2004-01-01:
       title: Loi 2003-1199 du 18/12/2003, art. 60 (modif art. L511-1 du CSS)

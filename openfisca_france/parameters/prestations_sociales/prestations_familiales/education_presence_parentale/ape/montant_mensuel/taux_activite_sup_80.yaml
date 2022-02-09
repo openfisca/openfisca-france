@@ -1,27 +1,13 @@
-
-taux_activite_sup_80:
-  description: Activité entre 50% et 80% de la durée légale du travail en % de la base mensuelle des allocations familiales (BMAF)
-  reference: https://www.ipp.eu/outils/baremes-ipp/
-  unit: /1
-  values:
-    1985-01-01:
-      value: 0.451
-    1987-04-01:
-      value: 0.7129
-taux_inactivite:
-  description: Cessation complète d'activité à plein temps en % de la base mensuelle des allocations familiales (BMAF)
-  reference: https://www.ipp.eu/outils/baremes-ipp/
-  unit: /1
-  values:
-    1985-01-01:
-      value: 0.624
-    1986-07-01:
-      value: 0.902
-    1987-04-01:
-      value: 1.4257
+description: Montant mensuel (en % de la BMAF) à taux partiel (pour activité entre 50% et 80% de la durée légale du travail), pour l'Allocation parentale d'éducation (APE, 1985-2004)
+values:
+  1985-01-01:
+    value: 0.451
+  1987-04-01:
+    value: 0.7129
 metadata:
-  ux_name: Nb min enfants pris en charge
-  ipp_csv_id: ape_nenf_min
+  ux_name: Activité 50% -80% durée légale
+  unit: BMAF
+  ipp_csv_id: ape_taux_80
   reference:
     2004-01-01:
       title: Loi 2003-1199 du 18/12/2003, art. 60 (modif art. L511-1 du CSS)
