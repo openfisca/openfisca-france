@@ -3,7 +3,7 @@ metadata:
   ux_name: APE
   order:
   - nombre_min_enfants_pris_en_charge
-  - age_maximal_enfant
+  - age_max_enfant
   - annees_d_activite_precedant_la_demande
   - intervalle_calcul_nb_annees_activite
   - duree_allocation_maximale

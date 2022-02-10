@@ -2,7 +2,6 @@ description: Majoration montant maximal (en % de la base) du Revenu de solidarit
 metadata:
   ux_name: Majoration montant maximal
   order:
-  - taux_deuxieme_personne
-  - taux_personne_supp
-  - taux_troisieme_personne
+  - couple_1_enfant_ou_2e_enfant
+  - couples_celibataire_avec_enfant
   description_en: "Active solidarity income (RSA): Extra allowance and minimal amount"

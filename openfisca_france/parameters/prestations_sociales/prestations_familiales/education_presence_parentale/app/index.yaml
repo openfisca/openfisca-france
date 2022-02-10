@@ -4,5 +4,5 @@ metadata:
   order:
   - montant_taux_plein
   - montant_taux_partiel
-  - duree_maximale_allocation
+  - duree_max_allocation
   description_en: "Parental presence allowance (AA): Amounts"
