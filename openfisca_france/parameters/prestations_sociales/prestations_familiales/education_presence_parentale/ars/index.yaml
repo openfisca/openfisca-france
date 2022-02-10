@@ -1,2 +1,10 @@
-description: Allocation de rentrée scolaire
-reference: https://www.ipp.eu/outils/baremes-ipp/
+description: Allocation de rentrée scolaire (ARS)
+metadata:
+  ux_name: ARS
+  order:
+  - ars_cond
+  - ars_m
+  - ars_maj
+  - ars_plaf
+  - montant_minimum_verse
+  description_en: Back-to-school allowance (ARS)

@@ -1,0 +1,7 @@
+description: Condition d'âge des personnes à charge pour l'Allocation de rentrée scolaire (ARS)
+metadata:
+  ux_name: Condition d'âge
+  order:
+  - age_entree_primaire
+  - age_sortie_lycee
+  description_en: "Back-to-school allowance (ARS): Age conditions of dependants"

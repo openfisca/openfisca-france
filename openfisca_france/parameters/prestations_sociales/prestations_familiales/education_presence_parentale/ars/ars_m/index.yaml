@@ -1,0 +1,8 @@
+description: Montants de l'Allocation de rentrée scolaire (ARS)
+metadata:
+  ux_name: Montants
+  order:
+  - taux_primaire
+  - taux_college
+  - taux_lycee
+  description_en: "Back-to-school allowance (ARS): Amounts"

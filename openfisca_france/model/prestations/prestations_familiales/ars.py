@@ -24,29 +24,29 @@ class ars(Variable):
 
         bmaf = parameters(septembre).prestations_sociales.prestations_familiales.bmaf.bmaf
         # On doit prendre l'âge en septembre
-        enf_05 = nb_enf(famille, septembre, ars.age_entree_primaire - 1, ars.age_entree_primaire - 1)  # 5 ans et 6 ans avant le 31 décembre
+        enf_05 = nb_enf(famille, septembre, ars.ars_cond.age_entree_primaire - 1, ars.ars_cond.age_entree_primaire - 1)  # 5 ans et 6 ans avant le 31 décembre
         # enf_05 = 0
         # Un enfant scolarisé qui n'a pas encore atteint l'âge de 6 ans
         # avant le 1er février 2012 peut donner droit à l'ARS à condition qu'il
         # soit inscrit à l'école primaire. Il faudra alors présenter un
         # certificat de scolarité.
-        enf_primaire = enf_05 + nb_enf(famille, septembre, ars.age_entree_primaire, ars.age_entree_college - 1)
-        enf_college = nb_enf(famille, septembre, ars.age_entree_college, ars.age_entree_lycee - 1)
-        enf_lycee = nb_enf(famille, septembre, ars.age_entree_lycee, ars.age_sortie_lycee)
+        enf_primaire = enf_05 + nb_enf(famille, septembre, ars.ars_cond.age_entree_primaire, ars.ars_cond.age_entree_college - 1)
+        enf_college = nb_enf(famille, septembre, ars.ars_cond.age_entree_college, ars.ars_cond.age_entree_lycee - 1)
+        enf_lycee = nb_enf(famille, septembre, ars.ars_cond.age_entree_lycee, ars.ars_cond.age_sortie_lycee)
 
         arsnbenf = enf_primaire + enf_college + enf_lycee
 
         # Plafond en fonction du nb d'enfants A CHARGE (Cf. article R543)
-        ars_plaf_res = ars.plafond_ressources * (1 + af_nbenf * ars.majoration_par_enf_supp)
+        ars_plaf_res = ars.ars_plaf.plafond_ressources * (1 + af_nbenf * ars.ars_plaf.majoration_par_enf_supp)
 
         arsbase = bmaf * (
-            ars.taux_primaire * enf_primaire
-            + ars.taux_college * enf_college
-            + ars.taux_lycee * enf_lycee
+            ars.ars_m.taux_primaire * enf_primaire
+            + ars.ars_m.taux_college * enf_college
+            + ars.ars_m.taux_lycee * enf_lycee
             )
 
         # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
         # ars_diff = (ars_plaf_res + arsbase - base_ressources) / arsnbenf
         ars_montant = (arsnbenf > 0) * max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res) / max_(1, arsnbenf)))
 
-        return ars_montant * (ars_montant >= ars.montant_seuil_non_versement)
+        return ars_montant * (ars_montant >= ars.montant_minimum_verse)

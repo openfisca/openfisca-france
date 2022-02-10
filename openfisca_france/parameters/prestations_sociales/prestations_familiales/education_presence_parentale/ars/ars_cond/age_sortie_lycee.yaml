@@ -1,0 +1,28 @@
+description: Âge de sortie du lycée pour les personnes à charge pour l'Allocation de rentrée scolaire (ARS)
+values:
+  1976-08-18:
+    value: 16.0
+  1990-09-06:
+    value: 18.0
+metadata:
+  ux_name: Entrée sortie lycée
+  unit: year
+  ipp_csv_id: ars_enf_agemax
+  reference:
+    1990-09-05:
+      title: Décret 90-776 du 03/09/1990, art. 1 (modif R543-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006774940&cidTexte=JORFTEXT000000534901
+    1974-08-14:
+      title: Décret 74-706 du 13/08/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000857489&categorieLien=id
+  official_journal_date:
+    1990-09-05: 1990-09-05
+    1974-08-14: 1974-08-14
+  notes:
+    1990-09-05: Extension de l'ARS par la loi 90-590 du06/07/1990
+    1974-08-14: L'article 14 de la LFR 74-644 du 16/07/1974 (JO 17/07/1974)crée l'Allocation de rentrée scolaire (ARS)
+  description_en: "Back-to-school allowance (ARS): Age conditions of dependants"
+documentation: |
+  Notes :
+  (1) Age de l'enfant à charge avant le 1er février de l'année suivant celle la rentrée scolaire.
+  (2) Age de l'enfant à charge au 15 septembre de l'année de la rentrée scolaire.

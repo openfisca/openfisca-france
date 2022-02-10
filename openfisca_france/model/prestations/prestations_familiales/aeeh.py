@@ -34,8 +34,8 @@ class aeeh(Variable):
         prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
 
         base = prestations_familiales.education_presence_parentale.aeeh.base
-        complement_d_allocation = prestations_familiales.education_presence_parentale.aeeh.complement_d_allocation
-        majoration = prestations_familiales.education_presence_parentale.aeeh.majoration_pour_parent_isole
+        complement_d_allocation = prestations_familiales.education_presence_parentale.aeeh.complement_allocation
+        majoration = prestations_familiales.education_presence_parentale.aeeh.majoration_parent_isole
 
         age = famille.members('age', janvier)
         handicap = famille.members('handicap', janvier)
@@ -43,7 +43,7 @@ class aeeh(Variable):
         # Indicatrice d'isolement pour les indidivus
         isole = famille.project(isole)
 
-        enfant_handicape = handicap * (age < prestations_familiales.education_presence_parentale.aeeh.age_maximum_de_l_enfant)
+        enfant_handicape = handicap * (age < prestations_familiales.education_presence_parentale.aeeh.age_maximum_enfant)
 
         montant_par_enfant = enfant_handicape * prestations_familiales.bmaf.bmaf * (
             base
@@ -94,7 +94,7 @@ class aes(Variable):
         # Indicatrice d'isolement pour les indidivus
         isole = famille.project(isole)
 
-        enfant_handicape = handicap * (age < prestations_familiales.education_presence_parentale.aes.age_maximum_de_l_enfant)
+        enfant_handicape = handicap * (age < prestations_familiales.education_presence_parentale.aes.age_maximum_enfant)
 
         montant_par_enfant = enfant_handicape * prestations_familiales.bmaf.bmaf * (
             base

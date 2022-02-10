@@ -678,7 +678,7 @@ class ape_avant_cumul(Variable):
         # Salarié: Temps de travail compris entre 50 et 80 % de la durée du travail fixée dans l'entreprise.
         # Temps de travail compris entre 77 et 122 heures par mois et un revenu professionnel mensuel ne dépassant pas
         #  (smic_8.27*169*136 %)
-        ape = elig * (inactif * ape.taux_inactivite + partiel1 * ape.taux_activite_sup_50 + partiel2 * ape.taux_activite_sup_80)
+        ape = elig * (inactif * ape.montant_mensuel.taux_inactivite + partiel1 * ape.montant_mensuel.taux_activite_sup_50 + partiel2 * ape.montant_mensuel.taux_activite_sup_80)
         # Cummul APE APJE CF
         return ape  # annualisé
 

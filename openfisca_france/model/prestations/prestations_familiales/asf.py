@@ -55,7 +55,7 @@ class asf_montant(Variable):
         asf_par_enfant = (
             famille.members('asf_elig_enfant', period)
             * bmaf
-            * asf.taux_1_parent
+            * asf.montant_asf.orphelin_assimile_seul_parent
             )
 
         montant = famille.sum(asf_par_enfant, role = Famille.ENFANT)

@@ -1,0 +1,11 @@
+description: Conditions et montant de l'Allocation parentale d'éducation (APE, 1985-2004)
+metadata:
+  ux_name: APE
+  order:
+  - nombre_min_enfants_pris_en_charge
+  - age_max_enfant
+  - annees_d_activite_precedant_la_demande
+  - intervalle_calcul_nb_annees_activite
+  - duree_allocation_maximale
+  - montant_mensuel
+  description_en: "Parental leave allowance (APE): Conditions and amounts"

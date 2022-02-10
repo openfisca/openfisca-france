@@ -142,10 +142,10 @@ class cf_plafond(Variable):
             )
 
         # Calcul du taux à appliquer au plafond de base pour les DOM
-        taux_plafond_dom = 1 + cf_nbenf * ars.majoration_par_enf_supp
+        taux_plafond_dom = 1 + cf_nbenf * ars.ars_plaf.majoration_par_enf_supp
 
         # Calcul du plafond pour les DOM
-        plafond_dom = ars.plafond_ressources * taux_plafond_dom
+        plafond_dom = ars.ars_plaf.plafond_ressources * taux_plafond_dom
 
         plafond = (
             eligibilite_base

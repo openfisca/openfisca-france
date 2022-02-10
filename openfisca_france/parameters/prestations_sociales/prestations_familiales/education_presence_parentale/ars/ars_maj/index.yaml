@@ -1,0 +1,7 @@
+description: Majoration exceptionnelle de l'Allocation de rentrée scolaire (ARS)
+metadata:
+  ux_name: Majoration exceptionnelle
+  order:
+  - montant_majoration_exceptionnelle
+  - taux_majoration_exceptionnelle
+  description_en: "Back-to-school allowance (ARS): Amounts"

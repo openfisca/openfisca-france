@@ -1,0 +1,7 @@
+description: Âge d'entrée au lycée pour les personnes à charge pour l'Allocation de rentrée scolaire (ARS)
+values:
+  2002-01-01:
+    value: 15.0
+metadata:
+  ux_name: Entrée lycée
+  unit: year

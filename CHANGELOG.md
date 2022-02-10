@@ -1,5 +1,18 @@
 # Changelog
 
+# 109.0.0 [#1796](https://github.com/openfisca/openfisca-france/pull/1796)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+- `parameters/prestations_sociales/prestations_familiales/education_presence_parentale`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline 6516bb17521ef610^..3b18f981e0163f | grep "variable_name"
+
 # 108.0.0 [#1784](https://github.com/openfisca/openfisca-france/pull/1784)
 
 * Amélioration technique. 

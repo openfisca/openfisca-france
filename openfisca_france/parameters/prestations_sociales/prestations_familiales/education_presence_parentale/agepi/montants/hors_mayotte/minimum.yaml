@@ -1,0 +1,24 @@
+description: Montants minimums de l'AGEPI en fonction du nombre d'enfants de moins de 10 ans à charge hors région Mayotte
+brackets:
+  - threshold:
+      2014-01-20:
+        value: 1
+    amount:
+      2014-01-20:
+        value: 170
+  - threshold:
+      2014-01-20:
+        value: 2
+    amount:
+      2014-01-20:
+        value: 195
+  - threshold:
+      2014-01-20:
+        value: 3
+    amount:
+      2014-01-20:
+        value: 220
+metadata:
+  type: single_amount
+  amount_unit: currency
+  reference: "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
