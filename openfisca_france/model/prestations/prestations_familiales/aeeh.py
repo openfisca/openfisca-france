@@ -53,7 +53,7 @@ class aeeh(Variable):
             + (niveau_handicap == 4) * (complement_d_allocation._children['3e_categorie'] + majoration._children['4e_categorie'] * isole)
             + (niveau_handicap == 5) * (complement_d_allocation._children['4e_categorie'] + majoration._children['5e_categorie'] * isole)
             + (niveau_handicap == 6) * majoration._children['6e_categorie'] * isole
-            ) + (niveau_handicap == 6) * complement_d_allocation._children['6e_categorie_1']
+            ) + (niveau_handicap == 6) * complement_d_allocation._children['6e_categorie']
 
         montant_total = famille.sum(montant_par_enfant, role = Famille.ENFANT)
 
@@ -86,7 +86,7 @@ class aes(Variable):
 
         base = prestations_familiales.education_presence_parentale.aes.base
         complement_d_allocation = prestations_familiales.education_presence_parentale.aes.complement_d_allocation
-        complement_d_allocation._children['6e_categorie_1'] = complement_d_allocation._children['6e_categorie_2']
+        complement_d_allocation._children['6e_categorie'] = complement_d_allocation._children['6e_categorie']
 
         age = famille.members('age', janvier)
         handicap = famille.members('handicap', janvier)
