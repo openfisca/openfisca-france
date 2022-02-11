@@ -4,8 +4,9 @@ metadata:
   order:
   - 1ere_categorie
   - 2e_categorie
-  - 3e_categorie
+  - 3e_categorie_1
+  - 3e_categorie_2
   - 4e_categorie
   - 5e_categorie
-  - 6e_categorie_2
+  - 6e_categorie
   description_en: "Special education allowance (AES): Conditions and amounts"

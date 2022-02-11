@@ -1,5 +1,15 @@
 # Changelog
 
+### 109.0.1 [#1797](https://github.com/openfisca/openfisca-france/pull/1797)
+
+* Amélioration technique. | Correction d'un crash. | Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/aes/complement_allocation`
+  -  `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/aeeh`
+* Détails :
+  - Découpe un paramètre qui passe d'un montant à un taux, pour ne pas devoir faire un `unit` qui change au cours du temps et qui serait en dehors des bonnes pratiques
+
 # 109.0.0 [#1796](https://github.com/openfisca/openfisca-france/pull/1796)
 
 * Amélioration technique. 
