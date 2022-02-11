@@ -1,9 +1,7 @@
-description: Complément d'allocation (3e catégorie) de l'Allocation d'éducation spéciale (AES, 1976-2005)
+description: Taux du Complément d'allocation (3e catégorie) de l'Allocation d'éducation spéciale (AES, 1976-2005)
 values:
   1976-08-01:
     value: null
-  1991-10-01:
-    value: 5017.82
   2002-04-01:
     value: 0.92
   2006-01-01:
@@ -11,9 +9,7 @@ values:
 metadata:
   ux_name: 3e catégorie
   ipp_csv_id: aes_cplt3
-  unit:
-    2002-04-01: /1
-    1991-10-01: currency
+  unit: /1
   reference:
     2006-01-01:
       title: Loi 2005-102 du 11/02/2005, art. 68 (modif art. L 541 du CSS)
