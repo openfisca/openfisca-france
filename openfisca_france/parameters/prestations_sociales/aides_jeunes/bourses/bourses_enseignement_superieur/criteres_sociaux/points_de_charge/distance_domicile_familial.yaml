@@ -20,8 +20,8 @@ brackets:
       value: 2
 metadata:
   ux_name: Selon déplacmement
-    type: single_amount
-    reference:
-      2006-03-31:
-      - https://www.education.gouv.fr/bo/2006/15/MENS0600981C.htm
-      - https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm
+  type: single_amount
+  reference:
+    2006-03-31:
+    - https://www.education.gouv.fr/bo/2006/15/MENS0600981C.htm
+    - https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm
