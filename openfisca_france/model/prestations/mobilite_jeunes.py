@@ -33,7 +33,7 @@ class sortie_region_academique(Variable):
     definition_period = ETERNITY
 
 
-class aide_mobilite_master(Variable):
+class master(Variable):
     """
     Critères non pris en compte :
     - Première inscription en master l'année qui suit l'obtention de la licence
@@ -53,6 +53,6 @@ class aide_mobilite_master(Variable):
         en_transition = (annee_etude == TypesClasse.licence_3) + (annee_etude == TypesClasse.master_1)
         boursier = individu("boursier", period)
 
-        montant = parameters(period).prestations_sociales.aides_jeunes.mobilite.aide_mobilite_master.montant
+        montant = parameters(period).prestations_sociales.aides_jeunes.mobilite.master.montant
 
         return montant * sortie_academie * en_transition * boursier
