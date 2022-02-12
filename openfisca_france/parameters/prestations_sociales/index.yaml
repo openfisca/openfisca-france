@@ -1,5 +1,6 @@
 description: Prestations sociales
 metadata:
+  ux_name: Prestations sociales
   order:
   - prestations_familiales
   - aides_logement
