@@ -74,7 +74,7 @@ class garantie_jeunes_eligibilite_age(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2017_01_01(individu, period, parameters):
-        params_age = parameters(period).prestations_sociales.aides_jeunes.garantie_jeunes.critere_age.age
+        params_age = parameters(period).prestations_sociales.aides_jeunes.garantie_jeunes.critere_age
         age = individu('age', period)
 
         return (params_age.minimum <= age) * (age <= params_age.maximum)
