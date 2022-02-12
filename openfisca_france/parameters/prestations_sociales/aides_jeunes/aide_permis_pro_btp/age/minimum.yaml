@@ -1,0 +1,9 @@
+description: Conditions d'âge minimum pour bénéficier de l'Aide au financement du permis B pro BTP
+values:
+  2021-01-01:
+    value: 15
+metadata:
+  ux_name: Minimum
+  unit: year
+  reference: 
+    2021-01-01: https://www.probtp.com/part/apprenti/aide-permis.html

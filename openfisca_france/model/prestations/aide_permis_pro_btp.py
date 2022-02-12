@@ -15,9 +15,9 @@ class aide_permis_pro_btp(Variable):
         rfr = individu.foyer_fiscal('rfr', period.this_year)
         montant = select(
             [
-                rfr <= params.ressources_annuelles_maximal.premier_echelon,
-                rfr <= params.ressources_annuelles_maximal.deuxieme_echelon,
-                rfr <= params.ressources_annuelles_maximal.troisieme_echelon,
+                rfr <= params.plafonds.premier_echelon,
+                rfr <= params.plafonds.deuxieme_echelon,
+                rfr <= params.plafonds.troisieme_echelon,
                 ],
             [
                 params.montant.premier_echelon,
