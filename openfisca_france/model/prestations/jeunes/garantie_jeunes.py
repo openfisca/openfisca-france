@@ -42,7 +42,7 @@ class garantie_jeunes_montant(Variable):
         smic_mensuel_brut = salaire_minimum.smic.smic_b_horaire * salaire_minimum.smic.nb_heures_travail_mensuel
 
         degressivite = parameters(period).prestations_sociales.aides_jeunes.garantie_jeunes.degressivite
-        plafond = degressivite.plafond_en_pourcentage_du_smic_brut * smic_mensuel_brut
+        plafond = degressivite.plafond * smic_mensuel_brut
         seuil_degressivite = degressivite.seuil
 
         types_revenus_activites = [
