@@ -21,7 +21,7 @@ class aide_mobilite_parcoursup(Variable):
         en_terminale = individu("annee_etude", period) == TypesClasse.terminale
         boursier = individu.famille("bourse_lycee", period) > 0
 
-        montant = parameters(period).prestations_sociales.aides_jeunes.mobilite.aide_mobilite_parcoursup.montant
+        montant = parameters(period).prestations_sociales.aides_jeunes.mobilite.parcoursup.montant
 
         return montant * sortie_academie * en_terminale * boursier
 
@@ -33,7 +33,7 @@ class sortie_region_academique(Variable):
     definition_period = ETERNITY
 
 
-class master(Variable):
+class aide_mobilite_master(Variable):
     """
     Critères non pris en compte :
     - Première inscription en master l'année qui suit l'obtention de la licence
