@@ -1,0 +1,10 @@
+description: Durée maximum du séjour à l'étranger, en mois, inclusive pour l'aide à la mobilité Internationale pour les jeunes
+values:
+  2020-06-18: 9
+metadata:
+  ux_name: Durée maximum
+  unit: month
+  reference: 
+    2020-06-18: https://www.etudiant.gouv.fr/fr/bourses-erasmus-et-aide-la-mobilite-internationale-ami-67
+  notes:
+    2020-06-18: Date de dernière modification de la page de référence

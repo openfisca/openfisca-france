@@ -1,4 +1,6 @@
-description: Nombre d'années minimum de résidence régulière et continue sur le territoire français pour les ressortissants de pays de l'Espace Économique Européen (EEE) pour l'éligibilité à la garantie de l'État au prêt étudiant.
-unit: year
+description: Nombre d'années minimum de résidence régulière et continue sur le territoire français pour les ressortissants de pays de l'Espace Économique Européen (EEE) pour l'éligibilité à la garantie de l'État au prêt étudiant
 values:
   2020-06-08: 5
+metadata:
+  ux_name: Durée minimum de résidence
+  unit: year

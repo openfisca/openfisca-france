@@ -3,6 +3,8 @@ values:
   2021-03-10:
     value: 6
 metadata:
-  reference: https://www.service-public.fr/particuliers/actualites/A14726
+  ux_name: Nb max de séances
+  reference:
+    2021-03-10: https://www.service-public.fr/particuliers/actualites/A14726
   notes:
     2021-03-10: 2 cycles de 3 séances au maximum
