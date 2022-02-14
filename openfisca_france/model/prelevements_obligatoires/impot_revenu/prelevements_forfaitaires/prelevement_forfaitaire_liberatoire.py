@@ -53,7 +53,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         f2dh = foyer_fiscal('f2dh', period)
         f2ee = foyer_fiscal('f2ee', period)
         param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.bons_ou_contrats_de_capitalisation_et_placements_de_meme_nature_assurance_vie_lors_du_denouement_du_contrat
-        param_pfl = parameters(period).taxation_capital.pfl
+        param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.pfl
 
         return -(
             f2dh * param_pfl_av.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5
@@ -68,7 +68,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         f2dh = foyer_fiscal('f2dh', period)
         f2ee = foyer_fiscal('f2ee', period)
         param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.bons_ou_contrats_de_capitalisation_et_placements_de_meme_nature_assurance_vie_lors_du_denouement_du_contrat
-        param_pfl = parameters(period).taxation_capital.pfl
+        param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.pfl
 
         return -(
             f2da * param_pfl.dividendes
@@ -98,7 +98,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
 
         param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.bons_ou_contrats_de_capitalisation_et_placements_de_meme_nature_assurance_vie_lors_du_denouement_du_contrat
-        param_pfl = parameters(period).taxation_capital.pfl
+        param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.pfl
 
         pfl = -(
             (param_pfl_av.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5
