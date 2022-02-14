@@ -1,5 +1,12 @@
 # Changelog
 
+### 110.0.2 [#1799](https://github.com/openfisca/openfisca-france/pull/1799)
+
+* Amélioration technique.
+* Zones impactées : `parameters/prelevements_sociaux/cotisations_secteur_public`
+* Détails :
+  - Fusionne et supprime des doublons
+
 ### 110.0.1 [#1798](https://github.com/openfisca/openfisca-france/pull/1798)
 
 * Changement mineur.
