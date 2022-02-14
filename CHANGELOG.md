@@ -1,5 +1,18 @@
 # Changelog
 
+# 111.0.0 [#1803](https://github.com/openfisca/openfisca-france/pull/1803)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+- `parameters/taxation_capital/prelevements_sociaux`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline 7f9b9894cbb4beed2^..4fa92d17e8299 | grep "variable_name"
+
 ### 110.0.3 [#1774](https://github.com/openfisca/openfisca-france/pull/1774)
 
 * Amélioration technique.
