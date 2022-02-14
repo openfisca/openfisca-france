@@ -1,5 +1,14 @@
 # Changelog
 
+### 110.0.1 [#1798](https://github.com/openfisca/openfisca-france/pull/1798)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prelevements_sociaux/cotisations_secteur_public/retraite/taux_implicite`
+* Détails :
+  - Retire des metadata erronées.
+
 # 110.0.0 [#1800](https://github.com/openfisca/openfisca-france/pull/1800)
 
 * Amélioration technique. 
@@ -15,9 +24,9 @@ git log --oneline e93ad4fae07^..57530f03685e805 | grep "variable_name"
 
 ### 109.0.1 [#1797](https://github.com/openfisca/openfisca-france/pull/1797)
 
-* Amélioration technique. | Correction d'un crash. | Changement mineur.
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/aes/complement_allocation`
   -  `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/aeeh`
 * Détails :
@@ -25,9 +34,9 @@ git log --oneline e93ad4fae07^..57530f03685e805 | grep "variable_name"
 
 # 109.0.0 [#1796](https://github.com/openfisca/openfisca-france/pull/1796)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
 - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale`.
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
@@ -38,9 +47,9 @@ git log --oneline 6516bb17521ef610^..3b18f981e0163f | grep "variable_name"
 
 # 108.0.0 [#1784](https://github.com/openfisca/openfisca-france/pull/1784)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa`
   - `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rmi`
 * Détails :
@@ -51,7 +60,7 @@ git log --oneline b8a00d4fae6782f3^..542ec486ddcf1a28c3c6 | grep "variable_name"
 
 # 107.0.0 [#1764](https://github.com/openfisca/openfisca-france/pull/1764)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive`.
 * Détails :
