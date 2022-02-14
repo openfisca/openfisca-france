@@ -6,18 +6,21 @@ values:
     value: null
 metadata:
   ux_name: Personnes isolées
+  description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   ipp_csv_id: r1_isol
   unit: /1
   reference:
-    2015-01-01: Arrêté du 29/12/2014 fixant les montants du paramètre R0 pour le calcul des aides personnelles au logement, art. 2
-    2001-01-01: Arrêté du 26/12/2000, art. 2
+    2001-01-01:
+      title: Arrêté du 26/12/2000, art. 2
+    2015-01-01:
+      title: Arrêté du 29/12/2014 fixant les montants du paramètre R0 pour le calcul des aides personnelles au logement, art. 2
   official_journal_date:
-    2015-01-01: 2014-12-31
-    2001-01-01: 2000-12-28
+    2001-01-01: "2000-12-28"
+    2015-01-01: "2014-12-31"
   notes:
-    2002-01-01: Paramètres toutefois disponibles dans "Eléments de calcul des aides personnelles au logement", Ministère de l'égalité des territoires et du logement, 2013, p 13.
-  description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
-documentation: |
+    2002-01-01:
+    - title: Paramètres toutefois disponibles dans "Eléments de calcul des aides personnelles au logement", Ministère de l'égalité des territoires et du logement, 2013, p 13.
+documentation: |-
   Notes :
   (1) Les abattements appliqués aux traitements et salaires mentionnés dans le code général des impôts s'appliquent à R1-R2.
   (2) À partir de 2015, le forfait R0 n'est plus calculé à partir de R1 et R2 mais directement défini en euros par la loi.

@@ -4,19 +4,19 @@ values:
     value: 152.45
 metadata:
   ux_name: Montant seul
-  last_review:
-    2021-09-28
+  description_en: "Exceptional end-of-year benefit (AEFA): amount"
   unit: currency
   reference:
     2003-12-30:
-    - title: Décret 2003-1283 du 26/12/2003, art. 1
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006226757
+      title: Décret 2003-1283 du 26/12/2003, art. 1
   official_journal_date:
-    2003-01-01: 2003-12-30
+    2003-01-01: "2003-12-30"
   notes:
-    2003-01-01: Idem en 2017
-  description_en: "Exceptional end-of-year benefit (AEFA): amount"
-documentation: |
+    2003-01-01:
+    - title: Idem en 2017
+  last_review: "2021-09-28"
+documentation: |-
   Notes :
   La prime existe depuis 1988 mais nous n'avons pu remonter que jusqu'à 2003
   https://www.service-public.fr/particuliers/vosdroits/F1325

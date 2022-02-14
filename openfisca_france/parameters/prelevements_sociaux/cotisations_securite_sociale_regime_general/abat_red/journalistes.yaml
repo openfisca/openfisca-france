@@ -4,15 +4,11 @@ values:
     value: 0.2
 metadata:
   ux_name: Abattement
-  unit: /1
-  ipp_csv_id: abat_j
-  last_review:
-    2016-01-01
-  reference:
-  official_journal_date:
-  notes:
   description_en: SSCs rebate for journalists (1975-2016)
-documentation: |
+  ipp_csv_id: abat_j
+  unit: /1
+  last_review: "2016-01-01"
+documentation: |-
   Taux réduit à la fois pour les parts salariés et employeurs et pour les cotisations déplafonnées et plafonnées, mais il ne s'applique pas à la CSA.
   Notes journalistes professionnels pigistes :
   L'arrêté du 05/02/1975 (JO 13/02/1975) détermineun abattement de 20 % pour les journalistes sur le taux de cotisation du droit commun des cotisations plafonnées. Les dispositions s'appliquent au 01/01/1975.

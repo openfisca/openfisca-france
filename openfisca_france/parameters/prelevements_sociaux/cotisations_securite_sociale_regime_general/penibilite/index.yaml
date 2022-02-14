@@ -1,8 +1,8 @@
 description: Cotisations de sécurité sociale (SS) du régime général au titre de la pénibilité (2015-2017)
 metadata:
   ux_name: Branche pénibilité
+  description_en: SSCs for arduous working conditions
   order:
   - penibilite_base
   - penibilite_additionnelle
   - penibilite_multiplicateur_exposition_multiple
-  description_en: SSCs for arduous working conditions

@@ -12,20 +12,22 @@ values:
     value: null
 metadata:
   ux_name: Taux
-  unit: /1
-  ipp_csv_id: chom_mmid_tx
-  last_review:
-    1997-01-01
-  reference:
-    1993-01-01: Arrêté du 04/01/1993 portant agrément de la convention du 01/01/1993
-    1990-01-01: Arrêté du 14/05/1990 portant agrément de la convention du 01/01/1990
-    1988-03-01: Arrêté du 30/01/1988 portant agrément de la convention du 30/12/1987
-  official_journal_date:
-    1993-01-01: 1993-01-04
-    1990-01-01: 1990-05-15
-    1988-03-01: 1988-02-02
   description_en: SSCs on unemployment benefits
-documentation: |
+  ipp_csv_id: chom_mmid_tx
+  unit: /1
+  reference:
+    1988-03-01:
+      title: Arrêté du 30/01/1988 portant agrément de la convention du 30/12/1987
+    1990-01-01:
+      title: Arrêté du 14/05/1990 portant agrément de la convention du 01/01/1990
+    1993-01-01:
+      title: Arrêté du 04/01/1993 portant agrément de la convention du 01/01/1993
+  official_journal_date:
+    1988-03-01: "1988-02-02"
+    1990-01-01: "1990-05-15"
+    1993-01-01: "1993-01-04"
+  last_review: "1997-01-01"
+documentation: |-
   Note :
   Pour la cotisation d'assurance maladie, l'assiette est égale à l'allocation de base brute. Disparait en décembre 1997.
   Exonération de cotisation pour la retraite complémentaire si l'ARE est inférieure àl'ARE minimale :

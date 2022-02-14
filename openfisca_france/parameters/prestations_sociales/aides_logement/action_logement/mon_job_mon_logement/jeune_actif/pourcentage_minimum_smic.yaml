@@ -6,4 +6,5 @@ metadata:
   ux_name: Revenu min
   unit: SMIC
   reference:
-    2021-02-18: https://www.actionlogement.fr/aide-mon-job-mon-logement
+    2021-02-18:
+      href: https://www.actionlogement.fr/aide-mon-job-mon-logement

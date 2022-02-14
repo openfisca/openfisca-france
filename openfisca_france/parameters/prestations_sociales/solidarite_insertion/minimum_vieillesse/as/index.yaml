@@ -1,8 +1,8 @@
 description: Allocation supplémentaire - Minimum vieillesse
 metadata:
   ux_name: Allocation supplémentaire
+  description_en: Extra allowance (AS)
   order:
   - allocation_supplementaire
   - complement_exceptionnel
   - plafond_ressources
-  description_en: Extra allowance (AS)

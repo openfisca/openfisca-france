@@ -1,6 +1,7 @@
 description: "Prestations sociales famiiales : Education et présence parentale"
 metadata:
   ux_name: Education et présence parentale
+  description_en: Education and parental presence
   order:
   - ars
   - ape
@@ -9,4 +10,3 @@ metadata:
   - aeeh
   - app
   - ajpp
-  description_en: Education and parental presence

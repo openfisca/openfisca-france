@@ -1,6 +1,4 @@
 description: Taux de l'abattement
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
 values:
   1953-01-01:
     value: 0.1
@@ -12,3 +10,7 @@ values:
     value: 0.2
   2006-01-01:
     value: null
+metadata:
+  unit: /1
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

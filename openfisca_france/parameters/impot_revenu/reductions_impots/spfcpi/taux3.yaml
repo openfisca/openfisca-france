@@ -1,5 +1,4 @@
 description: Taux spécial outre-mer
-unit: /1
 values:
   2011-01-01:
     value: 0.5
@@ -7,3 +6,5 @@ values:
     value: 0.42
   2017-01-01:
     value: 0.38
+metadata:
+  unit: /1

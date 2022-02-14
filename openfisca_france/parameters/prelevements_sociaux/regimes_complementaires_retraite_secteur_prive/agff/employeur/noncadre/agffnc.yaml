@@ -1,44 +1,46 @@
 description: Barème non-cadre pour les employeurs, pour leurs salariés non-cadre, des cotisations aux régimes complémentaires de retraite (secteur privé) pour la structure financière de l'AGFF (2001-2018)
 brackets:
-- rate:
+- threshold:
+    2001-04-01:
+      value: 0
+  rate:
     2001-04-01:
       value: 0.012
     2019-01-01:
       value: null
-  threshold:
+- threshold:
     2001-04-01:
-      value: 0.0
-- rate:
+      value: 1
+  rate:
     2001-04-01:
       value: 0.013
     2019-01-01:
       value: null
-  threshold:
+- threshold:
     2001-04-01:
-      value: 1.0
-- rate:
+      value: 3
+  rate:
     2001-04-01:
-      value: 0.0
+      value: 0
     2019-01-01:
       value: null
-  threshold:
-    2001-04-01:
-      value: 3.0
 metadata:
   ux_name: Non-cadre
+  description_en: Contributions to the financial structure AGFF (2001-2016)
   ipp_csv_id:
     rate: agff_p_0_1, agff_p_1_3
-  last_review:
-    2021-07-30
+  reference:
+    2001-04-01:
+      title: Accord Arrco-Agirc du 10/02/2001 (ch. III) et du 12/11/2003
+    2019-01-01:
+      title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
+  notes:
+    2019-01-01:
+    - title: Suppression de l'AGFF avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et CET, voir barème AGIRC-ARRCO)
+  last_review: "2021-07-30"
   rate_unit: /1
   threshold_unit: PSS
-  reference:
-    2019-01-01: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire
-    2001-04-01: Accord Arrco-Agirc du 10/02/2001 (ch. III) et du 12/11/2003
-  notes:
-    2019-01-01: Suppression de l'AGFF avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et CET, voir barème AGIRC-ARRCO)
-  description_en: Contributions to the financial structure AGFF (2001-2016)
-documentation: |
+documentation: |-
   Notes :
   (i) L'Association pour la Gestion du Fonds de Financement de l'AGIRC et de l'ARRCO (AGFF) remplace depuis le 1er avril 2001, l'Association pour la structure Financière (ASF).
   (voir feuille "ASF")

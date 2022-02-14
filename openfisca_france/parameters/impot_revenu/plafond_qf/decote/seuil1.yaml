@@ -1,89 +1,91 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
 values:
   1951-01-01:
-    value: 4000.0
+    value: 4000
   1953-01-01:
-    value: 0.0
+    value: 0
   1957-01-01:
-    value: 5000.0
+    value: 5000
   1958-01-01:
-    value: 8000.0
+    value: 8000
   1959-01-01:
-    value: 7000.0
+    value: 7000
   1961-01-01:
-    value: 70.0
+    value: 70
   1962-01-01:
-    value: 80.0
+    value: 80
   1969-01-01:
-    value: 100.0
+    value: 100
   1973-01-01:
-    value: 0.0
+    value: 0
   1981-01-01:
-    value: 2600.0
+    value: 2600
   1982-01-01:
-    value: 3200.0
+    value: 3200
   1983-01-01:
-    value: 3700.0
+    value: 3700
   1984-01-01:
-    value: 4000.0
+    value: 4000
   1985-01-01:
-    value: 4300.0
+    value: 4300
   1986-01-01:
-    value: 4400.0
+    value: 4400
   1987-01-01:
-    value: 4520.0
+    value: 4520
   1989-01-01:
-    value: 4670.0
+    value: 4670
   1990-01-01:
-    value: 4820.0
+    value: 4820
   1991-01-01:
-    value: 4970.0
+    value: 4970
   1992-01-01:
-    value: 5110.0
+    value: 5110
   1993-01-01:
-    value: 4180.0
+    value: 4180
   1994-01-01:
-    value: 4240.0
+    value: 4240
   1995-01-01:
-    value: 4320.0
+    value: 4320
   1996-01-01:
-    value: 3260.0
+    value: 3260
   1997-01-01:
-    value: 3300.0
+    value: 3300
   1998-01-01:
-    value: 3330.0
+    value: 3330
   1999-01-01:
-    value: 3350.0
+    value: 3350
   2000-01-01:
-    value: 2450.0
+    value: 2450
   2001-01-01:
-    value: 380.0
+    value: 380
   2002-01-01:
-    value: 386.0
+    value: 386
   2003-01-01:
-    value: 393.0
+    value: 393
   2004-01-01:
-    value: 400.0
+    value: 400
   2005-01-01:
-    value: 407.0
+    value: 407
   2006-01-01:
-    value: 414.0
+    value: 414
   2007-01-01:
-    value: 419.0
+    value: 419
   2008-01-01:
-    value: 431.0
+    value: 431
   2009-01-01:
-    value: 433.0
+    value: 433
   2010-01-01:
-    value: 439.0
+    value: 439
   2012-01-01:
-    value: 480.0
+    value: 480
   2013-01-01:
-    value: 508.0
+    value: 508
   2014-01-01:
-    value: 1135.0
+    value: 1135
   2015-01-01:
-    value: 1165.0
+    value: 1165
   2017-01-01:
-    value: 1177.0
+    value: 1177
+metadata:
+  unit: currency
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

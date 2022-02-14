@@ -1,6 +1,8 @@
 description: Taux d'abattement DOM - Guyane, Mayotte
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
 values:
   2001-01-01:
-    value: 0.40
+    value: 0.4
+metadata:
+  unit: currency
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

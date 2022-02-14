@@ -1,6 +1,7 @@
 description: Majorations pour les DOM des Allocations Familiales (AF)
 metadata:
-  ux_name: Majorations DOM 
+  ux_name: Majorations DOM
+  description_en: Family allowances (AF)
   order:
   - allocations_familiales_un_enfant
   - tranches_age
@@ -9,4 +10,3 @@ metadata:
   - nb_min_enfant_avoir_droit_maj_forfaitaire_plus_20_ans
   - duree_majoration_plus_de_20_ans
   - nb_enfant_pour_aine_donne_droit_majoration
-  description_en: Family allowances (AF)

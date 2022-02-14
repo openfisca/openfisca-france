@@ -1,8 +1,10 @@
 description: Case DA
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
 values:
   2003-01-01:
-    value: 30000.0
+    value: 30000
   2007-01-01:
     value: null
+metadata:
+  unit: currency
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

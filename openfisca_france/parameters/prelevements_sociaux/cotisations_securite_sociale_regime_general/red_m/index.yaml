@@ -1,10 +1,10 @@
 description: Cotisations de sécurité sociale (SS) des professions médicales à temps partiel (1961-1974)
 metadata:
   ux_name: Professions Médicales Temps Partiel
+  description_en: SSCs for physicians working part-time (1961-1974)
   order:
   - assurance_maladie
   - assurance_vieillesse
   - accidents_travail
   - allocations_familiales
   - assurances_sociales_avant_1967
-  description_en: SSCs for physicians working part-time (1961-1974)

@@ -1,6 +1,7 @@
 description: Cotisations aux régimes complémentaires de retraite (secteur privé)
 metadata:
   ux_name: Régimes complémentaires de retraite (privé)
+  description_en: Complementary pension schemes (private sector)
   order:
   - agirc_arrco
   - cet
@@ -12,4 +13,3 @@ metadata:
   - agirc
   - agff
   - gmp
-  description_en: Complementary pension schemes (private sector)

@@ -6,24 +6,23 @@ values:
     value: null
 metadata:
   ux_name: Plafond
-  last_review: 2021-12-27
+  description_en: Exceptional solidarity tax on high wages ("75% tax")
   ipp_csv_id: tehr_plaf
   unit: /1
   reference:
     2013-01-01:
-      title: Art. 15 de la loi 2013-1278 
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000028402680/
+      title: Art. 15 de la loi 2013-1278
     2015-01-01:
-      title: Loi 2013-1278 du 29/12/2013 (LF pour 2014), art. 15
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000028402680/
+      title: Loi 2013-1278 du 29/12/2013 (LF pour 2014), art. 15
   official_journal_date:
-    2015-01-01: 2013-12-30
-    2013-01-01: 2013-12-30
-  description_en: Exceptional solidarity tax on high wages ("75% tax")
-documentation: |
+    2013-01-01: "2013-12-30"
+    2015-01-01: "2013-12-30"
+  last_review: "2021-12-27"
+documentation: |-
   Note :
   Cette taxe correspond à la nouvelle version de la "taxe à 75%" proposée par F. Hollande durant la campagne présidentielle.
   La TEHR a vocation a être temporaire (prélevée seulement sur les rémunérations versées en 2013 et 2014).
   Assiette :
   Il s'agit des montants bruts de rémunération individuelle. Voir art. 15(II.) de la Loi 2013-1278
-

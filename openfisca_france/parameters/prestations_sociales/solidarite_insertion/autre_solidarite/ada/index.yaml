@@ -1,8 +1,8 @@
 description: Allocation pour demandeur d'asile (ADA)
 metadata:
   ux_name: ADA
+  description_en: Asylum-seeker allowance (ADA)
   order:
   - montant_journalier_pour_une_personne
   - majoration_pers_supp
   - supplement_non_hebergement
-  description_en: Asylum-seeker allowance (ADA)

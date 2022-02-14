@@ -1,5 +1,4 @@
 description: Taux d'imposition
-unit: /1
 values:
   2005-01-01:
     value: 0.16
@@ -7,3 +6,5 @@ values:
     value: 0.17
   2012-01-01:
     value: 0.19
+metadata:
+  unit: /1

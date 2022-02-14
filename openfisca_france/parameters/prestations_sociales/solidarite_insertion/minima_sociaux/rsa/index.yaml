@@ -1,9 +1,9 @@
 description: Revenu de solidarité active
 metadata:
   ux_name: RSA
+  description_en: Active solidarity income (RSA)
   order:
   - rsa_cond
   - rsa_m
   - rsa_maj
   - rsa_fl
-  description_en: Active solidarity income (RSA)

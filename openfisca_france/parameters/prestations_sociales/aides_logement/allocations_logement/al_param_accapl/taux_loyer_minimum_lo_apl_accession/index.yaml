@@ -1,6 +1,7 @@
 description: Taux pour le loyer minimum (Lo), Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
 metadata:
   ux_name: Taux pour le loyer minimum (Lo) pour l'APL accession
+  description_en: Parameters for new home-buyers (APL)
   order:
   - 1ere_tranche
   - 2eme_tranche
@@ -8,4 +9,3 @@ metadata:
   - 4eme_tranche
   - 5eme_tranche
   - 6eme_tranche
-  description_en: Parameters for new home-buyers (APL)

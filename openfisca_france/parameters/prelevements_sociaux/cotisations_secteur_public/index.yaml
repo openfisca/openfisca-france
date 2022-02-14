@@ -1,6 +1,7 @@
 description: Cotisations spécifiques à la fonction publique
 metadata:
   ux_name: Cotisations fonction publique
+  description_en: Contributions in the public sector
   order:
   - mmid
   - retraite
@@ -9,4 +10,3 @@ metadata:
   - ircantec
   - sncf
   - fds
-  description_en: Contributions in the public sector

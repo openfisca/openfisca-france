@@ -1,7 +1,7 @@
 description: Plafond annuel pour une personne seule de la Couverture Maladie Universelle (CMU)
 values:
   2003-07-01:
-    value: 6798.0
+    value: 6798
   2004-07-01:
     value: 6913.57
   2005-07-01:
@@ -27,21 +27,21 @@ values:
   2016-04-01:
     value: 8653.16
   2017-04-01:
-    value: 8723.0
+    value: 8723
   2018-04-01:
     value: 8810.23
   2019-04-01:
-    value: 8951.0
+    value: 8951
   2021-04-01:
-    value: 9041.0
+    value: 9041
 metadata:
   ux_name: Plafond annuel
   unit: currency
-  last_review: 2021-04-01
   reference:
-    2021-04-01:
-      title: Arrêté du 29/03/2021, art. 1
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043306326
     2019-04-01:
-      title: Arrêté du 20/03/2019, art. 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000038260960
+      title: Arrêté du 20/03/2019, art. 1
+    2021-04-01:
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043306326
+      title: Arrêté du 29/03/2021, art. 1
+  last_review: "2021-04-01"

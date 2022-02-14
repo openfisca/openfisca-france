@@ -1,10 +1,10 @@
 description: Cotisations employeur du régime d'assurance maladie
 metadata:
   ux_name: Barème employeur
+  description_en: SSCs of the sickness scheme
   order:
   - maladie
-  description_en: SSCs of the sickness scheme
-documentation: |
+documentation: |-
   Le taux réduit sous 2,5 SMIC est codé dans reductions_cotisations_sociales.alleg_gen.
   Au lieu de calculer le taux réduit, on calcule la cotisation normale et on déduit cet allègement.
   Les taux normaux et réduits ici sont issus de l'harmonisation avec l'IPP

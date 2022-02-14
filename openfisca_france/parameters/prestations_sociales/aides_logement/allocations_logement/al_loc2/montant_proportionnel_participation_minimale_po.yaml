@@ -3,14 +3,15 @@ values:
   2001-01-01:
     value: 0.085
 metadata:
+  description_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: p0_tx
   unit: /1
   reference:
-    2001-07-01: Arrêté du 31/07/2001
+    2001-07-01:
+      title: Arrêté du 31/07/2001
   official_journal_date:
-    2001-07-01: 2001-08-02
+    2001-07-01: "2001-08-02"
   notes:
-    2001-01-01: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
-  description_en: Parameters for the rental sector (after the 2001 reform)
-documentation: |
-  Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2
+    2001-01-01:
+    - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
+documentation: "Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2"

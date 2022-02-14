@@ -1,6 +1,7 @@
 description: Taux de participation personnel familial (TF) (après la réforme de 2001) des Allocations Logement (AL)
 metadata:
   ux_name: TF
+  description_en: Parameters for the rental sector (after the 2001 reform)
   order:
   - personnes_isolees
   - couples_sans_enfant
@@ -9,4 +10,3 @@ metadata:
   - personnes_seules_couples_avec_3_enfants
   - personnes_seules_couples_avec_4_enfants
   - variation_tf_par_enfant_supplementaire
-  description_en: Parameters for the rental sector (after the 2001 reform)

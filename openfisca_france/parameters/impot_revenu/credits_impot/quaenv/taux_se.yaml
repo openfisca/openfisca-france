@@ -1,5 +1,4 @@
 description: Taux (SE)
-unit: /1
 values:
   2009-01-01:
     value: 0.5
@@ -9,3 +8,5 @@ values:
     value: 0.17
   2013-01-01:
     value: null
+metadata:
+  unit: /1

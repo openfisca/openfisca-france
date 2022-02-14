@@ -6,4 +6,5 @@ metadata:
   ux_name: 1er échelon
   unit: currency
   reference:
-    2021-01-01: https://www.probtp.com/part/apprenti/aide-permis.html
+    2021-01-01:
+      href: https://www.probtp.com/part/apprenti/aide-permis.html

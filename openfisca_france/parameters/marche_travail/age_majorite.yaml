@@ -10,10 +10,13 @@ metadata:
   ux_name: Âge majorité
   unit: year
   reference:
-    1579-01-01: Ordonnance de Blois
-    1792-09-20: Décret du 20 septembre 1792 de la première république
-    1974-07-05: 
-      - title: Loi n°74-631
-      - title: https://fr.wikipedia.org/wiki/Majorité_civile_en_France#Historique
+    1579-01-01:
+      title: Ordonnance de Blois
+    1792-09-20:
+      title: Décret du 20 septembre 1792 de la première république
+    1974-07-05:
+    - title: Loi n°74-631
+    - title: https://fr.wikipedia.org/wiki/Majorité_civile_en_France#Historique
   notes:
-    1579-01-01: Date et mois approximatifs
+    1579-01-01:
+    - title: Date et mois approximatifs

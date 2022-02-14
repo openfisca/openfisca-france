@@ -1,5 +1,4 @@
 description: Taux de la réduction d'impôt
-unit: /1
 values:
   1988-01-01:
     value: 0.5
@@ -9,3 +8,5 @@ values:
     value: 0.66
   2005-01-01:
     value: 0.75
+metadata:
+  unit: /1

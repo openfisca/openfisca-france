@@ -1,10 +1,9 @@
 description: Multiple pour un couple, pour passer du montant journalier à taux plein au plafond de ressources mensuel de l'allocation de solidarité spécifique (ASS)
 values:
   2005-01-01:
-    value: 110.0
+    value: 110
 metadata:
   ux_name: Multiple couple
-  unit: /1
-  reference:
   description_en: Special UI scheme
-documentation: |
+  unit: /1
+documentation: ""
