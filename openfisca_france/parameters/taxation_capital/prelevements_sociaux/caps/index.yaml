@@ -1,3 +1,8 @@
+description: Contributions additionnelles au prélèvement social (CAPS) sur les revenus du capital
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  ux_name:
+  order:
+  - revenus_du_patrimoine
+  - produits_de_placement
+  - rsa
+  description_en: Other social levies on financial income
