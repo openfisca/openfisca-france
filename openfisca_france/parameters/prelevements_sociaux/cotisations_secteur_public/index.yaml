@@ -3,7 +3,6 @@ metadata:
   ux_name: Cotisations fonction publique
   order:
   - mmid
-  - rp
   - retraite
   - rafp
   - cnracl
