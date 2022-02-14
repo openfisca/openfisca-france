@@ -1,6 +1,6 @@
-description: Contribution additionnelle solidarité autonomie (pensions de retraites,
-  pré-retraites et invalidité)
-unit: /1
+description: Contribution additionnelle solidarité autonomie (pensions de retraites, pré-retraites et invalidité)
 values:
   2013-04-01:
     value: 0.003
+metadata:
+  unit: /1

@@ -6,4 +6,5 @@ metadata:
   ux_name: Âge max
   unit: year
   reference:
-    2016-01-01: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#1
+    2016-01-01:
+      href: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#1

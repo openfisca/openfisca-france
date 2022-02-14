@@ -1,6 +1,7 @@
 description: Cotisation de sécurité sociale (SS) pour les assurés actifs, branche maladie, maternité, invalidité, décès, Artisans-Commerçants
 metadata:
   ux_name: Assurés actifs
+  description_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
   order:
   - toute_remuneration
   - sous_pss
@@ -10,4 +11,3 @@ metadata:
   - dela_70_pss_1
   - entre_11_5_pss_2
   - dela_5_pss
-  description_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)

@@ -1,20 +1,19 @@
 description: Année 2 de l'accord 1 des aides incitatives à la RTT (Aubry I) (1998-2006) des réductions de cotisation sociales
 values:
   1998-07-01:
-    value: 8000.0
+    value: 8000
   1999-07-01:
-    value: 6000.0
+    value: 6000
   2001-01-01:
-    value: 5000.0
+    value: 5000
   2002-01-01:
     value: null
 metadata:
   ux_name: Année 2
-  unit: currency
-  last_review:
-    2002-01-01
   description_en: Incentives to the reduction of worked time ("RTT") (Aubry I)
-documentation: |
+  unit: currency
+  last_review: "2002-01-01"
+documentation: |-
   Notes :
   La date d'effet correspond ici à la date de signature de l'accord de réduction du temps de travail.
   Le dispositif Aubry I accorde des réductions forfaitaires de cotisations, dont le montant annuel par salarié varie selon la présence d'un accord de réduction du temps de travail, l'importance de cette réduction et la nature de l'accord.

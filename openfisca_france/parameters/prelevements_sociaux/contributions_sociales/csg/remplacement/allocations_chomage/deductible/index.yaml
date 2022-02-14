@@ -2,6 +2,5 @@ description: Contribution Sociale Généralisée (CSG) déductible sur les alloc
 metadata:
   ux_name: CSG déductible
   order:
-    - taux_plein
-    - taux_reduit
-  description_en:
+  - taux_plein
+  - taux_reduit

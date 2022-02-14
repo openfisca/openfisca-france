@@ -1,11 +1,13 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
 values:
   1978-01-01:
-    value: 600.0
+    value: 600
   1983-01-01:
-    value: 1000.0
+    value: 1000
   2001-01-01:
-    value: 150.0
+    value: 150
   2005-01-01:
     value: null
+metadata:
+  unit: currency
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

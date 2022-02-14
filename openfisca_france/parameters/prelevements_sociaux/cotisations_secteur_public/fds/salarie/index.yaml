@@ -1,10 +1,10 @@
 description: Cotisations salarié au Fonds de solidarité (FDS) (1982-2017) spécifiques à la fonction publique
 metadata:
   ux_name: Salarié
+  description_en: Contributions to the Solidarity Fund (FDS)
   order:
   - solidarite
   - seuil_d_assujettissement
   - pt_ind
   - ind_maj_ref
   - traitement_brut_annuel
-  description_en: Contributions to the Solidarity Fund (FDS)

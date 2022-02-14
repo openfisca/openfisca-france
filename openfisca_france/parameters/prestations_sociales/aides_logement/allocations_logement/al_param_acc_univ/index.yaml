@@ -1,6 +1,7 @@
 description: Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire, aides pour le logement (APL)
 metadata:
   ux_name: Paramètres d'accession
+  description_en: Parameters for new home-buyers and students residences
   order:
   - constante_coefficient_k
   - multiplicateur_n_dans_formule_k
@@ -15,4 +16,3 @@ metadata:
   - majoration_loyer_minimum_lo
   - intervalles_ressources_consideres
   - montant_forfaitaire_mf0
-  description_en: Parameters for new home-buyers and students residences

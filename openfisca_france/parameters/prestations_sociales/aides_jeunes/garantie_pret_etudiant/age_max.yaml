@@ -1,8 +1,10 @@
 description: Âge maximum jusqu'auquel une personne peut prétendre à la garantie de l'État au prêt étudiant, inclusif
 values:
-  2020-06-08: 27
+  2020-06-08:
+    value: 27
 metadata:
   ux_name: Âge maximum
   unit: year
-  reference: 
-    2020-06-08: https://www.service-public.fr/particuliers/vosdroits/F986
+  reference:
+    2020-06-08:
+      href: https://www.service-public.fr/particuliers/vosdroits/F986

@@ -6,6 +6,6 @@ metadata:
   ux_name: Hors Île-de-France
   unit: currency
   reference:
-    2018-06-19: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
-documentation: |
-  Autres refs: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
+    2018-06-19:
+      href: https://www.senat.fr/questions/base/2018/qSEQ180504798.html
+documentation: "Autres refs: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13"

@@ -4,12 +4,13 @@ values:
     value: 0.015
 metadata:
   ux_name: Taux employeur
+  description_en: Death contribution - executives
   ipp_csv_id: deces_p_0_1
   unit: /1
   reference:
-    1948-01-01: Convention AGIRC du 14/03/1947, art. 7.
-  description_en: Death contribution - executives
-documentation: |
+    1948-01-01:
+      title: Convention AGIRC du 14/03/1947, art. 7.
+documentation: |-
   Notes :
   (i) Il s'agit d'une cotisation sociale patronale dite "obligatoire" ; en cas de défaut, l'employeur doit alors aux ayants droit du cadre décédé une somme égale à trois fois le plafond annuel des cotisations sociales au moment du décès.
   (ii) Pour être en conformité avec la convention collective nationale des cadres (art 7 CCN 1947), les entreprises doivent obligatoirement souscrire au profit de l'ensemble des salariés cadres, un régime de prévoyance collective

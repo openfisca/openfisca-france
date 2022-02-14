@@ -1,4 +1,6 @@
-reference: ipp
 values:
   1988-07-01:
-    value: 3.0
+    value: 3
+metadata:
+  reference:
+    title: ipp

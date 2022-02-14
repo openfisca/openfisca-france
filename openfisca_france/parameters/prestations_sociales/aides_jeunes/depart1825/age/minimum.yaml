@@ -5,5 +5,6 @@ values:
 metadata:
   ux_name: Minimum
   unit: year
-  reference: 
-    2014-09-05: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans
+  reference:
+    2014-09-05:
+      href: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans

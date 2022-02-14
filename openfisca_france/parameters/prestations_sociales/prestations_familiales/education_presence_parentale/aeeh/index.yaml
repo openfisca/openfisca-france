@@ -1,9 +1,9 @@
 description: Conditions et montants de l'Allocation d'éducation de l'enfant handicapé (AEEH)
 metadata:
   ux_name: AEEH
+  description_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   order:
   - age_maximum_enfant
   - base
   - complement_allocation
   - majoration_parent_isole
-  description_en: "Disabled-child education allowance (AEEH): Conditions and amounts"

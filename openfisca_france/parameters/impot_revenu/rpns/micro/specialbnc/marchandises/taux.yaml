@@ -1,5 +1,4 @@
 description: Taux
-unit: /1
 values:
   1991-01-01:
     value: 0.5
@@ -9,3 +8,5 @@ values:
     value: 0.72
   2006-01-01:
     value: 0.71
+metadata:
+  unit: /1

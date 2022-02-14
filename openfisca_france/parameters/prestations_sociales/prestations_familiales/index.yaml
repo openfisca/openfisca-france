@@ -1,6 +1,7 @@
 description: Prestations familiales
 metadata:
   ux_name: Familiales
+  description_en: Family allowances
   order:
   - def_pac
   - def_biactif
@@ -9,4 +10,3 @@ metadata:
   - petite_enfance
   - education_presence_parentale
   - logement_cadre_vie
-  description_en: Family allowances

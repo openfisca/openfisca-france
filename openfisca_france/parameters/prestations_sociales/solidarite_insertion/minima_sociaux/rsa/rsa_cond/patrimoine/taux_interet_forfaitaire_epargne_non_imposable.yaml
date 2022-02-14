@@ -2,5 +2,5 @@ description: Taux d'intérêt forfaitaire appliqué à l'épargne générant des
 values:
   2009-01-01:
     value: 0.03
-metadata: 
+metadata:
   unit: /1

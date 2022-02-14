@@ -4,8 +4,9 @@ values:
     value: 789
 metadata:
   ux_name: Age limite
+  description_en: Special UI scheme
   unit: month
   reference:
-    1984-01-01: https://www.service-public.fr/particuliers/vosdroits/F12484
-  description_en: Special UI scheme
-documentation: |
+    1984-01-01:
+      href: https://www.service-public.fr/particuliers/vosdroits/F12484
+documentation: ""

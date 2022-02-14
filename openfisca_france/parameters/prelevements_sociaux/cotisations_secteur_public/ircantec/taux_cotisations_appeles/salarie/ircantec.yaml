@@ -1,12 +1,15 @@
 description: Taux de cotisation appelés des cotisations salarié à la Retraite complémentaire des agents non titulaires de la Fonction publique et des élus locaux (IRCANTEC)
 brackets:
-- base:
+- threshold:
+    1971-01-01:
+      value: 0
+  base:
     1971-01-01:
       value: 0.6
     1983-01-01:
       value: 0.8
     1988-01-01:
-      value: 1.0
+      value: 1
     1989-01-01:
       value: 1.09
     1991-04-01:
@@ -14,42 +17,42 @@ brackets:
     1992-01-01:
       value: 1.25
   rate:
-    2017-01-01:
-      value: 0.028
-    2016-01-01:
-      value: 0.0272
-    2015-01-01:
-      value: 0.0264
-    2014-01-01:
-      value: 0.0254
-    2013-01-01:
-      value: 0.0245
-    2012-01-01:
-      value: 0.0235
-    2011-01-01:
-      value: 0.02275
-    1992-01-01:
-      value: 0.0225
-    1991-04-01:
-      value: 0.021599999999999998
-    1989-01-01:
-      value: 0.01962
-    1988-01-01:
-      value: 0.014
-    1983-01-01:
-      value: 0.011200000000000002
     1971-01-01:
       value: 0.0084
-  threshold:
+    1983-01-01:
+      value: 0.011200000000000002
+    1988-01-01:
+      value: 0.014
+    1989-01-01:
+      value: 0.01962
+    1991-04-01:
+      value: 0.021599999999999998
+    1992-01-01:
+      value: 0.0225
+    2011-01-01:
+      value: 0.02275
+    2012-01-01:
+      value: 0.0235
+    2013-01-01:
+      value: 0.0245
+    2014-01-01:
+      value: 0.0254
+    2015-01-01:
+      value: 0.0264
+    2016-01-01:
+      value: 0.0272
+    2017-01-01:
+      value: 0.028
+- threshold:
     1971-01-01:
-      value: 0.0
-- base:
+      value: 1
+  base:
     1971-01-01:
       value: 0.6
     1983-01-01:
       value: 0.8
     1988-01-01:
-      value: 1.0
+      value: 1
     1989-01-01:
       value: 1.09
     1991-04-01:
@@ -57,101 +60,102 @@ brackets:
     1992-01-01:
       value: 1.25
   rate:
-    2017-01-01:
-      value: 0.0695
-    2016-01-01:
-      value: 0.0675
-    2015-01-01:
-      value: 0.0658
-    2014-01-01:
-      value: 0.0638
-    2013-01-01:
-      value: 0.0623
-    2012-01-01:
-      value: 0.061000000000000006
-    2011-01-01:
-      value: 0.06
+    1971-01-01:
+      value: null
     1992-01-01:
       value: 0.059500000000000004
-    1971-01-01:
-      value: null
-  threshold:
-    1971-01-01:
-      value: 1.0
-- rate:
-    1992-01-01:
-      value: null
-    1991-04-01:
-      value: 0.057120000000000004
-    1989-01-01:
-      value: 0.051884000000000007
-    1988-01-01:
-      value: 0.0425
-    1983-01-01:
-      value: 0.034
-    1971-01-01:
-      value: 0.025500000000000002
-  threshold:
+    2011-01-01:
+      value: 0.06
+    2012-01-01:
+      value: 0.061000000000000006
+    2013-01-01:
+      value: 0.0623
+    2014-01-01:
+      value: 0.0638
+    2015-01-01:
+      value: 0.0658
+    2016-01-01:
+      value: 0.0675
+    2017-01-01:
+      value: 0.0695
+- threshold:
     1971-01-01:
       value: 4.75
     1992-01-01:
-      value: 8.0
+      value: 8
+  rate:
+    1971-01-01:
+      value: 0.025500000000000002
+    1983-01-01:
+      value: 0.034
+    1988-01-01:
+      value: 0.0425
+    1989-01-01:
+      value: 0.051884000000000007
+    1991-04-01:
+      value: 0.057120000000000004
+    1992-01-01:
+      value: null
 metadata:
   ux_name: Contribution salarié
+  description_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
   ipp_csv_id:
     rate: ircantec_s_0_1, ircantec_s_1_8, ircantec_s_1_4_75
-  threshold_unit: PSS
-  rate_unit: /1
-  last_review: 2021-08-24
   reference:
-    2017-01-01:
-      title: Décret 2008-996 du 23/09/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
-    2016-01-01:
-      title: Décret 2008-996 du 23/09/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
-    2015-01-01:
-      title: Décret 2008-996 du 23/09/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
-    2014-01-01:
-      title: Décret 2008-996 du 23/09/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
-    2013-01-01:
-      title: Décret 2008-996 du 23/09/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
-    2012-01-01:
-      title: Décret 2008-996 du 23/09/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
-    2011-01-01:
-      title: Décret 2008-996 du 23/09/2008
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
-    1992-01-01: Arrêté du 30/12/1991
-    1991-04-01: Arrêté du 28/03/1991
-    1989-01-01:
-    - Décret 88-1248 du 30/12/1988
-    - Arrêté du 30/12/1988
-    1988-01-01: Arrêté du 17/12/1987
-    1983-01-01: Arrêté du 21/12/1982
     1971-01-01:
-    - Arrêté du 14/01/1971
-    - title: Décret 70-1277 du 23/12/1970
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000306984
+    - title: Arrêté du 14/01/1971
+    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000306984
+      title: Décret 70-1277 du 23/12/1970
+    1983-01-01:
+      title: Arrêté du 21/12/1982
+    1988-01-01:
+      title: Arrêté du 17/12/1987
+    1989-01-01:
+    - title: Décret 88-1248 du 30/12/1988
+    - title: Arrêté du 30/12/1988
+    1991-04-01:
+      title: Arrêté du 28/03/1991
+    1992-01-01:
+      title: Arrêté du 30/12/1991
+    2011-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+      title: Décret 2008-996 du 23/09/2008
+    2012-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+      title: Décret 2008-996 du 23/09/2008
+    2013-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+      title: Décret 2008-996 du 23/09/2008
+    2014-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+      title: Décret 2008-996 du 23/09/2008
+    2015-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+      title: Décret 2008-996 du 23/09/2008
+    2016-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+      title: Décret 2008-996 du 23/09/2008
+    2017-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019509543
+      title: Décret 2008-996 du 23/09/2008
   official_journal_date:
-    2017-01-01: 2008-09-24
-    2016-01-01: 2008-09-24
-    2015-01-01: 2008-09-24
-    2014-01-01: 2008-09-24
-    2013-01-01: 2008-09-24
-    2012-01-01: 2008-09-24
-    2011-01-01: 2008-09-24
-    1992-01-01: 1992-01-03
-    1991-04-01: 1991-03-30
-    1989-01-01: 1989-01-03
-    1988-01-01: 1987-12-28
-    1983-01-01: 1982-12-29
     1971-01-01: 1971-01-19; 1970-12-30
-  description_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
-documentation: |
+    1983-01-01: "1982-12-29"
+    1988-01-01: "1987-12-28"
+    1989-01-01: "1989-01-03"
+    1991-04-01: "1991-03-30"
+    1992-01-01: "1992-01-03"
+    2011-01-01: "2008-09-24"
+    2012-01-01: "2008-09-24"
+    2013-01-01: "2008-09-24"
+    2014-01-01: "2008-09-24"
+    2015-01-01: "2008-09-24"
+    2016-01-01: "2008-09-24"
+    2017-01-01: "2008-09-24"
+  last_review: "2021-08-24"
+  rate_unit: /1
+  threshold_unit: PSS
+documentation: |-
   Notes :
   L'IRCANTEC est le régime de retraite complémentaire des non-titulaires de la fonction publique.
   Les non-titulaires versent leurs cotisations pour leurs avantages de retraite de base au régime général (CNAV).
@@ -171,4 +175,3 @@ documentation: |
 
   Les taux de cotisation appelés sont utilisés pour le calcul des cotisations. Les taux de cotisation théoriques sont utilisés pour le calcul des points.
   Les taux de cotisation appelés se calculent en appliquant le taux d'appel aux taux de cotisation théoriques.
-

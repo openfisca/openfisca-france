@@ -1,6 +1,8 @@
 description: Taux d'abattement DOM - Guadeloupe, Martinique, Réunion
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
 values:
   2001-01-01:
-    value: 0.30
+    value: 0.3
+metadata:
+  unit: currency
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

@@ -1,20 +1,21 @@
 description: Taux réduit de la Contribution Sociale Généralisée (CSG) imposable sur les revenus d'activité
-unit: /1
 values:
   1997-01-01:
-    value: 0.0
+    value: 0
 metadata:
   ux_name: Taux réduit
-  last_review:
-    2021-07-22
-  reference:
-    1997-01-01: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
-  official_journal_date:
-    1997-01-01: 1996-12-29
-  notes:
-    1991-02-01: Une circulaire ministérielle du 16/01/1991 relative à la mise en œuvre de la CSG fournit des indications sur les assiettes et les exonérations.
   description_en: CSG - rates on work incomes
-documentation: |
+  unit: /1
+  reference:
+    1997-01-01:
+      title: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
+  official_journal_date:
+    1997-01-01: "1996-12-29"
+  notes:
+    1991-02-01:
+    - title: Une circulaire ministérielle du 16/01/1991 relative à la mise en œuvre de la CSG fournit des indications sur les assiettes et les exonérations.
+  last_review: "2021-07-22"
+documentation: |-
   Notes :
   L'art. 2.III de la loi 93-1352 publiée au JO le 30/12/1993 (LF pour 1994) a annulé la déductibilité prévue et a donc empêché l'application de la déductibilité de la CSG pour les revenus 1993.
   (ii) La mise en place de la CSG a été accompagnée d'une baisse de la cotisation vieillesse et d'une remise forfaitaire. Voir feuille "CNAV".

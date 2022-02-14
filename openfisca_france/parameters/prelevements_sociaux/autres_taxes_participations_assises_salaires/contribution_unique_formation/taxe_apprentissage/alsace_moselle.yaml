@@ -4,17 +4,18 @@ values:
     value: 0.0044
 metadata:
   ux_name: En Alsace-Moselle
+  description_en: Unique employer's participation to lifelong professional training and apprenticeship
   unit: /1
   reference:
     2019-01-01:
-      title: Loi 2018-771 du 5/09/2018, art. 37
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037368540&cidTexte=JORFTEXT000037367660
+      title: Loi 2018-771 du 5/09/2018, art. 37
   official_journal_date:
-    2019-01-01: 2018-09-06
+    2019-01-01: "2018-09-06"
   notes:
-    2019-01-01: Nouvelle contribution unique remplaçant la PEFPC et la taxe d'apprentissage
-  description_en: Unique employer's participation to lifelong professional training and apprenticeship
-documentation: |
+    2019-01-01:
+    - title: Nouvelle contribution unique remplaçant la PEFPC et la taxe d'apprentissage
+documentation: |-
   Notes :
   La loi 2018-771 du 5/09/2018 pour la liberté de choisir son avenir professionnel instaure une contribution unique à la formation professionnelle et à l'alternance. Celle-ci vient remplacer la PEFPC et la taxe d'apprentissage. En 2019, les taux sont identiques.
   La contribution supplémentaire à l'apprentissage et le financement du compte personnel de formation par les employeurs sur les contrats CDD font toujours l'objet de prélèvements obligatoires séparés (voir les barèmes Participation employeur à la formation professionnelle continue (PEFPC) et Taxe d'apprentissage).

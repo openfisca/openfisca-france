@@ -1,6 +1,7 @@
 description: Cotisations de Sécurité sociale (SS) du régime général
 metadata:
   ux_name: Cotisations de Sécurité sociale du régime général
+  description_en: Social security contributions (SSCs)
   order:
   - ss
   - mmid
@@ -18,4 +19,3 @@ metadata:
   - red_m
   - red_j
   - css_chom
-  description_en: Social security contributions (SSCs)

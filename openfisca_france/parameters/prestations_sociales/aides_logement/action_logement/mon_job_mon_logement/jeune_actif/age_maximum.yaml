@@ -1,4 +1,4 @@
-description: Âge maximum pour lequel l'individu est considéré comme jeune actif pour l'aide mon job mon logement en tant que jeune actif. 
+description: Âge maximum pour lequel l'individu est considéré comme jeune actif pour l'aide mon job mon logement en tant que jeune actif.
 values:
   2021-02-18:
     value: 25
@@ -6,4 +6,5 @@ metadata:
   ux_name: Âge maximum
   unit: year
   reference:
-    2021-02-18: https://www.actionlogement.fr/aide-mon-job-mon-logement
+    2021-02-18:
+      href: https://www.actionlogement.fr/aide-mon-job-mon-logement

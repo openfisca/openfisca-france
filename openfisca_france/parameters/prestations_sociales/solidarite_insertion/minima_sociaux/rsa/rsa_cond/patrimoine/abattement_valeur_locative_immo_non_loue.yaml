@@ -2,5 +2,5 @@ description: Abattement appliqué sur la valeur locative des biens immobiliers n
 values:
   2009-01-01:
     value: 0.5
-metadata: 
+metadata:
   unit: /1

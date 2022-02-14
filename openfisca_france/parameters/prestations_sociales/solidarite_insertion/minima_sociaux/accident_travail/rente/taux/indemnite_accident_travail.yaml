@@ -1,72 +1,72 @@
-description: Montant de l'indemnité en capital attribuée à la victime d'un accident du travail 
+description: Montant de l'indemnité en capital attribuée à la victime d'un accident du travail
 brackets:
-  - threshold:
-      2016-04-01:
-        value: 0
-    amount:
-      2016-04-01:
-        value: 0
-  - threshold:
-      2016-04-01:
-        value: 1
-    amount:
-      2016-04-01:
-        value: 416.47
-  - threshold:
-      2016-04-01:
-        value: 2
-    amount:
-      2016-04-01:
-        value: 676.90
-  - threshold:
-      2016-04-01:
-        value: 3
-    amount:
-      2016-04-01:
-        value: 989.15
-  - threshold:
-      2016-04-01:
-        value: 4
-    amount:
-      2016-04-01:
-        value: 1561.20
-  - threshold:
-      2016-04-01:
-        value: 5
-    amount:
-      2016-04-01:
-        value: 1977.76
-  - threshold:
-      2016-04-01:
-        value: 6
-    amount:
-      2016-04-01:
-        value: 2446.16
-  - threshold:
-      2016-04-01:
-        value: 7
-    amount:
-      2016-04-01:
-        value: 2966.40
-  - threshold:
-      2016-04-01:
-        value: 8
-    amount:
-      2016-04-01:
-        value: 3539.11
-  - threshold:
-      2016-04-01:
-        value: 9
-    amount:
-      2016-04-01:
-        value: 4163.61
-  - threshold:
-      2016-04-01:
-        value: 10
-    amount:
-      2016-04-01:
-        value: 0
+- threshold:
+    2016-04-01:
+      value: 0
+  amount:
+    2016-04-01:
+      value: 0
+- threshold:
+    2016-04-01:
+      value: 1
+  amount:
+    2016-04-01:
+      value: 416.47
+- threshold:
+    2016-04-01:
+      value: 2
+  amount:
+    2016-04-01:
+      value: 676.9
+- threshold:
+    2016-04-01:
+      value: 3
+  amount:
+    2016-04-01:
+      value: 989.15
+- threshold:
+    2016-04-01:
+      value: 4
+  amount:
+    2016-04-01:
+      value: 1561.2
+- threshold:
+    2016-04-01:
+      value: 5
+  amount:
+    2016-04-01:
+      value: 1977.76
+- threshold:
+    2016-04-01:
+      value: 6
+  amount:
+    2016-04-01:
+      value: 2446.16
+- threshold:
+    2016-04-01:
+      value: 7
+  amount:
+    2016-04-01:
+      value: 2966.4
+- threshold:
+    2016-04-01:
+      value: 8
+  amount:
+    2016-04-01:
+      value: 3539.11
+- threshold:
+    2016-04-01:
+      value: 9
+  amount:
+    2016-04-01:
+      value: 4163.61
+- threshold:
+    2016-04-01:
+      value: 10
+  amount:
+    2016-04-01:
+      value: 0
 metadata:
   ux_name: Montant indemnité
-  type: single_amount
   amount_unit: currency
+  type: single_amount

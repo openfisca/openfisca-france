@@ -1,5 +1,4 @@
 description: Taux
-unit: /1
 values:
   2010-01-01:
     value: 0.25
@@ -7,3 +6,5 @@ values:
     value: 0.22
   2012-01-01:
     value: 0.18
+metadata:
+  unit: /1

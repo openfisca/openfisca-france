@@ -1,21 +1,22 @@
 description: Abattement notamment pour les associations à but non lucratif
-unit: currency
 values:
   2002-01-01:
-    value: 5185.0
+    value: 5185
   2007-01-01:
-    value: 5651.0
+    value: 5651
   2008-01-01:
-    value: 5724.0
+    value: 5724
   2009-01-01:
-    value: 5890.0
+    value: 5890
   2010-01-01:
-    value: 5913.0
+    value: 5913
   2011-01-01:
-    value: 6002.0
+    value: 6002
   2014-01-01:
-    value: 20161.0
+    value: 20161
   2015-01-01:
-    value: 20262.0
+    value: 20262
   2016-01-01:
-    value: 20283.0
+    value: 20283
+metadata:
+  unit: currency

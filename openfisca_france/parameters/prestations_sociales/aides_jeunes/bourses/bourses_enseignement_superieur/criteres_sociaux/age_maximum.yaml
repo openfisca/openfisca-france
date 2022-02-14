@@ -8,5 +8,7 @@ metadata:
   ux_name: Âge max
   unit: year
   reference:
-    2007-03-20: https://www.education.gouv.fr/bo/2007/13/MENS0700649C.htm
-    2020-06-08: https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm
+    2007-03-20:
+      href: https://www.education.gouv.fr/bo/2007/13/MENS0700649C.htm
+    2020-06-08:
+      href: https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm

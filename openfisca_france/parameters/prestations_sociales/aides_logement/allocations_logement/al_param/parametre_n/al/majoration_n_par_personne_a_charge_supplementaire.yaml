@@ -1,6 +1,8 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
   1986-01-01:
     value: 0.4
   1988-07-01:
     value: 0.5
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
