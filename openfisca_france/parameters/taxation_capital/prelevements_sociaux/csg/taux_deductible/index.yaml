@@ -1,4 +1,7 @@
 description: Contribution Sociale Généralisée (CSG) déductible sur les revenus du capital
 metadata:
-  ux_name: CSG Déductible Revenus Capital
+  ux_name: CSG Déductible
+  order:
+  - revenus_du_patrimoine
+  - produits_de_placement
   description_en: CSG on financial income
