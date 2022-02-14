@@ -14,6 +14,7 @@ values:
     value: 0.068
 metadata:
   ux_name: Taux CSG déductible capital (patrimoine)
+  ipp_csv_id: tx_csg_ded_rk_patr
   description_en: CSG on financial income
   unit: /1
   reference:

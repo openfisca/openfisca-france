@@ -1,4 +1,7 @@
 description: Contribution au Remboursement de la Dette Sociale (CRDS) sur les revenus du capital
 metadata:
   ux_name: CRDS Revenus Capital
+  order:
+  - revenus_du_patrimoine
+  - produits_de_placement
   description_en: CRDS on financial income

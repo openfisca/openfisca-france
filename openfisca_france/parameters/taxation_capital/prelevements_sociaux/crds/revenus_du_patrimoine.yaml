@@ -1,4 +1,4 @@
-description: Taux de la Contribution au Remboursement de la Dette Sociale (CRDS) sur les revenus du capital (revenus du patrimoine)
+description: Taux sur les revenus du patrimoine de la Contribution au Remboursement de la Dette Sociale (CRDS) sur les revenus du capital
 values:
   1945-01-01:
     value: 0
@@ -8,6 +8,7 @@ values:
     value: 0.005
 metadata:
   ux_name: Taux CRDS capital revenus du patrimoine
+  ipp_csv_id: tx_crds_rk_patr
   description_en: CRDS on financial income
   unit: /1
   reference:

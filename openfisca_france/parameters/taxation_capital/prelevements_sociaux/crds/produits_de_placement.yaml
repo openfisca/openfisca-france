@@ -1,11 +1,12 @@
-description: Taux de la Contribution au Remboursement de la Dette Sociale (CRDS) sur les revenus du capital (produits de placement)
+description: Taux sur les produits de placement de la Contribution au Remboursement de la Dette Sociale (CRDS) sur les revenus du capital
 values:
   1990-01-01:
     value: null
   1996-02-01:
     value: 0.005
 metadata:
-  ux_name: Taux CRDS capital produits de placement
+  ux_name: Produits de placement
+  ipp_csv_id: tx_crds_rk_plac
   description_en: CRDS on financial income
   unit: /1
   reference:
