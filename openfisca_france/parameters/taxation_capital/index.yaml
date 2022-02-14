@@ -1,3 +1,6 @@
+description: Taxation sur les revenus financiers
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  ux_name: Taxation capital
+  order:
+  - prelevements_sociaux
+  description_en: Taxes on financial income
