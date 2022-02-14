@@ -1,6 +1,6 @@
 # Changelog
 
-### 109.0.2 [#1798](https://github.com/openfisca/openfisca-france/pull/1798)
+### 110.0.1 [#1798](https://github.com/openfisca/openfisca-france/pull/1798)
 
 * Changement mineur.
 * Périodes concernées : toutes.
@@ -8,6 +8,19 @@
   - `prelevements_sociaux/cotisations_secteur_public/retraite/taux_implicite`
 * Détails :
   - Retire des metadata erronées.
+
+# 110.0.0 [#1800](https://github.com/openfisca/openfisca-france/pull/1800)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+- `parameters/prestations_sociales/aides_jeunes`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline e93ad4fae07^..57530f03685e805 | grep "variable_name"
 
 ### 109.0.1 [#1797](https://github.com/openfisca/openfisca-france/pull/1797)
 

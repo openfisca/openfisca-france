@@ -1,0 +1,17 @@
+description: Part maximale du montant du séjour prise en charge pour les bénéficiaires de l'aide Départ 18-25
+values:
+  2014-09-05:
+    value: .50
+  2021-01-01:
+    value: .75
+  2021-06-02:
+    value: .90
+  2021-09-30:
+    value: .75
+metadata:
+  unit: /1
+  reference:
+    2014-09-05: https://www.ancv.com/sites/default/files/20140905_depart_1825.pdf
+    2021-01-01: https://programme-depart-1825.com
+    2021-06-02: https://depart1825.com/annonce-president-vacances/
+    2021-09-30: https://depart1825.com/annonce-president-vacances/

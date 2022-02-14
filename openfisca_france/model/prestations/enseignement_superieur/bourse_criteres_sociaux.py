@@ -307,8 +307,8 @@ class bourse_criteres_sociaux_points_de_charge_charges_familiale(Variable):
         nb_autre_enf_ens_sup = nb_enf_ens_sup - 1
 
         pts = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.points_de_charge.charges_familiales
-        pts_enf = (nb_enf_hors_ens_sup > 0) * nb_enf_hors_ens_sup * pts.points_par_enfant_a_charge
-        pts_ens_sup = (nb_autre_enf_ens_sup > 0) * nb_autre_enf_ens_sup * pts.points_par_enfant_a_charge_etudiant_enseignement_superieur
+        pts_enf = (nb_enf_hors_ens_sup > 0) * nb_enf_hors_ens_sup * pts.par_enfant_a_charge
+        pts_ens_sup = (nb_autre_enf_ens_sup > 0) * nb_autre_enf_ens_sup * pts.par_enfant_etudiant
         return pts_enf + pts_ens_sup
 
 

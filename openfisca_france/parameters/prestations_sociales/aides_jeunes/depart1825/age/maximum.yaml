@@ -1,0 +1,9 @@
+description: Condition d'âge maximum pour laquelle le séjour peut être pris en charge pour les bénéficiaires de l'aide Départ 18-25 pour les jeunes
+values:
+  2014-09-05:
+    value: 25
+metadata:
+  ux_name: Maximum
+  unit: year
+  reference: 
+    2014-09-05: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans
