@@ -1,4 +1,4 @@
-description: Taux de la Contribution Sociale Généralisée (CSG) sur les revenus du capital (produits de placement)
+description: Taux sur les produits de placement de la Contribution Sociale Généralisée (CSG) sur les revenus du capital
 values:
   1990-01-01:
     value: null
@@ -17,7 +17,7 @@ values:
   2019-01-01:
     value: 0.092
 metadata:
-  ux_name: Taux global CSG capital (produits de placement)
+  ux_name: Produits de placement
   description_en: CSG on financial income
   unit: /1
   reference:

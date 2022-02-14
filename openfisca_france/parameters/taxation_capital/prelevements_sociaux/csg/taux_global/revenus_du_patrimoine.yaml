@@ -1,4 +1,4 @@
-description: Taux de la Contribution Sociale Généralisée (CSG) sur les revenus du capital (produits de placement)
+description: Taux sur les revenus du patrimoine de la Contribution Sociale Généralisée (CSG) sur les revenus du capital
 values:
   1990-07-01:
     value: 0.011
@@ -15,7 +15,7 @@ values:
   2018-01-01:
     value: 0.092
 metadata:
-  ux_name: Taux global CSG capital (patrimoine)
+  ux_name: Revenus du patrimoine
   description_en: CSG and CRDS on financial income
   unit: /1
   reference:

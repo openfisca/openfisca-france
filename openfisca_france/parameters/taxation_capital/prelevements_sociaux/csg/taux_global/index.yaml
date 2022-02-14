@@ -1,0 +1,7 @@
+description: Taux global de Contribution Sociale Généralisée (CSG) sur les revenus du capital
+metadata:
+  ux_name: Taux global
+  order:
+  - revenus_du_patrimoine
+  - produits_de_placement
+  description_en: CSG on financial income
