@@ -1,5 +1,13 @@
 # Changelog
 
+### 110.0.3 [#1774](https://github.com/openfisca/openfisca-france/pull/1774)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters`.
+* Détails :
+  - Réorganisation automatique du contenu des paramètres OpenFisca
+
 ### 110.0.2 [#1799](https://github.com/openfisca/openfisca-france/pull/1799)
 
 * Amélioration technique.
