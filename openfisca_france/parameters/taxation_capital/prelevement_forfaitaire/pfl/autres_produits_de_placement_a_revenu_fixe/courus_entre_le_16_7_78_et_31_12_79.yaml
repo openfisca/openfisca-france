@@ -1,0 +1,13 @@
+description: Autres produits de placement à revenu fixe, courus entre le 16/07/78 et le 31/12/79, Comptes sur livrets, Créances, Dépôts, Cautionnement et comptes courants
+values:
+  1974-01-01:
+    value: 0.333
+  1979-07-01:
+    value: 0.4
+  2013-01-01:
+    value: 0.24
+metadata:
+  unit: /1
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+
