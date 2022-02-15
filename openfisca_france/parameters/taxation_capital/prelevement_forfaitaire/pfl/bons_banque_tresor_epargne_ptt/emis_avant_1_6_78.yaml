@@ -1,0 +1,10 @@
+description: Bons (émis avant le 01/06/78), de caisse des banques, du Trésor sur formules ou d'épargne des PTT
+values:
+  1974-01-01:
+    value: 0.333
+  2013-01-01:
+    value: 0.24
+metadata:
+  unit: /1
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

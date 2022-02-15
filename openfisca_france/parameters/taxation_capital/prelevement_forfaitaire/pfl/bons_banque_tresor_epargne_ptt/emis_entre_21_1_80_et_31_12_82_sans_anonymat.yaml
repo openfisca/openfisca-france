@@ -1,0 +1,10 @@
+description: Bons (émis entre le 21/01/80 et e 31/12/82 sans anonymat), de caisse des banques, du Trésor sur formules ou d'épargne des PTT
+values:
+  1980-01-01:
+    value: 0.38
+  2013-01-01:
+    value: 0.24
+metadata:
+  unit: /1
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
