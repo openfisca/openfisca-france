@@ -1,0 +1,22 @@
+description: titres_de_creances_negociables_billets_de_tresorerie_certificats_de_depots_negociables_bons_du_tresor_negociables_et_bons_des_institutions_financieres_specialisees
+values:
+  1974-01-01:
+    value: 0.333
+  1979-07-01:
+    value: 0.4
+  1986-01-01:
+    value: 0.32
+  1990-06-15:
+    value: 0.15
+  2004-01-01:
+    value: 0.16
+  2008-01-01:
+    value: 0.18
+  2011-01-01:
+    value: 0.19
+  2012-01-01:
+    value: 0.24
+metadata:
+  unit: /1
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
