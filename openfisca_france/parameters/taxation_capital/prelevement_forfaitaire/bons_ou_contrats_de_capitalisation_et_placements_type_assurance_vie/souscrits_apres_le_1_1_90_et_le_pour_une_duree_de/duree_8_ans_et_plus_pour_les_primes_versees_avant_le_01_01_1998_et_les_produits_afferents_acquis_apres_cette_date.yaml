@@ -1,0 +1,8 @@
+description: duree_8_ans_et_plus_pour_les_primes_versees_avant_le_01_01_1998_et_les_produits_afferents_acquis_apres_cette_date
+values:
+  1990-01-01:
+    value: 0
+metadata:
+  unit: /1
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

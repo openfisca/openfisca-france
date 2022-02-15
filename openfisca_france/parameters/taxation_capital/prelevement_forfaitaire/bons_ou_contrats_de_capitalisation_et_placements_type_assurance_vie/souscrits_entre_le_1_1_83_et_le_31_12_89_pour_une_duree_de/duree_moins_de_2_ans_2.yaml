@@ -1,0 +1,10 @@
+description: duree_moins_de_2_ans_2
+values:
+  1983-01-01:
+    value: 0.45
+  1998-01-01:
+    value: null
+metadata:
+  unit: /1
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

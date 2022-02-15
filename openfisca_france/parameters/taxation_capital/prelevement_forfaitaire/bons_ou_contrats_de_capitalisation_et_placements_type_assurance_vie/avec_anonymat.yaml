@@ -1,0 +1,11 @@
+description: Avec anonymat
+values:
+  1983-01-01:
+    value: 0.5
+  1999-04-01:
+    value: 0.6
+metadata:
+  ux_name: Avec anonymat
+  unit: /1
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
