@@ -9,7 +9,10 @@ values:
   1981-07-01:
     value: 0.39
   1986-01-01:
-    value: 0.41
+    value: 0.41 
+    last review: "22-02-15"
+    href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318/2022-02-15/
+    title: Article D521-1 point b
 metadata:
   ux_name: 3 et enfants supplémentaires
   description_en: "Family allowances (AF): General conditions and amount"
