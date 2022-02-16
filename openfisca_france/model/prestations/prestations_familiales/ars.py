@@ -1,3 +1,4 @@
+from numpy import logical_not as not_
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
@@ -36,14 +37,12 @@ class ars(Variable):
         #   - Exception : la fin de l'éligibilité à l'ARS intervient après 17 ans, lorsque cet âge est dépassé non pas au 31/12, mais au 15/09 de l'année de la rentrée scolaire. Condition moins restrictive. On ajoute les enfants dus à cette moindre restriction, sans prendre en compte la subtilité du 15/09 (on inclut les enfants n'ayant pas atteint 18 ans au 30/09)
         enf_primaire = nb_enf(famille, decembre, ars.age_entree_primaire, ars.age_entree_college - 1)
         enf_college = nb_enf(famille, decembre, ars.age_entree_college, ars.age_entree_lycee - 1)
-        enf_lycee_moins_18_ans_decembre = nb_enf(famille, decembre, ars.age_entree_lycee, ars.age_sortie_lycee-1)
+        enf_lycee_moins_18_ans_decembre = nb_enf(famille, decembre, ars.age_entree_lycee, ars.age_sortie_lycee - 1)
         age_mois_decembre_i = famille.members('age_mois', decembre)
         autonomie_financiere_i = famille.members('autonomie_financiere', decembre)
-        enf_lycee_eligible_18_ans_decembre_i = (age_mois_decembre_i <= 12*18 + 2 & age_mois_decembre_i >= 12*18 & not_(autonomie_financiere_i))
+        enf_lycee_eligible_18_ans_decembre_i = (age_mois_decembre_i <= 12 * 18 + 2 & age_mois_decembre_i >= 12 * 18 & not_(autonomie_financiere_i))
         enf_lycee_eligible_18_ans_decembre = famille.sum(enf_lycee_eligible_18_ans_decembre_i, role = Famille.ENFANT)
         enf_lycee = enf_lycee_moins_18_ans_decembre + enf_lycee_eligible_18_ans_decembre
-
-        arsnbenf = enf_primaire + enf_college + enf_lycee
 
         # Plafond en fonction du nb d'enfants A CHARGE (Cf. article R543)
         ars_plaf_res = ars.ars_plaf.plafond_ressources * (1 + af_nbenf * ars.ars_plaf.majoration_par_enf_supp)
