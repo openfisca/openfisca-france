@@ -4,6 +4,6 @@ metadata:
   order:
   - duree_moins_de_4_ans
   - duree_4_a_8_ans
-  - duree_6_ans_et_primes_avant_1998
-  - duree_6_ans_et_primes_apres_1998
+  - six_ans_primes_avant_98
+  - six_ans_primes_apres_98
   description_en: Levy in discharge on life insurance (1983 - 2017)
