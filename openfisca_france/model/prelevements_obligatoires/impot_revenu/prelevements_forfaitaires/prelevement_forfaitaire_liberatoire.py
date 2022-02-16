@@ -103,7 +103,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         pfl = -(
             (param_pfl_av.apres_le_1_1_90.duree_8_ans_et_produits_apres_1998
             * assurance_vie_pl_non_anonyme_plus8ans_depuis1990)
-            + (param_pfl_av.entre_1_1_83_et_31_12_89.six_ans_produit_apres_1998
+            + (param_pfl_av.entre_1_1_83_et_31_12_89.six_ans_produits_apres_98
             * assurance_vie_pl_non_anonyme_plus6ans_avant1990)
             + (param_pfl_av.apres_le_1_1_90.duree_moins_de_4_ans
             * assurance_vie_pl_non_anonyme_moins4ans_depuis1990)
