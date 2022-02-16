@@ -56,7 +56,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.pfl
 
         return -(
-            f2dh * param_pfl_av.souscrits_apres_le_1_1_90.duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5
+            f2dh * param_pfl_av.souscrits_apres_le_1_1_90.duree_8_ans_et_produits_apres_1998
             + f2ee * param_pfl.autres_produits_de_placement_a_revenu_fixe.courus_entre_le_1_1_95_et_apres
             )
 
@@ -73,7 +73,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         return -(
             f2da * param_pfl.dividendes
             + f2ee * param_pfl.autres_produits_de_placement_a_revenu_fixe.courus_entre_le_1_1_95_et_apres
-            + f2dh * param_pfl_av.souscrits_apres_le_1_1_90.duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5
+            + f2dh * param_pfl_av.souscrits_apres_le_1_1_90.duree_8_ans_et_produits_apres_1998
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -101,7 +101,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.pfl
 
         pfl = -(
-            (param_pfl_av.souscrits_apres_le_1_1_90.duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5
+            (param_pfl_av.souscrits_apres_le_1_1_90.duree_8_ans_et_produits_apres_1998
             * assurance_vie_pl_non_anonyme_plus8ans_depuis1990)
             + (param_pfl_av.souscrits_entre_1_1_83_et_31_12_89.duree_6_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5
             * assurance_vie_pl_non_anonyme_plus6ans_avant1990)
