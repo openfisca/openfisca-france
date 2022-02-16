@@ -113,7 +113,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
             * assurance_vie_pl_anonyme)
             + (param_pfl.produits_epargne_solidaire_partage
             * produit_epargne_solidaire)
-            + (param_pfl.produits_vers_etats_non_cooperatifs
+            + (param_pfl_av.produits_vers_etats_non_cooperatifs
             * produit_etats_non_cooperatif)
             )
 
