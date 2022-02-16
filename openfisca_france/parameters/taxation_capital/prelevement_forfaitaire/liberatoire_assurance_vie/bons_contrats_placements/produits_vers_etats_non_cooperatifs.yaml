@@ -1,11 +1,11 @@
-description: Prélèvement libératoire sur les Bons ou contrats de capitalisation et placements de même nature (assurance-vie), Produits issus d'Etats "non-coopératifs", lors du dénouement du contrat (1983 - 2017)
+description: Prélèvement libératoire sur les Bons ou contrats de capitalisation et placements de même nature (assurance-vie), Produits bénéficiant des personnes établies dans des Etats "non-coopératifs", lors du dénouement du contrat (1983 - 2017)
 values:
   2010-01-01:
     value: 0.5
   2013-01-01:
     value: 0.75
 metadata:
-  ux_name: Produits issus d'Etats "non-coopératifs"
+  ux_name: Produits bénéficiant des personnes établies dans des Etats "non-coopératifs"
   unit: /1
   reference:
     2018-01-01:
