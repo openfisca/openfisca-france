@@ -2,7 +2,7 @@ description: Prélèvement libératoire sur les Bons ou contrats de capitalisati
 metadata:
   ux_name: Souscrits entre le 1/1/83 et le 31/12/89
   order:
-  - duree_moins_de_4_ans
+  - duree_moins_de_2_ans
   - duree_4_a_8_ans
   - six_ans_primes_avant_98
   - six_ans_primes_apres_98
