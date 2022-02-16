@@ -52,7 +52,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         '''
         f2dh = foyer_fiscal('f2dh', period)
         f2ee = foyer_fiscal('f2ee', period)
-        param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.bons_ou_contrats_de_capitalisation_et_placements_type_assurance_vie
+        param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.liberatoire_assurance_vie.bons_ou_contrats_de_capitalisation_et_placements_type_assurance_vie
         param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.pfl
 
         return -(
@@ -67,7 +67,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         f2da = foyer_fiscal('f2da', period)
         f2dh = foyer_fiscal('f2dh', period)
         f2ee = foyer_fiscal('f2ee', period)
-        param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.bons_ou_contrats_de_capitalisation_et_placements_type_assurance_vie
+        param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.liberatoire_assurance_vie.bons_ou_contrats_de_capitalisation_et_placements_type_assurance_vie
         param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.pfl
 
         return -(
@@ -97,7 +97,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
         produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
 
-        param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.bons_ou_contrats_de_capitalisation_et_placements_type_assurance_vie
+        param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.liberatoire_assurance_vie.bons_ou_contrats_de_capitalisation_et_placements_type_assurance_vie
         param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.pfl
 
         pfl = -(

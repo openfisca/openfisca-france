@@ -1,0 +1,9 @@
+description: Prélèvement libératoire sur les revenus d'assurance vie (1983 - 2017)
+metadata:
+  ux_name: Prélèvement libératoire sur les revenus d'assurance vie 
+  order:
+    - souscrits_entre_1_1_83_31_12_89_une_duree
+    - souscrits_apres_1_1_90_une_duree
+    - avec_anonymat
+    - produits_beneficiant_personnes_etablies_dans_etat_non_cooperatif_6
+  description_en: Levy in discharge on life insurance (1983 - 2017)
