@@ -68,7 +68,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         f2dh = foyer_fiscal('f2dh', period)
         f2ee = foyer_fiscal('f2ee', period)
         param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.liberatoire_assurance_vie.bons_contrats_placements
-        param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.pfl
+        param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.liberatoire_taux_fixe
 
         return -(
             f2da * param_pfl.dividendes
