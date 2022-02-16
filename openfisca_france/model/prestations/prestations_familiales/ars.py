@@ -15,14 +15,14 @@ class ars(Variable):
         Allocation de rentrée scolaire brute de CRDS
         '''
         janvier = period.first_month
-        septembre = period.start.offset('first-of', 'year').offset(9, 'month').period('month')
-        decembre = period.start.offset('first-of', 'year').offset(12, 'month').period('month')
-        af_nbenf = famille('af_nbenf', septembre)
+        octobre = period.start.offset('first-of', 'year').offset(9, 'month').period('month')
+        decembre = period.start.offset('first-of', 'year').offset(11, 'month').period('month')
+        af_nbenf = famille('af_nbenf', octobre)
         base_ressources = famille('prestations_familiales_base_ressources', janvier)
-        ars = parameters(septembre).prestations_sociales.prestations_familiales.education_presence_parentale.ars
+        ars = parameters(octobre).prestations_sociales.prestations_familiales.education_presence_parentale.ars
         # TODO: convention sur la mensualisation
 
-        bmaf = parameters(septembre).prestations_sociales.prestations_familiales.bmaf.bmaf
+        bmaf = parameters(octobre).prestations_sociales.prestations_familiales.bmaf.bmaf
 
         # Condition sur l'âge
         # Art. R543-2 :
@@ -40,8 +40,10 @@ class ars(Variable):
         enf_lycee_moins_18_ans_decembre = nb_enf(famille, decembre, ars.ars_cond.age_entree_lycee, ars.ars_cond.age_sortie_lycee - 1)
         age_en_mois_decembre_i = famille.members('age_en_mois', decembre)
         autonomie_financiere_i = famille.members('autonomie_financiere', decembre)
-        enf_lycee_eligible_18_ans_decembre_i = (age_en_mois_decembre_i <= 12 * ars.ars_cond.age_sortie_lycee + 2 & age_en_mois_decembre_i >= 12 * ars.ars_cond.age_sortie_lycee & not_(autonomie_financiere_i))
-        enf_lycee_eligible_18_ans_decembre = famille.sum(enf_lycee_eligible_18_ans_decembre_i, role = Famille.ENFANT)
+        enf_lycee_eligible_18_ans_decembre = famille.sum(
+            ((age_en_mois_decembre_i <= 12 * ars.ars_cond.age_sortie_lycee + 2) * (age_en_mois_decembre_i >= 12 * ars.ars_cond.age_sortie_lycee) * not_(autonomie_financiere_i)),
+            role = Famille.ENFANT
+            )
         enf_lycee = enf_lycee_moins_18_ans_decembre + enf_lycee_eligible_18_ans_decembre
 
         # Plafond en fonction du nb d'enfants A CHARGE (Cf. article R543)
