@@ -54,8 +54,7 @@ class ars(Variable):
             + ars.ars_m.taux_lycee * enf_lycee
             )
 
-        # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
-        # ars_diff = (ars_plaf_res + arsbase - base_ressources) / arsnbenf
-        ars_montant = (arsnbenf > 0) * max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res) / max_(1, arsnbenf)))
+        # Montant de l'ARS, avec ARS différentielle si les ressources sont supérieures au plafond (voir art. R543-6-1 du CSS)
+        ars_montant = max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res)))
 
         return ars_montant * (ars_montant >= ars.montant_minimum_verse)
