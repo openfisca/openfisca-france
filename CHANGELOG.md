@@ -1,5 +1,14 @@
 # Changelog
 
+## 111.1.0 [#1806](https://github.com/openfisca/openfisca-france/pull/1806)
+
+* Évolution du système socio-fiscal. Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/prestations_familiales/ars.py`.
+* Détails :
+  - Corrige les conditions en termes d'âge des enfants. Avant, tous les enfants ayant 5 ans en septembre était comptés. Les enfants ayant 18 ans en septembre étaient aussi comptés (alors qu'éligibilité jusqu'à 17 ans), et les montants majorés étaient définis en fonction de l'âge de septembre au lieu de décembre
+  - Corrige la formule de l'ARS différentielle : la déduction d'aide due à ce dispositif était divisée par le nombre d'enfants (dans la loi, cette division est mentionnée, mais pour la réduction due PAR enfant, pas pour la réduction totale).
+
 # 111.0.0 [#1803](https://github.com/openfisca/openfisca-france/pull/1803)
 
 * Amélioration technique. 
