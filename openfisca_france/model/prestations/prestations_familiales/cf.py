@@ -322,7 +322,7 @@ class cf(Variable):
 
     def formula(famille, period, parameters):
         '''
-        L'allocation de base de la paje n'est pas cumulable avec le complément familial
+        Pour les règles de non-cumul, voir notamment les art. L532-1 et L532-2 du CSS
         '''
         paje_base = famille('paje_base', period)
         paje_clca = famille('paje_clca', period)
