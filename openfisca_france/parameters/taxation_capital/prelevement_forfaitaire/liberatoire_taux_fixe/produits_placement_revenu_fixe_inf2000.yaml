@@ -1,26 +1,13 @@
-description: Titres de créances négociables, billets de trésorerie, certificats de dépôts négociables, bons du trésor négociables et bons des institutions financières spécialisées
+description: Prélèvements libératoires sur les revenus des valeurs mobilières, Produits de placements à revenu fixe (n'excédant pas 2000 €) (1965-2017)
 values:
-  1974-01-01:
-    value: 0.333
-  1979-07-01:
-    value: 0.4
-  1986-01-01:
-    value: 0.32
-  1990-06-15:
-    value: 0.15
-  2004-01-01:
-    value: 0.16
-  2008-01-01:
-    value: 0.18
-  2011-01-01:
-    value: 0.19
-  2012-01-01:
-    value: 0.24
+  2018-01-01:
+    value: null
   2013-01-01:
+    value: 0.24
+  2012-01-01:
     value: null
 metadata:
-  ux_name: Dividendes
-  ipp_csv_id: tx_titres
+  ux_name: Produits de placements à revenu fixe (n'excédant pas 2000€)
   unit: /1
   reference:
     2018-01-01:
@@ -101,5 +88,5 @@ metadata:
   description_en: Levy in discharge on capital income (1965 - 2012)
 documentation: |
   Notes :
-  Billets de trésorerie, certificats de dépôts négociables; bons du Trésor négociables et bons des institutions financières spécialisées.
+  Etat "non-coopératif" : défini à l'article 238-0 A du CGI
   Références du Code général des impôts : l'article 125 A du CGI régit le prélèvement sur les produits de placements à revenu fixe tandis que l'article 117 quater régit le prélèvement sur les dividendes.
