@@ -1,7 +1,5 @@
 description: Prélèvements libératoires sur les revenus des valeurs mobilières, Produits d'épargne solidaire de partage (1965-2017)
 values:
-  2018-01-01:
-    value: null
   2008-01-01:
     value: 0.05
 metadata:
