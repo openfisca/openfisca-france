@@ -6,8 +6,6 @@ values:
     value: 0.19
   2012-01-01:
     value: 0.21
-  2013-01-01:
-    value: null
 metadata:
   ux_name: Dividendes
   ipp_csv_id: tx_pl_div
