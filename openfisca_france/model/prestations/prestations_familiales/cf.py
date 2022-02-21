@@ -322,9 +322,11 @@ class cf(Variable):
 
     def formula(famille, period, parameters):
         '''
-        L'allocation de base de la paje n'est pas cumulable avec le complément familial
+        Pour les règles de non-cumul du CF avec les autres prestations, voir notamment les art. L532-1 et L532-2 du CSS
         '''
         paje_base = famille('paje_base', period)
+        paje_clca = famille('paje_clca', period)
+        paje_prepare = famille('paje_prepare', period)
         apje_avant_cumul = famille('apje_avant_cumul', period)
         ape_avant_cumul = famille('ape_avant_cumul', period)
         cf_montant = famille('cf_montant', period)
@@ -332,6 +334,8 @@ class cf(Variable):
 
         cf_brut = (
             not_(paje_base)
+            * not_(paje_clca)
+            * not_(paje_prepare)
             * (apje_avant_cumul <= cf_montant)
             * (ape_avant_cumul <= cf_montant)
             * cf_montant

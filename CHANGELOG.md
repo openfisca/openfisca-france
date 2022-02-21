@@ -1,5 +1,13 @@
 # Changelog
 
+## 111.2.0 [#1808](https://github.com/openfisca/openfisca-france/pull/1808)
+
+* Évolution du système socio-fiscal. Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/prestations_familiales/cf.py`.
+* Détails :
+  - Corrige les règles de cumul entre CF et les autres prestations
+
 ## 111.1.0 [#1806](https://github.com/openfisca/openfisca-france/pull/1806)
 
 * Évolution du système socio-fiscal. Correction d'un crash.
