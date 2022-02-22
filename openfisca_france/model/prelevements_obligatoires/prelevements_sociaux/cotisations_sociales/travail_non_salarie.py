@@ -11,6 +11,9 @@ from openfisca_france.model.base import *
 # - les cotisations minimales
 # - la gestion de la temporatité
 
+# Il manque également le régime micro social qui consiste en un forfait unique couvrant l'ensemble des cotisations ainsi que la csg et la crds
+# https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073189/LEGISCTA000037051840/#LEGISCTA000037051840
+
 
 log = logging.getLogger(__name__)
 
