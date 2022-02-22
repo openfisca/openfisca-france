@@ -8,16 +8,15 @@ metadata:
   description_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_nenf_agemin
   reference:
+    2015-06-05:
+        href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000030674064/
+        title: Décret 2015-611 du 03-06-2015 - art. 1
     title: Nombre minimal d'enfants pour avoir droit aux Allocations Familiales (AF)
   official_journal_date:
     1976-08-01: "1976-08-17"
   notes:
     1976-08-01:
     - title: 37% par enfant supplémentaire jusqu'à 4 enfants à charge, puis 33%
-  reference:
-  2015-06-05:
-  href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000030674064/
-  title: Décret 2015-611 du 03-06-2015 - art. 1
   last_review: "2022-02-21"
 documentation: |-
   Notes :
