@@ -17,7 +17,8 @@ class csg(Variable):
         csg_deductible_chomage = individu('csg_deductible_chomage', period, options = [ADD])
         csg_imposable_retraite = individu('csg_imposable_retraite', period, options = [ADD])
         csg_deductible_retraite = individu('csg_deductible_retraite', period, options = [ADD])
-        csg_non_salarie = individu('csg_non_salarie', period, options = [ADD])
+        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period, options = [ADD])
+        csg_deductible_non_salarie = individu('csg_deductible_non_salarie', period, options = [ADD])
         # CSG sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
         csg_revenus_capital = individu.foyer_fiscal('csg_revenus_capital', period)
         csg_revenus_capital_projetee = csg_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -29,7 +30,8 @@ class csg(Variable):
             + csg_deductible_chomage
             + csg_imposable_retraite
             + csg_deductible_retraite
-            + csg_non_salarie
+            + csg_imposable_non_salarie
+            + csg_deductible_non_salarie
             + csg_revenus_capital_projetee
             )
 
