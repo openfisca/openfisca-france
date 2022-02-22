@@ -1,5 +1,20 @@
 # Changelog
 
+## 112.0.0 [#1805](https://github.com/openfisca/openfisca-france/pull/1805)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/mesures.py`
+  - `openfisca_france/model/prestations/visale.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/csg_crds.py`
+  - `tests/formulas/travail_non_salarie/artisan_commercant_profession_liberale.yaml`
+* Détails :
+  - Divise la variable csg_non_salarie en deux variables : csg_dedutible_non_salarie et csg_imposable_non_salarie. En effet il existe bien une part déductible et une part imposable de la csg pour les revenus des travailleurs non salariés mais elle n'était pas codé jusque maintenant.
+  - Adapte les variables qui appelaient la variable csg_non_salarie.
+  - Supprime un double compte des cotisations_sociales_non_salarie. Celles-ci étaient ôtées de rpns_imposable alors que les revenus imposables des non salariés sont directement renseignés après cotisations.
+
 ## 111.2.0 [#1808](https://github.com/openfisca/openfisca-france/pull/1808)
 
 * Évolution du système socio-fiscal. Correction d'un crash.
