@@ -1,4 +1,4 @@
-description: BMAF E.T.I., Base mensuelle de calcul des allocations familiales (BMAF)
+description: BMAF E.T.I., Base mensuelle de calcul des allocations familiales (BMAF) Employeurs et travailleurs indépendants
 values:
   1939-04-01:
     value: null
@@ -24,7 +24,6 @@ values:
     value: null
 metadata:
   ux_name: BMAF E.T.I.
-  last_review: "2021-04-01"
   description_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: reg_spec_eti
   unit: currency
@@ -432,6 +431,7 @@ metadata:
     - title: Revalorisation de 0,3%
     2021-04-01:
     - title: Revalorisation de 0,1%
+  last_review: "2022-02-23"
 documentation: |-
   Notes :
   Le régime des prestations familiales est fixé par la loi 46-1835 du 22 août 1946
