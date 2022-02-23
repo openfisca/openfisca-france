@@ -37,6 +37,9 @@ metadata:
     - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030674064
       title: Décret 2015-611 du 03/06/2015
     - title: Circulaire DSS/SD2B/2016/77 du 15/03/2016
+    2018-01-01:
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036393143/
+      title: Article L531-3 du code de la sécurité sociale
   official_journal_date:
     1976-08-01: "1976-08-17"
     1978-01-01: 1972-12-28; 1978-02-02
@@ -58,7 +61,7 @@ metadata:
     - title: Majoration 46% pour le 3e enfant, 41% pour le 4e
     1982-02-01:
     - title: Baisse de 46% à 40% pour le 3e enfant
-  last_review: "2022-02-18"
+  last_review: "2022-02-23"
 documentation: |-
   Notes :
   L'allocation familiale est créée en 1932 par la loi Landry du 11/03/1932, art. 1 et 2 (modif titres III et V du code du travail). Parution au JO 12/03/1932
