@@ -1,0 +1,10 @@
+description: Prélèvements libératoires sur les revenus des valeurs mobilières après 2018
+metadata:
+  ux_name: Revenus des valeurs mobilières après 2018
+  order:
+  - taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc
+  - taux_prelevement_produits_assurance_vie_non_eligibles_prelevement_forfaitaire_unique
+  - seuil_primes_applique_eligibilite_produits_assurance_vie_prelevement_forfaitaire_unique
+  - produits_epargne_solidaire_partage
+  - paiement_produits_dans_etat_non_cooperatif
+  description_en: Flat tax on capital income (from 2018)

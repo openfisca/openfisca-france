@@ -1,0 +1,14 @@
+description: Prélèvements libératoires sur les revenus des valeurs mobilières (1965-2017)
+metadata:
+  ux_name: Prélèvements libératoires taux fixe
+  order:
+  - obligations_titres_participatifs_fonds_salariaux
+  - dividendes
+  - titres_de_creances_negociables_et_autres
+  - bons_banque_tresor_epargne_ptt
+  - autres_produits_de_placement_a_revenu_fixe
+  - plan_d_epargne_populaire
+  - produits_placement_revenu_fixe_inf2000
+  - produits_epargne_solidaire_partage
+  - produits_dans_etats_non_cooperatifs
+  description_en: Levy in discharge on capital income (1965 - 2012)

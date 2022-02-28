@@ -1,0 +1,10 @@
+description: Prélèvement libératoire sur les Bons ou contrats de capitalisation et placements de même nature (assurance-vie), souscrits entre le 1/1/83 et le 31/12/89, lors du dénouement du contrat (1983-2017)
+metadata:
+  ux_name: Souscrits entre le 1/1/83 et le 31/12/89
+  order:
+  - duree_moins_de_2_ans
+  - duree_2_a_4_ans
+  - duree_4_a_6_ans
+  - six_ans_primes_avant_98
+  - six_ans_produits_apres_98
+  description_en: Levy in discharge on life insurance (1983 - 2017)

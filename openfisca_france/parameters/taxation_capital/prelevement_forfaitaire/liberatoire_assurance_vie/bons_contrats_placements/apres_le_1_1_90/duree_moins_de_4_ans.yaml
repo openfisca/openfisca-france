@@ -1,0 +1,32 @@
+description: Prélèvement libératoire sur les Bons ou contrats de capitalisation et placements de même nature (assurance-vie), Souscrits après le 01/01/90, Durée de moins de 4 ans, lors du dénouement du contrat (1983-2017)
+values:
+  1990-01-01:
+    value: 0.35
+metadata:
+  ux_name: Durée de moins de 4 ans
+  last_review: "2022-02-16"
+  ipp_csv_id: tx_pl_av_4
+  unit: /1
+  reference:
+    1990-01-01: 
+      - title: Loi 89-936 du 29/12/1989, art. 112 (LF pour 1990)
+      - title: Code général des impôts, art. 125-0 A
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044989424
+    1983-01-01:
+      title: Loi 82-1126 du 29/12/1982, art. 14 (LF pour 1983)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006273726&cidTexte=JORFTEXT000000503959
+  official_journal_date:
+    1990-01-01: 1989-12-30
+    1983-01-01: 1997-12-30
+  notes:
+    1983-01-01: Création de l'art. 125-0 A du CGI
+  description_en: Levy in discharge on life insurance (1983 - 2017)
+documentation: |
+  Notes :
+  (1) Cas des primes versées avant le 01/01/1998.
+  (2) Cas des produits acquis après le 01/01/1998. Ces produits sont soumis à un abattement d'un montant forfaitaire à partir du 01/01/1998 (cf. art. 125-0 A du CGI).
+  (3) Etats "non-coopératifs" définis à l'article 238-0 A du CGI.
+  (4) Cas des primes versées avant le 01/01/1998 et les produits afférents acquis après cette date.
+  Référence :
+  Article 125-0 A du CGI régit le prélèvement sur les produits des bons ou contrats de capitalisation.
+
