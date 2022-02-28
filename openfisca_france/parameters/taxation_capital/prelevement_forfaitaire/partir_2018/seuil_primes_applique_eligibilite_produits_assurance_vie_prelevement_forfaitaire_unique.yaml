@@ -1,9 +1,8 @@
-description: Seuil d'éligibilité au PFU des produits d'assurance-vie, Prélèvements libératoires sur les revenus des valeurs mobilières (2018 - )
-Seuil d'éligibilité au PFU des produits d'assurance-vie (2)
-  values:
-    2018-01-01:
-      value: 150000.0
- metadata:
+description: Seuil d'éligibilité au PFU des produits d'assurance-vie, Prélèvements libératoires sur les revenus des valeurs mobilières
+values:
+  2018-01-01:
+    value: 150000.0
+metadata:
   ux_name: Seuil d'éligibilité au PFU des produits d'assurance-vie
   unit: currency
   reference:
