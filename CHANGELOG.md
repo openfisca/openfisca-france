@@ -1,6 +1,22 @@
 # Changelog
 
-## 112.0.0 [#1805](https://github.com/openfisca/openfisca-france/pull/1805)
+# 113.0.0 [#1804](https://github.com/openfisca/openfisca-france/pull/1804)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+- `parameters/taxation_capital/prelevement_forfaitaire`
+- `parameters/taxation_capital/pfl_av`.
+- `parameters/taxation_capital/pfl`.
+* Détails :
+  - Harmonisation des fichiers avec les barèmes-ipp
+  - Tous les chemins sont updatés pour ne pas casser le code
+
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline 13335ed5de72dfd^..7b19d7a4d879cd741d1 | grep "variable_name"
+
+
+# 112.0.0 [#1805](https://github.com/openfisca/openfisca-france/pull/1805)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
