@@ -12,7 +12,6 @@ values:
     value: 0.32
 metadata:
   ux_name: Taux 2 enfants
-  last_review: "2022-02-15"
   description_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_t1_2enf
   unit: BMAF
