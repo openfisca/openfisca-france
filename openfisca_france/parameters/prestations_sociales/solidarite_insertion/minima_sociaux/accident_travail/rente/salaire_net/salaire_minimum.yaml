@@ -32,7 +32,17 @@ values:
     value: 18336.64
   2018-04-01:
     value: 18520
+  2021-04-01:
+    value: 18705.8
 metadata:
   ux_name: Salaire net
   unit: currency
+  reference:
+    2015-12-23:
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/
+      title: Article L434-17 Section 2 Calcul de la rente
+    2016-04-01:
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032363894
+      title: Article R434-27 Sous-section 2 Calcul de la rente
+  last_review: "2022-02-28"
 documentation: L'article L434-16 du Code de la sécurité sociale (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688385/) détaille la méthode de calcul
