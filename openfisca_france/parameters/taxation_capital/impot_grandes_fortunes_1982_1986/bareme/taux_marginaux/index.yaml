@@ -1,0 +1,10 @@
+description: Taux marginaux des tranches du barème de l'Impôt sur les grandes fortunes (IGF) - (1982-1986)
+metadata:
+  ux_name: Taux marginaux
+  order:
+  - 1ere_tranche
+  - 2eme_tranche
+  - 3eme_tranche
+  - 4eme_tranche
+  - nombre_tranches
+  description_en: Wealth tax schedule

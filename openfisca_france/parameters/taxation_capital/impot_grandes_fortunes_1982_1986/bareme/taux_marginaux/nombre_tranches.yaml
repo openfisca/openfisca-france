@@ -1,0 +1,24 @@
+description: Nombre de tranches du barème de l'Impôt sur les grandes fortunes (IGF) - (1982-1986)
+values:
+  1987-01-01:
+    value: null
+  1985-01-01:
+    value: 4.0
+  1982-01-01:
+    value: 3.0
+metadata:
+  ux_name: Nombre de tranches du barème
+  ipp_csv_id: nbtranches_igf
+  reference:
+    1987-01-01:
+      title: Loi 86-824 du 11/07/1986, art. 24 (LFR pour 1986)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006275031&cidTexte=JORFTEXT000000512460
+    1985-01-01:
+      title: Loi 84-1208 du 29/12/1984, art. 26 (LF pour 1985)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006274250&cidTexte=JORFTEXT000000880778
+    1982-01-01: Loi 81-1160 du 30/12/1981, art. 2 à 11 (LF pour 1982)
+  official_journal_date:
+    1987-01-01: 1986-07-12
+    1985-01-01: 1984-12-30
+    1982-01-01: 1981-12-31
+  description_en: Wealth tax schedule
