@@ -1,0 +1,11 @@
+description: Seuils des tranches du barème de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+metadata:
+  ux_name: Seuils
+  order:
+  - 1ere_tranche
+  - 2eme_tranche
+  - 3eme_tranche
+  - 4eme_tranche
+  - 5eme_tranche
+  - 6eme_tranche
+  description_en: Wealth tax computation

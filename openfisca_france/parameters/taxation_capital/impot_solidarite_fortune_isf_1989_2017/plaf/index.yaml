@@ -1,0 +1,7 @@
+description: Plafonnement de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+metadata:
+  ux_name: Plafonnement
+  order:
+  - plafonnement_taux_imposition
+  - plafonnement_plafonnement
+  description_en: Wealth tax ceiling

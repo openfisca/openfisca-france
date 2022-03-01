@@ -1,0 +1,9 @@
+description: Calcul de la décote de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+metadata:
+  ux_name: Calcul de la décote
+  order:
+  - parametre_calcul_decote
+  - borne_inferieure_decote
+  - borne_superieure_decote
+  - taux_decote
+  description_en: '"Décote" computation'
