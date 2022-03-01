@@ -1,5 +1,16 @@
 # Changelog
  
+### 113.0.3 [#1817](https://github.com/openfisca/openfisca-france/pull/1817)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+- `parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018`
+* Détails :
+
+  - Ajout des fichiers issus des barèmes-ipp, aucune modification du code existant
+  - Les doublons générés dans cette PR seront supprimés dans une PR à venir
+
 ### 113.0.2 [#1816](https://github.com/openfisca/openfisca-france/pull/1816)
 
 * Amélioration technique. 
