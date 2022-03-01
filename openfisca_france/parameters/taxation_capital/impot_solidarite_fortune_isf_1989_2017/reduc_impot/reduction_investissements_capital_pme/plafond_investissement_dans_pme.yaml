@@ -9,7 +9,7 @@ values:
 metadata:
   ux_name: Plafond
   ipp_csv_id: plaf_taux_imp_isf
-    unit: currency
+  unit: currency
   reference:
     2018-01-01:
       title: Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (crée art. 885-0 V bis et885-0 V bis A du CGI).
