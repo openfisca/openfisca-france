@@ -2,6 +2,6 @@ description: Réduction pour dons à certains organismes d'intérêt général d
 metadata:
   ux_name: Réduction pour dons à certains organismes d'intérêt général
   order:
-  - taux_dons_certains_organismes_interet_general
-  - limite_reduction_isf_lie_aux_dons_realises
+  - taux
+  - limite_reduction
   description_en: Tax reductions for investment and donations
