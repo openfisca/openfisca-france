@@ -1,5 +1,15 @@
 # Changelog
 
+### 113.0.1 [#1815](https://github.com/openfisca/openfisca-france/pull/1815)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+- `parameters/taxation_capital/impot_grandes_fortunes_1982_1986`
+* Détails :
+  - Ajout des fichiers issus des barèmes-ipp, aucune modification du code existant
+  - Les doublons générés dans cette PR seront supprimés dans une PR à venir
+
 # 113.0.0 [#1804](https://github.com/openfisca/openfisca-france/pull/1804)
 
 * Amélioration technique. 
