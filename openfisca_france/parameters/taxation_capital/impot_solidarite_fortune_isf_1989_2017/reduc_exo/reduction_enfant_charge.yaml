@@ -1,0 +1,52 @@
+description: Réduction pour enfant à charge, Réductions et abattements de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+values:
+  2013-01-01:
+    value: null
+  2012-01-01:
+    value: 300.0
+  2002-01-01:
+    value: 150.0
+  1989-01-01:
+      value: 1000.0
+metadata:
+  ux_name: Réduction enfant à charge
+  ipp_csv_id: reduc_isf_enf
+  unit: currency
+  reference:
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (abroge art. 885 S du CGI)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377428&cidTexte=JORFTEXT000036339197
+    2013-01-01:
+      title: Loi 2012-1509 du 29/12/2012, art. 13 (LF pour 2013)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026872661&cidTexte=JORFTEXT000026856853
+    2012-01-01:
+      title: Loi 2011-900 du 29/07/2011, art. 1 (LFR pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000024415798&cidTexte=JORFTEXT000024413775
+    2008-01-01:
+      title: Loi 2007-1223 du 21/08/2007, art. 14
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006267455&cidTexte=JORFTEXT000000278649
+    2002-01-01: Ordonnance 2000-916 du 19/09/2000, art. 6
+    1999-01-01:
+      title: Loi 98-1266 du 30/12/1998, art. 17 (LF pour 1999)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006320282&cidTexte=JORFTEXT000000209044
+    1989-01-01:
+      title: Loi 88-1149 du 23/12/1988, art. 26 (LFpour 1989)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006275456&cidTexte=JORFTEXT000000508832
+  official_journal_date:
+    2018-01-01: 2017-12-31
+    2013-01-01: 2012-12-30
+    2012-01-01: 2011-07-30
+    2008-01-01: 2007-08-22
+    2002-01-01: 2000-09-22
+    1999-01-01: 1998-12-31
+    1989-01-01: 1988-12-28
+  notes:
+    2018-01-01: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
+    2013-01-01: La réduction pour enfant à charge est supprimée par la loi de finances pour 2013.
+    2002-01-01: Ordonnance portant adaptation de la valeur en euros de certains montants exprimés en francs dans les textes législatifs
+  description_en: Discount and rebate
+documentation: |
+  Note : L'IGF (1982-1986) n'a jamais bénéficié de réduction pour personne à charge ou d'abattement sur la résidence principale. La réduction est instaurée à la création de l'ISF à partir du 1er janvier 1989, tandis que l'abattement est introduit à partir de 1999 par la loi de finances pour 1999.
+  Référence dans les codes législatifs :
+  - La réduction pour personne à charge portant sur l'ISF est codifié à l'article 885 V du CGI.
+  - L'abattement sur la valeur vénale réelle de la résidence principale dans le calcul de l'assiette de l'ISF est codifié à l'article 885 S du CGI.
