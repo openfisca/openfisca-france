@@ -1,0 +1,9 @@
+description: Calcul de la décote de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+metadata:
+  ux_name: Décote
+  order:
+  - parametre_calcul_decote
+  - borne_inferieure_decote
+  - borne_superieure_decote
+  - taux_decote
+  description_en: Real estate tax computation

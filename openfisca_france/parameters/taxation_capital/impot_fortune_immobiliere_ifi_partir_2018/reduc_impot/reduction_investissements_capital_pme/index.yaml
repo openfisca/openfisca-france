@@ -1,0 +1,7 @@
+description: Réduction pour investissements au capital de PME de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+metadata:
+  ux_name: Réduction pour investissements au capital de PME
+  order:
+  - plafond_investissement_dans_pme
+  - taux_investissement_direct
+  description_en: Tax reductions for investment and donations

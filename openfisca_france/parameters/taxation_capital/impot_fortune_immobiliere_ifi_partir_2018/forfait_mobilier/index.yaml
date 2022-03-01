@@ -1,0 +1,6 @@
+description: Forfait mobilier de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+metadata:
+  ux_name: Forfait mobilier
+  order:
+  - majoration_forfaitaire
+  description_en: Real estate tax computation

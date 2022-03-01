@@ -1,0 +1,17 @@
+description: Plafonnement de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+values:
+  2018-01-01:
+    value: 0.75
+metadata:
+  ux_name: Plafonnement
+  ipp_csv_id: tx_plaf_ifi
+  unit: /1
+  reference:
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (crée art. 979 du CGI)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377428&cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    2018-01-01: 2017-12-31
+  notes:
+    2018-01-01: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
+  description_en: Wealth tax ceiling
