@@ -1,0 +1,6 @@
+description: Bouclier fiscal (2005-2010) de l'impôt de solidarité sur la fortune (ISF, 1989-2017)
+metadata:
+  ux_name: Bouclier fiscal
+  order:
+  - taux_bouclier_fiscal
+  description_en: Tax shield (2005-2010)
