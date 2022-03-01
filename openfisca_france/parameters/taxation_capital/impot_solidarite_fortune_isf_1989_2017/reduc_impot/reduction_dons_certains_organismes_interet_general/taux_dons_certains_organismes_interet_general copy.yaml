@@ -1,0 +1,28 @@
+description: Taux de la réduction pour dons à certains organismes d'intérêt général de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+values:
+  2018-01-01:
+    value: null
+  2008-01-01:
+    value: 0.75
+metadata:
+  ux_name: Taux
+  unit: /1
+  reference:
+    2018-01-01:
+      title: Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (crée art. 885-0 V bis et885-0 V bis A du CGI).
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377428&cidTexte=JORFTEXT000036339197
+    2013-01-01: Article 885-0 V bis A Loi 2015-1786 du 29/12/2015 - art. 38
+    2012-01-01: Article 885-0 V bis Amodifié par Décret 2012-653 du 4/05/2012 - art. 1
+    2011-01-01: Article 885-0 V bis Amodifié par Loi 2010-1657 du 29/12/2010 - art. 40 (V)
+    2009-01-01: Article 885-0 V bis A modifié par Décret 2008-294 du 01/04/2008 - art. 1
+    2008-01-01: Loi 2007-1223 du 21/08/2007 - art. 16 (V)
+  official_journal_date:
+    2018-01-01: 2017-12-31
+    2013-01-01: 2015-12-30
+    2012-01-01: 2012-05-06
+    2011-01-01: 2010-12-30
+    2009-01-01: 2008-04-02
+    2008-01-01: 2007-08-22
+  notes:
+    2018-01-01: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
+  description_en: Tax reductions for investment and donations

@@ -1,0 +1,10 @@
+description: Réductions pour dons ou investissement de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+metadata:
+  ux_name: Réductions pour dons ou investissement
+  order:
+  - reduction_investissements_capital_pme
+  - reduction_investissements_dans_fcpi_1_fip_2_dans_pme
+  - plafond_somme_reduction_pme_fcip_fip_pme
+  - reduction_dons_certains_organismes_interet_general
+  - plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
+  description_en: Tax reductions for investment and donations
