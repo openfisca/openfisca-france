@@ -1,0 +1,11 @@
+description: Taux marginaux des tranches du barème de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+metadata:
+  ux_name: Taux marginaux
+  order:
+  - 1ere_tranche
+  - 2eme_tranche
+  - 3eme_tranche
+  - 4eme_tranche
+  - 5eme_tranche
+  - nombre_tranches
+  description_en: Real estate tax computation
