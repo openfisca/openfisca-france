@@ -6,4 +6,5 @@ metadata:
   - 2eme_tranche
   - 3eme_tranche
   - 4eme_tranche
+  - nombre_tranches
   description_en: Wealth tax schedule
