@@ -1,0 +1,12 @@
+description: Impôt de solidarité sur la fortune (ISF, 1989-2017)
+metadata:
+  ux_name: ISF
+  order:
+  - bareme
+  - decote
+  - plaf
+  - reduc_impot
+  - reduc_exo
+  - bouclier
+  - forfait_mobilier
+  description_en: Wealth tax computation
