@@ -1,0 +1,6 @@
+description: Plafonnement de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+metadata:
+  ux_name: Plafonnement
+  order:
+  - plafonnement_taux_imposition
+  description_en: Wealth tax ceiling
