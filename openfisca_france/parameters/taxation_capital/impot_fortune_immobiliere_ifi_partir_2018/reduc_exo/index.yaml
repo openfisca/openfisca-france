@@ -1,0 +1,6 @@
+description: Réductions et abattements de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+metadata:
+  ux_name: Réductions et abattements
+  order:
+  - abattement_residence_principale
+  description_en: Discount and rebate
