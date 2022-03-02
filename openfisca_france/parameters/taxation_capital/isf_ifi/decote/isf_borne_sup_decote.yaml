@@ -1,8 +1,0 @@
-description: Plafond de la décote
-values:
-  2013-01-01:
-    value: 1400000
-metadata:
-  unit: currency
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
