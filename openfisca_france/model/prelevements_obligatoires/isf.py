@@ -333,8 +333,6 @@ class assiette_isf_ifi(Variable):
         if period.start.year >= 2018:
             P = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.forfait_mobilier
 
-        P = parameters(period).taxation_capital.isf_ifi.forf_mob
-
         total = isf_ifi_imm_bati + isf_ifi_imm_non_bati + isf_droits_sociaux
         forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.majoration_forfaitaire
         actif_brut = total + forf_mob
