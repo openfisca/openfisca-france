@@ -3,8 +3,6 @@ values:
     value: 0
   1946-09-01:
     value: 2
-  2015-07-01:
-    value: 2
 metadata:
   ux_name: Nombre minimal d'enfants
   description_en: "Family allowances (AF): General conditions and amount"
