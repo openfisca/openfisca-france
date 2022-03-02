@@ -591,7 +591,7 @@ class isf_ifi_apres_plaf(Variable):
         total_impots_plafonnement_isf_ifi = foyer_fiscal('total_impots_plafonnement_isf_ifi', period)
         revenus_et_produits_plafonnement_isf_ifi = foyer_fiscal('revenus_et_produits_plafonnement_isf_ifi', period)
         isf_ifi_avant_plaf = foyer_fiscal('isf_ifi_avant_plaf', period)
-        P = parameters(period).taxation_capital.isf_ifi.plaf
+        P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.plaf.plaf
 
         # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas
         # si entre les deux seuils; l'allègement est limité au 1er seuil
