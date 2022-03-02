@@ -180,7 +180,7 @@ brackets:
     2013-01-01:
       value: 5000000
     2018-01-01:
-    value: null
+      value: null
   rate:
     1987-01-01:
       value: null
@@ -228,7 +228,7 @@ brackets:
     2013-01-01:
       value: 10000000
     2018-01-01:
-    value: null
+      value: null
   rate:
     1990-01-01:
       value: 0.015
