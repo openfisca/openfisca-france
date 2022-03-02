@@ -571,7 +571,7 @@ class decote_isf_ifi(Variable):
         elig = (assiette_isf_ifi >= P.borne_inferieur_decote) & (assiette_isf_ifi <= P.borne_superieure_decote)
         LB = P.parametre_calcul_decote - P.taux_decote * assiette_isf_ifi
         return LB * elig
-    
+
     def formula_2013(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
         P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.decote
