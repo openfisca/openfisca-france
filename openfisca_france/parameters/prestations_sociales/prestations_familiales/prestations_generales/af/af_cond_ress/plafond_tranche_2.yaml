@@ -12,8 +12,6 @@ values:
     value: 92381
   2021-01-01:
     value: 93212
-  2022-01-01:
-    value: 93399
 metadata:
   ux_name: Plafond de ressources - Tranche 2
   description_en: "Family allowances (AF): Thresholds for means-testing"
@@ -47,12 +45,6 @@ metadata:
       title: Arrêté du 14/12/2020, art. 1
     - href: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-12/ste_20200012_0000_0050.pdf
       title: Instruction no DSS/2B/2020/226 du 14 décembre 2020
-    2022-01-01:
-    - href: https://www.service-public.fr/particuliers/actualites/A15418
-      title: Plafonds de ressources applicables en 2022
-    2021-12-28:
-    - href: https://www.legifrance.gouv.fr/jorf/jo/2021/12/28/0301
-      title: Journal offciel du 28/12/2021
   official_journal_date:
     2015-07-01: "2015-06-05"
     2016-01-01: "2015-12-12"
@@ -79,3 +71,8 @@ documentation: |-
   2018 : 90026 = 78770 + 5628 * 2
   2019 : 90926 = 79558 + 5684 * 2
   2020 : 92381 = 80831 + 5775 * 2
+  2021 : 93212
+  2022 : 93399
+2022-01-01:
+    - href: https://www.service-public.fr/particuliers/actualites/A15418
+      title: Plafonds de ressources applicables en 2022
