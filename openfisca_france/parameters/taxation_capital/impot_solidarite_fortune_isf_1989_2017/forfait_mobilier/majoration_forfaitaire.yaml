@@ -5,9 +5,7 @@ values:
   1989-01-01:
     value: 0.05
   1987-01-01:
-    value: null
-  1982-01-01:
-    value: 0.05   
+    value: null 
 metadata:
   ux_name: Majoration forfaitaire
   ipp_csv_id: tx_majo_isf
