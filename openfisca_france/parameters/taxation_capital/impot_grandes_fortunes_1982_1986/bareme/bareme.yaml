@@ -1,0 +1,76 @@
+description: Barème de l'Impôt sur les grandes fortunes (IGF) - (1982-1986)
+brackets:
+- threshold:
+    1982-01-01:
+      value: 3000000
+    1983-01-01:
+      value: 3200000
+    1984-01-01:
+      value: 3400000
+    1985-01-01:
+      value: 3500000
+    1986-01-01:
+      value: 3600000
+    1987-01-01:
+      value: null
+  rate:
+    1982-01-01:
+      value: 0.005
+    1987-01-01:
+      value: null
+- threshold:
+    1982-01-01:
+      value: 5000000
+    1983-01-01:
+      value: 5300000
+    1984-01-01:
+      value: 5600000
+    1985-01-01:
+      value: 5800000
+    1986-01-01:
+      value: 6000000
+    1987-01-01:
+      value: null
+  rate:
+    1982-01-01:
+      value: 0.01
+    1987-01-01:
+      value: null
+- threshold:
+    1982-01-01:
+      value: 10000000
+    1983-01-01:
+      value: 10600000
+    1984-01-01:
+      value: 11200000
+    1985-01-01:
+      value: 11500000
+    1986-01-01:
+      value: 11900000
+    1987-01-01:
+      value: null
+  rate:
+    1982-01-01:
+      value: 0.015
+    1987-01-01:
+      value: null
+- threshold:
+    1985-01-01:
+      value: 20000000
+    1986-01-01:
+      value: 20600000
+    1987-01-01:
+      value: null
+  rate:
+    1985-01-01:
+      value: 0.02
+    1987-01-01:
+      value: null
+metadata:
+  reference:
+    2013-01-01:
+      href: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000036385039/
+      title: Article 977 du CGI
+  last_review: "2021-10-12"
+  rate_unit: /1
+  threshold_unit: currency
