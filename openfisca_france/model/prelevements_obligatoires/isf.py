@@ -591,7 +591,7 @@ class isf_ifi_apres_plaf(Variable):
         total_impots_plafonnement_isf_ifi = foyer_fiscal('total_impots_plafonnement_isf_ifi', period)
         revenus_et_produits_plafonnement_isf_ifi = foyer_fiscal('revenus_et_produits_plafonnement_isf_ifi', period)
         isf_ifi_avant_plaf = foyer_fiscal('isf_ifi_avant_plaf', period)
-        P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.plaf.plaf
+        P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.plaf
 
         # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas
         # si entre les deux seuils; l'allègement est limité au 1er seuil
@@ -599,9 +599,9 @@ class isf_ifi_apres_plaf(Variable):
         #    est limité à 50% de l'ISF
         plafonnement = max_(total_impots_plafonnement_isf_ifi - revenus_et_produits_plafonnement_isf_ifi, 0)
         limitationplaf = (
-            (isf_ifi_avant_plaf <= P.seuil1) * plafonnement
-            + (P.seuil1 <= isf_ifi_avant_plaf) * (isf_ifi_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1)
-            + (isf_ifi_avant_plaf >= P.seuil2) * min_(isf_ifi_avant_plaf * P.taux, plafonnement)
+            (isf_ifi_avant_plaf <= P.plaf.seuil1) * plafonnement
+            + (P.plaf.seuil1 <= isf_ifi_avant_plaf) * (isf_ifi_avant_plaf <= P.plaf.seuil2) * min_(plafonnement, P.plaf.seuil1)
+            + (isf_ifi_avant_plaf >= P.plaf.seuil2) * min_(isf_ifi_avant_plaf * P.plafonnement_plafonnement, plafonnement)
             )
         return max_(isf_ifi_avant_plaf - limitationplaf, 0)
 

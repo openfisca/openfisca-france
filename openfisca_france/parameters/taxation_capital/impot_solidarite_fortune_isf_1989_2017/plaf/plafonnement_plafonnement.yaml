@@ -1,5 +1,7 @@
-description: du plafonnement de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+description: Plafonnement du plafonnement de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
 values:
+  2013-01-01:
+    value: 0.5
   2012-01-01:
     value: null
   1996-01-01:
@@ -7,7 +9,7 @@ values:
   1989-01-01:
     value: null
 metadata:
-  ux_name:  Plafonnement du plafonnement
+  ux_name: Plafonnement du plafonnement
   ipp_csv_id: tx_plaf_plaf
   unit: /1
   reference:
