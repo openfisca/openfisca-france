@@ -1,5 +1,14 @@
 # Changelog
- 
+
+### 113.0.4 [#1819](https://github.com/openfisca/openfisca-france/pull/1819)
+
+* Amélioration technique
+* Périodes concernées : à partir du 01/01/2020.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie`
+* Détails :
+  - Update le code pour corriger le cas où on divise par `assiette _pss` et qu'elle est nulle
+
+
 ### 113.0.3 [#1817](https://github.com/openfisca/openfisca-france/pull/1817)
 
 * Amélioration technique. 
