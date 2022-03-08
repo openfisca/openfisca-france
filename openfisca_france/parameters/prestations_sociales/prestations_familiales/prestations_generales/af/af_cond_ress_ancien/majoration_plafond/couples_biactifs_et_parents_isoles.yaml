@@ -15,7 +15,9 @@ metadata:
     - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006772271&cidTexte=JORFTEXT000000570810
       title: Décret 98-108 du 26/02/1998, art. 1 (crée art. R521-2 du CSS qui fixe les plafonds)
     1999-01-01:
-      title: LFSS 98-1194 du 23/12/1998, art. 18 (modif art. L521-1 du CSS)
+     - title: LFSS 98-1194 du 23/12/1998, art. 18 (modif art. L521-1 du CSS)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743207/1999-01-01
+    - title: Article L521-2 du Code de la SS
   official_journal_date:
     1998-03-01: 1997-12-23; 1998-02-27
     1999-01-01: "1998-12-27"
@@ -24,7 +26,7 @@ metadata:
     - title: Création d'une condition de ressources transitoire (avant une réforme globale prévue des prestations familiales)
     1999-01-01:
     - title: Suppression de la condition de ressources
-  last_review: "2022-02-25"
+  last_review: "2006-04-02"
 documentation: |-
   Notes
   Définition biactifs : cf. feuille "def_biactif"
