@@ -159,13 +159,17 @@ class maladie_maternite_artisan_commercant_taux(Variable):
             + (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
             ) * individu('rpns_imposables', period)
         assiette_pss = assiette / plafond_securite_sociale_annuel
-        taux = (
-            0.0085 + ((0.041 - 0.0085) * min_(max_(assiette_pss, 0), 0.4) / 0.4)
-            + ((0.072 - 0.041) * min_(max_((assiette_pss) - 0.4, 0), 0.7) / (1.1 - 0.4))
-            - (0.007 * (assiette_pss > 5) * ((assiette_pss - 5) / assiette_pss))
-            )
 
-        return artisan * where(assiette_pss != 0, taux, 0)
+        if assiette_pss != 0:
+            taux = (
+                0.0085 + ((0.041 - 0.0085) * min_(max_(assiette_pss, 0), 0.4) / 0.4)
+                + ((0.072 - 0.041) * min_(max_((assiette_pss) - 0.4, 0), 0.7) / (1.1 - 0.4))
+                - (0.007 * (assiette_pss > 5) * ((assiette_pss - 5) / assiette_pss))
+                )
+        else:
+            taux = 0
+
+        return artisan * taux
 
     def formula_2018_01_01(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
