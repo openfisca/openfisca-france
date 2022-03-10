@@ -254,12 +254,29 @@ class isf_ifi_imm_non_bati(Variable):
     label = "Base de l'ISF-IFI sur l'immobilier non-bâti"
     definition_period = YEAR
 
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        b1bc = foyer_fiscal('b1bc', period)
+        b1be = foyer_fiscal('b1be', period)
+        b1bh = foyer_fiscal('b1bh', period)
+        b1bk = foyer_fiscal('b1bk', period)
+        P = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.forfait_mobilier.nonbat
+
+        # forêts
+        b1bd = b1bc * P.taux_f
+        # bien ruraux loués à long terme
+        b1bf = min_(b1be, P.seuil) * P.taux_r1
+        b1bg = max_(b1be - P.seuil, 0) * P.taux_r2
+        # part de groupements forestiers- agricoles fonciers
+        b1bi = min_(b1bh, P.seuil) * P.taux_r1
+        b1bj = max_(b1bh - P.seuil, 0) * P.taux_r2
+        return b1bd + b1bf + b1bg + b1bi + b1bj + b1bk
+    
     def formula(foyer_fiscal, period, parameters):
         b1bc = foyer_fiscal('b1bc', period)
         b1be = foyer_fiscal('b1be', period)
         b1bh = foyer_fiscal('b1bh', period)
         b1bk = foyer_fiscal('b1bk', period)
-        P = parameters(period).taxation_capital.isf_ifi.nonbat
+        P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.forfait_mobilier.nonbat
 
         # forêts
         b1bd = b1bc * P.taux_f
