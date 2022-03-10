@@ -28,8 +28,12 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006776615&cidTexte=JORFTEXT000000360323
       title: Décret 92-1433 du 30/12/1992 - art. 1
     1999-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209409&categorieLien=id
+    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209409&categorieLien=id
       title: Décret 98-1214 du 29/12/1998
+    - href: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073189/LEGISCTA000006156241/#LEGISCTA000006156241
+      title: Article L751-1 di Code de la SS
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318
+      title: Article D521-1 du Code de la SS
   official_journal_date:
     1991-08-06: "1991-08-06"
     1992-02-12: "1992-02-12"
