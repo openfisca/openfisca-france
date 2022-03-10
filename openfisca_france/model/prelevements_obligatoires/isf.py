@@ -240,12 +240,19 @@ class isf_ifi_imm_bati(Variable):
     label = "Base de l'ISF-IFI sur l'immobilier bâti"
     definition_period = YEAR
 
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        b1ab = foyer_fiscal('b1ab', period)
+        b1ac = foyer_fiscal('b1ac', period)
+        P = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_exo
+
+        return (1 - P.abattement_residence_principalee) * b1ab + b1ac
+
     def formula(foyer_fiscal, period, parameters):
         b1ab = foyer_fiscal('b1ab', period)
         b1ac = foyer_fiscal('b1ac', period)
-        P = parameters(period).taxation_capital.isf_ifi.res_princ
+        P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.reduc_exo
 
-        return (1 - P.abattement_sur_residence_principale) * b1ab + b1ac
+        return (1 - P.abattement_residence_principale) * b1ab + b1ac
 
 
 class isf_ifi_imm_non_bati(Variable):
