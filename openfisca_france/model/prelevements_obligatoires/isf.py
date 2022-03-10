@@ -325,16 +325,10 @@ class assiette_isf_ifi(Variable):
         isf_droits_sociaux = foyer_fiscal('isf_droits_sociaux', period)
         b1cg = foyer_fiscal('b1cg', period)
         b2gh = foyer_fiscal('b2gh', period)
-
-        if period.start.year >= 1982 and period.start.year < 1987:
-            P = parameters(period).taxation_capital.impot_grandes_fortunes_1982_1986.forfait_mobilier
-        elif period.start.year >= 1987 and period.start.year < 2018:
-            P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.forfait_mobilier
-        if period.start.year >= 2018:
-            P = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.forfait_mobilier
+        P = parameters(period).taxation_capital.isf_ifi.forf_mob
 
         total = isf_ifi_imm_bati + isf_ifi_imm_non_bati + isf_droits_sociaux
-        forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.majoration_forfaitaire
+        forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.taux
         actif_brut = total + forf_mob
         return actif_brut - b2gh
 
@@ -348,21 +342,16 @@ class isf_ifi_iai(Variable):
     label = "ISF-IFI avant décote, réductions et plafonnement"
     definition_period = YEAR
 
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        bareme = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.bareme.bareme
+        bareme = parameters(period).taxation_capital.isf_ifi.bareme
         return bareme.calc(assiette_isf_ifi)
 
     # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        bareme = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.bareme.bareme
+        bareme = parameters(period).taxation_capital.isf_ifi.bareme
         assiette_isf_ifi = (assiette_isf_ifi >= bareme.rates[1]) * assiette_isf_ifi
-        return bareme.calc(assiette_isf_ifi)
-
-    def formula_2002_01_01(foyer_fiscal, period, parameters):
-        assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        bareme = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.bareme.bareme
         return bareme.calc(assiette_isf_ifi)
 
 
@@ -392,9 +381,9 @@ class isf_reduc_pac(Variable):
         '''
         nb_pac = foyer_fiscal('nb_pac', period)
         nbH = foyer_fiscal('nbH', period)
-        P = parameters(period).taxation_capital.isf_ifi.reduc_pac
+        P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.reduc_exo
 
-        return P.reduc_enf_garde * nb_pac + (P.reduc_enf_garde / 2) * nbH
+        return P.reduction_enfant_charge * nb_pac + (P.reduction_enfant_charge / 2) * nbH
 
 
 class isf_inv_pme(Variable):
@@ -570,20 +559,12 @@ class decote_isf_ifi(Variable):
     label = "Décote de l'ISF-IFI"
     definition_period = YEAR
 
-    def formula_2018(foyer_fiscal, period, parameters):
-        assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        P = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.decote
-
-        elig = (assiette_isf_ifi >= P.borne_inferieure_decote) & (assiette_isf_ifi <= P.borne_superieure_decote)
-        LB = P.parametre_calcul_decote - P.taux_decote * assiette_isf_ifi
-        return LB * elig
-
     def formula_2013(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.decote
+        P = parameters(period).taxation_capital.isf_ifi.decote
 
-        elig = (assiette_isf_ifi >= P.borne_inferieure_decote) & (assiette_isf_ifi <= P.borne_superieure_decote)
-        LB = P.parametre_calcul_decote - P.taux_decote * assiette_isf_ifi
+        elig = (assiette_isf_ifi >= P.isf_borne_min_decote) & (assiette_isf_ifi <= P.isf_borne_sup_decote)
+        LB = P.isf_base_decote - P.isf_taux_decote * assiette_isf_ifi
         return LB * elig
 
 
@@ -597,7 +578,7 @@ class isf_ifi_apres_plaf(Variable):
         total_impots_plafonnement_isf_ifi = foyer_fiscal('total_impots_plafonnement_isf_ifi', period)
         revenus_et_produits_plafonnement_isf_ifi = foyer_fiscal('revenus_et_produits_plafonnement_isf_ifi', period)
         isf_ifi_avant_plaf = foyer_fiscal('isf_ifi_avant_plaf', period)
-        P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.plaf
+        P = parameters(period).taxation_capital.isf_ifi.plaf
 
         # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas
         # si entre les deux seuils; l'allègement est limité au 1er seuil
@@ -605,9 +586,9 @@ class isf_ifi_apres_plaf(Variable):
         #    est limité à 50% de l'ISF
         plafonnement = max_(total_impots_plafonnement_isf_ifi - revenus_et_produits_plafonnement_isf_ifi, 0)
         limitationplaf = (
-            (isf_ifi_avant_plaf <= P.plaf.seuil1) * plafonnement
-            + (P.plaf.seuil1 <= isf_ifi_avant_plaf) * (isf_ifi_avant_plaf <= P.plaf.seuil2) * min_(plafonnement, P.plaf.seuil1)
-            + (isf_ifi_avant_plaf >= P.plaf.seuil2) * min_(isf_ifi_avant_plaf * P.plafonnement_plafonnement, plafonnement)
+            (isf_ifi_avant_plaf <= P.seuil1) * plafonnement
+            + (P.seuil1 <= isf_ifi_avant_plaf) * (isf_ifi_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1)
+            + (isf_ifi_avant_plaf >= P.seuil2) * min_(isf_ifi_avant_plaf * P.taux, plafonnement)
             )
         return max_(isf_ifi_avant_plaf - limitationplaf, 0)
 
@@ -622,18 +603,9 @@ class isf_ifi_apres_plaf(Variable):
         total_impots_plafonnement_isf_ifi = foyer_fiscal('total_impots_plafonnement_isf_ifi', period)
         revenus_et_produits_plafonnement_isf_ifi = foyer_fiscal('revenus_et_produits_plafonnement_isf_ifi', period)
         isf_ifi_avant_plaf = foyer_fiscal('isf_ifi_avant_plaf', period)
-        P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.plaf
+        P = parameters(period).taxation_capital.isf_ifi.plafonnement
 
-        plafond = max_(0, total_impots_plafonnement_isf_ifi - P.plafonnement_taux_imposition * revenus_et_produits_plafonnement_isf_ifi)  # case 9PV sur le formulaire 2042C des revenus 2013 aux revenus 2016
-        return max_(isf_ifi_avant_plaf - plafond, 0)
-
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
-        total_impots_plafonnement_isf_ifi = foyer_fiscal('total_impots_plafonnement_isf_ifi', period)
-        revenus_et_produits_plafonnement_isf_ifi = foyer_fiscal('revenus_et_produits_plafonnement_isf_ifi', period)
-        isf_ifi_avant_plaf = foyer_fiscal('isf_ifi_avant_plaf', period)
-        P = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.plaf
-
-        plafond = max_(0, total_impots_plafonnement_isf_ifi - P.plafonnement_taux_imposition * revenus_et_produits_plafonnement_isf_ifi)  # case 9PV sur le formulaire 2042C des revenus 2013 aux revenus 2016
+        plafond = max_(0, total_impots_plafonnement_isf_ifi - P.plafonnement_taux_d_imposition_isf * revenus_et_produits_plafonnement_isf_ifi)  # case 9PV sur le formulaire 2042C des revenus 2013 aux revenus 2016
         return max_(isf_ifi_avant_plaf - plafond, 0)
 
 
@@ -657,7 +629,7 @@ class isf_ifi(Variable):
 
 # TODO: à reintégrer dans irpp
 class rvcm_plus_abat(Variable):
-    value_type = float
+    value_type = flo
     entity = FoyerFiscal
     label = "rvcm_plus_abat"
     definition_period = YEAR
