@@ -341,6 +341,34 @@ class assiette_isf_ifi(Variable):
     label = "Assiette de l'ISF-IFI"
     definition_period = YEAR
 
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        # TODO: Gérer les trois option meubles meublants
+        isf_ifi_imm_bati = foyer_fiscal('isf_ifi_imm_bati', period)
+        isf_ifi_imm_non_bati = foyer_fiscal('isf_ifi_imm_non_bati', period)
+        isf_droits_sociaux = foyer_fiscal('isf_droits_sociaux', period)
+        b1cg = foyer_fiscal('b1cg', period)
+        b2gh = foyer_fiscal('b2gh', period)
+        P = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.forfait_mobilier
+
+        total = isf_ifi_imm_bati + isf_ifi_imm_non_bati + isf_droits_sociaux
+        forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.majoration_forfaitaire
+        actif_brut = total + forf_mob
+        return actif_brut - b2gh
+
+    def formula_1989_01_01(foyer_fiscal, period, parameters):
+        # TODO: Gérer les trois option meubles meublants
+        isf_ifi_imm_bati = foyer_fiscal('isf_ifi_imm_bati', period)
+        isf_ifi_imm_non_bati = foyer_fiscal('isf_ifi_imm_non_bati', period)
+        isf_droits_sociaux = foyer_fiscal('isf_droits_sociaux', period)
+        b1cg = foyer_fiscal('b1cg', period)
+        b2gh = foyer_fiscal('b2gh', period)
+        P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.forfait_mobilier
+
+        total = isf_ifi_imm_bati + isf_ifi_imm_non_bati + isf_droits_sociaux
+        forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.majoration_forfaitaire
+        actif_brut = total + forf_mob
+        return actif_brut - b2gh
+
     def formula(foyer_fiscal, period, parameters):
         # TODO: Gérer les trois option meubles meublants
         isf_ifi_imm_bati = foyer_fiscal('isf_ifi_imm_bati', period)
@@ -348,13 +376,12 @@ class assiette_isf_ifi(Variable):
         isf_droits_sociaux = foyer_fiscal('isf_droits_sociaux', period)
         b1cg = foyer_fiscal('b1cg', period)
         b2gh = foyer_fiscal('b2gh', period)
-        P = parameters(period).taxation_capital.isf_ifi.forf_mob
+        P = parameters(period).taxation_capital.impot_grandes_fortunes_1982_1986.forfait_mobilier
 
         total = isf_ifi_imm_bati + isf_ifi_imm_non_bati + isf_droits_sociaux
-        forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.taux
+        forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.majoration_forfaitaire
         actif_brut = total + forf_mob
         return actif_brut - b2gh
-
 
 # # calcul de l'impôt par application du barème ##
 
