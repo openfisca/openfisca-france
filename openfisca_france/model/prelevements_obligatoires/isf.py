@@ -277,7 +277,7 @@ class isf_ifi_imm_non_bati(Variable):
         b1bi = min_(b1bh, P.seuil) * P.taux_r1
         b1bj = max_(b1bh - P.seuil, 0) * P.taux_r2
         return b1bd + b1bf + b1bg + b1bi + b1bj + b1bk
-    
+
     def formula(foyer_fiscal, period, parameters):
         b1bc = foyer_fiscal('b1bc', period)
         b1be = foyer_fiscal('b1be', period)
@@ -294,7 +294,6 @@ class isf_ifi_imm_non_bati(Variable):
         b1bi = min_(b1bh, P.seuil) * P.taux_r1
         b1bj = max_(b1bh - P.seuil, 0) * P.taux_r2
         return b1bd + b1bf + b1bg + b1bi + b1bj + b1bk
-
 
 # # droits sociaux- valeurs mobilières- liquidités- autres meubles ##
 
