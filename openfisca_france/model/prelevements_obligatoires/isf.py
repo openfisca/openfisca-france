@@ -652,7 +652,7 @@ class isf_ifi(Variable):
 
 # TODO: à reintégrer dans irpp
 class rvcm_plus_abat(Variable):
-    value_type = flo
+    value_type = float
     entity = FoyerFiscal
     label = "rvcm_plus_abat"
     definition_period = YEAR
