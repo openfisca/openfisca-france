@@ -10,8 +10,6 @@ metadata:
   ipp_csv_id: montant_2_enf
   unit: currency
   reference:
-    1946-09-01:
-      title: Loi du 22 aout 1946
     1976-07-01:
     - title: Loi 72-8 du 03/01/1972
     - title: Décret 72-530 du 29/06/1972 (S.U.)

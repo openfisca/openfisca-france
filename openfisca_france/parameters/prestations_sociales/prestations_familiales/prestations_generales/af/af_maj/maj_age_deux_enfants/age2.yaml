@@ -5,8 +5,8 @@ values:
   2008-05-01:
     value: 14
 metadata:
-  unit: year
   ux_name: Age début 2ème majoration
+  unit: year
   reference:
     2008-05-01:
     - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000018731950/2022-02-28/
