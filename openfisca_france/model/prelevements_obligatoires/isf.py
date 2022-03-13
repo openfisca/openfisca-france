@@ -506,7 +506,16 @@ class isf_ifi_avant_plaf(Variable):
         isf_inv_pme = foyer_fiscal('isf_inv_pme', period)
         isf_org_int_gen = foyer_fiscal('isf_org_int_gen', period)
         isf_reduc_pac = foyer_fiscal('isf_reduc_pac', period)
-        borne_max = parameters(period).taxation_capital.isf_ifi.reduc_invest_don.max
+        borne_max = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.reduc_impot.plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
+
+        return max_(0, isf_ifi_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
+
+    def formula_2018(foyer_fiscal, period, parameters):
+        isf_ifi_avant_reduction = foyer_fiscal('isf_ifi_avant_reduction', period)
+        isf_inv_pme = foyer_fiscal('isf_inv_pme', period)
+        isf_org_int_gen = foyer_fiscal('isf_org_int_gen', period)
+        isf_reduc_pac = foyer_fiscal('isf_reduc_pac', period)
+        borne_max = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot.plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
 
         return max_(0, isf_ifi_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 

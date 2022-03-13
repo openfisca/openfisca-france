@@ -1,9 +1,9 @@
-description: Réductions pour dons ou investissement de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+description: Plafond pour la somme de la réduction pour PME et pour les FCIP et FIP des PME, Réductions pour dons ou investissement de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
 values:
   2018-01-01:
     value: 45000.0
 metadata:
-  ux_name: Plafond pour la somme de la réduction pour PME et pour les FCIP et FIP des PME
+  ux_name: Plafond réduc. pour PME et FCIP et FIP des PME
   unit: currency
   reference:
     2018-01-01: "Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (crée art. 978 du CGI) : Cf. note en bas de la feuille."
