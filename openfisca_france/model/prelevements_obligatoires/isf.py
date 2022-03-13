@@ -245,7 +245,7 @@ class isf_ifi_imm_bati(Variable):
         b1ac = foyer_fiscal('b1ac', period)
         P = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_exo
 
-        return (1 - P.abattement_residence_principalee) * b1ab + b1ac
+        return (1 - P.abattement_residence_principale) * b1ab + b1ac
 
     def formula(foyer_fiscal, period, parameters):
         b1ab = foyer_fiscal('b1ab', period)
