@@ -4,4 +4,5 @@ metadata:
   order:
   - bareme
   - forfait_mobilier
+  - nombre_tranches
   description_en: Wealth tax computation
