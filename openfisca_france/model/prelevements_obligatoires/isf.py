@@ -458,8 +458,8 @@ class isf_inv_pme(Variable):
         b2nf = foyer_fiscal('b2nf', period)
         b2mx = foyer_fiscal('b2mx', period)
         b2na = foyer_fiscal('b2na', period)
-        P = parameters(period).impot_solidarite_fortune_isf_1989_2017.reduc_impot
-        taux_dons =  P.reduction_dons_certains_organismes_interet_general.taux
+        P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.reduc_impot
+        taux_dons = P.reduction_dons_certains_organismes_interet_general.taux
         taux_invest_direct = P.reduction_investissements_capital_pme.taux_investissement_direct
         taux_fip_fci = P.reduction_investissements_dans_fcpi_ou_fip_dans_pme.taux_investissement
 
@@ -484,8 +484,8 @@ class isf_inv_pme(Variable):
         b2nf = foyer_fiscal('b2nf', period)
         b2mx = foyer_fiscal('b2mx', period)
         b2na = foyer_fiscal('b2na', period)
-        P = parameters(period).impot_fortune_immobiliere_ifi_partir_2018.reduc_impot
-        taux_dons =  P.reduction_dons_certains_organismes_interet_general.taux
+        P = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot
+        taux_dons = P.reduction_dons_certains_organismes_interet_general.taux
         taux_invest_direct = P.reduction_investissements_capital_pme.taux_investissement_direct
         taux_fip_fci = P.reduction_investissements_dans_fcpi_ou_fip_dans_pme.taux_investissement
 
