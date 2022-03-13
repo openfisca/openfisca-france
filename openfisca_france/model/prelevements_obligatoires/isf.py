@@ -466,7 +466,10 @@ class isf_inv_pme(Variable):
         fip = b2mx * P.taux_invest_direct_soc_holding
         fcpi = b2na * P.taux_invest_direct_soc_holding
 
-        return holdings + fip + fcpi + inv_dir_soc
+        montant_reduc = holdings + fip + fcpi + inv_dir_soc
+        plaf = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.reduc_impot.plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
+
+        return where(montant_reduc < plaf, montant_reduc, plaf)
 
     def formula_2018(foyer_fiscal, period, parameters):
         '''
@@ -487,7 +490,10 @@ class isf_inv_pme(Variable):
         fip = b2mx * P.taux_invest_direct_soc_holding
         fcpi = b2na * P.taux_invest_direct_soc_holding
 
-        return holdings + fip + fcpi + inv_dir_soc
+        montant_reduc = holdings + fip + fcpi + inv_dir_soc
+        plaf = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot.plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
+
+        return where(montant_reduc < plaf, montant_reduc, plaf)
 
 
 class isf_org_int_gen(Variable):
