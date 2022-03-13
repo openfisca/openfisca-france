@@ -435,9 +435,9 @@ class isf_reduc_pac(Variable):
         '''
         nb_pac = foyer_fiscal('nb_pac', period)
         nbH = foyer_fiscal('nbH', period)
-        P = parameters(period).taxation_capital.isf_ifi.reduc_pac
+        P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.reduc_exo
 
-        return P.reduc_enf_garde * nb_pac + (P.reduc_enf_garde / 2) * nbH
+        return P.reduction_enfant_charge * nb_pac + (P.reduction_enfant_charge / 2) * nbH
 
 
 class isf_inv_pme(Variable):
