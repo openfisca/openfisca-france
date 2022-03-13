@@ -1,3 +1,6 @@
+# The number of CPUs available.
+ncpus = $$(nproc)
+
 all: test
 
 uninstall:
@@ -43,3 +46,28 @@ test: clean check-syntax-errors check-style
 	@# Launch tests from openfisca_france/tests directory (and not .) because TaxBenefitSystem must be initialized
 	@# before parsing source files containing formulas.
 	openfisca test --country-package openfisca_france tests
+
+test-parallel: MAKEFLAGS = --output-sync -j -l $(shell echo $$((${ncpus} + 1))) --silent
+test-parallel: NODES = $(shell seq ${ncpus})
+test-parallel: ;
+	@# Launch tests in parallel.
+	@#
+	@# Usage:
+	@#
+	@# 		make test-parallel  # It will use the number of CPUs available.
+	@# 		make test-parallel ncpus=4  # It will split tests in 4 parallel groups.
+	@#
+	@$(foreach step, ${NODES}, ${MAKE} test-parallel-${step} ncpus=${ncpus})
+
+test-parallel-%: PYTEST = ${PYTEST_ADDOPTS} -qx
+test-parallel-%: SPLITS = --splits ${ncpus} --splitting-algorithm least_duration --durations-path .test-durations
+test-parallel-%: ;
+	@# Launch a specific test group, useful for test-driven developement.
+	@#
+	@# Usage:
+	@#
+	@# 		make test-parallel-8  # Assuming you have 8 CPUs, it will launch the last test group.
+	@# 		make test-parallel-4 ncpus=16  # It will split tests in 16 and launch de 4th group.
+	@# 		make test-parallel-2 ncpus=1  # This fails because the group is out of bounds.
+	@#
+	@PYTEST_ADDOPTS="${PYTEST} ${SPLITS} --group $*" openfisca test --country-package openfisca_france tests
