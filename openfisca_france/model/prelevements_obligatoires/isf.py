@@ -479,15 +479,14 @@ class isf_org_int_gen(Variable):
         P = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.reduc_impot.reduction_dons_certains_organismes_interet_general
         montant = b2nc * P.taux
 
-        return where(montant < P.limite_reduction, montant, P.limite_reduction) 
-
+        return where(montant < P.limite_reduction, montant, P.limite_reduction)
 
     def formula_2018(foyer_fiscal, period, parameters):
         b2nc = foyer_fiscal('b2nc', period)
         P = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot.reduction_dons_certains_organismes_interet_general
         montant = b2nc * P.taux
 
-        return where(montant < P.limite_reduction, montant, P.limite_reduction) 
+        return where(montant < P.limite_reduction, montant, P.limite_reduction)
 
 
 class isf_ifi_avant_plaf(Variable):
