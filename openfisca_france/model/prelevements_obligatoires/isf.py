@@ -458,13 +458,15 @@ class isf_inv_pme(Variable):
         b2nf = foyer_fiscal('b2nf', period)
         b2mx = foyer_fiscal('b2mx', period)
         b2na = foyer_fiscal('b2na', period)
-        P = parameters(period).taxation_capital.isf_ifi.reduc_invest_don
-        Pdons =  parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.reduc_impot.reduction_dons_certains_organismes_interet_general
-        
-        inv_dir_soc = b2mt * Pdons.taux + b2ne * P.taux_invest_direct_soc_holding
-        holdings = b2mv * Pdons.taux + b2nf * P.taux_invest_direct_soc_holding
-        fip = b2mx * P.taux_invest_direct_soc_holding
-        fcpi = b2na * P.taux_invest_direct_soc_holding
+        P = parameters(period).impot_solidarite_fortune_isf_1989_2017.reduc_impot
+        taux_dons =  P.reduction_dons_certains_organismes_interet_general.taux
+        taux_invest_direct = P.reduction_investissements_capital_pme.taux_investissement_direct
+        taux_fip_fci = P.reduction_investissements_dans_fcpi_ou_fip_dans_pme.taux_investissement
+
+        inv_dir_soc = b2mt * taux_dons + b2ne * taux_invest_direct
+        holdings = b2mv * taux_dons + b2nf * taux_invest_direct
+        fip = b2mx * taux_fip_fci
+        fcpi = b2na * taux_fip_fci
 
         montant_reduc = holdings + fip + fcpi + inv_dir_soc
         plaf = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.reduc_impot.plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
@@ -482,13 +484,15 @@ class isf_inv_pme(Variable):
         b2nf = foyer_fiscal('b2nf', period)
         b2mx = foyer_fiscal('b2mx', period)
         b2na = foyer_fiscal('b2na', period)
-        P = parameters(period).taxation_capital.isf_ifi.reduc_invest_don
-        Pdons =  parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot.reduction_dons_certains_organismes_interet_general
-        
-        inv_dir_soc = b2mt * Pdons.taux + b2ne * P.taux_invest_direct_soc_holding
-        holdings = b2mv * Pdons.taux + b2nf * P.taux_invest_direct_soc_holding
-        fip = b2mx * P.taux_invest_direct_soc_holding
-        fcpi = b2na * P.taux_invest_direct_soc_holding
+        P = parameters(period).impot_fortune_immobiliere_ifi_partir_2018.reduc_impot
+        taux_dons =  P.reduction_dons_certains_organismes_interet_general.taux
+        taux_invest_direct = P.reduction_investissements_capital_pme.taux_investissement_direct
+        taux_fip_fci = P.reduction_investissements_dans_fcpi_ou_fip_dans_pme.taux_investissement
+
+        inv_dir_soc = b2mt * taux_dons + b2ne * taux_invest_direct
+        holdings = b2mv * taux_dons + b2nf * taux_invest_direct
+        fip = b2mx * taux_fip_fci
+        fcpi = b2na * taux_fip_fci
 
         montant_reduc = holdings + fip + fcpi + inv_dir_soc
         plaf = parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot.plafond_somme_trois_reductions_pme_fcip_fip_pme_dons
