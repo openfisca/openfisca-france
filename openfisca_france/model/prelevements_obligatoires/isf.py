@@ -459,9 +459,31 @@ class isf_inv_pme(Variable):
         b2mx = foyer_fiscal('b2mx', period)
         b2na = foyer_fiscal('b2na', period)
         P = parameters(period).taxation_capital.isf_ifi.reduc_invest_don
+        Pdons =  parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.reduc_impot.reduction_dons_certains_organismes_interet_general
+        
+        inv_dir_soc = b2mt * Pdons.taux + b2ne * P.taux_invest_direct_soc_holding
+        holdings = b2mv * Pdons.taux + b2nf * P.taux_invest_direct_soc_holding
+        fip = b2mx * P.taux_invest_direct_soc_holding
+        fcpi = b2na * P.taux_invest_direct_soc_holding
 
-        inv_dir_soc = b2mt * P.taux_don_interet_general + b2ne * P.taux_invest_direct_soc_holding
-        holdings = b2mv * P.taux_don_interet_general + b2nf * P.taux_invest_direct_soc_holding
+        return holdings + fip + fcpi + inv_dir_soc
+
+    def formula_2018(foyer_fiscal, period, parameters):
+        '''
+        Réductions pour investissements dans les PME
+        à partir de 2008!
+        '''
+        b2mt = foyer_fiscal('b2mt', period)
+        b2ne = foyer_fiscal('b2ne', period)
+        b2mv = foyer_fiscal('b2mv', period)
+        b2nf = foyer_fiscal('b2nf', period)
+        b2mx = foyer_fiscal('b2mx', period)
+        b2na = foyer_fiscal('b2na', period)
+        P = parameters(period).taxation_capital.isf_ifi.reduc_invest_don
+        Pdons =  parameters(period).taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.reduc_impot.reduction_dons_certains_organismes_interet_general
+        
+        inv_dir_soc = b2mt * Pdons.taux + b2ne * P.taux_invest_direct_soc_holding
+        holdings = b2mv * Pdons.taux + b2nf * P.taux_invest_direct_soc_holding
         fip = b2mx * P.taux_invest_direct_soc_holding
         fcpi = b2na * P.taux_invest_direct_soc_holding
 
