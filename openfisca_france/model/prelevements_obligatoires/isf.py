@@ -409,6 +409,7 @@ class isf_ifi_iai(Variable):
         bareme = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.bareme.bareme
         return bareme.calc(assiette_isf_ifi)
 
+
 class isf_ifi_avant_reduction(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -628,6 +629,7 @@ class decote_isf_ifi(Variable):
         elig = (assiette_isf_ifi >= P.borne_inferieure_decote) & (assiette_isf_ifi <= P.borne_superieure_decote)
         LB = P.parametre_calcul_decote - P.taux_decote * assiette_isf_ifi
         return LB * elig
+
 
 class isf_ifi_apres_plaf(Variable):
     value_type = float
