@@ -1501,7 +1501,7 @@ class cont_rev_loc(Variable):
         Contribution sur les revenus locatifs
         '''
         f4bl = foyer_fiscal('f4bl', period)
-        crl = parameters(period).impot_revenu.crl
+        crl = parameters(period).impot_revenu.contributions_exceptionnelles.crl
 
         return round_(crl.taux * (f4bl >= crl.seuil) * f4bl)
 
