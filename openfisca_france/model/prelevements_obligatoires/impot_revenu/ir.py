@@ -1181,7 +1181,7 @@ class ir_plaf_qf(Variable):
         nbH = foyer_fiscal('nbH', period)
         nbI = foyer_fiscal('nbI', period)
         nbR = foyer_fiscal('nbR', period)
-        plafond_qf = parameters(period).impot_revenu.plafond_qf
+        plafond_qf = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf
 
         A = ir_ss_qf
         I = ir_brut  # noqa F741
@@ -1273,7 +1273,7 @@ class ir_plaf_qf(Variable):
         nbN = foyer_fiscal('nbJ', period)  # noqa F841
         nbR = foyer_fiscal('nbR', period)
 
-        plafond_qf = parameters(period).impot_revenu.plafond_qf
+        plafond_qf = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf
 
         # PART1 - PLAFONNEMENT DU QF
 
@@ -1419,7 +1419,7 @@ class reduction_ss_condition_revenus(Variable):
         nb_adult = foyer_fiscal('nb_adult', period)
         nb_parts = foyer_fiscal('nbptr', period)
         rfr = foyer_fiscal('rfr', period)
-        P = parameters(period).impot_revenu.plafond_qf.reduction_ss_condition_revenus
+        P = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.reduction_ss_condition_revenus
 
         ir_apres_plaf_qf_et_decote = ir_plaf_qf - decote
         plafond1 = P.seuil1 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
