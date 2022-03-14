@@ -1,0 +1,234 @@
+description: Seuils inférieurs des tranches de l'imposition au taux neutre pour les contribuables domiciliés en métropole
+tranche_1:
+  description: Tranche 1
+  values:
+    2019-01-01:
+      value: 0.0
+  metadata:
+    ipp_csv_id: tranche1_neutre_metropole
+tranche_2:
+  description: Tranche 2
+  values:
+    2021-01-01:
+      value: 1420.0
+    2020-01-01:
+      value: 1418.0
+    2019-01-01:
+      value: 1404.0
+  metadata:
+    ipp_csv_id: tranche2_neutre_metropole
+tranche_3:
+  description: Tranche 3
+  values:
+    2021-01-01:
+      value: 1475.0
+    2020-01-01:
+      value: 1472.0
+    2019-01-01:
+      value: 1457.0
+  metadata:
+    ipp_csv_id: tranche3_neutre_metropole
+tranche_4:
+  description: Tranche 4
+  values:
+    2021-01-01:
+      value: 1570.0
+    2020-01-01:
+      value: 1567.0
+    2019-01-01:
+      value: 1551.0
+  metadata:
+    ipp_csv_id: tranche4_neutre_metropole
+tranche_5:
+  description: Tranche 5
+  values:
+    2021-01-01:
+      value: 1676.0
+    2020-01-01:
+      value: 1673.0
+    2019-01-01:
+      value: 1656.0
+  metadata:
+    ipp_csv_id: tranche5_neutre_metropole
+tranche_6:
+  description: Tranche 6
+  values:
+    2021-01-01:
+      value: 1791.0
+    2020-01-01:
+      value: 1787.0
+    2019-01-01:
+      value: 1769.0
+  metadata:
+    ipp_csv_id: tranche6_neutre_metropole
+tranche_7:
+  description: Tranche 7
+  values:
+    2021-01-01:
+      value: 1887.0
+    2020-01-01:
+      value: 1883.0
+    2019-01-01:
+      value: 1864.0
+  metadata:
+    ipp_csv_id: tranche7_neutre_metropole
+tranche_8:
+  description: Tranche 8
+  values:
+    2021-01-01:
+      value: 2012.0
+    2020-01-01:
+      value: 2008.0
+    2019-01-01:
+      value: 1988.0
+  metadata:
+    ipp_csv_id: tranche8_neutre_metropole
+tranche_9:
+  description: Tranche 9
+  values:
+    2021-01-01:
+      value: 2381.0
+    2020-01-01:
+      value: 2376.0
+    2019-01-01:
+      value: 2578.0
+  metadata:
+    ipp_csv_id: tranche9_neutre_metropole
+tranche_10:
+  description: Tranche 10
+  values:
+    2021-01-01:
+      value: 2725.0
+    2020-01-01:
+      value: 2720.0
+    2019-01-01:
+      value: 2797.0
+  metadata:
+    ipp_csv_id: tranche10_neutre_metropole
+tranche_11:
+  description: Tranche 11
+  values:
+    2021-01-01:
+      value: 3104.0
+    2020-01-01:
+      value: 3098.0
+    2019-01-01:
+      value: 3067.0
+  metadata:
+    ipp_csv_id: tranche11_neutre_metropole
+tranche_12:
+  description: Tranche 12
+  values:
+    2021-01-01:
+      value: 3494.0
+    2020-01-01:
+      value: 3487.0
+    2019-01-01:
+      value: 3452.0
+  metadata:
+    ipp_csv_id: tranche12_neutre_metropole
+tranche_13:
+  description: Tranche 13
+  values:
+    2021-01-01:
+      value: 4077.0
+    2020-01-01:
+      value: 4069.0
+    2019-01-01:
+      value: 4029.0
+  metadata:
+    ipp_csv_id: tranche13_neutre_metropole
+tranche_14:
+  description: Tranche 14
+  values:
+    2021-01-01:
+      value: 4888.0
+    2020-01-01:
+      value: 4878.0
+    2019-01-01:
+      value: 4830.0
+  metadata:
+    ipp_csv_id: tranche14_neutre_metropole
+tranche_15:
+  description: Tranche 15
+  values:
+    2021-01-01:
+      value: 6116.0
+    2020-01-01:
+      value: 6104.0
+    2019-01-01:
+      value: 6043.0
+  metadata:
+    ipp_csv_id: tranche15_neutre_metropole
+tranche_16:
+  description: Tranche 16
+  values:
+    2021-01-01:
+      value: 7640.0
+    2020-01-01:
+      value: 7625.0
+    2019-01-01:
+      value: 7780.0
+  metadata:
+    ipp_csv_id: tranche16_neutre_metropole
+tranche_17:
+  description: Tranche 17
+  values:
+    2021-01-01:
+      value: 10604.0
+    2020-01-01:
+      value: 10583.0
+    2019-01-01:
+      value: 10562.0
+  metadata:
+    ipp_csv_id: tranche17_neutre_metropole
+tranche_18:
+  description: Tranche 18
+  values:
+    2021-01-01:
+      value: 14362.0
+    2020-01-01:
+      value: 14333.0
+    2019-01-01:
+      value: 14795.0
+  metadata:
+    ipp_csv_id: tranche18_neutre_metropole
+tranche_19:
+  description: Tranche 19
+  values:
+    2021-01-01:
+      value: 22545.0
+    2020-01-01:
+      value: 22500.0
+    2019-01-01:
+      value: 22620.0
+  metadata:
+    ipp_csv_id: tranche19_neutre_metropole
+tranche_20:
+  description: Tranche 20
+  values:
+    2021-01-01:
+      value: 48292.0
+    2020-01-01:
+      value: 48196.0
+    2019-01-01:
+      value: 47717.0
+  metadata:
+    ipp_csv_id: tranche20_neutre_metropole
+metadata:
+  ux_name: Métropole
+  unit: currency
+  reference:
+    2021-01-01:
+      title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593
+    2020-01-01:
+      title: Loi 2019-1479, art. 2 du 28/12/2019 (LF pour 2020)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039683923&dateTexte=&categorieLien=id
+    2019-01-01:
+      title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037935215&cidTexte=JORFTEXT000037882341
+  official_journal_date:
+    2021-01-01: 2020-12-30
+    2020-01-01: 2019-12-29
+    2019-01-01: 2018-12-30
