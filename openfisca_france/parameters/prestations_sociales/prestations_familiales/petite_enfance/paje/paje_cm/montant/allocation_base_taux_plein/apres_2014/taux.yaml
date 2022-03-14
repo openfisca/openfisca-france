@@ -18,12 +18,18 @@ metadata:
     2014-04-01:
       href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000028880083/2014-04-27/
       title: Décret n° 2014-422 du 24 avril 2014, art. 2 (modifie art. D531-3 du CSS)
+    2018-04-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036847857&dateTexte=20200307
+      title: Décret n° 2018-312 du 26 avril 2018, art. 1 (modifie art. D531-3 du CSS)
   official_journal_date:
     2004-01-01: 2003-12-19; 2004-01-01
     2014-04-01: "2014-04-26"
+    2018-04-01: "2018-04-28"
   notes:
     2004-01-01:
     - title: "art. D531-1 : fixe l'âge limite; art. D531-3 : fixe le montant de l'aide (en % de la BMAF); La PAJE entre en vigueur de manière progressive jusqu'à fin 2006 (cf. art. 60, VIII de la loi)."
+    2018-04-01:
+    - title: Taux appliqués pour les enfants nés ou adoptés à partir du 1er avril 2018.
 documentation: |-
   Notes :
   (1) S'applique pour les enfants nés à partir du 1er avril 2014
