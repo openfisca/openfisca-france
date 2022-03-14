@@ -1652,7 +1652,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vl = foyer_fiscal('f3vl', period)
         f3vm = foyer_fiscal('f3vm', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        plus_values = parameters(period).impot_revenu.plus_values
+        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vd = foyer_fiscal.declarant_principal('f3vd', period)  # noqa F841
@@ -1682,7 +1682,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vl = foyer_fiscal('f3vl', period)
         f3vm = foyer_fiscal('f3vm', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        plus_values = parameters(period).impot_revenu.plus_values
+        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vd = foyer_fiscal.declarant_principal('f3vd', period)
@@ -1720,7 +1720,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vi_i = foyer_fiscal.members('f3vi', period)
         f3vf_i = foyer_fiscal.members('f3vf', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        plus_values = parameters(period).impot_revenu.plus_values
+        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
@@ -1758,7 +1758,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.plus_values
+        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
 
         return round_(
             plus_values.pvce * rpns_pvce
@@ -1790,7 +1790,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.plus_values
+        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
 
         return round_(
             plus_values.pvce * rpns_pvce
@@ -1826,7 +1826,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.plus_values
+        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
 
         return round_(
             plus_values.pvce * rpns_pvce
@@ -1864,7 +1864,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.plus_values
+        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
         P = parameters(period).impot_revenu.rpns
 
         return round_(
