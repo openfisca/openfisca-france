@@ -27,8 +27,8 @@ class plf2016(Reform):
         def formula_2015_01_01(foyer_fiscal, period, parameters):
             ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
             nb_adult = foyer_fiscal('nb_adult', period)
-            decote_seuil_celib = parameters(period).impot_revenu.decote.seuil_celib
-            decote_seuil_couple = parameters(period).impot_revenu.decote.seuil_couple
+            decote_seuil_celib = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_celib
+            decote_seuil_couple = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_couple
             decote_celib = (ir_plaf_qf < 4 / 3 * decote_seuil_celib) * (decote_seuil_celib - 3 / 4 * ir_plaf_qf)
             decote_couple = (ir_plaf_qf < 4 / 3 * decote_seuil_couple) * (decote_seuil_couple - 3 / 4 * ir_plaf_qf)
 
@@ -91,7 +91,7 @@ class plf2016_counterfactual(Reform):
         def formula_2015_01_01(foyer_fiscal, period, parameters):
             ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
-            decote = parameters(period).impot_revenu.decote
+            decote = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote
             assert decote.seuil == 1016
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
@@ -188,7 +188,7 @@ class plf2016_counterfactual_2014(Reform):
         def formula_2015_01_01(foyer_fiscal, period, parameters):
             ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
-            decote = parameters(period).impot_revenu.decote
+            decote = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote
             assert decote.seuil == 1016
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
