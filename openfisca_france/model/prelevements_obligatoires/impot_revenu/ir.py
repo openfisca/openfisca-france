@@ -3195,7 +3195,7 @@ class nbptr(Variable):
         caseS = foyer_fiscal('caseS', period)
         caseL = foyer_fiscal('caseL', period)
         caseT = foyer_fiscal('caseT', period.first_month)
-        quotient_familial = parameters(period).impot_revenu.quotient_familial
+        quotient_familial = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.quotient_familial
 
         no_pac = nb_pac == 0  # Aucune personne à charge en garde exclusive
         has_pac = not_(no_pac)
