@@ -1516,7 +1516,7 @@ class teicaa(Variable):  # f5rm
         """
         Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance
         """
-        bareme = parameters(period).impot_revenu.teicaa
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.teicaa
 
         f5qm = foyer_fiscal.declarant_principal('f5qm', period)
         f5rm = foyer_fiscal.conjoint('f5qm', period)
