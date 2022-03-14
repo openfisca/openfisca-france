@@ -3058,7 +3058,7 @@ class abat_spe(Variable):
         nombre_enfants = foyer_fiscal('nbN', period)
 
         # Abattements pour revenu net imposable
-        abattements = parameters(period).impot_revenu.abattements_rni
+        abattements = parameters(period).impot_revenu.calcul_revenus_imposables.abat_rni
 
         # Abattement pour personnes agées de + de 65 ans ou invalide
         abattement_age_ou_invalidite = abattements.personne_agee_ou_invalide
