@@ -1,0 +1,489 @@
+description: Seuils et taux d'imposition au titre du barème de l'IGR (1942 - 1944)
+seuil_tranche_1_en_frf:
+  description: Seuil tranche 1 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_2_en_frf:
+  description: Seuil tranche 2 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 10000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_3_en_frf:
+  description: Seuil tranche 3 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 20000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_4_en_frf:
+  description: Seuil tranche 4 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 30000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_5_en_frf:
+  description: Seuil tranche 5 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 40000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_6_en_frf:
+  description: Seuil tranche 6 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 50000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_7_en_frf:
+  description: Seuil tranche 7 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 60000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_8_en_frf:
+  description: Seuil tranche 8 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 70000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_9_en_frf:
+  description: Seuil tranche 9 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 80000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_10_en_frf:
+  description: Seuil tranche 10 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 90000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_11_en_frf:
+  description: Seuil tranche 11 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 100000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_12_en_frf:
+  description: Seuil tranche 12 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 120000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_13_en_frf:
+  description: Seuil tranche 13 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 140000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_14_en_frf:
+  description: Seuil tranche 14 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 160000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_15_en_frf:
+  description: Seuil tranche 15 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 180000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_16_en_frf:
+  description: Seuil tranche 16 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 200000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_17_en_frf:
+  description: Seuil tranche 17 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 225000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_18_en_frf:
+  description: Seuil tranche 18 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 250000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_19_en_frf:
+  description: Seuil tranche 19 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 275000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_20_en_frf:
+  description: Seuil tranche 20 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 300000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_21_en_frf:
+  description: Seuil tranche 21 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 325000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_22_en_frf:
+  description: Seuil tranche 22 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 350000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_23_en_frf:
+  description: Seuil tranche 23 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 375000.0
+  metadata:
+    unit: currency-FRF
+seuil_tranche_24_en_frf:
+  description: Seuil tranche 24 (en FRF)
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 400000.0
+  metadata:
+    unit: currency-FRF
+taux_marginal_tranche_1:
+  description: Taux marginal tranche 1
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.0
+  metadata:
+    unit: /1
+taux_marginal_tranche_2:
+  description: Taux marginal tranche 2
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.014
+  metadata:
+    unit: /1
+taux_marginal_tranche_3:
+  description: Taux marginal tranche 3
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.028
+  metadata:
+    unit: /1
+taux_marginal_tranche_4:
+  description: Taux marginal tranche 4
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.042
+  metadata:
+    unit: /1
+taux_marginal_tranche_5:
+  description: Taux marginal tranche 5
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.05599999999999999
+  metadata:
+    unit: /1
+taux_marginal_tranche_6:
+  description: Taux marginal tranche 6
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.07
+  metadata:
+    unit: /1
+taux_marginal_tranche_7:
+  description: Taux marginal tranche 7
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.098
+  metadata:
+    unit: /1
+taux_marginal_tranche_8:
+  description: Taux marginal tranche 8
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.126
+  metadata:
+    unit: /1
+taux_marginal_tranche_9:
+  description: Taux marginal tranche 9
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.168
+  metadata:
+    unit: /1
+taux_marginal_tranche_10:
+  description: Taux marginal tranche 10
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.21
+  metadata:
+    unit: /1
+taux_marginal_tranche_11:
+  description: Taux marginal tranche 11
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.245
+  metadata:
+    unit: /1
+taux_marginal_tranche_12:
+  description: Taux marginal tranche 12
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.28
+  metadata:
+    unit: /1
+taux_marginal_tranche_13:
+  description: Taux marginal tranche 13
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.315
+  metadata:
+    unit: /1
+taux_marginal_tranche_14:
+  description: Taux marginal tranche 14
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.35
+  metadata:
+    unit: /1
+taux_marginal_tranche_15:
+  description: Taux marginal tranche 15
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.385
+  metadata:
+    unit: /1
+taux_marginal_tranche_16:
+  description: Taux marginal tranche 16
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.42
+  metadata:
+    unit: /1
+taux_marginal_tranche_17:
+  description: Taux marginal tranche 17
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.455
+  metadata:
+    unit: /1
+taux_marginal_tranche_18:
+  description: Taux marginal tranche 18
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.49
+  metadata:
+    unit: /1
+taux_marginal_tranche_19:
+  description: Taux marginal tranche 19
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.525
+  metadata:
+    unit: /1
+taux_marginal_tranche_20:
+  description: Taux marginal tranche 20
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.56
+  metadata:
+    unit: /1
+taux_marginal_tranche_21:
+  description: Taux marginal tranche 21
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.595
+  metadata:
+    unit: /1
+taux_marginal_tranche_22:
+  description: Taux marginal tranche 22
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.63
+  metadata:
+    unit: /1
+taux_marginal_tranche_23:
+  description: Taux marginal tranche 23
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.665
+  metadata:
+    unit: /1
+taux_marginal_tranche_24:
+  description: Taux marginal tranche 24
+  values:
+    1945-01-01:
+      value: null
+    1942-01-01:
+      value: 0.7
+  metadata:
+    unit: /1
+metadata:
+  order:
+  - seuil_tranche_1_en_frf
+  - seuil_tranche_2_en_frf
+  - seuil_tranche_3_en_frf
+  - seuil_tranche_4_en_frf
+  - seuil_tranche_5_en_frf
+  - seuil_tranche_6_en_frf
+  - seuil_tranche_7_en_frf
+  - seuil_tranche_8_en_frf
+  - seuil_tranche_9_en_frf
+  - seuil_tranche_10_en_frf
+  - seuil_tranche_11_en_frf
+  - seuil_tranche_12_en_frf
+  - seuil_tranche_13_en_frf
+  - seuil_tranche_14_en_frf
+  - seuil_tranche_15_en_frf
+  - seuil_tranche_16_en_frf
+  - seuil_tranche_17_en_frf
+  - seuil_tranche_18_en_frf
+  - seuil_tranche_19_en_frf
+  - seuil_tranche_20_en_frf
+  - seuil_tranche_21_en_frf
+  - seuil_tranche_22_en_frf
+  - seuil_tranche_23_en_frf
+  - seuil_tranche_24_en_frf
+  - taux_marginal_tranche_1
+  - taux_marginal_tranche_2
+  - taux_marginal_tranche_3
+  - taux_marginal_tranche_4
+  - taux_marginal_tranche_5
+  - taux_marginal_tranche_6
+  - taux_marginal_tranche_7
+  - taux_marginal_tranche_8
+  - taux_marginal_tranche_9
+  - taux_marginal_tranche_10
+  - taux_marginal_tranche_11
+  - taux_marginal_tranche_12
+  - taux_marginal_tranche_13
+  - taux_marginal_tranche_14
+  - taux_marginal_tranche_15
+  - taux_marginal_tranche_16
+  - taux_marginal_tranche_17
+  - taux_marginal_tranche_18
+  - taux_marginal_tranche_19
+  - taux_marginal_tranche_20
+  - taux_marginal_tranche_21
+  - taux_marginal_tranche_22
+  - taux_marginal_tranche_23
+  - taux_marginal_tranche_24
+  reference:
+    1942-01-01: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+  description_en: Thresholds and marginal tax rates of the IGR tax (1942 - 1944)
+documentation: |
+  Notes :
+  Les revenus des années 1942-1944 étaient soumis à des barèmes exprimés en taux marginal. Voir note de la feuille "Barème IGR 1917-1918".
