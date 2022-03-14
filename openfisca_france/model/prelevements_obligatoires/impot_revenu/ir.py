@@ -661,7 +661,7 @@ class revenu_categoriel_capital(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2gr = foyer_fiscal('f2gr', period)
         f2tr = foyer_fiscal('f2tr', period)
-        rvcm = parameters(period).impot_revenu.rvcm
+        rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         f2dc_bis = f2dc
         f2tr_bis = f2tr
@@ -706,7 +706,7 @@ class revenu_categoriel_capital(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2gr = foyer_fiscal('f2gr', period)
         f2tr = foyer_fiscal('f2tr', period)
-        parameter_rvcm = parameters(period).impot_revenu.rvcm
+        parameter_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         part_frais_imputes_sur_f2dc = f2ca / max_(1, f2dc + f2ts) * f2dc
         part_frais_restant_a_imputer = -min_(f2dc * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
@@ -741,7 +741,7 @@ class revenu_categoriel_capital(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2tr = foyer_fiscal('f2tr', period)
         f2ts = foyer_fiscal('f2ts', period)
-        P = parameters(period).impot_revenu.rvcm
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
         abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
@@ -769,7 +769,7 @@ class revenu_categoriel_capital(Variable):
         f2ts = foyer_fiscal('f2ts', period)
         f2tt_2016 = foyer_fiscal('f2tt_2016', period)
         f2tu_2016 = foyer_fiscal('f2tu_2016', period)
-        P = parameters(period).impot_revenu.rvcm
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
         abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
@@ -804,7 +804,7 @@ class revenu_categoriel_capital(Variable):
         f2tr = foyer_fiscal('f2tr', period)
         f2ts = foyer_fiscal('f2ts', period)
         f2tt = foyer_fiscal('f2tt', period)
-        P = parameters(period).impot_revenu.rvcm
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
         abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
@@ -828,7 +828,7 @@ class revenu_categoriel_capital(Variable):
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ch = foyer_fiscal('f2ch', period)
         f2yy = foyer_fiscal('f2yy', period)
-        P = parameters(period).impot_revenu.rvcm
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
@@ -854,7 +854,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         f2gr = foyer_fiscal('f2gr', period)
         f2fu = foyer_fiscal('f2fu', period)
         f2da = foyer_fiscal('f2da', period)  # noqa F841
-        rvcm = parameters(period).impot_revenu.rvcm
+        rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Calcul de i121
         # Part des frais s'imputant sur les revenus déclarés case DC
@@ -873,7 +873,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f2dc = foyer_fiscal('f2dc', period)
         f2fu = foyer_fiscal('f2fu', period)
-        P = parameters(period).impot_revenu.rvcm
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
 
@@ -891,7 +891,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         f2dh = foyer_fiscal('f2dh', period)
         f2vv = foyer_fiscal('f2vv', period)
         f2ww = foyer_fiscal('f2ww', period)
-        P = parameters(period).impot_revenu.rvcm
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         abattement_assurance_vie = (
             (f2ch < P.abat_assvie * (1 + maries_ou_pacses)) * max_(0, min_(f2vv + f2ww, P.abat_assvie * (1 + maries_ou_pacses) - f2ch - f2dh))
@@ -1631,7 +1631,7 @@ class tax_rvcm_forfaitaire(Variable):
         Taxation des revenus des valeurs et capitaux mobiliers
         """
         f2fa = foyer_fiscal('f2fa', period)
-        P = parameters(period).impot_revenu.rvcm
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         return f2fa * P.taux_forfaitaire
 

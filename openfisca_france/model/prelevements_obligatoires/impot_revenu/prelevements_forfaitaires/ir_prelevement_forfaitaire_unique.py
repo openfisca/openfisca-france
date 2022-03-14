@@ -204,7 +204,7 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         P1 = parameters(period).impot_revenu.prelevement_forfaitaire_unique_ir
-        P2 = parameters(period).impot_revenu.rvcm
+        P2 = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f2ch = foyer_fiscal('f2ch', period)
