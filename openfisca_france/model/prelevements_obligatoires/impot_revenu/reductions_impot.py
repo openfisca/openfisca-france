@@ -68,7 +68,7 @@ class accult(Variable):
         2002-
         '''
         f7uo = foyer_fiscal('f7uo', period)
-        P = parameters(period).impot_revenu.credits_impot.accult
+        P = parameters(period).impot_revenu.calcul_credits_impots.accult
 
         return P.taux * f7uo
 
@@ -2682,7 +2682,7 @@ class garext(Variable):
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
-        P = parameters(period).impot_revenu.credits_impot.garext
+        P = parameters(period).impot_revenu.calcul_credits_impots.garext
 
         max1 = P.plafond
         return P.taux * (min_(f7ga, max1) + min_(f7gb, max1) + min_(f7gc, max1))
@@ -2699,7 +2699,7 @@ class garext(Variable):
         f7ge = foyer_fiscal('f7ge', period)
         f7gf = foyer_fiscal('f7gf', period)
         f7gg = foyer_fiscal('f7gg', period)
-        P = parameters(period).impot_revenu.credits_impot.garext
+        P = parameters(period).impot_revenu.calcul_credits_impots.garext
 
         max1 = P.plafond
         max2 = P.plafond / 2
