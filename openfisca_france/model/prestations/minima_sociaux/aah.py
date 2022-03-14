@@ -46,7 +46,7 @@ class aah_base_ressources(Variable):
         en_activite = individu('salaire_imposable', period) > 0
 
         def assiette_conjoint(revenus_conjoint):
-            return (1 - law.impot_revenu.tspr.abatpro.taux) * (1 - aah.abattement_conjoint) * revenus_conjoint
+            return (1 - law.impot_revenu.calcul_revenus_imposables.tspr.abatpro.taux) * (1 - aah.abattement_conjoint) * revenus_conjoint
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel

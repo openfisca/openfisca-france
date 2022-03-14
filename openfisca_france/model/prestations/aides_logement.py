@@ -578,7 +578,7 @@ class aide_logement_base_ressources_individu(Variable):
         chomeur_longue_duree = individu('chomeur_longue_duree', period, options = [DIVIDE])
         frais_reels = individu('frais_reels', period_frais)
 
-        abatpro = parameters(period.last_year).impot_revenu.tspr.abatpro
+        abatpro = parameters(period.last_year).impot_revenu.calcul_revenus_imposables.tspr.abatpro
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
 
@@ -598,7 +598,7 @@ class aide_logement_base_ressources_individu(Variable):
         retraite_imposable = individu('retraite_imposable', annee_glissante, options=[ADD])
         pension_invalidite = individu('pensions_invalidite', period.n_2, options = [ADD])
         revenu_assimile_pension = pensions_alimentaires_percues + retraite_imposable + pension_invalidite
-        abatpen = parameters(period).impot_revenu.tspr.abatpen
+        abatpen = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpen
         revenu_assimile_pension = max_(0, revenu_assimile_pension - round_(max_(abatpen.taux * revenu_assimile_pension, abatpen.min)))
 
         abattement_revenus_activite_professionnelle = individu('aide_logement_abattement_revenus_activite_professionnelle', period)
@@ -630,7 +630,7 @@ class aide_logement_base_ressources_individu(Variable):
         chomeur_longue_duree = individu('chomeur_longue_duree', period, options = [DIVIDE])
         frais_reels = individu('frais_reels', period.n_2)
 
-        abatpro = parameters(period.n_2).impot_revenu.tspr.abatpro
+        abatpro = parameters(period.n_2).impot_revenu.calcul_revenus_imposables.tspr.abatpro
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
 
@@ -721,7 +721,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
         def eval_forfaitaire_salaries():
             salaire_imposable = individu('salaire_imposable', period.offset(-1))
             # Application de l'abattement pour frais professionnels
-            params_abattement = parameters(period).impot_revenu.tspr.abatpro
+            params_abattement = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpro
             somme_salaires_mois_precedent = 12 * salaire_imposable
             montant_abattement = round_(
                 min_(

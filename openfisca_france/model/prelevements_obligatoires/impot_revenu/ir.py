@@ -416,7 +416,7 @@ class revenu_assimile_salaire_apres_abattements(Variable):
         revenu_assimile_salaire = individu('revenu_assimile_salaire', period)
         chomeur_longue_duree = individu('chomeur_longue_duree', period)
         frais_reels = individu('frais_reels', period)
-        abatpro = parameters(period).impot_revenu.tspr.abatpro
+        abatpro = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpro
 
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abatfor = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
@@ -451,7 +451,7 @@ class revenu_assimile_pension_apres_abattements(Variable):
 
     def formula(individu, period, parameters):
         revenu_assimile_pension = individu('revenu_assimile_pension', period)
-        abatpen = parameters(period).impot_revenu.tspr.abatpen
+        abatpen = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpen
 
         #    TODO: problème car les pensions sont majorées au niveau du foyer
     #    d11 = ( AS + BS + CS + DS + ES +
@@ -472,7 +472,7 @@ class indu_plaf_abat_pen(Variable):
     def formula(foyer_fiscal, period, parameters):
         rev_pen_i = foyer_fiscal.members('revenu_assimile_pension', period)
         pen_net_i = foyer_fiscal.members('revenu_assimile_pension_apres_abattements', period)
-        abatpen = parameters(period).impot_revenu.tspr.abatpen
+        abatpen = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpen
 
         revenu_assimile_pension_apres_abattements = foyer_fiscal.sum(pen_net_i)
         revenu_assimile_pension = foyer_fiscal.sum(rev_pen_i)
@@ -491,7 +491,7 @@ class abattement_salaires_pensions(Variable):
     def formula(individu, period, parameters):
         revenu_assimile_salaire_apres_abattements = individu('revenu_assimile_salaire_apres_abattements', period)
         revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
-        abatsalpen = parameters(period).impot_revenu.tspr.abatsalpen
+        abatsalpen = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatsalpen
 
         return min_(abatsalpen.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abatsalpen.max)
 
@@ -536,7 +536,7 @@ class rente_viagere_titre_onereux_net(Variable):
         f1bw = foyer_fiscal('f1bw', period)
         f1cw = foyer_fiscal('f1cw', period)
         f1dw = foyer_fiscal('f1dw', period)
-        abatviag = parameters(period).impot_revenu.tspr.abatviag
+        abatviag = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatviag
 
         return round_(
             + abatviag.taux1 * f1aw
