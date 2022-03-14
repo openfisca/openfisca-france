@@ -786,7 +786,7 @@ class maj_cga(Variable):
         nacc_defs = individu('nacc_defs', period)
         nbnc_impo = individu('nbnc_impo', period)
         nbnc_defi = individu('nbnc_defi', period)
-        P = parameters(period).impot_revenu.rpns
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rpns
 
         nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
 

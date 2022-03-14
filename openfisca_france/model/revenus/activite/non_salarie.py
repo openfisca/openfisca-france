@@ -2115,7 +2115,7 @@ class rpns_auto_entrepreneur_benefice(Variable):
         rpns_auto_entrepreneur_CA_bic = individu('rpns_auto_entrepreneur_CA_bic', period)
         rpns_auto_entrepreneur_CA_bnc = individu('rpns_auto_entrepreneur_CA_bnc', period)
 
-        bareme = parameters(period).impot_revenu.rpns.micro
+        bareme = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         benefice = ((rpns_auto_entrepreneur_CA_achat_revente * (1 - bareme.microentreprise.taux_ventes_de_marchandises))
                     + (rpns_auto_entrepreneur_CA_bnc * (1 - bareme.specialbnc.taux))
@@ -2137,7 +2137,7 @@ class rpns_micro_entreprise_benefice(Variable):
         rpns_micro_entreprise_CA_bnc_exon = individu('rpns_micro_entreprise_CA_bnc_exon', period)
         rpns_micro_entreprise_bic_exon = individu('rpns_micro_entreprise_bic_exon', period)
 
-        bareme = parameters(period).impot_revenu.rpns.micro
+        bareme = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         benefice = ((rpns_micro_entreprise_CA_bic_vente_imp * (1 - bareme.microentreprise.taux_ventes_de_marchandises))
                     + (rpns_micro_entreprise_CA_bnc_imp * (1 - bareme.specialbnc.taux))

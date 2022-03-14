@@ -29,7 +29,7 @@ class allocations_familiales_imposables(Reform):
             nbic_impm_i = foyer_fiscal.members('nbic_impm', period)
 
             revenu_categoriel = foyer_fiscal('revenu_categoriel', period)
-            cga = parameters(period).impot_revenu.rpns.cga_taux2
+            cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
 
             nacc_pvce = foyer_fiscal.sum(nacc_pvce_i)
             return max_(

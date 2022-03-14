@@ -916,7 +916,7 @@ class revenu_categoriel_foncier(Variable):
         f4bc = foyer_fiscal('f4bc', period)
         f4bd = foyer_fiscal('f4bd', period)
         f4be = foyer_fiscal('f4be', period)
-        microfoncier = parameters(period).impot_revenu.rpns.micro.microfoncier
+        microfoncier = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.microfoncier
 
         # Messages d'erreurs
         if ((f4ba != 0) & ((f4bb != 0) | (f4bc != 0))).any():
@@ -957,7 +957,7 @@ class revenu_categoriel_non_salarial(Variable):
         defacc = foyer_fiscal('defacc', period)
         defncn = foyer_fiscal('defncn', period)
         defmeu = foyer_fiscal('defmeu', period)
-        cga = parameters(period).impot_revenu.rpns.cga_taux2
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
 
         return (
             rpns
@@ -1030,7 +1030,7 @@ class rbg(Variable):
         f6gh = foyer_fiscal('f6gh', period)
         nbic_impm_i = foyer_fiscal.members('nbic_impm', period)
         nacc_pvce_i = foyer_fiscal.members('nacc_pvce', period)
-        cga = parameters(period).impot_revenu.rpns.cga_taux2
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
 
         # (Total 17)
         # sans les revenus au quotient
@@ -1467,7 +1467,7 @@ class ip_net(Variable):
         cncn_info_i = foyer_fiscal.members('cncn_info', period)
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
-        taux = parameters(period).impot_revenu.rpns.taux16
+        taux = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.taux16
         # N'est pas véritablement une 'réduction', cf. la définition de cette variable
         reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period)
 
@@ -1553,7 +1553,7 @@ class assiette_service(Variable):
 
         return foyer_fiscal.sum(ebic_imps_i)
 
-    # P = _P.impot_revenu.rpns.micro.microentreprise
+    # P = _P.impot_revenu.calcul_revenus_imposables.rpns.micro.microentreprise
     # assert (ebic_imps <= P.servi.max)
 
 
@@ -1568,7 +1568,7 @@ class assiette_proflib(Variable):
         Assiette régime microsocial pour les professions libérales
         '''
         ebnc_impo_i = foyer_fiscal.members('ebnc_impo', period)
-        P = parameters(period).impot_revenu.rpns.micro  # noqa F841
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro  # noqa F841
 
         # TODO: distinction RSI/CIPAV (pour les cotisations sociales)
         # http://vosdroits.service-public.fr/professionnels-entreprises/F23267.xhtml
@@ -1588,7 +1588,7 @@ class microsocial(Variable):
         assiette_service = foyer_fiscal('assiette_service', period)
         assiette_vente = foyer_fiscal('assiette_vente', period)
         assiette_proflib = foyer_fiscal('assiette_proflib', period)
-        microsocial = parameters(period).impot_revenu.rpns.microsocial
+        microsocial = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.microsocial
 
         return (
             assiette_service * microsocial.servi
@@ -1607,7 +1607,7 @@ class microentreprise(Variable):
         ebnc_impo_i = foyer_fiscal.members('ebnc_impo', period)
         ebic_imps_i = foyer_fiscal.members('ebic_imps', period)
         ebic_impv_i = foyer_fiscal.members('ebic_impv', period)
-        micro = parameters(period).impot_revenu.rpns.micro
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
         ebnc_impo = foyer_fiscal.sum(ebnc_impo_i)
         ebic_imps = foyer_fiscal.sum(ebic_imps_i)
         ebic_impv = foyer_fiscal.sum(ebic_impv_i)
@@ -1865,7 +1865,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
         plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
-        P = parameters(period).impot_revenu.rpns
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rpns
 
         return round_(
             plus_values.pvce * rpns_pvce
@@ -2381,7 +2381,7 @@ class rpns_exon(Variable):
         cncn_exon = individu('cncn_exon', period)
         cncn_jcre = individu('cncn_jcre', period)
         nbic_pvce = individu('nbic_pvce', period)
-        cga = parameters(period).impot_revenu.rpns.cga_taux2
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
 
         return (
             frag_exon + mrag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga)
@@ -2410,7 +2410,7 @@ class defrag(Variable):
         coupe_bois_i = foyer_fiscal.members('coupe_bois', period)
         frag_pvct_i = foyer_fiscal.members('frag_pvct', period)
         arag_impg_i = foyer_fiscal.members('arag_impg', period)
-        cga = parameters(period).impot_revenu.rpns.cga_taux2
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
 
         frag_fore = foyer_fiscal.sum(frag_fore_i)
         coupe_bois = foyer_fiscal.sum(coupe_bois_i)
@@ -2441,8 +2441,8 @@ class defacc(Variable):
         nacc_impn_i = foyer_fiscal.members('nacc_impn', period)
         macc_pvct_i = foyer_fiscal.members('macc_pvct', period)
         aacc_impn_i = foyer_fiscal.members('aacc_impn', period)
-        cga = parameters(period).impot_revenu.rpns.cga_taux2
-        micro = parameters(period).impot_revenu.rpns.micro
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         def abat_rpns(rev, P):
             return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
@@ -2475,8 +2475,8 @@ class defncn(Variable):
         mncn_pvct_i = foyer_fiscal.members('mncn_pvct', period)
         cncn_aimp_i = foyer_fiscal.members('cncn_aimp', period)
         cncn_bene_i = foyer_fiscal.members('cncn_bene', period)
-        cga = parameters(period).impot_revenu.rpns.cga_taux2
-        specialbnc = parameters(period).impot_revenu.rpns.micro.specialbnc
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+        specialbnc = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.specialbnc
 
         def abat_rpns(rev, P):
             return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
@@ -2571,7 +2571,7 @@ class ric(Variable):
         abic_defs = individu('abic_defs', period)
         nbic_defs = individu('nbic_defs', period)
         nbic_apch = individu('nbic_apch', period)
-        micro = parameters(period).impot_revenu.rpns.micro
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         zbic = (
             mbic_exon + mbic_impv + mbic_imps
@@ -2624,7 +2624,7 @@ class rac(Variable):
         mncn_impo = individu('mncn_impo', period)
         cncn_bene = individu('cncn_bene', period)
         cncn_defi = individu('cncn_defi', period)
-        micro = parameters(period).impot_revenu.rpns.micro
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         zacc = (
             macc_exon + macc_impv + macc_imps
@@ -2664,7 +2664,7 @@ class rnc(Variable):
         nbnc_impo = individu('nbnc_impo', period)
         abnc_defi = individu('abnc_defi', period)
         nbnc_defi = individu('nbnc_defi', period)
-        specialbnc = parameters(period).impot_revenu.rpns.micro.specialbnc
+        specialbnc = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.specialbnc
 
         zbnc = (
             mbnc_exon + mbnc_impo
@@ -2806,7 +2806,7 @@ class rpns_revenus_microBA_agricole(Variable):
         arag_impo_n2 = individu('arag_impo_n2', period)
         arag_impo_n1 = individu('arag_impo_n1', period)
         date_creation = individu('date_creation', period)
-        micro = parameters(period).impot_revenu.rpns.micro
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         frag_impo_n2_maj = frag_impo_n2 * (1 + micro.maj_frag)
         frag_impo_n1_maj = frag_impo_n1 * (1 + micro.maj_frag)
@@ -2827,7 +2827,7 @@ class rpns_revenus_microBA_agricole(Variable):
         frag_impo_n1 = individu('frag_impo_n1', period)
         arag_impo_n2 = individu('arag_impo_n2', period)
         date_creation = individu('date_creation', period)
-        micro = parameters(period).impot_revenu.rpns.micro
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         frag_impo_n2_maj = frag_impo_n2 * (1 + micro.maj_frag)
         benefices_estimes_3 = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1) / 3
@@ -2843,7 +2843,7 @@ class rpns_revenus_microBA_agricole(Variable):
 
     def formula_2018_01_01(individu, period, parameters):
         mrag_impo = individu('mrag_impo', period)
-        micro = parameters(period).impot_revenu.rpns.micro
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         return mrag_impo * (1 - micro.taux_mBA)
 
@@ -2919,8 +2919,8 @@ class rpns_imposables(Variable):
         nbnc_proc = individu('nbnc_proc', period)  # noqa F841
         pveximpres = individu('pveximpres', period)  # noqa F841
         pvtaimpres = individu('pvtaimpres', period)  # noqa F841
-        cga_taux2 = parameters(period).impot_revenu.rpns.cga_taux2
-        micro = parameters(period).impot_revenu.rpns.micro
+        cga_taux2 = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         def abat_rpns(rev, P):
             return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
@@ -3120,7 +3120,7 @@ class taux_effectif(Variable):
         abnc_proc_i = foyer_fiscal.members('abnc_proc', period)
         nbnc_proc_i = foyer_fiscal.members('nbnc_proc', period)
         bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
-        cga = parameters(period).impot_revenu.rpns.cga_taux2
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
         abnc_proc = foyer_fiscal.sum(abnc_proc_i)
         nbnc_proc = foyer_fiscal.sum(nbnc_proc_i)
         base_fictive = rni + microentreprise + abnc_proc + nbnc_proc * (1 + cga)
