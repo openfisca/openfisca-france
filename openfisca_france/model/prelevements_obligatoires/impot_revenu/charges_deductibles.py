@@ -687,7 +687,7 @@ class cd_sofipe(Variable):
         f6cc = foyer_fiscal('f6cc', period)
         rbg_int = foyer_fiscal('rbg_int', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        sofipeche = parameters(period).impot_revenu.charges_deductibles.sofipeche
+        sofipeche = parameters(period).impot_revenu.calcul_reductions_impots.sofipe
 
         plafond = min_(sofipeche.plafond_pct_rng * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
         return min_(f6cc, plafond)
