@@ -37,7 +37,7 @@ from openfisca_france.model.base import *
 #     return prix_cess_corr-valeur_venale
 #
 #
-# def _plus_value_nette(period, plus_value_brute, dur_det_immo, pv_immo = law.impot_revenu.pv_immo):
+# def _plus_value_nette(period, plus_value_brute, dur_det_immo, pv_immo = law.impot_revenu.calcul_impot_revenu.pv.pv_immo):
 #     """
 #     Calcul de la plus value immobilière nette
 #     """
@@ -80,7 +80,7 @@ class ir_pv_immo(Variable):
         Impôt sur le revenu afférent à la plus-value immobilière (CGI, art. 150 U, 150 UC-I et 150 UD)
         """
         f3vz = foyer_fiscal('f3vz', period)
-        pv_immo = parameters(period).impot_revenu.pv_immo
+        pv_immo = parameters(period).impot_revenu.calcul_impot_revenu.pv.pv_immo
         impo = pv_immo.taux * f3vz
 
         return - impo
