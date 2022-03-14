@@ -2136,7 +2136,7 @@ class irpp(Variable):
         credits_impot = foyer_fiscal('credits_impot', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
         cehr = foyer_fiscal('cehr', period)
-        P = parameters(period).impot_revenu.recouvrement
+        P = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
 
         pre_result = iai - credits_impot - acomptes_ir + cehr
 
