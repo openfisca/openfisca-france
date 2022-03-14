@@ -2111,7 +2111,7 @@ class cehr(Variable):
         '''
         rfr = foyer_fiscal('rfr', period)
         nb_adult = foyer_fiscal('nb_adult', period)
-        bareme = parameters(period).impot_revenu.cehr
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.cehr
 
         return bareme.calc(rfr / nb_adult) * nb_adult
         # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
