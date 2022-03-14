@@ -1449,7 +1449,7 @@ class nat_imp(Variable):
         credits_impot = foyer_fiscal('credits_impot', period)
         cehr = foyer_fiscal('cehr', period)
 
-        # def _nat_imp(rni, nbptr, non_imposable = law.impot_revenu.non_imposable):
+        # def _nat_imp(rni, nbptr, non_imposable = law.impot_revenu.calcul_impot_revenu.non_imposable):
         # seuil = non_imposable.seuil + (nbptr - 1)*non_imposable.supp
         return (iai - credits_impot + cehr) > 0
 
