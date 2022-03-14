@@ -21,10 +21,10 @@ log = logging.getLogger(__name__)
 # Reprise du crédit d'impôt en faveur des jeunes, des accomptes et des versements mensues de prime pour l'emploi
 # reprise = zeros(taille) # TODO : reprise=J80
 # Pcredit = P.credits_impots
-# if hasattr(P.reductions_impots,'saldom'): Pcredit.saldom = P.reductions_impots.saldom
+# if hasattr(P.calcul_reductions_impots,'saldom'): Pcredit.saldom = P.calcul_reductions_impots.saldom
 # credits_impot = Credits(Pcredit, table)
 # Réduction d'impôt
-# reductions = Reductions(IPnet, P.reductions_impots)
+# reductions = Reductions(IPnet, P.calcul_reductions_impots)
 
 # def mcirra():
 #    # impôt sur le revenu

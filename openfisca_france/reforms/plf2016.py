@@ -103,7 +103,7 @@ class plf2016_counterfactual(Reform):
             nb_parents = foyer_fiscal.declarant_principal.famille('nb_parents', period.first_month)
             rfr = foyer_fiscal('rfr', period)
             inflator = 1 + .001 + .005
-            # params = parameters(period).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
+            # params = parameters(period).impot_revenu.calcul_reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
             majoration_seuil = 3536 * inflator
             montant_plafond = 350 * inflator
@@ -163,9 +163,9 @@ def counterfactual_2014_modify_parameters(parameters):
     inflator = 1 + .001 + .005
     reform_year = 2015
     reform_period = period(reform_year)
-    # parameters.ir.reductions_impots.reduction_impot_exceptionnelle.montant_plafond.update(period=reform_period, value=350*inflator)
-    # parameters.ir.reductions_impots.reduction_impot_exceptionnelle.seuil.update(period=reform_period, value=13795*inflator)
-    # parameters.ir.reductions_impots.reduction_impot_exceptionnelle.majoration_seuil.update(period=reform_period, value=3536*inflator)
+    # parameters.ir.calcul_reductions_impots.reduction_impot_exceptionnelle.montant_plafond.update(period=reform_period, value=350*inflator)
+    # parameters.ir.calcul_reductions_impots.reduction_impot_exceptionnelle.seuil.update(period=reform_period, value=13795*inflator)
+    # parameters.ir.calcul_reductions_impots.reduction_impot_exceptionnelle.majoration_seuil.update(period=reform_period, value=3536*inflator)
     parameters.impot_revenu.bareme_ir_depuis_1945.bareme[1].threshold.update(period = reform_period, value = 6011 * inflator)
     parameters.impot_revenu.bareme_ir_depuis_1945.bareme[1].rate.update(period = reform_period, value = .055 * inflator)
     parameters.impot_revenu.bareme_ir_depuis_1945.bareme[2].threshold.update(period = reform_period, value = 11991 * inflator)
@@ -200,7 +200,7 @@ class plf2016_counterfactual_2014(Reform):
             nb_parents = foyer_fiscal.declarant_principal.famille('nb_parents', period.first_month)
             rfr = foyer_fiscal('rfr', period)
             inflator = 1 + .001 + .005
-            # params = parameters(period).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
+            # params = parameters(period).impot_revenu.calcul_reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
             majoration_seuil = 3536 * inflator
             montant_plafond = 350 * inflator
