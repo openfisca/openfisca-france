@@ -14,8 +14,8 @@ def modify_parameters(parameters):
     reform_parameters_subtree = load_parameter_file(name='plf2015', file_path=file_path)
     parameters.add_child('plf2015', reform_parameters_subtree)
 
-    parameters.impot_revenu.bareme[1].rate.update(period=reform_period, value=0)
-    parameters.impot_revenu.bareme[2].threshold.update(period=reform_period, value=9690)
+    parameters.impot_revenu.bareme_ir_depuis_1945.bareme[1].rate.update(period=reform_period, value=0)
+    parameters.impot_revenu.bareme_ir_depuis_1945.bareme[2].threshold.update(period=reform_period, value=9690)
 
     return parameters
 

@@ -1095,7 +1095,7 @@ class ir_brut(Variable):
         nbptr = foyer_fiscal('nbptr', period)
         taux_effectif = foyer_fiscal('taux_effectif', period)
         rni = foyer_fiscal('rni', period)
-        bareme = parameters(period).impot_revenu.bareme
+        bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
 
         return (taux_effectif == 0) * nbptr * bareme.calc(rni / nbptr) + taux_effectif * rni
 
@@ -1111,7 +1111,7 @@ class ir_taux_marginal(Variable):
         nbptr = foyer_fiscal('nbptr', period)
         taux_effectif = foyer_fiscal('taux_effectif', period)
         rni = foyer_fiscal('rni', period)
-        bareme = parameters(period).impot_revenu.bareme
+        bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
         return (taux_effectif == 0) * bareme.marginal_rates(rni / nbptr) + taux_effectif
 
 
@@ -1125,7 +1125,7 @@ class ir_tranche(Variable):
     def formula(foyer_fiscal, period, parameters):
         nbptr = foyer_fiscal('nbptr', period)
         rni = foyer_fiscal('rni', period)
-        bareme = parameters(period).impot_revenu.bareme
+        bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
         return bareme.bracket_indices(rni / nbptr)
 
 
@@ -1141,7 +1141,7 @@ class ir_ss_qf(Variable):
         '''
         rni = foyer_fiscal('rni', period)
         nb_adult = foyer_fiscal('nb_adult', period)
-        bareme = parameters(period).impot_revenu.bareme
+        bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
 
         A = bareme.calc(rni / nb_adult)
         return nb_adult * A
@@ -3119,7 +3119,7 @@ class taux_effectif(Variable):
         microentreprise = foyer_fiscal('microentreprise', period)
         abnc_proc_i = foyer_fiscal.members('abnc_proc', period)
         nbnc_proc_i = foyer_fiscal.members('nbnc_proc', period)
-        bareme = parameters(period).impot_revenu.bareme
+        bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
         cga = parameters(period).impot_revenu.rpns.cga_taux2
         abnc_proc = foyer_fiscal.sum(abnc_proc_i)
         nbnc_proc = foyer_fiscal.sum(nbnc_proc_i)
