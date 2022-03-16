@@ -13,7 +13,7 @@ simulation_period = periods.period(simulation_year)
 
 
 def modify_parameters(parameters):
-    parameters.impot_revenu.bareme[0].rate.update(period=simulation_period, value=1)
+    parameters.impot_revenu.bareme_ir_depuis_1945.bareme[0].rate.update(period=simulation_period, value=1)
     return parameters
 
 
