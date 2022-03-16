@@ -1,5 +1,21 @@
 # Changelog
 
+### 114.0.0 [#1818](https://github.com/openfisca/openfisca-france/pull/1818)
+
+* Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : 
+- `parameters/taxation_capital/`
+- `model/prelevements_obligatoires/isf`
+* Détails :
+  - Supprime les doublons générés dans les PRs : 
+      - #1815 ,
+      -  #1816
+      - et #1817 
+  - Adapte les formules
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline 98b434c2c3c67fa5^..16095f417480157 | grep "variable_name"
+
 ### 113.0.4 [#1819](https://github.com/openfisca/openfisca-france/pull/1819)
 
 * Amélioration technique
