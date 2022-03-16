@@ -18,9 +18,9 @@ def ayrault_muet_modify_parameters(parameters):
     elig1 = Parameter('elig1', {'values': {"2015-01-01": {'value': round(16251 * inflator)}, "2016-01-01": {'value': None}}})
     elig2 = Parameter('elig2', {'values': {"2015-01-01": {'value': round(32498 * inflator)}, "2016-01-01": {'value': None}}})
     elig3 = Parameter('elig3', {'values': {"2015-01-01": {'value': round(4490 * inflator)}, "2016-01-01": {'value': None}}})
-    parameters.impot_revenu.credits_impot.ppe.add_child('elig1', elig1)
-    parameters.impot_revenu.credits_impot.ppe.add_child('elig2', elig2)
-    parameters.impot_revenu.credits_impot.ppe.add_child('elig3', elig3)
+    parameters.impot_revenu.calcul_credits_impots.ppe.add_child('elig1', elig1)
+    parameters.impot_revenu.calcul_credits_impots.ppe.add_child('elig2', elig2)
+    parameters.impot_revenu.calcul_credits_impots.ppe.add_child('elig3', elig3)
     return parameters
 
 
@@ -97,7 +97,7 @@ class ppe_elig_bis(Variable):
         celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
         nbptr = foyer_fiscal('nbptr', period)
         variator = foyer_fiscal('variator', period)
-        ppe = parameters(period).impot_revenu.credits_impot.ppe
+        ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
         seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
             + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
         return (rfr * ppe_coef) <= (seuil * variator)

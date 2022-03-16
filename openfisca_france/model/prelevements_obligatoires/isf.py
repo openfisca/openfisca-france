@@ -786,7 +786,7 @@ class maj_cga(Variable):
         nacc_defs = individu('nacc_defs', period)
         nbnc_impo = individu('nbnc_impo', period)
         nbnc_defi = individu('nbnc_defi', period)
-        P = parameters(period).impot_revenu.rpns
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.rpns
 
         nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
 
@@ -955,6 +955,6 @@ class bouclier_fiscal(Variable):
     def formula_2006(foyer_fiscal, period, parameters):
         bouclier_sumimp = foyer_fiscal('bouclier_sumimp', period)
         bouclier_rev = foyer_fiscal('bouclier_rev', period)
-        P = parameters(period).impot_revenu.bouclier_fiscal
+        P = parameters(period).impot_revenu.calcul_impot_revenu.bouclier_fiscal
 
         return max_(0, bouclier_sumimp - (bouclier_rev * P.taux))

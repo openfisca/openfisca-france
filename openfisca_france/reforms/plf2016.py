@@ -27,8 +27,8 @@ class plf2016(Reform):
         def formula_2015_01_01(foyer_fiscal, period, parameters):
             ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
             nb_adult = foyer_fiscal('nb_adult', period)
-            decote_seuil_celib = parameters(period).impot_revenu.decote.seuil_celib
-            decote_seuil_couple = parameters(period).impot_revenu.decote.seuil_couple
+            decote_seuil_celib = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_celib
+            decote_seuil_couple = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_couple
             decote_celib = (ir_plaf_qf < 4 / 3 * decote_seuil_celib) * (decote_seuil_celib - 3 / 4 * ir_plaf_qf)
             decote_couple = (ir_plaf_qf < 4 / 3 * decote_seuil_couple) * (decote_seuil_couple - 3 / 4 * ir_plaf_qf)
 
@@ -91,7 +91,7 @@ class plf2016_counterfactual(Reform):
         def formula_2015_01_01(foyer_fiscal, period, parameters):
             ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
-            decote = parameters(period).impot_revenu.decote
+            decote = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote
             assert decote.seuil == 1016
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
@@ -103,7 +103,7 @@ class plf2016_counterfactual(Reform):
             nb_parents = foyer_fiscal.declarant_principal.famille('nb_parents', period.first_month)
             rfr = foyer_fiscal('rfr', period)
             inflator = 1 + .001 + .005
-            # params = parameters(period).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
+            # params = parameters(period).impot_revenu.calcul_reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
             majoration_seuil = 3536 * inflator
             montant_plafond = 350 * inflator
@@ -163,17 +163,17 @@ def counterfactual_2014_modify_parameters(parameters):
     inflator = 1 + .001 + .005
     reform_year = 2015
     reform_period = period(reform_year)
-    # parameters.ir.reductions_impots.reduction_impot_exceptionnelle.montant_plafond.update(period=reform_period, value=350*inflator)
-    # parameters.ir.reductions_impots.reduction_impot_exceptionnelle.seuil.update(period=reform_period, value=13795*inflator)
-    # parameters.ir.reductions_impots.reduction_impot_exceptionnelle.majoration_seuil.update(period=reform_period, value=3536*inflator)
-    parameters.impot_revenu.bareme[1].threshold.update(period = reform_period, value = 6011 * inflator)
-    parameters.impot_revenu.bareme[1].rate.update(period = reform_period, value = .055 * inflator)
-    parameters.impot_revenu.bareme[2].threshold.update(period = reform_period, value = 11991 * inflator)
-    parameters.impot_revenu.bareme[2].rate.update(period = reform_period, value = .14 * inflator)
-    parameters.impot_revenu.bareme[3].threshold.update(period = reform_period, value = 26631 * inflator)
-    parameters.impot_revenu.bareme[3].rate.update(period = reform_period, value = .30 * inflator)
-    parameters.impot_revenu.bareme[4].threshold.update(period = reform_period, value = 71397 * inflator)
-    parameters.impot_revenu.bareme[4].rate.update(period = reform_period, value = .40 * inflator)
+    # parameters.ir.calcul_reductions_impots.reduction_impot_exceptionnelle.montant_plafond.update(period=reform_period, value=350*inflator)
+    # parameters.ir.calcul_reductions_impots.reduction_impot_exceptionnelle.seuil.update(period=reform_period, value=13795*inflator)
+    # parameters.ir.calcul_reductions_impots.reduction_impot_exceptionnelle.majoration_seuil.update(period=reform_period, value=3536*inflator)
+    parameters.impot_revenu.bareme_ir_depuis_1945.bareme[1].threshold.update(period = reform_period, value = 6011 * inflator)
+    parameters.impot_revenu.bareme_ir_depuis_1945.bareme[1].rate.update(period = reform_period, value = .055 * inflator)
+    parameters.impot_revenu.bareme_ir_depuis_1945.bareme[2].threshold.update(period = reform_period, value = 11991 * inflator)
+    parameters.impot_revenu.bareme_ir_depuis_1945.bareme[2].rate.update(period = reform_period, value = .14 * inflator)
+    parameters.impot_revenu.bareme_ir_depuis_1945.bareme[3].threshold.update(period = reform_period, value = 26631 * inflator)
+    parameters.impot_revenu.bareme_ir_depuis_1945.bareme[3].rate.update(period = reform_period, value = .30 * inflator)
+    parameters.impot_revenu.bareme_ir_depuis_1945.bareme[4].threshold.update(period = reform_period, value = 71397 * inflator)
+    parameters.impot_revenu.bareme_ir_depuis_1945.bareme[4].rate.update(period = reform_period, value = .40 * inflator)
 
     return parameters
 
@@ -188,7 +188,7 @@ class plf2016_counterfactual_2014(Reform):
         def formula_2015_01_01(foyer_fiscal, period, parameters):
             ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
-            decote = parameters(period).impot_revenu.decote
+            decote = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote
             assert decote.seuil == 1016
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
@@ -200,7 +200,7 @@ class plf2016_counterfactual_2014(Reform):
             nb_parents = foyer_fiscal.declarant_principal.famille('nb_parents', period.first_month)
             rfr = foyer_fiscal('rfr', period)
             inflator = 1 + .001 + .005
-            # params = parameters(period).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
+            # params = parameters(period).impot_revenu.calcul_reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
             majoration_seuil = 3536 * inflator
             montant_plafond = 350 * inflator

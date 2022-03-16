@@ -1,6 +1,15 @@
 # Changelog
 
-### 114.0.0 [#1818](https://github.com/openfisca/openfisca-france/pull/1818)
+# 115.0.0 [#1823](https://github.com/openfisca/openfisca-france/pull/1823)
+
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu`
+* Détails :
+  - Rangement des fichiers selon l'arborescence IPP
+* Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
+git log --oneline 6d3d89b5d70c9^..68333e8282d9e | grep "variable_name"
+
+# 114.0.0 [#1818](https://github.com/openfisca/openfisca-france/pull/1818)
 
 * Amélioration technique. 
 * Périodes concernées : toutes.

@@ -435,7 +435,7 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2go = foyer_fiscal('f2go', year)
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
-        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
 
         return (f2dc + f2gr + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu) / 12
 
@@ -447,7 +447,7 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2go = foyer_fiscal('f2go', year)
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
-        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
 
         return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu) / 12
 
@@ -460,7 +460,7 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
         f2tt_2016 = foyer_fiscal('f2tt_2016', year)
-        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
 
         return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt_2016) / 12
 
@@ -478,7 +478,7 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
         f2tt = foyer_fiscal('f2tt', year)
-        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm.majoration_revenus_reputes_distribues
 
         return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt) / 12
 

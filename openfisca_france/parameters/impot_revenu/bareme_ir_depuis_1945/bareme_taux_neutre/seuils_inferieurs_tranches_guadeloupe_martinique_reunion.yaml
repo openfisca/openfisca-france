@@ -1,0 +1,234 @@
+description: Seuils inférieurs des tranches de l'imposition au taux neutre pour les contribuables domiciliés en Guadeloupe, Martinique ou Réunion
+tranche_1:
+  description: Tranche 1
+  values:
+    2019-01-01:
+      value: 0.0
+  metadata:
+    ipp_csv_id: tranche1_neutre_guad_mar_reu
+tranche_2:
+  description: Tranche 2
+  values:
+    2021-01-01:
+      value: 1629.0
+    2020-01-01:
+      value: 1626.0
+    2019-01-01:
+      value: 1610.0
+  metadata:
+    ipp_csv_id: tranche2_neutre_guad_mar_reu
+tranche_3:
+  description: Tranche 3
+  values:
+    2021-01-01:
+      value: 1728.0
+    2020-01-01:
+      value: 1724.0
+    2019-01-01:
+      value: 1707.0
+  metadata:
+    ipp_csv_id: tranche3_neutre_guad_mar_reu
+tranche_4:
+  description: Tranche 4
+  values:
+    2021-01-01:
+      value: 1904.0
+    2020-01-01:
+      value: 1900.0
+    2019-01-01:
+      value: 1837.0
+  metadata:
+    ipp_csv_id: tranche4_neutre_guad_mar_reu
+tranche_5:
+  description: Tranche 5
+  values:
+    2021-01-01:
+      value: 2079.0
+    2020-01-01:
+      value: 2075.0
+    2019-01-01:
+      value: 1948.0
+  metadata:
+    ipp_csv_id: tranche5_neutre_guad_mar_reu
+tranche_6:
+  description: Tranche 6
+  values:
+    2021-01-01:
+      value: 2296.0
+    2020-01-01:
+      value: 2292.0
+    2019-01-01:
+      value: 2117.0
+  metadata:
+    ipp_csv_id: tranche6_neutre_guad_mar_reu
+tranche_7:
+  description: Tranche 7
+  values:
+    2021-01-01:
+      value: 2421.0
+    2020-01-01:
+      value: 2417.0
+    2019-01-01:
+      value: 2377.0
+  metadata:
+    ipp_csv_id: tranche7_neutre_guad_mar_reu
+tranche_8:
+  description: Tranche 8
+  values:
+    2021-01-01:
+      value: 2505.0
+    2020-01-01:
+      value: 2500.0
+    2019-01-01:
+      value: 2784.0
+  metadata:
+    ipp_csv_id: tranche8_neutre_guad_mar_reu
+tranche_9:
+  description: Tranche 9
+  values:
+    2021-01-01:
+      value: 2755.0
+    2020-01-01:
+      value: 2750.0
+    2019-01-01:
+      value: 3176.0
+  metadata:
+    ipp_csv_id: tranche9_neutre_guad_mar_reu
+tranche_10:
+  description: Tranche 10
+  values:
+    2021-01-01:
+      value: 3406.0
+    2020-01-01:
+      value: 3400.0
+    2019-01-01:
+      value: 3696.0
+  metadata:
+    ipp_csv_id: tranche10_neutre_guad_mar_reu
+tranche_11:
+  description: Tranche 11
+  values:
+    2021-01-01:
+      value: 4359.0
+    2020-01-01:
+      value: 4350.0
+    2019-01-01:
+      value: 4365.0
+  metadata:
+    ipp_csv_id: tranche11_neutre_guad_mar_reu
+tranche_12:
+  description: Tranche 12
+  values:
+    2021-01-01:
+      value: 4959.0
+    2020-01-01:
+      value: 4942.0
+    2019-01-01:
+      value: 4910.0
+  metadata:
+    ipp_csv_id: tranche12_neutre_guad_mar_reu
+tranche_13:
+  description: Tranche 13
+  values:
+    2021-01-01:
+      value: 5736.0
+    2020-01-01:
+      value: 5725.0
+    2019-01-01:
+      value: 5730.0
+  metadata:
+    ipp_csv_id: tranche13_neutre_guad_mar_reu
+tranche_14:
+  description: Tranche 14
+  values:
+    2021-01-01:
+      value: 6872.0
+    2020-01-01:
+      value: 6858.0
+    2019-01-01:
+      value: 6855.0
+  metadata:
+    ipp_csv_id: tranche14_neutre_guad_mar_reu
+tranche_15:
+  description: Tranche 15
+  values:
+    2021-01-01:
+      value: 7640.0
+    2020-01-01:
+      value: 7625.0
+    2019-01-01:
+      value: 7620.0
+  metadata:
+    ipp_csv_id: tranche15_neutre_guad_mar_reu
+tranche_16:
+  description: Tranche 16
+  values:
+    2021-01-01:
+      value: 8684.0
+    2020-01-01:
+      value: 8667.0
+    2019-01-01:
+      value: 9070.0
+  metadata:
+    ipp_csv_id: tranche16_neutre_guad_mar_reu
+tranche_17:
+  description: Tranche 17
+  values:
+    2021-01-01:
+      value: 11940.0
+    2020-01-01:
+      value: 11917.0
+    2019-01-01:
+      value: 11945.0
+  metadata:
+    ipp_csv_id: tranche17_neutre_guad_mar_reu
+tranche_18:
+  description: Tranche 18
+  values:
+    2021-01-01:
+      value: 15865.0
+    2020-01-01:
+      value: 15833.0
+    2019-01-01:
+      value: 16230.0
+  metadata:
+    ipp_csv_id: tranche18_neutre_guad_mar_reu
+tranche_19:
+  description: Tranche 19
+  values:
+    2021-01-01:
+      value: 24215.0
+    2020-01-01:
+      value: 24167.0
+    2019-01-01:
+      value: 24770.0
+  metadata:
+    ipp_csv_id: tranche19_neutre_guad_mar_reu
+tranche_20:
+  description: Tranche 20
+  values:
+    2021-01-01:
+      value: 52930.0
+    2020-01-01:
+      value: 52825.0
+    2019-01-01:
+      value: 52300.0
+  metadata:
+    ipp_csv_id: tranche20_neutre_guad_mar_reu
+metadata:
+  ux_name: Guadeloupe, Martinique ou Réunion
+  unit: currency
+  reference:
+    2021-01-01:
+      title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593
+    2020-01-01:
+      title: Loi 2019-1479, art. 2 du 28/12/2019 (LF pour 2020)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039683923&dateTexte=&categorieLien=id
+    2019-01-01:
+      title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037935215&cidTexte=JORFTEXT000037882341
+  official_journal_date:
+    2021-01-01: 2020-12-30
+    2020-01-01: 2019-12-29
+    2019-01-01: 2018-12-30

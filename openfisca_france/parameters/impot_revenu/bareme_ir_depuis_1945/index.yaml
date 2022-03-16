@@ -1,0 +1,7 @@
+description: Barème de l'impôt sur le revenu (depuis 1945)
+metadata:
+  ux_name: Barème de l'impôt sur le revenu
+  order:
+  - bareme
+  - bareme_taux_neutre
+  description_en: Thresholds and marginal tax rates (1945-)
