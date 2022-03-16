@@ -1,0 +1,6 @@
+description: Seuil biens ruraux, ISF-IFI sur l'immobilier non-bâti
+values:
+  2018-01-01:
+    value: 101897
+metadata:
+  unit: currency

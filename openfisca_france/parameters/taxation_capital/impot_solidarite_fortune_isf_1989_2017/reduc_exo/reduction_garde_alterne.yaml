@@ -1,0 +1,10 @@
+description: Réduction pour enfant à charge avec garde alternée, Réductions et abattements de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+values:
+  2002-01-01:
+    value: 75
+  2012-01-01:
+    value: 150
+  2013-01-01:
+    value: 0
+metadata:
+  unit: currency

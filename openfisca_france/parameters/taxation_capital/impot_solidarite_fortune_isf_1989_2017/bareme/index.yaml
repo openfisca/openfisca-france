@@ -2,6 +2,6 @@ description: Barème de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
 metadata:
   ux_name: Barème
   order:
-  - seuils
-  - taux
+  - bareme
+  - nombre_tranches
   description_en: Wealth tax computation
