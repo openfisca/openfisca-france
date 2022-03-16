@@ -5,7 +5,7 @@ metadata:
   - date_effet
   - seuils_inferieurs_tranches_metropole
   - seuils_inferieurs_tranches_guadeloupe_martinique_reunion
-  - seuils_inferieurs_tranches_guyanne_mayotte
+  - seuils_inferieurs_tranches_guyane_mayotte
   - taux_marginaux_tranches
   - nombre_tranches
   description_en: Thresholds and marginal tax rates (1945-)
