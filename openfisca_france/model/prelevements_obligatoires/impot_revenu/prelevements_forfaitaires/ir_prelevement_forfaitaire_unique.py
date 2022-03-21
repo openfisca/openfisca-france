@@ -161,7 +161,7 @@ class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_eta
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        P = parameters(period).impot_revenu.prelevement_forfaitaire_unique_ir
+        P = parameters(period).taxation_capital.prelevement_forfaitaire.partir_2018
 
         # Revenus des valeurs et capitaux mobiliers hors assurance-vie et hors produits d'épargne solidaire ou des états non-coopératifs
         #   Note : Les revenus d'assurance-vie, de l'épargne solidaire et des produits des états non-coopératifs ont été ajoutés dans les variables f2ee et f2dh (cf. docstring de ces varables pour une explication), d'où le fait qu'on soustrait ici ces variables de revenus_capitaux_prelevement_forfaitaire_unique_ir
@@ -193,7 +193,7 @@ class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_eta
             + plus_values_prelevement_forfaitaire_unique_ir
             )
 
-        return -assiette_pfu_hors_assurance_vie * P.taux
+        return -assiette_pfu_hors_assurance_vie * P.taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc
 
 
 class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
@@ -203,7 +203,8 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        P1 = parameters(period).impot_revenu.prelevement_forfaitaire_unique_ir
+        P1_taux = parameters(period).taxation_capital.prelevement_forfaitaire.partir_2018.taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc
+        P1_taux_reduit_av = parameters(period).taxation_capital.prelevement_forfaitaire.partir_2018.taux_prelevement_produits_assurance_vie_non_eligibles_prelevement_forfaitaire_unique
         P2 = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
@@ -215,9 +216,9 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
         abattement_residuel = max_(P2.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
         abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
         pfu_ir_sur_assurance_vie = -(
-            (f2zz * P1.taux)
-            + (max_(f2vv - abattement_residuel, 0) * P1.taux_reduit_av)
-            + (max_(f2ww - abattement_residuel2, 0) * P1.taux)
+            (f2zz * P1_taux)
+            + (max_(f2vv - abattement_residuel, 0) * P1_taux_reduit_av)
+            + (max_(f2ww - abattement_residuel2, 0) * P1_taux)
             )
 
         return pfu_ir_sur_assurance_vie

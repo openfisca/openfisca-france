@@ -1,9 +1,0 @@
-description: Taux réduit des produits d'assurance-vie soumis au nouveau régime (revenus perçus à compter de 2018, au titre de primes versées à compter du 27 septembre 2017, pour des contrats souscrits à partir du 26 septembre 1997)
-values:
-  2018-01-01:
-    value: 0.075
-metadata:
-  unit: /1
-  reference:
-    title: https://www.ipp.eu/outils/baremes-ipp/ (hors parser des barèmes)
-  last_review: "2021-10-12"
