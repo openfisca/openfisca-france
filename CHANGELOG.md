@@ -1,5 +1,14 @@
 # Changelog
 
+# 116.0.0 [#1824](https://github.com/openfisca/openfisca-france/pull/1824)
+
+* Périodes concernées : après 2018-01-01
+* Zones impactées: 
+- `parameters.impot_revenu.prelevement_forfaitaire_unique_ir`
+- `parameters.taxation_capital.prelevement_forfaitaire.partir_2018`
+* Détails : 
+  - Fusionne les doublons du PFU dans l'IR avec ceux qui sont dans Taxation du capital, sur le modèle IPP
+
 # 115.0.0 [#1823](https://github.com/openfisca/openfisca-france/pull/1823)
 
 * Périodes concernées : toutes.
