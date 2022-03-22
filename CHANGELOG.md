@@ -1,5 +1,15 @@
 # Changelog
 
+# 116.1.0 [#1826](https://github.com/openfisca/openfisca-france/pull/1826)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `/prestations/pass_culture.py`
+  - `/parameters/prestations/pass_culture/*`
+* Détails :
+  -  Étend la variable `pass_culture` qui calcule le montant du pass culture en fonction de l'âge de 15 à 18 ans.
+
 # 116.0.0 [#1824](https://github.com/openfisca/openfisca-france/pull/1824)
 
 * Périodes concernées : après 2018-01-01

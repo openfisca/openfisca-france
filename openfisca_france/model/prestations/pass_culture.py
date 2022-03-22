@@ -14,4 +14,3 @@ class pass_culture(Variable):
         age = individu('age', period.offset(1, 'month'))
         age_maximum = parameters(period).prestations_sociales.aides_jeunes.pass_culture.age_maximum
         return montant.calc(age) * (age <= age_maximum)
-        
