@@ -2,8 +2,6 @@ description: Taux Tranche 1 de la majoration pour le premier enfant (en % de la 
 values:
   1991-08-06:
     value: 0.0369
-  1999-01-01:
-    value: null
 metadata:
   ux_name: Taux de la tranche 1
   description_en: "Family allowances (AF): Extra allowances for oversea territories"
