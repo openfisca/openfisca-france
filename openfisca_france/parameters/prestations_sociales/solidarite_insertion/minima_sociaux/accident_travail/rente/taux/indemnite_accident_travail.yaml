@@ -70,3 +70,6 @@ metadata:
   ux_name: Montant indemnité
   amount_unit: currency
   type: single_amount
+  documentation: 
+  https://www.unsaaerien.com/wp-content/uploads/2021/04/20210419_Accidents-du-travail_Revalorisations-rentes-AT-MP.pdf
+  circulaire CNAM numéro 10/2021 du 24 mars 2021 - Barème des indemnités en capital 1/04/2021
