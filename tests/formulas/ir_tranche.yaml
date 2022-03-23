@@ -18,3 +18,60 @@
     salaire_imposable: 500000
   output:
     ir_tranche: 4
+
+- name: Tranche du barème appliquée - Célibataire isolé avec deux enfants à charge ayant des revenus salariaux (1AJ) de 50 000 €
+  period: 2022
+  absolute_error_margin: 0.0001
+  input:
+    individus:
+      personne1:
+        statut_marital: "celibataire"
+        salaire_imposable: 50000
+      enfant1:
+        date_naissance: 2016-01-01
+      enfant2:
+        date_naissance: 2017-01-01
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+      caseT: true
+  output:
+    ir_tranche: 1
+
+- name: Tranche du barème appliquée - Célibataire isolé avec deux enfants à charge ayant des revenus salariaux (1AJ) de 75 000 €
+  period: 2022
+  absolute_error_margin: 0.0001
+  input:
+    individus:
+      personne1:
+        statut_marital: "celibataire"
+        salaire_imposable: 75000
+      enfant1:
+        date_naissance: 2016-01-01
+      enfant2:
+        date_naissance: 2017-01-01
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+      caseT: true
+  output:
+    ir_tranche: 2
+
+- name: Tranche du barème appliquée - Célibataire isolé avec deux enfants à charge ayant des revenus salariaux (1AJ) de 100 000 €
+  period: 2022
+  absolute_error_margin: 0.0001
+  input:
+    individus:
+      personne1:
+        statut_marital: "celibataire"
+        salaire_imposable: 100000
+      enfant1:
+        date_naissance: 2016-01-01
+      enfant2:
+        date_naissance: 2017-01-01
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+      caseT: true
+  output:
+    ir_tranche: 3
