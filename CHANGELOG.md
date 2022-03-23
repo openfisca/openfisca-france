@@ -1,6 +1,14 @@
 # Changelog
+### 116.1.1 [#1807](https://github.com/openfisca/openfisca-france/pull/1807)
 
-# 116.1.0 [#1826](https://github.com/openfisca/openfisca-france/pull/1826)
+* Amélioration technique.
+* Zones impactées : `/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/`
+* Détails : 
+- Ajoute last review 
+- Ajoute références vers les valeurs 
+- Ajoute des références législatives pour les valeurs concernées 
+  
+## 116.1.0 [#1826](https://github.com/openfisca/openfisca-france/pull/1826)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
