@@ -1,6 +1,6 @@
 import logging
 
-from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around
+from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around, array
 
 from numpy.core.defchararray import startswith
 
@@ -1108,11 +1108,11 @@ class ir_taux_marginal(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        nbptr = foyer_fiscal('nbptr', period)
         taux_effectif = foyer_fiscal('taux_effectif', period)
-        rni = foyer_fiscal('rni', period)
         bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
-        return (taux_effectif == 0) * bareme.marginal_rates(rni / nbptr) + taux_effectif
+        ir_tranche = foyer_fiscal('ir_tranche', period)
+
+        return (taux_effectif == 0) * array(bareme.rates)[ir_tranche] + taux_effectif
 
 
 class ir_tranche(Variable):
@@ -1126,7 +1126,20 @@ class ir_tranche(Variable):
         nbptr = foyer_fiscal('nbptr', period)
         rni = foyer_fiscal('rni', period)
         bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
-        return bareme.bracket_indices(rni / nbptr)
+
+        maries_ou_pacses_ou_jeune_veuf = foyer_fiscal('maries_ou_pacses', period) | foyer_fiscal('jeune_veuf', period)
+        celibataire_ou_divorce_ou_veuf = not_(maries_ou_pacses_ou_jeune_veuf)
+
+        # Si le plafonnement des effets du quotient familial s'applique,
+        # alors le nombre de parts retenu pour le calcul de l'IR (« nbptr_retenu »)
+        # est égal à 1 (contribuables célibataires, divorcés ou veufs) ou 2 (contribuables mariés ou pacsés)
+        # sinon le nombre de parts retenu pour le calcul de l'IR est le nombre de parts de droit commun (« nbptr »)
+        plafonnement_qf = foyer_fiscal('ir_plaf_qf', period) > foyer_fiscal('ir_brut', period)
+        nbptr_retenu = where(plafonnement_qf,
+                             (celibataire_ou_divorce_ou_veuf * 1) + (maries_ou_pacses_ou_jeune_veuf * 2),
+                             nbptr)
+
+        return bareme.bracket_indices(rni / nbptr_retenu)
 
 
 class ir_ss_qf(Variable):
