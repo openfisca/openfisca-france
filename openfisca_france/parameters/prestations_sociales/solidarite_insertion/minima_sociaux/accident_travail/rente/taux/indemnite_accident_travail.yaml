@@ -83,7 +83,7 @@ brackets:
     2003-04-01:
       value: 10
   amount:
-      2003-04-01:
+    2003-04-01:
         value: 0
 metadata:
   ux_name: Montant indemnité
