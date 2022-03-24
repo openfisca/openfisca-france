@@ -18,7 +18,7 @@
         personne_de_reference:
         - parent1
   output:
-    indemnite_accident_travail: 2966.40
+    indemnite_accident_travail: 2928.25
 
 - name: "Cas 2: Victime salariée, 10% < taux d'IPP < 50%, versement d'une rente trimestrielle"
   period: 2018-07
