@@ -1,7 +1,6 @@
 description: Montant de l'indemnité en capital attribuée à la victime d'un accident du travail
 brackets:
 - threshold:
-  - threshold:
     2003-04-01:
       value: 0
   amount:
