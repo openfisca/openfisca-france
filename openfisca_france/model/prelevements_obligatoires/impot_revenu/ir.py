@@ -1135,9 +1135,11 @@ class ir_tranche(Variable):
         # est égal à 1 (contribuables célibataires, divorcés ou veufs) ou 2 (contribuables mariés ou pacsés)
         # sinon le nombre de parts retenu pour le calcul de l'IR est le nombre de parts de droit commun (« nbptr »)
         plafonnement_qf = foyer_fiscal('ir_plaf_qf', period) > foyer_fiscal('ir_brut', period)
-        nbptr_retenu = where(plafonnement_qf,
-                             (celibataire_ou_divorce_ou_veuf * 1) + (maries_ou_pacses_ou_jeune_veuf * 2),
-                             nbptr)
+        nbptr_retenu = where(
+            plafonnement_qf,
+            (celibataire_ou_divorce_ou_veuf * 1) + (maries_ou_pacses_ou_jeune_veuf * 2),
+            nbptr
+            )
 
         return bareme.bracket_indices(rni / nbptr_retenu)
 
