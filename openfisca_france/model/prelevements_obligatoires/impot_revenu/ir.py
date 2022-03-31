@@ -1,6 +1,6 @@
 import logging
 
-from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around, array
+from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around
 
 from numpy.core.defchararray import startswith
 
@@ -1112,7 +1112,10 @@ class ir_taux_marginal(Variable):
         bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
         ir_tranche = foyer_fiscal('ir_tranche', period)
 
-        return (taux_effectif == 0) * array(bareme.rates)[ir_tranche] + taux_effectif
+        return (
+            (taux_effectif == 0) * bareme.rate_from_bracket_indice(ir_tranche)
+            + taux_effectif
+            )
 
 
 class ir_tranche(Variable):
