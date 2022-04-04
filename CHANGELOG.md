@@ -1,6 +1,11 @@
 # Changelog
+### 116.1.2 [#1830](https://github.com/openfisca/openfisca-france/pull/1830)
+* Changement mineur
+* Périodes concernées :  à partir du 01/06/2009
+* Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rmi/rmi_cond/patrimoine`
+* Détails : J'ai ajouté les références législatives et le last_review 
+  
 ### 116.1.1 [#1807](https://github.com/openfisca/openfisca-france/pull/1807)
-
 * Amélioration technique.
 * Zones impactées : `/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/`
 * Détails : 
