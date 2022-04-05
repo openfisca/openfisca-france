@@ -8,8 +8,11 @@
 
 - name: Rentier de revenus d'assurance-vie, célib et sans enfants
   period: 2022
-  relative_error_margin: 0.05
+  relative_error_margin: 0.01
   input:
     f2zz: 155000
   output:
+    # Prélèv. forfaitaire unique (PFU) hors prélèvements sociaux 155000 - 12,8% = 19 840 €
     prelevement_forfaitaire_unique_ir_sur_assurance_vie: -19840
+    # Revenus capital nets de prélèvements sociaux :  155 000 - 17.2% = 128 340 €
+    revenus_nets_du_capital: 128340
