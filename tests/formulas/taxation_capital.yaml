@@ -12,6 +12,6 @@
     f2zz: 155000
   output:
     # Prélèv. forfaitaire unique (PFU) hors prélèvements sociaux 155000 - 12,8% = 19 840 €
-    prelevement_forfaitaire_unique_ir_sur_assurance_vie: -19840
-    # Revenus capital nets de prélèvements sociaux :  155 000 - 17.2% = 128 340 €
-    revenus_nets_du_capital: 128340
+    prelevement_forfaitaire_unique_ir_sur_assurance_vie: - 155_000 * (1 - 0.128)
+    # Revenus capital nets de prélèvements sociaux (9.2% CSG + 0.5% CRDS + 7.5% Prélèv. solidarité) = 17.2%
+    revenus_nets_du_capital: 155_000 *(1 - (0.092 + 0.005 + 0.0075))
