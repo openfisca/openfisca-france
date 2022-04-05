@@ -8,7 +8,6 @@
 
 - name: Rentier de revenus d'assurance-vie, célib et sans enfants
   period: 2022
-  relative_error_margin: 0.01
   input:
     f2zz: 155000
   output:
