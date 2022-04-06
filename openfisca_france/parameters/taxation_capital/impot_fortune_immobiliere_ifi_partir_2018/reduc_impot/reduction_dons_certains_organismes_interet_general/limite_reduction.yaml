@@ -1,18 +1,20 @@
 description: Limite de la réduction pour dons à certains organismes d'intérêt général de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
 values:
   2018-01-01:
-    value: 50000.0
+    value: 50000
 metadata:
   ux_name: Limite de la réduction
+  description_en: Tax reductions for investment and donations
   unit: currency
   reference:
-    2018-01-01: "Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (crée art. 978 du CGI) : Cf. note en bas de la feuille."
+    2018-01-01:
+      title: "Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (crée art. 978 du CGI) : Cf. note en bas de la feuille."
   official_journal_date:
-    2018-01-01: 2017-12-31
+    2018-01-01: "2017-12-31"
   notes:
-    2018-01-01: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  description_en: Tax reductions for investment and donations
-documentation: |
+    2018-01-01:
+    - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
+documentation: |-
   (1) Fonds commun de placement dans l'innovation
   (2) Fonds d'investissement de proximité
   Note : Les réductions d'impôt pour investissement dans les PME, les FCPI et les FIP sont supprimées avec le passage à l'IFI.
