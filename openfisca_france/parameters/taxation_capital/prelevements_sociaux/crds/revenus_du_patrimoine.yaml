@@ -8,15 +8,15 @@ values:
     value: 0.005
 metadata:
   ux_name: Taux CRDS capital revenus du patrimoine
-  ipp_csv_id: tx_crds_rk_patr
   description_en: CRDS on financial income
+  ipp_csv_id: tx_crds_rk_patr
   unit: /1
   reference:
     1996-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757295&cidTexte=JORFTEXT000000198309
-      title: Loi 96-1160 du 27/12/1996, art. 17 (LFSS pour 1997)
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006319749&cidTexte=JORFTEXT000000380034
-      title: Loi 96-1181 du 30/12/1996, art. 94 (LF pour 1997)
+    - title: Loi 96-1160 du 27/12/1996, art. 17 (LFSS pour 1997)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757295&cidTexte=JORFTEXT000000198309
+    - title: Loi 96-1181 du 30/12/1996, art. 94 (LF pour 1997)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006319749&cidTexte=JORFTEXT000000380034
     1996-02-01:
       title: Ordonnance 96-50 du 24/01/1996, art. 15, 16 et 19
   official_journal_date:
