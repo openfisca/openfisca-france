@@ -12,9 +12,6 @@ metadata:
   ipp_csv_id: tx_majo_isf
   unit: /1
   reference:
-    1982-01-01:
-      title: Loi 81-1160 du 30/12/1981, art. 3 (LF pour 1982)
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006273468&cidTexte=JORFTEXT000000515870
     1987-01-01:
       title: Loi 86-824 du 11/07/1986, art. 24 (LFR pour 1986)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006275031&cidTexte=JORFTEXT000000512460
@@ -25,13 +22,10 @@ metadata:
       title: Loi 2017-1837 du 30/12/2017, art. 31 (LF pour 2018) (abroge art. 885 S du CGI)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377428&cidTexte=JORFTEXT000036339197
   official_journal_date:
-    1982-01-01: "1981-12-31"
     1987-01-01: "1986-07-12"
     1989-01-01: "1988-12-28"
     2018-01-01: "2017-12-31"
   notes:
-    1982-01-01:
-    - title: Création de l'impôt sur les grandes fortunes.
     1987-01-01:
     - title: Suppression de l'impôt sur les grandes fortunes.
     1989-01-01:
