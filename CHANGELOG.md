@@ -1,4 +1,16 @@
 # Changelog
+## 116.2.0 [#1832](https://github.com/openfisca/openfisca-france/pull/1832)
+* Changement mineur.
+* Périodes concernées :  à partir du 01/06/2009
+* Zones impactées : Rsa_cond
+
+* france/openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond
+
+* Détails :
+ - J'ai ajouté les références législatives
+ - J'ai ajouté le last_review
+ - J'ai modifié ce paramètre : parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_cond/majoration_isolement/limite_duree_droit_majoration_isolement
+
 ### 116.1.2 [#1830](https://github.com/openfisca/openfisca-france/pull/1830)
 * Changement mineur
 * Périodes concernées :  à partir du 01/06/2009
