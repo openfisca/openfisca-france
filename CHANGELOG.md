@@ -1,4 +1,12 @@
 # Changelog
+
+### 116.2.1 [#1834](https://github.com/openfisca/openfisca-france/pull/1834)
+* Amélioration technique.
+* Périodes concernées : À partir de 2018
+* Zones impactées : `tests/formulas/taxation_capital.yaml`
+* Détails : 
+- Ajoute un cas de concernant la taxation de l'assurance vie.
+
 ## 116.2.0 [#1832](https://github.com/openfisca/openfisca-france/pull/1832)
 * Changement mineur.
 * Périodes concernées :  à partir du 01/06/2009

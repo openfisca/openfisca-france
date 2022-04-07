@@ -1,0 +1,20 @@
+- name: "Assurance-vie : Revenus capital nets de prélèvements sociaux"
+  period: 2022
+  input:
+    f2zz: 155000
+    statut_marital: "celibataire"
+  output:
+    # Revenus capital nets de prélèvements sociaux (9.2% CSG + 0.5% CRDS + 7.5% Prélèv. solidarité) = 17.2%
+    revenus_nets_du_capital: 155_000 * (1 - (0.092 + 0.005 + 0.075))
+
+- name: Assurance-vie - Prélèv. forfaitaire unique (PFU) hors prélèvements sociaux
+  period: 2022
+  input:
+    f2zz:
+      2021: 155000 # Revenu N-1 pour ne pas avoir de RSA
+      2022: 155000
+  output:
+    # Prélèv. forfaitaire unique (PFU) hors prélèvements sociaux 155000 - 12,8% = 19 840 €
+    prelevement_forfaitaire_unique_ir_sur_assurance_vie: 155_000 * (- 0.128)
+    # revenu_disponible = 155 000€ - "flat tax" de 30% (PFU 12.8% + revenus_nets_du_capital 17.2%)
+    revenu_disponible: 155_000 * (1 - (0.092 + 0.005 + 0.075 + 0.128))
