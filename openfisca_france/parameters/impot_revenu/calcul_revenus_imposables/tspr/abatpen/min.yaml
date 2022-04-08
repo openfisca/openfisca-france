@@ -48,6 +48,10 @@ values:
     value: 389
   2019-01-01:
     value: 393
+  2020-01-01:
+    value: 394
+  2021-01-01:
+    value: 400
 metadata:
   unit: currency
   reference:
