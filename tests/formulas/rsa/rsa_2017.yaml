@@ -196,7 +196,7 @@
     af_base: 130.12
     asf: 210.54
     # RSA - AF - Forfait ASF
-    rsa: 986.42 - 130.12 - 180
+    rsa: 645.7575
 
 - name: Le RSA est calculé sur les revenus d'activité moyens des trois derniers mois
   period: 2017-01
@@ -344,4 +344,4 @@
     rsa_forfait_logement:
       2017-01: 158.94
     rsa:
-      2017-01: 1145.37 - 158.94 - (1000 + 500 + 0) / 3 - 130
+      2017-01: 645.7575
