@@ -10,7 +10,7 @@ values:
     value: 0.345
   2017-04-14:
     value: 0.36
-  2018-04-01
+  2018-04-01:
     value: 0.375
 metadata:
   unit: BMAF
