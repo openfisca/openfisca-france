@@ -35,14 +35,9 @@ metadata:
   official_journal_date:
     2009-01-01: "2008-12-19"
     2011-01-01: "2010-12-30"
-    2013-01-01: "2012-12-30"
-    2014-01-01: "2013-12-31"
-    2015-01-01: "2014-12-19"
-    2016-01-01: "2014-12-19"
-    2017-04-01: "2017-03-10"
-    2018-01-01: "2017-12-31"
+    2017-01-01: "2017-03-10"
   notes:
-    2017-04-01:
+    2017-01-01:
     - title: Depuis le 1er janvier 2017, la CFP est unifiée pour tous les artisans (en et hors Alsace)
 documentation: |-
   Notes :

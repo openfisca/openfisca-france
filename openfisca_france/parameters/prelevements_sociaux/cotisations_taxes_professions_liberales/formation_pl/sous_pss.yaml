@@ -12,9 +12,9 @@ metadata:
   unit: /1
   reference:
     1992-01-01:
-    -  href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657767&cidTexte=JORFTEXT000000721454
+    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657767&cidTexte=JORFTEXT000000721454
       title: Loi 91-1405 du 31/12/1991, art. 32
-    -  href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006651549/1992-01-04
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006651549/1992-01-04
       title: Article L953-1 du Code du travail
     2012-08-18:
     - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026290023&cidTexte=JORFTEXT000026288927
