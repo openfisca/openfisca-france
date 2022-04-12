@@ -272,4 +272,4 @@ input:
     statut_occupation_logement: locataire_vide
 output:
   rsa_majore_eligibilite: false
-  rsa: 57.7
+  rsa: 49.155457

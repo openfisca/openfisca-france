@@ -1,4 +1,12 @@
 # Changelog
+## 116.3.0 [#1833](https://github.com/openfisca/openfisca-france/pull/1833)
+* Évolution du système socio-fiscal.
+* Périodes concernées :  à partir du 01/06/2009
+* Zones impactées :
+- parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_fl
+- parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_m
+- parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj
+* Détails : Ajout des références législatives aux paramètres et du last_review
 
 ### 116.2.1 [#1834](https://github.com/openfisca/openfisca-france/pull/1834)
 * Amélioration technique.

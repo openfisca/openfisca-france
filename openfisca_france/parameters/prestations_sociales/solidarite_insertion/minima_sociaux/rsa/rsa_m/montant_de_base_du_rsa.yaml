@@ -94,8 +94,10 @@ metadata:
       href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000041835196/
       title: Décret 2020-490 du 29/04/2020, art. 1
     2021-04-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459557
+    - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459557
       title: Décret 2021-530 du 29/04/2021, art. 1
+    - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000043459562
+      title: Article 1 du Décret 2021-530 du 29/04/2021
   official_journal_date:
     2009-06-01: "2009-04-16"
     2010-01-01: "2010-01-17"
@@ -115,3 +117,5 @@ metadata:
     2019-04-01: "2019-05-03"
     2020-04-01: "2020-04-30"
     2021-04-01: "2021-04-30"
+  notes:
+  last_review: "2022-03-31"
