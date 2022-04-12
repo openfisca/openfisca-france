@@ -17,25 +17,10 @@ metadata:
     - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951825
       title: Décret 2008-1349 du 18/12/2008
     2011-01-01:
-      title: Loi 2010-1657 du 29/12/2010 de finances pour 2011, art. 137
-    2013-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2012/12/28/2012-1551/jo/texte
-      title: Décret 2012-1551 du 28/12/2012
-    2014-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1290/jo/texte
-      title: Décret 2013-1290 du 27/12/2013
-    2015-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
-      title: Décret 2014-1531 du 17/12/2014, art. 4, 1°
-    2016-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
-      title: Décret 2014-1531 du 17/12/2014, art. 4, 1°
-    2017-04-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2017/3/8/2017-301/jo/texte
-      title: Décret 2017-301 du 08/03/2017
-    2018-01-01:
-    - href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000033760722/2017-01-01/
-      title: LOI n° 2016-1917 du 29 décembre 2016 de finances pour 2017 - article 50
+    - title: Loi 2010-1657 du 29/12/2010 de finances pour 2011, art. 137
+      note: lien indisponible
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023382168/2011-01-01/
+      title: Article L6331-48 du Code du travail
     - href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000044794656/2022-01-01/
       title: LOI n°2021-1900 du 30 décembre 2021 - art. 121
     - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044981898/2022-01-01
@@ -43,15 +28,6 @@ metadata:
   official_journal_date:
     2009-01-01: "2008-12-19"
     2011-01-01: "2010-12-30"
-    2013-01-01: "2012-12-30"
-    2014-01-01: "2013-12-31"
-    2015-01-01: "2014-12-19"
-    2016-01-01: "2014-12-19"
-    2017-04-01: "2017-03-10"
-    2018-01-01: "2017-12-31"
-  notes:
-    2017-04-01:
-    - title: Depuis le 1er janvier 2017, la CFP est unifiée pour tous les artisans (en et hors Alsace)
 documentation: |-
   Notes :
   (i) L’auto-entrepreneur bénéficie d’un régime simplifié de calcul et de paiement des cotisations et contributions sociales obligatoires.
@@ -64,8 +40,4 @@ documentation: |-
   de retraite de base
   de la retraite complémentaire obligatoire
   du régime invalidité et décès
-  (ii) Les auto-entrepreneurs sont dispensés de contribution à la formation professionnelle jusqu'en 2011.
-  Sources :
-  Cotisation des indépendants "auto-entrepreneurs" : D. 131-6-1 du Code de la sécurité sociale jusqu'en 2017 ; devient D. 131-5-1 avec le Décret 2017-1894
-  Contribution à la formation professionnelle des artisans : 1609 quatervicies B du CGI, puis L. 6331-48 du Code du travail
-  Contribution à la formation professionnelle des commerçants et professions libérales : L. 6331-48 du Code du travail
+  (ii) attention en 2018-01-01, il y a un changement dans l'Article L6331-48 du code du travail qui modifie les régles des valeurs
