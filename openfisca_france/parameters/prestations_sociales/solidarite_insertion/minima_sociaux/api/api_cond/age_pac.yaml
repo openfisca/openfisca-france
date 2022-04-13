@@ -7,5 +7,11 @@ values:
 metadata:
   ux_name: Âge limite enfants à charge
   unit: year
+  reference:
+    2009-06-01:
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000022743618
+      title: Article R262-3 du Code de l'action sociale et des familles
+  notes:
+  last_review: "2022-04-13"
 documentation:
-  https://solidarites-sante.gouv.fr/affaires-sociales/lutte-contre-l-exclusion/droits-et-aides/le-revenu-de-solidarite-active-rsa/?TSPD_101_R0=087dc22938ab20009598594d134b03425fced19a2acc4e86a3476cd6c5b6161d943926159ec5acf708c7c6d4c51430005949570ba92ff6e79b4f19801084c29d0a8de2b9ebef8c7a10b57ead00a93d267d3b8a9213c8ee34af7c302abae9fdc0
+  https://www.dossierfamilial.com/famille/enfant/aides-et-allocations/parent-isole-aides-sociales-et-allocations-340950 = Depuis le  01/06/2009 l'allocation de parent isolé (API) a été intégrée dans le revenu de solidarité active (RSA)
