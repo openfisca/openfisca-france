@@ -68,4 +68,4 @@ metadata:
   last_review: "2021-04-01"
 documentation: 
   L'article L434-16 du Code de la sécurité sociale (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688385/) 
-  la méthode de calcul : On utilise l'historique des taux d'inflation usités par le gouvernement, que je trouve dans le paramètre BMAF qui est revalorisé au niveau de l'inflation. Ensuite avec cette méthode nous pouvons calculer chaque année en fonction de l'inflation.
+  la méthode de calcul = On utilise l'historique des taux d'inflation usités par le gouvernement, que je trouve dans le paramètre BMAF qui est revalorisé au niveau de l'inflation. Ensuite avec cette méthode nous pouvons calculer chaque année en fonction de l'inflation.
