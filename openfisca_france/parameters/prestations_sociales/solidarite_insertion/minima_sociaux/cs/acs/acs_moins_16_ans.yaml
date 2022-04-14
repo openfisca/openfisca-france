@@ -2,5 +2,21 @@ description: ACS pour une personne âgée de moins de 16 ans
 values:
   2009-08-01:
     value: 100
+  2019-11-01:
+    value: null
 metadata:
   unit: currency
+  reference:
+    2009-08-01:
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020886837/2009-07-23/
+      title: Article L863-1 du Code de la sécurité sociale
+    2019-11-01:
+    - href: https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/CIR-30-2019_reforme_complementaire_sante.pdf
+      title: Circulaire 30-2019
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029354513
+      title: Article L863-1 du Code de la sécurité sociale
+  last_review: "2022-04-14"
+documentation:
+  https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/CIR-30-2019_reforme_complementaire_sante.pdf 
+  https://www.service-public.fr/particuliers/vosdroits/F13375
+  https://drees.solidarites-sante.gouv.fr/sites/default/files/2021-03/fiche19.pdf
