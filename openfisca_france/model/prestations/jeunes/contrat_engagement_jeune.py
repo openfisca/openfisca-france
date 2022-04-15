@@ -26,44 +26,25 @@ class contrat_engagement_jeune_montant(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
+
     label = "Montant maximal de l'allocation Contrat d'Engagement Jeune"
     set_input = set_input_dispatch_by_period
     reference = [
-        "https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/",
+        "https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/",
         "https://www.service-public.fr/particuliers/vosdroits/F32700"
         ]
 
     def formula_2022_03_01(individu, period, parameters):
-        params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-        montant_base = params.rsa_m.montant_de_base_du_rsa
-        taux_1_personne = params.rsa_fl.forfait_logement.taux_1_personne
-        contrat_engagement_jeune_max = montant_base * (1 - taux_1_personne)
-        salaire_minimum = parameters(period).marche_travail.salaire_minimum
-        smic_mensuel_brut = salaire_minimum.smic.smic_b_horaire * salaire_minimum.smic.nb_heures_travail_mensuel
+        montant = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.montants
+        montant_degressivite = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.degressivite.montant
+        age = individu('age', period)
+        majeur = individu('majeur', period)
+        previous_year = period.start.period('year').offset(-1)
+        tranche = individu.foyer_fiscal('ir_tranche', previous_year) 
 
-        degressivite = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.degressivite
-        plafond = degressivite.plafond * smic_mensuel_brut
-        seuil_degressivite = degressivite.seuil
-
-        types_revenus_activites = [
-            'revenus_stage_formation_pro',
-            'indemnites_journalieres',
-            'chomage_net',
-            'indemnites_volontariat',
-            'asi',
-            'pensions_alimentaires_percues',
-            'rente_accident_travail',
-            'stage_gratification',
-            'bourse_enseignement_sup',
-            'salaire_net',
-            'bourse_recherche',
-            'rpns_auto_entrepreneur_benefice',
-            ]
-
-        base_ressource = (
-            sum(individu(type_revenu, period) for type_revenu in types_revenus_activites)
-            )
-        return contrat_engagement_jeune_max * min_(1, max_(0, (base_ressource - plafond) / (seuil_degressivite - plafond)))
+        degressivite = majeur * (tranche > 0) * montant_degressivite
+        return montant.calc(age) - degressivite 
+        
 
 
 class contrat_engagement_jeune_eligibilite_age(Variable):
@@ -78,7 +59,7 @@ class contrat_engagement_jeune_eligibilite_age(Variable):
         age = individu('age', period)
         handicap = individu('handicap', period)
 
-        return (params_age.minimum <= age) * ((age <= params_age.maximum) + (age <= (params_age.maximum_handicap) * handicap) )
+        return (params_age.minimum <= age) * ((age <= params_age.maximum) + (age <= (params_age.maximum_handicap) * handicap))
 
 
 class contrat_engagement_jeune_eligibilite_ressources(Variable):
@@ -90,11 +71,7 @@ class contrat_engagement_jeune_eligibilite_ressources(Variable):
 
     def formula_2022_03_01(individu, period, parameters):
         three_previous_months = period.last_3_months
-        params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-        montant_base = params.rsa_m.montant_de_base_du_rsa
-        taux_1_personne = params.rsa_fl.forfait_logement.taux_1_personne
-        plafond_condition_ressources = montant_base * (1 - taux_1_personne)
-
+        plafond = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.plafond
         ressources_individuelles = [
             'revenus_stage_formation_pro',
             'indemnites_chomage_partiel',
@@ -110,24 +87,23 @@ class contrat_engagement_jeune_eligibilite_ressources(Variable):
             'pensions_invalidite',
             'aah',
             'remuneration_apprenti',
-            'chomage_net',  # A éclaircir : cette ressource n'est pas mentionné dans la liste des ressources figurant dans la loi, mais plusieurs sites mentionnent leur prise en compte (dont service-public.fr, site de pole emploi)
+            'chomage_net',
             ]
 
         # Calcul sur les trois derniers mois (normalement c'est le niveau de ressources moyen le plus faible entre les 3 derniers mois et les 6 derniers mois)
         niveau_ressources_individuelles_3_mois = sum(
             individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_individuelles
-            )
+        )
 
-        rsa = individu.famille('rsa', three_previous_months, options = [ADD])
-        ppa = individu.famille('ppa', three_previous_months, options = [ADD])
-        rsa_ppa_demandeurs = (
-            (rsa + ppa)
-            * (individu.has_role(Famille.DEMANDEUR) + individu.has_role(Famille.CONJOINT))
-            )
+        sans_rsa = individu.famille('rsa', three_previous_months, options = [ADD]) <= 0
+        sans_ppa = individu.famille('ppa', three_previous_months, options = [ADD]) <= 0
 
-        niveau_ressources = (niveau_ressources_individuelles_3_mois + rsa_ppa_demandeurs) / 3
+        niveau_ressources = (niveau_ressources_individuelles_3_mois) / 3
 
-        return (niveau_ressources <= plafond_condition_ressources)
+        previous_year = period.start.period('year').offset(-1)
+        tranche = individu.foyer_fiscal('ir_tranche', previous_year) <= 1   
+
+        return (niveau_ressources <= plafond) * sans_rsa * sans_ppa * tranche
 
 
 class contrat_engagement_jeune(Variable):
@@ -136,11 +112,11 @@ class contrat_engagement_jeune(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     label = "Montant du Contrat d'Engagement Jeune"
-    reference = ["https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/", "https://www.service-public.fr/particuliers/vosdroits/F32700"]
+    reference = ["https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/", "https://www.service-public.fr/particuliers/vosdroits/F32700"]
 
     def formula_2022_03_01(individu, period, parameters):
         montant = individu('contrat_engagement_jeune_montant', period)
         neet = individu('contrat_engagement_jeune_neet', period)
-        age_ok = individu('contrat_engagement_jeune_eligibilite_age', period)
-        contrat_engagement_jeune_eligibilite_ressources = individu('contrat_engagement_jeune_eligibilite_ressources', period)
-        return montant * neet * age_ok * contrat_engagement_jeune_eligibilite_ressources
+        eligibilite_age = individu('contrat_engagement_jeune_eligibilite_age', period)
+        eligibilite_ressources = individu('contrat_engagement_jeune_eligibilite_ressources', period)
+        return montant * neet * eligibilite_age * eligibilite_ressources

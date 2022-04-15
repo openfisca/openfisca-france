@@ -1,10 +1,10 @@
-description: Plafond (en % du SMIC brut) du Contrat d'Engagement Jeune
+description: Plafond du Contrat d'Engagement Jeune
 values:
   2022-03-01:
-    value: 0.8
+    value: 300
 metadata:
   ux_name: Plafond
-  unit: SMIC
+  unit: currency
   reference:
     2022-03-01:
     - href: https://www.legifrance.gouv.fr/eli/decret/2022/2/18/2022-199/jo/article_1

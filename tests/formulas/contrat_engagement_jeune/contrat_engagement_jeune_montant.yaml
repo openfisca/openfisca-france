@@ -1,11 +1,8 @@
 - name: Calcul du montant du Contrat d'Engagement Jeune
   period: 2022-03
-  absolute_error_margin: 1
   input:
-    age: [24, 19, 25, 18]
-    salaire_net: [1500, 0, 0, 0]
-    stage_gratification: [0, 901, 0, 0]
-    revenus_stage_formation_pro: [0, 0, 0, 0]
-    bourse_enseignement_sup: [0, 0, 550, 0]
+    age: [24, 24, 16]
+    salaire_imposable:
+      2021: [24000, 0, 16]
   output:
-    contrat_engagement_jeune_montant: [0, 181, 365, 497.5]
+    contrat_engagement_jeune_montant: [300, 500, 200]
