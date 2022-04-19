@@ -5,3 +5,8 @@ values:
 metadata:
   ux_name: Coefficient DOM
   unit: /1
+  reference:
+    2001-01-01:
+      href: http://www.mediam.ext.cnamts.fr/ameli/cons/CIRCC/2019/CIR-33-2019.PDF
+      title: Circulaire 33-2019 3.
+  last_review: "2019-09-19"
