@@ -313,9 +313,9 @@ class dependance_tarif_etablissement_gir_dependant(Variable):
     reference = ["https://www.service-public.fr/particuliers/vosdroits/F10009"]
 
     def formula_2002(individu, period):
-        gir = individu("gir", period)
-        tarif_gir_1_2 = individu("dependance_tarif_etablissement_gir_1_2", period)
-        tarif_gir_3_4 = individu("dependance_tarif_etablissement_gir_3_4", period)
+        gir = individu('gir', period)
+        tarif_gir_1_2 = individu('dependance_tarif_etablissement_gir_1_2', period)
+        tarif_gir_3_4 = individu('dependance_tarif_etablissement_gir_3_4', period)
 
         # Vérifie si l'individu est rattaché à l'un des groupes 1 à 4 de la grille Aggir
         gir_1_2 = (gir == TypesGir.gir_1) + (gir == TypesGir.gir_2)

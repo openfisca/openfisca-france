@@ -669,7 +669,7 @@ class rsa_eligibilite(Variable):
         rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
         condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
         condition_nationalite = famille.any(condition_nationalite_i, role = Famille.PARENT)
-        rsa_jeune_condition_heures_travail_remplie_i = famille.members("rsa_jeune_condition_heures_travail_remplie", period)
+        rsa_jeune_condition_heures_travail_remplie_i = famille.members('rsa_jeune_condition_heures_travail_remplie', period)
         rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
 
         age_i = famille.members('age', period)

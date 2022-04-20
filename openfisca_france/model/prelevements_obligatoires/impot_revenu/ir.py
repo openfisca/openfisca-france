@@ -1369,8 +1369,8 @@ class decote(Variable):
         return around(max_(0, decote.seuil - ir_plaf_qf) * decote.taux)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
-        ir_plaf_qf = foyer_fiscal("ir_plaf_qf", period)
-        nb_adult = foyer_fiscal("nb_adult", period)
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        nb_adult = foyer_fiscal('nb_adult', period)
         taux_decote = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.taux
         decote_seuil_celib = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_celib
         decote_seuil_couple = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_couple

@@ -355,8 +355,8 @@ class aah(Variable):
         aah_parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         m_2 = datetime64(period.offset(-60, 'day').start)
 
-        aah_date_debut_hospitalisation = individu("aah_date_debut_hospitalisation", period)
-        aah_date_debut_incarceration = individu("aah_date_debut_incarceration", period)
+        aah_date_debut_hospitalisation = individu('aah_date_debut_hospitalisation', period)
+        aah_date_debut_incarceration = individu('aah_date_debut_incarceration', period)
         aah_reduction = (aah_date_debut_hospitalisation <= m_2) + (aah_date_debut_incarceration <= m_2)
 
         return where(aah_reduction, aah_base * aah_parameters.pourcentage_aah.prison_hospitalisation, aah_base)

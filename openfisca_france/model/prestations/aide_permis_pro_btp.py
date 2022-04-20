@@ -30,6 +30,6 @@ class aide_permis_pro_btp(Variable):
         age = individu('age', period)
         eligibilite_age = (params.age.minimum <= age) * (age <= params.age.maximum)
 
-        alternant = individu("alternant", period)
+        alternant = individu('alternant', period)
 
         return eligibilite_age * alternant * montant

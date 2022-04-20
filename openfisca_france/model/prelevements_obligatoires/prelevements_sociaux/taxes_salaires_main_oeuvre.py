@@ -70,9 +70,9 @@ class contribution_developpement_apprentissage(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "employeur",
-            bareme_name = "apprentissage_contribution_additionnelle",
-            variable_name = "contribution_developpement_apprentissage",
+            cotisation_type = 'employeur',
+            bareme_name = 'apprentissage_contribution_additionnelle',
+            variable_name = 'contribution_developpement_apprentissage',
             )
         return cotisation * redevable_taxe_apprentissage
 
@@ -262,7 +262,7 @@ class fnal_cotisation(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_cotisation',
-            variable_name = "fnal_cotisation",
+            variable_name = 'fnal_cotisation',
             )
 
 
@@ -282,7 +282,7 @@ class fnal_contribution(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_contribution_plus_de_50_salaries',
-            variable_name = "fnal_contribution",
+            variable_name = 'fnal_contribution',
             )
         contribution_moins_de_50_salaries = apply_bareme(
             individu,
@@ -290,7 +290,7 @@ class fnal_contribution(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_contribution_moins_de_50_salaries',
-            variable_name = "fnal_contribution",
+            variable_name = 'fnal_contribution',
             )
         return effectif_plus_de_50_salaries * contribution_plus_de_50_salaries + (1 - effectif_plus_de_50_salaries) * contribution_moins_de_50_salaries
 
@@ -303,7 +303,7 @@ class fnal_contribution(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_contribution_plus_de_20_salaries',
-            variable_name = "fnal_contribution",
+            variable_name = 'fnal_contribution',
             )
         contribution_moins_de_20_salaries = apply_bareme(
             individu,
@@ -311,7 +311,7 @@ class fnal_contribution(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_contribution_moins_de_20_salaries',
-            variable_name = "fnal_contribution",
+            variable_name = 'fnal_contribution',
             )
         return effectif_plus_de_20_salaries * contribution_plus_de_20_salaries + (1 - effectif_plus_de_20_salaries) * contribution_moins_de_20_salaries
 
@@ -324,7 +324,7 @@ class fnal_contribution(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_contribution_plus_de_20_salaries',
-            variable_name = "fnal_contribution",
+            variable_name = 'fnal_contribution',
             )
         return effectif_plus_de_20_salaries * contribution_plus_de_20_salaries
 
@@ -337,7 +337,7 @@ class fnal_contribution(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_contribution_plus_de_10_salaries',
-            variable_name = "fnal_contribution",
+            variable_name = 'fnal_contribution',
             )
         return effectif_plus_de_10_salaries * contribution_plus_de_10_salaries
 

@@ -225,7 +225,7 @@ class aide_mobilite_eligible(Variable):
         contrat_travail_debut = individu('contrat_de_travail_debut', period)
         date_debut_type_activite_recherche_emploi = individu('date_debut_recherche_emploi', period)
         contrat_de_travail_debut_en_mois = contrat_travail_debut.astype('M8[M]')
-        amob_date_de_demande = individu("aide_mobilite_date_demande", period)
+        amob_date_de_demande = individu('aide_mobilite_date_demande', period)
         parametres_amob = parameters(period).prestations_sociales.aide_mobilite
         date_contrat_limite_contexte_formation_reprise = min_((contrat_de_travail_debut_en_mois + 1) + (contrat_travail_debut - contrat_de_travail_debut_en_mois),
                                                (contrat_de_travail_debut_en_mois + 2) - timedelta64(1, 'D'))

@@ -49,7 +49,7 @@ class assiette_cotisations_sociales_prive(Variable):
         primes_salaires = individu('primes_salaires', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         reintegration_titre_restaurant_employeur = individu(
-            "reintegration_titre_restaurant_employeur", period
+            'reintegration_titre_restaurant_employeur', period
             )
         remuneration_apprenti = individu('remuneration_apprenti', period)
         salaire_de_base = individu('salaire_de_base', period)
@@ -122,8 +122,8 @@ class reintegration_titre_restaurant_employeur(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        valeur_unitaire = individu("titre_restaurant_valeur_unitaire", period)
-        volume = individu("titre_restaurant_volume", period)
+        valeur_unitaire = individu('titre_restaurant_valeur_unitaire', period)
+        volume = individu('titre_restaurant_volume', period)
         taux_employeur = individu('titre_restaurant_taux_employeur', period)
         cantines_titres_restaurants = parameters(period).prelevements_sociaux.cotisations_securite_sociale_regime_general.assiette.cantines_titres_restaurants
 
@@ -592,7 +592,7 @@ class chomage_salarie(Variable):
             parameters,
             cotisation_type = "salarie",
             bareme_name = "chomage",
-            variable_name = "chomage_salarie",
+            variable_name = 'chomage_salarie',
             )
         asf = apply_bareme(
             individu,
@@ -600,7 +600,7 @@ class chomage_salarie(Variable):
             parameters,
             cotisation_type = "salarie",
             bareme_name = "asf",
-            variable_name = "chomage_salarie",
+            variable_name = 'chomage_salarie',
             )
 
         return cotisation_chomage + asf
@@ -620,7 +620,7 @@ class chomage_employeur(Variable):
             parameters,
             cotisation_type = "employeur",
             bareme_name = "chomage",
-            variable_name = "chomage_employeur",
+            variable_name = 'chomage_employeur',
             )
         asf = apply_bareme(
             individu,
@@ -628,7 +628,7 @@ class chomage_employeur(Variable):
             parameters,
             cotisation_type = "employeur",
             bareme_name = "asf",
-            variable_name = "chomage_salarie",
+            variable_name = 'chomage_salarie',
             )
 
         return cotisation_chomage + asf

@@ -2597,11 +2597,11 @@ class duflot(Variable):
         report_reduction_depuis_2013 = sum(
             foyer_fiscal(case_report, period)
             for case_report in [
-                "f7fi",
-                "f7fk",
-                "f7fr",
-                "f7fv",
-                "f7fw",
+                'f7fi',
+                'f7fk',
+                'f7fr',
+                'f7fv',
+                'f7fw',
                 ][0:year - 2013]
             )
 

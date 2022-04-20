@@ -760,15 +760,15 @@ class grosses_reparations(Variable):
         report_depenses_depuis_2009 = sum(
             foyer_fiscal(case_report, period)
             for case_report in [
-                "f6hj",
-                "f6hk",
-                "f6hl",
-                "f6hm",
-                "f6hn",
-                "f6ho",
-                "f6hp",
-                "f6hq",
-                "f6hr",
+                'f6hj',
+                'f6hk',
+                'f6hl',
+                'f6hm',
+                'f6hn',
+                'f6ho',
+                'f6hp',
+                'f6hq',
+                'f6hr',
                 ][0:year - 2009]
             )
 

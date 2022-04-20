@@ -43,13 +43,13 @@ class aide_merite_eligibilite(Variable):
             return periode_universitaire_precedente
 
         # l'individu intègre un établissement supérieur à la rentrée
-        etudiant = individu("etudiant", period)
+        etudiant = individu('etudiant', period)
 
-        bourse_criteres_sociaux = individu("bourse_criteres_sociaux", period)
-        allocation_annuelle_etudiant = individu("allocation_annuelle_etudiant", period)
+        bourse_criteres_sociaux = individu('bourse_criteres_sociaux', period)
+        allocation_annuelle_etudiant = individu('allocation_annuelle_etudiant', period)
         condition_ressources = (bourse_criteres_sociaux + allocation_annuelle_etudiant) > 0
 
-        mention_baccalaureat = individu("mention_baccalaureat", period)
+        mention_baccalaureat = individu('mention_baccalaureat', period)
         condition_mention = (
             (mention_baccalaureat == TypesMention.mention_tres_bien)
             + (mention_baccalaureat == TypesMention.mention_tres_bien_felicitations_jury)
@@ -58,7 +58,7 @@ class aide_merite_eligibilite(Variable):
         # a déjà perçu l'aide l'année [universitaire] précédente
         periode_universitaire_precedente = periode_universitaire_precedente(period)
         aide_merite_eligibilite_an_dernier = individu(
-            "aide_merite_eligibilite",
+            'aide_merite_eligibilite',
             periode_universitaire_precedente,
             options = [ADD]
             )
@@ -85,5 +85,5 @@ class aide_merite_montant(Variable):
     '''
 
     def formula(individu, period, parameters):
-        aide_merite_eligibilite = individu("aide_merite_eligibilite", period.first_month)
+        aide_merite_eligibilite = individu('aide_merite_eligibilite', period.first_month)
         return aide_merite_eligibilite * parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.aide_merite.montant_annuel

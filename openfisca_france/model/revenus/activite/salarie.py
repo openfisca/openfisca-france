@@ -762,8 +762,8 @@ class depense_cantine_titre_restaurant_employe(Variable):
     def formula(individu, period, parameters):
         period = period
 
-        valeur_unitaire = individu("titre_restaurant_valeur_unitaire", period)
-        volume = individu("titre_restaurant_volume", period)
+        valeur_unitaire = individu('titre_restaurant_valeur_unitaire', period)
+        volume = individu('titre_restaurant_volume', period)
         taux_employeur = individu('titre_restaurant_taux_employeur', period)
 
         return - valeur_unitaire * volume * (1 - taux_employeur)
@@ -778,8 +778,8 @@ class depense_cantine_titre_restaurant_employeur(Variable):
 
     def formula(individu, period, parameters):
         period = period
-        valeur_unitaire = individu("titre_restaurant_valeur_unitaire", period)
-        volume = individu("titre_restaurant_volume", period)  # Compute with jours ouvrables ?
+        valeur_unitaire = individu('titre_restaurant_valeur_unitaire', period)
+        volume = individu('titre_restaurant_volume', period)  # Compute with jours ouvrables ?
         taux_employeur = individu('titre_restaurant_taux_employeur', period)
 
         return valeur_unitaire * volume * taux_employeur
