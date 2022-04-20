@@ -46,14 +46,8 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/
       title: Article L434-17 Section 2 Calcul de la rente
     2016-04-01:
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032363894
-      title: Article R434-27 Sous-section 2 Calcul de la rente
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688421
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688421
       title: Article L413-7 du Code de la sécurité sociale
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/
-      title: Article L434-17 du Code de la sécurité sociale
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031781092/
-      title: Article L161-25 du Code de la sécurité sociale
   notes:
     2017-04-01:
       - title: revalorisation de 0,3%
@@ -67,5 +61,5 @@ metadata:
       - title: revalorisation de 0,1%
   last_review: "2021-04-01"
 documentation: 
-  L'article L434-16 du Code de la sécurité sociale (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688385/) 
-  la méthode de calcul = On utilise l'historique des taux d'inflation usités par le gouvernement, que je trouve dans le paramètre BMAF qui est revalorisé au niveau de l'inflation. Ensuite avec cette méthode nous pouvons calculer chaque année en fonction de l'inflation.
+  Modalités du calcul de la rente précisées dans l'article L434-16 - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688385/
+  Depuis 2016, le salaire est revalorisé au niveau de l'inflation.

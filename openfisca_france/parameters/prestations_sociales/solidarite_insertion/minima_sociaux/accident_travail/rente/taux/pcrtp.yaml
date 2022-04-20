@@ -70,13 +70,10 @@ metadata:
   unit: currency
   reference:
     2013-03-01:
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027267037
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027267037
       title: Article D434-2 I. du Code de la sécurité sociale
+    - href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000027267016/2013-04-05/
+      title : Décret 2013-278 du 2/04/2013
   notes:
   last_review: "2022-03-25"
 documentation:
-    Nous avons à l'article D434-2 du Code de la sécurité sociale la description des différents seuils pour cette prestation
-    https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027267037
-    Article D434-2 du Code de la sécurité sociale
-    https://www.legifrance.gouv.fr/download/pdf/circ?id=37105
-    Circulaire du 12/06/2013 partie III.1.
