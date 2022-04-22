@@ -1,4 +1,16 @@
 # Changelog
+
+## 116.4.0 [#1827](https://github.com/openfisca/openfisca-france/pull/1827)
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/03/2022
+* Zones impactées :
+- model/prestations/jeunes/contrat_engagement_jeune.py
+- parameters/prestations_sociales/aides_jeunes/contrat_engagement_jeune/*
+- tests/formulas/contrat_engagement_jeune/*
+* Détails :
+- Ajoute le Contrat d'Engagement Jeune en remplacement de la Garantie Jeunes
+- Ajoute un paramètre end à la Garantie Jeunes
+
 ## 116.3.0 [#1833](https://github.com/openfisca/openfisca-france/pull/1833)
 * Évolution du système socio-fiscal.
 * Périodes concernées :  à partir du 01/06/2009
