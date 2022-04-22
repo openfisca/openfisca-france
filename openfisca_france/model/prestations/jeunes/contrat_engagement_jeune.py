@@ -40,11 +40,10 @@ class contrat_engagement_jeune_montant(Variable):
         age = individu('age', period)
         majeur = individu('majeur', period)
         previous_year = period.start.period('year').offset(-1)
-        tranche = individu.foyer_fiscal('ir_tranche', previous_year) 
+        tranche = individu.foyer_fiscal('ir_tranche', previous_year)
 
         degressivite = majeur * (tranche > 0) * montant_degressivite
-        return montant.calc(age) - degressivite 
-        
+        return montant.calc(age) - degressivite
 
 
 class contrat_engagement_jeune_eligibilite_age(Variable):
@@ -93,7 +92,7 @@ class contrat_engagement_jeune_eligibilite_ressources(Variable):
         # Calcul sur les trois derniers mois (normalement c'est le niveau de ressources moyen le plus faible entre les 3 derniers mois et les 6 derniers mois)
         niveau_ressources_individuelles_3_mois = sum(
             individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_individuelles
-        )
+            )
 
         sans_rsa = individu.famille('rsa', three_previous_months, options = [ADD]) <= 0
         sans_ppa = individu.famille('ppa', three_previous_months, options = [ADD]) <= 0
@@ -101,7 +100,7 @@ class contrat_engagement_jeune_eligibilite_ressources(Variable):
         niveau_ressources = (niveau_ressources_individuelles_3_mois) / 3
 
         previous_year = period.start.period('year').offset(-1)
-        tranche = individu.foyer_fiscal('ir_tranche', previous_year) <= 1   
+        tranche = individu.foyer_fiscal('ir_tranche', previous_year) <= 1
 
         return (niveau_ressources <= plafond) * sans_rsa * sans_ppa * tranche
 
