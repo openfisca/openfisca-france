@@ -2014,7 +2014,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sa + f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce
+        return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2038,6 +2038,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3we = foyer_fiscal('f3we', period)
         f3wi = foyer_fiscal('f3wi', period)
         f3wj = foyer_fiscal('f3wj', period)
+        f3pi = foyer_fiscal('f3pi', period)
 
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
@@ -2046,7 +2047,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sa + f3vg + f3ua + f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj
+        return f3vg + f3ua + f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3pi
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2071,7 +2072,6 @@ class rfr_plus_values_hors_rni(Variable):
         f3wi = foyer_fiscal('f3wi', period)
         f3wj = foyer_fiscal('f3wj', period)
         f3an = foyer_fiscal('f3an', period)
-        f3bn = foyer_fiscal('f3bn', period)
         f3pi = foyer_fiscal('f3pi', period)
 
         f3vi = foyer_fiscal.sum(f3vi_i)
@@ -2081,7 +2081,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sa + f3vg + f3ua + f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3an - f3bn + f3pi
+        return f3vg + f3ua + f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3an + f3pi
 
 
 class iai(Variable):
