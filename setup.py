@@ -51,6 +51,7 @@ setup(
             "autopep8 ==1.5.7",
             "flake8 >=3.8.0,<3.10.0",
             "flake8-print",
+            "flake8-quotes",
             "pytest >= 5.0.0, < 7.0.0",
             "scipy >= 0.17",  # Only used to test de_net_a_brut reform
             "requests >= 2.8",
