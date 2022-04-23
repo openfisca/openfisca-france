@@ -22,9 +22,9 @@ class exoneration_cotisations_employeur_geographiques(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        exoneration_cotisations_employeur_zfu = individu('exoneration_cotisations_employeur_zfu', period, options = [ADD])
-        exoneration_cotisations_employeur_zrd = individu('exoneration_cotisations_employeur_zrd', period, options = [ADD])
-        exoneration_cotisations_employeur_zrr = individu('exoneration_cotisations_employeur_zrr', period, options = [ADD])
+        exoneration_cotisations_employeur_zfu = individu("exoneration_cotisations_employeur_zfu", period, options = [ADD])
+        exoneration_cotisations_employeur_zrd = individu("exoneration_cotisations_employeur_zrd", period, options = [ADD])
+        exoneration_cotisations_employeur_zrr = individu("exoneration_cotisations_employeur_zrr", period, options = [ADD])
 
         exonerations_geographiques = (
             exoneration_cotisations_employeur_zfu
@@ -44,15 +44,15 @@ class exoneration_cotisations_employeur_jei(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        assiette_allegement = individu('assiette_allegement', period)
-        jei_date_demande = individu('jei_date_demande', period)
-        jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)
-        plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        smic_proratise = individu('smic_proratise', period)
-        categorie_salarie = individu('categorie_salarie', period)
+        assiette_allegement = individu("assiette_allegement", period)
+        jei_date_demande = individu("jei_date_demande", period)
+        jeune_entreprise_innovante = individu("jeune_entreprise_innovante", period)
+        plafond_securite_sociale = individu("plafond_securite_sociale", period)
+        smic_proratise = individu("smic_proratise", period)
+        categorie_salarie = individu("categorie_salarie", period)
 
         bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
-        bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
+        bareme_names = ["vieillesse_deplafonnee", "vieillesse_plafonnee", "maladie", "famille"]
 
         exoneration = smic_proratise * 0.0
         for bareme_name in bareme_names:
@@ -77,7 +77,7 @@ class exoneration_cotisations_employeur_jei(Variable):
             7: 1,
             }  # TODO: move to parameters file
         for year_passed, rate in rate_by_year_passed.items():
-            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, "Y")
             if condition_on_year_passed.any():
                 exoneration[condition_on_year_passed] = rate * exoneration
 
@@ -145,23 +145,23 @@ class exoneration_cotisations_employeur_zfu(Variable):
 # mois (100 000 euros pour les entreprises de transport routier).
 
     def formula(individu, period, parameters):
-        assiette_allegement = individu('assiette_allegement', period)
-        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        assiette_allegement = individu("assiette_allegement", period)
+        contrat_de_travail_type = individu("contrat_de_travail_type", period)
         TypesContrat = contrat_de_travail_type.possible_values
-        contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
-        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
-        effectif_entreprise = individu('effectif_entreprise', period)
-        entreprise_chiffre_affaire = individu('entreprise_chiffre_affaire', period)
-        entreprise_bilan = individu('entreprise_bilan', period)
-        taux_versement_transport = individu('taux_versement_transport', period)
+        contrat_de_travail_debut = individu("contrat_de_travail_debut", period)
+        contrat_de_travail_fin = individu("contrat_de_travail_fin", period)
+        effectif_entreprise = individu("effectif_entreprise", period)
+        entreprise_chiffre_affaire = individu("entreprise_chiffre_affaire", period)
+        entreprise_bilan = individu("entreprise_bilan", period)
+        taux_versement_transport = individu("taux_versement_transport", period)
 
         # TODO: move to parameters file
         entreprise_eligible = (entreprise_chiffre_affaire <= 1e7) | (entreprise_bilan <= 1e7)
 
-        smic_proratise = individu('smic_proratise', period)
-        zone_franche_urbaine = individu('zone_franche_urbaine', period)
+        smic_proratise = individu("smic_proratise", period)
+        zone_franche_urbaine = individu("zone_franche_urbaine", period)
 
-        duree_cdd_eligible = (contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D'))
+        duree_cdd_eligible = (contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, "D"))
         # TODO: move to parameters file
         contrat_de_travail_eligible = (contrat_de_travail_debut <= datetime64("2014-12-31")) * ((contrat_de_travail_type == TypesContrat.cdi) + ((contrat_de_travail_type == TypesContrat.cdd) * (duree_cdd_eligible)))
         # TODO: move to parameters file
@@ -173,7 +173,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
             * entreprise_eligible
             )
 
-        bareme_by_name = parameters(period).cotsoc.cotisations_employeur['prive_non_cadre']
+        bareme_by_name = parameters(period).cotsoc.cotisations_employeur["prive_non_cadre"]
 
         if period.start.year < 2007:
             fnal_contrib = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.contribution_plus_de_10_salaries
@@ -186,15 +186,15 @@ class exoneration_cotisations_employeur_zfu(Variable):
             fnal_contrib_seuil = 50
 
         if period.start.year < 2019:
-            taux_maladie = bareme_by_name['maladie'].rates[0]
+            taux_maladie = bareme_by_name["maladie"].rates[0]
         else:
             taux_maladie = 0
 
         taux_max = (
-            bareme_by_name['vieillesse_deplafonnee'].rates[0]
-            + bareme_by_name['vieillesse_plafonnee'].rates[0]
+            bareme_by_name["vieillesse_deplafonnee"].rates[0]
+            + bareme_by_name["vieillesse_plafonnee"].rates[0]
             + taux_maladie
-            + bareme_by_name['famille'].rates[0]
+            + bareme_by_name["famille"].rates[0]
             + parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.fnal.cotisation.rates[0]
             + fnal_contrib.rates[0] * (effectif_entreprise >= fnal_contrib_seuil)
             + taux_versement_transport
@@ -239,12 +239,12 @@ class exoneration_cotisations_employeur_zfu(Variable):
         small_taux_exoneration = eligible * 0.0
 
         for year_passed, rate in large_rate_by_year_passed.items():
-            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, "Y")
             if condition_on_year_passed.any():
                 large_taux_exoneration[condition_on_year_passed] = rate * taux_exoneration
 
         for year_passed, rate in small_rate_by_year_passed.items():
-            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, "Y")
             if condition_on_year_passed.any():
                 small_taux_exoneration[condition_on_year_passed] = rate * taux_exoneration
 
@@ -272,10 +272,10 @@ class exoneration_cotisations_employeur_zrd(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        assiette_allegement = individu('assiette_allegement', period)
-        entreprise_creation = individu('entreprise_creation', period)
-        smic_proratise = individu('smic_proratise', period)
-        zone_restructuration_defense = individu('zone_restructuration_defense', period)
+        assiette_allegement = individu("assiette_allegement", period)
+        entreprise_creation = individu("entreprise_creation", period)
+        smic_proratise = individu("smic_proratise", period)
+        zone_restructuration_defense = individu("zone_restructuration_defense", period)
 
         eligible = zone_restructuration_defense
         taux_max = .281  # TODO: move to parameters file
@@ -293,7 +293,7 @@ class exoneration_cotisations_employeur_zrd(Variable):
             }  # TODO: move to parameters file
         ratio = eligible * 0.0
         for year_passed, rate in rate_by_year_passed.items():
-            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, "Y")
             if condition_on_year_passed.any():
                 ratio[condition_on_year_passed] = rate
 
@@ -324,22 +324,22 @@ class exoneration_cotisations_employeur_zrr(Variable):
     # L'employeur ne doit avoir procédé à aucun licenciement économique durant les 12 mois précédant l'embauche.
 
     def formula(individu, period, parameters):
-        assiette_allegement = individu('assiette_allegement', period)
-        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        assiette_allegement = individu("assiette_allegement", period)
+        contrat_de_travail_type = individu("contrat_de_travail_type", period)
         TypesContrat = contrat_de_travail_type.possible_values
-        contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
-        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
-        effectif_entreprise = individu('effectif_entreprise', period)
-        smic_proratise = individu('smic_proratise', period)
-        zone_revitalisation_rurale = individu('zone_revitalisation_rurale', period)
+        contrat_de_travail_debut = individu("contrat_de_travail_debut", period)
+        contrat_de_travail_fin = individu("contrat_de_travail_fin", period)
+        effectif_entreprise = individu("effectif_entreprise", period)
+        smic_proratise = individu("smic_proratise", period)
+        zone_revitalisation_rurale = individu("zone_revitalisation_rurale", period)
 
-        duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
+        duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, "D")
         # TODO: move to parameters file
         contrat_de_travail_eligible = (contrat_de_travail_type == TypesContrat.cdi) + ((contrat_de_travail_type == TypesContrat.cdd) * (duree_cdd_eligible))
 
         duree_validite = (
-            datetime64(period.start) + timedelta64(1, 'D') - contrat_de_travail_debut
-            ).astype('timedelta64[Y]') < timedelta64(1, 'Y')
+            datetime64(period.start) + timedelta64(1, "D") - contrat_de_travail_debut
+            ).astype("timedelta64[Y]") < timedelta64(1, "Y")
 
         eligible = (
             contrat_de_travail_eligible
@@ -362,25 +362,25 @@ class exoneration_is_creation_zrr(Variable):
     value_type = float
     entity = Individu
     label = "Exonérations fiscales pour création d'une entreprise en zone de revitalisation rurale (ZRR)"
-    reference = 'http://www.apce.com/pid11690/exonerations-d-impots-zrr.html?espace=1&tp=1'
+    reference = "http://www.apce.com/pid11690/exonerations-d-impots-zrr.html?espace=1&tp=1"
     definition_period = YEAR
     calculate_output = calculate_output_divide
 
     def formula(individu, period, parameters):
-        decembre = period.first_month.offset(11, 'month')
-        effectif_entreprise = individu('effectif_entreprise', decembre)
-        entreprise_benefice = individu('entreprise_benefice', period, options = [ADD])
+        decembre = period.first_month.offset(11, "month")
+        effectif_entreprise = individu("effectif_entreprise", decembre)
+        entreprise_benefice = individu("entreprise_benefice", period, options = [ADD])
         # TODO: MODIFIER avec création d'entreprise
-        contrat_de_travail_type = individu('contrat_de_travail_type', decembre)
+        contrat_de_travail_type = individu("contrat_de_travail_type", decembre)
 
         TypesContrat = contrat_de_travail_type.possible_values
 
-        contrat_de_travail_debut = individu('contrat_de_travail_debut', decembre)
-        contrat_de_travail_fin = individu('contrat_de_travail_fin', decembre)
-        duree_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
+        contrat_de_travail_debut = individu("contrat_de_travail_debut", decembre)
+        contrat_de_travail_fin = individu("contrat_de_travail_fin", decembre)
+        duree_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, "D")
         # TODO: move to parameters file
         contrat_de_travail_eligible = (contrat_de_travail_type == TypesContrat.cdi) + ((contrat_de_travail_type == TypesContrat.cdd) * (duree_eligible))
-        zone_revitalisation_rurale = individu('zone_revitalisation_rurale', decembre)
+        zone_revitalisation_rurale = individu("zone_revitalisation_rurale", decembre)
 
         eligible = (
             contrat_de_travail_eligible
@@ -403,7 +403,7 @@ class exoneration_is_creation_zrr(Variable):
         taux_exoneraion = eligible * 0.0
 
         for year_passed, rate in rate_by_year_passed.items():
-            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, "Y")
             taux_exoneraion[condition_on_year_passed] = rate
 
         return taux_exoneraion * entreprise_benefice
@@ -462,12 +462,12 @@ class jeune_entreprise_innovante(Variable):
         #
         # réaliser des dépenses de R§D représentant au moins 15 % des charges fiscalement déductibles au titre du même
         # exercice.
-        effectif_entreprise = individu('effectif_entreprise', period)
-        entreprise_bilan = individu('entreprise_bilan', period)
-        entreprise_chiffre_affaire = individu('entreprise_chiffre_affaire', period)
-        entreprise_creation = individu('entreprise_creation', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
+        entreprise_bilan = individu("entreprise_bilan", period)
+        entreprise_chiffre_affaire = individu("entreprise_chiffre_affaire", period)
+        entreprise_creation = individu("entreprise_creation", period)
         # entreprise_depenses_rd =  individu('entreprise_depenses_rd', period)
-        jei_date_demande = individu('jei_date_demande', period)
+        jei_date_demande = individu("jei_date_demande", period)
         # TODO: move to parameters file
         # entreprise_depenses_rd > .15 TODO
         independance = True
@@ -476,7 +476,7 @@ class jeune_entreprise_innovante(Variable):
             independance
             * (effectif_entreprise < 250)
             * (entreprise_creation <= datetime64("2016-12-31"))
-            * ((jei_date_demande + timedelta64(1, 'D') - entreprise_creation).astype('timedelta64[Y]') < timedelta64(8, 'Y'))
+            * ((jei_date_demande + timedelta64(1, "D") - entreprise_creation).astype("timedelta64[Y]") < timedelta64(8, "Y"))
             * (entreprise_chiffre_affaire < 50e6)
             * (entreprise_bilan < 43e6)
             )
@@ -495,7 +495,7 @@ class bassin_emploi_redynamiser(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
 
         return (effectif_entreprise >= 1) * False
 
@@ -508,7 +508,7 @@ class zone_restructuration_defense(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
         return (effectif_entreprise >= 1) * False
 
 
@@ -520,7 +520,7 @@ class zone_franche_urbaine(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
         return (effectif_entreprise >= 1) * False
 
 
@@ -532,7 +532,7 @@ class zone_revitalisation_rurale(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
         return (effectif_entreprise >= 1) * False
 
 
@@ -548,4 +548,4 @@ def compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seui
 
 
 def exoneration_relative_year(period, other_date):
-    return (datetime64(period.start) + timedelta64(1, 'D') - other_date).astype('timedelta64[Y]')
+    return (datetime64(period.start) + timedelta64(1, "D") - other_date).astype("timedelta64[Y]")

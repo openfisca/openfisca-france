@@ -5,13 +5,13 @@ from openfisca_france.model.base import *
 from .. import entities
 
 
-dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
+dir_path = os.path.join(os.path.dirname(__file__), "parameters")
 
 
 def modify_parameters(parameters):
-    file_path = os.path.join(dir_path, 'cesthra_invalidite.yaml')
-    reform_parameters_subtree = load_parameter_file(name='cesthra', file_path=file_path)
-    parameters.add_child('cesthra', reform_parameters_subtree)
+    file_path = os.path.join(dir_path, "cesthra_invalidite.yaml")
+    reform_parameters_subtree = load_parameter_file(name="cesthra", file_path=file_path)
+    parameters.add_child("cesthra", reform_parameters_subtree)
     return parameters
 
 
@@ -36,14 +36,14 @@ class irpp(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        '''
+        """
         Montant après seuil de recouvrement (hors ppe)
-        '''
-        iai = foyer_fiscal('iai', period)
-        credits_impot = foyer_fiscal('credits_impot', period)
-        acomptes_ir = foyer_fiscal('acomptes_ir', period)
-        cehr = foyer_fiscal('cehr', period)
-        cesthra = foyer_fiscal('cesthra', period = period)
+        """
+        iai = foyer_fiscal("iai", period)
+        credits_impot = foyer_fiscal("credits_impot", period)
+        acomptes_ir = foyer_fiscal("acomptes_ir", period)
+        cehr = foyer_fiscal("cehr", period)
+        cesthra = foyer_fiscal("cesthra", period = period)
         P = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
 
         pre_result = iai - credits_impot - acomptes_ir + cehr + cesthra

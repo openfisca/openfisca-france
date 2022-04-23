@@ -12,7 +12,7 @@ class af_nbenf(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
-        prestations_familiales_enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', period)
+        prestations_familiales_enfant_a_charge_i = famille.members("prestations_familiales_enfant_a_charge", period)
         af_nbenf = famille.sum(prestations_familiales_enfant_a_charge_i)
 
         return af_nbenf
@@ -27,9 +27,9 @@ class af_coeff_garde_alternee(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2007_05_01(famille, period):
-        nb_enf = famille('af_nbenf', period)
-        garde_alternee = famille.members('garde_alternee', period)
-        pfam_enfant_a_charge = famille.members('prestations_familiales_enfant_a_charge', period)
+        nb_enf = famille("af_nbenf", period)
+        garde_alternee = famille.members("garde_alternee", period)
+        pfam_enfant_a_charge = famille.members("prestations_familiales_enfant_a_charge", period)
 
         # Le nombre d'enfants à charge en garde alternée, qui vérifient donc pfam_enfant_a_charge = true et garde_alternee = true
         nb_enf_garde_alternee = famille.sum(garde_alternee * pfam_enfant_a_charge)
@@ -62,8 +62,8 @@ class af_eligibilite_base(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
-        residence_dom = famille.demandeur.menage('residence_dom', period)
-        af_nbenf = famille('af_nbenf', period)
+        residence_dom = famille.demandeur.menage("residence_dom", period)
+        af_nbenf = famille("af_nbenf", period)
 
         return not_(residence_dom) * (af_nbenf >= 2)
 
@@ -76,9 +76,9 @@ class af_eligibilite_dom(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
-        residence_dom = famille.demandeur.menage('residence_dom', period)
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
-        af_nbenf = famille('af_nbenf', period)
+        residence_dom = famille.demandeur.menage("residence_dom", period)
+        residence_mayotte = famille.demandeur.menage("residence_mayotte", period)
+        af_nbenf = famille("af_nbenf", period)
 
         return residence_dom * not_(residence_mayotte) * (af_nbenf >= 1)
 
@@ -92,9 +92,9 @@ class af_base(Variable):
     # prestations familiales (brutes de crds)
 
     def formula(famille, period, parameters):
-        eligibilite_base = famille('af_eligibilite_base', period)
-        eligibilite_dom = famille('af_eligibilite_dom', period)
-        af_nbenf = famille('af_nbenf', period)
+        eligibilite_base = famille("af_eligibilite_base", period)
+        eligibilite_dom = famille("af_eligibilite_dom", period)
+        af_nbenf = famille("af_nbenf", period)
 
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
@@ -111,10 +111,10 @@ class af_base(Variable):
         plus_de_trois_enfants = max_(af_nbenf - 2, 0) * af.af_cm.taux.enf3
         taux_total = un_seul_enfant + deux_enfants + plus_de_trois_enfants
         montant_base = eligibilite * round_(bmaf * taux_total, 2)
-        coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
+        coeff_garde_alternee = famille("af_coeff_garde_alternee", period)
         montant_base = montant_base * coeff_garde_alternee
 
-        af_taux_modulation = famille('af_taux_modulation', period)
+        af_taux_modulation = famille("af_taux_modulation", period)
         montant_base_module = montant_base * af_taux_modulation
 
         return montant_base_module
@@ -129,7 +129,7 @@ class af_taux_modulation(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2015_07_01(famille, period, parameters):
-        nb_enf_tot = famille('af_nbenf', period)
+        nb_enf_tot = famille("af_nbenf", period)
 
         return taux_helper(famille, period, parameters, nb_enf_tot)
 
@@ -143,8 +143,8 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2015_07_01(famille, period, parameters):
-        af_nbenf = famille('af_nbenf', period)
-        af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
+        af_nbenf = famille("af_nbenf", period)
+        af_forfaitaire_nbenf = famille("af_allocation_forfaitaire_nb_enfants", period)
         nb_enf_tot = af_nbenf + af_forfaitaire_nbenf
 
         return taux_helper(famille, period, parameters, nb_enf_tot)
@@ -162,8 +162,8 @@ class af_age_aine(Variable):
     def formula(famille, period, parameters):
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
-        age = famille.members('age', period)
-        pfam_enfant_a_charge = famille.members('prestations_familiales_enfant_a_charge', period)
+        age = famille.members("age", period)
+        pfam_enfant_a_charge = famille.members("prestations_familiales_enfant_a_charge", period)
 
         condition_eligibilite = pfam_enfant_a_charge * (age <= af.af_cm.age2)
         age_enfants_eligiles = age * condition_eligibilite
@@ -179,13 +179,13 @@ class af_majoration_enfant(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        pfam_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
-        age = individu('age', period)
-        garde_alternee = individu('garde_alternee', period)
+        pfam_enfant_a_charge = individu("prestations_familiales_enfant_a_charge", period)
+        age = individu("age", period)
+        garde_alternee = individu("garde_alternee", period)
 
-        af_nbenf = individu.famille('af_nbenf', period)
-        af_base = individu.famille('af_base', period)
-        age_aine = individu.famille('af_age_aine', period)
+        af_nbenf = individu.famille("af_nbenf", period)
+        af_base = individu.famille("af_base", period)
+        age_aine = individu.famille("af_age_aine", period)
 
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
@@ -230,10 +230,10 @@ class af_majoration(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period):
-        af_majoration_enfant = famille.members('af_majoration_enfant', period)
+        af_majoration_enfant = famille.members("af_majoration_enfant", period)
         af_majoration_enfants_famille = famille.sum(af_majoration_enfant, role = Famille.ENFANT)
 
-        af_taux_modulation = famille('af_taux_modulation', period)
+        af_taux_modulation = famille("af_taux_modulation", period)
         af_majoration_enfants_module = af_majoration_enfants_famille * af_taux_modulation
 
         return af_majoration_enfants_module
@@ -247,11 +247,11 @@ class af_complement_degressif(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2015_07_01(famille, period, parameters):
-        eligibilite_dom = famille('af_eligibilite_dom', period)
-        af_base = famille('af_base', period)
-        af_majoration = famille('af_majoration', period)
+        eligibilite_dom = famille("af_eligibilite_dom", period)
+        af_base = famille("af_base", period)
+        af_majoration = famille("af_majoration", period)
         af = af_base + af_majoration
-        af_nbenf = famille('af_nbenf', period)
+        af_nbenf = famille("af_nbenf", period)
         depassement_mensuel = depassement_helper(famille, period, parameters, af_nbenf)
 
         return (
@@ -269,13 +269,13 @@ class af_allocation_forfaitaire_complement_degressif(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2015_07_01(famille, period, parameters):
-        af_nbenf = famille('af_nbenf', period)
-        af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
+        af_nbenf = famille("af_nbenf", period)
+        af_forfaitaire_nbenf = famille("af_allocation_forfaitaire_nb_enfants", period)
         nb_enf_tot = af_nbenf + af_forfaitaire_nbenf  # noqa F841
 
         depassement_mensuel = depassement_helper(famille, period, parameters, af_nbenf)
 
-        af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
+        af_allocation_forfaitaire = famille("af_allocation_forfaitaire", period)
         return max_(0, af_allocation_forfaitaire - depassement_mensuel) * (depassement_mensuel > 0)
 
 
@@ -287,15 +287,15 @@ class af_allocation_forfaitaire(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2003_07_01(famille, period, parameters):
-        af_nbenf = famille('af_nbenf', period)
-        af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
+        af_nbenf = famille("af_nbenf", period)
+        af_forfaitaire_nbenf = famille("af_allocation_forfaitaire_nb_enfants", period)
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
         af_forfait = round_(bmaf * af.af_maj.majoration_enfants.allocation_forfaitaire.taux, 2)
         af_allocation_forfaitaire = ((af_nbenf >= 2) * af_forfaitaire_nbenf) * af_forfait
 
-        af_forfaitaire_taux_modulation = famille('af_allocation_forfaitaire_taux_modulation', period)
+        af_forfaitaire_taux_modulation = famille("af_allocation_forfaitaire_taux_modulation", period)
         af_forfaitaire_module = af_allocation_forfaitaire * af_forfaitaire_taux_modulation
 
         return af_forfaitaire_module
@@ -310,11 +310,11 @@ class af(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2015_07_01(famille, period, parameters):
-        af_base = famille('af_base', period)
-        af_majoration = famille('af_majoration', period)
-        af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
-        af_complement_degressif = famille('af_complement_degressif', period)
-        af_forfaitaire_complement_degressif = famille('af_allocation_forfaitaire_complement_degressif', period)
+        af_base = famille("af_base", period)
+        af_majoration = famille("af_majoration", period)
+        af_allocation_forfaitaire = famille("af_allocation_forfaitaire", period)
+        af_complement_degressif = famille("af_complement_degressif", period)
+        af_forfaitaire_complement_degressif = famille("af_allocation_forfaitaire_complement_degressif", period)
 
         return (
             af_base
@@ -325,9 +325,9 @@ class af(Variable):
             )
 
     def formula(famille, period, parameters):
-        af_base = famille('af_base', period)
-        af_majoration = famille('af_majoration', period)
-        af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
+        af_base = famille("af_base", period)
+        af_majoration = famille("af_majoration", period)
+        af_allocation_forfaitaire = famille("af_allocation_forfaitaire", period)
 
         return af_base + af_majoration + af_allocation_forfaitaire
 
@@ -353,7 +353,7 @@ def taux_helper(famille, period, parameters, nb_enf_tot):
     af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
     modulation = af.af_cm.modulation
 
-    base_ressources = famille('prestations_familiales_base_ressources', period)
+    base_ressources = famille("prestations_familiales_base_ressources", period)
 
     plafond1, plafond2 = plafonds_helper(famille, period, parameters, nb_enf_tot)
 
@@ -367,7 +367,7 @@ def taux_helper(famille, period, parameters, nb_enf_tot):
 
 
 def depassement_helper(famille, period, parameters, nb_enf_tot):
-    base_ressources = famille('prestations_familiales_base_ressources', period)
+    base_ressources = famille("prestations_familiales_base_ressources", period)
 
     plafond1, plafond2 = plafonds_helper(famille, period, parameters, nb_enf_tot)
 

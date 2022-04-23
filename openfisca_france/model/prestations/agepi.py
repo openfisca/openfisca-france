@@ -1,8 +1,8 @@
 from numpy import fabs, timedelta64
 
-from openfisca_france.model.base import Famille, Individu, Variable, Enum, MONTH, ADD,  \
+from openfisca_france.model.base import Famille, Individu, Variable, Enum, MONTH, ADD,\
     set_input_dispatch_by_period, set_input_divide_by_period, date, min_, not_
-from openfisca_france.model.revenus.activite.salarie import TypesContrat, TypesLieuEmploiFormation, \
+from openfisca_france.model.revenus.activite.salarie import TypesContrat, TypesLieuEmploiFormation,\
     TypesCategoriesDemandeurEmploi
 
 
@@ -18,7 +18,7 @@ class agepi_nbenf(Variable):
         ]
 
     def formula_2014_01_20(famille, period, parameters):
-        age_membres_famille = famille.members('age', period)
+        age_membres_famille = famille.members("age", period)
         parametres_agepi = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi
         age_eligibles = (age_membres_famille < parametres_agepi.age_enfant_maximum) * (age_membres_famille > 0)
         nb_enfants_eligibles = famille.sum(age_eligibles, role=Famille.ENFANT)
@@ -35,7 +35,7 @@ class agepi_temps_travail_en_heure(Variable):
 
 
 class TypesIntensiteActivite(Enum):
-    __order__ = 'inconnue hebdomadaire mensuelle'  # Needed to preserve the enum order in Python 2
+    __order__ = "inconnue hebdomadaire mensuelle"  # Needed to preserve the enum order in Python 2
     inconnue = "Intensité d'emploi ou de formation inconnue"
     hebdomadaire = "Intensité d'emploi ou de formation hebdomadaire"
     mensuelle = "Intensité d'emploi ou de formation mensuelle"
@@ -48,10 +48,10 @@ class type_intensite_activite(Variable):
     entity = Individu
     label = "Le type d'intensité d'activité au regard de Pôle Emploi"
     definition_period = MONTH
-    documentation = '''
+    documentation = """
     L'intensité d'activité est évaluée en fonction de son type (hebdomadaire, ...)
     et du nombre d'heures requises.
-    '''
+    """
 
 
 class agepi_date_demande(Variable):
@@ -77,20 +77,20 @@ class agepi_eligible(Variable):
 
     def formula_2014_01_20(individu, period, parameters):
         # L'individu élève seul son enfant (parent isolé)
-        parents_isoles = individu.famille('nb_parents', period) == 1
+        parents_isoles = individu.famille("nb_parents", period) == 1
 
         # L'âge du ou des enfants dont il a la garde est inférieur à 10 ans (condition de garde d'enfant)
-        condition_nb_enfants = individu.famille('agepi_nbenf', period) > 0
+        condition_nb_enfants = individu.famille("agepi_nbenf", period) > 0
 
         # L'individu n'a pas touché l'AGEPI dans les 12 derniers mois (condition de durée entre faits générateurs)
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
-        agepi_non_percues = not_(individu('agepi', annee_glissante, options=[ADD]))
+        annee_glissante = period.start.period("year").offset(-1).offset(-1, "month")
+        agepi_non_percues = not_(individu("agepi", annee_glissante, options=[ADD]))
 
         # L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé"
-        pe_categorie_demandeur_emploi = individu('pole_emploi_categorie_demandeur_emploi', period)
+        pe_categorie_demandeur_emploi = individu("pole_emploi_categorie_demandeur_emploi", period)
 
-        stagiaire_formation_professionnelle = individu('stagiaire', period)
-        contrat_aide = individu('contrat_aide', period)
+        stagiaire_formation_professionnelle = individu("stagiaire", period)
+        contrat_aide = individu("contrat_aide", period)
 
         categorie_4 = pe_categorie_demandeur_emploi == TypesCategoriesDemandeurEmploi.categorie_4
         categorie_4_stagiaire_formation_professionnelle = categorie_4 * stagiaire_formation_professionnelle
@@ -104,25 +104,25 @@ class agepi_eligible(Variable):
                                 + (categorie_4_stagiaire_formation_professionnelle + categorie_5_contrat_aide))
 
         # L'emploi ou la formation se situe en France
-        lieux_activite_eligibles = not_(individu('lieu_emploi_ou_formation', period) == TypesLieuEmploiFormation.non_renseigne)
+        lieux_activite_eligibles = not_(individu("lieu_emploi_ou_formation", period) == TypesLieuEmploiFormation.non_renseigne)
 
         # L'individu effectue sa demande au plus tard dans le mois qui suit sa reprise d'emploi ou de formation
-        contrat_de_travail_debut = individu('contrat_de_travail_debut', period)  # numpy.datetime64
-        contrat_de_travail_debut_en_mois = contrat_de_travail_debut.astype('M8[M]')
+        contrat_de_travail_debut = individu("contrat_de_travail_debut", period)  # numpy.datetime64
+        contrat_de_travail_debut_en_mois = contrat_de_travail_debut.astype("M8[M]")
 
         date_demande_limite = min_(
             (contrat_de_travail_debut_en_mois + 1) + (contrat_de_travail_debut - contrat_de_travail_debut_en_mois),
-            (contrat_de_travail_debut_en_mois + 2) - timedelta64(1, 'D')
+            (contrat_de_travail_debut_en_mois + 2) - timedelta64(1, "D")
             )
 
         agepi_date_de_demande = individu("agepi_date_demande", period)
         dates_demandes_agepi_eligibles = agepi_date_de_demande <= date_demande_limite
 
         # L'individu est non indemnisé ou son ARE est inférieure ou égale à l'ARE minimale
-        mayotte = individu.menage('residence_mayotte', period)
+        mayotte = individu.menage("residence_mayotte", period)
         hors_mayotte = not_(mayotte)
 
-        allocation_individu = individu('allocation_retour_emploi_journaliere', period)
+        allocation_individu = individu("allocation_retour_emploi_journaliere", period)
 
         parametres_are = parameters(period).chomage.allocation_retour_emploi
         allocation_minimale_hors_mayotte = parametres_are.montant_minimum_hors_mayotte * hors_mayotte
@@ -139,7 +139,7 @@ class agepi_eligible(Variable):
         montants_are_eligibles = are_individu_inferieure_are_min + are_individu_egale_are_min
 
         # L'individu est en reprise d'emploi du type CDI, CDD ou CTT d'au moins 3 mois consécutifs ou en processus d'entrée en formation d'une durée supérieure ou égale à 40 heures
-        reprises_types_activites = individu('contrat_de_travail_type', period)
+        reprises_types_activites = individu("contrat_de_travail_type", period)
 
         reprises_types_activites_formation = reprises_types_activites == TypesContrat.formation
         reprises_types_activites_cdi = reprises_types_activites == TypesContrat.cdi
@@ -147,12 +147,12 @@ class agepi_eligible(Variable):
         reprises_types_activites_ctt = reprises_types_activites == TypesContrat.ctt
 
         # La formation doit être supérieure ou égale à 40 heures
-        duree_formation = individu('duree_formation', period)
+        duree_formation = individu("duree_formation", period)
         parametres_agepi = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi
         periode_formation_eligible = duree_formation >= parametres_agepi.duree_de_formation_minimum
 
         # Le durée de contrat de l'emploi doit être d'au moins 3 mois
-        periode_de_contrat_3_mois_minimum = individu('contrat_de_travail_duree', period) >= parametres_agepi.duree_cdd_ctt_minimum
+        periode_de_contrat_3_mois_minimum = individu("contrat_de_travail_duree", period) >= parametres_agepi.duree_cdd_ctt_minimum
 
         reprises_types_activites_formation_eligible = reprises_types_activites_formation * periode_formation_eligible
         reprises_types_activites_cdd_eligible = reprises_types_activites_cdd * periode_de_contrat_3_mois_minimum
@@ -189,15 +189,15 @@ class agepi_hors_mayotte(Variable):
 
     def formula_2014_01_20(individu, period, parameters):
         est_parent = individu.has_role(Famille.PARENT)
-        intensite_activite = individu('type_intensite_activite', period)
-        nb_heures = individu('agepi_temps_travail_en_heure', period)
-        nb_enfants_eligibles = individu.famille('agepi_nbenf', period)
-        eligibilite_agepi = individu('agepi_eligible', period)
+        intensite_activite = individu("type_intensite_activite", period)
+        nb_heures = individu("agepi_temps_travail_en_heure", period)
+        nb_enfants_eligibles = individu.famille("agepi_nbenf", period)
+        eligibilite_agepi = individu("agepi_eligible", period)
 
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
         intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
 
-        hors_mayotte = not_(individu.menage('residence_mayotte', period))
+        hors_mayotte = not_(individu.menage("residence_mayotte", period))
 
         parametres_agepi = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi
         parametres_montants = parametres_agepi.montants.hors_mayotte
@@ -234,15 +234,15 @@ class agepi_mayotte(Variable):
 
     def formula_2014_01_20(individu, period, parameters):
         est_parent = individu.has_role(Famille.PARENT)
-        intensite_activite = individu('type_intensite_activite', period)
-        nb_heures = individu('agepi_temps_travail_en_heure', period)
-        nb_enfants_eligibles = individu.famille('agepi_nbenf', period)
-        eligibilite_agepi = individu('agepi_eligible', period)
+        intensite_activite = individu("type_intensite_activite", period)
+        nb_heures = individu("agepi_temps_travail_en_heure", period)
+        nb_enfants_eligibles = individu.famille("agepi_nbenf", period)
+        eligibilite_agepi = individu("agepi_eligible", period)
 
         intensite_hebdomadaire = intensite_activite == TypesIntensiteActivite.hebdomadaire
         intensite_mensuelle = intensite_activite == TypesIntensiteActivite.mensuelle
 
-        mayotte = individu.menage('residence_mayotte', period)
+        mayotte = individu.menage("residence_mayotte", period)
 
         parametres_agepi = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi
         parametres_montants = parametres_agepi.montants.mayotte
@@ -279,7 +279,7 @@ class agepi(Variable):
 
     def formula_2014_01_20(individu, period):
 
-        agepi_mayotte = individu('agepi_mayotte', period)
-        agepi_hors_mayotte = individu('agepi_hors_mayotte', period)
+        agepi_mayotte = individu("agepi_mayotte", period)
+        agepi_hors_mayotte = individu("agepi_hors_mayotte", period)
 
         return agepi_hors_mayotte + agepi_mayotte

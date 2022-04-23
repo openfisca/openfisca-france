@@ -29,10 +29,10 @@ class conge_individuel_formation_cdd(Variable):
 
     # TODO: date de début
     def formula(individu, period, parameters):
-        contrat_de_travail_type = individu('contrat_de_travail_type', period)
+        contrat_de_travail_type = individu("contrat_de_travail_type", period)
 
         TypesContrat = contrat_de_travail_type.possible_values
-        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        assiette_cotisations_sociales = individu("assiette_cotisations_sociales", period)
 
         conge_individuel_formation = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.formation.toute_entreprise
         cotisation = - conge_individuel_formation.cdd * (contrat_de_travail_type == TypesContrat.cdd) * assiette_cotisations_sociales
@@ -51,7 +51,7 @@ class redevable_taxe_apprentissage(Variable):
     def formula(individu, period):
         # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
         # -> pas de taxe d'apprentissage
-        association = individu('entreprise_est_association_non_lucrative', period)
+        association = individu("entreprise_est_association_non_lucrative", period)
 
         return not_(association)
 
@@ -64,15 +64,15 @@ class contribution_developpement_apprentissage(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
+        redevable_taxe_apprentissage = individu("redevable_taxe_apprentissage", period)
 
         cotisation = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'apprentissage_contribution_additionnelle',
-            variable_name = 'contribution_developpement_apprentissage',
+            cotisation_type = "employeur",
+            bareme_name = "apprentissage_contribution_additionnelle",
+            variable_name = "contribution_developpement_apprentissage",
             )
         return cotisation * redevable_taxe_apprentissage
 
@@ -86,11 +86,11 @@ class contribution_supplementaire_apprentissage(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2015_01_01(individu, period, parameters):
-        redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
-        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-        ratio_alternants = individu('ratio_alternants', period)
-        effectif_entreprise = individu('effectif_entreprise', period)
-        salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
+        redevable_taxe_apprentissage = individu("redevable_taxe_apprentissage", period)
+        assiette_cotisations_sociales = individu("assiette_cotisations_sociales", period)
+        ratio_alternants = individu("ratio_alternants", period)
+        effectif_entreprise = individu("effectif_entreprise", period)
+        salarie_regime_alsace_moselle = individu("salarie_regime_alsace_moselle", period)
         contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.csa
 
         multiplier = (salarie_regime_alsace_moselle * contribution.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
@@ -108,11 +108,11 @@ class contribution_supplementaire_apprentissage(Variable):
         return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
     def formula_2012_01_01(individu, period, parameters):
-        redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
-        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-        effectif_entreprise = individu('effectif_entreprise', period)
-        ratio_alternants = individu('ratio_alternants', period)
-        salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
+        redevable_taxe_apprentissage = individu("redevable_taxe_apprentissage", period)
+        assiette_cotisations_sociales = individu("assiette_cotisations_sociales", period)
+        effectif_entreprise = individu("effectif_entreprise", period)
+        ratio_alternants = individu("ratio_alternants", period)
+        salarie_regime_alsace_moselle = individu("salarie_regime_alsace_moselle", period)
         contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.csa
 
         multiplier = (salarie_regime_alsace_moselle * contribution.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
@@ -129,10 +129,10 @@ class contribution_supplementaire_apprentissage(Variable):
         return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
     def formula_2011_01_01(individu, period, parameters):
-        redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
-        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-        effectif_entreprise = individu('effectif_entreprise', period)
-        ratio_alternants = individu('ratio_alternants', period)
+        redevable_taxe_apprentissage = individu("redevable_taxe_apprentissage", period)
+        assiette_cotisations_sociales = individu("assiette_cotisations_sociales", period)
+        effectif_entreprise = individu("effectif_entreprise", period)
+        ratio_alternants = individu("ratio_alternants", period)
         contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.csa
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .04)
@@ -147,10 +147,10 @@ class contribution_supplementaire_apprentissage(Variable):
         return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
     def formula_2009_01_01(individu, period, parameters):
-        redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
-        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-        effectif_entreprise = individu('effectif_entreprise', period)
-        ratio_alternants = individu('ratio_alternants', period)
+        redevable_taxe_apprentissage = individu("redevable_taxe_apprentissage", period)
+        assiette_cotisations_sociales = individu("assiette_cotisations_sociales", period)
+        effectif_entreprise = individu("effectif_entreprise", period)
+        ratio_alternants = individu("ratio_alternants", period)
         contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.apprentissage.csa
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .03)
@@ -172,19 +172,19 @@ class cotisations_employeur_main_d_oeuvre(Variable):
 
     def formula_2019_01_01(individu, period, parameters):
         # En 2019, la taxe d'apprentissage et la CFP sont regroupées dans la CUFPA
-        conge_individuel_formation_cdd = individu('conge_individuel_formation_cdd', period)
+        conge_individuel_formation_cdd = individu("conge_individuel_formation_cdd", period)
         contribution_developpement_apprentissage = individu(
-            'contribution_developpement_apprentissage', period)
+            "contribution_developpement_apprentissage", period)
         contribution_supplementaire_apprentissage = individu(
-            'contribution_supplementaire_apprentissage', period)
-        financement_organisations_syndicales = individu('financement_organisations_syndicales', period)
-        fnal = individu('fnal', period)
-        participation_effort_construction = individu('participation_effort_construction', period, options = [ADD])
-        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
-        complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
-        versement_transport = individu('versement_transport', period, options = [ADD])
+            "contribution_supplementaire_apprentissage", period)
+        financement_organisations_syndicales = individu("financement_organisations_syndicales", period)
+        fnal = individu("fnal", period)
+        participation_effort_construction = individu("participation_effort_construction", period, options = [ADD])
+        prevoyance_obligatoire_cadre = individu("prevoyance_obligatoire_cadre", period, options = [ADD])
+        complementaire_sante_employeur = individu("complementaire_sante_employeur", period, options = [ADD])
+        versement_transport = individu("versement_transport", period, options = [ADD])
 
-        contribution_unique_formation_professionnelle_alternance = individu('contribution_unique_formation_professionnelle_alternance', period, options = [ADD])
+        contribution_unique_formation_professionnelle_alternance = individu("contribution_unique_formation_professionnelle_alternance", period, options = [ADD])
 
         cotisations_employeur_main_d_oeuvre = (
             conge_individuel_formation_cdd
@@ -202,20 +202,20 @@ class cotisations_employeur_main_d_oeuvre(Variable):
         return cotisations_employeur_main_d_oeuvre
 
     def formula(individu, period, parameters):
-        conge_individuel_formation_cdd = individu('conge_individuel_formation_cdd', period)
+        conge_individuel_formation_cdd = individu("conge_individuel_formation_cdd", period)
         contribution_developpement_apprentissage = individu(
-            'contribution_developpement_apprentissage', period)
+            "contribution_developpement_apprentissage", period)
         contribution_supplementaire_apprentissage = individu(
-            'contribution_supplementaire_apprentissage', period)
-        financement_organisations_syndicales = individu('financement_organisations_syndicales', period)
-        fnal = individu('fnal', period)
-        formation_professionnelle = individu('formation_professionnelle', period)
-        participation_effort_construction = individu('participation_effort_construction', period, options = [ADD])
-        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
-        complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
+            "contribution_supplementaire_apprentissage", period)
+        financement_organisations_syndicales = individu("financement_organisations_syndicales", period)
+        fnal = individu("fnal", period)
+        formation_professionnelle = individu("formation_professionnelle", period)
+        participation_effort_construction = individu("participation_effort_construction", period, options = [ADD])
+        prevoyance_obligatoire_cadre = individu("prevoyance_obligatoire_cadre", period, options = [ADD])
+        complementaire_sante_employeur = individu("complementaire_sante_employeur", period, options = [ADD])
 
-        taxe_apprentissage = individu('taxe_apprentissage', period, options = [ADD])
-        versement_transport = individu('versement_transport', period, options = [ADD])
+        taxe_apprentissage = individu("taxe_apprentissage", period, options = [ADD])
+        versement_transport = individu("versement_transport", period, options = [ADD])
 
         cotisations_employeur_main_d_oeuvre = (
             conge_individuel_formation_cdd
@@ -242,8 +242,8 @@ class fnal(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        fnal_cotisation = individu('fnal_cotisation', period)
-        fnal_contribution = individu('fnal_contribution', period)
+        fnal_cotisation = individu("fnal_cotisation", period)
+        fnal_contribution = individu("fnal_contribution", period)
         return fnal_cotisation + fnal_contribution
 
 
@@ -253,16 +253,16 @@ class fnal_cotisation(Variable):
     label = "Cotisation fonds national action logement (FNAL)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2015-01-01'
+    end = "2015-01-01"
 
     def formula(individu, period, parameters):
         return apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'fnal_cotisation',
-            variable_name = 'fnal_cotisation',
+            cotisation_type = "employeur",
+            bareme_name = "fnal_cotisation",
+            variable_name = "fnal_cotisation",
             )
 
 
@@ -274,70 +274,70 @@ class fnal_contribution(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2020_01_01(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
         effectif_plus_de_50_salaries = effectif_entreprise >= 50
         contribution_plus_de_50_salaries = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'fnal_contribution_plus_de_50_salaries',
-            variable_name = 'fnal_contribution',
+            cotisation_type = "employeur",
+            bareme_name = "fnal_contribution_plus_de_50_salaries",
+            variable_name = "fnal_contribution",
             )
         contribution_moins_de_50_salaries = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'fnal_contribution_moins_de_50_salaries',
-            variable_name = 'fnal_contribution',
+            cotisation_type = "employeur",
+            bareme_name = "fnal_contribution_moins_de_50_salaries",
+            variable_name = "fnal_contribution",
             )
         return effectif_plus_de_50_salaries * contribution_plus_de_50_salaries + (1 - effectif_plus_de_50_salaries) * contribution_moins_de_50_salaries
 
     def formula_2015_01_01(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
         effectif_plus_de_20_salaries = effectif_entreprise >= 20
         contribution_plus_de_20_salaries = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'fnal_contribution_plus_de_20_salaries',
-            variable_name = 'fnal_contribution',
+            cotisation_type = "employeur",
+            bareme_name = "fnal_contribution_plus_de_20_salaries",
+            variable_name = "fnal_contribution",
             )
         contribution_moins_de_20_salaries = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'fnal_contribution_moins_de_20_salaries',
-            variable_name = 'fnal_contribution',
+            cotisation_type = "employeur",
+            bareme_name = "fnal_contribution_moins_de_20_salaries",
+            variable_name = "fnal_contribution",
             )
         return effectif_plus_de_20_salaries * contribution_plus_de_20_salaries + (1 - effectif_plus_de_20_salaries) * contribution_moins_de_20_salaries
 
     def formula_2007_01_01(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
         effectif_plus_de_20_salaries = effectif_entreprise >= 20
         contribution_plus_de_20_salaries = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'fnal_contribution_plus_de_20_salaries',
-            variable_name = 'fnal_contribution',
+            cotisation_type = "employeur",
+            bareme_name = "fnal_contribution_plus_de_20_salaries",
+            variable_name = "fnal_contribution",
             )
         return effectif_plus_de_20_salaries * contribution_plus_de_20_salaries
 
     def formula(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
         effectif_plus_de_10_salaries = effectif_entreprise >= 10
         contribution_plus_de_10_salaries = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'fnal_contribution_plus_de_10_salaries',
-            variable_name = 'fnal_contribution',
+            cotisation_type = "employeur",
+            bareme_name = "fnal_contribution_plus_de_10_salaries",
+            variable_name = "fnal_contribution",
             )
         return effectif_plus_de_10_salaries * contribution_plus_de_10_salaries
 
@@ -350,14 +350,14 @@ class financement_organisations_syndicales(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2015_01_01(individu, period, parameters):
-        categorie_salarie = individu('categorie_salarie', period)
+        categorie_salarie = individu("categorie_salarie", period)
         cotisation = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'financement_organisations_syndicales',
-            variable_name = 'financement_organisations_syndicales',
+            cotisation_type = "employeur",
+            bareme_name = "financement_organisations_syndicales",
+            variable_name = "financement_organisations_syndicales",
             )
         contrat_de_droit_prive = (
             + (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
@@ -375,58 +375,58 @@ class formation_professionnelle(Variable):
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2018-12-31'  # Remplacé par la contribution_formation_professionnelle
+    end = "2018-12-31"  # Remplacé par la contribution_formation_professionnelle
 
     def formula_2016_01_01(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
 
         cotisation_0_10 = (effectif_entreprise < 11) * apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'formprof_moins_de_11_salaries',
-            variable_name = 'formation_professionnelle',
+            cotisation_type = "employeur",
+            bareme_name = "formprof_moins_de_11_salaries",
+            variable_name = "formation_professionnelle",
             )
 
         cotisation_11 = (effectif_entreprise >= 11) * apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'formprof_11_salaries_et_plus',
-            variable_name = 'formation_professionnelle',
+            cotisation_type = "employeur",
+            bareme_name = "formprof_11_salaries_et_plus",
+            variable_name = "formation_professionnelle",
             )
         return cotisation_0_10 + cotisation_11
 
     def formula(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
 
         cotisation_0_9 = (effectif_entreprise < 10) * apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'formprof_moins_de_10_salaries',
-            variable_name = 'formation_professionnelle',
+            cotisation_type = "employeur",
+            bareme_name = "formprof_moins_de_10_salaries",
+            variable_name = "formation_professionnelle",
             )
 
         cotisation_10_19 = ((effectif_entreprise >= 10) * (effectif_entreprise < 20)) * apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'formprof_entre_10_et_19_salaries',
-            variable_name = 'formation_professionnelle',
+            cotisation_type = "employeur",
+            bareme_name = "formprof_entre_10_et_19_salaries",
+            variable_name = "formation_professionnelle",
             )
 
         cotisation_20 = (effectif_entreprise >= 20) * apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'formprof_20_salaries_et_plus',
-            variable_name = 'formation_professionnelle',
+            cotisation_type = "employeur",
+            bareme_name = "formprof_20_salaries_et_plus",
+            variable_name = "formation_professionnelle",
             )
         return cotisation_0_9 + cotisation_10_19 + cotisation_20
 
@@ -441,9 +441,9 @@ class contribution_formation_professionnelle(Variable):
     # Initiée en 2019: avec la Taxe d'apprentissage, elles forment la CUFPA (contribution unique à la formation professionnelle et à l'alternance)
 
     def formula_2019_01_01(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
-        apprenti = individu('apprenti', period)
-        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
+        apprenti = individu("apprenti", period)
+        assiette_cotisations_sociales = individu("assiette_cotisations_sociales", period)
         contribution = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.contribution_unique_formation.contrib_formation_pro
 
         taux_contribution = ((effectif_entreprise >= 11) * contribution.onze_et_plus_salaries
@@ -461,15 +461,15 @@ class participation_effort_construction(Variable):
     # TO DO : integration de la variable peec_employeur : les critères d'éligibilité employeur incluent d'autres dimensions que l'effectif
 
     def formula_2020_01_01(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
 
         bareme = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'construction_plus_de_50_salaries',
-            variable_name = 'participation_effort_construction',
+            cotisation_type = "employeur",
+            bareme_name = "construction_plus_de_50_salaries",
+            variable_name = "participation_effort_construction",
             )
 
         cotisation = bareme * (effectif_entreprise >= 50)
@@ -477,15 +477,15 @@ class participation_effort_construction(Variable):
         return cotisation
 
     def formula_2005_01_01(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
 
         bareme = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'construction_plus_de_20_salaries',
-            variable_name = 'participation_effort_construction',
+            cotisation_type = "employeur",
+            bareme_name = "construction_plus_de_20_salaries",
+            variable_name = "participation_effort_construction",
             )
 
         cotisation = bareme * (effectif_entreprise >= 20)
@@ -493,15 +493,15 @@ class participation_effort_construction(Variable):
         return cotisation
 
     def formula(individu, period, parameters):
-        effectif_entreprise = individu('effectif_entreprise', period)
+        effectif_entreprise = individu("effectif_entreprise", period)
 
         bareme = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'construction_plus_de_10_salaries',
-            variable_name = 'participation_effort_construction',
+            cotisation_type = "employeur",
+            bareme_name = "construction_plus_de_10_salaries",
+            variable_name = "participation_effort_construction",
             )
 
         cotisation = bareme * (effectif_entreprise >= 10)
@@ -518,25 +518,25 @@ class taxe_apprentissage(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        redevable_taxe_apprentissage = individu('redevable_taxe_apprentissage', period)
-        salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
+        redevable_taxe_apprentissage = individu("redevable_taxe_apprentissage", period)
+        salarie_regime_alsace_moselle = individu("salarie_regime_alsace_moselle", period)
 
         cotisation_regime_alsace_moselle = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'apprentissage_taxe_alsace_moselle',
-            variable_name = 'taxe_apprentissage',
+            cotisation_type = "employeur",
+            bareme_name = "apprentissage_taxe_alsace_moselle",
+            variable_name = "taxe_apprentissage",
             )
 
         cotisation_regime_general = apply_bareme(
             individu,
             period,
             parameters,
-            cotisation_type = 'employeur',
-            bareme_name = 'apprentissage_taxe',
-            variable_name = 'taxe_apprentissage',
+            cotisation_type = "employeur",
+            bareme_name = "apprentissage_taxe",
+            variable_name = "taxe_apprentissage",
             )
 
         cotisation = np.where(
@@ -561,8 +561,8 @@ class contribution_unique_formation_professionnelle_alternance(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        contribution_formation_professionnelle = individu('contribution_formation_professionnelle', period)
-        taxe_apprentissage = individu('taxe_apprentissage', period, options = [ADD])
+        contribution_formation_professionnelle = individu("contribution_formation_professionnelle", period)
+        taxe_apprentissage = individu("taxe_apprentissage", period, options = [ADD])
 
         return contribution_formation_professionnelle + taxe_apprentissage
 
@@ -576,15 +576,15 @@ class taxe_salaires(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        assujettie_taxe_salaires = individu('assujettie_taxe_salaires', period)
-        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period)
-        complementaire_sante_employeur = individu('complementaire_sante_employeur', period)
+        assujettie_taxe_salaires = individu("assujettie_taxe_salaires", period)
+        assiette_cotisations_sociales = individu("assiette_cotisations_sociales", period)
+        prevoyance_obligatoire_cadre = individu("prevoyance_obligatoire_cadre", period)
+        complementaire_sante_employeur = individu("complementaire_sante_employeur", period)
         prise_en_charge_employeur_prevoyance_complementaire = individu(
-            'prise_en_charge_employeur_prevoyance_complementaire', period, options = [ADD])
+            "prise_en_charge_employeur_prevoyance_complementaire", period, options = [ADD])
 
-        entreprise_est_association_non_lucrative = individu('entreprise_est_association_non_lucrative', period)
-        effectif_entreprise = individu('effectif_entreprise', period)
+        entreprise_est_association_non_lucrative = individu("entreprise_est_association_non_lucrative", period)
+        effectif_entreprise = individu("effectif_entreprise", period)
 
         # impots.gouv.fr
         # La taxe est due notamment par les : [...] organismes sans but lucratif
@@ -631,7 +631,7 @@ class taxe_salaires(Variable):
                 }
             )
 
-        with np.errstate(invalid='ignore'):
+        with np.errstate(invalid="ignore"):
             cotisation = switch(effectif_entreprise == 0, {
                 True: individu.filled_array(0),
                 False: estimation_abattue / effectif_entreprise / 12

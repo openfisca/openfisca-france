@@ -48,7 +48,7 @@ class charges_locatives(Variable):
     value_type = float
     entity = Menage
     set_input = set_input_divide_by_period
-    label = 'Charges locatives'
+    label = "Charges locatives"
     definition_period = MONTH
 
 
@@ -86,7 +86,7 @@ class residence_ile_de_france(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
+        depcom = menage("depcom", period)
         return sum([startswith(depcom, str.encode(departement_idf)) for departement_idf in parameters(period).geopolitique.departements_idf])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
 
@@ -97,11 +97,11 @@ class residence_dom(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period):
-        residence_guadeloupe = menage('residence_guadeloupe', period)
-        residence_martinique = menage('residence_martinique', period)
-        residence_guyane = menage('residence_guyane', period)
-        residence_reunion = menage('residence_reunion', period)
-        residence_mayotte = menage('residence_mayotte', period)
+        residence_guadeloupe = menage("residence_guadeloupe", period)
+        residence_martinique = menage("residence_martinique", period)
+        residence_guyane = menage("residence_guyane", period)
+        residence_reunion = menage("residence_reunion", period)
+        residence_mayotte = menage("residence_mayotte", period)
 
         return residence_guadeloupe + residence_martinique + residence_reunion + residence_guyane + residence_mayotte
 
@@ -113,7 +113,7 @@ class residence_guadeloupe(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
+        depcom = menage("depcom", period)
         return startswith(depcom, b'971')
 
 
@@ -124,7 +124,7 @@ class residence_martinique(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
+        depcom = menage("depcom", period)
         return startswith(depcom, b'972')
 
 
@@ -135,7 +135,7 @@ class residence_guyane(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
+        depcom = menage("depcom", period)
         return startswith(depcom, b'973')
 
 
@@ -146,7 +146,7 @@ class residence_reunion(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
+        depcom = menage("depcom", period)
         return startswith(depcom, b'974')
 
 
@@ -157,7 +157,7 @@ class residence_saint_pierre_et_miquelon(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
+        depcom = menage("depcom", period)
         return startswith(depcom, b'975')
 
 
@@ -168,7 +168,7 @@ class residence_mayotte(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
+        depcom = menage("depcom", period)
         return startswith(depcom, b'976')
 
 
@@ -179,7 +179,7 @@ class residence_saint_bartelemy(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
+        depcom = menage("depcom", period)
         return startswith(depcom, b'977')
 
 
@@ -190,7 +190,7 @@ class residence_saint_martin(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(menage, period, parameters):
-        depcom = menage('depcom', period)
+        depcom = menage("depcom", period)
         return startswith(depcom, b'978')
 
 
@@ -219,14 +219,14 @@ class residence(Variable):
     def formula(menage, period, parameters):
         return select(
             [
-                menage('residence_guadeloupe', period),
-                menage('residence_martinique', period),
-                menage('residence_guyane', period),
-                menage('residence_reunion', period),
-                menage('residence_saint_pierre_et_miquelon', period),
-                menage('residence_mayotte', period),
-                menage('residence_saint_bartelemy', period),
-                menage('residence_saint_martin', period)
+                menage("residence_guadeloupe", period),
+                menage("residence_martinique", period),
+                menage("residence_guyane", period),
+                menage("residence_reunion", period),
+                menage("residence_saint_pierre_et_miquelon", period),
+                menage("residence_mayotte", period),
+                menage("residence_saint_bartelemy", period),
+                menage("residence_saint_martin", period)
                 ],
             [
                 TypesLieuResidence.guadeloupe,

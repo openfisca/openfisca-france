@@ -18,8 +18,8 @@ class css_participation_forfaitaire_montant_i(Variable):
 
     def formula(individu, period, parameters):
         P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.css
-        age = individu('age', period)
-        salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
+        age = individu("age", period)
+        salarie_regime_alsace_moselle = individu("salarie_regime_alsace_moselle", period)
         regime = where(
             salarie_regime_alsace_moselle,
             RegimeComplementaireSanteSolidaire.alsace_moselle,
@@ -53,7 +53,7 @@ class css_participation_forfaitaire_montant(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        css_participation_forfaitaire_i = famille.members('css_participation_forfaitaire_montant_i', period)
+        css_participation_forfaitaire_i = famille.members("css_participation_forfaitaire_montant_i", period)
         return famille.sum(css_participation_forfaitaire_i)
 
 
@@ -65,13 +65,13 @@ class css_participation_forfaitaire(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2019_11_01(famille, period):
-        cmu_c = famille('cmu_c', period)
-        cmu_base_ressources = famille('cmu_base_ressources', period)
-        css_plafond = famille('acs_plafond', period)
-        css_participation_forfaitaire_montant = famille('css_participation_forfaitaire_montant', period)
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
-        cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
-        acs = famille('acs', period)
+        cmu_c = famille("cmu_c", period)
+        cmu_base_ressources = famille("cmu_base_ressources", period)
+        css_plafond = famille("acs_plafond", period)
+        css_participation_forfaitaire_montant = famille("css_participation_forfaitaire_montant", period)
+        residence_mayotte = famille.demandeur.menage("residence_mayotte", period)
+        cmu_acs_eligibilite = famille("cmu_acs_eligibilite", period)
+        acs = famille("acs", period)
 
         return (
             cmu_acs_eligibilite
@@ -84,13 +84,13 @@ class css_participation_forfaitaire(Variable):
 
 
 class RegimeComplementaireSanteSolidaire(Enum):
-    france = 'France'
-    alsace_moselle = 'Alsace Moselle'
+    france = "France"
+    alsace_moselle = "Alsace Moselle"
 
 
 class TranchesComplementaireSanteSolidaire(Enum):
-    cmu_moins_30_ans = 'Moins de 30 ans'
-    cmu_30_49_ans = 'Entre 30 et 49 ans'
-    cmu_50_59_ans = 'Entre 50 et 59 ans'
-    cmu_60_69_ans = 'Entre 60 et 69 ans'
-    cmu_plus_69_ans = 'Plus de 69 ans'
+    cmu_moins_30_ans = "Moins de 30 ans"
+    cmu_30_49_ans = "Entre 30 et 49 ans"
+    cmu_50_59_ans = "Entre 50 et 59 ans"
+    cmu_60_69_ans = "Entre 60 et 69 ans"
+    cmu_plus_69_ans = "Plus de 69 ans"

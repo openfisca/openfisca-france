@@ -13,7 +13,7 @@ class aide_merite_eligibilite(Variable):
         "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000030722211/"
         ]
     set_input = set_input_dispatch_by_period
-    documentation = '''
+    documentation = """
     Complémentaire à la bourse sur critères sociaux, pour les étudiants
     ayant eu mention très bien au baccalauréat.
 
@@ -25,7 +25,7 @@ class aide_merite_eligibilite(Variable):
     en année universitaire N-1 et ayant réalisé un Service Civique
     au titre de cette même année, peut percevoir son aide au mérite en N.
     Un étudiant ne peut bénéficier de plus de 3 fois de l'aide au mérite.
-    '''
+    """
 
     def formula(individu, period):
 
@@ -43,13 +43,13 @@ class aide_merite_eligibilite(Variable):
             return periode_universitaire_precedente
 
         # l'individu intègre un établissement supérieur à la rentrée
-        etudiant = individu('etudiant', period)
+        etudiant = individu("etudiant", period)
 
-        bourse_criteres_sociaux = individu('bourse_criteres_sociaux', period)
-        allocation_annuelle_etudiant = individu('allocation_annuelle_etudiant', period)
+        bourse_criteres_sociaux = individu("bourse_criteres_sociaux", period)
+        allocation_annuelle_etudiant = individu("allocation_annuelle_etudiant", period)
         condition_ressources = (bourse_criteres_sociaux + allocation_annuelle_etudiant) > 0
 
-        mention_baccalaureat = individu('mention_baccalaureat', period)
+        mention_baccalaureat = individu("mention_baccalaureat", period)
         condition_mention = (
             (mention_baccalaureat == TypesMention.mention_tres_bien)
             + (mention_baccalaureat == TypesMention.mention_tres_bien_felicitations_jury)
@@ -58,7 +58,7 @@ class aide_merite_eligibilite(Variable):
         # a déjà perçu l'aide l'année [universitaire] précédente
         periode_universitaire_precedente = periode_universitaire_precedente(period)
         aide_merite_eligibilite_an_dernier = individu(
-            'aide_merite_eligibilite',
+            "aide_merite_eligibilite",
             periode_universitaire_precedente,
             options = [ADD]
             )
@@ -76,14 +76,14 @@ class aide_merite_montant(Variable):
         "https://www.service-public.fr/particuliers/vosdroits/F1010",
         "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000030722211/"
         ]
-    documentation = '''
+    documentation = """
     Aide versée en 9 mensualités.
 
     Non modélisé :
     Pour un baccalauréat obtenu avant 2015, quelques conditions d'attribution diffèrent
     et le montant de l'aide est de 1800€/an.
-    '''
+    """
 
     def formula(individu, period, parameters):
-        aide_merite_eligibilite = individu('aide_merite_eligibilite', period.first_month)
+        aide_merite_eligibilite = individu("aide_merite_eligibilite", period.first_month)
         return aide_merite_eligibilite * parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.aide_merite.montant_annuel

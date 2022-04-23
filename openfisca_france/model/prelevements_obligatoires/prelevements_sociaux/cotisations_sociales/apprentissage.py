@@ -13,13 +13,13 @@ class apprenti(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        age = individu('age', period)
+        age = individu("age", period)
         age_condition = (16 <= age) * (age < 25)
-        apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
+        apprentissage_contrat_debut = individu("apprentissage_contrat_debut", period)
         duree_contrat = (
-            datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
-            ).astype('timedelta64[Y]')
-        anciennete_contrat = (duree_contrat < timedelta64(3, 'Y'))
+            datetime64(period.start) + timedelta64(1, "D") - apprentissage_contrat_debut
+            ).astype("timedelta64[Y]")
+        anciennete_contrat = (duree_contrat < timedelta64(3, "Y"))
 
         return age_condition * anciennete_contrat
 
@@ -41,13 +41,13 @@ class remuneration_apprenti(Variable):
     # alternance (DIMA).
 
     def formula(individu, period, parameters):
-        age = individu('age', period)
-        apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
+        age = individu("age", period)
+        apprentissage_contrat_debut = individu("apprentissage_contrat_debut", period)
         smic = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire * 52 * 35 / 12
         anciennete_contrat = (
-            datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
-            ).astype('timedelta64[Y]')
-        apprenti = individu('apprenti', period)
+            datetime64(period.start) + timedelta64(1, "D") - apprentissage_contrat_debut
+            ).astype("timedelta64[Y]")
+        apprenti = individu("apprenti", period)
         salaire_en_smic = [  # TODO: move to parameters
             dict(
                 part_de_smic_by_anciennete = {
@@ -82,8 +82,8 @@ class remuneration_apprenti(Variable):
         for age_interval in salaire_en_smic:
             age_condition = (age_interval["age_min"] <= age) * (age < age_interval["age_max"])
             output[age_condition] = sum([
-                (anciennete_contrat[age_condition] == timedelta64(anciennete, 'Y')) * part_de_smic
-                for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].items()
+                (anciennete_contrat[age_condition] == timedelta64(anciennete, "Y")) * part_de_smic
+                for anciennete, part_de_smic in age_interval["part_de_smic_by_anciennete"].items()
                 ])
         return output * smic * apprenti
 
@@ -114,14 +114,14 @@ class exoneration_cotisations_employeur_apprenti(Variable):
     # de conclusion du contrat d'apprentissage.
 
     def formula(individu, period, parameters):
-        accident_du_travail = individu('accident_du_travail', period)
-        apprenti = individu('apprenti', period)
-        cotisations_employeur = individu('cotisations_employeur', period)
-        effectif_entreprise = individu('effectif_entreprise', period)
-        famille = individu('famille', period)
-        mmid_employeur = individu('mmid_employeur', period)
-        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
-        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
+        accident_du_travail = individu("accident_du_travail", period)
+        apprenti = individu("apprenti", period)
+        cotisations_employeur = individu("cotisations_employeur", period)
+        effectif_entreprise = individu("effectif_entreprise", period)
+        famille = individu("famille", period)
+        mmid_employeur = individu("mmid_employeur", period)
+        vieillesse_deplafonnee_employeur = individu("vieillesse_deplafonnee_employeur", period)
+        vieillesse_plafonnee_employeur = individu("vieillesse_plafonnee_employeur", period)
 
         cotisations_non_exonerees = accident_du_travail
         exoneration_moins_11 = cotisations_non_exonerees - cotisations_employeur
@@ -152,10 +152,10 @@ class exoneration_cotisations_salariales_apprenti(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        apprenti = individu('apprenti', period)
-        cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
+        apprenti = individu("apprenti", period)
+        cotisations_salariales_contributives = individu("cotisations_salariales_contributives", period)
         cotisations_salariales_non_contributives = individu(
-            'cotisations_salariales_non_contributives', period)
+            "cotisations_salariales_non_contributives", period)
         return - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
 
 
@@ -183,7 +183,7 @@ class prime_apprentissage(Variable):
     # Son versement cesse lorsque l'apprenti n'est plus salarié dans l'entreprise ou l'établissement qui l'a embauché.
 
     def formula(individu, period, parameters):
-        apprenti = individu('apprenti', period)
+        apprenti = individu("apprenti", period)
         return 1000 * apprenti
 
 # # class credit_impot_emploi_apprenti(Variable):

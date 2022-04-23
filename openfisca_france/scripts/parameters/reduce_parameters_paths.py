@@ -4,13 +4,13 @@ import shutil
 import yaml
 
 
-PARENT_DIRECTORY = os.path.abspath('../..')
+PARENT_DIRECTORY = os.path.abspath("../..")
 PATH_LENGTH_TO_IGNORE = len(PARENT_DIRECTORY)
 
-PARAMETERS_DIRECTORY = os.path.join(PARENT_DIRECTORY, 'parameters')
+PARAMETERS_DIRECTORY = os.path.join(PARENT_DIRECTORY, "parameters")
 PATH_MAX_LENGTH = 150
 
-INDEX_FILENAME = 'index.yaml'
+INDEX_FILENAME = "index.yaml"
 
 # Create logger
 logging.basicConfig(level = logging.INFO)
@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 def clean_from_filename(relative_path):
     last_separator_index = relative_path.rfind(os.path.sep)
     if last_separator_index == -1:
-        raise ValueError('Directory expected but none found in: ' + relative_path)
+        raise ValueError("Directory expected but none found in: " + relative_path)
     return relative_path[:last_separator_index]
 
 
@@ -44,19 +44,19 @@ def get_sub_parent_path(directory_path, parent_path):
 
 
 def get_raw_content(yaml_filepath):
-    with open(yaml_filepath, 'r') as stream:
+    with open(yaml_filepath, "r") as stream:
         return yaml.load(stream)
 
 
 def harvest(item):
-    '''
+    """
     Put into a dictionary the content of the file hierarchy starting at the given item.
 
     An 'index.yaml' file content is directly added to the current dictionary key.
     Any other file or a directory content in stored under a new key (file or directory name).
 
     @param item: A directory of yaml files or a yaml file.
-    '''
+    """
     content = {}
     item_name = os.path.basename(item)
 
@@ -105,7 +105,7 @@ def parse_and_clean(directory, paths_to_clean):
 
                 logger.info(os.linesep + "Cleaning long directory into: " + yaml_path)
                 content = harvest(item_path)
-                with open(yaml_path, 'w') as yaml_file:
+                with open(yaml_path, "w") as yaml_file:
                     yaml_file.write(yaml.dump(content[item], default_flow_style=False, allow_unicode=True))
 
                 # Delete harvested directory
@@ -117,7 +117,7 @@ def parse_and_clean(directory, paths_to_clean):
 
 
 long_parameters_paths = list_long_paths(PARAMETERS_DIRECTORY)
-logger.info("{} directories have files with more than {} characters in their paths starting from this directory: {}".format(len(long_parameters_paths), PATH_MAX_LENGTH, PARENT_DIRECTORY).encode('utf-8'))
+logger.info("{} directories have files with more than {} characters in their paths starting from this directory: {}".format(len(long_parameters_paths), PATH_MAX_LENGTH, PARENT_DIRECTORY).encode("utf-8"))
 
 while len(long_parameters_paths) > 0:
     parse_and_clean(PARAMETERS_DIRECTORY, long_parameters_paths)

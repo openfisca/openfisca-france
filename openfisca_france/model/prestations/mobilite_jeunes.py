@@ -17,9 +17,9 @@ class aide_mobilite_parcoursup(Variable):
     reference = "https://www.etudiant.gouv.fr/fr/le-repas-au-crous-passe-1-euro-pour-tous-les-etudiants-2314"
 
     def formula(individu, period, parameters):
-        sortie_academie = individu('sortie_academie', period)
-        en_terminale = individu('annee_etude', period) == TypesClasse.terminale
-        boursier = individu.famille('bourse_lycee', period) > 0
+        sortie_academie = individu("sortie_academie", period)
+        en_terminale = individu("annee_etude", period) == TypesClasse.terminale
+        boursier = individu.famille("bourse_lycee", period) > 0
 
         montant = parameters(period).prestations_sociales.aides_jeunes.mobilite.parcoursup.montant
 
@@ -48,10 +48,10 @@ class aide_mobilite_master(Variable):
         ]
 
     def formula(individu, period, parameters):
-        sortie_academie = individu('sortie_region_academique', period)
-        annee_etude = individu('annee_etude', period)
+        sortie_academie = individu("sortie_region_academique", period)
+        annee_etude = individu("annee_etude", period)
         en_transition = (annee_etude == TypesClasse.licence_3) + (annee_etude == TypesClasse.master_1)
-        boursier = individu('boursier', period)
+        boursier = individu("boursier", period)
 
         montant = parameters(period).prestations_sociales.aides_jeunes.mobilite.master.montant
 

@@ -7,16 +7,16 @@ class garantie_jeunes_neet(Variable):
     definition_period = MONTH
     label = "Variable NEET - Ni étudiant, ni employé, ni stagiaire"
     set_input = set_input_divide_by_period
-    reference = ['https://fr.wikipedia.org/wiki/NEET']
+    reference = ["https://fr.wikipedia.org/wiki/NEET"]
 
     def formula_2017_01_01(individu, period):
-        not_in_employment = individu('salaire_net', period) == 0
+        not_in_employment = individu("salaire_net", period) == 0
 
-        activite = individu('activite', period)
+        activite = individu("activite", period)
         not_in_education = (activite != TypesActivite.etudiant) * (activite != TypesActivite.actif)
 
-        no_indemnites_stage = individu('indemnites_stage', period) == 0
-        no_revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period) == 0
+        no_indemnites_stage = individu("indemnites_stage", period) == 0
+        no_revenus_stage_formation_pro = individu("revenus_stage_formation_pro", period) == 0
         not_in_training = no_indemnites_stage * no_revenus_stage_formation_pro
 
         return not_in_employment * not_in_education * not_in_training
@@ -46,18 +46,18 @@ class garantie_jeunes_montant(Variable):
         seuil_degressivite = degressivite.seuil
 
         types_revenus_activites = [
-            'revenus_stage_formation_pro',
-            'indemnites_journalieres',
-            'chomage_net',
-            'indemnites_volontariat',
-            'asi',
-            'pensions_alimentaires_percues',
-            'rente_accident_travail',
-            'stage_gratification',
-            'bourse_enseignement_sup',
-            'salaire_net',
-            'bourse_recherche',
-            'rpns_auto_entrepreneur_benefice',
+            "revenus_stage_formation_pro",
+            "indemnites_journalieres",
+            "chomage_net",
+            "indemnites_volontariat",
+            "asi",
+            "pensions_alimentaires_percues",
+            "rente_accident_travail",
+            "stage_gratification",
+            "bourse_enseignement_sup",
+            "salaire_net",
+            "bourse_recherche",
+            "rpns_auto_entrepreneur_benefice",
             ]
 
         base_ressource = (
@@ -75,7 +75,7 @@ class garantie_jeunes_eligibilite_age(Variable):
 
     def formula_2017_01_01(individu, period, parameters):
         params_age = parameters(period).prestations_sociales.aides_jeunes.garantie_jeunes.critere_age
-        age = individu('age', period)
+        age = individu("age", period)
 
         return (params_age.minimum <= age) * (age <= params_age.maximum)
 
@@ -109,7 +109,7 @@ class garantie_jeunes_eligibilite_ressources(Variable):
             'pensions_invalidite',
             'aah',
             'remuneration_apprenti',
-            'chomage_net',
+            'chomage_net', # A éclaircir : cette ressource n'est pas mentionné dans la liste des ressources figurant dans la loi, mais plusieurs sites mentionnent leur prise en compte (dont service-public.fr, site de pole emploi)
             ]
 
         # Calcul sur les trois derniers mois (normalement c'est le niveau de ressources moyen le plus faible entre les 3 derniers mois et les 6 derniers mois)
@@ -117,8 +117,8 @@ class garantie_jeunes_eligibilite_ressources(Variable):
             individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_individuelles
             )
 
-        rsa = individu.famille('rsa', three_previous_months, options = [ADD])
-        ppa = individu.famille('ppa', three_previous_months, options = [ADD])
+        rsa = individu.famille("rsa", three_previous_months, options = [ADD])
+        ppa = individu.famille("ppa", three_previous_months, options = [ADD])
         rsa_ppa_demandeurs = (
             (rsa + ppa)
             * (individu.has_role(Famille.DEMANDEUR) + individu.has_role(Famille.CONJOINT))
@@ -139,8 +139,8 @@ class garantie_jeunes(Variable):
     end = "2022-02-28"
 
     def formula_2017_01_01(individu, period, parameters):
-        montant = individu('garantie_jeunes_montant', period)
-        neet = individu('garantie_jeunes_neet', period)
-        age_ok = individu('garantie_jeunes_eligibilite_age', period)
-        garantie_jeunes_eligibilite_ressources = individu('garantie_jeunes_eligibilite_ressources', period)
+        montant = individu("garantie_jeunes_montant", period)
+        neet = individu("garantie_jeunes_neet", period)
+        age_ok = individu("garantie_jeunes_eligibilite_age", period)
+        garantie_jeunes_eligibilite_ressources = individu("garantie_jeunes_eligibilite_ressources", period)
         return montant * neet * age_ok * garantie_jeunes_eligibilite_ressources

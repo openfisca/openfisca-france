@@ -35,7 +35,7 @@ class sal_pen_exo_etr(Variable):
         3: "1DC",
         }
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = "Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif"
     # start_date = date(2013, 1, 1)
@@ -51,7 +51,7 @@ class frais_reels(Variable):
         4: "1EK",
         }
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = "Frais réels"
     definition_period = YEAR
@@ -65,11 +65,11 @@ class hsup(Variable):
         3: "1DU",
         }
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = "Heures supplémentaires : revenus exonérés connus"
     # start_date = date(2007, 1, 1)
-    end = '2013-12-13'
+    end = "2013-12-13"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
@@ -90,8 +90,8 @@ class ppe_du_sa(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period):
-        heures_remunerees_volume = individu('heures_remunerees_volume', period)
-        contrat_travail = individu('contrat_de_travail', period)
+        heures_remunerees_volume = individu("heures_remunerees_volume", period)
+        contrat_travail = individu("contrat_de_travail", period)
         travail_temps_decompte_en_heures = (
             (contrat_travail == TypesContratDeTravail.temps_partiel)
             + (contrat_travail == TypesContratDeTravail.forfait_heures_semaines)
@@ -118,17 +118,17 @@ class ppe_tp_sa(Variable):
 
     def formula(individu, period):
         mois = period.first_month
-        indicateur = individu('contrat_de_travail', mois) == 0
+        indicateur = individu("contrat_de_travail", mois) == 0
         # On parcours tous les mois de l'année pour s'assurer que l'individu était employé à temps plein
         # durant toute l'année.
         while mois.start.month < 12:
             mois = mois.offset(1)
-            indicateur = indicateur & (individu('contrat_de_travail', mois) == 0)
+            indicateur = indicateur & (individu("contrat_de_travail", mois) == 0)
         return indicateur
 
 
 class TypesExpositionAccident(Enum):
-    __order__ = 'faible moyen eleve tres_eleve'  # Needed to preserve the enum order in Python 2
+    __order__ = "faible moyen eleve tres_eleve"  # Needed to preserve the enum order in Python 2
     faible = "Faible"
     moyen = "Moyen"
     eleve = "Élevé"
@@ -146,7 +146,7 @@ class exposition_accident(Variable):
 
 
 class TypesExpositionPenibilite(Enum):
-    __order__ = 'nulle simple multiple'  # Needed to preserve the enum order in Python 2
+    __order__ = "nulle simple multiple"  # Needed to preserve the enum order in Python 2
     nulle = "Nulle, pas d'exposition de l'employé à un facteur de pénibilité"
     simple = "Simple, exposition à un seul facteur de pénibilité"
     multiple = "Multiple, exposition à plusieurs facteurs de pénibilité"
@@ -163,7 +163,7 @@ class exposition_penibilite(Variable):
 
 
 class TypesAllegementModeRecouvrement(Enum):
-    __order__ = 'fin_d_annee anticipe progressif'  # Needed to preserve the enum order in Python 2
+    __order__ = "fin_d_annee anticipe progressif"  # Needed to preserve the enum order in Python 2
     fin_d_annee = "fin_d_annee"
     anticipe = "anticipe_regularisation_fin_de_periode"
     progressif = "progressif"
@@ -256,7 +256,7 @@ class indemnite_fin_contrat_due(Variable):
 
 
 class TypesContratDeTravail(Enum):
-    __order__ = 'temps_plein temps_partiel forfait_heures_semaines forfait_heures_mois forfait_heures_annee forfait_jours_annee sans_objet'  # Needed to preserve the enum order in Python 2
+    __order__ = "temps_plein temps_partiel forfait_heures_semaines forfait_heures_mois forfait_heures_annee forfait_jours_annee sans_objet"  # Needed to preserve the enum order in Python 2
     temps_plein = "temps_plein"
     temps_partiel = "temps_partiel"
     forfait_heures_semaines = "forfait_heures_semaines"
@@ -304,7 +304,7 @@ class contrat_de_travail_fin(Variable):
 
 
 class TypesContrat(Enum):
-    __order__ = 'aucun cdi cdd ctt formation'  # Needed to preserve the enum order in Python 2
+    __order__ = "aucun cdi cdd ctt formation"  # Needed to preserve the enum order in Python 2
     aucun = "Aucun contrat"
     cdi = "Contrat de travail à durée indéterminée (CDI)"
     cdd = "Contrat de travail à durée déterminée (CDD)"
@@ -376,7 +376,7 @@ class TypesCategoriesDemandeurEmploi(Enum):
     # http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-n2016-33-du-6-octobre-2016-bope-n2016-80.html?type=dossiers/2016/bope-n2016-80-du-17-novembre-201
     # https://allocation-chomage.fr/categorie-chomeur/
 
-    __order__ = 'pas_de_categorie categorie_1 categorie_2 categorie_3 categorie_4 categorie_5 categorie_6 categorie_7 categorie_8' \
+    __order__ = "pas_de_categorie categorie_1 categorie_2 categorie_3 categorie_4 categorie_5 categorie_6 categorie_7 categorie_8"\
                 # Needed to preserve the enum order in Python 2
 
     pas_de_categorie = "Aucune catégorie"
@@ -404,7 +404,7 @@ class pole_emploi_categorie_demandeur_emploi(Variable):
 
 
 class TypesCotisationSocialeModeRecouvrement(Enum):
-    __order__ = 'mensuel annuel mensuel_strict'  # Needed to preserve the enum order in Python 2
+    __order__ = "mensuel annuel mensuel_strict"  # Needed to preserve the enum order in Python 2
     mensuel = "Mensuel avec régularisation en fin d'année"
     annuel = "Annuel"
     mensuel_strict = "Mensuel strict"
@@ -627,7 +627,7 @@ class salaire_de_base(Variable):
     entity = Individu
     label = "Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie"
     set_input = set_input_divide_by_period
-    reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm'
+    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm"
     definition_period = MONTH
 
 
@@ -731,8 +731,8 @@ class avantage_en_nature(Variable):
 
     def formula(individu, period, parameters):
         period = period
-        avantage_en_nature_valeur_reelle = individu('avantage_en_nature_valeur_reelle', period)
-        avantage_en_nature_valeur_forfaitaire = individu('avantage_en_nature_valeur_forfaitaire', period)
+        avantage_en_nature_valeur_reelle = individu("avantage_en_nature_valeur_reelle", period)
+        avantage_en_nature_valeur_forfaitaire = individu("avantage_en_nature_valeur_forfaitaire", period)
 
         return avantage_en_nature_valeur_reelle + avantage_en_nature_valeur_forfaitaire
 
@@ -747,7 +747,7 @@ class avantage_en_nature_valeur_forfaitaire(Variable):
     # TODO: coplete this function
     def formula(individu, period, parameters):
         period = period
-        avantage_en_nature_valeur_reelle = individu('avantage_en_nature_valeur_reelle', period)
+        avantage_en_nature_valeur_reelle = individu("avantage_en_nature_valeur_reelle", period)
 
         return avantage_en_nature_valeur_reelle * 0
 
@@ -762,9 +762,9 @@ class depense_cantine_titre_restaurant_employe(Variable):
     def formula(individu, period, parameters):
         period = period
 
-        valeur_unitaire = individu('titre_restaurant_valeur_unitaire', period)
-        volume = individu('titre_restaurant_volume', period)
-        taux_employeur = individu('titre_restaurant_taux_employeur', period)
+        valeur_unitaire = individu("titre_restaurant_valeur_unitaire", period)
+        volume = individu("titre_restaurant_volume", period)
+        taux_employeur = individu("titre_restaurant_taux_employeur", period)
 
         return - valeur_unitaire * volume * (1 - taux_employeur)
 
@@ -778,9 +778,9 @@ class depense_cantine_titre_restaurant_employeur(Variable):
 
     def formula(individu, period, parameters):
         period = period
-        valeur_unitaire = individu('titre_restaurant_valeur_unitaire', period)
-        volume = individu('titre_restaurant_volume', period)  # Compute with jours ouvrables ?
-        taux_employeur = individu('titre_restaurant_taux_employeur', period)
+        valeur_unitaire = individu("titre_restaurant_valeur_unitaire", period)
+        volume = individu("titre_restaurant_volume", period)  # Compute with jours ouvrables ?
+        taux_employeur = individu("titre_restaurant_taux_employeur", period)
 
         return valeur_unitaire * volume * taux_employeur
 
@@ -794,16 +794,16 @@ class nombre_jours_calendaires(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
-        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
+        contrat_de_travail_debut = individu("contrat_de_travail_debut", period)
+        contrat_de_travail_fin = individu("contrat_de_travail_fin", period)
 
         busday_count = partial(original_busday_count, weekmask = "1" * 7)
-        debut_mois = datetime64(period.start.offset('first-of', 'month'))
-        fin_mois = datetime64(period.start.offset('last-of', 'month'))
+        debut_mois = datetime64(period.start.offset("first-of", "month"))
+        fin_mois = datetime64(period.start.offset("last-of", "month"))
         jours_travailles = max_(
             busday_count(
                 max_(contrat_de_travail_debut, debut_mois),
-                min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
+                min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, "D")
                 ),
             0,
             )
@@ -820,7 +820,7 @@ class remboursement_transport(Variable):
 
     def formula(individu, period, parameters):
 
-        remboursement_transport_base = individu('remboursement_transport_base', period)
+        remboursement_transport_base = individu("remboursement_transport_base", period)
         # TODO: paramètres en dur dans le code
         return - .5 * remboursement_transport_base
 
@@ -844,10 +844,10 @@ class indemnite_residence(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
-        salaire_de_base = individu('salaire_de_base', period)
-        categorie_salarie = individu('categorie_salarie', period)
-        zone_apl = individu.menage('zone_apl', period)
+        traitement_indiciaire_brut = individu("traitement_indiciaire_brut", period)
+        salaire_de_base = individu("salaire_de_base", period)
+        categorie_salarie = individu("categorie_salarie", period)
+        zone_apl = individu.menage("zone_apl", period)
         TypesZoneApl = zone_apl.possible_values
         _P = parameters(period)
 
@@ -876,9 +876,9 @@ class indice_majore(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        period = period.start.period('month').offset('first-of')
-        categorie_salarie = individu('categorie_salarie', period)
-        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
+        period = period.start.period("month").offset("first-of")
+        categorie_salarie = individu("categorie_salarie", period)
+        traitement_indiciaire_brut = individu("traitement_indiciaire_brut", period)
         _P = parameters(period)
 
         traitement_annuel_brut = _P.prestations_sociales.fonc.IM_100
@@ -902,8 +902,8 @@ class primes_fonction_publique(Variable):
 
     def formula(individu, period, parameters):
         # period = period.first_month
-        categorie_salarie = individu('categorie_salarie', period)
-        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
+        categorie_salarie = individu("categorie_salarie", period)
+        traitement_indiciaire_brut = individu("traitement_indiciaire_brut", period)
 
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
@@ -929,7 +929,7 @@ class af_nbenf_fonc(Variable):
             D'où l'introduction de cette variable alternative.
         """
 
-        salaire_de_base_mensualise = famille.members('salaire_de_base', period.start.period('month', 6).offset(-6), options = [ADD])
+        salaire_de_base_mensualise = famille.members("salaire_de_base", period.start.period("month", 6).offset(-6), options = [ADD])
         law = parameters(period)
         nbh_travaillees = 169
         smic_mensuel_brut = law.marche_travail.salaire_minimum.smic.smic_b_horaire * nbh_travaillees
@@ -939,7 +939,7 @@ class af_nbenf_fonc(Variable):
             * smic_mensuel_brut
             ))
 
-        age = famille.members('age', period)
+        age = famille.members("age", period)
 
         condition_enfant = (
             (age >= law.prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.age1)
@@ -960,11 +960,11 @@ class supplement_familial_traitement(Variable):
     # TODO: gérer le cas encore problématique du conjoint fonctionnaire
 
     def formula(individu, period, parameters):
-        categorie_salarie = individu('categorie_salarie', period)
-        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
+        categorie_salarie = individu("categorie_salarie", period)
+        traitement_indiciaire_brut = individu("traitement_indiciaire_brut", period)
         _P = parameters(period)
 
-        fonc_nbenf = individu.famille('af_nbenf_fonc', period) * individu.has_role(Famille.DEMANDEUR)
+        fonc_nbenf = individu.famille("af_nbenf_fonc", period) * individu.has_role(Famille.DEMANDEUR)
 
         P = _P.prestations_sociales.fonc.supplement_familial
         part_fixe_1 = P.fixe.enf1
@@ -1046,9 +1046,9 @@ class remuneration_principale(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
-        nouvelle_bonification_indiciaire = individu('nouvelle_bonification_indiciaire', period)
-        categorie_salarie = individu('categorie_salarie', period)
+        traitement_indiciaire_brut = individu("traitement_indiciaire_brut", period)
+        nouvelle_bonification_indiciaire = individu("nouvelle_bonification_indiciaire", period)
+        categorie_salarie = individu("categorie_salarie", period)
 
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
@@ -1072,16 +1072,16 @@ class salaire_net_a_payer(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        '''
+        """
         Calcul du salaire net à payer après déduction des sommes
         dues par les salarié avancées par l'employeur
-        '''
-        salaire_net = individu('salaire_net', period, options = [ADD])
+        """
+        salaire_net = individu("salaire_net", period, options = [ADD])
         depense_cantine_titre_restaurant_employe = individu(
-            'depense_cantine_titre_restaurant_employe', period)
-        indemnites_forfaitaires = individu('indemnites_forfaitaires', period)
-        remuneration_apprenti = individu('remuneration_apprenti', period)
-        stage_gratification = individu('stage_gratification', period)
+            "depense_cantine_titre_restaurant_employe", period)
+        indemnites_forfaitaires = individu("indemnites_forfaitaires", period)
+        remuneration_apprenti = individu("remuneration_apprenti", period)
+        stage_gratification = individu("stage_gratification", period)
         salaire_net_a_payer = (
             salaire_net
             + remuneration_apprenti
@@ -1100,17 +1100,17 @@ class salaire_super_brut_hors_allegements(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        salaire_de_base = individu('salaire_de_base', period)
-        remuneration_principale = individu('remuneration_principale', period)
-        remuneration_apprenti = individu('remuneration_apprenti', period)
+        salaire_de_base = individu("salaire_de_base", period)
+        remuneration_principale = individu("remuneration_principale", period)
+        remuneration_apprenti = individu("remuneration_apprenti", period)
 
-        primes_fonction_publique = individu('primes_fonction_publique', period)
-        indemnite_residence = individu('indemnite_residence', period)
-        supplement_familial_traitement = individu('supplement_familial_traitement', period)
-        cotisations_employeur = individu('cotisations_employeur', period)
-        depense_cantine_titre_restaurant_employeur = individu('depense_cantine_titre_restaurant_employeur', period)
-        reintegration_titre_restaurant_employeur = individu('reintegration_titre_restaurant_employeur', period)
-        indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
+        primes_fonction_publique = individu("primes_fonction_publique", period)
+        indemnite_residence = individu("indemnite_residence", period)
+        supplement_familial_traitement = individu("supplement_familial_traitement", period)
+        cotisations_employeur = individu("cotisations_employeur", period)
+        depense_cantine_titre_restaurant_employeur = individu("depense_cantine_titre_restaurant_employeur", period)
+        reintegration_titre_restaurant_employeur = individu("reintegration_titre_restaurant_employeur", period)
+        indemnite_fin_contrat = individu("indemnite_fin_contrat", period)
         salaire_super_brut_hors_allegements = (
             salaire_de_base
             + remuneration_apprenti
@@ -1136,8 +1136,8 @@ class salaire_super_brut(Variable):
 
     def formula(individu, period, parameters):
         period = period
-        salaire_super_brut_hors_allegements = individu('salaire_super_brut_hors_allegements', period)
-        exonerations_et_allegements = individu('exonerations_et_allegements', period)
+        salaire_super_brut_hors_allegements = individu("salaire_super_brut_hors_allegements", period)
+        exonerations_et_allegements = individu("exonerations_et_allegements", period)
 
         return salaire_super_brut_hors_allegements - exonerations_et_allegements
 
@@ -1151,17 +1151,17 @@ class exonerations_et_allegements(Variable):
 
     def formula(individu, period, parameters):
         exoneration_cotisations_employeur_apprenti = individu(
-            'exoneration_cotisations_employeur_apprenti', period, options = [ADD])
+            "exoneration_cotisations_employeur_apprenti", period, options = [ADD])
         exoneration_cotisations_employeur_geographiques = individu(
-            'exoneration_cotisations_employeur_geographiques', period)
+            "exoneration_cotisations_employeur_geographiques", period)
         exoneration_cotisations_employeur_jei = individu(
-            'exoneration_cotisations_employeur_jei', period, options = [ADD])
+            "exoneration_cotisations_employeur_jei", period, options = [ADD])
         exoneration_cotisations_employeur_stagiaire = individu(
-            'exoneration_cotisations_employeur_stagiaire', period, options = [ADD])
+            "exoneration_cotisations_employeur_stagiaire", period, options = [ADD])
 
-        allegement_fillon = individu('allegement_fillon', period, options = [ADD])
-        allegement_cotisation_maladie = individu('allegement_cotisation_maladie', period, options = [ADD])
-        allegement_cotisation_allocations_familiales = individu('allegement_cotisation_allocations_familiales', period, options = [ADD])
+        allegement_fillon = individu("allegement_fillon", period, options = [ADD])
+        allegement_cotisation_maladie = individu("allegement_cotisation_maladie", period, options = [ADD])
+        allegement_cotisation_allocations_familiales = individu("allegement_cotisation_allocations_familiales", period, options = [ADD])
 
         return (
             allegement_fillon
@@ -1183,8 +1183,8 @@ class cout_du_travail(Variable):
     calculate_output = calculate_output_add
 
     def formula(individu, period, parameters):
-        salaire_super_brut = individu('salaire_super_brut', period)
-        cout_differe = individu('cout_differe', period)
+        salaire_super_brut = individu("salaire_super_brut", period)
+        cout_differe = individu("cout_differe", period)
 
         return salaire_super_brut - cout_differe
 
@@ -1197,10 +1197,10 @@ class cout_differe(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        credit_impot_competitivite_emploi = individu('credit_impot_competitivite_emploi', period, options = [ADD])
-        aide_premier_salarie = individu('aide_premier_salarie', period, options = [ADD])
-        aide_embauche_pme = individu('aide_embauche_pme', period, options = [ADD])
-        tehr = individu('tehr', period, options = [DIVIDE])
+        credit_impot_competitivite_emploi = individu("credit_impot_competitivite_emploi", period, options = [ADD])
+        aide_premier_salarie = individu("aide_premier_salarie", period, options = [ADD])
+        aide_embauche_pme = individu("aide_embauche_pme", period, options = [ADD])
+        tehr = individu("tehr", period, options = [DIVIDE])
 
         return credit_impot_competitivite_emploi + aide_premier_salarie + aide_embauche_pme + tehr
 

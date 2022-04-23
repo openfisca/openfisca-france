@@ -10,7 +10,7 @@ class pret_formation_permis_eligibilite(Variable):
         "https://www.legifrance.gouv.fr/loda/id/LEGITEXT000006052491/",
         "https://www.securite-routiere.gouv.fr/passer-son-permis-de-conduire/financement-du-permis-de-conduire/permis-1-eu-par-jour"
         ]
-    documentation = '''
+    documentation = """
     Le prêt « permis à un euro par jour » est exclusivement destiné au financement
     d’une formation initiale ou, dans le cas d’un échec à l’épreuve pratique
     de l’examen du permis de conduire, d’une formation complémentaire.
@@ -18,10 +18,10 @@ class pret_formation_permis_eligibilite(Variable):
     Il ne peut être attribué qu’une seule fois à un même bénéficiaire et pour une même catégorie de permis.
     Ces formations doivent viser l’obtention du permis de conduire soit de la catégorie A1,
     soit de la catégorie A2, soit de la catégorie B.
-    '''
+    """
 
     def formula_2005_09_30(individu, period, parameters):
-        age = individu('age', period)
+        age = individu("age", period)
         criteres_age = parameters(period).prestations_sociales.transport.pret_formation_permis.age
         return (criteres_age.minimum <= age) * (age <= criteres_age.maximum)
 
@@ -39,7 +39,7 @@ class aide_financement_permis_apprenti(Variable):
 
     def formula(individu, period, parameters):
         montant = parameters(period).prestations_sociales.transport.aide_financement_permis_apprenti.montant
-        eligibilite = individu('aide_financement_permis_apprenti_eligibilite', period)
+        eligibilite = individu("aide_financement_permis_apprenti_eligibilite", period)
 
         return montant * eligibilite
 
@@ -57,8 +57,8 @@ class aide_financement_permis_apprenti_eligibilite(Variable):
 
     def formula(individu, period, parameters):
         age_minimal = parameters(period).prestations_sociales.transport.aide_financement_permis_apprenti.age_min
-        age = individu('age', period)
-        apprenti = individu('apprenti', period)
+        age = individu("age", period)
+        apprenti = individu("apprenti", period)
 
         return (age_minimal <= age) * apprenti
 
@@ -75,9 +75,9 @@ class carte_sncf_eleve_apprenti_eligibilite(Variable):
     def formula(individu, period, parameters):
         age_apprenti = parameters(period).prestations_sociales.transport.carte_sncf_eleve_apprenti.age_apprenti
         age_etudiant = parameters(period).prestations_sociales.transport.carte_sncf_eleve_apprenti.age_etudiant
-        age = individu('age', period)
+        age = individu("age", period)
 
-        eligibilite_apprenti = (age_apprenti > age) * individu('apprenti', period)
-        eligibilite_etudiant = (age_etudiant > age) * individu('etudiant', period)
+        eligibilite_apprenti = (age_apprenti > age) * individu("apprenti", period)
+        eligibilite_etudiant = (age_etudiant > age) * individu("etudiant", period)
 
         return eligibilite_apprenti + eligibilite_etudiant

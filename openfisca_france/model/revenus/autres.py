@@ -10,7 +10,7 @@ class pensions_alimentaires_percues(Variable):
         4: "1EO",
         }
     value_type = float
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = "Pensions alimentaires perçues"
     definition_period = MONTH
@@ -112,7 +112,7 @@ class bourse_enseignement_sup(Variable):
 class f8ta(Variable):
     cerfa_field = "8TA"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = "Retenue à la source en France ou impôt payé à l'étranger"
     definition_period = YEAR
@@ -121,7 +121,7 @@ class f8ta(Variable):
 class f8vl(Variable):
     cerfa_field = "8VL"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = "Impôt payé à l'étranger sur revenus de capitaux mobiliers et plus-values ouvrant droit à un crédit d'impôt"
     # start_date = date(2016, 1, 1)
@@ -135,7 +135,7 @@ class f8vm(Variable):
         2: "8UM",
         }
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = "Impôt payé à l'étranger sur revenus de capitaux mobiliers et plus-values ouvrant droit à un crédit d'impôt"
     # start_date = date(2016, 1, 1)
@@ -145,7 +145,7 @@ class f8vm(Variable):
 class f8th(Variable):
     cerfa_field = "8TH"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = "Retenue à la source élus locaux"
     definition_period = YEAR
@@ -157,7 +157,7 @@ class f8td_2002_2005(Variable):
     entity = FoyerFiscal
     label = "Contribution exceptionnelle sur les hauts revenus"
     # start_date = date(2002, 1, 1)
-    end = '2005-12-31'
+    end = "2005-12-31"
     definition_period = YEAR
 
 
@@ -167,14 +167,14 @@ class f8td(Variable):
     entity = FoyerFiscal
     label = "Revenus non imposables dépassent la moitié du RFR"
     # start_date = date(2011, 1, 1)
-    end = '2014-12-31'
+    end = "2014-12-31"
     definition_period = YEAR
 
 
 class f8ti(Variable):
     cerfa_field = "8TK"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = "Revenus de l'étranger exonérés d'impôt"
     definition_period = YEAR
@@ -184,7 +184,7 @@ class f8ti(Variable):
 class f8uy(Variable):
     cerfa_field = "8UY"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = "Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé"
     # start_date = date(2009, 1, 1)

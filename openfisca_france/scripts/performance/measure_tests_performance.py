@@ -30,8 +30,8 @@ tbs = CountryTaxBenefitSystem()
 time_spent_tbs = time.time() - start_time_tbs
 
 
-openfisca_france_dir = pkg_resources.get_distribution('OpenFisca-France').location
-yaml_tests_dir = os.path.join(openfisca_france_dir, 'tests', 'mes-aides.gouv.fr')
+openfisca_france_dir = pkg_resources.get_distribution("OpenFisca-France").location
+yaml_tests_dir = os.path.join(openfisca_france_dir, "tests", "mes-aides.gouv.fr")
 
 
 # Time openfisca-run-test runner

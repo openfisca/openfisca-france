@@ -26,9 +26,9 @@ class stage_gratification(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2014_11(individu, period, parameters):
-        stage_duree_heures = individu('stage_duree_heures', period)
-        stage_gratification_taux = individu('stage_gratification_taux', period)
-        stagiaire = individu('stagiaire', period)
+        stage_duree_heures = individu("stage_duree_heures", period)
+        stage_gratification_taux = individu("stage_gratification_taux", period)
+        stagiaire = individu("stagiaire", period)
         plafond_securite_sociale_horaire = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_horaire
         stage_gratification_taux_min = parameters(period).marche_travail.salaire_minimum.minstage.taux_gratification_min
         return stagiaire * plafond_securite_sociale_horaire * stage_duree_heures * max_(
@@ -43,8 +43,8 @@ class stage_gratification_reintegration(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2014_11(individu, period, parameters):
-        stage_duree_heures = individu('stage_duree_heures', period)
-        stage_gratification = individu('stage_gratification', period)
+        stage_duree_heures = individu("stage_duree_heures", period)
+        stage_gratification = individu("stage_gratification", period)
         plafond_securite_sociale_horaire = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_horaire
         stage_gratification_taux_min = parameters(period).marche_travail.salaire_minimum.minstage.taux_gratification_min
         stage_gratification_min = plafond_securite_sociale_horaire * stage_duree_heures * stage_gratification_taux_min
@@ -59,7 +59,7 @@ class stagiaire(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        stage_duree_heures = individu('stage_duree_heures', period)
+        stage_duree_heures = individu("stage_duree_heures", period)
         return (stage_duree_heures > 0)
 
 
@@ -72,17 +72,17 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
-        agirc_employeur = individu('agirc_employeur', period)
-        agirc_gmp_employeur = individu('agirc_gmp_employeur', period)
-        arrco_employeur = individu('arrco_employeur', period)
-        contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
-        contribution_equilibre_technique_employeur = individu('contribution_equilibre_technique_employeur', period)
-        cotisation_exceptionnelle_temporaire_employeur = individu('cotisation_exceptionnelle_temporaire_employeur', period)
-        plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
-        stagiaire = individu('stagiaire', period)
-        categorie_salarie = individu('categorie_salarie', period)
+        agirc_arrco_employeur = individu("agirc_arrco_employeur", period)
+        agirc_employeur = individu("agirc_employeur", period)
+        agirc_gmp_employeur = individu("agirc_gmp_employeur", period)
+        arrco_employeur = individu("arrco_employeur", period)
+        contribution_equilibre_general_employeur = individu("contribution_equilibre_general_employeur", period)
+        contribution_equilibre_technique_employeur = individu("contribution_equilibre_technique_employeur", period)
+        cotisation_exceptionnelle_temporaire_employeur = individu("cotisation_exceptionnelle_temporaire_employeur", period)
+        plafond_securite_sociale = individu("plafond_securite_sociale", period)
+        stage_gratification_reintegration = individu("stage_gratification_reintegration", period)
+        stagiaire = individu("stagiaire", period)
+        categorie_salarie = individu("categorie_salarie", period)
 
         bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_employeur
         exoneration = sum(
@@ -94,7 +94,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,
                 )
-            for bareme_name in ['agffnc', 'agffc', 'ags', 'chomage', 'asf']
+            for bareme_name in ["agffnc", "agffc", "ags", "chomage", "asf"]
             )
         exoneration += (agirc_arrco_employeur + agirc_employeur + agirc_gmp_employeur + arrco_employeur
             + contribution_equilibre_general_employeur + contribution_equilibre_technique_employeur
@@ -112,20 +112,20 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        agirc_arrco_salarie = individu('agirc_arrco_salarie', period)
-        agirc_salarie = individu('agirc_salarie', period)
-        agirc_gmp_salarie = individu('agirc_gmp_salarie', period)
-        arrco_salarie = individu('arrco_salarie', period)
-        contribution_equilibre_general_salarie = individu('contribution_equilibre_general_salarie', period)
-        contribution_equilibre_technique_salarie = individu('contribution_equilibre_technique_salarie', period)
-        cotisation_exceptionnelle_temporaire_salarie = individu('cotisation_exceptionnelle_temporaire_salarie', period)
-        plafond_securite_sociale = individu('plafond_securite_sociale', period)
-        stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
-        stagiaire = individu('stagiaire', period)
-        categorie_salarie = individu('categorie_salarie', period)
+        agirc_arrco_salarie = individu("agirc_arrco_salarie", period)
+        agirc_salarie = individu("agirc_salarie", period)
+        agirc_gmp_salarie = individu("agirc_gmp_salarie", period)
+        arrco_salarie = individu("arrco_salarie", period)
+        contribution_equilibre_general_salarie = individu("contribution_equilibre_general_salarie", period)
+        contribution_equilibre_technique_salarie = individu("contribution_equilibre_technique_salarie", period)
+        cotisation_exceptionnelle_temporaire_salarie = individu("cotisation_exceptionnelle_temporaire_salarie", period)
+        plafond_securite_sociale = individu("plafond_securite_sociale", period)
+        stage_gratification_reintegration = individu("stage_gratification_reintegration", period)
+        stagiaire = individu("stagiaire", period)
+        categorie_salarie = individu("categorie_salarie", period)
 
         bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_salarie
-        bareme_names = ['agff', 'chomage', 'asf']
+        bareme_names = ["agff", "chomage", "asf"]
 
         exoneration = plafond_securite_sociale * 0.0
         for bareme_name in bareme_names:

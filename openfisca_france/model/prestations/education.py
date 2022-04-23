@@ -14,8 +14,8 @@ class bourse_college_echelon(Variable):
         https://www.legifrance.gouv.fr/eli/arrete/2016/3/22/MENE1606428A/jo
         """
 
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
-        age_i = famille.members('age', period)
+        rfr = famille.demandeur.foyer_fiscal("rfr", period.n_2)
+        age_i = famille.members("age", period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
         P = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_education.bourse_college.apres_2016
 
@@ -57,8 +57,8 @@ class bourse_college_echelon(Variable):
             )
 
     def formula(famille, period, parameters):
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
-        age_i = famille.members('age', period)
+        rfr = famille.demandeur.foyer_fiscal("rfr", period.n_2)
+        age_i = famille.members("age", period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
 
         P = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_education.bourse_college.avant_2016
@@ -95,10 +95,10 @@ class bourse_college(Variable):
         # On prends en compte la BMAF du premier janvier de l'année de la rentrée scolaire
         bmaf_1er_janvier = parameters(period.this_year.first_month).prestations_sociales.prestations_familiales.bmaf.bmaf
 
-        scolarite_i = famille.members('scolarite', period)
+        scolarite_i = famille.members("scolarite", period)
         nb_enfants_college = famille.sum(scolarite_i == TypesScolarite.college, role = Famille.ENFANT)
 
-        echelon = famille('bourse_college_echelon', period)
+        echelon = famille("bourse_college_echelon", period)
 
         montant_par_enfant_en_pourcent_bmaf = select(
             [echelon == 3, echelon == 2, echelon == 1],
@@ -117,11 +117,11 @@ class bourse_lycee_points_de_charge(Variable):
     entity = Famille
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    end = '2016-07-01'
+    end = "2016-07-01"
 
     def formula(famille, period, parameters):
-        isole = not_(famille('en_couple', period))
-        age_i = famille.members('age', period)
+        isole = not_(famille("en_couple", period))
+        age_i = famille.members("age", period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
 
         points_de_charge = (
@@ -141,11 +141,11 @@ class bourse_lycee_nombre_parts(Variable):
     entity = Famille
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    end = '2016-07-01'
+    end = "2016-07-01"
 
     def formula(famille, period, parameters):
-        points_de_charge = famille('bourse_lycee_points_de_charge', period)
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        points_de_charge = famille("bourse_lycee_points_de_charge", period)
+        rfr = famille.demandeur.foyer_fiscal("rfr", period.n_2)
         plafonds_reference = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_education.bourse_lycee.avant_2016.plafonds_reference
         increments_par_point_de_charge = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_education.bourse_lycee.avant_2016.increments_par_point_de_charge
 
@@ -154,8 +154,8 @@ class bourse_lycee_nombre_parts(Variable):
             rfr,
             thresholds = [
                 round_(
-                    plafonds_reference['{}_parts'.format(index)]
-                    + ((points_de_charge - 9) * increments_par_point_de_charge['{}_parts'.format(index)])
+                    plafonds_reference["{}_parts".format(index)]
+                    + ((points_de_charge - 9) * increments_par_point_de_charge["{}_parts".format(index)])
                     )
                 for index in choices
                 ],
@@ -179,8 +179,8 @@ class bourse_lycee_echelon(Variable):
         https://www.legifrance.gouv.fr/eli/arrete/2016/3/22/MENE1606432A/jo
         """
 
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
-        age_i = famille.members('age', period)
+        rfr = famille.demandeur.foyer_fiscal("rfr", period.n_2)
+        age_i = famille.members("age", period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
         P = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_education.bourse_lycee.apres_2016
 
@@ -264,10 +264,10 @@ class bourse_lycee(Variable):
         # On prends en compte la BMAF du premier janvier de l'année de la rentrée scolaire
         bmaf_1er_janvier = parameters(period.this_year.first_month).prestations_sociales.prestations_familiales.bmaf.bmaf
 
-        scolarite_i = famille.members('scolarite', period)
+        scolarite_i = famille.members("scolarite", period)
         nb_enfants_lycee = famille.sum(scolarite_i == TypesScolarite.lycee, role = Famille.ENFANT)
 
-        echelon = famille('bourse_lycee_echelon', period)
+        echelon = famille("bourse_lycee_echelon", period)
 
         montant_par_enfant_en_pourcent_bmaf = select(
             [echelon == 6, echelon == 5, echelon == 4, echelon == 3, echelon == 2, echelon == 1],
@@ -280,10 +280,10 @@ class bourse_lycee(Variable):
         return nb_enfants_lycee * montant_par_enfant
 
     def formula(famille, period, parameters):
-        nombre_parts = famille('bourse_lycee_nombre_parts', period)
+        nombre_parts = famille("bourse_lycee_nombre_parts", period)
         valeur_part = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_education.bourse_lycee.avant_2016.valeur_part
 
-        scolarite_i = famille.members('scolarite', period)
+        scolarite_i = famille.members("scolarite", period)
         nb_enfants_lycee = famille.sum(scolarite_i == TypesScolarite.lycee, role = Famille.ENFANT)
 
         montant = nombre_parts * valeur_part * nb_enfants_lycee
@@ -292,7 +292,7 @@ class bourse_lycee(Variable):
 
 
 class TypesScolarite(Enum):
-    __order__ = 'inconnue maternelle primaire college lycee enseignement_superieur grande_ecole_du_numerique'  # Needed to preserve the enum order in Python 2
+    __order__ = "inconnue maternelle primaire college lycee enseignement_superieur grande_ecole_du_numerique"  # Needed to preserve the enum order in Python 2
     inconnue = "Inconnue"
     maternelle = "Maternelle"
     primaire = "Primaire"
@@ -319,15 +319,15 @@ class boursier(Variable):
     definition_period = MONTH
 
     def formula_2021(individu, period):
-        college = individu.famille('bourse_college', period)
-        lycee = individu.famille('bourse_lycee', period)
-        bcs = individu('bourse_criteres_sociaux', period)
-        bes = individu('bourse_enseignement_sup', period)
+        college = individu.famille("bourse_college", period)
+        lycee = individu.famille("bourse_lycee", period)
+        bcs = individu("bourse_criteres_sociaux", period)
+        bes = individu("bourse_enseignement_sup", period)
         return (college > 0) + (lycee > 0) + (bcs > 0) + (bes > 0)
 
 
 class StatutsEtablissementScolaire(Enum):
-    __order__ = 'inconnu public prive_sous_contrat prive_hors_contrat'  # Needed to preserve the enum order in Python 2
+    __order__ = "inconnu public prive_sous_contrat prive_hors_contrat"  # Needed to preserve the enum order in Python 2
     inconnu = "Inconnu"
     public = "Public"
     prive_sous_contrat = "Privé sous contrat"
@@ -345,28 +345,28 @@ class statuts_etablissement_scolaire(Variable):
 
 
 class TypesClasse(Enum):
-    __order__ = 'cap_1 cap_2 seconde premiere terminale bts_1 bts_2 cpge_1 cpge_2 but_1 but_2 but_3 licence_1 licence_2 licence_3 master_1 master_2 doctorat_1 doctorat_2 doctorat_3 autre'
-    cap_1 = 'Première année de CAP'
-    cap_2 = 'Deuxième année de CAP'
-    seconde = 'Seconde'
-    premiere = 'Première'
-    terminale = 'Terminale'
-    bts_1 = 'Première année de BTS'
-    bts_2 = 'Deuxième année de BTS'
-    cpge_1 = 'Première année de CPGE'
-    cpge_2 = 'Deuxième année de CPGE'
-    but_1 = 'Première année de BUT'
-    but_2 = 'Deuxième année de BUT'
-    but_3 = 'Troisième année de BUT'
-    licence_1 = 'Première année de licence'
-    licence_2 = 'Deuxième année de licence'
-    licence_3 = 'Troisième année de licence'
-    master_1 = 'Première année de master'
-    master_2 = 'Deuxième année de master'
-    doctorat_1 = 'Première année de doctorat'
-    doctorat_2 = 'Deuxième année de doctorat'
-    doctorat_3 = 'Troisième année de doctorat'
-    autre = 'Autre'
+    __order__ = "cap_1 cap_2 seconde premiere terminale bts_1 bts_2 cpge_1 cpge_2 but_1 but_2 but_3 licence_1 licence_2 licence_3 master_1 master_2 doctorat_1 doctorat_2 doctorat_3 autre"
+    cap_1 = "Première année de CAP"
+    cap_2 = "Deuxième année de CAP"
+    seconde = "Seconde"
+    premiere = "Première"
+    terminale = "Terminale"
+    bts_1 = "Première année de BTS"
+    bts_2 = "Deuxième année de BTS"
+    cpge_1 = "Première année de CPGE"
+    cpge_2 = "Deuxième année de CPGE"
+    but_1 = "Première année de BUT"
+    but_2 = "Deuxième année de BUT"
+    but_3 = "Troisième année de BUT"
+    licence_1 = "Première année de licence"
+    licence_2 = "Deuxième année de licence"
+    licence_3 = "Troisième année de licence"
+    master_1 = "Première année de master"
+    master_2 = "Deuxième année de master"
+    doctorat_1 = "Première année de doctorat"
+    doctorat_2 = "Deuxième année de doctorat"
+    doctorat_3 = "Troisième année de doctorat"
+    autre = "Autre"
 
 
 class annee_etude(Variable):
@@ -400,9 +400,9 @@ class mention_baccalaureat(Variable):
     entity = Individu
     label = "Mention obtenue au baccalauréat (hors mentions honorifiques)"
     definition_period = ETERNITY
-    documentation = '''
+    documentation = """
     En cas de multiples baccalauréats, meilleure mention obtenue.
-    '''
+    """
 
 
 class detention_carte_des_metiers(Variable):
@@ -417,4 +417,4 @@ class detention_carte_des_metiers(Variable):
         ]
 
     def formula(individu, period, parameters):
-        return individu('alternant', period) * (individu('age', period) < parameters(period).prestations_sociales.aides_jeunes.carte_des_metiers.age_maximal)
+        return individu("alternant", period) * (individu("age", period) < parameters(period).prestations_sociales.aides_jeunes.carte_des_metiers.age_maximal)

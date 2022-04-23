@@ -23,12 +23,12 @@ class cmu_forfait_logement_base(Variable):
     label = "Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    documentation = '''
+    documentation = """
     Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux.
-    '''
+    """
 
     def formula_2009_06_01(famille, period, parameters):
-        nbp_foyer = famille('cmu_nbp_foyer', period)
+        nbp_foyer = famille("cmu_nbp_foyer", period)
         P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement
         law_rmi_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
 
@@ -44,7 +44,7 @@ class cmu_forfait_logement_base(Variable):
             )
 
     def formula(famille, period, parameters):
-        nbp_foyer = famille('cmu_nbp_foyer', period)
+        nbp_foyer = famille("cmu_nbp_foyer", period)
         P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement
         law_rmi_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
 
@@ -68,8 +68,8 @@ class cmu_forfait_logement_al(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2009_06_01(famille, period, parameters):
-        nbp_foyer = famille('cmu_nbp_foyer', period)
-        aide_logement = famille('aide_logement', period)
+        nbp_foyer = famille("cmu_nbp_foyer", period)
+        aide_logement = famille("aide_logement", period)
         P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement_al
         law_rmi_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
 
@@ -87,8 +87,8 @@ class cmu_forfait_logement_al(Variable):
         return (aide_logement > 0) * min_(12 * aide_logement, forfait_logement)
 
     def formula(famille, period, parameters):
-        nbp_foyer = famille('cmu_nbp_foyer', period)
-        aide_logement = famille('aide_logement', period)
+        nbp_foyer = famille("cmu_nbp_foyer", period)
+        aide_logement = famille("aide_logement", period)
         P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement_al
         law_rmi_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
 
@@ -115,8 +115,8 @@ class cmu_nbp_foyer(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        nb_parents = famille('nb_parents', period)
-        cmu_nb_pac = famille('cmu_nb_pac', period)
+        nb_parents = famille("nb_parents", period)
+        cmu_nb_pac = famille("cmu_nb_pac", period)
 
         return nb_parents + cmu_nb_pac
 
@@ -130,7 +130,7 @@ class cmu_nb_pac(Variable):
 
     def formula(famille, period, parameters):
         P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu
-        age = famille.members('age', period)
+        age = famille.members("age", period)
         return famille.sum((age >= 0) * (age <= P.age_limite_pac), role = Famille.ENFANT)
 
 
@@ -154,11 +154,11 @@ class cmu_c_plafond(Variable):
         """
 
         cmu = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu
-        age_i = famille.members('age_en_mois', period)
-        is_couple = (famille('nb_parents', period) == 2)
+        age_i = famille.members("age_en_mois", period)
+        is_couple = (famille("nb_parents", period) == 2)
         is_enfant = famille.members.has_role(Famille.ENFANT)
-        cmu_eligible_majoration_dom = famille('cmu_eligible_majoration_dom', period)
-        coeff_garde_alt_i = where(famille.members('garde_alternee', period), 0.5, 1)
+        cmu_eligible_majoration_dom = famille("cmu_eligible_majoration_dom", period)
+        coeff_garde_alt_i = where(famille.members("garde_alternee", period), 0.5, 1)
 
         # 0 pour l'aîné, 1 pour le cadet, etc.
         rang_dans_fratrie = famille.members.get_rank(famille, - age_i, condition = is_enfant)
@@ -201,10 +201,10 @@ class cmu_eligible_majoration_dom(Variable):
 
     def formula(famille, period):
         menage = famille.demandeur.menage
-        residence_guadeloupe = menage('residence_guadeloupe', period)
-        residence_martinique = menage('residence_martinique', period)
-        residence_guyane = menage('residence_guyane', period)
-        residence_reunion = menage('residence_reunion', period)
+        residence_guadeloupe = menage("residence_guadeloupe", period)
+        residence_martinique = menage("residence_martinique", period)
+        residence_guyane = menage("residence_guyane", period)
+        residence_reunion = menage("residence_reunion", period)
 
         return residence_guadeloupe | residence_martinique | residence_guyane | residence_reunion
 
@@ -217,21 +217,21 @@ class cmu_c(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period):
-        cmu_c_plafond = famille('cmu_c_plafond', period)
-        cmu_base_ressources = famille('cmu_base_ressources', period)
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
-        cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
+        cmu_c_plafond = famille("cmu_c_plafond", period)
+        cmu_base_ressources = famille("cmu_base_ressources", period)
+        residence_mayotte = famille.demandeur.menage("residence_mayotte", period)
+        cmu_acs_eligibilite = famille("cmu_acs_eligibilite", period)
 
         if period.start.date >= date(2016, 1, 1):
-            eligibilite_rsa = famille('rsa', period) > 0
+            eligibilite_rsa = famille("rsa", period) > 0
         else:
             # Avant 2016, seules les bénéficiaires du RSA socle avait le droit d'office à la CMU.
-            rsa_socle = famille('rsa_socle', period)
-            rsa_socle_majore = famille('rsa_socle_majore', period)
-            rsa_forfait_logement = famille('rsa_forfait_logement', period)
-            rsa_base_ressources = famille('rsa_base_ressources', period)
+            rsa_socle = famille("rsa_socle", period)
+            rsa_socle_majore = famille("rsa_socle_majore", period)
+            rsa_forfait_logement = famille("rsa_forfait_logement", period)
+            rsa_base_ressources = famille("rsa_base_ressources", period)
             socle = max_(rsa_socle, rsa_socle_majore)
-            rsa = famille('rsa', period)
+            rsa = famille("rsa", period)
             eligibilite_rsa = (rsa > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
 
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond

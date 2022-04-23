@@ -47,11 +47,11 @@ class prelevement_forfaitaire_liberatoire(Variable):
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
-        '''
+        """
         Prelèvement libératoire sur les revenus du capital
-        '''
-        f2dh = foyer_fiscal('f2dh', period)
-        f2ee = foyer_fiscal('f2ee', period)
+        """
+        f2dh = foyer_fiscal("f2dh", period)
+        f2ee = foyer_fiscal("f2ee", period)
         param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.liberatoire_assurance_vie.bons_contrats_placements
         param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.liberatoire_taux_fixe
 
@@ -61,12 +61,12 @@ class prelevement_forfaitaire_liberatoire(Variable):
             )
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
-        '''
+        """
         Prelèvement libératoire sur les revenus du capital
-        '''
-        f2da = foyer_fiscal('f2da', period)
-        f2dh = foyer_fiscal('f2dh', period)
-        f2ee = foyer_fiscal('f2ee', period)
+        """
+        f2da = foyer_fiscal("f2da", period)
+        f2dh = foyer_fiscal("f2dh", period)
+        f2ee = foyer_fiscal("f2ee", period)
         param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.liberatoire_assurance_vie.bons_contrats_placements
         param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.liberatoire_taux_fixe
 
@@ -77,7 +77,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        '''
+        """
         Prelèvement forfaitaire libératoire (PFL) sur les revenus du capital
         Notes :
           (1) La formule avant 2013 provient de l'ancienne variable 'imp_lib'.
@@ -87,15 +87,15 @@ class prelevement_forfaitaire_liberatoire(Variable):
               qui est incluse dans irpp. Cette taxaiton à 24% est certes forfaitaire,
               mais apparemment pas à la source. Elle serait calculée au moment de l'irpp,
               d'où le fait de l'inclure dans la variable IRPP.
-        '''
+        """
 
-        assurance_vie_pl_non_anonyme_plus8ans_depuis1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_plus8ans_depuis1990', period)
-        assurance_vie_pl_non_anonyme_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_plus6ans_avant1990', period)
-        assurance_vie_pl_non_anonyme_moins4ans_depuis1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_moins4ans_depuis1990', period)
-        assurance_vie_pl_non_anonyme_4_8_ans_depuis1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_4_8_ans_depuis1990', period)
-        assurance_vie_pl_anonyme = foyer_fiscal('assurance_vie_pl_anonyme', period)
-        produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
-        produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
+        assurance_vie_pl_non_anonyme_plus8ans_depuis1990 = foyer_fiscal("assurance_vie_pl_non_anonyme_plus8ans_depuis1990", period)
+        assurance_vie_pl_non_anonyme_plus6ans_avant1990 = foyer_fiscal("assurance_vie_pl_non_anonyme_plus6ans_avant1990", period)
+        assurance_vie_pl_non_anonyme_moins4ans_depuis1990 = foyer_fiscal("assurance_vie_pl_non_anonyme_moins4ans_depuis1990", period)
+        assurance_vie_pl_non_anonyme_4_8_ans_depuis1990 = foyer_fiscal("assurance_vie_pl_non_anonyme_4_8_ans_depuis1990", period)
+        assurance_vie_pl_anonyme = foyer_fiscal("assurance_vie_pl_anonyme", period)
+        produit_epargne_solidaire = foyer_fiscal("produit_epargne_solidaire", period)
+        produit_etats_non_cooperatif = foyer_fiscal("produit_etats_non_cooperatif", period)
 
         param_pfl_av = parameters(period).taxation_capital.prelevement_forfaitaire.liberatoire_assurance_vie.bons_contrats_placements
         param_pfl = parameters(period).taxation_capital.prelevement_forfaitaire.liberatoire_taux_fixe

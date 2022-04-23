@@ -30,16 +30,16 @@ class aeeh(Variable):
         son activité professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
         """
         janvier = period.this_year.first_month
-        isole = not_(famille('en_couple', janvier))
+        isole = not_(famille("en_couple", janvier))
         prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
 
         base = prestations_familiales.education_presence_parentale.aeeh.base
         complement_d_allocation = prestations_familiales.education_presence_parentale.aeeh.complement_allocation
         majoration = prestations_familiales.education_presence_parentale.aeeh.majoration_parent_isole
 
-        age = famille.members('age', janvier)
-        handicap = famille.members('handicap', janvier)
-        niveau_handicap = famille.members('aeeh_niveau_handicap', period)
+        age = famille.members("age", janvier)
+        handicap = famille.members("handicap", janvier)
+        niveau_handicap = famille.members("aeeh_niveau_handicap", period)
         # Indicatrice d'isolement pour les indidivus
         isole = famille.project(isole)
 
@@ -47,13 +47,13 @@ class aeeh(Variable):
 
         montant_par_enfant = enfant_handicape * prestations_familiales.bmaf.bmaf * (
             base
-            + (niveau_handicap == 1) * complement_d_allocation._children['1ere_categorie']
-            + (niveau_handicap == 2) * (complement_d_allocation._children['1ere_categorie'] + majoration._children['2e_categorie'] * isole)
-            + (niveau_handicap == 3) * (complement_d_allocation._children['2e_categorie'] + majoration._children['3e_categorie'] * isole)
-            + (niveau_handicap == 4) * (complement_d_allocation._children['3e_categorie'] + majoration._children['4e_categorie'] * isole)
-            + (niveau_handicap == 5) * (complement_d_allocation._children['4e_categorie'] + majoration._children['5e_categorie'] * isole)
-            + (niveau_handicap == 6) * majoration._children['6e_categorie'] * isole
-            ) + (niveau_handicap == 6) * complement_d_allocation._children['6e_categorie']
+            + (niveau_handicap == 1) * complement_d_allocation._children["1ere_categorie"]
+            + (niveau_handicap == 2) * (complement_d_allocation._children["1ere_categorie"] + majoration._children["2e_categorie"] * isole)
+            + (niveau_handicap == 3) * (complement_d_allocation._children["2e_categorie"] + majoration._children["3e_categorie"] * isole)
+            + (niveau_handicap == 4) * (complement_d_allocation._children["3e_categorie"] + majoration._children["4e_categorie"] * isole)
+            + (niveau_handicap == 5) * (complement_d_allocation._children["4e_categorie"] + majoration._children["5e_categorie"] * isole)
+            + (niveau_handicap == 6) * majoration._children["6e_categorie"] * isole
+            ) + (niveau_handicap == 6) * complement_d_allocation._children["6e_categorie"]
 
         montant_total = famille.sum(montant_par_enfant, role = Famille.ENFANT)
 
@@ -81,16 +81,16 @@ class aes(Variable):
 
     def formula_2002_04_01(famille, period, parameters):
         janvier = period.this_year.first_month
-        isole = not_(famille('en_couple', janvier))
+        isole = not_(famille("en_couple", janvier))
         prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
 
         base = prestations_familiales.education_presence_parentale.aes.base
         complement_d_allocation = prestations_familiales.education_presence_parentale.aes.complement_d_allocation
-        complement_d_allocation._children['6e_categorie'] = complement_d_allocation._children['6e_categorie']
+        complement_d_allocation._children["6e_categorie"] = complement_d_allocation._children["6e_categorie"]
 
-        age = famille.members('age', janvier)
-        handicap = famille.members('handicap', janvier)
-        niveau_handicap = famille.members('aeeh_niveau_handicap', period)
+        age = famille.members("age", janvier)
+        handicap = famille.members("handicap", janvier)
+        niveau_handicap = famille.members("aeeh_niveau_handicap", period)
         # Indicatrice d'isolement pour les indidivus
         isole = famille.project(isole)
 
@@ -98,8 +98,8 @@ class aes(Variable):
 
         montant_par_enfant = enfant_handicape * prestations_familiales.bmaf.bmaf * (
             base
-            + (niveau_handicap == 1) * complement_d_allocation._children['1ere_categorie']
-            + (niveau_handicap == 2) * complement_d_allocation._children['1ere_categorie']
+            + (niveau_handicap == 1) * complement_d_allocation._children["1ere_categorie"]
+            + (niveau_handicap == 2) * complement_d_allocation._children["1ere_categorie"]
             )
 
         montant_total = famille.sum(montant_par_enfant, role = Famille.ENFANT)

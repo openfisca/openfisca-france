@@ -289,7 +289,7 @@ def apply_bareme_for_relevant_type_sal(
 
 
 def apply_bareme(individu, period, parameters, cotisation_type = None, bareme_name = None, variable_name = None):
-    cotisation_mode_recouvrement = individu('cotisation_sociale_mode_recouvrement', period)
+    cotisation_mode_recouvrement = individu("cotisation_sociale_mode_recouvrement", period)
     TypesCotisationSocialeModeRecouvrement = cotisation_mode_recouvrement.possible_values
     cotisation = (
         # anticipé (mensuel avec recouvrement en fin d'année)
@@ -334,9 +334,9 @@ def compute_cotisation(individu, period, parameters, cotisation_type = None, bar
         bareme_by_type_sal_name = parameters(period).cotsoc.cotisations_salarie
     assert bareme_name is not None
 
-    assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period, options = [ADD])
-    plafond_securite_sociale = individu('plafond_securite_sociale', period, options = [ADD])
-    categorie_salarie = individu('categorie_salarie', period.first_month)
+    assiette_cotisations_sociales = individu("assiette_cotisations_sociales", period, options = [ADD])
+    plafond_securite_sociale = individu("plafond_securite_sociale", period, options = [ADD])
+    categorie_salarie = individu("categorie_salarie", period.first_month)
 
     cotisation = apply_bareme_for_relevant_type_sal(
         bareme_by_type_sal_name = bareme_by_type_sal_name,
@@ -371,8 +371,8 @@ def compute_cotisation_anticipee(individu, period, parameters, cotisation_type =
             bareme_name = bareme_name,
             )
     if period.start.month == 12:
-        cumul = individu(variable_name, period.start.offset('first-of', 'month').offset(
-            -11, 'month').period('month', 11), options = [ADD])
+        cumul = individu(variable_name, period.start.offset("first-of", "month").offset(
+            -11, "month").period("month", 11), options = [ADD])
         # December variable_name depends on variable_name in the past 11 months.
         # We need to explicitely allow this recursion.
 

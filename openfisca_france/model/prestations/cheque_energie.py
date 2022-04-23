@@ -11,7 +11,7 @@ class cheque_energie_unites_consommation(Variable):
     def formula_2017(menage, period, parameters):
         uc = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.unites_consommation
         nb_personnes = menage.nb_persons()
-        gardes_alternees = menage.sum(menage.members('garde_alternee', period.first_month))
+        gardes_alternees = menage.sum(menage.members("garde_alternee", period.first_month))
 
         nb_personnes_ajuste = nb_personnes - 0.5 * gardes_alternees
         return (
@@ -35,8 +35,8 @@ class cheque_energie_eligibilite_logement(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2017(menage, period, parameters):
-        statut_occupation_logement = menage('statut_occupation_logement', period.first_month)
-        residence_saint_martin = menage('residence_saint_martin', period.first_month)
+        statut_occupation_logement = menage("statut_occupation_logement", period.first_month)
+        residence_saint_martin = menage("residence_saint_martin", period.first_month)
 
         return (
             not_(residence_saint_martin) * (
@@ -62,8 +62,8 @@ class cheque_energie_montant(Variable):
     def formula_2017(menage, period, parameters):
         baremes = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.baremes
 
-        uc_menage = menage('cheque_energie_unites_consommation', period)
-        rfr = menage.sum(menage.members.foyer_fiscal('rfr', period.n_2), role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        uc_menage = menage("cheque_energie_unites_consommation", period)
+        rfr = menage.sum(menage.members.foyer_fiscal("rfr", period.n_2), role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         ressources_par_uc = rfr / uc_menage
 
@@ -83,9 +83,9 @@ class cheque_energie(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2017(menage, period):
-        eligible = menage('cheque_energie_eligibilite_logement', period)
-        declarant = menage.sum(menage.members('age', period.first_month) * 0 + 1, role = FoyerFiscal.DECLARANT) > 0  # une colocation de personnes à la charge de leurs parents n'est pas éligible aux chèques énergie, par exemple
-        montant = menage('cheque_energie_montant', period.this_year)
+        eligible = menage("cheque_energie_eligibilite_logement", period)
+        declarant = menage.sum(menage.members("age", period.first_month) * 0 + 1, role = FoyerFiscal.DECLARANT) > 0  # une colocation de personnes à la charge de leurs parents n'est pas éligible aux chèques énergie, par exemple
+        montant = menage("cheque_energie_montant", period.this_year)
         return declarant * eligible * montant
 
 
@@ -98,7 +98,7 @@ class aide_exceptionnelle_cheque_energie(Variable):
     end = "2021-12-31"
 
     def formula_2021_12_01(menage, period, parameters):
-        cheque_energie = menage('cheque_energie', period.this_year)
+        cheque_energie = menage("cheque_energie", period.this_year)
         montant_aide = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.aide_exceptionnelle
 
         return montant_aide * (cheque_energie > 0)

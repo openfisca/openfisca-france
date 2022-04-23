@@ -25,7 +25,7 @@ class chomage_brut(Variable):
     calculate_output = calculate_output_add
 
     def formula(individu, period):
-        return individu('allocation_retour_emploi', period)
+        return individu("allocation_retour_emploi", period)
 
 
 class indemnites_chomage_partiel(Variable):
@@ -61,7 +61,7 @@ class allocation_travailleur_independant(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000037388330/"
-    documentation = '''
+    documentation = """
     Indemnisation de Pôle emploi en vigueur à partir du 1er novembre 2019 à destination
     des travailleurs non salariés indépendants contraints de mettre fin à leur activité.
-    '''
+    """

@@ -83,7 +83,7 @@ def timeit(method):
         start_time = time.time()
         result = method(*args, **kwargs)
         # logger.debug '%r (%r, %r) %2.9f s' % (method.__name__, args, kw, time.time() - start_time)
-        logger.debug('{:2.6f} s'.format(time.time() - start_time))
+        logger.debug("{:2.6f} s".format(time.time() - start_time))
         return result
 
     return timed
@@ -96,10 +96,10 @@ tax_benefit_system = FranceTaxBenefitSystem()
 def test_irpp(year, irpp, **variables_value_by_name):
     simulation = simulations.Simulation(period = periods.period(year), tax_benefit_system = tax_benefit_system,
         debug = args.verbose)
-    famille = simulation.entity_by_key_singular['famille']
-    foyer_fiscal = simulation.entity_by_key_singular['foyer_fiscal']
-    individu = simulation.entity_by_key_singular['individu']
-    menage = simulation.entity_by_key_singular['menage']
+    famille = simulation.entity_by_key_singular["famille"]
+    foyer_fiscal = simulation.entity_by_key_singular["foyer_fiscal"]
+    individu = simulation.entity_by_key_singular["individu"]
+    menage = simulation.entity_by_key_singular["menage"]
 
     # Dispatch arguments to their respective entities.
     variables_value_by_name_by_entity = {}
@@ -112,17 +112,17 @@ def test_irpp(year, irpp, **variables_value_by_name):
     add_member(foyer_fiscal, **variables_value_by_name_by_entity.get(foyer_fiscal, {}))
     add_member(menage, **variables_value_by_name_by_entity.get(menage, {}))
     add_member(individu, quifam = 1, quifoy = 1, quimen = 1, **variables_value_by_name_by_entity.get(individu, {}))
-    assert_near(simulation.calculate('irpp'), irpp, absolute_error_margin = 0.51)
+    assert_near(simulation.calculate("irpp"), irpp, absolute_error_margin = 0.51)
 
 
 def main():
     parser = argparse.ArgumentParser(description = __doc__)
-    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
+    parser.add_argument("-v", "--verbose", action = "store_true", default = False, help = "increase output verbosity")
     global args
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    logger.debug('salaire_imposable')
+    logger.debug("salaire_imposable")
 
     test_irpp(2010, -1181, salaire_imposable = 20000)
     test_irpp(2010, -7934, salaire_imposable = 50000)
@@ -137,7 +137,7 @@ def main():
     test_irpp(2013, -7889, salaire_imposable = 50000)
     test_irpp(2013, -43076, salaire_imposable = 150000)
 
-    logger.debug('retraite_imposable')
+    logger.debug("retraite_imposable")
 
     test_irpp(2010, -1181, retraite_imposable = 20000)
     test_irpp(2010, -8336, retraite_imposable = 50000)
@@ -152,7 +152,7 @@ def main():
     test_irpp(2013, -8283, retraite_imposable = 50000)
     test_irpp(2013, -46523, retraite_imposable = 150000)
 
-    logger.debug('f2da')
+    logger.debug("f2da")
 
     test_irpp(2010, 0, f2da = 20000)
     test_irpp(2010, 0, f2da = 50000)
@@ -167,7 +167,7 @@ def main():
     # test_irpp(2013, 0, f2da = 50000)
     # test_irpp(2013, 0, f2da = 150000)
 
-    logger.debug('f2dc')
+    logger.debug("f2dc")
 
     test_irpp(2010, 0, f2dc = 20000)
     test_irpp(2010, -2976, f2dc = 50000)
@@ -182,7 +182,7 @@ def main():
     # test_irpp(2013, 0, f2dc = 50000)
     # test_irpp(2013, 0, f2dc = 150000)
 
-    logger.debug('f2dh')
+    logger.debug("f2dh")
 
     test_irpp(2010, 345, f2dh = 20000)
     test_irpp(2010, 345, f2dh = 50000)
@@ -197,7 +197,7 @@ def main():
     test_irpp(2013, 345, f2dh = 50000)
     test_irpp(2013, 345, f2dh = 150000)
 
-    logger.debug('f2tr')
+    logger.debug("f2tr")
 
     test_irpp(2010, -1461, f2tr = 20000)
     test_irpp(2010, -9434, f2tr = 50000)
@@ -212,7 +212,7 @@ def main():
     test_irpp(2013, -9389, f2tr = 50000)
     test_irpp(2013, -48036, f2tr = 150000)
 
-    logger.debug('f2ts')
+    logger.debug("f2ts")
 
     test_irpp(2010, -1461, f2ts = 20000)
     test_irpp(2010, -9434, f2ts = 50000)
@@ -227,7 +227,7 @@ def main():
     test_irpp(2013, -9389, f2ts = 50000)
     test_irpp(2013, -48036, f2ts = 150000)
 
-    logger.debug('f3vg')
+    logger.debug("f3vg")
 
     test_irpp(2010, -3600, f3vg = 20000)
     test_irpp(2010, -9000, f3vg = 50000)
@@ -242,7 +242,7 @@ def main():
     test_irpp(2013, -9389, f3vg = 50000)
     test_irpp(2013, -48036, f3vg = 150000)
 
-    logger.debug('f3vz')
+    logger.debug("f3vz")
 
     # test_irpp(2010, 0, f3vz = 20000)
     # test_irpp(2010, 0, f3vz = 50000)
@@ -257,7 +257,7 @@ def main():
     test_irpp(2013, 0, f3vz = 50000)
     test_irpp(2013, 0, f3vz = 150000)
 
-    logger.debug('f4ba')
+    logger.debug("f4ba")
 
     test_irpp(2010, -1461, f4ba = 20000)
     test_irpp(2010, -9434, f4ba = 50000)

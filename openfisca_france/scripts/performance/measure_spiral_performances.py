@@ -84,10 +84,10 @@ def test_revenu_disponible():
     @timeit
     def run_test():
         for simulation in simulations:
-            simulation.calculate('revenu_disponible', 2018)
+            simulation.calculate("revenu_disponible", 2018)
 
     result, delta = run_test()
-    print('{:2.6f} s'.format(delta / NB_RUN))  # noqa T001
+    print("{:2.6f} s".format(delta / NB_RUN))  # noqa T001
 
 
 def test_spiral():
@@ -99,23 +99,23 @@ def test_spiral():
     @timeit
     def run_test():
         for simulation in simulations:
-            simulation.calculate('ass', '2018-12')
-            simulation.calculate('logement_social_eligible', '2018-12')
+            simulation.calculate("ass", "2018-12")
+            simulation.calculate("logement_social_eligible", "2018-12")
 
     result, delta = run_test()
-    print('{:2.6f} s'.format(delta / NB_RUN))  # noqa T001
+    print("{:2.6f} s".format(delta / NB_RUN))  # noqa T001
 
 
-print('Premier test revenu disponible')  # noqa T001
+print("Premier test revenu disponible")  # noqa T001
 test_revenu_disponible()
-print('Second test revenu disponible')  # noqa T001
+print("Second test revenu disponible")  # noqa T001
 test_revenu_disponible()
-print('3e test revenu disponible')  # noqa T001
+print("3e test revenu disponible")  # noqa T001
 test_revenu_disponible()
 
-print('Premier test ciblé spirale')  # noqa T001
+print("Premier test ciblé spirale")  # noqa T001
 test_spiral()
-print('Second test ciblé spirale')  # noqa T001
+print("Second test ciblé spirale")  # noqa T001
 test_spiral()
-print('3e test ciblé spirale')  # noqa T001
+print("3e test ciblé spirale")  # noqa T001
 test_spiral()

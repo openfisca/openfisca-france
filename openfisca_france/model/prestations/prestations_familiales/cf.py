@@ -10,9 +10,9 @@ class cf_enfant_a_charge(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
-        autonomie_financiere = individu('autonomie_financiere', period)
-        age = individu('age', period)
+        est_enfant_dans_famille = individu("est_enfant_dans_famille", period)
+        autonomie_financiere = individu("autonomie_financiere", period)
+        age = individu("age", period)
 
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
@@ -30,9 +30,9 @@ class cf_enfant_eligible(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        cf_enfant_a_charge = individu('cf_enfant_a_charge', period)
-        age = individu('age', period)
-        rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
+        cf_enfant_a_charge = individu("cf_enfant_a_charge", period)
+        age = individu("age", period)
+        rempli_obligation_scolaire = individu("rempli_obligation_scolaire", period)
 
         enfants = parameters(period).prestations_sociales.prestations_familiales.def_pac.enfants
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
@@ -56,9 +56,9 @@ class cf_dom_enfant_eligible(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        cf_enfant_a_charge = individu('cf_enfant_a_charge', period)
-        age = individu('age', period)
-        rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
+        cf_enfant_a_charge = individu("cf_enfant_a_charge", period)
+        age = individu("age", period)
+        rempli_obligation_scolaire = individu("rempli_obligation_scolaire", period)
 
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
@@ -76,8 +76,8 @@ class cf_dom_enfant_trop_jeune(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
-        age = individu('age', period)
+        est_enfant_dans_famille = individu("est_enfant_dans_famille", period)
+        age = individu("age", period)
 
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
 
@@ -94,9 +94,9 @@ class cf_base_ressources_individu(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period):
-        base_ressources = individu('prestations_familiales_base_ressources_individu', period)
-        est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
-        cf_enfant_a_charge = individu('cf_enfant_a_charge', period)
+        base_ressources = individu("prestations_familiales_base_ressources_individu", period)
+        est_enfant_dans_famille = individu("est_enfant_dans_famille", period)
+        cf_enfant_a_charge = individu("cf_enfant_a_charge", period)
 
         return or_(not_(est_enfant_dans_famille), cf_enfant_a_charge) * base_ressources
 
@@ -112,13 +112,13 @@ class cf_plafond(Variable):
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
         ars = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.ars
 
-        eligibilite_base = famille('cf_eligibilite_base', period)
-        eligibilite_dom = famille('cf_eligibilite_dom', period)
-        isole = not_(famille('en_couple', period))
-        biactivite = famille('biactivite', period)
+        eligibilite_base = famille("cf_eligibilite_base", period)
+        eligibilite_dom = famille("cf_eligibilite_dom", period)
+        isole = not_(famille("en_couple", period))
+        biactivite = famille("biactivite", period)
 
         # Calcul du nombre d'enfants à charge au sens du CF
-        cf_enfant_a_charge_i = famille.members('cf_enfant_a_charge', period)
+        cf_enfant_a_charge_i = famille.members("cf_enfant_a_charge", period)
         cf_nbenf = famille.sum(cf_enfant_a_charge_i)
 
         # Calcul du taux à appliquer au plafond de base pour la France métropolitaine
@@ -165,7 +165,7 @@ class cf_majore_plafond(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2014_04_01(famille, period, parameters):
-        plafond_base = famille('cf_plafond', period)
+        plafond_base = famille("cf_plafond", period)
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
         return plafond_base * cf.cf_plaf.plafond_cf_majore
 
@@ -178,9 +178,9 @@ class cf_base_ressources(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period):
-        cf_base_ressources_individu_i = famille.members('cf_base_ressources_individu', period)
+        cf_base_ressources_individu_i = famille.members("cf_base_ressources_individu", period)
         ressources_i_total = famille.sum(cf_base_ressources_individu_i)
-        ressources_communes = famille('prestations_familiales_base_ressources_communes', period)
+        ressources_communes = famille("prestations_familiales_base_ressources_communes", period)
         return ressources_i_total + ressources_communes
 
 
@@ -192,9 +192,9 @@ class cf_eligibilite_base(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        residence_dom = famille.demandeur.menage('residence_dom', period)
+        residence_dom = famille.demandeur.menage("residence_dom", period)
 
-        cf_enfant_eligible = famille.members('cf_enfant_eligible', period)
+        cf_enfant_eligible = famille.members("cf_enfant_eligible", period)
         cf_nbenf = famille.sum(cf_enfant_eligible)
 
         return not_(residence_dom) * (cf_nbenf >= 3)
@@ -208,13 +208,13 @@ class cf_eligibilite_dom(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(famille, period, parameters):
-        residence_dom = famille.demandeur.menage('residence_dom', period)
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+        residence_dom = famille.demandeur.menage("residence_dom", period)
+        residence_mayotte = famille.demandeur.menage("residence_mayotte", period)
 
-        cf_dom_enfant_eligible = famille.members('cf_dom_enfant_eligible', period)
+        cf_dom_enfant_eligible = famille.members("cf_dom_enfant_eligible", period)
         cf_nbenf = famille.sum(cf_dom_enfant_eligible)
 
-        cf_dom_enfant_trop_jeune = famille.members('cf_dom_enfant_trop_jeune', period)
+        cf_dom_enfant_trop_jeune = famille.members("cf_dom_enfant_trop_jeune", period)
         cf_nbenf_trop_jeune = famille.sum(cf_dom_enfant_trop_jeune)
 
         condition_composition_famille = (cf_nbenf >= 1) * (cf_nbenf_trop_jeune == 0)
@@ -231,10 +231,10 @@ class cf_non_majore_avant_cumul(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        eligibilite_base = famille('cf_eligibilite_base', period)
-        eligibilite_dom = famille('cf_eligibilite_dom', period)
-        ressources = famille('cf_base_ressources', period)
-        plafond = famille('cf_plafond', period)
+        eligibilite_base = famille("cf_eligibilite_base", period)
+        eligibilite_dom = famille("cf_eligibilite_dom", period)
+        ressources = famille("cf_base_ressources", period)
+        plafond = famille("cf_plafond", period)
 
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
@@ -274,10 +274,10 @@ class cf_majore_avant_cumul(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2014_04_01(famille, period, parameters):
-        eligibilite_base = famille('cf_eligibilite_base', period)
-        eligibilite_dom = famille('cf_eligibilite_dom', period)
-        ressources = famille('cf_base_ressources', period)
-        plafond_majore = famille('cf_majore_plafond', period)
+        eligibilite_base = famille("cf_eligibilite_base", period)
+        eligibilite_dom = famille("cf_eligibilite_dom", period)
+        ressources = famille("cf_base_ressources", period)
+        plafond_majore = famille("cf_majore_plafond", period)
 
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
         cf = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.cf
@@ -305,8 +305,8 @@ class cf_montant(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period):
-        cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', period)
-        cf_majore_avant_cumul = famille('cf_majore_avant_cumul', period)
+        cf_non_majore_avant_cumul = famille("cf_non_majore_avant_cumul", period)
+        cf_majore_avant_cumul = famille("cf_majore_avant_cumul", period)
 
         return max_(cf_non_majore_avant_cumul, cf_majore_avant_cumul)
 
@@ -321,16 +321,16 @@ class cf(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        '''
+        """
         Pour les règles de non-cumul du CF avec les autres prestations, voir notamment les art. L532-1 et L532-2 du CSS
-        '''
-        paje_base = famille('paje_base', period)
-        paje_clca = famille('paje_clca', period)
-        paje_prepare = famille('paje_prepare', period)
-        apje_avant_cumul = famille('apje_avant_cumul', period)
-        ape_avant_cumul = famille('ape_avant_cumul', period)
-        cf_montant = famille('cf_montant', period)
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+        """
+        paje_base = famille("paje_base", period)
+        paje_clca = famille("paje_clca", period)
+        paje_prepare = famille("paje_prepare", period)
+        apje_avant_cumul = famille("apje_avant_cumul", period)
+        ape_avant_cumul = famille("ape_avant_cumul", period)
+        cf_montant = famille("cf_montant", period)
+        residence_mayotte = famille.demandeur.menage("residence_mayotte", period)
 
         cf_brut = (
             not_(paje_base)

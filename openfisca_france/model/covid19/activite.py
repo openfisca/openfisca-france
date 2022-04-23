@@ -15,12 +15,12 @@ class covid_aide_exceptionnelle_tpe_eligible(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2020_03(individu, period):
-        chiffre_d_affaire = individu('rpns_auto_entrepreneur_chiffre_affaires', period)
-        period_1 = period.offset(-1, 'year')
-        chiffre_d_affaire_annee_mois_un_an_avant = individu('rpns_auto_entrepreneur_chiffre_affaires', period_1)
-        chiffre_d_affaire_annee_moyenne_annee_precedente = individu('rpns_auto_entrepreneur_chiffre_affaires', period.last_year, options = [ADD]) / 12
+        chiffre_d_affaire = individu("rpns_auto_entrepreneur_chiffre_affaires", period)
+        period_1 = period.offset(-1, "year")
+        chiffre_d_affaire_annee_mois_un_an_avant = individu("rpns_auto_entrepreneur_chiffre_affaires", period_1)
+        chiffre_d_affaire_annee_moyenne_annee_precedente = individu("rpns_auto_entrepreneur_chiffre_affaires", period.last_year, options = [ADD]) / 12
         chiffre_d_affaire_annee_n_1 = max_(chiffre_d_affaire_annee_mois_un_an_avant, chiffre_d_affaire_annee_moyenne_annee_precedente)
-        return individu('travailleur_non_salarie', period) * (((chiffre_d_affaire - chiffre_d_affaire_annee_n_1) / chiffre_d_affaire_annee_n_1) < -0.5)
+        return individu("travailleur_non_salarie", period) * (((chiffre_d_affaire - chiffre_d_affaire_annee_n_1) / chiffre_d_affaire_annee_n_1) < -0.5)
 
 
 class covid_aide_exceptionnelle_tpe_montant(Variable):
@@ -29,15 +29,15 @@ class covid_aide_exceptionnelle_tpe_montant(Variable):
     label = "Montant de l'aide exceptionnelle pour les TPE pendant la crise sanitaire dûe au COVID-19"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2020-12-31'
+    end = "2020-12-31"
 
     def formula_2020_03(individu, period, parameters):
-        eligibilite_fse = individu('covid_aide_exceptionnelle_tpe_eligible', period)
+        eligibilite_fse = individu("covid_aide_exceptionnelle_tpe_eligible", period)
         plafond_fse = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.covid19.aide_exceptionnelle_tpe.plafond
-        chiffre_d_affaire = individu('rpns_auto_entrepreneur_chiffre_affaires', period)
-        period_1 = period.offset(-1, 'year')
-        chiffre_d_affaire_annee_mois_un_an_avant = individu('rpns_auto_entrepreneur_chiffre_affaires', period_1)
-        chiffre_d_affaire_annee_moyenne_annee_precedente = individu('rpns_auto_entrepreneur_chiffre_affaires', period.last_year, options = [ADD]) / 12
+        chiffre_d_affaire = individu("rpns_auto_entrepreneur_chiffre_affaires", period)
+        period_1 = period.offset(-1, "year")
+        chiffre_d_affaire_annee_mois_un_an_avant = individu("rpns_auto_entrepreneur_chiffre_affaires", period_1)
+        chiffre_d_affaire_annee_moyenne_annee_precedente = individu("rpns_auto_entrepreneur_chiffre_affaires", period.last_year, options = [ADD]) / 12
         chiffre_d_affaire_annee_n_1 = max_(chiffre_d_affaire_annee_mois_un_an_avant, chiffre_d_affaire_annee_moyenne_annee_precedente)
         difference_chiffre_d_affaire = chiffre_d_affaire - chiffre_d_affaire_annee_n_1
         return eligibilite_fse * (difference_chiffre_d_affaire < 0) * min_(plafond_fse, -difference_chiffre_d_affaire)
@@ -51,7 +51,7 @@ class covid_activite_partielle_eligible(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
-        return individu('salaire_de_base', period) != 0
+        return individu("salaire_de_base", period) != 0
 
 
 class covid_activite_partielle_montant(Variable):
@@ -66,12 +66,12 @@ class covid_activite_partielle_montant(Variable):
         ]
 
     def formula_2020_03(individu, period, parameters):
-        '''
+        """
         Il s'agit de l'indemnité et pas de l'allocation (somme que doit verser l'entreprise au salarié et pas la somme que l'Etat verse à l'entreprise.
-        '''
-        eligibilite_activite_partielle = individu('covid_activite_partielle_eligible', period)
-        heures = individu('heures_remunerees_volume', period)
-        salaire_horaire = individu('salaire_de_base', period) / heures
+        """
+        eligibilite_activite_partielle = individu("covid_activite_partielle_eligible", period)
+        heures = individu("heures_remunerees_volume", period)
+        salaire_horaire = individu("salaire_de_base", period) / heures
         indemnite_ap = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.covid19.indemnite_ap
         indemnite_horaire = max(
             indemnite_ap.taux * salaire_horaire,
