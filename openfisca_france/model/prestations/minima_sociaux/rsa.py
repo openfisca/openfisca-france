@@ -636,8 +636,8 @@ class rsa_condition_nationalite(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2009_06_01(individu, period, parameters):
-        fr = individu("nationalite", period) == b'FR'
-        ressortissant_suisse = individu("nationalite", period) == b'CH'
+        fr = individu("nationalite", period) == b"FR"
+        ressortissant_suisse = individu("nationalite", period) == b"CH"
         ressortissant_eee = individu("ressortissant_eee", period)
 
         duree_possession_titre_sejour = individu("duree_possession_titre_sejour", period)
@@ -651,7 +651,7 @@ class rsa_condition_nationalite(Variable):
     # RMI
     def formula(individu, period, parameters):
         ressortissant_eee = individu("ressortissant_eee", period)
-        ressortissant_suisse = individu("nationalite", period) == b'CH'
+        ressortissant_suisse = individu("nationalite", period) == b"CH"
         duree_possession_titre_sejour = individu("duree_possession_titre_sejour", period)
         duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi.rmi_cond.duree_min_titre_sejour
         return or_(ressortissant_eee, ressortissant_suisse, duree_possession_titre_sejour >= duree_min_titre_sejour)

@@ -31,7 +31,7 @@ class garantie_pret_etudiant_condition_nationalite(Variable):
     reference = "https://www.service-public.fr/particuliers/vosdroits/F986"
 
     def formula_2021_02_19(individu, period, parameters):
-        nationalite_francaise = individu("nationalite", period) == b'FR'
+        nationalite_francaise = individu("nationalite", period) == b"FR"
 
         ressortissant_eee = individu("ressortissant_eee", period)
         residence_continue_annees = individu("residence_continue_annees", period)

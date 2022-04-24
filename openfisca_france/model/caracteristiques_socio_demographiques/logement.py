@@ -114,7 +114,7 @@ class residence_guadeloupe(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage("depcom", period)
-        return startswith(depcom, b'971')
+        return startswith(depcom, b"971")
 
 
 class residence_martinique(Variable):
@@ -125,7 +125,7 @@ class residence_martinique(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage("depcom", period)
-        return startswith(depcom, b'972')
+        return startswith(depcom, b"972")
 
 
 class residence_guyane(Variable):
@@ -136,7 +136,7 @@ class residence_guyane(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage("depcom", period)
-        return startswith(depcom, b'973')
+        return startswith(depcom, b"973")
 
 
 class residence_reunion(Variable):
@@ -147,7 +147,7 @@ class residence_reunion(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage("depcom", period)
-        return startswith(depcom, b'974')
+        return startswith(depcom, b"974")
 
 
 class residence_saint_pierre_et_miquelon(Variable):
@@ -158,7 +158,7 @@ class residence_saint_pierre_et_miquelon(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage("depcom", period)
-        return startswith(depcom, b'975')
+        return startswith(depcom, b"975")
 
 
 class residence_mayotte(Variable):
@@ -169,7 +169,7 @@ class residence_mayotte(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage("depcom", period)
-        return startswith(depcom, b'976')
+        return startswith(depcom, b"976")
 
 
 class residence_saint_bartelemy(Variable):
@@ -180,7 +180,7 @@ class residence_saint_bartelemy(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage("depcom", period)
-        return startswith(depcom, b'977')
+        return startswith(depcom, b"977")
 
 
 class residence_saint_martin(Variable):
@@ -191,7 +191,7 @@ class residence_saint_martin(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage("depcom", period)
-        return startswith(depcom, b'978')
+        return startswith(depcom, b"978")
 
 
 class TypesLieuResidence(Enum):

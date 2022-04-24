@@ -6,9 +6,10 @@ import tokenize
 
 
 SINGLE_QUOTE_DOCSTRING_RE = re.compile(
-    r"""^'''(?P<content>.*?)'''$""",
+    r"""^(?P<prefix>[furbFURB]*)'''(?P<content>.*?)'''$""",
     re.DOTALL)
-SINGLE_QUOTE_STRING_RE = re.compile(r"""^'(?P<content>[^"].*)'$""")
+SINGLE_QUOTE_STRING_RE = re.compile(
+    r"""^(?P<prefix>[furbFURB]*)'(?P<content>[^"]*)'$""")
 
 
 def iterate_tokens(file_path):
@@ -16,10 +17,10 @@ def iterate_tokens(file_path):
         for token in tokenize.generate_tokens(python_file.readline):
             if token.type == tokenize.STRING:
                 token = token._replace(string=SINGLE_QUOTE_DOCSTRING_RE.sub(
-                    '"""\g<content>"""',  # noqa: W605
+                    '\g<prefix>"""\g<content>"""',  # noqa: W605
                     token.string))
                 token = token._replace(string=SINGLE_QUOTE_STRING_RE.sub(
-                    '"\g<content>"',  # noqa: W605
+                    '\g<prefix>"\g<content>"',  # noqa: W605
                     token.string))
             yield token
 

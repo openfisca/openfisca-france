@@ -8,35 +8,35 @@ from openfisca_france.entities import Famille, Menage
 from openfisca_france.model.base import set_input_dispatch_by_period, set_input_divide_by_period
 
 paris_communes_limitrophes = [
-    b'75056',  # Paris
-    b'93001',  # Bagnolet
-    b'93006',  # Boulogne-Billancourt
-    b'94018',  # Charenton-le-Pont
-    b'92024',  # Clichy-la-Garenne
-    b'94033',  # Fontenay-sous-Bois
-    b'94037',  # Gentilly
-    b'92040',  # Issy-les-Moulineaux
-    b'94041',  # Ivry-sur-Seine
-    b'94042',  # Joinville-le-Pont
-    b'94043',  # Le Kremlin-Bicêtre
-    b'93045',  # Les Lilas
-    b'93061',  # Le Pré-Saint-Gervais
-    b'92044',  # Levallois-Perret
-    b'92046',  # Malakoff
-    b'93048',  # Montreuil
-    b'92049',  # Montrouge
-    b'92051',  # Neuilly-sur-Seine
-    b'94052',  # Nogent-sur-Marne
-    b'93055',  # Pantin
-    b'92062',  # Puteaux
-    b'92064',  # Saint-Cloud
-    b'93066',  # Saint-Denis
-    b'94067',  # Saint-Mandé
-    b'94069',  # Saint-Maurice
-    b'93070',  # Saint-Ouen
-    b'92073',  # Suresnes
-    b'92075',  # Vanves
-    b'94080',  # Vincennes
+    b"75056",  # Paris
+    b"93001",  # Bagnolet
+    b"93006",  # Boulogne-Billancourt
+    b"94018",  # Charenton-le-Pont
+    b"92024",  # Clichy-la-Garenne
+    b"94033",  # Fontenay-sous-Bois
+    b"94037",  # Gentilly
+    b"92040",  # Issy-les-Moulineaux
+    b"94041",  # Ivry-sur-Seine
+    b"94042",  # Joinville-le-Pont
+    b"94043",  # Le Kremlin-Bicêtre
+    b"93045",  # Les Lilas
+    b"93061",  # Le Pré-Saint-Gervais
+    b"92044",  # Levallois-Perret
+    b"92046",  # Malakoff
+    b"93048",  # Montreuil
+    b"92049",  # Montrouge
+    b"92051",  # Neuilly-sur-Seine
+    b"94052",  # Nogent-sur-Marne
+    b"93055",  # Pantin
+    b"92062",  # Puteaux
+    b"92064",  # Saint-Cloud
+    b"93066",  # Saint-Denis
+    b"94067",  # Saint-Mandé
+    b"94069",  # Saint-Maurice
+    b"93070",  # Saint-Ouen
+    b"92073",  # Suresnes
+    b"92075",  # Vanves
+    b"94080",  # Vincennes
     ]
 
 

@@ -174,7 +174,7 @@ class asi_aspa_condition_nationalite(Variable):
 
     def formula(individu, period, parameters):
         ressortissant_eee = individu("ressortissant_eee", period)
-        ressortissant_suisse = individu("nationalite", period) == b'CH'
+        ressortissant_suisse = individu("nationalite", period) == b"CH"
         duree_possession_titre_sejour = individu("duree_possession_titre_sejour", period)
         duree_min_titre_sejour = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.duree_min_titre_sejour
 
