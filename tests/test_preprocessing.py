@@ -87,23 +87,23 @@ def test_preprocessing():
     """Tests the result of parameters preprocessing."""
     parameters = tax_benefit_system.parameters
     assert set(parameters.cotsoc.cotisations_employeur.children.keys()) == set([
-        'prive_cadre',
-        'prive_non_cadre',
-        'public_non_titulaire',
-        'public_titulaire_etat',
-        'public_titulaire_hospitaliere',
-        'public_titulaire_militaire',
-        'public_titulaire_territoriale',
+        "prive_cadre",
+        "prive_non_cadre",
+        "public_non_titulaire",
+        "public_titulaire_etat",
+        "public_titulaire_hospitaliere",
+        "public_titulaire_militaire",
+        "public_titulaire_territoriale",
         ]), "Les barèmes de cotisations employeur de certaines catégories de salariés sont manquants"
 
     assert set(parameters.cotsoc.cotisations_salarie.children.keys()) == set([
-        'prive_cadre',
-        'prive_non_cadre',
-        'public_non_titulaire',
-        'public_titulaire_etat',
-        'public_titulaire_hospitaliere',
+        "prive_cadre",
+        "prive_non_cadre",
+        "public_non_titulaire",
+        "public_titulaire_etat",
+        "public_titulaire_hospitaliere",
         # 'public_titulaire_militaire',  FIXME Il y en a sûrement mais pas actuellement
-        'public_titulaire_territoriale',
+        "public_titulaire_territoriale",
         ]), "Les barèmes de cotisations salarié de certaines catégories instant_sde salariés sont manquants"
 
     categorie_salaries = [

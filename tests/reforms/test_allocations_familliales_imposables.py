@@ -50,7 +50,7 @@ def test_af_imposables(simulations, year = 2012, error = 0.01):
 def test_rbg(simulations, year = 2012, error = 0.01):
     actual_simulation, reform_simulation = simulations(year)
     actual_af = actual_simulation.calculate_add("af", year)
-    actual_rbg = actual_simulation.calculate('rbg', year)
-    reform_rbg = reform_simulation.calculate('rbg', year)
+    actual_rbg = actual_simulation.calculate("rbg", year)
+    reform_rbg = reform_simulation.calculate("rbg", year)
 
     assert_near(actual_af + actual_rbg, reform_rbg, absolute_error_margin = error)

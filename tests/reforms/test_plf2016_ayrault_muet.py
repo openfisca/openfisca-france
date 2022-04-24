@@ -28,6 +28,6 @@ def simulations(new_scenario) -> Callable[..., Tuple[Simulation]]:
 
 def test_plf2016_ayrault_muet(simulations, year = 2015):
     actual_simulation, reform_simulation = simulations(year)
-    actual_impots = actual_simulation.calculate('impots_directs', year)
-    reform_impots = reform_simulation.calculate('impots_directs', year)
+    actual_impots = actual_simulation.calculate("impots_directs", year)
+    reform_impots = reform_simulation.calculate("impots_directs", year)
     assert numpy.all(numpy.equal(actual_impots, reform_impots))

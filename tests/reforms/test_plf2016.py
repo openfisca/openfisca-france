@@ -48,6 +48,6 @@ def not_equal(before: numpy.ndarray, after: numpy.ndarray) -> bool:
     )
 def test_plf2016(reform_class, expected, simulations, year = 2015):
     actual_simulation, reform_simulation = simulations(reform_class, year)
-    actual_impots = actual_simulation.calculate('impots_directs', year)
-    reform_impots = reform_simulation.calculate('impots_directs', year)
+    actual_impots = actual_simulation.calculate("impots_directs", year)
+    reform_impots = reform_simulation.calculate("impots_directs", year)
     assert expected(actual_impots, reform_impots)

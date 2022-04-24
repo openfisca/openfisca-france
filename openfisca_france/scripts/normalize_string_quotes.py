@@ -25,8 +25,9 @@ def iterate_tokens(file_path):
             yield token
 
 
-country_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-for path, dirs, files in os.walk(country_dir):
+project_dir = os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))))
+for path, dirs, files in os.walk(project_dir):
     for dir in dirs:
         if dir.startswith("."):
             dirs.remove(dir)

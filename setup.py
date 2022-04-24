@@ -29,7 +29,7 @@ setup(
     license_files = ("LICENSE.AGPL.txt",),
     url = "https://github.com/openfisca/openfisca-france",
     long_description=long_description,
-    long_description_content_type='text/markdown',
+    long_description_content_type="text/markdown",
 
     data_files = [
         (

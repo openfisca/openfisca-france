@@ -18,7 +18,7 @@ def test():
                 count = 3,
                 max = 30000,
                 min = 0,
-                name = 'salaire_de_base',
+                name = "salaire_de_base",
                 ),
             ]],
         period = periods.period(year),
@@ -33,11 +33,11 @@ def test():
 #    reference_simulation = scenario.new_simulation(use_baseline = True)
 #
     reform_simulation = scenario.new_simulation()
-    reform_assiette_csg = reform_simulation.calculate('assiette_csg', period = year)
-    reform_impot_revenu_lps = reform_simulation.calculate('impot_revenu_lps', period = year)
+    reform_assiette_csg = reform_simulation.calculate("assiette_csg", period = year)
+    reform_impot_revenu_lps = reform_simulation.calculate("impot_revenu_lps", period = year)
     assert_near(
         -reform_impot_revenu_lps,
         ((reform_assiette_csg - 10000) * .25 / 30000 + .25) * reform_assiette_csg,
         absolute_error_margin = 0.01,
         )
-    reform_simulation.calculate('revenu_disponible', period = year)
+    reform_simulation.calculate("revenu_disponible", period = year)

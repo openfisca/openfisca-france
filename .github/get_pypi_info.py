@@ -22,10 +22,10 @@ def get_info(package_name: str = "") -> dict:
 
 
 def replace_in_file(filepath: str, info: dict):
-    '''
+    """
     ::filepath:: Path to meta.yaml, with filename
     ::info:: Dict with information to populate
-    '''
+    """
     with open(filepath, "rt") as fin:
         meta = fin.read()
     # Replace with info from PyPi
@@ -37,7 +37,7 @@ def replace_in_file(filepath: str, info: dict):
     print(f"File {filepath} has been updated with informations from PyPi.")  # noqa: T001
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--package", type=str, default="", required=True, help="The name of the package")
     parser.add_argument("-f", "--filename", type=str, default=".conda/meta.yaml", help="Path to meta.yaml, with filename")
