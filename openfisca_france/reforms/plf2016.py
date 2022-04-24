@@ -96,7 +96,7 @@ class plf2016_counterfactual(Reform):
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(Variable):
-        end = ''
+        end = ""
 
         def formula_2015_01_01(foyer_fiscal, period, parameters):
             nb_adult = foyer_fiscal("nb_adult", period)
@@ -193,7 +193,7 @@ class plf2016_counterfactual_2014(Reform):
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(Variable):
-        end = ''
+        end = ""
 
         def formula_2015_01_01(foyer_fiscal, period, parameters):
             nb_adult = foyer_fiscal("nb_adult", period)
