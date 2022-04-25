@@ -1,0 +1,20 @@
+- name: Calcul de l'égibilité et du montant du Contrat d'Engagement Jeune
+  period: 2022-03
+  input:
+    age: [15, 16, 17, 18, 24, 24, 24, 28, 28]
+    handicap: [false, false, false, false, false, false, false, false, true]
+    activite: [inactif, inactif, inactif, actif, inactif, inactif, etudiant, inactif, inactif]
+    salaire_net:
+      2021-12: [0, 0, 0, 200, 0, 0, 0, 0, 0]
+      2022-01: [0, 0, 0, 200, 0, 0, 0, 0, 0]
+      2022-02: [0, 0, 0, 200, 0, 0, 0, 0, 0]
+    rsa:
+      2021-12: [0, 0, 0, 0, 1, 0, 0, 0, 0]
+      2022-01: [0, 0, 0, 0, 1, 0, 0, 0, 0]
+      2022-02: [0, 0, 0, 0, 1, 0, 0, 0, 0]
+    ppa:
+      2021-12: [0, 0, 0, 0, 0, 1, 0, 0, 0]
+      2022-01: [0, 0, 0, 0, 0, 1, 0, 0, 0]
+      2022-02: [0, 0, 0, 0, 0, 1, 0, 0, 0]
+  output:
+    contrat_engagement_jeune: [0,200,200,500,0,0,0,0,500]

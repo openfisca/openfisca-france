@@ -94,7 +94,6 @@ class contrat_engagement_jeune_eligibilite_ressources(Variable):
 
         previous_year = period.start.period('year').offset(-1)
         tranche = individu.foyer_fiscal('ir_tranche', previous_year) <= 1
-
         return (niveau_ressources <= plafond) * sans_rsa * sans_ppa * tranche
 
 
