@@ -7,4 +7,8 @@ metadata:
   unit: /1
   reference:
     2021-02-18:
-      href: https://www.actionlogement.fr/aide-mon-job-mon-logement
+    - href: https://www.actionlogement.fr/aide-mon-job-mon-logement
+      title: Action logement
+    - href: https://www.service-public.fr/particuliers/actualites/A15044
+      title: Mon job mon logement
+  last_review: "2022-04-25"
