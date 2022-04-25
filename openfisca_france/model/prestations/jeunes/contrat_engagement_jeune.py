@@ -1,27 +1,6 @@
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-class contrat_engagement_jeune_neet(Variable):
-    value_type = bool
-    entity = Individu
-    definition_period = MONTH
-    label = "Variable NEET - Ni étudiant, ni employé, ni stagiaire"
-    set_input = set_input_divide_by_period
-    reference = ['https://fr.wikipedia.org/wiki/NEET']
-
-    def formula_2022_03_01(individu, period):
-        not_in_employment = individu('salaire_net', period) == 0
-
-        activite = individu('activite', period)
-        not_in_education = (activite != TypesActivite.etudiant) * (activite != TypesActivite.actif)
-
-        no_indemnites_stage = individu('indemnites_stage', period) == 0
-        no_revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period) == 0
-        not_in_training = no_indemnites_stage * no_revenus_stage_formation_pro
-
-        return not_in_employment * not_in_education * not_in_training
-
-
 class contrat_engagement_jeune_montant(Variable):
     value_type = float
     entity = Individu
@@ -43,7 +22,21 @@ class contrat_engagement_jeune_montant(Variable):
         tranche = individu.foyer_fiscal('ir_tranche', previous_year)
 
         degressivite = majeur * (tranche > 0) * montant_degressivite
-        return (montant.calc(age) - degressivite) * (tranche <= 1)
+        return montant.calc(age) - degressivite
+
+
+class contrat_engagement_jeune_eligbilite_statut(Variable):
+    value_type = bool
+    entity = Individu
+    definition_period = MONTH
+    label = "Éligibilité en fonction du statut au Contrat d'Engagement Jeune"
+    set_input = set_input_dispatch_by_period
+    reference = ["https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/", "https://www.service-public.fr/particuliers/vosdroits/F32700"]
+
+    def formula_2022_03_01(individu, period):
+        activite = individu('activite', period)
+        not_in_education = activite != TypesActivite.etudiant
+        return not_in_education
 
 
 class contrat_engagement_jeune_eligibilite_age(Variable):
@@ -115,7 +108,7 @@ class contrat_engagement_jeune(Variable):
 
     def formula_2022_03_01(individu, period, parameters):
         montant = individu('contrat_engagement_jeune_montant', period)
-        neet = individu('contrat_engagement_jeune_neet', period)
+        statut = individu('contrat_engagement_jeune_eligbilite_statut', period)
         eligibilite_age = individu('contrat_engagement_jeune_eligibilite_age', period)
         eligibilite_ressources = individu('contrat_engagement_jeune_eligibilite_ressources', period)
-        return montant * neet * eligibilite_age * eligibilite_ressources
+        return montant * statut * eligibilite_age * eligibilite_ressources

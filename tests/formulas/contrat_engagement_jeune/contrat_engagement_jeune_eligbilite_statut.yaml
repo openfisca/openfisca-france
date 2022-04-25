@@ -1,0 +1,6 @@
+- name: Calcul de l'éligibilité au Contrat d'Engagement Jeune en fonction du statut
+  period: 2022-03
+  input:
+    activite: [actif, etudiant]
+  output:
+    contrat_engagement_jeune_eligbilite_statut: [true, false]
