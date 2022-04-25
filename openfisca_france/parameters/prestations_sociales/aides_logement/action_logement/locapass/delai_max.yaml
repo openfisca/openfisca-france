@@ -7,4 +7,8 @@ metadata:
   unit: month
   reference:
     2021-01-01:
-      href: https://www.actionlogement.fr/l-avance-loca-pass
+    - href: https://www.actionlogement.fr/l-avance-loca-pass
+      title: Avance Loca-pass
+    - href: https://www.actionlogement.fr/sites/als/files/fiche_avance_agri_loca_pass_nov2020.pdf
+      title: Action logement
+  last_review: "2022-04-25"
