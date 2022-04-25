@@ -11,4 +11,8 @@ metadata:
   unit: ISO 3166-1 alpha-2
   reference:
     2016-01-01:
-      href: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#5
+     - href: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#5
+       title: Visale 5.
+     - href: https://www.legifrance.gouv.fr/dossierlegislatif/JORFDOLE000034371004/
+       title: Ordonnance 2017-52 du 19/01/2017
+  last_review: "2022-04-25"
