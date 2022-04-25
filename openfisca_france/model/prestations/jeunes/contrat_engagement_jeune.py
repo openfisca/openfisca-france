@@ -43,7 +43,7 @@ class contrat_engagement_jeune_montant(Variable):
         tranche = individu.foyer_fiscal('ir_tranche', previous_year)
 
         degressivite = majeur * (tranche > 0) * montant_degressivite
-        return montant.calc(age) - degressivite
+        return (montant.calc(age) - degressivite) * (tranche <= 1)
 
 
 class contrat_engagement_jeune_eligibilite_age(Variable):

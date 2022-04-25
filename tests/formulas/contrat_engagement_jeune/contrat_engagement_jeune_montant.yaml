@@ -1,8 +1,8 @@
 - name: Calcul du montant du Contrat d'Engagement Jeune
   period: 2022-03
   input:
-    age: [24, 24, 16]
+    age: [24, 24, 16, 24]
     salaire_imposable:
-      2021: [24000, 0, 16]
+      2021: [24000, 0, 16, 80000]
   output:
-    contrat_engagement_jeune_montant: [300, 500, 200]
+    contrat_engagement_jeune_montant: [300, 500, 200, 0]
