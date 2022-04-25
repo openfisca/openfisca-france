@@ -1,5 +1,12 @@
 # Changelog
 
+## 116.5.0 [#1843](https://github.com/openfisca/openfisca-france/pull/1843)
+* Correction d'erreurs de législation.
+* Périodes concernées : 2020 à 2022
+* Zones impactées : `parameters/impot_revenu`.
+* Détails :
+  - Dans OFF, l'impôt calculé pour une année N correspond à l'impôt au titre des revenus perçus en N (dont la déclaration se fait en N+1). Autrement dit, la variable `irpp` pour une année N correspond à l'impôt N+1 payé sur les revenus de N. Lors des dernières actualisations, cette convention n'était pas appliquée, avec des paramètres définis notamment pour 2022, alors qu'on ne connait pas encore l'impôt sur les revenus 2022 (qui sera codifié dans la loi de finances pour 2023). Cette PR corrige ceci pour les paramètres qui avaient une valeur en 2022 (mais possible que cette erreur concerne aussi des paramètres dont la dernière valeur est en 2021 ou avant, mais pas checké ce point).
+
 ## 116.4.0 [#1827](https://github.com/openfisca/openfisca-france/pull/1827)
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/03/2022

@@ -29,10 +29,8 @@ values:
   2019-01-01:
     value: 1990
   2020-01-01:
-    value: 1286
-  2021-01-01:
     value: 1289
-  2022-01-01:
+  2021-01-01:
     value: 1307
 metadata:
   unit: currency
