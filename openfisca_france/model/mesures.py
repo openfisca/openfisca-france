@@ -159,7 +159,7 @@ class plus_values_base_large(Variable):
         Attention, on n'ajoute pas en revanche 3SA car de notre compréhension, il s'agit de plus-values qui avaient bénéficié
         de reports d'imposition, report qui a expiré. Ce qui veut dire que ces revenus n'avaient pas été imposés lors de leur
         réalisation (ils le sont maintenant), mais avaient été comptés dans le RFR. Donc, il s'agit de revenus qui ne font pas parti
-        du revenu courant de cette année. 
+        du revenu courant de cette année.
         Attention : pour les variables de 'revenu_categoriel_plus_values' ajoutées, elles peuvent représenter des montants nets, alors qu'il faudrait le brut. Améliorer ce point
         '''
 
