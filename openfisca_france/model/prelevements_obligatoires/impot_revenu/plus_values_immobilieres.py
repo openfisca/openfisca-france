@@ -71,15 +71,15 @@ from openfisca_france.model.base import *
 class ir_pv_immo(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Impôt sur le revenu afférent à la plus-value immobilière"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042908474/"
+    label = 'Impôt sur le revenu afférent à la plus-value immobilière'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042908474/'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        """
+        '''
         Impôt sur le revenu afférent à la plus-value immobilière (CGI, art. 150 U, 150 UC-I et 150 UD)
-        """
-        f3vz = foyer_fiscal("f3vz", period)
+        '''
+        f3vz = foyer_fiscal('f3vz', period)
         pv_immo = parameters(period).impot_revenu.calcul_impot_revenu.pv.pv_immo
         impo = pv_immo.taux * f3vz
 

@@ -20,7 +20,7 @@ def test_charge_loyer():
                 count = 10,
                 max = 30000,
                 min = 0,
-                name = "salaire_de_base",
+                name = 'salaire_de_base',
                 ),
             ]],
         period = periods.period(year),
@@ -37,11 +37,11 @@ def test_charge_loyer():
     reform_simulation = scenario.new_simulation()
     absolute_error_margin = 0.01
 
-    reform_charge_loyer = reform_simulation.calculate("charge_loyer", period = year)
+    reform_charge_loyer = reform_simulation.calculate('charge_loyer', period = year)
     assert_near(reform_charge_loyer, [1000] * 10, absolute_error_margin = absolute_error_margin)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)

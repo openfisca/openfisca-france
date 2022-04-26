@@ -11,7 +11,7 @@ def test_average_tax_rate():
         axes = [[
             dict(
                 count = 100,
-                name = "salaire_imposable",
+                name = 'salaire_imposable',
                 max = 24000,
                 min = 0,
                 ),
@@ -20,8 +20,8 @@ def test_average_tax_rate():
         parent1 = dict(age = 40),
         ).new_simulation()
     assert (average_rate(
-        target = simulation.calculate("revenu_disponible", period = year),
-        varying = simulation.calculate("revenu_disponible", period = year),
+        target = simulation.calculate('revenu_disponible', period = year),
+        varying = simulation.calculate('revenu_disponible', period = year),
         ) == 0).all()
 
 
@@ -31,7 +31,7 @@ def test_marginal_tax_rate():
         axes = [[
             dict(
                 count = 10000,
-                name = "salaire_imposable",
+                name = 'salaire_imposable',
                 max = 1000000,
                 min = 0,
                 ),
@@ -40,12 +40,12 @@ def test_marginal_tax_rate():
         parent1 = dict(age = 40),
         ).new_simulation()
     assert (marginal_rate(
-        target = simulation.calculate("revenu_disponible", period = year),
-        varying = simulation.calculate("revenu_disponible", period = year),
+        target = simulation.calculate('revenu_disponible', period = year),
+        varying = simulation.calculate('revenu_disponible', period = year),
         ) == 0).all()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)

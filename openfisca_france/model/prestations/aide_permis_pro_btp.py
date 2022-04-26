@@ -6,13 +6,13 @@ class aide_permis_pro_btp(Variable):
     value_type = float
     entity = Individu
     label = "Montant de l'aide au permis B PRO BTP"
-    reference = "https://www.probtp.com/part/apprenti/aide-permis.html"
+    reference = 'https://www.probtp.com/part/apprenti/aide-permis.html'
     definition_period = MONTH
 
     def formula(individu, period, parameters):
         params = parameters(period).prestations_sociales.aides_jeunes.aide_permis_pro_btp
 
-        rfr = individu.foyer_fiscal("rfr", period.this_year)
+        rfr = individu.foyer_fiscal('rfr', period.this_year)
         montant = select(
             [
                 rfr <= params.plafonds.premier_echelon,
@@ -27,9 +27,9 @@ class aide_permis_pro_btp(Variable):
             default=0
             )
 
-        age = individu("age", period)
+        age = individu('age', period)
         eligibilite_age = (params.age.minimum <= age) * (age <= params.age.maximum)
 
-        alternant = individu("alternant", period)
+        alternant = individu('alternant', period)
 
         return eligibilite_age * alternant * montant

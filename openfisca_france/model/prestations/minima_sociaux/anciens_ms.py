@@ -7,22 +7,22 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 class api(Variable):
     value_type = float
     entity = Famille
-    label = "Allocation de parent isolé"
-    reference = "http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
-    end = "2009-05-31"
+    label = 'Allocation de parent isolé'
+    reference = 'http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9',
+    end = '2009-05-31'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
     def formula(famille, period, parameters):
-        """
+        '''
         Allocation de parent isolé
-        """
-        isole = not_(famille("en_couple", period))
-        rsa_forfait_logement = famille("rsa_forfait_logement", period)
-        rsa_base_ressources = famille("rsa_base_ressources", period)
-        af_majoration = famille("af_majoration", period)
-        rsa = famille("rsa", period)
+        '''
+        isole = not_(famille('en_couple', period))
+        rsa_forfait_logement = famille('rsa_forfait_logement', period)
+        rsa_base_ressources = famille('rsa_base_ressources', period)
+        af_majoration = famille('af_majoration', period)
+        rsa = famille('rsa', period)
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
         api = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.api
@@ -43,7 +43,7 @@ class api(Variable):
         #    d’une période de 18 mois suivant l’événement.
         #    Si votre plus jeune enfant à charge a moins de 3 ans, le montant forfaitaire majoré vous est accordé
         #    jusqu'à ses 3 ans.
-        age_en_mois_i = famille.members("age_en_mois", period)
+        age_en_mois_i = famille.members('age_en_mois', period)
         age_en_mois_enfant = famille.min(age_en_mois_i, role = Famille.ENFANT)
         enceinte = (age_en_mois_enfant < 0) * (age_en_mois_enfant > -6)
         # TODO: quel mois mettre ?
@@ -96,15 +96,15 @@ class api(Variable):
 class psa(Variable):
     value_type = float
     entity = Famille
-    label = "Prime de solidarité active"
-    end = "2009-04-30"
-    reference = "http://www.service-public.fr/actualites/001077.html"
+    label = 'Prime de solidarité active'
+    end = '2009-04-30'
+    reference = 'http://www.service-public.fr/actualites/001077.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
     def formula_2009_04(famille, period, parameters):
-        """
+        '''
         Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
         Versement en avril 2009 d’une prime de solidarité active (Psa) aux familles modestes qui ont bénéficié
         en janvier, février ou mars 2009 du Rmi, de l’Api (du Rsa expérimental, du Cav ou du Rma pour
@@ -112,14 +112,14 @@ class psa(Variable):
         ou enfin d’une aide au logement (à condition d’exercer une activité professionnelle et
         d’être âgé de plus de 25 ans ou d’avoir au moins un enfant à charge).
         La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
-        """
+        '''
         rmi = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
-        api = famille("api", period)
-        rsa = famille("rsa", period)
-        af_nbenf = famille("af_nbenf", period)
-        aide_logement = famille("aide_logement", period)
+        api = famille('api', period)
+        rsa = famille('rsa', period)
+        af_nbenf = famille('af_nbenf', period)
+        aide_logement = famille('aide_logement', period)
 
-        personne_en_activite_i = (famille.members("activite", period) == TypesActivite.actif)
+        personne_en_activite_i = (famille.members('activite', period) == TypesActivite.actif)
         parent_en_activite = famille.any(personne_en_activite_i, role = Famille.PARENT)
 
         dummy_api = api > 0
@@ -134,12 +134,12 @@ class rmi(Variable):
     value_type = float
     entity = Famille
     label = "Revenu Minimum d'Insertion"
-    end = "2009-05-31"
+    end = '2009-05-31'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_1988_12(famille, period):
-        activite_i = famille.members("activite", period)
+        activite_i = famille.members('activite', period)
         condition_activite_i = (
             (activite_i != TypesActivite.actif)
             * (activite_i != TypesActivite.etudiant)
@@ -147,9 +147,9 @@ class rmi(Variable):
             )
         condition_activite = famille.any(condition_activite_i)
 
-        rsa_base_ressources = famille("rsa_base_ressources", period)
-        rsa_socle = famille("rsa_socle", period)
-        rsa_forfait_logement = famille("rsa_forfait_logement", period)
+        rsa_base_ressources = famille('rsa_base_ressources', period)
+        rsa_socle = famille('rsa_socle', period)
+        rsa_forfait_logement = famille('rsa_forfait_logement', period)
 
         return condition_activite * max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
         # TODO: Migré lors de la mensualisation. Probablement faux
@@ -158,16 +158,16 @@ class rmi(Variable):
 class rsa_activite(Variable):
     value_type = float
     entity = Famille
-    label = "Revenu de solidarité active - activité"
-    end = "2015-12-31"
+    label = 'Revenu de solidarité active - activité'
+    end = '2015-12-31'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2009_06_01(famille, period):
-        rsa = famille("rsa", period, period)
-        rsa_base_ressources = famille("rsa_base_ressources", period)
-        rsa_socle = famille("rsa_socle", period)
-        rsa_forfait_logement = famille("rsa_forfait_logement", period)
+        rsa = famille('rsa', period, period)
+        rsa_base_ressources = famille('rsa_base_ressources', period)
+        rsa_socle = famille('rsa_socle', period)
+        rsa_forfait_logement = famille('rsa_forfait_logement', period)
         rmi = max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
         return max_(rsa - rmi, 0)
 
@@ -176,18 +176,18 @@ class rsa_activite_individu(Variable):
     value_type = float
     entity = Individu
     label = "Revenu de solidarité active - activité au niveau de l'individu"
-    end = "2015-12-31"
+    end = '2015-12-31'
     definition_period = YEAR
 
     def formula_2009_06_01(individu, period):
-        """
+        '''
         Note: le partage en moitié est un point de législation, pas un choix arbitraire
-        """
+        '''
         janvier = period.first_month
 
-        rsa_activite = individu.famille("rsa_activite", period, options = [ADD])
-        marie = individu("statut_marital", janvier) == 1
-        en_couple = individu.famille("en_couple", janvier)
+        rsa_activite = individu.famille('rsa_activite', period, options = [ADD])
+        marie = individu('statut_marital', janvier) == 1
+        en_couple = individu.famille('en_couple', janvier)
 
         # On partage le rsa_activite entre les parents. Si la personne est mariée et qu'aucun conjoint n'a été déclaré,
         # on divise par 2.

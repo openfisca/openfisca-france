@@ -22,36 +22,36 @@ def init_single_entity(scenario, axes = None, enfants = None, famille = None, fo
         for index, individu in enumerate(group):
             if individu is None:
                 continue
-            id = individu.get("id")
+            id = individu.get('id')
             if id is None:
                 individu = individu.copy()
-                id = "ind{}".format(index + count_so_far)
+                id = 'ind{}'.format(index + count_so_far)
             individus[id] = individu
             if index <= 1:
-                famille_nth.setdefault("parents", []).append(id)
-                foyer_fiscal_nth.setdefault("declarants", []).append(id)
+                famille_nth.setdefault('parents', []).append(id)
+                foyer_fiscal_nth.setdefault('declarants', []).append(id)
                 if index == 0:
-                    menage_nth["personne_de_reference"] = id
+                    menage_nth['personne_de_reference'] = id
                 else:
-                    menage_nth["conjoint"] = id
+                    menage_nth['conjoint'] = id
             else:
-                famille_nth.setdefault("enfants", []).append(id)
-                foyer_fiscal_nth.setdefault("personnes_a_charge", []).append(id)
-                menage_nth.setdefault("enfants", []).append(id)
+                famille_nth.setdefault('enfants', []).append(id)
+                foyer_fiscal_nth.setdefault('personnes_a_charge', []).append(id)
+                menage_nth.setdefault('enfants', []).append(id)
 
         count_so_far += len(group)
-        familles["f{}".format(nth)] = famille_nth
-        foyers_fiscaux["ff{}".format(nth)] = foyer_fiscal_nth
-        menages["m{}".format(nth)] = menage_nth
+        familles['f{}'.format(nth)] = famille_nth
+        foyers_fiscaux['ff{}'.format(nth)] = foyer_fiscal_nth
+        menages['m{}'.format(nth)] = menage_nth
 
     test_data = {
-        "period": period,
-        "familles": familles,
-        "foyers_fiscaux": foyers_fiscaux,
-        "menages": menages,
-        "individus": individus
+        'period': period,
+        'familles': familles,
+        'foyers_fiscaux': foyers_fiscaux,
+        'menages': menages,
+        'individus': individus
         }
     if axes:
-        test_data["axes"] = axes
+        test_data['axes'] = axes
     scenario.init_from_dict(test_data)
     return scenario

@@ -31,7 +31,7 @@ def test_parametric_reform():
         axes = [[
             dict(
                 count = 3,
-                name = "salaire_imposable",
+                name = 'salaire_imposable',
                 max = 100000,
                 min = 0,
                 ),
@@ -41,18 +41,18 @@ def test_parametric_reform():
         )
 
     reference_simulation = scenario.new_simulation(use_baseline = True)
-    assert_near(reference_simulation.calculate("impots_directs", period = simulation_period), [0, -7889.20019531, -23435.52929688],
+    assert_near(reference_simulation.calculate('impots_directs', period = simulation_period), [0, -7889.20019531, -23435.52929688],
         absolute_error_margin = 1)
 
     reform_simulation = scenario.new_simulation()
     assert_near(
-        reform_simulation.calculate("impots_directs", simulation_period),
+        reform_simulation.calculate('impots_directs', simulation_period),
         [0, -13900.20019531, -29446.52929688],
         absolute_error_margin = 1,
         )
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)

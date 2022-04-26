@@ -18,46 +18,46 @@ def build_reform(tax_benefit_system):
     from scipy.optimize import fsolve
 
     Reform = reforms.make_reform(
-        key = "inversion_revenus",
-        name = "Inversion des revenus",
+        key = 'inversion_revenus',
+        name = 'Inversion des revenus',
         reference_tax_benefit_system = tax_benefit_system,
         )
 
     class salaire_imposable_pour_inversion(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = "Salaire imposable utilisé pour remonter au salaire brut"
+        label = 'Salaire imposable utilisé pour remonter au salaire brut'
         definition_period = YEAR
 
     class chomage_imposable_pour_inversion(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = "Autres revenus imposables (chômage, préretraite), utilisé pour l’inversion"
+        label = 'Autres revenus imposables (chômage, préretraite), utilisé pour l’inversion'
         definition_period = YEAR
 
     class retraite_imposable_pour_inversion(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = "Pensions, retraites, rentes connues imposables, utilisé pour l’inversion"
+        label = 'Pensions, retraites, rentes connues imposables, utilisé pour l’inversion'
         definition_period = YEAR
 
     class salaire_de_base(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = "Salaire brut ou traitement indiciaire brut"
-        reference = "http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
+        label = 'Salaire brut ou traitement indiciaire brut'
+        reference = 'http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html'
         definition_period = MONTH
 
         def formula(individu, period, parameters):
-            """Calcule le salaire brut à partir du salaire imposable ou sinon du salaire net.
+            '''Calcule le salaire brut à partir du salaire imposable ou sinon du salaire net.
 
             Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
             Note : le supplément familial de traitement est imposable.
-            """
+            '''
             # Get value for year and divide below.
-            salaire_imposable_pour_inversion = individu.get_holder("salaire_imposable_pour_inversion").get_array(period.this_year)
+            salaire_imposable_pour_inversion = individu.get_holder('salaire_imposable_pour_inversion').get_array(period.this_year)
             if salaire_imposable_pour_inversion is None:
-                salaire_net = individu.get_holder("salaire_net").get_array(period)
+                salaire_net = individu.get_holder('salaire_net').get_array(period)
                 if salaire_net is not None:
                     # Calcule le salaire brut à partir du salaire net par inversion numérique.
                     if (salaire_net == 0).all():
@@ -66,14 +66,14 @@ def build_reform(tax_benefit_system):
 
                     def solve_function(salaire_de_base):
                         return brut_to_target(
-                            target_name = "salaire_net",
+                            target_name = 'salaire_net',
                             period = period,
                             salaire_de_base = salaire_de_base,
                             individu = individu,
                             ) - salaire_net
                     return fsolve(solve_function, salaire_net)
 
-                salaire_imposable_pour_inversion = individu("salaire_imposable_pour_inversion",
+                salaire_imposable_pour_inversion = individu('salaire_imposable_pour_inversion',
                     period, options = [DIVIDE])
 
             # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
@@ -83,7 +83,7 @@ def build_reform(tax_benefit_system):
 
             def solve_function(salaire_de_base):
                 return brut_to_target(
-                    target_name = "salaire_imposable",
+                    target_name = 'salaire_imposable',
                     period = period,
                     salaire_de_base = salaire_de_base,
                     individu = individu,
@@ -171,18 +171,18 @@ def build_reform(tax_benefit_system):
     class chomage_brut(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = "Allocations chômage brutes"
-        reference = "http://vosdroits.service-public.fr/particuliers/N549.xhtml"
+        label = 'Allocations chômage brutes'
+        reference = 'http://vosdroits.service-public.fr/particuliers/N549.xhtml'
         definition_period = MONTH
 
         def formula(individu, period, parameters):
-            """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
-            """
+            '''"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
+            '''
             # Get value for year and divide below.
             chomage_imposable_pour_inversion = individu.get_holder(
-                "chomage_imposable_pour_inversion").get_array(period.this_year)
+                'chomage_imposable_pour_inversion').get_array(period.this_year)
             if chomage_imposable_pour_inversion is None:
-                chomage_net = individu.get_holder("chomage_net").get_array(period)
+                chomage_net = individu.get_holder('chomage_net').get_array(period)
                 if chomage_net is not None:
                     # Calcule les allocations chomage brutes à partir des allocations nettes par inversion numérique.
                     if (chomage_net == 0).all():
@@ -192,14 +192,14 @@ def build_reform(tax_benefit_system):
                     def solve_function(chomage_brut):
                         return brut_to_target(
                             chomage_brut = chomage_brut,
-                            target_name = "chomage_net",
+                            target_name = 'chomage_net',
                             period = period,
                             individu = individu,
                             ) - chomage_net
                     return fsolve(solve_function, chomage_net)
 
                 chomage_imposable_pour_inversion = individu(
-                    "chomage_imposable_pour_inversion", period, options = [DIVIDE])
+                    'chomage_imposable_pour_inversion', period, options = [DIVIDE])
 
             # Calcule les allocations chômage brutes à partir des allocations imposables.
             # taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
@@ -211,7 +211,7 @@ def build_reform(tax_benefit_system):
                 return brut_to_target(
                     chomage_brut = chomage_brut,
                     # taux_csg_remplacement = taux_csg_remplacement,
-                    target_name = "chomage_imposable",
+                    target_name = 'chomage_imposable',
                     period = period,
                     individu = individu,
                     ) - chomage_imposable_pour_inversion
@@ -220,18 +220,18 @@ def build_reform(tax_benefit_system):
     class retraite_brute(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = "Pensions de retraite brutes"
-        reference = "http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
+        label = 'Pensions de retraite brutes'
+        reference = 'http://vosdroits.service-public.fr/particuliers/N20166.xhtml'
         definition_period = MONTH
 
         def formula(individu, period, parameters):
-            """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
-            """
+            '''"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
+            '''
             # Get value for year and divide below.
             retraite_imposable_pour_inversion = individu.get_holder(
-                "retraite_imposable_pour_inversion").get_array(period.this_year)
+                'retraite_imposable_pour_inversion').get_array(period.this_year)
             if retraite_imposable_pour_inversion is None:
-                retraite_nette = individu.get_holder("retraite_nette").get_array(period)
+                retraite_nette = individu.get_holder('retraite_nette').get_array(period)
                 if retraite_nette is not None:
                     # Calcule les pensions de retraite brutes à partir des pensions nettes par inversion numérique.
                     if (retraite_nette == 0).all():
@@ -240,7 +240,7 @@ def build_reform(tax_benefit_system):
 
                     def solve_function(retraite_brute):
                         return brut_to_target(
-                            target_name = "retraite_nette",
+                            target_name = 'retraite_nette',
                             period = period,
                             retraite_brute = retraite_brute,
                             individu = individu,
@@ -248,10 +248,10 @@ def build_reform(tax_benefit_system):
                     return fsolve(solve_function, retraite_nette)
 
                 retraite_imposable_pour_inversion = individu(
-                    "retraite_imposable_pour_inversion", period, options = [DIVIDE])
+                    'retraite_imposable_pour_inversion', period, options = [DIVIDE])
 
             # Calcule les pensions de retraite brutes à partir des pensions imposables.
-            taux_csg_remplacement = individu("taux_csg_remplacement", period)
+            taux_csg_remplacement = individu('taux_csg_remplacement', period)
             if (retraite_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
                 return retraite_imposable_pour_inversion
@@ -260,7 +260,7 @@ def build_reform(tax_benefit_system):
                 return brut_to_target(
                     retraite_brute = retraite_brute,
                     taux_csg_remplacement = taux_csg_remplacement,
-                    target_name = "retraite_imposable",
+                    target_name = 'retraite_imposable',
                     period = period,
                     individu = individu,
                     ) - retraite_imposable_pour_inversion

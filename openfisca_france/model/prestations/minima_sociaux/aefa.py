@@ -3,7 +3,7 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 
 
 class aefa(Variable):
-    """
+    '''
     Aide exceptionelle de fin d'année (prime de Noël)
     Instituée en 1998
     Apparaît sous le nom de complément de rmi dans les ERF
@@ -17,28 +17,28 @@ class aefa(Variable):
     de reprise d'activité, de l'allocation équivalent retraite (allocataire AER), du revenu de solidarité active
     (Bénéficiaires RSA), de l'allocation de parent isolé (API), du revenu minimum d'insertion (RMI), de l’Allocation
     pour la Création ou la Reprise d'Entreprise (ACCRE-ASS) ou encore allocation chômage.
-    """
+    '''
     value_type = float
     entity = Famille
     label = "Aide exceptionelle de fin d'année (prime de Noël)"
-    reference = "https://www.service-public.fr/particuliers/vosdroits/F1325"
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F1325'
     definition_period = YEAR
 
     def formula_2002_01_01(famille, period, parameters):
-        rsa = famille("rsa", period, options = [ADD])
-        ass_i = famille.members("ass", period, options = [ADD])
+        rsa = famille('rsa', period, options = [ADD])
+        ass_i = famille.members('ass', period, options = [ADD])
         ass = famille.sum(ass_i)
-        api = famille("api", period, options = [ADD])
-        aer_i = famille.members("aer", period, options = [ADD])
+        api = famille('api', period, options = [ADD])
+        aer_i = famille.members('aer', period, options = [ADD])
         aer = famille.sum(aer_i)
         condition = (ass > 0) + (aer > 0) + (api > 0) + (rsa > 0)
         condition_majoration = rsa > 0
 
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
         janvier = period.first_month
-        af_nbenf = famille("af_nbenf", janvier)
-        nb_parents = famille("nb_parents", janvier)
-        if hasattr(af, "age3"):
+        af_nbenf = famille('af_nbenf', janvier)
+        nb_parents = famille('nb_parents', janvier)
+        if hasattr(af, 'age3'):
             nbPAC = nb_enf(famille, janvier, af.af_cm.age1, af.af_cm.age3)
         else:
             nbPAC = af_nbenf

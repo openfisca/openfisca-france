@@ -4,14 +4,14 @@ from openfisca_france.model.base import *
 class cheque_energie_unites_consommation(Variable):
     entity = Menage
     value_type = float
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=1EA40CA7787AF90A95D1E1B3155D9028.tplgfr29s_1?idArticle=LEGIARTI000032497834&cidTexte=LEGITEXT000023983208&dateTexte=20160511"
-    label = "Unités de consommation du ménage pour le calcul du chèque Énergie"
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=1EA40CA7787AF90A95D1E1B3155D9028.tplgfr29s_1?idArticle=LEGIARTI000032497834&cidTexte=LEGITEXT000023983208&dateTexte=20160511'
+    label = 'Unités de consommation du ménage pour le calcul du chèque Énergie'
     definition_period = YEAR
 
     def formula_2017(menage, period, parameters):
         uc = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.unites_consommation
         nb_personnes = menage.nb_persons()
-        gardes_alternees = menage.sum(menage.members("garde_alternee", period.first_month))
+        gardes_alternees = menage.sum(menage.members('garde_alternee', period.first_month))
 
         nb_personnes_ajuste = nb_personnes - 0.5 * gardes_alternees
         return (
@@ -26,17 +26,17 @@ class cheque_energie_eligibilite_logement(Variable):
     value_type = bool
     reference = [
         "Article L124-1 du Code de l'énergie",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=5AB50D02153C9CB753729850314A2E17.tplgfr29s_1?idArticle=LEGIARTI000031057544&cidTexte=LEGITEXT000023983208&dateTexte=20180314",
-        "Article LO6314-3 du Code général des collectivités territoriales",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6A3717E70623B148432581CC8F585C5F.tplgfr31s_1?idArticle=LEGIARTI000006394061&cidTexte=LEGITEXT000006070633&dateTexte=20180316",
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=5AB50D02153C9CB753729850314A2E17.tplgfr29s_1?idArticle=LEGIARTI000031057544&cidTexte=LEGITEXT000023983208&dateTexte=20180314',
+        'Article LO6314-3 du Code général des collectivités territoriales',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6A3717E70623B148432581CC8F585C5F.tplgfr31s_1?idArticle=LEGIARTI000006394061&cidTexte=LEGITEXT000006070633&dateTexte=20180316',
         ]
-    label = "Éligibilité du logement occupé au chèque énergie"
+    label = 'Éligibilité du logement occupé au chèque énergie'
     definition_period = YEAR
     set_input = set_input_dispatch_by_period
 
     def formula_2017(menage, period, parameters):
-        statut_occupation_logement = menage("statut_occupation_logement", period.first_month)
-        residence_saint_martin = menage("residence_saint_martin", period.first_month)
+        statut_occupation_logement = menage('statut_occupation_logement', period.first_month)
+        residence_saint_martin = menage('residence_saint_martin', period.first_month)
 
         return (
             not_(residence_saint_martin) * (
@@ -53,17 +53,17 @@ class cheque_energie_montant(Variable):
     entity = Menage
     value_type = float
     reference = [
-        "https://www.legifrance.gouv.fr/eli/decret/2016/5/6/DEVR1604032D/jo/article_1",
-        "https://www.legifrance.gouv.fr/eli/arrete/2018/12/26/TRER1832961A/jo/texte",
+        'https://www.legifrance.gouv.fr/eli/decret/2016/5/6/DEVR1604032D/jo/article_1',
+        'https://www.legifrance.gouv.fr/eli/arrete/2018/12/26/TRER1832961A/jo/texte',
         ]
-    label = "Montant du chèque énergie"
+    label = 'Montant du chèque énergie'
     definition_period = YEAR
 
     def formula_2017(menage, period, parameters):
         baremes = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.baremes
 
-        uc_menage = menage("cheque_energie_unites_consommation", period)
-        rfr = menage.sum(menage.members.foyer_fiscal("rfr", period.n_2), role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        uc_menage = menage('cheque_energie_unites_consommation', period)
+        rfr = menage.sum(menage.members.foyer_fiscal('rfr', period.n_2), role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         ressources_par_uc = rfr / uc_menage
 
@@ -77,28 +77,28 @@ class cheque_energie_montant(Variable):
 class cheque_energie(Variable):
     entity = Menage
     value_type = float
-    reference = "https://chequeenergie.gouv.fr"
-    label = "Montant auquel le ménage peut prétendre au titre du chèque energie"
+    reference = 'https://chequeenergie.gouv.fr'
+    label = 'Montant auquel le ménage peut prétendre au titre du chèque energie'
     definition_period = YEAR
     set_input = set_input_divide_by_period
 
     def formula_2017(menage, period):
-        eligible = menage("cheque_energie_eligibilite_logement", period)
-        declarant = menage.sum(menage.members("age", period.first_month) * 0 + 1, role = FoyerFiscal.DECLARANT) > 0  # une colocation de personnes à la charge de leurs parents n'est pas éligible aux chèques énergie, par exemple
-        montant = menage("cheque_energie_montant", period.this_year)
+        eligible = menage('cheque_energie_eligibilite_logement', period)
+        declarant = menage.sum(menage.members('age', period.first_month) * 0 + 1, role = FoyerFiscal.DECLARANT) > 0  # une colocation de personnes à la charge de leurs parents n'est pas éligible aux chèques énergie, par exemple
+        montant = menage('cheque_energie_montant', period.this_year)
         return declarant * eligible * montant
 
 
 class aide_exceptionnelle_cheque_energie(Variable):
     entity = Menage
     value_type = float
-    label = "Aide exceptionnelle de 100 euros pour les personnes bénéficiaires du chèque énergie"
+    label = 'Aide exceptionnelle de 100 euros pour les personnes bénéficiaires du chèque énergie'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = "2021-12-31"
+    end = '2021-12-31'
 
     def formula_2021_12_01(menage, period, parameters):
-        cheque_energie = menage("cheque_energie", period.this_year)
+        cheque_energie = menage('cheque_energie', period.this_year)
         montant_aide = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.aide_exceptionnelle
 
         return montant_aide * (cheque_energie > 0)

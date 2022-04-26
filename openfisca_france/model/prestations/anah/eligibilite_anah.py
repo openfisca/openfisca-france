@@ -3,10 +3,10 @@ from openfisca_france.model.base import *
 
 class TypesEligibiliteANAH(Enum):
     # Needed to preserve the enum order in Python 2
-    __order__ = "a_verifier modestes tres_modeste"
-    a_verifier = "A vérifier"
-    modestes = "Modestes"
-    tres_modeste = "Très modestes"
+    __order__ = 'a_verifier modestes tres_modeste'
+    a_verifier = 'A vérifier'
+    modestes = 'Modestes'
+    tres_modeste = 'Très modestes'
 
 
 class eligibilite_anah(Variable):
@@ -18,9 +18,9 @@ class eligibilite_anah(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        in_idf = menage("residence_ile_de_france", period.first_month)
+        in_idf = menage('residence_ile_de_france', period.first_month)
 
-        rfr_declarants_principaux_du_menage = menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * menage.members.foyer_fiscal("rfr", period.n_2)
+        rfr_declarants_principaux_du_menage = menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * menage.members.foyer_fiscal('rfr', period.n_2)
         rfr = menage.sum(rfr_declarants_principaux_du_menage)
 
         nb_members = menage.nb_persons()

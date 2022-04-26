@@ -6,19 +6,19 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 class ars(Variable):
     value_type = float
     entity = Famille
-    label = "Allocation de rentrée scolaire"
-    reference = "http://vosdroits.service-public.fr/particuliers/F1878.xhtml"
+    label = 'Allocation de rentrée scolaire'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F1878.xhtml'
     definition_period = YEAR
 
     def formula(famille, period, parameters):
-        """
+        '''
         Allocation de rentrée scolaire brute de CRDS
-        """
+        '''
         janvier = period.first_month
-        octobre = period.start.offset("first-of", "year").offset(9, "month").period("month")
-        decembre = period.start.offset("first-of", "year").offset(11, "month").period("month")
-        af_nbenf = famille("af_nbenf", octobre)
-        base_ressources = famille("prestations_familiales_base_ressources", janvier)
+        octobre = period.start.offset('first-of', 'year').offset(9, 'month').period('month')
+        decembre = period.start.offset('first-of', 'year').offset(11, 'month').period('month')
+        af_nbenf = famille('af_nbenf', octobre)
+        base_ressources = famille('prestations_familiales_base_ressources', janvier)
         ars = parameters(octobre).prestations_sociales.prestations_familiales.education_presence_parentale.ars
         # TODO: convention sur la mensualisation
 
@@ -38,8 +38,8 @@ class ars(Variable):
         enf_primaire = nb_enf(famille, decembre, ars.ars_cond.age_entree_primaire, ars.ars_cond.age_entree_college - 1)
         enf_college = nb_enf(famille, decembre, ars.ars_cond.age_entree_college, ars.ars_cond.age_entree_lycee - 1)
         enf_lycee_moins_18_ans_decembre = nb_enf(famille, decembre, ars.ars_cond.age_entree_lycee, ars.ars_cond.age_sortie_lycee - 1)
-        age_en_mois_decembre_i = famille.members("age_en_mois", decembre)
-        autonomie_financiere_i = famille.members("autonomie_financiere", decembre)
+        age_en_mois_decembre_i = famille.members('age_en_mois', decembre)
+        autonomie_financiere_i = famille.members('autonomie_financiere', decembre)
         enf_lycee_eligible_18_ans_decembre = famille.sum(
             ((age_en_mois_decembre_i <= 12 * ars.ars_cond.age_sortie_lycee + 2) * (age_en_mois_decembre_i >= 12 * ars.ars_cond.age_sortie_lycee) * not_(autonomie_financiere_i)),
             role = Famille.ENFANT

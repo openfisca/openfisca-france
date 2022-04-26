@@ -15,7 +15,7 @@ def simulations(new_scenario) -> Callable[..., Tuple[Simulation]]:
             count = 2,
             _max = 18000,
             _min = 0,
-            name = "salaire_imposable",
+            name = 'salaire_imposable',
             year = year,
             people = 1,
             )
@@ -27,15 +27,15 @@ def simulations(new_scenario) -> Callable[..., Tuple[Simulation]]:
 
 def test_plf2015_impots_directs(simulations, year = 2013, error = 1):
     actual_simulation, reform_simulation = simulations(year)
-    actual_impots = actual_simulation.calculate("impots_directs", year)
-    reform_impots = reform_simulation.calculate("impots_directs", year)
+    actual_impots = actual_simulation.calculate('impots_directs', year)
+    reform_impots = reform_simulation.calculate('impots_directs', year)
     assert max(abs([0, -869] - actual_impots)) < error
     assert max(abs([0, -911.4 + (1135 - 911.4)] - reform_impots)) < error
 
 
 def test_plf2015_ir_plaf_qf(simulations, year = 2013, error = 1):
     actual_simulation, reform_simulation = simulations(year)
-    actual_ir_plaf_qf = actual_simulation.calculate("ir_plaf_qf", year)
-    reform_ir_plaf_qf = reform_simulation.calculate("ir_plaf_qf", year)
+    actual_ir_plaf_qf = actual_simulation.calculate('ir_plaf_qf', year)
+    reform_ir_plaf_qf = reform_simulation.calculate('ir_plaf_qf', year)
     assert max(abs([0, 918] - actual_ir_plaf_qf)) < error
     assert max(abs([0, 911.4] - reform_ir_plaf_qf)) < error

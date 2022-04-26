@@ -9,7 +9,7 @@ from openfisca_core.periods import Instant
 class inactif(Variable):
     value_type = bool
     entity = Famille
-    label = "Parent inactif (PAJE-CLCA)"
+    label = 'Parent inactif (PAJE-CLCA)'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -17,7 +17,7 @@ class inactif(Variable):
 class partiel1(Variable):
     value_type = bool
     entity = Famille
-    label = "Parent actif à moins de 50% (PAJE-CLCA)"
+    label = 'Parent actif à moins de 50% (PAJE-CLCA)'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -25,7 +25,7 @@ class partiel1(Variable):
 class partiel2(Variable):
     value_type = bool
     entity = Famille
-    label = "Parent actif entre 50% et 80% (PAJE-CLCA)"
+    label = 'Parent actif entre 50% et 80% (PAJE-CLCA)'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -33,7 +33,7 @@ class partiel2(Variable):
 class opt_colca(Variable):
     value_type = bool
     entity = Famille
-    label = "Opte pour le COLCA"
+    label = 'Opte pour le COLCA'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -41,7 +41,7 @@ class opt_colca(Variable):
 class empl_dir(Variable):
     value_type = bool
     entity = Famille
-    label = "Emploi direct (CLCMG)"
+    label = 'Emploi direct (CLCMG)'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -49,7 +49,7 @@ class empl_dir(Variable):
 class ass_mat(Variable):
     value_type = bool
     entity = Famille
-    label = "Assistante maternelle (CLCMG)"
+    label = 'Assistante maternelle (CLCMG)'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -57,7 +57,7 @@ class ass_mat(Variable):
 class gar_dom(Variable):
     value_type = bool
     entity = Famille
-    label = "Garde à domicile (CLCMG)"
+    label = 'Garde à domicile (CLCMG)'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -65,31 +65,31 @@ class gar_dom(Variable):
 class paje(Variable):
     value_type = float
     entity = Famille
-    label = "PAJE - Ensemble des prestations"
-    reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje"
+    label = 'PAJE - Ensemble des prestations'
+    reference = 'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2017_04(famille, period):
-        """
+        '''
         Prestation d'accueil du jeune enfant
-        """
-        paje_base = famille("paje_base", period)
-        paje_naissance = famille("paje_naissance", period)
-        paje_prepare = famille("paje_prepare", period)
-        paje_cmg = famille("paje_cmg", period)
+        '''
+        paje_base = famille('paje_base', period)
+        paje_naissance = famille('paje_naissance', period)
+        paje_prepare = famille('paje_prepare', period)
+        paje_cmg = famille('paje_cmg', period)
 
         return paje_base + (paje_naissance + paje_prepare + paje_cmg)
 
     def formula_2004_01_01(famille, period):
-        """
+        '''
         Prestation d'accueil du jeune enfant
-        """
-        paje_base = famille("paje_base", period)
-        paje_naissance = famille("paje_naissance", period)
-        paje_clca = famille("paje_clca", period)
-        paje_cmg = famille("paje_cmg", period)
-        paje_colca = famille("paje_colca", period)
+        '''
+        paje_base = famille('paje_base', period)
+        paje_naissance = famille('paje_naissance', period)
+        paje_clca = famille('paje_clca', period)
+        paje_cmg = famille('paje_cmg', period)
+        paje_colca = famille('paje_colca', period)
 
         return paje_base + (paje_naissance + paje_clca + paje_cmg + paje_colca)
 
@@ -98,15 +98,15 @@ class paje_base(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = "Allocation de base de la PAJE"
-    reference = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
+    label = 'Allocation de base de la PAJE'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F2552.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2004(famille, period, parameters):
-        couple_biactif = famille("biactivite", period)
-        parent_isole = not_(famille("en_couple", period))
-        nombre_enfants = famille("af_nbenf", period)
+        couple_biactif = famille('biactivite', period)
+        parent_isole = not_(famille('en_couple', period))
+        nombre_enfants = famille('af_nbenf', period)
         paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
@@ -184,10 +184,10 @@ class paje_base(Variable):
                 )
             return plafond
 
-        a_un_enfant_eligible = famille.any(famille.members("enfant_eligible_paje", period))
-        date_plus_jeune = famille.reduce(famille.members("date_naissance", period), maximum, datetime64("1066-01-01"))
-        sujet_a_reforme_2014 = date_plus_jeune >= datetime64("2014-04-01")
-        sujet_a_reforme_2018 = date_plus_jeune >= datetime64("2018-04-01")
+        a_un_enfant_eligible = famille.any(famille.members('enfant_eligible_paje', period))
+        date_plus_jeune = famille.reduce(famille.members('date_naissance', period), maximum, datetime64('1066-01-01'))
+        sujet_a_reforme_2014 = date_plus_jeune >= datetime64('2014-04-01')
+        sujet_a_reforme_2018 = date_plus_jeune >= datetime64('2018-04-01')
         ne_avant_avril_2014 = True
 
         plafond_taux_partiel = select(
@@ -205,7 +205,7 @@ class paje_base(Variable):
             [montant_taux_plein_apres_2018, montant_taux_plein_2014_2018, montant_taux_plein_avant_2014]
             )
 
-        ressources = famille("prestations_familiales_base_ressources", period)
+        ressources = famille('prestations_familiales_base_ressources', period)
         montant_taux_partiel = montant_taux_plein / 2
 
         montant = (
@@ -220,13 +220,13 @@ class paje_base(Variable):
 class enfant_eligible_paje(Variable):
     value_type = bool
     entity = Individu
-    label = "Enfant ouvrant droit à la PAJE de base"
+    label = 'Enfant ouvrant droit à la PAJE de base'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        age = individu("age", period)
-        autonomie_financiere = individu("autonomie_financiere", period)
+        age = individu('age', period)
+        autonomie_financiere = individu('autonomie_financiere', period)
         age_limite = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje.paje_cm.age_limite_enfant_adopte_non
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
@@ -238,28 +238,28 @@ class paje_naissance(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = "Allocation de naissance de la PAJE"
-    reference = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
+    label = 'Allocation de naissance de la PAJE'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F2550.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2018_04_01(famille, period, parameters):
-        """
+        '''
         Prestation d'accueil du jeune enfant - Allocation de naissance
         Références législatives :git
         https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737121&dateTexte=&categorieLien=cid
-        """
-        af_nbenf = famille("af_nbenf", period)
-        base_ressources = famille("prestations_familiales_base_ressources", period)
-        isole = not_(famille("en_couple", period))
-        biactivite = famille("biactivite", period)
+        '''
+        af_nbenf = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period)
+        isole = not_(famille('en_couple', period))
+        biactivite = famille('biactivite', period)
         paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
         prime_naissance = round(100 * paje.paje_cm2.montant.prime_naissance * bmaf) / 100
 
         # Versée au 7ème mois de grossesse
-        diff_mois_naissance_periode_i = (famille.members("date_naissance", period).astype("datetime64[M]") - datetime64(period.start, "M"))
-        nb_enfants_eligibles = famille.sum(diff_mois_naissance_periode_i.astype("int") == 2, role = Famille.ENFANT)
+        diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
+        nb_enfants_eligibles = famille.sum(diff_mois_naissance_periode_i.astype('int') == 2, role = Famille.ENFANT)
 
         nbenf = af_nbenf + nb_enfants_eligibles  # Ajouter les enfants à naître
 
@@ -284,15 +284,15 @@ class paje_naissance(Variable):
         return prime_naissance * eligible_prime_naissance * nb_enfants_eligibles
 
     def formula_2014_04_01(famille, period, parameters):
-        """
+        '''
         Prestation d'accueil du jeune enfant - Allocation de naissance
         Références législatives :git
         https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737121&dateTexte=&categorieLien=cid
-        """
-        af_nbenf = famille("af_nbenf", period)
-        base_ressources = famille("prestations_familiales_base_ressources", period)
-        isole = not_(famille("en_couple", period))
-        biactivite = famille("biactivite", period)
+        '''
+        af_nbenf = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period)
+        isole = not_(famille('en_couple', period))
+        biactivite = famille('biactivite', period)
         paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         fam_bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf
 
@@ -302,8 +302,8 @@ class paje_naissance(Variable):
         prime_naissance = round(100 * paje.paje_cm2.montant.prime_naissance * bmaf) / 100
 
         # Versée au 7ème mois de grossesse
-        diff_mois_naissance_periode_i = (famille.members("date_naissance", period).astype("datetime64[M]") - datetime64(period.start, "M"))
-        nb_enfants_eligibles = famille.sum(diff_mois_naissance_periode_i.astype("int") == 2, role = Famille.ENFANT)
+        diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
+        nb_enfants_eligibles = famille.sum(diff_mois_naissance_periode_i.astype('int') == 2, role = Famille.ENFANT)
 
         nbenf = af_nbenf + nb_enfants_eligibles  # Ajouter les enfants à naître
 
@@ -320,13 +320,13 @@ class paje_naissance(Variable):
         return prime_naissance * eligible_prime_naissance * nb_enfants_eligibles
 
     def formula_2004_01_01(famille, period, parameters):
-        """
+        '''
         Prestation d'accueil du jeune enfant - Allocation de naissance
-        """
-        af_nbenf = famille("af_nbenf", period)
-        base_ressources = famille("prestations_familiales_base_ressources", period)
-        isole = not_(famille("en_couple", period))
-        biactivite = famille("biactivite", period)
+        '''
+        af_nbenf = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period)
+        isole = not_(famille('en_couple', period))
+        biactivite = famille('biactivite', period)
         paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         fam_bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf
 
@@ -336,8 +336,8 @@ class paje_naissance(Variable):
         nais_prime = round(100 * paje.paje_cm2.montant.prime_naissance * bmaf) / 100
 
         # Versée au 7ème mois de grossesse
-        diff_mois_naissance_periode_i = (famille.members("date_naissance", period).astype("datetime64[M]") - datetime64(period.start, "M"))
-        nb_enfants_eligibles = famille.sum(diff_mois_naissance_periode_i.astype("int") == 2, role = Famille.ENFANT)
+        diff_mois_naissance_periode_i = (famille.members('date_naissance', period).astype('datetime64[M]') - datetime64(period.start, 'M'))
+        nb_enfants_eligibles = famille.sum(diff_mois_naissance_periode_i.astype('int') == 2, role = Famille.ENFANT)
 
         nbenf = af_nbenf + nb_enfants_eligibles  # Ajouter le/les enfants à naître
 
@@ -366,8 +366,8 @@ class paje_prepare(Variable):
     value_type = float
     entity = Famille
     set_input = set_input_divide_by_period
-    label = "Prestation Partagée d’éducation de l’Enfant (PreParE)"
-    reference = "https://www.service-public.fr/particuliers/vosdroits/F32485"
+    label = 'Prestation Partagée d’éducation de l’Enfant (PreParE)'
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F32485'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -376,17 +376,17 @@ class paje_cmg(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = "PAJE - Complément de libre choix du mode de garde"
+    label = 'PAJE - Complément de libre choix du mode de garde'
     set_input = set_input_divide_by_period
     reference = [
-        "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=C92307A93BE5F694EB49FE51DC09602C.tplgfr29s_1?idArticle=LEGIARTI000031500755&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte="
+        'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=C92307A93BE5F694EB49FE51DC09602C.tplgfr29s_1?idArticle=LEGIARTI000031500755&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte='
         ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2017_04_01(famille, period, parameters):
-        """
+        '''
         Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
 
         Les conditions
@@ -408,24 +408,24 @@ class paje_cmg(Variable):
         Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut,
         soit au max 45,00 €.
         Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
-        """
+        '''
         # Récupération des données
 
-        inactif = famille("inactif", period)
-        partiel1 = famille("partiel1", period)
-        nombre_enfants = famille("af_nbenf", period)
-        base_ressources = famille("prestations_familiales_base_ressources", period.first_month)
-        emploi_direct = famille("empl_dir", period)
-        assistant_maternel = famille("ass_mat", period)
-        garde_a_domicile = famille("gar_dom", period)
-        paje_prepare = famille("paje_prepare", period)
+        inactif = famille('inactif', period)
+        partiel1 = famille('partiel1', period)
+        nombre_enfants = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
+        emploi_direct = famille('empl_dir', period)
+        assistant_maternel = famille('ass_mat', period)
+        garde_a_domicile = famille('gar_dom', period)
+        paje_prepare = famille('paje_prepare', period)
         paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
-        aah_i = famille.members("aah", period)
+        aah_i = famille.members('aah', period)
         aah = famille.sum(aah_i)
 
-        etudiant_i = famille.members("etudiant", period)
+        etudiant_i = famille.members('etudiant', period)
         parent_etudiant = famille.any(etudiant_i, role = Famille.PARENT)
 
     # condition de revenu minimal
@@ -497,7 +497,7 @@ class paje_cmg(Variable):
         return paje_cmg
 
     def formula_2004_01_01(famille, period, parameters):
-        """
+        '''
         Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
 
         Les conditions
@@ -524,29 +524,29 @@ class paje_cmg(Variable):
         Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut,
         soit au max 45,00 €.
         Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
-        """
-        en_couple = famille("en_couple", period)
-        af_nbenf = famille("af_nbenf", period)
-        base_ressources = famille("prestations_familiales_base_ressources", period.first_month)
-        empl_dir = famille("empl_dir", period)
-        ass_mat = famille("ass_mat", period)
-        gar_dom = famille("gar_dom", period)
-        paje_clca_taux_partiel = famille("paje_clca_taux_partiel", period)
-        paje_clca_taux_plein = famille("paje_clca_taux_plein", period)
+        '''
+        en_couple = famille('en_couple', period)
+        af_nbenf = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
+        empl_dir = famille('empl_dir', period)
+        ass_mat = famille('ass_mat', period)
+        gar_dom = famille('gar_dom', period)
+        paje_clca_taux_partiel = famille('paje_clca_taux_partiel', period)
+        paje_clca_taux_plein = famille('paje_clca_taux_plein', period)
         paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
-        P_n_2_af = parameters(period.offset(-2, "year")).prestations_sociales.prestations_familiales.bmaf
+        P_n_2_af = parameters(period.offset(-2, 'year')).prestations_sociales.prestations_familiales.bmaf
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
-        aah_i = famille.members("aah", period)
+        aah_i = famille.members('aah', period)
         aah = famille.sum(aah_i)
 
-        etudiant_i = famille.members("etudiant", period)
+        etudiant_i = famille.members('etudiant', period)
         parent_etudiant = famille.any(etudiant_i, role = Famille.PARENT)
 
-        salaire_imposable_i = famille.members("salaire_imposable", period)
+        salaire_imposable_i = famille.members('salaire_imposable', period)
         salaire_imposable = famille.sum(salaire_imposable_i, role = Famille.PARENT)
 
-        hsup_i = famille.members("hsup", period)
+        hsup_i = famille.members('hsup', period)
         hsup = famille.sum(hsup_i, role = Famille.PARENT)
 
         # condition de revenu minimal
@@ -624,13 +624,13 @@ class ape_avant_cumul(Variable):
     value_type = float
     entity = Famille
     label = "Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE"
-    end = "2003-12-31"
+    end = '2003-12-31'
     reference = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        """
+        '''
         Allocation parentale d'éducation
 
         L’allocation parentale d’éducation s’adresse aux parents qui souhaitent arrêter ou
@@ -657,10 +657,10 @@ class ape_avant_cumul(Variable):
 
         L'allocation parentale d'éducation n'est pas soumise à condition de ressources, sauf l’APE à taux partiel pour
         les professions non salariées.
-        """
-        inactif = famille("inactif", period)
-        partiel1 = famille("partiel1", period)
-        partiel2 = famille("partiel2", period)
+        '''
+        inactif = famille('inactif', period)
+        partiel1 = famille('partiel1', period)
+        partiel2 = famille('partiel2', period)
         ape = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.ape
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
 
@@ -687,22 +687,22 @@ class apje_avant_cumul(Variable):
     value_type = float
     entity = Famille
     label = "Allocation pour le jeune enfant, avant prise en compte de la non-cumulabilité avec le CF et l'APE"
-    end = "2003-12-31"
-    reference = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
+    end = '2003-12-31'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F2552.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        """
+        '''
         Allocation pour jeune enfant
-        """
-        base_ressources = famille("prestations_familiales_base_ressources", period.first_month)
-        biactivite = famille("biactivite", period, options = [ADD])
-        isole = not_(famille("en_couple", period))
+        '''
+        base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
+        biactivite = famille('biactivite', period, options = [ADD])
+        isole = not_(famille('en_couple', period))
 
         Papje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.apje
         Paf = parameters(period).prestations_sociales.prestations_familiales.bmaf
-        P_n_2 = parameters(period.start.offset(-2, "year")).prestations_sociales.prestations_familiales.bmaf
+        P_n_2 = parameters(period.start.offset(-2, 'year')).prestations_sociales.prestations_familiales.bmaf
 
         # TODO: APJE courte voir doc ERF 2006
         nbenf = nb_enf(famille, period, 0, Papje.age_limite_enfants_ouvrant_droit_apje - 1)
@@ -733,18 +733,18 @@ class ape(Variable):
     value_type = float
     entity = Famille
     label = "Allocation parentale d'éducation"
-    end = "2003-12-31"
+    end = '2003-12-31'
     reference = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(famille, period):
-        """
+        '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
-        """
-        apje_avant_cumul = famille("apje_avant_cumul", period)
-        ape_avant_cumul = famille("ape_avant_cumul", period)
-        cf_montant = famille("cf_montant", period)
+        '''
+        apje_avant_cumul = famille('apje_avant_cumul', period)
+        ape_avant_cumul = famille('ape_avant_cumul', period)
+        cf_montant = famille('cf_montant', period)
 
         ape = (apje_avant_cumul < ape_avant_cumul) * (cf_montant < ape_avant_cumul) * ape_avant_cumul
         return round(ape, 2)
@@ -753,17 +753,17 @@ class ape(Variable):
 class apje(Variable):
     value_type = float
     entity = Famille
-    label = "Allocation pour le jeune enfant"
-    end = "2003-12-31"
-    reference = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
+    label = 'Allocation pour le jeune enfant'
+    end = '2003-12-31'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F2552.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula(famille, period):
         # L'APJE n'est pas cumulable avec le complément familial et l'APE
-        apje_avant_cumul = famille("apje_avant_cumul", period)
-        ape_avant_cumul = famille("ape_avant_cumul", period)
-        cf_montant = famille("cf_montant", period)
+        apje_avant_cumul = famille('apje_avant_cumul', period)
+        ape_avant_cumul = famille('ape_avant_cumul', period)
+        cf_montant = famille('cf_montant', period)
 
         apje = (cf_montant < apje_avant_cumul) * (ape_avant_cumul < apje_avant_cumul) * apje_avant_cumul
         return round(apje, 2)
@@ -774,13 +774,13 @@ class paje_clca(Variable):
     value_type = float
     entity = Famille
     label = "PAJE - Complément de libre choix d'activité - remplacée par paje_prepare à partir de 04/2017"
-    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
+    reference = 'http://vosdroits.service-public.fr/particuliers/F313.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = "2017-04-01"
+    end = '2017-04-01'
 
     def formula_2004(famille, period, parameters):
-        """
+        '''
         Prestation d'accueil du jeune enfant - Complément de libre choix d'activité
         'fam'
 
@@ -799,12 +799,12 @@ class paje_clca(Variable):
                     par mois et un revenu professionnel mensuel ne dépassant pas (smic_8.27*169*136 %)
 
         http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/paje
-        """
-        af_nbenf = famille("af_nbenf", period)
-        paje_base = famille("paje_base", period)
-        inactif = famille("inactif", period)
-        partiel1 = famille("partiel1", period)
-        partiel2 = famille("partiel2", period)
+        '''
+        af_nbenf = famille('af_nbenf', period)
+        paje_base = famille('paje_base', period)
+        inactif = famille('inactif', period)
+        partiel1 = famille('partiel1', period)
+        partiel2 = famille('partiel2', period)
 
         paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
@@ -819,7 +819,7 @@ class paje_clca(Variable):
         # Calcul de l'année et mois de naissance du cadet
         # TODO: ajuster en fonction de la cessation des IJ etc
 
-        age_en_mois_i = famille.members("age_en_mois", period)
+        age_en_mois_i = famille.members('age_en_mois', period)
         age_m_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
 
         condition1 = (af_nbenf == 1) * (age_m_benjamin >= 0) * (age_m_benjamin < paje.paje_clca.duree1)
@@ -847,15 +847,15 @@ class paje_clca(Variable):
 class paje_clca_taux_plein(Variable):
     value_type = bool
     entity = Famille
-    label = "Indicatrice Clca taux plein"
-    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
+    label = 'Indicatrice Clca taux plein'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F313.xhtml'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    end = "2017-04-01"
+    end = '2017-04-01'
 
     def formula_2004_01_01(famille, period):
-        paje_clca = famille("paje_clca", period)
-        inactif = famille("inactif", period)
+        paje_clca = famille('paje_clca', period)
+        inactif = famille('inactif', period)
 
         return (paje_clca > 0) * inactif
 
@@ -863,15 +863,15 @@ class paje_clca_taux_plein(Variable):
 class paje_clca_taux_partiel(Variable):
     value_type = bool
     entity = Famille
-    label = "Indicatrice Clca taux partiel"
-    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
+    label = 'Indicatrice Clca taux partiel'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F313.xhtml'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    end = "2017-04-01"
+    end = '2017-04-01'
 
     def formula_2004_01_01(famille, period):
-        paje_clca = famille("paje_clca", period)
-        partiel1 = famille("partiel1", period)
+        paje_clca = famille('paje_clca', period)
+        partiel1 = famille('partiel1', period)
 
         return (paje_clca > 0) * partiel1
 
@@ -884,23 +884,23 @@ class paje_colca(Variable):
     entity = Famille
     label = "PAJE - Complément optionnel de libre choix d'activité"
     set_input = set_input_divide_by_period
-    reference = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
+    reference = 'http://vosdroits.service-public.fr/particuliers/F15110.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = "2017-04-01"
+    end = '2017-04-01'
 
     def formula_2004_01_01(famille, period, parameters):
-        """
+        '''
         Prestation d'accueil du jeune enfant - Complément optionnel de libre choix du mode de garde
-        """
-        af_nbenf = famille("af_nbenf", period)
-        opt_colca = famille("opt_colca", period)
-        paje_base = famille("paje_base", period)
+        '''
+        af_nbenf = famille('af_nbenf', period)
+        opt_colca = famille('opt_colca', period)
+        paje_base = famille('paje_base', period)
 
         paje = parameters(period).prestations_sociales.prestations_familiales.petite_enfance.paje
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
-        age_en_mois_i = famille.members("age_en_mois", period)
+        age_en_mois_i = famille.members('age_en_mois', period)
         age_m_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
 
         condition = (age_m_benjamin < 12 * paje.paje_clca.colca.age) * (age_m_benjamin >= 0)

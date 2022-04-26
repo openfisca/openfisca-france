@@ -9,7 +9,7 @@ DOUBLE_QUOTE_DOCSTRING_RE = re.compile(
     r'''^(?P<prefix>[furbFURB]*)"""(?P<content>.*?)"""$''',
     re.DOTALL)
 DOUBLE_QUOTE_STRING_RE = re.compile(
-    r"""^(?P<prefix>[furbFURB]*)"(?P<content>[^']*)"$""")
+    r'''^(?P<prefix>[furbFURB]*)"(?P<content>[^']*)"$''')
 # SINGLE_QUOTE_DOCSTRING_RE = re.compile(
 #     r"""^(?P<prefix>[furbFURB]*)'''(?P<content>.*?)'''$""",
 #     re.DOTALL)

@@ -12,26 +12,26 @@ COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class FranceTaxBenefitSystem(TaxBenefitSystem):
-    """French tax benefit system"""
-    CURRENCY = "€"
-    DATA_SOURCES_DIR = os.path.join(COUNTRY_DIR, "data", "sources")
+    '''French tax benefit system'''
+    CURRENCY = '€'
+    DATA_SOURCES_DIR = os.path.join(COUNTRY_DIR, 'data', 'sources')
     preprocess_parameters = staticmethod(preprocessing.preprocess_parameters)
 
-    REFORMS_DIR = os.path.join(COUNTRY_DIR, "reformes")
+    REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
 
     def __init__(self):
         TaxBenefitSystem.__init__(self, entities)
 
-        param_dir = os.path.join(COUNTRY_DIR, "parameters")
+        param_dir = os.path.join(COUNTRY_DIR, 'parameters')
         self.load_parameters(param_dir)
 
-        self.add_variables_from_directory(os.path.join(COUNTRY_DIR, "model"))
+        self.add_variables_from_directory(os.path.join(COUNTRY_DIR, 'model'))
         self.cache_blacklist = conf_cache_blacklist
 
         self.open_api_config = {
-            "variable_example": "rsa_montant",
-            "parameter_example": "marche_travail.salaire_minimum.smic.smic_b_horaire",
-            "simulation_example": couple,
+            'variable_example': 'rsa_montant',
+            'parameter_example': 'marche_travail.salaire_minimum.smic.smic_b_horaire',
+            'simulation_example': couple,
             }
 
     def prefill_cache(self):

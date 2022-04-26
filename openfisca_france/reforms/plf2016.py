@@ -3,30 +3,30 @@ import os
 from ..model.base import *
 
 
-dir_path = os.path.join(os.path.dirname(__file__), "parameters")
+dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 
 # What if the reform was applied the year before it should
 
 def reform_modify_parameters(parameters):
-    file_path = os.path.join(dir_path, "plf2016.yaml")
-    reform_parameters_subtree = load_parameter_file(name="plf2016", file_path=file_path)
-    parameters.add_child("plf2016", reform_parameters_subtree)
+    file_path = os.path.join(dir_path, 'plf2016.yaml')
+    reform_parameters_subtree = load_parameter_file(name='plf2016', file_path=file_path)
+    parameters.add_child('plf2016', reform_parameters_subtree)
     return parameters
 
 
 class plf2016(Reform):
-    name = "Projet de Loi de Finances 2016 appliquée aux revenus 2014"
+    name = 'Projet de Loi de Finances 2016 appliquée aux revenus 2014'
     # key = 'plf2016'
 
     class decote(Variable):
-        label = "Décote IR 2016 appliquée en 2015 sur revenus 2014"
+        label = 'Décote IR 2016 appliquée en 2015 sur revenus 2014'
         definition_period = YEAR
 
         # This formula is copy-pasted from the reference decote formula, so that we only change the decote formula for 2014
         def formula_2015_01_01(foyer_fiscal, period, parameters):
-            ir_plaf_qf = foyer_fiscal("ir_plaf_qf", period)
-            nb_adult = foyer_fiscal("nb_adult", period)
+            ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+            nb_adult = foyer_fiscal('nb_adult', period)
             decote_seuil_celib = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_celib
             decote_seuil_couple = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_couple
             decote_celib = (ir_plaf_qf < 4 / 3 * decote_seuil_celib) * (decote_seuil_celib - 3 / 4 * ir_plaf_qf)
@@ -35,8 +35,8 @@ class plf2016(Reform):
             return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
         def formula_2014_01_01(foyer_fiscal, period, parameters):
-            ir_plaf_qf = foyer_fiscal("ir_plaf_qf", period)
-            nb_adult = foyer_fiscal("nb_adult", period)
+            ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+            nb_adult = foyer_fiscal('nb_adult', period)
             plf = parameters(period).plf2016
 
             decote_celib = (ir_plaf_qf < plf.decote_seuil_celib) * (plf.decote_seuil_celib - .75 * ir_plaf_qf)
@@ -53,11 +53,11 @@ class plf2016(Reform):
 def counterfactual_modify_parameters(parameters):
     # TODO: inflater les paramètres de la décote le barème de l'IR
     inflation = .001
-    reform_parameters_subtree = ParameterNode("plf2016_conterfactual", data = {
-        "decote_seuil_celib": {"values": {"2015-01-01": {"value": round(1135 * (1 + inflation))}, "2016-01-01": {"value": None}}},
-        "decote_seuil_couple": {"values": {"2015-01-01": {"value": round(1870 * (1 + inflation))}, "2065-01-01": {"value": None}}},
+    reform_parameters_subtree = ParameterNode('plf2016_conterfactual', data = {
+        'decote_seuil_celib': {'values': {'2015-01-01': {'value': round(1135 * (1 + inflation))}, '2016-01-01': {'value': None}}},
+        'decote_seuil_couple': {'values': {'2015-01-01': {'value': round(1870 * (1 + inflation))}, '2065-01-01': {'value': None}}},
         })
-    parameters.add_child("plf2016_conterfactual", reform_parameters_subtree)
+    parameters.add_child('plf2016_conterfactual', reform_parameters_subtree)
     return parameters
 
     # WIP : Nouveaux parametres à actualiser :
@@ -81,27 +81,27 @@ def counterfactual_modify_parameters(parameters):
 
 
 class plf2016_counterfactual(Reform):
-    name = "Contrefactuel du PLF 2016 sur les revenus 2015"
+    name = 'Contrefactuel du PLF 2016 sur les revenus 2015'
     # key = 'plf2016_counterfactual'
 
     class decote(Variable):
-        label = "Décote IR 2015 appliquée sur revenus 2015 (contrefactuel)"
+        label = 'Décote IR 2015 appliquée sur revenus 2015 (contrefactuel)'
         definition_period = YEAR
 
         def formula_2015_01_01(foyer_fiscal, period, parameters):
-            ir_plaf_qf = foyer_fiscal("ir_plaf_qf", period)
+            ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
             decote = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote
             assert decote.seuil == 1016
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(Variable):
-        end = ""
+        end = ''
 
         def formula_2015_01_01(foyer_fiscal, period, parameters):
-            nb_adult = foyer_fiscal("nb_adult", period)
-            nb_parents = foyer_fiscal.declarant_principal.famille("nb_parents", period.first_month)
-            rfr = foyer_fiscal("rfr", period)
+            nb_adult = foyer_fiscal('nb_adult', period)
+            nb_parents = foyer_fiscal.declarant_principal.famille('nb_parents', period.first_month)
+            rfr = foyer_fiscal('rfr', period)
             inflator = 1 + .001 + .005
             # params = parameters(period).impot_revenu.calcul_reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
@@ -116,36 +116,36 @@ class plf2016_counterfactual(Reform):
         definition_period = YEAR
 
         def formula_2013_01_01(foyer_fiscal, period, parameters):
-            accult = foyer_fiscal("accult", period)
-            adhcga = foyer_fiscal("adhcga", period)
-            cappme = foyer_fiscal("cappme", period)
-            creaen = foyer_fiscal("creaen", period)
-            daepad = foyer_fiscal("daepad", period)
-            deffor = foyer_fiscal("deffor", period)
-            dfppce = foyer_fiscal("dfppce", period)
-            doment = foyer_fiscal("doment", period)
-            domlog = foyer_fiscal("domlog", period)
-            donapd = foyer_fiscal("donapd", period)
-            duflot = foyer_fiscal("duflot", period)
-            ecpess = foyer_fiscal("ecpess", period)
-            garext = foyer_fiscal("garext", period)
-            intagr = foyer_fiscal("intagr", period)
-            invfor = foyer_fiscal("invfor", period)
-            invlst = foyer_fiscal("invlst", period)
-            ip_net = foyer_fiscal("ip_net", period)
-            locmeu = foyer_fiscal("locmeu", period)
-            mecena = foyer_fiscal("mecena", period)
-            mohist = foyer_fiscal("mohist", period)
-            patnat = foyer_fiscal("patnat", period)
-            prcomp = foyer_fiscal("prcomp", period)
-            reduction_impot_exceptionnelle = foyer_fiscal("reduction_impot_exceptionnelle", period)
-            repsoc = foyer_fiscal("repsoc", period)
-            resimm = foyer_fiscal("resimm", period)
-            rsceha = foyer_fiscal("rsceha", period)
-            saldom = foyer_fiscal("saldom", period)
-            scelli = foyer_fiscal("scelli", period)
-            sofica = foyer_fiscal("sofica", period)
-            spfcpi = foyer_fiscal("spfcpi", period)
+            accult = foyer_fiscal('accult', period)
+            adhcga = foyer_fiscal('adhcga', period)
+            cappme = foyer_fiscal('cappme', period)
+            creaen = foyer_fiscal('creaen', period)
+            daepad = foyer_fiscal('daepad', period)
+            deffor = foyer_fiscal('deffor', period)
+            dfppce = foyer_fiscal('dfppce', period)
+            doment = foyer_fiscal('doment', period)
+            domlog = foyer_fiscal('domlog', period)
+            donapd = foyer_fiscal('donapd', period)
+            duflot = foyer_fiscal('duflot', period)
+            ecpess = foyer_fiscal('ecpess', period)
+            garext = foyer_fiscal('garext', period)
+            intagr = foyer_fiscal('intagr', period)
+            invfor = foyer_fiscal('invfor', period)
+            invlst = foyer_fiscal('invlst', period)
+            ip_net = foyer_fiscal('ip_net', period)
+            locmeu = foyer_fiscal('locmeu', period)
+            mecena = foyer_fiscal('mecena', period)
+            mohist = foyer_fiscal('mohist', period)
+            patnat = foyer_fiscal('patnat', period)
+            prcomp = foyer_fiscal('prcomp', period)
+            reduction_impot_exceptionnelle = foyer_fiscal('reduction_impot_exceptionnelle', period)
+            repsoc = foyer_fiscal('repsoc', period)
+            resimm = foyer_fiscal('resimm', period)
+            rsceha = foyer_fiscal('rsceha', period)
+            saldom = foyer_fiscal('saldom', period)
+            scelli = foyer_fiscal('scelli', period)
+            sofica = foyer_fiscal('sofica', period)
+            spfcpi = foyer_fiscal('spfcpi', period)
             total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog +\
                 donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
@@ -179,26 +179,26 @@ def counterfactual_2014_modify_parameters(parameters):
 
 
 class plf2016_counterfactual_2014(Reform):
-    name = "Contrefactuel 2014 du PLF 2016 sur les revenus 2015"
-    key = "plf2016_counterfactual_2014"
+    name = 'Contrefactuel 2014 du PLF 2016 sur les revenus 2015'
+    key = 'plf2016_counterfactual_2014'
 
     class decote(Variable):
         definition_period = YEAR
 
         def formula_2015_01_01(foyer_fiscal, period, parameters):
-            ir_plaf_qf = foyer_fiscal("ir_plaf_qf", period)
+            ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
             decote = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote
             assert decote.seuil == 1016
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(Variable):
-        end = ""
+        end = ''
 
         def formula_2015_01_01(foyer_fiscal, period, parameters):
-            nb_adult = foyer_fiscal("nb_adult", period)
-            nb_parents = foyer_fiscal.declarant_principal.famille("nb_parents", period.first_month)
-            rfr = foyer_fiscal("rfr", period)
+            nb_adult = foyer_fiscal('nb_adult', period)
+            nb_parents = foyer_fiscal.declarant_principal.famille('nb_parents', period.first_month)
+            rfr = foyer_fiscal('rfr', period)
             inflator = 1 + .001 + .005
             # params = parameters(period).impot_revenu.calcul_reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
@@ -213,36 +213,36 @@ class plf2016_counterfactual_2014(Reform):
         definition_period = YEAR
 
         def formula_2013_01_01(foyer_fiscal, period, parameters):
-            accult = foyer_fiscal("accult", period)
-            adhcga = foyer_fiscal("adhcga", period)
-            cappme = foyer_fiscal("cappme", period)
-            creaen = foyer_fiscal("creaen", period)
-            daepad = foyer_fiscal("daepad", period)
-            deffor = foyer_fiscal("deffor", period)
-            dfppce = foyer_fiscal("dfppce", period)
-            doment = foyer_fiscal("doment", period)
-            domlog = foyer_fiscal("domlog", period)
-            donapd = foyer_fiscal("donapd", period)
-            duflot = foyer_fiscal("duflot", period)
-            ecpess = foyer_fiscal("ecpess", period)
-            garext = foyer_fiscal("garext", period)
-            intagr = foyer_fiscal("intagr", period)
-            invfor = foyer_fiscal("invfor", period)
-            invlst = foyer_fiscal("invlst", period)
-            ip_net = foyer_fiscal("ip_net", period)
-            locmeu = foyer_fiscal("locmeu", period)
-            mecena = foyer_fiscal("mecena", period)
-            mohist = foyer_fiscal("mohist", period)
-            patnat = foyer_fiscal("patnat", period)
-            prcomp = foyer_fiscal("prcomp", period)
-            reduction_impot_exceptionnelle = foyer_fiscal("reduction_impot_exceptionnelle", period)
-            repsoc = foyer_fiscal("repsoc", period)
-            resimm = foyer_fiscal("resimm", period)
-            rsceha = foyer_fiscal("rsceha", period)
-            saldom = foyer_fiscal("saldom", period)
-            scelli = foyer_fiscal("scelli", period)
-            sofica = foyer_fiscal("sofica", period)
-            spfcpi = foyer_fiscal("spfcpi", period)
+            accult = foyer_fiscal('accult', period)
+            adhcga = foyer_fiscal('adhcga', period)
+            cappme = foyer_fiscal('cappme', period)
+            creaen = foyer_fiscal('creaen', period)
+            daepad = foyer_fiscal('daepad', period)
+            deffor = foyer_fiscal('deffor', period)
+            dfppce = foyer_fiscal('dfppce', period)
+            doment = foyer_fiscal('doment', period)
+            domlog = foyer_fiscal('domlog', period)
+            donapd = foyer_fiscal('donapd', period)
+            duflot = foyer_fiscal('duflot', period)
+            ecpess = foyer_fiscal('ecpess', period)
+            garext = foyer_fiscal('garext', period)
+            intagr = foyer_fiscal('intagr', period)
+            invfor = foyer_fiscal('invfor', period)
+            invlst = foyer_fiscal('invlst', period)
+            ip_net = foyer_fiscal('ip_net', period)
+            locmeu = foyer_fiscal('locmeu', period)
+            mecena = foyer_fiscal('mecena', period)
+            mohist = foyer_fiscal('mohist', period)
+            patnat = foyer_fiscal('patnat', period)
+            prcomp = foyer_fiscal('prcomp', period)
+            reduction_impot_exceptionnelle = foyer_fiscal('reduction_impot_exceptionnelle', period)
+            repsoc = foyer_fiscal('repsoc', period)
+            resimm = foyer_fiscal('resimm', period)
+            rsceha = foyer_fiscal('rsceha', period)
+            saldom = foyer_fiscal('saldom', period)
+            scelli = foyer_fiscal('scelli', period)
+            sofica = foyer_fiscal('sofica', period)
+            spfcpi = foyer_fiscal('spfcpi', period)
             total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog +\
                 donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
