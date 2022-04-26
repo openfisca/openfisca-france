@@ -34,7 +34,7 @@ project_dir = os.path.dirname(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__))))
 for path, dirs, files in os.walk(project_dir):
     for dir in dirs:
-        if dir.startswith('.'):
+        if dir.startswith('.') and dir != '.github':
             dirs.remove(dir)
     for file in files:
         if file.startswith('.') or not file.endswith('.py'):
