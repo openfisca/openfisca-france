@@ -109,7 +109,7 @@ class garantie_jeunes_eligibilite_ressources(Variable):
             'pensions_invalidite',
             'aah',
             'remuneration_apprenti',
-            'chomage_net', # A éclaircir : cette ressource n'est pas mentionné dans la liste des ressources figurant dans la loi, mais plusieurs sites mentionnent leur prise en compte (dont service-public.fr, site de pole emploi)
+            'chomage_net',  # A éclaircir : cette ressource n'est pas mentionné dans la liste des ressources figurant dans la loi, mais plusieurs sites mentionnent leur prise en compte (dont service-public.fr, site de pole emploi)
             ]
 
         # Calcul sur les trois derniers mois (normalement c'est le niveau de ressources moyen le plus faible entre les 3 derniers mois et les 6 derniers mois)
