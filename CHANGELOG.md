@@ -1,5 +1,14 @@
 # Changelog
 
+### 116.6.1 [#1831](https://github.com/openfisca/openfisca-france/pull/1831)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `/model/prelevements_obligatoires/impot_revenu/ir`
+* Détails :
+  - Corrige le calcul de la tranche d'imposition lorsque le plafonnement du quotient familial s'applique
+  - Corrige le calcul du taux marginal d'imposition lorsque le plafonnement du quotient familial s'applique
+
 ## 116.6.0 [#1842](https://github.com/openfisca/openfisca-france/pull/1842)
 * Amélioration technique.
 * Périodes concernées : toutes.
