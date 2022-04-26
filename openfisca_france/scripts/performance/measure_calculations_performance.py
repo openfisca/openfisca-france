@@ -1,11 +1,11 @@
 #! /usr/bin/env python
-"""
+'''
 Measure performance of formula calculations to compare to other OpenFisca implementations.
 
 Usage example:
 
     python openfisca_france/scripts/performance/measure_calculations_performance.py
-"""
+'''
 
 
 import argparse
@@ -49,7 +49,7 @@ def add_member(entity, **variables_value_by_name):
                 assert other_entity.count > 0
                 value_by_name.setdefault(other_entity.index_for_person_variable_name, other_entity.count - 1)
                 role = value_by_name.get(other_entity.role_for_person_variable_name)
-                assert role is not None, "Missing role {} in person arguments: {}".format(
+                assert role is not None, 'Missing role {} in person arguments: {}'.format(
                     other_entity.role_for_person_variable_name, value_by_name)
                 if role >= other_entity.roles_count:
                     other_entity.roles_count = role + 1
@@ -117,7 +117,7 @@ def test_irpp(year, irpp, **variables_value_by_name):
 
 def main():
     parser = argparse.ArgumentParser(description = __doc__)
-    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
+    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = 'increase output verbosity')
     global args
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
@@ -273,5 +273,5 @@ def main():
     test_irpp(2013, -48036, f4ba = 150000)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     sys.exit(main())

@@ -9,8 +9,8 @@ class ass_precondition_remplie(Variable):
     label = "Éligible à l'ASS"
     definition_period = MONTH
     reference = [
-        "Article R5423-1 du Code du travail",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018525084&dateTexte=20190618&categorieLien=cid#LEGIARTI000018525084"
+        'Article R5423-1 du Code du travail',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018525084&dateTexte=20190618&categorieLien=cid#LEGIARTI000018525084'
         ]
     set_input = set_input_dispatch_by_period
 
@@ -19,8 +19,8 @@ class ass(Variable):
     value_type = float
     label = "Montant de l'ASS pour un individu"
     reference = [
-        "https://www.service-public.fr/particuliers/vosdroits/F12484",
-        "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018496266/"
+        'https://www.service-public.fr/particuliers/vosdroits/F12484',
+        'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018496266/'
         ]
     entity = Individu
     definition_period = MONTH
@@ -179,9 +179,9 @@ class ass_eligibilite_cumul_individu(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = [
-        "Article R5425-2 du code du travail",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018496568&dateTexte=",
-        "https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2"
+        'Article R5425-2 du code du travail',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018496568&dateTexte=',
+        'https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2'
         ]
 
     def formula_2017_09_01(individu, period):
@@ -220,8 +220,8 @@ class ass_eligibilite_individu(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = [
-        "Article L5423-1 du code du travail",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006903847&dateTexte=&categorieLien=cid",
+        'Article L5423-1 du code du travail',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006903847&dateTexte=&categorieLien=cid',
         ]
 
     def formula(individu, period, parameters):

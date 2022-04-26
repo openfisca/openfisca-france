@@ -42,8 +42,8 @@ class assurance_vie_pl_anonyme(Variable):
 class prelevement_forfaitaire_liberatoire(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Prelèvement forfaitaire libératoire sur les revenus du capital"
-    reference = "art. 125-0 A du Code Général des Impôts"
+    label = 'Prelèvement forfaitaire libératoire sur les revenus du capital'
+    reference = 'art. 125-0 A du Code Général des Impôts'
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):

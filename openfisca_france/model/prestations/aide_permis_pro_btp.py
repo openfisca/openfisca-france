@@ -6,7 +6,7 @@ class aide_permis_pro_btp(Variable):
     value_type = float
     entity = Individu
     label = "Montant de l'aide au permis B PRO BTP"
-    reference = "https://www.probtp.com/part/apprenti/aide-permis.html"
+    reference = 'https://www.probtp.com/part/apprenti/aide-permis.html'
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -30,6 +30,6 @@ class aide_permis_pro_btp(Variable):
         age = individu('age', period)
         eligibilite_age = (params.age.minimum <= age) * (age <= params.age.maximum)
 
-        alternant = individu("alternant", period)
+        alternant = individu('alternant', period)
 
         return eligibilite_age * alternant * montant

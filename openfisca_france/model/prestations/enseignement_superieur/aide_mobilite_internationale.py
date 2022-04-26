@@ -39,8 +39,8 @@ class aide_mobilite_internationale(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
-        "Circulaire du 8-6-2020 - Modalités d’attribution des bourses d’enseignement supérieur - Annexe 9 : Aide à la mobilité internationale",
-        "https://www.enseignementsup-recherche.gouv.fr/pid20536/bulletin-officiel.html?cid_bo=152353&cbo=1",
+        'Circulaire du 8-6-2020 - Modalités d’attribution des bourses d’enseignement supérieur - Annexe 9 : Aide à la mobilité internationale',
+        'https://www.enseignementsup-recherche.gouv.fr/pid20536/bulletin-officiel.html?cid_bo=152353&cbo=1',
         ]
 
     def formula(individu, period, parameters):

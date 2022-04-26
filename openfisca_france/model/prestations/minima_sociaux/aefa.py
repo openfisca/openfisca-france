@@ -21,7 +21,7 @@ class aefa(Variable):
     value_type = float
     entity = Famille
     label = "Aide exceptionelle de fin d'année (prime de Noël)"
-    reference = "https://www.service-public.fr/particuliers/vosdroits/F1325"
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F1325'
     definition_period = YEAR
 
     def formula_2002_01_01(famille, period, parameters):
@@ -38,7 +38,7 @@ class aefa(Variable):
         janvier = period.first_month
         af_nbenf = famille('af_nbenf', janvier)
         nb_parents = famille('nb_parents', janvier)
-        if hasattr(af, "age3"):
+        if hasattr(af, 'age3'):
             nbPAC = nb_enf(famille, janvier, af.af_cm.age1, af.af_cm.age3)
         else:
             nbPAC = af_nbenf

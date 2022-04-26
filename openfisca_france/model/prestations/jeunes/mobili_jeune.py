@@ -11,7 +11,7 @@ class mobili_jeune(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
+    reference = 'https://www.actionlogement.fr/l-aide-mobili-jeune'
 
     def formula_2012_07(individu, period, parameters):
         loyer = individu.menage('loyer', period)
@@ -35,15 +35,15 @@ class mobili_jeune_eligibilite_employeur(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
+    reference = 'https://www.actionlogement.fr/l-aide-mobili-jeune'
 
     def formula_2012_07(individu, period):
         secteur_prive_non_agricole = (
-            individu("categorie_salarie", period) == TypesCategorieSalarie.prive_non_cadre
+            individu('categorie_salarie', period) == TypesCategorieSalarie.prive_non_cadre
             ) * (
-                individu("secteur_activite_employeur", period) == TypesSecteurActivite.non_agricole
+                individu('secteur_activite_employeur', period) == TypesSecteurActivite.non_agricole
             )
-        contributeur_peec = individu("peec_employeur", period)
+        contributeur_peec = individu('peec_employeur', period)
 
         return secteur_prive_non_agricole * contributeur_peec
 
@@ -54,7 +54,7 @@ class mobili_jeune_eligibilite(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
+    reference = 'https://www.actionlogement.fr/l-aide-mobili-jeune'
     documentation = '''
     Conditions non modélisées :
     Etre locataire d'un logement en proximité géographique avec le lieu de la formation ou de l'entreprise.
@@ -63,15 +63,15 @@ class mobili_jeune_eligibilite(Variable):
     '''
 
     def formula_2012_07(individu, period, parameters):
-        condition_age = individu("age", period) < parameters(period).prestations_sociales.aides_jeunes.mobilite.mobili_jeune.age_maximum
+        condition_age = individu('age', period) < parameters(period).prestations_sociales.aides_jeunes.mobilite.mobili_jeune.age_maximum
 
-        alternant = individu("alternant", period)  # sous contrat d'apprentissage ou de professionnalisation
-        mobili_jeune_eligibilite_employeur = individu("mobili_jeune_eligibilite_employeur", period)
+        alternant = individu('alternant', period)  # sous contrat d'apprentissage ou de professionnalisation
+        mobili_jeune_eligibilite_employeur = individu('mobili_jeune_eligibilite_employeur', period)
 
-        smic_mensuel_brut = individu("smic_proratise", period)
-        condition_remuneration = individu("salaire_de_base", period) <= smic_mensuel_brut
+        smic_mensuel_brut = individu('smic_proratise', period)
+        condition_remuneration = individu('salaire_de_base', period) <= smic_mensuel_brut
 
-        statut_occupation_logement = individu.menage("statut_occupation_logement", period)
+        statut_occupation_logement = individu.menage('statut_occupation_logement', period)
         locataire = (
             (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
             + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)

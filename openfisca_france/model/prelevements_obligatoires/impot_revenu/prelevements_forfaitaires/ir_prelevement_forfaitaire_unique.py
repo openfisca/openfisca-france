@@ -18,7 +18,7 @@ class assurance_vie_pfu_ir_plus6ans_avant1990(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée d'au moins 6 ans pour les contrats souscrits avant le 1er janvier 1990, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
-    reference = "https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197"  # Art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
+    reference = 'https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197'  # Art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
     definition_period = YEAR
 
 
@@ -26,7 +26,7 @@ class assurance_vie_pfu_ir_moins4ans_1990_19970926(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée de moins de 4 ans pour les contrats souscrits entre le 1er janvier 1990 et le 26 septembre 1997, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
-    reference = "https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197"  # Art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
+    reference = 'https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197'  # Art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
     definition_period = YEAR
 
 
@@ -41,7 +41,7 @@ class assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
-    reference = "https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197"  # Art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
+    reference = 'https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197'  # Art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
     definition_period = YEAR
 
 
@@ -56,12 +56,12 @@ class assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 4 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
-    reference = "https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197"  # Art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
+    reference = 'https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197'  # Art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
     definition_period = YEAR
 
 
 class f2zz(Variable):
-    cerfa_field = "2ZZ"
+    cerfa_field = '2ZZ'
     value_type = float
     entity = FoyerFiscal
     label = "Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
@@ -102,7 +102,7 @@ class assurance_vie_pfu_ir(Variable):
 class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenus des valeurs et capitaux mobiliers soumis au prélèvement forfaitaire unique (partie impôt sur le revenu)"
+    label = 'Revenus des valeurs et capitaux mobiliers soumis au prélèvement forfaitaire unique (partie impôt sur le revenu)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -126,8 +126,8 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
 class plus_values_prelevement_forfaitaire_unique_ir(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Plus-values soumises au prélèvement forfaitaire unique (partie impôt sur le revenu)"
-    reference = "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000036377422/"
+    label = 'Plus-values soumises au prélèvement forfaitaire unique (partie impôt sur le revenu)'
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000036377422/'
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
@@ -157,7 +157,7 @@ class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_eta
     value_type = float
     entity = FoyerFiscal
     label = "Partie du prélèvement forfaitaire unique associée à l'impôt sur le revenu (hors assurance-vie, épargne solidaire et produits venant des états non-coopératifs)"
-    reference = "https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197"  # Art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
+    reference = 'https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197'  # Art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):

@@ -13,7 +13,7 @@ class stage_duree_heures(Variable):
 class stage_gratification_taux(Variable):
     value_type = float
     entity = Individu
-    label = "Taux de gratification (en plafond de la Sécurité sociale)"
+    label = 'Taux de gratification (en plafond de la Sécurité sociale)'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -21,7 +21,7 @@ class stage_gratification_taux(Variable):
 class stage_gratification(Variable):
     value_type = float
     entity = Individu
-    label = "Gratification de stage"
+    label = 'Gratification de stage'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -67,7 +67,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
     value_type = float
     entity = Individu
     label = "Exonération de cotisations employeur sur gratification d'un stagaire"
-    reference = "https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/cas-particuliers--bases-forfaita/le-stagiaire-en-milieu-professio/la-franchise-de-cotisations-et-c.html"
+    reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/cas-particuliers--bases-forfaita/le-stagiaire-en-milieu-professio/la-franchise-de-cotisations-et-c.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -106,8 +106,8 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
 class exoneration_cotisations_salarie_stagiaire(Variable):
     value_type = float
     entity = Individu
-    label = "Exonrérations de cotisations salarié pour un stagiaire"
-    reference = "http://www.apce.com/pid2798/stages.html?espace=3"
+    label = 'Exonrérations de cotisations salarié pour un stagiaire'
+    reference = 'http://www.apce.com/pid2798/stages.html?espace=3'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 

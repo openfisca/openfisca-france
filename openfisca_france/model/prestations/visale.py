@@ -7,7 +7,7 @@ class visale_eligibilite(Variable):
     entity = Menage
     label = "Indique l'éligibilité à une caution Visale"
     definition_period = MONTH
-    reference = "https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/"
+    reference = 'https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/'
 
     # L'extension à toutes les personnes de moins de 30 ans sauf les étudiants boursiers encore rattachés au foyer fiscal de leurs parents a été faite en septembre 2016 : https://www.lemonde.fr/immobilier/article/2016/08/04/location-la-caution-visale-etendue-aux-moins-de-30-ans-au-plus-tard-le-30-septembre_4978567_1306281.html
     # L'extension à toutes les personnes de moins de 30 ans y compris les étudiants boursiers encore rattachés au foyer fiscal de leurs parents a été faite le 19 juin 2018.
@@ -43,10 +43,10 @@ class visale_eligibilite(Variable):
 class visale_montant_max(Variable):
     value_type = float
     entity = Menage
-    label = "Montant maximum du loyer éligible à une caution Visale"
+    label = 'Montant maximum du loyer éligible à une caution Visale'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13"
+    reference = 'https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13'
 
     def formula_2016_01_01(menage, period, parameters):
         '''
@@ -81,7 +81,7 @@ class visale_base_ressources(Variable):
     label = "Revenus pris en compte pour l'éligibilité à la caution Visale"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7"
+    reference = 'https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7'
 
     def formula_2016_01_01(menage, period, parameters):
         '''
@@ -135,7 +135,7 @@ class visale_base_ressources_individuelle(Variable):
     label = "Revenus des individus pris en compte pour l'éligibilité à la caution Visale"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7"
+    reference = 'https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7'
 
     def formula_2016_01_01(individu, period, parameters):
         ressources_individu_mensuelles = [

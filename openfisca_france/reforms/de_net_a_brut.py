@@ -29,7 +29,7 @@ def calculate_net_from(salaire_de_base, individu, period):
 class salaire_de_base(Variable):
     value_type = float
     entity = entities.Individu
-    label = "Salaire brut"
+    label = 'Salaire brut'
     definition_period = MONTH
 
     def formula(individu, period, parameters):

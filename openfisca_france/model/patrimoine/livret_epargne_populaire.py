@@ -31,7 +31,7 @@ class livret_epargne_populaire_eligibilite(Variable):
     value_type = bool
     entity = Individu
     label = "Eligibilité au livret d'épargne populaire"
-    reference = "https://www.service-public.fr/particuliers/vosdroits/F2367"
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F2367'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 

@@ -15,7 +15,7 @@ def modify_parameters(parameters):
 
 
 class charges_deduc(Variable):
-    label = "Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
+    label = 'Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):

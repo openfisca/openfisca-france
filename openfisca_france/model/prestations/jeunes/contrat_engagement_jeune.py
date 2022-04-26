@@ -5,12 +5,11 @@ class contrat_engagement_jeune_montant(Variable):
     value_type = float
     entity = Individu
     definition_period = MONTH
-
     label = "Montant maximal de l'allocation Contrat d'Engagement Jeune"
     set_input = set_input_dispatch_by_period
     reference = [
-        "https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/",
-        "https://www.service-public.fr/particuliers/vosdroits/F32700"
+        'https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/',
+        'https://www.service-public.fr/particuliers/vosdroits/F32700'
         ]
 
     def formula_2022_03_01(individu, period, parameters):
@@ -31,7 +30,7 @@ class contrat_engagement_jeune_eligbilite_statut(Variable):
     definition_period = MONTH
     label = "Éligibilité en fonction du statut au Contrat d'Engagement Jeune"
     set_input = set_input_dispatch_by_period
-    reference = ["https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/", "https://www.service-public.fr/particuliers/vosdroits/F32700"]
+    reference = ['https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/', 'https://www.service-public.fr/particuliers/vosdroits/F32700']
 
     def formula_2022_03_01(individu, period):
         activite = individu('activite', period)
@@ -103,7 +102,7 @@ class contrat_engagement_jeune(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     label = "Montant du Contrat d'Engagement Jeune"
-    reference = ["https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/", "https://www.service-public.fr/particuliers/vosdroits/F32700"]
+    reference = ['https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/', 'https://www.service-public.fr/particuliers/vosdroits/F32700']
 
     def formula_2022_03_01(individu, period, parameters):
         montant = individu('contrat_engagement_jeune_montant', period)

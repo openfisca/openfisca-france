@@ -4,9 +4,9 @@ from openfisca_france.model.base import *
 class TypesEligibiliteANAH(Enum):
     # Needed to preserve the enum order in Python 2
     __order__ = 'a_verifier modestes tres_modeste'
-    a_verifier = "A vérifier"
-    modestes = "Modestes"
-    tres_modeste = "Très modestes"
+    a_verifier = 'A vérifier'
+    modestes = 'Modestes'
+    tres_modeste = 'Très modestes'
 
 
 class eligibilite_anah(Variable):

@@ -6,14 +6,14 @@ from openfisca_france.model.base import *
 class inapte_travail(Variable):
     value_type = bool
     entity = Individu
-    label = "Reconnu inapte au travail"
+    label = 'Reconnu inapte au travail'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 
 class asi_aspa_base_ressources_individu(Variable):
     value_type = float
-    label = "Base ressources individuelle du minimum vieillesse/ASPA"
+    label = 'Base ressources individuelle du minimum vieillesse/ASPA'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -105,7 +105,7 @@ class asi_aspa_base_ressources_individu(Variable):
 
 class asi_aspa_base_ressources(Variable):
     value_type = float
-    label = "Base ressource du minimum vieillesse et assimilés (ASPA)"
+    label = 'Base ressource du minimum vieillesse et assimilés (ASPA)'
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -203,7 +203,7 @@ class asi(Variable):
     label = "Allocation supplémentaire d'invalidité (ASI)"
     entity = Individu
     definition_period = MONTH
-    reference = "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006156277/"
+    reference = 'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006156277/'
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
@@ -285,8 +285,8 @@ class aspa(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = "Allocation de solidarité aux personnes agées"
-    reference = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
+    label = 'Allocation de solidarité aux personnes agées'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F16871.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 

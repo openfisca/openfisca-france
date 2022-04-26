@@ -18,7 +18,7 @@ def simulations(new_scenario) -> Callable[..., Tuple[Simulation]]:
             count = 10,
             _max = 30000,
             _min = 0,
-            name = "salaire_imposable",
+            name = 'salaire_imposable',
             year = year,
             people = 4,
             )
@@ -30,17 +30,17 @@ def simulations(new_scenario) -> Callable[..., Tuple[Simulation]]:
 
 def test_af(simulations, year = 2012, error = 0.01):
     actual_simulation, reform_simulation = simulations(year)
-    actual_af = actual_simulation.calculate_add("af", year)
-    reform_af = reform_simulation.calculate_add("af", year)
+    actual_af = actual_simulation.calculate_add('af', year)
+    reform_af = reform_simulation.calculate_add('af', year)
 
     assert_near(actual_af, reform_af, absolute_error_margin = error)
 
 
 def test_af_imposables(simulations, year = 2012, error = 0.01):
     actual_simulation, reform_simulation = simulations(year)
-    actual_af = actual_simulation.calculate_add("af", year)
+    actual_af = actual_simulation.calculate_add('af', year)
     reform_af_imposables = reform_simulation.calculate(
-        "allocations_familiales_imposables",
+        'allocations_familiales_imposables',
         year,
         )
 
@@ -49,7 +49,7 @@ def test_af_imposables(simulations, year = 2012, error = 0.01):
 
 def test_rbg(simulations, year = 2012, error = 0.01):
     actual_simulation, reform_simulation = simulations(year)
-    actual_af = actual_simulation.calculate_add("af", year)
+    actual_af = actual_simulation.calculate_add('af', year)
     actual_rbg = actual_simulation.calculate('rbg', year)
     reform_rbg = reform_simulation.calculate('rbg', year)
 

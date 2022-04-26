@@ -5,7 +5,7 @@ class date_naissance(Variable):
     value_type = date
     default_value = date(1970, 1, 1)
     entity = Individu
-    label = "Date de naissance"
+    label = 'Date de naissance'
     definition_period = ETERNITY
 
 
@@ -34,7 +34,7 @@ class mineur_emancipe(Variable):
 class adoption(Variable):
     value_type = bool
     entity = Individu
-    label = "Enfant adopté"
+    label = 'Enfant adopté'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -42,7 +42,7 @@ class adoption(Variable):
 class garde_alternee(Variable):
     value_type = bool
     entity = Individu
-    label = "Enfant en garde alternée"
+    label = 'Enfant en garde alternée'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -52,7 +52,7 @@ class plus_haut_diplome_niveau(Variable):
     default_value = TypesNiveauDiplome.non_renseigne
     possible_values = TypesNiveauDiplome  # defined in model/base.py
     entity = Individu
-    label = "Plus haut niveau de diplôme obtenu"
+    label = 'Plus haut niveau de diplôme obtenu'
     definition_period = MONTH
 
 
@@ -66,11 +66,11 @@ class plus_haut_diplome_date_obtention(Variable):
 
 class alternant(Variable):
     value_type = bool
-    label = "En formation en alternance"
+    label = 'En formation en alternance'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = "https://www.service-public.fr/particuliers/vosdroits/N11240"
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/N11240'
 
 
 class niveau_diplome_formation(Variable):
@@ -78,7 +78,7 @@ class niveau_diplome_formation(Variable):
     default_value = TypesNiveauDiplome.non_renseigne
     possible_values = TypesNiveauDiplome  # defined in model/base.py
     entity = Individu
-    label = "Niveau du diplôme en cours de préparation"
+    label = 'Niveau du diplôme en cours de préparation'
     definition_period = MONTH
 
 
@@ -87,7 +87,7 @@ class activite(Variable):
     default_value = TypesActivite.inactif
     possible_values = TypesActivite  # defined in model/base.py
     entity = Individu
-    label = "Activité"
+    label = 'Activité'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -95,7 +95,7 @@ class activite(Variable):
 class enceinte(Variable):
     value_type = bool
     entity = Individu
-    label = "Est enceinte"
+    label = 'Est enceinte'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -105,7 +105,7 @@ class statut_marital(Variable):
     possible_values = TypesStatutMarital  # defined in model/base.py
     default_value = TypesStatutMarital.celibataire
     entity = Individu
-    label = "Statut marital"
+    label = 'Statut marital'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -116,7 +116,7 @@ class statut_marital(Variable):
 
 
 class nbN(Variable):
-    cerfa_field = "N"
+    cerfa_field = 'N'
     value_type = int
     is_period_size_independent = True
     entity = FoyerFiscal
@@ -125,7 +125,7 @@ class nbN(Variable):
 
 
 class nbR(Variable):
-    cerfa_field = "R"
+    cerfa_field = 'R'
     value_type = int
     is_period_size_independent = True
     entity = FoyerFiscal
@@ -134,7 +134,7 @@ class nbR(Variable):
 
 
 class caseE(Variable):
-    cerfa_field = "E"
+    cerfa_field = 'E'
     value_type = bool
     entity = FoyerFiscal
     label = "Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul"
@@ -143,7 +143,7 @@ class caseE(Variable):
 
 
 class caseF(Variable):
-    cerfa_field = "F"
+    cerfa_field = 'F'
     value_type = bool
     entity = FoyerFiscal
     label = "Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)"
@@ -151,7 +151,7 @@ class caseF(Variable):
 
 
 class caseG(Variable):
-    cerfa_field = "G"
+    cerfa_field = 'G'
     value_type = bool
     entity = FoyerFiscal
     label = "Titulaire d'une pension de veuve de guerre"
@@ -164,22 +164,22 @@ class annee_naissance_pac_alterne(Variable):
     value_type = int
     is_period_size_independent = True
     entity = FoyerFiscal
-    label = "Année de naissance des enfants à charge en garde alternée"
+    label = 'Année de naissance des enfants à charge en garde alternée'
     definition_period = YEAR
     # Il s'agit de l'année de naissance associé aux PAC déclarés dans nbH. Il peut y avoir plusieurs années de naissance si nbH>1. On ne le prend pas en compte
 
 
 class caseK(Variable):
-    cerfa_field = "K"
+    cerfa_field = 'K'
     value_type = bool
     entity = FoyerFiscal
-    label = "Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre"
+    label = 'Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre'
     end = '2011-12-31'
     definition_period = YEAR
 
 
 class caseL(Variable):
-    cerfa_field = "L"
+    cerfa_field = 'L'
     value_type = bool
     entity = FoyerFiscal
     label = "Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul (définition depuis 2009) - Un au moins de vos enfants à charge ou rattaché est issu du mariage avec votre conjoint décédé (définition avant 2008)"
@@ -187,7 +187,7 @@ class caseL(Variable):
 
 
 class caseN(Variable):
-    cerfa_field = "N"
+    cerfa_field = 'N'
     value_type = bool
     entity = FoyerFiscal
     label = "Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus"
@@ -195,7 +195,7 @@ class caseN(Variable):
 
 
 class caseP(Variable):
-    cerfa_field = "P"
+    cerfa_field = 'P'
     value_type = bool
     entity = FoyerFiscal
     label = "Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%"
@@ -203,7 +203,7 @@ class caseP(Variable):
 
 
 class caseS(Variable):
-    cerfa_field = "S"
+    cerfa_field = 'S'
     value_type = bool
     entity = FoyerFiscal
     label = "Vous êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre"
@@ -211,7 +211,7 @@ class caseS(Variable):
 
 
 class caseT(Variable):
-    cerfa_field = "T"
+    cerfa_field = 'T'
     value_type = bool
     entity = FoyerFiscal
     label = "Vous êtes parent isolé au 1er janvier de l'année de perception des revenus"
@@ -221,7 +221,7 @@ class caseT(Variable):
 
 
 class caseW(Variable):
-    cerfa_field = "W"
+    cerfa_field = 'W'
     value_type = bool
     entity = FoyerFiscal
     label = "Vous ou votre conjoint (même s'il est décédé), âgés de plus de 75 ans, êtes titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre"
@@ -231,7 +231,7 @@ class caseW(Variable):
 class handicap(Variable):
     value_type = bool
     entity = Individu
-    label = "Individu en situation de handicap"
+    label = 'Individu en situation de handicap'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -262,7 +262,7 @@ class nb_parents(Variable):
 class maries(Variable):
     value_type = bool
     entity = Famille
-    label = "maries"
+    label = 'maries'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -278,7 +278,7 @@ class maries(Variable):
 class en_couple(Variable):
     value_type = bool
     entity = Famille
-    label = "Indicatrice de vie en couple"
+    label = 'Indicatrice de vie en couple'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -309,7 +309,7 @@ class etudiant(Variable):
     label = "Indique que l'individu dispose du statut étudiant"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = "https://www.service-public.fr/particuliers/vosdroits/F986"
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F986'
 
     def formula(individu, period, parameters):
         # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
@@ -393,16 +393,16 @@ class enfant_place(Variable):
 
 
 class RegimeSecuriteSociale(Enum):
-    regime_general = "Régime général"
-    regime_agricole = "Régime Agricole"
-    regime_retraite_fonctionnaires_civils_militaires_etat = "Régime de retraite des fonctionnaires civils et militaires de l’Etat"
-    regime_special_fonctionnaires_territoriaux_hospitaliers = "Régime spécial des fonctionnaires territoriaux et hospitaliers"
-    fond_special_pensions_ouvriers_etablissements_industriels_etat = "Le Fonds spécial des pensions des ouvriers des établissements industriels de l’Etat (FSPOEIE)"
-    regime_special_agents_sncf = "Régime spécial des agents de la SNCF"
-    regime_special_agents_ratp = "Régime spécial des agents de la RATP"
-    regime_special_industries_electriques_gazieres = "Régime spécial des industries électriques et gazières (CNIEG)"
-    autres_regimes = "Autres régimes"
-    aucun = "Aucun"
+    regime_general = 'Régime général'
+    regime_agricole = 'Régime Agricole'
+    regime_retraite_fonctionnaires_civils_militaires_etat = 'Régime de retraite des fonctionnaires civils et militaires de l’Etat'
+    regime_special_fonctionnaires_territoriaux_hospitaliers = 'Régime spécial des fonctionnaires territoriaux et hospitaliers'
+    fond_special_pensions_ouvriers_etablissements_industriels_etat = 'Le Fonds spécial des pensions des ouvriers des établissements industriels de l’Etat (FSPOEIE)'
+    regime_special_agents_sncf = 'Régime spécial des agents de la SNCF'
+    regime_special_agents_ratp = 'Régime spécial des agents de la RATP'
+    regime_special_industries_electriques_gazieres = 'Régime spécial des industries électriques et gazières (CNIEG)'
+    autres_regimes = 'Autres régimes'
+    aucun = 'Aucun'
 
 
 class regime_securite_sociale(Variable):
@@ -410,7 +410,7 @@ class regime_securite_sociale(Variable):
     possible_values = RegimeSecuriteSociale
     default_value = RegimeSecuriteSociale.aucun
     entity = Individu
-    label = "Régime de sécurité sociale"
+    label = 'Régime de sécurité sociale'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2020/RAPPORT%20CCSS-Sept%202020.pdf"
+    reference = 'https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2020/RAPPORT%20CCSS-Sept%202020.pdf'

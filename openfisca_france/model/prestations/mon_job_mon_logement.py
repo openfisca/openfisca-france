@@ -8,7 +8,7 @@ class date_entree_logement(Variable):
     default_value = date(1970, 1, 1)
     entity = Menage
     definition_period = MONTH
-    label = "Date entrée dans le logement"
+    label = 'Date entrée dans le logement'
 
 
 class mon_job_mon_logement_eligibilite_logement(Variable):
@@ -38,8 +38,8 @@ class mon_job_mon_logement_eligibilite_jeunes_actifs(Variable):
         params = parameters(period).prestations_sociales.aides_logement.action_logement.mon_job_mon_logement.jeune_actif
 
         eligibilite_activite = (individu('activite', period) == TypesActivite.actif) + individu('alternant', period)
-        smic_mensuel_brut = individu("smic_proratise", period)
-        eligibilite_salaire = (individu("salaire_de_base", period) <= smic_mensuel_brut) * (individu("salaire_de_base", period) >= smic_mensuel_brut * params.pourcentage_minimum_smic)
+        smic_mensuel_brut = individu('smic_proratise', period)
+        eligibilite_salaire = (individu('salaire_de_base', period) <= smic_mensuel_brut) * (individu('salaire_de_base', period) >= smic_mensuel_brut * params.pourcentage_minimum_smic)
         eligibilite_logement = individu('mon_job_mon_logement_eligibilite_logement', period)
         eligibilite_activite_debut = individu('contrat_de_travail_debut', period) > datetime64(period.offset(-params.delai_max_en_mois_apres_debut_contrat_de_travail, 'month').start)
         elibilite_age = individu('age', period) < params.age_maximum
@@ -56,8 +56,8 @@ class mon_job_mon_logement_eligibilite(Variable):
     def formula(individu, period, parameters):
         params = parameters(period).prestations_sociales.aides_logement.action_logement.mon_job_mon_logement
         eligibilite_activite = (individu('activite', period) == TypesActivite.actif) + individu('alternant', period)
-        smic_mensuel_brut = individu("smic_proratise", period)
-        eligibilite_salaire = individu("salaire_de_base", period) <= smic_mensuel_brut * params.pourcentage_maximum_smic
+        smic_mensuel_brut = individu('smic_proratise', period)
+        eligibilite_salaire = individu('salaire_de_base', period) <= smic_mensuel_brut * params.pourcentage_maximum_smic
         eligibilite_logement = individu('mon_job_mon_logement_eligibilite_logement', period)
         eligibilite_activite_debut = individu('contrat_de_travail_debut', period) >= datetime64(
             period.offset(-params.delai_max_en_mois_apres_debut_contrat_de_travail, 'month').start)
@@ -70,7 +70,7 @@ class mon_job_mon_logement(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Montant de l'aide mon job mon logement"
-    reference = "https://www.actionlogement.fr/aide-mon-job-mon-logement"
+    reference = 'https://www.actionlogement.fr/aide-mon-job-mon-logement'
 
     def formula(individu, period, parameters):
         montant = parameters(period).prestations_sociales.aides_logement.action_logement.mon_job_mon_logement.montant

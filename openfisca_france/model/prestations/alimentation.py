@@ -4,11 +4,11 @@ from openfisca_france.model.prestations.education import TypesScolarite
 
 class crous_repas_un_euro_eligibilite(Variable):
     value_type = bool
-    label = "Éligibilité au repas Crous à un euro"
+    label = 'Éligibilité au repas Crous à un euro'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = "https://www.etudiant.gouv.fr/sites/default/files/2021-01/le-repas-un-euro-4977.pdf"
+    reference = 'https://www.etudiant.gouv.fr/sites/default/files/2021-01/le-repas-un-euro-4977.pdf'
     documentation = '''
     Suite à la crise Covid-19, tous les étudiants, boursiers ou non, peuvent bénéficier
     de deux repas par jour au tarif de 1 euro.

@@ -87,7 +87,7 @@ class locapass_eligibilite_etudiant_contrat(Variable):
     '''
     entity = Individu
     value_type = bool
-    label = "Satisfaction de la condition de loca-pass relative au contrat de travail pour les étudiants"
+    label = 'Satisfaction de la condition de loca-pass relative au contrat de travail pour les étudiants'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 

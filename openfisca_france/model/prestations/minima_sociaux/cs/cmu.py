@@ -110,7 +110,7 @@ class cmu_nbp_foyer(Variable):
     value_type = int
     is_period_size_independent = True
     entity = Famille
-    label = "Nombre de personnes dans le foyer CMU-C"
+    label = 'Nombre de personnes dans le foyer CMU-C'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -125,7 +125,7 @@ class cmu_nb_pac(Variable):
     value_type = int
     is_period_size_independent = True
     entity = Famille
-    label = "Nombre de personnes à charge au titre de la CMU-C"
+    label = 'Nombre de personnes à charge au titre de la CMU-C'
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -140,10 +140,10 @@ class cmu_c_plafond(Variable):
     label = "Plafond annuel de ressources pour l'éligibilité à la CMU-C"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006753234"
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006753234'
 
     def formula(famille, period, parameters):
-        """
+        '''
         - Le plafond dépends du nombre de personnes dans le foyer.
         - À un plafond de base pour une personne, on applique pour chaque personne supplémentaire un certain coefficient supplémentaire
                 - Un coefficient pour la 2eme personne,
@@ -151,7 +151,7 @@ class cmu_c_plafond(Variable):
                 - Un coefficient pour toute personne supplémentaire
         - Si un enfant est en garde alternée, on ne prend en compte que la moitié de son coefficient.
         - Pour savoir quel coefficient est attribué à chaque enfant, il faut trier les enfants de chaque famille par age.
-        """
+        '''
 
         cmu = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu
         age_i = famille.members('age_en_mois', period)
@@ -211,7 +211,7 @@ class cmu_eligible_majoration_dom(Variable):
 
 class cmu_c(Variable):
     value_type = bool
-    label = "Éligibilité à la CMU-C"
+    label = 'Éligibilité à la CMU-C'
     entity = Famille
     definition_period = MONTH
     set_input = set_input_dispatch_by_period

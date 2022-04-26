@@ -1,8 +1,8 @@
 from numpy import fabs, timedelta64
 
-from openfisca_france.model.base import Famille, Individu, Variable, Enum, MONTH, ADD,  \
+from openfisca_france.model.base import Famille, Individu, Variable, Enum, MONTH, ADD,\
     set_input_dispatch_by_period, set_input_divide_by_period, date, min_, not_
-from openfisca_france.model.revenus.activite.salarie import TypesContrat, TypesLieuEmploiFormation, \
+from openfisca_france.model.revenus.activite.salarie import TypesContrat, TypesLieuEmploiFormation,\
     TypesCategoriesDemandeurEmploi
 
 
@@ -13,8 +13,8 @@ class agepi_nbenf(Variable):
     set_input = set_input_dispatch_by_period
     label = "Nombre d'enfants pour le calcul de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI"
     reference = [
-        "Article 2 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
+        'Article 2 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi',
+        'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20'
         ]
 
     def formula_2014_01_20(famille, period, parameters):
@@ -61,7 +61,7 @@ class agepi_date_demande(Variable):
     label = "Date de demande d'évaluation à l'éligibilité à l'AGEPI (date du fait générateur)"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
+    reference = 'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20'
 
 
 class agepi_eligible(Variable):
@@ -71,8 +71,8 @@ class agepi_eligible(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
-        "Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
+        'Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi',
+        'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20'
         ]
 
     def formula_2014_01_20(individu, period, parameters):
@@ -115,7 +115,7 @@ class agepi_eligible(Variable):
             (contrat_de_travail_debut_en_mois + 2) - timedelta64(1, 'D')
             )
 
-        agepi_date_de_demande = individu("agepi_date_demande", period)
+        agepi_date_de_demande = individu('agepi_date_demande', period)
         dates_demandes_agepi_eligibles = agepi_date_de_demande <= date_demande_limite
 
         # L'individu est non indemnisé ou son ARE est inférieure ou égale à l'ARE minimale
@@ -182,9 +182,9 @@ class agepi_hors_mayotte(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
-        "Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20",
-        "2. Aide à la garde d’enfants pour les parents isolés (AGEPI)"
+        'Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi',
+        'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20',
+        '2. Aide à la garde d’enfants pour les parents isolés (AGEPI)'
         ]
 
     def formula_2014_01_20(individu, period, parameters):
@@ -226,10 +226,10 @@ class agepi_mayotte(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
-        "Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20",
-        "2. Aide à la garde d’enfants pour les parents isolés (AGEPI)",
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014",
+        'Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi',
+        'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20',
+        '2. Aide à la garde d’enfants pour les parents isolés (AGEPI)',
+        'http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014',
         ]
 
     def formula_2014_01_20(individu, period, parameters):
@@ -271,10 +271,10 @@ class agepi(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
-        "Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi",
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20",
-        "2. Aide à la garde d’enfants pour les parents isolés (AGEPI)",
-        "http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014",
+        'Article 4 de la délibération n°2013-46 du 18 décembre 2013 du Pôle Emploi',
+        'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20',
+        '2. Aide à la garde d’enfants pour les parents isolés (AGEPI)',
+        'http://www.bo-pole-emploi.org/bulletinsofficiels/instruction-dg-n2014-48-du-6-jui.html?type=dossiers/2014/bope-n2014-62-du-18-juin-2014',
         ]
 
     def formula_2014_01_20(individu, period):

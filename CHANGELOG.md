@@ -1,5 +1,14 @@
 # Changelog
 
+## 116.6.0 [#1842](https://github.com/openfisca/openfisca-france/pull/1842)
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : toutes
+* Détails :
+  - 1er commits: met des '' partout autour des noms de variables pour leur calcul (au lieu de parfois '' et parfois "").
+  - Ajoute la dépendance à `flake8-quotes`, afin d'imposer l'usage des apostrophes partout
+  - Met automatiquement des apostrophes partout grâce au script `openfisca_france/scripts/normalize_string_quotes.py`
+
 ## 116.5.0 [#1843](https://github.com/openfisca/openfisca-france/pull/1843)
 * Correction d'erreurs de législation.
 * Périodes concernées : 2020 à 2022

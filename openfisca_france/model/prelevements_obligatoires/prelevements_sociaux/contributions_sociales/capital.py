@@ -14,50 +14,50 @@ log = logging.getLogger(__name__)
 
 
 class interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018(Variable):
-    """
+    '''
     NB :
     (1) Cette variable est définie indépendemment de epargne_revenus_non_imposables
     (2) Les intérêts des PEL de plus de 12 ans sont imposables à l'impôt sur le revenu, et donc déjà présents dans les cases 2TR ou 2FA (attention: formulaire IR 2019 sur revenus 2018 non connu au moment de coder cette variable)
-    """
+    '''
     value_type = float
     entity = Individu
-    label = "Intérêts des plans épargne logement (PEL) de moins de 12 ans ouverts avant le 1er janvier 2018"
+    label = 'Intérêts des plans épargne logement (PEL) de moins de 12 ans ouverts avant le 1er janvier 2018'
     definition_period = YEAR
 
 
 class interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018(Variable):
-    """
+    '''
     NB :
     (1) Cette variable est définie indépendemment de epargne_revenus_non_imposables
     (2) Les intérêts des PEL de plus de 12 ans sont imposables à l'impôt sur le revenu, et donc déjà présents dans les cases 2TR ou 2FA (attention: formulaire IR 2019 sur revenus 2018 non connu au moment de coder cette variable)
-    """
+    '''
     value_type = float
     entity = Individu
-    label = "Intérêts des plans épargne logement (PEL) de moins de 12 ans ouverts à partir du 1er janvier 2018"
+    label = 'Intérêts des plans épargne logement (PEL) de moins de 12 ans ouverts à partir du 1er janvier 2018'
     definition_period = YEAR
 
 
 class interets_compte_epargne_logement_ouvert_avant_2018(Variable):
-    """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
+    ''' NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables '''
     value_type = float
     entity = Individu
-    label = "Intérêts des comptes épargne logement (CEL) ouverts avant le 1er janvier 2018"
+    label = 'Intérêts des comptes épargne logement (CEL) ouverts avant le 1er janvier 2018'
     definition_period = YEAR
 
 
 class interets_compte_epargne_logement_ouvert_a_partir_de_2018(Variable):
-    """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
+    ''' NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables '''
     value_type = float
     entity = Individu
-    label = "Intérêts des comptes épargne logement (CEL) ouverts à partir du 1er janvier 2018"
+    label = 'Intérêts des comptes épargne logement (CEL) ouverts à partir du 1er janvier 2018'
     definition_period = YEAR
 
 
 class interets_pel_moins_12_ans_cel(Variable):
-    """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
+    ''' NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables '''
     value_type = float
     entity = Individu
-    label = "Intérêts des plans épargne logement (PEL) de moins de 12 ans et des comptes épargne logement (CEL)"
+    label = 'Intérêts des plans épargne logement (PEL) de moins de 12 ans et des comptes épargne logement (CEL)'
     definition_period = YEAR
 
     def formula(individu, period):
@@ -97,7 +97,7 @@ class assurance_vie_ps_exoneree_irpp_pl(Variable):
 class assiette_csg_plus_values(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Assiette des plus-values soumis à la CSG"
+    label = 'Assiette des plus-values soumis à la CSG'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -256,7 +256,7 @@ class assiette_csg_plus_values(Variable):
 class assiette_csg_revenus_capital(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Assiette des revenus du capital soumis à la CSG"
+    label = 'Assiette des revenus du capital soumis à la CSG'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -319,7 +319,7 @@ class assiette_csg_revenus_capital(Variable):
 class csg_revenus_capital(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "CSG sur les revenus du capital"
+    label = 'CSG sur les revenus du capital'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -339,7 +339,7 @@ class csg_revenus_capital(Variable):
 class crds_revenus_capital(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "CRDS sur les revenus du capital"
+    label = 'CRDS sur les revenus du capital'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -352,8 +352,8 @@ class crds_revenus_capital(Variable):
 class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Prélèvements sociaux (hors CSG et CRDS) sur les revenus du capital"
-    reference = "https://www.service-public.fr/particuliers/vosdroits/F2329"
+    label = 'Prélèvements sociaux (hors CSG et CRDS) sur les revenus du capital'
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F2329'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -405,8 +405,8 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
 class prelevements_sociaux_revenus_capital(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Prélèvements sociaux sur les revenus du capital"
-    reference = "https://www.service-public.fr/particuliers/vosdroits/F2329"
+    label = 'Prélèvements sociaux sur les revenus du capital'
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F2329'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):

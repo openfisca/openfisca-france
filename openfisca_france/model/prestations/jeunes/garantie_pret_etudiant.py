@@ -8,7 +8,7 @@ class garantie_pret_etudiant_eligibilite(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = "https://www.service-public.fr/particuliers/vosdroits/F986"
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F986'
 
     def formula_2020_06_08(individu, period, parameters):
         majeur = individu('majeur', period)
@@ -28,7 +28,7 @@ class garantie_pret_etudiant_condition_nationalite(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = "https://www.service-public.fr/particuliers/vosdroits/F986"
+    reference = 'https://www.service-public.fr/particuliers/vosdroits/F986'
 
     def formula_2021_02_19(individu, period, parameters):
         nationalite_francaise = individu('nationalite', period) == b'FR'

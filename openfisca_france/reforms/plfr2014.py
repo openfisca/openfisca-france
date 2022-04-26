@@ -61,8 +61,8 @@ class plfr2014(Reform):
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
             spfcpi = foyer_fiscal('spfcpi', period)
-            total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + \
-                donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
+            total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog +\
+                donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
             return min_(ip_net, total_reductions)
 

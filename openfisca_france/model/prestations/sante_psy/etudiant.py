@@ -8,7 +8,7 @@ class seances_sante_psy_etudiant(Variable):
     entity = Individu
     label = "Nombre de séances prises en charge par l'Aide Santé Psy Étudiant"
     definition_period = MONTH
-    reference = "https://www.service-public.fr/particuliers/actualites/A14726"
+    reference = 'https://www.service-public.fr/particuliers/actualites/A14726'
     set_input = set_input_divide_by_period
 
     def formula_2021_03_10(individu, period, parameters):

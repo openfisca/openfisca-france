@@ -7,7 +7,7 @@ log = logging.getLogger(__name__)
 class csg(Variable):
     value_type = float
     entity = Individu
-    label = "Contribution sociale généralisée"
+    label = 'Contribution sociale généralisée'
     definition_period = YEAR
 
     def formula(individu, period):
@@ -41,8 +41,8 @@ class csg(Variable):
 class crds(Variable):
     value_type = float
     entity = Individu
-    label = "Contributions au remboursement de la dette sociale"
-    reference = "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000190291/2021-10-06/"
+    label = 'Contributions au remboursement de la dette sociale'
+    reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000190291/2021-10-06/'
     definition_period = YEAR
 
     def formula(individu, period):
@@ -68,7 +68,7 @@ class crds(Variable):
 class crds_hors_prestations(Variable):
     value_type = float
     entity = Individu
-    label = "Contributions au remboursement de la dette sociale (hors celles portant sur les prestations sociales)"
+    label = 'Contributions au remboursement de la dette sociale (hors celles portant sur les prestations sociales)'
     definition_period = YEAR
 
     def formula(individu, period):

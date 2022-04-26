@@ -17,7 +17,7 @@ class exoneration_cotisations_employeur_geographiques(Variable):
     value_type = float
     entity = Individu
     label = "Exonérations de cotisations employeur dépendant d'une zone géographique"
-    reference = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
+    reference = 'https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -38,8 +38,8 @@ class exoneration_cotisations_employeur_geographiques(Variable):
 class exoneration_cotisations_employeur_jei(Variable):
     value_type = float
     entity = Individu
-    label = "Exonération de cotisations employeur pour JEI (jeune entreprise innovante)"
-    reference = "http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2"
+    label = 'Exonération de cotisations employeur pour JEI (jeune entreprise innovante)'
+    reference = 'http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -88,7 +88,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
     value_type = float
     entity = Individu
     label = "Exonération de cotisations employeur pour l'embauche en ZFU (zone franche urbaine)"
-    reference = "http://www.apce.com/pid553/exoneration-dans-les-zfu.html?espace=1&tp=1&pagination=2"
+    reference = 'http://www.apce.com/pid553/exoneration-dans-les-zfu.html?espace=1&tp=1&pagination=2'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -163,7 +163,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
 
         duree_cdd_eligible = (contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D'))
         # TODO: move to parameters file
-        contrat_de_travail_eligible = (contrat_de_travail_debut <= datetime64("2014-12-31")) * ((contrat_de_travail_type == TypesContrat.cdi) + ((contrat_de_travail_type == TypesContrat.cdd) * (duree_cdd_eligible)))
+        contrat_de_travail_eligible = (contrat_de_travail_debut <= datetime64('2014-12-31')) * ((contrat_de_travail_type == TypesContrat.cdi) + ((contrat_de_travail_type == TypesContrat.cdd) * (duree_cdd_eligible)))
         # TODO: move to parameters file
 
         eligible = (
@@ -267,7 +267,7 @@ class exoneration_cotisations_employeur_zrd(Variable):
     value_type = float
     entity = Individu
     label = "Exonération de cotisations employeur pour l'embauche en ZRD (zone de restructuration de la Défense)"
-    reference = "http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1"
+    reference = 'http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -306,7 +306,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
     value_type = float
     entity = Individu
     label = "Exonération de cotisations employeur pour l'embauche en ZRR (zone de revitalisation rurale)"
-    reference = "http://www.apce.com/pid538/embauches-en-zru-et-zrr.html?espace=1&tp=1"
+    reference = 'http://www.apce.com/pid538/embauches-en-zru-et-zrr.html?espace=1&tp=1'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -475,7 +475,7 @@ class jeune_entreprise_innovante(Variable):
         jeune_entreprise_innovante = (
             independance
             * (effectif_entreprise < 250)
-            * (entreprise_creation <= datetime64("2016-12-31"))
+            * (entreprise_creation <= datetime64('2016-12-31'))
             * ((jei_date_demande + timedelta64(1, 'D') - entreprise_creation).astype('timedelta64[Y]') < timedelta64(8, 'Y'))
             * (entreprise_chiffre_affaire < 50e6)
             * (entreprise_bilan < 43e6)

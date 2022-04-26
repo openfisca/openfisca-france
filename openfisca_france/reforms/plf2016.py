@@ -20,7 +20,7 @@ class plf2016(Reform):
     # key = 'plf2016'
 
     class decote(Variable):
-        label = "Décote IR 2016 appliquée en 2015 sur revenus 2014"
+        label = 'Décote IR 2016 appliquée en 2015 sur revenus 2014'
         definition_period = YEAR
 
         # This formula is copy-pasted from the reference decote formula, so that we only change the decote formula for 2014
@@ -54,8 +54,8 @@ def counterfactual_modify_parameters(parameters):
     # TODO: inflater les paramètres de la décote le barème de l'IR
     inflation = .001
     reform_parameters_subtree = ParameterNode('plf2016_conterfactual', data = {
-        'decote_seuil_celib': {'values': {"2015-01-01": {'value': round(1135 * (1 + inflation))}, "2016-01-01": {'value': None}}},
-        'decote_seuil_couple': {'values': {"2015-01-01": {'value': round(1870 * (1 + inflation))}, "2065-01-01": {'value': None}}},
+        'decote_seuil_celib': {'values': {'2015-01-01': {'value': round(1135 * (1 + inflation))}, '2016-01-01': {'value': None}}},
+        'decote_seuil_couple': {'values': {'2015-01-01': {'value': round(1870 * (1 + inflation))}, '2065-01-01': {'value': None}}},
         })
     parameters.add_child('plf2016_conterfactual', reform_parameters_subtree)
     return parameters
@@ -85,7 +85,7 @@ class plf2016_counterfactual(Reform):
     # key = 'plf2016_counterfactual'
 
     class decote(Variable):
-        label = "Décote IR 2015 appliquée sur revenus 2015 (contrefactuel)"
+        label = 'Décote IR 2015 appliquée sur revenus 2015 (contrefactuel)'
         definition_period = YEAR
 
         def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -146,8 +146,8 @@ class plf2016_counterfactual(Reform):
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
             spfcpi = foyer_fiscal('spfcpi', period)
-            total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + \
-                donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
+            total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog +\
+                donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
 
             return min_(ip_net, total_reductions)
@@ -243,8 +243,8 @@ class plf2016_counterfactual_2014(Reform):
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
             spfcpi = foyer_fiscal('spfcpi', period)
-            total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + \
-                donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
+            total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog +\
+                donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
 
             return min_(ip_net, total_reductions)

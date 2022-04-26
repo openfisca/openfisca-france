@@ -13,13 +13,13 @@ class aeeh(Variable):
     value_type = float
     entity = Famille
     label = "Allocation d'éducation de l'enfant handicapé"
-    reference = "http://vosdroits.service-public.fr/particuliers/N14808.xhtml"
+    reference = 'http://vosdroits.service-public.fr/particuliers/N14808.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
     def formula_2006_01_01(famille, period, parameters):
-        """Allocation d'éducation de l'enfant handicapé.
+        '''Allocation d'éducation de l'enfant handicapé.
 
         Rremplace l'allocation d'éducation spéciale (AES) depus le 1er janvier 2006.
         Ce montant peut être majoré par un complément accordé par la Cdaph qui prend en compte :
@@ -28,7 +28,7 @@ class aeeh(Variable):
         l'embauche d'une tierce personne rémunérée.
         Une majoration est versée au parent isolé bénéficiaire d'un complément d'Aeeh lorsqu'il cesse ou réduit
         son activité professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
-        """
+        '''
         janvier = period.this_year.first_month
         isole = not_(famille('en_couple', janvier))
         prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
@@ -77,7 +77,7 @@ class aes(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
-    end = "2005-12-31"
+    end = '2005-12-31'
 
     def formula_2002_04_01(famille, period, parameters):
         janvier = period.this_year.first_month
