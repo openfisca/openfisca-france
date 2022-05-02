@@ -1,5 +1,17 @@
 # Changelog
 
+## 116.7.0 [#1844](https://github.com/openfisca/openfisca-france/pull/1844)
+
+* Correction de législation.
+* Périodes concernées : toutes.
+* Zones impactées:
+   - `mesures.py`.
+   - `prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
+   - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
+* Détails :
+  - Corrige des variables de bases taxables de revenus du capital
+  - Rationalise et corrige la variable `plus_values_base_large`
+
 ### 116.6.1 [#1831](https://github.com/openfisca/openfisca-france/pull/1831)
 
 * Évolution du système socio-fiscal.
