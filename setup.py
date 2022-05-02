@@ -9,7 +9,7 @@ long_description = (this_directory / 'README.md').read_text()
 
 setup(
     name = 'OpenFisca-France',
-    version = '116.6.1',
+    version = '116.7.0',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -49,9 +49,9 @@ setup(
             ],
         'dev': [
             'autopep8 ==1.5.7',
-            'flake8 >=3.8.0,<3.10.0',
-            'flake8-print',
-            'flake8-quotes',
+            'flake8 >= 4.0.0, < 5.0.0',
+            'flake8-print >= 5.0.0, < 6.0.0',
+            'flake8-quotes >= 3.3.1, < 6.0.0',
             'pytest >= 5.0.0, < 7.0.0',
             'scipy >= 0.17',  # Only used to test de_net_a_brut reform
             'requests >= 2.8',

@@ -156,6 +156,10 @@ class plus_values_base_large(Variable):
         calcul du revenu disponible, afin de n'oublier aucun revenu. Elle vaut la somme de assiette_csg_plus_values et rfr_plus_values_hors_rni,
         où l'on enlève les cases communes entre ces deux variables, et où l'on ajoute les variables présentes dans 'revenu_categoriel_plus_values', mais pas présente
         dans assiette_csg_plus_values
+        Attention, on n'ajoute pas en revanche 3SA car de notre compréhension, il s'agit de plus-values qui avaient bénéficié
+        de reports d'imposition, report qui a expiré. Ce qui veut dire que ces revenus n'avaient pas été imposés lors de leur
+        réalisation (ils le sont maintenant), mais avaient été comptés dans le RFR. Donc, il s'agit de revenus qui ne font pas parti
+        du revenu courant de cette année.
         Attention : pour les variables de 'revenu_categoriel_plus_values' ajoutées, elles peuvent représenter des montants nets, alors qu'il faudrait le brut. Améliorer ce point
         '''
 
@@ -165,11 +169,12 @@ class plus_values_base_large(Variable):
         f3vg = foyer_fiscal('f3vg', period)
         f3we = foyer_fiscal('f3we', period)
         f3vz = foyer_fiscal('f3vz', period)
+        f3vt = foyer_fiscal('f3vt', period)
 
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        intersection_v1_v2 = f3vg + f3we + f3vz + rpns_pvce
+        intersection_v1_v2 = f3vg + f3we + f3vz + rpns_pvce + f3vt
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2
 
@@ -183,15 +188,15 @@ class plus_values_base_large(Variable):
 
         f3we = foyer_fiscal('f3we', period)
         f3vz = foyer_fiscal('f3vz', period)
-        f3sb = foyer_fiscal('f3sb', period)
         f3vl = foyer_fiscal('f3vl', period)
         f3wb = foyer_fiscal('f3wb', period)
+        f3vt = foyer_fiscal('f3vt', period)
 
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        intersection_v1_v2 = f3we + f3vz + rpns_pvce
-        ajouts_de_rev_cat_pv = f3sb + f3vl + f3wb
+        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt
+        ajouts_de_rev_cat_pv = f3vl + f3wb
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2 + ajouts_de_rev_cat_pv
 
@@ -205,50 +210,28 @@ class plus_values_base_large(Variable):
 
         f3we = foyer_fiscal('f3we', period)
         f3vz = foyer_fiscal('f3vz', period)
-        f3sb = foyer_fiscal('f3sb', period)
         f3wb = foyer_fiscal('f3wb', period)
+        f3vt = foyer_fiscal('f3vt', period)
 
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        intersection_v1_v2 = f3we + f3vz + rpns_pvce
-        ajouts_de_rev_cat_pv = f3sb + f3wb
+        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt
+        ajouts_de_rev_cat_pv = f3wb
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2 + ajouts_de_rev_cat_pv
 
     def formula_2018_01_01(foyer_fiscal, period):
         '''
         Cf. docstring période précédente
+        Pour 2018 et 2019, assiette_csg_plus_values est inclus dans rfr_plus_values_hors_rni
         '''
+        f3wb = foyer_fiscal('f3wb', period)
 
-        v1_assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
-        v2_rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
+        rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
+        ajouts_de_rev_cat_pv = f3wb
 
-        f3ua = foyer_fiscal('f3ua', period)
-        f3vg = foyer_fiscal('f3vg', period)
-        f3we = foyer_fiscal('f3we', period)
-        f3vz = foyer_fiscal('f3vz', period)
-        f3vd_i = foyer_fiscal.members('f3vd', period)
-        f3vi_i = foyer_fiscal.members('f3vi', period)
-        f3vf_i = foyer_fiscal.members('f3vf', period)
-        f3sj = foyer_fiscal('f3sj', period)
-        f3tj = foyer_fiscal('f3tj', period)
-        f3sk = foyer_fiscal('f3sk', period)
-        f3vm = foyer_fiscal('f3vm', period)
-        f3vt = foyer_fiscal('f3vt', period)
-        f3wi = foyer_fiscal('f3wi', period)
-        f3wj = foyer_fiscal('f3wj', period)
-        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        f3pi = foyer_fiscal('f3pi', period)
-
-        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
-        f3vd = foyer_fiscal.sum(f3vd_i)
-        f3vi = foyer_fiscal.sum(f3vi_i)
-        f3vf = foyer_fiscal.sum(f3vf_i)
-
-        intersection_v1_v2 = f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + f3vd + f3vi + f3vf
-
-        return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2
+        return rfr_plus_values_hors_rni + ajouts_de_rev_cat_pv
 
 
 class revenus_nets_du_capital(Variable):
