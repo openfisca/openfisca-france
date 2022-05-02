@@ -1988,7 +1988,6 @@ class rfr_plus_values_hors_rni(Variable):
         '''
         Plus-values 2016 et + entrant dans le calcul du revenu fiscal de référence
         '''
-        f3sa = foyer_fiscal('f3sa', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
         f3tz = foyer_fiscal('f3tz', period)
@@ -2020,7 +2019,6 @@ class rfr_plus_values_hors_rni(Variable):
         '''
         Plus-values réalisées sur année 2018 entrant dans le calcul du revenu fiscal de référence.
         '''
-        f3sa = foyer_fiscal('f3sa', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
         f3sj = foyer_fiscal('f3sj', period)
@@ -2053,7 +2051,6 @@ class rfr_plus_values_hors_rni(Variable):
         '''
         Plus-values 2019 et + entrant dans le calcul du revenu fiscal de référence.
         '''
-        f3sa = foyer_fiscal('f3sa', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
         f3sj = foyer_fiscal('f3sj', period)
