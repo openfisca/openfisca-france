@@ -573,7 +573,7 @@ class f3pi(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Profits sur instruments financiers réalisés dans des ETNC ou paradis fiscaux'
-    # start_date = date(2018, 1, 1)
+    # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 

@@ -1,5 +1,16 @@
 # Changelog
 
+### 116.7.1 [#1847](https://github.com/openfisca/openfisca-france/pull/1847)
+
+* Correction d'une erreur de législation
+* Périodes concernées : 2017
+* Zones impactées:
+    - `prelevements_obligatoires/impot_revenu/ir.py`.
+    - `mesures.py`
+    - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`.
+* Détails :
+  - Ajoute en 2017 la case 3PI, créée cette année-là, et qui était présente seulement à partir de 2018
+
 ## 116.7.0 [#1844](https://github.com/openfisca/openfisca-france/pull/1844)
 
 * Correction de législation.

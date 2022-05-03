@@ -172,7 +172,7 @@ taux_plus_values_bspce_conditionnel:
 taux_plus_values_entc:
   description: Taux forfaitaire d'imposition sur les profits sur instruments financiers dans des ETNC
   values:
-    2018-01-01:
+    2017-01-01:
       value: 0.5
   metadata:
     unit: /1
