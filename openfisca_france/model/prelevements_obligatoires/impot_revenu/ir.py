@@ -1825,43 +1825,7 @@ class taxation_plus_values_hors_bareme(Variable):
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
-        Taxation des plus values (hors bareme)
-        '''
-        f3sj = foyer_fiscal('f3sj', period)
-        f3sk = foyer_fiscal('f3sk', period)
-        f3vm = foyer_fiscal('f3vm', period)
-        f3vt = foyer_fiscal('f3vt', period)
-        f3vd_i = foyer_fiscal.members('f3vd', period)
-        f3vi_i = foyer_fiscal.members('f3vi', period)
-        f3vf_i = foyer_fiscal.members('f3vf', period)
-        f3wi = foyer_fiscal('f3wi', period)
-        f3wj = foyer_fiscal('f3wj', period)
-        f3pi = foyer_fiscal('f3pi', period)
-        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-
-        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
-        f3vd = foyer_fiscal.sum(f3vd_i)
-        f3vi = foyer_fiscal.sum(f3vi_i)
-        f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
-
-        return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.pea.taux_posterieur * f3vt
-            + plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
-            + plus_values.taux_plus_values_bspce * f3sj
-            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
-            + plus_values.taux_plus_values_report * f3wi
-            + plus_values.taux_plus_values_report_conditionnel * f3wj
-            + plus_values.taux_plus_values_entc * f3pi
-            )
-
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
-        '''
-        Taxation des plus-values (hors imposition au barÃ¨me), en excluant celles imposées au PFU
+        Taxation des plus-values (hors imposition au barÃ¨me), en excluant, à partir de 2018, celles imposées au PFU
         (qui sont à impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py)
         '''
         f3vd_i = foyer_fiscal.members('f3vd', period)
