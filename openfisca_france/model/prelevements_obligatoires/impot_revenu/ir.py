@@ -1905,7 +1905,7 @@ class rfr_plus_values_hors_rni(Variable):
     label = 'Plus-values hors RNI entrant dans le calcul du revenu fiscal de référence (PV au barème, PV éxonérées ..)'
     definition_period = YEAR
 
-    def formula_2011_01_01(foyer_fiscal, period, parameters):
+    def formula_2011_01_01(foyer_fiscal, period):
         '''
         Plus-values 2011 entrant dans le calcul du revenu fiscal de référence
         '''
@@ -1927,7 +1927,7 @@ class rfr_plus_values_hors_rni(Variable):
 
         return f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vy + f3vz + rpns_pvce
 
-    def formula_2012_01_01(foyer_fiscal, period, parameters):
+    def formula_2012_01_01(foyer_fiscal, period):
         '''
         Plus-values 2012 entrant dans le calcul du revenu fiscal de référence
         '''
@@ -1956,7 +1956,7 @@ class rfr_plus_values_hors_rni(Variable):
 
         return f3sa_2012 + f3sj + f3sk + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + f3we + rpns_pvce
 
-    def formula_2013_01_01(foyer_fiscal, period, parameters):
+    def formula_2013_01_01(foyer_fiscal, period):
         '''
         Plus-values 2013-2016 entrant dans le calcul du revenu fiscal de référence
         '''
@@ -1984,7 +1984,7 @@ class rfr_plus_values_hors_rni(Variable):
 
         return f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + rpns_pvce
 
-    def formula_2016_01_01(foyer_fiscal, period, parameters):
+    def formula_2016_01_01(foyer_fiscal, period):
         '''
         Plus-values 2016 et + entrant dans le calcul du revenu fiscal de référence
         '''
@@ -2015,7 +2015,7 @@ class rfr_plus_values_hors_rni(Variable):
 
         return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce
 
-    def formula_2017_01_01(foyer_fiscal, period, parameters):
+    def formula_2017_01_01(foyer_fiscal, period):
         '''
         Plus-values 2017 et + entrant dans le calcul du revenu fiscal de référence
         '''
@@ -2047,8 +2047,7 @@ class rfr_plus_values_hors_rni(Variable):
 
         return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3pi
 
-
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
+    def formula_2018_01_01(foyer_fiscal, period):
         '''
         Plus-values réalisées sur année 2018 entrant dans le calcul du revenu fiscal de référence.
         '''
@@ -2080,7 +2079,7 @@ class rfr_plus_values_hors_rni(Variable):
 
         return f3vg + f3ua + f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3pi
 
-    def formula_2019_01_01(foyer_fiscal, period, parameters):
+    def formula_2019_01_01(foyer_fiscal, period):
         '''
         Plus-values 2019 et + entrant dans le calcul du revenu fiscal de référence.
         '''
