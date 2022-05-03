@@ -221,6 +221,28 @@ class plus_values_base_large(Variable):
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2 + ajouts_de_rev_cat_pv
 
+    def formula_2017_01_01(foyer_fiscal, period):
+        '''
+        Cf. docstring période précédente
+        '''
+
+        v1_assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
+        v2_rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
+
+        f3we = foyer_fiscal('f3we', period)
+        f3vz = foyer_fiscal('f3vz', period)
+        f3wb = foyer_fiscal('f3wb', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3pi = foyer_fiscal('f3pi', period)
+
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+
+        intersection_v1_v2 = f3we + f3vz + rpns_pvce + f3vt + f3pi
+        ajouts_de_rev_cat_pv = f3wb
+
+        return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2 + ajouts_de_rev_cat_pv
+
     def formula_2018_01_01(foyer_fiscal, period):
         '''
         Cf. docstring période précédente
