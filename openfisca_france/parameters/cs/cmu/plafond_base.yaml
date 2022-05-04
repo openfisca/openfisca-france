@@ -37,3 +37,6 @@ values:
   2021-04-01:
     value: 9041.0
     reference: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043306326
+  2022-04-01:
+    value: 9203
+    reference:
