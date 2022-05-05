@@ -164,7 +164,7 @@ class rsa_activite(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2009_06_01(famille, period):
-        rsa = famille('rsa', period, period)
+        rsa = famille('rsa', period)
         rsa_base_ressources = famille('rsa_base_ressources', period)
         rsa_socle = famille('rsa_socle', period)
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
