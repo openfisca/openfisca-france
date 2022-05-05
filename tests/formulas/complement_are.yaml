@@ -1,0 +1,301 @@
+- name: Test 01 - Vérifie le calcul du complément ARE dans un cas simple
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 1200
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 37
+    salaire_journalier_reference_are: 48
+  output:
+    nombre_jours_indemnises_complement_are: 7.0
+    allocation_mensuelle_due_brute_complement_are: 259
+    deductions_montant_mensuel_complement_are: 10.08
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 248.92
+
+- name: Test 02 - Vérifie le calcul du complément ARE dans un cas simple
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 375
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 37
+    salaire_journalier_reference_are: 45
+  output:
+    nombre_jours_indemnises_complement_are: 23
+    allocation_mensuelle_due_brute_complement_are: 851.00
+    deductions_montant_mensuel_complement_are: 31.05
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 819.95
+
+- name: Test 03 - Vérifie le calcul du complément ARE dans un cas simple sans CSG/CRDS
+  period: 2022-05
+  input:
+    remuneration_reprise_emploi_are: 2100
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 57
+    salaire_journalier_reference_are: 100
+  output:
+    nombre_jours_indemnises_complement_are: 5.0
+    allocation_mensuelle_due_brute_complement_are: 285
+    crc_mensuelle_complement_are: 15
+    csg_mensuelle_complement_are: 0
+    crds_mensuelle_complement_are: 0
+    deductions_montant_mensuel_complement_are: 15
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 270
+
+- name: Test 04 - Vérifie le calcul du complément ARE dans un cas simple
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 2100
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 68.40
+    salaire_journalier_reference_are: 120
+  output:
+    nombre_jours_indemnises_complement_are: 9
+    allocation_mensuelle_due_brute_complement_are: 615.6
+    deductions_montant_mensuel_complement_are: 70.83
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 544.77
+
+- name: Test 05 - Vérifie le calcul du complément ARE dans un cas simple
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 238.71
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 35.71
+    salaire_journalier_reference_are: 58.38
+  output:
+    nombre_jours_indemnises_complement_are: 25
+    allocation_mensuelle_due_brute_complement_are: 892.75
+    deductions_montant_mensuel_complement_are: 43.75
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 849
+
+- name: Test 06 - Vérifie le calcul du complément ARE dans un cas simple
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 691.94
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 45.41
+    salaire_journalier_reference_are: 79.66
+  output:
+    nombre_jours_indemnises_complement_are: 19
+    allocation_mensuelle_due_brute_complement_are: 862.79
+    deductions_montant_mensuel_complement_are: 45.41
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 817.38
+
+- name: Test 07 - Vérifie le calcul du complément ARE dans un cas simple
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 210
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 27.72
+    salaire_journalier_reference_are: 48.63
+  output:
+    nombre_jours_indemnises_complement_are: 25
+    allocation_mensuelle_due_brute_complement_are: 693
+    deductions_montant_mensuel_complement_are: 0
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 693
+
+- name: Test 08 - Vérifie le calcul du complément ARE dans un cas simple
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 295.96
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 47.03
+    salaire_journalier_reference_are: 82.51
+  output:
+    nombre_jours_indemnises_complement_are: 26
+    allocation_mensuelle_due_brute_complement_are: 1222.78
+    deductions_montant_mensuel_complement_are: 64.48
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 1158.3
+
+- name: Test 09 - Vérifie le calcul du complément ARE dans un cas simple
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 450
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 29.56
+    salaire_journalier_reference_are: 41.74
+  output:
+    nombre_jours_indemnises_complement_are: 19
+    allocation_mensuelle_due_brute_complement_are: 561.64
+    deductions_montant_mensuel_complement_are: 0
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 561.64
+
+- name: Test 10 - Vérifie le calcul du complément ARE dans un cas simple
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 2670.81
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 68.4
+    salaire_journalier_reference_are: 120
+  output:
+    nombre_jours_indemnises_complement_are: 3
+    allocation_mensuelle_due_brute_complement_are: 205.20
+    deductions_montant_mensuel_complement_are: 23.61
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 181.59
+
+- name: Test 11 - Vérifie le calcul du complément ARE dans un cas simple
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 460
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 57.38
+    salaire_journalier_reference_are: 100.66
+  output:
+    nombre_jours_indemnises_complement_are: 24
+    allocation_mensuelle_due_brute_complement_are: 1377.12
+    deductions_montant_mensuel_complement_are: 72.48
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 1304.64
+
+- name: Test 12 - Vérifie le calcul du complément ARE dans un cas simple
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 1200
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 118.10
+    salaire_journalier_reference_are: 207.20
+  output:
+    nombre_jours_indemnises_complement_are: 23
+    allocation_mensuelle_due_brute_complement_are: 2716.30
+    deductions_montant_mensuel_complement_are: 312.57
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 2403.73
+
+- name: Test 12.1 - Vérifie le calcul du complément ARE dans un cas simple avec dégressivité ARE
+  period: 2022-05
+  input:
+    remuneration_reprise_emploi_are: 1200
+    degressivite_are: true
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 82.67
+    allocation_journaliere_are_taux_plein: 118.10
+    salaire_journalier_reference_are: 207.20
+  output:
+    nombre_jours_indemnises_complement_are: 24
+    allocation_mensuelle_due_brute_complement_are: 1984.08
+    crc_mensuelle_complement_are: 149.28
+    csg_mensuelle_complement_are: 111.84
+    crds_mensuelle_complement_are: 9.12
+    deductions_montant_mensuel_complement_are: 270.24
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 1713.84
+
+- name: Test 13.1 - Vérifie le calcul du complément ARE pour un mois de 28 jours
+  period: 2022-02
+  input:
+    remuneration_reprise_emploi_are: 918
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 35.11
+    salaire_journalier_reference_are: 56.91
+  output:
+    nombre_jours_indemnises_complement_are: 10
+    deductions_montant_mensuel_complement_are: 17.1
+    allocation_mensuelle_due_brute_complement_are: 351.1
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 334
+
+- name: Test 13.2 - Vérifie le calcul du complément ARE pour un mois de 29 jours
+  period: 2024-02
+  input:
+    remuneration_reprise_emploi_are: 918
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 35.11
+    salaire_journalier_reference_are: 56.91
+  output:
+    nombre_jours_indemnises_complement_are: 11
+    allocation_mensuelle_due_brute_complement_are: 386.21
+    deductions_montant_mensuel_complement_are: 18.81
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 367.4
+
+- name: Test 13.3 - Vérifie le calcul du complément ARE pour un mois de 30 jours
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 918
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 35.11
+    salaire_journalier_reference_are: 56.91
+  output:
+    nombre_jours_indemnises_complement_are: 12
+    allocation_mensuelle_due_brute_complement_are: 421.32
+    deductions_montant_mensuel_complement_are: 20.52
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 400.8
+
+- name: Test 13.4 - Vérifie le calcul du complément ARE pour un mois de 31 jours
+  period: 2022-03
+  input:
+    remuneration_reprise_emploi_are: 918
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 35.11
+    salaire_journalier_reference_are: 56.91
+  output:
+    nombre_jours_indemnises_complement_are: 13
+    allocation_mensuelle_due_brute_complement_are: 456.43
+    deductions_montant_mensuel_complement_are: 22.23
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 434.20
+
+- name: Test 14 - Vérifie le calcul du complément ARE dans un cas de dépassement du plafond de cumul
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 846
+    degressivite_are: false
+    nombre_jours_restants_are: 100
+    allocation_journaliere_are: 22.5
+    salaire_journalier_reference_are: 30
+  output:
+    nombre_jours_indemnises_complement_are: 3
+    allocation_mensuelle_due_brute_complement_are: 67.5
+    deductions_montant_mensuel_complement_are: 0
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 67.5
+
+- name: Test 15 - Vérifie le calcul du complément ARE partiel dans le cas où le nombre de jours restants n'est pas suffisant
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 1200
+    degressivite_are: false
+    nombre_jours_restants_are: 4
+    allocation_journaliere_are: 37
+    salaire_journalier_reference_are: 48
+  output:
+    nombre_jours_indemnisables_complement_are: 7
+    nombre_jours_indemnises_complement_are: 4
+    allocation_mensuelle_due_brute_complement_are: 148
+    deductions_montant_mensuel_complement_are: 10.08
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 137.92
+
+- name: Test 16 - Vérifie le calcul du complément ARE partiel dans un cas sans jours restants
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 1200
+    degressivite_are: false
+    nombre_jours_restants_are: 0
+    allocation_journaliere_are: 37
+    salaire_journalier_reference_are: 48
+  output:
+    nombre_jours_indemnisables_complement_are: 7
+    nombre_jours_indemnises_complement_are: 0
+    allocation_mensuelle_due_brute_complement_are: 0
+    deductions_montant_mensuel_complement_are: 10.08
+    allocation_mensuelle_due_brute_apres_deduction_complement_are: 0
+
+- name: Test 16 - Vérifie le calcul du nombre de jours restants
+  period: 2022-04
+  input:
+    remuneration_reprise_emploi_are: 1200
+    degressivite_are: false
+    nombre_jours_restants_are: 10
+    allocation_journaliere_are: 37
+    salaire_journalier_reference_are: 48
+  output:
+    nombre_jours_restants_are: 10
+    nombre_jours_indemnisables_complement_are: 7
+    futurs_nombre_jours_restants_are: 3

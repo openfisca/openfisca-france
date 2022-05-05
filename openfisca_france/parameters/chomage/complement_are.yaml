@@ -1,0 +1,49 @@
+description: Les différents paramètres pour le calcul de du complément d'Aide au Retour à l'Emploi (ARE) de Pôle emploi.
+metadata:
+  reference:
+    href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000038829574?init=true&page=1&query=2019-797&searchField=ALL&tab_selection=all
+coefficient_plafond_global:
+  description: Coefficient de plafond global du complément ARE
+  values:
+    2019-08-01:
+      value: 30.42
+taux_deduction_unique:
+  description: Taux de déduction unique à appliquer à la rémunération de reprise - complément ARE
+  values:
+    2021-07-01:
+      value: 0.70
+coefficient_allocation_journaliere:
+  description: Coefficient permettant de déterminer l'allocation journalière ARE à partir du salaire journalier de référence
+  values:
+    2021-07-01:
+      value: 0.57
+seuil_exoneration_crc:
+  description: Seuil d'ARE brute en dessous duquel le complément ARE n'est pas soumis à la déduction CRC
+  values:
+    2021-07-01:
+      value: 29.56
+coefficient_crc:
+  description: Coefficient permettant de déterminer le montant de la Cotisation de Retraite Complémentaire (CRC)
+  values:
+    2021-07-01:
+      value: 0.03
+seuil_exoneration_contributions:
+  description: Seuil d'ARE brute en dessous duquel le complément ARE n'est pas soumis aux déductions CSG, CRDS
+  values:
+    2021-07-01:
+      value: 53
+coefficient_assiette_contributions:
+  description: Coefficient permettant de déterminer le montant des Contributions Sociales Généralisées (CSG)
+  values:
+    2021-07-01:
+      value: 0.9825
+coefficient_csg:
+  description: Coefficient permettant de déterminer le montant des Contributions Sociales Généralisées (CSG)
+  values:
+    2021-07-01:
+      value: 0.062
+coefficient_crds:
+  description: Coefficient permettant de déterminer le montant des Contributions au Remboursement de la Dette Sociale (CRDS)
+  values:
+    2021-07-01:
+      value: 0.005
