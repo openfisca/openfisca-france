@@ -1,5 +1,13 @@
 # Changelog
 
+### 116.7.2 [#1848](https://github.com/openfisca/openfisca-france/pull/1848)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `caracteristiques_socio_demographiques/capacite_travail.py`.
+* Détails :
+  - Ajoute `is_period_size_independent` pour `taux_capacite_travail` et `taux_incapacite`: sans cet argument, on avait des problèmes dans nos survey scenarios quand on rentrait cette variable en input. Ex: si on entrait 0.8, pour chaque mois de l'année des années, on avait 12*0.8, pour les mois de l'année d'après, on avait 12*12*0.8, etc. Et ce malgré le `set_input_dispatch_by_period`.
+
 ### 116.7.1 [#1847](https://github.com/openfisca/openfisca-france/pull/1847)
 
 * Correction d'une erreur de législation
