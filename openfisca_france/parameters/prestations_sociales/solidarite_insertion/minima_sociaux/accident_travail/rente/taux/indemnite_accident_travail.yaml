@@ -446,4 +446,4 @@ metadata:
   documentation:
     https://www.unsaaerien.com/wp-content/uploads/2021/04/20210419_Accidents-du-travail_Revalorisations-rentes-AT-MP.pdf
     circulaire CNAM numéro 10/2021 du 24 mars 2021 - Barème des indemnités en capital 1/04/2021
-    Pour le calcul : J'ai utilisé les taux d'inflation utilisé par le gouvernement qu'on trouve dans le paramètre BMAF qui est aussi revalorisé en fonction de l'inflation
+    Pour le calcul j'ai utilisé les taux d'inflation utilisé par le gouvernement qu'on trouve dans le paramètre BMAF qui est aussi revalorisé en fonction de l'inflation
