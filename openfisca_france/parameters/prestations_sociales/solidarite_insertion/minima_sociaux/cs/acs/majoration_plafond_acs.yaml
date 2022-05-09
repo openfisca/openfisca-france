@@ -2,7 +2,7 @@ description: Majoration pour du plafond CMU pour l'ACS
 values:
   2005-01-01:
     value: 0.15
-  2006-01-01
+  2006-01-01:
     value: 0.153
   2007-01-01:
     value: 0.2
@@ -45,5 +45,5 @@ metadata:
   notes:
      https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/CIR-30-2019_reforme_complementaire_sante.pdf
      https://www.service-public.fr/particuliers/vosdroits/F13375
-    Pour le calcul : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031781092/ 
-                    J'ai calculé chaque année en utilisant les taux de valorisation utilisés pour la BMAF
+     Pour le calcul https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031781092/ 
+    J'ai calculé chaque année en utilisant les taux de valorisation utilisés pour la BMAF
