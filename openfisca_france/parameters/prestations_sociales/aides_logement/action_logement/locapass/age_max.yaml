@@ -7,8 +7,8 @@ metadata:
   unit: year
   reference:
     2021-01-01:
-    - href: https://www.actionlogement.fr/l-avance-loca-pass
-      title: Avance Loca-Pass
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039047554
-      title: Article R313-19-3 du Code de la construction et de l'habitation
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037669487/
+      title: Article R313-19-2 du Code de la construction et de l'habitation
   last_review: "2022-04-25"
+documentation:
+  https://www.actionlogement.fr/l-avance-loca-pass
