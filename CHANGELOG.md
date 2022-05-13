@@ -1,5 +1,15 @@
 # Changelog
 
+### 116.7.3 [#1835](https://github.com/openfisca/openfisca-france/pull/1835)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux/cotisations_taxes_professions_liberales/`.
+* Détails :
+  - Modification de la valeur de certains paramètres
+  - Ajout de last_review
+  - Ajout de references législatives
+
 ### 116.7.2 [#1848](https://github.com/openfisca/openfisca-france/pull/1848)
 
 * Correction d'un crash.
@@ -80,7 +90,7 @@
 * Amélioration technique.
 * Périodes concernées : À partir de 2018
 * Zones impactées : `tests/formulas/taxation_capital.yaml`
-* Détails : 
+* Détails :
 - Ajoute un cas de concernant la taxation de l'assurance vie.
 
 ## 116.2.0 [#1832](https://github.com/openfisca/openfisca-france/pull/1832)
@@ -99,16 +109,16 @@
 * Changement mineur
 * Périodes concernées :  à partir du 01/06/2009
 * Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rmi/rmi_cond/patrimoine`
-* Détails : J'ai ajouté les références législatives et le last_review 
-  
+* Détails : J'ai ajouté les références législatives et le last_review
+
 ### 116.1.1 [#1807](https://github.com/openfisca/openfisca-france/pull/1807)
 * Amélioration technique.
 * Zones impactées : `/parameters/prestations_sociales/prestations_familiales/prestations_generales/af/`
-* Détails : 
-- Ajoute last review 
-- Ajoute références vers les valeurs 
-- Ajoute des références législatives pour les valeurs concernées 
-  
+* Détails :
+- Ajoute last review
+- Ajoute références vers les valeurs
+- Ajoute des références législatives pour les valeurs concernées
+
 ## 116.1.0 [#1826](https://github.com/openfisca/openfisca-france/pull/1826)
 
 * Évolution du système socio-fiscal.
@@ -122,10 +132,10 @@
 # 116.0.0 [#1824](https://github.com/openfisca/openfisca-france/pull/1824)
 
 * Périodes concernées : après 2018-01-01
-* Zones impactées: 
+* Zones impactées:
 - `parameters.impot_revenu.prelevement_forfaitaire_unique_ir`
 - `parameters.taxation_capital.prelevement_forfaitaire.partir_2018`
-* Détails : 
+* Détails :
   - Fusionne les doublons du PFU dans l'IR avec ceux qui sont dans Taxation du capital, sur le modèle IPP
 
 # 115.0.0 [#1823](https://github.com/openfisca/openfisca-france/pull/1823)
@@ -139,16 +149,16 @@ git log --oneline 6d3d89b5d70c9^..68333e8282d9e | grep "variable_name"
 
 # 114.0.0 [#1818](https://github.com/openfisca/openfisca-france/pull/1818)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
 - `parameters/taxation_capital/`
 - `model/prelevements_obligatoires/isf`
 * Détails :
-  - Supprime les doublons générés dans les PRs : 
+  - Supprime les doublons générés dans les PRs :
       - #1815 ,
       -  #1816
-      - et #1817 
+      - et #1817
   - Adapte les formules
 * Guide pour la migration: Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
 git log --oneline 98b434c2c3c67fa5^..16095f417480157 | grep "variable_name"
@@ -164,9 +174,9 @@ git log --oneline 98b434c2c3c67fa5^..16095f417480157 | grep "variable_name"
 
 ### 113.0.3 [#1817](https://github.com/openfisca/openfisca-france/pull/1817)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
 - `parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018`
 * Détails:
   - Ajout des fichiers issus des barèmes-ipp, aucune modification du code existant
@@ -174,19 +184,19 @@ git log --oneline 98b434c2c3c67fa5^..16095f417480157 | grep "variable_name"
 
 ### 113.0.2 [#1816](https://github.com/openfisca/openfisca-france/pull/1816)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
 - `parameters/taxation_capital/impot_solidarite_fortune_isf_1989_2017`
 * Détails :
   - Ajout des fichiers issus des barèmes-ipp, aucune modification du code existant
   - Les doublons générés dans cette PR seront supprimés dans une PR à venir
- 
+
 ### 113.0.1 [#1815](https://github.com/openfisca/openfisca-france/pull/1815)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
 - `parameters/taxation_capital/impot_grandes_fortunes_1982_1986`
 * Détails :
   - Ajout des fichiers issus des barèmes-ipp, aucune modification du code existant
@@ -194,9 +204,9 @@ git log --oneline 98b434c2c3c67fa5^..16095f417480157 | grep "variable_name"
 
 # 113.0.0 [#1804](https://github.com/openfisca/openfisca-france/pull/1804)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
 - `parameters/taxation_capital/prelevement_forfaitaire`
 - `parameters/taxation_capital/pfl_av`.
 - `parameters/taxation_capital/pfl`.
@@ -242,9 +252,9 @@ git log --oneline 13335ed5de72dfd^..7b19d7a4d879cd741d1 | grep "variable_name"
 
 # 111.0.0 [#1803](https://github.com/openfisca/openfisca-france/pull/1803)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
 - `parameters/taxation_capital/prelevements_sociaux`.
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
@@ -279,9 +289,9 @@ git log --oneline 7f9b9894cbb4beed2^..4fa92d17e8299 | grep "variable_name"
 
 # 110.0.0 [#1800](https://github.com/openfisca/openfisca-france/pull/1800)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
 - `parameters/prestations_sociales/aides_jeunes`.
 * Détails :
   - Harmonisation des fichiers avec les barèmes-ipp
