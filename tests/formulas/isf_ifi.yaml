@@ -93,6 +93,17 @@
     assiette_isf_ifi: 1350000
     decote_isf_ifi: 17500 - 0.0125*1350000
     isf_ifi: (-1) * (500000*0.005 + 50000*0.007 - (17500 - 0.0125*1350000))
+  
+  - name: IFI avec décote et sans plafonnement
+  period: 2019
+  absolute_error_margin: 0.5
+  input:
+    isf_ifi_imm_bati: (1350000 / 1.05) # Divisé par 1.05 pour tomber sur une assiette de 1350000 après application du forfait mobilier
+    salaire_imposable: 400000
+  output:
+    assiette_isf_ifi: 1350000
+    decote_isf_ifi: 17500 - 0.0125*1350000
+    isf_ifi: (-1) * (500000*0.005 + 50000*0.007 - (17500 - 0.0125*1350000))
 
 - name: IFI jusqu'à la dernière tranche et sans plafonnement
   period: 2018
