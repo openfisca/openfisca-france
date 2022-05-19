@@ -7,8 +7,9 @@ metadata:
   unit: year
   reference:
     2021-02-18:
-    - href: https://www.actionlogement.fr/aide-mon-job-mon-logement
-      title: Action logement
-    - href: https://www.service-public.fr/particuliers/actualites/A15044
-      title: Mon job mon logement
+      href: https://dora.fabrique.social.gouv.fr/services/action-logement-serv-gbaf-aide-mon-job-mon-log
+      title: Aide Mon job, Mon logement
   last_review: "2022-04-25"
+documentation:
+  https://www.actionlogement.fr/aide-mon-job-mon-logement
+  https://www.service-public.fr/particuliers/actualites/A15044
