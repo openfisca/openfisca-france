@@ -1,5 +1,13 @@
 # Changelog
+### 116.8.0 [#1814](https://github.com/openfisca/openfisca-france/pull/1814)
 
+* Évolution du système socio-fiscal.
+Périodes concernées : À partir du 17/12/1954
+Zones impactées : parameters/prestations_sociales/solidarite_insertion/minima_sociaux/accident_travail
+* Détails :
+  - Modification de la valeur de certains paramètres
+  - Ajout de last_review
+  - Ajout de references législatives
 ### 116.7.3 [#1835](https://github.com/openfisca/openfisca-france/pull/1835)
 
 * Évolution du système socio-fiscal.
