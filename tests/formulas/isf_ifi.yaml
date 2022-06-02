@@ -93,7 +93,7 @@
     assiette_isf_ifi: 1350000
     decote_isf_ifi: 17500 - 0.0125*1350000
     isf_ifi: (-1) * (500000*0.005 + 50000*0.007 - (17500 - 0.0125*1350000))
-  
+
 - name: IFI avec décote et sans plafonnement
   period: 2019
   absolute_error_margin: 0.5
