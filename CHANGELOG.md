@@ -9,6 +9,7 @@ Zones impactées : openfisca_france/parameters/taxation_capital/impot_fortune_im
   - Modification de la valeur de certains paramètres
   - Ajout de last_review
   - Ajout de references législatives
+  - Correction test
 
 ## 116.9.0 [#1853](https://github.com/openfisca/openfisca-france/pull/1853)
 
