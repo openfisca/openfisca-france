@@ -1,5 +1,15 @@
 # Changelog
 
+### 116.10.0 [#1836](https://github.com/openfisca/openfisca-france/pull/1836)
+
+* Évolution du système socio-fiscal.
+Périodes concernées : à partir du 01/01/2018
+Zones impactées : openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018
+* Détails :
+  - Modification de la valeur de certains paramètres
+  - Ajout de last_review
+  - Ajout de references législatives
+
 ## 116.9.0 [#1853](https://github.com/openfisca/openfisca-france/pull/1853)
 
 * Évolution du système socio-fiscal.
@@ -11,7 +21,7 @@
   - Ajout d'une variable `domaine_specialites_formation` et `groupe_specialites_formation`
   - Utilise domaine_specialites_formation pour filtrer les personnes éligibles à l'aide `aide_permis_pro_btp`
 
-## 116.8.0 [#1814](https://github.com/openfisca/openfisca-france/pull/1814)
+### 116.8.0 [#1814](https://github.com/openfisca/openfisca-france/pull/1814)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : À partir du 17/12/1954
@@ -20,6 +30,7 @@
   - Modification de la valeur de certains paramètres
   - Ajout de last_review
   - Ajout de references législatives
+
 ### 116.7.3 [#1835](https://github.com/openfisca/openfisca-france/pull/1835)
 
 * Évolution du système socio-fiscal.
