@@ -18,7 +18,7 @@
         personne_de_reference:
         - parent1
   output:
-    indemnite_accident_travail: 2966.40
+    indemnite_accident_travail: 2986.45
 
 - name: "Cas 2: Victime salariée, 10% < taux d'IPP < 50%, versement d'une rente trimestrielle"
   period: 2018-07
@@ -111,7 +111,7 @@
         - parent1
   output:
     rente_accident_travail: 1216.67
-    pcrtp: 559.26
+    pcrtp: 541.22
 
 - name: "Cas 6: Victime non salariée agricole, taux d'IPP < 30%, pas de rente ou d'indemnité"
   period: 2018-07
@@ -202,4 +202,4 @@
         - parent1
   output:
     rente_accident_travail: 1416.67
-    pcrtp: 1118.54
+    pcrtp: 1082.43
