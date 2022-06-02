@@ -23,13 +23,17 @@ class exoneration_cotisations_employeur_tode(Variable):
         ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    documentation = '''
+        Non modélisé (2022): La durée maximale d’application de l’exonération TO-DE est fixée à 119 jours
+        consécutifs ou non, par employeur, par salarié et par année civile.
+    '''
 
     def formula_2019(individu, period, parameter):
         # Exonération totale à 1.2 SMIC
         # Puis dégressive : 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
         # Devient nulle à 1.6 SMIC
         
-        eligible = 0
+        eligible = 1
 
         agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
         chomage_employeur = individu("chomage_employeur", period)
@@ -57,10 +61,12 @@ class exoneration_cotisations_employeur_tode(Variable):
         smic_proratise = individu("smic_proratise", period)
         
         # 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
+        # où "La rémunération mensuelle brute correspond à celle retenue pour le calcul des cotisations de la réduction générale des cotisations patronales (réduction Fillon)."
+        # d'après : https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels?p_p_id=com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_TnUJJSlWXJvY&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_TnUJJSlWXJvY_read_more=2
         exoneration_degressive = 1.2 * (assiette_exoneration / 0.4) * (1.6 * smic_proratise / salaire_de_base)
         
         sous_plancher = salaire_de_base <= (1.2 * smic_proratise)
-        sous_plafond = salaire_de_base <= (1.6 * smic_proratise)
+        sous_plafond = salaire_de_base < (1.6 * smic_proratise)
         exoneration = where(sous_plancher, assiette_exoneration, sous_plafond * exoneration_degressive)
 
         return eligible * exoneration
