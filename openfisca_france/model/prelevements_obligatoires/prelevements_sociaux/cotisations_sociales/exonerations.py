@@ -13,6 +13,59 @@ class jei_date_demande(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class exoneration_cotisations_employeur_tode(Variable):
+    value_type = float
+    entity = Individu
+    label = "Exonération de cotisations employeur agricole pour travailleur occasionnel demandeur d'emploi (TO-DE)"
+    reference = [
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947610/", 
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038026966"
+        ]
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2019(individu, period, parameter):
+        # Exonération totale à 1.2 SMIC
+        # Puis dégressive : 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
+        # Devient nulle à 1.6 SMIC
+        
+        eligible = 0
+
+        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
+        chomage_employeur = individu("chomage_employeur", period)
+        vieillesse_deplafonnee_employeur = individu("vieillesse_deplafonnee_employeur", period)
+        vieillesse_plafonnee_employeur = individu("vieillesse_plafonnee_employeur", period)
+        accident_du_travail = individu("accident_du_travail", period)
+        contribution_solidarite_autonomie = individu("contribution_solidarite_autonomie", period)
+        mmid_employeur = individu("mmid_employeur", period)
+        famille = individu("famille", period)
+        fnal = individu("fnal", period)
+
+        assiette_exoneration = (
+            agirc_arrco_employeur 
+            + chomage_employeur
+            + vieillesse_deplafonnee_employeur
+            + vieillesse_plafonnee_employeur
+            + accident_du_travail
+            + contribution_solidarite_autonomie
+            + mmid_employeur
+            + famille
+            + fnal
+            )
+
+        salaire_de_base = individu("salaire_de_base", period)
+        smic_proratise = individu("smic_proratise", period)
+        
+        # 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
+        exoneration_degressive = 1.2 * (assiette_exoneration / 0.4) * (1.6 * smic_proratise / salaire_de_base)
+        
+        sous_plancher = salaire_de_base <= (1.2 * smic_proratise)
+        sous_plafond = salaire_de_base <= (1.6 * smic_proratise)
+        exoneration = where(sous_plancher, assiette_exoneration, sous_plafond * exoneration_degressive)
+
+        return eligible * exoneration
+
+
 class exoneration_cotisations_employeur_geographiques(Variable):
     value_type = float
     entity = Individu
