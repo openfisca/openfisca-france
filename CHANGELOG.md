@@ -1,4 +1,13 @@
 # Changelog
+### 116.9.0 [#1836](https://github.com/openfisca/openfisca-france/pull/1836)
+
+* Évolution du système socio-fiscal.
+Périodes concernées : à partir du 01/01/2018
+Zones impactées : openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018
+* Détails :
+  - Modification de la valeur de certains paramètres
+  - Ajout de last_review
+  - Ajout de references législatives
 ### 116.8.0 [#1814](https://github.com/openfisca/openfisca-france/pull/1814)
 
 * Évolution du système socio-fiscal.
