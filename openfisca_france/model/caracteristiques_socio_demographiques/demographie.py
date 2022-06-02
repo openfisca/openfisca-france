@@ -1,3 +1,7 @@
+import re
+
+from numpy import asarray
+
 from openfisca_france.model.base import *
 
 
@@ -416,30 +420,107 @@ class regime_securite_sociale(Variable):
     reference = 'https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2020/RAPPORT%20CCSS-Sept%202020.pdf'
 
 
-class DomaineSpecialitesFormationNiveau17(Enum):
-    formations_generales = "10. Formations générales"
-    mathematiques_et_sciences = "11. Mathématiques et sciences"
-    sciences_humaines_et_droit = "12. Sciences humaines et droit"
-    lettres_et_arts = "13. Lettres et arts"
-    agriculture_peche_foret_et_espaces_verts = "21. Agriculture, pêche, forêt et espaces verts"
-    transformations = "22. Transformations"
-    genie_civil_construction_bois = "23. Génie civil, construction, bois"
-    materiaux_souples = "24. Matériaux souples"
-    mecanique_electricite_electronique = "25. Mécanique, électricité, électronique"
-    specialites_plurivalentes_des_services = "30. Spécialités plurivalentes des services"
-    echanges_et_gestion = "31. Echanges et gestion"
-    communication_et_information = "32. Communication et information"
-    services_aux_personnes = "33. Services aux personnes"
-    services_a_la_collectivité = "34. Services à la collectivité"
-    domaines_des_capacites_individuelles = "41. Domaines des capacités individuelles"
-    domaines_des_activites_quotidiennes_et_de_loisirs = "42. Domaines des activités quotidiennes et de loisirs"
+class GroupeSpecialitesFormation(Enum):
+    groupe_100 = "100. Formations générales.",
+    groupe_110 = "110. Spécialités pluriscientifiques.",
+    groupe_111 = "111. Physique-chimie.",
+    groupe_112 = "112. Chimie-biologie, biochimie.",
+    groupe_113 = "113. Sciences naturelles (biologie-géologie).",
+    groupe_114 = "114. Mathématiques.",
+    groupe_115 = "115. Physique.",
+    groupe_116 = "116. Chimie.",
+    groupe_117 = "117. Sciences de la Terre.",
+    groupe_118 = "118. Sciences de la vie.",
+    groupe_120 = "120. Spécialités pluridisciplinaires. Sciences humaines et droit.",
+    groupe_121 = "121. Géographie.",
+    groupe_122 = "122. Economie.",
+    groupe_123 = "123. Sciences (y compris démographie, anthropologie).",
+    groupe_124 = "124. Psychologie.",
+    groupe_125 = "125. Linguistique.",
+    groupe_126 = "126. Histoire.",
+    groupe_127 = "127. Philosophie, éthique et théologie.",
+    groupe_128 = "128. Droit, sciences politiques.",
+    groupe_130 = "130. Spécialités littéraires et artistiques plurivalentes.",
+    groupe_131 = "131. Français, littérature et civilisation française.",
+    groupe_132 = "132. Arts plastiques.",
+    groupe_133 = "133. Musique, arts du spectacle.",
+    groupe_134 = "134. Autres disciplines artistiques et spécialités artistiques plurivalentes.",
+    groupe_135 = "135. Langues et civilisations anciennes.",
+    groupe_136 = "136. Langues vivantes, civilisations étrangères et régionales.",
+    groupe_200 = "200. Technologies industrielles fondamentales (génie industriel",
+    groupe_201 = "201. Technologies de commandes des transformations industrielles",
+    groupe_210 = "210. Spécialités plurivalentes de l'agronomie et de l'agriculture.",
+    groupe_211 = "211. Productions végétales, cultures spécialisées et protection des",
+    groupe_212 = "212. Productions animales, élevage spécialisé, aquaculture,",
+    groupe_213 = "213. Forêts, espaces naturels, faune sauvage, pêche.",
+    groupe_214 = "214. Aménagement paysager (parcs, jardins, espaces",
+    groupe_220 = "220. Spécialités pluritechnologiques des transformations.",
+    groupe_221 = "221. Agro-alimentaire, alimentation, cuisine.",
+    groupe_222 = "222. Transformations chimiques et apparentées",
+    groupe_223 = "223. Métallurgie (y compris sidérurgie, fonderie, non-ferreux).",
+    groupe_224 = "224. Matériaux de construction, verre, céramique.",
+    groupe_225 = "225. Plasturgie, matériaux composites.",
+    groupe_226 = "226. Papier, carton.",
+    groupe_227 = "227. Energie, génie climatique (y compris énergie nucléaire,",
+    groupe_230 = "230. Spécialités pluritechnologiques. Génie civil, construction, bois.",
+    groupe_231 = "231. Mines et carrières, génie civil, topographie.",
+    groupe_232 = "232. Bâtiment : construction et couverture.",
+    groupe_233 = "233. Bâtiment : finitions.",
+    groupe_234 = "234. Travail du bois et de l'ameublement.",
+    groupe_240 = "240. Spécialités pluritechnologiques Matériaux souples.",
+    groupe_241 = "241. Textile.",
+    groupe_242 = "242. Habillement (y compris mode, couture).",
+    groupe_243 = "243. Cuirs et peaux.",
+    groupe_250 = "250. Spécialités pluritechnologiques Mécanique-électricité",
+    groupe_251 = "251. Mécanique générale et de précision, usinage.",
+    groupe_252 = "252. Moteurs et mécanique auto.",
+    groupe_253 = "253. Mécanique aéronautique et spatiale.",
+    groupe_254 = "254. Structures métalliques (y compris soudure, carrosserie,",
+    groupe_255 = "255. Electricité, électronique (non compris automatismes, productique).",
+    groupe_300 = "300. Spécialités plurivalentes des services.",
+    groupe_310 = "310. Spécialités plurivalentes des échanges et de la gestion",
+    groupe_311 = "311. Transport, manutention, magasinage.",
+    groupe_312 = "312. Commerce, vente.",
+    groupe_313 = "313. Finance, banques, assurances.",
+    groupe_314 = "314. Comptabilité, gestion.",
+    groupe_315 = "315. Ressources humaines, gestion du personnel, gestion de l'emploi.",
+    groupe_320 = "320. Spécialités plurivalentes de la communication.",
+    groupe_321 = "321. Journalisme et communication (y compris communication",
+    groupe_322 = "322. Techniques de l'imprimerie et de l'édition.",
+    groupe_323 = "323. Techniques de l'image et du son, métiers connexes du spectacle.",
+    groupe_324 = "324. Secrétariat, bureautique.",
+    groupe_325 = "325. Documentation, bibliothèques, administration des données.",
+    groupe_326 = "326. Informatique, traitement de l'information, réseau de transmission",
+    groupe_330 = "330. Spécialités plurivalentes sanitaires et sociales.",
+    groupe_331 = "331. Santé.",
+    groupe_332 = "332. Travail social.",
+    groupe_333 = "333. Enseignement formation.",
+    groupe_334 = "334. Accueil, hôtellerie, tourisme.",
+    groupe_335 = "335. Animation culturelle, sportive et de loisirs.",
+    groupe_336 = "336. Coiffure, esthétique et autres spécialités des services",
+    groupe_340 = "340. Spécialités plurivalentes des services à la collectivité.",
+    groupe_341 = "341. Aménagement du territoire, développement, urbanisme.",
+    groupe_342 = "342. Protection et développement du patrimoine.",
+    groupe_343 = "343. Nettoyage, assainissement, protection de l'environnement.",
+    groupe_344 = "344. Sécurité des biens et des personnes, police, surveillance",
+    groupe_345 = "345. Application des droits et statuts des personnes.",
+    groupe_346 = "346. Spécialités militaires.",
+    groupe_410 = "410. Spécialités concernant plusieurs capacités.",
+    groupe_411 = "411. Pratiques sportives (y compris arts martiaux).",
+    groupe_412 = "412. Développement des capacités mentales et apprentissage de base.",
+    groupe_413 = "413. Développement des capacités comportementales et relationnelles.",
+    groupe_414 = "414. Développement des capacités individuelles d'organisation.",
+    groupe_415 = "415. Développement des capacités d'orientation, d'insertion ou",
+    groupe_421 = "421. Jeux et activités spécifiques de loisirs.",
+    groupe_422 = "422. Economie et activités domestiques.",
+    groupe_423 = "423. Vie familiale, vie sociale et autres formations au développement",
     aucun = "aucun"
 
 
-class domaine_specialites_formation_niveau_17(Variable):
+class groupe_specialites_formation(Variable):
     value_type = Enum
-    possible_values = DomaineSpecialitesFormationNiveau17
-    default_value = DomaineSpecialitesFormationNiveau17.aucun
+    possible_values = GroupeSpecialitesFormation
+    default_value = GroupeSpecialitesFormation.aucun
     entity = Individu
     label = "Domaine de spécialités en matière de formation"
     definition_period = MONTH
@@ -448,3 +529,50 @@ class domaine_specialites_formation_niveau_17(Variable):
         "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006526701"
         "https://www.insee.fr/fr/statistiques/fichier/2569957/fqp03_nsf-1.pdf"
     ]
+
+
+class DomaineSpecialitesFormation(Enum):
+    domaine_10 = "10. Formations générales"
+    domaine_11 = "11. Mathématiques et sciences"
+    domaine_12 = "12. Sciences humaines et droit"
+    domaine_13 = "13. Lettres et arts"
+    domaine_20 = "20. Spécialités pluritechnologiques de la production"
+    domaine_21 = "21. Agriculture, pêche, forêt et espaces verts"
+    domaine_22 = "22. Transformations"
+    domaine_23 = "23. Génie civil, construction, bois"
+    domaine_24 = "24. Matériaux souples"
+    domaine_25 = "25. Mécanique, électricité, électronique"
+    domaine_30 = "30. Spécialités plurivalentes des services"
+    domaine_31 = "31. Echanges et gestion"
+    domaine_32 = "32. Communication et information"
+    domaine_33 = "33. Services aux personnes"
+    domaine_34 = "34. Services à la collectivité"
+    domaine_41 = "41. Domaines des capacités individuelles"
+    domaine_42 = "42. Domaines des activités quotidiennes et de loisirs"
+    aucun = "aucun"
+
+
+class domaine_specialites_formation(Variable):
+    value_type = Enum
+    possible_values = DomaineSpecialitesFormation
+    default_value = DomaineSpecialitesFormation.aucun
+    entity = Individu
+    label = "Domaine de spécialités en matière de formation"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    reference = [
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006526701"
+        "https://www.insee.fr/fr/statistiques/fichier/2569957/fqp03_nsf-1.pdf"
+    ]
+
+    def formula(individu, period):
+        groupe_specialites_formation = individu('groupe_specialites_formation', period).decode_to_str()
+        domaines = []
+        for groupe in groupe_specialites_formation:
+            domaine_number_search = re.search('groupe_(\d{2})\d', groupe)
+            if domaine_number_search:
+                domaines.append(f"domaine_{domaine_number_search.group(1)}")
+            else:
+                domaines.append("aucun")
+
+        return DomaineSpecialitesFormation.encode(asarray(domaines))

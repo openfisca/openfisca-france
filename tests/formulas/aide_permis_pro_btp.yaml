@@ -4,6 +4,6 @@
       2021: [7000, 18000, 24000, 35000, 7000, 7000, 7000]
     age: [30, 30, 30, 30, 31, 30, 30]
     alternant: [true, true, true, true, true, false, true]
-    domaine_specialites_formation_niveau_17: ["genie_civil_construction_bois", "genie_civil_construction_bois", "genie_civil_construction_bois", "genie_civil_construction_bois", "genie_civil_construction_bois", "genie_civil_construction_bois", "aucun"]
+    domaine_specialites_formation: ["domaine_23", "domaine_23", "domaine_23", "domaine_23", "domaine_23", "domaine_23", "aucun"]
   output:
     aide_permis_pro_btp: [700, 500, 300, 0, 0, 0, 0]

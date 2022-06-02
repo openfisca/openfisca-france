@@ -1,7 +1,7 @@
 from openfisca_france.model.base import Variable, Individu, MONTH
 from numpy import select
 
-from openfisca_france.model.caracteristiques_socio_demographiques.demographie import DomaineSpecialitesFormationNiveau17
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie import DomaineSpecialitesFormation
 
 
 class aide_permis_pro_btp(Variable):
@@ -34,6 +34,6 @@ class aide_permis_pro_btp(Variable):
 
         alternant = individu('alternant', period)
 
-        est_en_formation_btp = individu("domaine_specialites_formation_niveau_17", period) == DomaineSpecialitesFormationNiveau17.genie_civil_construction_bois
+        est_en_formation_btp = individu("domaine_specialites_formation", period) == DomaineSpecialitesFormation.domaine_23
 
         return eligibilite_age * alternant * montant * est_en_formation_btp
