@@ -414,3 +414,37 @@ class regime_securite_sociale(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = 'https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2020/RAPPORT%20CCSS-Sept%202020.pdf'
+
+
+class DomaineSpecialitesFormationNiveau17(Enum):
+    formations_generales = "10. Formations générales"
+    mathematiques_et_sciences = "11. Mathématiques et sciences"
+    sciences_humaines_et_droit = "12. Sciences humaines et droit"
+    lettres_et_arts = "13. Lettres et arts"
+    agriculture_peche_foret_et_espaces_verts = "21. Agriculture, pêche, forêt et espaces verts"
+    transformations = "22. Transformations"
+    genie_civil_construction_bois = "23. Génie civil, construction, bois"
+    materiaux_souples = "24. Matériaux souples"
+    mecanique_electricite_electronique = "25. Mécanique, électricité, électronique"
+    specialites_plurivalentes_des_services = "30. Spécialités plurivalentes des services"
+    echanges_et_gestion = "31. Echanges et gestion"
+    communication_et_information = "32. Communication et information"
+    services_aux_personnes = "33. Services aux personnes"
+    services_a_la_collectivité = "34. Services à la collectivité"
+    domaines_des_capacites_individuelles = "41. Domaines des capacités individuelles"
+    domaines_des_activites_quotidiennes_et_de_loisirs = "42. Domaines des activités quotidiennes et de loisirs"
+    aucun = "aucun"
+
+
+class domaine_specialites_formation_niveau_17(Variable):
+    value_type = Enum
+    possible_values = DomaineSpecialitesFormationNiveau17
+    default_value = DomaineSpecialitesFormationNiveau17.aucun
+    entity = Individu
+    label = "Domaine de spécialités en matière de formation"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    reference = [
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006526701"
+        "https://www.insee.fr/fr/statistiques/fichier/2569957/fqp03_nsf-1.pdf"
+    ]
