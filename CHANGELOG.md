@@ -1,5 +1,18 @@
 # Changelog
 
+### 117.0.1 [#1838](https://github.com/openfisca/openfisca-france/pull/1838)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : du 01/01/2020 au 31/12/2021
+* Zones impactées :
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpen/max.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpen/min.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpro/min.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpro/min.yaml`
+* Détails :
+  - Mise à jour des montants minimum et maximum d'abattement pour les traitements et salaires et pour les pensions
+  - Ajout de références législatives
+
 ## 117.0.0 [#1880](https://github.com/openfisca/openfisca-france/pull/1880)
 
 * Évolution du système socio-fiscal.
