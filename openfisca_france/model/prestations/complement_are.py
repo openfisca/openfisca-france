@@ -7,7 +7,7 @@ from openfisca_france.model.base import Individu, Variable, MONTH, \
 class complement_are_salaire_journalier_reference(Variable):
     value_type = float
     entity = Individu
-    label = "Salaire journalier de référence"
+    label = 'Salaire journalier de référence'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -15,7 +15,7 @@ class complement_are_salaire_journalier_reference(Variable):
 class complement_are_allocation_journaliere(Variable):
     value_type = float
     entity = Individu
-    label = "Allocation journalière ARE"
+    label = 'Allocation journalière ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -34,7 +34,7 @@ class complement_are_degressivite_are(Variable):
 class complement_are_allocation_journaliere_taux_plein(Variable):
     value_type = float
     entity = Individu
-    label = "Allocation journalière ARE taux plein (en cas de degressivité)"
+    label = 'Allocation journalière ARE taux plein (en cas de degressivité)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -45,7 +45,7 @@ class complement_are_allocation_journaliere_taux_plein(Variable):
 class complement_are_allocation_mensuelle_brute_are(Variable):
     value_type = float
     entity = Individu
-    label = "Allocation mensuelle brute ARE"
+    label = 'Allocation mensuelle brute ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -69,7 +69,7 @@ class complement_are_allocation_mensuelle_brute_are(Variable):
 class complement_are_allocation_journaliere_brute_are(Variable):
     value_type = float
     entity = Individu
-    label = "Allocation journalière brute ARE après déduction de la complémentaire retraite"
+    label = 'Allocation journalière brute ARE après déduction de la complémentaire retraite'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -83,7 +83,7 @@ class complement_are_allocation_journaliere_brute_are(Variable):
 class complement_are_plafond(Variable):
     value_type = float
     entity = Individu
-    label = "Plafond du complément ARE"
+    label = 'Plafond du complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -100,7 +100,7 @@ class complement_are_plafond(Variable):
 class complement_are_montant_mensuel(Variable):
     value_type = float
     entity = Individu
-    label = "Montant mensuel du complément ARE permettant de déterminer le nombre de jours indemnisables"
+    label = 'Montant mensuel du complément ARE permettant de déterminer le nombre de jours indemnisables'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -129,7 +129,7 @@ class complement_are_allocation_mensuelle_due_brute(Variable):
 class complement_are_allocation_mensuelle_due_brute_apres_deductions(Variable):
     value_type = float
     entity = Individu
-    label = "Montant mensuel du complément ARE"
+    label = 'Montant mensuel du complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -201,7 +201,7 @@ class complement_are_nombre_jours_indemnisables(Variable):
     label = "Nombre de jours d'ARE indemnisables par le complement ARE"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000038829574?init=true&page=1&query=2019-797&searchField=ALL&tab_selection=all"
+    reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000038829574?init=true&page=1&query=2019-797&searchField=ALL&tab_selection=all'
 
     def formula(individu, period):
         allocation_journaliere_taux_plein = individu('complement_are_allocation_journaliere_taux_plein', period)
@@ -223,7 +223,7 @@ class complement_are_nombre_jours_indemnises(Variable):
     label = "Nombre de jours d'ARE indemnisés par le complement ARE"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000038829574?init=true&page=1&query=2019-797&searchField=ALL&tab_selection=all"
+    reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000038829574?init=true&page=1&query=2019-797&searchField=ALL&tab_selection=all'
 
     def formula(individu, period):
         nombre_jours_indemnisables = individu('complement_are_nombre_jours_indemnisables', period)
@@ -235,7 +235,7 @@ class complement_are_nombre_jours_indemnises(Variable):
 class complement_are_depassement_plafond(Variable):
     value_type = bool
     entity = Individu
-    label = "Le plafond de complément ARE est dépassé"
+    label = 'Le plafond de complément ARE est dépassé'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -249,10 +249,10 @@ class complement_are_depassement_plafond(Variable):
 class complement_are_deductions_montant_mensuel(Variable):
     value_type = float
     entity = Individu
-    label = "Somme des charges déductives du complément ARE (CRC, CSG, CRDS)"
+    label = 'Somme des charges déductives du complément ARE (CRC, CSG, CRDS)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations"
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
 
     def formula(individu, period):
         crc_mensuelle = individu('complement_are_crc_mensuelle', period)
@@ -265,10 +265,10 @@ class complement_are_deductions_montant_mensuel(Variable):
 class complement_are_crc(Variable):
     value_type = float
     entity = Individu
-    label = "Montant de Cotisation de Retraite Complémentaire (CRC)"
+    label = 'Montant de Cotisation de Retraite Complémentaire (CRC)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations"
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
 
     def formula(individu, period, parameters):
         allocation_journaliere = individu('complement_are_allocation_journaliere', period)
@@ -287,10 +287,10 @@ class complement_are_crc(Variable):
 class complement_are_crc_mensuelle(Variable):
     value_type = float
     entity = Individu
-    label = "Montant de Cotisation de Retraite Complémentaire (CRC)"
+    label = 'Montant de Cotisation de Retraite Complémentaire (CRC)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations"
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
 
     def formula(individu, period):
         complement_are_crc = individu('complement_are_crc', period)
@@ -302,10 +302,10 @@ class complement_are_crc_mensuelle(Variable):
 class complement_are_csg(Variable):
     value_type = float
     entity = Individu
-    label = "Montant des Contributions Sociales Généralisées (CSG)"
+    label = 'Montant des Contributions Sociales Généralisées (CSG)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations"
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
 
     def formula(individu, period, parameters):
         allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)
@@ -325,10 +325,10 @@ class complement_are_csg(Variable):
 class complement_are_csg_mensuelle(Variable):
     value_type = float
     entity = Individu
-    label = "Montant mensualisé des Contributions Sociales Généralisées (CSG)"
+    label = 'Montant mensualisé des Contributions Sociales Généralisées (CSG)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations"
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
 
     def formula(individu, period):
         complement_are_csg = individu('complement_are_csg', period)
@@ -340,10 +340,10 @@ class complement_are_csg_mensuelle(Variable):
 class complement_are_crds(Variable):
     value_type = float
     entity = Individu
-    label = "Montant des Contributions au Remboursement de la Dette Sociale (CRDS)"
+    label = 'Montant des Contributions au Remboursement de la Dette Sociale (CRDS)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations"
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
 
     def formula(individu, period, parameters):
         allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)
@@ -365,10 +365,10 @@ class complement_are_crds(Variable):
 class complement_are_crds_mensuelle(Variable):
     value_type = float
     entity = Individu
-    label = "Montant mensualisé des Contributions au Remboursement de la Dette Sociale (CRDS)"
+    label = 'Montant mensualisé des Contributions au Remboursement de la Dette Sociale (CRDS)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations"
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
 
     def formula(individu, period):
         complement_are_crds = individu('complement_are_crds', period)
