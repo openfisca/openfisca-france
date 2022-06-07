@@ -526,9 +526,9 @@ class groupe_specialites_formation(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = [
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006526701"
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006526701",
         "https://www.insee.fr/fr/statistiques/fichier/2569957/fqp03_nsf-1.pdf"
-    ]
+        ]
 
 
 class DomaineSpecialitesFormation(Enum):
@@ -561,15 +561,15 @@ class domaine_specialites_formation(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = [
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006526701"
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006526701",
         "https://www.insee.fr/fr/statistiques/fichier/2569957/fqp03_nsf-1.pdf"
-    ]
+        ]
 
     def formula(individu, period):
         groupe_specialites_formation = individu('groupe_specialites_formation', period).decode_to_str()
         domaines = []
         for groupe in groupe_specialites_formation:
-            domaine_number_search = re.search('groupe_(\d{2})\d', groupe)
+            domaine_number_search = re.search(r'groupe_(\d{2})\d', groupe)
             if domaine_number_search:
                 domaines.append(f"domaine_{domaine_number_search.group(1)}")
             else:
