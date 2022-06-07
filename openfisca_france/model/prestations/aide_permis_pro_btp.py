@@ -34,6 +34,6 @@ class aide_permis_pro_btp(Variable):
 
         alternant = individu('alternant', period)
 
-        est_en_formation_btp = individu("domaine_specialites_formation", period) == DomaineSpecialitesFormation.domaine_23
+        est_en_formation_btp = individu('domaine_specialites_formation', period) == DomaineSpecialitesFormation.domaine_23
 
         return eligibilite_age * alternant * montant * est_en_formation_btp
