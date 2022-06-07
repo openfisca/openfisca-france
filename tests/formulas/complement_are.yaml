@@ -1,7 +1,7 @@
 - name: Test 01 - Vérifie le calcul du complément ARE dans un cas avec salaire de reprise proche du salaire journalier de référence
   period: 2022-04
   input:
-    complement_are_gain_brut: 1200
+    salaire_de_base: 1200
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 100
     complement_are_allocation_journaliere: 37
@@ -15,7 +15,7 @@
 - name: Test 02 - Vérifie le calcul du complément ARE dans un cas avec salaire de reprise bas par rapport au salaire journalier de référence
   period: 2022-04
   input:
-    complement_are_gain_brut: 375
+    salaire_de_base: 375
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 100
     complement_are_allocation_journaliere: 37
@@ -29,7 +29,7 @@
 - name: Test 03 - Vérifie le calcul du complément ARE dans un cas de reprise d'emploi avec salaire supérieur au salaire de référence
   period: 2022-04
   input:
-    complement_are_gain_brut: 1800
+    salaire_de_base: 1800
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 100
     complement_are_allocation_journaliere: 35.71
@@ -41,7 +41,7 @@
 - name: Test 04 - Vérifie le calcul du complément ARE dans un cas simple sans déductions de charges
   period: 2022-04
   input:
-    complement_are_gain_brut: 210
+    salaire_de_base: 210
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 100
     complement_are_allocation_journaliere: 27.72
@@ -55,7 +55,7 @@
 - name: Test 05 - Vérifie le calcul du complément ARE dans un cas simple avec haut salaire journalier de référence
   period: 2022-04
   input:
-    complement_are_gain_brut: 1200
+    salaire_de_base: 1200
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 100
     complement_are_allocation_journaliere: 118.10
@@ -69,7 +69,7 @@
 - name: Test 06 - Vérifie le calcul du complément ARE dans un cas simple avec dégressivité ARE
   period: 2022-05
   input:
-    complement_are_gain_brut: 1200
+    salaire_de_base: 1200
     complement_are_degressivite_are: true
     complement_are_nombre_jours_restants: 100
     complement_are_allocation_journaliere: 82.67
@@ -87,7 +87,7 @@
 - name: Test 07 - Vérifie le calcul du complément ARE pour un mois de 28 jours
   period: 2022-02
   input:
-    complement_are_gain_brut: 918
+    salaire_de_base: 918
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 100
     complement_are_allocation_journaliere: 35.11
@@ -101,7 +101,7 @@
 - name: Test 08 - Vérifie le calcul du complément ARE pour un mois de 29 jours
   period: 2024-02
   input:
-    complement_are_gain_brut: 918
+    salaire_de_base: 918
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 100
     complement_are_allocation_journaliere: 35.11
@@ -115,7 +115,7 @@
 - name: Test 09 - Vérifie le calcul du complément ARE pour un mois de 30 jours
   period: 2022-04
   input:
-    complement_are_gain_brut: 918
+    salaire_de_base: 918
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 100
     complement_are_allocation_journaliere: 35.11
@@ -129,7 +129,7 @@
 - name: Test 10 - Vérifie le calcul du complément ARE pour un mois de 31 jours
   period: 2022-03
   input:
-    complement_are_gain_brut: 918
+    salaire_de_base: 918
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 100
     complement_are_allocation_journaliere: 35.11
@@ -143,7 +143,7 @@
 - name: Test 11 - Vérifie le calcul du complément ARE dans un cas de dépassement du plafond de cumul
   period: 2022-04
   input:
-    complement_are_gain_brut: 846
+    salaire_de_base: 846
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 100
     complement_are_allocation_journaliere: 22.5
@@ -157,7 +157,7 @@
 - name: Test 12 - Vérifie le calcul du complément ARE partiel dans le cas où le nombre de jours restants n'est pas suffisant
   period: 2022-04
   input:
-    complement_are_gain_brut: 1200
+    salaire_de_base: 1200
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 4
     complement_are_allocation_journaliere: 37
@@ -172,7 +172,7 @@
 - name: Test 13 - Vérifie le calcul du complément ARE partiel dans un cas sans jours restants
   period: 2022-04
   input:
-    complement_are_gain_brut: 1200
+    salaire_de_base: 1200
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 0
     complement_are_allocation_journaliere: 37
@@ -187,7 +187,7 @@
 - name: Test 14 - Vérifie le calcul du nombre de jours restants
   period: 2022-04
   input:
-    complement_are_gain_brut: 1200
+    salaire_de_base: 1200
     complement_are_degressivite_are: false
     complement_are_nombre_jours_restants: 10
     complement_are_allocation_journaliere: 37
@@ -202,13 +202,13 @@
   input:
     individus:
       parent1:
-        complement_are_gain_brut: 1200
+        salaire_de_base: 1200
         complement_are_degressivite_are: false
         complement_are_nombre_jours_restants: 100
         complement_are_allocation_journaliere: 37
         complement_are_salaire_journalier_reference: 48
       parent2:
-        complement_are_gain_brut: 375
+        salaire_de_base: 375
         complement_are_degressivite_are: false
         complement_are_nombre_jours_restants: 100
         complement_are_allocation_journaliere: 37
@@ -228,7 +228,7 @@
 
 - name: Test 16 - Vérifie le calcul du complément ARE dans un cas sur plusieurs périodes différentes
   input:
-    complement_are_gain_brut:
+    salaire_de_base:
         2022-02: 918
         2022-03: 918
         2022-04: 918

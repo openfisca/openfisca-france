@@ -4,17 +4,6 @@ from openfisca_france.model.base import Individu, Variable, MONTH, \
     set_input_divide_by_period, round_, max_, min_
 
 
-class complement_are_gain_brut(Variable):
-    value_type = float
-    entity = Individu
-    label = "Montant du salaire de reprise d'activité"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula(individu, period):
-        return individu('salaire_de_base', period)
-
-
 class complement_are_salaire_journalier_reference(Variable):
     value_type = float
     entity = Individu
@@ -29,6 +18,9 @@ class complement_are_allocation_journaliere(Variable):
     label = "Allocation journalière ARE"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+
+    def formula(individu, period):
+        return individu('allocation_retour_emploi_journaliere', period)
 
 
 class complement_are_degressivite_are(Variable):
@@ -97,7 +89,8 @@ class complement_are_plafond(Variable):
 
     def formula(individu, period, parameters):
         salaire_journalier_reference = individu('complement_are_salaire_journalier_reference', period)
-        gain_brut = individu('complement_are_gain_brut', period)
+        # Le gain brut est l'appelation métier utilisée dans le calcul du complément ARE et représente la notion de salaire de reprise d'emploi
+        gain_brut = individu('salaire_de_base', period)
 
         plafond = salaire_journalier_reference * parameters(period).chomage.complement_are.coefficient_plafond_global
 
@@ -155,7 +148,8 @@ class complement_are_salaire_retenu(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        gain_brut = individu('complement_are_gain_brut', period)
+        # Le gain brut est l'appelation métier utilisée dans le calcul du complément ARE et représente la notion de salaire de reprise d'emploi
+        gain_brut = individu('salaire_de_base', period)
 
         return round_(gain_brut * parameters(period).chomage.complement_are.taux_deduction_unique, 1)
 
