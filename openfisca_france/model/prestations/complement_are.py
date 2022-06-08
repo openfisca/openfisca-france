@@ -4,44 +4,6 @@ from openfisca_france.model.base import Individu, Variable, MONTH, \
     set_input_divide_by_period, round_, max_, min_
 
 
-class complement_are_salaire_journalier_reference(Variable):
-    value_type = float
-    entity = Individu
-    label = 'Salaire journalier de référence'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-
-class complement_are_allocation_journaliere(Variable):
-    value_type = float
-    entity = Individu
-    label = 'Allocation journalière ARE'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula(individu, period):
-        return individu('allocation_retour_emploi_journaliere', period)
-
-
-class complement_are_degressivite_are(Variable):
-    value_type = bool
-    entity = Individu
-    label = "L'individu est soumis à la dégressivité de l'ARE"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-
-class complement_are_allocation_journaliere_taux_plein(Variable):
-    value_type = float
-    entity = Individu
-    label = 'Allocation journalière ARE taux plein (en cas de degressivité)'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula(individu, period):
-        return individu('complement_are_allocation_journaliere', period)
-
-
 class complement_are_allocation_mensuelle_brute_are(Variable):
     value_type = float
     entity = Individu
@@ -59,9 +21,9 @@ class complement_are_allocation_mensuelle_brute_are(Variable):
             weekmask= '1' * 7
             )
 
-        degressivite_are = individu('complement_are_degressivite_are', period)
-        allocation_journaliere_taux_plein = individu('complement_are_allocation_journaliere_taux_plein', period)
-        allocation_journaliere = individu('complement_are_allocation_journaliere', period)
+        degressivite_are = individu('degressivite_are', period)
+        allocation_journaliere_taux_plein = individu('allocation_retour_emploi_journaliere_taux_plein', period)
+        allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
 
         return where(degressivite_are, nombre_jours_mois * allocation_journaliere_taux_plein, nombre_jours_mois * allocation_journaliere)
 
@@ -74,7 +36,7 @@ class complement_are_allocation_journaliere_brute_are(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period):
-        allocation_journaliere = individu('complement_are_allocation_journaliere', period)
+        allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
         crc = individu('complement_are_crc', period)
 
         return allocation_journaliere - crc
@@ -88,7 +50,7 @@ class complement_are_plafond(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        salaire_journalier_reference = individu('complement_are_salaire_journalier_reference', period)
+        salaire_journalier_reference = individu('salaire_journalier_reference_are', period)
         # Le gain brut est l'appelation métier utilisée dans le calcul du complément ARE et représente la notion de salaire de reprise d'emploi
         gain_brut = individu('salaire_de_base', period)
 
@@ -105,7 +67,7 @@ class complement_are_montant_mensuel(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period):
-        degressivite_are = individu('complement_are_degressivite_are', period)
+        degressivite_are = individu('degressivite_are', period)
         plafond = individu('complement_are_plafond', period)
         are_brute_restante = individu('complement_are_are_brute_restante', period)
 
@@ -120,7 +82,7 @@ class complement_are_allocation_mensuelle_due_brute(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period):
-        allocation_journaliere = individu('complement_are_allocation_journaliere', period)
+        allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
         nombre_jours_indemnises = individu('complement_are_nombre_jours_indemnises', period)
 
         return round_(allocation_journaliere * nombre_jours_indemnises, 2)
@@ -204,9 +166,9 @@ class complement_are_nombre_jours_indemnisables(Variable):
     reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000038829574?init=true&page=1&query=2019-797&searchField=ALL&tab_selection=all'
 
     def formula(individu, period):
-        allocation_journaliere_taux_plein = individu('complement_are_allocation_journaliere_taux_plein', period)
-        allocation_journaliere = individu('complement_are_allocation_journaliere', period)
-        degressivite_are = individu('complement_are_degressivite_are', period)
+        allocation_journaliere_taux_plein = individu('allocation_retour_emploi_journaliere_taux_plein', period)
+        allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
+        degressivite_are = individu('degressivite_are', period)
         montant_mensuel = individu('complement_are_montant_mensuel', period)
 
         return max_(0,
@@ -271,8 +233,8 @@ class complement_are_crc(Variable):
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
 
     def formula(individu, period, parameters):
-        allocation_journaliere = individu('complement_are_allocation_journaliere', period)
-        salaire_journalier_reference = individu('complement_are_salaire_journalier_reference', period)
+        allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
+        salaire_journalier_reference = individu('salaire_journalier_reference_are', period)
         seuil_exoneration_crc = parameters(period).chomage.complement_are.seuil_exoneration_crc
         coefficient_crc = parameters(period).chomage.complement_are.coefficient_crc
 

@@ -2,10 +2,10 @@
   period: 2022-04
   input:
     salaire_de_base: 1200
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 100
-    complement_are_allocation_journaliere: 37
-    complement_are_salaire_journalier_reference: 48
+    allocation_retour_emploi_journaliere: 37
+    salaire_journalier_reference_are: 48
   output:
     complement_are_nombre_jours_indemnises: 7.0
     complement_are_allocation_mensuelle_due_brute: 259
@@ -16,10 +16,10 @@
   period: 2022-04
   input:
     salaire_de_base: 375
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 100
-    complement_are_allocation_journaliere: 37
-    complement_are_salaire_journalier_reference: 45
+    allocation_retour_emploi_journaliere: 37
+    salaire_journalier_reference_are: 45
   output:
     complement_are_nombre_jours_indemnises: 23
     complement_are_allocation_mensuelle_due_brute: 851.00
@@ -30,10 +30,10 @@
   period: 2022-04
   input:
     salaire_de_base: 1800
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 100
-    complement_are_allocation_journaliere: 35.71
-    complement_are_salaire_journalier_reference: 58.38
+    allocation_retour_emploi_journaliere: 35.71
+    salaire_journalier_reference_are: 58.38
   output:
     complement_are_nombre_jours_indemnises: 0
     complement_are_allocation_mensuelle_due_brute: 0
@@ -42,10 +42,10 @@
   period: 2022-04
   input:
     salaire_de_base: 210
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 100
-    complement_are_allocation_journaliere: 27.72
-    complement_are_salaire_journalier_reference: 48.63
+    allocation_retour_emploi_journaliere: 27.72
+    salaire_journalier_reference_are: 48.63
   output:
     complement_are_nombre_jours_indemnises: 25
     complement_are_allocation_mensuelle_due_brute: 693
@@ -56,10 +56,10 @@
   period: 2022-04
   input:
     salaire_de_base: 1200
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 100
-    complement_are_allocation_journaliere: 118.10
-    complement_are_salaire_journalier_reference: 207.20
+    allocation_retour_emploi_journaliere: 118.10
+    salaire_journalier_reference_are: 207.20
   output:
     complement_are_nombre_jours_indemnises: 23
     complement_are_allocation_mensuelle_due_brute: 2716.30
@@ -70,11 +70,11 @@
   period: 2022-05
   input:
     salaire_de_base: 1200
-    complement_are_degressivite_are: true
+    degressivite_are: true
     complement_are_nombre_jours_restants: 100
-    complement_are_allocation_journaliere: 82.67
-    complement_are_allocation_journaliere_taux_plein: 118.10
-    complement_are_salaire_journalier_reference: 207.20
+    allocation_retour_emploi_journaliere: 82.67
+    allocation_retour_emploi_journaliere_taux_plein: 118.10
+    salaire_journalier_reference_are: 207.20
   output:
     complement_are_nombre_jours_indemnises: 24
     complement_are_allocation_mensuelle_due_brute: 1984.08
@@ -88,10 +88,10 @@
   period: 2022-02
   input:
     salaire_de_base: 918
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 100
-    complement_are_allocation_journaliere: 35.11
-    complement_are_salaire_journalier_reference: 56.91
+    allocation_retour_emploi_journaliere: 35.11
+    salaire_journalier_reference_are: 56.91
   output:
     complement_are_nombre_jours_indemnises: 10
     complement_are_deductions_montant_mensuel: 17.1
@@ -102,10 +102,10 @@
   period: 2024-02
   input:
     salaire_de_base: 918
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 100
-    complement_are_allocation_journaliere: 35.11
-    complement_are_salaire_journalier_reference: 56.91
+    allocation_retour_emploi_journaliere: 35.11
+    salaire_journalier_reference_are: 56.91
   output:
     complement_are_nombre_jours_indemnises: 11
     complement_are_allocation_mensuelle_due_brute: 386.21
@@ -116,10 +116,10 @@
   period: 2022-04
   input:
     salaire_de_base: 918
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 100
-    complement_are_allocation_journaliere: 35.11
-    complement_are_salaire_journalier_reference: 56.91
+    allocation_retour_emploi_journaliere: 35.11
+    salaire_journalier_reference_are: 56.91
   output:
     complement_are_nombre_jours_indemnises: 12
     complement_are_allocation_mensuelle_due_brute: 421.32
@@ -130,10 +130,10 @@
   period: 2022-03
   input:
     salaire_de_base: 918
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 100
-    complement_are_allocation_journaliere: 35.11
-    complement_are_salaire_journalier_reference: 56.91
+    allocation_retour_emploi_journaliere: 35.11
+    salaire_journalier_reference_are: 56.91
   output:
     complement_are_nombre_jours_indemnises: 13
     complement_are_allocation_mensuelle_due_brute: 456.43
@@ -144,10 +144,10 @@
   period: 2022-04
   input:
     salaire_de_base: 846
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 100
-    complement_are_allocation_journaliere: 22.5
-    complement_are_salaire_journalier_reference: 30
+    allocation_retour_emploi_journaliere: 22.5
+    salaire_journalier_reference_are: 30
   output:
     complement_are_nombre_jours_indemnises: 3
     complement_are_allocation_mensuelle_due_brute: 67.5
@@ -158,10 +158,10 @@
   period: 2022-04
   input:
     salaire_de_base: 1200
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 4
-    complement_are_allocation_journaliere: 37
-    complement_are_salaire_journalier_reference: 48
+    allocation_retour_emploi_journaliere: 37
+    salaire_journalier_reference_are: 48
   output:
     complement_are_nombre_jours_indemnisables: 7
     complement_are_nombre_jours_indemnises: 4
@@ -173,10 +173,10 @@
   period: 2022-04
   input:
     salaire_de_base: 1200
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 0
-    complement_are_allocation_journaliere: 37
-    complement_are_salaire_journalier_reference: 48
+    allocation_retour_emploi_journaliere: 37
+    salaire_journalier_reference_are: 48
   output:
     complement_are_nombre_jours_indemnisables: 7
     complement_are_nombre_jours_indemnises: 0
@@ -188,10 +188,10 @@
   period: 2022-04
   input:
     salaire_de_base: 1200
-    complement_are_degressivite_are: false
+    degressivite_are: false
     complement_are_nombre_jours_restants: 10
-    complement_are_allocation_journaliere: 37
-    complement_are_salaire_journalier_reference: 48
+    allocation_retour_emploi_journaliere: 37
+    salaire_journalier_reference_are: 48
   output:
     complement_are_nombre_jours_restants: 10
     complement_are_nombre_jours_indemnisables: 7
@@ -203,16 +203,16 @@
     individus:
       parent1:
         salaire_de_base: 1200
-        complement_are_degressivite_are: false
+        degressivite_are: false
         complement_are_nombre_jours_restants: 100
-        complement_are_allocation_journaliere: 37
-        complement_are_salaire_journalier_reference: 48
+        allocation_retour_emploi_journaliere: 37
+        salaire_journalier_reference_are: 48
       parent2:
         salaire_de_base: 375
-        complement_are_degressivite_are: false
+        degressivite_are: false
         complement_are_nombre_jours_restants: 100
-        complement_are_allocation_journaliere: 37
-        complement_are_salaire_journalier_reference: 45
+        allocation_retour_emploi_journaliere: 37
+        salaire_journalier_reference_are: 45
   output:
     individus:
       parent1:
@@ -232,17 +232,17 @@
         2022-02: 918
         2022-03: 918
         2022-04: 918
-    complement_are_degressivite_are:
+    degressivite_are:
         2022-02: false
         2022-03: false
         2022-04: false
     complement_are_nombre_jours_restants:
         2022-02: 100
-    complement_are_allocation_journaliere:
+    allocation_retour_emploi_journaliere:
         2022-02: 35.11
         2022-03: 35.11
         2022-04: 35.11
-    complement_are_salaire_journalier_reference:
+    salaire_journalier_reference_are:
         2022-02: 56.91
         2022-03: 56.91
         2022-04: 56.91

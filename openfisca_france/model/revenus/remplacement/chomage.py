@@ -54,6 +54,17 @@ class allocation_retour_emploi_journaliere(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178163/'
 
 
+class allocation_retour_emploi_journaliere_taux_plein(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Allocation journalière ARE taux plein (en cas de degressivité)'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period):
+        return individu('allocation_retour_emploi_journaliere', period)
+
+
 class allocation_travailleur_independant(Variable):
     value_type = float
     entity = Individu
@@ -65,3 +76,19 @@ class allocation_travailleur_independant(Variable):
     Indemnisation de Pôle emploi en vigueur à partir du 1er novembre 2019 à destination
     des travailleurs non salariés indépendants contraints de mettre fin à leur activité.
     '''
+
+
+class salaire_journalier_reference_are(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Salaire journalier de référence'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+
+class degressivite_are(Variable):
+    value_type = bool
+    entity = Individu
+    label = "L'individu est soumis à la dégressivité de l'ARE"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
