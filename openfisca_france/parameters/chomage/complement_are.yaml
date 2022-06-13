@@ -33,17 +33,7 @@ seuil_exoneration_contributions:
     2021-07-01:
       value: 53
 coefficient_assiette_contributions:
-  description: Coefficient permettant de déterminer le montant des Contributions Sociales Généralisées (CSG)
+  description: Coefficient permettant de déterminer l'assiette à partir de laquelle est calculée la CSG et la CRDS
   values:
     2021-07-01:
       value: 0.9825
-coefficient_csg:
-  description: Coefficient permettant de déterminer le montant des Contributions Sociales Généralisées (CSG)
-  values:
-    2021-07-01:
-      value: 0.062
-coefficient_crds:
-  description: Coefficient permettant de déterminer le montant des Contributions au Remboursement de la Dette Sociale (CRDS)
-  values:
-    2021-07-01:
-      value: 0.005

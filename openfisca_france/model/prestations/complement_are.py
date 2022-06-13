@@ -10,6 +10,7 @@ class complement_are_allocation_mensuelle_brute_are(Variable):
     label = 'Allocation mensuelle brute ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
@@ -34,6 +35,7 @@ class complement_are_allocation_journaliere_brute_are(Variable):
     label = 'Allocation journalière brute ARE après déduction de la complémentaire retraite'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
         allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
@@ -48,6 +50,7 @@ class complement_are_plafond(Variable):
     label = 'Plafond du complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period, parameters):
         salaire_journalier_reference = individu('salaire_journalier_reference_are', period)
@@ -65,6 +68,7 @@ class complement_are_montant_mensuel(Variable):
     label = 'Montant mensuel du complément ARE permettant de déterminer le nombre de jours indemnisables'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
         degressivite_are = individu('degressivite_are', period)
@@ -80,6 +84,7 @@ class complement_are_allocation_mensuelle_due_brute(Variable):
     label = "Montant de complément ARE dû au demandeur d'emploi"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
         allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
@@ -94,6 +99,7 @@ class complement_are_allocation_mensuelle_due_brute_apres_deductions(Variable):
     label = 'Montant mensuel du complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
         allocation_mensuelle_due_brute = individu('complement_are_allocation_mensuelle_due_brute', period)
@@ -108,6 +114,7 @@ class complement_are_salaire_retenu(Variable):
     label = "Montant de salaire retenu pour le calcul du complément ARE après déduction d'un taux"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period, parameters):
         # Le gain brut est l'appelation métier utilisée dans le calcul du complément ARE et représente la notion de salaire de reprise d'emploi
@@ -122,6 +129,7 @@ class complement_are_are_brute_restante(Variable):
     label = "Montant d'ARE restant après déduction du montant à déduire"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
         allocation_mensuelle_brute_are = individu('complement_are_allocation_mensuelle_brute_are', period)
@@ -200,6 +208,7 @@ class complement_are_depassement_plafond(Variable):
     label = 'Le plafond de complément ARE est dépassé'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
         montant_servi = individu('complement_are_montant_servi', period)
@@ -214,7 +223,10 @@ class complement_are_deductions_montant_mensuel(Variable):
     label = 'Somme des charges déductives du complément ARE (CRC, CSG, CRDS)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+    reference = [
+        'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire',
+        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+        ]
 
     def formula(individu, period):
         crc_mensuelle = individu('complement_are_crc_mensuelle', period)
@@ -230,7 +242,10 @@ class complement_are_crc(Variable):
     label = 'Montant de Cotisation de Retraite Complémentaire (CRC)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+    reference = [
+        'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire',
+        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+        ]
 
     def formula(individu, period, parameters):
         allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
@@ -252,7 +267,10 @@ class complement_are_crc_mensuelle(Variable):
     label = 'Montant de Cotisation de Retraite Complémentaire (CRC)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+    reference = [
+        'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire',
+        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+        ]
 
     def formula(individu, period):
         complement_are_crc = individu('complement_are_crc', period)
@@ -267,13 +285,16 @@ class complement_are_csg(Variable):
     label = 'Montant des Contributions Sociales Généralisées (CSG)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+    reference = [
+        'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire',
+        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+        ]
 
     def formula(individu, period, parameters):
         allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)
         seuil_exoneration_contributions = parameters(period).chomage.complement_are.seuil_exoneration_contributions
         coefficient_assiette_contributions = parameters(period).chomage.complement_are.coefficient_assiette_contributions
-        coefficient_csg = parameters(period).chomage.complement_are.coefficient_csg
+        coefficient_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.taux_global
         montant_retenu_csg = round_(allocation_journaliere_brute_are - (allocation_journaliere_brute_are * coefficient_assiette_contributions * coefficient_csg), 2)
 
         return round_(
@@ -290,7 +311,10 @@ class complement_are_csg_mensuelle(Variable):
     label = 'Montant mensualisé des Contributions Sociales Généralisées (CSG)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+    reference = [
+        'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire',
+        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+        ]
 
     def formula(individu, period):
         complement_are_csg = individu('complement_are_csg', period)
@@ -305,14 +329,17 @@ class complement_are_crds(Variable):
     label = 'Montant des Contributions au Remboursement de la Dette Sociale (CRDS)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+    reference = [
+        'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire',
+        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+        ]
 
     def formula(individu, period, parameters):
         allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)
         seuil_exoneration_contributions = parameters(period).chomage.complement_are.seuil_exoneration_contributions
         coefficient_assiette_contributions = parameters(period).chomage.complement_are.coefficient_assiette_contributions
-        coefficient_csg = parameters(period).chomage.complement_are.coefficient_csg
-        coefficient_crds = parameters(period).chomage.complement_are.coefficient_crds
+        coefficient_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.taux_global
+        coefficient_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
         montant_retenu_csg = round_(allocation_journaliere_brute_are - (allocation_journaliere_brute_are * coefficient_assiette_contributions * coefficient_csg), 2)
         montant_retenu_crds = round_(montant_retenu_csg - (allocation_journaliere_brute_are * coefficient_assiette_contributions * coefficient_crds), 2)
 
@@ -330,7 +357,10 @@ class complement_are_crds_mensuelle(Variable):
     label = 'Montant mensualisé des Contributions au Remboursement de la Dette Sociale (CRDS)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+    reference = [
+        'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire',
+        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+        ]
 
     def formula(individu, period):
         complement_are_crds = individu('complement_are_crds', period)
