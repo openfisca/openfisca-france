@@ -2,6 +2,8 @@ description: La décote se fait à ce taux
 values:
   2001-01-01:
     value: 0.75
+  2022-06-13:
+    value: 0.8
 metadata:
   ux_name: Taux
   unit: /1
