@@ -658,6 +658,14 @@ class primes_salaires_non_exonerees(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    def formula_2022_08_01(individu, period, parameters):
+        '''TODO: Fake formula to remove once LexImpact socio-fisca UI support reform variables in decompositions.'''
+        primes_salaires = individu('primes_salaires', period)
+        prime_partage_valeur_non_exoneree = individu(
+            'prime_partage_valeur_non_exoneree', period, options=[DIVIDE]
+        )
+        return primes_salaires + prime_partage_valeur_non_exoneree
+
     def formula_2019_01_01(individu, period, parameters):
         primes_salaires = individu('primes_salaires', period)
         prime_exceptionnelle_pouvoir_achat_non_exoneree = \

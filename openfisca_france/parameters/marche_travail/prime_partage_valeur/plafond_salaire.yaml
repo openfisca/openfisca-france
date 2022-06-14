@@ -1,0 +1,13 @@
+description: Plafond rémunération en SMIC pour être éligible à l'exonération
+values:
+  2022-01-01:
+    value: 0
+metadata:
+  ux_name: Salaire maximal d'éligibilité à la PPV, en nombre de SMIC annuels
+  unit: SMIC
+  reference:
+    2022-08-01:
+      href: https://www.assemblee-nationale.fr/dyn/16/textes/l16b0019_projet-loi#D_Article_1er
+      title: Projet de loi portant mesures d’urgence pour la protection du pouvoir d’achat (7 juillet 2022)
+documentation:
+  La date de fin d'application figure au VI du projet de loi (⑯ dédié au plafond salaire).

@@ -1,0 +1,13 @@
+description: Plafond annuel d'exonération PPV (sous condition de rémunération)
+values:
+  2022-01-01:
+    value: 0
+metadata:
+  ux_name: Premier plafond d'exonération
+  unit: currency
+  reference:
+    2022-08-01:
+      href: https://www.assemblee-nationale.fr/dyn/16/textes/l16b0019_projet-loi#D_Article_1er
+      title: Projet de loi portant mesures d’urgence pour la protection du pouvoir d’achat (7 juillet 2022)
+documentation:
+  La PPV s'inspire de la PEPA où le plafond annuel sous condition de rémunération a atteint 1000€.

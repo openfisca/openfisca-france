@@ -209,6 +209,7 @@
     prime_exceptionnelle_pouvoir_achat: [2000, 2000]
     accord_interessement: [true, true]
     effectif_entreprise: [50, 50]
+    effectif_entreprise: 55
   output:
     prime_exceptionnelle_pouvoir_achat_exoneree: [2000, 2000]
     prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 0]
