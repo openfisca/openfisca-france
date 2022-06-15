@@ -1,7 +1,7 @@
 description: Montant maximum de l'Aide Mobili-Jeune à la mobilité pour les jeunes
 secteur_agricole:
   values:
-    2022-07-01:
+    2022-06-01:
       value: 300
 autres_secteurs:
   values:
