@@ -1,4 +1,4 @@
-description: Âge maximum (sauf salariés du secteur privé non agricole) pour être éligible à l'aide locapass
+: Âge maximum (sauf salariés du secteur privé non agricole) pour être éligible à l'aide locapass
 values:
   2021-01-01:
     value: 30
@@ -7,11 +7,8 @@ metadata:
   unit: year
   reference:
     2021-01-01:
-    - href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000038929350/2019-09-01/#LEGIARTI000038929350
-      title: Décret 2009-1961 du 23/12/2009 Article 3 II. a)
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037669487/
-      title: Article R313-19-2 du Code de la construction et de l'habitation
-  last_review: "2022-05-18"
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000033652118#JORFARTI000033652118
+      title: Décret 2016-1769 du 19/12/2016
 documentation:
-  https://www.actionlogement.fr/l-avance-loca-pass
-  https://www.demarches.interieur.gouv.fr/particuliers/avance-loca-pass-aide-depot-garantie-location
+   https://www.actionlogement.fr/aide-mon-job-mon-logement
+   https://www.service-public.fr/particuliers/vosdroits/F18490
