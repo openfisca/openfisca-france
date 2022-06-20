@@ -1,4 +1,4 @@
-description : Âge maximum (sauf salariés du secteur privé non agricole) pour être éligible à l'aide locapass
+description: Âge maximum (sauf salariés du secteur privé non agricole) pour être éligible à l'aide locapass
 values:
   2021-01-01:
     value: 30
