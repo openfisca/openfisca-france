@@ -13,7 +13,7 @@ class mobili_jeune(Variable):
     set_input = set_input_divide_by_period
     reference = 'https://www.actionlogement.fr/l-aide-mobili-jeune'
 
-    def formula_2022_07(individu, period, parameters):
+    def formula_2022_06(individu, period, parameters):
         loyer = individu.menage('loyer', period)
         charges_locatives = individu.menage('charges_locatives', period)
         aide_logement = individu.famille('aide_logement', period)
@@ -81,7 +81,7 @@ class mobili_jeune_eligibilite(Variable):
     Avoir un reste à charge de loyer après déduction d'APL/ALS supérieur ou égal à 10€.
     '''
 
-    def formula_2022_07(individu, period, parameters):
+    def formula_2022_06(individu, period, parameters):
         condition_age = individu('age', period) < parameters(period).prestations_sociales.aides_jeunes.mobilite.mobili_jeune.age_maximum
 
         alternant = individu('alternant', period)  # sous contrat d'apprentissage ou de professionnalisation

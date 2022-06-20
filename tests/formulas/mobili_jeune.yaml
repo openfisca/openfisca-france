@@ -21,7 +21,7 @@
     mobili_jeune: [100, 70, 0, 0]
 
 - name: Éligibilité à l'aide au logement mobili-jeune
-  period: 2022-07
+  period: 2022-06
   input:
     age: [16, 30, 29, 29, 29, 29]
     alternant: [true, true, false, true, true, true]
@@ -33,7 +33,7 @@
 
 - name: Montant de l'aide au logement mobili-jeune
   description: Cas donnés sur actionlogement.fr/l-aide-mobili-jeune
-  period: 2022-07
+  period: 2022-06
   input:
     age: [18, 18, 18, 18, 18, 18]
     mobili_jeune_eligibilite: [true, true, true, true, true, false]
