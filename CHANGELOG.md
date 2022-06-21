@@ -1,5 +1,13 @@
 # Changelog
 
+## 116.13.0 [#1858](https://github.com/openfisca/openfisca-france/pull/1858)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/transport.py`.
+* Détails :
+  - Limite l'éligibilité de l'aide `carte_sncf_eleve_apprenti` aux résidents de la métropole.
+
 ## 116.12.0 [#1857](https://github.com/openfisca/openfisca-france/pull/1857)
 
 * Évolution du système socio-fiscal.

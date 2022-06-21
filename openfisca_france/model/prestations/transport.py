@@ -1,4 +1,5 @@
 from openfisca_france.model.base import Variable, Individu, MONTH, set_input_dispatch_by_period, set_input_divide_by_period
+from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
 
 
 class pret_formation_permis_eligibilite(Variable):
@@ -80,4 +81,6 @@ class carte_sncf_eleve_apprenti_eligibilite(Variable):
         eligibilite_apprenti = (age_apprenti > age) * individu('apprenti', period)
         eligibilite_etudiant = (age_etudiant > age) * individu('etudiant', period)
 
-        return eligibilite_apprenti + eligibilite_etudiant
+        residence_metropole = individu.menage('residence', period) == TypesLieuResidence.metropole
+
+        return (eligibilite_apprenti + eligibilite_etudiant) * residence_metropole
