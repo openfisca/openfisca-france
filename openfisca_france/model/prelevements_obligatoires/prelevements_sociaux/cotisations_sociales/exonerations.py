@@ -1,6 +1,7 @@
 from numpy import datetime64, timedelta64
 
 from openfisca_france.model.base import *
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie import RegimeSecuriteSociale
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
 
 
@@ -29,11 +30,22 @@ class exoneration_cotisations_employeur_tode(Variable):
     '''
 
     def formula_2019(individu, period, parameters):
-        # Exonération totale à 1.2 SMIC
-        # Puis dégressive : 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
-        # Devient nulle à 1.6 SMIC
+        # l'individu est l'exploitant agricole ? le travailleur occasionnel ?
         
-        eligible = 1
+        # employeur relevant de la MSA
+        regime_securite_sociale = individu("regime_securite_sociale", period)
+        # sauf ces employeurs d'après https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels :
+        # Coopératives d'utilisation de matériel agricole (CUMA).
+        # Coopératives de transformation, conditionnement et commercialisation.
+        # Entreprises paysagistes.
+        # Structures exerçant des activités de tourisme à la ferme.
+        # Entreprises de service (Crédit agricole, Groupama, caisses de MSA, groupements professionnels agricoles, Chambres d'agriculture…).
+        # Artisans ruraux.
+        # Entreprises de travail temporaire (ETT) et les entreprises de travail temporaire d'insertion (ETTI).
+        # Entreprises de travaux agricoles, ruraux et forestiers (ETARF).
+
+        
+        eligible = regime_securite_sociale == RegimeSecuriteSociale.regime_agricole
 
         # cotisations assurances sociales
         mmid_employeur = individu("mmid_employeur", period)
@@ -48,7 +60,7 @@ class exoneration_cotisations_employeur_tode(Variable):
         fnal = individu("fnal", period)
 
         # contribution à la retraite complémentaire
-        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
+        agirc_arrco_employeur = individu("agirc_arrco_employeur", period)
         # ? vieillesse_deplafonnee_employeur = individu("vieillesse_deplafonnee_employeur", period)
         # ? vieillesse_plafonnee_employeur = individu("vieillesse_plafonnee_employeur", period)
         
@@ -69,6 +81,11 @@ class exoneration_cotisations_employeur_tode(Variable):
             + contribution_solidarite_autonomie
             + chomage_employeur
             )
+
+
+        # Exonération totale à 1.2 SMIC
+        # Puis dégressive : 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
+        # Devient nulle à 1.6 SMIC
 
         salaire_de_base = individu("salaire_de_base", period)
         smic_proratise = individu("smic_proratise", period)
