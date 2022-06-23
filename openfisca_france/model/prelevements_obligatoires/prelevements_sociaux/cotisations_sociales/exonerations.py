@@ -28,33 +28,46 @@ class exoneration_cotisations_employeur_tode(Variable):
         consécutifs ou non, par employeur, par salarié et par année civile.
     '''
 
-    def formula_2019(individu, period, parameter):
+    def formula_2019(individu, period, parameters):
         # Exonération totale à 1.2 SMIC
         # Puis dégressive : 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
         # Devient nulle à 1.6 SMIC
         
         eligible = 1
 
-        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
-        chomage_employeur = individu("chomage_employeur", period)
-        vieillesse_deplafonnee_employeur = individu("vieillesse_deplafonnee_employeur", period)
-        vieillesse_plafonnee_employeur = individu("vieillesse_plafonnee_employeur", period)
-        accident_du_travail = individu("accident_du_travail", period)
-        contribution_solidarite_autonomie = individu("contribution_solidarite_autonomie", period)
+        # cotisations assurances sociales
         mmid_employeur = individu("mmid_employeur", period)
+
+        # cotisations allocations familiales
         famille = individu("famille", period)
+
+        # cotisations accident du travail et des maladies professionnelles
+        accident_du_travail = individu("accident_du_travail", period)
+
+        # contribution à l’allocation logement
         fnal = individu("fnal", period)
 
+        # contribution à la retraite complémentaire
+        agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
+        # ? vieillesse_deplafonnee_employeur = individu("vieillesse_deplafonnee_employeur", period)
+        # ? vieillesse_plafonnee_employeur = individu("vieillesse_plafonnee_employeur", period)
+        
+        # contribution de solidarité pour l’autonomie
+        contribution_solidarite_autonomie = individu("contribution_solidarite_autonomie", period)
+
+        # contribution au titre de l’assurance chômage
+        chomage_employeur = individu("chomage_employeur", period)      
+
         assiette_exoneration = (
-            agirc_arrco_employeur 
-            + chomage_employeur
-            + vieillesse_deplafonnee_employeur
-            + vieillesse_plafonnee_employeur
-            + accident_du_travail
-            + contribution_solidarite_autonomie
-            + mmid_employeur
+            mmid_employeur
             + famille
+            + accident_du_travail
             + fnal
+            + agirc_arrco_employeur 
+            # ? + vieillesse_deplafonnee_employeur
+            # ? + vieillesse_plafonnee_employeur
+            + contribution_solidarite_autonomie
+            + chomage_employeur
             )
 
         salaire_de_base = individu("salaire_de_base", period)
