@@ -14,6 +14,38 @@ class jei_date_demande(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class exoneration_cotisations_employeur_tode_eligibilite(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Éligibilité à l'exonération de cotisations employeur agricole pour travailleur occasionnel demandeur d'emploi (TO-DE)"
+    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947610/"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    documentation = '''
+        Non modélisé (2022): 
+        Employeurs MSA sauf ces employeurs d'après 
+        https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels :
+        Coopératives d'utilisation de matériel agricole (CUMA).
+        Coopératives de transformation, conditionnement et commercialisation.
+        Entreprises paysagistes.
+        Structures exerçant des activités de tourisme à la ferme.
+        Entreprises de service (Crédit agricole, Groupama, caisses de MSA, groupements professionnels agricoles, Chambres d'agriculture…).
+        Artisans ruraux.
+        Entreprises de travail temporaire (ETT) et les entreprises de travail temporaire d'insertion (ETTI).
+        Entreprises de travaux agricoles, ruraux et forestiers (ETARF).
+    '''
+
+    def formula_2019(individu, period):   
+        # employeur relevant de la MSA
+        secteur_agricole = individu('secteur_activite_employeur', period) == TypesSecteurActivite.agricole
+        regime_agricole = individu("regime_securite_sociale", period) == RegimeSecuriteSociale.regime_agricole
+        
+        # salarié travailleur occasionnel agricole
+        travailleur_occasionnel_agricole = individu("travailleur_occasionnel_agricole", period)
+
+        return (secteur_agricole + regime_agricole) * travailleur_occasionnel_agricole
+
+
 class exoneration_cotisations_employeur_tode(Variable):
     value_type = float
     entity = Individu
@@ -43,15 +75,7 @@ class exoneration_cotisations_employeur_tode(Variable):
 
     def formula_2019(individu, period, parameters):
         # l'individu est l'exploitant agricole ? le travailleur occasionnel ?
-        
-        # employeur relevant de la MSA
-        secteur_agricole = individu('secteur_activite_employeur', period) == TypesSecteurActivite.agricole
-        regime_agricole = individu("regime_securite_sociale", period) == RegimeSecuriteSociale.regime_agricole
-        
-        # salarié travailleur occasionnel agricole
-        travailleur_occasionnel_agricole = individu("travailleur_occasionnel_agricole", period)
-
-        eligible = (secteur_agricole + regime_agricole) * travailleur_occasionnel_agricole
+        eligible = individu("exoneration_cotisations_employeur_tode_eligibilite", period)
 
         # cotisations assurances sociales
         mmid_employeur = individu("mmid_employeur", period)
