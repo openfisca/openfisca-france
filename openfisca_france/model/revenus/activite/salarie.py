@@ -1595,6 +1595,23 @@ class type_conges(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class TypesTaches(Enum):
+    non_renseigne = "Non renseigné"
+    production_animale_vegetale = "Tâches dans les activités liées au cycle de la production animale et végétale"
+    prolongement_production = "Tâches dans les activités constituant le prolongement direct de l'acte de production"
+    travaux_forestiers = "Tâches dans les activités liées aux travaux forestiers"
+
+
+class taches_salarie_type(Variable):
+    value_type = Enum
+    possible_values = TypesTaches
+    default_value = TypesTaches.non_renseigne
+    entity = Individu
+    label = 'Type des tâches affectées au salarié'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
 class travailleur_occasionnel_agricole(Variable):
     value_type = bool
     entity = Individu
@@ -1624,5 +1641,11 @@ class travailleur_occasionnel_agricole(Variable):
             + (contrat_duree_determinee_type == TypesContratTravailDureeDeterminee.contrat_insertion)
             + (contrat_duree_determinee_type == TypesContratTravailDureeDeterminee.contrat_initiative_emploi)
             )
-        return secteur_agricole * cdd * cdd_occasionnel_agricole
 
+        taches_salarie_type = individu("taches_salarie_type", period)
+        taches_eligibles = (
+            (taches_salarie_type == TypesTaches.production_animale_vegetale)
+            + (taches_salarie_type == TypesTaches.prolongement_production)
+            + (taches_salarie_type == TypesTaches.travaux_forestiers)
+            )
+        return secteur_agricole * cdd * cdd_occasionnel_agricole * taches_eligibles
