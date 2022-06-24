@@ -46,12 +46,12 @@ class exoneration_cotisations_employeur_tode(Variable):
         
         # employeur relevant de la MSA
         secteur_agricole = individu('secteur_activite_employeur', period) == TypesSecteurActivite.agricole
-        msa = individu("regime_securite_sociale", period) == RegimeSecuriteSociale.regime_agricole
+        regime_agricole = individu("regime_securite_sociale", period) == RegimeSecuriteSociale.regime_agricole
         
         # salarié travailleur occasionnel agricole
         travailleur_occasionnel_agricole = individu("travailleur_occasionnel_agricole", period)
 
-        eligible = secteur_agricole * msa * travailleur_occasionnel_agricole
+        eligible = (secteur_agricole + regime_agricole) * travailleur_occasionnel_agricole
 
         # cotisations assurances sociales
         mmid_employeur = individu("mmid_employeur", period)
