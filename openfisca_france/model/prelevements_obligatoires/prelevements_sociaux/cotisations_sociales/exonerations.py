@@ -37,7 +37,7 @@ class exoneration_cotisations_employeur_tode_eligibilite(Variable):
 
     def formula_2019(individu, period):   
         # employeur relevant de la MSA
-        secteur_agricole = individu('secteur_activite_employeur', period) == TypesSecteurActivite.agricole
+        secteur_agricole = individu("secteur_activite_employeur", period) == TypesSecteurActivite.agricole
         regime_agricole = individu("regime_securite_sociale", period) == RegimeSecuriteSociale.regime_agricole
         
         # salarié travailleur occasionnel agricole
@@ -60,25 +60,17 @@ class exoneration_cotisations_employeur_tode(Variable):
         Non modélisé (2022): 
         La durée maximale d’application de l’exonération TO-DE est fixée à 119 jours
         consécutifs ou non, par employeur, par salarié et par année civile.
-
-        Employeurs MSA sauf ces employeurs d'après 
-        https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels :
-        Coopératives d'utilisation de matériel agricole (CUMA).
-        Coopératives de transformation, conditionnement et commercialisation.
-        Entreprises paysagistes.
-        Structures exerçant des activités de tourisme à la ferme.
-        Entreprises de service (Crédit agricole, Groupama, caisses de MSA, groupements professionnels agricoles, Chambres d'agriculture…).
-        Artisans ruraux.
-        Entreprises de travail temporaire (ETT) et les entreprises de travail temporaire d'insertion (ETTI).
-        Entreprises de travaux agricoles, ruraux et forestiers (ETARF).
     '''
 
     def formula_2019(individu, period, parameters):
         # l'individu est l'exploitant agricole ? le travailleur occasionnel ?
         eligible = individu("exoneration_cotisations_employeur_tode_eligibilite", period)
 
-        # cotisations assurances sociales
+        # cotisations assurances sociales agricoles (ASA)
+        # identiques régime général
         mmid_employeur = individu("mmid_employeur", period)
+        allegement_cotisation_maladie = individu("allegement_cotisation_maladie", period)  # si rémunération <= 2.5 smic
+        cotisations_asa = mmid_employeur + allegement_cotisation_maladie
 
         # cotisations allocations familiales
         famille = individu("famille", period)
@@ -89,10 +81,13 @@ class exoneration_cotisations_employeur_tode(Variable):
         # contribution à l’allocation logement
         fnal = individu("fnal", period)
 
-        # contribution à la retraite complémentaire
+        # cotisation vieillesse
+        vieillesse_deplafonnee_employeur = individu("vieillesse_deplafonnee_employeur", period)
+        vieillesse_plafonnee_employeur = individu("vieillesse_plafonnee_employeur", period)    
+
+        # contribution à la retraite complémentaire et CEG
         agirc_arrco_employeur = individu("agirc_arrco_employeur", period)
-        # ? vieillesse_deplafonnee_employeur = individu("vieillesse_deplafonnee_employeur", period)
-        # ? vieillesse_plafonnee_employeur = individu("vieillesse_plafonnee_employeur", period)
+        contribution_equilibre_general_employeur = individu("contribution_equilibre_general_employeur", period)
         
         # contribution de solidarité pour l’autonomie
         contribution_solidarite_autonomie = individu("contribution_solidarite_autonomie", period)
@@ -101,13 +96,14 @@ class exoneration_cotisations_employeur_tode(Variable):
         chomage_employeur = individu("chomage_employeur", period)      
 
         assiette_exoneration = (
-            mmid_employeur
+            cotisations_asa
             + famille
             + accident_du_travail
             + fnal
+            + vieillesse_deplafonnee_employeur
+            + vieillesse_plafonnee_employeur
             + agirc_arrco_employeur 
-            # ? + vieillesse_deplafonnee_employeur
-            # ? + vieillesse_plafonnee_employeur
+            + contribution_equilibre_general_employeur
             + contribution_solidarite_autonomie
             + chomage_employeur
             )
