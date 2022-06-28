@@ -6,7 +6,7 @@
   output:
     mmid_employeur: -.1289 * 2300
 
-- name: Cotisation maladie MMID employeur pour rémunération 1xSMIC < 2.5xSMIC
+- name: Cotisation maladie MMID employeur pour rémunération 1xSMIC <= 2.5xSMIC
   period: 2021-02
   relative_error_margin: 0.001
   input:
