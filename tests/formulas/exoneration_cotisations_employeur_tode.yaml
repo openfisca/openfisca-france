@@ -2,51 +2,56 @@
   period: 2022-04
   relative_error_margin: 0.002  # fnal : 0.001 -> 0.002
   input:
-    salaire_de_base: 1603.15 * 1.2  # 1923.78
-    hsup: 150
+    individus:
+      Eden:
+        secteur_activite_employeur: agricole
+        contrat_de_travail_type: cdd
+        contrat_duree_determinee_type: contrat_saisonnier
+        categorie_salarie: prive_non_cadre
+        taches_salarie_type: travaux_forestiers
+        exposition_accident: faible  # :D
 
-    allegement_cotisation_maladie_mode_recouvrement: anticipe
-    cotisation_sociale_mode_recouvrement: mensuel_strict
-    categorie_salarie: prive_non_cadre
-    exposition_accident: faible
-    effectif_entreprise: 5  # moins de 50 salariés (seuil 2020+)
-    # agirc_arrco_employeur: 0
-    # mmid_employeur: -139.86
-    # accident_du_travail: -139.86
-    # vieillesse_plafonnee_employeur: -170.83
-    # vieillesse_deplafonnee_employeur: -37.96
-    # # retraite complémentaire ?        
-    # famille: -68.93
-    # chomage_employeur: -80.92
-    # # chômage AGS ?
-    # fnal: -2
-    # contribution_solidarite_autonomie: -5.99
-  output:
-    mmid_employeur: -1 * 1603.15 * 1.2 * 0.13
-    assiette_allegement: 1603.15 * 1.2
-    allegement_cotisation_maladie: (1603.15 * 1.2) * (0.13 - 0.07)  # pas d'allègement au-delà de 2.5 SMIC
+        salaire_de_base: 1603.15 * 1.2  # 1923.78        
+        hsup: 150
 
-    assiette_cotisations_sociales: 1603.15 * 1.2
-    famille: -1 * 1603.15 * 1.2 * 0.0525  # cotisation avant allègement
-    
-    accident_du_travail: -1 * 1603.15 * 1.2 * 0.009  # devrait être à 1.16%
+        # allegement_cotisation_maladie_mode_recouvrement: anticipe
+        # cotisation_sociale_mode_recouvrement: mensuel_strict
 
-    fnal: -1 * (1603.15 * 1.2) * 0.001 # -1 * (3428 * 0.001) # Pas de contribution au-delà de 1 PSS = 3428 / mois en 2020
+        mmid_employeur: -1 * 1603.15 * 1.2 * 0.13
+        assiette_allegement: 1603.15 * 1.2
+        allegement_cotisation_maladie: (1603.15 * 1.2) * (0.13 - 0.07)  # pas d'allègement au-delà de 2.5 SMIC
 
-    vieillesse_plafonnee_employeur: -1 * (1603.15 * 1.2) * 0.0855  # sous plafond à 1 PSS
-    vieillesse_deplafonnee_employeur: -1 * (1603.15 * 1.2) * 0.019  # sur totalité de la rémunération
-    agirc_arrco_employeur: -1 * (1603.15 * 1.2) * 0.0472  # sous plafond à 1 PSS
-    contribution_equilibre_general_employeur: -1 * (1603.15 * 1.2) * 0.0129    # sous plafond à 1 PSS
+        assiette_cotisations_sociales: 1603.15 * 1.2
+        famille: -1 * 1603.15 * 1.2 * 0.0525  # cotisation avant allègement
 
-    contribution_solidarite_autonomie: -1 * (1603.15 * 1.2) * 0.003
-    chomage_employeur: -1 * (1603.15 * 1.2) * 0.0405
-    exoneration_cotisations_employeur_tode: 0
+        accident_du_travail: -1 * 1603.15 * 1.2 * 0.009  # devrait être à 1.16%
+
+        effectif_entreprise: 5  # moins de 50 salariés (seuil fnal 2020+)
+        fnal: -1 * (1603.15 * 1.2) * 0.001 # -1 * (3428 * 0.001) # Pas de contribution au-delà de 1 PSS = 3428 / mois en 2020
+
+
+        vieillesse_plafonnee_employeur: -1 * (1603.15 * 1.2) * 0.0855  # sous plafond à 1 PSS
+        vieillesse_deplafonnee_employeur: -1 * (1603.15 * 1.2) * 0.019  # sur totalité de la rémunération
+        agirc_arrco_employeur: -1 * (1603.15 * 1.2) * 0.0472  # sous plafond à 1 PSS
+        contribution_equilibre_general_employeur: -1 * (1603.15 * 1.2) * 0.0129    # sous plafond à 1 PSS
+
+        contribution_solidarite_autonomie: -1 * (1603.15 * 1.2) * 0.003
+        chomage_employeur: -1 * (1603.15 * 1.2) * 0.0405
+  output: 
+    # -1 * 1603.15 * 1.2 * (0.07 + 0.0525 + 0.009 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
+    exoneration_cotisations_employeur_tode: -655.24
 
 
 - name: rémunération annuelle <= 2.5 SMIC (contrainte MMID)
   period: 2022-04
   relative_error_margin: 0.001
   input:
+    secteur_activite_employeur: agricole  # TO
+    regime_securite_sociale: regime_agricole  # MSA (optionnel si secteur défini)
+
+    contrat_de_travail_type: cdd
+    contrat_duree_determinee_type: contrat_saisonnier
+    taches_salarie_type: travaux_forestiers
     salaire_de_base: 1603.15 * 2.5
     allegement_cotisation_maladie_mode_recouvrement: anticipe
   output:
@@ -61,6 +66,11 @@
   period: 2022-04
   relative_error_margin: 0.001
   input:
+    secteur_activite_employeur: agricole  # TO
+    regime_securite_sociale: regime_agricole  # MSA (optionnel si secteur défini)
+    contrat_de_travail_type: cdd
+    contrat_duree_determinee_type: contrat_saisonnier
+    taches_salarie_type: travaux_forestiers
     salaire_de_base: 1603.15 * 3.5
     allegement_cotisation_maladie_mode_recouvrement: anticipe  # maladie
     cotisation_sociale_mode_recouvrement: mensuel_strict  # famille
