@@ -1,25 +1,46 @@
 - name: Exonération cotisations employeur agricole pour travailleur occasionnel demandeur d'emploi (TO-DE)
-  period: 2020-01
+  period: 2022-04
+  relative_error_margin: 0.002  # fnal : 0.001 -> 0.002
   input:
-    individus:
-      claude:
-        salaire_de_base: 1539.45 * 1.2  # 1847.34
-        hsup: 150
-        agirc_arrco_employeur: 0
-        
+    salaire_de_base: 1603.15 * 1.2  # 1923.78
+    hsup: 150
 
-        mmid_employeur: -139.86
-        accident_du_travail: -139.86
-        vieillesse_plafonnee_employeur: -170.83
-        vieillesse_deplafonnee_employeur: -37.96
-        # retraite complémentaire ?        
-        famille: -68.93
-        chomage_employeur: -80.92
-        # chômage AGS ?
-        fnal: -2
-        contribution_solidarite_autonomie: -5.99
+    allegement_cotisation_maladie_mode_recouvrement: anticipe
+    cotisation_sociale_mode_recouvrement: mensuel_strict
+    categorie_salarie: prive_non_cadre
+    exposition_accident: faible
+    effectif_entreprise: 5  # moins de 50 salariés (seuil 2020+)
+    # agirc_arrco_employeur: 0
+    # mmid_employeur: -139.86
+    # accident_du_travail: -139.86
+    # vieillesse_plafonnee_employeur: -170.83
+    # vieillesse_deplafonnee_employeur: -37.96
+    # # retraite complémentaire ?        
+    # famille: -68.93
+    # chomage_employeur: -80.92
+    # # chômage AGS ?
+    # fnal: -2
+    # contribution_solidarite_autonomie: -5.99
   output:
-    exoneration_cotisations_employeur_tode: -640.36
+    mmid_employeur: -1 * 1603.15 * 1.2 * 0.13
+    assiette_allegement: 1603.15 * 1.2
+    allegement_cotisation_maladie: (1603.15 * 1.2) * (0.13 - 0.07)  # pas d'allègement au-delà de 2.5 SMIC
+
+    assiette_cotisations_sociales: 1603.15 * 1.2
+    famille: -1 * 1603.15 * 1.2 * 0.0525  # cotisation avant allègement
+    
+    accident_du_travail: -1 * 1603.15 * 1.2 * 0.009  # devrait être à 1.16%
+
+    fnal: -1 * (1603.15 * 1.2) * 0.001 # -1 * (3428 * 0.001) # Pas de contribution au-delà de 1 PSS = 3428 / mois en 2020
+
+    vieillesse_plafonnee_employeur: -1 * (1603.15 * 1.2) * 0.0855  # sous plafond à 1 PSS
+    vieillesse_deplafonnee_employeur: -1 * (1603.15 * 1.2) * 0.019  # sur totalité de la rémunération
+    agirc_arrco_employeur: -1 * (1603.15 * 1.2) * 0.0472  # sous plafond à 1 PSS
+    contribution_equilibre_general_employeur: -1 * (1603.15 * 1.2) * 0.0129    # sous plafond à 1 PSS
+
+    contribution_solidarite_autonomie: -1 * (1603.15 * 1.2) * 0.003
+    chomage_employeur: -1 * (1603.15 * 1.2) * 0.0405
+    exoneration_cotisations_employeur_tode: 0
 
 
 - name: rémunération annuelle <= 2.5 SMIC (contrainte MMID)
