@@ -56,6 +56,8 @@
     cotisation_sociale_mode_recouvrement: mensuel_strict  # famille
   
   output:
+    assiette_cotisations_sociales: 1603.15 * 1.5
+
     mmid_employeur: -1 * 1603.15 * 1.5 * 0.13  # cotisation avant allègement (vérifier cas Alsace Moselle)
     assiette_allegement: 1603.15 * 1.5
     allegement_cotisation_maladie: (1603.15 * 1.5) * (0.13 - 0.07)  # sous 2.5 SMIC
@@ -70,45 +72,47 @@
     contribution_solidarite_autonomie: -1 * (1603.15 * 1.5) * 0.003
     chomage_employeur: -1 * (1603.15 * 1.5) * 0.0405  # sous 4 PSS
 
-    exoneration_cotisations_employeur_tode_eligibilite: True 
+    exoneration_cotisations_employeur_tode_eligibilite: True
     # -819.05 = -1 * 1603.15 * 1.5 * (0.07 + 0.0525 + 0.009 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
     exoneration_cotisations_employeur_tode: 1.2 * (-819.05 / 0.4) * (1.6 * 1603.15 / (1603.15 * 1.5))
 
 
-- name: rémunération annuelle > 2.5 SMIC (contrainte MMID) mais <= 3.5 SMIC (contrainte AF)
+- name: Exonération nulle de TO-DE pour salarié agricole à rémunération mensuelle brute >= 1.6 SMIC
   period: 2022-04
   relative_error_margin: 0.001
   input:
-    secteur_activite_employeur: agricole  # TO
-    contrat_de_travail_type: cdd
-    contrat_duree_determinee_type: contrat_saisonnier
-    taches_salarie_type: travaux_forestiers
-    salaire_de_base: 1603.15 * 3.5
-    allegement_cotisation_maladie_mode_recouvrement: anticipe  # maladie
-    cotisation_sociale_mode_recouvrement: mensuel_strict  # famille
+    secteur_activite_employeur: agricole
+    effectif_entreprise: 10  # moins de 50 salariés (seuil fnal 2020+)
 
-    categorie_salarie: prive_non_cadre
+    contrat_de_travail_type: cdd
+    contrat_duree_determinee_type: contrat_vendanges
+    categorie_salarie: prive_cadre
+    taches_salarie_type: prolongement_production
     exposition_accident: faible
 
-    effectif_entreprise: 5  # moins de 50 salariés (seuil 2020+)
+    salaire_de_base: 1603.15 * 2.6  # 4168.19
+    hsup: 0
+
+    allegement_cotisation_maladie_mode_recouvrement: anticipe  # maladie
+    cotisation_sociale_mode_recouvrement: mensuel_strict  # famille
+    
   output:
-    mmid_employeur: -1 * 1603.15 * 3.5 * 0.13
-    assiette_allegement: 1603.15 * 3.5
+    assiette_cotisations_sociales: 1603.15 * 2.6
+
+    mmid_employeur: -1 * 1603.15 * 2.6 * 0.13
+    assiette_allegement: 1603.15 * 2.6
     allegement_cotisation_maladie: 0  # pas d'allègement au-delà de 2.5 SMIC
-
-    assiette_cotisations_sociales: 1603.15 * 3.5
-    famille: -1 * 1603.15 * 3.5 * 0.0525  # cotisation avant allègement
-
-    accident_du_travail: -1 * 1603.15 * 3.5 * 0.009  # devrait être à 1.16% 
-    # d'après https://www.msa.fr/lfp/documents/11566/86370053/MSA+-+Taux+des+cotisations+accident+du+travail+%28AT%29+2021/033cfbf5-bc8f-a41a-3e79-3726fcb51911
-    # via https://www.msa.fr/lfp/employeur/taux-cotisations-sur-salaires?p_p_id=com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_BPTM0Ywvg0nX&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_BPTM0Ywvg0nX_read_more=2
-
-    fnal: -1 * (3428 * 0.001) # Pas de contribution au-delà de 1 PSS = 3428 / mois en 2021
+    
+    famille: -1 * 1603.15 * 2.6 * 0.0525  # FIXME: à <= 3.5 SMIC devrait être au prelevements_sociaux.cotisations_securite_sociale_regime_general.famille.taux_reduit
+    accident_du_travail: -1 * 1603.15 * 2.6 * 0.009  # FIXME: taux 2018 à mettre à jour
+    fnal: -1 * (3428 * 0.001) # plafond à 1 PSS = 3428/mois
 
     vieillesse_plafonnee_employeur: -1 * 3428 * 0.0855  # plafond à 1 PSS
-    vieillesse_deplafonnee_employeur: -1 * (1603.15 * 3.5) * 0.019  # sur totalité de la rémunération
-    agirc_arrco_employeur: -1 * 3428 * 0.0472 - ((1603.15 * 3.5) - 3428) * 0.1295
-    contribution_equilibre_general_employeur: -1 * 3428 * 0.0129 - ((1603.15 * 3.5) - 3428) * 0.0162
+    vieillesse_deplafonnee_employeur: -1 * (1603.15 * 2.6) * 0.019  # sur totalité de la rémunération
+    agirc_arrco_employeur: -1 * 3428 * 0.0472 - ((1603.15 * 2.6) - 3428) * 0.1295
+    contribution_equilibre_general_employeur: -1 * 3428 * 0.0129 - ((1603.15 * 2.6) - 3428) * 0.0162
+    contribution_solidarite_autonomie: -1 * (1603.15 * 2.6) * 0.003
+    chomage_employeur: -1 * (1603.15 * 2.6) * 0.0405
 
-    contribution_solidarite_autonomie: -1 * (1603.15 * 3.5) * 0.003
-    chomage_employeur: -1 * (1603.15 * 3.5) * 0.0405
+    exoneration_cotisations_employeur_tode_eligibilite: True
+    exoneration_cotisations_employeur_tode: 0
