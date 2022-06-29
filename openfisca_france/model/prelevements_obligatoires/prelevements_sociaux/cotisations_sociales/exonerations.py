@@ -18,13 +18,14 @@ class exoneration_cotisations_employeur_tode_eligibilite(Variable):
     value_type = bool
     entity = Individu
     label = "Éligibilité à l'exonération de cotisations employeur agricole pour travailleur occasionnel demandeur d'emploi (TO-DE)"
-    reference = "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947610/"
+    reference = [
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947610/",
+        "https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels"
+        ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
     documentation = '''
-        Non modélisé (2022): 
-        Employeurs MSA sauf ces employeurs d'après 
-        https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels :
+        Non modélisé (2022), tout employeur MSA sauf ces employeurs :
         Coopératives d'utilisation de matériel agricole (CUMA).
         Coopératives de transformation, conditionnement et commercialisation.
         Entreprises paysagistes.
@@ -57,17 +58,18 @@ class exoneration_cotisations_employeur_tode(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     documentation = '''
+        Exonération de cotisations et contributions employeur sur les bas salaires.
+
         Non modélisé (2022): 
         La durée maximale d’application de l’exonération TO-DE est fixée à 119 jours
         consécutifs ou non, par employeur, par salarié et par année civile.
     '''
 
     def formula_2019(individu, period, parameters):
-        # l'individu est l'exploitant agricole ? le travailleur occasionnel ?
+        # l'individu est le travailleur occasionnel
         eligible = individu("exoneration_cotisations_employeur_tode_eligibilite", period)
 
-        # cotisations assurances sociales agricoles (ASA)
-        # identiques régime général
+        # cotisations assurances sociales agricoles (ASA) - identiques régime général
         mmid_employeur = individu("mmid_employeur", period)
         allegement_cotisation_maladie = individu("allegement_cotisation_maladie", period)  # si rémunération <= 2.5 smic
         cotisations_asa = mmid_employeur + allegement_cotisation_maladie
@@ -108,7 +110,6 @@ class exoneration_cotisations_employeur_tode(Variable):
             + chomage_employeur
             )
 
-
         # Exonération totale à 1.2 SMIC
         # Puis dégressive : 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
         # Devient nulle à 1.6 SMIC
@@ -119,10 +120,12 @@ class exoneration_cotisations_employeur_tode(Variable):
         # 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
         # où "La rémunération mensuelle brute correspond à celle retenue pour le calcul des cotisations de la réduction générale des cotisations patronales (réduction Fillon)."
         # d'après : https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels?p_p_id=com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_TnUJJSlWXJvY&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_TnUJJSlWXJvY_read_more=2
-        exoneration_degressive = 1.2 * (assiette_exoneration / 0.4) * (1.6 * smic_proratise / salaire_de_base)
         
-        sous_plancher = salaire_de_base <= (1.2 * smic_proratise)
-        sous_plafond = salaire_de_base < (1.6 * smic_proratise)
+        parameters_tode = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.agricole.tode
+        exoneration_degressive = parameters_tode.seuil * (assiette_exoneration / 0.4) * (parameters_tode.plafond * smic_proratise / salaire_de_base)
+        
+        sous_plancher = salaire_de_base <= (parameters_tode.seuil * smic_proratise)
+        sous_plafond = salaire_de_base < (parameters_tode.plafond * smic_proratise)
         exoneration = where(sous_plancher, assiette_exoneration, sous_plafond * exoneration_degressive)
 
         return eligible * exoneration
