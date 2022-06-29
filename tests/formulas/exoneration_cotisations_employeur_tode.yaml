@@ -1,45 +1,38 @@
-- name: Exonération cotisations employeur agricole pour travailleur occasionnel demandeur d'emploi (TO-DE)
+- name: Exonération totale TO-DE pour salarié agricole à rémunération mensuelle brute <= 1.2 SMIC
   period: 2022-04
   relative_error_margin: 0.002  # fnal : 0.001 -> 0.002
   input:
     individus:
       Eden:
         secteur_activite_employeur: agricole
+        effectif_entreprise: 5  # moins de 50 salariés (seuil fnal 2020+)
+        
         contrat_de_travail_type: cdd
         contrat_duree_determinee_type: contrat_saisonnier
         categorie_salarie: prive_non_cadre
         taches_salarie_type: travaux_forestiers
-        exposition_accident: faible  # :D
+        exposition_accident: faible
 
         salaire_de_base: 1603.15 * 1.2  # 1923.78        
         hsup: 150
 
-        # allegement_cotisation_maladie_mode_recouvrement: anticipe
-        # cotisation_sociale_mode_recouvrement: mensuel_strict
-
         mmid_employeur: -1 * 1603.15 * 1.2 * 0.13
         assiette_allegement: 1603.15 * 1.2
-        allegement_cotisation_maladie: (1603.15 * 1.2) * (0.13 - 0.07)  # pas d'allègement au-delà de 2.5 SMIC
+        allegement_cotisation_maladie: (1603.15 * 1.2) * (0.13 - 0.07)  # sous 2.5 SMIC
 
-        assiette_cotisations_sociales: 1603.15 * 1.2
-        famille: -1 * 1603.15 * 1.2 * 0.0525  # cotisation avant allègement
-
-        accident_du_travail: -1 * 1603.15 * 1.2 * 0.009  # devrait être à 1.16%
-
-        effectif_entreprise: 5  # moins de 50 salariés (seuil fnal 2020+)
-        fnal: -1 * (1603.15 * 1.2) * 0.001 # -1 * (3428 * 0.001) # Pas de contribution au-delà de 1 PSS = 3428 / mois en 2020
-
-
-        vieillesse_plafonnee_employeur: -1 * (1603.15 * 1.2) * 0.0855  # sous plafond à 1 PSS
+        famille: -1 * 1603.15 * 1.2 * 0.0345  # taux réduit sous 3.5 SMIC
+        accident_du_travail: -1 * 1603.15 * 1.2 * 0.0116  # taux 2022
+        fnal: -1 * (1603.15 * 1.2) * 0.001  # sous 1 PSS
+        vieillesse_plafonnee_employeur: -1 * (1603.15 * 1.2) * 0.0855  # sous 1 PSS
         vieillesse_deplafonnee_employeur: -1 * (1603.15 * 1.2) * 0.019  # sur totalité de la rémunération
-        agirc_arrco_employeur: -1 * (1603.15 * 1.2) * 0.0472  # sous plafond à 1 PSS
-        contribution_equilibre_general_employeur: -1 * (1603.15 * 1.2) * 0.0129    # sous plafond à 1 PSS
-
+        agirc_arrco_employeur: -1 * (1603.15 * 1.2) * 0.0472  # sous 1 PSS
+        contribution_equilibre_general_employeur: -1 * (1603.15 * 1.2) * 0.0129  # sous 1 PSS
         contribution_solidarite_autonomie: -1 * (1603.15 * 1.2) * 0.003
-        chomage_employeur: -1 * (1603.15 * 1.2) * 0.0405
+        chomage_employeur: -1 * (1603.15 * 1.2) * 0.0405  # sous 4 PSS
   output: 
-    # -1 * 1603.15 * 1.2 * (0.07 + 0.0525 + 0.009 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
-    exoneration_cotisations_employeur_tode: -655.24
+    exoneration_cotisations_employeur_tode_eligibilite: True
+    # -1 * 1603.15 * 1.2 * (0.07 + 0.0345 + 0.0116 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
+    exoneration_cotisations_employeur_tode: -625.61
 
 
 - name: rémunération annuelle <= 2.5 SMIC (contrainte MMID)
@@ -60,7 +53,7 @@
     allegement_cotisation_maladie: (1603.15 * 2.5) * (0.13 - 0.07)
 
     assiette_cotisations_sociales: 1603.15 * 2.5
-    famille: -1 * 1603.15 * 2.5 * 0.0525  # cotisation avant allègement
+    famille: -1 * 1603.15 * 2.5 * 0.0525  # FIXME: à <= 3.5 SMIC devrait être au prelevements_sociaux.cotisations_securite_sociale_regime_general.famille.taux_reduit
 
 - name: rémunération annuelle > 2.5 SMIC (contrainte MMID) mais <= 3.5 SMIC (contrainte AF)
   period: 2022-04
