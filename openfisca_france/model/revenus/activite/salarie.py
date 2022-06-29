@@ -324,29 +324,31 @@ class contrat_de_travail_type(Variable):
 
 
 class TypesContratTravailDureeDeterminee(Enum):
+    '''
+    Tous contrats : https://travail-emploi.gouv.fr/droit-du-travail/les-contrats-de-travail/
+    CDD, types et durées : https://www.service-public.fr/particuliers/vosdroits/F36
+
+    Contrat vendanges : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006585176/
+    CDD d'insertion : https://www.service-public.fr/particuliers/vosdroits/F14100
+
+    Contrat unique d'insertion (CUI), types : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019869576
+    PEC en CDD ou CDI : https://travail-emploi.gouv.fr/emploi-et-insertion/parcours-emploi-competences/pec
+
+    Articulation CUI/PEC et secteur : https://www.service-public.fr/particuliers/vosdroits/F21006
+    CUI-CIE = Parcours emploi compétence (PEC) - secteur marchand
+    CUI-CAE = Parcours emploi compétence (PEC) - secteur non marchand
+    '''
     __order__ = 'non_renseigne contrat_general contrat_saisonnier contrat_vendanges contrat_usage contrat_insertion contrat_initiative_emploi contrat_accompagnement_emploi'  # Needed to preserve the enum order in Python 2
-    # Tous contrats : # https://travail-emploi.gouv.fr/droit-du-travail/les-contrats-de-travail/
-    # Conclusion du contrat de travail à durée déterminée : 
-    # https://www.service-public.fr/particuliers/vosdroits/F36
 
     non_renseigne = "Non renseigné"
     contrat_general = "Cas général du contrat de travail à durée déterminée (CDD)"
+    
     contrat_saisonnier = "CDD à caractère saisonnier"
-    
-    # https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006585176/ :
     contrat_vendanges = "CDD à caractère saisonnier pour travaux de vendanges"
-    
-    contrat_usage = "CDD d'usage (CDDU)" # exemple : "CDD d'extra"
-
-    # https://www.service-public.fr/particuliers/vosdroits/F14100
+    contrat_usage = "CDD d'usage (CDDU)"  # exemple : "CDD d'extra"
     contrat_insertion = "CDD d'insertion (CDDI)"
 
-    # https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019869576
-    # https://www.service-public.fr/particuliers/vosdroits/F21006
-    # https://travail-emploi.gouv.fr/emploi-et-insertion/parcours-emploi-competences/pec (CDD ou CDI)
-    # Parcours emploi compétence (PEC) - secteur marchand
     contrat_initiative_emploi = "Contrat unique d'insertion - Contrat initiative emploi (CUI-CIE)"
-    # Parcours emploi compétence (PEC) - secteur non marchand
     contrat_accompagnement_emploi = "Contrat unique d'insertion - Contrat d'accompagnement dans l'emploi (CUI-CAE)"
 
 
