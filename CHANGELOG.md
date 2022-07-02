@@ -1,6 +1,16 @@
 # Changelog
 
-### 116.13.1 [#1845](https://github.com/openfisca/openfisca-france/pull/1845
+### 116.13.2 [#1862](https://github.com/openfisca/openfisca-france/pull/1862)
+
+* Changement mineur.
+* Périodes concernées : sans objet
+* Zones impactées : aucune variable impactée.
+* Détails :
+  - Corrige l'identation d'une référence d'un paramètre YAML.
+  - Correction d'une typo dans le changelog.
+
+### 116.13.1 [#1845](https://github.com/openfisca/openfisca-france/pull/1845)
+
 * Changement mineur.
 * Périodes concernés : à partir du 1/1/2016
 * Zonesimpactées : parameters/prestations_sociales/aides_logement/action_logement
