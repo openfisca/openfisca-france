@@ -9,6 +9,7 @@ import os
 
 
 def extract_paths_too_long(root_dir):
+    chemin_trop_long_trouve = False
     root_dir = root_dir.rstrip(os.sep)
 
     with open('chemins_trop_longs.txt', 'w') as outfile:
@@ -24,12 +25,19 @@ def extract_paths_too_long(root_dir):
                     continue
                 relative_file_path = os.path.join(relative_path, file)
                 if len(relative_file_path) > 150:
+                    chemin_trop_long_trouve = True
                     outfile.write('{} here: {}\n'.format(
                         len(relative_file_path),
                         relative_file_path,
                         ))
+    return chemin_trop_long_trouve
 
 
 country_dir = os.path.dirname((os.path.dirname(os.path.abspath(__file__))))
 parameters_dir = os.path.join(country_dir, 'parameters')
-extract_paths_too_long(parameters_dir)
+if extract_paths_too_long(parameters_dir):
+    # Retourne une erreur
+    exit(1)
+else:
+    # Retourne 0 pour indiquer qu'il n'y a pas de chemin trop long
+    exit(0)
