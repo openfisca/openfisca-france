@@ -117,13 +117,9 @@ class exoneration_cotisations_employeur_tode(Variable):
         salaire_de_base = individu('salaire_de_base', period)
         smic_proratise = individu('smic_proratise', period)
 
-        # 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
-        # où "La rémunération mensuelle brute correspond à celle retenue pour le calcul des cotisations de la réduction générale des cotisations patronales (réduction Fillon)."
-        # d'après : https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels?p_p_id=com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_TnUJJSlWXJvY&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_com_liferay_journal_content_web_portlet_JournalContentPortlet_INSTANCE_TnUJJSlWXJvY_read_more=2
-
         parameters_tode = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.agricole.tode
         coefficient_degressivite = parameters_tode.plafond - parameters_tode.seuil
-        exoneration_degressive = parameters_tode.seuil * (assiette_exoneration / coefficient_degressivite) * (parameters_tode.plafond * smic_proratise / salaire_de_base)
+        exoneration_degressive = parameters_tode.seuil * (assiette_exoneration / coefficient_degressivite) * (parameters_tode.plafond * smic_proratise / salaire_de_base - 1)
 
         sous_plancher = salaire_de_base <= (parameters_tode.seuil * smic_proratise)
         sous_plafond = salaire_de_base < (parameters_tode.plafond * smic_proratise)

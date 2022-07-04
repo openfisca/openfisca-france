@@ -32,7 +32,7 @@
         chomage_employeur: -1 * (1603.15 * 1.2) * 0.0405  # sous 4 PSS
   output:
     exoneration_cotisations_employeur_tode_eligibilite: true
-    # -1 * 1603.15 * 1.2 * (0.07 + 0.0345 + 0.0116 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
+    # -625.61 = -1 * 1603.15 * 1.2 * (0.07 + 0.0345 + 0.0116 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
     exoneration_cotisations_employeur_tode: -625.61
 
 
@@ -58,7 +58,7 @@
   output:
     assiette_cotisations_sociales: 1603.15 * 1.5
 
-    mmid_employeur: -1 * 1603.15 * 1.5 * 0.13  # cotisation avant allègement (vérifier cas Alsace Moselle)
+    mmid_employeur: -1 * 1603.15 * 1.5 * 0.13  # cotisation avant allègement
     assiette_allegement: 1603.15 * 1.5
     allegement_cotisation_maladie: (1603.15 * 1.5) * (0.13 - 0.07)  # sous 2.5 SMIC
 
@@ -74,7 +74,7 @@
 
     exoneration_cotisations_employeur_tode_eligibilite: true
     # -819.05 = -1 * 1603.15 * 1.5 * (0.07 + 0.0525 + 0.009 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
-    exoneration_cotisations_employeur_tode: 1.2 * (-819.05 / 0.4) * (1.6 * 1603.15 / (1603.15 * 1.5))
+    exoneration_cotisations_employeur_tode: 1.2 * (-819.05 / 0.4) * (1.6 * 1603.15 / (1603.15 * 1.5) - 1)
 
 
 - name: Exonération nulle de TO-DE pour salarié agricole à rémunération mensuelle brute >= 1.6 SMIC
