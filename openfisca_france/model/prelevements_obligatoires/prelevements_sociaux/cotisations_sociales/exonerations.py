@@ -74,27 +74,16 @@ class exoneration_cotisations_employeur_tode(Variable):
         allegement_cotisation_maladie = individu('allegement_cotisation_maladie', period)  # si rémunération <= 2.5 smic
         cotisations_asa = mmid_employeur + allegement_cotisation_maladie
 
-        # cotisations allocations familiales
         famille = individu('famille', period)
-
-        # cotisations accident du travail et des maladies professionnelles
         accident_du_travail = individu('accident_du_travail', period)
-
-        # contribution à l’allocation logement
         fnal = individu('fnal', period)
 
-        # cotisation vieillesse
         vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
         vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
-
-        # contribution à la retraite complémentaire et CEG
         agirc_arrco_employeur = individu('agirc_arrco_employeur', period)
         contribution_equilibre_general_employeur = individu('contribution_equilibre_general_employeur', period)
 
-        # contribution de solidarité pour l’autonomie
         contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
-
-        # contribution au titre de l’assurance chômage
         chomage_employeur = individu('chomage_employeur', period)
 
         assiette_exoneration = (
