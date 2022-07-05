@@ -1,5 +1,18 @@
 # Changelog
 
+##
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/exonerations.py`
+  - `model/revenus/activite/salarie.py`
+  - `parameters/prelevements_sociaux/reductions_cotisations_sociales/agricole/tode`
+* Détails :
+  - Ajoute à partir de 2019 l'exonération pour travailleur occasionnel demandeur d'emploi (TO-DE) du secteur agricole `exoneration_cotisations_employeur_tode` et la référence dans `exonerations_et_allegements`
+  - Ajoute des caractéristiques du salarié : `contrat_duree_determinee_type`, `taches_salarie_type` et `travailleur_occasionnel_agricole`
+  - Adapte `allegement_cotisation_allocations_familiales` et ajoute `allegement_cotisation_allocations_familiales_base` pour le non cumul avec `allegement_fillon`
+
 # 144.0.0 [#2041](https://github.com/openfisca/openfisca-france/pull/2041)
 
 * Amélioration technique.
@@ -15,7 +28,6 @@
       - Création d'une part supplémentaire de quotient familial d'un veuf avec personne à charge
       - Cette modification était déjà prise en compte dans le calcul car les paramètres étaient à 0 pour les périodes ou ils n'éxistaient pas. Cette PR remplace les 0 par des null ce qui nécéssite de faire un changement de formule en 2008.
   - Ajout de métadonnées pour certains paramètres du calcul du quotient familial de l'IR
-
 
 # 144.0.0 [#1717](https://github.com/openfisca/openfisca-france/pull/1717)
 
