@@ -1,5 +1,16 @@
 # Changelog
 
+### 116.13.3 [##1864](https://github.com/openfisca/openfisca-france/pull/1864)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : Paramètres de l'impôt sur le revenu immobilier, Allocation adulte handicapé, Prime d'activité.
+* Détails :
+  - Ajoute référence législative
+  - Met à jour certains paramètres
+  - Ajoute last_review
+
+  
 ### 116.13.2 [#1862](https://github.com/openfisca/openfisca-france/pull/1862)
 
 * Changement mineur.
