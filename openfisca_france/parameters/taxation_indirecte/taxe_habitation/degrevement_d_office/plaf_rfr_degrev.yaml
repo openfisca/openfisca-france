@@ -13,6 +13,8 @@ autres_demi_parts_supp:
       value: 6157
     2021-01-01:
       value: 6169
+    2022-01-01:
+      value: 6255
   metadata:
     unit: currency
 deux_premieres_demi_parts_supp:
@@ -26,6 +28,8 @@ deux_premieres_demi_parts_supp:
       value: 8210
     2021-01-01:
       value: 8225
+    2022-01-01:
+      value: 8340
   metadata:
     unit: currency
 premiere_part:
@@ -39,5 +43,7 @@ premiere_part:
       value: 27706
     2021-01-01:
       value: 27761
+    2022-01-01:
+      value: 28150
   metadata:
     unit: currency
