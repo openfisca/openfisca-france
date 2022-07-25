@@ -166,17 +166,12 @@ class eligibilite_indemnite_inflation_retraite(Variable):
         annee_2021 = periods.period("2021")
 
         # bénéficiaire d'une pension de retraite en octobre 2021
-        # Q : par statut de retraité ?
         eligibilite_retraite = (individu('activite', oct_2021) == TypesActivite.retraite)
 
         # bénéficiaire du minimum vieillesse en octobre 2021
-        # par éligibilité a l'ASPA ?
         eligibilite_aspa = (individu.famille('aspa', oct_2021) > 0)
 
-        # pension/aspa nette inférieur à € 2000 par mois (mais quelle période ?)
-        # pensions_nettes ? => retraites et pensions et aussi chômage...
-        # dans la note : "base du montant des pensions de retraite de base et complémentaire (AGIRRC-ARRCO),
-        # y compris les pensions de réversion"
+        # pension/aspa nette inférieur à € 2000 par mois
         pension = individu('pensions_nettes', annee_2021) / 12
         min_vi = individu.famille('aspa', annee_2021, options = [ADD]) / 12
 
@@ -242,12 +237,10 @@ class eligibilite_indemnite_inflation_jeune(Variable):
                                           and_(individu.famille('aide_logement', oct_2021) > 0, individu.has_role(Famille.DEMANDEUR)))
 
         # apprenti ou contrat de professionnalisation
-        # Q : rémunération apprenti/contrat prof. - où trouver les chiffres nets ? salaire_net ?
         eligibilite_apprenti = or_(and_(individu('apprenti', oct_2021), individu('remuneration_apprenti', oct_2021) <= 2000),
                                    and_(individu('professionnalisation', oct_2021), individu('professionnalisation', oct_2021) <= 2000))
 
         # stagiaire formation prof.
-        # Q : pas de variable pour le statut ? revenus nets ?
         eligibilite_stage_prof = and_(individu('revenus_stage_formation_pro', oct_2021) > 0,
         individu('revenus_stage_formation_pro', oct_2021) < 2000)
 
