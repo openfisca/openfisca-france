@@ -437,7 +437,7 @@ class nombre_indemnite_inflation_menage(Variable):
 class indemnite_inflation(Variable):
     entity = Individu
     value_type = float
-    label = u"Aide exceptionnelle de 100 euros pour les individus gagnant € 2000 ou moins"
+    label = 'Aide exceptionnelle de 100 euros pour les individus gagnant € 2000 ou moins'
     reference = 'https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix'
     definition_period = YEAR
     set_input = set_input_divide_by_period
@@ -453,7 +453,7 @@ class indemnite_inflation(Variable):
 class indemnite_inflation_menage(Variable):
     value_type = float
     entity = Menage
-    label = u"Aide exceptionnelle de 100 euros pour les individus gagnant € 2000 ou moins"
+    label = 'Aide exceptionnelle de 100 euros pour les individus gagnant € 2000 ou moins'
     definition_period = YEAR
     set_input = set_input_divide_by_period
 
@@ -468,7 +468,7 @@ class moyen_indemnite_inflation_menage(Variable):
     entity = Menage
     value_type = float
     reference = 'https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix'
-    label = u"Moyen indemnité inflation"
+    label = 'Moyen indemnité inflation'
     definition_period = YEAR
 
     def formula(menage, period):
@@ -484,7 +484,7 @@ class personnes_menage(Variable):
     entity = Menage
     value_type = float
     reference = 'https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix'
-    label = u"Moyen indemnité inflation"
+    label = 'Moyen indemnité inflation'
     definition_period = YEAR
 
     def formula(menage, period):
