@@ -4,8 +4,6 @@ values:
     value: 500
   2014-01-01:
     value: 550
-  2019-11-01:
-    value: null
 metadata:
   unit: currency
   reference:
