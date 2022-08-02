@@ -22,7 +22,7 @@ class af_coeff_garde_alternee(Variable):
     value_type = float
     default_value = 1
     entity = Famille
-    label = "Coefficient à appliquer aux af pour tenir compte de la garde alternée"
+    label = 'Coefficient à appliquer aux af pour tenir compte de la garde alternée'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -57,7 +57,7 @@ class af_allocation_forfaitaire_nb_enfants(Variable):
 class af_eligibilite_base(Variable):
     value_type = bool
     entity = Famille
-    label = "Allocations familiales - Éligibilité pour la France métropolitaine sous condition de ressources"
+    label = 'Allocations familiales - Éligibilité pour la France métropolitaine sous condition de ressources'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -71,7 +71,7 @@ class af_eligibilite_base(Variable):
 class af_eligibilite_dom(Variable):
     value_type = bool
     entity = Famille
-    label = "Allocations familiales - Éligibilité pour les DOM (hors Mayotte) sous condition de ressources"
+    label = 'Allocations familiales - Éligibilité pour les DOM (hors Mayotte) sous condition de ressources'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -86,7 +86,7 @@ class af_eligibilite_dom(Variable):
 class af_base(Variable):
     value_type = float
     entity = Famille
-    label = "Allocations familiales - allocation de base"
+    label = 'Allocations familiales - allocation de base'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     # prestations familiales (brutes de crds)
@@ -124,7 +124,7 @@ class af_taux_modulation(Variable):
     value_type = float
     default_value = 1
     entity = Famille
-    label = "Taux de modulation à appliquer au montant des AF depuis 2015"
+    label = 'Taux de modulation à appliquer au montant des AF depuis 2015'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -225,7 +225,7 @@ class af_majoration_enfant(Variable):
 class af_majoration(Variable):
     value_type = float
     entity = Famille
-    label = "Allocations familiales - majoration pour âge"
+    label = 'Allocations familiales - majoration pour âge'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -242,7 +242,7 @@ class af_majoration(Variable):
 class af_complement_degressif(Variable):
     value_type = float
     entity = Famille
-    label = "AF - Complément dégressif en cas de dépassement du plafond"
+    label = 'AF - Complément dégressif en cas de dépassement du plafond'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -282,7 +282,7 @@ class af_allocation_forfaitaire_complement_degressif(Variable):
 class af_allocation_forfaitaire(Variable):
     value_type = float
     entity = Famille
-    label = "Allocations familiales - forfait"
+    label = 'Allocations familiales - forfait'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -305,7 +305,7 @@ class af(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = "Allocations familiales - total des allocations"
+    label = 'Allocations familiales - total des allocations'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 

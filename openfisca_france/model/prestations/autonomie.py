@@ -253,13 +253,13 @@ class apa_etablissement(Variable):
 
 class TypesGir(Enum):
     __order__ = 'non_defini gir_1 gir_2 gir_3 gir_4 gir_5 gir_6'  # Needed to preserve the enum order in Python 2
-    non_defini = "Non défini"
-    gir_1 = "Gir 1"
-    gir_2 = "Gir 2"
-    gir_3 = "Gir 3"
-    gir_4 = "Gir 4"
-    gir_5 = "Gir 5"
-    gir_6 = "Gir 6"
+    non_defini = 'Non défini'
+    gir_1 = 'Gir 1'
+    gir_2 = 'Gir 2'
+    gir_3 = 'Gir 3'
+    gir_4 = 'Gir 4'
+    gir_5 = 'Gir 5'
+    gir_6 = 'Gir 6'
 
 
 class gir(Variable):
@@ -310,12 +310,12 @@ class dependance_tarif_etablissement_gir_dependant(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     label = "Tarif dépendance de l'établissement pour le GIR de la personne dépendante"
-    reference = ["https://www.service-public.fr/particuliers/vosdroits/F10009"]
+    reference = ['https://www.service-public.fr/particuliers/vosdroits/F10009']
 
     def formula_2002(individu, period):
-        gir = individu("gir", period)
-        tarif_gir_1_2 = individu("dependance_tarif_etablissement_gir_1_2", period)
-        tarif_gir_3_4 = individu("dependance_tarif_etablissement_gir_3_4", period)
+        gir = individu('gir', period)
+        tarif_gir_1_2 = individu('dependance_tarif_etablissement_gir_1_2', period)
+        tarif_gir_3_4 = individu('dependance_tarif_etablissement_gir_3_4', period)
 
         # Vérifie si l'individu est rattaché à l'un des groupes 1 à 4 de la grille Aggir
         gir_1_2 = (gir == TypesGir.gir_1) + (gir == TypesGir.gir_2)

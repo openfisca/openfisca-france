@@ -15,7 +15,7 @@ def simulations(new_scenario) -> Callable[..., Tuple[Simulation]]:
             count = 2,
             _max = 18000,
             _min = 0,
-            name = "salaire_imposable",
+            name = 'salaire_imposable',
             year = year,
             people = 1,
             )

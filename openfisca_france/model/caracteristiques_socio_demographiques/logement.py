@@ -6,7 +6,7 @@ from openfisca_france.model.base import *
 class coloc(Variable):
     value_type = bool
     entity = Menage
-    label = "Vie en colocation"
+    label = 'Vie en colocation'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -14,7 +14,7 @@ class coloc(Variable):
 class logement_crous(Variable):
     value_type = bool
     entity = Menage
-    label = "Le logement est géré par les CROUS "
+    label = 'Le logement est géré par les CROUS '
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -22,7 +22,7 @@ class logement_crous(Variable):
 class logement_chambre(Variable):
     value_type = bool
     entity = Menage
-    label = "Le logement est considéré comme une chambre"
+    label = 'Le logement est considéré comme une chambre'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -39,7 +39,7 @@ class depcom(Variable):
     value_type = str
     max_length = 5
     entity = Menage
-    label = "Code INSEE (depcom) du lieu de résidence"
+    label = 'Code INSEE (depcom) du lieu de résidence'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -55,7 +55,7 @@ class charges_locatives(Variable):
 class proprietaire_proche_famille(Variable):
     value_type = bool
     entity = Famille
-    label = "Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
+    label = 'Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -79,7 +79,7 @@ class statut_occupation_logement(Variable):
 
 
 class residence_ile_de_france(Variable):
-    label = "Le logement est situé dans la région Île-de-France"
+    label = 'Le logement est situé dans la région Île-de-France'
     value_type = bool
     entity = Menage
     definition_period = MONTH
@@ -195,16 +195,16 @@ class residence_saint_martin(Variable):
 
 
 class TypesLieuResidence(Enum):
-    non_renseigne = "Non renseigné"
-    metropole = "Métropole"
-    guadeloupe = "Guadeloupe"
-    martinique = "Martinique"
-    guyane = "Guyane"
-    la_reunion = "La réunion"
-    saint_pierre_et_miquelon = "Saint Pierre et Miquelon"
-    mayotte = "Mayotte"
-    saint_bartelemy = "Saint Bartelemy"
-    saint_martin = "Saint Martin"
+    non_renseigne = 'Non renseigné'
+    metropole = 'Métropole'
+    guadeloupe = 'Guadeloupe'
+    martinique = 'Martinique'
+    guyane = 'Guyane'
+    la_reunion = 'La réunion'
+    saint_pierre_et_miquelon = 'Saint Pierre et Miquelon'
+    mayotte = 'Mayotte'
+    saint_bartelemy = 'Saint Bartelemy'
+    saint_martin = 'Saint Martin'
 
 
 class residence(Variable):
@@ -212,7 +212,7 @@ class residence(Variable):
     possible_values = TypesLieuResidence
     default_value = TypesLieuResidence.non_renseigne
     entity = Menage
-    label = "Zone de résidence"
+    label = 'Zone de résidence'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 

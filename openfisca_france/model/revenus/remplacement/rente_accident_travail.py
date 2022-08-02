@@ -4,8 +4,8 @@ from openfisca_france.model.base import *
 class rente_accident_travail(Variable):
     value_type = float
     entity = Individu
-    label = "Montant mensuel de la rente d’accident du travail"
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
+    label = 'Montant mensuel de la rente d’accident du travail'
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -21,8 +21,8 @@ class rente_accident_travail(Variable):
 class rente_accident_travail_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Montant de la rente d’accident du travail pour les victimes salariées"
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
+    label = 'Montant de la rente d’accident du travail pour les victimes salariées'
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -47,7 +47,7 @@ class rente_accident_travail_exploitant_agricole(Variable):
     value_type = float
     entity = Individu
     label = "Montant de la rente d’accident du travail pour les chefs d'exploitation ou d'entreprise agricole"
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006071367&idArticle=LEGIARTI000006598097&dateTexte=&categorieLien=cid"
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006071367&idArticle=LEGIARTI000006598097&dateTexte=&categorieLien=cid'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -71,7 +71,7 @@ class indemnite_accident_travail(Variable):
     value_type = float
     entity = Individu
     label = "Indemnité selon le taux d'incapacité"
-    reference = "https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006172216&cidTexte=LEGITEXT000006073189"
+    reference = 'https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006172216&cidTexte=LEGITEXT000006073189'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -85,8 +85,8 @@ class indemnite_accident_travail(Variable):
 class rente_accident_travail_base(Variable):
     value_type = float
     entity = Individu
-    label = "Montant de base de la rente d’accident du travail"
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
+    label = 'Montant de base de la rente d’accident du travail'
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -103,7 +103,7 @@ class rente_accident_travail_base(Variable):
 class demande_rachat(Variable):
     value_type = bool
     entity = Individu
-    label = "La victime a demandé le rachat partiel de la rente"
+    label = 'La victime a demandé le rachat partiel de la rente'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -111,7 +111,7 @@ class demande_rachat(Variable):
 class rente_accident_travail_apres_rachat(Variable):
     value_type = float
     entity = Individu
-    label = "Rente d’accident du travail, reliquat suite à conversion en capital"
+    label = 'Rente d’accident du travail, reliquat suite à conversion en capital'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -129,8 +129,8 @@ class rente_accident_travail_apres_rachat(Variable):
 class rente_accident_travail_rachat(Variable):
     value_type = float
     entity = Individu
-    label = "Rachat de la rente d’accident du travail"
-    reference = "https://www.legifrance.gouv.fr/eli/arrete/2016/12/19/AFSS1637858A/jo/texte"
+    label = 'Rachat de la rente d’accident du travail'
+    reference = 'https://www.legifrance.gouv.fr/eli/arrete/2016/12/19/AFSS1637858A/jo/texte'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -149,7 +149,7 @@ class pcrtp_nombre_actes_assistance(Variable):
     value_type = int
     entity = Individu
     label = "Nombre d'actes nécessitant l'assistance d'une tierce personne"
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6D8F7F6917ADFBDEAFE1D8A432F39229.tplgfr23s_2?idArticle=LEGIARTI000027267037&cidTexte=LEGITEXT000006073189&dateTexte=20181218"
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6D8F7F6917ADFBDEAFE1D8A432F39229.tplgfr23s_2?idArticle=LEGIARTI000027267037&cidTexte=LEGITEXT000006073189&dateTexte=20181218'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -157,8 +157,8 @@ class pcrtp_nombre_actes_assistance(Variable):
 class pcrtp(Variable):
     value_type = float
     entity = Individu
-    label = "Prestation complémentaire pour recours à tierce personne (PCRTP)"
-    reference = "https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006172216&cidTexte=LEGITEXT000006073189"
+    label = 'Prestation complémentaire pour recours à tierce personne (PCRTP)'
+    reference = 'https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006172216&cidTexte=LEGITEXT000006073189'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -174,8 +174,8 @@ class pcrtp(Variable):
 class rente_accident_travail_salaire_utile(Variable):
     value_type = float
     entity = Individu
-    label = "Salaire utile pour calculer la rente d’accident du travail"
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=7392B9902E4B974EAE8783FAF2D69849.tplgfr30s_1?idArticle=LEGIARTI000006750376&cidTexte=LEGITEXT000006073189&dateTexte=20180823"
+    label = 'Salaire utile pour calculer la rente d’accident du travail'
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=7392B9902E4B974EAE8783FAF2D69849.tplgfr30s_1?idArticle=LEGIARTI000006750376&cidTexte=LEGITEXT000006073189&dateTexte=20180823'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 

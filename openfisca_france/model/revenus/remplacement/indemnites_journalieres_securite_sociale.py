@@ -4,7 +4,7 @@ from openfisca_france.model.base import *
 class indemnites_journalieres_maternite(Variable):
     value_type = float
     entity = Individu
-    label = "Indemnités journalières de maternité"
+    label = 'Indemnités journalières de maternité'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -12,7 +12,7 @@ class indemnites_journalieres_maternite(Variable):
 class indemnites_journalieres_paternite(Variable):
     value_type = float
     entity = Individu
-    label = "Indemnités journalières de paternité"
+    label = 'Indemnités journalières de paternité'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -28,7 +28,7 @@ class indemnites_journalieres_adoption(Variable):
 class indemnites_journalieres_maladie(Variable):
     value_type = float
     entity = Individu
-    label = "Indemnités journalières de maladie"
+    label = 'Indemnités journalières de maladie'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -44,14 +44,14 @@ class indemnites_journalieres_accident_travail(Variable):
 class indemnites_journalieres_maladie_professionnelle(Variable):
     value_type = float
     entity = Individu
-    label = "Indemnités journalières de maladie professionnelle"
+    label = 'Indemnités journalières de maladie professionnelle'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
 
 class indemnites_journalieres(Variable):
     value_type = float
-    label = "Total des indemnités journalières"
+    label = 'Total des indemnités journalières'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -72,9 +72,9 @@ class indemnites_journalieres(Variable):
 
 class indemnites_journalieres_imposables(Variable):
     value_type = float
-    label = "Total des indemnités journalières imposables"
+    label = 'Total des indemnités journalières imposables'
     entity = Individu
-    reference = "http://vosdroits.service-public.fr/particuliers/F3152.xhtml"
+    reference = 'http://vosdroits.service-public.fr/particuliers/F3152.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -93,7 +93,7 @@ class indemnites_journalieres_atexa(Variable):
     value_type = float
     entity = Individu
     label = "Indemnités de l'assurance Accident du Travail des Exploitants Agricoles"
-    reference = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000649169"
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000649169'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -102,5 +102,5 @@ class date_arret_de_travail(Variable):
     value_type = date
     default_value = date.min
     entity = Individu
-    label = "Date depuis laquelle la personne est en arrêt de travail"
+    label = 'Date depuis laquelle la personne est en arrêt de travail'
     definition_period = ETERNITY

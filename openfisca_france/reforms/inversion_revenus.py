@@ -44,16 +44,16 @@ def build_reform(tax_benefit_system):
     class salaire_de_base(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = "Salaire brut ou traitement indiciaire brut"
-        reference = "http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
+        label = 'Salaire brut ou traitement indiciaire brut'
+        reference = 'http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html'
         definition_period = MONTH
 
         def formula(individu, period, parameters):
-            """Calcule le salaire brut à partir du salaire imposable ou sinon du salaire net.
+            '''Calcule le salaire brut à partir du salaire imposable ou sinon du salaire net.
 
             Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
             Note : le supplément familial de traitement est imposable.
-            """
+            '''
             # Get value for year and divide below.
             salaire_imposable_pour_inversion = individu.get_holder('salaire_imposable_pour_inversion').get_array(period.this_year)
             if salaire_imposable_pour_inversion is None:
@@ -171,13 +171,13 @@ def build_reform(tax_benefit_system):
     class chomage_brut(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = "Allocations chômage brutes"
-        reference = "http://vosdroits.service-public.fr/particuliers/N549.xhtml"
+        label = 'Allocations chômage brutes'
+        reference = 'http://vosdroits.service-public.fr/particuliers/N549.xhtml'
         definition_period = MONTH
 
         def formula(individu, period, parameters):
-            """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
-            """
+            '''"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
+            '''
             # Get value for year and divide below.
             chomage_imposable_pour_inversion = individu.get_holder(
                 'chomage_imposable_pour_inversion').get_array(period.this_year)
@@ -220,13 +220,13 @@ def build_reform(tax_benefit_system):
     class retraite_brute(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = "Pensions de retraite brutes"
-        reference = "http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
+        label = 'Pensions de retraite brutes'
+        reference = 'http://vosdroits.service-public.fr/particuliers/N20166.xhtml'
         definition_period = MONTH
 
         def formula(individu, period, parameters):
-            """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
-            """
+            '''"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
+            '''
             # Get value for year and divide below.
             retraite_imposable_pour_inversion = individu.get_holder(
                 'retraite_imposable_pour_inversion').get_array(period.this_year)

@@ -10,54 +10,24 @@ values:
     value: null
 metadata:
   ux_name: Revenus du patrimoine
-  unit: /1
+  description_en: Other social levies on financial income
   ipp_csv_id: tx_caps_patr
+  unit: /1
   reference:
-    2019-01-01:
-      title: Loi 2018-1203 du 22/12/2018 - art. 26
-      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/22/CPAX1824950L/jo/texte
+    2003-01-01:
+      title: Loi 2004-626 du 30/06/2004, art. 11 et art. 19
+    2004-07-01:
+      title: Loi 2004-626 du 30/06/2004, art. 11 et art. 19
     2018-01-01:
       title: Loi 2018-1203 du 22/12/2018 - art. 26
       href: https://www.legifrance.gouv.fr/eli/loi/2018/12/22/CPAX1824950L/jo/texte
-    2013-01-01:
-      title: Loi 2012-1404 du 17/12/2012, art. 3
-      href: https://www.legifrance.gouv.fr/eli/loi/2012/12/17/2012-1404/jo/article_3
-    2012-07-01:
-      title: Loi 2012-354 du 14/03/2012, art. 2
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025511608&cidTexte=JORFTEXT000025509584
-    2012-01-01:
-      title: Loi 2012-1404 du 17/12/2012, art. 3
-      href: https://www.legifrance.gouv.fr/eli/loi/2012/12/17/2012-1404/jo/article_3
-    2011-10-01:
-      title: Loi 2011-1117 du 19/09/2011, art. 10 (LFR pour 2011)
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000024576244&cidTexte=JORFTEXT000024574328
-    2011-01-01:
-      title: Loi 2010-1657 du 29/12/2010, art. 6
-      href: https://www.legifrance.gouv.fr/eli/loi/2010/12/29/2010-1657/jo/article_6
-    2010-01-01:
-      title: Loi 2010-1657 du 29/12/2010, art. 6 (LF 2011)
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023347467&cidTexte=JORFTEXT000023314376
-    2009-01-01:
-      title: Loi 2008-1249 du 01/12/2008, art. 3
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000019861526&cidTexte=JORFTEXT000019860428
-    2004-07-01: Loi 2004-626 du 30/06/2004, art. 11 et art. 19
-    2003-01-01: Loi 2004-626 du 30/06/2004, art. 11 et art. 19
   official_journal_date:
-    2019-01-01: 2018-12-23
-    2018-01-01: 2018-12-23
-    2013-01-01: 2012-12-18
-    2012-07-01: 2012-03-15
-    2012-01-01: 2012-12-18
-    2011-10-01: 2011-09-20
-    2011-01-01: 2010-12-30
-    2010-01-01: 2010-12-30
-    2009-01-01: 2008-12-03
-    2004-07-01: 2004-07-01
-    2003-01-01: 2004-07-01
+    2003-01-01: "2004-07-01"
+    2004-07-01: "2004-07-01"
+    2018-01-01: "2018-12-23"
   notes:
-    2019-01-01: Création d'un prélèvement de solidarité directement affecté au budget de l'Etat. Il s'applique aux revenus de placement réalisés à partir de 2019. Cf. XIV art. 26 loi 2018-1203
-    2018-01-01: Création d'un prélèvement de solidarité directement affecté au budget de l'Etat. Il s'applique aux revenus du patrimoine réalisés à partir de 2018, sauf pour les revenus faisant l'objet du nouveau prélèvement à la source, qui sont concernés à partir de ceux réalisés en 2019 (cf. revenus évoqués dans l'art. L136-6-1 du CSS). Cf. XIV art. 26 loi 2018-1203
-  description_en: Other social levies on financial income
-documentation: |
+    2018-01-01:
+    - title: Création d'un prélèvement de solidarité directement affecté au budget de l'Etat. Il s'applique aux revenus du patrimoine réalisés à partir de 2018, sauf pour les revenus faisant l'objet du nouveau prélèvement à la source, qui sont concernés à partir de ceux réalisés en 2019 (cf. revenus évoqués dans l'art. L136-6-1 du CSS). Cf. XIV art. 26 loi 2018-1203
+documentation: |-
   - Les contributions additionnelles au prélèvement social (CAPS) sur les revenus du patrimoine et sur les produits de placement sont codifées à l'article L14-10-4 du Code de l'action sociale et des familles.
   - La contribution RSA est référencée à l'article L262-24 du Code de l'action sociale et des familles.

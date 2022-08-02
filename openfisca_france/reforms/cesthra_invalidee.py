@@ -23,7 +23,7 @@ class cesthra(Variable):
     # PLF 2013 (rejeté) : 'taxe à 75%'
 
     def formula(foyer_fiscal, period, parameters):
-        salaire_imposable_i = foyer_fiscal.members("salaire_imposable", period, options = [ADD])
+        salaire_imposable_i = foyer_fiscal.members('salaire_imposable', period, options = [ADD])
         law_cesthra = parameters(period).cesthra
 
         cesthra_i = max_(salaire_imposable_i - law_cesthra.seuil, 0) * law_cesthra.taux
@@ -32,7 +32,7 @@ class cesthra(Variable):
 
 
 class irpp(Variable):
-    label = "Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
+    label = 'Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):

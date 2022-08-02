@@ -101,15 +101,15 @@ def parse_and_clean(directory, paths_to_clean):
 
         if os.path.isdir(item_path):
             if functional_path in paths_to_clean:
-                yaml_path = os.path.join(directory, item + ".yaml")
+                yaml_path = os.path.join(directory, item + '.yaml')
 
-                logger.info(os.linesep + "Cleaning long directory into: " + yaml_path)
+                logger.info(os.linesep + 'Cleaning long directory into: ' + yaml_path)
                 content = harvest(item_path)
                 with open(yaml_path, 'w') as yaml_file:
                     yaml_file.write(yaml.dump(content[item], default_flow_style=False, allow_unicode=True))
 
                 # Delete harvested directory
-                logger.info("Deleting " + item_path)
+                logger.info('Deleting ' + item_path)
                 shutil.rmtree(item_path)
 
             else:
@@ -117,7 +117,7 @@ def parse_and_clean(directory, paths_to_clean):
 
 
 long_parameters_paths = list_long_paths(PARAMETERS_DIRECTORY)
-logger.info("{} directories have files with more than {} characters in their paths starting from this directory: {}".format(len(long_parameters_paths), PATH_MAX_LENGTH, PARENT_DIRECTORY).encode('utf-8'))
+logger.info('{} directories have files with more than {} characters in their paths starting from this directory: {}'.format(len(long_parameters_paths), PATH_MAX_LENGTH, PARENT_DIRECTORY).encode('utf-8'))
 
 while len(long_parameters_paths) > 0:
     parse_and_clean(PARAMETERS_DIRECTORY, long_parameters_paths)

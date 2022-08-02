@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-"""
+'''
 Download tests from Ludwig (https://mes-aides.gouv.fr/tests/).
 
 Usage examples:
@@ -9,7 +9,7 @@ Usage examples:
     python openfisca_france/scripts/download_mes_aides_tests.py --test-ids xxx yyy ...
 
     python openfisca_france/scripts/download_mes_aides_tests.py --api-base-url http://localhost:9000
-"""
+'''
 
 
 import argparse
@@ -86,7 +86,7 @@ def main():
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = 'Increase output verbosity')
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
-    logging.getLogger("requests").setLevel(logging.WARNING)
+    logging.getLogger('requests').setLevel(logging.WARNING)
 
     if not os.path.isdir(args.output_dir):
         os.makedirs(args.output_dir)

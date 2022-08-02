@@ -215,8 +215,8 @@ class aah_restriction_substantielle_durable_acces_emploi(Variable):
     entity = Individu
     label = "Restriction substantielle et durable pour l'accès à l'emploi reconnue par la commission des droits et de l'autonomie des personnes handicapées"
     reference = [
-        "Article L821-2 du Code de la sécurité sociale",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=17BE3036A19374AA1C8C7A4169702CD7.tplgfr24s_2?idArticle=LEGIARTI000020039305&cidTexte=LEGITEXT000006073189&dateTexte=20180731"
+        'Article L821-2 du Code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=17BE3036A19374AA1C8C7A4169702CD7.tplgfr24s_2?idArticle=LEGIARTI000020039305&cidTexte=LEGITEXT000006073189&dateTexte=20180731'
         ]
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -292,8 +292,8 @@ class aah_plafond_ressources(Variable):
     label = "Montant plafond des ressources pour bénéficier de l'Allocation adulte handicapé (hors complément)"
     entity = Individu
     reference = [
-        "Article D821-2 du Code de la sécurité sociale",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=4B54EC7065520E4812F84677B918A48E.tplgfr28s_2?idArticle=LEGIARTI000019077584&cidTexte=LEGITEXT000006073189&dateTexte=20081218"
+        'Article D821-2 du Code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=4B54EC7065520E4812F84677B918A48E.tplgfr28s_2?idArticle=LEGIARTI000019077584&cidTexte=LEGITEXT000006073189&dateTexte=20081218'
         ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -320,8 +320,8 @@ class aah_base(Variable):
     label = "Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
     entity = Individu
     reference = [
-        "Article L821-1 du Code de la sécurité sociale",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=53AFF5AA4010B01F0539052A33180B39.tplgfr35s_1?idArticle=LEGIARTI000033813790&cidTexte=LEGITEXT000006073189&dateTexte=20180412"
+        'Article L821-1 du Code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=53AFF5AA4010B01F0539052A33180B39.tplgfr35s_1?idArticle=LEGIARTI000033813790&cidTexte=LEGITEXT000006073189&dateTexte=20180412'
         ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -344,8 +344,8 @@ class aah_base(Variable):
 class aah(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = "Allocation adulte handicapé mensualisée"
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006754198"
+    label = 'Allocation adulte handicapé mensualisée'
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006754198'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -355,8 +355,8 @@ class aah(Variable):
         aah_parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         m_2 = datetime64(period.offset(-60, 'day').start)
 
-        aah_date_debut_hospitalisation = individu("aah_date_debut_hospitalisation", period)
-        aah_date_debut_incarceration = individu("aah_date_debut_incarceration", period)
+        aah_date_debut_hospitalisation = individu('aah_date_debut_hospitalisation', period)
+        aah_date_debut_incarceration = individu('aah_date_debut_incarceration', period)
         aah_reduction = (aah_date_debut_hospitalisation <= m_2) + (aah_date_debut_incarceration <= m_2)
 
         return where(aah_reduction, aah_base * aah_parameters.pourcentage_aah.prison_hospitalisation, aah_base)
@@ -464,11 +464,11 @@ class caah(Variable):
 class complement_ressources_aah(Variable):
     entity = Individu
     value_type = float
-    label = "Le complément de ressources"
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006745305&dateTexte=&categorieLien=cid"
+    label = 'Le complément de ressources'
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006745305&dateTexte=&categorieLien=cid'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = "2019-11-30"
+    end = '2019-11-30'
 
     def formula_2015_07_01(individu, period, parameters):
         prestations = parameters(period).prestations_sociales
@@ -483,8 +483,8 @@ class complement_ressources_aah(Variable):
 class mva(Variable):
     entity = Individu
     value_type = float
-    label = "Majoration pour la vie autonome"
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6E5B97C7E6C7E06666BCFFA11871E70B.tplgfr43s_2?idArticle=LEGIARTI000006745350&cidTexte=LEGITEXT000006073189&dateTexte=20190124"
+    label = 'Majoration pour la vie autonome'
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6E5B97C7E6C7E06666BCFFA11871E70B.tplgfr43s_2?idArticle=LEGIARTI000006745350&cidTexte=LEGITEXT000006073189&dateTexte=20190124'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -499,6 +499,6 @@ class mva(Variable):
 class pch(Variable):
     entity = Individu
     value_type = float
-    label = "Prestation de compensation du handicap"
+    label = 'Prestation de compensation du handicap'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period

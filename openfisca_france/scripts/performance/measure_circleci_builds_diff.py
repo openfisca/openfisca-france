@@ -1,4 +1,4 @@
-"""
+'''
 This script takes in two CircleCI build numbers
 (should be the `build_python2` and `build_python3` of the same workflow)
 and outputs if their mean runtime is in the same ball park
@@ -7,7 +7,7 @@ as the master branch's mean runtime for the same builds.
 Usage example:
 
     python openfisca_france/scripts/performance/measure_circleci_builds_diff.py 1717 1716
-"""
+'''
 
 import sys
 import requests
@@ -19,10 +19,10 @@ logging.basicConfig(level=logging.INFO)
 
 if len(sys.argv) < 2:
     raise AttributeError(
-        """
+        '''
         This script needs two CircleCI build numbers to work,
         e.g. python openfisca_france/scripts/performance/measure_circleci_builds_diff.py 1717 1716
-        """
+        '''
         )
 
 python2_build_number = sys.argv[1]
@@ -34,10 +34,10 @@ MIN_NUMBER_OF_MASTER_BUILDS = 5
 
 
 def get_master_branch_performance():
-    """
+    '''
     Accesses the CircleCI API and gets the info for all available master branch builds.
     :return: a Dict with the master branch build time statistics
-    """
+    '''
     def mean(numbers):
         return sum(numbers, 0.0) / len(numbers)
 
@@ -46,7 +46,7 @@ def get_master_branch_performance():
         variance = mean([(x - mean_of_numbers)**2 for x in numbers])
         return variance**0.5
 
-    api_url = "https://circleci.com/api/v1.1/project/github/openfisca/openfisca-france/tree/master"
+    api_url = 'https://circleci.com/api/v1.1/project/github/openfisca/openfisca-france/tree/master'
     response = requests.get(api_url)
     if response.status_code == 200:
         response_python = json.loads(response.content.decode('utf-8'))
@@ -61,7 +61,7 @@ def get_master_branch_performance():
         job_name = response['workflows']['job_name']
         job_status = response['status']
 
-        if job_status == "success" and (job_name == 'build_python2' or job_name == 'build_python3'):
+        if job_status == 'success' and (job_name == 'build_python2' or job_name == 'build_python3'):
             builds.append(response['build_time_millis'])
 
     if len(builds) < MIN_NUMBER_OF_MASTER_BUILDS:
@@ -81,16 +81,16 @@ def get_master_branch_performance():
 
 
 def get_current_build_performance(python2_build_number, python3_build_number):
-    """
+    '''
     get the build time for the tests
     :param python2_build_number: a circle ci build number
     :param python3_build_number: a circle ci build number
     :return: a number of milliseconds the build took
-    """
+    '''
     builds = [python2_build_number, python3_build_number]
     current_build_performance = 0
     for build in builds:
-        api_url = "https://circleci.com/api/v1.1/project/github/openfisca/openfisca-france/{}".format(build)
+        api_url = 'https://circleci.com/api/v1.1/project/github/openfisca/openfisca-france/{}'.format(build)
         response = requests.get(api_url)
         if response.status_code == 200:
             response_python = json.loads(response.content.decode('utf-8'))

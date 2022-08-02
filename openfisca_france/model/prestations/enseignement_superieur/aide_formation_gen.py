@@ -6,7 +6,7 @@ from openfisca_france.model.prestations.education import TypesScolarite
 class aide_formation_gen_eligibilite(Variable):
     value_type = bool
     entity = Individu
-    reference = "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000034429379/"
+    reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000034429379/'
     label = "Éligibilité à l'aide accordée aux personnes inscrites dans une formation labellisée par la Grande Ecole du numérique"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -31,7 +31,7 @@ class aide_formation_gen_eligibilite(Variable):
 class aide_formation_gen(Variable):
     value_type = float
     entity = Individu
-    reference = "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000034429379/"
+    reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000034429379/'
     label = "Montant de l'aide accordée aux personnes inscrites dans une formation labellisée par la Grande Ecole du numérique"
     definition_period = MONTH
     set_input = set_input_divide_by_period

@@ -1,7 +1,12 @@
 description: Montant maximum de l'Aide Mobili-Jeune à la mobilité pour les jeunes
-values:
-  2012-07-01:
-    value: 100
+secteur_agricole:
+  values:
+    2022-06-01:
+      value: 300
+autres_secteurs:
+  values:
+    2012-07-01:
+      value: 100
 metadata:
   ux_name: Maximum
   unit: currency

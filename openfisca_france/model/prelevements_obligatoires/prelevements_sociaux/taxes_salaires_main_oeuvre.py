@@ -23,7 +23,7 @@ taux_smt_by_depcom = None
 class conge_individuel_formation_cdd(Variable):
     value_type = float
     entity = Individu
-    label = "Contribution au financement des congé individuel de formation (CIF) des salariées en CDD"
+    label = 'Contribution au financement des congé individuel de formation (CIF) des salariées en CDD'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -44,7 +44,7 @@ class redevable_taxe_apprentissage(Variable):
     value_type = bool
     entity = Individu
     label = "Entreprise redevable de la taxe d'apprentissage"
-    reference = "https://www.economie.gouv.fr/entreprises/taxe-apprentissage"  # TODO: Coder les exonerations selon la masse salariale
+    reference = 'https://www.economie.gouv.fr/entreprises/taxe-apprentissage'  # TODO: Coder les exonerations selon la masse salariale
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -70,9 +70,9 @@ class contribution_developpement_apprentissage(Variable):
             individu,
             period,
             parameters,
-            cotisation_type = "employeur",
-            bareme_name = "apprentissage_contribution_additionnelle",
-            variable_name = "contribution_developpement_apprentissage",
+            cotisation_type = 'employeur',
+            bareme_name = 'apprentissage_contribution_additionnelle',
+            variable_name = 'contribution_developpement_apprentissage',
             )
         return cotisation * redevable_taxe_apprentissage
 
@@ -81,7 +81,7 @@ class contribution_supplementaire_apprentissage(Variable):
     value_type = float
     entity = Individu
     label = "Contribution supplémentaire à l'apprentissage"
-    reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
+    reference = 'https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -237,7 +237,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
 class fnal(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation fonds national action logement (FNAL)"
+    label = 'Cotisation fonds national action logement (FNAL)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -250,7 +250,7 @@ class fnal(Variable):
 class fnal_cotisation(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation fonds national action logement (FNAL)"
+    label = 'Cotisation fonds national action logement (FNAL)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     end = '2015-01-01'
@@ -262,14 +262,14 @@ class fnal_cotisation(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_cotisation',
-            variable_name = "fnal_cotisation",
+            variable_name = 'fnal_cotisation',
             )
 
 
 class fnal_contribution(Variable):
     value_type = float
     entity = Individu
-    label = "Contribution fonds national action logement (FNAL)"
+    label = 'Contribution fonds national action logement (FNAL)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -282,7 +282,7 @@ class fnal_contribution(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_contribution_plus_de_50_salaries',
-            variable_name = "fnal_contribution",
+            variable_name = 'fnal_contribution',
             )
         contribution_moins_de_50_salaries = apply_bareme(
             individu,
@@ -290,7 +290,7 @@ class fnal_contribution(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_contribution_moins_de_50_salaries',
-            variable_name = "fnal_contribution",
+            variable_name = 'fnal_contribution',
             )
         return effectif_plus_de_50_salaries * contribution_plus_de_50_salaries + (1 - effectif_plus_de_50_salaries) * contribution_moins_de_50_salaries
 
@@ -303,7 +303,7 @@ class fnal_contribution(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_contribution_plus_de_20_salaries',
-            variable_name = "fnal_contribution",
+            variable_name = 'fnal_contribution',
             )
         contribution_moins_de_20_salaries = apply_bareme(
             individu,
@@ -311,7 +311,7 @@ class fnal_contribution(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_contribution_moins_de_20_salaries',
-            variable_name = "fnal_contribution",
+            variable_name = 'fnal_contribution',
             )
         return effectif_plus_de_20_salaries * contribution_plus_de_20_salaries + (1 - effectif_plus_de_20_salaries) * contribution_moins_de_20_salaries
 
@@ -324,7 +324,7 @@ class fnal_contribution(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_contribution_plus_de_20_salaries',
-            variable_name = "fnal_contribution",
+            variable_name = 'fnal_contribution',
             )
         return effectif_plus_de_20_salaries * contribution_plus_de_20_salaries
 
@@ -337,7 +337,7 @@ class fnal_contribution(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'fnal_contribution_plus_de_10_salaries',
-            variable_name = "fnal_contribution",
+            variable_name = 'fnal_contribution',
             )
         return effectif_plus_de_10_salaries * contribution_plus_de_10_salaries
 
@@ -345,7 +345,7 @@ class fnal_contribution(Variable):
 class financement_organisations_syndicales(Variable):
     value_type = float
     entity = Individu
-    label = "Contribution patronale au financement des organisations syndicales"
+    label = 'Contribution patronale au financement des organisations syndicales'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -371,8 +371,8 @@ class financement_organisations_syndicales(Variable):
 class formation_professionnelle(Variable):
     value_type = float
     entity = Individu
-    label = "PEFPC - Formation professionnelle"
-    reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
+    label = 'PEFPC - Formation professionnelle'
+    reference = 'https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     end = '2018-12-31'  # Remplacé par la contribution_formation_professionnelle
@@ -434,8 +434,8 @@ class formation_professionnelle(Variable):
 class contribution_formation_professionnelle(Variable):
     value_type = float
     entity = Individu
-    label = "Contribution à la formation professionnelle (CFP)"
-    reference = "https://www.urssaf.fr/portail/home/espaces-dedies/contributions-de-formation-profe/la-contribution-a-la-formation-p.html"
+    label = 'Contribution à la formation professionnelle (CFP)'
+    reference = 'https://www.urssaf.fr/portail/home/espaces-dedies/contributions-de-formation-profe/la-contribution-a-la-formation-p.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     # Initiée en 2019: avec la Taxe d'apprentissage, elles forment la CUFPA (contribution unique à la formation professionnelle et à l'alternance)
@@ -513,7 +513,7 @@ class taxe_apprentissage(Variable):
     value_type = float
     entity = Individu
     label = "Taxe d'apprentissage (employeur, entreprise redevable de la taxe d'apprentissage uniquement)"
-    reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
+    reference = 'https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -557,7 +557,7 @@ class contribution_unique_formation_professionnelle_alternance(Variable):
     entity = Individu
     label = "Contribution Unique à la Formation Professionnelle et à l'Alternance (CUFPA)"
     definition_period = MONTH
-    reference = "https://www.legifrance.gouv.fr/conv_coll/id/KALIARTI000041698592/?idConteneur=KALICONT000042181870"
+    reference = 'https://www.legifrance.gouv.fr/conv_coll/id/KALIARTI000041698592/?idConteneur=KALICONT000042181870'
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
@@ -570,8 +570,8 @@ class contribution_unique_formation_professionnelle_alternance(Variable):
 class taxe_salaires(Variable):
     value_type = float
     entity = Individu
-    label = "Taxe sur les salaires"
-    reference = "http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf"
+    label = 'Taxe sur les salaires'
+    reference = 'http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 

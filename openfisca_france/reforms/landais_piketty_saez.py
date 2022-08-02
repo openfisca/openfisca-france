@@ -2,7 +2,7 @@
 # TODO switch to to average tax rates
 
 
-"""Impôt Landais, Piketty, Saez"""
+'''Impôt Landais, Piketty, Saez'''
 
 import os
 
@@ -15,7 +15,7 @@ dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 class assiette_csg(Variable):
     value_type = float
     entity = Individu
-    label = "Assiette de la CSG"
+    label = 'Assiette de la CSG'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -55,8 +55,8 @@ class impot_revenu_lps(Variable):
 class revenu_disponible(Variable):
     value_type = float
     entity = Menage
-    label = "Revenu disponible du ménage"
-    reference = "http://fr.wikipedia.org/wiki/Revenu_disponible"
+    label = 'Revenu disponible du ménage'
+    reference = 'http://fr.wikipedia.org/wiki/Revenu_disponible'
     definition_period = YEAR
 
     def formula(menage, period, parameters):

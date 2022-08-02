@@ -14,9 +14,9 @@ class credits_impot(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        """
+        '''
         Crédits d'impôt pour l'impôt sur les revenus
-        """
+        '''
         credits = [
             # Depuis 2002
             'acqgpl',
@@ -56,7 +56,7 @@ class credits_impot(Variable):
 class nb_pac2(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Nombre de personnes à charges (en comptant les enfants en résidence alternée comme une demi personne à charge)"
+    label = 'Nombre de personnes à charges (en comptant les enfants en résidence alternée comme une demi personne à charge)'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -112,8 +112,8 @@ class aidmob(Variable):
 class aidper(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Crédits d’impôt pour dépenses en faveur de l’aide aux personnes"
-    reference = "http://bofip.impots.gouv.fr/bofip/3859-PGP"
+    label = 'Crédits d’impôt pour dépenses en faveur de l’aide aux personnes'
+    reference = 'http://bofip.impots.gouv.fr/bofip/3859-PGP'
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -321,8 +321,8 @@ class aidper(Variable):
 class assloy(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Crédit d’impôt primes d’assurance pour loyers impayés"
-    reference = "http://bofip.impots.gouv.fr/bofip/844-PGP.html?identifiant=BOI-IR-RICI-320-20120912"
+    label = 'Crédit d’impôt primes d’assurance pour loyers impayés'
+    reference = 'http://bofip.impots.gouv.fr/bofip/844-PGP.html?identifiant=BOI-IR-RICI-320-20120912'
     definition_period = YEAR
     end = '2016-12-31'
 
@@ -340,7 +340,7 @@ class assloy(Variable):
 class autent(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "autent"
+    label = 'autent'
     definition_period = YEAR
 
     def formula_2009(foyer_fiscal, period, parameters):
@@ -356,8 +356,8 @@ class autent(Variable):
 class ci_garext(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Frais de garde des enfants à l’extérieur du domicile"
-    reference = "http://bofip.impots.gouv.fr/bofip/865-PGP?datePubl=13/04/2013"
+    label = 'Frais de garde des enfants à l’extérieur du domicile'
+    reference = 'http://bofip.impots.gouv.fr/bofip/865-PGP?datePubl=13/04/2013'
     definition_period = YEAR
 
     def formula_2005(foyer_fiscal, period, parameters):
@@ -388,7 +388,7 @@ class credit_cotisations_syndicales(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Crédit d'impôt pour cotisations syndicales"
-    reference = "http://bofip.impots.gouv.fr/bofip/1605-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/1605-PGP'
     definition_period = YEAR
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -859,7 +859,7 @@ class acompte_ir_elus_locaux(Variable):
 class prelevement_forfaitaire_non_liberatoire(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Prélèvement forfaitaire non libératoire sur les revenus du capital"
+    label = 'Prélèvement forfaitaire non libératoire sur les revenus du capital'
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period):
@@ -899,7 +899,7 @@ class acomptes_ir(Variable):
 class direpa(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Crédit d’impôt directive « épargne »"
+    label = 'Crédit d’impôt directive « épargne »'
     definition_period = YEAR
 
     def formula_2006(foyer_fiscal, period, parameters):
@@ -936,7 +936,7 @@ class divide(Variable):
 class drbail(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Crédit d’impôt représentatif de la taxe additionnelle au droit de bail"
+    label = 'Crédit d’impôt représentatif de la taxe additionnelle au droit de bail'
     definition_period = YEAR
 
     def formula_2002(foyer_fiscal, period, parameters):
@@ -953,8 +953,8 @@ class drbail(Variable):
 class inthab(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Crédit d’impôt intérêts des emprunts pour l’habitation principale"
-    reference = "http://bofip.impots.gouv.fr/bofip/3863-PGP.html?identifiant=BOI-IR-RICI-350-20120912"
+    label = 'Crédit d’impôt intérêts des emprunts pour l’habitation principale'
+    reference = 'http://bofip.impots.gouv.fr/bofip/3863-PGP.html?identifiant=BOI-IR-RICI-350-20120912'
     definition_period = YEAR
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
@@ -1269,7 +1269,7 @@ class inthab(Variable):
 class jeunes(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "jeunes"
+    label = 'jeunes'
     end = '2008-12-31'
     definition_period = YEAR
 
@@ -1331,7 +1331,7 @@ class jeunes_ind(Variable):
 class percvm(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Crédit d’impôt pertes sur cessions de valeurs mobilières"
+    label = 'Crédit d’impôt pertes sur cessions de valeurs mobilières'
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1349,7 +1349,7 @@ class percvm(Variable):
 class preetu(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Crédit d’impôt pour souscription de prêts étudiants"
+    label = 'Crédit d’impôt pour souscription de prêts étudiants'
     definition_period = YEAR
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
@@ -1391,7 +1391,7 @@ class preetu(Variable):
 class prlire(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Prélèvement libératoire à restituer (case 2DH)"
+    label = 'Prélèvement libératoire à restituer (case 2DH)'
     definition_period = YEAR
 
     def formula_2002(foyer_fiscal, period, parameters):
@@ -1407,7 +1407,7 @@ class prlire(Variable):
 class quaenv(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Crédits d’impôt pour dépenses en faveur de la qualité environnementale (2005 - 2014) / de la transition energétique (2014 - ) "
+    label = 'Crédits d’impôt pour dépenses en faveur de la qualité environnementale (2005 - 2014) / de la transition energétique (2014 - ) '
     definition_period = YEAR
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
@@ -2050,7 +2050,7 @@ class quaenv_bouquet(Variable):
     entity = FoyerFiscal
     label = "Indicateur de réalisation d'un bouquet de travaux, dans le cadre du crédit d'impôt en faveur de la qualité environnementale"
     definition_period = YEAR
-    reference = "http://bofip.impots.gouv.fr/bofip/3883-PGP.html?identifiant=BOI-IR-RICI-280-20170807"
+    reference = 'http://bofip.impots.gouv.fr/bofip/3883-PGP.html?identifiant=BOI-IR-RICI-280-20170807'
     end = '2015-12-31'
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -2243,7 +2243,7 @@ class quaenv_bouquet(Variable):
 class saldom2(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Crédit d’impôt emploi d’un salarié à domicile"
+    label = 'Crédit d’impôt emploi d’un salarié à domicile'
     definition_period = YEAR
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):

@@ -80,15 +80,15 @@ class TypesStatutMarital(Enum):
 
 class TypesStatutOccupationLogement(Enum):
     __order__ = 'non_renseigne primo_accedant proprietaire locataire_hlm locataire_vide locataire_meuble loge_gratuitement locataire_foyer sans_domicile'  # Needed to preserve the enum order in Python 2
-    non_renseigne = "Non renseigné"
-    primo_accedant = "Accédant à la propriété"
-    proprietaire = "Propriétaire (non accédant) du logement"
+    non_renseigne = 'Non renseigné'
+    primo_accedant = 'Accédant à la propriété'
+    proprietaire = 'Propriétaire (non accédant) du logement'
     locataire_hlm = "Locataire d'un logement HLM"
     locataire_vide = "Locataire ou sous-locataire d'un logement loué vide non-HLM"
     locataire_meuble = "Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel"
     loge_gratuitement = "Logé gratuitement par des parents, des amis ou l'employeur"
     locataire_foyer = "Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)"
-    sans_domicile = "Sans domicile stable"
+    sans_domicile = 'Sans domicile stable'
 
 
 # Taux de prime moyen de la fonction publique

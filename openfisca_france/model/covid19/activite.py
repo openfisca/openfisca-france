@@ -6,10 +6,10 @@ class covid_aide_exceptionnelle_tpe_eligible(Variable):
     value_type = bool
     label = "Éligibilité à l'aide exceptionnelle pour les TPE pendant la crise sanitaire dûe au COVID-19"
     reference = [
-        "Décret n°2020-371 du 30 mars 2020"
-        "https://www.legifrance.gouv.fr/eli/decret/2020/3/30/ECOI2007755D/jo/texte",
-        "Ordonnance n° 2020-705 du 10 juin 2020"
-        "https://www.legifrance.gouv.fr/eli/ordonnance/2020/6/10/ECOI2012371R/jo/texte"
+        'Décret n°2020-371 du 30 mars 2020'
+        'https://www.legifrance.gouv.fr/eli/decret/2020/3/30/ECOI2007755D/jo/texte',
+        'Ordonnance n° 2020-705 du 10 juin 2020'
+        'https://www.legifrance.gouv.fr/eli/ordonnance/2020/6/10/ECOI2012371R/jo/texte'
         ]
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -46,7 +46,7 @@ class covid_aide_exceptionnelle_tpe_montant(Variable):
 class covid_activite_partielle_eligible(Variable):
     entity = Individu
     value_type = bool
-    label = "Eligibilité au dispositif du chômage partiel"
+    label = 'Eligibilité au dispositif du chômage partiel'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -62,7 +62,7 @@ class covid_activite_partielle_montant(Variable):
     set_input = set_input_divide_by_period
     reference = [
         "Ordonnance n° 2020-346 du 27 mars 2020 portant mesures d'urgence en matière d'activité partielle",
-        "https://www.legifrance.gouv.fr/eli/ordonnance/2020/3/27/MTRX2008381R/jo/texte",
+        'https://www.legifrance.gouv.fr/eli/ordonnance/2020/3/27/MTRX2008381R/jo/texte',
         ]
 
     def formula_2020_03(individu, period, parameters):

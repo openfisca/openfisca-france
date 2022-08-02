@@ -6,7 +6,7 @@ from openfisca_france.model.base import *
 class cf_enfant_a_charge(Variable):
     value_type = bool
     entity = Individu
-    label = "Complément familial - Enfant considéré à charge"
+    label = 'Complément familial - Enfant considéré à charge'
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -71,7 +71,7 @@ class cf_dom_enfant_eligible(Variable):
 class cf_dom_enfant_trop_jeune(Variable):
     value_type = bool
     entity = Individu
-    label = "Complément familial (DOM) - Enfant trop jeune pour ouvrir le droit"
+    label = 'Complément familial (DOM) - Enfant trop jeune pour ouvrir le droit'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -187,7 +187,7 @@ class cf_base_ressources(Variable):
 class cf_eligibilite_base(Variable):
     value_type = bool
     entity = Famille
-    label = "Éligibilité au complément familial sous condition de ressources et avant cumul"
+    label = 'Éligibilité au complément familial sous condition de ressources et avant cumul'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -203,7 +203,7 @@ class cf_eligibilite_base(Variable):
 class cf_eligibilite_dom(Variable):
     value_type = bool
     entity = Famille
-    label = "Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul"
+    label = 'Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -226,7 +226,7 @@ class cf_eligibilite_dom(Variable):
 class cf_non_majore_avant_cumul(Variable):
     value_type = float
     entity = Famille
-    label = "Complément familial non majoré avant cumul"
+    label = 'Complément familial non majoré avant cumul'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -269,7 +269,7 @@ class cf_non_majore_avant_cumul(Variable):
 class cf_majore_avant_cumul(Variable):
     value_type = float
     entity = Famille
-    label = "Complément familial majoré avant cumul"
+    label = 'Complément familial majoré avant cumul'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -315,8 +315,8 @@ class cf(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = "Complément familial"
-    reference = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
+    label = 'Complément familial'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F13214.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 

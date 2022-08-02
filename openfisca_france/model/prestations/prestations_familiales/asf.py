@@ -68,7 +68,7 @@ class asf(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = "Allocation de soutien familial (ASF)"
+    label = 'Allocation de soutien familial (ASF)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 

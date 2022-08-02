@@ -1,8 +1,8 @@
 from numpy import fabs, timedelta64
-from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, ADD, \
+from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, ADD,\
     set_input_dispatch_by_period, set_input_divide_by_period, min_, date
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
-from openfisca_france.model.revenus.activite.salarie import TypesContrat, TypesLieuEmploiFormation, \
+from openfisca_france.model.revenus.activite.salarie import TypesContrat, TypesLieuEmploiFormation,\
     TypesCategoriesDemandeurEmploi
 
 
@@ -13,14 +13,14 @@ class aide_mobilite_date_demande(Variable):
     label = "Date de demande d'évaluation à l'éligibilité de l'aide à la mobilité (AMOB) - (date du fait générateur)"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+    reference = 'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021'
 
 
 class distance_activite_domicile(Variable):
     entity = Individu
     value_type = float
-    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
-    label = "Distance en kilomètres entre le lieu de l’entretien d’embauche, la reprise d’emploi, la formation, la prestation d’accompagnement, " \
+    reference = 'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021'
+    label = 'Distance en kilomètres entre le lieu de l’entretien d’embauche, la reprise d’emploi, la formation, la prestation d’accompagnement, '\
             "l’immersion professionnelle (PMSMP), le concours public ou l’examen certifiant et le lieu de résidence du demandeur d'emploi"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -29,7 +29,7 @@ class distance_activite_domicile(Variable):
 class nombre_allers_retours(Variable):
     entity = Individu
     value_type = float
-    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+    reference = 'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021'
     label = "Nombre d'aller/retour pour le calcul de l'aide à la mobilité de Pôle emploi - AMOB"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -38,8 +38,8 @@ class nombre_allers_retours(Variable):
 class aide_mobilite_duree_trajet(Variable):
     entity = Individu
     value_type = float
-    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
-    label = "Durée en minutes entre le lieu de l’entretien d’embauche, la reprise d’emploi, la formation, la prestation d’accompagnement, " \
+    reference = 'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021'
+    label = 'Durée en minutes entre le lieu de l’entretien d’embauche, la reprise d’emploi, la formation, la prestation d’accompagnement, '\
             "l’immersion professionnelle (PMSMP), le concours public ou l’examen certifiant et le lieu de résidence du demandeur d'emploi"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -48,7 +48,7 @@ class aide_mobilite_duree_trajet(Variable):
 class nuitees(Variable):
     entity = Individu
     value_type = int
-    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+    reference = 'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021'
     label = "Nombre de nuitées pour le calcul de l'aide à la mobilité de Pôle emploi - AMOB"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -57,7 +57,7 @@ class nuitees(Variable):
 class repas(Variable):
     entity = Individu
     value_type = int
-    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+    reference = 'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021'
     label = "Nombre de repas pour le calcul de l'aide à la mobilité de Pôle emploi - AMOB"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -65,8 +65,8 @@ class repas(Variable):
 
 class ContexteActivitePoleEmploi(Enum):
     __order__ = 'indetermine formation reprise_emploi recherche_emploi'  # Needed to preserve the enum order in Python 2
-    indetermine = "Indeterminé"
-    formation = "En formation"
+    indetermine = 'Indeterminé'
+    formation = 'En formation'
     reprise_emploi = "En reprise d'emploi"
     recherche_emploi = "En recherche d'emploi"
 
@@ -82,9 +82,9 @@ class contexte_activite_pole_emploi(Variable):
 
 class DispositifsDeFormation(Enum):
     __order__ = 'autre bilan_competences permis_conduire_b accompagnement_creation_entreprise accompagnement_validation_acquis'  # Needed to preserve the enum order in Python 2
-    autre = "Autre formation"
-    bilan_competences = "Bilan de compétences"
-    permis_conduire_b = "Permis de conduire B (code et/ou conduite)"
+    autre = 'Autre formation'
+    bilan_competences = 'Bilan de compétences'
+    permis_conduire_b = 'Permis de conduire B (code et/ou conduite)'
     accompagnement_creation_entreprise = "Accompagnement à la création d'entreprise"
     accompagnement_validation_acquis = "Accompagnement à la validation des acquis de l'experience (VAE)"
 
@@ -94,7 +94,7 @@ class dispositifs_formation(Variable):
     possible_values = DispositifsDeFormation
     default_value = DispositifsDeFormation.autre
     entity = Individu
-    label = "Dispositifs de formation"
+    label = 'Dispositifs de formation'
     definition_period = MONTH
 
 
@@ -116,12 +116,12 @@ class formation_financee_ou_cofinancee(Variable):
 
 class TypesActiviteEnRechercheEmploi(Enum):
     __order__ = 'indeterminee entretien_embauche concours_public examen_certifiant prestation_accompagnement immersion_professionnelle_PMSMP'  # Needed to preserve the enum order in Python 2
-    indeterminee = "Activité indéterminée"
+    indeterminee = 'Activité indéterminée'
     entretien_embauche = "Entretien d'embauche"
-    concours_public = "Concours public"
-    examen_certifiant = "Examen certifiant"
+    concours_public = 'Concours public'
+    examen_certifiant = 'Examen certifiant'
     prestation_accompagnement = "Prestation d'accompagnement"
-    immersion_professionnelle_PMSMP = "Immersion professionnelle PMSMP"
+    immersion_professionnelle_PMSMP = 'Immersion professionnelle PMSMP'
 
 
 class types_activite_en_recherche_emploi(Variable):
@@ -139,7 +139,7 @@ class aide_mobilite_categories_demandeur_emploi_eligibles(Variable):
     label = "Le demandeur d'emploi appartient à une catégorie éligible pour l'aide à la mobilité - AMOB"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+    reference = 'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021'
 
     def formula_2021_06_09(individu, period, parameters):
 
@@ -171,7 +171,7 @@ class aide_mobilite_ressources_eligibles(Variable):
     label = "Le demandeur d'emploi perçoit une indemnité éligible pour l'aide à la mobilité - AMOB"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+    reference = 'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021'
 
     def formula_2021_06_09(individu, period, parameters):
         epsilon = 0.0001
@@ -198,7 +198,7 @@ class aide_mobilite_eligible(Variable):
     label = "Eligibilité à l'aide à la mobilité de Pôle Emploi - AMOB"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+    reference = 'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021'
     documentation = '''
         1- L'individu doit être dans un contexte de recherche d'emploi, reprise d'emploi ou d'entrée en formation
             1.1 - Pour une formation ou une reprise d'emploi, la demande doit être faite au plus tard dans le mois suivant
@@ -225,7 +225,7 @@ class aide_mobilite_eligible(Variable):
         contrat_travail_debut = individu('contrat_de_travail_debut', period)
         date_debut_type_activite_recherche_emploi = individu('date_debut_recherche_emploi', period)
         contrat_de_travail_debut_en_mois = contrat_travail_debut.astype('M8[M]')
-        amob_date_de_demande = individu("aide_mobilite_date_demande", period)
+        amob_date_de_demande = individu('aide_mobilite_date_demande', period)
         parametres_amob = parameters(period).prestations_sociales.aide_mobilite
         date_contrat_limite_contexte_formation_reprise = min_((contrat_de_travail_debut_en_mois + 1) + (contrat_travail_debut - contrat_de_travail_debut_en_mois),
                                                (contrat_de_travail_debut_en_mois + 2) - timedelta64(1, 'D'))
@@ -238,7 +238,7 @@ class aide_mobilite_eligible(Variable):
         en_reprise_emploi = contexte == ContexteActivitePoleEmploi.reprise_emploi
         en_formation = contexte == ContexteActivitePoleEmploi.formation
 
-        contextes_eligibles = (en_recherche_emploi * dates_demandes_amob_eligibles_recherche) \
+        contextes_eligibles = (en_recherche_emploi * dates_demandes_amob_eligibles_recherche)\
             + ((en_reprise_emploi + en_formation) * dates_demandes_amob_eligibles_formation_reprise)
 
         #  2
@@ -251,7 +251,7 @@ class aide_mobilite_eligible(Variable):
         en_entretien_embauche = (activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.entretien_embauche) * en_recherche_emploi
 
         activites_en_recherche_emploi_eligibles = not_((activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.entretien_embauche)
-            + (activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.indeterminee)) \
+            + (activite_en_recherche_emploi == TypesActiviteEnRechercheEmploi.indeterminee))\
             * en_recherche_emploi
 
         reprises_types_activites_formation = reprises_emploi_types_activites == TypesContrat.formation
@@ -319,7 +319,7 @@ class aide_mobilite(Variable):
     label = "Montant de l'aide à la mobilité de Pôle emploi - AMOB"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+    reference = 'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021'
 
     def formula_2021_06_09(individu, period, parameters):
 
@@ -357,7 +357,7 @@ class aide_mobilite_bon_de_transport(Variable):
     label = "Eligibilité à un bon de transport, part de l'aide à la mobilité de Pôle emploi (AMOB)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021"
+    reference = 'http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2021-42-du-8-juin-2021-bope-n2021-43.html?type=dossiers/2021/bope-n-2021-043-du-11-juin-2021'
 
     def formula_2021_06_09(individu, period):
 

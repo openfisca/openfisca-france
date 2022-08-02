@@ -21,7 +21,7 @@ def simulations(new_scenario) -> Callable[..., Tuple[Simulation]]:
             count = 2,
             _max = 18000,
             _min = 0,
-            name = "salaire_imposable",
+            name = 'salaire_imposable',
             year = year,
             people = 1,
             )
@@ -40,7 +40,7 @@ def not_equal(before: numpy.ndarray, after: numpy.ndarray) -> bool:
 
 
 @pytest.mark.parametrize(
-    "reform_class, expected", (
+    'reform_class, expected', (
         (plf2016, equal),
         (plf2016_counterfactual, not_equal),
         (plf2016_counterfactual_2014, not_equal),

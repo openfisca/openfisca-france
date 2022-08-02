@@ -18,9 +18,9 @@ class salaire_de_base(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        """Calcule le salaire brut à partir du salaire imposable par inversion du barème
+        '''Calcule le salaire brut à partir du salaire imposable par inversion du barème
         de cotisations sociales correspondant à la catégorie à laquelle appartient le salarié.
-        """
+        '''
         # Get value for year and divide below.
         salaire_imposable_pour_inversion = individu('salaire_imposable_pour_inversion',
             period.start.offset('first-of', 'year').period('year'))
@@ -59,8 +59,8 @@ class traitement_indiciaire_brut(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        """Calcule le tratement indiciaire brut à partir du salaire imposable.
-        """
+        '''Calcule le tratement indiciaire brut à partir du salaire imposable.
+        '''
         # Get value for year and divide below.
         salaire_imposable_pour_inversion = individu('salaire_imposable_pour_inversion',
             period.start.offset('first-of', 'year').period('year'))
@@ -104,9 +104,9 @@ class traitement_indiciaire_brut(Variable):
         # Pour a fonction publique la csg est calculée sur l'ensemble salbrut(=TIB) + primes
         # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
         bareme_csg_public_titulaire_etat = csg.multiply_rates(
-            1 + TAUX_DE_PRIME, inplace = False, new_name = "csg deduc titutaire etat")
+            1 + TAUX_DE_PRIME, inplace = False, new_name = 'csg deduc titutaire etat')
         public_titulaire_etat.add_tax_scale(bareme_csg_public_titulaire_etat)
-        bareme_prime = MarginalRateTaxScale(name = "taux de prime")
+        bareme_prime = MarginalRateTaxScale(name = 'taux de prime')
         bareme_prime.add_bracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
         public_titulaire_etat.add_tax_scale(bareme_prime)
 
@@ -125,8 +125,8 @@ class primes_fonction_publique(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        """Calcule les primes.
-        """
+        '''Calcule les primes.
+        '''
         # Get value for year and divide below.
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut',
             period.start.offset('first-of', 'year').period('year'))

@@ -31,7 +31,7 @@ class autonomie_financiere(Variable):
 class prestations_familiales_enfant_a_charge(Variable):
     value_type = bool
     entity = Individu
-    label = "Enfant considéré à charge au sens des prestations familiales"
+    label = 'Enfant considéré à charge au sens des prestations familiales'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -62,7 +62,7 @@ class prestations_familiales_base_ressources_individu(Variable):
     value_type = float
     is_period_size_independent = True
     entity = Individu
-    label = "Base ressource individuelle des prestations familiales"
+    label = 'Base ressource individuelle des prestations familiales'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -83,7 +83,7 @@ class prestations_familiales_base_ressources_individu(Variable):
 class biactivite(Variable):
     value_type = bool
     entity = Famille
-    label = "Indicatrice de biactivité"
+    label = 'Indicatrice de biactivité'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -120,7 +120,7 @@ class biactivite(Variable):
 class rev_coll(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
+    label = 'Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -159,10 +159,10 @@ class rev_coll(Variable):
 class prestations_familiales_base_ressources_communes(Variable):
     value_type = float
     entity = Famille
-    label = "Ressources non individualisables prises en compte pour les prestations familiales"
+    label = 'Ressources non individualisables prises en compte pour les prestations familiales'
     reference = [
-        "Article D521-4 du Code de la sécurité sociale",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id"
+        'Article D521-4 du Code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id'
         ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -186,10 +186,10 @@ class prestations_familiales_base_ressources_communes(Variable):
 class prestations_familiales_base_ressources(Variable):
     value_type = float
     entity = Famille
-    label = "Base ressource des prestations familiales"
+    label = 'Base ressource des prestations familiales'
     reference = [
-        "Article D521-4 du Code de la sécurité sociale",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id"
+        'Article D521-4 du Code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id'
         ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -212,9 +212,9 @@ class prestations_familiales_base_ressources(Variable):
 
 
 def nb_enf(famille, period, age_min, age_max):
-    """
+    '''
     Renvoie le nombre d'enfant au sens des allocations familiales dont l'âge est compris entre ag1 et ag2
-    """
+    '''
 
     assert period.unit == 'month'
     assert period.size == 1
@@ -239,10 +239,10 @@ def nb_enf(famille, period, age_min, age_max):
 class abattements_speciaux_prestations_familiales(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Abattements spéciaux concernant les personnes agées ou invalides et les enfants à charge"
+    label = 'Abattements spéciaux concernant les personnes agées ou invalides et les enfants à charge'
     reference = [
-        "http://bofip.impots.gouv.fr/bofip/2036-PGP",
-        "https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002185185"
+        'http://bofip.impots.gouv.fr/bofip/2036-PGP',
+        'https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002185185'
         ]
     definition_period = YEAR
 

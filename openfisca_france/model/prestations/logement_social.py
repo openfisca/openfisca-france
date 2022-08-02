@@ -42,9 +42,9 @@ paris_communes_limitrophes = [
 
 class ZoneLogementSocial(Enum):
     __order__ = 'paris_communes_limitrophes ile_de_france autres_regions'
-    paris_communes_limitrophes = "Paris et communes limitrophes"
-    ile_de_france = "Île-de-France hors Paris et communes limitrophes"
-    autres_regions = "Autres régions"
+    paris_communes_limitrophes = 'Paris et communes limitrophes'
+    ile_de_france = 'Île-de-France hors Paris et communes limitrophes'
+    autres_regions = 'Autres régions'
 
 
 class zone_logement_social(Variable):
@@ -54,7 +54,7 @@ class zone_logement_social(Variable):
     entity = Menage
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    label = "Zone logement social"
+    label = 'Zone logement social'
 
     def formula(menage, period):
         depcom = menage('depcom', period)
@@ -76,12 +76,12 @@ class zone_logement_social(Variable):
 
 class CategorieMenageLogementSocial(Enum):
     __order__ = 'categorie_1 categorie_2 categorie_3 categorie_4 categorie_5 categorie_6'
-    categorie_1 = "Une personne seule"
+    categorie_1 = 'Une personne seule'
     categorie_2 = "Deux personnes ne comportant aucune pers. à charge à l'exclusion des jeunes ménages"
-    categorie_3 = "Trois personnes ou une pers. seule avec une pers. à charge ou jeune ménage sans personne à charge"
-    categorie_4 = "Quatre personnes ou une pers. seule avec deux pers. à charge"
-    categorie_5 = "Cinq personnes ou une pers. seule avec trois pers. à charge"
-    categorie_6 = "Six personnes ou une pers. seule avec quatre pers. à charge"
+    categorie_3 = 'Trois personnes ou une pers. seule avec une pers. à charge ou jeune ménage sans personne à charge'
+    categorie_4 = 'Quatre personnes ou une pers. seule avec deux pers. à charge'
+    categorie_5 = 'Cinq personnes ou une pers. seule avec trois pers. à charge'
+    categorie_6 = 'Six personnes ou une pers. seule avec quatre pers. à charge'
 
 
 class logement_social_categorie_menage(Variable):
@@ -91,10 +91,10 @@ class logement_social_categorie_menage(Variable):
     default_value = CategorieMenageLogementSocial.categorie_1
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    label = "Catégorie de ménage pour déterminer le plafond de ressources"
+    label = 'Catégorie de ménage pour déterminer le plafond de ressources'
     reference = [
         "Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif",
-        "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000294318"
+        'https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000294318'
         ]
 
     def formula(famille, period, parameters):
@@ -140,7 +140,7 @@ class logement_social_plafond_ressources(Variable):
     label = "Plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif"
     reference = [
         "Arrêté du 22 décembre 2016 modifiant l'arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif ",
-        "https://www.legifrance.gouv.fr/eli/arrete/2016/12/22/LHAL1629455A/jo/texte",
+        'https://www.legifrance.gouv.fr/eli/arrete/2016/12/22/LHAL1629455A/jo/texte',
         ]
 
     def formula(famille, period, parameters):
@@ -164,7 +164,7 @@ class logement_social_eligible(Variable):
     value_type = bool
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    label = "Logement social - Éligibilité"
+    label = 'Logement social - Éligibilité'
 
     def formula_2017(famille, period, parameters):
         parent_majeur = famille.any(famille.members('majeur', period), role = Famille.PARENT)

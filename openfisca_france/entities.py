@@ -1,8 +1,8 @@
 from openfisca_core.entities import build_entity
 
 Famille = build_entity(
-    key = "famille",
-    plural = "familles",
+    key = 'famille',
+    plural = 'familles',
     label = 'Famille',
     roles = [
         {
@@ -20,15 +20,15 @@ Famille = build_entity(
     )
 
 Individu = build_entity(
-    key = "individu",
-    plural = "individus",
+    key = 'individu',
+    plural = 'individus',
     label = 'Individu',
     is_person = True
     )
 
 FoyerFiscal = build_entity(
-    key = "foyer_fiscal",
-    plural = "foyers_fiscaux",
+    key = 'foyer_fiscal',
+    plural = 'foyers_fiscaux',
     label = 'Déclaration d’impôts',
     doc = '''
     Le foyer fiscal désigne l'ensemble des personnes inscrites sur une même déclaration de revenus.
@@ -52,8 +52,8 @@ FoyerFiscal = build_entity(
     )
 
 Menage = build_entity(
-    key = "menage",
-    plural = "menages",
+    key = 'menage',
+    plural = 'menages',
     label = 'Logement principal',
     doc = '''
     Un ménage, au sens statistique du terme, désigne l'ensemble des occupants d'un même logement sans que ces personnes

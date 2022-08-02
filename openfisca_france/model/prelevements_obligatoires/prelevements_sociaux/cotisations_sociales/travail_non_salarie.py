@@ -23,14 +23,14 @@ class categorie_non_salarie(Variable):
     possible_values = TypesCategorieNonSalarie
     default_value = TypesCategorieNonSalarie.non_pertinent
     entity = Individu
-    label = "Type du travailleur salarié (artisan, commercant, profession libérale, etc)"
+    label = 'Type du travailleur salarié (artisan, commercant, profession libérale, etc)'
     definition_period = YEAR
 
 
 class cotisations_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisations sociales des travailleurs non salaries"
+    label = 'Cotisations sociales des travailleurs non salaries'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -73,7 +73,7 @@ class cotisations_non_salarie(Variable):
 class deces_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation décès des artisans et invalidité-décès des commercants"
+    label = 'Cotisation décès des artisans et invalidité-décès des commercants'
     definition_period = YEAR
 
     def formula_2004(individu, period, parameters):
@@ -118,7 +118,7 @@ class deces_artisan_commercant(Variable):
 class formation_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation formation des artisans et des commercants"
+    label = 'Cotisation formation des artisans et des commercants'
     definition_period = YEAR
 
     def formula_2015(individu, period, parameters):
@@ -144,7 +144,7 @@ class formation_artisan_commercant(Variable):
 class maladie_maternite_artisan_commercant_taux(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation maladie et maternité des artisans et des commercants"
+    label = 'Cotisation maladie et maternité des artisans et des commercants'
     definition_period = YEAR
 
     def formula_2020_01_01(individu, period, parameters):
@@ -207,7 +207,7 @@ class maladie_maternite_artisan_commercant_taux(Variable):
 class maladie_maternite_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation maladie et maternité des artisans et des commercants"
+    label = 'Cotisation maladie et maternité des artisans et des commercants'
     definition_period = YEAR
 
     def formula(individu, period):
@@ -224,7 +224,7 @@ class maladie_maternite_artisan_commercant(Variable):
 class retraite_complementaire_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation de la retraite complémentaire des artisans et des commercants"
+    label = 'Cotisation de la retraite complémentaire des artisans et des commercants'
     definition_period = YEAR
 
     def formula_2013(individu, period, parameters):
@@ -246,7 +246,7 @@ class retraite_complementaire_artisan_commercant(Variable):
 class vieillesse_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation vieillesse (plafonnée et déplafonnée) des artisans et des commercants"
+    label = 'Cotisation vieillesse (plafonnée et déplafonnée) des artisans et des commercants'
     definition_period = YEAR
 
     def formula_2014(individu, period, parameters):
@@ -267,7 +267,7 @@ class vieillesse_artisan_commercant(Variable):
 class famille_independant(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation famille des indépendants"
+    label = 'Cotisation famille des indépendants'
     definition_period = YEAR
 
     def formula_2018_01_01(individu, period, parameters):
@@ -314,7 +314,7 @@ class famille_independant(Variable):
 class formation_profession_liberale(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation formation professionelle des professions libérales"
+    label = 'Cotisation formation professionelle des professions libérales'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -334,7 +334,7 @@ class formation_profession_liberale(Variable):
 class maladie_maternite_profession_liberale(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation maladie maternité des professions libérales"
+    label = 'Cotisation maladie maternité des professions libérales'
     definition_period = YEAR
 
     def formula_2022_01_01(individu, period, parameters):
@@ -439,7 +439,7 @@ class maladie_maternite_profession_liberale(Variable):
 class retraite_complementaire_profession_liberale(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation de retraite complémentarie des professions libérales"
+    label = 'Cotisation de retraite complémentarie des professions libérales'
     definition_period = YEAR
 
     def formula_2013(individu, period, parameters):
@@ -458,7 +458,7 @@ class retraite_complementaire_profession_liberale(Variable):
 class vieillesse_profession_liberale(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation retraite des professions libérales"
+    label = 'Cotisation retraite des professions libérales'
     definition_period = YEAR
 
     def formula_2015(individu, period, parameters):

@@ -7,17 +7,17 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 class api(Variable):
     value_type = float
     entity = Famille
-    label = "Allocation de parent isolé"
-    reference = "http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
+    label = 'Allocation de parent isolé'
+    reference = 'http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9',
     end = '2009-05-31'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
     def formula(famille, period, parameters):
-        """
+        '''
         Allocation de parent isolé
-        """
+        '''
         isole = not_(famille('en_couple', period))
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
         rsa_base_ressources = famille('rsa_base_ressources', period)
@@ -96,9 +96,9 @@ class api(Variable):
 class psa(Variable):
     value_type = float
     entity = Famille
-    label = "Prime de solidarité active"
+    label = 'Prime de solidarité active'
     end = '2009-04-30'
-    reference = "http://www.service-public.fr/actualites/001077.html"
+    reference = 'http://www.service-public.fr/actualites/001077.html'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
@@ -158,13 +158,13 @@ class rmi(Variable):
 class rsa_activite(Variable):
     value_type = float
     entity = Famille
-    label = "Revenu de solidarité active - activité"
+    label = 'Revenu de solidarité active - activité'
     end = '2015-12-31'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2009_06_01(famille, period):
-        rsa = famille('rsa', period, period)
+        rsa = famille('rsa', period)
         rsa_base_ressources = famille('rsa_base_ressources', period)
         rsa_socle = famille('rsa_socle', period)
         rsa_forfait_logement = famille('rsa_forfait_logement', period)

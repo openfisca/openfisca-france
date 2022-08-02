@@ -1,0 +1,86 @@
+- name: Taux marginal d'imposition à l'impôt sur le revenu - Célibataire ayant des revenus salariaux (1AJ) de 5000 €
+  period: 2018
+  absolute_error_margin: 0.0001
+  input:
+    salaire_imposable: 5000
+  output:
+    ir_tranche: 0
+    ir_taux_marginal: 0
+
+- name: Taux marginal d'imposition à l'impôt sur le revenu - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
+  period: 2018
+  absolute_error_margin: 0.0001
+  input:
+    salaire_imposable: 20000
+  output:
+    ir_tranche: 1
+    ir_taux_marginal: .14
+
+- name: Taux marginal d'imposition à l'impôt sur le revenu - Célibataire ayant des revenus salariaux (1AJ) de 500 000 €
+  period: 2018
+  relative_error_margin: 0.0001
+  input:
+    salaire_imposable: 500000
+  output:
+    ir_tranche: 4
+    ir_taux_marginal: .45
+
+- name: Taux marginal d'imposition à l'impôt sur le revenu - Célibataire isolé avec deux enfants à charge ayant des revenus salariaux (1AJ) de 50 000 €
+  period: 2022
+  absolute_error_margin: 0.0001
+  input:
+    individus:
+      personne1:
+        statut_marital: "celibataire"
+        salaire_imposable: 50000
+      enfant1:
+        date_naissance: 2016-01-01
+      enfant2:
+        date_naissance: 2017-01-01
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+      caseT: true
+  output:
+    ir_tranche: 1
+    ir_taux_marginal: .11
+
+- name: Taux marginal d'imposition à l'impôt sur le revenu - Célibataire isolé avec deux enfants à charge ayant des revenus salariaux (1AJ) de 75 000 €
+  period: 2022
+  absolute_error_margin: 0.0001
+  input:
+    individus:
+      personne1:
+        statut_marital: "celibataire"
+        salaire_imposable: 75000
+      enfant1:
+        date_naissance: 2016-01-01
+      enfant2:
+        date_naissance: 2017-01-01
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+      caseT: true
+  output:
+    ir_tranche: 2
+    ir_taux_marginal: .30
+
+- name: Taux marginal d'imposition à l'impôt sur le revenu - Célibataire isolé avec deux enfants à charge ayant des revenus salariaux (1AJ) de 100 000 €
+  period: 2022
+  absolute_error_margin: 0.0001
+  input:
+    individus:
+      personne1:
+        statut_marital: "celibataire"
+        salaire_imposable: 100000
+      enfant1:
+        date_naissance: 2016-01-01
+      enfant2:
+        date_naissance: 2017-01-01
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+      caseT: true
+  output:
+    ir_tranche: 3
+    ir_taux_marginal: .41

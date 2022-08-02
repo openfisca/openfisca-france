@@ -6,8 +6,8 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 class ars(Variable):
     value_type = float
     entity = Famille
-    label = "Allocation de rentrée scolaire"
-    reference = "http://vosdroits.service-public.fr/particuliers/F1878.xhtml"
+    label = 'Allocation de rentrée scolaire'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F1878.xhtml'
     definition_period = YEAR
 
     def formula(famille, period, parameters):

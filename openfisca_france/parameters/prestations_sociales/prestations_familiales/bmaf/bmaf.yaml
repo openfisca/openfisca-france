@@ -172,6 +172,8 @@ values:
     value: 414.4
   2021-04-01:
     value: 414.81
+  2022-04-01:
+    value: 422.28
 metadata:
   description_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: bmaf
@@ -424,7 +426,10 @@ metadata:
       title: Circulaire DSS/SD2B/2020/33 du 18/02/2020
     2021-04-01:
       href: https://solidarites-sante.gouv.fr/fichiers/bo/2021/2021.5.sante.pdf#page=140
-      title: Circulaire DSS/2B/2021/65 du 19/ 03/2021
+      title: Circulaire DSS/2B/2021/65 du 19/03/2021
+    2022-04-01:
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2022/2022.8.sante.pdf#page=404
+      title: Circulaire DSS/2B/2022/82 du 28/03/2022 page 404
   official_journal_date:
     1946-07-01: "1946-08-23"
     1947-02-01: "1947-04-06"
@@ -583,6 +588,8 @@ metadata:
     - title: Revalorisation de 0,3%
     2021-04-01:
     - title: Revalorisation de 0,1%
+    2022-04-01:
+    - title: Revalorisation de 1,8%
 documentation: |-
   Notes :
   Le régime des prestations familiales est fixé par la loi 46-1835 du 22 août 1946

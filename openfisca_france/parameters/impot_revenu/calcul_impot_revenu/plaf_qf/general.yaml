@@ -78,7 +78,7 @@ values:
     value: 1567
   2020-01-01:
     value: 1570
-  2022-01-01:
+  2021-01-01:
     value: 1592
 metadata:
   unit: currency-EUR

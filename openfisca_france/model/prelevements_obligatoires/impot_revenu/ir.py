@@ -43,7 +43,7 @@ class jour_xyz(Variable):
     value_type = int
     default_value = 360
     entity = FoyerFiscal
-    label = "Jours décomptés au titre de cette déclaration"
+    label = 'Jours décomptés au titre de cette déclaration'
     definition_period = YEAR
 
 
@@ -57,7 +57,7 @@ class age(Variable):
     value_type = int
     default_value = -9999
     entity = Individu
-    label = "Âge (en années) au premier jour du mois"
+    label = 'Âge (en années) au premier jour du mois'
     definition_period = MONTH
     is_period_size_independent = True
     set_input = set_input_dispatch_by_period
@@ -97,7 +97,7 @@ class age_en_mois(Variable):
     default_value = -9999
     unit = 'months'
     entity = Individu
-    label = "Âge (en mois)"
+    label = 'Âge (en mois)'
     is_period_size_independent = True
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -128,8 +128,8 @@ class depcom_foyer(Variable):
     value_type = str
     max_length = 5
     entity = FoyerFiscal
-    default_value = "00000"
-    label = "Code AFT du lieu de domicile fiscal"
+    default_value = '00000'
+    label = 'Code AFT du lieu de domicile fiscal'
     definition_period = YEAR
     set_input = set_input_dispatch_by_period
     # Cette variable est similaire à la variable "depcom" qui est le lieu de domicile du ménage tandis que "depcom_foyer" est le lieu de résidence fiscale du foyer fiscal.
@@ -202,7 +202,7 @@ class nb_adult(Variable):
 class nb_pac(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Nombre de personnes à charge dans le foyer fiscal"
+    label = 'Nombre de personnes à charge dans le foyer fiscal'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -234,8 +234,8 @@ class nbF(Variable):
     cerfa_field = 'F'
     entity = FoyerFiscal
     value_type = float
-    label = "Nombre d'enfants à charge non mariés, qui ne sont pas en résidence alternée, de moins de 18 ans au 1er janvier de l'année de perception des" \
-        " revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
+    label = "Nombre d'enfants à charge non mariés, qui ne sont pas en résidence alternée, de moins de 18 ans au 1er janvier de l'année de perception des"\
+        ' revenus, ou nés durant la même année ou handicapés quel que soit leur âge'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -296,7 +296,7 @@ class nbI(Variable):
 class enfant_majeur_celibataire_sans_enfant(Variable):
     value_type = bool
     entity = Individu
-    label = "Enfant majeur célibataire sans enfant"
+    label = 'Enfant majeur célibataire sans enfant'
     definition_period = YEAR
 
     def formula(individu, period):
@@ -335,7 +335,7 @@ class nombre_enfants_majeurs_celibataires_sans_enfant(Variable):
 class maries_ou_pacses(Variable):
     value_type = bool
     entity = FoyerFiscal
-    label = "Déclarants mariés ou pacsés"
+    label = 'Déclarants mariés ou pacsés'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -348,7 +348,7 @@ class maries_ou_pacses(Variable):
 class celibataire_ou_divorce(Variable):
     value_type = bool
     entity = FoyerFiscal
-    label = "Déclarant célibataire ou divorcé"
+    label = 'Déclarant célibataire ou divorcé'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -363,7 +363,7 @@ class celibataire_ou_divorce(Variable):
 class veuf(Variable):
     value_type = bool
     entity = FoyerFiscal
-    label = "Déclarant veuf"
+    label = 'Déclarant veuf'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -376,7 +376,7 @@ class veuf(Variable):
 class jeune_veuf(Variable):
     value_type = bool
     entity = FoyerFiscal
-    label = "Déclarant jeune veuf"
+    label = 'Déclarant jeune veuf'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -394,7 +394,7 @@ class jeune_veuf(Variable):
 class revenu_assimile_salaire(Variable):
     value_type = float
     entity = Individu
-    label = "Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)"
+    label = 'Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -409,7 +409,7 @@ class revenu_assimile_salaire(Variable):
 class revenu_assimile_salaire_apres_abattements(Variable):
     value_type = float
     entity = Individu
-    label = "Salaires et chômage imposables après abattements"
+    label = 'Salaires et chômage imposables après abattements'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -431,7 +431,7 @@ class revenu_assimile_salaire_apres_abattements(Variable):
 class revenu_assimile_pension(Variable):
     value_type = float
     entity = Individu
-    label = "Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)"
+    label = 'Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)'
     definition_period = YEAR
 
     def formula(individu, period):
@@ -446,7 +446,7 @@ class revenu_assimile_pension(Variable):
 class revenu_assimile_pension_apres_abattements(Variable):
     value_type = float
     entity = Individu
-    label = "Pensions après abattements"
+    label = 'Pensions après abattements'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -497,16 +497,16 @@ class abattement_salaires_pensions(Variable):
 
 
 class rente_viagere_titre_onereux(Variable):
-    """Rentes viagères à titre onéreux (avant abattements)
+    '''Rentes viagères à titre onéreux (avant abattements)
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
-    """
+    '''
     calculate_output = calculate_output_add
     value_type = float
     entity = FoyerFiscal
-    label = "Rentes viagères (rentes à titre onéreux)"
+    label = 'Rentes viagères (rentes à titre onéreux)'
     set_input = set_input_divide_by_period
-    reference = "http://fr.wikipedia.org/wiki/Rente_viagère"
+    reference = 'http://fr.wikipedia.org/wiki/Rente_viagère'
     definition_period = MONTH
 
     def formula(foyer_fiscal, period, parameters):
@@ -522,8 +522,8 @@ class rente_viagere_titre_onereux(Variable):
 class rente_viagere_titre_onereux_net(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Rentes viagères après abattements"
-    reference = "http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere"
+    label = 'Rentes viagères après abattements'
+    reference = 'http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -549,7 +549,7 @@ class rente_viagere_titre_onereux_net(Variable):
 class traitements_salaires_pensions_rentes(Variable):
     value_type = float
     entity = Individu
-    label = "Traitements salaires pensions et rentes individuelles"
+    label = 'Traitements salaires pensions et rentes individuelles'
     definition_period = YEAR
 
     def formula(individu, period):
@@ -573,8 +573,8 @@ class traitements_salaires_pensions_rentes(Variable):
 class revenu_categoriel_plus_values(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenu catégoriel - Plus-values"
-    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    label = 'Revenu catégoriel - Plus-values'
+    reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm'
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -609,8 +609,8 @@ class revenu_categoriel_plus_values(Variable):
 class revenu_categoriel_tspr(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenu catégoriel - Traitements, salaires, pensions et rentes"
-    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    label = 'Revenu catégoriel - Traitements, salaires, pensions et rentes'
+    reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -625,8 +625,8 @@ class revenu_categoriel_tspr(Variable):
 class deficit_rcm(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Deficit capitaux mobiliers"
-    reference = "http://www.lefigaro.fr/impots/2008/04/25/05003-20080425ARTFIG00254-les-subtilites-des-revenus-de-capitaux-mobiliers-.php"
+    label = 'Deficit capitaux mobiliers'
+    reference = 'http://www.lefigaro.fr/impots/2008/04/25/05003-20080425ARTFIG00254-les-subtilites-des-revenus-de-capitaux-mobiliers-.php'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -643,14 +643,14 @@ class deficit_rcm(Variable):
 class revenu_categoriel_capital(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenu catégoriel - Capitaux"
-    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    label = 'Revenu catégoriel - Capitaux'
+    reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm'
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
-        """
+        '''
         Revenus des valeurs et capitaux mobiliers
-        """
+        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ch = foyer_fiscal('f2ch', period)
@@ -692,9 +692,9 @@ class revenu_categoriel_capital(Variable):
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
-        """
+        '''
         Revenus des valeurs et capitaux mobiliers
-        """
+        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ch = foyer_fiscal('f2ch', period)
@@ -729,9 +729,9 @@ class revenu_categoriel_capital(Variable):
         return max_(rvcm_apres_abattements_proportionnels_et_fixes + autres_rvcm_sans_abattements - deficit_rcm, 0)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        """
+        '''
         Revenus des valeurs et capitaux mobiliers
-        """
+        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ca = foyer_fiscal('f2ca', period)
@@ -755,9 +755,9 @@ class revenu_categoriel_capital(Variable):
         return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
-        """
+        '''
         Revenus des valeurs et capitaux mobiliers
-        """
+        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ca = foyer_fiscal('f2ca', period)
@@ -783,7 +783,7 @@ class revenu_categoriel_capital(Variable):
         return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
-        """
+        '''
         Revenus des valeurs et capitaux mobiliers
         Seule différence avec la formule précédente :
             On enlève la case 2TU. En 2016, 2TT contient les intérêts avant pertes
@@ -793,7 +793,7 @@ class revenu_categoriel_capital(Variable):
             Sources :
               - Brochure pratique de l'IR 2018 sur revenus 2017 : https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2018/files/assets/common/downloads/Brochure%20IR%202018.pdf
               - Brochure pratique de l'IR 2017 sur revenus 2016 : https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2017/files/assets/common/downloads/publication.pdf
-        """
+        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ca = foyer_fiscal('f2ca', period)
@@ -818,12 +818,12 @@ class revenu_categoriel_capital(Variable):
         return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        """
+        '''
         Revenus des valeurs et capitaux mobiliers
 
         NB : La mise en place du PFU supprime la taxation au barème de la plupart des revenus des valeurs et capitaux mobiliers.
         Ces revenus sortent donc de la variable `revenu_categoriel_capital` et entrent dans la variable `revenus_capitaux_prelevement_forfaitaire_unique_ir`.
-        """
+        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ch = foyer_fiscal('f2ch', period)
@@ -842,7 +842,7 @@ class revenu_categoriel_capital(Variable):
 class rfr_rvcm_abattements_a_reintegrer(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Abattement sur revenus des valeurs et capitaux mobiliers à réintégrer dans le calcul du revenu fiscal de référence"
+    label = 'Abattement sur revenus des valeurs et capitaux mobiliers à réintégrer dans le calcul du revenu fiscal de référence'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -880,12 +880,12 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         return abattement_dividende
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        """
+        '''
         2 remarques :
             - L'abattement sur les dividendes devrait être intégré dans cette formule (il s'ajoute au RFR) mais on attends pour cela de coder l'option pour l'imposition au barème des dividendes.
             - À partir de 2018, les revenus de l'assurance-vie sont taxés au PFU et entrent dans le calcul du RFR via `revenus_capitaux_prelevement_forfaitaire_unique_ir`.
               Cette variable est brute d'abattement. Or, l'abattement sur les assurance-vie se déduit bien du RFR (contrairement à celui sur les dividendes). On le rajoute donc ici en négatif.
-        """
+        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f2ch = foyer_fiscal('f2ch', period)
         f2dh = foyer_fiscal('f2dh', period)
@@ -903,14 +903,14 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
 class revenu_categoriel_foncier(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenu catégoriel - Foncier"
-    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    label = 'Revenu catégoriel - Foncier'
+    reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        """
+        '''
         Revenus fonciers
-        """
+        '''
         f4ba = foyer_fiscal('f4ba', period)
         f4bb = foyer_fiscal('f4bb', period)
         f4bc = foyer_fiscal('f4bc', period)
@@ -920,11 +920,11 @@ class revenu_categoriel_foncier(Variable):
 
         # Messages d'erreurs
         if ((f4ba != 0) & ((f4bb != 0) | (f4bc != 0))).any():
-            log.error(("Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba) et de déficits (f4bb, f4bc)"))
+            log.error(('Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba) et de déficits (f4bb, f4bc)'))
         if ((f4be != 0) & ((f4ba != 0) | (f4bb != 0) | (f4bc != 0))).any():
-            log.error(("Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)"))
+            log.error(('Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)'))
         if (f4be > microfoncier.max).any():
-            log.error(("Problème de déclarations des revenus : les revenus microfonciers (f4be) dépassent le maximum légal"))
+            log.error(('Problème de déclarations des revenus : les revenus microfonciers (f4be) dépassent le maximum légal'))
 
         micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
 
@@ -944,8 +944,8 @@ class revenu_categoriel_foncier(Variable):
 class revenu_categoriel_non_salarial(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenu catégoriel - Revenus personnels non salariés"
-    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    label = 'Revenu catégoriel - Revenus personnels non salariés'
+    reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -972,8 +972,8 @@ class revenu_categoriel_non_salarial(Variable):
 class revenu_categoriel(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenus catégoriels"
-    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    label = 'Revenus catégoriels'
+    reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -997,8 +997,8 @@ class revenu_categoriel(Variable):
 class deficit_ante(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Déficit global antérieur"
-    reference = "http://impotsurlerevenu.org/declaration-de-revenus-fonciers-2044/796-deficits-anterieurs-restant-a-imputer-cadre-450.php"
+    label = 'Déficit global antérieur'
+    reference = 'http://impotsurlerevenu.org/declaration-de-revenus-fonciers-2044/796-deficits-anterieurs-restant-a-imputer-cadre-450.php'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -1018,8 +1018,8 @@ class deficit_ante(Variable):
 class rbg(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenu brut global"
-    reference = "http://www.documentissime.fr/dossiers-droit-pratique/dossier-19-l-impot-sur-le-revenu-les-modalites-generales-d-imposition/la-determination-du-revenu-imposable/le-revenu-brut-global.html"
+    label = 'Revenu brut global'
+    reference = 'http://www.documentissime.fr/dossiers-droit-pratique/dossier-19-l-impot-sur-le-revenu-les-modalites-generales-d-imposition/la-determination-du-revenu-imposable/le-revenu-brut-global.html'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -1042,8 +1042,8 @@ class rbg(Variable):
 class csg_patrimoine_deductible_ir(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Csg déductible sur le patrimoine"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
+    label = 'Csg déductible sur le patrimoine'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -1059,8 +1059,8 @@ class csg_patrimoine_deductible_ir(Variable):
 class rng(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenu net global"
-    reference = "http://impotsurlerevenu.org/definitions/114-revenu-net-global.php"
+    label = 'Revenu net global'
+    reference = 'http://impotsurlerevenu.org/definitions/114-revenu-net-global.php'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -1074,8 +1074,8 @@ class rng(Variable):
 class rni(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenu net imposable"
-    reference = "http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php"
+    label = 'Revenu net imposable'
+    reference = 'http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -1088,7 +1088,7 @@ class rni(Variable):
 class ir_brut(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Impôt sur le revenu brut avant non imposabilité et plafonnement du quotient"
+    label = 'Impôt sur le revenu brut avant non imposabilité et plafonnement du quotient'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -1104,35 +1104,53 @@ class ir_taux_marginal(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Taux marginal d'imposition à l'impôt sur le revenu"
-    reference = "http://impotsurlerevenu.org/fonctionnement-de-l-impot/60-calculer-le-tmi.php"
+    reference = 'http://impotsurlerevenu.org/fonctionnement-de-l-impot/60-calculer-le-tmi.php'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        nbptr = foyer_fiscal('nbptr', period)
         taux_effectif = foyer_fiscal('taux_effectif', period)
-        rni = foyer_fiscal('rni', period)
         bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
-        return (taux_effectif == 0) * bareme.marginal_rates(rni / nbptr) + taux_effectif
+        ir_tranche = foyer_fiscal('ir_tranche', period)
+
+        return (
+            (taux_effectif == 0) * bareme.rate_from_bracket_indice(ir_tranche)
+            + taux_effectif
+            )
 
 
 class ir_tranche(Variable):
     value_type = int
     entity = FoyerFiscal
-    label = "Tranche du barème appliquée"
-    reference = "https://impots.dispofi.fr/bareme-impot/calcul-impot-par-tranche"
+    label = 'Tranche du barème appliquée'
+    reference = 'https://impots.dispofi.fr/bareme-impot/calcul-impot-par-tranche'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
         nbptr = foyer_fiscal('nbptr', period)
         rni = foyer_fiscal('rni', period)
         bareme = parameters(period).impot_revenu.bareme_ir_depuis_1945.bareme
-        return bareme.bracket_indices(rni / nbptr)
+
+        maries_ou_pacses_ou_jeune_veuf = foyer_fiscal('maries_ou_pacses', period) | foyer_fiscal('jeune_veuf', period)
+        celibataire_ou_divorce_ou_veuf = not_(maries_ou_pacses_ou_jeune_veuf)
+
+        # Si le plafonnement des effets du quotient familial s'applique,
+        # alors le nombre de parts retenu pour le calcul de l'IR (« nbptr_retenu »)
+        # est égal à 1 (contribuables célibataires, divorcés ou veufs) ou 2 (contribuables mariés ou pacsés)
+        # sinon le nombre de parts retenu pour le calcul de l'IR est le nombre de parts de droit commun (« nbptr »)
+        plafonnement_qf = foyer_fiscal('ir_plaf_qf', period) > foyer_fiscal('ir_brut', period)
+        nbptr_retenu = where(
+            plafonnement_qf,
+            (celibataire_ou_divorce_ou_veuf * 1) + (maries_ou_pacses_ou_jeune_veuf * 2),
+            nbptr
+            )
+
+        return bareme.bracket_indices(rni / nbptr_retenu)
 
 
 class ir_ss_qf(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Impôt sans quotient familial"
+    label = 'Impôt sans quotient familial'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -1150,7 +1168,7 @@ class ir_ss_qf(Variable):
 class ir_plaf_qf(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Impôt après plafonnement du quotient familial et réduction complémentaire"
+    label = 'Impôt après plafonnement du quotient familial et réduction complémentaire'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -1196,8 +1214,8 @@ class ir_plaf_qf(Variable):
         condition61 = celibataire_ou_divorce & caseT
         condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (annee_naissance_pac_alterne < int(period.start.year) - 25)
 
-        B = B1 * condition61 + \
-            B2 * (not_(condition61 | condition63)) + \
+        B = B1 * condition61 +\
+            B2 * (not_(condition61 | condition63)) +\
             B3 * (condition63 & not_(condition61))
         C = max_(0, A - B)
 
@@ -1289,8 +1307,8 @@ class ir_plaf_qf(Variable):
         condition61 = celibataire_ou_divorce & caseT
         condition63 = (celibataire_ou_divorce | veuf) & (nb_pac == 0) & caseL
 
-        B = B1 * condition61 + \
-            B2 * (not_(condition61 | condition63)) + \
+        B = B1 * condition61 +\
+            B2 * (not_(condition61 | condition63)) +\
             B3 * (condition63 & not_(condition61))
 
         C = max_(0, A - B)
@@ -1346,7 +1364,7 @@ class ir_plaf_qf(Variable):
 class avantage_qf(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Avantage quotient familial"
+    label = 'Avantage quotient familial'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -1359,7 +1377,7 @@ class avantage_qf(Variable):
 class decote(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "décote"
+    label = 'décote'
     definition_period = YEAR
 
     def formula_2001_01_01(foyer_fiscal, period, parameters):
@@ -1369,8 +1387,8 @@ class decote(Variable):
         return around(max_(0, decote.seuil - ir_plaf_qf) * decote.taux)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
-        ir_plaf_qf = foyer_fiscal("ir_plaf_qf", period)
-        nb_adult = foyer_fiscal("nb_adult", period)
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        nb_adult = foyer_fiscal('nb_adult', period)
         taux_decote = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.taux
         decote_seuil_celib = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_celib
         decote_seuil_couple = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_couple
@@ -1402,7 +1420,7 @@ class reduction_ss_condition_revenus(Variable):
     label = "Réduction d'impôt sous condition de revenus, s'imputant avant toutes autres réductions"
     definition_period = YEAR
     end = '2019-12-31'
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037985566&cidTexte=LEGITEXT000006069577"
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037985566&cidTexte=LEGITEXT000006069577'
     documentation = '''
     La "réfaction foyers modestes" est abrogée par la Loi de Finances 2020.
     '''
@@ -1438,7 +1456,7 @@ class reduction_ss_condition_revenus(Variable):
 class nat_imp(Variable):
     value_type = bool
     entity = FoyerFiscal
-    label = "nat_imp"
+    label = 'nat_imp'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -1457,7 +1475,7 @@ class nat_imp(Variable):
 class ip_net(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Impôt sur le revenu après décote et réduction sous condition de revenus, avant réductions"
+    label = 'Impôt sur le revenu après décote et réduction sous condition de revenus, avant réductions'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -1493,7 +1511,7 @@ class iaidrdi(Variable):
 class cont_rev_loc(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Contribution sur les revenus locatifs"
+    label = 'Contribution sur les revenus locatifs'
     definition_period = YEAR
 
     def formula_2001_01_01(foyer_fiscal, period, parameters):
@@ -1513,9 +1531,9 @@ class teicaa(Variable):  # f5rm
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        """
+        '''
         Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance
-        """
+        '''
         bareme = parameters(period).impot_revenu.contributions_exceptionnelles.teicaa
 
         f5qm = foyer_fiscal.declarant_principal('f5qm', period)
@@ -1527,7 +1545,7 @@ class teicaa(Variable):  # f5rm
 class assiette_vente(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Assiette régime microsociale pour les ventes"
+    label = 'Assiette régime microsociale pour les ventes'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -1542,7 +1560,7 @@ class assiette_vente(Variable):
 class assiette_service(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Assiette régime microsociale pour les prestations et services"
+    label = 'Assiette régime microsociale pour les prestations et services'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -1560,7 +1578,7 @@ class assiette_service(Variable):
 class assiette_proflib(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Assiette régime microsociale pour les professions libérales"
+    label = 'Assiette régime microsociale pour les professions libérales'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -1580,8 +1598,8 @@ class assiette_proflib(Variable):
 class microsocial(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Assiette régime microsociale totale"
-    reference = "http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social"
+    label = 'Assiette régime microsociale totale'
+    reference = 'http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -1600,7 +1618,7 @@ class microsocial(Variable):
 class microentreprise(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "microentreprise"
+    label = 'microentreprise'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -1621,15 +1639,15 @@ class microentreprise(Variable):
 class tax_rvcm_forfaitaire(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Taxation forfaitaire des revenus des valeurs et capitaux mobiliers"
-    reference = "http://bofip.impots.gouv.fr/bofip/3727-PGP.html"
+    label = 'Taxation forfaitaire des revenus des valeurs et capitaux mobiliers'
+    reference = 'http://bofip.impots.gouv.fr/bofip/3727-PGP.html'
     definition_period = YEAR
     end = '2017-12-31'
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        """
+        '''
         Taxation des revenus des valeurs et capitaux mobiliers
-        """
+        '''
         f2fa = foyer_fiscal('f2fa', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
@@ -1639,14 +1657,14 @@ class tax_rvcm_forfaitaire(Variable):
 class taxation_plus_values_hors_bareme(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Taxation forfaitaire des plus-values"
-    reference = "http://bofip.impots.gouv.fr/bofip/6957-PGP"
+    label = 'Taxation forfaitaire des plus-values'
+    reference = 'http://bofip.impots.gouv.fr/bofip/6957-PGP'
     definition_period = YEAR
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
-        """
+        '''
         Taxation des plus-values
-        """
+        '''
         f3vg = foyer_fiscal('f3vg', period)
         f3vh = foyer_fiscal('f3vh', period)
         f3vl = foyer_fiscal('f3vl', period)
@@ -1674,9 +1692,9 @@ class taxation_plus_values_hors_bareme(Variable):
             )
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
-        """
+        '''
         Taxation des plus values
-        """
+        '''
         f3vg = foyer_fiscal('f3vg', period)
         f3vh = foyer_fiscal('f3vh', period)
         f3vl = foyer_fiscal('f3vl', period)
@@ -1705,9 +1723,9 @@ class taxation_plus_values_hors_bareme(Variable):
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
-        """
+        '''
         Taxation des plus values
-        """
+        '''
         f3sa_2012 = foyer_fiscal('f3sa_2012', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
@@ -1742,9 +1760,9 @@ class taxation_plus_values_hors_bareme(Variable):
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        """
+        '''
         Taxation des plus values (hors bareme)
-        """
+        '''
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
         f3vm = foyer_fiscal('f3vm', period)
@@ -1772,9 +1790,9 @@ class taxation_plus_values_hors_bareme(Variable):
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
-        """
+        '''
         Taxation des plus values (hors bareme)
-        """
+        '''
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
         f3vm = foyer_fiscal('f3vm', period)
@@ -1805,9 +1823,9 @@ class taxation_plus_values_hors_bareme(Variable):
             + plus_values.taux_plus_values_report_conditionnel * f3wj
             )
 
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
-        Taxation des plus-values (hors imposition au barÃ¨me), en excluant celles imposées au PFU
+        Taxation des plus-values (hors imposition au barÃ¨me), en excluant, à partir de 2018, celles imposées au PFU
         (qui sont à impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py)
         '''
         f3vd_i = foyer_fiscal.members('f3vd', period)
@@ -1884,13 +1902,13 @@ class taxation_plus_values_hors_bareme(Variable):
 class rfr_plus_values_hors_rni(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Plus-values hors RNI entrant dans le calcul du revenu fiscal de référence (PV au barème, PV éxonérées ..)"
+    label = 'Plus-values hors RNI entrant dans le calcul du revenu fiscal de référence (PV au barème, PV éxonérées ..)'
     definition_period = YEAR
 
-    def formula_2011_01_01(foyer_fiscal, period, parameters):
-        """
+    def formula_2011_01_01(foyer_fiscal, period):
+        '''
         Plus-values 2011 entrant dans le calcul du revenu fiscal de référence
-        """
+        '''
         f3vc = foyer_fiscal('f3vc', period)
         f3vd_i = foyer_fiscal.members('f3vd', period)
         f3vf_i = foyer_fiscal.members('f3vf', period)
@@ -1909,10 +1927,10 @@ class rfr_plus_values_hors_rni(Variable):
 
         return f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vy + f3vz + rpns_pvce
 
-    def formula_2012_01_01(foyer_fiscal, period, parameters):
-        """
+    def formula_2012_01_01(foyer_fiscal, period):
+        '''
         Plus-values 2012 entrant dans le calcul du revenu fiscal de référence
-        """
+        '''
         f3sa_2012 = foyer_fiscal('f3sa_2012', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
@@ -1938,10 +1956,10 @@ class rfr_plus_values_hors_rni(Variable):
 
         return f3sa_2012 + f3sj + f3sk + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + f3we + rpns_pvce
 
-    def formula_2013_01_01(foyer_fiscal, period, parameters):
-        """
+    def formula_2013_01_01(foyer_fiscal, period):
+        '''
         Plus-values 2013-2016 entrant dans le calcul du revenu fiscal de référence
-        """
+        '''
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
         f3vc = foyer_fiscal('f3vc', period)
@@ -1966,11 +1984,10 @@ class rfr_plus_values_hors_rni(Variable):
 
         return f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + rpns_pvce
 
-    def formula_2016_01_01(foyer_fiscal, period, parameters):
-        """
+    def formula_2016_01_01(foyer_fiscal, period):
+        '''
         Plus-values 2016 et + entrant dans le calcul du revenu fiscal de référence
-        """
-        f3sa = foyer_fiscal('f3sa', period)
+        '''
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
         f3tz = foyer_fiscal('f3tz', period)
@@ -1996,13 +2013,44 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sa + f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce
+        return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce
 
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
-        """
+    def formula_2017_01_01(foyer_fiscal, period):
+        '''
+        Plus-values 2017 et + entrant dans le calcul du revenu fiscal de référence
+        '''
+        f3sj = foyer_fiscal('f3sj', period)
+        f3sk = foyer_fiscal('f3sk', period)
+        f3tz = foyer_fiscal('f3tz', period)
+        f3vc = foyer_fiscal('f3vc', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        f3vp = foyer_fiscal('f3vp', period)
+        f3vq = foyer_fiscal('f3vq', period)
+        f3vr = foyer_fiscal('f3vr', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3vy = foyer_fiscal('f3vy', period)
+        f3vz = foyer_fiscal('f3vz', period)
+        f3we = foyer_fiscal('f3we', period)
+        f3wi = foyer_fiscal('f3wi', period)
+        f3wj = foyer_fiscal('f3wj', period)
+        f3pi = foyer_fiscal('f3pi', period)
+
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+
+        return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3pi
+
+    def formula_2018_01_01(foyer_fiscal, period):
+        '''
         Plus-values réalisées sur année 2018 entrant dans le calcul du revenu fiscal de référence.
-        """
-        f3sa = foyer_fiscal('f3sa', period)
+        '''
         f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
         f3sj = foyer_fiscal('f3sj', period)
@@ -2020,6 +2068,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3we = foyer_fiscal('f3we', period)
         f3wi = foyer_fiscal('f3wi', period)
         f3wj = foyer_fiscal('f3wj', period)
+        f3pi = foyer_fiscal('f3pi', period)
 
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
@@ -2028,13 +2077,12 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sa + f3vg + f3ua + f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj
+        return f3vg + f3ua + f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3pi
 
-    def formula_2019_01_01(foyer_fiscal, period, parameters):
-        """
+    def formula_2019_01_01(foyer_fiscal, period):
+        '''
         Plus-values 2019 et + entrant dans le calcul du revenu fiscal de référence.
-        """
-        f3sa = foyer_fiscal('f3sa', period)
+        '''
         f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
         f3sj = foyer_fiscal('f3sj', period)
@@ -2053,7 +2101,6 @@ class rfr_plus_values_hors_rni(Variable):
         f3wi = foyer_fiscal('f3wi', period)
         f3wj = foyer_fiscal('f3wj', period)
         f3an = foyer_fiscal('f3an', period)
-        f3bn = foyer_fiscal('f3bn', period)
         f3pi = foyer_fiscal('f3pi', period)
 
         f3vi = foyer_fiscal.sum(f3vi_i)
@@ -2063,14 +2110,14 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sa + f3vg + f3ua + f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3an - f3bn + f3pi
+        return f3vg + f3ua + f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce + f3tj + f3an + f3pi
 
 
 class iai(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Impôt avant imputations de l'impôt sur le revenu"
-    reference = "http://forum-juridique.net-iris.fr/finances-fiscalite-assurance/43963-declaration-impots.html"
+    reference = 'http://forum-juridique.net-iris.fr/finances-fiscalite-assurance/43963-declaration-impots.html'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -2100,8 +2147,8 @@ class iai(Variable):
 class cehr(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Contribution exceptionnelle sur les hauts revenus"
-    reference = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
+    label = 'Contribution exceptionnelle sur les hauts revenus'
+    reference = 'http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019'
     definition_period = YEAR
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
@@ -2120,8 +2167,8 @@ class cehr(Variable):
 class irpp(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Impôt sur le revenu des personnes physiques restant à payer, après prise en compte des éventuels acomptes"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
+    label = 'Impôt sur le revenu des personnes physiques restant à payer, après prise en compte des éventuels acomptes'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -2162,7 +2209,7 @@ class irpp(Variable):
 class foyer_impose(Variable):
     value_type = bool
     entity = FoyerFiscal
-    label = "Le foyer fiscal est imposé"
+    label = 'Le foyer fiscal est imposé'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -2177,8 +2224,8 @@ class foyer_impose(Variable):
 class pensions_alimentaires_versees(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Pensions alimentaires versées"
-    reference = "http://vosdroits.service-public.fr/particuliers/F2.xhtml"
+    label = 'Pensions alimentaires versées'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F2.xhtml'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -2195,8 +2242,8 @@ class pensions_alimentaires_versees(Variable):
 class rfr(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Revenu fiscal de référence"
-    reference = "http://bofip.impots.gouv.fr/bofip/5934-PGP.html?identifiant=BOI-IF-TH-10-50-30-20-20121127#5934-PGP_Calcul_du_revenu_fiscal_de__40"
+    label = 'Revenu fiscal de référence'
+    reference = 'http://bofip.impots.gouv.fr/bofip/5934-PGP.html?identifiant=BOI-IF-TH-10-50-30-20-20121127#5934-PGP_Calcul_du_revenu_fiscal_de__40'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -2233,7 +2280,7 @@ class glo(Variable):
     value_type = float
     entity = Individu
     label = "Gain de levée d'options"
-    reference = "http://www.officeo.fr/imposition-au-bareme-progressif-de-l-impot-sur-le-revenu-des-gains-de-levee-d-options-sur-actions-et-attributions-d-actions-gratuites"
+    reference = 'http://www.officeo.fr/imposition-au-bareme-progressif-de-l-impot-sur-le-revenu-des-gains-de-levee-d-options-sur-actions-et-attributions-d-actions-gratuites'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2286,7 +2333,7 @@ class credits_impot_sur_valeurs_etrangeres(Variable):
 class rpns_pvce(Variable):
     value_type = float
     entity = Individu
-    label = "Plus values de cession nettes des moins-values - Revenu des professions non salariées"
+    label = 'Plus values de cession nettes des moins-values - Revenu des professions non salariées'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2327,7 +2374,7 @@ class rpns_pvce(Variable):
 class rpns_info(Variable):
     value_type = float
     entity = Individu
-    label = "Plus values de cession de brevets, logiciels ou inventions - Revenu des professions non salariées"
+    label = 'Plus values de cession de brevets, logiciels ou inventions - Revenu des professions non salariées'
     definition_period = YEAR
 
     def formula_2019_01_01(individu, period, parameters):
@@ -2354,7 +2401,7 @@ class rpns_info(Variable):
 class rpns_exon(Variable):
     value_type = float
     entity = Individu
-    label = "Plus values de cession exonérées -Revenu des professions non salariées"
+    label = 'Plus values de cession exonérées -Revenu des professions non salariées'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2393,7 +2440,7 @@ class rpns_exon(Variable):
 class defrag(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Déficit agricole des années antérieures"
+    label = 'Déficit agricole des années antérieures'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -2426,7 +2473,7 @@ class defrag(Variable):
 class defacc(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Déficit industriels et commerciaux non professionnels des années antérieures"
+    label = 'Déficit industriels et commerciaux non professionnels des années antérieures'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -2461,7 +2508,7 @@ class defacc(Variable):
 class defncn(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Déficit non commerciaux non professionnels des années antérieures"
+    label = 'Déficit non commerciaux non professionnels des années antérieures'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -2493,7 +2540,7 @@ class defncn(Variable):
 class defmeu(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Déficit des locations meublées non professionnelles des années antérieures"
+    label = 'Déficit des locations meublées non professionnelles des années antérieures'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -2518,8 +2565,8 @@ class defmeu(Variable):
 class rag(Variable):
     value_type = float
     entity = Individu
-    label = "Revenus agricoles"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50"
+    label = 'Revenus agricoles'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2549,8 +2596,8 @@ class rag(Variable):
 class ric(Variable):
     value_type = float
     entity = Individu
-    label = "Bénéfices industriels et commerciaux"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50"
+    label = 'Bénéfices industriels et commerciaux'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2601,8 +2648,8 @@ class ric(Variable):
 class rac(Variable):
     value_type = float
     entity = Individu
-    label = "Revenus accessoires individuels"
-    reference = "http://vosdroits.service-public.fr/particuliers/F1225.xhtml"
+    label = 'Revenus accessoires individuels'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F1225.xhtml'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2648,8 +2695,8 @@ class rac(Variable):
 class rnc(Variable):
     value_type = float
     entity = Individu
-    label = "Revenus non commerciaux individuels"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
+    label = 'Revenus non commerciaux individuels'
+    reference = 'http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2687,7 +2734,7 @@ class rnc(Variable):
 class rpns_pvct(Variable):
     value_type = float
     entity = Individu
-    label = "Plus values de court terme -Revenu des professions non salariées"
+    label = 'Plus values de court terme -Revenu des professions non salariées'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2707,7 +2754,7 @@ class rpns_pvct(Variable):
 class moins_values_court_terme_nonpro(Variable):
     value_type = float
     entity = Individu
-    label = "Moins values de court terme - Revenu des professions non salariées non professionnelles"
+    label = 'Moins values de court terme - Revenu des professions non salariées non professionnelles'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2720,7 +2767,7 @@ class moins_values_court_terme_nonpro(Variable):
 class moins_values_court_terme_pro(Variable):
     value_type = float
     entity = Individu
-    label = "Moins values de court terme - Revenu des professions non salariées professionnelles"
+    label = 'Moins values de court terme - Revenu des professions non salariées professionnelles'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2739,7 +2786,7 @@ class moins_values_court_terme_pro(Variable):
 class moins_values_court_terme_agr(Variable):
     value_type = float
     entity = Individu
-    label = "Moins values de court terme - Revenu des professions agricoles"
+    label = 'Moins values de court terme - Revenu des professions agricoles'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2751,7 +2798,7 @@ class moins_values_court_terme_agr(Variable):
 class moins_values_court_terme_non_salaries(Variable):
     value_type = float
     entity = Individu
-    label = "Moins values de court terme - Revenu des professions non salariées (toutes)"
+    label = 'Moins values de court terme - Revenu des professions non salariées (toutes)'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2765,7 +2812,7 @@ class moins_values_court_terme_non_salaries(Variable):
 class moins_values_long_terme_non_salaries(Variable):
     value_type = float
     entity = Individu
-    label = "Moins values de long terme - Revenu des professions non salariées"
+    label = 'Moins values de long terme - Revenu des professions non salariées'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2781,7 +2828,7 @@ class moins_values_long_terme_non_salaries(Variable):
 class rpns_revenus_forfait_agricole(Variable):
     value_type = float
     entity = Individu
-    label = "Revenus du forfait agricole - Revenus des professions non salariées"
+    label = 'Revenus du forfait agricole - Revenus des professions non salariées'
     definition_period = YEAR
     end = '2015-12-31'  # TODO : le forfait agricole est remplaçé par le régime micro-bénéfices agricoles à partir de 2016
 
@@ -2795,7 +2842,7 @@ class rpns_revenus_forfait_agricole(Variable):
 class rpns_revenus_microBA_agricole(Variable):
     value_type = float
     entity = Individu
-    label = "Revenus agricoles imposables en régime microBA - Revenus des professions non salariées"
+    label = 'Revenus agricoles imposables en régime microBA - Revenus des professions non salariées'
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -2851,7 +2898,7 @@ class rpns_revenus_microBA_agricole(Variable):
 class rpns_imposables(Variable):
     value_type = float
     entity = Individu
-    label = "Revenus imposables des professions non salariées individuels"
+    label = 'Revenus imposables des professions non salariées individuels'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -3024,17 +3071,17 @@ class rpns_imposables(Variable):
 class abat_spe(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Abattements spéciaux"
-    reference = "http://bofip.impots.gouv.fr/bofip/2036-PGP"
+    label = 'Abattements spéciaux'
+    reference = 'http://bofip.impots.gouv.fr/bofip/2036-PGP'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        """
+        '''
         Abattements spéciaux pour :
 
         - pour personnes âges ou invalides ;
         - pour enfants à charge ayant fondé un foyer distinct.
-        """
+        '''
 
         # Âge déclarant·e principal·e
         age_declarant = foyer_fiscal.declarant_principal('age', period.first_month)
@@ -3105,7 +3152,7 @@ class taux_effectif(Variable):
     entity = FoyerFiscal
     label = "La règle du taux effectif a pour objet de maintenir intégralement la progressivité de l'impôt"
     definition_period = YEAR
-    reference = "https://bofip.impots.gouv.fr/bofip/4616-PGP.html/identifiant=BOI-IR-LIQ-20-30-30-20120912"
+    reference = 'https://bofip.impots.gouv.fr/bofip/4616-PGP.html/identifiant=BOI-IR-LIQ-20-30-30-20120912'
     documentation = '''
         Cette règle du « taux effectif » s'applique notamment et sous certaines conditions :
         - aux salariés détachés à l'étranger
@@ -3150,8 +3197,8 @@ class taux_moyen_imposition(Variable):
 class nbptr(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Nombre de parts"
-    reference = "http://vosdroits.service-public.fr/particuliers/F2705.xhtml"
+    label = 'Nombre de parts'
+    reference = 'http://vosdroits.service-public.fr/particuliers/F2705.xhtml'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -3280,7 +3327,7 @@ class ppe_coef(Variable):
 class ppe_elig(Variable):
     value_type = bool
     entity = FoyerFiscal
-    label = "PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence"
+    label = 'PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence'
     end = '2015-12-31'
     definition_period = YEAR
 
@@ -3308,7 +3355,7 @@ class ppe_elig(Variable):
 class ppe_rev(Variable):
     value_type = float
     entity = Individu
-    label = "Base ressource de la ppe"
+    label = 'Base ressource de la ppe'
     end = '2015-12-31'
     definition_period = YEAR
 
@@ -3329,7 +3376,7 @@ class ppe_rev(Variable):
 class ppe_coef_tp(Variable):
     value_type = float
     entity = Individu
-    label = "PPE: coefficient de conversion temps partiel"
+    label = 'PPE: coefficient de conversion temps partiel'
     end = '2015-12-31'
     definition_period = YEAR
 
@@ -3349,7 +3396,7 @@ class ppe_coef_tp(Variable):
 class ppe_base(Variable):
     value_type = float
     entity = Individu
-    label = "Montant de base de la PPE"
+    label = 'Montant de base de la PPE'
     end = '2015-12-31'
     definition_period = YEAR
 
@@ -3364,7 +3411,7 @@ class ppe_base(Variable):
 class ppe_elig_individu(Variable):
     value_type = bool
     entity = Individu
-    label = "Eligibilité individuelle à la ppe"
+    label = 'Eligibilité individuelle à la ppe'
     end = '2015-12-31'
     definition_period = YEAR
 
@@ -3491,13 +3538,13 @@ class ppe(Variable):
     entity = FoyerFiscal
     label = "Prime pour l'emploi"
     end = '2015-12-31'
-    reference = "http://vosdroits.service-public.fr/particuliers/F2882.xhtml"
+    reference = 'http://vosdroits.service-public.fr/particuliers/F2882.xhtml'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        """
+        '''
         PPE effectivement versée
-        """
+        '''
         ppe_brute = foyer_fiscal('ppe_brute', period)
 
         # TODO: les foyers qui paient l'ISF n'ont pas le droit à la PPE

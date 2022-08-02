@@ -21,7 +21,7 @@ def modify_parameters(parameters):
 
 
 class decote(Variable):
-    label = "Décote IR 2015 appliquée sur IR 2014 (revenus 2013)"
+    label = 'Décote IR 2015 appliquée sur IR 2014 (revenus 2013)'
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -35,7 +35,7 @@ class decote(Variable):
 
 
 class plf2015(Reform):
-    name = "Projet de Loi de Finances 2015 appliquée aux revenus 2013"
+    name = 'Projet de Loi de Finances 2015 appliquée aux revenus 2013'
 
     def apply(self):
         self.update_variable(decote)

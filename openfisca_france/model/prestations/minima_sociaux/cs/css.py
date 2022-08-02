@@ -59,7 +59,7 @@ class css_participation_forfaitaire_montant(Variable):
 
 class css_participation_forfaitaire(Variable):
     value_type = float
-    label = "Montant annuel de la participation forfaitaire à la CSS"
+    label = 'Montant annuel de la participation forfaitaire à la CSS'
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period

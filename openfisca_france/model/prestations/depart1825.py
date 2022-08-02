@@ -2,21 +2,21 @@ from openfisca_france.model.base import Variable, Individu, MONTH, TypesActivite
 
 
 class depart1825_eligibilite(Variable):
-    """
+    '''
     Situations non prises en compte
     - en contrat aidé,
     - inscrit dans une école de la deuxième chance,
     - volontaire en service civique,
     - jeunes suivis par l'Aide Sociale à l'Enfance.​
-    """
+    '''
     value_type = bool
-    label = "Éligibilité au dispositif départ 18-25"
+    label = 'Éligibilité au dispositif départ 18-25'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = [
-        "https://programme-depart-1825.com/eligibilite/",
-        "https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans"
+        'https://programme-depart-1825.com/eligibilite/',
+        'https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans'
         ]
 
     def formula(individu, period, parameters):
@@ -44,13 +44,13 @@ class depart1825_eligibilite(Variable):
 
 class depart1825_montant_maximum(Variable):
     value_type = float
-    label = "Montant maximum du dispositif départ 18-25"
+    label = 'Montant maximum du dispositif départ 18-25'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
-        "https://programme-depart-1825.com/eligibilite/",
-        "https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans"
+        'https://programme-depart-1825.com/eligibilite/',
+        'https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans'
         ]
 
     def formula(individu, period, parameters):

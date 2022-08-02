@@ -62,9 +62,9 @@ values:
     value: 3660
   2019-01-01:
     value: 3697
-  2021-01-01:
+  2020-01-01:
     value: 3704
-  2022-01-01:
+  2021-01-01:
     value: 3756
 metadata:
   unit: currency

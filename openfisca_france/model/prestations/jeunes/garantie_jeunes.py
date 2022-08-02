@@ -5,7 +5,7 @@ class garantie_jeunes_neet(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = "Variable NEET - Ni étudiant, ni employé, ni stagiaire"
+    label = 'Variable NEET - Ni étudiant, ni employé, ni stagiaire'
     set_input = set_input_divide_by_period
     reference = ['https://fr.wikipedia.org/wiki/NEET']
 
@@ -29,8 +29,8 @@ class garantie_jeunes_montant(Variable):
     label = "Montant maximal de l'allocation Garantie Jeune"
     set_input = set_input_dispatch_by_period
     reference = [
-        "https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/",
-        "https://www.service-public.fr/particuliers/vosdroits/F32700"
+        'https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/',
+        'https://www.service-public.fr/particuliers/vosdroits/F32700'
         ]
 
     def formula_2017_01_01(individu, period, parameters):
@@ -84,7 +84,7 @@ class garantie_jeunes_eligibilite_ressources(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = "Éligibilité en fonction du niveau de ressources à la Garantie Jeune"
+    label = 'Éligibilité en fonction du niveau de ressources à la Garantie Jeune'
     set_input = set_input_dispatch_by_period
 
     def formula_2017_01_01(individu, period, parameters):
@@ -134,8 +134,9 @@ class garantie_jeunes(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    label = "Montant de la Garantie Jeune"
-    reference = ["https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/", "https://www.service-public.fr/particuliers/vosdroits/F32700"]
+    label = 'Montant de la Garantie Jeune'
+    reference = ['https://travail-emploi.gouv.fr/emploi/mesures-jeunes/garantiejeunes/', 'https://www.service-public.fr/particuliers/vosdroits/F32700']
+    end = '2022-02-28'
 
     def formula_2017_01_01(individu, period, parameters):
         montant = individu('garantie_jeunes_montant', period)

@@ -8,7 +8,7 @@ class apprenti(Variable):
     value_type = bool
     entity = Individu
     label = "L'individu est apprenti"
-    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = 'http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -28,7 +28,7 @@ class remuneration_apprenti(Variable):
     value_type = float
     entity = Individu
     label = "Rémunération de l'apprenti"
-    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = 'http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -80,7 +80,7 @@ class remuneration_apprenti(Variable):
 
         output = age * 0.0
         for age_interval in salaire_en_smic:
-            age_condition = (age_interval["age_min"] <= age) * (age < age_interval["age_max"])
+            age_condition = (age_interval['age_min'] <= age) * (age < age_interval['age_max'])
             output[age_condition] = sum([
                 (anciennete_contrat[age_condition] == timedelta64(anciennete, 'Y')) * part_de_smic
                 for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].items()
@@ -91,8 +91,8 @@ class remuneration_apprenti(Variable):
 class exoneration_cotisations_employeur_apprenti(Variable):
     value_type = float
     entity = Individu
-    label = "Exonération de cotisations employeur pour un apprenti"
-    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    label = 'Exonération de cotisations employeur pour un apprenti'
+    reference = 'http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     # Artisans et employeurs de moins de 11 salariés
@@ -147,7 +147,7 @@ class exoneration_cotisations_salariales_apprenti(Variable):
     value_type = float
     entity = Individu
     label = "Exonération de cotisations salariales pour l'emploi d'un apprenti"
-    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = 'http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -163,7 +163,7 @@ class prime_apprentissage(Variable):
     value_type = float
     entity = Individu
     label = "Prime d'apprentissage pour les entreprise employant un apprenti"
-    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = 'http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2'
     definition_period = YEAR
     # L'employeur peut également recevoir de la région dans laquelle est situé l'établissement du lieu de travail,
     # une prime d'apprentissage.

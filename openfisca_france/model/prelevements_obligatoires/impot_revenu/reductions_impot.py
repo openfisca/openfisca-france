@@ -59,7 +59,7 @@ class reductions(Variable):
 class accult(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Acquisition de biens culturels"
+    label = 'Acquisition de biens culturels'
     definition_period = YEAR
 
     def formula_2002(foyer_fiscal, period, parameters):
@@ -76,7 +76,7 @@ class accult(Variable):
 class adhcga(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "adhcga"
+    label = 'adhcga'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -94,7 +94,7 @@ class adhcga(Variable):
 class assvie(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "assvie"
+    label = 'assvie'
     end = '2004-12-31'
     definition_period = YEAR
 
@@ -117,7 +117,7 @@ class cappme(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt au titre des souscriptions en numéraire au capital de PME non côtées"
-    reference = "http://bofip.impots.gouv.fr/bofip/4374-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/4374-PGP'
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -527,7 +527,7 @@ class cotsyn(Variable):
 class creaen(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "creaen"
+    label = 'creaen'
     definition_period = YEAR
     end = '2014-12-31'
 
@@ -598,7 +598,7 @@ class creaen(Variable):
 class deffor(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "deffor"
+    label = 'deffor'
     definition_period = YEAR
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -615,7 +615,7 @@ class deffor(Variable):
 class daepad(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "daepad"
+    label = 'daepad'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -633,8 +633,8 @@ class daepad(Variable):
 class denormandie(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "denormandie"
-    reference = "https://bofip.impots.gouv.fr/bofip/11862-PGP"
+    label = 'denormandie'
+    reference = 'https://bofip.impots.gouv.fr/bofip/11862-PGP'
     definition_period = YEAR
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
@@ -683,8 +683,8 @@ class denormandie(Variable):
 class donpartipol(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Dons et cotisations versés aux partis politiques"
-    reference = "https://bofip.impots.gouv.fr/bofip/5869-PGP"
+    label = 'Dons et cotisations versés aux partis politiques'
+    reference = 'https://bofip.impots.gouv.fr/bofip/5869-PGP'
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -704,7 +704,7 @@ class dfppce(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Dons à des organismes d'intérêt général et dons pour le financement des partis politiques"
-    reference = "http://bofip.impots.gouv.fr/bofip/5823-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/5823-PGP'
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -909,7 +909,7 @@ class dfppce(Variable):
 class doment(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "doment"
+    label = 'doment'
     definition_period = YEAR
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
@@ -1770,7 +1770,7 @@ class domlog(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt au titre des investissements outre-mer réalisés par des personnes physiques"
-    reference = "http://bofip.impots.gouv.fr/bofip/6716-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/6716-PGP'
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -2235,7 +2235,7 @@ class domsoc(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt au titre de l'acquisition ou de la souscription de logements sociaux outre-mer"
-    reference = "http://bofip.impots.gouv.fr/bofip/9398-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/9398-PGP'
     definition_period = YEAR
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -2506,8 +2506,8 @@ class domsoc(Variable):
 class donapd(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "donapd"
-    reference = "http://bofip.impots.gouv.fr/bofip/5873-PGP?datePubl=vig#5873-PGP_Cas_particulier_des_dons_fa_21"
+    label = 'donapd'
+    reference = 'http://bofip.impots.gouv.fr/bofip/5873-PGP?datePubl=vig#5873-PGP_Cas_particulier_des_dons_fa_21'
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -2534,7 +2534,7 @@ class duflot(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur de l'investissement locatif intermédiaire - Dispositif Duflot"
-    reference = "http://bofip.impots.gouv.fr/bofip/8425-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/8425-PGP'
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -2597,11 +2597,11 @@ class duflot(Variable):
         report_reduction_depuis_2013 = sum(
             foyer_fiscal(case_report, period)
             for case_report in [
-                "f7fi",
-                "f7fk",
-                "f7fr",
-                "f7fv",
-                "f7fw",
+                'f7fi',
+                'f7fk',
+                'f7fr',
+                'f7fv',
+                'f7fw',
                 ][0:year - 2013]
             )
 
@@ -2624,7 +2624,7 @@ class duflot(Variable):
 class ecodev(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "ecodev"
+    label = 'ecodev'
     end = '2009-12-31'
     definition_period = YEAR
 
@@ -2643,7 +2643,7 @@ class ecodev(Variable):
 class ecpess(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "ecpess"
+    label = 'ecpess'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -2669,7 +2669,7 @@ class garext(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur des dépenses de frais de garde des jeunes enfants"
-    reference = "http://bofip.impots.gouv.fr/bofip/865-PGP?datePubl=13/04/2013#"
+    reference = 'http://bofip.impots.gouv.fr/bofip/865-PGP?datePubl=13/04/2013#'
     definition_period = YEAR
     end = '2004-12-31'
 
@@ -2717,7 +2717,7 @@ class garext(Variable):
 class intagr(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "intagr"
+    label = 'intagr'
     definition_period = YEAR
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
@@ -2736,7 +2736,7 @@ class intagr(Variable):
 class intcon(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "intcon"
+    label = 'intcon'
     end = '2005-12-31'
     definition_period = YEAR
 
@@ -2755,7 +2755,7 @@ class intcon(Variable):
 class intemp(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "intemp"
+    label = 'intemp'
     end = '2003-12-31'
     definition_period = YEAR
 
@@ -2776,7 +2776,7 @@ class invfor(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt au titre des investissements forestiers"
-    reference = "http://bofip.impots.gouv.fr/bofip/5537-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/5537-PGP'
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -3082,7 +3082,7 @@ class invlst(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur des investissements dans le secteur touristique"
-    reference = "http://bofip.impots.gouv.fr/bofip/6265-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/6265-PGP'
     definition_period = YEAR
 
     def formula_2004_01_01(foyer_fiscal, period, parameters):
@@ -3416,7 +3416,7 @@ class invrev(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur des investissements dans les résidences de tourisme"
-    reference = "http://bofip.impots.gouv.fr/bofip/6266-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/6266-PGP'
     end = '2003-12-31'
     definition_period = YEAR
 
@@ -3447,7 +3447,7 @@ class locmeu(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur de l'acquisition de logements destinés à la location meublée non professionnelle - Dispositif Censi-Bouvard"
-    reference = "http://bofip.impots.gouv.fr/bofip/4885-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/4885-PGP'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -4345,7 +4345,7 @@ class mecena(Variable):
 class mohist(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "mohist"
+    label = 'mohist'
     definition_period = YEAR
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
@@ -4381,7 +4381,7 @@ class patnat(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur des dépenses de préservation du patrimoine naturel"
-    reference = "http://bofip.impots.gouv.fr/bofip/6240-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/6240-PGP'
     definition_period = YEAR
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -4461,7 +4461,7 @@ class patnat(Variable):
 class prcomp(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Prestations compensatoires"
+    label = 'Prestations compensatoires'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -4513,7 +4513,7 @@ class rehab(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt pour travaux de réhabilitation des résidences de tourisme"
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033781921&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170101"
+    reference = 'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033781921&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170101'
     definition_period = YEAR
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
@@ -4532,7 +4532,7 @@ class rehab(Variable):
 class repsoc(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "repsoc"
+    label = 'repsoc'
     definition_period = YEAR
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
@@ -4552,7 +4552,7 @@ class resimm(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt au titre des dépenses de restauration immobilière - Dispositif Malraux"
-    reference = "http://bofip.impots.gouv.fr/bofip/1372-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/1372-PGP'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -4704,7 +4704,7 @@ class rpinel(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur de l'investissement locatif intermédiaire - Dispositif Pinel"
-    reference = "http://bofip.impots.gouv.fr/bofip/8425-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/8425-PGP'
     definition_period = YEAR
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -4868,7 +4868,7 @@ class rpinel(Variable):
 class rsceha(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "rsceha"
+    label = 'rsceha'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -4889,7 +4889,7 @@ class saldom(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt au titre des sommes versées pour l'emploi d'un salarié à domicile"
-    reference = "http://bofip.impots.gouv.fr/bofip/3968-PGP.html?identifiant=BOI-IR-RICI-150-20-20150515#"
+    reference = 'http://bofip.impots.gouv.fr/bofip/3968-PGP.html?identifiant=BOI-IR-RICI-150-20-20150515#'
     definition_period = YEAR
     end = '2016-12-31'
 
@@ -4995,7 +4995,7 @@ class scelli(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt au titre des investissements locatifs - Dispositif Scellier"
-    reference = "http://bofip.impots.gouv.fr/bofip/4951-PGP"
+    reference = 'http://bofip.impots.gouv.fr/bofip/4951-PGP'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -6104,7 +6104,7 @@ class scelli(Variable):
 class sofica(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "sofica"
+    label = 'sofica'
     definition_period = YEAR
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -6147,15 +6147,15 @@ class sofica(Variable):
 class sofipe(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "sofipe"
+    label = 'sofipe'
     end = '2011-01-01'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
-        """
+        '''
         Souscription au capital d’une SOFIPECHE (case 7GS)
         2009-2011
-        """
+        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         rbg_int = foyer_fiscal('rbg_int', period)
         f7gs = foyer_fiscal('f7gs', period)
@@ -6168,8 +6168,8 @@ class sofipe(Variable):
 class spfcpi(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "spfcpi"
-    reference = "http://bofip.impots.gouv.fr/bofip/5321-PGP"
+    label = 'spfcpi'
+    reference = 'http://bofip.impots.gouv.fr/bofip/5321-PGP'
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
