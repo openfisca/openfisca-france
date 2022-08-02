@@ -232,6 +232,16 @@ values:
     value: 1589.47
   2022-01-01:
     value: 1603.12
+  2022-05-01:
+    value: 1645.58
+  2022-08-01:
+    value: 1678.95
+  2022-05-01:
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045602317
+      title: Arrêté du 19/05/2022
+  2022-08-01:
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046113517
+      title: Arrêté du 29/07/2022
 metadata:
   ux_name: SMIC Brut mensuel
   description_en: Minimum wage - SMIC (1970-2017)
