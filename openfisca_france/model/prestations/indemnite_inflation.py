@@ -11,7 +11,7 @@ class eligibilite_indemnite_inflation_non_salarie(Variable):
     entity = Individu
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044471405'
-    label = u"Eligibilité à l'indemnité inflation en tant que non-salarié"
+    label = "Eligibilité à l'indemnité inflation en tant que non-salarié"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -48,7 +48,7 @@ class eligibilite_indemnite_inflation_salarie_prive(Variable):
     entity = Individu
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044471405'
-    label = u"Eligibilité à l'indemnité inflation en tant que salarié privé"
+    label = "Eligibilité à l'indemnité inflation en tant que salarié privé"
     definition_period = YEAR
     set_input = set_input_dispatch_by_period
 
@@ -101,7 +101,7 @@ class eligibilite_indemnite_inflation_public(Variable):
     entity = Individu
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044471405'
-    label = u"Eligibilité à l'indemnité inflation en tant qu'agent public"
+    label = "Eligibilité à l'indemnité inflation en tant qu'agent public"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -157,7 +157,7 @@ class eligibilite_indemnite_inflation_retraite(Variable):
     entity = Individu
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044471405'
-    label = u"Eligibilité à l'indemnité inflation en tant que retraité"
+    label = "Eligibilité à l'indemnité inflation en tant que retraité"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -189,7 +189,7 @@ class eligibilite_indemnite_inflation_prest_soc(Variable):
     entity = Individu
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044471405'
-    label = u"Eligibilité à l'indemnité inflation en tant que bénéficiaire des prestations sociales"
+    label = "Eligibilité à l'indemnité inflation en tant que bénéficiaire des prestations sociales"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -219,7 +219,7 @@ class eligibilite_indemnite_inflation_jeune(Variable):
     entity = Individu
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044471405'
-    label = u"Eligibilité à l'indemnité inflation en tant que jeune"
+    label = "Eligibilité à l'indemnité inflation en tant que jeune"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -266,7 +266,7 @@ class eligibilite_indemnite_inflation_demandeur_emploi(Variable):
     entity = Individu
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044471405'
-    label = u"Eligibilité à l'indemnité inflation en tant que demandeur d'emploi"
+    label = "Eligibilité à l'indemnité inflation en tant que demandeur d'emploi"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -297,7 +297,7 @@ class eligibilite_indemnite_inflation(Variable):
     entity = Individu
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044471405'
-    label = u"Eligibilité à l'indemnité inflation"
+    label = "Eligibilité à l'indemnité inflation"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -330,3 +330,51 @@ class indemnite_inflation(Variable):
         eligibilite_indemnite_inflation = individu('eligibilite_indemnite_inflation', period.this_year)
 
         return montant_indemnite * (eligibilite_indemnite_inflation > 0)
+<<<<<<< HEAD
+
+
+class indemnite_inflation_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = 'Aide exceptionnelle de 100 euros pour les individus gagnant € 2000 ou moins'
+    definition_period = YEAR
+    set_input = set_input_divide_by_period
+
+    def formula(menage, period):
+        indinf_i = menage.members('indemnite_inflation', period)
+        indinf = menage.sum(indinf_i)
+
+        return indinf
+
+
+class moyen_indemnite_inflation_menage(Variable):
+    entity = Menage
+    value_type = float
+    reference = 'https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix'
+    label = 'Moyen indemnité inflation'
+    definition_period = YEAR
+
+    def formula(menage, period):
+        elig_i = menage.members('indemnite_inflation', period)
+        elig = menage.sum(elig_i)
+
+        nb_men = menage.sum((elig_i) > -1)
+
+        return elig / nb_men
+
+
+class personnes_menage(Variable):
+    entity = Menage
+    value_type = float
+    reference = 'https://www.gouvernement.fr/une-indemnite-inflation-pour-proteger-le-pouvoir-d-achat-des-francais-face-a-la-hausse-des-prix'
+    label = 'Moyen indemnité inflation'
+    definition_period = YEAR
+
+    def formula(menage, period):
+        elig_i = menage.members('indemnite_inflation', period)
+
+        nb_men = menage.sum((elig_i) > -1)
+
+        return nb_men
+=======
+>>>>>>> fad24509f (Mets à jour les référence plus clean les variables)
