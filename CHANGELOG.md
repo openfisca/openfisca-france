@@ -1,6 +1,17 @@
 # Changelog
 
-### 116.14.0 [#1867](https://github.com/openfisca/openfisca-france/pull/1867)
+## 116.15.0 [#1871](https://github.com/openfisca/openfisca-france/pull/1871)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : 2022
+* Zones impactées :
+    - `marche_travail/salaire_minimum/smic`
+    - `prestations_sociales/solidarite_insertion/minima_sociaux/ppa`
+Détails :
+- Ajout de références législatives
+- Ajout des nouvelles valeurs
+
+## 116.14.0 [#1867](https://github.com/openfisca/openfisca-france/pull/1867)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2022.
@@ -11,7 +22,6 @@
     - `openfisca_france/parameters/taxation_indirecte/taxe_habitation/exon_plaf_rfr.yaml`
 * Détails :
     - Met à jour les taux de la taxe d'habitation pour 2022.
-
 
 ### 116.13.2 [#1862](https://github.com/openfisca/openfisca-france/pull/1862)
 
