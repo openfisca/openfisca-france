@@ -1,6 +1,17 @@
 # Changelog
 
-### 116.14.0 [#1867](https://github.com/openfisca/openfisca-france/pull/1867)
+## 116.15.0 [#1871](https://github.com/openfisca/openfisca-france/pull/1871)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : 2022
+* Zones impactées :
+    - `marche_travail/salaire_minimum/smic`
+    - `prestations_sociales/solidarite_insertion/minima_sociaux/ppa`
+Détails :
+- Ajout de références législatives
+- Ajout des nouvelles valeurs
+
+## 116.14.0 [#1867](https://github.com/openfisca/openfisca-france/pull/1867)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2022.
@@ -29,14 +40,7 @@
 * Zonesimpactées : parameters/prestations_sociales/aides_logement/action_logement
 * Détails : Ajout de références législatives
 
-## 116.14.0 [#1871](https://github.com/openfisca/openfisca-france/pull/1871)
 
-Évolution du système socio-fiscal
-Périodes concernées : toutes
-Zones impactées marche_travail/salaire_minimum/smic ; prestations_sociales/solidarite_insertion/minima_sociaux/ppa
-Détails :
-- Ajout de références législatives
-- Ajout de values
 ## 116.13.0 [#1858](https://github.com/openfisca/openfisca-france/pull/1858)
 
 * Évolution du système socio-fiscal.
