@@ -18,6 +18,7 @@ demi_part_supp:
     2022-01-01:
       value: 3011
   metadata:
+    last_review: "2022-08-01"
     unit: currency
     reference:
       2022-01-01:
@@ -39,6 +40,7 @@ premiere_part:
     2022-01-01:
       value: 11276
   metadata:
+    last_review: "2022-08-01"
     unit: currency
     reference:
       2022-01-01:

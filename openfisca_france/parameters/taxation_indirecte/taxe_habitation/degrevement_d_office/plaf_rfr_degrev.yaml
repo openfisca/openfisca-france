@@ -36,6 +36,7 @@ deux_premieres_demi_parts_supp:
     2022-01-01:
       value: 8340
   metadata:
+    last_review: "2022-08-01"
     unit: currency
     reference:
       2022-01-01:
@@ -55,6 +56,7 @@ premiere_part:
     2022-01-01:
       value: 28150
   metadata:
+    last_review: "2022-08-01"
     unit: currency
     reference:
       2022-01-01:
