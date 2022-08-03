@@ -16,6 +16,7 @@ autres_demi_parts_supp:
     2022-01-01:
       value: 6255
   metadata:
+    last_review: "2022-08-01"
     unit: currency
     reference:
       2022-01-01:
