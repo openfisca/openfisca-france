@@ -1,5 +1,18 @@
 # Changelog
 
+### 116.14.0 [#1867](https://github.com/openfisca/openfisca-france/pull/1867)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2022.
+* Zones impactées :
+    - `openfisca_france/parameters/taxation_indirecte/taxe_habitation/degrevement_d_office/plaf_rfr_degrev.yaml`
+    - `openfisca_france/parameters/taxation_indirecte/taxe_habitation/degrevement_d_office/plaf_rfr_degrev_degressif.yaml`
+    - `openfisca_france/parameters/taxation_indirecte/taxe_habitation/degrevement_d_office/taux_sup_plaf.yaml`
+    - `openfisca_france/parameters/taxation_indirecte/taxe_habitation/exon_plaf_rfr.yaml`
+* Détails :
+    - Met à jour les taux de la taxe d'habitation pour 2022.
+
+
 ### 116.13.2 [#1862](https://github.com/openfisca/openfisca-france/pull/1862)
 
 * Changement mineur.
