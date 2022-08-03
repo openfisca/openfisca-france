@@ -23,7 +23,6 @@ Détails :
 * Détails :
     - Met à jour les taux de la taxe d'habitation pour 2022.
 
-
 ### 116.13.2 [#1862](https://github.com/openfisca/openfisca-france/pull/1862)
 
 * Changement mineur.
@@ -39,7 +38,6 @@ Détails :
 * Périodes concernés : à partir du 1/1/2016
 * Zonesimpactées : parameters/prestations_sociales/aides_logement/action_logement
 * Détails : Ajout de références législatives
-
 
 ## 116.13.0 [#1858](https://github.com/openfisca/openfisca-france/pull/1858)
 
