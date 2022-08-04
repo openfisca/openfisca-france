@@ -1,0 +1,15 @@
+description: Indemnité Inflation 2021
+values:
+  2021-01-01:
+    value: 100
+  2022-01-01:
+    value: null
+metadata:
+  last_review: 2022-08-03
+  unit: currency
+  reference:
+    2021-01-01:
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044394385#:~:text=Une%20aide%20exceptionnelle%20de%20100,pour%20le%20dernier%20trimestre%202021.
+      title: Article 13 de la loi n° 2021-1549 du 1er décembre 2021 de finances rectificative pour 2021
+
+
