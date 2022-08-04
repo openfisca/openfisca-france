@@ -1,5 +1,17 @@
 # Changelog
 
+## 116.16.0 [#1866](https://github.com/openfisca/openfisca-france/pull/1866)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2021.
+* Zones impactées :
+  - `openfisca_france\model\prestations\indemnite_inflation.py`
+  - `openfisca_france\parameters\indemnite_inflation.yaml`
+  - `openfisca_france\model\revenus\activite\non_salarie.py`
+* Détails :
+  - Ajoute l'indemnité inflation de 2021 (prime de 100 €)
+  - Améliore le calcul de la variable `rpns_micro_entreprise_revenus_net` (met l'option "divide")
+
 ## 116.15.0 [#1871](https://github.com/openfisca/openfisca-france/pull/1871)
 
 * Évolution du système socio-fiscal
@@ -78,7 +90,7 @@ Détails :
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `model/prestations/aide_permis_pro_btp.py`
   - `model/caracteristiques_socio_demographiques/demographie.py`.
 * Détails :
