@@ -25,7 +25,7 @@ class chomage_brut(Variable):
     calculate_output = calculate_output_add
 
     def formula(individu, period):
-        return individu('allocation_retour_emploi', period)
+        return individu('allocation_retour_emploi', period) + individu('complement_are_net', period)
 
 
 class indemnites_chomage_partiel(Variable):
@@ -57,7 +57,7 @@ class allocation_retour_emploi_journaliere(Variable):
 class allocation_retour_emploi_journaliere_taux_plein(Variable):
     value_type = float
     entity = Individu
-    label = 'Allocation journalière ARE taux plein (en cas de degressivité)'
+    label = 'Allocation journalière ARE taux plein'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -81,14 +81,19 @@ class allocation_travailleur_independant(Variable):
 class salaire_journalier_reference_are(Variable):
     value_type = float
     entity = Individu
-    label = 'Salaire journalier de référence'
+    label = 'Salaire journalier de référence (SJR) au sens des allocations chômage'
     definition_period = MONTH
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000043628391'
     set_input = set_input_divide_by_period
 
 
 class degressivite_are(Variable):
     value_type = bool
     entity = Individu
-    label = "L'individu est soumis à la dégressivité de l'ARE"
+    label = "L'individu est soumis à la dégressivité de l'allocation d'Aide au Retour à l'Emploi (ARE)"
     definition_period = MONTH
+    reference = [
+        'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044345334',
+        'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000041798325/'
+        ]
     set_input = set_input_divide_by_period

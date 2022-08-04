@@ -8,9 +8,9 @@
     salaire_journalier_reference_are: 48
   output:
     complement_are_nombre_jours_indemnises: 7.0
-    complement_are_allocation_mensuelle_due_brute: 259
-    complement_are_deductions_montant_mensuel: 10.08
-    complement_are_allocation_mensuelle_due_brute_apres_deductions: 248.92
+    complement_are_brut: 259
+    complement_are_deductions: 10.08
+    complement_are_net: 248.92
 
 - name: Test 02 - Vérifie le calcul du complément ARE dans un cas avec salaire de reprise bas par rapport au salaire journalier de référence
   period: 2022-04
@@ -22,9 +22,9 @@
     salaire_journalier_reference_are: 45
   output:
     complement_are_nombre_jours_indemnises: 23
-    complement_are_allocation_mensuelle_due_brute: 851.00
-    complement_are_deductions_montant_mensuel: 31.05
-    complement_are_allocation_mensuelle_due_brute_apres_deductions: 819.95
+    complement_are_brut: 851.00
+    complement_are_deductions: 31.05
+    complement_are_net: 819.95
 
 - name: Test 03 - Vérifie le calcul du complément ARE dans un cas de reprise d'emploi avec salaire supérieur au salaire de référence
   period: 2022-04
@@ -36,7 +36,7 @@
     salaire_journalier_reference_are: 58.38
   output:
     complement_are_nombre_jours_indemnises: 0
-    complement_are_allocation_mensuelle_due_brute: 0
+    complement_are_brut: 0
 
 - name: Test 04 - Vérifie le calcul du complément ARE dans un cas simple sans déductions de charges
   period: 2022-04
@@ -48,9 +48,9 @@
     salaire_journalier_reference_are: 48.63
   output:
     complement_are_nombre_jours_indemnises: 25
-    complement_are_allocation_mensuelle_due_brute: 693
-    complement_are_deductions_montant_mensuel: 0
-    complement_are_allocation_mensuelle_due_brute_apres_deductions: 693
+    complement_are_brut: 693
+    complement_are_deductions: 0
+    complement_are_net: 693
 
 - name: Test 05 - Vérifie le calcul du complément ARE dans un cas simple avec haut salaire journalier de référence
   period: 2022-04
@@ -62,9 +62,9 @@
     salaire_journalier_reference_are: 207.20
   output:
     complement_are_nombre_jours_indemnises: 23
-    complement_are_allocation_mensuelle_due_brute: 2716.30
-    complement_are_deductions_montant_mensuel: 312.57
-    complement_are_allocation_mensuelle_due_brute_apres_deductions: 2403.73
+    complement_are_brut: 2716.30
+    complement_are_deductions: 312.57
+    complement_are_net: 2403.73
 
 - name: Test 06 - Vérifie le calcul du complément ARE dans un cas simple avec dégressivité ARE
   period: 2022-05
@@ -77,12 +77,12 @@
     salaire_journalier_reference_are: 207.20
   output:
     complement_are_nombre_jours_indemnises: 24
-    complement_are_allocation_mensuelle_due_brute: 1984.08
-    complement_are_crc_mensuelle: 149.28
-    complement_are_csg_mensuelle: 111.84
-    complement_are_crds_mensuelle: 9.12
-    complement_are_deductions_montant_mensuel: 270.24
-    complement_are_allocation_mensuelle_due_brute_apres_deductions: 1713.84
+    complement_are_brut: 1984.08
+    complement_are_crc: 149.28
+    complement_are_csg: 111.84
+    complement_are_crds: 9.12
+    complement_are_deductions: 270.24
+    complement_are_net: 1713.84
 
 - name: Test 07 - Vérifie le calcul du complément ARE pour un mois de 28 jours
   period: 2022-02
@@ -94,9 +94,9 @@
     salaire_journalier_reference_are: 56.91
   output:
     complement_are_nombre_jours_indemnises: 10
-    complement_are_deductions_montant_mensuel: 17.1
-    complement_are_allocation_mensuelle_due_brute: 351.1
-    complement_are_allocation_mensuelle_due_brute_apres_deductions: 334
+    complement_are_deductions: 17.1
+    complement_are_brut: 351.1
+    complement_are_net: 334
 
 - name: Test 08 - Vérifie le calcul du complément ARE pour un mois de 29 jours
   period: 2024-02
@@ -108,9 +108,9 @@
     salaire_journalier_reference_are: 56.91
   output:
     complement_are_nombre_jours_indemnises: 11
-    complement_are_allocation_mensuelle_due_brute: 386.21
-    complement_are_deductions_montant_mensuel: 18.81
-    complement_are_allocation_mensuelle_due_brute_apres_deductions: 367.4
+    complement_are_brut: 386.21
+    complement_are_deductions: 18.81
+    complement_are_net: 367.4
 
 - name: Test 09 - Vérifie le calcul du complément ARE pour un mois de 30 jours
   period: 2022-04
@@ -122,9 +122,9 @@
     salaire_journalier_reference_are: 56.91
   output:
     complement_are_nombre_jours_indemnises: 12
-    complement_are_allocation_mensuelle_due_brute: 421.32
-    complement_are_deductions_montant_mensuel: 20.52
-    complement_are_allocation_mensuelle_due_brute_apres_deductions: 400.8
+    complement_are_brut: 421.32
+    complement_are_deductions: 20.52
+    complement_are_net: 400.8
 
 - name: Test 10 - Vérifie le calcul du complément ARE pour un mois de 31 jours
   period: 2022-03
@@ -136,9 +136,9 @@
     salaire_journalier_reference_are: 56.91
   output:
     complement_are_nombre_jours_indemnises: 13
-    complement_are_allocation_mensuelle_due_brute: 456.43
-    complement_are_deductions_montant_mensuel: 22.23
-    complement_are_allocation_mensuelle_due_brute_apres_deductions: 434.20
+    complement_are_brut: 456.43
+    complement_are_deductions: 22.23
+    complement_are_net: 434.20
 
 - name: Test 11 - Vérifie le calcul du complément ARE dans un cas de dépassement du plafond de cumul
   period: 2022-04
@@ -149,10 +149,10 @@
     allocation_retour_emploi_journaliere: 22.5
     salaire_journalier_reference_are: 30
   output:
-    complement_are_nombre_jours_indemnises: 3
-    complement_are_allocation_mensuelle_due_brute: 67.5
-    complement_are_deductions_montant_mensuel: 0
-    complement_are_allocation_mensuelle_due_brute_apres_deductions: 67.5
+    complement_are_nombre_jours_indemnises: 4
+    complement_are_brut: 90
+    complement_are_deductions: 0
+    complement_are_net: 90
 
 - name: Test 12 - Vérifie le calcul du complément ARE partiel dans le cas où le nombre de jours restants n'est pas suffisant
   period: 2022-04
@@ -165,9 +165,9 @@
   output:
     complement_are_nombre_jours_indemnisables: 7
     complement_are_nombre_jours_indemnises: 4
-    complement_are_allocation_mensuelle_due_brute: 148
-    complement_are_deductions_montant_mensuel: 10.08
-    complement_are_allocation_mensuelle_due_brute_apres_deductions: 137.92
+    complement_are_brut: 148
+    complement_are_deductions: 10.08
+    complement_are_net: 137.92
 
 - name: Test 13 - Vérifie le calcul du complément ARE partiel dans un cas sans jours restants
   period: 2022-04
@@ -180,9 +180,9 @@
   output:
     complement_are_nombre_jours_indemnisables: 7
     complement_are_nombre_jours_indemnises: 0
-    complement_are_allocation_mensuelle_due_brute: 0
-    complement_are_deductions_montant_mensuel: 10.08
-    complement_are_allocation_mensuelle_due_brute_apres_deductions: 0
+    complement_are_brut: 0
+    complement_are_deductions: 10.08
+    complement_are_net: 0
 
 - name: Test 14 - Vérifie le calcul du nombre de jours restants
   period: 2022-04
@@ -217,14 +217,14 @@
     individus:
       parent1:
         complement_are_nombre_jours_indemnises: 7.0
-        complement_are_allocation_mensuelle_due_brute: 259
-        complement_are_deductions_montant_mensuel: 10.08
-        complement_are_allocation_mensuelle_due_brute_apres_deductions: 248.92
+        complement_are_brut: 259
+        complement_are_deductions: 10.08
+        complement_are_net: 248.92
       parent2:
         complement_are_nombre_jours_indemnises: 23
-        complement_are_allocation_mensuelle_due_brute: 851.00
-        complement_are_deductions_montant_mensuel: 31.05
-        complement_are_allocation_mensuelle_due_brute_apres_deductions: 819.95
+        complement_are_brut: 851.00
+        complement_are_deductions: 31.05
+        complement_are_net: 819.95
 
 - name: Test 16 - Vérifie le calcul du complément ARE dans un cas sur plusieurs périodes différentes
   input:
@@ -255,15 +255,15 @@
         2022-02: 10
         2022-03: 13
         2022-04: 12
-    complement_are_allocation_mensuelle_due_brute:
+    complement_are_brut:
         2022-02: 351.1
         2022-03: 456.43
         2022-04: 421.32
-    complement_are_deductions_montant_mensuel:
+    complement_are_deductions:
         2022-02: 17.1
         2022-03: 22.23
         2022-04: 20.52
-    complement_are_allocation_mensuelle_due_brute_apres_deductions:
+    complement_are_net:
         2022-02: 334
         2022-03: 434.20
         2022-04: 400.8
