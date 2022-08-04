@@ -55,7 +55,7 @@ class eligibilite_indemnite_inflation_salarie_prive(Variable):
     def formula(individu, period, parameters):
 
         # éligibilité statut
-        oct_2021 = periods.period("2021-10")
+        oct_2021 = periods.period('2021-10')
         eligibilite_activite = individu('activite', oct_2021) == TypesActivite.actif
         eligibilite_alternance = individu('alternant', oct_2021) > 0
         eligibilite = (eligibilite_activite + eligibilite_alternance) > 0
