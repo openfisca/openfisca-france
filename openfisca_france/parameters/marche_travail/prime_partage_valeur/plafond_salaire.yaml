@@ -1,7 +1,7 @@
 description: Plafond rémunération en SMIC pour être éligible à l'exonération
 values:
-  2022-01-01:
-    value: 0
+  2022-08-01:
+    value: 3
 metadata:
   ux_name: Salaire maximal d'éligibilité à la PPV, en nombre de SMIC annuels
   unit: SMIC

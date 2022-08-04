@@ -1,7 +1,7 @@
 description: Plafond annuel d'exonération PPV (sous condition employeur)
 values:
-  2022-01-01:
-    value: 0
+  2022-08-01:
+    value: 6000
 metadata:
   ux_name: Deuxième plafond d'exonération sous condition employeur
   unit: currency

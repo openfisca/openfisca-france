@@ -1,7 +1,7 @@
 description: Plafond annuel d'exonération PPV (sous condition de rémunération)
 values:
-  2022-01-01:
-    value: 0
+  2022-08-01:
+    value: 3000
 metadata:
   ux_name: Premier plafond d'exonération
   unit: currency
