@@ -674,6 +674,9 @@ class prime_partage_valeur_exoneree_exceptionnelle(Variable):
             ppv_parameters.plafond_exoneration_avec_accord_interessement,
             ppv_parameters.plafond_exoneration,
             )
+        # Le plafond doit être diminué de la prime PEPA éventuellement versée début 2022
+        prime_exceptionnelle_pouvoir_achat = individu('prime_exceptionnelle_pouvoir_achat', period)
+        plafond_ppv_exoneree = plafond_ppv_exoneree - prime_exceptionnelle_pouvoir_achat
         ppv_eligibilite_exceptionnelle = individu('ppv_eligibilite_exceptionnelle', period)
         return (
             min_(prime_partage_valeur, plafond_ppv_exoneree)
