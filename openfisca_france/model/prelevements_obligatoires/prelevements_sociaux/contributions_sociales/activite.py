@@ -218,7 +218,6 @@ class salaire_imposable(Variable):
         hsup = individu('hsup', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         complementaire_sante_salarie = individu('complementaire_sante_salarie', period)
-        prime_exceptionnelle_pouvoir_achat_non_exoneree = individu('prime_exceptionnelle_pouvoir_achat_non_exoneree', period)
         # Revenu du foyer fiscal projeté sur le demandeur
         rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options = [DIVIDE])
         rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -237,7 +236,6 @@ class salaire_imposable(Variable):
             + indemnite_fin_contrat
             + complementaire_sante_salarie
             + indemnite_compensatrice_csg
-            + prime_exceptionnelle_pouvoir_achat_non_exoneree
             )
 
 
@@ -256,9 +254,8 @@ class salaire_net(Variable):
         salaire_imposable = individu('salaire_imposable', period)
         crds_salaire = individu('crds_salaire', period)
         csg_imposable_salaire = individu('csg_imposable_salaire', period)
-        prime_exceptionnelle_pouvoir_achat_exoneree = individu('prime_exceptionnelle_pouvoir_achat_exoneree', period)
 
-        return salaire_imposable + crds_salaire + csg_imposable_salaire + prime_exceptionnelle_pouvoir_achat_exoneree
+        return salaire_imposable + crds_salaire + csg_imposable_salaire
 
     def formula_2019_01_01(individu, period, parameters):
         '''
@@ -268,8 +265,8 @@ class salaire_net(Variable):
         salaire_imposable = individu('salaire_imposable', period)
         crds_salaire = individu('crds_salaire', period)
         csg_imposable_salaire = individu('csg_imposable_salaire', period)
-        prime_exceptionnelle_pouvoir_achat = individu('prime_exceptionnelle_pouvoir_achat', period)
-        return salaire_imposable + crds_salaire + csg_imposable_salaire + prime_exceptionnelle_pouvoir_achat
+        prime_exceptionnelle_pouvoir_achat_exoneree = individu('prime_exceptionnelle_pouvoir_achat_exoneree', period, options = [DIVIDE])
+        return salaire_imposable + crds_salaire + csg_imposable_salaire + prime_exceptionnelle_pouvoir_achat_exoneree
 
 
 class tehr(Variable):

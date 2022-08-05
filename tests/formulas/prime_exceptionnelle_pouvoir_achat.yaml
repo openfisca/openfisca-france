@@ -1,134 +1,222 @@
-#  test à faire :
-#  pas de prime ok
-#  prime minimum de 1 euro ok
-#  cas général à 1000 euros ok
-#  test à 1001 euros ok
-#  test à 2000 e ok
-#  test avec accord et pas d'accord
-#  test pour employeur salaire super brut
-# Test pour 3 fois le smic au dessus et en dessous
-
-- name: Prime exceptionnelle de pouvoir d'achat d'un montant de 1001 euros et un salaire mensuel de 5000 euros
-  period: 2021-09
+- name: Prime exceptionnelle de pouvoir d'achat d'un montant de 1000 € et un salaire mensuel de 5000 € #  (cas 4 : exonérée jusqu'à 1000 seulement)
+  period: 2021
   input:
-    categorie_salarie: salarie
-    prime_exceptionnelle_pouvoir_achat: 1001
+    categorie_salarie: [salarie, salarie]
+    prime_exceptionnelle_pouvoir_achat:
+      2021: [1000, 0]
     salaire_de_base:
-      2021-01: 5000
-      2021-02: 5000
-      2021-03: 5000
-      2021-04: 5000
-      2021-05: 5000
-      2021-06: 5000
-      2021-07: 5000
-      2021-08: 5000
-      2021-09: 5000
-      2021-10: 5000
-      2021-11: 5000
-      2021-12: 5000
+      month:2020-01:12: [40000, 40000]
+      month:2021-01:12: [60000, 60000]  # 5000*12 Le salaire de 2021 ne lui permet pas d'être exonéré mais comme on prend en compte le salaire des 12 derniers mois alors il est exonéré
+    effectif_entreprise: [65, 65]
+    accord_interessement: [false, false]
   output:
     irpp:
-      2021: -7741
-    salaire_super_brut: 9500.045
-    prime_exceptionnelle_pouvoir_achat_exoneree: 0
-    prime_exceptionnelle_pouvoir_achat_non_exoneree: 1001
-    csg_deductible_salaire: -400.92664
-    csg_imposable_salaire: -141.50352
-    crds_salaire: -29.4799
+      2021: [-7246, -7246]
+    salaire_super_brut:
+      2021-11: [7231.7837, 7148.45]
+    prime_exceptionnelle_pouvoir_achat_exoneree: [1000, 0]
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 0]
 
-- name: Prime exceptionnelle de pouvoir d'achat d'un montant de 1500 euro sans accord d'interessement
-  period: 2020-06
+
+- name: Prime exceptionnelle de pouvoir d'achat d'un montant de 1500 € sans accord d'interessement et effectif entreprise > 50 et 2000 € sans accord et effectif < 50 #  cas 4 : exonérée jusqu'à 1000 seulement
+  period: 2020
+  input:
+    categorie_salarie: [salarie, salarie]
+    prime_exceptionnelle_pouvoir_achat: [2000, 1500]
+    effectif_entreprise: [30, 65]
+    accord_interessement: [false, false]
+    salaire_de_base: [20000, 20000]
+  output:
+    prime_exceptionnelle_pouvoir_achat_exoneree: [2000, 1000] # Exonération de 1000 car pas d'accord d'intéressement et effectif d'entreprise > 50
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 500]
+    salaire_super_brut_hors_allegements:
+      2020-04: [2365.1133, 2438.7417] # salaire brut hors allegements plus important pour le deuxième cas car il reçoit une prime non exonérée
+    salaire_imposable:
+      2020-04: [1366.8169, 1400.9998] # salaire imposable plus important pour le deuxième cas car prime non exonérée
+    csg_deductible_salaire:
+      2020-04: [-111.34977, -114.13346]
+    exonerations_et_allegements:
+      2020-04: [0, 0]
+
+
+- name: Prime exceptionnelle de pouvoir d'achat d'un montant de 2200 € avec accord d'interessement et < 50 salariés #  (cas 5 : exonérée jusqu'à 2000 seulement)
+  period: 2021
   input:
     categorie_salarie: salarie
-    prime_exceptionnelle_pouvoir_achat: 1500
-    effectif_entreprise: 28
-    accord_interessement: false
+    prime_exceptionnelle_pouvoir_achat: 2200
+    effectif_entreprise: 22
+    accord_interessement: true
     salaire_de_base:
-      2020-01: 2000
+      2021-05: 2000
   output:
-    irpp:
-      2021: 0
-    prime_exceptionnelle_pouvoir_achat_exoneree: 1500
-    prime_exceptionnelle_pouvoir_achat_non_exoneree: 0
-    salaire_super_brut: 1500
-    csg_deductible_salaire: 0
-    csg_imposable_salaire: 0
-    crds_salaire: 0
-
-- name: Prime exceptionnelle de pouvoir d'achat d'un montant de 1 euro
-  period: 2021-09
-  input:
-    categorie_salarie: salarie
-    prime_exceptionnelle_pouvoir_achat: 1
-    salaire_de_base: 0
-  output:
-    salaire_super_brut: 1
-    prime_exceptionnelle_pouvoir_achat_exoneree: 1
-    prime_exceptionnelle_pouvoir_achat_non_exoneree: 0
-    csg_deductible_salaire: 0
-    csg_imposable_salaire: 0
-    crds_salaire: 0
-
-- name: Prime exceptionnelle de pouvoir d'achat au plafond de 1000 euros (cas général)
-  period: 2020-05
-  input:
-    prime_exceptionnelle_pouvoir_achat: 1300
-    salaire_de_base: 700
-  output:
-    prime_exceptionnelle_pouvoir_achat_exoneree: 1300
-    prime_exceptionnelle_pouvoir_achat_non_exoneree: 0
-    salaire_super_brut: 2290.19
-    csg_deductible_salaire: -46.767
-    csg_imposable_salaire: -16.506
-    crds_salaire: -3.43875
-
-- name: Prime exceptionnelle de pouvoir d'achat au plafond de 2000 euros (cas avec accord d'interessement)
-  period: 2021-10
-  input:
-    categorie_salarie: salarie
-    prime_exceptionnelle_pouvoir_achat: 2000
-    salaire_de_base: 2000
-    effectif_entreprise: 37
-    accord_interessement: true
-  output:
-    # participation_effort_construction : 9 euros à partir de 50 salariés
-    salaire_net_a_payer: 1583.1951 + 2000
-    crds_salaire: -9.825
-    csg_imposable_salaire: -47.16
-    csg_deductible_salaire: -133.62
-    salaire_super_brut: 2829.12 + 2000 + 9 # la prime n'est pas imposée
-    # irpp_economique: 0
     prime_exceptionnelle_pouvoir_achat_exoneree: 2000
-    prime_exceptionnelle_pouvoir_achat_non_exoneree: 0
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: 200 #  Non exonéré car le montant dépasse les 2000 €
+    salaire_super_brut:
+      2021-05: 3028.4702
 
-- name: Prime exceptionnelle de pouvoir d'achat au plafond de 2000 euros sans accord d'interessement
-  period: 2021-10
+
+- name: Prime exceptionnelle de pouvoir d'achat d'un montant inférieur à 1000 € avec et sans accord d'interessement #  (cas 2 : exonérée)
+  period: 2021
   input:
-    categorie_salarie: salarie
-    salaire_de_base: 2000
-    prime_exceptionnelle_pouvoir_achat: 2000
+    categorie_salarie: [salarie, salarie]
+    prime_exceptionnelle_pouvoir_achat: [2000, 2000]
+    effectif_entreprise: [28, 28]
+    #  L'accord d'intéressement ne doit pas avoir d'effet sur les entreprises de moins de 50 salariés.
+    accord_interessement: [true, false]
+    salaire_de_base:
+      2021-05: [2000, 2000]
+  output:
+    prime_exceptionnelle_pouvoir_achat_exoneree: [2000, 2000]
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 0]
+    salaire_super_brut:
+      2021-05: [3004.7869, 3004.7869]
+
+
+- name: Prime exceptionnelle de pouvoir d'achat hors période de validité
+  period: 2023
+  input:
+    prime_exceptionnelle_pouvoir_achat: [0, 2300]
+    salaire_de_base:
+      2022-05: [3000, 3000]
+    effectif_entreprise: [55, 55]
+    accord_interessement: [false, false]
+  output:
+    prime_exceptionnelle_pouvoir_achat_exoneree: [0, 0]
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 0]
+    salaire_super_brut:
+      2022-05: [4243.68, 4243.68]
+
+
+- name: Prime exceptionnelle de pouvoir d'achat au dessus de 2000 € sans accord d'intéressement et effectif entreprise > 50 #  ( cas 6 exonération jusqu'à 1000)
+  period: 2020
+  input:
+    prime_exceptionnelle_pouvoir_achat: 2300
+    salaire_de_base: 2000*12
+    effectif_entreprise: 55
     accord_interessement: false
   output:
-    salaire_super_brut: 4829.12
-    prime_exceptionnelle_pouvoir_achat: 2000
-    prime_exceptionnelle_pouvoir_achat_non_exoneree: 0
-    prime_exceptionnelle_pouvoir_achat_exoneree: 2000
-    csg_imposable_salaire: -47.16
-    csg_deductible_salaire: -133.62
-    crds_salaire: -9.825
+    prime_exceptionnelle_pouvoir_achat_exoneree: 1000
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: 1300 # Non exonéré jusqu'à 2000 € car ni accord d'intéressement ni effectif d'entreprise
+    salaire_super_brut:
+      2020-08: 3093.105
 
-- name: Prime exceptionnelle de pouvoir d'achat à 3 fois le SMIC euros avec accord d'interessement
-  period: 2021-05
+
+- name: Prime exceptionnelle de pouvoir d'achat au plafond de 2000 € (cas avec accord d'interessement) #  (cas 3 : exonérée)
+  period: 2021
+  input:
+    categorie_salarie: [salarie, salarie]
+    prime_exceptionnelle_pouvoir_achat: [2000, 2000]
+    salaire_de_base:
+      2020: [24000, 65000]
+    effectif_entreprise: [55, 55]
+    accord_interessement: [true, true]
+  output:
+    prime_exceptionnelle_pouvoir_achat_exoneree: [2000, 0]
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 2000] # Non exonéré car salaire annuel < 3 SMIC
+    salaire_net_a_payer:
+      2020-05: [1583.1951, 4303.9043]
+    crds_salaire:
+      2020-05: [-9.825, -26.609383]
+    csg_imposable_salaire:
+      2020-05: [-47.16, -127.72504]
+    csg_deductible_salaire:
+      2020-05: [-133.62, -361.8876]
+    salaire_super_brut:
+      2020-05: [2829.12, 7671.798]
+
+
+- name: Prime exceptionnelle de pouvoir d'achat pour un salarié à temps partiel < 3*SMIC mais dont l'équivalent temps plein est > 3*SMIC
+  period: 2021
   input:
     categorie_salarie: salarie
-    salaire_de_base: 8909.35
+    quotite_de_travail: 0.5
+    salaire_de_base:
+      2020: 1670 * 3 * 12
     prime_exceptionnelle_pouvoir_achat: 2000
-    accord_interessement: true
-    effectif_entreprise: 50
+    accord_interessement: false
+    effectif_entreprise: 55
   output:
-    prime_exceptionnelle_pouvoir_achat_non_exoneree: 2000
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: 2000 #  Non exonéré car salaire de base > 3 SMIC
     prime_exceptionnelle_pouvoir_achat_exoneree: 0
-    salaire_super_brut: 17597.398
-    csg_imposable_salaire: -257.24255
-    csg_deductible_salaire: -728.8539
-    crds_salaire: -53.592197
+
+
+- name: Prime exceptionnelle de pouvoir d'achat pour une personne avec un salaire de 45 000 € sur 12 mois glissant
+  period: 2022
+  input:
+    categorie_salarie: [salarie, salarie]
+    salaire_de_base:
+      2021-01: [1, 45000]
+      2021-02: [2, 2]
+      2021-03: [2, 2]
+      2021-04: [2, 2]
+      2021-05: [2, 2]
+      2021-06: [2, 2]
+      2021-07: [2, 2]
+      2021-08: [2, 2]
+      2021-09: [2, 2]
+      2021-10: [2, 2]
+      2021-11: [2, 2]
+      2021-12: [45000, 1]
+    prime_exceptionnelle_pouvoir_achat: [2000, 2000]
+    accord_interessement: [true, true]
+    effectif_entreprise: [55, 55]
+  output:
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 0]
+    prime_exceptionnelle_pouvoir_achat_exoneree: [2000, 2000]
+
+
+- name: Prime exceptionnelle de pouvoir d'achat pour une personne avec un salaire de 59241 € (>3 x SMIC) visible en mensuel
+  period: 2021
+  input:
+    categorie_salarie: [salarie, salarie]
+    salaire_de_base:
+      2020-01: [1, 65000]
+      2020-02: [2, 2]
+      2020-03: [2, 2]
+      2020-04: [2, 2]
+      2020-05: [2, 2]
+      2020-06: [2, 2]
+      2020-07: [2, 2]
+      2020-08: [2, 2]
+      2020-09: [2, 2]
+      2020-10: [2, 2]
+      2020-11: [2, 2]
+      2020-12: [65000, 1]
+    prime_exceptionnelle_pouvoir_achat: [2000, 2000]
+    accord_interessement: [true, true]
+    effectif_entreprise: [55, 55]
+  output:
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: [2000, 2000]
+    prime_exceptionnelle_pouvoir_achat_exoneree: [0, 0]
+
+
+- name: Prime exceptionnelle de pouvoir d'achat exonérée pour un salaire de 150000 € car on prend pas en compte le mois en cours
+  period: 2021
+  input:
+    categorie_salarie: [salarie, salarie]
+    salaire_de_base: [1000, 150000]
+    prime_exceptionnelle_pouvoir_achat: [2000, 2000]
+    accord_interessement: [true, true]
+    effectif_entreprise: [50, 50]
+  output:
+    prime_exceptionnelle_pouvoir_achat_exoneree: [2000, 2000]
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 0]
+
+
+- name: Vérification périodes (PEPA calculée sur 24 mois)
+  period: 2021
+  input:
+    categorie_salarie:
+      month:2019-09:24: [salarie, salarie]
+    salaire_de_base:
+      month:2019-09:24: [100_000, 100_000]  # ≈ 4167 * 24
+    prime_exceptionnelle_pouvoir_achat: [10500, 0]
+    effectif_entreprise:
+      month:2019-09:24: [65, 65]
+    accord_interessement:
+      month:2019-09:24: [false, false]
+  output:
+    prime_exceptionnelle_pouvoir_achat_exoneree:
+      2021: [1000, 0] #  Exonération de 1000 car pas d'accord d'intéressement et effectif > 50
+    prime_exceptionnelle_pouvoir_achat_non_exoneree:
+      2021: [9500, 0]

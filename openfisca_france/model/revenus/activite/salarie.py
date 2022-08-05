@@ -559,14 +559,14 @@ class prime_exceptionnelle_pouvoir_achat(Variable):
     value_type = float
     entity = Individu
     label = "Prime exceptionnelle de pouvoir d'achat (prime Macron)"
-    definition_period = MONTH
+    definition_period = YEAR  # La pepa est versée en fonction du salaire des 12 derniers mois
     set_input = set_input_divide_by_period
 
 
 class accord_interessement(Variable):
     value_type = bool
     entity = Individu
-    label = "Accord d'intéressement"
+    label = "L'individu travaille dans une entreprise couverte par un accord d'intéressement"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -575,75 +575,83 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
     value_type = float
     entity = Individu
     label = "Prime exceptionnelle de pouvoir d'achat (prime Macron), partie exonérée"
-    definition_period = MONTH
+    definition_period = YEAR
+    reference = 'https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000043805912'
+    #  La pepa exonérée représente l'éxonération de la prime des cotisations salariales, patronales et l’impôt sur le revenu. La pepa prévoit l'absence de substitution et donc le caractère « fantôme » de la prime au regard des ressources des administrations publiques et singulièrement de la sécurité sociale.
     set_input = set_input_divide_by_period
+    end = '2022-03-31'
 
     def formula_2019_01_01(individu, period, parameters):
-        salaire_de_base = individu('salaire_de_base', period)
-        smic_b_mensuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel
+        '''
+        Voici l'explication du dispositif :
+        https://boss.gouv.fr/portail/accueil/mesures-exceptionnelles/instruction-du-19-aout-2021.html
+        Prime exceptionnelle de pouvoir d'achat (prime Macron), voici comment j'ai écrit mon calcul :
+        si salaire < 3 SMIC alors
+            si prime pepa < 1000 alors
+                exoneration = min (prime pepa, 1000)
+            sinon (cas prime pepa >= 1000)
+                si accord interessement ou effectif salarié < 50
+                    alors exoneration= min (prime pepa,2000)
+                sinon
+                    exoneration = min (prime pepa, 1000)
+        sinon
+            Pas d'exonération
+        '''
+        annee_glissante = period.start.period('year').offset(-1)
+
+        salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
+
+        smic_proratise_janvier = individu('smic_proratise', period.first_month)
+        smic_annuel = smic_proratise_janvier * 12
+
+        quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
         plafond_salaire = parameters(period).marche_travail.prime_pepa.plafond_salaire
-        condition_salaire = salaire_de_base < (smic_b_mensuel * plafond_salaire)
-        prime_exceptionnelle_pouvoir_achat = individu('prime_exceptionnelle_pouvoir_achat', period)
-        seuil_exoneration = parameters(period).marche_travail.prime_pepa.seuil_exoneration
-        prime_inf_seuil_1 = prime_exceptionnelle_pouvoir_achat < parameters(period).marche_travail.prime_pepa.seuil_exoneration
-        accord_interessement = individu('accord_interessement', period)
-        effectif_entreprise = individu('effectif_entreprise', period)
-        plafond_effectif_entreprise = parameters(period).marche_travail.prime_pepa.plafond_effectif_entreprise
-        # eligibilite = effectif_entreprise < plafond_effectif_entreprise
+
+        # "une rémunération inférieure à trois fois la valeur annuelle du salaire minimum de croissance
+        # correspondant à la durée de travail prévue au contrat"
+        # condition_salaire = (
+        #     salaire_de_base_mensuel_moyen * quotite_de_travail
+        #     ) < (
+        #         smic_b_mensuel * plafond_salaire
+        #         )
+        condition_remuneration = (
+            salaire_de_base_annuel  # TODO remunération avec primes ?
+            ) < (
+                smic_annuel * plafond_salaire * quotite_de_travail
+                )
+
+        prime_exceptionnelle_pouvoir_achat = individu(
+            'prime_exceptionnelle_pouvoir_achat',
+            period)
+
+        plafond_exoneration = parameters(period).marche_travail.prime_pepa.plafond_exoneration
+        prime_inf_seuil_1 = prime_exceptionnelle_pouvoir_achat <= plafond_exoneration
+
+        accord_interessement = individu('accord_interessement', period.first_month)
+        effectif_entreprise = individu('effectif_entreprise', period.first_month)
         plafond_effectif_entreprise = parameters(period).marche_travail.prime_pepa.plafond_effectif_entreprise
         condition_entreprise = accord_interessement + (effectif_entreprise < plafond_effectif_entreprise)
-        seuil_exoneration_avec_accord_interessement = parameters(period).marche_travail.prime_pepa.seuil_exoneration_avec_accord_interessement
-        return (condition_salaire
+        plafond_exoneration_avec_accord_interessement = parameters(period).marche_travail.prime_pepa.plafond_exoneration_avec_accord_interessement
+        return (condition_remuneration
             * where(
                 prime_inf_seuil_1,
-                min_(prime_exceptionnelle_pouvoir_achat, seuil_exoneration),
+                min_(prime_exceptionnelle_pouvoir_achat, plafond_exoneration),
                 where(
                     condition_entreprise,
-                    min_(prime_exceptionnelle_pouvoir_achat, seuil_exoneration_avec_accord_interessement),
-                    min_(prime_exceptionnelle_pouvoir_achat, seuil_exoneration)
+                    min_(prime_exceptionnelle_pouvoir_achat, plafond_exoneration_avec_accord_interessement),
+                    plafond_exoneration
                     )
                 )
                 )
-
-        # accord_interessement = individu('accord_interessement', period)
-        # effectif_entreprise = individu('effectif_entreprise', period)
-        # plafond_effectif_entreprise = parameters(period).marche_travail.prime_pepa.plafond_effectif_entreprise
-        # eligibilite = effectif_entreprise < plafond_effectif_entreprise
-        # seuil_exoneration_avec_accord_interessement = parameters(period).marche_travail.prime_pepa.seuil_exoneration_avec_accord_interessement
-        # seuil_exoneration = parameters(period).marche_travail.prime_pepa.seuil_exoneration
-        # return where(
-        #     condition_salaire * (prime_exceptionnelle_pouvoir_achat < seuil_exoneration,
-        #     prime_exceptionnelle_pouvoir_achat,
-        #     min_(prime_exceptionnelle_pouvoir_achat, seuil_exoneration_avec_accord_interessement) * (accord_interessement + eligibilite + plafond_effectif_entreprise)
-        # )
-
-# si salaire < 3 SMIC
-# alors si prime pepa < 1000
-# alors exoneration = min (prime pepa, 1000)
-# sinon ( prime pepa >= 1000)
-# alors si accord interessement ou effectif salarié < 50
-# alors exoneration= min (prime pepa,2000)
-# sinon exoneration = min (prime pepa, 1000)
-
-# condition_salaire = salaire_de_base < (smic_b_mensuel * plafond_salaire)
-# seuil_exoneration = parameters(period).marche_travail.prime_pepa.seuil_exoneration
-# seuil_exoneration_avec_accord_interessement = parameters(period).marche_travail.prime_pepa.seuil_exoneration_avec_accord_interessement
-# smic_b_mensuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel
-# plafond_salaire = parameters(period).marche_travail.prime_pepa.plafond_salaire
-# salaire_de_base = individu('salaire_de_base', period)
-# return where(
-# prime_exceptionnelle_pouvoir_achat < seuil_exoneration,
-# prime_exceptionnelle_pouvoir_achat,
-# min_(prime_exceptionnelle_pouvoir_achat, seuil_exoneration_avec_accord_interessement) * (accord_interessement + eligibilite + plafond_effectif_entreprise)
-# ) * condition_salaire
 
 
 class prime_exceptionnelle_pouvoir_achat_non_exoneree(Variable):
     value_type = float
     entity = Individu
     label = "Prime exceptionnelle de pouvoir d'achat (prime Macron), partie non exonérée"
-    definition_period = MONTH
+    definition_period = YEAR
     set_input = set_input_divide_by_period
+    end = '2022-03-31'
 
     def formula_2019_01_01(individu, period, parameters):
         prime_exceptionnelle_pouvoir_achat = individu('prime_exceptionnelle_pouvoir_achat', period)
@@ -655,15 +663,19 @@ class prime_exceptionnelle_pouvoir_achat_non_exoneree(Variable):
 class primes_salaires_non_exonerees(Variable):
     value_type = float
     entity = Individu
-    label = 'Indemnités, primes et avantages en argent non exonérées (brut)'
+    label = 'Indemnités, primes et avantages en argent non exonérés (brut)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2019_01_01(individu, period, parameters):
         primes_salaires = individu('primes_salaires', period)
         prime_exceptionnelle_pouvoir_achat_non_exoneree = \
-            individu('prime_exceptionnelle_pouvoir_achat_non_exoneree', period)
+            individu('prime_exceptionnelle_pouvoir_achat_non_exoneree', period, options = [DIVIDE])
         return primes_salaires + prime_exceptionnelle_pouvoir_achat_non_exoneree
+
+    def formula(individu, period, parameters):
+        primes_salaires = individu('primes_salaires', period)
+        return primes_salaires
 
 
 class complementaire_sante_montant(Variable):
@@ -1222,7 +1234,7 @@ class salaire_super_brut_hors_allegements(Variable):
         depense_cantine_titre_restaurant_employeur = individu('depense_cantine_titre_restaurant_employeur', period)
         reintegration_titre_restaurant_employeur = individu('reintegration_titre_restaurant_employeur', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
-        prime_exceptionnelle_pouvoir_achat_non_exoneree = individu('prime_exceptionnelle_pouvoir_achat_non_exoneree', period)
+        primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
         salaire_super_brut_hors_allegements = (
             salaire_de_base
             + remuneration_apprenti
@@ -1234,7 +1246,7 @@ class salaire_super_brut_hors_allegements(Variable):
             + depense_cantine_titre_restaurant_employeur
             - reintegration_titre_restaurant_employeur
             - cotisations_employeur
-            + prime_exceptionnelle_pouvoir_achat_non_exoneree
+            + primes_salaires_non_exonerees
             )
 
         return salaire_super_brut_hors_allegements
@@ -1251,16 +1263,14 @@ class salaire_super_brut(Variable):
         period = period
         salaire_super_brut_hors_allegements = individu('salaire_super_brut_hors_allegements', period)
         exonerations_et_allegements = individu('exonerations_et_allegements', period)
-        prime_exceptionnelle_pouvoir_achat_exoneree = individu('prime_exceptionnelle_pouvoir_achat_exoneree', period)
-        return salaire_super_brut_hors_allegements - exonerations_et_allegements + prime_exceptionnelle_pouvoir_achat_exoneree
+        return salaire_super_brut_hors_allegements - exonerations_et_allegements
 
     def formula_2019_01_01(individu, period, parameters):
         period = period
         salaire_super_brut_hors_allegements = individu('salaire_super_brut_hors_allegements', period)
         exonerations_et_allegements = individu('exonerations_et_allegements', period)
-        prime_exceptionnelle_pouvoir_achat = individu('prime_exceptionnelle_pouvoir_achat', period)
-
-        return salaire_super_brut_hors_allegements - exonerations_et_allegements + prime_exceptionnelle_pouvoir_achat
+        prime_exceptionnelle_pouvoir_achat_exoneree = individu('prime_exceptionnelle_pouvoir_achat_exoneree', period, options = [DIVIDE])
+        return salaire_super_brut_hors_allegements - exonerations_et_allegements + prime_exceptionnelle_pouvoir_achat_exoneree
 
 
 class exonerations_et_allegements(Variable):
@@ -1306,8 +1316,7 @@ class cout_du_travail(Variable):
     def formula(individu, period, parameters):
         salaire_super_brut = individu('salaire_super_brut', period)
         cout_differe = individu('cout_differe', period)
-        prime_exceptionnelle_pouvoir_achat_exoneree = individu('prime_exceptionnelle_pouvoir_achat_exoneree', period)
-        return salaire_super_brut - cout_differe + prime_exceptionnelle_pouvoir_achat_exoneree
+        return salaire_super_brut - cout_differe
 
 
 class cout_differe(Variable):
