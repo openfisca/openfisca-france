@@ -107,7 +107,7 @@
     categorie_salarie: [salarie, salarie]
     prime_exceptionnelle_pouvoir_achat: [2000, 2000]
     salaire_de_base:
-      2020: [24000, 65000]
+      2020: [24_000, 65_000]
     effectif_entreprise: [55, 55]
     accord_interessement: [true, true]
   output:
@@ -127,17 +127,31 @@
 
 - name: Prime exceptionnelle de pouvoir d'achat pour un salarié à temps partiel < 3*SMIC mais dont l'équivalent temps plein est > 3*SMIC
   period: 2021
+  relative_error_margin: 0.05
   input:
-    categorie_salarie: salarie
-    quotite_de_travail: 0.5
+    categorie_salarie: [salarie, salarie, salarie]
+    # Pour un même salaire on fait varier la quotité de travail
+    quotite_de_travail:
+      2020: [12, 11.9, 12.1]
+      2021: [12, 11.9, 12.1]
     salaire_de_base:
-      2020: 1670 * 3 * 12
-    prime_exceptionnelle_pouvoir_achat: 2000
-    accord_interessement: false
-    effectif_entreprise: 55
+      # SMIC 2021-01-01: 1554.58 * 3 * 12 = 55964.88
+      2020: [55_966, 55_966, 55_966]
+      2021: [55_966, 55_966, 55_966]
+    prime_exceptionnelle_pouvoir_achat: [1200, 1200, 1200]
   output:
-    prime_exceptionnelle_pouvoir_achat_non_exoneree: 2000 #  Non exonéré car salaire de base > 3 SMIC
-    prime_exceptionnelle_pouvoir_achat_exoneree: 0
+    quotite_de_travail:
+      2021-01: [1, 0.99, 1.008]
+    smic_proratise:
+      2021-01: [1554.6174, 1554.6174, 1554.6174]
+    salaire_de_base:
+      2021-01: [4663, 4663, 4663]
+    # Le deuxième est non exonéré car son salaire équivalent temps plein est > 3 SMIC
+    prime_exceptionnelle_pouvoir_achat_exoneree: [1_200, 0, 1_200]
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 1_200, 0]
+    salaire_net:
+      2021-01: [3_800, 3_780.6, 3_796.31]
+
 
 
 - name: Prime exceptionnelle de pouvoir d'achat pour une personne avec un salaire de 45 000 € sur 12 mois glissant
@@ -165,7 +179,7 @@
     prime_exceptionnelle_pouvoir_achat_exoneree: [2000, 2000]
 
 
-- name: Prime exceptionnelle de pouvoir d'achat pour une personne avec un salaire de 59241 € (>3 x SMIC) visible en mensuel
+- name: Prime exceptionnelle de pouvoir d'achat pour une personne avec un salaire de 65 000 € (>3 x SMIC) visible en mensuel
   period: 2021
   input:
     categorie_salarie: [salarie, salarie]
@@ -190,7 +204,7 @@
     prime_exceptionnelle_pouvoir_achat_exoneree: [0, 0]
 
 
-- name: Prime exceptionnelle de pouvoir d'achat exonérée pour un salaire de 150000 € car on prend pas en compte le mois en cours
+- name: Prime exceptionnelle de pouvoir d'achat exonérée pour un salaire de 150 000 € car on prend pas en compte le mois en cours
   period: 2021
   input:
     categorie_salarie: [salarie, salarie]

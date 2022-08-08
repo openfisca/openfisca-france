@@ -609,13 +609,8 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
 
         # "une rémunération inférieure à trois fois la valeur annuelle du salaire minimum de croissance
         # correspondant à la durée de travail prévue au contrat"
-        # condition_salaire = (
-        #     salaire_de_base_mensuel_moyen * quotite_de_travail
-        #     ) < (
-        #         smic_b_mensuel * plafond_salaire
-        #         )
         condition_remuneration = (
-            salaire_de_base_annuel  # TODO remunération avec primes ?
+            salaire_de_base_annuel
             ) < (
                 smic_annuel * plafond_salaire * quotite_de_travail
                 )
