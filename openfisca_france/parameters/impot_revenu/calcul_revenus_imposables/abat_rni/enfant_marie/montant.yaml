@@ -88,6 +88,8 @@ values:
     value: 5947
   2020-01-01:
     value: 5959
+  2022-01-01: 
+    value: 6042
 metadata:
   ux_name: Abattement
   description_en: Tax allowance for net taxable income ( 1978 - )
@@ -273,10 +275,14 @@ metadata:
       title: LOI n° 2020-1721 du 29 décembre 2020 de finances pour 2021 art 2 I 1
     - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464076/2019-12-30/
       title: Article 196 B du CGI
-  last_review: "2021-12-15"
+    2022-01-01:
+    - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
+      title: LOI n° 2021-1900 du 30 décembre 2021 de finances pour 2022 art 2 I 1
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041464076/2022-08-08/
+      title: Article 196 B du Code général des impôts
+  last_review: "2022-08-08"
 documentation: |-
   Abattement pour rattachement d'enfants mariés : article 196 B du CGI
   Autres références:
   https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/abat_rni/
   http://bofip.impots.gouv.fr/bofip/2036-PGP.html
-  https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000037985596
