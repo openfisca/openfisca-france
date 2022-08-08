@@ -35,7 +35,7 @@ coefficient_assiette_salaire_reprise:
       2011-05-06:
         href: https://www.unedic.org/sites/default/files/circulaires/ci201125.pdf
         title: Circulaire Unédic n°2011-25 du 7 juillet 2011
-      2014-09-30:
+      2014-10-01:
         href: https://www.unedic.org/sites/default/files/circulaires/ci201426.pdf
         title: Circulaire Unédic n°2014-26 du 30 septembre 2014
       2017-07-24:
@@ -61,7 +61,7 @@ coefficient_assiette_salaire_reprise:
       value: 0.70
     2011-05-06:
       value: 0.70
-    2014-09-30:
+    2014-10-01:
       value: 0.70
     2017-07-24:
       value: 0.70
