@@ -15,38 +15,57 @@ coefficient_assiette_salaire_reprise:
   metadata:
     ux_name: Taux d'assiette unique à appliquer à la rémunération de reprise - complément ARE
     reference:
-      2001-01-01:
-        href : https://www.unedic.org/sites/default/files/regulations/RglACh01.pdf
-        title: Règlement annexé à la Convention du 1er janvier 2001 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage
-      2004-01-01:
-        href : https://www.unedic.org/sites/default/files/regulations/RglACh04.pdf
-        title: Règlement annexé à la Convention du 1er janvier 2004 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage
+      2001-07-01:
+        - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002221609
+          title: Arrêté du 4 décembre 2000 portant agrément de la convention du 1er janvier 2001 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage et du règlement annexé à cette convention
+        - href: https://www.unedic.org/sites/default/files/regulations/RglACh01.pdf
+          title: Règlement annexé à la Convention du 1er janvier 2001 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage
+      2004-07-01:
+        - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000437737
+          title: Arrêté du 28 mai 2004 portant agrément de la convention du 1er janvier 2004 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage et de son règlement annexé
+        - href: https://www.unedic.org/sites/default/files/regulations/RglACh04.pdf
+          title: Règlement annexé à la Convention du 1er janvier 2004 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage
       2006-08-21:
         href: https://www.unedic.org/sites/default/files/circulaires/ci200619.pdf
-        title: Circulaire UNEDIC relative à la mise en oeuvre des aides au reclassement instituées par la convention du 18 janvier 2006 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage
-      2009-04-22:
+        title: Circulaire n°2006-19 du 21 août 2006
+      2009-05-06:
         href: https://www.unedic.org/sites/default/files/circulaires/ci200912.pdf
-        title: Circulaire UNEDIC relative à la mise en oeuvre des aides au reclassement instituées par la convention du 19 février 2009 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage
+        title: Circulaire n°2009-12 du 6 mai 2009
       2011-05-06:
         href: https://www.unedic.org/sites/default/files/circulaires/ci201125.pdf
-        title: Mise en oeuvre des règles issues de la Convention du 6 mai 2011 relative à l'indemnisation du chômage
+        title: Circulaire n°2011-25 du 7 juillet 2011
       2014-09-30:
         href: https://www.unedic.org/sites/default/files/circulaires/ci201426.pdf
-        title: Convention du 14 mai 2014 relative à l’indemnisation du chômage
+        title: Circulaire n°2014-26 du 30 septembre 2014
       2017-07-24:
         href: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Ci2017-20.pdf
-        title: Convention du 14 avril 2017 relative à l’indemnisation du chômage
+        title: Circulaire n°2017-20 du 24 juillet 2017
       2019-07-29:
-        href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038869252
-        title: Décret n° 2019-797 du 26 juillet 2019 relatif au régime d'assurance chômage
-      2019-11-01:
-        href: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n2019-12_du_1er_novembre_2019.pdf
-        title: Réglement d'assurance chômage du 26 juillet 2019 issu du décret n°2019-797
-      2021-10-19:
+        - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038869252
+          title: Article 31 du Décret n° 2019-797 du 26 juillet 2019 relatif au régime d'assurance chômage
+        - href: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n2019-12_du_1er_novembre_2019.pdf
+          title: Circulaire n°2019-12 du 1er novembre 2019
+      2021-10-01:
         href: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf
-        title: Réglementation d'assurance chômage applicable au 1er octobre 2021
+        title: Circulaire n°2021-13 du 19 octobre 2021
   values:
-    2001-01-01:
+    2001-07-01:
+      value: 0.70
+    2004-07-01:
+      value: 0.70
+    2006-08-21:
+      value: 0.70
+    2009-05-06:
+      value: 0.70
+    2011-05-06:
+      value: 0.70
+    2014-09-30:
+      value: 0.70
+    2017-07-24:
+      value: 0.70
+    2019-07-29:
+      value: 0.70
+    2021-10-01:
       value: 0.70
 coefficient_allocation_journaliere:
   description: Coefficient permettant de déterminer l'allocation journalière ARE à partir du salaire journalier de référence
