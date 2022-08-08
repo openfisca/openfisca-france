@@ -294,16 +294,18 @@ class complement_are_csg_journaliere(Variable):
 
     def formula(individu, period, parameters):
         allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)
-        parametres_complement_are = parameters(period).chomage.complement_are
-        seuil_exoneration_contributions = parametres_complement_are.seuil_exoneration_contributions
-        coefficient_assiette_contributions = parametres_complement_are.coefficient_assiette_contributions
+        seuil_exoneration_contributions = parameters(period).chomage.complement_are.seuil_exoneration_contributions
+        chomage_brut = individu('complement_are_brut', period)
+        nombre_pss = chomage_brut / parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_mensuel
+        pallier_abattement_contributions = where(nombre_pss <= 4, 1, 4)
+        abattement_contributions = (1 - parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable.abattement.calc(pallier_abattement_contributions))
         taux_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.taux_global
-        montant_retenu_csg = round_(allocation_journaliere_brute_are - (allocation_journaliere_brute_are * coefficient_assiette_contributions * taux_csg), 2)
+        montant_retenu_csg = round_(allocation_journaliere_brute_are - (allocation_journaliere_brute_are * abattement_contributions * taux_csg), 2)
 
         return round_(
             where(
                 montant_retenu_csg >= seuil_exoneration_contributions,
-                allocation_journaliere_brute_are * coefficient_assiette_contributions * taux_csg,
+                allocation_journaliere_brute_are * abattement_contributions * taux_csg,
                 0),
             2)
 
@@ -340,16 +342,19 @@ class complement_are_crds_journaliere(Variable):
     def formula(individu, period, parameters):
         allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)
         seuil_exoneration_contributions = parameters(period).chomage.complement_are.seuil_exoneration_contributions
-        coefficient_assiette_contributions = parameters(period).chomage.complement_are.coefficient_assiette_contributions
+        chomage_brut = individu('complement_are_brut', period)
+        nombre_pss = chomage_brut / parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_mensuel
+        pallier_abattement_contributions = where(nombre_pss <= 4, 1, 4)
+        abattement_contributions = (1 - parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable.abattement.calc(pallier_abattement_contributions))
         taux_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.taux_global
         taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
-        montant_retenu_csg = round_(allocation_journaliere_brute_are - (allocation_journaliere_brute_are * coefficient_assiette_contributions * taux_csg), 2)
-        montant_retenu_crds = round_(montant_retenu_csg - (allocation_journaliere_brute_are * coefficient_assiette_contributions * taux_crds), 2)
+        montant_retenu_csg = round_(allocation_journaliere_brute_are - (allocation_journaliere_brute_are * abattement_contributions * taux_csg), 2)
+        montant_retenu_crds = round_(montant_retenu_csg - (allocation_journaliere_brute_are * abattement_contributions * taux_crds), 2)
 
         return round_(
             where(
                 montant_retenu_crds >= seuil_exoneration_contributions,
-                allocation_journaliere_brute_are * coefficient_assiette_contributions * taux_crds,
+                allocation_journaliere_brute_are * abattement_contributions * taux_crds,
                 0),
             2)
 

@@ -165,27 +165,3 @@ seuil_exoneration_contributions:
       value: 51
     2021-10-19:
       value: 53
-coefficient_assiette_contributions:
-  description: Coefficient permettant de déterminer l'assiette à partir de laquelle est calculée la CSG et la CRDS
-  metadata:
-    ux_name: Coefficient permettant de déterminer l'assiette à partir de laquelle est calculée la CSG et la CRDS
-    reference:
-      1993-07-23:
-        href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006740235/1993-07-23/
-        title: Article L136-2 du Code de la Sécurité Sociale (Version en vigueur du 23 juillet 1993 au 19 janvier 1994)
-      2004-08-17:
-        href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006740249/2004-08-17/
-        title: Article L136-2 du Code de la Sécurité Sociale (Version en vigueur du 17 août 2004 au 24 mars 2006)
-      2011-12-23:
-        href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000025013432/2011-12-23/
-        title: Article L136-2 du Code de la Sécurité Sociale (Version en vigueur du 23 décembre 2011 au 18 août 2012)
-      2022-03-21:
-        href: https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations
-        title: Fiche thématique UNEDIC - Retenues sociales sur les allocations
-  values:
-    1993-07-23:
-      value: 0.95
-    2004-08-17:
-      value: 0.97
-    2011-12-23:
-      value: 0.9825
