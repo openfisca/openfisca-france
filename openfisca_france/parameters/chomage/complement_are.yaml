@@ -53,22 +53,6 @@ coefficient_assiette_salaire_reprise:
   values:
     2001-07-01:
       value: 0.70
-    2004-07-01:
-      value: 0.70
-    2006-08-21:
-      value: 0.70
-    2009-05-06:
-      value: 0.70
-    2011-05-06:
-      value: 0.70
-    2014-10-01:
-      value: 0.70
-    2017-07-24:
-      value: 0.70
-    2019-07-29:
-      value: 0.70
-    2021-10-01:
-      value: 0.70
 coefficient_allocation_journaliere:
   description: Coefficient permettant de déterminer l'allocation journalière ARE à partir du salaire journalier de référence
   metadata:
