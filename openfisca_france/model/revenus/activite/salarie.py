@@ -598,12 +598,8 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
             Pas d'exonération
         '''
         annee_glissante = period.start.period('year').offset(-1)
-
         salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
-
-        smic_proratise_janvier = individu('smic_proratise', period.first_month)
-        smic_annuel = smic_proratise_janvier * 12
-
+        smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
         quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
         plafond_salaire = parameters(period).marche_travail.prime_pepa.plafond_salaire
 
@@ -612,7 +608,7 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
         condition_remuneration = (
             salaire_de_base_annuel
             ) < (
-                smic_annuel * plafond_salaire * quotite_de_travail
+                smic_b_annuel * plafond_salaire * quotite_de_travail
                 )
 
         prime_exceptionnelle_pouvoir_achat = individu(

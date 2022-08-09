@@ -127,7 +127,7 @@
 
 - name: Prime exceptionnelle de pouvoir d'achat pour un salarié à temps partiel < 3*SMIC mais dont l'équivalent temps plein est > 3*SMIC
   period: 2021
-  relative_error_margin: 0.05
+  relative_error_margin: 0.01
   input:
     categorie_salarie: [salarie, salarie, salarie]
     # Pour un même salaire on fait varier la quotité de travail
@@ -135,22 +135,20 @@
       2020: [12, 11.9, 12.1]
       2021: [12, 11.9, 12.1]
     salaire_de_base:
-      # SMIC 2021-01-01: 1554.58 * 3 * 12 = 55964.88
-      2020: [55_966, 55_966, 55_966]
-      2021: [55_966, 55_966, 55_966]
+      # SMIC 2021-01-01: 1554.58 * 3 * 12 = 55_964.88
+      2020: [55_964, 55_964, 55_964]
+      2021: [55_964, 55_964, 55_964]
     prime_exceptionnelle_pouvoir_achat: [1200, 1200, 1200]
   output:
     quotite_de_travail:
       2021-01: [1, 0.99, 1.008]
-    smic_proratise:
-      2021-01: [1554.6174, 1554.6174, 1554.6174]
-    salaire_de_base:
-      2021-01: [4663, 4663, 4663]
     # Le deuxième est non exonéré car son salaire équivalent temps plein est > 3 SMIC
     prime_exceptionnelle_pouvoir_achat_exoneree: [1_200, 0, 1_200]
     prime_exceptionnelle_pouvoir_achat_non_exoneree: [0, 1_200, 0]
+    salaire_de_base:
+      2021-01: [4663, 4663, 4663]
     salaire_net:
-      2021-01: [3_800, 3_780.6, 3_796.31]
+      2021-01: [3_800, 3_780, 3_799]
 
 
 
