@@ -1,4 +1,13 @@
 # Changelog
+## 116.17.0 [#1850](https://github.com/openfisca/openfisca-france/pull/1850)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 24/12/2018
+* Zones impactées :
+  - /model/revenus/activite/salarie.py
+  - /parameters/marche_travail/prime_pepa/
+* Détails :
+  - Ajout de la prime exceptionnelle de pouvoir d'achat
 
 ## 116.16.0 [#1866](https://github.com/openfisca/openfisca-france/pull/1866)
 

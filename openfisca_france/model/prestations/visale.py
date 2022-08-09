@@ -140,7 +140,7 @@ class visale_base_ressources_individuelle(Variable):
     def formula_2016_01_01(individu, period, parameters):
         ressources_individu_mensuelles = [
             'salaire_net',
-            'primes_salaires',  # Sont prises en compte toutes les « primes récurrentes perçues dans le cadre d’une activité intégrée dans le calcul du salaire ou traitement ». Note : ce revenu est brut, il devrait être net.
+            'primes_salaires_non_exonerees',  # Sont prises en compte toutes les « primes récurrentes perçues dans le cadre d’une activité intégrée dans le calcul du salaire ou traitement ». Note : ce revenu est brut, il devrait être net.
             'prime_forfaitaire_mensuelle_reprise_activite',
             'revenus_stage_formation_pro',
             'remuneration_apprenti',
