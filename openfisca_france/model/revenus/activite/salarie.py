@@ -561,7 +561,38 @@ class prime_partage_valeur(Variable):
     label = 'Prime pérenne de partage de la valeur (PPV)'
     definition_period = (YEAR)  # La PPV est versée en fonction du salaire des 12 derniers mois
     set_input = set_input_divide_by_period
+    documentation = '''
+        La PPV exonérée représente l'éxonération de la prime des cotisations salariales,
+        patronales et l'impôt sur le revenu. La PPV prévoit l'absence de substitution et
+        donc le caractère « fantôme » de la prime au regard des ressources des
+        administrations publiques et singulièrement de la sécurité sociale.
 
+        la condition de rémunération est valable jusqu'au 31 décembre 2023.
+        Alors, lorsque la rémunération est inférieure à 3 SMIC, la PPV est **aussi**
+        exonérée d'impôt sur le revenu, ainsi que des contributions prévues
+        à l'article L. 136-1 du code de la sécurité sociale
+        [CSG activité = https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033712581]
+        et à l'article 14 de l'ordonnance n° 96-50 du 24 janvier 1996 relative au remboursement
+        de la dette sociale (⑯).
+        [CRDS = https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038834962/]
+        Néanmoins, elle est incluse dans le revenu fiscal de référence (⑰).
+        => Sous 3 SMIC les 12 derniers mois, on est en plus exonéré d'IR, CSG et CRDS.
+
+        Pour tout niveau de revenu :
+        PPV est exonérée, dans la limite de 3 000 euros :
+        * de toutes les cotisations sociales d'origine légale ou conventionnelle à la charge du salarié et de l'employeur,
+        ainsi que des participations, taxes et contributions prévues :
+        * à l'article 235 bis du code général des impôts
+        [PEEC applicable au-dessus de 50 salariés = https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038586341/]
+        * et à l'article L. 6131-1 du code du travail,
+        [
+            contribution unique à la formation professionnelle (CFP ?),
+            la contribution supplémentaire,
+            contribution dédiée au financement du compte personnel de formation
+            = article L. 6131-1 du code du travail
+            ]
+        dans leur rédaction en vigueur à la date de son versement.
+        '''
 
 class prime_partage_valeur_exceptionnelle(Variable):
     value_type = float
@@ -579,95 +610,16 @@ class prime_partage_valeur_exoneree_exceptionnelle(Variable):
     reference = 'https://www.assemblee-nationale.fr/dyn/16/textes/l16b0019_projet-loi'
 
     set_input = set_input_divide_by_period
-    documentation = '''
-    La PEPA exonérée représente l'éxonération de la prime des cotisations salariales,
-    patronales et l'impôt sur le revenu. La pepa prévoit l'absence de substitution et
-    donc le caractère « fantôme » de la prime au regard des ressources des
-    administrations publiques et singulièrement de la sécurité sociale.
-
-    ---
-    PPV
-
-    Exposé des motifs : L'article 1er concerne la prime de partage de la valeur (PPV).
-    Son montant maximum est triplé par rapport à la prime exceptionnelle de pouvoir d'achat
-    qui avait cours jusqu'en mars 2022 et dont la PPV s'inspire :
-    il peut aller jusqu'à 3 000 € par bénéficiaire et par année,
-    et jusqu'à 6 000 € lorsqu'elle est versée par une entreprise
-    qui met en œuvre un dispositif d'intéressement,
-    par un organisme d'intérêt général ou,
-    s'agissant des primes versées aux travailleurs handicapés,
-    par un établissement ou service d'aide par le travail.
-    Jusqu'au 31 décembre 2023, la prime sera totalement exonérée de cotisations
-    salariales et patronales, ainsi que d'impôt pour les salariés qui perçoivent
-    jusqu'à moins de 3 SMIC par mois. Les autres salariés à partir de 3 SMIC
-    seront exonérés de cotisations salariales avec un régime fiscalo-social
-    aligné sur celui de l'intéressement et de la participation, à savoir :
-    un assujettissement de la PPV à l'IR et à la CSG/CRDS,
-    et l'application du forfait social pour l'employeur.
-    Passé cette date, le régime d'exonération des salariés situés en-dessous de 3 SMIC sera aligné sur celui des autres salariés (exonération de cotisations sociales).
-
-    Le dispositif entre en vigueur à compter du 1er août 2022.
-
-
-    Pour la PPV, la condition de rémunération est valable jusqu'au 31 décembre 2023.
-    Alors, lorsque la rémunération est inférieure à 3 SMIC, la PPV est **aussi**
-    exonérée d'impôt sur le revenu, ainsi que des contributions prévues
-    à l'article L. 136-1 du code de la sécurité sociale
-    [CSG activité = https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033712581]
-    et à l'article 14 de l'ordonnance n° 96-50 du 24 janvier 1996 relative au remboursement
-    de la dette sociale (⑯).
-    [CRDS = https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038834962/]
-    Néanmoins, elle est incluse dans le revenu fiscal de référence (⑰).
-    => Sous 3 SMIC les 12 derniers mois, on est en plus exonéré d'IR, CSG et CRDS.
-
-    Pour tout niveau de revenu :
-    PPV est exonérée, dans la limite de 3 000 euros :
-    * de toutes les cotisations sociales d'origine légale ou conventionnelle à la charge du salarié et de l'employeur,
-    ainsi que des participations, taxes et contributions prévues :
-    * à l'article 235 bis du code général des impôts
-    [PEEC applicable au-dessus de 50 salariés = https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038586341/]
-    * et à l'article L. 6131-1 du code du travail,
-    [
-        contribution unique à la formation professionnelle (CFP ?),
-        la contribution supplémentaire,
-        contribution dédiée au financement du compte personnel de formation
-        = article L. 6131-1 du code du travail
-        ]
-    dans leur rédaction en vigueur à la date de son versement.
-    '''
-
-    # def formula_2024_01_01(individu, period, parameters):
-    #     return exonération partielle
 
     def formula_2022_08_01(individu, period, parameters):
         '''
-        si prime ppv < 3000 alors
-            exoneration totale ou partielle = min (prime ppv, 3000)
-        sinon (cas prime ppv >= 3000)
-            si accord interessement
-                alors exoneration totale ou partielle = min (prime ppv, 6000)
-            sinon
-                exoneration totale ou partielle = min (prime ppv, 6000)
+        La prime exceptionnelle de partage de la valeur (PPV),
+        est réservée aux salariés qui ont un salaire de base inférieur à 3 x SMIC.
+        Elle ne peut plus être versée après le 31 décembre 2023.
         '''
-
-        # tout salarié avec un contrat de travail est éligible à l'exonération
-        # (exclut par exemple les personnes en stage)
-
-        # d'après l'exposé des motifs : le plafond maximal passe à 6000€
-        #  lorsque la PPV est versée par une entreprise
-        # qui met en œuvre :
-        # * un dispositif d'intéressement,
-        # * TODO : par un organisme d'intérêt général
-        # * TODO : ou, s'agissant des primes versées aux travailleurs handicapés,
-        #          par un établissement ou service d'aide par le travail
 
         prime_partage_valeur = individu('prime_partage_valeur_exceptionnelle', period)
         accord_interessement = individu('accord_interessement', period.first_month)
-
-        # accord d'intéressement = conditions employeur,
-        # y compris entreprise utilisatrice d'entreprise de travail exceptionnelle
-        # mettant à disposition un salarié à la date de versement de la prime
-        # ou au titre du même exercice que celui du versement.
         ppv_parameters = parameters(period).marche_travail.prime_partage_valeur
         plafond_ppv_exoneree = where(
             accord_interessement,
@@ -740,95 +692,20 @@ class prime_partage_valeur_exoneree(Variable):
     reference = 'https://www.assemblee-nationale.fr/dyn/16/textes/l16b0019_projet-loi'
 
     set_input = set_input_divide_by_period
-    documentation = '''
-    La PEPA exonérée représente l'éxonération de la prime des cotisations salariales,
-    patronales et l'impôt sur le revenu. La pepa prévoit l'absence de substitution et
-    donc le caractère « fantôme » de la prime au regard des ressources des
-    administrations publiques et singulièrement de la sécurité sociale.
-
-    ---
-    PPV
-
-    Exposé des motifs : L'article 1er concerne la prime de partage de la valeur (PPV).
-    Son montant maximum est triplé par rapport à la prime exceptionnelle de pouvoir d'achat
-    qui avait cours jusqu'en mars 2022 et dont la PPV s'inspire :
-    il peut aller jusqu'à 3 000 € par bénéficiaire et par année,
-    et jusqu'à 6 000 € lorsqu'elle est versée par une entreprise
-    qui met en œuvre un dispositif d'intéressement,
-    par un organisme d'intérêt général ou,
-    s'agissant des primes versées aux travailleurs handicapés,
-    par un établissement ou service d'aide par le travail.
-    Jusqu'au 31 décembre 2023, la prime sera totalement exonérée de cotisations
-    salariales et patronales, ainsi que d'impôt pour les salariés qui perçoivent
-    jusqu'à moins de 3 SMIC par mois. Les autres salariés à partir de 3 SMIC
-    seront exonérés de cotisations salariales avec un régime fiscalo-social
-    aligné sur celui de l'intéressement et de la participation, à savoir :
-    un assujettissement de la PPV à l'IR et à la CSG/CRDS,
-    et l'application du forfait social pour l'employeur.
-    Passé cette date, le régime d'exonération des salariés situés en-dessous de 3 SMIC sera aligné sur celui des autres salariés (exonération de cotisations sociales).
-
-    Le dispositif entre en vigueur à compter du 1er août 2022.
-
-
-    Pour la PPV, la condition de rémunération est valable jusqu'au 31 décembre 2023.
-    Alors, lorsque la rémunération est inférieure à 3 SMIC, la PPV est **aussi**
-    exonérée d'impôt sur le revenu, ainsi que des contributions prévues
-    à l'article L. 136-1 du code de la sécurité sociale
-    [CSG activité = https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033712581]
-    et à l'article 14 de l'ordonnance n° 96-50 du 24 janvier 1996 relative au remboursement
-    de la dette sociale (⑯).
-    [CRDS = https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038834962/]
-    Néanmoins, elle est incluse dans le revenu fiscal de référence (⑰).
-    => Sous 3 SMIC les 12 derniers mois, on est en plus exonéré d'IR, CSG et CRDS.
-
-    Pour tout niveau de revenu :
-    PPV est exonérée, dans la limite de 3 000 euros :
-    * de toutes les cotisations sociales d'origine légale ou conventionnelle à la charge du salarié et de l'employeur,
-    ainsi que des participations, taxes et contributions prévues :
-    * à l'article 235 bis du code général des impôts
-    [PEEC applicable au-dessus de 50 salariés = https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038586341/]
-    * et à l'article L. 6131-1 du code du travail,
-    [
-        contribution unique à la formation professionnelle (CFP ?),
-        la contribution supplémentaire,
-        contribution dédiée au financement du compte personnel de formation
-        = article L. 6131-1 du code du travail
-        ]
-    dans leur rédaction en vigueur à la date de son versement.
-    '''
-
-    # def formula_2024_01_01(individu, period, parameters):
-    #     return exonération partielle
+    
 
     def formula_2022_08_01(individu, period, parameters):
         '''
-        si prime ppv < 3000 alors
-            exoneration totale ou partielle = min (prime ppv, 3000)
-        sinon (cas prime ppv >= 3000)
-            si accord interessement
-                alors exoneration totale ou partielle = min (prime ppv, 6000)
-            sinon
-                exoneration totale ou partielle = min (prime ppv, 6000)
-        '''
-
-        # tout salarié avec un contrat de travail est éligible à l'exonération
-        # (exclut par exemple les personnes en stage)
-
-        # d'après l'exposé des motifs : le plafond maximal passe à 6000€
-        #  lorsque la PPV est versée par une entreprise
-        # qui met en œuvre :
+        Il y a deux plafond suivant que l'employeur ait ou non :
         # * un dispositif d'intéressement,
         # * TODO : par un organisme d'intérêt général
         # * TODO : ou, s'agissant des primes versées aux travailleurs handicapés,
         #          par un établissement ou service d'aide par le travail
+        '''
 
         prime_partage_valeur = individu('prime_partage_valeur', period)
         accord_interessement = individu('accord_interessement', period.first_month)
 
-        # accord d'intéressement = conditions employeur,
-        # y compris entreprise utilisatrice d'entreprise de travail temporaire
-        # mettant à disposition un salarié à la date de versement de la prime
-        # ou au titre du même exercice que celui du versement.
         ppv_parameters = parameters(period).marche_travail.prime_partage_valeur
         plafond_ppv_exoneree = where(
             accord_interessement,

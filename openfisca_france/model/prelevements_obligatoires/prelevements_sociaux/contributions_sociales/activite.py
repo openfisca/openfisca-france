@@ -51,7 +51,7 @@ class assiette_csg_abattue(Variable):
 
     def formula_2022_08_01(individu, period, parameters):
         '''
-        Ajout de la PPV à partir du 1er août
+        Ajout de la PPV à partir du 1er août 2022
         '''
         primes_salaires = individu('primes_salaires', period)
         prime_partage_valeur = individu('prime_partage_valeur', period, options=[DIVIDE])
@@ -225,30 +225,15 @@ class forfait_social(Variable):
             )
 
     def formula_2022_08_01(individu, period, parameters):
-        # Pour une rémunération salarié < 3 SMIC,
-        # seule la PPV non exonérée est dans l'assiette
-        # sinon, la PPV entière est comprise
-        # ppv_eligibilite_exonerations_complementaires = individu(
-        #     "ppv_eligibilite_exonerations_complementaires", period, options=[DIVIDE]
-        # )
-        # prime_partage_valeur_non_exoneree = individu(
-        #     "prime_partage_valeur_non_exoneree", period, options=[DIVIDE]
-        # )
-        prime_partage_valeur = individu('prime_partage_valeur', period, options=[DIVIDE])
-        # ppv_forfait_social = where(
-        #     ppv_eligibilite_exonerations_complementaires,
-        #     prime_partage_valeur_non_exoneree,
-        #     prime_partage_valeur,
-        # )
         # Seule la PPV pérenne est sousmise au forfait social, et cela intégralement
-        ppv_forfait_social = prime_partage_valeur
+        prime_partage_valeur = individu('prime_partage_valeur', period, options=[DIVIDE])
 
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options=[ADD])
         effectif_entreprise = individu('effectif_entreprise', period)
         parametres = parameters(period).prelevements_sociaux.contributions_assises_specifiquement_accessoires_salaire.forfait_social
         taux_plein = parametres.taux_plein
         # TODO : faire ça propre ! Il faut externaliser le paramètre.
-        prime_partage_valeur_a_integrer = ppv_forfait_social * (
+        prime_partage_valeur_a_integrer = prime_partage_valeur * (
             effectif_entreprise >= 250
             )
         assiette_taux_plein = (
