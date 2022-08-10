@@ -354,7 +354,31 @@
     revenu_disponible:
       2023: [41688.973, 41763.574]
 
-
+- name: Prime exceptionnelle de partage de la valeur pour un salarié à temps partiel < 3*SMIC mais dont l'équivalent temps plein est > 3*SMIC
+  period: 2023
+  relative_error_margin: 0.01
+  input:
+    categorie_salarie: [salarie, salarie, salarie]
+    # Pour un même salaire on fait varier la quotité de travail
+    quotite_de_travail:
+      2022: [12, 11.9, 12.1]
+      2023: [12, 11.9, 12.1]
+    salaire_de_base:
+      # SMIC 2022-08-01: 1678.95 * 3 * 12 = 60_442,2
+      2022: [60_442, 60_442, 60_442]
+      2023: [60_442, 60_442, 60_442]
+    prime_partage_valeur_exceptionnelle: [1200, 1200, 1200]
+  output:
+    quotite_de_travail:
+      2023-01: [1, 0.99, 1.008]
+    # Le deuxième n'a pas le droit de toucher la prime exceptionnelle car son salaire équivalent temps plein est > 3 SMIC
+    ppv_eligibilite_exceptionnelle: [1, 0, 1]
+    prime_partage_valeur_exoneree_exceptionnelle: [1_200, 0, 1_200]
+    prime_partage_valeur_non_exoneree_exceptionnelle: [0, 0, 0]
+    salaire_de_base:
+      2023-01: [5_036, 5_036, 5_036]
+    salaire_net:
+      2023-01: [4_099, 3_999, 4_098]
 
 - name: PEPA + PPV la même année, il ne faut pas dépasser le plafond PPV, en intégrant PEPA+PPV
   period: 2022
