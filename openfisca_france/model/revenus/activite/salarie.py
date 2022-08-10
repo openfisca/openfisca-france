@@ -594,6 +594,7 @@ class prime_partage_valeur(Variable):
         dans leur rédaction en vigueur à la date de son versement.
         '''
 
+
 class prime_partage_valeur_exceptionnelle(Variable):
     value_type = float
     entity = Individu
@@ -690,9 +691,7 @@ class prime_partage_valeur_exoneree(Variable):
     label = 'Prime pérenne de partage de la valeur (PPV), partie exonérée'
     definition_period = YEAR
     reference = 'https://www.assemblee-nationale.fr/dyn/16/textes/l16b0019_projet-loi'
-
     set_input = set_input_divide_by_period
-    
 
     def formula_2022_08_01(individu, period, parameters):
         '''
