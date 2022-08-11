@@ -126,6 +126,15 @@ class f2fu(Variable):
     definition_period = YEAR
 
 
+class f2tq(Variable):
+    cerfa_field = '2TQ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Intérêts imposables des obligations remboursables en actions détenues dans le PEA-PME'
+    definition_period = YEAR
+
+
 class f2ch(Variable):
     cerfa_field = '2CH'
     value_type = int
