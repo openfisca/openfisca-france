@@ -4383,6 +4383,7 @@ class patnat(Variable):
     label = "Réduction d'impôt en faveur des dépenses de préservation du patrimoine naturel"
     reference = 'http://bofip.impots.gouv.fr/bofip/6240-PGP'
     definition_period = YEAR
+    end = '2019-12-31'
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4456,6 +4457,25 @@ class patnat(Variable):
         f7ke = foyer_fiscal('f7ke', period)
 
         return f7kc + f7kd + f7ke
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Dépenses de protections du patrimoine naturel (case 7KD, 7KE)
+        2018
+        '''
+        f7kd = foyer_fiscal('f7kd', period)
+        f7ke = foyer_fiscal('f7ke', period)
+
+        return f7kd + f7ke
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Dépenses de protections du patrimoine naturel (case 7KE)
+        2019
+        '''
+        f7ke = foyer_fiscal('f7ke', period)
+
+        return f7ke
 
 
 class prcomp(Variable):
