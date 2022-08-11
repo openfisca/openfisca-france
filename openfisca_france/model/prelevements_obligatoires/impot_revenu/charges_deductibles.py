@@ -798,7 +798,7 @@ class grosses_reparations(Variable):
                 ]
             )
 
-        plafond_grosses_reparations = parameters("2017-01-01").impot_revenu.calcul_revenus_imposables.charges_deductibles.grosses_reparations.plafond
+        plafond_grosses_reparations = parameters('2017-01-01').impot_revenu.calcul_revenus_imposables.charges_deductibles.grosses_reparations.plafond
 
         return min_(report_depenses_depuis_2009, plafond_grosses_reparations)
 
@@ -822,6 +822,6 @@ class grosses_reparations(Variable):
                 ]
             )
 
-        plafond_grosses_reparations = parameters("2017-01-01").impot_revenu.calcul_revenus_imposables.charges_deductibles.grosses_reparations.plafond
+        plafond_grosses_reparations = parameters('2017-01-01').impot_revenu.calcul_revenus_imposables.charges_deductibles.grosses_reparations.plafond
 
         return min_(report_depenses_depuis_2010, plafond_grosses_reparations)
