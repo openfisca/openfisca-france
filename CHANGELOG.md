@@ -1,4 +1,15 @@
 # Changelog
+
+
+### 116.17.1 [##1874](https://github.com/openfisca/openfisca-france/pull/1874)
+
+* Changement mineur.
+* Périodes concernées : sans objet
+* Zones impactées : impot_revenu 
+* Détails :
+  - Met à jour certains paramètres
+  - Ajoute surtout des références législatives
+  
 ## 116.17.0 [#1850](https://github.com/openfisca/openfisca-france/pull/1850)
 
 * Évolution du système socio-fiscal
