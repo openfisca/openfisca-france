@@ -151,7 +151,6 @@
       2021-01: [3_800, 3_780, 3_799]
 
 
-
 - name: Prime exceptionnelle de pouvoir d'achat pour une personne avec un salaire de 45 000 € sur 12 mois glissant
   period: 2022
   input:
