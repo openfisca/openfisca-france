@@ -5903,7 +5903,7 @@ class f7kd(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)'
-    # start_date = date(2013, 1, 1)
+    end = '2019-12-31'
     definition_period = YEAR
 
 
@@ -5913,7 +5913,7 @@ class f7ke(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)'
-    # start_date = date(2014, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
