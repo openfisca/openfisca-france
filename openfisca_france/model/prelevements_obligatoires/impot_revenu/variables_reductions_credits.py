@@ -1303,12 +1303,15 @@ class f7pa_2012(Variable):
 
 
 class f7pa(Variable):
+    '''
+    NB : Cette case a de nouveau changé de signification (2019/2020 CITE ; 2021 réd. imp. abo. presse)
+    '''
     cerfa_field = '7PA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013"
-    # start_date = date(2014, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -9190,6 +9193,7 @@ class f8tz(Variable):
     entity = FoyerFiscal
     label = "Crédit d'impôt en faveur des entreprises: Apprentissage"
     definition_period = YEAR
+    end = '2019-12-31'
 
 
 class f8wa(Variable):
@@ -9290,7 +9294,7 @@ class f8wu(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Crédit d'impôt en faveur des entreprises: Maître restaurateur"
-    # start_date = date(2006, 1, 1)
+    end = '2019-12-31'
     definition_period = YEAR
 
 
