@@ -4046,6 +4046,31 @@ class f7cf(Variable):
     label = "Souscriptions au capital des PME non cotées, petites entreprises en phase de démarrage, ou d'expansion"
     definition_period = YEAR
 
+class f7ci(Variable):
+    cerfa_field = '7CI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Versements ESUS effectués du 9.5 au 31.12.2021'
+    start_date = date(2021, 1, 1)
+    definition_period = YEAR
+
+class f7ch(Variable):
+    cerfa_field = '7CH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Versements PME effectués du 10.8. au 31.12.2020 / du 9.5. au 31.12.2021 (25 %)'
+    definition_period = YEAR
+
+class f7gw(Variable):
+    cerfa_field = '7GW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Versements SFS effectués en 2020 / 2021 (25 %)'
+    start_date = date(2020, 1, 1)
+    definition_period = YEAR
 
 class f7cl(Variable):
     cerfa_field = '7CL'
@@ -4653,7 +4678,27 @@ class f7cx(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Souscriptions au capital des PME non cotées, report de versement de l'année 2015 pour les start-up"
+    label = "Souscriptions au capital des PME non cotées, report de versement de l'année n-1 ; à 18 %"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7cs(Variable):
+    cerfa_field = '7CS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Souscriptions au capital des PME non cotées, report de versement de l'année dernière ; à 25 %"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7bs(Variable):
+    cerfa_field = '7BS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Souscriptions au capital des SFS, report de versement de l'année n-1 ; à 25 %"
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -8778,7 +8823,7 @@ class f7ci(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Report concernant les investissements locatifs intermédiaires en outre-mer 2014 avec engagement de location 6 ans'
-    # start_date = date(2015, 1, 1)
+    end = '2019-12-31'
     definition_period = YEAR
 
 
