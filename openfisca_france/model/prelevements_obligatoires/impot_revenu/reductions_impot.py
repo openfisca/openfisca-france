@@ -40,7 +40,7 @@ class reductions_plafonnees(Variable):
             'rsceha',
             ]
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
 
         # Step 1: Apply ceiling to general reductions
         montants_plaf = [around(foyer_fiscal(reduction, period)) for reduction in reductions_plafonnees]
@@ -63,7 +63,7 @@ class reductions_plafonnees_om_sofica(Variable):
             'rpinel_om'
             ]
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
 
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
         reste_gen = P.plafond_1 - red_plaf
@@ -88,7 +88,7 @@ class reductions_plafonnees_esus_sfs(Variable):
             'cappme_esus_sfs'
             ]
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
 
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
         red_plaf_om = foyer_fiscal('reductions_plafonnees_om_sofica', period)
@@ -188,7 +188,8 @@ class reductions(Variable):
         '''
         reductions = [
             # Depuis 2002
-            'accult', 'adhcga', 'assvie', 'cappme', 'reduction_cotisations_syndicales',
+            'accult', 'adhcga', 'assvie', 'cappme', 'cappme_esus_sfs',
+            'reduction_cotisations_syndicales',
             'daepad', 'dfppce', 'doment', 'domlog', 'donapd',
             'ecpess', 'garext', 'intemp', 'invfor', 'invrev',
             'prcomp', 'rsceha', 'saldom', 'spfcpi',
@@ -211,11 +212,11 @@ class reductions(Variable):
             'duflot', 'donpartipol',
             'reduction_impot_exceptionnelle',
             # Introduites en 2014
-            'rpinel',
+            'rpinel_metropole', 'rpinel_om',
             # Introduites en 2017
             'rehab',
             # Introduites en 2020
-            'notredame', 'denormandie',
+            'notredame', 'denormandie_metropole', 'denormandie_om',
             ]
 
         impot_net = foyer_fiscal('ip_net', period)
@@ -1136,16 +1137,12 @@ class denormandie_om(Variable):
         '''
         denormandie_outremer_6ans = foyer_fiscal('f7nc', period)
         denormandie_outremer_9ans = foyer_fiscal('f7nd', period)
-        f7qj = foyer_fiscal('f7qj', period)
         f7qk = foyer_fiscal('f7qk', period)
         f7ql = foyer_fiscal('f7ql', period)
-        f7qn = foyer_fiscal('f7qn', period)
         f7qo = foyer_fiscal('f7qo', period)
         f7qp = foyer_fiscal('f7qp', period)
-        f7qs = foyer_fiscal('f7qs', period)
         f7qt = foyer_fiscal('f7qt', period)
         f7qu = foyer_fiscal('f7qu', period)
-        f7qx = foyer_fiscal('f7qx', period)
         f7qy = foyer_fiscal('f7qy', period)
         f7qq = foyer_fiscal('f7qq', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.denormandie

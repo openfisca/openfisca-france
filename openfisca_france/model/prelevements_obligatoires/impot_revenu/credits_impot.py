@@ -42,7 +42,7 @@ class credits_impot(Variable):
             'credit_cotisations_syndicales',
             ]
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
 
         # Get remainder of allowance for niches fiscales
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
