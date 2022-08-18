@@ -13,6 +13,57 @@ class credits_impot(Variable):
     label = "Crédits d'impôt pour l'impôt sur les revenus"
     definition_period = YEAR
 
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédits d'impôt pour l'impôt sur les revenus, prenant en compte
+        le plafonnement des niches fiscales qui s'applique à la plupart
+        des réductions et crédits d'impôts
+        '''
+
+        credits_plaf = [
+            'saldom2',
+            'ci_garext',
+
+            # dans le doute:
+            'aidper',
+            'assloy',
+            'autent',
+            'creimp',
+            'direpa',
+            'drbail',
+            'inthab',
+            'preetu',
+            'prlire',
+            'quaenv',
+        ]
+
+        credits_sans_plaf = [
+            # dans le doute:
+            'credit_cotisations_syndicales',
+        ]
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.plaf_nich.plafonnement_des_niches
+
+        # Get remainder of allowance for niches fiscales
+        red_plaf = foyer_fiscal('reductions_plafonnees', period)
+        red_plaf_om = foyer_fiscal('reductions_plafonnees_om_sofica', period)
+        red_plaf_esus_sfs = foyer_fiscal('reductions_plafonnees_esus_sfs', period)
+
+        remaining_allowance = (P.plafond_1 # general limit
+            - red_plaf # - general reductions
+            - max_(0, red_plaf_om - P.majoration_om) # - general reductions used for DOM/SOFICA
+            - max_(0, red_plaf_esus_sfs - P.majoration_esus_sfs)) # - general reductions used for ESUS/SFS
+
+        # credit available within the limit
+        montants_plaf = [around(foyer_fiscal(credit, period)) for credit in credits_plaf]
+        cred_plaf = min_(remaining_allowance, montants_plaf)
+
+        # credit available without the ceiling
+        cred_sans_plaf = [around(foyer_fiscal(credit, period)) for credit in credits_sans_plaf]
+
+        return cred_plaf + cred_sans_plaf
+
+
     def formula(foyer_fiscal, period, parameters):
         '''
         Crédits d'impôt pour l'impôt sur les revenus

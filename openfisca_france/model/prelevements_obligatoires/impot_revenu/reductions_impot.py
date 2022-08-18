@@ -8,11 +8,175 @@ from openfisca_france.model.base import *
 log = logging.getLogger(__name__)
 
 
+class reductions_plafonnees(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Réductions d'impôt sur le revenu plafonnées"
+    definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        reductions_plafonnees = [
+            'saldom',
+            'cappme',
+            'deffor', # fait partie de inv. for. ?
+            'denormandie_metropole',
+            'duflot', # NB : partie OM
+            'garext',
+            'invfor',
+            'locmeu', # Censi-Bouvard
+            'resimm', # Malraux
+            'rpinel_metropole',
+            'scelli',
+            'invlst',
+            'invrev',
+            'patnat',
+            'rehab',
+            'mohist',
+            'spfcpi',
+
+            # Pas clair, dans le doute compté parmi les plafonnées :
+            'accult',
+            'reduction_impot_exceptionnelle',
+            'rsceha',
+        ]
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.plaf_nich.plafonnement_des_niches
+
+        # Step 1: Apply ceiling to general reductions
+        montants_plaf = [around(foyer_fiscal(reduction, period)) for reduction in reductions_plafonnees]
+        red_plaf = min_(P.plafond_1, montants_plaf)
+
+        return red_plaf
+
+class reductions_plafonnees_om_sofica(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Réductions d'impôt sur le revenu plafonnées, DOM et SOFICA"
+    definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+
+        reductions_om_sofica = [
+            'sofica',
+            'denormandie_om',
+            'rpinel_om'
+        ]
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.plaf_nich.plafonnement_des_niches
+
+        red_plaf = foyer_fiscal('reductions_plafonnees', period)
+        reste_gen = P.plafond_1 - red_plaf
+
+        # Step 2: Get additional reductions DOM-TOM and SOFICA
+        # NB: Assuming the specific additional allowance is used first, and remaining general allowance is saved by preference for other reductions
+        montants_om_sofica = [around(foyer_fiscal(reduction, period)) for reduction in reductions_om_sofica]
+        red_om_sofica = min_(P.majoration_om + reste_gen, montants_om_sofica)
+
+        return red_om_sofica
+
+class reductions_plafonnees_esus_sfs(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Réductions d'impôt sur le revenu plafonnées, ESUS et SFS"
+    definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+
+        reductions_esus_sfs = [
+            'cappme_esus_sfs'
+        ]
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.plaf_nich.plafonnement_des_niches
+
+        red_plaf = foyer_fiscal('reductions_plafonnees', period)
+        red_plaf_om = foyer_fiscal('reductions_plafonnees_om_sofica', period)
+        reste_gen = P.plafond_1 - red_plaf - max_(0, red_plaf_om - P.majoration_om)
+
+        # Step 3: Get additional reductions ESUS and SFS
+        # NB: Assuming the specific additional allowance is used first, and remaining general allowance is saved by preference for other reductions
+        montants_esus_sfs = [around(foyer_fiscal(reduction, period)) for reduction in reductions_esus_sfs]
+        red_esus_sfs = min_(P.majoration_esus_sfs + reste_gen, montants_esus_sfs)
+
+        return red_esus_sfs
+
+class reductions_deplafonnees(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Réductions d'impôt sur le revenu déplafonnées"
+    definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+
+        reductions_sans_plafond = [
+            'daepad',
+            'dfppce',
+            'adhcga',
+            'assvie',
+            'reduction_cotisations_syndicales',
+            'creaen',
+            'donapd',
+            'intagr',
+            'mecena',
+            'prcomp',
+            'repsoc',
+
+            # Pas clair, dans le doute compté parmi les plafonnées :
+            'donpartipol',
+            'notredame',
+            'ecpess',
+
+            # plafonds séparés, TODO :
+            'doment',
+            'domlog',
+            'domsoc',
+        ]
+
+        # Step 4: Get other uncapped reductions
+        red_deplaf = [around(foyer_fiscal(reduction, period)) for reduction in reductions_sans_plafond]
+
+        return red_deplaf
+
 class reductions(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réductions d'impôt sur le revenu"
     definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Renvoie la somme des réductions d'impôt en prenant en compte les plafonds applicables.
+
+        Il y a 4 catégories de réductions :
+            - réductions générales soumises au plafond de 10K
+            - réductions inv. outre-mèr/SOFICA avec majoration de 8K
+            - réductions ESUS/SFS avec majoration de 3K
+            - réductions sans plafond
+
+        Un tel plafond existe depuis au moins 2009. La version codée là-dessous est celle
+        de 2013 qui est encore valable pour l'imposition des revenus de 2021.
+
+        Beaucoup des dispositifs figurant parmi les réductions et crédits plafonnées
+        sont dénombrés dans la loi et les brochures pratiques de l'IR, mais pas tous.
+        Une règle qui peut être appliquée dans le doute, c'est que chaque dispositif est
+        soumis au plafond sauf si exclu par la loi, et que souvent les dispositifs exclus
+        sont ceux qui n'ont pas de contrepartie (par ex. un don ou un mécénat).
+
+        NB : Le dispositif Scellier est aussi soumis au plafond. Une question qui se pose est si
+        le Scellier DOM est soumis au plafond de € 18K au lieu de € 10K. On dirait que oui, mais
+        les cases présentes dans les formulaires 2042 récents ne permettent pas de les distinguer.
+        On fait donc pas le tri, et le dispositif est intégralement soumis au plafond de € 10K.
+        '''
+
+        impot_net = foyer_fiscal('ip_net', period)
+
+        red_plaf = foyer_fiscal('reductions_plafonnees', period)
+        red_plaf_om_sofica = foyer_fiscal('reductions_plafonnees_om_sofica', period)
+        red_plaf_esus_sfs = foyer_fiscal('reductions_plafonnees_esus_sfs', period)
+        red_deplaf = foyer_fiscal('reductions_deplafonnees', period)
+
+        total_reduction = red_plaf + red_plaf_om_sofica + red_plaf_esus_sfs + red_deplaf
+
+        return min_(impot_net, total_reduction)
 
     def formula(foyer_fiscal, period, parameters):
         '''
@@ -708,11 +872,6 @@ class cappme(Variable):
         base_esus_2021_apres0805 = max_(0, min_(f7ci, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805 - base_pme_2021_apres0805))
         base_sfs_2021 = max_(0, min_(f7gw, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805 - base_pme_2021_apres0805 - base_esus_2021_apres0805))
 
-        # partie de ESUS/SFS pour laquelle la majoration du plafonnement des niches fiscales est applicables:
-        # supp_esus = P.taux25 * (f7ci - base_esus_2021_apres0805)
-        # supp_sfs = P.taux25 * (f7gw - base_sfs_2021)
-        # esus_sfs_suppl = max_(supp_esus + supp_sfs)
-
         reports_plaf_general = f7cy + f7dy + f7ey + f7fy + f7gy
 
         return (
@@ -725,9 +884,67 @@ class cappme(Variable):
             + P.taux25 * (base_pme_2020_apres0908
                 + base_sfs_2020
                 + base_pme_2021_apres0805
-                + base_esus_2021_apres0805
-                + base_sfs_2021)
+                # + base_esus_2021_apres0805
+                # + base_sfs_2021
+                )
             )
+
+class cappme_esus_sfs(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Réduction d'impôt au titre des souscriptions en numéraire au capital des ESUS et SFS"
+    reference = 'http://bofip.impots.gouv.fr/bofip/4374-PGP'
+    definition_period = YEAR
+
+    def formula_2021_01_01(foyer_fiscal, period, parameters):
+        '''
+        Souscriptions au capital des ESUS/SFS applicable au plafond special augmenté de € 3K
+        2021
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        f7cf = foyer_fiscal('f7cf', period)
+        f7ch = foyer_fiscal('f7ch', period)
+        f7ci = foyer_fiscal('f7ci', period)
+        f7gw = foyer_fiscal('f7gw', period)
+
+        f7cq = foyer_fiscal('f7cq', period)
+        f7cr = foyer_fiscal('f7cr', period)
+        f7cv = foyer_fiscal('f7cv', period)
+        f7cx = foyer_fiscal('f7cx', period)
+        f7cs = foyer_fiscal('f7cs', period)
+        f7bs = foyer_fiscal('f7bs', period)
+
+        f7cy = foyer_fiscal('f7cy', period)
+        f7dy = foyer_fiscal('f7dy', period)
+        f7ey = foyer_fiscal('f7ey', period)
+        f7fy = foyer_fiscal('f7fy', period)
+        f7gy = foyer_fiscal('f7gy', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+
+        plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
+
+        # Réduction investissement TPE (souscription à partir de 2012) : imputation du plus ancien au plus récent,
+        # dans l'ordre PME/ESUS > SFS
+        base_report_pme_2017_TPE = min_(f7cq, plafond_TPE)
+        base_report_pme_2018_TPE = max_(0, min_(f7cr, plafond_TPE - base_report_pme_2017_TPE))
+        base_report_pme_2019_TPE = max_(0, min_(f7cv, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE))
+        base_pme_2020_avant0908 = max_(0, min_(f7cx, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE))
+        base_pme_2020_apres0908 = max_(0, min_(f7cs, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908))
+        base_sfs_2020 = max_(0, min_(f7bs, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908))
+
+        # Réduction investissements de l'année courante
+        # on applique les investissements en commençant avec les plus anciennes
+        base_pme_esus_2021_avant0805 = max_(0, min_(f7cf, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020))
+        base_pme_2021_apres0805 = max_(0, min_(f7ch, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805))
+        base_esus_2021_apres0805 = max_(0, min_(f7ci, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805 - base_pme_2021_apres0805))
+        base_sfs_2021 = max_(0, min_(f7gw, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805 - base_pme_2021_apres0805 - base_esus_2021_apres0805))
+
+        # ESUS/SFS majoration du plafonnement des niches fiscales
+        base_esus_sfs = P.taux25 * (base_esus_2021_apres0805 + base_sfs_2021)
+
+        return base_esus_sfs
 
 
 class reduction_cotisations_syndicales(Variable):
@@ -868,7 +1085,54 @@ class daepad(Variable):
         return P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
 
 
-class denormandie(Variable):
+class denormandie_metropole(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = 'denormandie'
+    reference = 'https://bofip.impots.gouv.fr/bofip/11862-PGP'
+    definition_period = YEAR
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatifs anciens : dispositif Denormandie
+        '''
+        denormandie_metropole_6ans = foyer_fiscal('f7na', period)
+        denormandie_metropole_9ans = foyer_fiscal('f7nb', period)
+        denormandie_outremer_6ans = foyer_fiscal('f7nc', period)
+        denormandie_outremer_9ans = foyer_fiscal('f7nd', period)
+        f7qi = foyer_fiscal('f7qi', period)
+        f7qj = foyer_fiscal('f7qj', period)
+        f7qk = foyer_fiscal('f7qk', period)
+        f7ql = foyer_fiscal('f7ql', period)
+        f7qm = foyer_fiscal('f7qm', period)
+        f7qn = foyer_fiscal('f7qn', period)
+        f7qo = foyer_fiscal('f7qo', period)
+        f7qp = foyer_fiscal('f7qp', period)
+        f7qr = foyer_fiscal('f7qr', period)
+        f7qs = foyer_fiscal('f7qs', period)
+        f7qt = foyer_fiscal('f7qt', period)
+        f7qu = foyer_fiscal('f7qu', period)
+        f7qw = foyer_fiscal('f7qw', period)
+        f7qx = foyer_fiscal('f7qx', period)
+        f7qy = foyer_fiscal('f7qy', period)
+        f7qq = foyer_fiscal('f7qq', period)
+        P = parameters(period).impot_revenu.calcul_reductions_impots.denormandie
+
+        pinel_metropole_6ans = f7qi + f7qm + f7qr + f7qw
+        pinel_metropole_9ans = f7qj + f7qn + f7qs + f7qx
+        pinel_outremer_6ans = f7qk + f7qo + f7qt + f7qy
+        pinel_outremer_9ans = f7ql + f7qp + f7qu + f7qq
+
+        max1 = max_(0, P.plafond - pinel_outremer_9ans - denormandie_outremer_9ans)  # Plafond commun à Pinel
+        max2 = max_(0, max1 - pinel_outremer_6ans - denormandie_outremer_6ans)  # Plafond commun à Pinel
+        max3 = max_(0, max2 - pinel_metropole_9ans - denormandie_metropole_9ans)  # Plafond commun à Pinel
+
+        return around(
+            P.taux['metropole']['9_ans'] * min_(max_(0, max2 - pinel_metropole_9ans), denormandie_metropole_9ans) / 9
+            + P.taux['metropole']['6_ans'] * min_(max_(0, max3 - pinel_metropole_6ans), denormandie_metropole_6ans) / 6
+            )
+
+class denormandie_om(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'denormandie'
@@ -913,8 +1177,6 @@ class denormandie(Variable):
         return around(
             P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - pinel_outremer_9ans), denormandie_outremer_9ans) / 9
             + P.taux['outremer']['6_ans'] * min_(max_(0, max1 - pinel_outremer_6ans), denormandie_outremer_6ans) / 6
-            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - pinel_metropole_9ans), denormandie_metropole_9ans) / 9
-            + P.taux['metropole']['6_ans'] * min_(max_(0, max3 - pinel_metropole_6ans), denormandie_metropole_6ans) / 6
             )
 
 
@@ -4958,7 +5220,7 @@ class resimm(Variable):
             )
 
 
-class rpinel(Variable):
+class rpinel_metropole(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur de l'investissement locatif intermédiaire - Dispositif Pinel"
@@ -4983,9 +5245,7 @@ class rpinel(Variable):
         max3 = max_(0, max2 - f7ek - f7qb)
 
         return around(
-            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
-            + P.taux['outremer']['6_ans'] * min_(max1, f7qc) / 6
-            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - f7ek), f7qb) / 9
+            P.taux['metropole']['9_ans'] * min_(max_(0, max2 - f7ek), f7qb) / 9
             + P.taux['metropole']['6_ans'] * min_(max3, f7qa) / 6
             )
 
@@ -5025,10 +5285,10 @@ class rpinel(Variable):
             }
 
         cases_report = {
-            2014: ['f7ai', 'f7bi', 'f7ci', 'f7di'],
-            2015: ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
-            2016: ['f7qz', 'f7rz', 'f7sz', 'f7tz'],
-            2017: ['f7ra', 'f7rb', 'f7rc', 'f7rd'],
+            2014: ['f7ai', 'f7bi'],
+            2015: ['f7bz', 'f7cz'],
+            2016: ['f7qz', 'f7rz'],
+            2017: ['f7ra', 'f7rb'],
             }
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.rpinel
@@ -5038,9 +5298,7 @@ class rpinel(Variable):
         max3 = max_(0, max2 - f7ek - f7qb)
 
         reduc_invest_real_2014 = around(
-            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
-            + P.taux['outremer']['6_ans'] * min_(max1, f7qc) / 6
-            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - f7ek), f7qb) / 9
+            P.taux['metropole']['9_ans'] * min_(max_(0, max2 - f7ek), f7qb) / 9
             + P.taux['metropole']['6_ans'] * min_(max3, f7qa) / 6
             )
 
@@ -5051,7 +5309,8 @@ class rpinel(Variable):
                 variable, duree, zone = case
                 depense = foyer_fiscal(variable, period)
                 taux = P.taux[zone][str(duree) + '_ans']
-                reduction += around(taux * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                if zone == 'metropole':
+                    reduction += around(taux * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
 
@@ -5095,11 +5354,170 @@ class rpinel(Variable):
         pinel_outremer_9ans = f7ql + f7qp + f7qu + f7qq
 
         cases_report = {
-            2014: ['f7ai', 'f7bi', 'f7ci', 'f7di'],
-            2015: ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
-            2016: ['f7qz', 'f7rz', 'f7sz', 'f7tz'],
-            2017: ['f7ra', 'f7rb', 'f7rc', 'f7rd'],
-            2018: ['f7re', 'f7rf', 'f7rg', 'f7rh'],
+            2014: ['f7ai', 'f7bi'],
+            2015: ['f7bz', 'f7cz'],
+            2016: ['f7qz', 'f7rz'],
+            2017: ['f7ra', 'f7rb'],
+            2018: ['f7re', 'f7rf'],
+            }
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.rpinel
+
+        max1 = max_(0, P.plafond - f7nd - pinel_outremer_9ans)  # 2019 : plafond commun 'denormandie' et 'rpinel'
+        max2 = max_(0, max1 - f7nc - pinel_outremer_6ans)
+        max3 = max_(0, max2 - f7nb - pinel_metropole_9ans)
+
+        reduc_invest_pinel_2019 = around(
+            P.taux['metropole']['9_ans'] * min_(max_(0, max2), pinel_metropole_9ans) / 9
+            + P.taux['metropole']['6_ans'] * min_(max_(0, max3), pinel_metropole_6ans) / 6
+            )
+
+        annee_fiscale = period.start.year
+        range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+
+        report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
+
+        return reduc_invest_pinel_2019 + report
+
+class rpinel_om(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Réduction d'impôt en faveur de l'investissement locatif intermédiaire - Dispositif Pinel"
+    reference = 'http://bofip.impots.gouv.fr/bofip/8425-PGP'
+    definition_period = YEAR
+
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement locatif privé - Dispositif Pinel
+        2014
+        '''
+        f7ek = foyer_fiscal('f7ek', period)
+        f7el = foyer_fiscal('f7el', period)
+        f7qa = foyer_fiscal('f7qa', period)
+        f7qb = foyer_fiscal('f7qb', period)
+        f7qc = foyer_fiscal('f7qc', period)
+        f7qd = foyer_fiscal('f7qd', period)
+        P = parameters(period).impot_revenu.calcul_reductions_impots.rpinel
+
+        max1 = max_(0, P.plafond - f7el - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
+        max2 = max_(0, max1 - f7qc)
+        max3 = max_(0, max2 - f7ek - f7qb)
+
+        return around(
+            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
+            + P.taux['outremer']['6_ans'] * min_(max1, f7qc) / 6
+            )
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement locatif privé - Dispositif Pinel
+        De 2015 à 2018
+        '''
+        f7ek = foyer_fiscal('f7ek', period)
+        f7el = foyer_fiscal('f7el', period)
+        f7qa = foyer_fiscal('f7qa', period)
+        f7qb = foyer_fiscal('f7qb', period)
+        f7qc = foyer_fiscal('f7qc', period)
+        f7qd = foyer_fiscal('f7qd', period)
+
+        cases_investissement = {
+            2015: [
+                ('f7qh', 9, 'outremer'),
+                ('f7qg', 6, 'outremer'),
+                ('f7qf', 9, 'metropole'),
+                ('f7qe', 6, 'metropole')],
+            2016: [
+                ('f7ql', 9, 'outremer'),
+                ('f7qk', 6, 'outremer'),
+                ('f7qj', 9, 'metropole'),
+                ('f7qi', 6, 'metropole')],
+            2017: [
+                ('f7qp', 9, 'outremer'),
+                ('f7qo', 6, 'outremer'),
+                ('f7qn', 9, 'metropole'),
+                ('f7qm', 6, 'metropole')],
+            2018: [
+                ('f7qu', 9, 'outremer'),
+                ('f7qt', 6, 'outremer'),
+                ('f7qs', 9, 'metropole'),
+                ('f7qr', 6, 'metropole')],
+            }
+
+        cases_report = {
+            2014: ['f7ci', 'f7di'],
+            2015: ['f7dz', 'f7ez'],
+            2016: ['f7sz', 'f7tz'],
+            2017: ['f7rc', 'f7rd'],
+            }
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.rpinel
+
+        max1 = max_(0, P.plafond - f7el - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
+        max2 = max_(0, max1 - f7qc)
+        max3 = max_(0, max2 - f7ek - f7qb)
+
+        reduc_invest_real_2014 = around(
+            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
+            + P.taux['outremer']['6_ans'] * min_(max1, f7qc) / 6
+            )
+
+        def calcul_reduction_investissement(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, duree, zone = case
+                depense = foyer_fiscal(variable, period)
+                taux = P.taux[zone][str(duree) + '_ans']
+                if zone == 'outremer':
+                    reduction += around(taux * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                depenses_cumulees += depense
+            return reduction
+
+        annee_fiscale = period.start.year
+        range_year_investissement = list(set([year for year in range(2015, annee_fiscale + 1)]) & set([year for year in cases_investissement.keys()]))
+        range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+
+        reduction_cumulee = reduc_invest_real_2014 + sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
+        report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
+
+        return reduction_cumulee + report
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement locatif privé - Dispositif Pinel
+        Depuis 2019
+        '''
+        f7nb = foyer_fiscal('f7nb', period)
+        f7nc = foyer_fiscal('f7nc', period)
+        f7nd = foyer_fiscal('f7nd', period)
+        f7qi = foyer_fiscal('f7qi', period)
+        f7qj = foyer_fiscal('f7qj', period)
+        f7qk = foyer_fiscal('f7qk', period)
+        f7ql = foyer_fiscal('f7ql', period)
+        f7qm = foyer_fiscal('f7qm', period)
+        f7qn = foyer_fiscal('f7qn', period)
+        f7qo = foyer_fiscal('f7qo', period)
+        f7qp = foyer_fiscal('f7qp', period)
+        f7qr = foyer_fiscal('f7qr', period)
+        f7qs = foyer_fiscal('f7qs', period)
+        f7qt = foyer_fiscal('f7qt', period)
+        f7qu = foyer_fiscal('f7qu', period)
+        f7qw = foyer_fiscal('f7qw', period)
+        f7qx = foyer_fiscal('f7qx', period)
+        f7qy = foyer_fiscal('f7qy', period)
+        f7qq = foyer_fiscal('f7qq', period)
+
+        pinel_metropole_6ans = f7qi + f7qm + f7qr + f7qw
+        pinel_metropole_9ans = f7qj + f7qn + f7qs + f7qx
+        pinel_outremer_6ans = f7qk + f7qo + f7qt + f7qy
+        pinel_outremer_9ans = f7ql + f7qp + f7qu + f7qq
+
+        cases_report = {
+            2014: ['f7ci', 'f7di'],
+            2015: ['f7dz', 'f7ez'],
+            2016: ['f7sz', 'f7tz'],
+            2017: ['f7rc', 'f7rd'],
+            2018: ['f7rg', 'f7rh'],
             }
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.rpinel
@@ -5111,8 +5529,6 @@ class rpinel(Variable):
         reduc_invest_pinel_2019 = around(
             P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond), pinel_outremer_9ans) / 9
             + P.taux['outremer']['6_ans'] * min_(max_(0, max1), pinel_outremer_6ans) / 6
-            + P.taux['metropole']['9_ans'] * min_(max_(0, max2), pinel_metropole_9ans) / 9
-            + P.taux['metropole']['6_ans'] * min_(max_(0, max3), pinel_metropole_6ans) / 6
             )
 
         annee_fiscale = period.start.year
