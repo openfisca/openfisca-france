@@ -54,7 +54,7 @@
       caseW: false
       declarants:
       - ind0
-      f7ci: 500
+      f7ci_2019: 500
       f7di: 500
       f7qc: 0
       f7qd: 100000
@@ -98,7 +98,7 @@
       caseW: false
       declarants:
       - ind0
-      f7ci: 500
+      f7ci_2019: 500
       f7di: 500
       f7dz: 500
       f7ez: 500
@@ -147,7 +147,7 @@
       caseW: false
       declarants:
       - ind0
-      f7ci: 500
+      f7ci_2019: 500
       f7di: 500
       f7dz: 500
       f7ez: 500
@@ -200,7 +200,7 @@
       caseW: false
       declarants:
       - ind0
-      f7ci: 500
+      f7ci_2019: 500
       f7di: 500
       f7dz: 500
       f7ez: 500

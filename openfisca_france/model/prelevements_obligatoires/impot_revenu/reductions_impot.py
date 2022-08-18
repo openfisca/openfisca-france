@@ -18,13 +18,13 @@ class reductions_plafonnees(Variable):
         reductions_plafonnees = [
             'saldom',
             'cappme',
-            'deffor', # fait partie de inv. for. ?
+            'deffor',  # fait partie de inv. for. ?
             'denormandie_metropole',
-            'duflot', # NB : partie OM
+            'duflot',  # NB : partie OM
             'garext',
             'invfor',
-            'locmeu', # Censi-Bouvard
-            'resimm', # Malraux
+            'locmeu',  # Censi-Bouvard
+            'resimm',  # Malraux
             'rpinel_metropole',
             'scelli',
             'invlst',
@@ -38,7 +38,7 @@ class reductions_plafonnees(Variable):
             'accult',
             'reduction_impot_exceptionnelle',
             'rsceha',
-        ]
+            ]
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.plaf_nich.plafonnement_des_niches
 
@@ -47,6 +47,7 @@ class reductions_plafonnees(Variable):
         red_plaf = min_(P.plafond_1, montants_plaf)
 
         return red_plaf
+
 
 class reductions_plafonnees_om_sofica(Variable):
     value_type = float
@@ -60,7 +61,7 @@ class reductions_plafonnees_om_sofica(Variable):
             'sofica',
             'denormandie_om',
             'rpinel_om'
-        ]
+            ]
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.plaf_nich.plafonnement_des_niches
 
@@ -74,6 +75,7 @@ class reductions_plafonnees_om_sofica(Variable):
 
         return red_om_sofica
 
+
 class reductions_plafonnees_esus_sfs(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -84,7 +86,7 @@ class reductions_plafonnees_esus_sfs(Variable):
 
         reductions_esus_sfs = [
             'cappme_esus_sfs'
-        ]
+            ]
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.plaf_nich.plafonnement_des_niches
 
@@ -98,6 +100,7 @@ class reductions_plafonnees_esus_sfs(Variable):
         red_esus_sfs = min_(P.majoration_esus_sfs + reste_gen, montants_esus_sfs)
 
         return red_esus_sfs
+
 
 class reductions_deplafonnees(Variable):
     value_type = float
@@ -129,12 +132,13 @@ class reductions_deplafonnees(Variable):
             'doment',
             'domlog',
             'domsoc',
-        ]
+            ]
 
         # Step 4: Get other uncapped reductions
         red_deplaf = [around(foyer_fiscal(reduction, period)) for reduction in reductions_sans_plafond]
 
         return red_deplaf
+
 
 class reductions(Variable):
     value_type = float
@@ -545,7 +549,6 @@ class cappme(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-
         f7cf = foyer_fiscal('f7cf', period)
 
         f7cl = foyer_fiscal('f7cl', period)
@@ -869,8 +872,8 @@ class cappme(Variable):
         # on applique les investissements en commençant avec les plus anciennes
         base_pme_esus_2021_avant0805 = max_(0, min_(f7cf, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020))
         base_pme_2021_apres0805 = max_(0, min_(f7ch, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805))
-        base_esus_2021_apres0805 = max_(0, min_(f7ci, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805 - base_pme_2021_apres0805))
-        base_sfs_2021 = max_(0, min_(f7gw, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805 - base_pme_2021_apres0805 - base_esus_2021_apres0805))
+        # base_esus_2021_apres0805 = max_(0, min_(f7ci, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805 - base_pme_2021_apres0805))
+        # base_sfs_2021 = max_(0, min_(f7gw, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805 - base_pme_2021_apres0805 - base_esus_2021_apres0805))
 
         reports_plaf_general = f7cy + f7dy + f7ey + f7fy + f7gy
 
@@ -883,11 +886,11 @@ class cappme(Variable):
                 + base_pme_esus_2021_avant0805)
             + P.taux25 * (base_pme_2020_apres0908
                 + base_sfs_2020
-                + base_pme_2021_apres0805
+                + base_pme_2021_apres0805)
                 # + base_esus_2021_apres0805
                 # + base_sfs_2021
-                )
             )
+
 
 class cappme_esus_sfs(Variable):
     value_type = float
@@ -914,12 +917,6 @@ class cappme_esus_sfs(Variable):
         f7cx = foyer_fiscal('f7cx', period)
         f7cs = foyer_fiscal('f7cs', period)
         f7bs = foyer_fiscal('f7bs', period)
-
-        f7cy = foyer_fiscal('f7cy', period)
-        f7dy = foyer_fiscal('f7dy', period)
-        f7ey = foyer_fiscal('f7ey', period)
-        f7fy = foyer_fiscal('f7fy', period)
-        f7gy = foyer_fiscal('f7gy', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
 
@@ -1132,6 +1129,7 @@ class denormandie_metropole(Variable):
             + P.taux['metropole']['6_ans'] * min_(max_(0, max3 - pinel_metropole_6ans), denormandie_metropole_6ans) / 6
             )
 
+
 class denormandie_om(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -1143,7 +1141,6 @@ class denormandie_om(Variable):
         '''
         Investissements locatifs anciens : dispositif Denormandie
         '''
-        denormandie_metropole_6ans = foyer_fiscal('f7na', period)
         denormandie_metropole_9ans = foyer_fiscal('f7nb', period)
         denormandie_outremer_6ans = foyer_fiscal('f7nc', period)
         denormandie_outremer_9ans = foyer_fiscal('f7nd', period)
@@ -1165,14 +1162,12 @@ class denormandie_om(Variable):
         f7qq = foyer_fiscal('f7qq', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.denormandie
 
-        pinel_metropole_6ans = f7qi + f7qm + f7qr + f7qw
         pinel_metropole_9ans = f7qj + f7qn + f7qs + f7qx
         pinel_outremer_6ans = f7qk + f7qo + f7qt + f7qy
         pinel_outremer_9ans = f7ql + f7qp + f7qu + f7qq
 
         max1 = max_(0, P.plafond - pinel_outremer_9ans - denormandie_outremer_9ans)  # Plafond commun à Pinel
         max2 = max_(0, max1 - pinel_outremer_6ans - denormandie_outremer_6ans)  # Plafond commun à Pinel
-        max3 = max_(0, max2 - pinel_metropole_9ans - denormandie_metropole_9ans)  # Plafond commun à Pinel
 
         return around(
             P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - pinel_outremer_9ans), denormandie_outremer_9ans) / 9
@@ -5379,6 +5374,7 @@ class rpinel_metropole(Variable):
 
         return reduc_invest_pinel_2019 + report
 
+
 class rpinel_om(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -5393,7 +5389,6 @@ class rpinel_om(Variable):
         '''
         f7ek = foyer_fiscal('f7ek', period)
         f7el = foyer_fiscal('f7el', period)
-        f7qa = foyer_fiscal('f7qa', period)
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
@@ -5401,7 +5396,6 @@ class rpinel_om(Variable):
 
         max1 = max_(0, P.plafond - f7el - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - f7ek - f7qb)
 
         return around(
             P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
@@ -5415,7 +5409,6 @@ class rpinel_om(Variable):
         '''
         f7ek = foyer_fiscal('f7ek', period)
         f7el = foyer_fiscal('f7el', period)
-        f7qa = foyer_fiscal('f7qa', period)
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
@@ -5444,7 +5437,7 @@ class rpinel_om(Variable):
             }
 
         cases_report = {
-            2014: ['f7ci', 'f7di'],
+            2014: ['f7ci_2019', 'f7di'],
             2015: ['f7dz', 'f7ez'],
             2016: ['f7sz', 'f7tz'],
             2017: ['f7rc', 'f7rd'],
@@ -5454,7 +5447,6 @@ class rpinel_om(Variable):
 
         max1 = max_(0, P.plafond - f7el - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - f7ek - f7qb)
 
         reduc_invest_real_2014 = around(
             P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
@@ -5507,13 +5499,12 @@ class rpinel_om(Variable):
         f7qy = foyer_fiscal('f7qy', period)
         f7qq = foyer_fiscal('f7qq', period)
 
-        pinel_metropole_6ans = f7qi + f7qm + f7qr + f7qw
         pinel_metropole_9ans = f7qj + f7qn + f7qs + f7qx
         pinel_outremer_6ans = f7qk + f7qo + f7qt + f7qy
         pinel_outremer_9ans = f7ql + f7qp + f7qu + f7qq
 
         cases_report = {
-            2014: ['f7ci', 'f7di'],
+            2014: ['f7ci_2019', 'f7di'],
             2015: ['f7dz', 'f7ez'],
             2016: ['f7sz', 'f7tz'],
             2017: ['f7rc', 'f7rd'],
@@ -5524,7 +5515,6 @@ class rpinel_om(Variable):
 
         max1 = max_(0, P.plafond - f7nd - pinel_outremer_9ans)  # 2019 : plafond commun 'denormandie' et 'rpinel'
         max2 = max_(0, max1 - f7nc - pinel_outremer_6ans)
-        max3 = max_(0, max2 - f7nb - pinel_metropole_9ans)
 
         reduc_invest_pinel_2019 = around(
             P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond), pinel_outremer_9ans) / 9
@@ -5885,7 +5875,7 @@ class scelli(Variable):
         f7gt = foyer_fiscal('f7gt', period)
         f7gu = foyer_fiscal('f7gu', period)
         f7gv = foyer_fiscal('f7gv', period)
-        f7gw = foyer_fiscal('f7gw', period)
+        f7gw = foyer_fiscal('f7gw_2016', period)
         f7gx = foyer_fiscal('f7gx', period)
         f7ha = foyer_fiscal('f7ha', period)
         f7hb = foyer_fiscal('f7hb', period)
@@ -6000,7 +5990,7 @@ class scelli(Variable):
         f7gt = foyer_fiscal('f7gt', period)
         f7gu = foyer_fiscal('f7gu', period)
         f7gv = foyer_fiscal('f7gv', period)
-        f7gw = foyer_fiscal('f7gw', period)
+        f7gw = foyer_fiscal('f7gw_2016', period)
         f7gx = foyer_fiscal('f7gx', period)
         f7ha = foyer_fiscal('f7ha', period)
         f7hb = foyer_fiscal('f7hb', period)
@@ -6150,7 +6140,7 @@ class scelli(Variable):
         f7gs = foyer_fiscal('f7gs', period)
         f7gu = foyer_fiscal('f7gu', period)
         f7gv = foyer_fiscal('f7gv', period)
-        f7gw = foyer_fiscal('f7gw', period)
+        f7gw = foyer_fiscal('f7gw_2016', period)
         f7gx = foyer_fiscal('f7gx', period)
         f7ha = foyer_fiscal('f7ha', period)
         f7hg = foyer_fiscal('f7hg', period)
@@ -6306,7 +6296,7 @@ class scelli(Variable):
         f7gs = foyer_fiscal('f7gs', period)
         f7gu = foyer_fiscal('f7gu', period)
         f7gv = foyer_fiscal('f7gv', period)
-        f7gw = foyer_fiscal('f7gw', period)
+        f7gw = foyer_fiscal('f7gw_2016', period)
         f7gx = foyer_fiscal('f7gx', period)
         f7ha = foyer_fiscal('f7ha', period)
         f7hd = foyer_fiscal('f7hd', period)

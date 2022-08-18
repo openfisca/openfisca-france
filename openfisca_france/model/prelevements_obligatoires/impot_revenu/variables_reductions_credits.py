@@ -3760,7 +3760,7 @@ class f7ty(Variable):
     definition_period = YEAR
 
 
-class f7gw(Variable):
+class f7gw_2016(Variable):
     cerfa_field = '7GW'
     value_type = int
     entity = FoyerFiscal
@@ -4046,14 +4046,16 @@ class f7cf(Variable):
     label = "Souscriptions au capital des PME non cotées, petites entreprises en phase de démarrage, ou d'expansion"
     definition_period = YEAR
 
+
 class f7ci(Variable):
     cerfa_field = '7CI'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Versements ESUS effectués du 9.5 au 31.12.2021'
-    start_date = date(2021, 1, 1)
+    # start_date = date(2021, 1, 1)
     definition_period = YEAR
+
 
 class f7ch(Variable):
     cerfa_field = '7CH'
@@ -4063,14 +4065,16 @@ class f7ch(Variable):
     label = 'Versements PME effectués du 10.8. au 31.12.2020 / du 9.5. au 31.12.2021 (25 %)'
     definition_period = YEAR
 
+
 class f7gw(Variable):
     cerfa_field = '7GW'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Versements SFS effectués en 2020 / 2021 (25 %)'
-    start_date = date(2020, 1, 1)
+    # start_date = date(2020, 1, 1)
     definition_period = YEAR
+
 
 class f7cl(Variable):
     cerfa_field = '7CL'
@@ -8817,7 +8821,7 @@ class f7bi(Variable):
     definition_period = YEAR
 
 
-class f7ci(Variable):
+class f7ci_2019(Variable):
     cerfa_field = '7CI'
     value_type = int
     unit = 'currency'
