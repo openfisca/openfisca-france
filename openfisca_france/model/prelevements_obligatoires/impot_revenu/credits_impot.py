@@ -35,12 +35,12 @@ class credits_impot(Variable):
             'preetu',
             'prlire',
             'quaenv',
-        ]
+            ]
 
         credits_sans_plaf = [
             # dans le doute:
             'credit_cotisations_syndicales',
-        ]
+            ]
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.plaf_nich.plafonnement_des_niches
 
@@ -49,10 +49,10 @@ class credits_impot(Variable):
         red_plaf_om = foyer_fiscal('reductions_plafonnees_om_sofica', period)
         red_plaf_esus_sfs = foyer_fiscal('reductions_plafonnees_esus_sfs', period)
 
-        remaining_allowance = (P.plafond_1 # general limit
-            - red_plaf # - general reductions
-            - max_(0, red_plaf_om - P.majoration_om) # - general reductions used for DOM/SOFICA
-            - max_(0, red_plaf_esus_sfs - P.majoration_esus_sfs)) # - general reductions used for ESUS/SFS
+        remaining_allowance = (P.plafond_1  # general limit
+            - red_plaf  # - general reductions
+            - max_(0, red_plaf_om - P.majoration_om)  # - general reductions used for DOM/SOFICA
+            - max_(0, red_plaf_esus_sfs - P.majoration_esus_sfs))  # - general reductions used for ESUS/SFS
 
         # credit available within the limit
         montants_plaf = [around(foyer_fiscal(credit, period)) for credit in credits_plaf]
@@ -62,7 +62,6 @@ class credits_impot(Variable):
         cred_sans_plaf = [around(foyer_fiscal(credit, period)) for credit in credits_sans_plaf]
 
         return cred_plaf + cred_sans_plaf
-
 
     def formula(foyer_fiscal, period, parameters):
         '''
