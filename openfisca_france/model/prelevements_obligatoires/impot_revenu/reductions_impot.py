@@ -43,7 +43,7 @@ class reductions_plafonnees(Variable):
         P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
 
         # Step 1: Apply ceiling to general reductions
-        montants_plaf = [around(foyer_fiscal(reduction, period)) for reduction in reductions_plafonnees]
+        montants_plaf = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_plafonnees])
         red_plaf = min_(P.plafond_1, montants_plaf)
 
         return red_plaf
@@ -70,7 +70,7 @@ class reductions_plafonnees_om_sofica(Variable):
 
         # Step 2: Get additional reductions DOM-TOM and SOFICA
         # NB: Assuming the specific additional allowance is used first, and remaining general allowance is saved by preference for other reductions
-        montants_om_sofica = [around(foyer_fiscal(reduction, period)) for reduction in reductions_om_sofica]
+        montants_om_sofica = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_om_sofica])
         red_om_sofica = min_(P.majoration_om + reste_gen, montants_om_sofica)
 
         return red_om_sofica
@@ -96,7 +96,7 @@ class reductions_plafonnees_esus_sfs(Variable):
 
         # Step 3: Get additional reductions ESUS and SFS
         # NB: Assuming the specific additional allowance is used first, and remaining general allowance is saved by preference for other reductions
-        montants_esus_sfs = [around(foyer_fiscal(reduction, period)) for reduction in reductions_esus_sfs]
+        montants_esus_sfs = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_esus_sfs])
         red_esus_sfs = min_(P.majoration_esus_sfs + reste_gen, montants_esus_sfs)
 
         return red_esus_sfs
@@ -135,7 +135,7 @@ class reductions_deplafonnees(Variable):
             ]
 
         # Step 4: Get other uncapped reductions
-        red_deplaf = [around(foyer_fiscal(reduction, period)) for reduction in reductions_sans_plafond]
+        red_deplaf = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_sans_plafond])
 
         return red_deplaf
 
