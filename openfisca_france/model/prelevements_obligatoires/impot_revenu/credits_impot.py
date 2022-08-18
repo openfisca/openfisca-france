@@ -55,11 +55,11 @@ class credits_impot(Variable):
             - max_(0, red_plaf_esus_sfs - P.majoration_esus_sfs))  # - general reductions used for ESUS/SFS
 
         # credit available within the limit
-        montants_plaf = [around(foyer_fiscal(credit, period)) for credit in credits_plaf]
+        montants_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_plaf])
         cred_plaf = min_(remaining_allowance, montants_plaf)
 
         # credit available without the ceiling
-        cred_sans_plaf = [around(foyer_fiscal(credit, period)) for credit in credits_sans_plaf]
+        cred_sans_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_sans_plaf])
 
         return cred_plaf + cred_sans_plaf
 
@@ -103,11 +103,11 @@ class credits_impot(Variable):
             - max_(0, red_plaf_om - P.majoration_om))  # - general reductions used for DOM/SOFICA
 
         # credit available within the limit
-        montants_plaf = [around(foyer_fiscal(credit, period)) for credit in credits_plaf]
+        montants_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_plaf])
         cred_plaf = min_(remaining_allowance, montants_plaf)
 
         # credit available without the ceiling
-        cred_sans_plaf = [around(foyer_fiscal(credit, period)) for credit in credits_sans_plaf]
+        cred_sans_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_sans_plaf])
 
         return cred_plaf + cred_sans_plaf
 
