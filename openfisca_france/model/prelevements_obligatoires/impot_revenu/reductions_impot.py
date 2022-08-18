@@ -839,8 +839,6 @@ class cappme(Variable):
 
         f7cf = foyer_fiscal('f7cf', period)
         f7ch = foyer_fiscal('f7ch', period)
-        f7ci = foyer_fiscal('f7ci', period)
-        f7gw = foyer_fiscal('f7gw', period)
 
         f7cq = foyer_fiscal('f7cq', period)
         f7cr = foyer_fiscal('f7cr', period)
@@ -872,8 +870,6 @@ class cappme(Variable):
         # on applique les investissements en commençant avec les plus anciennes
         base_pme_esus_2021_avant0805 = max_(0, min_(f7cf, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020))
         base_pme_2021_apres0805 = max_(0, min_(f7ch, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805))
-        # base_esus_2021_apres0805 = max_(0, min_(f7ci, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805 - base_pme_2021_apres0805))
-        # base_sfs_2021 = max_(0, min_(f7gw, plafond_TPE - base_report_pme_2017_TPE - base_report_pme_2018_TPE - base_report_pme_2019_TPE - base_pme_2020_avant0908 - base_pme_2020_apres0908 - base_sfs_2020 - base_pme_esus_2021_avant0805 - base_pme_2021_apres0805 - base_esus_2021_apres0805))
 
         reports_plaf_general = f7cy + f7dy + f7ey + f7fy + f7gy
 
@@ -886,10 +882,7 @@ class cappme(Variable):
                 + base_pme_esus_2021_avant0805)
             + P.taux25 * (base_pme_2020_apres0908
                 + base_sfs_2020
-                + base_pme_2021_apres0805)
-                # + base_esus_2021_apres0805
-                # + base_sfs_2021
-            )
+                + base_pme_2021_apres0805))
 
 
 class cappme_esus_sfs(Variable):
@@ -1141,33 +1134,26 @@ class denormandie_om(Variable):
         '''
         Investissements locatifs anciens : dispositif Denormandie
         '''
-        denormandie_metropole_9ans = foyer_fiscal('f7nb', period)
         denormandie_outremer_6ans = foyer_fiscal('f7nc', period)
         denormandie_outremer_9ans = foyer_fiscal('f7nd', period)
-        f7qi = foyer_fiscal('f7qi', period)
         f7qj = foyer_fiscal('f7qj', period)
         f7qk = foyer_fiscal('f7qk', period)
         f7ql = foyer_fiscal('f7ql', period)
-        f7qm = foyer_fiscal('f7qm', period)
         f7qn = foyer_fiscal('f7qn', period)
         f7qo = foyer_fiscal('f7qo', period)
         f7qp = foyer_fiscal('f7qp', period)
-        f7qr = foyer_fiscal('f7qr', period)
         f7qs = foyer_fiscal('f7qs', period)
         f7qt = foyer_fiscal('f7qt', period)
         f7qu = foyer_fiscal('f7qu', period)
-        f7qw = foyer_fiscal('f7qw', period)
         f7qx = foyer_fiscal('f7qx', period)
         f7qy = foyer_fiscal('f7qy', period)
         f7qq = foyer_fiscal('f7qq', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.denormandie
 
-        pinel_metropole_9ans = f7qj + f7qn + f7qs + f7qx
         pinel_outremer_6ans = f7qk + f7qo + f7qt + f7qy
         pinel_outremer_9ans = f7ql + f7qp + f7qu + f7qq
 
         max1 = max_(0, P.plafond - pinel_outremer_9ans - denormandie_outremer_9ans)  # Plafond commun à Pinel
-        max2 = max_(0, max1 - pinel_outremer_6ans - denormandie_outremer_6ans)  # Plafond commun à Pinel
 
         return around(
             P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - pinel_outremer_9ans), denormandie_outremer_9ans) / 9
@@ -5387,15 +5373,12 @@ class rpinel_om(Variable):
         Investissement locatif privé - Dispositif Pinel
         2014
         '''
-        f7ek = foyer_fiscal('f7ek', period)
         f7el = foyer_fiscal('f7el', period)
-        f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.rpinel
 
         max1 = max_(0, P.plafond - f7el - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
-        max2 = max_(0, max1 - f7qc)
 
         return around(
             P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
@@ -5407,9 +5390,7 @@ class rpinel_om(Variable):
         Investissement locatif privé - Dispositif Pinel
         De 2015 à 2018
         '''
-        f7ek = foyer_fiscal('f7ek', period)
         f7el = foyer_fiscal('f7el', period)
-        f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
 
@@ -5446,7 +5427,6 @@ class rpinel_om(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.rpinel
 
         max1 = max_(0, P.plafond - f7el - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
-        max2 = max_(0, max1 - f7qc)
 
         reduc_invest_real_2014 = around(
             P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
@@ -5479,27 +5459,16 @@ class rpinel_om(Variable):
         Investissement locatif privé - Dispositif Pinel
         Depuis 2019
         '''
-        f7nb = foyer_fiscal('f7nb', period)
-        f7nc = foyer_fiscal('f7nc', period)
         f7nd = foyer_fiscal('f7nd', period)
-        f7qi = foyer_fiscal('f7qi', period)
-        f7qj = foyer_fiscal('f7qj', period)
         f7qk = foyer_fiscal('f7qk', period)
         f7ql = foyer_fiscal('f7ql', period)
-        f7qm = foyer_fiscal('f7qm', period)
-        f7qn = foyer_fiscal('f7qn', period)
         f7qo = foyer_fiscal('f7qo', period)
         f7qp = foyer_fiscal('f7qp', period)
-        f7qr = foyer_fiscal('f7qr', period)
-        f7qs = foyer_fiscal('f7qs', period)
         f7qt = foyer_fiscal('f7qt', period)
         f7qu = foyer_fiscal('f7qu', period)
-        f7qw = foyer_fiscal('f7qw', period)
-        f7qx = foyer_fiscal('f7qx', period)
         f7qy = foyer_fiscal('f7qy', period)
         f7qq = foyer_fiscal('f7qq', period)
 
-        pinel_metropole_9ans = f7qj + f7qn + f7qs + f7qx
         pinel_outremer_6ans = f7qk + f7qo + f7qt + f7qy
         pinel_outremer_9ans = f7ql + f7qp + f7qu + f7qq
 
@@ -5514,7 +5483,6 @@ class rpinel_om(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.rpinel
 
         max1 = max_(0, P.plafond - f7nd - pinel_outremer_9ans)  # 2019 : plafond commun 'denormandie' et 'rpinel'
-        max2 = max_(0, max1 - f7nc - pinel_outremer_6ans)
 
         reduc_invest_pinel_2019 = around(
             P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond), pinel_outremer_9ans) / 9
