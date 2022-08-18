@@ -18,7 +18,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    denormandie: 2000.0
+    denormandie_metropole: 2000.0
     iai: 5644.0
     irpp: -5644.0
     nbptr: 1.0
@@ -47,7 +47,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    denormandie: 6000.0
+    denormandie_metropole: 6000.0
     iai: 1644.0
     irpp: -1644.0
     nbptr: 1.0
@@ -77,7 +77,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    denormandie: 2000.0
+    denormandie_metropole: 2000.0
     iai: 13180.0
     irpp: -13180.0
     nbptr: 1.0
@@ -107,7 +107,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    denormandie: 2000.0
+    denormandie_metropole: 2000.0
     iai: 4344.0
     irpp: -4344.0
     nbptr: 1.0
@@ -137,7 +137,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    denormandie: 2000.0
+    denormandie_metropole: 2000.0
     iai: 13157.0
     irpp: -13157.0
     nbptr: 1.0
