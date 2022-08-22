@@ -1,0 +1,37 @@
+retrocession_1_plaf:
+  description: Plafond RI IOM LogSoc, rétrocession 1
+  values:
+    2017-01-01:
+      value: 74286
+  metadata:
+    unit: currency
+retrocession_1_taux:
+  description: Taux RI IOM LogSoc, rétrocession 1
+  values:
+    2017-01-01:
+      value: 0.65
+  metadata:
+    unit: /1
+retrocession_2_plaf:
+  description: Plafond RI IOM LogSoc, rétrocession 2
+  values:
+    2017-01-01:
+      value: 93333
+  metadata:
+    unit: currency
+retrocession_2_taux:
+  description: Taux RI IOM LogSoc, rétrocession 2
+  values:
+    2017-01-01:
+      value: 0.7
+  metadata:
+    unit: /1
+partie_non_retro_plaf_abs:
+  description: Plafond RI IOM LogSoc, partie non-rétrocédée
+  values:
+    2017-01-01:
+      value: 40000
+  metadata:
+    unit: currency
+metadata:
+  last_review: '2022-08-22'
