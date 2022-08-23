@@ -4185,7 +4185,9 @@ class ri_iom(Variable):
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
 
-        # domlog
+        P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.plafond
+
+        # "DomLog" - art. 199 undecies A CGI
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
         fhod = foyer_fiscal('fhod', period)
@@ -4266,7 +4268,7 @@ class ri_iom(Variable):
             + fhur + fhus + fhut + fhuu +
             + fhvd + fhve + fhvf + fhvg)
 
-        # doment
+        # "DomEnt" - art. 199 undecies B CGI
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
         # location entreprise
@@ -4412,6 +4414,27 @@ class ri_iom(Variable):
         inv_60_40_60 = (fhpo
             + fhpt)
 
+        # PEntNR = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
+
+        # doment_non_retro_306 = (inv_5263_306_34 * (1 - PEntNR.taux_retro_2012_2)
+        #     + inv_625_306_51 * (1 - PEntNR.taux_retro_2012_1)
+        #     + inv_56_306_38945 * (1 - PEntNR.taux_retro_2012_4)
+        #     + inv_66_306_594 * (1 - PEntNR.taux_retro_2012_3))
+
+        # doment_non_retro_36 = (inv_5263_36_40 * (1 - PEntNR.taux_retro_2011_2)
+        #     + inv_625_36_60 * (1 - PEntNR.taux_retro_2011_1))
+
+        # doment_non_retro_40 = (inv_50_40_40 * (1 - PEntNR.taux_retro_avant_2011_2)
+        #     + inv_60_40_60 * (1 - PEntNR.taux_retro_avant_2011_1))
+
+        # doment_retro_34 = ()
+        # doment_retro_36 = ()
+        # doment_retro_38945 = ()
+        # doment_retro_40 = ()
+        # doment_retro_51 = ()
+        # doment_retro_594 = ()
+        # doment_retro_60 = ()
+
         # propre entreprise
 
         # 30.6
@@ -4546,14 +4569,10 @@ class ri_iom(Variable):
 
         propre_100 = fhpr + fhpw
 
-        doment = ()
-
-        # domsoc
+        # "DomSoc" - art. 199 undecies C CGI
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
         # 65 % - avant 2015
-        PSoc = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
-
         fhxq = foyer_fiscal('fhxq', period)
         fhxr = foyer_fiscal('fhxr', period)
         fhxs = foyer_fiscal('fhxs', period)
@@ -4604,8 +4623,8 @@ class ri_iom(Variable):
             + fhxn
             + fhxo)
 
-        ri_soc_65_retro = ri_soc_65 * PSoc.retrocession_1_taux
-        ri_soc_65_non_retro = ri_soc_65 * (1 - PSoc.retrocession_1_taux)
+        ri_soc_65_retro = ri_soc_65 * 0.65
+        ri_soc_65_non_retro = ri_soc_65 * (1 - 0.65)
 
         # 70 % - à partir de 2015
         fhxu = foyer_fiscal('fhxu', period)
@@ -4617,36 +4636,139 @@ class ri_iom(Variable):
             + fhxp
         )
 
-        ri_soc_70_retro = ri_soc_70 * PSoc.retrocession_2_taux
-        ri_soc_70_non_retro = ri_soc_70 * (1 - PSoc.retrocession_2_taux)
+        ri_soc_70_retro = ri_soc_70 * 0.7
+        ri_soc_70_non_retro = ri_soc_70 * (1 - 0.7)
 
-        # application du plafonnement
+        # application du plafonnement (BOI-IR-RICI-80-20-20-08/07/2015)
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
+        P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.rici_iom.plafond
+        P11 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.rici_iom.plafond
+        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.plafond
 
-        # si plafond rélatif à 11, 13, 15 % (case HQA)
-        ri_rel = (ri_avant_2011 * P2010.plaf_relatif
-            + ri_2011 * P2011.plaf_relatif
-            + ri_apres_2011 * P2012.plaf_relatif)
+        ## A) Non-rétrocédé
+        # par plafond, d'abord A (DomLog) puis B et C par ordre décroissant du taux de rétrocession
 
-        # si plafond absolu
-        ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, ri_2011 - ri_plaf_2010), P2011.plaf_absolu)
-        ri_plaf_2012 = min_(max_(0, ri_apres_2011 - ri_plaf_2011), P2012.plaf_absolu)
+        # i) plafond de € 40K
 
-        ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
+        ri_domlog_40 = min_(P09.plafond_de_base, ri_avant_2011)
+        ri_reste40 = P09.plafond_de_base - ri_domlog_40
 
-        # choix optimal
-        ri_opt = max_(ri_rel, ri_abs)
+        ri_domsoc_70_r = min_(ri_reste40, ri_soc_70_non_retro)
+        ri_reste40 -= ri_domsoc_70_r
 
-        # choix observé
-        ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
-            + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
+        ri_domsoc_65_r = min_(ri_reste40, ri_soc_65_non_retro)
+        ri_reste40 -= ri_domsoc_65_r
 
-        return ri_opt
+        ri_doment_60_40_60_r = min_(ri_reste40, inv_60_40_60)
+        ri_reste40 -= ri_doment_60_40_60_r
+
+        ri_doment_50_40_40_r = min_(ri_reste40, inv_50_40_40)
+        ri_reste40 -= ri_doment_50_40_40_r
+
+        # somme des RI non-rétro. avec plafond de € 40K
+        ri_40 = P09.plafond_de_base - ri_reste40
+
+        # ii) plafond de € 36K
+
+        ri_domlog_36 = min_(max_(0, P11.plafond_de_base - ri_40), ri_2011)
+        ri_reste36 = max_(0, P11.plafond_de_base - ri_40) - ri_domlog_36
+
+        ri_doment_625_36_60_r = min_(ri_reste36, inv_625_36_60)
+        ri_reste36 -= ri_doment_625_36_60_r
+
+        ri_doment_5263_36_40_r = min_(ri_reste36, inv_5263_36_40)
+        ri_reste36 -= ri_doment_5263_36_40_r
+
+        # somme des RI non-rétro. avec plafond de € 36K
+        ri_36 = ri_domlog_36 + ri_doment_625_36_60_r + ri_doment_5263_36_40_r
+
+        # iii) plafond de € 30.6K
+
+        ri_domlog_306 = min_(max_(0, P12.plafond_de_base - ri_40 - ri_36), ri_apres_2011)
+        ri_reste306 = max_(0, P12.plafond_de_base - ri_40 - ri_36) - ri_domlog_306
+
+        ri_doment_66_306_594_r = min_(ri_reste306, inv_66_306_594)
+        ri_reste306 -= ri_doment_66_306_594_r
+
+        ri_doment_625_306_51_r = min_(ri_reste306, inv_625_306_51)
+        ri_reste306 -= ri_doment_625_306_51_r
+
+        ri_doment_56_306_38945_r = min_(ri_reste306, inv_56_306_38945)
+        ri_reste306 -= ri_doment_56_306_38945_r
+
+        ri_doment_5263_306_34_r = min_(ri_reste306, inv_5263_306_34)
+        ri_reste306 -= ri_doment_5263_306_34_r
+
+        # somme des RI non-rétro. avec plafond de € 30.6K
+        ri_306 = ri_domlog_306 + ri_doment_66_306_594_r + ri_doment_625_306_51_r + ri_doment_56_306_38945_r + ri_doment_5263_306_34_r
+
+        ## B) Rétrocédé
+
+        # i) plafond de € 40K ajusté
+        ri_domsoc_70_nr = ri_domsoc_70_r * 0.7 / 0.3
+        ri_domsoc_65_nr = ri_domsoc_65_r * 0.65 / 0.35
+        ri_doment_60_40_60_nr = ri_doment_60_40_60_r * 0.6 / 0.4
+        ri_doment_50_40_40_nr = ri_doment_50_40_40_r
+
+        # ii) plafond de € 36K ajusté
+        ri_doment_625_36_60_nr = ri_doment_625_36_60_r * 0.625 / 0.375
+        ri_doment_5263_36_40_nr =ri_doment_5263_36_40_r * 0.5263 / 0.4737
+
+        # iii) plafond de € 30.6K ajusté
+        ri_doment_66_306_594_nr = ri_doment_66_306_594_r * 0.66 / 0.34
+        ri_doment_625_306_51_nr = ri_doment_625_306_51_r * 0.625 / 0.375
+        ri_doment_56_306_38945_nr = ri_doment_56_306_38945_r * 0.56 / 0.44
+        ri_doment_5263_306_34_nr = ri_doment_5263_306_34_r * 0.5263 / 0.4737
+
+        ri_nr = (ri_domsoc_70_nr
+            + ri_domsoc_65_nr
+            + ri_doment_60_40_60_nr
+            + ri_doment_50_40_40_nr
+            + ri_doment_625_36_60_nr
+            + ri_doment_5263_36_40_nr
+            + ri_doment_66_306_594_nr
+            + ri_doment_625_306_51_nr
+            + ri_doment_56_306_38945_nr
+            + ri_doment_5263_306_34_nr)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # # si plafond rélatif à 11, 13, 15 % (case HQA)
+        # ri_rel = (ri_avant_2011 * P2010.plaf_relatif
+        #     + ri_2011 * P2011.plaf_relatif
+        #     + ri_apres_2011 * P2012.plaf_relatif)
+
+        # # si plafond absolu
+        # ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
+        # ri_plaf_2011 = min_(max_(0, ri_2011 - ri_plaf_2010), P2011.plaf_absolu)
+        # ri_plaf_2012 = min_(max_(0, ri_apres_2011 - ri_plaf_2011), P2012.plaf_absolu)
+
+        # ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
+
+        # # choix optimal
+        # ri_opt = max_(ri_rel, ri_abs)
+
+        # # choix observé
+        # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
+        #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
+
+        return inv_no_plaf # + rel or abs RICI
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         # domlog
