@@ -4654,17 +4654,17 @@ class ri_iom(Variable):
         ri_domlog_40 = min_(P09.plafond_de_base, ri_avant_2011)
         ri_reste40 = P09.plafond_de_base - ri_domlog_40
 
-        ri_domsoc_70_r = min_(ri_reste40, ri_soc_70_non_retro)
-        ri_reste40 -= ri_domsoc_70_r
+        ri_domsoc_70_nr = min_(ri_reste40, ri_soc_70_non_retro)
+        ri_reste40 -= ri_domsoc_70_nr
 
-        ri_domsoc_65_r = min_(ri_reste40, ri_soc_65_non_retro)
-        ri_reste40 -= ri_domsoc_65_r
+        ri_domsoc_65_nr = min_(ri_reste40, ri_soc_65_non_retro)
+        ri_reste40 -= ri_domsoc_65_nr
 
-        ri_doment_60_40_60_r = min_(ri_reste40, inv_60_40_60)
-        ri_reste40 -= ri_doment_60_40_60_r
+        ri_doment_60_40_60_nr = min_(ri_reste40, inv_60_40_60 * (1 - 0.6))
+        ri_reste40 -= ri_doment_60_40_60_nr
 
-        ri_doment_50_40_40_r = min_(ri_reste40, inv_50_40_40)
-        ri_reste40 -= ri_doment_50_40_40_r
+        ri_doment_50_40_40_nr = min_(ri_reste40, inv_50_40_40 * (1 - 0.5))
+        ri_reste40 -= ri_doment_50_40_40_nr
 
         # somme des RI non-rétro. avec plafond de € 40K
         ri_40 = P09.plafond_de_base - ri_reste40
@@ -4674,63 +4674,63 @@ class ri_iom(Variable):
         ri_domlog_36 = min_(max_(0, P11.plafond_de_base - ri_40), ri_2011)
         ri_reste36 = max_(0, P11.plafond_de_base - ri_40) - ri_domlog_36
 
-        ri_doment_625_36_60_r = min_(ri_reste36, inv_625_36_60)
-        ri_reste36 -= ri_doment_625_36_60_r
+        ri_doment_625_36_60_nr = min_(ri_reste36, inv_625_36_60 * (1 - 0.625))
+        ri_reste36 -= ri_doment_625_36_60_nr
 
-        ri_doment_5263_36_40_r = min_(ri_reste36, inv_5263_36_40)
-        ri_reste36 -= ri_doment_5263_36_40_r
+        ri_doment_5263_36_40_nr = min_(ri_reste36, inv_5263_36_40 * (1 - 0.5263))
+        ri_reste36 -= ri_doment_5263_36_40_nr
 
         # somme des RI non-rétro. avec plafond de € 36K
-        ri_36 = ri_domlog_36 + ri_doment_625_36_60_r + ri_doment_5263_36_40_r
+        ri_36 = ri_domlog_36 + ri_doment_625_36_60_nr + ri_doment_5263_36_40_nr
 
         # iii) plafond de € 30.6K
 
         ri_domlog_306 = min_(max_(0, P12.plafond_de_base - ri_40 - ri_36), ri_apres_2011)
         ri_reste306 = max_(0, P12.plafond_de_base - ri_40 - ri_36) - ri_domlog_306
 
-        ri_doment_66_306_594_r = min_(ri_reste306, inv_66_306_594)
-        ri_reste306 -= ri_doment_66_306_594_r
+        ri_doment_66_306_594_nr = min_(ri_reste306, inv_66_306_594 * (1 - 0.66))
+        ri_reste306 -= ri_doment_66_306_594_nr
 
-        ri_doment_625_306_51_r = min_(ri_reste306, inv_625_306_51)
-        ri_reste306 -= ri_doment_625_306_51_r
+        ri_doment_625_306_51_nr = min_(ri_reste306, inv_625_306_51 * (1 - 0.625))
+        ri_reste306 -= ri_doment_625_306_51_nr
 
-        ri_doment_56_306_38945_r = min_(ri_reste306, inv_56_306_38945)
-        ri_reste306 -= ri_doment_56_306_38945_r
+        ri_doment_56_306_38945_nr = min_(ri_reste306, inv_56_306_38945 * (1 - 0.56))
+        ri_reste306 -= ri_doment_56_306_38945_nr
 
-        ri_doment_5263_306_34_r = min_(ri_reste306, inv_5263_306_34)
-        ri_reste306 -= ri_doment_5263_306_34_r
+        ri_doment_5263_306_34_nr = min_(ri_reste306, inv_5263_306_34 * (1 - 0.5263))
+        ri_reste306 -= ri_doment_5263_306_34_nr
 
         # somme des RI non-rétro. avec plafond de € 30.6K
-        ri_306 = ri_domlog_306 + ri_doment_66_306_594_r + ri_doment_625_306_51_r + ri_doment_56_306_38945_r + ri_doment_5263_306_34_r
+        ri_306 = ri_domlog_306 + ri_doment_66_306_594_nr + ri_doment_625_306_51_nr + ri_doment_56_306_38945_nr + ri_doment_5263_306_34_nr
 
         ## B) Rétrocédé
 
         # i) plafond de € 40K ajusté
-        ri_domsoc_70_nr = ri_domsoc_70_r * 0.7 / 0.3
-        ri_domsoc_65_nr = ri_domsoc_65_r * 0.65 / 0.35
-        ri_doment_60_40_60_nr = ri_doment_60_40_60_r * 0.6 / 0.4
-        ri_doment_50_40_40_nr = ri_doment_50_40_40_r
+        ri_domsoc_70_r = ri_domsoc_70_nr * 0.7 / 0.3
+        ri_domsoc_65_r = ri_domsoc_65_nr * 0.65 / 0.35
+        ri_doment_60_40_60_r = ri_doment_60_40_60_nr * 0.6 / 0.4
+        ri_doment_50_40_40_r = ri_doment_50_40_40_nr
 
         # ii) plafond de € 36K ajusté
-        ri_doment_625_36_60_nr = ri_doment_625_36_60_r * 0.625 / 0.375
-        ri_doment_5263_36_40_nr =ri_doment_5263_36_40_r * 0.5263 / 0.4737
+        ri_doment_625_36_60_r = ri_doment_625_36_60_nr * 0.625 / 0.375
+        ri_doment_5263_36_40_r =ri_doment_5263_36_40_nr * 0.5263 / 0.4737
 
         # iii) plafond de € 30.6K ajusté
-        ri_doment_66_306_594_nr = ri_doment_66_306_594_r * 0.66 / 0.34
-        ri_doment_625_306_51_nr = ri_doment_625_306_51_r * 0.625 / 0.375
-        ri_doment_56_306_38945_nr = ri_doment_56_306_38945_r * 0.56 / 0.44
-        ri_doment_5263_306_34_nr = ri_doment_5263_306_34_r * 0.5263 / 0.4737
+        ri_doment_66_306_594_r = ri_doment_66_306_594_nr * 0.66 / 0.34
+        ri_doment_625_306_51_r = ri_doment_625_306_51_nr * 0.625 / 0.375
+        ri_doment_56_306_38945_r = ri_doment_56_306_38945_nr * 0.56 / 0.44
+        ri_doment_5263_306_34_r = ri_doment_5263_306_34_nr * 0.5263 / 0.4737
 
-        ri_nr = (ri_domsoc_70_nr
-            + ri_domsoc_65_nr
-            + ri_doment_60_40_60_nr
-            + ri_doment_50_40_40_nr
-            + ri_doment_625_36_60_nr
-            + ri_doment_5263_36_40_nr
-            + ri_doment_66_306_594_nr
-            + ri_doment_625_306_51_nr
-            + ri_doment_56_306_38945_nr
-            + ri_doment_5263_306_34_nr)
+        ri_r = (ri_domsoc_70_r
+            + ri_domsoc_65_r
+            + ri_doment_60_40_60_r
+            + ri_doment_50_40_40_r
+            + ri_doment_625_36_60_r
+            + ri_doment_5263_36_40_r
+            + ri_doment_66_306_594_r
+            + ri_doment_625_306_51_r
+            + ri_doment_56_306_38945_r
+            + ri_doment_5263_306_34_r)
 
 
 
