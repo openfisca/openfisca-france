@@ -117,7 +117,6 @@ class reductions_deplafonnees(Variable):
             'assvie',
             'reduction_cotisations_syndicales',
             'creaen',
-            'donapd',
             'intagr',
             'mecena',
             'prcomp',
@@ -125,7 +124,7 @@ class reductions_deplafonnees(Variable):
 
             # Pas clair, dans le doute compté parmi les plafonnées :
             'donpartipol',
-            'notredame',
+            # 'notredame',
             'ecpess',
 
             # plafonds séparés, TODO :
@@ -190,7 +189,7 @@ class reductions(Variable):
             # Depuis 2002
             'accult', 'adhcga', 'assvie', 'cappme', 'cappme_esus_sfs',
             'reduction_cotisations_syndicales',
-            'daepad', 'dfppce', 'doment', 'domlog', 'donapd',
+            'daepad', 'dfppce', 'doment', 'domlog',
             'ecpess', 'garext', 'intemp', 'invfor', 'invrev',
             'prcomp', 'rsceha', 'saldom', 'spfcpi',
             # Introduites en 2003
@@ -215,8 +214,8 @@ class reductions(Variable):
             'rpinel_metropole', 'rpinel_om',
             # Introduites en 2017
             'rehab',
-            # Introduites en 2020
-            'notredame', 'denormandie_metropole', 'denormandie_om',
+            # Introduites en 2020 'notredame',
+            'denormandie_metropole', 'denormandie_om',
             ]
 
         impot_net = foyer_fiscal('ip_net', period)
@@ -230,6 +229,7 @@ class accult(Variable):
     entity = FoyerFiscal
     label = 'Acquisition de biens culturels'
     definition_period = YEAR
+    end = '2020-12-31'
 
     def formula_2002(foyer_fiscal, period, parameters):
         '''
@@ -1114,9 +1114,9 @@ class denormandie_metropole(Variable):
         pinel_outremer_6ans = f7qk + f7qo + f7qt + f7qy
         pinel_outremer_9ans = f7ql + f7qp + f7qu + f7qq
 
-        max1 = max_(0, P.plafond - pinel_outremer_9ans - denormandie_outremer_9ans)  # Plafond commun à Pinel
-        max2 = max_(0, max1 - pinel_outremer_6ans - denormandie_outremer_6ans)  # Plafond commun à Pinel
-        max3 = max_(0, max2 - pinel_metropole_9ans - denormandie_metropole_9ans)  # Plafond commun à Pinel
+        max1 = max_(0, P.plafond - pinel_outremer_9ans - denormandie_outremer_9ans)  # Plafond commun avec Pinel
+        max2 = max_(0, max1 - pinel_outremer_6ans - denormandie_outremer_6ans)  # Plafond commun avec Pinel
+        max3 = max_(0, max2 - pinel_metropole_9ans - denormandie_metropole_9ans)  # Plafond commun avec Pinel
 
         return around(
             P.taux['metropole']['9_ans'] * min_(max_(0, max2 - pinel_metropole_9ans), denormandie_metropole_9ans) / 9
@@ -1156,26 +1156,6 @@ class denormandie_om(Variable):
             P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - pinel_outremer_9ans), denormandie_outremer_9ans) / 9
             + P.taux['outremer']['6_ans'] * min_(max_(0, max1 - pinel_outremer_6ans), denormandie_outremer_6ans) / 6
             )
-
-
-class donpartipol(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = 'Dons et cotisations versés aux partis politiques'
-    reference = 'https://bofip.impots.gouv.fr/bofip/5869-PGP'
-    definition_period = YEAR
-
-    def formula_2013_01_01(foyer_fiscal, period, parameters):
-        '''
-        Dons aux partis politiques (case séparée des dons aux oeuvres depuis IR 2014 sur revenus 2013)
-        '''
-        f7uh = foyer_fiscal('f7uh', period)
-        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.dons
-
-        plafond = P.max_dons_partipo_seul * (1 + maries_ou_pacses)
-        dons_plafonnes = min_(plafond, f7uh)
-        return dons_plafonnes * P.taux_dons_partipol
 
 
 class dfppce(Variable):
@@ -1327,7 +1307,7 @@ class dfppce(Variable):
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
         Dons versés à d’autres organismes d’intérêt général,
-        aux associations d’utilité publique, aux candidats aux élections (2011-2018)
+        aux associations d’utilité publique, aux candidats aux élections (2019)
         '''
         rni = foyer_fiscal('rni', period)
         f7uf = foyer_fiscal('f7uf', period)
@@ -1340,25 +1320,65 @@ class dfppce(Variable):
         f7va = foyer_fiscal('f7va', period)
         f7ud = foyer_fiscal('f7ud', period)
         f7vc = foyer_fiscal('f7vc', period)
+
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
         plafond_reduction_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.max
+        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.taux
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
-        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud
-        max1 = P.max_dons_oeuvres * rni
-        plafondpartipol = P.max_dons_partipo_seul * (1 + maries_ou_pacses)
-        dons_plafonnes = min_(plafondpartipol, f7uh)
-        max2 = max1 - dons_plafonnes
-        return P.taux_dons_oeuvres * min_(base, max2)
+        red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
+        report_f7va_f7ud = f7va + f7ud - red_7ud_7va
+
+        dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
+
+        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol
+        max = P.max_dons_oeuvres * rni
+
+        return red_7ud_7va + P.taux_dons_oeuvres * min_(base, max)
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
         Dons versés à d’autres organismes d’intérêt général,
-        aux associations d’utilité publique, aux candidats aux élections (2019-)
+        aux associations d’utilité publique, aux candidats aux élections (2019)
         '''
         rni = foyer_fiscal('rni', period)
+        f7uf = foyer_fiscal('f7uf', period)
+        f7uh = foyer_fiscal('f7uh', period)
         f7ue = foyer_fiscal('f7ue', period)
+        f7xs = foyer_fiscal('f7xs', period)
+        f7xt = foyer_fiscal('f7xt', period)
+        f7xu = foyer_fiscal('f7xu', period)
+        f7xw = foyer_fiscal('f7xw', period)
+        f7xy = foyer_fiscal('f7xy', period)
+        f7va = foyer_fiscal('f7va', period)
+        f7ud = foyer_fiscal('f7ud', period)
+        f7vc = foyer_fiscal('f7vc', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.dons
+        PND = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_notre_dame
+        plafond_reduction_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.max
+        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.taux
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
+        report_f7va_f7ud = f7va + f7ud - red_7ud_7va
+
+        red_notre_dame = min_(PND.plafond, f7ue) * PND.taux
+        report_notre_dame = f7ue - red_notre_dame
+
+        dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
+
+        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol + report_notre_dame
+        max = P.max_dons_oeuvres * rni
+
+        return red_notre_dame + red_7ud_7va + P.taux_dons_oeuvres * min_(base, max)
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Dons versés à d’autres organismes d’intérêt général,
+        aux associations d’utilité publique, aux candidats aux élections (2020)
+        '''
+        rni = foyer_fiscal('rni', period)
         f7uf = foyer_fiscal('f7uf', period)
         f7uh = foyer_fiscal('f7uh', period)
         f7xs = foyer_fiscal('f7xs', period)
@@ -1369,19 +1389,57 @@ class dfppce(Variable):
         f7va = foyer_fiscal('f7va', period)
         f7ud = foyer_fiscal('f7ud', period)
         f7vc = foyer_fiscal('f7vc', period)
+
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
         plafond_reduction_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.max
-        plafond_reduction_notredame = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_notre_dame.plafond
+        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.taux
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
-        report_f7ue = max_(0, f7ue - plafond_reduction_notredame)
-        base = f7uf + f7vc + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + report_f7ue
-        max1 = P.max_dons_oeuvres * rni
-        plafondpartipol = P.max_dons_partipo_seul * (1 + maries_ou_pacses)
-        dons_plafonnes = min_(plafondpartipol, f7uh)
-        max2 = max1 - dons_plafonnes
-        return P.taux_dons_oeuvres * min_(base, max2)
+        red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
+        report_f7va_f7ud = f7va + f7ud - red_7ud_7va
+
+        dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
+
+        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol
+        max = P.max_dons_oeuvres * rni
+
+        return red_7ud_7va + P.taux_dons_oeuvres * min_(base, max)
+
+    def formula_2021_01_01(foyer_fiscal, period, parameters):
+        '''
+        Dons versés à d’autres organismes d’intérêt général,
+        aux associations d’utilité publique, aux candidats aux élections (2021)
+        '''
+        rni = foyer_fiscal('rni', period)
+        f7uf = foyer_fiscal('f7uf', period)
+        f7uh = foyer_fiscal('f7uh', period)
+        f7uj = foyer_fiscal('f7uj', period)
+        f7xs = foyer_fiscal('f7xs', period)
+        f7xt = foyer_fiscal('f7xt', period)
+        f7xu = foyer_fiscal('f7xu', period)
+        f7xw = foyer_fiscal('f7xw', period)
+        f7xy = foyer_fiscal('f7xy', period)
+        f7va = foyer_fiscal('f7va', period)
+        f7ud = foyer_fiscal('f7ud', period)
+        f7vc = foyer_fiscal('f7vc', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.dons
+        plafond_reduction_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.max
+        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.taux
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
+        report_f7va_f7ud = f7va + f7ud - red_7ud_7va
+
+        red_7uj = min_(P.dons_assoc_cult, f7uj) * taux_donapd
+        report_7uj = f7uj - red_7uj
+
+        dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
+
+        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + report_7uj + dons_partipol
+        max = P.max_dons_oeuvres * rni
+
+        return red_7ud_7va + red_7uj + P.taux_dons_oeuvres * min_(base, max)
 
 
 class doment(Variable):
@@ -2259,7 +2317,7 @@ class domlog(Variable):
         f7ua = foyer_fiscal('f7ua_2007', period)
         f7ub = foyer_fiscal('f7ub_2007', period)
         f7uc = foyer_fiscal('f7uc', period)
-        f7uj = foyer_fiscal('f7uj', period)
+        f7uj = foyer_fiscal('f7uj_2002', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.domlog
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc)
@@ -2273,7 +2331,7 @@ class domlog(Variable):
         f7ub = foyer_fiscal('f7ub_2007', period)
         f7uc = foyer_fiscal('f7uc', period)
         f7ui = foyer_fiscal('f7ui_2008', period)
-        f7uj = foyer_fiscal('f7uj', period)
+        f7uj = foyer_fiscal('f7uj_2002', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.domlog
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc) + f7ui
@@ -2287,7 +2345,7 @@ class domlog(Variable):
         f7ub = foyer_fiscal('f7ub_2007', period)
         f7uc = foyer_fiscal('f7uc', period)  # noqa F841
         f7ui = foyer_fiscal('f7ui_2008', period)
-        f7uj = foyer_fiscal('f7uj', period)
+        f7uj = foyer_fiscal('f7uj_2002', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.domlog
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub) + f7ui
@@ -2981,33 +3039,6 @@ class domsoc(Variable):
     # TODO plafonnement à 15% f7qa / liens avec autres investissments ?
 
 
-class donapd(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = 'donapd'
-    reference = 'http://bofip.impots.gouv.fr/bofip/5873-PGP?datePubl=vig#5873-PGP_Cas_particulier_des_dons_fa_21'
-    definition_period = YEAR
-
-    def formula_2002_01_01(foyer_fiscal, period, parameters):
-        '''
-        Dons effectués à  des organises d'aide aux personnes en difficulté (2002-2010)
-        '''
-        f7ud = foyer_fiscal('f7ud', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.donapd
-
-        return P.taux * min_(f7ud, P.max)
-
-    def formula_2011_01_01(foyer_fiscal, period, parameters):
-        '''
-        Dons effectués à  des organises d'aide aux personnes en difficulté (2011-2013)
-        '''
-        f7ud = foyer_fiscal('f7ud', period)
-        f7va = foyer_fiscal('f7va', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.donapd
-
-        return P.taux * min_(f7ud + f7va, P.max)
-
-
 class duflot(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -3111,7 +3142,7 @@ class ecodev(Variable):
         Sommes versées sur un compte épargne codéveloppement (case 7UH)
         2009
         '''
-        f7uh = foyer_fiscal('f7uh', period)
+        f7uh = foyer_fiscal('f7uh_2009', period)
         rbg_int = foyer_fiscal('rbg_int', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.ecodev
 
@@ -3223,7 +3254,7 @@ class intcon(Variable):
         Intérêts des prêts à la consommation (case UH)
         2004-2005
         '''
-        f7uh = foyer_fiscal('f7uh', period)
+        f7uh = foyer_fiscal('f7uh_2004', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.intcon
 
         max1 = P.max
@@ -3779,30 +3810,20 @@ class invlst(Variable):
         report_residence_sociale_2010 = foyer_fiscal('f7xr', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
 
-        reduction_logement_neuf = P.taux_xi * (
-            report_logement_neuf_2009
-            + report_logement_neuf_2010
-            + report_logement_neuf_2011
-            + report_logement_neuf_2012
-            )
+        red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2009 + report_logement_neuf_2010 + report_logement_neuf_2011 + report_logement_neuf_2012)
+        red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2009 + report_rehabilitation_2010 + report_rehabilitation_2011 + report_rehabilitation_2012)
 
-        reduction_rehabilitation = P.taux_xj * (
-            report_rehabilitation_2009
-            + report_rehabilitation_2010
-            + report_rehabilitation_2011
-            + report_rehabilitation_2012
-            )
+        reduction_logement_neuf = P.taux_xi * red_neuf
+        reduction_rehabilitation = P.taux_xj * red_rehab
 
-        reduction_residence_sociale = P.taux_xo * (
-            report_residence_sociale_2009
-            + report_residence_sociale_2010
-            )
+        reduction_residence_sociale = P.taux_xo * min_(P.seuil1, report_residence_sociale_2009 + report_residence_sociale_2010)
 
-        return around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
+        return around(max_(reduction_logement_neuf + reduction_rehabilitation, reduction_residence_sociale))
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements locatifs dans le secteur touristique
+        Investissements locatifs dans le secteur touristique OU DANS UNE RÉSIDENCE HÔTELIÈRE À VOCATION SOCIALE
+        mais pas les deux à la fois
         2015
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)  # noqa F841
@@ -3817,23 +3838,15 @@ class invlst(Variable):
         report_residence_sociale_2010 = foyer_fiscal('f7xr', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
 
-        reduction_logement_neuf = P.taux_xi * (
-            report_logement_neuf_2009
-            + report_logement_neuf_2010
-            + report_logement_neuf_2011
-            + report_logement_neuf_2012
-            )
+        red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2009 + report_logement_neuf_2010 + report_logement_neuf_2011 + report_logement_neuf_2012)
+        red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2009 + report_rehabilitation_2010 + report_rehabilitation_2011 + report_rehabilitation_2012)
 
-        reduction_rehabilitation = P.taux_xj * (
-            report_rehabilitation_2009
-            + report_rehabilitation_2010
-            + report_rehabilitation_2011
-            + report_rehabilitation_2012
-            )
+        reduction_logement_neuf = P.taux_xi * red_neuf
+        reduction_rehabilitation = P.taux_xj * red_rehab
 
-        reduction_residence_sociale = P.taux_xo * report_residence_sociale_2010
+        reduction_residence_sociale = P.taux_xo * min_(P.seuil1, report_residence_sociale_2010)
 
-        return around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
+        return around(max_(reduction_logement_neuf + reduction_rehabilitation, reduction_residence_sociale))
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3849,17 +3862,11 @@ class invlst(Variable):
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
 
-        reduction_logement_neuf = P.taux_xi * (
-            report_logement_neuf_2010
-            + report_logement_neuf_2011
-            + report_logement_neuf_2012
-            )
+        red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2010 + report_logement_neuf_2011 + report_logement_neuf_2012)
+        red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2010 + report_rehabilitation_2011 + report_rehabilitation_2012)
 
-        reduction_rehabilitation = P.taux_xj * (
-            report_rehabilitation_2010
-            + report_rehabilitation_2011
-            + report_rehabilitation_2012
-            )
+        reduction_logement_neuf = P.taux_xi * red_neuf
+        reduction_rehabilitation = P.taux_xj * red_rehab
 
         return around(reduction_logement_neuf + reduction_rehabilitation)
 
@@ -3875,15 +3882,29 @@ class invlst(Variable):
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
 
-        reduction_logement_neuf = P.taux_xi * (
-            report_logement_neuf_2011
-            + report_logement_neuf_2012
-            )
+        red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2011 + report_logement_neuf_2012)
+        red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2011 + report_rehabilitation_2012)
 
-        reduction_rehabilitation = P.taux_xj * (
-            report_rehabilitation_2011
-            + report_rehabilitation_2012
-            )
+        reduction_logement_neuf = P.taux_xi * red_neuf
+        reduction_rehabilitation = P.taux_xj * red_rehab
+
+        return around(reduction_logement_neuf + reduction_rehabilitation)
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatifs dans le secteur touristique
+        2018
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)  # noqa F841
+        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
+        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+
+        red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2012)
+        red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2012)
+
+        reduction_logement_neuf = P.taux_xi * red_neuf
+        reduction_rehabilitation = P.taux_xj * red_rehab
 
         return around(reduction_logement_neuf + reduction_rehabilitation)
 
@@ -4837,22 +4858,22 @@ class mohist(Variable):
         return P.taux * min_(f7nz, P.max)
 
 
-class notredame(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = 'notredame'
-    end = '2019-12-31'
-    definition_period = YEAR
+# class notredame(Variable):
+#     value_type = float
+#     entity = FoyerFiscal
+#     label = 'notredame'
+#     end = '2019-12-31'
+#     definition_period = YEAR
 
-    def formula_2019_01_01(foyer_fiscal, period, parameters):
-        '''
-        Dons versés du 16.4 au 31.12.2019 pour la conservation et la restauration de la cathédrale Notre-Dame de Paris (case UE)
-        2020
-        '''
-        f7ue = foyer_fiscal('f7ue', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_notre_dame
+#     def formula_2019_01_01(foyer_fiscal, period, parameters):
+#         '''
+#         Dons versés du 16.4 au 31.12.2019 pour la conservation et la restauration de la cathédrale Notre-Dame de Paris (case UE)
+#         2020
+#         '''
+#         f7ue = foyer_fiscal('f7ue', period)
+#         P = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_notre_dame
 
-        return P.taux * min_(f7ue, P.plafond)
+#         return P.taux * min_(f7ue, P.plafond)
 
 
 class patnat(Variable):
@@ -6863,12 +6884,10 @@ class spfcpi(Variable):
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
 
-        return (
-            P.taux1
-            * min_(f7gq, max1) + P.taux1
-            * min_(f7fq, max1) + P.taux2
-            * min_(f7fm, max1) + P.taux3 * min_(f7fl, max1)
-            )
+        return (P.taux1 * min_(f7gq, max1)
+            + P.taux1 * min_(f7fq, max1)
+            + P.taux2 * min_(f7fm, max1)
+            + P.taux3 * min_(f7fl, max1))
 
 
 def mini(a, b, *args):

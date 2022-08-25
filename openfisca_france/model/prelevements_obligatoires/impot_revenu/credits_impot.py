@@ -999,11 +999,12 @@ class direpa(Variable):
     entity = FoyerFiscal
     label = 'Crédit d’impôt directive « épargne »'
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula_2006(foyer_fiscal, period, parameters):
         '''
         Crédit d’impôt directive « épargne » (case 2BG)
-        2006-
+        2006-2017
         '''
         f2bg = foyer_fiscal('f2bg', period)
 
@@ -1036,11 +1037,12 @@ class drbail(Variable):
     entity = FoyerFiscal
     label = 'Crédit d’impôt représentatif de la taxe additionnelle au droit de bail'
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula_2002(foyer_fiscal, period, parameters):
         '''
         Crédit d’impôt représentatif de la taxe additionnelle au droit de bail (case 4TQ)
-        2002-
+        2002-2017
         '''
         f4tq = foyer_fiscal('f4tq', period)
         P = parameters(period).impot_revenu.calcul_credits_impots.drbail
@@ -1066,7 +1068,7 @@ class inthab(Variable):
         invalidite_conj = foyer_fiscal('caseF', period)
         nbpac_invalideG = foyer_fiscal('nbG', period)
         nbpac_invalideR = foyer_fiscal('nbR', period)
-        f7uh = foyer_fiscal('f7uh', period)
+        f7uh = foyer_fiscal('f7uh_2007', period)
         P = parameters(period).impot_revenu.calcul_credits_impots.inthab
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
@@ -1363,6 +1365,26 @@ class inthab(Variable):
             + P.taux6 * min_(f7vt, max2)
             )
 
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédit d’impôt intérêts des emprunts pour l’habitation principale
+        2019
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
+        nbpac_invalideI = foyer_fiscal('nbI', period)
+        f7vx = foyer_fiscal('f7vx', period)
+        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
+        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
+
+        return P.taux1 * min_(f7vx, max0)
+
 
 class jeunes(Variable):
     value_type = float
@@ -1449,6 +1471,7 @@ class preetu(Variable):
     entity = FoyerFiscal
     label = 'Crédit d’impôt pour souscription de prêts étudiants'
     definition_period = YEAR
+    end = '2018-12-31'
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
