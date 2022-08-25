@@ -1,0 +1,6 @@
+description: Plafond des dépenses
+values:
+  2021-01-01:
+    value: 554
+metadata:
+  unit: currency

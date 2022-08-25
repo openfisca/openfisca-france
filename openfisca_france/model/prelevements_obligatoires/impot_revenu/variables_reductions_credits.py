@@ -190,6 +190,28 @@ class f7uh_2007(Variable):
     definition_period = YEAR
 
 
+class f7uh_2004(Variable):
+    cerfa_field = '7UH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Intcon"
+    # start_date = date(2007, 1, 1)
+    end = '2005-12-31'
+    definition_period = YEAR
+
+
+class f7uh_2009(Variable):
+    cerfa_field = '7UH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "EcoDev"
+    # start_date = date(2007, 1, 1)
+    end = '2009-12-31'
+    definition_period = YEAR
+
+
 class f7vy(Variable):
     cerfa_field = '7VY'
     value_type = int
@@ -4218,12 +4240,22 @@ class f7ui(Variable):
     definition_period = YEAR
 
 
-class f7uj(Variable):
+class f7uj_2002(Variable):
     cerfa_field = '7UJ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     end = '2007-12-31'
+    definition_period = YEAR
+
+
+class f7uj(Variable):
+    cerfa_field = '7UJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    # start_date = date(2021, 1, 1)
+    label = 'Dons versés du 2.6 au 31.12.2021 à des associations cultuelles'
     definition_period = YEAR
 
 
