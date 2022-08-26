@@ -1028,7 +1028,6 @@ class creimp(Variable):
         f8wb = foyer_fiscal('f8wb', period)
         f8wc = foyer_fiscal('f8wc', period)
         f8wd = foyer_fiscal('f8wd', period)
-        f8we = foyer_fiscal('f8we', period)  # noqa F841
         f8wr = foyer_fiscal('f8wr', period)
         f8ws = foyer_fiscal('f8ws', period)
         f8wt = foyer_fiscal('f8wt', period)
@@ -2052,10 +2051,8 @@ class quaenv(Variable):
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
         f7sz = foyer_fiscal('f7sz_2015', period)
-        f7wc = foyer_fiscal('f7wc', period)  # noqa F841
         f7we = foyer_fiscal('f7we', period)
         f7wg = foyer_fiscal('f7wg', period)
-        f7wh = foyer_fiscal('f7wh', period)  # noqa F841
         f7wk = foyer_fiscal('f7wk', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
@@ -2137,10 +2134,8 @@ class quaenv(Variable):
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
         f7sz = foyer_fiscal('f7sz_2015', period)
-        f7wc = foyer_fiscal('f7wc', period)  # noqa F841
         f7we = foyer_fiscal('f7we', period)
         f7wg = foyer_fiscal('f7wg', period)
-        f7wh = foyer_fiscal('f7wh', period)  # noqa F841
         f7wk = foyer_fiscal('f7wk', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
@@ -2214,7 +2209,6 @@ class quaenv(Variable):
         f7sk = foyer_fiscal('f7sk', period)
         f7sl = foyer_fiscal('f7sl', period)
         f7sn = foyer_fiscal('f7sn_2015', period)
-        f7so = foyer_fiscal('f7so_2015', period)  # noqa F841
         f7sp = foyer_fiscal('f7sp', period)
         f7sq = foyer_fiscal('f7sq', period)
         f7sr = foyer_fiscal('f7sr', period)
@@ -2228,15 +2222,12 @@ class quaenv(Variable):
         f7vh = foyer_fiscal('f7vh_2014', period)
         f7wb = foyer_fiscal('f7wb', period)
         f7wc = foyer_fiscal('f7wc', period)
-        f7we = foyer_fiscal('f7we', period)  # noqa F841
-        f7wg = foyer_fiscal('f7wg', period)  # noqa F841
         f7wk = foyer_fiscal('f7wk', period)
         f7wt = foyer_fiscal('f7wt', period)
         f7wu = foyer_fiscal('f7wu', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
-        rfr = foyer_fiscal('rfr', period)  # noqa F841
         P = parameters(period).impot_revenu.calcul_credits_impots.quaenv
 
         depenses_transition_energetique = (
@@ -2379,11 +2370,8 @@ class quaenv(Variable):
         f7vl = foyer_fiscal('f7vl_2015', period)
         f7wb = foyer_fiscal('f7wb', period)
         f7wc = foyer_fiscal('f7wc', period)
-        f7we = foyer_fiscal('f7we', period)  # noqa F841
-        f7wg = foyer_fiscal('f7wg', period)  # noqa F841
         f7wh = foyer_fiscal('f7wh', period)
         f7wi = foyer_fiscal('f7wi_2015', period)
-        f7wk = foyer_fiscal('f7wk', period)  # noqa F841
         f7wt = foyer_fiscal('f7wt', period)
         f7wu = foyer_fiscal('f7wu', period)
         f7wv = foyer_fiscal('f7wv', period)
@@ -2393,7 +2381,6 @@ class quaenv(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
-        rfr = foyer_fiscal('rfr', period)  # noqa F841
         P = parameters(period).impot_revenu.calcul_credits_impots.quaenv
 
         depenses_transition_energetique_bouquet_2ans_2014_part2 = (
