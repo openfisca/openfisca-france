@@ -1,0 +1,6 @@
+description: Taux pour les acquisitions
+values:
+  2014-01-01:
+    value: 0.18
+metadata:
+  unit: /1
