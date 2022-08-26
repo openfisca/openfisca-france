@@ -959,10 +959,21 @@ class cotsyn(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        cotisations_versees = foyer_fiscal.members('f7ac', period)
+        '''
+        NB: This is but an approximation of the true calculation, as it is done on the level of the tax unit.
+        In reality, the ceilings of 1 % of revenues are applied on the individual level (cf. BOI-IR-RICI-20).
+        '''
+
+        f7ac = foyer_fiscal.members('f7ac', period)
+        f7ag = foyer_fiscal.members('f7ag', period)
+        f7ae = foyer_fiscal.members('f7ae', period)
+
+        cotisations_versees = f7ac + f7ag + f7ae
+
         salaire_imposable = foyer_fiscal.members('salaire_imposable', period, options = [ADD])
         chomage_imposable = foyer_fiscal.members('chomage_imposable', period, options = [ADD])
         retraite_imposable = foyer_fiscal.members('retraite_imposable', period, options = [ADD])
+
         P = parameters(period).impot_revenu.calcul_reductions_impots.cotsyn
 
         plafond = (salaire_imposable + chomage_imposable + retraite_imposable) * P.seuil
