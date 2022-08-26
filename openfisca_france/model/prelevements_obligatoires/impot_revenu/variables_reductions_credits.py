@@ -576,12 +576,21 @@ class f7vg(Variable):
     definition_period = YEAR
 
 
-class f7vh(Variable):
+class f7vh_2014(Variable):
     cerfa_field = '7VH'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de toute la toiture du 1.9 au 31.12.2014"
     # start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7vh(Variable):
+    cerfa_field = '7VH'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Inv. for."
+    # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
 
@@ -679,7 +688,7 @@ class f7aq(Variable):
     definition_period = YEAR
 
 
-class f7vk(Variable):
+class f7vk_2015(Variable):
     cerfa_field = '7VK'
     value_type = int
     entity = FoyerFiscal
@@ -688,12 +697,30 @@ class f7vk(Variable):
     definition_period = YEAR
 
 
-class f7vl(Variable):
+class f7vk(Variable):
+    cerfa_field = '7VK'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Inv. for."
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7vl_2015(Variable):
     cerfa_field = '7VL'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale: Portes d'entrées donnant sur l'extérieur 2015"
     # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7vl(Variable):
+    cerfa_field = '7VL'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Inv. for."
+    # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
 
@@ -780,7 +807,7 @@ class f7tn(Variable):
     definition_period = YEAR
 
 
-class f7tp(Variable):
+class f7tp_2015(Variable):
     cerfa_field = '7TP'
     value_type = int
     entity = FoyerFiscal
@@ -789,7 +816,16 @@ class f7tp(Variable):
     definition_period = YEAR
 
 
-class f7tq(Variable):
+class f7tp(Variable):
+    cerfa_field = '7TP'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Inv. forestiers: Report des dépenses de travaux des années antérieures 2016"
+    # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7tq_2015(Variable):
     cerfa_field = '7TQ'
     value_type = int
     entity = FoyerFiscal
@@ -798,7 +834,16 @@ class f7tq(Variable):
     definition_period = YEAR
 
 
-class f7tr(Variable):
+class f7tq(Variable):
+    cerfa_field = '7TQ'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016"
+    # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7tr_2015(Variable):
     cerfa_field = '7TR'
     value_type = int
     entity = FoyerFiscal
@@ -807,12 +852,30 @@ class f7tr(Variable):
     definition_period = YEAR
 
 
-class f7ts(Variable):
+class f7tr(Variable):
+    cerfa_field = '7TR'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Inv. forestiers: Report des dépenses de travaux des années antérieures 2017"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7ts_2015(Variable):
     cerfa_field = '7TS'
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale 2015: Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie solaire et dotés de capteurs solaires"
     # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7ts(Variable):
+    cerfa_field = '7TS'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2017"
+    # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
 
@@ -8357,13 +8420,23 @@ class f7sc_2016(Variable):
     definition_period = YEAR
 
 
-class f7ta(Variable):
+class f7ta_2015(Variable):
     cerfa_field = '7TA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 : chaudières à condensation '
     # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7ta(Variable):
+    cerfa_field = '7TA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Inv. for.'
+    # start_date = date(2021, 1, 1)
     definition_period = YEAR
 
 
@@ -8620,13 +8693,43 @@ class f7si(Variable):
     definition_period = YEAR
 
 
-class f7vi(Variable):
+class f7vi_2015(Variable):
     cerfa_field = '7VI'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose) en 2015'
     # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7vi(Variable):
+    cerfa_field = '7VI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Inv. for.'
+    # start_date = date(2020, 1, 1)
+    definition_period = YEAR
+
+
+class f7vs(Variable):
+    cerfa_field = '7VS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Inv. for.'
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7vj(Variable):
+    cerfa_field = '7VJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Inv. for.'
+    # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
 
@@ -8640,7 +8743,7 @@ class f7te(Variable):
     definition_period = YEAR
 
 
-class f7tu(Variable):
+class f7tu_2012(Variable):
     cerfa_field = '7TU'
     value_type = int
     unit = 'currency'
@@ -8651,8 +8754,39 @@ class f7tu(Variable):
     definition_period = YEAR
 
 
+class f7tu(Variable):
+    cerfa_field = '7TU'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Inv. for."
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7tt_2012(Variable):
+    cerfa_field = '7TT'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Dépenses de travaux dans l'habitation principale"
+    # start_date = date(2012, 1, 1)
+#    end = '2012-12-31'
+    definition_period = YEAR
+
+
 class f7tt(Variable):
     cerfa_field = '7TT'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Inf. for."
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7tv_2012(Variable):
+    cerfa_field = '7TV'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -8667,9 +8801,8 @@ class f7tv(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Dépenses de travaux dans l'habitation principale"
-    # start_date = date(2012, 1, 1)
-#    end = '2012-12-31'
+    label = "Inv. for."
+    # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
 
@@ -8717,7 +8850,7 @@ class f7ty_2015(Variable):
     definition_period = YEAR
 
 
-class f7tw(Variable):
+class f7tw_2012(Variable):
     cerfa_field = '7TW'
     value_type = int
     unit = 'currency'
@@ -8725,6 +8858,16 @@ class f7tw(Variable):
     label = "Dépenses de travaux dans l'habitation principale"
     # start_date = date(2012, 1, 1)
     end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7tw(Variable):
+    cerfa_field = '7TW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Inv. for."
+    # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
 

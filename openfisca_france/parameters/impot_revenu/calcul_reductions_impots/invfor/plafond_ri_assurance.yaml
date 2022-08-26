@@ -1,0 +1,8 @@
+description: Plafond de dépenses d'acquisition
+values:
+  2014-01-01:
+    value: 6250
+metadata:
+  unit: currency
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
