@@ -3715,7 +3715,7 @@ class f7iy(Variable):
 
 
 # 2012 et 2013 ok
-class f7ly_2015(Variable):
+class f7ly_2010(Variable):
     cerfa_field = '7LY'
     value_type = int
     entity = FoyerFiscal
@@ -3726,12 +3726,22 @@ class f7ly_2015(Variable):
 
 
 # 2012 et 2013 ok
-class f7my(Variable):
+class f7my_2010(Variable):
     cerfa_field = '7MY'
     value_type = int
     entity = FoyerFiscal
     label = "Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions ayant pas pris fin l'année de perception des revenus déclarés"
     # start_date = date(2010, 1, 1)
+    end = '2015-12-31'
+    definition_period = YEAR
+
+
+class f7my(Variable):
+    cerfa_field = '7MY'
+    value_type = int
+    entity = FoyerFiscal
+    label = "Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions ayant pas pris fin l'année de perception des revenus déclarés"
+    # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
 
@@ -5910,8 +5920,26 @@ class f7gq(Variable):
     definition_period = YEAR
 
 
+class f7gr(Variable):
+    cerfa_field = '7GR'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Souscription de parts de fonds communs de placement dans l'innovation"
+    definition_period = YEAR
+
+
 class f7fq(Variable):
     cerfa_field = '7FQ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Souscription de parts de fonds d'investissement de proximité"
+    definition_period = YEAR
+
+
+class f7ft(Variable):
+    cerfa_field = '7FT'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -5936,6 +5964,16 @@ class f7fl(Variable):
     entity = FoyerFiscal
     label = "Souscription de parts de fonds d'investissement de proximité investis outre-mer par des personnes domiciliées outre-mer"
     # start_date = date(2011, 1, 1)
+    definition_period = YEAR
+
+
+class f7hl(Variable):
+    cerfa_field = '7HL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Souscription de parts de fonds d'investissement de proximité investis outre-mer par des personnes domiciliées outre-mer"
+    # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
 
@@ -6312,23 +6350,25 @@ class f7ho_2016(Variable):
     definition_period = YEAR
 
 
-class f7hl(Variable):
+class f7hl_2010(Variable):
     cerfa_field = '7HL'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 (métropole et DOM ne respectant pas les plafonds)'
     # start_date = date(2010, 1, 1)
+    end = '2019-01-01'
     definition_period = YEAR
 
 
-class f7hm(Variable):
+class f7hm_2010(Variable):
     cerfa_field = '7HM'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 dans les DOM et respectant les plafonds'
     # start_date = date(2010, 1, 1)
+    end = '2019-01-01'
     definition_period = YEAR
 
 

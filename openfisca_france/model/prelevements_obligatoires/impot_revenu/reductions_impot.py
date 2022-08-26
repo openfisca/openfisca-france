@@ -1017,8 +1017,8 @@ class creaen(Variable):
         f7hy = foyer_fiscal('f7hy', period)
         f7ky = foyer_fiscal('f7ky', period)
         f7iy = foyer_fiscal('f7iy', period)
-        f7ly = foyer_fiscal('f7ly', period)
-        f7my = foyer_fiscal('f7my', period)
+        f7ly = foyer_fiscal('f7ly_2010', period)
+        f7my = foyer_fiscal('f7my_2010', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.creaen
 
         return (
@@ -1031,8 +1031,8 @@ class creaen(Variable):
         Aide aux créateurs et repreneurs d'entreprises
         2012-
         '''
-        f7ly = foyer_fiscal('f7ly', period)
-        f7my = foyer_fiscal('f7my', period)
+        f7ly = foyer_fiscal('f7ly_2010', period)
+        f7my = foyer_fiscal('f7my_2010', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.creaen
 
         return (
@@ -5592,8 +5592,8 @@ class scelli(Variable):
         f7hk = foyer_fiscal('f7hk', period)
         f7hn = foyer_fiscal('f7hn', period)
         f7ho = foyer_fiscal('f7ho_2016', period)
-        f7hl = foyer_fiscal('f7hl', period)
-        f7hm = foyer_fiscal('f7hm', period)
+        f7hl = foyer_fiscal('f7hl_2010', period)
+        f7hm = foyer_fiscal('f7hm_2010', period)
         f7hr = foyer_fiscal('f7hr_2017', period)
         f7hs = foyer_fiscal('f7hs_2017', period)
         f7la = foyer_fiscal('f7la', period)
@@ -5619,8 +5619,8 @@ class scelli(Variable):
         '''
         f7hj = foyer_fiscal('f7hj', period)
         f7hk = foyer_fiscal('f7hk', period)
-        f7hl = foyer_fiscal('f7hl', period)
-        f7hm = foyer_fiscal('f7hm', period)
+        f7hl = foyer_fiscal('f7hl_2010', period)
+        f7hm = foyer_fiscal('f7hm_2010', period)
         f7hn = foyer_fiscal('f7hn', period)
         f7ho = foyer_fiscal('f7ho_2016', period)
         f7hr = foyer_fiscal('f7hr_2017', period)
@@ -5687,8 +5687,8 @@ class scelli(Variable):
         f7hf = foyer_fiscal('f7hf', period)
         f7hj = foyer_fiscal('f7hj', period)
         f7hk = foyer_fiscal('f7hk', period)
-        f7hl = foyer_fiscal('f7hl', period)
-        f7hm = foyer_fiscal('f7hm', period)
+        f7hl = foyer_fiscal('f7hl_2010', period)
+        f7hm = foyer_fiscal('f7hm_2010', period)
         f7hn = foyer_fiscal('f7hn', period)
         f7ho = foyer_fiscal('f7ho_2016', period)
         f7hr = foyer_fiscal('f7hr_2017', period)
@@ -5796,8 +5796,8 @@ class scelli(Variable):
         f7hf = foyer_fiscal('f7hf', period)
         f7hj = foyer_fiscal('f7hj', period)
         f7hk = foyer_fiscal('f7hk', period)
-        f7hl = foyer_fiscal('f7hl', period)
-        f7hm = foyer_fiscal('f7hm', period)
+        f7hl = foyer_fiscal('f7hl_2010', period)
+        f7hm = foyer_fiscal('f7hm_2010', period)
         f7hn = foyer_fiscal('f7hn', period)
         f7ho = foyer_fiscal('f7ho_2016', period)
         f7hr = foyer_fiscal('f7hr_2017', period)
@@ -5911,8 +5911,8 @@ class scelli(Variable):
         f7hf = foyer_fiscal('f7hf', period)
         f7hj = foyer_fiscal('f7hj', period)
         f7hk = foyer_fiscal('f7hk', period)
-        f7hl = foyer_fiscal('f7hl', period)
-        f7hm = foyer_fiscal('f7hm', period)
+        f7hl = foyer_fiscal('f7hl_2010', period)
+        f7hm = foyer_fiscal('f7hm_2010', period)
         f7hn = foyer_fiscal('f7hn', period)
         f7ho = foyer_fiscal('f7ho_2016', period)
         f7hr = foyer_fiscal('f7hr_2017', period)
@@ -6059,8 +6059,8 @@ class scelli(Variable):
         f7hf = foyer_fiscal('f7hf', period)
         f7hj = foyer_fiscal('f7hj', period)
         f7hk = foyer_fiscal('f7hk', period)
-        f7hl = foyer_fiscal('f7hl', period)
-        f7hm = foyer_fiscal('f7hm', period)
+        f7hl = foyer_fiscal('f7hl_2010', period)
+        f7hm = foyer_fiscal('f7hm_2010', period)
         f7hn = foyer_fiscal('f7hn', period)
         f7ho = foyer_fiscal('f7ho_2016', period)
         f7hr = foyer_fiscal('f7hr_2017', period)
@@ -6756,7 +6756,7 @@ class spfcpi(Variable):
         f7gq = foyer_fiscal('f7gq', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
 
-        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
+        max1 = P.plafond * (maries_ou_pacses + 1)
         return P.taux1 * min_(f7gq, max1)
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
@@ -6770,7 +6770,7 @@ class spfcpi(Variable):
         f7fq = foyer_fiscal('f7fq', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
 
-        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
+        max1 = P.plafond * (maries_ou_pacses + 1)
         return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
@@ -6785,19 +6785,17 @@ class spfcpi(Variable):
         f7fm = foyer_fiscal('f7fm', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
 
-        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
+        max1 = P.plafond * (maries_ou_pacses + 1)
 
-        return (
-            P.taux1 * min_(f7gq, max1)
+        return (P.taux1 * min_(f7gq, max1)
             + P.taux1 * min_(f7fq, max1)
-            + P.taux2 * min_(f7fm, max1)
-            )
+            + P.taux2 * min_(f7fm, max1))
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
-        2011-
+        2011-2019
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7gq = foyer_fiscal('f7gq', period)
@@ -6806,12 +6804,83 @@ class spfcpi(Variable):
         f7fl = foyer_fiscal('f7fl', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
 
-        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
+        max1 = P.plafond * (maries_ou_pacses + 1)
 
         return (P.taux1 * min_(f7gq, max1)
             + P.taux1 * min_(f7fq, max1)
             + P.taux2 * min_(f7fm, max1)
             + P.taux3 * min_(f7fl, max1))
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Souscription de parts de fonds communs de placement dans l'innovation,
+        de fonds d'investissement de proximité
+        2020
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        f7gq = foyer_fiscal('f7gq', period)
+        f7gr = foyer_fiscal('f7gr', period)
+        f7fq = foyer_fiscal('f7fq', period)
+        f7ft = foyer_fiscal('f7ft', period)
+        f7fm = foyer_fiscal('f7fm', period)
+        f7hm = foyer_fiscal('f7hm', period)
+        f7fl = foyer_fiscal('f7fl', period)
+        f7hl = foyer_fiscal('f7hl', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+
+        max1 = P.plafond * (maries_ou_pacses + 1)
+
+        mon_7gr = min_(max1, f7gr)
+        mon_7gq = min_(max1 - mon_7gr, f7gq)
+
+        mon_7ft = min_(max1, f7ft)
+        mon_7fq = min_(max1 - mon_7ft, f7fq)
+
+        mon_7fm = min_(max1, f7fm)
+        mon_7hm = min_(max1 - mon_7fm, f7hm)
+
+        mon_7fl = min_(max1, f7fl)
+        mon_7hl = min_(max1 - mon_7fl, f7hl)
+
+        return (P.taux1 * (mon_7gq + mon_7fq)
+            + P.taux2 * mon_7fm
+            + P.taux3 * mon_7fl
+            + P.taux_fcp_fip_special * (mon_7gr + mon_7ft)
+            + P.taux_corse_om_special * (mon_7hm + mon_7hl))
+
+    def formula_2021_01_01(foyer_fiscal, period, parameters):
+        '''
+        Souscription de parts de fonds communs de placement dans l'innovation,
+        de fonds d'investissement de proximité
+        2021
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        f7gq = foyer_fiscal('f7gq', period)
+        f7gr = foyer_fiscal('f7gr', period)
+        f7fq = foyer_fiscal('f7fq', period)
+        f7ft = foyer_fiscal('f7ft', period)
+        f7fm = foyer_fiscal('f7fm', period)
+        f7fl = foyer_fiscal('f7fl', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+
+        max1 = P.plafond * (maries_ou_pacses + 1)
+
+        mon_7gr = min_(max1, f7gr)
+        mon_7gq = min_(max1 - mon_7gr, f7gq)
+
+        mon_7ft = min_(max1, f7ft)
+        mon_7fq = min_(max1 - mon_7ft, f7fq)
+
+        mon_7fm = min_(max1, f7fm)
+
+        mon_7fl = min_(max1, f7fl)
+
+        return (P.taux1 * (mon_7gq + mon_7fq)
+            + P.taux2 * mon_7fm
+            + P.taux3 * mon_7fl
+            + P.taux_fcp_fip_special * (mon_7gr + mon_7ft))
 
 
 def mini(a, b, *args):
