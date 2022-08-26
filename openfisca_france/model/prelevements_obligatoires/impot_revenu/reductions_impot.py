@@ -2343,7 +2343,6 @@ class domlog(Variable):
         '''
         f7ua = foyer_fiscal('f7ua_2007', period)
         f7ub = foyer_fiscal('f7ub_2007', period)
-        f7uc = foyer_fiscal('f7uc', period)  # noqa F841
         f7ui = foyer_fiscal('f7ui_2008', period)
         f7uj = foyer_fiscal('f7uj_2002', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.domlog
@@ -2940,8 +2939,6 @@ class domsoc(Variable):
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2016
         '''
-        fhkh = foyer_fiscal('fhkh', period)  # noqa F841
-        fhki = foyer_fiscal('fhki', period)  # noqa F841
         fhqj = foyer_fiscal('fhqj', period)
         fhqk = foyer_fiscal('fhqk', period)
         fhqn = foyer_fiscal('fhqn', period)
@@ -2989,8 +2986,6 @@ class domsoc(Variable):
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2017
         '''
-        fhkh = foyer_fiscal('fhkh', period)  # noqa F841
-        fhki = foyer_fiscal('fhki', period)  # noqa F841
         fhqj = foyer_fiscal('fhqj', period)
         fhqs = foyer_fiscal('fhqs', period)
         fhqw = foyer_fiscal('fhqw', period)
@@ -3072,14 +3067,12 @@ class duflot(Variable):
         invest_metropole_2013 = foyer_fiscal('f7gh', period)
         invest_metropole_2014 = foyer_fiscal('f7ek', period)
         report_reduc_2013 = foyer_fiscal('f7fi', period)
-        f7qb = foyer_fiscal('f7qb', period)  # Dépenses entrant dans la réduction Pinel
         f7qc = foyer_fiscal('f7qc', period)  # Dépenses entrant dans la réduction Pinel
         f7qd = foyer_fiscal('f7qd', period)  # Dépenses entrant dans la réduction Pinel
         P = parameters(period).impot_revenu.calcul_reductions_impots.duflot
 
         max1 = max_(0, P.plafond - invest_domtom_2014 - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)  # noqa F841
 
         return (
             P.taux_m * (
@@ -3598,7 +3591,6 @@ class invlst(Variable):
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
         seuil2 = P.seuil2 * (1 + maries_ou_pacses)
-        seuil3 = P.seuil3 * (1 + maries_ou_pacses)  # noqa F841
 
         xc = P.taux_xc * min_(f7xc, seuil1 / 6)
         xd = P.taux_xd * f7xd
@@ -3625,8 +3617,6 @@ class invlst(Variable):
         f7xa = foyer_fiscal('f7xa', period)
         f7xb = foyer_fiscal('f7xb_2012', period)
         f7xc = foyer_fiscal('f7xc_2012', period)
-        f7xd = foyer_fiscal('f7xd', period)  # noqa F841
-        f7xe = foyer_fiscal('f7xe', period)  # noqa F841
         f7xf = foyer_fiscal('f7xf', period)
         f7xg = foyer_fiscal('f7xg', period)
         f7xh = foyer_fiscal('f7xh', period)
@@ -3635,7 +3625,6 @@ class invlst(Variable):
         f7xk = foyer_fiscal('f7xk', period)
         f7xl = foyer_fiscal('f7xl', period)
         f7xm = foyer_fiscal('f7xm', period)
-        f7xn = foyer_fiscal('f7xn', period)  # noqa F841
         f7xo = foyer_fiscal('f7xo', period)
         f7xp = foyer_fiscal('f7xp', period)
         f7xq = foyer_fiscal('f7xq', period)
@@ -3644,7 +3633,6 @@ class invlst(Variable):
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
         seuil2 = P.seuil2 * (1 + maries_ou_pacses)
-        seuil3 = P.seuil3 * (1 + maries_ou_pacses)  # noqa F841
 
         xc = P.taux_xc * min_(f7xc, seuil1 / 6)
         xa = P.taux_xa * min_(f7xa, seuil2)
@@ -3667,8 +3655,6 @@ class invlst(Variable):
         f7xa = foyer_fiscal('f7xa', period)
         f7xb = foyer_fiscal('f7xb_2012', period)
         f7xc = foyer_fiscal('f7xc_2012', period)
-        f7xd = foyer_fiscal('f7xd', period)  # noqa F841
-        f7xe = foyer_fiscal('f7xe', period)  # noqa F841
         f7xf = foyer_fiscal('f7xf', period)
         f7xg = foyer_fiscal('f7xg', period)
         f7xh = foyer_fiscal('f7xh', period)
@@ -3689,7 +3675,6 @@ class invlst(Variable):
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
         seuil2 = P.seuil2 * (1 + maries_ou_pacses)
-        seuil3 = P.seuil3 * (1 + maries_ou_pacses)  # noqa F841
 
         xc = P.taux_xc * min_(f7xc, seuil1 / 6)
         xa = P.taux_xa * min_(f7xa, seuil2)
@@ -3710,7 +3695,6 @@ class invlst(Variable):
         Investissements locatifs dans le secteur touristique
         2013
         '''
-        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)  # noqa F841
         f7uy = foyer_fiscal('f7uy', period)
         f7uz = foyer_fiscal('f7uz', period)
         f7xf = foyer_fiscal('f7xf', period)
