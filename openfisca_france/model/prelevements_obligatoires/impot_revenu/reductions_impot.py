@@ -6177,25 +6177,41 @@ class saldom(Variable):
         '''
         Sommes versées pour l'emploi d'un salariés à domicile
         2011 - 2016
+        NB: Normalement, le plafond est aussi augmenté pour chaque personne
+        agée de plus de 65 ans dans le foyer (en plus des PACs et des
+        ascendants de 65 ans remplissant les conditions de l'APA). On ne
+        prend pas en compte le nombre de ces individus ici.
         '''
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
+
         f7db = foyer_fiscal('f7db', period)
         f7dd = foyer_fiscal('f7dd', period)
         f7df = foyer_fiscal('f7df', period)
         f7dl = foyer_fiscal('f7dl', period)
+
         annee1 = foyer_fiscal('f7dq', period)
         invalide = foyer_fiscal('f7dg', period)
+
         P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
 
-        nbpacmin = nb_pac_majoration_plafond + f7dl
-        max_base = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
-        max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
-        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
-        max_non_inv2 = min_(max_base + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
-        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
-        max_effectif2 = max_non_inv2 * not_(invalide) + P.max3 * invalide
-        max1 = max_effectif - min_(f7db, max_effectif2)
-        return P.taux * min_(f7df + f7dd, max1)
+        # détérminer le plafond 
+
+        if invalide:
+            plaf = P.max3
+        else:
+            if annee1:
+                plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
+            else:
+                plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
+        
+        # calcul de la RI et du CI
+
+        base_ci = min_(plaf, f7db)
+        base_ri = min_(plaf - base_ci, f7df + f7dd)
+
+        ri = base_ri * P.taux
+
+        return ri
 
 
 class scelli(Variable):

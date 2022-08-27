@@ -2749,3 +2749,67 @@ class saldom2(Variable):
         maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
 
         return P.taux * min_(f7db, maxEffectif)
+
+    def formula_2011_01_01(foyer_fiscal, period, parameters):
+        '''
+        Sommes versées pour l'emploi d'un salariés à domicile
+        2011 - 2016
+        NB: Normalement, le plafond est aussi augmenté pour chaque personne
+        agée de plus de 65 ans dans le foyer (en plus des PACs et des
+        ascendants de 65 ans remplissant les conditions de l'APA). On ne
+        prend pas en compte le nombre de ces individus ici.
+        '''
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
+
+        f7db = foyer_fiscal('f7db', period)
+        f7dl = foyer_fiscal('f7dl', period)
+
+        annee1 = foyer_fiscal('f7dq', period)
+        invalide = foyer_fiscal('f7dg', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+
+        # détérminer le plafond 
+
+        if invalide:
+            plaf = P.max3
+        else:
+            if annee1:
+                plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
+            else:
+                plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
+        
+        # calcul du CI
+        ci = min_(plaf, f7db) * P.taux
+
+        return ci
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Sommes versées pour l'emploi d'un salariés à domicile
+        2020
+        '''
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
+
+        f7db = foyer_fiscal('f7db', period)
+        f7dr = foyer_fiscal('f7dr', period)
+        f7dl = foyer_fiscal('f7dl', period)
+
+        annee1 = foyer_fiscal('f7dq', period)
+        invalide = foyer_fiscal('f7dg', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+
+        # détérminer le plafond 
+        if invalide:
+            plaf = P.max3
+        else:
+            if annee1:
+                plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
+            else:
+                plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
+        
+        # calcul du CI
+        ci = min_(plaf, max_(0, f7db - f7dr)) * P.taux
+
+        return ci
