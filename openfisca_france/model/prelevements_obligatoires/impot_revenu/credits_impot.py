@@ -1275,8 +1275,14 @@ class creimp(Variable):
         f8wt = foyer_fiscal('f8wt', period)
         f8wu = foyer_fiscal('f8wu', period)
 
+        # 8VM, 8WM, 8UM all in one (ind.-level) case? Why/how?
         f8vm_i = foyer_fiscal.members('f8vm', period)
         f8vm = foyer_fiscal.sum(f8vm_i)
+
+        # Alternatively, but need to check cases first:
+        # f8vm = (foyer_fiscal('f8vm', period)
+        #     + foyer_fiscal('f8wm', period)
+        #     + foyer_fiscal('f8um', period))
 
         return (
             f2ab + f8ta + f8tb + f8tc
@@ -1284,6 +1290,75 @@ class creimp(Variable):
             + f8tl + f8ts + f8tz + f8uw + f8uz
             + f8vm + f8wa + f8wc + f8wd
             + f8wr + f8wt + f8wu + f8vl
+            )
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        f2ab = foyer_fiscal('f2ab', period)
+        f8ta = foyer_fiscal('f8ta', period)
+        f8tb = foyer_fiscal('f8tb', period)
+        f8tc = foyer_fiscal('f8tc', period)
+        f8tf = foyer_fiscal('f8tf', period)
+        f8tg = foyer_fiscal('f8tg', period)
+        f8tl = foyer_fiscal('f8tl', period)
+        f8to = foyer_fiscal('f8to', period)
+        f8tp = foyer_fiscal('f8tp', period)
+        f8ts = foyer_fiscal('f8ts', period)
+        f8uw = foyer_fiscal('f8uw', period)
+        f8uz = foyer_fiscal('f8uz', period)
+        f8vl = foyer_fiscal('f8vl', period)
+        f8wa = foyer_fiscal('f8wa', period)
+        f8wc = foyer_fiscal('f8wc', period)
+        f8wd = foyer_fiscal('f8wd', period)
+        f8wr = foyer_fiscal('f8wr', period)
+        f8wt = foyer_fiscal('f8wt', period)
+        f8te = foyer_fiscal('f8te', period)
+        f8la = foyer_fiscal('f8la', period)
+
+        f8vm_i = foyer_fiscal.members('f8vm', period)
+        f8vm = foyer_fiscal.sum(f8vm_i)
+
+        return (
+            f2ab + f8ta + f8tb + f8tc
+            - f8tf + f8tg + f8to - f8tp
+            + f8tl + f8ts + f8uw + f8uz
+            + f8vm + f8wa + f8wc + f8wd
+            + f8wr + f8wt + f8vl + f8te + f8la
+            )
+
+    def formula_2021_01_01(foyer_fiscal, period, parameters):
+        f2ab = foyer_fiscal('f2ab', period)
+        f8ta = foyer_fiscal('f8ta', period)
+        f8tb = foyer_fiscal('f8tb', period)
+        f8tc = foyer_fiscal('f8tc', period)
+        f8tf = foyer_fiscal('f8tf', period)
+        f8tg = foyer_fiscal('f8tg', period)
+        f8tl = foyer_fiscal('f8tl', period)
+        f8to = foyer_fiscal('f8to', period)
+        f8tp = foyer_fiscal('f8tp', period)
+        f8ts = foyer_fiscal('f8ts', period)
+        f8uw = foyer_fiscal('f8uw', period)
+        f8uz = foyer_fiscal('f8uz', period)
+        f8vl = foyer_fiscal('f8vl', period)
+        f8wa = foyer_fiscal('f8wa', period)
+        f8wc = foyer_fiscal('f8wc', period)
+        f8wd = foyer_fiscal('f8wd', period)
+        f8wr = foyer_fiscal('f8wr', period)
+        f8wt = foyer_fiscal('f8wt', period)
+        f8te = foyer_fiscal('f8te', period)
+        f8la = foyer_fiscal('f8la', period)
+        f8wg = foyer_fiscal('f8wg', period)
+        f8wh = foyer_fiscal('f8wh', period)
+
+        f8vm_i = foyer_fiscal.members('f8vm', period)
+        f8vm = foyer_fiscal.sum(f8vm_i)
+
+        return (
+            f2ab + f8ta + f8tb + f8tc
+            - f8tf + f8tg + f8to - f8tp
+            + f8tl + f8ts + f8uw + f8uz
+            + f8vm + f8wa + f8wc + f8wd
+            + f8wr + f8wt + f8vl + f8te
+            + f8la + f8wg + f8wh
             )
 
 
