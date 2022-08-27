@@ -1,0 +1,6 @@
+description: Taux de la RI en cas de prolongation (9 ans initialement)
+values:
+  2023-01-01:
+    value: 0.03
+metadata:
+  unit: /1

@@ -1,0 +1,6 @@
+description: Taux de la RI en cas de première prolongation (6 ans initialement)
+values:
+  2020-01-01:
+    value: 0.06
+metadata:
+  unit: /1
