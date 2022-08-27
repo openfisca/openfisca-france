@@ -16,7 +16,7 @@ class reductions_plafonnees(Variable):
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         reductions_plafonnees = [
-            'saldom',
+            'ri_saldom',
             'cappme',
             'deffor',  # fait partie de inv. for. ?
             'garext',
@@ -188,7 +188,7 @@ class reductions(Variable):
             'reduction_cotisations_syndicales',
             'daepad', 'dfppce', 'doment', 'domlog',
             'ecpess', 'garext', 'intemp', 'ri_invfor', 'invrev',
-            'prcomp', 'rsceha', 'saldom', 'spfcpi',
+            'prcomp', 'rsceha', 'ri_saldom', 'spfcpi',
             # Introduites en 2003
             'mecena', 'repsoc',
             # Introduites en 2004
@@ -6070,7 +6070,7 @@ class rsceha(Variable):
         return P.taux * min_(f7gz, max1)
 
 
-class saldom(Variable):
+class ri_saldom(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt au titre des sommes versées pour l'emploi d'un salarié à domicile"

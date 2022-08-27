@@ -21,7 +21,7 @@ class credits_impot(Variable):
         '''
 
         credits_plaf = [
-            'saldom2',
+            'ci_saldom',
             'ci_garext',
 
             # dans le doute:
@@ -71,7 +71,7 @@ class credits_impot(Variable):
         '''
 
         credits_plaf = [
-            'saldom2',
+            'ci_saldom',
             'ci_garext',
 
             # dans le doute:
@@ -134,7 +134,7 @@ class credits_impot(Variable):
             'quaenv',
             # Depuis 2007
             'inthab',
-            'saldom2',
+            'ci_saldom',
             # Depuis 2008
             'creimp_exc_2008',
             # Depuis 2009
@@ -2777,7 +2777,7 @@ class quaenv_bouquet(Variable):
         return bouquet
 
 
-class saldom2(Variable):
+class ci_saldom(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Crédit d’impôt emploi d’un salarié à domicile'

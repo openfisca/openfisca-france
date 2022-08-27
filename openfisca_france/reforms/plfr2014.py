@@ -57,7 +57,7 @@ class plfr2014(Reform):
             repsoc = foyer_fiscal('repsoc', period)
             resimm = foyer_fiscal('resimm', period)
             rsceha = foyer_fiscal('rsceha', period)
-            saldom = foyer_fiscal('saldom', period)
+            saldom = foyer_fiscal('ri_saldom', period)
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
             spfcpi = foyer_fiscal('spfcpi', period)
