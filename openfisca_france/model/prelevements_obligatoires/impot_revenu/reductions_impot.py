@@ -22,7 +22,6 @@ class reductions_plafonnees(Variable):
             'garext',
             'ri_invfor',
             'locmeu',  # Censi-Bouvard
-            'resimm',  # Malraux
             'scelli',
             'invlst',
             'invrev',
@@ -118,6 +117,7 @@ class reductions_deplafonnees(Variable):
             'mecena',
             'prcomp',
             'repsoc',
+            'resimm',  # Malraux
 
             # Pas clair, dans le doute compté parmi les plafonnées :
             'donpartipol',
