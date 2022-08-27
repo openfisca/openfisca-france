@@ -6097,12 +6097,15 @@ class resimm(Variable):
         Travaux de restauration immobilière
         2017
         '''
+        f7sy = foyer_fiscal('f7sy', period)
+        f7sx = foyer_fiscal('f7sx', period)
+
         f7nx = foyer_fiscal('f7nx', period)
         f7ny = foyer_fiscal('f7ny', period)
-        f7sx = foyer_fiscal('f7sx', period)
-        f7sy = foyer_fiscal('f7sy', period)
+
         f7tx = foyer_fiscal('f7tx', period)
         f7ty = foyer_fiscal('f7ty', period)
+
         P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
 
         depenses_secteur_degrade = f7sy + f7nx
@@ -6123,6 +6126,123 @@ class resimm(Variable):
                 + min_(depenses_non_PSMV_2017, max3)
                 )
             )
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de restauration immobilière
+        2018
+        '''
+        # plaf 100K
+        f7nx = foyer_fiscal('f7nx', period)
+        f7ny = foyer_fiscal('f7ny', period)
+
+        # plaf 400K
+        f7tx = foyer_fiscal('f7tx', period)
+        f7ty = foyer_fiscal('f7ty', period)
+
+        # reports
+        f7kz = foyer_fiscal('f7kz', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+
+        base_nx = min_(P.max, f7nx)
+        base_ny = min_(P.max - f7nx, f7ny)
+
+        base_tx = min_(P.max2, f7tx)
+        base_ty = min_(P.max2 - f7tx, f7ty)
+
+        ri = (f7kz
+            + P.taux_30 * (base_nx + base_ny)
+            + P.taux_22 * (base_tx + base_ty))
+
+        return ri
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de restauration immobilière
+        2019
+        '''
+        # plaf 100K
+        f7nx = foyer_fiscal('f7nx', period)
+        f7ny = foyer_fiscal('f7ny', period)
+
+        # plaf 400K
+        f7tx = foyer_fiscal('f7tx', period)
+        f7ty = foyer_fiscal('f7ty', period)
+
+        # reports
+        f7kz = foyer_fiscal('f7kz', period)
+        f7ky = foyer_fiscal('f7ky', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+
+        base_nx = min_(P.max, f7nx)
+        base_ny = min_(P.max - f7nx, f7ny)
+
+        base_tx = min_(P.max2, f7tx)
+        base_ty = min_(P.max2 - f7tx, f7ty)
+
+        ri = (f7kz + f7ky
+            + P.taux_30 * (base_nx + base_ny)
+            + P.taux_22 * (base_tx + base_ty))
+
+        return ri
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de restauration immobilière
+        2020
+        '''
+        # plaf 100K
+        f7nx = foyer_fiscal('f7nx', period)
+        f7ny = foyer_fiscal('f7ny', period)
+
+        # plaf 400K
+        f7tx = foyer_fiscal('f7tx', period)
+        f7ty = foyer_fiscal('f7ty', period)
+
+        # reports
+        f7kz = foyer_fiscal('f7kz', period)
+        f7ky = foyer_fiscal('f7ky', period)
+        f7kx = foyer_fiscal('f7kx', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+
+        base_nx = min_(P.max, f7nx)
+        base_ny = min_(P.max - f7nx, f7ny)
+
+        base_tx = min_(P.max2, f7tx)
+        base_ty = min_(P.max2 - f7tx, f7ty)
+
+        ri = (f7kz + f7ky + f7kx
+            + P.taux_30 * (base_nx + base_ny)
+            + P.taux_22 * (base_tx + base_ty))
+
+        return ri
+
+    def formula_2021_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de restauration immobilière
+        2021
+        '''
+        # plaf 400K
+        f7tx = foyer_fiscal('f7tx', period)
+        f7ty = foyer_fiscal('f7ty', period)
+
+        # reports
+        f7ky = foyer_fiscal('f7ky', period)
+        f7kx = foyer_fiscal('f7kx', period)
+        f7kw = foyer_fiscal('f7kw', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+
+        base_tx = min_(P.max2, f7tx)
+        base_ty = min_(P.max2 - f7tx, f7ty)
+
+        ri = (f7ky + f7kx + f7kw
+            + P.taux_22 * (base_tx + base_ty))
+
+        return ri
 
 
 class rsceha(Variable):
