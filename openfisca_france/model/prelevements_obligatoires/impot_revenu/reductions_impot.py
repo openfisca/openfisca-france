@@ -1,4 +1,5 @@
 import logging
+import sndhdr
 
 from numpy import around
 
@@ -5587,12 +5588,12 @@ class locmeu(Variable):
         f7sc = foyer_fiscal('f7sc', period)
         f7so = foyer_fiscal('f7so', period)
         f7sn = foyer_fiscal('f7sn', period)
-        invest_2013_acheves_2017 = foyer_fiscal('f7jt', period)
-        invest_2014_acheves_2017 = foyer_fiscal('f7ou', period)
-        invest_2015_acheves_2017 = foyer_fiscal('f7ov', period)
-        invest_2016_acheves_2017 = foyer_fiscal('f7ow', period)
-        invest_2017_acheves_2017 = foyer_fiscal('f7ox', period)
-        invest_2018_acheves_2018 = foyer_fiscal('f7oz', period)
+        invest_2013_acheves_2019 = foyer_fiscal('f7jt', period)
+        invest_2014_acheves_2019 = foyer_fiscal('f7ou', period)
+        invest_2015_acheves_2019 = foyer_fiscal('f7ov', period)
+        invest_2016_acheves_2019 = foyer_fiscal('f7ow', period)
+        invest_2017_acheves_2019 = foyer_fiscal('f7ox', period)
+        invest_2018_acheves_2019 = foyer_fiscal('f7oz', period)
         invest_2019_acheves_2019 = foyer_fiscal('f7pz', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
@@ -5640,12 +5641,12 @@ class locmeu(Variable):
         # Calcul de la réduction concernant les investissements achevés ou réalisés l'année courante
 
         reduc_invest_acheves_2019 = (
-            around(P.taux11 * min_(P.max, invest_2013_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2014_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2015_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2016_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2017_acheves_2017) / 9)
-            + around(P.taux11 * min_(P.max, invest_2018_acheves_2018) / 9)
+            around(P.taux11 * min_(P.max, invest_2013_acheves_2019) / 9)
+            + around(P.taux11 * min_(P.max, invest_2014_acheves_2019) / 9)
+            + around(P.taux11 * min_(P.max, invest_2015_acheves_2019) / 9)
+            + around(P.taux11 * min_(P.max, invest_2016_acheves_2019) / 9)
+            + around(P.taux11 * min_(P.max, invest_2017_acheves_2019) / 9)
+            + around(P.taux11 * min_(P.max, invest_2018_acheves_2019) / 9)
             + around(P.taux11 * min_(P.max, invest_2019_acheves_2019) / 9)
             )
 
@@ -5654,6 +5655,80 @@ class locmeu(Variable):
             + report_reduc_invest_anterieur
             + report_reduc_non_impute
             )
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
+        2020
+        '''
+        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+
+        inv = ['f7ou',
+            'f7ov',
+            'f7ow',
+            'f7ox',
+            'f7oy',
+            'f7pz',
+            'f7mz',]
+
+        rep = ['f7sp', 'f7sn','f7so', 'f7sa',
+            'f7sb', 'f7sc','f7oa', 'f7ob',
+            'f7oc', 'f7od','f7oe', 'f7of',
+            'f7og', 'f7oh','f7oi', 'f7oj',
+            'f7ok', 'f7ol','f7om', 'f7on',
+            'f7oo', 'f7op','f7oq', 'f7or',
+            'f7os', 'f7ot','f7jv', 'f7jw',
+            'f7jx', 'f7jy','f7pf', 'f7pg',
+            'f7ph', 'f7pi','f7pj', 'f7pk',
+            'f7pl', 'f7pm','f7pn', 'f7po',
+            'f7pp', 'f7pq','f7pr', 'f7ps',
+            'f7pt', 'f7pu','f7pv', 'f7pw',
+            'f7px', 'f7py','f7ho', 'f7hp',
+            'f7hq', 'f7hr','f7hs', 'f7ht',
+            'f7hu', 'f7hv','f7hw', 'f7hx',
+            ]
+
+        rep_ri = sum([foyer_fiscal(r, period) for r in rep])
+        inv_ri = sum([(P.taux11 * min_(P.max, foyer_fiscal(r, period)) / 9) for r in inv])
+
+        return rep_ri + inv_ri
+
+    def formula_2021_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
+        2021
+        '''
+        P = parameters(period).impot_revenu.calcul_reductions_impots.locmeu
+
+        inv = ['f7ov',
+            'f7ow',
+            'f7ox',
+            'f7oy',
+            'f7pz',
+            'f7mz',
+            'f7mw',]
+
+        rep = ['f7sm', 'f7sp', 'f7sn','f7so', 'f7sa',
+            'f7sb', 'f7sc','f7oa', 'f7ob',
+            'f7oc', 'f7od','f7oe', 'f7of',
+            'f7og', 'f7oh','f7oi', 'f7oj',
+            'f7ok', 'f7ol','f7om', 'f7on',
+            'f7oo', 'f7op','f7oq', 'f7or',
+            'f7os', 'f7ot','f7jv', 'f7jw',
+            'f7jx', 'f7jy','f7pf', 'f7pg',
+            'f7ph', 'f7pi','f7pj', 'f7pk',
+            'f7pl', 'f7pm','f7pn', 'f7po',
+            'f7pp', 'f7pq','f7pr', 'f7ps',
+            'f7pt', 'f7pu','f7pv', 'f7pw',
+            'f7px', 'f7py','f7ho', 'f7hp',
+            'f7hq', 'f7hr','f7hs', 'f7ht',
+            'f7hu', 'f7hv','f7hw', 'f7hx',
+            ]
+
+        rep_ri = sum([foyer_fiscal(r, period) for r in rep])
+        inv_ri = sum([(P.taux11 * min_(P.max, foyer_fiscal(r, period)) / 9) for r in inv])
+
+        return rep_ri + inv_ri
 
 
 class mecena(Variable):
