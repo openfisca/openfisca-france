@@ -1,0 +1,6 @@
+description: Plafond
+values:
+  2013-01-01:
+    value: 300000
+metadata:
+  unit: currency
