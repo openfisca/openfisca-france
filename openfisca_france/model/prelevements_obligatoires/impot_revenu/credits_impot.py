@@ -2256,7 +2256,7 @@ class quaenv(Variable):
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale (1.1-31.8.2014) et transition energétique (1.9-31.12.2014)
         2014
         '''
-        f7rg = foyer_fiscal('f7rg_2016', period)
+        f7rg = foyer_fiscal('f7rg_2015', period)
         f7rh = foyer_fiscal('f7rh_2016', period)
         f7ri = foyer_fiscal('f7ri', period)
         f7rj = foyer_fiscal('f7rj', period)
@@ -2385,7 +2385,7 @@ class quaenv(Variable):
         f7bh = foyer_fiscal('f7bh', period)
         f7bk = foyer_fiscal('f7bk', period)
         f7bl = foyer_fiscal('f7bl', period)
-        f7rg = foyer_fiscal('f7rg_2016', period)
+        f7rg = foyer_fiscal('f7rg_2015', period)
         f7rh = foyer_fiscal('f7rh_2016', period)
         f7ri = foyer_fiscal('f7ri', period)
         f7rj = foyer_fiscal('f7rj', period)
