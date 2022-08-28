@@ -885,7 +885,7 @@ class duflot_pinel_denormandie_om(Variable):
         f7qh = foyer_fiscal('f7qh', period)  # Outre-Mer, 9 ans
 
         # Pinel reports, 2014
-        f7ci = foyer_fiscal('f7ci', period)  # Outre-Mer, 6 ans
+        f7ci = foyer_fiscal('f7ci_2019', period)  # Outre-Mer, 6 ans
         f7di = foyer_fiscal('f7di', period)  # Outre-Mer, 9 ans
 
         inv_29_om = min_(P.plafond, f7gi + f7el + f7qd + f7qh)
@@ -922,7 +922,7 @@ class duflot_pinel_denormandie_om(Variable):
         f7ql = foyer_fiscal('f7ql', period)  # Outre-Mer, 9 ans
 
         # Pinel reports, 2014
-        f7ci = foyer_fiscal('f7ci', period)  # Outre-Mer, 6 ans
+        f7ci = foyer_fiscal('f7ci_2019', period)  # Outre-Mer, 6 ans
         f7di = foyer_fiscal('f7di', period)  # Outre-Mer, 9 ans
 
         # Pinel reports, 2015
@@ -967,7 +967,7 @@ class duflot_pinel_denormandie_om(Variable):
         f7qp = foyer_fiscal('f7qp', period)  # Outre-Mer, 9 ans
 
         # Pinel reports, 2014
-        f7ci = foyer_fiscal('f7ci', period)  # Outre-Mer, 6 ans
+        f7ci = foyer_fiscal('f7ci_2019', period)  # Outre-Mer, 6 ans
         f7di = foyer_fiscal('f7di', period)  # Outre-Mer, 9 ans
 
         # Pinel reports, 2015
@@ -1020,7 +1020,7 @@ class duflot_pinel_denormandie_om(Variable):
         f7qu = foyer_fiscal('f7qu', period)  # Outre-Mer, 9 ans
 
         # Pinel reports, 2014
-        f7ci = foyer_fiscal('f7ci', period)  # Outre-Mer, 6 ans
+        f7ci = foyer_fiscal('f7ci_2019', period)  # Outre-Mer, 6 ans
         f7di = foyer_fiscal('f7di', period)  # Outre-Mer, 9 ans
 
         # Pinel reports, 2015
@@ -1067,7 +1067,7 @@ class duflot_pinel_denormandie_om(Variable):
         f7qq = foyer_fiscal('f7qq', period)  # Outre-Mer, 9 ans
 
         # Pinel reports, 2014
-        f7ci = foyer_fiscal('f7ci', period)  # Outre-Mer, 6 ans
+        f7ci = foyer_fiscal('f7ci_2019', period)  # Outre-Mer, 6 ans
         f7di = foyer_fiscal('f7di', period)  # Outre-Mer, 9 ans
 
         # Pinel reports, 2015
@@ -2504,7 +2504,7 @@ class doment(Variable):
         f7qq = foyer_fiscal('f7qq_2012', period)
         f7qr = foyer_fiscal('f7qr_2012', period)
         f7qs = foyer_fiscal('f7qs_2012', period)
-        f7mm = foyer_fiscal('f7mm', period)
+        f7mm = foyer_fiscal('f7mm_2012', period)
         f7ma = foyer_fiscal('f7ma', period)
         f7lg = foyer_fiscal('f7lg', period)
         f7ks = foyer_fiscal('f7ks', period)
@@ -2530,7 +2530,7 @@ class doment(Variable):
         f7lg = foyer_fiscal('f7lg', period)
         f7lh = foyer_fiscal('f7lh_2012', period)
         f7li = foyer_fiscal('f7li', period)
-        f7mm = foyer_fiscal('f7mm', period)
+        f7mm = foyer_fiscal('f7mm_2012', period)
         f7ma = foyer_fiscal('f7ma', period)
         f7mb = foyer_fiscal('f7mb', period)
         f7mc = foyer_fiscal('f7mc', period)
@@ -2578,7 +2578,7 @@ class doment(Variable):
         f7ma = foyer_fiscal('f7ma', period)
         f7mb = foyer_fiscal('f7mb', period)
         f7mc = foyer_fiscal('f7mc', period)
-        f7mm = foyer_fiscal('f7mm', period)
+        f7mm = foyer_fiscal('f7mm_2012', period)
         f7mn = foyer_fiscal('f7mn', period)
         f7nu = foyer_fiscal('f7nu', period)
         f7nv = foyer_fiscal('f7nv', period)
@@ -2614,7 +2614,7 @@ class doment(Variable):
         f7qr = foyer_fiscal('f7qr_2012', period)
         f7qv = foyer_fiscal('f7qv', period)
         f7qz = foyer_fiscal('f7qz_2012', period)
-        f7rg = foyer_fiscal('f7rg_2016', period)
+        f7rg = foyer_fiscal('f7rg_2012', period)
         f7ri = foyer_fiscal('f7ri', period)
         f7rj = foyer_fiscal('f7rj', period)
         f7rk = foyer_fiscal('f7rk', period)
@@ -4913,11 +4913,11 @@ class locmeu(Variable):
         f7ix = foyer_fiscal('f7ix', period)
         f7iy = foyer_fiscal('f7iy', period)
         f7iz = foyer_fiscal('f7iz', period)
-        f7jc = foyer_fiscal('f7jc', period)
+        f7jc = foyer_fiscal('f7jc_2018', period)
         f7ji = foyer_fiscal('f7ji', period)
         f7js = foyer_fiscal('f7js_2018', period)
-        f7jt = foyer_fiscal('f7jt', period)
-        f7ju = foyer_fiscal('f7ju', period)
+        f7jt = foyer_fiscal('f7jt_2019', period)
+        f7ju = foyer_fiscal('f7ju_2016', period)
         f7jv = foyer_fiscal('f7jv', period)
         f7jw = foyer_fiscal('f7jw', period)
         f7jx = foyer_fiscal('f7jx', period)
@@ -4977,11 +4977,11 @@ class locmeu(Variable):
         f7ix = foyer_fiscal('f7ix', period)
         f7iy = foyer_fiscal('f7iy', period)
         f7iz = foyer_fiscal('f7iz', period)
-        f7jc = foyer_fiscal('f7jc', period)
+        f7jc = foyer_fiscal('f7jc_2018', period)
         f7ji = foyer_fiscal('f7ji', period)
         f7js = foyer_fiscal('f7js_2018', period)
-        f7jt = foyer_fiscal('f7jt', period)
-        f7ju = foyer_fiscal('f7ju', period)
+        f7jt = foyer_fiscal('f7jt_2019', period)
+        f7ju = foyer_fiscal('f7ju_2016', period)
         f7jv = foyer_fiscal('f7jv', period)
         f7jw = foyer_fiscal('f7jw', period)
         f7jx = foyer_fiscal('f7jx', period)
@@ -5066,11 +5066,11 @@ class locmeu(Variable):
         f7ix = foyer_fiscal('f7ix', period)
         f7iy = foyer_fiscal('f7iy', period)
         f7iz = foyer_fiscal('f7iz', period)
-        f7jc = foyer_fiscal('f7jc', period)
+        f7jc = foyer_fiscal('f7jc_2018', period)
         f7ji = foyer_fiscal('f7ji', period)
         f7js = foyer_fiscal('f7js_2018', period)
-        f7jt = foyer_fiscal('f7jt', period)
-        f7ju = foyer_fiscal('f7ju', period)
+        f7jt = foyer_fiscal('f7jt_2019', period)
+        f7ju = foyer_fiscal('f7ju_2016', period)
         f7jv = foyer_fiscal('f7jv', period)
         f7jw = foyer_fiscal('f7jw', period)
         f7jx = foyer_fiscal('f7jx', period)
@@ -5167,11 +5167,11 @@ class locmeu(Variable):
         f7ix = foyer_fiscal('f7ix', period)
         f7iy = foyer_fiscal('f7iy', period)
         f7iz = foyer_fiscal('f7iz', period)
-        f7jc = foyer_fiscal('f7jc', period)
+        f7jc = foyer_fiscal('f7jc_2018', period)
         f7ji = foyer_fiscal('f7ji', period)
         f7js = foyer_fiscal('f7js_2018', period)
-        f7jt = foyer_fiscal('f7jt', period)
-        f7ju = foyer_fiscal('f7ju', period)
+        f7jt = foyer_fiscal('f7jt_2019', period)
+        f7ju = foyer_fiscal('f7ju_2016', period)
         f7jv = foyer_fiscal('f7jv', period)
         f7jw = foyer_fiscal('f7jw', period)
         f7jx = foyer_fiscal('f7jx', period)
@@ -5268,7 +5268,7 @@ class locmeu(Variable):
         f7ix = foyer_fiscal('f7ix', period)
         f7iy = foyer_fiscal('f7iy', period)
         f7iz = foyer_fiscal('f7iz', period)
-        f7jc = foyer_fiscal('f7jc', period)
+        f7jc = foyer_fiscal('f7jc_2018', period)
         f7ji = foyer_fiscal('f7ji', period)
         f7js = foyer_fiscal('f7js_2018', period)
         f7jv = foyer_fiscal('f7jv', period)
@@ -5317,7 +5317,7 @@ class locmeu(Variable):
         f7pt = foyer_fiscal('f7pt', period)
         invest_2011_acheves_2017 = foyer_fiscal('f7ij', period)
         invest_2012_acheves_2017 = foyer_fiscal('f7id', period)
-        invest_2013_acheves_2017 = foyer_fiscal('f7jt', period)
+        invest_2013_acheves_2017 = foyer_fiscal('f7jt_2019', period)
         invest_2014_acheves_2017 = foyer_fiscal('f7ou', period)
         invest_2015_acheves_2017 = foyer_fiscal('f7ov', period)
         invest_2016_acheves_2017 = foyer_fiscal('f7ow', period)
@@ -5395,7 +5395,7 @@ class locmeu(Variable):
         f7iq = foyer_fiscal('f7iq', period)
         f7ir = foyer_fiscal('f7ir', period)
         f7iy = foyer_fiscal('f7iy', period)
-        f7jc = foyer_fiscal('f7jc', period)
+        f7jc = foyer_fiscal('f7jc_2018', period)
         f7ji = foyer_fiscal('f7ji', period)
         f7js = foyer_fiscal('f7js_2018', period)
         f7jv = foyer_fiscal('f7jv', period)
@@ -5451,7 +5451,7 @@ class locmeu(Variable):
         f7sb = foyer_fiscal('f7sb', period)
         f7sc = foyer_fiscal('f7sc', period)
         invest_2012_acheves_2017 = foyer_fiscal('f7id', period)
-        invest_2013_acheves_2017 = foyer_fiscal('f7jt', period)
+        invest_2013_acheves_2017 = foyer_fiscal('f7jt_2019', period)
         invest_2014_acheves_2017 = foyer_fiscal('f7ou', period)
         invest_2015_acheves_2017 = foyer_fiscal('f7ov', period)
         invest_2016_acheves_2017 = foyer_fiscal('f7ow', period)
@@ -5585,7 +5585,7 @@ class locmeu(Variable):
         f7sc = foyer_fiscal('f7sc', period)
         f7so = foyer_fiscal('f7so', period)
         f7sn = foyer_fiscal('f7sn', period)
-        invest_2013_acheves_2019 = foyer_fiscal('f7jt', period)
+        invest_2013_acheves_2019 = foyer_fiscal('f7jt_2019', period)
         invest_2014_acheves_2019 = foyer_fiscal('f7ou', period)
         invest_2015_acheves_2019 = foyer_fiscal('f7ov', period)
         invest_2016_acheves_2019 = foyer_fiscal('f7ow', period)
@@ -6052,7 +6052,7 @@ class resimm(Variable):
         f7re = foyer_fiscal('f7re_2016', period)
         f7rf = foyer_fiscal('f7rf_2016', period)
         f7sx = foyer_fiscal('f7sx_2017', period)
-        f7sy = foyer_fiscal('f7sy', period)
+        f7sy = foyer_fiscal('f7sy_2017', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
 
         max1 = P.max
@@ -6078,7 +6078,7 @@ class resimm(Variable):
         f7re = foyer_fiscal('f7re_2016', period)
         f7rf = foyer_fiscal('f7rf_2016', period)
         f7sx = foyer_fiscal('f7sx_2017', period)
-        f7sy = foyer_fiscal('f7sy', period)
+        f7sy = foyer_fiscal('f7sy_2017', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
 
         max1 = P.max
@@ -6094,7 +6094,7 @@ class resimm(Variable):
         Travaux de restauration immobilière
         2017
         '''
-        f7sy = foyer_fiscal('f7sy', period)
+        f7sy = foyer_fiscal('f7sy_2017', period)
         f7sx = foyer_fiscal('f7sx_2017', period)
 
         f7nx = foyer_fiscal('f7nx', period)
@@ -6520,7 +6520,7 @@ class scelli(Variable):
         f7hz = foyer_fiscal('f7hz', period)
         f7ja = foyer_fiscal('f7ja_2017', period)
         f7jb = foyer_fiscal('f7jb_2016', period)
-        f7jd = foyer_fiscal('f7jd', period)
+        f7jd = foyer_fiscal('f7jd_2017', period)
         f7je = foyer_fiscal('f7je', period)
         f7jf = foyer_fiscal('f7jf', period)
         f7jg = foyer_fiscal('f7jg', period)
@@ -6531,9 +6531,9 @@ class scelli(Variable):
         f7jm = foyer_fiscal('f7jm_2017', period)
         f7jn = foyer_fiscal('f7jn_2017', period)
         f7jo = foyer_fiscal('f7jo_2017', period)
-        f7jp = foyer_fiscal('f7jp', period)
-        f7jq = foyer_fiscal('f7jq', period)
-        f7jr = foyer_fiscal('f7jf7jr_2017r', period)
+        f7jp = foyer_fiscal('f7jp_2016', period)
+        f7jq = foyer_fiscal('f7jq_2017', period)
+        f7jr = foyer_fiscal('f7jr_2017', period)
         f7la = foyer_fiscal('f7la', period)
         f7lb = foyer_fiscal('f7lb', period)
         f7lc = foyer_fiscal('f7lc', period)
@@ -6630,7 +6630,7 @@ class scelli(Variable):
         f7hz = foyer_fiscal('f7hz', period)
         f7ja = foyer_fiscal('f7ja_2017', period)
         f7jb = foyer_fiscal('f7jb_2016', period)
-        f7jd = foyer_fiscal('f7jd', period)
+        f7jd = foyer_fiscal('f7jd_2017', period)
         f7je = foyer_fiscal('f7je', period)
         f7jf = foyer_fiscal('f7jf', period)
         f7jg = foyer_fiscal('f7jg', period)
@@ -6641,8 +6641,8 @@ class scelli(Variable):
         f7jm = foyer_fiscal('f7jm_2017', period)
         f7jn = foyer_fiscal('f7jn_2017', period)
         f7jo = foyer_fiscal('f7jo_2017', period)
-        f7jp = foyer_fiscal('f7jp', period)
-        f7jq = foyer_fiscal('f7jq', period)
+        f7jp = foyer_fiscal('f7jp_2016', period)
+        f7jq = foyer_fiscal('f7jq_2017', period)
         f7jr = foyer_fiscal('f7jr_2017', period)
         f7la = foyer_fiscal('f7la', period)
         f7lb = foyer_fiscal('f7lb', period)
@@ -6650,7 +6650,7 @@ class scelli(Variable):
         f7ld = foyer_fiscal('f7ld', period)
         f7le = foyer_fiscal('f7le', period)
         f7lf = foyer_fiscal('f7lf', period)
-        f7lm = foyer_fiscal('f7lm', period)
+        f7lm = foyer_fiscal('f7lm_2018', period)
         f7ls = foyer_fiscal('f7ls', period)
         f7lz = foyer_fiscal('f7lz', period)
         f7mg = foyer_fiscal('f7mg', period)
@@ -6746,7 +6746,7 @@ class scelli(Variable):
         f7hz = foyer_fiscal('f7hz', period)
         f7ja = foyer_fiscal('f7ja_2017', period)
         f7jb = foyer_fiscal('f7jb_2016', period)
-        f7jd = foyer_fiscal('f7jd', period)
+        f7jd = foyer_fiscal('f7jd_2017', period)
         f7je = foyer_fiscal('f7je', period)
         f7jf = foyer_fiscal('f7jf', period)
         f7jg = foyer_fiscal('f7jg', period)
@@ -6757,8 +6757,8 @@ class scelli(Variable):
         f7jm = foyer_fiscal('f7jm_2017', period)
         f7jn = foyer_fiscal('f7jn_2017', period)
         f7jo = foyer_fiscal('f7jo_2017', period)
-        f7jp = foyer_fiscal('f7jp', period)
-        f7jq = foyer_fiscal('f7jq', period)
+        f7jp = foyer_fiscal('f7jp_2016', period)
+        f7jq = foyer_fiscal('f7jq_2017', period)
         f7jr = foyer_fiscal('f7jr_2017', period)
         f7la = foyer_fiscal('f7la', period)
         f7lb = foyer_fiscal('f7lb', period)
@@ -6766,7 +6766,7 @@ class scelli(Variable):
         f7ld = foyer_fiscal('f7ld', period)
         f7le = foyer_fiscal('f7le', period)
         f7lf = foyer_fiscal('f7lf', period)
-        f7lm = foyer_fiscal('f7lm', period)
+        f7lm = foyer_fiscal('f7lm_2018', period)
         f7ln = foyer_fiscal('f7ln', period)
         f7ls = foyer_fiscal('f7ls', period)
         f7lt = foyer_fiscal('f7lt', period)
@@ -6895,7 +6895,7 @@ class scelli(Variable):
         f7hz = foyer_fiscal('f7hz', period)
         f7ja = foyer_fiscal('f7ja_2017', period)
         f7jb = foyer_fiscal('f7jb_2016', period)
-        f7jd = foyer_fiscal('f7jd', period)
+        f7jd = foyer_fiscal('f7jd_2017', period)
         f7je = foyer_fiscal('f7je', period)
         f7jf = foyer_fiscal('f7jf', period)
         f7jg = foyer_fiscal('f7jg', period)
@@ -6906,8 +6906,8 @@ class scelli(Variable):
         f7jm = foyer_fiscal('f7jm_2017', period)
         f7jn = foyer_fiscal('f7jn_2017', period)
         f7jo = foyer_fiscal('f7jo_2017', period)
-        f7jp = foyer_fiscal('f7jp', period)
-        f7jq = foyer_fiscal('f7jq', period)
+        f7jp = foyer_fiscal('f7jp_2016', period)
+        f7jq = foyer_fiscal('f7jq_2017', period)
         f7jr = foyer_fiscal('f7jr_2017', period)
         f7la = foyer_fiscal('f7la', period)
         f7lb = foyer_fiscal('f7lb', period)
@@ -6919,7 +6919,7 @@ class scelli(Variable):
         f7lh = foyer_fiscal('f7lh', period)
         f7li = foyer_fiscal('f7li', period)
         f7lj = foyer_fiscal('f7lj', period)
-        f7lm = foyer_fiscal('f7lm', period)
+        f7lm = foyer_fiscal('f7lm_2018', period)
         f7ln = foyer_fiscal('f7ln', period)
         f7ls = foyer_fiscal('f7ls', period)
         f7lt = foyer_fiscal('f7lt', period)
@@ -7040,7 +7040,7 @@ class scelli(Variable):
             'f7gv', 'f7yj', 'f7gw', 'f7yk', 'f7yl', 'f7gx', 'f7yl',
             'f7ha', 'f7hd', 'f7hf',
 
-            'f7lb', 'f7le', 'f7lm', 'f7ln', 'f7lg', 'f7lk',
+            'f7lb', 'f7le', 'f7lm_2018', 'f7ln', 'f7lg', 'f7lk',
             'f7lc', 'f7ld', 'f7ls', 'f7lt', 'f7lh', 'f7ll',
             'f7lf', 'f7lz', 'f7lx', 'f7li', 'f7lo',
             'f7mg', 'f7mh', 'f7lj', 'f7lp',
@@ -7055,13 +7055,13 @@ class scelli(Variable):
             ]
 
         inv_5_40 = ['f7nq', 'f7nr', 'f7ns', 'f7nt']
-        inv_5_36 = ['f7jp', 'f7jq', 'f7np']
+        inv_5_36 = ['f7jp_2016', 'f7jq_2017', 'f7np']
         inv_5_24 = ['f7fd', 'f7jo_2017', 'f7jr_2017']
         inv_9_40 = ['f7nl_2016', 'f7nm', 'f7nn', 'f7no', 'f7hk', 'f7ho']
         inv_9_36 = ['f7jl', 'f7jm_2017', 'f7nk_2017']
         inv_9_25 = ['f7nb_2016', 'f7ng_2016', 'f7nc_2017', 'f7nh_2017', 'f7nd_2017', 'f7hj', 'f7hn']
         inv_9_24 = ['f7fc', 'f7jk', 'f7jn_2017']
-        inv_9_22 = ['f7jb_2016', 'f7jd', 'f7na_2017', 'f7ne_2017']
+        inv_9_22 = ['f7jb_2016', 'f7jd_2017', 'f7na_2017', 'f7ne_2017']
         inv_9_15 = ['f7ni_2017']
         inv_9_13 = ['f7fa', 'f7ja_2017', 'f7jg', 'f7jh', 'f7je', 'f7nf_2017', 'f7nj_2017']
         inv_9_6  = ['f7fb', 'f7jf', 'f7jj']
@@ -7131,7 +7131,7 @@ class scelli(Variable):
 
             'f7yj', 'f7yk', 'f7yl',
 
-            'f7le', 'f7lm', 'f7ln', 'f7lg', 'f7lk', 'f7lq', 
+            'f7le', 'f7lm_2018', 'f7ln', 'f7lg', 'f7lk', 'f7lq', 
             'f7ld', 'f7ls', 'f7lt', 'f7lh', 'f7ll', 'f7lr', 
             'f7lf', 'f7lz', 'f7lx', 'f7li', 'f7lo', 'f7lu', 
             'f7mg', 'f7mh', 'f7lj', 'f7lp', 'f7lv', 
@@ -7148,13 +7148,13 @@ class scelli(Variable):
             ]
 
         inv_5_40 = ['f7nr', 'f7ns', 'f7nt']
-        inv_5_36 = ['f7jq', 'f7np']
+        inv_5_36 = ['f7jq_2017', 'f7np']
         inv_5_24 = ['f7fd', 'f7jo_2017', 'f7jr_2017']
         inv_9_40 = ['f7nm', 'f7nn', 'f7no']
         inv_9_36 = ['f7jm_2017', 'f7nk_2017']
         inv_9_25 = ['f7nc', 'f7nh_2017', 'f7nd_2017']
         inv_9_24 = ['f7fc', 'f7jk', 'f7jn_2017']
-        inv_9_22 = ['f7jd', 'f7na_2017', 'f7ne_2017']
+        inv_9_22 = ['f7jd_2017', 'f7na_2017', 'f7ne_2017']
         inv_9_15 = ['f7ni_2017']
         inv_9_13 = ['f7fa', 'f7ja_2017', 'f7jh', 'f7je', 'f7nf_2017', 'f7nj_2017']
         inv_9_6 = ['f7fb', 'f7jf', 'f7jj']
@@ -7227,7 +7227,7 @@ class scelli(Variable):
             'f7hd', 'f7gs', 'f7yf', 
             'f7hf', 'f7gu', 'f7yh', 
 
-            'f7lm', 'f7ln', 'f7lg', 'f7lk', 'f7lq', 'f7la', 
+            'f7lm_2018', 'f7ln', 'f7lg', 'f7lk', 'f7lq', 'f7la', 
             'f7ls', 'f7lt', 'f7lh', 'f7ll', 'f7lr', 'f7lb', 
             'f7lz', 'f7lx', 'f7li', 'f7lo', 'f7lu', 'f7lc', 
             'f7mg', 'f7mh', 'f7lj', 'f7lp', 'f7lv', 'f7ly', 
