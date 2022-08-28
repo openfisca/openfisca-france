@@ -1487,13 +1487,22 @@ class fhpd(Variable):
     definition_period = YEAR
 
 
-class f7qe(Variable):
+class f7qe_2012(Variable):
     cerfa_field = '7QE'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
-    # end = '2012-12-31' changes meaning in 2014
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7qe(Variable):
+    cerfa_field = '7QE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel'
     definition_period = YEAR
 
 
@@ -2039,12 +2048,30 @@ class f7rq(Variable):
     definition_period = YEAR
 
 
-class f7rr(Variable):
+class f7rr_2012(Variable):
     cerfa_field = '7RR'
     value_type = int
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise"
-    # start_date = date(2012, 1, 1)
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7rr_2015(Variable):
+    cerfa_field = '7RR'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'QuaEnv'
+    # start_date = date(2014, 1, 1)
+    end = '2015-12-31'
+    definition_period = YEAR
+
+
+class f7rr(Variable):
+    cerfa_field = '7RR'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel'
     definition_period = YEAR
 
 
@@ -2058,12 +2085,30 @@ class fhlh(Variable):
     definition_period = YEAR
 
 
-class f7rs(Variable):
+class f7rs_(Variable):
     cerfa_field = '7RS'
     value_type = int
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
     # start_date = date(2012, 1, 1)
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7rs_2015(Variable):
+    cerfa_field = '7RS'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'QuaEnv'
+    end = '2015-12-31'
+    definition_period = YEAR
+
+
+class f7rs(Variable):
+    cerfa_field = '7RS'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel'
     definition_period = YEAR
 
 
@@ -2142,12 +2187,21 @@ class f7rx(Variable):
     definition_period = YEAR
 
 
-class f7ry(Variable):
+class f7ry_2012(Variable):
     cerfa_field = '7RY'
     value_type = int
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
     # start_date = date(2012, 1, 1)
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7ry(Variable):
+    cerfa_field = '7RY'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Pinel'
     definition_period = YEAR
 
 
@@ -3815,13 +3869,22 @@ class f7rf_2016(Variable):
     definition_period = YEAR
 
 
-class f7sx(Variable):
+class f7sx_2017(Variable):
     cerfa_field = '7SX'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé'
     # start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class f7sx(Variable):
+    cerfa_field = '7SX'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel'
     definition_period = YEAR
 
 
@@ -4332,12 +4395,22 @@ class f7uj(Variable):
     definition_period = YEAR
 
 
+class f7qb_2012(Variable):
+    cerfa_field = '7QB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'cappme'
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
 class f7qb(Variable):
     cerfa_field = '7QB'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    # end = '2012-12-31' changes meaning in 2014
+    label = 'Pinel'
     definition_period = YEAR
 
 
@@ -4349,12 +4422,22 @@ class fhqb(Variable):
     definition_period = YEAR
 
 
+class f7qc_2012(Variable):
+    cerfa_field = '7QC'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'cappme'
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
 class f7qc(Variable):
     cerfa_field = '7QC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2011-12-31'
+    label = 'Pinel'
     definition_period = YEAR
 
 
@@ -4366,12 +4449,21 @@ class fhqc(Variable):
     definition_period = YEAR
 
 
+class f7qd_2012(Variable):
+    cerfa_field = '7QD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    end = '2012-12-31'
+    label = 'cappme'
+    definition_period = YEAR
+
 class f7qd(Variable):
     cerfa_field = '7QD'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    # end = '2012-12-31' changes meaning in 2014
+    label = 'Pinel'
     definition_period = YEAR
 
 
@@ -4384,12 +4476,32 @@ class fhqd(Variable):
     definition_period = YEAR
 
 
+class f7qk_2009(Variable):
+    cerfa_field = '7QK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomLog'
+    end = '2009-12-31'
+    definition_period = YEAR
+
+
+class f7qk_2012(Variable):
+    cerfa_field = '7QK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomSoc'
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
 class f7qk(Variable):
     cerfa_field = '7QK'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    # end = '2009-12-31' changes meaning in 2014
+    label = 'Pinel'
     definition_period = YEAR
 
 
@@ -4419,12 +4531,22 @@ class fhql(Variable):
     definition_period = YEAR
 
 
+class f7ql_2012(Variable):
+    cerfa_field = '7QL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomLog'
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
 class f7ql(Variable):
     cerfa_field = '7QL'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    # end = '2012-12-31' changes meaning in 2014
+    label = 'Pinel'
     definition_period = YEAR
 
 
@@ -4479,10 +4601,31 @@ class f7ki(Variable):
     definition_period = YEAR
 
 
+class f7qj_2010(Variable):
+    cerfa_field = '7QJ'
+    value_type = int
+    unit = 'currency'
+    label = 'DomEnt'
+    end = '2010-12-31'
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+
+class f7qj_2012(Variable):
+    cerfa_field = '7QJ'
+    value_type = int
+    unit = 'currency'
+    label = 'DomSoc'
+    end = '2012-12-31'
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+
 class f7qj(Variable):
     cerfa_field = '7QJ'
     value_type = int
     unit = 'currency'
+    label = 'Pinel'
     entity = FoyerFiscal
     definition_period = YEAR
 
@@ -4505,10 +4648,20 @@ class f7qx_2012(Variable):
     definition_period = YEAR
 
 
+class f7qf_2012(Variable):
+    cerfa_field = '7QF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
 class f7qf(Variable):
     cerfa_field = '7QF'
     value_type = int
     unit = 'currency'
+    label = 'Pinel'
     entity = FoyerFiscal
     definition_period = YEAR
 
@@ -4521,10 +4674,20 @@ class fhqf(Variable):
     definition_period = YEAR
 
 
+class f7qg_2012(Variable):
+    cerfa_field = '7QG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
 class f7qg(Variable):
     cerfa_field = '7QG'
     value_type = int
     unit = 'currency'
+    label = 'Pinel'
     entity = FoyerFiscal
     definition_period = YEAR
 
@@ -4537,11 +4700,31 @@ class fhqg(Variable):
     definition_period = YEAR
 
 
+class f7qh_2012(Variable):
+    cerfa_field = '7QH'
+    value_type = int
+    unit = 'currency'
+    end = '2012-12-31'
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+
 class f7qh(Variable):
     cerfa_field = '7QH'
     value_type = int
     unit = 'currency'
+    label = 'Pinel'
     entity = FoyerFiscal
+    definition_period = YEAR
+
+
+class f7qi_2012(Variable):
+    cerfa_field = '7QI'
+    value_type = int
+    unit = 'currency'
+    label = 'DomEnt'
+    entity = FoyerFiscal
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4549,6 +4732,7 @@ class f7qi(Variable):
     cerfa_field = '7QI'
     value_type = int
     unit = 'currency'
+    label = 'Pinel'
     entity = FoyerFiscal
     definition_period = YEAR
 
@@ -6728,13 +6912,35 @@ class f7nd_2017(Variable):
     definition_period = YEAR
 
 
-class f7ne(Variable):
+class f7ne_2017(Variable):
     cerfa_field = '7NE'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, métropole, BBC"
     # start_date = date(2011, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+class f7ne(Variable):
+    cerfa_field = '7NE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie'
+    # start_date = date(2020, 1, 1)
+    definition_period = YEAR
+
+
+class f7nf_2017(Variable):
+    cerfa_field = '7NF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, '
+    # start_date = date(2011, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -6743,12 +6949,12 @@ class f7nf(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, '
+    label = 'Denormandie'
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
-class f7ng(Variable):
+class f7ng_2016(Variable):
     cerfa_field = '7NG'
     value_type = int
     unit = 'currency'
@@ -6759,13 +6965,45 @@ class f7ng(Variable):
     definition_period = YEAR
 
 
-class f7nh(Variable):
+class f7ng(Variable):
+    cerfa_field = '7NG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie'
+    # start_date = date(2011, 1, 1)
+    definition_period = YEAR
+
+
+class f7nh_2017(Variable):
     cerfa_field = '7NH'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, métropole, non-BBC"
     # start_date = date(2011, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+class f7nh(Variable):
+    cerfa_field = '7NH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie'
+    # start_date = date(2011, 1, 1)
+    definition_period = YEAR
+
+
+class f7ni_2017(Variable):
+    cerfa_field = '7NI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, métropole, non-BBC"
+    # start_date = date(2011, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -6774,8 +7012,19 @@ class f7ni(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, métropole, non-BBC"
+    label = 'Denormandie'
+    # start_date = date(2021, 1, 1)
+    definition_period = YEAR
+
+
+class f7nj_2017(Variable):
+    cerfa_field = '7NJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, métropole, non-BBC"
     # start_date = date(2011, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -6784,8 +7033,29 @@ class f7nj(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, métropole, non-BBC"
+    label = 'Denormandie'
+    definition_period = YEAR
+
+
+class f7nk_2017(Variable):
+    cerfa_field = '7NK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon'
     # start_date = date(2011, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+class f7nl_2016(Variable):
+    cerfa_field = '7NL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon'
+    # start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6794,8 +7064,7 @@ class f7nk(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon'
-    # start_date = date(2011, 1, 1)
+    label = 'Denormandie'
     definition_period = YEAR
 
 
@@ -6804,9 +7073,7 @@ class f7nl(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon'
-    # start_date = date(2011, 1, 1)
-    end = '2016-12-31'
+    label = 'Denormandie'
     definition_period = YEAR
 
 
@@ -7021,7 +7288,7 @@ class f7hf(Variable):
     definition_period = YEAR
 
 
-class f7ja(Variable):
+class f7ja_2017(Variable):
     cerfa_field = '7JA'
     value_type = int
     unit = 'currency'
@@ -7031,7 +7298,16 @@ class f7ja(Variable):
     definition_period = YEAR
 
 
-class f7jb(Variable):
+class f7ja(Variable):
+    cerfa_field = '7JA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie'
+    definition_period = YEAR
+
+
+class f7jb_2016(Variable):
     cerfa_field = '7JB'
     value_type = int
     unit = 'currency'
@@ -7039,6 +7315,15 @@ class f7jb(Variable):
     label = 'Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, BBC'
     # start_date = date(2012, 1, 1)
     end = '2016-12-31'
+    definition_period = YEAR
+
+
+class f7jb(Variable):
+    cerfa_field = '7JB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie'
     definition_period = YEAR
 
 
@@ -7124,13 +7409,32 @@ class f7jl(Variable):
     definition_period = YEAR
 
 
-class f7jm(Variable):
+class f7jm_2017(Variable):
     cerfa_field = '7JM'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    # start_date = date(2012, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+class f7jm(Variable):
+    cerfa_field = '7JM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel'
+    definition_period = YEAR
+
+
+class f7jn_2017(Variable):
+    cerfa_field = '7JN'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -7139,8 +7443,18 @@ class f7jn(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    label = 'Pinel'
+    definition_period = YEAR
+
+
+class f7jo_2017(Variable):
+    cerfa_field = '7JO'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna'
     # start_date = date(2012, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -7149,8 +7463,7 @@ class f7jo(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna'
-    # start_date = date(2012, 1, 1)
+    label = 'Pinel'
     definition_period = YEAR
 
 
@@ -7175,13 +7488,23 @@ class f7jq(Variable):
     definition_period = YEAR
 
 
-class f7jr(Variable):
+class f7jr_2017(Variable):
     cerfa_field = '7JR'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
     # start_date = date(2012, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+class f7jr(Variable):
+    cerfa_field = '7JR'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie'
     definition_period = YEAR
 
 
@@ -8166,7 +8489,7 @@ class f7ji(Variable):
     definition_period = YEAR
 
 
-class f7js(Variable):
+class f7js_2018(Variable):
     cerfa_field = '7JS'
     value_type = int
     unit = 'currency'
@@ -8174,6 +8497,15 @@ class f7js(Variable):
     label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d’impôt de l’année 2012"
     # start_date = date(2013, 1, 1)
     end = '2018-12-31'
+    definition_period = YEAR
+
+
+class f7js(Variable):
+    cerfa_field = '7JS'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Denormandie'
     definition_period = YEAR
 
 
