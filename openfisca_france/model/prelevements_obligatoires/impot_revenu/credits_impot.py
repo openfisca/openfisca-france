@@ -532,8 +532,8 @@ class acqgpl(Variable):
         Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte
         2002-2007
         '''
-        f7up = foyer_fiscal('f7up', period)
-        f7uq = foyer_fiscal('f7uq', period)
+        f7up = foyer_fiscal('f7up_2007', period)
+        f7uq = foyer_fiscal('f7uq_2007', period)
         acqgpl = parameters(period).impot_revenu.calcul_credits_impots.acqgpl
 
         return f7up * acqgpl.mont_up + f7uq * acqgpl.mont_uq
@@ -2426,7 +2426,7 @@ class quaenv(Variable):
         f7sw = foyer_fiscal('f7sw', period)
         f7sz = foyer_fiscal('f7sz_2015', period)
         f7ta = foyer_fiscal('f7ta_2015', period)
-        f7tb = foyer_fiscal('f7tb', period)
+        f7tb = foyer_fiscal('f7tb_2015', period)
         f7tc = foyer_fiscal('f7tc', period)
         f7tn = foyer_fiscal('f7tn', period)
         f7tp = foyer_fiscal('f7tp_2015', period)
@@ -2736,7 +2736,7 @@ class quaenv_bouquet(Variable):
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
         f7ta = foyer_fiscal('f7ta_2015', period)
-        f7tb = foyer_fiscal('f7tb', period)
+        f7tb = foyer_fiscal('f7tb_2015', period)
         f7tn = foyer_fiscal('f7tn', period)
         f7tp = foyer_fiscal('f7tp_2015', period)
         f7tq = foyer_fiscal('f7tq_2015', period)

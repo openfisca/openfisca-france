@@ -10507,13 +10507,24 @@ class f7ta(Variable):
     definition_period = YEAR
 
 
-class f7tb(Variable):
+class f7tb_2015(Variable):
     cerfa_field = '7TB'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 : chaudières à micro-génération gaz'
     # start_date = date(2015, 1, 1)
+    end = '2015-12-31'
+    definition_period = YEAR
+
+
+class f7tb(Variable):
+    cerfa_field = '7TB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'InvFor'
+    # start_date = date(2021, 1, 1)
     definition_period = YEAR
 
 
@@ -10690,6 +10701,17 @@ class f7sh(Variable):
 
 # Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte en 2007 et investissements forestiers aprés ???
 
+class f7up_2007(Variable):
+    cerfa_field = '7UP'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "ACQGPL"
+    # start_date = date(2002, 1, 1)
+    end = '2007-12-31'
+    definition_period = YEAR
+
+
 class f7up(Variable):
     cerfa_field = '7UP'
     value_type = int
@@ -10700,6 +10722,18 @@ class f7up(Variable):
     definition_period = YEAR
 
 
+class f7uq_2007(Variable):
+    cerfa_field = '7UQ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "ACQGPL"
+    # start_date = date(2002, 1, 1)
+    end = '2007-12-31'
+    definition_period = YEAR
+
+
+# Déclaration de déménagement correspondant à un crédit d'impôt aide à la mobilité
 class f7uq(Variable):
     cerfa_field = '7UQ'
     value_type = int
