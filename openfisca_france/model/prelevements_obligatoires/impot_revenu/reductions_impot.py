@@ -147,22 +147,21 @@ class reductions(Variable):
         Il y a 4 catégories de réductions :
             - réductions générales soumises au plafond de 10K
             - réductions inv. outre-mèr/SOFICA avec majoration de 8K
-            - réductions ESUS/SFS avec majoration de 3K
+            - réductions ESUS/SFS avec majoration de 3K (2021)
             - réductions sans plafond
 
-        Un tel plafond existe depuis au moins 2009. La version codée là-dessous est celle
-        de 2013 qui est encore valable pour l'imposition des revenus de 2021.
+        Un tel plafond, avec un seuil différent, existe depuis 2008, mais n'est pour l'instant pas codé ici.
+        La version codée là-dessous est celle de 2013 qui est encore valable pour l'imposition des revenus
+        de 2021. Il faut insister sur le point que la version codée en bas est aussi une approximation,
+        parce que pour l'imposition des revenus de l'année N, ce sont les plafonds de N, N-1, N-2, etc.
+        qui s'appliquent selon l'année de l'initialisation de la réduction ou du crédit d'impôt, mais ici
+        on prend juste le plafond de l'année N pour toutes les RI/CI.
 
         Beaucoup des dispositifs figurant parmi les réductions et crédits plafonnées
         sont dénombrés dans la loi et les brochures pratiques de l'IR, mais pas tous.
         Une règle qui peut être appliquée dans le doute, c'est que chaque dispositif est
         soumis au plafond sauf si exclu par la loi, et que souvent les dispositifs exclus
         sont ceux qui n'ont pas de contrepartie (par ex. un don ou un mécénat).
-
-        NB : Le dispositif Scellier est aussi soumis au plafond. Une question qui se pose est si
-        le Scellier DOM est soumis au plafond de € 18K au lieu de € 10K. On dirait que oui, mais
-        les cases présentes dans les formulaires 2042 récents ne permettent pas de les distinguer.
-        On fait donc pas le tri, et le dispositif est intégralement soumis au plafond de € 10K.
         '''
 
         impot_net = foyer_fiscal('ip_net', period)
