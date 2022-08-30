@@ -284,20 +284,15 @@ class complement_are_crc(Variable):
 class complement_are_csg_journaliere(Variable):
     value_type = float
     entity = Individu
-    label = 'Montant des Contributions Sociales Généralisées (CSG)'
+    label = 'Montant journalier de la Contribution Sociale Généralisée (CSG) sur le Complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = [
-        'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire',
-        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
-        ]
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
 
     def formula(individu, period, parameters):
-        # assiette de csg totale = allocation journalière - cotisation retraite complémentaire
-        # https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations
-        allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)
+        allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)  # CRC déduite
 
-        # abattement pour frais sous 4 plafonds de la sécurité sociale (PSS)
+        # abattement d'assiette pour frais sous 4 plafonds mensuels de la sécurité sociale (PSS)
         max_assiette_mensuelle_eligible_abattement = 4 * parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_mensuel
         complement_are_nombre_jours_indemnisables = individu('complement_are_nombre_jours_indemnisables', period)
         assiette_mensuelle_csg = allocation_journaliere_brute_are * complement_are_nombre_jours_indemnisables
@@ -306,17 +301,18 @@ class complement_are_csg_journaliere(Variable):
         assiette_mensuelle_csg_non_abattue = max_(assiette_mensuelle_csg - max_assiette_mensuelle_eligible_abattement, 0)
 
         abattement_assiette_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable.abattement.rates[0]
-        assiette_journaliere_csg = ((assiette_mensuelle_csg_abattable * (1-abattement_assiette_csg)) + assiette_mensuelle_csg_non_abattue) / complement_are_nombre_jours_indemnisables
+        assiette_journaliere_csg = (
+            (assiette_mensuelle_csg_abattable * (1 - abattement_assiette_csg)) + assiette_mensuelle_csg_non_abattue
+            ) / complement_are_nombre_jours_indemnisables
 
-        # CSG à taux plein (au demandeur d'emploi de suivre une démarche pour la prise en compte du RFR déterminant les taux réduits)
+        # CSG à taux plein
+        # au demandeur d'emploi de suivre une démarche pour la prise en compte du RFR déterminant les taux réduits
         taux_global_csg_chomage = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.taux_global
         csg_theorique = assiette_journaliere_csg * taux_global_csg_chomage
 
-        # seuil en deçà duquel la CSG n'est pas dûe
-        # l'application du prélèvement ne doit pas faire baisser le montant net de l'allocation en-dessous du Smic brut
+        # la CSG ne doit pas faire baisser le montant net de l'allocation en-dessous du smic brut
         seuil_exoneration_contributions = parameters(period).chomage.complement_are.seuil_exoneration_contributions
 
-        # comparaison stricte au seuil d'après https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations 
         allocation_csg_deduite = allocation_journaliere_brute_are - csg_theorique
         csg_prelevee = -1 * round_(
             where(
@@ -325,22 +321,8 @@ class complement_are_csg_journaliere(Variable):
                 0),
             2)
 
-        # Etait :
-        # chomage_brut = individu('complement_are_brut', period)
-        # nombre_pss = chomage_brut / parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_mensuel
-        # pallier_abattement_contributions = where(nombre_pss <= 4, 1, 4)
-        # abattement_contributions = (1 - parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable.abattement.calc(pallier_abattement_contributions))
-        # taux_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.taux_global
-        # montant_retenu_csg = round_(allocation_journaliere_brute_are - (allocation_journaliere_brute_are * abattement_contributions * taux_csg), 2)
-        # 
-        # return round_(
-        #     where(
-        #         montant_retenu_csg >= seuil_exoneration_contributions,
-        #         allocation_journaliere_brute_are * abattement_contributions * taux_csg,
-        #         0),
-        #     2)
-
         return csg_prelevee
+
 
 class complement_are_csg(Variable):
     value_type = float
