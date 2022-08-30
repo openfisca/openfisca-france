@@ -70,7 +70,7 @@ class cmu_forfait_logement_al(Variable):
     def formula_2009_06_01(famille, period, parameters):
         nbp_foyer = famille('cmu_nbp_foyer', period)
         aide_logement = famille('aide_logement', period)
-        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement_al
+        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement
         law_rmi_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
 
         montant_rsa_socle = law_rmi_rsa.rsa_m.montant_de_base_du_rsa * (
@@ -89,7 +89,7 @@ class cmu_forfait_logement_al(Variable):
     def formula(famille, period, parameters):
         nbp_foyer = famille('cmu_nbp_foyer', period)
         aide_logement = famille('aide_logement', period)
-        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement_al
+        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement
         law_rmi_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
 
         montant_rsa_socle = law_rmi_rsa.rmi_m.rmi * (
