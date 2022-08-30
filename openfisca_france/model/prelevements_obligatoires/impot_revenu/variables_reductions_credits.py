@@ -2319,7 +2319,8 @@ class f7rl_2012(Variable):
 class f7rl_2015(Variable):
     cerfa_field = '7RL'
     value_type = int
-    entity ='QuaEnv'
+    entity = FoyerFiscal
+    label = 'QuaEnv'
     # start_date = date(2014, 1, 1)
     end = '2015-12-31'
     definition_period = YEAR
@@ -8501,7 +8502,7 @@ class f7jj(Variable):
 
 
 class f7wd(Variable):
-    cerfaa_field = '7WD'
+    cerfa_field = '7WD'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -8511,7 +8512,7 @@ class f7wd(Variable):
 
 
 class f7mo(Variable):
-    cerfaa_field = '7MO'
+    cerfa_field = '7MO'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -8521,7 +8522,7 @@ class f7mo(Variable):
 
 
 class f7mp(Variable):
-    cerfaa_field = '7MP'
+    cerfa_field = '7MP'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -8531,7 +8532,7 @@ class f7mp(Variable):
 
 
 class f7mq(Variable):
-    cerfaa_field = '7MQ'
+    cerfa_field = '7MQ'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -8541,7 +8542,7 @@ class f7mq(Variable):
 
 
 class f7mr(Variable):
-    cerfaa_field = '7MR'
+    cerfa_field = '7MR'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -8551,7 +8552,7 @@ class f7mr(Variable):
 
 
 class f7md(Variable):
-    cerfaa_field = '7MD'
+    cerfa_field = '7MD'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -8561,7 +8562,7 @@ class f7md(Variable):
 
 
 class f7za(Variable):
-    cerfaa_field = '7ZA'
+    cerfa_field = '7ZA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -8600,7 +8601,7 @@ class f7zd(Variable):
     definition_period = YEAR
 
 class f7zm(Variable):
-    cerfaa_field = '7ZM'
+    cerfa_field = '7ZM'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
