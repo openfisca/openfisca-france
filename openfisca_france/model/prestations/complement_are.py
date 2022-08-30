@@ -39,9 +39,9 @@ class complement_are_allocation_journaliere_brute_are(Variable):
 
     def formula(individu, period):
         allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
-        crc = individu('complement_are_crc_journaliere', period)
+        crc = individu('complement_are_crc_journaliere', period)  # montant négatif
 
-        return allocation_journaliere - crc
+        return allocation_journaliere + crc
 
 
 class complement_are_plafond(Variable):
@@ -103,9 +103,9 @@ class complement_are_net(Variable):
 
     def formula(individu, period):
         allocation_mensuelle_due_brute = individu('complement_are_brut', period)
-        deductions_montant_mensuel = individu('complement_are_deductions', period)
+        deductions_montant_mensuel = individu('complement_are_deductions', period)  # montant négatif
 
-        return max_(0, round_(allocation_mensuelle_due_brute - deductions_montant_mensuel, 2))
+        return max_(0, round_(allocation_mensuelle_due_brute + deductions_montant_mensuel, 2))
 
 
 class complement_are_salaire_retenu(Variable):
@@ -249,16 +249,20 @@ class complement_are_crc_journaliere(Variable):
         ]
 
     def formula(individu, period, parameters):
-        allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
+        allocation_retour_emploi_journaliere = individu('allocation_retour_emploi_journaliere', period)
         salaire_journalier_reference = individu('salaire_journalier_reference_are', period)
+
         seuil_exoneration_crc = parameters(period).chomage.allocation_retour_emploi.montant_minimum_hors_mayotte
         # Le seuil d'exonération de CRC est indexé sur le montant minimum d'ARE
-        coefficient_crc = parameters(period).chomage.complement_are.taux_crc
+
+        taux_crc = parameters(period).chomage.complement_are.taux_crc
+        crc_theorique = salaire_journalier_reference * taux_crc
+        allocation_crc_deduite = allocation_retour_emploi_journaliere - crc_theorique
 
         return round_(
             where(
-                allocation_journaliere > seuil_exoneration_crc,
-                salaire_journalier_reference * coefficient_crc,
+                allocation_crc_deduite > seuil_exoneration_crc,
+                -1 * crc_theorique,
                 0),
             2)
 
@@ -266,7 +270,7 @@ class complement_are_crc_journaliere(Variable):
 class complement_are_crc(Variable):
     value_type = float
     entity = Individu
-    label = 'Montant mensualisé de la Cotisation de Retraite Complémentaire (CRC)'
+    label = 'Montant mensualisé de la Cotisation de Retraite Complémentaire (CRC) sur le Complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
@@ -278,7 +282,7 @@ class complement_are_crc(Variable):
         crc_journaliere = individu('complement_are_crc_journaliere', period)
         nombre_jours_indemnisables = individu('complement_are_nombre_jours_indemnisables', period)
 
-        return round_(crc_journaliere * nombre_jours_indemnisables, 2)
+        return crc_journaliere * nombre_jours_indemnisables
 
 
 class complement_are_csg_journaliere(Variable):
@@ -292,32 +296,35 @@ class complement_are_csg_journaliere(Variable):
     def formula(individu, period, parameters):
         allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)  # CRC déduite
 
-        # abattement d'assiette pour frais sous 4 plafonds mensuels de la sécurité sociale (PSS)
-        max_assiette_mensuelle_eligible_abattement = 4 * parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_mensuel
+        parametres_prelevements_sociaux = parameters(period).prelevements_sociaux
+        parametres_csg_chomage = parametres_prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage
+
+        # abattement d'assiette pour frais sous 4 plafonds _mensuels_ de la sécurité sociale (PSS)
+        max_assiette_mensuelle_eligible_abattement = 4 * parametres_prelevements_sociaux.pss.plafond_securite_sociale_mensuel
         complement_are_nombre_jours_indemnisables = individu('complement_are_nombre_jours_indemnisables', period)
         assiette_mensuelle_csg = allocation_journaliere_brute_are * complement_are_nombre_jours_indemnisables
 
         assiette_mensuelle_csg_abattable = min_(assiette_mensuelle_csg, max_assiette_mensuelle_eligible_abattement)
         assiette_mensuelle_csg_non_abattue = max_(assiette_mensuelle_csg - max_assiette_mensuelle_eligible_abattement, 0)
 
-        abattement_assiette_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable.abattement.rates[0]
+        abattement_assiette_csg = parametres_csg_chomage.imposable.abattement.rates[0]
         assiette_journaliere_csg = (
             (assiette_mensuelle_csg_abattable * (1 - abattement_assiette_csg)) + assiette_mensuelle_csg_non_abattue
             ) / complement_are_nombre_jours_indemnisables
 
         # CSG à taux plein
         # au demandeur d'emploi de suivre une démarche pour la prise en compte du RFR déterminant les taux réduits
-        taux_global_csg_chomage = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.taux_global
+        taux_global_csg_chomage = parametres_csg_chomage.taux_global
         csg_theorique = assiette_journaliere_csg * taux_global_csg_chomage
 
         # la CSG ne doit pas faire baisser le montant net de l'allocation en-dessous du smic brut
         seuil_exoneration_contributions = parameters(period).chomage.complement_are.seuil_exoneration_contributions
-
         allocation_csg_deduite = allocation_journaliere_brute_are - csg_theorique
-        csg_prelevee = -1 * round_(
+
+        csg_prelevee = round_(
             where(
                 allocation_csg_deduite > seuil_exoneration_contributions,
-                csg_theorique,
+                -1 * csg_theorique,
                 0),
             2)
 
@@ -330,16 +337,13 @@ class complement_are_csg(Variable):
     label = 'Montant mensualisé des Contributions Sociales Généralisées (CSG)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = [
-        'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire',
-        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
-        ]
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
 
     def formula(individu, period):
         csg_journaliere = individu('complement_are_csg_journaliere', period)
         nombre_jours_indemnisables = individu('complement_are_nombre_jours_indemnisables', period)
 
-        return round_(csg_journaliere * nombre_jours_indemnisables, 2)
+        return csg_journaliere * nombre_jours_indemnisables
 
 
 class complement_are_crds_journaliere(Variable):
@@ -368,7 +372,7 @@ class complement_are_crds_journaliere(Variable):
         return round_(
             where(
                 montant_retenu_crds >= seuil_exoneration_contributions,
-                allocation_journaliere_brute_are * abattement_contributions * taux_crds,
+                -1 * allocation_journaliere_brute_are * abattement_contributions * taux_crds,
                 0),
             2)
 
@@ -388,4 +392,4 @@ class complement_are_crds(Variable):
         crds_journaliere = individu('complement_are_crds_journaliere', period)
         nombre_jours_indemnisables = individu('complement_are_nombre_jours_indemnisables', period)
 
-        return round_(crds_journaliere * nombre_jours_indemnisables, 2)
+        return crds_journaliere * nombre_jours_indemnisables
