@@ -298,22 +298,29 @@ class complement_are_csg_journaliere(Variable):
         allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)
 
         # abattement pour frais sous 4 plafonds de la sécurité sociale (PSS)
-        # TODO 4 PSS
-        abattement_assiette_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable.abattement.rates[0]
-        assiette_csg = allocation_journaliere_brute_are * (1-abattement_assiette_csg)
+        max_assiette_mensuelle_eligible_abattement = 4 * parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_mensuel
+        complement_are_nombre_jours_indemnisables = individu('complement_are_nombre_jours_indemnisables', period)
+        assiette_mensuelle_csg = allocation_journaliere_brute_are * complement_are_nombre_jours_indemnisables
 
-        # CSG
+        assiette_mensuelle_csg_abattable = min_(assiette_mensuelle_csg, max_assiette_mensuelle_eligible_abattement)
+        assiette_mensuelle_csg_non_abattue = max_(assiette_mensuelle_csg - max_assiette_mensuelle_eligible_abattement, 0)
+
+        abattement_assiette_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable.abattement.rates[0]
+        assiette_journaliere_csg = ((assiette_mensuelle_csg_abattable * (1-abattement_assiette_csg)) + assiette_mensuelle_csg_non_abattue) / complement_are_nombre_jours_indemnisables
+
+        # CSG à taux plein (au demandeur d'emploi de suivre une démarche pour la prise en compte du RFR déterminant les taux réduits)
         taux_global_csg_chomage = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.taux_global
-        csg_theorique = assiette_csg * taux_global_csg_chomage
+        csg_theorique = assiette_journaliere_csg * taux_global_csg_chomage
 
         # seuil en deçà duquel la CSG n'est pas dûe
         # l'application du prélèvement ne doit pas faire baisser le montant net de l'allocation en-dessous du Smic brut
         seuil_exoneration_contributions = parameters(period).chomage.complement_are.seuil_exoneration_contributions
 
         # comparaison stricte au seuil d'après https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations 
+        allocation_csg_deduite = allocation_journaliere_brute_are - csg_theorique
         csg_prelevee = -1 * round_(
             where(
-                csg_theorique > seuil_exoneration_contributions,
+                allocation_csg_deduite > seuil_exoneration_contributions,
                 csg_theorique,
                 0),
             2)
