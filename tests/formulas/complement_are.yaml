@@ -204,7 +204,7 @@
   output:
     complement_are_nombre_jours_restants: 10
     complement_are_nombre_jours_indemnisables: 7
-    complement_are_nombre_jours_restants_fin_periode: 3
+    complement_are_nombre_jours_restants_fin_droits: 3
 
 - name: Test 15 - Vérifie le calcul du complément ARE pour plusieurs individus
   period: 2022-04

@@ -29,9 +29,10 @@ class complement_are_plafond(Variable):
 
     def formula(individu, period, parameters):
         salaire_journalier_reference = individu('salaire_journalier_reference_are', period)
-        # Le gain brut est l'appelation métier utilisée dans le calcul du complément ARE et représente la notion de salaire de reprise d'emploi
-        gain_brut = individu('salaire_de_base', period)
 
+        # Le gain brut est l'appelation métier utilisée dans le calcul du complément ARE
+        # et représente la notion de salaire de reprise d'emploi
+        gain_brut = individu('salaire_de_base', period)
         plafond = salaire_journalier_reference * parameters(period).chomage.complement_are.coefficient_plafond_global
 
         return max_(0, (plafond - gain_brut))
@@ -92,7 +93,8 @@ class complement_are_salaire_retenu(Variable):
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period, parameters):
-        # Le gain brut est l'appelation métier utilisée dans le calcul du complément ARE et représente la notion de salaire de reprise d'emploi
+        # Le gain brut est l'appelation métier utilisée dans le calcul du complément ARE
+        # et représente la notion de salaire de reprise d'emploi
         gain_brut = individu('salaire_de_base', period)
 
         return round_(gain_brut * parameters(period).chomage.complement_are.coefficient_assiette_salaire_reprise, 1)
@@ -121,12 +123,12 @@ class complement_are_nombre_jours_restants(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period):
-        nombre_jours_restants_fin_periode = individu('complement_are_nombre_jours_restants_fin_periode', period.last_month)
+        nombre_jours_restants_fin_periode = individu('complement_are_nombre_jours_restants_fin_droits', period.last_month)
 
         return max_(0, nombre_jours_restants_fin_periode)
 
 
-class complement_are_nombre_jours_restants_fin_periode(Variable):
+class complement_are_nombre_jours_restants_fin_droits(Variable):
     value_type = float
     entity = Individu
     label = "Nombre de jours d'ARE restants avant épuisement des droits à la fin de la période considérée"
