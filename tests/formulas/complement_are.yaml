@@ -49,8 +49,8 @@
   output:
     complement_are_nombre_jours_indemnises: 25
     complement_are_brut: 693
-    # FIXME complement_are_deductions: 0
-    # FIXME complement_are_net: 693
+    complement_are_deductions: 0
+    complement_are_net: 693
 
 - name: Test 05 - Vérifie le calcul du complément ARE dans un cas simple avec haut salaire journalier de référence
   period: 2022-04
@@ -63,11 +63,15 @@
   output:
     complement_are_nombre_jours_indemnises: 23
     complement_are_brut: 2716.30
-    # FIXME complement_are_crc: -81.49 # FIXME complement_are_crc: 2716.30 * 0.03  # 81.49
-    # FIXME complement_are_csg: - (2716.30 - 2716.30 * 0.03) * 0.9825 * 0.062  # 160.5
-    # FIXME complement_are_crds: (2716.30 - 2716.30 * 0.03) * 0.9825 * 0.005  # 12.94
-    # FIXME complement_are_deductions: 312.57
-    # FIXME complement_are_net: 2403.73
+    complement_are_deductions: -312.57
+    complement_are_net: 2403.73
+    # valeurs intermédiaires théoriques :
+    complement_are_crc_journaliere: -6.22  # round(-1 * 207.20 * 0.03, 2)
+    complement_are_crc: -143.06  # -6.22 * 23
+    complement_are_csg_journaliere: -6.82  # round(-1 * ((2716.30 - 143.06)/ 23) * 0.9825 * 0.062, 2)
+    complement_are_csg: -156.86  # -6.82 * 23
+    complement_are_crds_journaliere: -0.55  # round(-1 * ((2716.30 - 143.06) / 23) * 0.9825 * 0.005, 2)
+    complement_are_crds: -12.65  # -0.55 * 23
 
 - name: Test 06 - Vérifie le calcul du complément ARE dans un cas simple avec dégressivité ARE
   period: 2022-05
@@ -82,8 +86,8 @@
     complement_are_nombre_jours_indemnises: 24
     complement_are_nombre_jours_indemnisables: 24
     complement_are_brut: 1984.08
-    complement_are_crc: -149.28  # -1 * arrondi(207.20 * 0.03) * 24
-    complement_are_csg: -111.84  # arrondi(-1 * ((1984.08 - 149.28) / 24) * 0.9825 * 0.062) * 24
+    complement_are_crc: -149.28  # -1 * round(207.20 * 0.03, 2) * 24
+    complement_are_csg: -111.84  # round(((1984.08 - 149.28) / 24)* 0.9825 * 0.062, 2) * 24
     complement_are_crds: -9.12
     complement_are_deductions: -270.24
     complement_are_net: 1713.84
