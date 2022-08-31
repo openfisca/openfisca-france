@@ -2,7 +2,7 @@ values:
   2021-01-01:
     value: 3000
   2022-01-01:
-    value: NULL
+    value: 0
 metadata:
   unit: currency
   reference:
