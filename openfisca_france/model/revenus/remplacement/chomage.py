@@ -48,7 +48,7 @@ class allocation_retour_emploi(Variable):
 class allocation_retour_emploi_journaliere(Variable):
     value_type = float
     entity = Individu
-    label = "Allocation chômage d'aide au retour à l'emploi (ARE) journalière au sens Pôle Emploi"
+    label = "Allocation chômage d'aide au retour à l'emploi (ARE) brute journalière et effective au sens Pôle Emploi"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = 'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178163/'
@@ -57,7 +57,7 @@ class allocation_retour_emploi_journaliere(Variable):
 class allocation_retour_emploi_journaliere_taux_plein(Variable):
     value_type = float
     entity = Individu
-    label = 'Allocation journalière ARE taux plein'
+    label = 'Allocation journalière ARE brute taux plein'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
