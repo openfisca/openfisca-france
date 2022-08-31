@@ -118,7 +118,6 @@ class reductions_deplafonnees(Variable):
             'resimm',  # Malraux
 
             # Pas clair, dans le doute compté parmi les plafonnées :
-            'donpartipol',
             # 'notredame',
             'ecpess',
 
@@ -202,10 +201,9 @@ class reductions(Variable):
             # Introduites en 2010
             'patnat',
             # Introduites en 2013
-            'donpartipol',
             'reduction_impot_exceptionnelle',
             'duflot_pinel_denormandie_metropole',
-            'duflot_pinel_denormandie_om'
+            'duflot_pinel_denormandie_om',
             # Introduites en 2017
             'rehab',
             ]
@@ -2029,10 +2027,8 @@ class cotsyn(Variable):
         '''
 
         f7ac = foyer_fiscal.members('f7ac', period)
-        f7ag = foyer_fiscal.members('f7ag', period)
-        f7ae = foyer_fiscal.members('f7ae', period)
 
-        cotisations_versees = f7ac + f7ag + f7ae
+        cotisations_versees = f7ac
 
         salaire_imposable = foyer_fiscal.members('salaire_imposable', period, options = [ADD])
         chomage_imposable = foyer_fiscal.members('chomage_imposable', period, options = [ADD])
@@ -6347,10 +6343,10 @@ class ri_saldom(Variable):
 
         # détérminer le plafond 
 
-        if invalide:
+        if invalide.any():
             plaf = P.max3
         else:
-            if annee1:
+            if annee1.any():
                 plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
             else:
                 plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
@@ -7055,8 +7051,8 @@ class scelli(Variable):
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
-        ri_rep += min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_40]) * P.taux40)
-        ri_rep += min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_25]) * P.taux25)
+        ri_rep = ri_rep + min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_40]) * P.taux40)
+        ri_rep = ri_rep + min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_25]) * P.taux25)
 
         base_inv_5_40 = min_(sum([foyer_fiscal(i, period) for i in inv_5_40]), P.max)
         base_inv_5_36 = min_(sum([foyer_fiscal(i, period) for i in inv_5_36]), P.max - base_inv_5_40)
@@ -7150,8 +7146,8 @@ class scelli(Variable):
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
-        ri_rep += min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_40]) * P.taux40)
-        ri_rep += min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_25]) * P.taux25)
+        ri_rep = ri_rep + min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_40]) * P.taux40)
+        ri_rep = ri_rep + min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_25]) * P.taux25)
 
         base_inv_5_40 = min_(sum([foyer_fiscal(i, period) for i in inv_5_40]), P.max)
         base_inv_5_36 = min_(sum([foyer_fiscal(i, period) for i in inv_5_36]), P.max - base_inv_5_40)
@@ -7256,8 +7252,8 @@ class scelli(Variable):
 
         ri_rep = sum([foyer_fiscal(rep, period) for rep in reports])
 
-        ri_rep += min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_40]) * P.taux40)
-        ri_rep += min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_25]) * P.taux25)
+        ri_rep = ri_rep + min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_40]) * P.taux40)
+        ri_rep = ri_rep + min_(P.max, sum([foyer_fiscal(r, period) for r in reports_base_25]) * P.taux25)
 
         base_ri_6 = min_(P.max, sum([foyer_fiscal(inv, period) for inv in inv_6]))
         base_ri_5 = min_(P.max - base_ri_6, sum([foyer_fiscal(inv, period) for inv in inv_5]))
