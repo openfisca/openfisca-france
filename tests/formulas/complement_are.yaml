@@ -1,4 +1,4 @@
-- name: Test 01 - Vérifie le calcul du complément ARE dans un cas avec salaire de reprise proche du salaire journalier de référence
+- name: Test 01 - Complément ARE en cas de salaire de reprise proche du salaire journalier de référence
   period: 2022-04
   input:
     salaire_de_base: 1200
@@ -12,7 +12,7 @@
     complement_are_deductions: -10.08
     complement_are_net: 248.92
 
-- name: Test 02 - Vérifie le calcul du complément ARE dans un cas avec salaire de reprise bas par rapport au salaire journalier de référence
+- name: Test 02 - Complément ARE en cas de salaire de reprise bas par rapport au salaire journalier de référence
   period: 2022-04
   input:
     salaire_de_base: 375
@@ -26,7 +26,7 @@
     complement_are_deductions: -31.05
     complement_are_net: 819.95
 
-- name: Test 03 - Vérifie le calcul du complément ARE dans un cas de reprise d'emploi avec salaire supérieur au salaire de référence
+- name: Test 03 - Complément ARE en cas de reprise d'emploi avec salaire supérieur au salaire de référence
   period: 2022-04
   input:
     salaire_de_base: 1800
@@ -38,7 +38,7 @@
     complement_are_nombre_jours_indemnises: 0
     complement_are_brut: 0
 
-- name: Test 04 - Vérifie le calcul du complément ARE dans un cas simple sans déductions de charges
+- name: Test 04 - Complément ARE en cas simple sans déduction de charges
   period: 2022-04
   input:
     salaire_de_base: 210
@@ -52,7 +52,7 @@
     complement_are_deductions: 0
     complement_are_net: 693
 
-- name: Test 05 - Vérifie le calcul du complément ARE dans un cas simple avec haut salaire journalier de référence
+- name: Test 05 - Complément ARE en cas simple avec haut salaire journalier de référence
   period: 2022-04
   absolute_error_margin: 0.000001
   input:
@@ -74,7 +74,7 @@
     complement_are_crds_journaliere: -0.55  # round(-1 * ((2716.30 - 143.06) / 23) * 0.9825 * 0.005, 2)
     complement_are_crds: -12.65  # -0.55 * 23
 
-- name: Test 06 - Vérifie le calcul du complément ARE dans un cas simple avec dégressivité ARE
+- name: Test 06 - Complément ARE en cas simple avec dégressivité ARE
   period: 2022-05
   input:
     salaire_de_base: 1200
@@ -93,7 +93,7 @@
     complement_are_deductions: -270.24
     complement_are_net: 1713.84
 
-- name: Test 07 - Vérifie le calcul du complément ARE pour un mois de 28 jours
+- name: Test 07 - Complément ARE pour un mois de 28 jours
   period: 2022-02
   input:
     salaire_de_base: 918
@@ -107,7 +107,7 @@
     complement_are_brut: 351.1
     complement_are_net: 334
 
-- name: Test 08 - Vérifie le calcul du complément ARE pour un mois de 29 jours
+- name: Test 08 - Complément ARE pour un mois de 29 jours
   period: 2024-02
   input:
     salaire_de_base: 918
@@ -121,7 +121,7 @@
     complement_are_deductions: -18.81
     complement_are_net: 367.4
 
-- name: Test 09 - Vérifie le calcul du complément ARE pour un mois de 30 jours
+- name: Test 09 - Complément ARE pour un mois de 30 jours
   period: 2022-04
   input:
     salaire_de_base: 918
@@ -135,7 +135,7 @@
     complement_are_deductions: -20.52
     complement_are_net: 400.8
 
-- name: Test 10 - Vérifie le calcul du complément ARE pour un mois de 31 jours
+- name: Test 10 - Complément ARE pour un mois de 31 jours
   period: 2022-03
   input:
     salaire_de_base: 918
@@ -149,7 +149,7 @@
     complement_are_deductions: -22.23
     complement_are_net: 434.20
 
-- name: Test 11 - Vérifie le calcul du complément ARE dans un cas de dépassement du plafond de cumul
+- name: Test 11 - Complément ARE en cas de dépassement du plafond de cumul
   period: 2022-04
   input:
     salaire_de_base: 846
@@ -163,7 +163,7 @@
     complement_are_deductions: 0
     complement_are_net: 90
 
-- name: Test 12 - Vérifie le calcul du complément ARE partiel dans le cas où le nombre de jours restants n'est pas suffisant
+- name: Test 12 - Complément ARE partiel dans le cas où le nombre de jours restants n'est pas suffisant
   period: 2022-04
   input:
     salaire_de_base: 1200
@@ -178,7 +178,7 @@
     complement_are_deductions: -10.08
     complement_are_net: 137.92
 
-- name: Test 13 - Vérifie le calcul du complément ARE partiel dans un cas sans jours restants
+- name: Test 13 - Complément ARE partiel dans un cas sans jours restants
   period: 2022-04
   input:
     salaire_de_base: 1200
@@ -206,7 +206,7 @@
     complement_are_nombre_jours_indemnisables: 7
     complement_are_nombre_jours_restants_fin_droits: 3
 
-- name: Test 15 - Vérifie le calcul du complément ARE pour plusieurs individus
+- name: Test 15 - Complément ARE pour plusieurs individus
   period: 2022-04
   input:
     individus:
@@ -235,7 +235,7 @@
         complement_are_deductions: -31.05
         complement_are_net: 819.95
 
-- name: Test 16 - Vérifie le calcul du complément ARE dans un cas sur plusieurs périodes différentes
+- name: Test 16 - Complément ARE en cas sur plusieurs périodes différentes
   input:
     salaire_de_base:
         2022-02: 918
