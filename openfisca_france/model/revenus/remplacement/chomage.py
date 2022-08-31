@@ -52,7 +52,7 @@ class allocation_retour_emploi(Variable):
         ]
 
     def formula(individu, period):
-        # Cas simplifié modélisé pour le Complément ARE
+        # Attention : ARE simplifiée (modélisation suffisante pour le Complément ARE)
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
 

@@ -1,7 +1,7 @@
 from numpy import ceil, divide, where, zeros_like
 
 from openfisca_france.model.base import Individu, Variable, MONTH, \
-    set_input_divide_by_period, round_, max_, min_
+    set_input_divide_by_period, set_input_dispatch_by_period, round_, max_, min_
 
 
 class complement_are_plafond(Variable):
@@ -26,7 +26,7 @@ class complement_are_plafond(Variable):
 class complement_are_brut(Variable):
     value_type = float
     entity = Individu
-    label = "Montant de complément ARE dû au demandeur d'emploi"
+    label = "Complément ARE brut pour reprise d'activité"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
@@ -45,6 +45,11 @@ class complement_are_net(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
+    documentation = '''
+    Le Complément ARE net perçu permet de conserver une partie de ses allocations chômage
+    à la reprise d'activité si le salaire de l'emploi repris est inférieur
+    au salaire ayant initialement débloqué les droits au chômage.
+    '''
 
     def formula(individu, period):
         allocation_mensuelle_due_brute = individu('complement_are_brut', period)
@@ -201,7 +206,7 @@ class complement_are_csg_journaliere(Variable):
     entity = Individu
     label = 'Contribution Sociale Généralisée (CSG) journalière sur le Complément ARE'
     definition_period = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
     reference = [
         'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations',
         'https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf'  # seuil d'exonération
@@ -266,7 +271,7 @@ class complement_are_crds_journaliere(Variable):
     entity = Individu
     label = 'Contribution au Remboursement de la Dette Sociale (CRDS) journalière sur Complément ARE'
     definition_period = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
     reference = [
         'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations',
         'https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf'  # seuil d'exonération

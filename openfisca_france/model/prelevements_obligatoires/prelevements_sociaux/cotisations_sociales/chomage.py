@@ -1,13 +1,13 @@
 from openfisca_france.model.base import Individu, Variable, MONTH, \
-    set_input_divide_by_period, round_, where
+    set_input_dispatch_by_period, round_, where
 
 
 class chomage_cotisation_retraite_complementaire_journaliere(Variable):
     value_type = float
     entity = Individu
-    label = 'Montant de la Cotisation de Retraite Complémentaire (CRC) sur allocation chômage'
+    label = 'Cotisation de retraite complémentaire journalière sur allocation chômage'
     definition_period = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
     reference = [
         'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire',
         'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
