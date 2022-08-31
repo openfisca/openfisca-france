@@ -312,8 +312,8 @@ class complement_are_csg_journaliere(Variable):
             (assiette_mensuelle_csg_abattable * (1 - abattement_assiette_csg)) + assiette_mensuelle_csg_non_abattue
             ) / complement_are_nombre_jours_indemnisables
 
-        # CSG à taux plein
-        # au demandeur d'emploi de suivre une démarche pour la prise en compte du RFR déterminant les taux réduits
+        # taux plein par défaut : au demandeur d'emploi de suivre une démarche
+        # pour la prise en compte du RFR déterminant les taux réduits
         taux_global_csg_chomage = parametres_csg_chomage.taux_global
         csg_theorique = assiette_journaliere_csg * taux_global_csg_chomage
 
@@ -352,29 +352,43 @@ class complement_are_crds_journaliere(Variable):
     label = 'Montant des Contributions au Remboursement de la Dette Sociale (CRDS)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = [
-        'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire',
-        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
-        ]
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
 
     def formula(individu, period, parameters):
-        allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)
-        seuil_exoneration_contributions = parameters(period).chomage.complement_are.seuil_exoneration_contributions
-        chomage_brut = individu('complement_are_brut', period)
-        nombre_pss = chomage_brut / parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_mensuel
-        pallier_abattement_contributions = where(nombre_pss <= 4, 1, 4)
-        abattement_contributions = (1 - parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable.abattement.calc(pallier_abattement_contributions))
-        taux_csg = parameters(period).prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.taux_global
-        taux_crds = parameters(period).prelevements_sociaux.contributions_sociales.crds.taux_global
-        montant_retenu_csg = round_(allocation_journaliere_brute_are - (allocation_journaliere_brute_are * abattement_contributions * taux_csg), 2)
-        montant_retenu_crds = round_(montant_retenu_csg - (allocation_journaliere_brute_are * abattement_contributions * taux_crds), 2)
+        allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)  # CRC déduite
 
-        return round_(
+        parametres_prelevements_sociaux = parameters(period).prelevements_sociaux
+
+        # abattement d'assiette pour frais sous 4 plafonds _mensuels_ de la sécurité sociale identique CRDS activité
+        complement_are_nombre_jours_indemnisables = individu('complement_are_nombre_jours_indemnisables', period)
+        assiette_mensuelle_crds = allocation_journaliere_brute_are * complement_are_nombre_jours_indemnisables
+
+        abattement_assiette_mensuelle_crds = (
+            parametres_prelevements_sociaux.contributions_sociales.crds.activite.abattement.calc(
+                assiette_mensuelle_crds, 
+                factor = parametres_prelevements_sociaux.pss.plafond_securite_sociale_mensuel
+            )
+        )
+        assiette_journaliere_crds = (assiette_mensuelle_crds - abattement_assiette_mensuelle_crds) / complement_are_nombre_jours_indemnisables
+
+        # taux global par défaut : au demandeur d'emploi de suivre une démarche 
+        # pour la prise en compte du RFR (exonération potentielle de CRDS)
+        taux_global_crds_chomage = parametres_prelevements_sociaux.contributions_sociales.crds.taux_global
+        crds_theorique = assiette_journaliere_crds * taux_global_crds_chomage
+
+        # après la CSG, la CRDS ne doit pas faire baisser le montant net de l'allocation en-dessous du smic brut
+        seuil_exoneration_contributions = parameters(period).chomage.complement_are.seuil_exoneration_contributions
+        complement_are_csg_journaliere = individu('complement_are_csg_journaliere', period)
+        allocation_csg_crds_deduites = allocation_journaliere_brute_are - complement_are_csg_journaliere - crds_theorique
+
+        crds_prelevee = round_(
             where(
-                montant_retenu_crds >= seuil_exoneration_contributions,
-                -1 * allocation_journaliere_brute_are * abattement_contributions * taux_crds,
+                allocation_csg_crds_deduites > seuil_exoneration_contributions,
+                -1 * crds_theorique,
                 0),
             2)
+        
+        return crds_prelevee
 
 
 class complement_are_crds(Variable):
