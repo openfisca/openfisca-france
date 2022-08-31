@@ -1,4 +1,4 @@
-from numpy import where, busday_count, datetime64, timedelta64, divide, zeros_like
+from numpy import busday_count, ceil, datetime64, divide, timedelta64, where, zeros_like
 
 from openfisca_france.model.base import Individu, Variable, MONTH, \
     set_input_divide_by_period, round_, max_, min_
@@ -291,7 +291,10 @@ class complement_are_csg_journaliere(Variable):
     label = 'Montant journalier de la Contribution Sociale Généralisée (CSG) sur le Complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+    reference =  [
+        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations',
+        'https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf'  # seuil d'exonération
+        ]
 
     def formula(individu, period, parameters):
         allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)  # CRC déduite
@@ -318,12 +321,13 @@ class complement_are_csg_journaliere(Variable):
         csg_theorique = assiette_journaliere_csg * taux_global_csg_chomage
 
         # la CSG ne doit pas faire baisser le montant net de l'allocation en-dessous du smic brut
-        seuil_exoneration_contributions = parameters(period).chomage.complement_are.seuil_exoneration_contributions
+        smic_horaire_brut = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
+        seuil_journalier_exoneration = ceil(smic_horaire_brut * 35 / 7)
         allocation_csg_deduite = allocation_journaliere_brute_are - csg_theorique
 
         csg_prelevee = round_(
             where(
-                allocation_csg_deduite > seuil_exoneration_contributions,
+                allocation_csg_deduite > seuil_journalier_exoneration,
                 -1 * csg_theorique,
                 0),
             2)
@@ -352,7 +356,10 @@ class complement_are_crds_journaliere(Variable):
     label = 'Montant des Contributions au Remboursement de la Dette Sociale (CRDS)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+    reference = [
+        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations',
+        'https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf'  # seuil d'exonération
+        ]
 
     def formula(individu, period, parameters):
         allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)  # CRC déduite
@@ -365,29 +372,31 @@ class complement_are_crds_journaliere(Variable):
 
         abattement_assiette_mensuelle_crds = (
             parametres_prelevements_sociaux.contributions_sociales.crds.activite.abattement.calc(
-                assiette_mensuelle_crds, 
+                assiette_mensuelle_crds,
                 factor = parametres_prelevements_sociaux.pss.plafond_securite_sociale_mensuel
+                )
             )
-        )
         assiette_journaliere_crds = (assiette_mensuelle_crds - abattement_assiette_mensuelle_crds) / complement_are_nombre_jours_indemnisables
 
-        # taux global par défaut : au demandeur d'emploi de suivre une démarche 
+        # taux global par défaut : au demandeur d'emploi de suivre une démarche
         # pour la prise en compte du RFR (exonération potentielle de CRDS)
         taux_global_crds_chomage = parametres_prelevements_sociaux.contributions_sociales.crds.taux_global
         crds_theorique = assiette_journaliere_crds * taux_global_crds_chomage
 
         # après la CSG, la CRDS ne doit pas faire baisser le montant net de l'allocation en-dessous du smic brut
-        seuil_exoneration_contributions = parameters(period).chomage.complement_are.seuil_exoneration_contributions
+        smic_horaire_brut = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
+        seuil_journalier_exoneration = ceil(smic_horaire_brut * 35 / 7)
+
         complement_are_csg_journaliere = individu('complement_are_csg_journaliere', period)
         allocation_csg_crds_deduites = allocation_journaliere_brute_are - complement_are_csg_journaliere - crds_theorique
 
         crds_prelevee = round_(
             where(
-                allocation_csg_crds_deduites > seuil_exoneration_contributions,
+                allocation_csg_crds_deduites > seuil_journalier_exoneration,
                 -1 * crds_theorique,
                 0),
             2)
-        
+
         return crds_prelevee
 
 
