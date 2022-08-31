@@ -1,32 +1,7 @@
-from numpy import busday_count, ceil, datetime64, divide, timedelta64, where, zeros_like
+from numpy import ceil, divide, where, zeros_like
 
 from openfisca_france.model.base import Individu, Variable, MONTH, \
     set_input_divide_by_period, round_, max_, min_
-
-
-class complement_are_allocation_mensuelle_brute_are(Variable):
-    value_type = float
-    entity = Individu
-    label = 'Allocation mensuelle brute ARE'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
-
-    def formula(individu, period):
-        debut_mois = datetime64(period.start.offset('first-of', 'month'))
-        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
-
-        nombre_jours_mois = busday_count(
-            debut_mois,
-            fin_mois,
-            weekmask= '1' * 7
-            )
-
-        degressivite_are = individu('degressivite_are', period)
-        allocation_journaliere_taux_plein = individu('allocation_retour_emploi_journaliere_taux_plein', period)
-        allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
-
-        return where(degressivite_are, nombre_jours_mois * allocation_journaliere_taux_plein, nombre_jours_mois * allocation_journaliere)
 
 
 class complement_are_allocation_journaliere_brute_are(Variable):
@@ -132,10 +107,10 @@ class complement_are_base(Variable):
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
-        allocation_mensuelle_brute_are = individu('complement_are_allocation_mensuelle_brute_are', period)
+        are_brute_mensuelle = individu('allocation_retour_emploi_brute', period)
         salaire_retenu = individu('complement_are_salaire_retenu', period)
 
-        return max_(0, allocation_mensuelle_brute_are - salaire_retenu)
+        return max_(0, are_brute_mensuelle - salaire_retenu)
 
 
 class complement_are_nombre_jours_restants(Variable):
@@ -291,7 +266,7 @@ class complement_are_csg_journaliere(Variable):
     label = 'Montant journalier de la Contribution Sociale Généralisée (CSG) sur le Complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference =  [
+    reference = [
         'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations',
         'https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf'  # seuil d'exonération
         ]

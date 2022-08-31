@@ -1,3 +1,5 @@
+from numpy import busday_count, datetime64, timedelta64, where
+
 from openfisca_france.model.base import *
 
 
@@ -43,6 +45,35 @@ class allocation_retour_emploi(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = 'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178163/'
+
+
+class allocation_retour_emploi_brute(Variable):
+    value_type = float
+    entity = Individu
+    label = "Allocation chômage d'aide au retour à l'emploi (ARE) mensuelle brute"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
+
+    def formula(individu, period):
+        debut_mois = datetime64(period.start.offset('first-of', 'month'))
+        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
+
+        nombre_jours_mois = busday_count(
+            debut_mois,
+            fin_mois,
+            weekmask= '1' * 7
+            )
+
+        degressivite_are = individu('degressivite_are', period)
+        allocation_journaliere_taux_plein = individu('allocation_retour_emploi_journaliere_taux_plein', period)
+        allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
+
+        return where(
+            degressivite_are,
+            nombre_jours_mois * allocation_journaliere_taux_plein,
+            nombre_jours_mois * allocation_journaliere
+            )
 
 
 class allocation_retour_emploi_journaliere(Variable):
