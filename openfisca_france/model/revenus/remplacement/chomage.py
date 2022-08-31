@@ -21,13 +21,13 @@ class chomeur_longue_duree(Variable):
 class chomage_brut(Variable):
     value_type = float
     entity = Individu
-    label = "Chômage brut"
+    label = 'Chômage brut'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
     def formula(individu, period):
-        # pas de cumul des revenus de remplacement : 
+        # pas de cumul des revenus de remplacement :
         # ARE (demandeur d'emploi) vs. complément ARE (reprise d'activité + droits au chômage)
         return individu('allocation_retour_emploi', period) + individu('complement_are_brut', period)
 
