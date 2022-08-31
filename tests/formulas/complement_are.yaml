@@ -68,7 +68,7 @@
     complement_are_net: 2403.73
     # valeurs intermédiaires théoriques :
     chomage_cotisation_retraite_complementaire_journaliere: -6.22  # round(-1 * 207.20 * 0.03, 2)
-    complement_are_crc: -143.06  # -6.22 * 23
+    complement_are_cotisation_retraite_complementaire: -143.06  # -6.22 * 23
     complement_are_csg_journaliere: -6.82  # round(-1 * ((2716.30 - 143.06)/ 23) * 0.9825 * 0.062, 2)
     complement_are_csg: -156.86  # -6.82 * 23
     complement_are_crds_journaliere: -0.55  # round(-1 * ((2716.30 - 143.06) / 23) * 0.9825 * 0.005, 2)
@@ -87,7 +87,7 @@
     complement_are_nombre_jours_indemnises: 24
     complement_are_nombre_jours_indemnisables: 24
     complement_are_brut: 1984.08
-    complement_are_crc: -149.28  # -1 * round(207.20 * 0.03, 2) * 24
+    complement_are_cotisation_retraite_complementaire: -149.28  # -1 * round(207.20 * 0.03, 2) * 24
     complement_are_csg: -111.84  # round(((1984.08 - 149.28) / 24)* 0.9825 * 0.062, 2) * 24
     complement_are_crds: -9.12
     complement_are_deductions: -270.24

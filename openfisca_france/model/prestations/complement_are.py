@@ -205,14 +205,14 @@ class complement_are_deductions(Variable):
         ]
 
     def formula(individu, period):
-        crc = individu('complement_are_crc', period)
+        crc = individu('complement_are_cotisation_retraite_complementaire', period)
         csg = individu('complement_are_csg', period)
         crds = individu('complement_are_crds', period)
 
         return round_(crc + csg + crds, 2)
 
 
-class complement_are_crc(Variable):
+class complement_are_cotisation_retraite_complementaire(Variable):
     value_type = float
     entity = Individu
     label = 'Montant mensualisé de la Cotisation de Retraite Complémentaire (CRC) sur le Complément ARE'
