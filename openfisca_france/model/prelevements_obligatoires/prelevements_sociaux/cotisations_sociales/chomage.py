@@ -15,13 +15,13 @@ class chomage_cotisation_retraite_complementaire_journaliere(Variable):
 
     def formula(individu, period, parameters):
         allocation_retour_emploi_journaliere = individu('allocation_retour_emploi_journaliere', period)
-        salaire_journalier_reference_are = individu('salaire_journalier_reference_are', period)
+        are_salaire_journalier_reference = individu('are_salaire_journalier_reference', period)
 
         # le seuil d'exonération de cette cotisation est indexé sur le montant minimum d'ARE
         seuil_exoneration = parameters(period).chomage.allocation_retour_emploi.montant_minimum_hors_mayotte
 
         taux_cotisation = parameters(period).chomage.cotisation_retraite_complementaire.taux
-        cotisation_theorique = salaire_journalier_reference_are * taux_cotisation
+        cotisation_theorique = are_salaire_journalier_reference * taux_cotisation
         allocation_cotisation_deduite = allocation_retour_emploi_journaliere - cotisation_theorique
 
         return round_(

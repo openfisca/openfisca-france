@@ -106,7 +106,7 @@ class allocation_travailleur_independant(Variable):
     '''
 
 
-class salaire_journalier_reference_are(Variable):
+class are_salaire_journalier_reference(Variable):
     value_type = float
     entity = Individu
     label = 'Salaire journalier de référence (SJR) au sens des allocations chômage'

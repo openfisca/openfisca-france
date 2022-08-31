@@ -13,7 +13,7 @@ class complement_are_plafond(Variable):
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period, parameters):
-        salaire_journalier_reference = individu('salaire_journalier_reference_are', period)
+        salaire_journalier_reference = individu('are_salaire_journalier_reference', period)
 
         # Le gain brut est l'appelation métier utilisée dans le calcul du complément ARE
         # et représente la notion de salaire de reprise d'emploi
