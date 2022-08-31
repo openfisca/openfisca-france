@@ -21,12 +21,14 @@ class chomeur_longue_duree(Variable):
 class chomage_brut(Variable):
     value_type = float
     entity = Individu
-    label = "Chômage brut (revenus de remplacement pour les demandeurs d'emploi)"
+    label = "Chômage brut"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
     def formula(individu, period):
+        # pas de cumul des revenus de remplacement : 
+        # ARE (demandeur d'emploi) vs. complément ARE (reprise d'activité + droits au chômage)
         return individu('allocation_retour_emploi', period) + individu('complement_are_brut', period)
 
 
@@ -50,6 +52,7 @@ class allocation_retour_emploi(Variable):
         ]
 
     def formula(individu, period):
+        # Cas simplifié modélisé pour le Complément ARE
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
 
@@ -73,7 +76,7 @@ class allocation_retour_emploi(Variable):
 class allocation_retour_emploi_journaliere(Variable):
     value_type = float
     entity = Individu
-    label = "Allocation chômage d'aide au retour à l'emploi (ARE) brute journalière et effective au sens Pôle Emploi"
+    label = "Allocation chômage d'aide au retour à l'emploi (ARE) brute journalière au sens Pôle Emploi"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = 'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178163/'
