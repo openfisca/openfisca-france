@@ -14,7 +14,7 @@ class complement_are_allocation_journaliere_brute_are(Variable):
 
     def formula(individu, period):
         allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
-        crc = individu('complement_are_crc_journaliere', period)  # montant négatif
+        crc = individu('chomage_cotisation_retraite_complementaire_journaliere', period)  # montant négatif
 
         return allocation_journaliere + crc
 
@@ -212,36 +212,6 @@ class complement_are_deductions(Variable):
         return round_(crc + csg + crds, 2)
 
 
-class complement_are_crc_journaliere(Variable):
-    value_type = float
-    entity = Individu
-    label = 'Montant de Cotisation de Retraite Complémentaire (CRC)'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-    reference = [
-        'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire',
-        'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
-        ]
-
-    def formula(individu, period, parameters):
-        allocation_retour_emploi_journaliere = individu('allocation_retour_emploi_journaliere', period)
-        salaire_journalier_reference = individu('salaire_journalier_reference_are', period)
-
-        seuil_exoneration_crc = parameters(period).chomage.allocation_retour_emploi.montant_minimum_hors_mayotte
-        # Le seuil d'exonération de CRC est indexé sur le montant minimum d'ARE
-
-        taux_crc = parameters(period).chomage.complement_are.taux_crc
-        crc_theorique = salaire_journalier_reference * taux_crc
-        allocation_crc_deduite = allocation_retour_emploi_journaliere - crc_theorique
-
-        return round_(
-            where(
-                allocation_crc_deduite > seuil_exoneration_crc,
-                -1 * crc_theorique,
-                0),
-            2)
-
-
 class complement_are_crc(Variable):
     value_type = float
     entity = Individu
@@ -254,7 +224,7 @@ class complement_are_crc(Variable):
         ]
 
     def formula(individu, period):
-        crc_journaliere = individu('complement_are_crc_journaliere', period)
+        crc_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)
         nombre_jours_indemnisables = individu('complement_are_nombre_jours_indemnisables', period)
 
         return crc_journaliere * nombre_jours_indemnisables

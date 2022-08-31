@@ -67,7 +67,7 @@
     complement_are_deductions: -312.57
     complement_are_net: 2403.73
     # valeurs intermédiaires théoriques :
-    complement_are_crc_journaliere: -6.22  # round(-1 * 207.20 * 0.03, 2)
+    chomage_cotisation_retraite_complementaire_journaliere: -6.22  # round(-1 * 207.20 * 0.03, 2)
     complement_are_crc: -143.06  # -6.22 * 23
     complement_are_csg_journaliere: -6.82  # round(-1 * ((2716.30 - 143.06)/ 23) * 0.9825 * 0.062, 2)
     complement_are_csg: -156.86  # -6.82 * 23
