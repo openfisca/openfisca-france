@@ -132,6 +132,16 @@ class f7db(Variable):
     definition_period = YEAR
 
 
+class f7dr(Variable):
+    cerfa_field = '7DR'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = " Aides perçues pour l’emploi à domicile (APA, PCH, CESU préfinancé…)"
+    # start_date = date(2007, 1, 1)
+    definition_period = YEAR
+
+
 class f7dd(Variable):
     cerfa_field = '7DD'
     value_type = int
@@ -4351,7 +4361,33 @@ class f7ky(Variable):
     cerfa_field = '7KY'
     value_type = int
     entity = FoyerFiscal
-    label = 'Malraux'
+    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2018'
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+class f7kz(Variable):
+    cerfa_field = '7KZ'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2017'
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7kx(Variable):
+    cerfa_field = '7KX'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2019'
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7kw(Variable):
+    cerfa_field = '7KW'
+    value_type = int
+    entity = FoyerFiscal
+    label = 'Malraux : Report du solde de réduction d’impôt de l’année 2020'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -6142,6 +6178,15 @@ class f7mz(Variable):
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
+
+class f7mw(Variable):
+    cerfa_field = '7MW'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2021'
+    # start_date = date(2020, 1, 1)
+    definition_period = YEAR
 
 class fhoa(Variable):
     cerfa_field = 'HOA'
@@ -8816,7 +8861,16 @@ class f7jm(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Pinel : investissements achevés en 2019 avec engagement de location de 6 ans : report de 1/6 de la réduction d’impôt'
+    definition_period = YEAR
+
+
+class f7km(Variable):
+    cerfa_field = '7KM'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Pinel : investissements achevés en 2019 avec engagement de location de 9 ans : report de 1/9 de la réduction d’impôt'
     definition_period = YEAR
 
 
@@ -11132,6 +11186,15 @@ class f7fw(Variable):
     definition_period = YEAR
 
 
+class f7fx(Variable):
+    cerfa_field = '7FX'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Report concernant les investissements réalisés et achevés en 2018 en métropole et outre-mer'
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
 # Réduction d'impôts sur les investissements locatifs intermédiaires (loi Pinel)
 
 
@@ -11655,6 +11718,36 @@ class f8wr(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Crédit d'impôt en faveur des entreprises: Métiers d'art"
+    # start_date = date(2006, 1, 1)
+    definition_period = YEAR
+
+
+class f8la(Variable):
+    cerfa_field = '8LA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Crédit d'impôt en faveur des entreprises: Abandon de loyer"
+    # start_date = date(2006, 1, 1)
+    definition_period = YEAR
+
+
+class f8wg(Variable):
+    cerfa_field = '8WG'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Crédit d'impôt en faveur des entreprises: Exploitation agricole n’utilisant pas de glyphosate"
+    # start_date = date(2006, 1, 1)
+    definition_period = YEAR
+
+
+class f8wh(Variable):
+    cerfa_field = '8WH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Crédit d'impôt en faveur des entreprises: Exploitation agricole à haute valeur environnementale"
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
