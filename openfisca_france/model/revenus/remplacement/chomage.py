@@ -41,19 +41,13 @@ class indemnites_chomage_partiel(Variable):
 class allocation_retour_emploi(Variable):
     value_type = float
     entity = Individu
-    label = "Allocation chômage d'aide au retour à l'emploi (ARE)"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-    reference = 'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178163/'
-
-
-class allocation_retour_emploi_brute(Variable):
-    value_type = float
-    entity = Individu
     label = "Allocation chômage d'aide au retour à l'emploi (ARE) mensuelle brute"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
+    reference = [
+        'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178163/',
+        'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
+        ]
 
     def formula(individu, period):
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
