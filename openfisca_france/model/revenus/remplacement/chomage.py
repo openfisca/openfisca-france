@@ -27,7 +27,7 @@ class chomage_brut(Variable):
     calculate_output = calculate_output_add
 
     def formula(individu, period):
-        return individu('allocation_retour_emploi', period) + individu('complement_are_net', period)
+        return individu('allocation_retour_emploi', period) + individu('complement_are_brut', period)
 
 
 class indemnites_chomage_partiel(Variable):
