@@ -73,6 +73,21 @@ def montant_csg_crds_3_taux(base_avec_abattement = None, base_sans_abattement = 
 
 # Allocations chômage
 
+class assiette_csg_crds_chomage_journaliere(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Allocation journalière brute ARE après déduction de la complémentaire retraite'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+
+    def formula(individu, period):
+        allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
+        cotisation_retraite_complementaire_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)  # montant négatif
+
+        return allocation_journaliere + cotisation_retraite_complementaire_journaliere
+
+
 class csg_deductible_chomage(Variable):
     calculate_output = calculate_output_add
     value_type = float

@@ -4,21 +4,6 @@ from openfisca_france.model.base import Individu, Variable, MONTH, \
     set_input_divide_by_period, round_, max_, min_
 
 
-class complement_are_allocation_journaliere_brute_are(Variable):
-    value_type = float
-    entity = Individu
-    label = 'Allocation journalière brute ARE après déduction de la complémentaire retraite'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
-
-    def formula(individu, period):
-        allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
-        crc = individu('chomage_cotisation_retraite_complementaire_journaliere', period)  # montant négatif
-
-        return allocation_journaliere + crc
-
-
 class complement_are_plafond(Variable):
     value_type = float
     entity = Individu
@@ -228,7 +213,7 @@ class complement_are_csg_journaliere(Variable):
         ]
 
     def formula(individu, period, parameters):
-        allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)  # CRC déduite
+        allocation_journaliere_brute_are = individu('assiette_csg_crds_chomage_journaliere', period)  # CRC déduite
 
         parametres_prelevements_sociaux = parameters(period).prelevements_sociaux
         parametres_csg_chomage = parametres_prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage
@@ -293,7 +278,7 @@ class complement_are_crds_journaliere(Variable):
         ]
 
     def formula(individu, period, parameters):
-        allocation_journaliere_brute_are = individu('complement_are_allocation_journaliere_brute_are', period)  # CRC déduite
+        allocation_journaliere_brute_are = individu('assiette_csg_crds_chomage_journaliere', period)  # CRC déduite
 
         parametres_prelevements_sociaux = parameters(period).prelevements_sociaux
 
