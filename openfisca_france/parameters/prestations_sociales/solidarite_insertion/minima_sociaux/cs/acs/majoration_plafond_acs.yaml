@@ -1,47 +1,21 @@
-description: Majoration pour du plafond CMU pour l'ACS
+description: Majoration du plafond de ressources de la CMU pour l'éligibilité à l'ACS
 values:
   2005-01-01:
     value: 0.15
-  2006-01-01:
-    value: 0.153
   2007-01-01:
     value: 0.2
-  2008-01-01:
-    value: 0.202
-  2009-01-01:
-    value: 0.208
-  2010-01-01:
-    value: 0.208
-  2011-01-01:
-    value: 0.3
   2012-01-01:
     value: 0.35
-  2013-01-01:
+  2019-10-01:
     value: 0.35
-  2014-01-01:
-    value: 0.352
-  2015-01-01:
-    value: 0.36
-  2016-01-01:
-    value: 0.36
-  2017-01-01:
-    value: 0.36
-  2018-01-01:
-    value: 0.37
 metadata:
   unit: /1
   reference:
-    2012-01-01:
+    2005-01-01:
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006745377/
+      title: Article L861-1 du Code de la sécurité sociale
+    2019-10-01:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037950247/2019-11-01
       title: Article L861-1 2. du Code de la sécurité sociale
-    2019-11-01:
-    - href: https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/CIR-30-2019_reforme_complementaire_sante.pdf
-      title: Circulaire 30-2019
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029354513
-      title: Article L863-1 du Code de la sécurité sociale
-  last_review: "2022-04-14"
-  notes:
+documentation:
      https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/CIR-30-2019_reforme_complementaire_sante.pdf
-     https://www.service-public.fr/particuliers/vosdroits/F13375
-     Pour le calcul https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031781092/ 
-    J'ai calculé chaque année en utilisant les taux de valorisation utilisés pour la BMAF
