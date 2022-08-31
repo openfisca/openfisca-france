@@ -66,7 +66,7 @@ class complement_are_salaire_retenu(Variable):
         # et représente la notion de salaire de reprise d'emploi
         gain_brut = individu('salaire_de_base', period)
 
-        return round_(gain_brut * parameters(period).chomage.complement_are.coefficient_assiette_salaire_reprise, 1)
+        return round_(gain_brut * parameters(period).chomage.complement_are.taux_remuneration_retenue, 1)
 
 
 class complement_are_base(Variable):
@@ -81,6 +81,9 @@ class complement_are_base(Variable):
         are_brute_mensuelle = individu('allocation_retour_emploi', period)
         salaire_retenu = individu('complement_are_salaire_retenu', period)
 
+        # une part des revenus mensuels bruts issus de l’activité reprise
+        # sont déduits du montant total de l’ARE qui aurait été versé
+        # en l’absence de reprise d’activité
         return max_(0, are_brute_mensuelle - salaire_retenu)
 
 
@@ -92,9 +95,12 @@ class complement_are_nombre_jours_restants(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period):
-        nombre_jours_restants_fin_periode = individu('complement_are_nombre_jours_restants_fin_droits', period.last_month)
+        nombre_jours_restants_fin_droits = individu(
+            'complement_are_nombre_jours_restants_fin_droits',
+            period.last_month
+            )
 
-        return max_(0, nombre_jours_restants_fin_periode)
+        return max_(0, nombre_jours_restants_fin_droits)
 
 
 class complement_are_nombre_jours_restants_fin_droits(Variable):
@@ -137,7 +143,7 @@ class complement_are_nombre_jours_indemnisables(Variable):
 class complement_are_nombre_jours_indemnises(Variable):
     value_type = float
     entity = Individu
-    label = "Nombre de jours d'ARE indemnisés par le complement ARE"
+    label = "Nombre de jours d'ARE indemnisés par le Complément ARE"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = 'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000038829574'
@@ -146,13 +152,17 @@ class complement_are_nombre_jours_indemnises(Variable):
         nombre_jours_indemnisables = individu('complement_are_nombre_jours_indemnisables', period)
         nombre_jours_restants = individu('complement_are_nombre_jours_restants', period)
 
-        return where(nombre_jours_indemnisables > nombre_jours_restants, nombre_jours_restants, nombre_jours_indemnisables)
+        return where(
+            nombre_jours_indemnisables > nombre_jours_restants,
+            nombre_jours_restants,
+            nombre_jours_indemnisables
+            )
 
 
 class complement_are_deductions(Variable):
     value_type = float
     entity = Individu
-    label = 'Somme des charges déductives du complément ARE (CRC, CSG, CRDS)'
+    label = 'Charges mensuelles déductives du complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
@@ -161,17 +171,17 @@ class complement_are_deductions(Variable):
         ]
 
     def formula(individu, period):
-        crc = individu('complement_are_cotisation_retraite_complementaire', period)
+        cotisation_retraite_complementaire = individu('complement_are_cotisation_retraite_complementaire', period)
         csg = individu('complement_are_csg', period)
         crds = individu('complement_are_crds', period)
 
-        return round_(crc + csg + crds, 2)
+        return round_(cotisation_retraite_complementaire + csg + crds, 2)
 
 
 class complement_are_cotisation_retraite_complementaire(Variable):
     value_type = float
     entity = Individu
-    label = 'Montant mensualisé de la Cotisation de Retraite Complémentaire (CRC) sur le Complément ARE'
+    label = 'Cotisation de retraite complémentaire mensuelle sur le Complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
@@ -180,16 +190,16 @@ class complement_are_cotisation_retraite_complementaire(Variable):
         ]
 
     def formula(individu, period):
-        crc_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)
+        cotisation_retraite_complementaire_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)
         nombre_jours_indemnisables = individu('complement_are_nombre_jours_indemnisables', period)
 
-        return crc_journaliere * nombre_jours_indemnisables
+        return cotisation_retraite_complementaire_journaliere * nombre_jours_indemnisables
 
 
 class complement_are_csg_journaliere(Variable):
     value_type = float
     entity = Individu
-    label = 'Montant journalier de la Contribution Sociale Généralisée (CSG) sur le Complément ARE'
+    label = 'Contribution Sociale Généralisée (CSG) journalière sur le Complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
@@ -239,7 +249,7 @@ class complement_are_csg_journaliere(Variable):
 class complement_are_csg(Variable):
     value_type = float
     entity = Individu
-    label = 'Montant mensualisé des Contributions Sociales Généralisées (CSG)'
+    label = 'Contribution Sociale Généralisée (CSG) mensuelle sur Complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
@@ -254,7 +264,7 @@ class complement_are_csg(Variable):
 class complement_are_crds_journaliere(Variable):
     value_type = float
     entity = Individu
-    label = 'Montant des Contributions au Remboursement de la Dette Sociale (CRDS)'
+    label = 'Contribution au Remboursement de la Dette Sociale (CRDS) journalière sur Complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
@@ -304,7 +314,7 @@ class complement_are_crds_journaliere(Variable):
 class complement_are_crds(Variable):
     value_type = float
     entity = Individu
-    label = 'Montant mensualisé des Contributions au Remboursement de la Dette Sociale (CRDS)'
+    label = 'Contribution au Remboursement de la Dette Sociale (CRDS) mensuelle sur Complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [

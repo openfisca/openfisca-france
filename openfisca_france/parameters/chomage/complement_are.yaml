@@ -11,10 +11,10 @@ coefficient_plafond_global:
   values:
     2014-09-30:
       value: 30.42
-coefficient_assiette_salaire_reprise:
-  description: Taux d'assiette unique à appliquer à la rémunération de reprise - complément ARE
+taux_remuneration_retenue:
+  description: Taux de rémunération de reprise d'activité retenue pour le Complément ARE
   metadata:
-    ux_name: Taux d'assiette unique à appliquer à la rémunération de reprise - complément ARE
+    ux_name: Taux de rémunération de reprise d'activité retenue pour le Complément ARE
     reference:
       2001-07-01:
         - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002221609
