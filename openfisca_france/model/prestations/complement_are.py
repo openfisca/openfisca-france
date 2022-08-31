@@ -38,22 +38,6 @@ class complement_are_plafond(Variable):
         return max_(0, (plafond - gain_brut))
 
 
-class complement_are_theorique(Variable):
-    value_type = float
-    entity = Individu
-    label = 'Montant mensuel théorique du complément ARE permettant de déterminer le nombre de jours indemnisables'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
-
-    def formula(individu, period):
-        degressivite_are = individu('degressivite_are', period)
-        plafond = individu('complement_are_plafond', period)
-        are_brute_restante = individu('complement_are_are_brute_restante', period)
-
-        return round_(where(degressivite_are, are_brute_restante, min_(plafond, are_brute_restante)))
-
-
 class complement_are_brut(Variable):
     value_type = float
     entity = Individu
