@@ -54,6 +54,7 @@
 
 - name: Test 05 - Vérifie le calcul du complément ARE dans un cas simple avec haut salaire journalier de référence
   period: 2022-04
+  absolute_error_margin: 0.000001
   input:
     salaire_de_base: 1200
     degressivite_are: false
