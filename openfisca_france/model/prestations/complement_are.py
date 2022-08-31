@@ -149,21 +149,6 @@ class complement_are_nombre_jours_indemnises(Variable):
         return where(nombre_jours_indemnisables > nombre_jours_restants, nombre_jours_restants, nombre_jours_indemnisables)
 
 
-class complement_are_depassement_plafond(Variable):
-    value_type = bool
-    entity = Individu
-    label = 'Le plafond de complément ARE est dépassé'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
-
-    def formula(individu, period):
-        complement_are_base = individu('complement_are_base', period)
-        plafond = individu('complement_are_plafond', period)
-
-        return (complement_are_base == plafond) * (complement_are_base != 0)
-
-
 class complement_are_deductions(Variable):
     value_type = float
     entity = Individu
