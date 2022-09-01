@@ -29,7 +29,15 @@ class chomage_brut(Variable):
     def formula(individu, period):
         # pas de cumul des revenus de remplacement :
         # ARE (demandeur d'emploi) vs. complément ARE (reprise d'activité + droits au chômage)
-        return individu('allocation_retour_emploi', period) + individu('complement_are_brut', period)
+        eligibilite_complement_are = individu('eligibilite_complement_are', period)
+        complement_are_brut = individu('complement_are_brut', period)
+        allocation_retour_emploi = individu('allocation_retour_emploi', period)
+
+        return where(
+            eligibilite_complement_are,
+            complement_are_brut,
+            allocation_retour_emploi
+            )
 
 
 class indemnites_chomage_partiel(Variable):
@@ -125,3 +133,19 @@ class degressivite_are(Variable):
         'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000041798325/'
         ]
     set_input = set_input_divide_by_period
+
+
+class eligibilite_complement_are(Variable):
+    value_type = bool
+    entity = Individu
+    label = "L'individu est éligible au complément ARE car il perçoit un salaire"
+    definition_period = MONTH
+    reference = [
+        'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044345334',
+        'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000041798325/'
+        ]
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period):
+        # le complément ARE prend le pas sur l'ARE dès lors qu'un salaire est perçu
+        return individu('salaire_de_base', period) > 0

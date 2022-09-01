@@ -276,3 +276,29 @@
         2022-02: 334
         2022-03: 434.20
         2022-04: 400.8
+
+- name: Test 17 - Montant du chômage brut en fonction de l'eligibilité au complément ARE - cas avec un salaire strictement positif
+  period: 2022-04
+  input:
+    salaire_de_base: 1200
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 37
+    are_salaire_journalier_reference: 48
+  output:
+    eligibilite_complement_are: true
+    complement_are_brut: 259
+    allocation_retour_emploi: 1110
+    chomage_brut: 259
+
+- name: Test 18 - Montant du chômage brut en fonction de l'eligibilité au complément ARE - cas avec un salaire nul
+  period: 2022-04
+  input:
+    salaire_de_base: 0
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 37
+    are_salaire_journalier_reference: 48
+  output:
+    eligibilite_complement_are: false
+    complement_are_brut: 0
+    allocation_retour_emploi: 1110
+    chomage_brut: 1110
