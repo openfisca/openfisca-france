@@ -2849,7 +2849,7 @@ class ci_saldom(Variable):
         if invalide.any():
             plaf = P.max3
         else:
-            if annee1.any:
+            if annee1.any():
                 plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
             else:
                 plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
