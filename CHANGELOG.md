@@ -1,12 +1,22 @@
 # Changelog
 
-### 117.0.0 [#1849](https://github.com/openfisca/openfisca-france/pull/1849)
+## 116.18.0 [#1849](https://github.com/openfisca/openfisca-france/pull/1849)
 
- * Évolution du système socio-fiscal.
- * Périodes concernées : toutes.
- * Zones impactées : `openfisca_france/model/prestations/complement_are.py`, `tests/formulas/complement_are.yaml`, `openfisca_france/parameters/chomage/complement_are.yaml`
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `model/prestations/complement_are.py`
+  - `model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/chomage.py`
+  - `model/revenus/remplacement/chomage.py`
+  - `parameters/chomage/complement_are.yaml`
+  - `parameters/chomage/allocation_retour_emploi/montant_minimum_hors_mayotte.yaml`
+  - `parameters/chomage/cotisation_retraite_complementaire.yaml`
 * Détails :
-   - Ajoute le calcul du complément ARE (Aide au Retour à l'Emploi) de Pôle emploi au système socio-fiscal. Ce dispositif permet de conserver une partie de ses allocations chômage à la reprise d'activité si le salaire de l'emploi repris est inférieur au salaire ayant initialement débloqué les droits au chômage.
+  - Ajoute le Complément ARE (Aide au Retour à l'Emploi) de Pôle emploi pour la reprise d'activité
+  - Met à jour `chomage_brut` et `allocation_retour_emploi`
+  - Corrige l'assiette mensuelle de `csg_deductible_chomage` et `csg_imposable_chomage`
+  - Introduit `assiette_csg_crds_chomage_journaliere` et `chomage_cotisation_retraite_complementaire_journaliere`
 
 ### 116.17.1 [##1874](https://github.com/openfisca/openfisca-france/pull/1874)
 
