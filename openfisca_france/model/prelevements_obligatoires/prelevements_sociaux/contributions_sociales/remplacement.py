@@ -73,6 +73,21 @@ def montant_csg_crds_3_taux(base_avec_abattement = None, base_sans_abattement = 
 
 # Allocations chômage
 
+class assiette_csg_crds_chomage_journaliere(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Allocation journalière brute ARE après déduction de la complémentaire retraite'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'
+
+    def formula(individu, period):
+        allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
+        cotisation_retraite_complementaire_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)  # montant négatif
+
+        return allocation_journaliere + cotisation_retraite_complementaire_journaliere
+
+
 class csg_deductible_chomage(Variable):
     calculate_output = calculate_output_add
     value_type = float
@@ -84,7 +99,6 @@ class csg_deductible_chomage(Variable):
     # TODO : formule à partir de 2015 seulement. Pour les années d'avant, certaines seuils de RFR sont manquants, ainsi que des informations relatives à des exonérations passées.
 
     def formula_2015(individu, period, parameters):
-        chomage_brut = individu('chomage_brut', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
         parameters = parameters(period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
@@ -103,8 +117,12 @@ class csg_deductible_chomage(Variable):
                 )
             )
 
+        chomage_brut = individu('chomage_brut', period)
+        chomage_cotisation_retraite_complementaire_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)
+        assiette_csg_chomage = chomage_brut - chomage_cotisation_retraite_complementaire_journaliere
+
         montant_csg = montant_csg_crds(
-            base_avec_abattement = chomage_brut,
+            base_avec_abattement = assiette_csg_chomage,
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.deductible,
@@ -142,7 +160,6 @@ class csg_imposable_chomage(Variable):
     # TODO : formule à partir de 2015 seulement. Pour les années d'avant, certaines seuils de RFR sont manquants, ainsi que des informations relatives à des exonérations passées.
 
     def formula_2015(individu, period, parameters):
-        chomage_brut = individu('chomage_brut', period)
         parameters = parameters(period)
 
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
@@ -161,8 +178,12 @@ class csg_imposable_chomage(Variable):
                 )
             )
 
+        chomage_brut = individu('chomage_brut', period)
+        chomage_cotisation_retraite_complementaire_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)
+        assiette_csg_chomage = chomage_brut - chomage_cotisation_retraite_complementaire_journaliere
+
         montant_csg = montant_csg_crds(
-            base_avec_abattement = chomage_brut,
+            base_avec_abattement = assiette_csg_chomage,
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
             law_node = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.imposable,
@@ -189,7 +210,6 @@ class crds_chomage(Variable):
     # TODO : formule à partir de 2015 seulement. Pour les années d'avant, certaines seuils de RFR sont manquants, ainsi que des informations relatives à des exonérations passées.
 
     def formula_2015(individu, period, parameters):
-        chomage_brut = individu('chomage_brut', period)
         csg_deductible_chomage = individu('csg_deductible_chomage', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
         parameters = parameters(period)
@@ -213,19 +233,23 @@ class crds_chomage(Variable):
         # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)
         heures_mensuelles = parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
 
+        chomage_brut = individu('chomage_brut', period)
+        chomage_cotisation_retraite_complementaire_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)
+        assiette_crds_chomage = chomage_brut - chomage_cotisation_retraite_complementaire_journaliere
+
         cho_seuil_exo = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.min_exo * heures_mensuelles * smic_h_b
         eligible = (
             (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit)
             + (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
             )
         montant_crds = montant_csg_crds(
-            base_avec_abattement = chomage_brut,
+            base_avec_abattement = assiette_crds_chomage,
             law_node = parameters.prelevements_sociaux.contributions_sociales.crds.activite,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             ) * eligible
         crds_chomage = max_(
             -montant_crds - max_(
-                cho_seuil_exo - (chomage_brut + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
+                cho_seuil_exo - (assiette_crds_chomage + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
                 ), 0
             )
         return -crds_chomage
