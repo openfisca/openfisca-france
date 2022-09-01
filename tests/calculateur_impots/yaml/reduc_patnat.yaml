@@ -12,9 +12,9 @@
       caseW: false
       declarants:
       - ind0
-      f7kb: 500
-      f7kc: 500
-      f7kd: 500
+      f7kb_2016: 500
+      f7kc_2017: 500
+      f7kd_2018: 500
       f7ke: 500
       nbF: 0.0
       nbG: 0.0
@@ -57,9 +57,9 @@
       caseW: false
       declarants:
       - ind0
-      f7kb: 500
-      f7kc: 500
-      f7kd: 500
+      f7kb_2016: 500
+      f7kc_2017: 500
+      f7kd_2018: 500
       f7ke: 500
       nbF: 0.0
       nbG: 0.0
@@ -101,9 +101,9 @@
       caseW: false
       declarants:
       - ind0
-      f7kb: 500
-      f7kc: 500
-      f7kd: 500
+      f7kb_2016: 500
+      f7kc_2017: 500
+      f7kd_2018: 500
       f7ke: 500
       nbF: 0.0
       nbG: 0.0
@@ -145,8 +145,8 @@
       caseW: false
       declarants:
       - ind0
-      f7kc: 500
-      f7kd: 500
+      f7kc_2017: 500
+      f7kd_2018: 500
       f7ke: 500
       nbF: 0.0
       nbG: 0.0
