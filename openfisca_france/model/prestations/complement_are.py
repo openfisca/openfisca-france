@@ -32,10 +32,15 @@ class complement_are_brut(Variable):
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
+        eligible_complement_are = individu('eligibilite_complement_are', period)
         allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
         nombre_jours_indemnises = individu('complement_are_nombre_jours_indemnises', period)
 
-        return round_(allocation_journaliere * nombre_jours_indemnises, 2)
+        return where(
+            eligible_complement_are,
+            round_(allocation_journaliere * nombre_jours_indemnises, 2),
+            0
+            )
 
 
 class complement_are_net(Variable):
