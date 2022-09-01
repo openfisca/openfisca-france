@@ -1,5 +1,12 @@
 # Changelog
 
+### 117.0.0 [#1849](https://github.com/openfisca/openfisca-france/pull/1849)
+
+ * Évolution du système socio-fiscal.
+ * Périodes concernées : toutes.
+ * Zones impactées : `openfisca_france/model/prestations/complement_are.py`, `tests/formulas/complement_are.yaml`, `openfisca_france/parameters/chomage/complement_are.yaml`
+* Détails :
+   - Ajoute le calcul du complément ARE (Aide au Retour à l'Emploi) de Pôle emploi au système socio-fiscal. Ce dispositif permet de conserver une partie de ses allocations chômage à la reprise d'activité si le salaire de l'emploi repris est inférieur au salaire ayant initialement débloqué les droits au chômage.
 
 ### 116.17.1 [##1874](https://github.com/openfisca/openfisca-france/pull/1874)
 
