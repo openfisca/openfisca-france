@@ -49,6 +49,22 @@ class allocation_retour_emploi(Variable):
     label = "Allocation chômage d'aide au retour à l'emploi (ARE) mensuelle brute"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/allocation-daide-au-retour-lemploi-are'
+
+    def formula(individu, period):
+        # L'ARE comprend de nombreuses conditions d'éligibilité non modélisées ici.
+        activite = individu('activite', period)  # demandeur d'emploi inscrit à Pôle emploi
+        allocation_retour_emploi_montant = individu('allocation_retour_emploi_montant', period)
+
+        return (activite == TypesActivite.chomeur) * allocation_retour_emploi_montant
+
+
+class allocation_retour_emploi_montant(Variable):
+    value_type = float
+    entity = Individu
+    label = "Montant de l'allocation chômage d'aide au retour à l'emploi (ARE) mensuelle brute"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178163/',
         'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
@@ -56,8 +72,6 @@ class allocation_retour_emploi(Variable):
 
     def formula(individu, period):
         # Attention : ARE simplifiée (modélisation suffisante pour le Complément ARE)
-        activite = individu('activite', period)  # demandeur d'emploi inscrit à Pôle emploi
-
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
         nombre_jours_mois = busday_count(
@@ -70,7 +84,7 @@ class allocation_retour_emploi(Variable):
         allocation_journaliere_taux_plein = individu('allocation_retour_emploi_journaliere_taux_plein', period)
         allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
 
-        return (activite == TypesActivite.chomeur) * where(
+        return where(
             degressivite_are,
             nombre_jours_mois * allocation_journaliere_taux_plein,
             nombre_jours_mois * allocation_journaliere

@@ -104,7 +104,7 @@ class complement_are_base(Variable):
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
-        are_brute_mensuelle = individu('allocation_retour_emploi', period)
+        are_brute_mensuelle = individu('allocation_retour_emploi_montant', period)
         salaire_retenu = individu('complement_are_salaire_retenu', period)
 
         # une part des revenus mensuels bruts issus de l’activité reprise
