@@ -61,9 +61,10 @@ class allocation_retour_emploi(Variable):
 
     def formula(individu, period):
         # Attention : ARE simplifiée (modélisation suffisante pour le Complément ARE)
+        activite = individu('activite', period)  # demandeur d'emploi inscrit à Pôle emploi
+
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
-
         nombre_jours_mois = busday_count(
             debut_mois,
             fin_mois,
@@ -74,7 +75,7 @@ class allocation_retour_emploi(Variable):
         allocation_journaliere_taux_plein = individu('allocation_retour_emploi_journaliere_taux_plein', period)
         allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
 
-        return where(
+        return (activite == TypesActivite.chomeur) * where(
             degressivite_are,
             nombre_jours_mois * allocation_journaliere_taux_plein,
             nombre_jours_mois * allocation_journaliere
