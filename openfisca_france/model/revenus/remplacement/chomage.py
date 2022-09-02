@@ -29,15 +29,10 @@ class chomage_brut(Variable):
     def formula(individu, period):
         # pas de cumul des revenus de remplacement :
         # ARE (demandeur d'emploi) vs. complément ARE (reprise d'activité + droits au chômage)
-        eligibilite_complement_are = individu('eligibilite_complement_are', period)
         complement_are_brut = individu('complement_are_brut', period)
         allocation_retour_emploi = individu('allocation_retour_emploi', period)
 
-        return where(
-            eligibilite_complement_are,
-            complement_are_brut,
-            allocation_retour_emploi
-            )
+        return complement_are_brut + allocation_retour_emploi
 
 
 class indemnites_chomage_partiel(Variable):
