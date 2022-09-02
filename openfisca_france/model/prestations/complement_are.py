@@ -2,7 +2,7 @@ from numpy import ceil, divide, where, zeros_like
 
 from openfisca_france.model.base import Individu, Variable, MONTH, \
     set_input_divide_by_period, set_input_dispatch_by_period, TypesActivite, \
-        round_, max_, min_
+    round_, max_, min_
 
 
 class complement_are_eligibilite(Variable):
@@ -19,7 +19,7 @@ class complement_are_eligibilite(Variable):
     def formula(individu, period):
         activite = individu('activite', period)
         reprise_activite = (activite == TypesActivite.actif)
-        
+
         # le complément ARE prend le pas sur l'ARE lorsqu'un salaire est perçu
         return reprise_activite * individu('salaire_de_base', period) > 0
 
