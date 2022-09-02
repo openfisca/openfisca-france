@@ -1,10 +1,22 @@
 # Changelog
 
+## 116.18.1 [#1880](https://github.com/openfisca/openfisca-france/pull/1880)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/prestations/complement_are.py`,
+  - `model/revenus/remplacement/chomage.py`
+* Détails :
+  - Empêcher le cumul de l'ARE et du complément ARE dans le calcul du montant du chômage
+  - Introduction du système d'éligibilité au complément ARE (basé sur la présence ou non d'un salaire) pour déterminer quel montant utiliser pour le calcul du chômage
+  - Impact perçu dans le calcul de la prime d'activité car les montants de complément ARE et de l'ARE s'additionnait ce qui est impossible
+
 ## 116.18.0 [#1849](https://github.com/openfisca/openfisca-france/pull/1849)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `model/prestations/complement_are.py`
   - `model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
   - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/chomage.py`
@@ -29,7 +41,7 @@
 * Détails :
   - Met à jour certains paramètres de l'impôt sur le revenu
   - Ajoute surtout des références législatives
-  
+
 ## 116.17.0 [#1850](https://github.com/openfisca/openfisca-france/pull/1850)
 
 * Évolution du système socio-fiscal
@@ -89,7 +101,7 @@
 * Changement mineur.
 * Périodes concernés : à partir du 1/1/2016
 * Zones impactées : `parameters/prestations_sociales/aides_logement/action_logement`
-* Détails : 
+* Détails :
   - Ajout de références législatives
 
 ## 116.13.0 [#1858](https://github.com/openfisca/openfisca-france/pull/1858)
@@ -235,7 +247,7 @@
   - `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_fl`
   - `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_m`
   - `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj`
-* Détails : 
+* Détails :
   - Ajoute des références législatives aux paramètres et du last_review
 
 ### 116.2.1 [#1834](https://github.com/openfisca/openfisca-france/pull/1834)
@@ -263,7 +275,7 @@
 * Changement mineur
 * Périodes concernées : à partir du 01/06/2009
 * Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rmi/rmi_cond/patrimoine`
-* Détails : 
+* Détails :
   - Ajoute les références législatives et le last_review
 
 ### 116.1.1 [#1807](https://github.com/openfisca/openfisca-france/pull/1807)
@@ -300,7 +312,7 @@
 * Zones impactées : `parameters/impot_revenu`
 * Détails :
   - Rangement des fichiers selon l'arborescence IPP
-* Guide pour la migration : 
+* Guide pour la migration :
   - Vous pouvez chercher où sont passés vos fichiers avec la commande suivante :
     `git log --oneline 6d3d89b5d70c9^..68333e8282d9e | grep "variable_name"`
 
@@ -317,7 +329,7 @@
       - #1816
       - et #1817
   - Adapte les formules
-* Guide pour la migration : 
+* Guide pour la migration :
   - Vous pouvez chercher où sont passés vos fichiers avec la commande suivante:
     `git log --oneline 98b434c2c3c67fa5^..16095f417480157 | grep "variable_name"`
 
@@ -325,7 +337,7 @@
 
 * Amélioration technique
 * Périodes concernées : à partir du 01/01/2020.
-* Zones impactées : 
+* Zones impactées :
   - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie`
 * Détails :
   - Corrige `maladie_maternite_artisan_commercant_taux` dans le cas d'une division par `assiette _pss` nulle
