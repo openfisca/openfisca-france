@@ -5,7 +5,7 @@ from openfisca_france.model.base import Individu, Variable, MONTH, \
         round_, max_, min_
 
 
-class eligibilite_complement_are(Variable):
+class complement_are_eligibilite(Variable):
     value_type = bool
     entity = Individu
     label = "L'individu est éligible au Complément ARE car il perçoit un salaire"
@@ -52,11 +52,11 @@ class complement_are_brut(Variable):
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
-        eligible_complement_are = individu('eligibilite_complement_are', period)
+        complement_are_eligibilite = individu('complement_are_eligibilite', period)
         allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
         nombre_jours_indemnises = individu('complement_are_nombre_jours_indemnises', period)
 
-        return eligible_complement_are * round_(allocation_journaliere * nombre_jours_indemnises, 2)
+        return complement_are_eligibilite * round_(allocation_journaliere * nombre_jours_indemnises, 2)
 
 
 class complement_are_net(Variable):

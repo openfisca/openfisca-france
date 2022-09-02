@@ -285,7 +285,7 @@
     allocation_retour_emploi_journaliere: 37
     are_salaire_journalier_reference: 48
   output:
-    eligibilite_complement_are: true
+    complement_are_eligibilite: true
     complement_are_brut: 259
     allocation_retour_emploi: 1110
     chomage_brut: 259
@@ -298,7 +298,7 @@
     allocation_retour_emploi_journaliere: 37
     are_salaire_journalier_reference: 48
   output:
-    eligibilite_complement_are: false
+    complement_are_eligibilite: false
     complement_are_brut: 0
     allocation_retour_emploi: 1110
     chomage_brut: 1110
