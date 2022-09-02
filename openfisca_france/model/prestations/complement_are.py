@@ -36,11 +36,7 @@ class complement_are_brut(Variable):
         allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
         nombre_jours_indemnises = individu('complement_are_nombre_jours_indemnises', period)
 
-        return where(
-            eligible_complement_are,
-            round_(allocation_journaliere * nombre_jours_indemnises, 2),
-            0
-            )
+        return eligible_complement_are * round_(allocation_journaliere * nombre_jours_indemnises, 2)
 
 
 class complement_are_net(Variable):
