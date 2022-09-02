@@ -99,6 +99,7 @@
       2023: [0, 0, 1_200, 0, 0, 0, 1_200]
     assiette_csg_abattue:
       # Comprend uniquement sur la partie qui dépasse l'exonération
+      # 2 000 + 1 200 / 12 = 2100
       2022-09: [2000, 2000, 2000, 2000, 2000, 2000, 2000]
       2023-09: [2000, 2000, 2100, 2000, 2000, 2000, 2100]
     crds_salaire: # 0.5% après abattement de 1.75%
@@ -163,7 +164,7 @@
 # 7 : Avec accord, Prime au deuxième plafond
 # 8 : Avec accord, Prime au dessus du plafond
   period: 2023-09
-  absolute_error_margin: 0.01
+  absolute_error_margin: 0.05
   input:
     effectif_entreprise:
       2022: [250, 250, 250, 250, 250, 250, 250, 250]
@@ -187,11 +188,15 @@
     prime_partage_valeur_non_exoneree:
       2022: [0, 0, 0, 0, 0, 0, 0, 0]
       2023: [0, 0, 0, 1_200, 0, 0, 0, 1_200]
+    primes_salaires_non_exonerees:
+      # La partie supérieure au plafond n'est pas exonérée,
+      # On la traite donc comme une prime classique.
+      2023-09: [0, 0, 0, 100, 0, 0, 0, 100]
     ppv_eligibilite_exceptionnelle:
       2023: [1, 1, 1, 1, 1, 1, 1, 1]
     assiette_csg_abattue:
       # Prime soumise en totalité à la CSG
-      #2022-09: [2000, 2250, 2250, 2350, 2250, 2250, 2500, 2600]
+      # 2 000 + 6 000 / 12 + 1 200 / 12 = 2 600
       2023-09: [2000, 2250, 2250, 2350, 2250, 2250, 2500, 2600]
     crds_salaire: # 0.5% après abattement de 1.75%
       # 10,31−9,825=0.485 ; 100-1.75=98.25*0.005=0.491
@@ -213,7 +218,7 @@
       # La prime pérenne est imposable en totalité
       # salaire_imposable sans prime + prime - csg_deductible_salaire = salaire_imposable avec prime
       # 1_640.18 + 250 + -16.699 = 1_873.481
-      2023-09: [1640.18, 1845.19, 1873.4778, 1955.4868, 1873.4778, 1873.4778, 2106.7751, 2188.784]
+      2023-09: [1640.18, 1845.1978, 1873.4778, 1955.4868, 1873.4778, 1873.4778, 2106.7751, 2188.784]
     salaire_net:
       # salaire_net = salaire_imposable + crds_salaire + csg_imposable_salaire
       # Prime + CSG + CRDS, écarts [  0. , 226.1748, 305.3346, 226.1748, 226.1748, 452.3487, 531.5136]

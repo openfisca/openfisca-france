@@ -21,7 +21,13 @@ class assiette_csg_abattue(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
+        '''
+        Assiette CSG - CRDS
+            - 01/07/2022 : Ajout de la PPV à partir du 1er août 2022
+        '''
         primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
+        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
+
         salaire_de_base = individu('salaire_de_base', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         # indemnites_journalieres_maladie = individu('indemnites_journalieres_maladie', period)
@@ -41,43 +47,7 @@ class assiette_csg_abattue(Variable):
             + indemnite_compensatrice_csg
             + primes_fonction_publique
             + primes_salaires_non_exonerees
-            + remuneration_principale
-            + salaire_de_base
-            + stage_gratification_reintegration
-            + supplement_familial_traitement
-            + avantage_en_nature
-            - hsup
-            )
-
-    def formula_2022_07_01(individu, period, parameters):
-        '''
-        Ajout de la PPV à partir du 1er août 2022
-        '''
-        primes_salaires = individu('primes_salaires', period)
-        prime_partage_valeur = individu('prime_partage_valeur', period, options=[DIVIDE])
-        prime_partage_valeur_non_exoneree_exceptionnelle = individu('prime_partage_valeur_non_exoneree_exceptionnelle', period, options=[DIVIDE])
-
-        salaire_de_base = individu('salaire_de_base', period)
-        primes_fonction_publique = individu('primes_fonction_publique', period)
-        # indemnites_journalieres_maladie = individu('indemnites_journalieres_maladie', period)
-        # TODO: mettre à part ?
-        indemnite_residence = individu('indemnite_residence', period)
-        indemnite_compensatrice_csg = individu('indemnite_compensatrice_csg', period)
-        supplement_familial_traitement = individu('supplement_familial_traitement', period)
-        hsup = individu('hsup', period)
-        remuneration_principale = individu('remuneration_principale', period)
-        stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
-        indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
-        avantage_en_nature = individu('avantage_en_nature', period)
-
-        return (
-            +indemnite_fin_contrat
-            + indemnite_residence
-            + indemnite_compensatrice_csg
-            + primes_fonction_publique
-            + primes_salaires
-            + prime_partage_valeur
-            + prime_partage_valeur_non_exoneree_exceptionnelle
+            + prime_partage_valeur_exoneree
             + remuneration_principale
             + salaire_de_base
             + stage_gratification_reintegration
@@ -278,47 +248,13 @@ class salaire_imposable(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period):
+        '''
+        Salaires imposables
+            - 01/07/2022 : Ajout PPV : prime_partage_valeur
+        '''
         salaire_de_base = individu('salaire_de_base', period)
         primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
-        primes_fonction_publique = individu('primes_fonction_publique', period)
-        indemnite_residence = individu('indemnite_residence', period)
-        indemnite_compensatrice_csg = individu('indemnite_compensatrice_csg', period)
-        supplement_familial_traitement = individu('supplement_familial_traitement', period)
-        csg_deductible_salaire = individu('csg_deductible_salaire', period)
-        cotisations_salariales = individu('cotisations_salariales', period)
-        remuneration_principale = individu('remuneration_principale', period)
-        hsup = individu('hsup', period)
-        indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
-        complementaire_sante_salarie = individu('complementaire_sante_salarie', period)
-        # Revenu du foyer fiscal projeté sur le demandeur
-        rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options = [DIVIDE])
-        rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        return (
-            salaire_de_base
-            + primes_salaires_non_exonerees
-            + remuneration_principale
-            + primes_fonction_publique
-            + indemnite_residence
-            + supplement_familial_traitement
-            + csg_deductible_salaire
-            + cotisations_salariales
-            - hsup
-            + rev_microsocial_declarant1
-            + indemnite_fin_contrat
-            + complementaire_sante_salarie
-            + indemnite_compensatrice_csg
-            )
-
-    def formula_2022_07_01(individu, period):
-        '''
-        Ajout PPV
-        '''
-        salaire_de_base = individu('salaire_de_base', period)
-
-        primes_salaires = individu('primes_salaires', period)
-        prime_partage_valeur = individu('prime_partage_valeur', period, options=[DIVIDE])
-        prime_partage_valeur_non_exoneree_exceptionnelle = individu('prime_partage_valeur_non_exoneree_exceptionnelle', period, options=[DIVIDE])
+        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
 
         primes_fonction_publique = individu('primes_fonction_publique', period)
         indemnite_residence = individu('indemnite_residence', period)
@@ -336,9 +272,8 @@ class salaire_imposable(Variable):
 
         return (
             salaire_de_base
-            + primes_salaires
-            + prime_partage_valeur
-            + prime_partage_valeur_non_exoneree_exceptionnelle
+            + primes_salaires_non_exonerees
+            + prime_partage_valeur_exoneree
             + remuneration_principale
             + primes_fonction_publique
             + indemnite_residence
