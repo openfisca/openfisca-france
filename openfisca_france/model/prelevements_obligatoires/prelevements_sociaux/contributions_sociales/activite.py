@@ -49,7 +49,7 @@ class assiette_csg_abattue(Variable):
             - hsup
             )
 
-    def formula_2022_08_01(individu, period, parameters):
+    def formula_2022_07_01(individu, period, parameters):
         '''
         Ajout de la PPV à partir du 1er août 2022
         '''
@@ -224,7 +224,7 @@ class forfait_social(Variable):
             assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
             )
 
-    def formula_2022_08_01(individu, period, parameters):
+    def formula_2022_07_01(individu, period, parameters):
         # Seule la PPV pérenne est sousmise au forfait social, et cela intégralement
         prime_partage_valeur = individu('prime_partage_valeur', period, options=[DIVIDE])
 
@@ -310,7 +310,7 @@ class salaire_imposable(Variable):
             + indemnite_compensatrice_csg
             )
 
-    def formula_2022_08_01(individu, period):
+    def formula_2022_07_01(individu, period):
         '''
         Ajout PPV
         '''
@@ -382,7 +382,7 @@ class salaire_net(Variable):
         prime_exceptionnelle_pouvoir_achat_exoneree = individu('prime_exceptionnelle_pouvoir_achat_exoneree', period, options = [DIVIDE])
         return salaire_imposable + crds_salaire + csg_imposable_salaire + prime_exceptionnelle_pouvoir_achat_exoneree
 
-    def formula_2022_08_01(individu, period, parameters):
+    def formula_2022_07_01(individu, period, parameters):
         '''
         Calcul du salaire net d'après définition INSEE
         net = net de csg et crds

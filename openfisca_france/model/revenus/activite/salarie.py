@@ -560,6 +560,7 @@ class prime_partage_valeur(Variable):
     entity = Individu
     label = 'Prime pérenne de partage de la valeur (PPV)'
     definition_period = (YEAR)  # La PPV est versée en fonction du salaire des 12 derniers mois
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
     set_input = set_input_divide_by_period
     documentation = '''
         La PPV exonérée représente l'éxonération de la prime des cotisations salariales,
@@ -600,6 +601,7 @@ class prime_partage_valeur_exceptionnelle(Variable):
     entity = Individu
     label = 'Prime exceptionnelle de partage de la valeur (PPV)'
     definition_period = (YEAR)  # La PPV est versée en fonction du salaire des 12 derniers mois
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
     set_input = set_input_divide_by_period
 
 
@@ -608,11 +610,11 @@ class prime_partage_valeur_exoneree_exceptionnelle(Variable):
     entity = Individu
     label = 'Prime exceptionnelle de partage de la valeur (PPV), partie exonérée'
     definition_period = YEAR
-    reference = 'https://www.assemblee-nationale.fr/dyn/16/textes/l16b0019_projet-loi'
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
 
     set_input = set_input_divide_by_period
 
-    def formula_2022_08_01(individu, period, parameters):
+    def formula_2022_07_01(individu, period, parameters):
         '''
         La prime exceptionnelle de partage de la valeur (PPV),
         est réservée aux salariés qui ont un salaire de base inférieur à 3 x SMIC.
@@ -644,7 +646,7 @@ class prime_partage_valeur_non_exoneree_exceptionnelle(Variable):
     definition_period = YEAR
     set_input = set_input_divide_by_period
 
-    def formula_2022_08_01(individu, period, parameters):
+    def formula_2022_07_01(individu, period, parameters):
         prime_partage_valeur_exceptionnelle = individu('prime_partage_valeur_exceptionnelle', period)
         ppv_eligibilite_exceptionnelle = individu('ppv_eligibilite_exceptionnelle', period)
         prime_partage_valeur_exoneree_exceptionnelle = individu('prime_partage_valeur_exoneree_exceptionnelle', period)
@@ -674,7 +676,7 @@ class ppv_eligibilite_exceptionnelle(Variable):
     et impôt sur le revenu.
     '''
 
-    def formula_2022_08_01(individu, period, parameters):
+    def formula_2022_07_01(individu, period, parameters):
         annee_glissante = period.start.period('year').offset(-1)
         salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
         smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
@@ -690,10 +692,10 @@ class prime_partage_valeur_exoneree(Variable):
     entity = Individu
     label = 'Prime pérenne de partage de la valeur (PPV), partie exonérée'
     definition_period = YEAR
-    reference = 'https://www.assemblee-nationale.fr/dyn/16/textes/l16b0019_projet-loi'
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
     set_input = set_input_divide_by_period
 
-    def formula_2022_08_01(individu, period, parameters):
+    def formula_2022_07_01(individu, period, parameters):
         '''
         Il y a deux plafond suivant que l'employeur ait ou non :
         # * un dispositif d'intéressement,
@@ -719,9 +721,10 @@ class prime_partage_valeur_non_exoneree(Variable):
     entity = Individu
     label = 'Prime pérenne de partage de la valeur (PPV), partie non exonérée'
     definition_period = YEAR
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
     set_input = set_input_divide_by_period
 
-    def formula_2022_08_01(individu, period, parameters):
+    def formula_2022_07_01(individu, period, parameters):
         prime_partage_valeur = individu('prime_partage_valeur', period)
         prime_partage_valeur_exoneree = individu(
             'prime_partage_valeur_exoneree', period
@@ -832,7 +835,7 @@ class primes_salaires_non_exonerees(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2022_08_01(individu, period, parameters):
+    def formula_2022_07_01(individu, period, parameters):
         primes_salaires = individu('primes_salaires', period)
         prime_partage_valeur_non_exoneree = individu('prime_partage_valeur_non_exoneree', period, options=[DIVIDE])
         prime_partage_valeur_non_exoneree_exceptionnelle = individu('prime_partage_valeur_non_exoneree_exceptionnelle', period, options=[DIVIDE])
@@ -1447,7 +1450,7 @@ class salaire_super_brut(Variable):
         prime_exceptionnelle_pouvoir_achat_exoneree = individu('prime_exceptionnelle_pouvoir_achat_exoneree', period, options = [DIVIDE])
         return salaire_super_brut_hors_allegements - exonerations_et_allegements + prime_exceptionnelle_pouvoir_achat_exoneree
 
-    def formula_2022_08_01(individu, period, parameters):
+    def formula_2022_07_01(individu, period, parameters):
         '''
         Apparition de la PPV le 1er aout 2022:
         Au niveau du salaire super brut, la PPV se comporte comme la PEPA.
