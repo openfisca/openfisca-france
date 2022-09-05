@@ -1,5 +1,15 @@
 # Changelog
 
+## 118.1.0 [#1872](https://github.com/openfisca/openfisca-france/pull/1872)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/07/2022
+* Zones impactées :
+  - `/model/revenus/activite/salarie.py`
+  - `/parameters/marche_travail/prime_partage_valeur/`
+* Détails :
+  - Ajout de la prime de partage de la valeur.
+
 ### 118.0.0 [#1887](https://github.com/openfisca/openfisca-france/pull/1887)
 
 * Évolution du système socio-fiscal.
