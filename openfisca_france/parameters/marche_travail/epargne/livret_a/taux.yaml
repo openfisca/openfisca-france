@@ -84,8 +84,6 @@ values:
     value: 0.0075
   2020-02-01:
     value: 0.005
-  2022-02-01:
-    value: 0.020
 metadata:
   ux_name: Taux
   unit: /1
