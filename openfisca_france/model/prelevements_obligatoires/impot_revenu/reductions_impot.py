@@ -2316,7 +2316,7 @@ class dfppce(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
         red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
-        report_f7va_f7ud = f7va + f7ud - red_7ud_7va
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
 
         dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
 
@@ -2350,10 +2350,10 @@ class dfppce(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
         red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
-        report_f7va_f7ud = f7va + f7ud - red_7ud_7va
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
 
         red_notre_dame = min_(PND.plafond, f7ue) * PND.taux
-        report_notre_dame = f7ue - red_notre_dame
+        report_notre_dame = max_(0, f7ue - PND.plafond)
 
         dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
 
@@ -2385,7 +2385,7 @@ class dfppce(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
         red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
-        report_f7va_f7ud = f7va + f7ud - red_7ud_7va
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
 
         dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
 
@@ -2418,10 +2418,10 @@ class dfppce(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
         red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
-        report_f7va_f7ud = f7va + f7ud - red_7ud_7va
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
 
         red_7uj = min_(P.dons_assoc_cult, f7uj) * taux_donapd
-        report_7uj = f7uj - red_7uj
+        report_7uj = max_(0, f7uj - P.dons_assoc_cult)
 
         dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
 
