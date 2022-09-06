@@ -1,5 +1,5 @@
-description: Cotisation à la retraite complémentaire pour demandeur d'emploi ou repreneur d'activité
+description: Cotisation à la retraite complémentaire (secteur privé)
 metadata:
-  ux_name: Cotisation à la retraite complémentaire (CRC)
+  ux_name: Cotisation à la retraite complémentaire
   order:
-  - employeur
+  - chomage
