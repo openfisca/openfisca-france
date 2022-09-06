@@ -18,7 +18,6 @@
     menage:
       personne_de_reference: ind0
   output:
-    notredame: 300.0
     iai: 7344.0
     irpp: -7344.0
     nbptr: 1.0
@@ -48,7 +47,6 @@
     menage:
       personne_de_reference: ind0
   output:
-    notredame: 750
     iai: 6564.0
     irpp: -6564.0
     nbptr: 1.0
