@@ -29,7 +29,10 @@ class chomage_brut(Variable):
     def formula(individu, period):
         # pas de cumul des revenus de remplacement :
         # ARE (demandeur d'emploi) vs. complément ARE (reprise d'activité + droits au chômage)
-        return individu('allocation_retour_emploi', period) + individu('complement_are_brut', period)
+        complement_are_brut = individu('complement_are_brut', period)
+        allocation_retour_emploi = individu('allocation_retour_emploi', period)
+
+        return complement_are_brut + allocation_retour_emploi
 
 
 class indemnites_chomage_partiel(Variable):
@@ -46,6 +49,22 @@ class allocation_retour_emploi(Variable):
     label = "Allocation chômage d'aide au retour à l'emploi (ARE) mensuelle brute"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/allocation-daide-au-retour-lemploi-are'
+
+    def formula(individu, period):
+        # L'ARE comprend de nombreuses conditions d'éligibilité non modélisées ici.
+        activite = individu('activite', period)  # demandeur d'emploi inscrit à Pôle emploi
+        allocation_retour_emploi_montant = individu('allocation_retour_emploi_montant', period)
+
+        return (activite == TypesActivite.chomeur) * allocation_retour_emploi_montant
+
+
+class allocation_retour_emploi_montant(Variable):
+    value_type = float
+    entity = Individu
+    label = "Montant de l'allocation chômage d'aide au retour à l'emploi (ARE) mensuelle brute"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
     reference = [
         'https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178163/',
         'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
@@ -55,7 +74,6 @@ class allocation_retour_emploi(Variable):
         # Attention : ARE simplifiée (modélisation suffisante pour le Complément ARE)
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
-
         nombre_jours_mois = busday_count(
             debut_mois,
             fin_mois,

@@ -1,7 +1,27 @@
 from numpy import ceil, divide, where, zeros_like
 
 from openfisca_france.model.base import Individu, Variable, MONTH, \
-    set_input_divide_by_period, set_input_dispatch_by_period, round_, max_, min_
+    set_input_divide_by_period, set_input_dispatch_by_period, TypesActivite, \
+    round_, max_, min_
+
+
+class complement_are_eligibilite(Variable):
+    value_type = bool
+    entity = Individu
+    label = "L'individu est éligible au Complément ARE car il perçoit un salaire"
+    definition_period = MONTH
+    reference = [
+        'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044345334',
+        'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000041798325/'
+        ]
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period):
+        activite = individu('activite', period)
+        reprise_activite = (activite == TypesActivite.actif)
+
+        # le complément ARE prend le pas sur l'ARE lorsqu'un salaire est perçu
+        return reprise_activite * individu('salaire_de_base', period) > 0
 
 
 class complement_are_plafond(Variable):
@@ -32,10 +52,11 @@ class complement_are_brut(Variable):
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
+        complement_are_eligibilite = individu('complement_are_eligibilite', period)
         allocation_journaliere = individu('allocation_retour_emploi_journaliere', period)
         nombre_jours_indemnises = individu('complement_are_nombre_jours_indemnises', period)
 
-        return round_(allocation_journaliere * nombre_jours_indemnises, 2)
+        return complement_are_eligibilite * round_(allocation_journaliere * nombre_jours_indemnises, 2)
 
 
 class complement_are_net(Variable):
@@ -83,7 +104,7 @@ class complement_are_base(Variable):
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/cumul-allocation-salaire'
 
     def formula(individu, period):
-        are_brute_mensuelle = individu('allocation_retour_emploi', period)
+        are_brute_mensuelle = individu('allocation_retour_emploi_montant', period)
         salaire_retenu = individu('complement_are_salaire_retenu', period)
 
         # une part des revenus mensuels bruts issus de l’activité reprise
