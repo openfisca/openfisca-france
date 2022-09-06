@@ -1,5 +1,12 @@
 # Changelog
 
+### 117.1.1 [#1881](https://github.com/openfisca/openfisca-france/pull/1881)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/08/2022.
+* Détails :
+  - Prends en compte le taux d'inflation dans celui du Livret d'Épargne Populaire
+
 ## 117.1.0 [#1897]([https://github.com/openfisca/openfisca-france/pull/1897)
 
 * Évolution du système socio-fiscal.
