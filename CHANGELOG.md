@@ -1,16 +1,18 @@
 # Changelog
 
-## 116.18.1 [#1880](https://github.com/openfisca/openfisca-france/pull/1880)
+## 117.0.0 [#1880](https://github.com/openfisca/openfisca-france/pull/1880)
 
-* Changement mineur.
+* Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
 * Zones impactées :
   - `model/prestations/complement_are.py`,
-  - `model/revenus/remplacement/chomage.py`
+  - `model/revenus/remplacement/chomage.py`,
+  - `openfisca_france/parameters/chomage/cotisation_retraite_complementaire.yaml`,
+  - `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/cotisation_retraite_complementaire`
 * Détails :
-  - Empêcher le cumul de l'ARE et du complément ARE dans le calcul du montant du chômage
-  - Introduction du système d'éligibilité au complément ARE (basé sur la présence ou non d'un salaire) pour déterminer quel montant utiliser pour le calcul du chômage
-  - Impact perçu dans le calcul de la prime d'activité car les montants de complément ARE et de l'ARE s'additionnait ce qui est impossible
+  - Empêcher le cumul de l'ARE et du complément ARE dans le calcul du montant du chômage et par conséquent dans la prime d'activité
+  - Introduction du système d'éligibilité au complément ARE
+  - Renommage du paramètre de cotisation de retraite complémentaire depuis `openfisca_france/parameters/chomage/cotisation_retraite_complementaire.yaml` en `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/cotisation_retraite_complementaire`
 
 ## 116.18.0 [#1849](https://github.com/openfisca/openfisca-france/pull/1849)
 
