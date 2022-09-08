@@ -6737,9 +6737,9 @@ class scelli(Variable):
         f7jp = foyer_fiscal('f7jp_2016', period)
         f7jq = foyer_fiscal('f7jq_2017', period)
         f7jr = foyer_fiscal('f7jr_2017', period)
-        f7la = foyer_fiscal('f7la', period)
-        f7lb = foyer_fiscal('f7lb', period)
-        f7lc = foyer_fiscal('f7lc', period)
+        f7la = foyer_fiscal('f7la_2016', period)
+        f7lb = foyer_fiscal('f7lb_2016', period)
+        f7lc = foyer_fiscal('f7lc_2016', period)
         f7ld = foyer_fiscal('f7ld', period)
         f7le = foyer_fiscal('f7le', period)
         f7lf = foyer_fiscal('f7lf', period)
@@ -6886,9 +6886,9 @@ class scelli(Variable):
         f7jp = foyer_fiscal('f7jp_2016', period)
         f7jq = foyer_fiscal('f7jq_2017', period)
         f7jr = foyer_fiscal('f7jr_2017', period)
-        f7la = foyer_fiscal('f7la', period)
-        f7lb = foyer_fiscal('f7lb', period)
-        f7lc = foyer_fiscal('f7lc', period)
+        f7la = foyer_fiscal('f7la_2016', period)
+        f7lb = foyer_fiscal('f7lb_2016', period)
+        f7lc = foyer_fiscal('f7lc_2016', period)
         f7ld = foyer_fiscal('f7ld', period)
         f7le = foyer_fiscal('f7le', period)
         f7lf = foyer_fiscal('f7lf', period)
@@ -7017,8 +7017,8 @@ class scelli(Variable):
             'f7gv', 'f7yj', 'f7gw_2016', 'f7yk', 'f7gx', 'f7yl',
             'f7ha', 'f7hd', 'f7hf',
 
-            'f7lb', 'f7le', 'f7lm_2018', 'f7ln', 'f7lg', 'f7lk',
-            'f7lc', 'f7ld', 'f7ls', 'f7lt', 'f7lh', 'f7ll',
+            'f7lb_2016', 'f7le', 'f7lm_2018', 'f7ln', 'f7lg', 'f7lk',
+            'f7lc_2016', 'f7ld', 'f7ls', 'f7lt', 'f7lh', 'f7ll',
             'f7lf', 'f7lz', 'f7lx', 'f7li', 'f7lo',
             'f7mg', 'f7mh', 'f7lj', 'f7lp',
             ]
@@ -7036,10 +7036,10 @@ class scelli(Variable):
         inv_5_24 = ['f7fd', 'f7jo_2017', 'f7jr_2017']
         inv_9_40 = ['f7nl_2016', 'f7nm', 'f7nn', 'f7no', 'f7hk', 'f7ho_2016']
         inv_9_36 = ['f7jl', 'f7jm_2017', 'f7nk_2017']
-        inv_9_25 = ['f7nb_2016', 'f7ng_2016', 'f7nc_2017', 'f7nh_2017', 'f7nd_2017', 'f7hj', 'f7hn']
+        inv_9_25 = ['f7nb_2016', 'f7nc_2017', 'f7nh_2017', 'f7nd_2017', 'f7hj', 'f7hn']
         inv_9_24 = ['f7fc', 'f7jk', 'f7jn_2017']
         inv_9_22 = ['f7jb_2016', 'f7jd_2017', 'f7na_2017', 'f7ne_2017']
-        inv_9_15 = ['f7ni_2017']
+        inv_9_15 = ['f7ni_2017', 'f7ng_2016']
         inv_9_13 = ['f7fa', 'f7ja_2017', 'f7jg', 'f7jh', 'f7je', 'f7nf_2017', 'f7nj_2017']
         inv_9_6  = ['f7fb', 'f7jf', 'f7jj']
         inv_3_6  = ['f7zb', 'f7zc']
