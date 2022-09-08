@@ -41,3 +41,6 @@ values:
   2020-10-01:
     reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042378448/2021-01-02
     value: 47.23
+  2022-07-01:
+    reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206217/2022-07-01
+    value: 49.09
