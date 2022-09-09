@@ -307,7 +307,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         # Pinel reports, 2014
         f7ai = foyer_fiscal('f7ai', period)  # Métropole, 6 ans
         f7bi = foyer_fiscal('f7bi', period)  # Métropole, 9 ans
-        
+
         inv_29_om = min_(P.plafond, f7gi + f7el + f7qd + f7qh)
         inv_23_om = min_(P.plafond - inv_29_om, f7qc + f7qg)
         inv_18_me = min_(P.plafond - inv_29_om - inv_23_om, f7gh + f7ek + f7qb + f7qf)
@@ -315,8 +315,7 @@ class duflot_pinel_denormandie_metropole(Variable):
 
         ri_metro = ((inv_18_me * P.taux_pinel_denormandie_metro_9ans / 9)
             + (inv_12_me * P.taux_pinel_denormandie_metro_6ans / 6)
-            + f7fi + f7fk +
-            f7ai + f7bi)
+            + f7fi + f7fk + f7ai + f7bi)
 
         return ri_metro
 
@@ -360,11 +359,11 @@ class duflot_pinel_denormandie_metropole(Variable):
         # Pinel reports, 2014
         f7ai = foyer_fiscal('f7ai', period)  # Métropole, 6 ans
         f7bi = foyer_fiscal('f7bi', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2015
         f7bz = foyer_fiscal('f7bz', period)  # Métropole, 6 ans
         f7cz = foyer_fiscal('f7cz', period)  # Métropole, 9 ans
-        
+
         inv_29_om = min_(P.plafond, f7gi + f7el + f7qd + f7qh + f7ql)
         inv_23_om = min_(P.plafond - inv_29_om, f7qc + f7qg + f7qk)
         inv_18_me = min_(P.plafond - inv_29_om - inv_23_om, f7gh + f7ek + f7qb + f7qf + f7qj)
@@ -424,15 +423,15 @@ class duflot_pinel_denormandie_metropole(Variable):
         # Pinel reports, 2014
         f7ai = foyer_fiscal('f7ai', period)  # Métropole, 6 ans
         f7bi = foyer_fiscal('f7bi', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2015
         f7bz = foyer_fiscal('f7bz', period)  # Métropole, 6 ans
         f7cz = foyer_fiscal('f7cz', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2016
         f7qz = foyer_fiscal('f7qz', period)  # Métropole, 6 ans
         f7rz = foyer_fiscal('f7rz', period)  # Métropole, 9 ans
-        
+
         inv_29_om = min_(P.plafond, f7gi + f7el + f7qd + f7qh + f7ql + f7qp)
         inv_23_om = min_(P.plafond - inv_29_om, f7qc + f7qg + f7qk + f7qo)
         inv_18_me = min_(P.plafond - inv_29_om - inv_23_om, f7gh + f7ek + f7qb + f7qf + f7qj + f7qn)
@@ -499,19 +498,19 @@ class duflot_pinel_denormandie_metropole(Variable):
         # Pinel reports, 2014
         f7ai = foyer_fiscal('f7ai', period)  # Métropole, 6 ans
         f7bi = foyer_fiscal('f7bi', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2015
         f7bz = foyer_fiscal('f7bz', period)  # Métropole, 6 ans
         f7cz = foyer_fiscal('f7cz', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2016
         f7qz = foyer_fiscal('f7qz', period)  # Métropole, 6 ans
         f7rz = foyer_fiscal('f7rz', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2017
         f7ra = foyer_fiscal('f7ra', period)  # Métropole, 6 ans
         f7rb = foyer_fiscal('f7rb', period)  # Métropole, 9 ans
-        
+
         inv_29_om = min_(P.plafond, f7gi + f7el + f7qd + f7qh + f7ql + f7qp + f7qu)
         inv_23_om = min_(P.plafond - inv_29_om, f7qc + f7qg + f7qk + f7qo + f7qt)
         inv_18_me = min_(P.plafond - inv_29_om - inv_23_om, f7gh + f7ek + f7qb + f7qf + f7qj + f7qn + f7qs)
@@ -565,23 +564,23 @@ class duflot_pinel_denormandie_metropole(Variable):
         # Pinel reports, 2014
         f7ai = foyer_fiscal('f7ai', period)  # Métropole, 6 ans
         f7bi = foyer_fiscal('f7bi', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2015
         f7bz = foyer_fiscal('f7bz', period)  # Métropole, 6 ans
         f7cz = foyer_fiscal('f7cz', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2016
         f7qz = foyer_fiscal('f7qz', period)  # Métropole, 6 ans
         f7rz = foyer_fiscal('f7rz', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2017
         f7ra = foyer_fiscal('f7ra', period)  # Métropole, 6 ans
         f7rb = foyer_fiscal('f7rb', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2018
         f7re = foyer_fiscal('f7re', period)  # Métropole, 6 ans
         f7rf = foyer_fiscal('f7rf', period)  # Métropole, 9 ans
-        
+
         # Denormandie, 2019
         f7na = foyer_fiscal('f7na', period)  # Métropole, 6 ans
         f7nb = foyer_fiscal('f7nb', period)  # Métropole, 9 ans
@@ -646,23 +645,23 @@ class duflot_pinel_denormandie_metropole(Variable):
         # Pinel reports, 2015
         f7bz = foyer_fiscal('f7bz', period)  # Métropole, 6 ans
         f7cz = foyer_fiscal('f7cz', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2016
         f7qz = foyer_fiscal('f7qz', period)  # Métropole, 6 ans
         f7rz = foyer_fiscal('f7rz', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2017
         f7ra = foyer_fiscal('f7ra', period)  # Métropole, 6 ans
         f7rb = foyer_fiscal('f7rb', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2018
         f7re = foyer_fiscal('f7re', period)  # Métropole, 6 ans
         f7rf = foyer_fiscal('f7rf', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2019
         f7jm = foyer_fiscal('f7jm', period)  # Métropole, 6 ans
         f7km = foyer_fiscal('f7km', period)  # Métropole, 9 ans
-        
+
         # Première prorogation, 6 ans, 2014
         f7rr = foyer_fiscal('f7rr', period)  # Métropole, 6 ans
         f7rs = foyer_fiscal('f7rs', period)  # Outre-Mer, 6 ans
@@ -682,7 +681,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         # Denormandie reports, 2019
         f7ja = foyer_fiscal('f7ja', period)  # Métropole, 6 ans
         f7jb = foyer_fiscal('f7jb', period)  # Métropole, 9 ans
-        
+
         inv_29_om = min_(P.plafond, f7qp + f7qu + f7qq + f7nd + f7qd + f7nh)
         inv_23_om = min_(P.plafond - inv_29_om, f7qo + f7qt + f7qy + f7nc + f7qc + f7ng)
         inv_18_me = min_(P.plafond - inv_29_om - inv_23_om, f7qn + f7qs + f7qx + f7nb + f7qb + f7nf)
@@ -745,23 +744,23 @@ class duflot_pinel_denormandie_metropole(Variable):
         # Pinel reports, 2016
         f7qz = foyer_fiscal('f7qz', period)  # Métropole, 6 ans
         f7rz = foyer_fiscal('f7rz', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2017
         f7ra = foyer_fiscal('f7ra', period)  # Métropole, 6 ans
         f7rb = foyer_fiscal('f7rb', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2018
         f7re = foyer_fiscal('f7re', period)  # Métropole, 6 ans
         f7rf = foyer_fiscal('f7rf', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2019
         f7jm = foyer_fiscal('f7jm', period)  # Métropole, 6 ans
         f7km = foyer_fiscal('f7km', period)  # Métropole, 9 ans
-        
+
         # Pinel reports, 2020
         f7jn = foyer_fiscal('f7jn', period)  # Métropole, 6 ans
         f7jo = foyer_fiscal('f7jo', period)  # Métropole, 9 ans
-        
+
         # Première prorogation, 6 ans
         f7rr = foyer_fiscal('f7rr', period)  # Métropole, 2014
         f7rs = foyer_fiscal('f7rs', period)  # Outre-Mer, 2014
@@ -792,11 +791,11 @@ class duflot_pinel_denormandie_metropole(Variable):
         # Denormandie reports, 2019
         f7ja = foyer_fiscal('f7ja', period)  # Métropole, 6 ans
         f7jb = foyer_fiscal('f7jb', period)  # Métropole, 9 ans
-        
+
         # Denormandie reports, 2020
         f7jr = foyer_fiscal('f7jr', period)  # Métropole, 6 ans
         f7js = foyer_fiscal('f7js', period)  # Métropole, 9 ans
-        
+
         inv_29_om = min_(P.plafond, f7qu + f7qq + f7nd + f7qd + f7nh + f7ql + f7nl)
         inv_23_om = min_(P.plafond - inv_29_om, f7qt + f7qy + f7nc + f7qc + f7ng + f7qk + f7nk)
         inv_18_me = min_(P.plafond - inv_29_om - inv_23_om, f7qs + f7qx + f7nb + f7qb + f7nf + f7qj + f7nj)
@@ -811,8 +810,8 @@ class duflot_pinel_denormandie_metropole(Variable):
             + f7bi + f7cz + f7qz + f7rz + f7ra + f7rb + f7re + f7rf + f7jm + f7km + f7ja + f7jb + f7jn + f7jo + f7sx + f7jr + f7js)
 
         return ri_metro
-        
-        
+
+
 class duflot_pinel_denormandie_om(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -1284,8 +1283,8 @@ class duflot_pinel_denormandie_om(Variable):
             + f7di + f7ez + f7sz + f7tz + f7rc + f7rd + f7rg + f7rh + f7lm + f7mm + f7jc + f7jd + f7jp + f7jq + f7sy + f7jt + f7ju)
 
         return ri_om
-        
-        
+
+
 class accult(Variable):
     value_type = float
     entity = FoyerFiscal
