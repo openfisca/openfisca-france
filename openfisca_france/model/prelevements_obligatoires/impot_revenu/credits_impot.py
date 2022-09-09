@@ -165,6 +165,7 @@ class nb_pac2(Variable):
 
         return nbF + nbJ + nbpac_invalideR - nbH / 2
 
+
 class ci_invfor(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -2844,7 +2845,7 @@ class ci_saldom(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
 
-        # détérminer le plafond 
+        # détérminer le plafond
 
         if invalide.any():
             plaf = P.max3
@@ -2853,7 +2854,7 @@ class ci_saldom(Variable):
                 plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
             else:
                 plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
-        
+
         # calcul du CI
         ci = min_(plaf, f7db) * P.taux
 
@@ -2875,7 +2876,7 @@ class ci_saldom(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
 
-        # détérminer le plafond 
+        # détérminer le plafond
         if invalide.any():
             plaf = P.max3
         else:
@@ -2883,7 +2884,7 @@ class ci_saldom(Variable):
                 plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
             else:
                 plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
-        
+
         # calcul du CI
         ci = min_(plaf, max_(0, f7db - f7dr)) * P.taux
 

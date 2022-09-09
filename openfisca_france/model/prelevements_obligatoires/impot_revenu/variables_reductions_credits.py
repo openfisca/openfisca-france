@@ -2879,7 +2879,7 @@ class f7nv(Variable):
     cerfa_field = '7NV'
     value_type = int
     entity = FoyerFiscal
-    label ='Scellier'
+    label = 'Scellier'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
@@ -4364,6 +4364,7 @@ class f7ky(Variable):
     label = 'Malraux : Report du solde de réduction d’impôt de l’année 2018'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
+
 
 class f7kz(Variable):
     cerfa_field = '7KZ'
@@ -6187,6 +6188,7 @@ class f7mw(Variable):
     label = 'Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2021'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
+
 
 class fhoa(Variable):
     cerfa_field = 'HOA'
@@ -8645,6 +8647,7 @@ class f7zd(Variable):
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
+
 class f7zm(Variable):
     cerfa_field = '7ZM'
     value_type = int
@@ -11089,7 +11092,7 @@ class f7tw(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Inv. for."
+    label = 'Investissement forestiers report des dépenses de travaux des années antérieures: 2019 après sinistre'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
