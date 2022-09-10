@@ -1,5 +1,14 @@
 # Changelog
 
+### 117.0.2 [#1846](https://github.com/openfisca/openfisca-france/pull/1846)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/04/2022
+* Zones impactées :
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/montant.yaml`
+* Détails :
+  - Mise à jour du montant de l'AAH
+
 ### 117.0.1 [#1838](https://github.com/openfisca/openfisca-france/pull/1838)
 
 * Évolution du système socio-fiscal
