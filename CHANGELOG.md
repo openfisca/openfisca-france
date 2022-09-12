@@ -1,5 +1,15 @@
 # Changelog
 
+### 117.0.3 [#1884]([https://github.com/openfisca/openfisca-france/pull/1884)
+
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/2022
+* Zones impactées :
+        parameters/prelevements_sociaux/reductions_cotisations_sociales/fillon/ensemble_des_entreprises/*
+* Détails :
+       - Revalorise les paramètres de la réduction Fillon (entreprises_de_20_salaries_et_plus, entreprises_de_moins_de_20_salaries et plafond)
+
 ### 117.0.2 [#1846](https://github.com/openfisca/openfisca-france/pull/1846)
 
 * Évolution du système socio-fiscal
