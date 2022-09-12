@@ -1,15 +1,129 @@
 # Changelog
 
-### 116.13.3 [##1864](https://github.com/openfisca/openfisca-france/pull/1864)
+### 117.0.3 [##1864](https://github.com/openfisca/openfisca-france/pull/1864)
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : Paramètres de l'impôt sur le revenu immobilier, Allocation adulte handicapé, Prime d'activité.
+* Zones impactées : 
+- impot_revenu/calcul_impot_revenu/pv/pv_immo/taux.yaml
+- aah/majoration_plafond/majoration_plafond_couple.yaml
+- aah/montant.yaml
+- ppa/pa_m/montant_de_base.yaml
 * Détails :
   - Ajoute référence législative
-  - Met à jour certains paramètres
+  - Met à jour certains paramètres : revalorisation du montant de base de la Prime d'activité et du montant de l'AAH.
   - Ajoute last_review
 
+### 117.0.2 [#1846](https://github.com/openfisca/openfisca-france/pull/1846)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/04/2022
+* Zones impactées :
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/montant.yaml`
+* Détails :
+  - Mise à jour du montant de l'AAH
+
+### 117.0.1 [#1838](https://github.com/openfisca/openfisca-france/pull/1838)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : du 01/01/2020 au 31/12/2021
+* Zones impactées :
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpen/max.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpen/min.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpro/min.yaml`
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpro/min.yaml`
+* Détails :
+  - Mise à jour des montants minimum et maximum d'abattement pour les traitements et salaires et pour les pensions
+  - Ajout de références législatives
+
+## 117.0.0 [#1880](https://github.com/openfisca/openfisca-france/pull/1880)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/prestations/complement_are.py`,
+  - `model/revenus/remplacement/chomage.py`,
+  - `openfisca_france/parameters/chomage/cotisation_retraite_complementaire.yaml`,
+  - `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/cotisation_retraite_complementaire`
+* Détails :
+  - Empêcher le cumul de l'ARE et du complément ARE dans le calcul du montant du chômage et par conséquent dans la prime d'activité
+  - Introduction du système d'éligibilité au complément ARE
+  - Renommage du paramètre de cotisation de retraite complémentaire depuis `openfisca_france/parameters/chomage/cotisation_retraite_complementaire.yaml` en `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/cotisation_retraite_complementaire`
+
+## 116.18.0 [#1849](https://github.com/openfisca/openfisca-france/pull/1849)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/prestations/complement_are.py`
+  - `model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/chomage.py`
+  - `model/revenus/remplacement/chomage.py`
+  - `parameters/chomage/complement_are.yaml`
+  - `parameters/chomage/allocation_retour_emploi/montant_minimum_hors_mayotte.yaml`
+  - `parameters/chomage/cotisation_retraite_complementaire.yaml`
+* Détails :
+  - Ajoute le Complément ARE (Aide au Retour à l'Emploi) de Pôle emploi pour la reprise d'activité
+  - Met à jour `chomage_brut` et `allocation_retour_emploi`
+  - Corrige l'assiette mensuelle de `csg_deductible_chomage` et `csg_imposable_chomage`
+  - Introduit `assiette_csg_crds_chomage_journaliere` et `chomage_cotisation_retraite_complementaire_journaliere`
+
+### 116.17.1 [##1874](https://github.com/openfisca/openfisca-france/pull/1874)
+
+* Changement mineur.
+* Périodes concernées : sans objet
+* Zones impactées :
+  - `parameters/impot_revenu/bareme_ir_depuis_1945/`
+  - `parameters/impot_revenu/calcul_impot_revenu/plaf_qf/`
+  - `parameters/impot_revenu/calcul_revenus_imposables/abat_rni/`
+* Détails :
+  - Met à jour certains paramètres de l'impôt sur le revenu
+  - Ajoute surtout des références législatives
+
+## 116.17.0 [#1850](https://github.com/openfisca/openfisca-france/pull/1850)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 24/12/2018
+* Zones impactées :
+  - `/model/revenus/activite/salarie.py`
+  - `/parameters/marche_travail/prime_pepa/`
+* Détails :
+  - Ajout de la prime exceptionnelle de pouvoir d'achat
+
+## 116.16.0 [#1866](https://github.com/openfisca/openfisca-france/pull/1866)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2021.
+* Zones impactées :
+  - `model\prestations\indemnite_inflation.py`
+  - `parameters\indemnite_inflation.yaml`
+  - `model\revenus\activite\non_salarie.py`
+* Détails :
+  - Ajoute l'indemnité inflation de 2021 (prime de 100 €)
+  - Améliore le calcul de la variable `rpns_micro_entreprise_revenus_net` (met l'option "divide")
+
+## 116.15.0 [#1871](https://github.com/openfisca/openfisca-france/pull/1871)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : 2022
+* Zones impactées :
+  - `marche_travail/salaire_minimum/smic`
+  - `prestations_sociales/solidarite_insertion/minima_sociaux/ppa`
+* Détails :
+  - Ajout de références législatives
+  - Ajout des nouvelles valeurs
+
+## 116.14.0 [#1867](https://github.com/openfisca/openfisca-france/pull/1867)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2022.
+* Zones impactées :
+    - `parameters/taxation_indirecte/taxe_habitation/degrevement_d_office/plaf_rfr_degrev.yaml`
+    - `parameters/taxation_indirecte/taxe_habitation/degrevement_d_office/plaf_rfr_degrev_degressif.yaml`
+    - `parameters/taxation_indirecte/taxe_habitation/degrevement_d_office/taux_sup_plaf.yaml`
+    - `parameters/taxation_indirecte/taxe_habitation/exon_plaf_rfr.yaml`
+* Détails :
+    - Met à jour les taux de la taxe d'habitation pour 2022.
   
 ### 116.13.2 [#1862](https://github.com/openfisca/openfisca-france/pull/1862)
 
