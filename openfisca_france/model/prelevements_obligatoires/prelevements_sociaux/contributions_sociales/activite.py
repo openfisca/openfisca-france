@@ -21,7 +21,7 @@ class assiette_csg_abattue(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        primes_salaires = individu('primes_salaires', period)
+        primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
         salaire_de_base = individu('salaire_de_base', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         # indemnites_journalieres_maladie = individu('indemnites_journalieres_maladie', period)
@@ -40,7 +40,7 @@ class assiette_csg_abattue(Variable):
             + indemnite_residence
             + indemnite_compensatrice_csg
             + primes_fonction_publique
-            + primes_salaires
+            + primes_salaires_non_exonerees
             + remuneration_principale
             + salaire_de_base
             + stage_gratification_reintegration
@@ -207,7 +207,7 @@ class salaire_imposable(Variable):
 
     def formula(individu, period):
         salaire_de_base = individu('salaire_de_base', period)
-        primes_salaires = individu('primes_salaires', period)
+        primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         indemnite_residence = individu('indemnite_residence', period)
         indemnite_compensatrice_csg = individu('indemnite_compensatrice_csg', period)
@@ -218,14 +218,13 @@ class salaire_imposable(Variable):
         hsup = individu('hsup', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         complementaire_sante_salarie = individu('complementaire_sante_salarie', period)
-
         # Revenu du foyer fiscal projeté sur le demandeur
         rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options = [DIVIDE])
         rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
             salaire_de_base
-            + primes_salaires
+            + primes_salaires_non_exonerees
             + remuneration_principale
             + primes_fonction_publique
             + indemnite_residence
@@ -257,6 +256,17 @@ class salaire_net(Variable):
         csg_imposable_salaire = individu('csg_imposable_salaire', period)
 
         return salaire_imposable + crds_salaire + csg_imposable_salaire
+
+    def formula_2019_01_01(individu, period, parameters):
+        '''
+        Calcul du salaire net d'après définition INSEE
+        net = net de csg et crds
+        '''
+        salaire_imposable = individu('salaire_imposable', period)
+        crds_salaire = individu('crds_salaire', period)
+        csg_imposable_salaire = individu('csg_imposable_salaire', period)
+        prime_exceptionnelle_pouvoir_achat_exoneree = individu('prime_exceptionnelle_pouvoir_achat_exoneree', period, options = [DIVIDE])
+        return salaire_imposable + crds_salaire + csg_imposable_salaire + prime_exceptionnelle_pouvoir_achat_exoneree
 
 
 class tehr(Variable):

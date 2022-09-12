@@ -1,0 +1,325 @@
+- name: Test 01 - Complément ARE en cas de salaire de reprise proche du salaire journalier de référence
+  period: 2022-04
+  input:
+    activite: actif
+    salaire_de_base: 1200
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 37
+    are_salaire_journalier_reference: 48
+  output:
+    complement_are_nombre_jours_indemnises: 7.0
+    complement_are_brut: 259
+    complement_are_deductions: -10.08
+    complement_are_net: 248.92
+
+- name: Test 02 - Complément ARE en cas de salaire de reprise bas par rapport au salaire journalier de référence
+  period: 2022-04
+  input:
+    activite: actif
+    salaire_de_base: 375
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 37
+    are_salaire_journalier_reference: 45
+  output:
+    complement_are_nombre_jours_indemnises: 23
+    complement_are_brut: 851.00
+    complement_are_deductions: -31.05
+    complement_are_net: 819.95
+
+- name: Test 03 - Complément ARE en cas de reprise d'emploi avec salaire supérieur au salaire de référence
+  period: 2022-04
+  input:
+    activite: actif
+    salaire_de_base: 1800
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 35.71
+    are_salaire_journalier_reference: 58.38
+  output:
+    complement_are_nombre_jours_indemnises: 0
+    complement_are_brut: 0
+
+- name: Test 04 - Complément ARE en cas simple sans déduction de charges
+  period: 2022-04
+  input:
+    activite: actif
+    salaire_de_base: 210
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 27.72
+    are_salaire_journalier_reference: 48.63
+  output:
+    complement_are_nombre_jours_indemnises: 25
+    complement_are_brut: 693
+    complement_are_deductions: 0
+    complement_are_net: 693
+
+- name: Test 05 - Complément ARE en cas simple avec haut salaire journalier de référence
+  period: 2022-04
+  absolute_error_margin: 0.000001
+  input:
+    activite: actif
+    salaire_de_base: 1200
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 118.10
+    are_salaire_journalier_reference: 207.20
+  output:
+    complement_are_nombre_jours_indemnises: 23
+    complement_are_brut: 2716.30
+    complement_are_deductions: -312.57
+    complement_are_net: 2403.73
+    # valeurs intermédiaires théoriques :
+    chomage_cotisation_retraite_complementaire_journaliere: -6.22  # round(-1 * 207.20 * 0.03, 2)
+    complement_are_cotisation_retraite_complementaire: -143.06  # -6.22 * 23
+    complement_are_csg_journaliere: -6.82  # round(-1 * ((2716.30 - 143.06)/ 23) * 0.9825 * 0.062, 2)
+    complement_are_csg: -156.86  # -6.82 * 23
+    complement_are_crds_journaliere: -0.55  # round(-1 * ((2716.30 - 143.06) / 23) * 0.9825 * 0.005, 2)
+    complement_are_crds: -12.65  # -0.55 * 23
+
+- name: Test 06 - Complément ARE en cas simple avec dégressivité ARE
+  period: 2022-05
+  input:
+    activite: actif
+    salaire_de_base: 1200
+    degressivite_are: true
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 82.67
+    allocation_retour_emploi_journaliere_taux_plein: 118.10
+    are_salaire_journalier_reference: 207.20
+  output:
+    complement_are_nombre_jours_indemnises: 24
+    complement_are_nombre_jours_indemnisables: 24
+    complement_are_brut: 1984.08
+    complement_are_cotisation_retraite_complementaire: -149.28  # -1 * round(207.20 * 0.03, 2) * 24
+    complement_are_csg: -111.84  # round(((1984.08 - 149.28) / 24)* 0.9825 * 0.062, 2) * 24
+    complement_are_crds: -9.12
+    complement_are_deductions: -270.24
+    complement_are_net: 1713.84
+
+- name: Test 07 - Complément ARE pour un mois de 28 jours
+  period: 2022-02
+  input:
+    activite: actif
+    salaire_de_base: 918
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 35.11
+    are_salaire_journalier_reference: 56.91
+  output:
+    complement_are_nombre_jours_indemnises: 10
+    complement_are_deductions: -17.1
+    complement_are_brut: 351.1
+    complement_are_net: 334
+
+- name: Test 08 - Complément ARE pour un mois de 29 jours
+  period: 2024-02
+  input:
+    activite: actif
+    salaire_de_base: 918
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 35.11
+    are_salaire_journalier_reference: 56.91
+  output:
+    complement_are_nombre_jours_indemnises: 11
+    complement_are_brut: 386.21
+    complement_are_deductions: -18.81
+    complement_are_net: 367.4
+
+- name: Test 09 - Complément ARE pour un mois de 30 jours
+  period: 2022-04
+  input:
+    activite: actif
+    salaire_de_base: 918
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 35.11
+    are_salaire_journalier_reference: 56.91
+  output:
+    complement_are_nombre_jours_indemnises: 12
+    complement_are_brut: 421.32
+    complement_are_deductions: -20.52
+    complement_are_net: 400.8
+
+- name: Test 10 - Complément ARE pour un mois de 31 jours
+  period: 2022-03
+  input:
+    activite: actif
+    salaire_de_base: 918
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 35.11
+    are_salaire_journalier_reference: 56.91
+  output:
+    complement_are_nombre_jours_indemnises: 13
+    complement_are_brut: 456.43
+    complement_are_deductions: -22.23
+    complement_are_net: 434.20
+
+- name: Test 11 - Complément ARE en cas de dépassement du plafond de cumul
+  period: 2022-04
+  input:
+    activite: actif
+    salaire_de_base: 846
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 22.5
+    are_salaire_journalier_reference: 30
+  output:
+    complement_are_nombre_jours_indemnises: 4
+    complement_are_brut: 90
+    complement_are_deductions: 0
+    complement_are_net: 90
+
+- name: Test 12 - Complément ARE partiel dans le cas où le nombre de jours restants n'est pas suffisant
+  period: 2022-04
+  input:
+    activite: actif
+    salaire_de_base: 1200
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 4
+    allocation_retour_emploi_journaliere: 37
+    are_salaire_journalier_reference: 48
+  output:
+    complement_are_nombre_jours_indemnisables: 7
+    complement_are_nombre_jours_indemnises: 4
+    complement_are_brut: 148
+    complement_are_deductions: -10.08
+    complement_are_net: 137.92
+
+- name: Test 13 - Complément ARE partiel dans un cas sans jours restants
+  period: 2022-04
+  input:
+    activite: actif
+    salaire_de_base: 1200
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 0
+    allocation_retour_emploi_journaliere: 37
+    are_salaire_journalier_reference: 48
+  output:
+    complement_are_nombre_jours_indemnisables: 7
+    complement_are_nombre_jours_indemnises: 0
+    complement_are_brut: 0
+    complement_are_deductions: -10.08
+    complement_are_net: 0
+
+- name: Test 14 - Vérifie le calcul du nombre de jours restants
+  period: 2022-04
+  input:
+    salaire_de_base: 1200
+    degressivite_are: false
+    complement_are_nombre_jours_restants: 10
+    allocation_retour_emploi_journaliere: 37
+    are_salaire_journalier_reference: 48
+  output:
+    complement_are_nombre_jours_restants: 10
+    complement_are_nombre_jours_indemnisables: 7
+    complement_are_nombre_jours_restants_fin_droits: 3
+
+- name: Test 15 - Complément ARE pour plusieurs individus
+  period: 2022-04
+  input:
+    individus:
+      parent1:
+        activite: actif
+        salaire_de_base: 1200
+        degressivite_are: false
+        complement_are_nombre_jours_restants: 100
+        allocation_retour_emploi_journaliere: 37
+        are_salaire_journalier_reference: 48
+      parent2:
+        activite: actif
+        salaire_de_base: 375
+        degressivite_are: false
+        complement_are_nombre_jours_restants: 100
+        allocation_retour_emploi_journaliere: 37
+        are_salaire_journalier_reference: 45
+  output:
+    individus:
+      parent1:
+        complement_are_nombre_jours_indemnises: 7.0
+        complement_are_brut: 259
+        complement_are_deductions: -10.08
+        complement_are_net: 248.92
+      parent2:
+        complement_are_nombre_jours_indemnises: 23
+        complement_are_brut: 851.00
+        complement_are_deductions: -31.05
+        complement_are_net: 819.95
+
+- name: Test 16 - Complément ARE en cas sur plusieurs périodes différentes
+  input:
+    activite:
+      2022-02: actif
+      2022-03: actif
+      2022-04: actif
+    salaire_de_base:
+      2022-02: 918
+      2022-03: 918
+      2022-04: 918
+    degressivite_are:
+      2022-02: false
+      2022-03: false
+      2022-04: false
+    complement_are_nombre_jours_restants:
+      2022-02: 100
+    allocation_retour_emploi_journaliere:
+      2022-02: 35.11
+      2022-03: 35.11
+      2022-04: 35.11
+    are_salaire_journalier_reference:
+      2022-02: 56.91
+      2022-03: 56.91
+      2022-04: 56.91
+  output:
+    complement_are_nombre_jours_restants:
+      2022-02: 100
+      2022-03: 90
+      2022-04: 77
+    complement_are_nombre_jours_indemnises:
+      2022-02: 10
+      2022-03: 13
+      2022-04: 12
+    complement_are_brut:
+      2022-02: 351.1
+      2022-03: 456.43
+      2022-04: 421.32
+    complement_are_deductions:
+      2022-02: -17.1
+      2022-03: -22.23
+      2022-04: -20.52
+    complement_are_net:
+      2022-02: 334
+      2022-03: 434.20
+      2022-04: 400.8
+
+- name: Test 17 - Chômage brut en fonction de l'eligibilité au complément ARE - cas avec un salaire strictement positif
+  period: 2022-04
+  input:
+    activite: [chomeur, actif]
+    salaire_de_base: [1200, 1200]
+    complement_are_nombre_jours_restants: [100, 100]
+    allocation_retour_emploi_journaliere: [37, 37]
+    are_salaire_journalier_reference: [48, 48]
+  output:
+    complement_are_eligibilite: [false, true]
+    complement_are_brut: [0, 259]
+    allocation_retour_emploi_montant: [1110, 1110]
+    chomage_brut: [1110, 259]
+
+- name: Test 18 - Chômage brut en fonction de l'eligibilité au complément ARE - cas avec un salaire nul
+  period: 2022-04
+  input:
+    activite: chomeur
+    salaire_de_base: 0
+    complement_are_nombre_jours_restants: 100
+    allocation_retour_emploi_journaliere: 37
+    are_salaire_journalier_reference: 48
+  output:
+    complement_are_eligibilite: false
+    complement_are_brut: 0
+    allocation_retour_emploi_montant: 1110
+    chomage_brut: 1110

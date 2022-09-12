@@ -2129,6 +2129,7 @@ class rpns_micro_entreprise_benefice(Variable):
     label = 'Bénéfice de la micro entreprise'
     entity = Individu
     definition_period = YEAR
+    set_input = set_input_divide_by_period
 
     def formula_2008_01_01(individu, period, parameters):
         rpns_micro_entreprise_CA_bnc_imp = individu('rpns_micro_entreprise_CA_bnc_imp', period)
@@ -2184,7 +2185,7 @@ class rpns_micro_entreprise_revenus_net(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period)
+        rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', period, options = [DIVIDE])
         taux_cotisations_sociales = parameters(period).taxation_societes.tns.micro_entreprise.cotisations_sociales
         rpns_micro_entreprise_charges_sociales = rpns_micro_entreprise_benefice * taux_cotisations_sociales
         revenus = rpns_micro_entreprise_benefice - rpns_micro_entreprise_charges_sociales

@@ -39,6 +39,10 @@ check-style:
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
 	flake8 `git ls-files | grep "\.py$$"`
 
+check-yaml:
+	@# check yaml style
+	.github/lint-changed-yaml-tests.sh
+
 test: clean check-syntax-errors check-style
 	@# Launch tests from openfisca_france/tests directory (and not .) because TaxBenefitSystem must be initialized
 	@# before parsing source files containing formulas.

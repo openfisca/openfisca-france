@@ -46,7 +46,7 @@ class assiette_cotisations_sociales_prive(Variable):
         indemnites_compensatrices_conges_payes = individu('indemnites_compensatrices_conges_payes', period)
         indemnite_residence = individu('indemnite_residence', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
-        primes_salaires = individu('primes_salaires', period)
+        primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         reintegration_titre_restaurant_employeur = individu(
             'reintegration_titre_restaurant_employeur', period
@@ -57,7 +57,7 @@ class assiette_cotisations_sociales_prive(Variable):
 
         assiette = (
             salaire_de_base
-            + primes_salaires
+            + primes_salaires_non_exonerees
             + avantage_en_nature
             + hsup
             + indemnites_compensatrices_conges_payes
