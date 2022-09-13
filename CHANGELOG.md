@@ -1,5 +1,15 @@
 # Changelog
 
+### 118.3.4 [#1863](https://github.com/openfisca/openfisca-france/pull/1863)
+
+* Changement mineur.
+* Périodes concernées : aucune
+* Zones impactées :
+        Github action workflow
+* Détails :
+       - Modification de la publication sur conda. Avant on ne construisait le paquet qu'après le merge sur master.
+       - Maintenant le paquet est construit et testé dès que `check-version-and-changelog` passe.
+
 ### 118.3.2 [#1918](https://github.com/openfisca/openfisca-france/pull/1918)
 
 * Changement mineur.
@@ -204,7 +214,8 @@
 * Détails :
  - Retire un paramètre qui est un extrait de formule, non référencé et non utilisé
 
-### 117.0.3 [#1884]([https://github.com/openfisca/openfisca-france/pull/1884)
+### 117.0.3 [#1884](https://github.com/openfisca/openfisca-france/pull/1884)
+
 
 * Changement mineur.
 * Périodes concernées : à partir du 01/01/2022
