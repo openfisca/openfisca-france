@@ -5230,12 +5230,22 @@ class f7qb_2012(Variable):
     definition_period = YEAR
 
 
+class f7qb_2018(Variable):
+    cerfa_field = '7QB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs intermédiaires en métropole réalisés du 1.9.2014 au 31.12.2014 avec engagement de location 9 ans'
+    end = '2018-12-31'
+    definition_period = YEAR
+
+
 class f7qb(Variable):
     cerfa_field = '7QB'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Investissements locatifs Pinel en métropole réalisés en 2020 avec engagement de location 9 ans'
     definition_period = YEAR
 
 
@@ -5257,12 +5267,23 @@ class f7qc_2012(Variable):
     definition_period = YEAR
 
 
+class f7qc_2018(Variable):
+    cerfa_field = '7QC'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs intermédiaires en outremer réalisés du 1.9.2014 au 31.12.2014 avec engagement de location 6 ans'
+    end = '2018-12-31'
+    definition_period = YEAR
+
+
 class f7qc(Variable):
     cerfa_field = '7QC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Investissements locatifs Pinel en outremer réalisés 2020 avec engagement de location 6 ans'
+    # start = '2020-01-01'
     definition_period = YEAR
 
 
@@ -5283,12 +5304,23 @@ class f7qd_2012(Variable):
     label = 'cappme'
     definition_period = YEAR
 
+
+class f7qd_2018(Variable):
+    cerfa_field = '7QD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs intermédiaires en outremer réalisés du 1.9.2014 au 31.12.2014 avec engagement de location 9 ans'
+    end = '2018-12-31'
+    definition_period = YEAR
+
+
 class f7qd(Variable):
     cerfa_field = '7QD'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Investissements locatifs intermédiaires en outremer réalisés en 2020 avec engagement de location 9 ans'
     definition_period = YEAR
 
 
@@ -5321,12 +5353,21 @@ class f7qk_2012(Variable):
     definition_period = YEAR
 
 
+class f7qk_2019(Variable):
+    cerfa_field = '7QK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs Pinel en outremer réalisés en 2016 avec engagement de location 6 ans'
+    definition_period = YEAR
+
+
 class f7qk(Variable):
     cerfa_field = '7QK'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Investissements locatifs Pinel en outremer réalisés en 2021 avec engagement de location 6 ans'
     definition_period = YEAR
 
 
@@ -5366,12 +5407,22 @@ class f7ql_2012(Variable):
     definition_period = YEAR
 
 
+class f7ql_2019(Variable):
+    cerfa_field = '7QL'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs Pinel en outremer réalisés en 2016 avec engagement de location 9 ans'
+    end = '2019-12-31'
+    definition_period = YEAR
+
+
 class f7ql(Variable):
     cerfa_field = '7QL'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Pinel'
+    label = 'Investissements locatifs Pinel en outremer réalisés en 2021 avec engagement de location 9 ans'
     definition_period = YEAR
 
 
@@ -5446,11 +5497,21 @@ class f7qj_2012(Variable):
     definition_period = YEAR
 
 
+class f7qj_2019(Variable):
+    cerfa_field = '7QJ'
+    value_type = int
+    unit = 'currency'
+    label = 'Investissements locatifs Pinel en métropole réalisés en 2016 avec engagement de location 9 ans'
+    entity = FoyerFiscal
+    end = '2019-12-31'
+    definition_period = YEAR
+
+
 class f7qj(Variable):
     cerfa_field = '7QJ'
     value_type = int
     unit = 'currency'
-    label = 'Pinel'
+    label = 'Investissements locatifs Pinel en métropole réalisés en 2021 avec engagement de location 9 ans'
     entity = FoyerFiscal
     definition_period = YEAR
 
@@ -5553,11 +5614,21 @@ class f7qi_2012(Variable):
     definition_period = YEAR
 
 
+class f7qi_2019(Variable):
+    cerfa_field = '7QI'
+    value_type = int
+    unit = 'currency'
+    label = 'Investissements locatifs Pinel en métropole réalisés en 2016 avec engagement de location 6 ans'
+    entity = FoyerFiscal
+    end = '2019-12-31'
+    definition_period = YEAR
+
+
 class f7qi(Variable):
     cerfa_field = '7QI'
     value_type = int
     unit = 'currency'
-    label = 'Pinel'
+    label = 'Investissements locatifs Pinel en métropole réalisés en 2021 avec engagement de location 6 ans'
     entity = FoyerFiscal
     definition_period = YEAR
 
@@ -11201,13 +11272,23 @@ class f7fx(Variable):
 # Réduction d'impôts sur les investissements locatifs intermédiaires (loi Pinel)
 
 
-class f7qa(Variable):
+class f7qa_2018(Variable):
     cerfa_field = '7QA'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Investissements locatifs intermédiaires en métropole réalisés du 1.9.2014 au 31.12.2014 avec engagement de location 6 ans'
-    # start_date = date(2014, 1, 1)
+    end = '2018-12-31'
+    definition_period = YEAR
+
+
+class f7qa(Variable):
+    cerfa_field = '7QA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements locatifs Pinel en métropole réalisés en 2020 avec engagement de location 6 ans'
+    # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
 
