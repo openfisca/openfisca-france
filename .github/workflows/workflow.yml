@@ -271,7 +271,10 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Get version
-        run: echo "PACKAGE_VERSION=$(grep "version = " setup.py | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/')" >> $GITHUB_ENV
+        run: |
+          conda install grep sed
+          echo "PACKAGE_VERSION=$(grep "version = " setup.py | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/')" >> $GITHUB_ENV
+          echo ${{ env.PACKAGE_VERSION }}
       - name: Download conda build
         uses: actions/download-artifact@v3
         with:
