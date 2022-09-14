@@ -275,7 +275,7 @@ jobs:
           conda install -c bioconda grep
           conda install -c conda-forge m2-sed
           echo "PACKAGE_VERSION=$(grep "version = " setup.py | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/')" >> $GITHUB_ENV
-          echo ${{ env.PACKAGE_VERSION }}
+          echo "Version: ${{ env.PACKAGE_VERSION }}"
       - name: Download conda build
         uses: actions/download-artifact@v3
         with:
