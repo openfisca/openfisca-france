@@ -5723,6 +5723,8 @@ class domlog(Variable):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2016
+
+        ATTENTION : Rupture importante dans cette variable à partir de 2016 (prise en compte partielle du plafond).
         '''
         fhod = foyer_fiscal('fhod', period)
         fhoe = foyer_fiscal('fhoe', period)
@@ -5778,13 +5780,52 @@ class domlog(Variable):
         fhut = foyer_fiscal('fhut', period)
         fhuu = foyer_fiscal('fhuu', period)
 
-        return (
-            fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj
-            + fhok + fhol + fhom + fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov
-            + fhow + fhod + fhoe + fhof + fhog + fhox + fhoy + fhoz
-            + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug + fhuh + fhui + fhuj + fhuk + fhul
-            + fhum + fhun + fhuo + fhup + fhuq + fhur + fhus + fhut + fhuu
-            )
+        ri_avant_2011 = (fhqb + fhqc + fhql + fhqd + fhqm
+            + fhqt + fhoa + fhob + fhoc
+            + fhod + fhua + fhuh + fhuo)
+
+        ri_2011 = (fhoh + fhoi + fhoj + fhok + fhol + fhom
+            + fhon + fhoo + fhop + fhoq + fhor + fhoe + fhof
+            + fhub + fhuc + fhui + fhuj + fhup + fhuq)
+
+        ri_apres_2011 = (fhos + fhot + fhou + fhov + fhow
+            + fhog + fhox + fhoy + fhoz + fhud + fhue + fhuf + fhug +
+            + fhuk + fhul + fhum + fhun +
+            + fhur + fhus + fhut + fhuu)
+
+        # application du plafonnement
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
+        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
+        P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
+
+        # si plafond rélatif à 11, 13, 15 % (case HQA)
+        ri_rel = (ri_avant_2011 * P2010.plaf_relatif
+            + ri_2011 * P2011.plaf_relatif
+            + ri_apres_2011 * P2012.plaf_relatif)
+
+        # si plafond absolu
+        ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
+        ri_plaf_2011 = min_(max_(0, ri_2011 - ri_plaf_2010), P2011.plaf_absolu)
+        ri_plaf_2012 = min_(max_(0, ri_apres_2011 - ri_plaf_2011), P2012.plaf_absolu)
+
+        ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
+
+        # choix optimal
+        ri_opt = max_(ri_rel, ri_abs)
+
+        # choix observé
+        # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
+        #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
+
+        return ri_opt
+
+        # return (
+        #     fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj
+        #     + fhok + fhol + fhom + fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov
+        #     + fhow + fhod + fhoe + fhof + fhog + fhox + fhoy + fhoz
+        #     + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug + fhuh + fhui + fhuj + fhuk + fhul
+        #     + fhum + fhun + fhuo + fhup + fhuq + fhur + fhus + fhut + fhuu
+        #     )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -5887,8 +5928,8 @@ class domlog(Variable):
         ri_opt = max_(ri_rel, ri_abs)
 
         # choix observé
-        ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
-            + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
+        # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
+        #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
         return ri_opt
 
@@ -6045,8 +6086,8 @@ class domlog(Variable):
         ri_opt = max_(ri_rel, ri_abs)
 
         # choix observé
-        ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
-            + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
+        # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
+        #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
         return ri_opt
 
@@ -6207,8 +6248,8 @@ class domlog(Variable):
         ri_opt = max_(ri_rel, ri_abs)
 
         # choix observé
-        ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
-            + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
+        # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
+        #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
         return ri_opt
 
@@ -6371,8 +6412,8 @@ class domlog(Variable):
         ri_opt = max_(ri_rel, ri_abs)
 
         # choix observé
-        ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
-            + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
+        # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
+        #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
         return ri_opt
 
@@ -6537,8 +6578,8 @@ class domlog(Variable):
         ri_opt = max_(ri_rel, ri_abs)
 
         # choix observé
-        ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
-            + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
+        # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
+        #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
         return ri_opt
 
