@@ -1,0 +1,10 @@
+description: Taux Complément RI - Prorogation
+values:
+  2009-01-01:
+    value: 0.06
+  2011-01-01:
+    value: 0.05
+  2012-01-01:
+    value: 0.04
+metadata:
+  unit: /1

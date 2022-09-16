@@ -1,6 +1,6 @@
-description: Plafond de dépenses d'acquisition
+description: Plafond de dépenses d'assurance
 values:
-  2001-01-01:
+  2014-01-01:
     value: 5700
 metadata:
   unit: currency

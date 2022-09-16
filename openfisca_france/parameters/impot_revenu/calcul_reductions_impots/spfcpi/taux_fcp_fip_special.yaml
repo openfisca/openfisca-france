@@ -1,10 +1,7 @@
+description: Taux spécial à partir de 2020
 values:
-  2007-01-01:
-    value: 0.5
-  2011-01-01:
-    value: 0.45
-  2012-01-01:
-    value: 0.38
+  2020-01-01:
+    value: 0.25
 metadata:
   unit: /1
   reference:

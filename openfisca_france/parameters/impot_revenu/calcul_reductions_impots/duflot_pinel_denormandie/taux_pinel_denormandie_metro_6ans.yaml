@@ -1,0 +1,6 @@
+description: Taux de la RI Pinel/Denormandie Métropole 6 ans
+values:
+  2014-01-01:
+    value: 0.12
+metadata:
+  unit: /1
