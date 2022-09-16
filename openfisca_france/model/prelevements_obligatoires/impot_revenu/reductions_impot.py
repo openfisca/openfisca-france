@@ -2791,23 +2791,23 @@ class doment(Variable):
             + fhqp
             + fhqg)
 
-        nr_66_306_594 = min_(inv_66_306_594 * (1 - P.taux_retro_2012_3), max_(0, P12.plaf_partie_non_retro))
-        nr_625_36_60 = min_(inv_625_36_60 * (1 - P.taux_retro_2011_1), max_(0, P11.plaf_partie_non_retro - nr_66_306_594))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P.taux_retro_2012_1), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60))
-        nr_60_40_60 = min_(inv_60_40_60 * (1 - P.taux_retro_avant_2011_1), max_(0, P10.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P.taux_retro_2012_4), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60))
-        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P.taux_retro_2011_2), max_(0, P11.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P.taux_retro_2012_2), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40))
-        nr_50_40_40 = min_(inv_50_40_40 * (1 - P.taux_retro_avant_2011_2), max_(0, P10.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40 - nr_5263_306_34))
+        nr_66_306_594 = min_(inv_66_306_594 * (1 - P12.taux_retro_2012_3), max_(0, P12.plaf_partie_non_retro))
+        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_2011_1), max_(0, P11.plaf_partie_non_retro - nr_66_306_594))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P12.taux_retro_2012_1), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60))
+        nr_60_40_60 = min_(inv_60_40_60 * (1 - P10.taux_retro_avant_2011_1), max_(0, P10.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P12.taux_retro_2012_4), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60))
+        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2011_2), max_(0, P11.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P12.taux_retro_2012_2), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40))
+        nr_50_40_40 = min_(inv_50_40_40 * (1 - P10.taux_retro_avant_2011_2), max_(0, P10.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40 - nr_5263_306_34))
 
-        r_66_306_594 = nr_66_306_594 / (1 - P.taux_retro_2012_3) * P.taux_retro_2012_3
-        r_625_36_60 = nr_625_36_60 / (1 - P.taux_retro_2011_1) * P.taux_retro_2011_1
-        r_625_306_51 = nr_625_306_51 / (1 - P.taux_retro_2012_1) * P.taux_retro_2012_1
-        r_60_40_60 = nr_60_40_60 / (1 - P.taux_retro_avant_2011_1) * P.taux_retro_avant_2011_1
-        r_56_306_38945 = nr_56_306_38945 / (1 - P.taux_retro_2012_4) * P.taux_retro_2012_4
-        r_5263_36_40 = nr_5263_36_40 / (1 - P.taux_retro_2011_2) * P.taux_retro_2011_2
-        r_5263_306_34 = nr_5263_306_34 / (1 - P.taux_retro_2012_2) * P.taux_retro_2012_2
-        r_50_40_40 = nr_50_40_40 / (1 - P.taux_retro_avant_2011_2) * P.taux_retro_avant_2011_2
+        r_66_306_594 = nr_66_306_594 / (1 - P12.taux_retro_2012_3) * P12.taux_retro_2012_3
+        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_2011_1) * P11.taux_retro_2011_1
+        r_625_306_51 = nr_625_306_51 / (1 - P12.taux_retro_2012_1) * P12.taux_retro_2012_1
+        r_60_40_60 = nr_60_40_60 / (1 - P10.taux_retro_avant_2011_1) * P10.taux_retro_avant_2011_1
+        r_56_306_38945 = nr_56_306_38945 / (1 - P12.taux_retro_2012_4) * P12.taux_retro_2012_4
+        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2011_2) * P11.taux_retro_2011_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P12.taux_retro_2012_2) * P12.taux_retro_2012_2
+        r_50_40_40 = nr_50_40_40 / (1 - P10.taux_retro_avant_2011_2) * P10.taux_retro_avant_2011_2
 
         inv = (nr_66_306_594
             + nr_625_36_60
@@ -3057,23 +3057,23 @@ class doment(Variable):
         inv_60_40_60 = (fhpo
             + fhpt)
 
-        nr_66_306_594 = min_(inv_66_306_594 * (1 - P.taux_retro_2012_3), max_(0, P12.plaf_partie_non_retro))
-        nr_625_36_60 = min_(inv_625_36_60 * (1 - P.taux_retro_2011_1), max_(0, P11.plaf_partie_non_retro - nr_66_306_594))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P.taux_retro_2012_1), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60))
-        nr_60_40_60 = min_(inv_60_40_60 * (1 - P.taux_retro_avant_2011_1), max_(0, P10.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P.taux_retro_2012_4), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60))
-        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P.taux_retro_2011_2), max_(0, P11.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P.taux_retro_2012_2), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40))
-        nr_50_40_40 = min_(inv_50_40_40 * (1 - P.taux_retro_avant_2011_2), max_(0, P10.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40 - nr_5263_306_34))
+        nr_66_306_594 = min_(inv_66_306_594 * (1 - P12.taux_retro_2012_3), max_(0, P12.plaf_partie_non_retro))
+        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_2011_1), max_(0, P11.plaf_partie_non_retro - nr_66_306_594))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P12.taux_retro_2012_1), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60))
+        nr_60_40_60 = min_(inv_60_40_60 * (1 - P10.taux_retro_avant_2011_1), max_(0, P10.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P12.taux_retro_2012_4), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60))
+        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2011_2), max_(0, P11.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P12.taux_retro_2012_2), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40))
+        nr_50_40_40 = min_(inv_50_40_40 * (1 - P10.taux_retro_avant_2011_2), max_(0, P10.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40 - nr_5263_306_34))
 
-        r_66_306_594 = nr_66_306_594 / (1 - P.taux_retro_2012_3) * P.taux_retro_2012_3
-        r_625_36_60 = nr_625_36_60 / (1 - P.taux_retro_2011_1) * P.taux_retro_2011_1
-        r_625_306_51 = nr_625_306_51 / (1 - P.taux_retro_2012_1) * P.taux_retro_2012_1
-        r_60_40_60 = nr_60_40_60 / (1 - P.taux_retro_avant_2011_1) * P.taux_retro_avant_2011_1
-        r_56_306_38945 = nr_56_306_38945 / (1 - P.taux_retro_2012_4) * P.taux_retro_2012_4
-        r_5263_36_40 = nr_5263_36_40 / (1 - P.taux_retro_2011_2) * P.taux_retro_2011_2
-        r_5263_306_34 = nr_5263_306_34 / (1 - P.taux_retro_2012_2) * P.taux_retro_2012_2
-        r_50_40_40 = nr_50_40_40 / (1 - P.taux_retro_avant_2011_2) * P.taux_retro_avant_2011_2
+        r_66_306_594 = nr_66_306_594 / (1 - P12.taux_retro_2012_3) * P12.taux_retro_2012_3
+        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_2011_1) * P11.taux_retro_2011_1
+        r_625_306_51 = nr_625_306_51 / (1 - P12.taux_retro_2012_1) * P12.taux_retro_2012_1
+        r_60_40_60 = nr_60_40_60 / (1 - P10.taux_retro_avant_2011_1) * P10.taux_retro_avant_2011_1
+        r_56_306_38945 = nr_56_306_38945 / (1 - P12.taux_retro_2012_4) * P12.taux_retro_2012_4
+        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2011_2) * P11.taux_retro_2011_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P12.taux_retro_2012_2) * P12.taux_retro_2012_2
+        r_50_40_40 = nr_50_40_40 / (1 - P10.taux_retro_avant_2011_2) * P10.taux_retro_avant_2011_2
 
         inv = (nr_66_306_594
             + nr_625_36_60
