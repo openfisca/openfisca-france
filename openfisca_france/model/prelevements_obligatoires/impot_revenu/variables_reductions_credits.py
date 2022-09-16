@@ -4138,6 +4138,106 @@ class fhdw(Variable):
     definition_period = YEAR
 
 
+class fhvh(Variable):
+    cerfa_field = 'HVH'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "DomLog"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class fhvi(Variable):
+    cerfa_field = 'HVI'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "DomLog"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class fhvj(Variable):
+    cerfa_field = 'HVJ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "DomLog"
+    # start_date = date(2020, 1, 1)
+    definition_period = YEAR
+
+
+class fhvk(Variable):
+    cerfa_field = 'HVK'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "DomLog"
+    # start_date = date(2021, 1, 1)
+    definition_period = YEAR
+
+
+class fhya(Variable):
+    cerfa_field = 'HYA'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "DomSoc"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class fhyb(Variable):
+    cerfa_field = 'HYB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "DomSoc"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class fhyc(Variable):
+    cerfa_field = 'HYC'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "DomSoc"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class fhyd(Variable):
+    cerfa_field = 'HYD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "DomSoc"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class fhye(Variable):
+    cerfa_field = 'HYE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "DomSoc"
+    # start_date = date(2020, 1, 1)
+    definition_period = YEAR
+
+
+class fhyf(Variable):
+    cerfa_field = 'HYF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "DomSoc"
+    # start_date = date(2021, 1, 1)
+    definition_period = YEAR
+
+
 class fhsa(Variable):
     cerfa_field = 'HSA'
     value_type = int
