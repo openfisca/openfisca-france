@@ -4143,7 +4143,7 @@ class fhvh(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "DomLog"
+    label = 'DomLog'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -4153,7 +4153,7 @@ class fhvi(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "DomLog"
+    label = 'DomLog'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -4163,7 +4163,7 @@ class fhvj(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "DomLog"
+    label = 'DomLog'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
@@ -4173,7 +4173,7 @@ class fhvk(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "DomLog"
+    label = 'DomLog'
     # start_date = date(2021, 1, 1)
     definition_period = YEAR
 
@@ -4183,7 +4183,7 @@ class fhya(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "DomSoc"
+    label = 'DomSoc'
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
@@ -4193,7 +4193,7 @@ class fhyb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "DomSoc"
+    label = 'DomSoc'
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
@@ -4203,7 +4203,7 @@ class fhyc(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "DomSoc"
+    label = 'DomSoc'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -4213,7 +4213,7 @@ class fhyd(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "DomSoc"
+    label = 'DomSoc'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -4223,7 +4223,7 @@ class fhye(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "DomSoc"
+    label = 'DomSoc'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
@@ -4233,7 +4233,7 @@ class fhyf(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "DomSoc"
+    label = 'DomSoc'
     # start_date = date(2021, 1, 1)
     definition_period = YEAR
 
