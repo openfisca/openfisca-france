@@ -241,11 +241,8 @@ jobs:
         run: |
           conda install conda-build anaconda-client
           conda info
-          # conda config --set anaconda_upload yes
-          # TODO: add a step to publish on master
       - name: Conda build
         run: conda build --croot /tmp/conda .conda
-        #conda build --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
       - name: 'Upload conda build'
         uses: actions/upload-artifact@v3
         with:
@@ -286,12 +283,6 @@ jobs:
           path: conda-build-tmp
       - name: Install with conda
         run: |
-          #pwd
-          #echo "CONDA_PKGS_DIRS=${{ env.CONDA_PKGS_DIRS }}"
-          #conda info -a
-          #conda config --file C:\Users\username.condarc --add pkgs_dirs C:\ProgramData\Anaconda3\pkgs
-          #dir openfisca-france-dev-${{ env.PACKAGE_VERSION }}-py_0.tar.bz2
-          #cd conda-build-${{ env.PACKAGE_VERSION }}
           conda install -c ./conda-build-tmp/noarch/openfisca-france-dev-${{ env.PACKAGE_VERSION }}-py_0.tar.bz2  openfisca-france-dev
       - name: openfisca test
         run: openfisca test --country-package openfisca_france tests
@@ -326,11 +317,5 @@ jobs:
         run: |
           conda install anaconda-client
           conda info
-          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca ./conda-build-tmp/noarch/openfisca-france-*-py_0.tar.bz2
           # Add  --force if you want to ignore existing version
-          # conda config --set anaconda_upload yes
-          # TODO: add a step to publish on master
-      # - name: Conda build
-      #   run: conda build --token ${{ secrets.ANACONDA_TOKEN }} --user openfisca .conda
-    # - `anaconda login`
-    # - `anaconda upload prepare-data-<VERSION>-py_0.tar.bz2`
+          anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca ./conda-build-tmp/noarch/openfisca-france-*-py_0.tar.bz2 --force
