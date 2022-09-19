@@ -289,8 +289,7 @@ jobs:
 
   publish-to-conda:
     runs-on: "ubuntu-latest"
-    ################ CHANGE ###########################################################needs: [ deploy ]
-    needs: [ test-on-windows ]
+    needs: [ deploy, test-on-windows ]
     strategy:
       fail-fast: false
     steps:
