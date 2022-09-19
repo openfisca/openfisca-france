@@ -1,6 +1,6 @@
 # Changelog
 
-### 117.0.4 [#1888]([https://github.com/openfisca/openfisca-france/pull/1888)
+### 117.0.4 [#1891]([https://github.com/openfisca/openfisca-france/pull/1891)
 
 * Changement mineur.
 * Zones impactées :
