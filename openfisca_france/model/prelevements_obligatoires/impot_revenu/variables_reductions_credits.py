@@ -7572,6 +7572,26 @@ class f7vn(Variable):
     definition_period = YEAR
 
 
+class f7vq(Variable):
+    cerfa_field = '7VQ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements forestiers : report 2016, hors sinistre'
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7vr(Variable):
+    cerfa_field = '7VR'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Investissements forestiers : report 2016, hors sinistre, avec adhésion à une association de producteurs'
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 class f7vp(Variable):
     cerfa_field = '7VP'
     value_type = int
@@ -11620,7 +11640,7 @@ class f8tc(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Crédit d'impôt autres entreprises (recherche non encore remboursé (années antérieures))"
-    end = '2008-12-31'
+    # end = '2008-12-31'
     definition_period = YEAR
 
 
@@ -11633,13 +11653,22 @@ class f8tb(Variable):
     definition_period = YEAR
 
 
-class f8te(Variable):
+class f8te_2018(Variable):
     cerfa_field = '8TE'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Crédit d'impôt en faveur des entreprises: adhésion à un groupement de prévention agréé"
     end = '2018-12-31'
+    definition_period = YEAR
+
+
+class f8te(Variable):
+    cerfa_field = '8TE'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Crédit d'impôt: rénovation énergétique des bâtiments"
     definition_period = YEAR
 
 

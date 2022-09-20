@@ -20,7 +20,6 @@ class reductions_plafonnees(Variable):
             'garext',
             'ri_invfor',
             'locmeu',  # Censi-Bouvard
-            'scelli',
             'invlst',
             'invrev',
             'patnat',
@@ -117,8 +116,6 @@ class reductions_deplafonnees(Variable):
             'repsoc',
             'resimm',  # Malraux
 
-            # Pas clair, dans le doute compté parmi les plafonnées :
-            # 'notredame',
             'ecpess',
 
             # plafonds séparés, TODO :
@@ -5791,8 +5788,8 @@ class resimm(Variable):
         base_ty = min_(P.max2 - f7tx, f7ty)
 
         ri = (f7kz
-            + P.taux_30 * (base_nx + base_ny)
-            + P.taux_22 * (base_tx + base_ty))
+            + P.taux_30 * (base_nx + base_tx)
+            + P.taux_22 * (base_ny + base_ty))
 
         return ri
 
@@ -5822,8 +5819,8 @@ class resimm(Variable):
         base_ty = min_(P.max2 - f7tx, f7ty)
 
         ri = (f7kz + f7ky
-            + P.taux_30 * (base_nx + base_ny)
-            + P.taux_22 * (base_tx + base_ty))
+            + P.taux_30 * (base_nx + base_tx)
+            + P.taux_22 * (base_ny + base_ty))
 
         return ri
 
@@ -5854,8 +5851,8 @@ class resimm(Variable):
         base_ty = min_(P.max2 - f7tx, f7ty)
 
         ri = (f7kz + f7ky + f7kx
-            + P.taux_30 * (base_nx + base_ny)
-            + P.taux_22 * (base_tx + base_ty))
+            + P.taux_30 * (base_nx + base_tx)
+            + P.taux_22 * (base_ny + base_ty))
 
         return ri
 
@@ -5879,7 +5876,8 @@ class resimm(Variable):
         base_ty = min_(P.max2 - f7tx, f7ty)
 
         ri = (f7ky + f7kx + f7kw
-            + P.taux_22 * (base_tx + base_ty))
+            + P.taux_30 * (base_tx)
+            + P.taux_22 * (base_ty))
 
         return ri
 

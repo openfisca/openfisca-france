@@ -23,6 +23,7 @@ class credits_impot(Variable):
         credits_plaf = [
             'ci_saldom',
             'ci_garext',
+            'ci_invfor',
 
             # dans le doute:
             'aidper',
@@ -73,6 +74,7 @@ class credits_impot(Variable):
         credits_plaf = [
             'ci_saldom',
             'ci_garext',
+            'ci_invfor',
 
             # dans le doute:
             'aidper',
@@ -899,7 +901,7 @@ class creimp(Variable):
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
         f8td_2002_2005 = foyer_fiscal('f8td_2002_2005', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
 
@@ -911,7 +913,7 @@ class creimp(Variable):
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
         f8td_2002_2005 = foyer_fiscal('f8td_2002_2005', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -925,7 +927,7 @@ class creimp(Variable):
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
         f8td_2002_2005 = foyer_fiscal('f8td_2002_2005', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -941,7 +943,7 @@ class creimp(Variable):
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
         f8td_2002_2005 = foyer_fiscal('f8td_2002_2005', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -963,7 +965,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -990,7 +992,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -1018,7 +1020,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -1045,7 +1047,7 @@ class creimp(Variable):
         f2ab = foyer_fiscal('f2ab', period)
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -1073,7 +1075,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -1099,7 +1101,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -1127,7 +1129,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
@@ -1156,7 +1158,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
@@ -1189,7 +1191,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
@@ -1225,7 +1227,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
