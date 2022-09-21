@@ -114,7 +114,27 @@ class exoneration_cotisations_employeur_tode(Variable):
         sous_plafond = salaire_de_base < (parameters_tode.plafond * smic_proratise)
         exoneration = where(sous_plancher, assiette_exoneration, sous_plafond * exoneration_degressive)
 
-        return eligible * exoneration
+        # non cumul avec l'allègement général de cotisations employeur sur les bas salaires (Fillon)
+        choix_exoneration_cotisations_employeur_agricole = individu('choix_exoneration_cotisations_employeur_agricole', period)
+
+        return choix_exoneration_cotisations_employeur_agricole * eligible * exoneration
+
+
+class choix_exoneration_cotisations_employeur_agricole(Variable):
+    value_type = bool
+    default_value = False
+    entity = Individu
+    label = "L'employeur agricole choisit une exonération de cotisations employeur spécifique au secteur agricole"
+    reference = 'https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    documentation = '''
+    Pour un travailleur occasionnel, l'employeur agricole a le choix
+    entre la réduction générale de cotisations sur les bas salaires (Fillon)
+    et la TO-DE.
+    La TO-DE est plus avantageuse mais à son arrêt au 12.2022,
+    la réduction Fillon sera applicable.
+    '''
 
 
 class exoneration_cotisations_employeur_geographiques(Variable):
