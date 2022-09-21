@@ -49,14 +49,14 @@ def get_raw_content(yaml_filepath):
 
 
 def harvest(item):
-    '''
+    """
     Put into a dictionary the content of the file hierarchy starting at the given item.
 
     An 'index.yaml' file content is directly added to the current dictionary key.
     Any other file or a directory content in stored under a new key (file or directory name).
 
     @param item: A directory of yaml files or a yaml file.
-    '''
+    """
     content = {}
     item_name = os.path.basename(item)
 
