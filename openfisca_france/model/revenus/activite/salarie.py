@@ -1526,6 +1526,8 @@ class exonerations_et_allegements(Variable):
             'exoneration_cotisations_employeur_apprenti', period, options = [ADD])
         exoneration_cotisations_employeur_geographiques = individu(
             'exoneration_cotisations_employeur_geographiques', period)
+        exoneration_cotisations_employeur_tode = individu(
+            'exoneration_cotisations_employeur_tode', period)
         exoneration_cotisations_employeur_jei = individu(
             'exoneration_cotisations_employeur_jei', period, options = [ADD])
         exoneration_cotisations_employeur_stagiaire = individu(
@@ -1539,6 +1541,7 @@ class exonerations_et_allegements(Variable):
             allegement_fillon
             + allegement_cotisation_maladie
             + allegement_cotisation_allocations_familiales
+            + exoneration_cotisations_employeur_tode
             + exoneration_cotisations_employeur_geographiques
             + exoneration_cotisations_employeur_jei
             + exoneration_cotisations_employeur_apprenti
