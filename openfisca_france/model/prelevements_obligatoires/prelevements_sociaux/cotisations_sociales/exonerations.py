@@ -101,18 +101,18 @@ class exoneration_cotisations_employeur_tode(Variable):
             + chomage_employeur
             )
 
-        # Exonération totale à 1.2 SMIC
+        # Exonération totale à <= 1.2 SMIC
         # Puis dégressive : 1,2 × C/0,40 × (1,6 × montant mensuel du SMIC/ rémunération mensuelle brute hors heures supplémentaires et complémentaires-1)
-        # Devient nulle à 1.6 SMIC
+        # Devient nulle à >= 1.6 SMIC
 
         salaire_de_base = individu('salaire_de_base', period)
         smic_proratise = individu('smic_proratise', period)
 
         parameters_tode = parameters(period).prelevements_sociaux.reductions_cotisations_sociales.agricole.tode
-        coefficient_degressivite = parameters_tode.plafond - parameters_tode.seuil
-        exoneration_degressive = parameters_tode.seuil * (assiette_exoneration / coefficient_degressivite) * (parameters_tode.plafond * smic_proratise / salaire_de_base - 1)
+        coefficient_degressivite = parameters_tode.plafond - parameters_tode.plafond_exoneration_integrale
+        exoneration_degressive = parameters_tode.plafond_exoneration_integrale * (assiette_exoneration / coefficient_degressivite) * (parameters_tode.plafond * smic_proratise / salaire_de_base - 1)
 
-        sous_plancher = salaire_de_base <= (parameters_tode.seuil * smic_proratise)
+        sous_plancher = salaire_de_base <= (parameters_tode.plafond_exoneration_integrale * smic_proratise)
         sous_plafond = salaire_de_base < (parameters_tode.plafond * smic_proratise)
         exoneration = where(sous_plancher, assiette_exoneration, sous_plafond * exoneration_degressive)
 
