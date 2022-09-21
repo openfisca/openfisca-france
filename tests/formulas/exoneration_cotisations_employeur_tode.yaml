@@ -6,7 +6,7 @@
       Eden:
         secteur_activite_employeur: agricole  # TO secteur agricole
         regime_securite_sociale: regime_agricole  # MSA (optionnel si secteur défini)
-        choix_exoneration_cotisations_employeur_agricole: True
+        choix_exoneration_cotisations_employeur_agricole: true
         effectif_entreprise: 5  # moins de 50 salariés (seuil fnal 2020+)
 
         contrat_de_travail_type: cdd
@@ -33,10 +33,10 @@
         chomage_employeur: -1 * (1603.15 * 1.2) * 0.0405  # sous 4 PSS
   output:
     exoneration_cotisations_employeur_tode_eligibilite: true
-    # -625.61 = -1 * 1603.15 * 1.2 * (0.07 + 0.0345 + 0.0116 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
-    exoneration_cotisations_employeur_tode: -625.61
+    # 625.61 = 1603.15 * 1.2 * (0.07 + 0.0345 + 0.0116 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
+    exoneration_cotisations_employeur_tode: 625.61
     allegement_fillon: 0
-    exonerations_et_allegements: -625.61
+    exonerations_et_allegements: 625.61
 
 
 - name: Exonération partielle de TO-DE pour salarié agricole à rémunération mensuelle brute < 1.6 SMIC
@@ -44,7 +44,7 @@
   relative_error_margin: 0.002  # fnal : 0.001 -> 0.002
   input:
     secteur_activite_employeur: agricole
-    choix_exoneration_cotisations_employeur_agricole: True
+    choix_exoneration_cotisations_employeur_agricole: true
     effectif_entreprise: 10  # moins de 50 salariés (seuil fnal 2020+)
 
     contrat_de_travail_type: cdd
@@ -77,10 +77,10 @@
     chomage_employeur: -1 * (1603.15 * 1.5) * 0.0405  # sous 4 PSS
 
     exoneration_cotisations_employeur_tode_eligibilite: true
-    # -819.05 = -1 * 1603.15 * 1.5 * (0.07 + 0.0525 + 0.009 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
+    # 819.05 = 1603.15 * 1.5 * (0.07 + 0.0525 + 0.009 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
     exoneration_cotisations_employeur_tode: 1.2 * (-819.05 / 0.4) * (1.6 * 1603.15 / (1603.15 * 1.5) - 1)
     allegement_fillon: 0
-    exonerations_et_allegements: -819.05
+    exonerations_et_allegements: 819.05
 
 
 - name: Exonération nulle de TO-DE pour salarié agricole à rémunération mensuelle brute >= 1.6 SMIC
@@ -88,7 +88,7 @@
   relative_error_margin: 0.001
   input:
     secteur_activite_employeur: agricole
-    choix_exoneration_cotisations_employeur_agricole: True
+    choix_exoneration_cotisations_employeur_agricole: true
     effectif_entreprise: 10  # moins de 50 salariés (seuil fnal 2020+)
 
     contrat_de_travail_type: cdd

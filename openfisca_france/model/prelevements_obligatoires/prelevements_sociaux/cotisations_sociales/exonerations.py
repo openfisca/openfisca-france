@@ -88,7 +88,8 @@ class exoneration_cotisations_employeur_tode(Variable):
         contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
         chomage_employeur = individu('chomage_employeur', period)
 
-        assiette_exoneration = (
+        # les cotisations sont des prélèvements, l'exonération leur opposé
+        assiette_exoneration = -1 * (
             cotisations_asa
             + famille
             + accident_du_travail
