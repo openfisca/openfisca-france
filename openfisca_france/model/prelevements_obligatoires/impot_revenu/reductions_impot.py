@@ -4247,8 +4247,8 @@ class domlog(Variable):
 
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, ri_2011 - ri_plaf_2010), P2011.plaf_absolu)
-        ri_plaf_2012 = min_(max_(0, ri_apres_2011 - ri_plaf_2011), P2012.plaf_absolu)
+        ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010),  ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -4353,8 +4353,8 @@ class domlog(Variable):
 
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, ri_2011 - ri_plaf_2010), P2011.plaf_absolu)
-        ri_plaf_2012 = min_(max_(0, ri_apres_2011 - ri_plaf_2011), P2012.plaf_absolu)
+        ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010),  ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -4511,8 +4511,8 @@ class domlog(Variable):
 
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, ri_2011 - ri_plaf_2010), P2011.plaf_absolu)
-        ri_plaf_2012 = min_(max_(0, ri_apres_2011 - ri_plaf_2011), P2012.plaf_absolu)
+        ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010),  ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -4673,8 +4673,8 @@ class domlog(Variable):
 
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, ri_2011 - ri_plaf_2010), P2011.plaf_absolu)
-        ri_plaf_2012 = min_(max_(0, ri_apres_2011 - ri_plaf_2011), P2012.plaf_absolu)
+        ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010),  ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -4837,8 +4837,8 @@ class domlog(Variable):
 
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, ri_2011 - ri_plaf_2010), P2011.plaf_absolu)
-        ri_plaf_2012 = min_(max_(0, ri_apres_2011 - ri_plaf_2011), P2012.plaf_absolu)
+        ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010),  ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -5003,8 +5003,8 @@ class domlog(Variable):
 
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, ri_2011 - ri_plaf_2010), P2011.plaf_absolu)
-        ri_plaf_2012 = min_(max_(0, ri_apres_2011 - ri_plaf_2011), P2012.plaf_absolu)
+        ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010),  ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 

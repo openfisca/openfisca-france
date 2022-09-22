@@ -5724,12 +5724,21 @@ class f7qd(Variable):
     definition_period = YEAR
 
 
-class fhqd(Variable):
+class fhqd_2012(Variable):
     cerfa_field = 'HQD'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     end = '2012-12-31'
+    definition_period = YEAR
+
+
+class fhqd(Variable):
+    cerfa_field = 'HQD'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'DomLog Investissements réalisés en 2010: autres investissements'
     definition_period = YEAR
 
 
