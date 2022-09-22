@@ -203,9 +203,9 @@
     menage:
       personne_de_reference: ind0
   output:
-    iai: 7793.0
-    inthab: 450.0
-    irpp: -7343.0
+    credits_impot: 1500
+    iai: 7644.0
+    irpp: -6144.0
     nbptr: 1.0
     patnat: 0.0
     rbg: 45000.0

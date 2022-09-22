@@ -54,6 +54,7 @@ class reductions_plafonnees_om_sofica(Variable):
         reductions_om_sofica = [
             'sofica',
             'duflot_pinel_denormandie_om',
+            'scelli',
             ]
 
         P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
@@ -115,7 +116,6 @@ class reductions_deplafonnees(Variable):
             'prcomp',
             'repsoc',
             'resimm',  # Malraux
-
             'ecpess',
 
             # plafonds séparés, déjà appliqués dans les formules :
@@ -2926,12 +2926,12 @@ class doment(Variable):
 
         propre_100 = fhpr + fhpw
 
-        ri_propre = (max_(PP10.plaf_sans_exploitation, propre_40)
-            + max_(PP11.plaf_sans_exploitation, propre_36)
-            + max_(PP12.plaf_sans_exploitation, propre_306)
-            + max_(PP10.plaf_avec_exploitation, propre_100)
-            + max_(PP11.plaf_avec_exploitation, propre_90)
-            + max_(PP12.plaf_avec_exploitation, propre_765))
+        ri_propre = (min_(PP10.plaf_sans_exploitation, propre_40)
+            + min_(PP11.plaf_sans_exploitation, propre_36)
+            + min_(PP12.plaf_sans_exploitation, propre_306)
+            + min_(PP10.plaf_avec_exploitation, propre_100)
+            + min_(PP11.plaf_avec_exploitation, propre_90)
+            + min_(PP12.plaf_avec_exploitation, propre_765))
 
         return ri_propre + inv_no_plaf + inv
 
@@ -3194,12 +3194,12 @@ class doment(Variable):
 
         propre_100 = fhpr + fhpw
 
-        ri_propre = (max_(PP10.plaf_sans_exploitation, propre_40)
-            + max_(PP11.plaf_sans_exploitation, propre_36)
-            + max_(PP12.plaf_sans_exploitation, propre_306)
-            + max_(PP10.plaf_avec_exploitation, propre_100)
-            + max_(PP11.plaf_avec_exploitation, propre_90)
-            + max_(PP12.plaf_avec_exploitation, propre_765))
+        ri_propre = (min_(PP10.plaf_sans_exploitation, propre_40)
+            + min_(PP11.plaf_sans_exploitation, propre_36)
+            + min_(PP12.plaf_sans_exploitation, propre_306)
+            + min_(PP10.plaf_avec_exploitation, propre_100)
+            + min_(PP11.plaf_avec_exploitation, propre_90)
+            + min_(PP12.plaf_avec_exploitation, propre_765))
 
         return ri_propre + inv_no_plaf + inv
 
@@ -3407,10 +3407,10 @@ class doment(Variable):
             + fhae
             + fhaj)
 
-        ri_propre = (max_(PP11.plaf_sans_exploitation, propre_36)
-            + max_(PP12.plaf_sans_exploitation, propre_306)
-            + max_(PP11.plaf_avec_exploitation, propre_90)
-            + max_(PP12.plaf_avec_exploitation, propre_765))
+        ri_propre = (min_(PP11.plaf_sans_exploitation, propre_36)
+            + min_(PP12.plaf_sans_exploitation, propre_306)
+            + min_(PP11.plaf_avec_exploitation, propre_90)
+            + min_(PP12.plaf_avec_exploitation, propre_765))
 
         return ri_propre + inv
 
@@ -3597,10 +3597,10 @@ class doment(Variable):
         propre_90 = (fhae
             + fhaj)
 
-        ri_propre = (max_(PP11.plaf_sans_exploitation, propre_36)
-            + max_(PP12.plaf_sans_exploitation, propre_306)
-            + max_(PP11.plaf_avec_exploitation, propre_90)
-            + max_(PP12.plaf_avec_exploitation, propre_765))
+        ri_propre = (min_(PP11.plaf_sans_exploitation, propre_36)
+            + min_(PP12.plaf_sans_exploitation, propre_306)
+            + min_(PP11.plaf_avec_exploitation, propre_90)
+            + min_(PP12.plaf_avec_exploitation, propre_765))
 
         return ri_propre + inv
 
@@ -3740,8 +3740,8 @@ class doment(Variable):
             + fhbm + fhbr + fhbw + fhcb
             + fhcg + fhcm + fhcr + fhcw)
 
-        ri_propre = (max_(PP12.plaf_sans_exploitation, propre_306)
-            + max_(PP12.plaf_avec_exploitation, propre_765))
+        ri_propre = (min_(PP12.plaf_sans_exploitation, propre_306)
+            + min_(PP12.plaf_avec_exploitation, propre_765))
 
         return ri_propre + inv
 
@@ -3855,8 +3855,8 @@ class doment(Variable):
             + fhfw + fhgw
             + fhcm + fhcr + fhcw)
 
-        ri_propre = (max_(PP12.plaf_sans_exploitation, propre_306)
-            + max_(PP12.plaf_avec_exploitation, propre_765))
+        ri_propre = (min_(PP12.plaf_sans_exploitation, propre_306)
+            + min_(PP12.plaf_avec_exploitation, propre_765))
 
         return ri_propre + inv
 
@@ -5250,8 +5250,8 @@ class domsoc(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
 
-        base_70 = max_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
-        base_65 = max_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
+        base_65 = min_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
 
         rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
         rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
@@ -5325,8 +5325,8 @@ class domsoc(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
 
-        base_70 = max_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
-        base_65 = max_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
+        base_65 = min_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
 
         rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
         rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
@@ -5396,8 +5396,8 @@ class domsoc(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
 
-        base_70 = max_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
-        base_65 = max_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
+        base_65 = min_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
 
         rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
         rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
@@ -5463,8 +5463,8 @@ class domsoc(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
 
-        base_70 = max_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
-        base_65 = max_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
+        base_65 = min_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
 
         rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
         rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
@@ -5524,8 +5524,8 @@ class domsoc(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
 
-        base_70 = max_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
-        base_65 = max_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
+        base_65 = min_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
 
         rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
         rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
@@ -5577,8 +5577,8 @@ class domsoc(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
 
-        base_70 = max_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
-        base_65 = max_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
+        base_65 = min_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
 
         rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
         rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
