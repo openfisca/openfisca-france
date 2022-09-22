@@ -6,7 +6,7 @@
 * Zones impactées :
   - parameters/prelevements_sociaux/hsup_exo
 * Détails :
- - Retire un paramètre non utilisé
+ - Retire un paramètre qui est un extrait de formule, non référencé et non utilisé
 
 ### 117.0.3 [#1884]([https://github.com/openfisca/openfisca-france/pull/1884)
 
