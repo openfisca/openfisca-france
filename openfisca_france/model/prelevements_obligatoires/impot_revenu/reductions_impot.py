@@ -341,7 +341,6 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduc_2014 = (around(P.taux_duflot_metro * min_(max1, f7ek + f7qb) / 9)
             + around(P.taux_pinel_denormandie_metro_6ans * min_(max1 - f7ek - f7qb, f7qa) / 6))
 
-
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
             depenses_cumulees = foyer_fiscal.empty_array()
@@ -349,9 +348,9 @@ class duflot_pinel_denormandie_metropole(Variable):
                 variable, duree, zone = case
                 depense = foyer_fiscal(variable, period)
                 if zone == 'metropole':
-                    if duree == 9 :
+                    if duree == 9:
                         reduction += around(P.taux_pinel_denormandie_metro_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
-                    elif duree == 6 :
+                    elif duree == 6:
                         reduction += around(P.taux_pinel_denormandie_metro_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
@@ -419,9 +418,9 @@ class duflot_pinel_denormandie_metropole(Variable):
                 variable, duree, zone = case
                 depense = foyer_fiscal(variable, period)
                 if zone == 'metropole':
-                    if duree == 9 :
+                    if duree == 9:
                         reduction += around(P.taux_pinel_denormandie_metro_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
-                    elif duree == 6 :
+                    elif duree == 6:
                         reduction += around(P.taux_pinel_denormandie_metro_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
@@ -498,9 +497,9 @@ class duflot_pinel_denormandie_metropole(Variable):
                 variable, duree, zone = case
                 depense = foyer_fiscal(variable, period)
                 if zone == 'metropole':
-                    if duree == 9 :
+                    if duree == 9:
                         reduction += around(P.taux_pinel_denormandie_metro_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
-                    elif duree == 6 :
+                    elif duree == 6:
                         reduction += around(P.taux_pinel_denormandie_metro_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
@@ -512,7 +511,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = around(min_(P.plafond - f7rs, f7rr)* P.taux_prolong1_6ans / 3)
+        prorogation = around(min_(P.plafond - f7rs, f7rr) * P.taux_prolong1_6ans / 3)
 
         return reduction_cumulee + report + f7fi + f7fk + f7fr + f7fv + f7fw + f7fx + prorogation
 
@@ -587,9 +586,9 @@ class duflot_pinel_denormandie_metropole(Variable):
                 variable, duree, zone = case
                 depense = foyer_fiscal(variable, period)
                 if zone == 'metropole':
-                    if duree == 9 :
+                    if duree == 9:
                         reduction += around(P.taux_pinel_denormandie_metro_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
-                    elif duree == 6 :
+                    elif duree == 6:
                         reduction += around(P.taux_pinel_denormandie_metro_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
@@ -601,8 +600,8 @@ class duflot_pinel_denormandie_metropole(Variable):
         reduction_cumulee = sum([calcul_reduction_investissement(cases_investissement[year]) for year in range_year_investissement])
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
-        prorogation = (around(min_(P.plafond - f7rs, f7rr)* P.taux_prolong1_6ans / 3)
-            + around(min_(P.plafond - f7ry, f7rx)* P.taux_prolong1_6ans / 3))
+        prorogation = (around(min_(P.plafond - f7rs, f7rr) * P.taux_prolong1_6ans / 3)
+            + around(min_(P.plafond - f7ry, f7rx) * P.taux_prolong1_6ans / 3))
 
         return reduction_cumulee + report + f7fi + f7fk + f7fr + f7fv + f7fw + f7fx + prorogation + f7sx
 
@@ -647,8 +646,8 @@ class duflot_pinel_denormandie_om(Variable):
         f7qc = foyer_fiscal('f7qc_2018', period)  # Outre-Mer, 6 ans
         f7qd = foyer_fiscal('f7qd_2018', period)  # Outre-Mer, 9 ans
 
-         # Duflot 2013
-        reduc_2013 = around(P.taux_duflot_om* min_(P.plafond, f7gi) / 9)
+        # Duflot 2013
+        reduc_2013 = around(P.taux_duflot_om * min_(P.plafond, f7gi) / 9)
 
         # Duflot et Pinel 2014
         inv_29_om = min_(P.plafond, f7el + f7qd)
@@ -676,7 +675,7 @@ class duflot_pinel_denormandie_om(Variable):
         f7qd = foyer_fiscal('f7qd_2018', period)  # Outre-Mer, 9 ans
 
         # Duflot 2013
-        reduc_2013 = P.taux_duflot_om* min_(P.plafond, f7gi) / 9
+        reduc_2013 = P.taux_duflot_om * min_(P.plafond, f7gi) / 9
 
         # Duflot et Pinel 2014
         reduc_2014 = (around(P.taux_duflot_om * min_(P.plafond, f7el + f7qd) / 9)
@@ -719,9 +718,9 @@ class duflot_pinel_denormandie_om(Variable):
                 variable, duree, zone = case
                 depense = foyer_fiscal(variable, period)
                 if zone == 'outremer':
-                    if duree == 9 :
+                    if duree == 9:
                         reduction += around(P.taux_pinel_denormandie_om_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
-                    elif duree == 6 :
+                    elif duree == 6:
                         reduction += around(P.taux_pinel_denormandie_om_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
@@ -780,9 +779,9 @@ class duflot_pinel_denormandie_om(Variable):
                 variable, duree, zone = case
                 depense = foyer_fiscal(variable, period)
                 if zone == 'outremer':
-                    if duree == 9 :
+                    if duree == 9:
                         reduction += around(P.taux_pinel_denormandie_om_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
-                    elif duree == 6 :
+                    elif duree == 6:
                         reduction += around(P.taux_pinel_denormandie_om_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
@@ -851,9 +850,9 @@ class duflot_pinel_denormandie_om(Variable):
                 variable, duree, zone = case
                 depense = foyer_fiscal(variable, period)
                 if zone == 'outremer':
-                    if duree == 9 :
+                    if duree == 9:
                         reduction += around(P.taux_pinel_denormandie_om_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
-                    elif duree == 6 :
+                    elif duree == 6:
                         reduction += around(P.taux_pinel_denormandie_om_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
@@ -930,9 +929,9 @@ class duflot_pinel_denormandie_om(Variable):
                 variable, duree, zone = case
                 depense = foyer_fiscal(variable, period)
                 if zone == 'outremer':
-                    if duree == 9 :
+                    if duree == 9:
                         reduction += around(P.taux_pinel_denormandie_om_9ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
-                    elif duree == 6 :
+                    elif duree == 6:
                         reduction += around(P.taux_pinel_denormandie_om_6ans * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
