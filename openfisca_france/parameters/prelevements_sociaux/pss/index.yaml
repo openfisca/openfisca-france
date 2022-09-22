@@ -1,7 +1,9 @@
-description: Plafond de la Sécurité sociale (SS)
+description: Plafond de la Sécurité sociale
 metadata:
   ux_name: Plafond de la Sécurité sociale
   description_en: Social security ceiling
   order:
-  - plafond_securite_sociale_mensuel
   - plafond_securite_sociale_annuel
+  - plafond_securite_sociale_mensuel
+  - plafond_securite_sociale_horaire
+

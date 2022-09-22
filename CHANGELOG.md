@@ -1,7 +1,14 @@
 # Changelog
 
-### 117.0.3 [#1884]([https://github.com/openfisca/openfisca-france/pull/1884)
+### 117.0.4 [#1891]([https://github.com/openfisca/openfisca-france/pull/1891)
 
+* Changement mineur.
+* Zones impactées :
+  - parameters/prelevements_sociaux/hsup_exo
+* Détails :
+ - Retire un paramètre qui est un extrait de formule, non référencé et non utilisé
+
+### 117.0.3 [#1884]([https://github.com/openfisca/openfisca-france/pull/1884)
 
 * Changement mineur.
 * Périodes concernées : à partir du 01/01/2022
