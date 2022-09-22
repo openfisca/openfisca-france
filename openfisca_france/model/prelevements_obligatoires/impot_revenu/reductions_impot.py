@@ -410,7 +410,6 @@ class duflot_pinel_denormandie_metropole(Variable):
         f7fw = foyer_fiscal('f7fw', period)  # 2017
         f7fx = foyer_fiscal('f7fx', period)  # 2018
 
-
         def calcul_reduction_investissement(cases):
             reduction = foyer_fiscal.empty_array()
             depenses_cumulees = foyer_fiscal.empty_array()
