@@ -5,6 +5,7 @@ from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
 
+# TODO: le plafonnement global des réductions d'impôts avant 19
 
 class reductions_plafonnees(Variable):
     value_type = float
@@ -29,9 +30,7 @@ class reductions_plafonnees(Variable):
             'duflot_pinel_denormandie_metropole',
 
             # Pas clair, dans le doute compté parmi les plafonnées :
-            'accult',
             'reduction_impot_exceptionnelle',
-            'rsceha',
             ]
 
         P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
@@ -54,7 +53,6 @@ class reductions_plafonnees_om_sofica(Variable):
         reductions_om_sofica = [
             'sofica',
             'duflot_pinel_denormandie_om',
-            'scelli',
             ]
 
         P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
@@ -117,11 +115,14 @@ class reductions_deplafonnees(Variable):
             'repsoc',
             'resimm',  # Malraux
             'ecpess',
+            'accult',
+            'rsceha',
 
             # plafonds séparés, déjà appliqués dans les formules :
             'doment',
             'domlog',
             'domsoc',
+            'scelli',  # approximatif, supérieur ou égal au plafond effectif
             ]
 
         # Step 4: Get other uncapped reductions
@@ -142,7 +143,7 @@ class reductions(Variable):
 
         Il y a 4 catégories de réductions :
             - réductions générales soumises au plafond de 10K
-            - réductions inv. outre-mèr/SOFICA avec majoration de 8K
+            - réductions inv. outre-mer/SOFICA avec majoration de 8K
             - réductions ESUS/SFS avec majoration de 3K (2021)
             - réductions sans plafond
 
@@ -371,7 +372,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
 
         cases_investissement = {
-            2019: [
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7ql_2019', 9, 'outremer'),  # Pinel 2016
                 ('f7qp', 9, 'outremer'),  # Pinel 2017
                 ('f7qu', 9, 'outremer'),  # Pinel 2018
@@ -441,7 +442,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         '''
         P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
         cases_investissement = {
-            2019: [  # A compter de 2019, le plafonnement est commun à tous les investissements réalisés
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7qp', 9, 'outremer'),  # Pinel 2017
                 ('f7qu', 9, 'outremer'),  # Pinel 2018
                 ('f7qq', 9, 'outremer'),  # Pinel 2019
@@ -520,7 +521,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         '''
         P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
         cases_investissement = {
-            2019: [  # A compter de 2019, le plafonnement est commun à tous les investissements réalisés
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7qu', 9, 'outremer'),
                 ('f7qq', 9, 'outremer'),  # Pinel 2019
                 ('f7nd', 9, 'outremer'),  # Denormandie 2019
@@ -740,7 +741,7 @@ class duflot_pinel_denormandie_om(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
 
         cases_investissement = {
-            2019: [
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7ql_2019', 9, 'outremer'),  # Pinel 2016
                 ('f7qp', 9, 'outremer'),  # Pinel 2017
                 ('f7qu', 9, 'outremer'),  # Pinel 2018
@@ -803,7 +804,7 @@ class duflot_pinel_denormandie_om(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
 
         cases_investissement = {
-            2019: [  # A compter de 2019, le plafonnement est commun à tous les investissements réalisés
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7qp', 9, 'outremer'),  # Pinel 2017
                 ('f7qu', 9, 'outremer'),  # Pinel 2018
                 ('f7qq', 9, 'outremer'),  # Pinel 2019
@@ -874,7 +875,7 @@ class duflot_pinel_denormandie_om(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
 
         cases_investissement = {
-            2019: [  # A compter de 2019, le plafonnement est commun à tous les investissements réalisés
+            2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7qq', 9, 'outremer'),  # Pinel 2019
                 ('f7nd', 9, 'outremer'),  # Denormandie 2019
                 ('f7qd', 9, 'outremer'),  # Pinel 2020
@@ -8213,8 +8214,10 @@ class scelli(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.scelli
         P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.scelli
 
-        return (
-            min_(P.max, maxi(
+        # plafonnement approximatif (supérieur ou égal au plafond effectif)
+        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        rni = foyer_fiscal('rni', period)
+        reductions = (min_(P.max, maxi(
                 P.taux13 * max_(f7nf, f7nj) / 9,
                 P.taux15 * max_(f7ng, f7ni) / 9,
                 P.taux22 * max_(f7na, f7ne) / 9,
@@ -8239,6 +8242,9 @@ class scelli(Variable):
             + f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf
             + f7gj + f7gk + f7gl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw
             )
+
+        reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
+        return reductions_plaf
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
@@ -8380,7 +8386,10 @@ class scelli(Variable):
             P.taux13 * f7fa / 9,
             P.taux24 * maxi(f7fc / 9, f7fd / 5)))
 
-        return (
+        # plafonnement approximatif (supérieur ou égal au plafond effectif)
+        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        rni = foyer_fiscal('rni', period)
+        reductions = (
             reduc_scelli_2014_invest_2009
             + reduc_scelli_2014_invest_2010
             + reduc_scelli_2014_invest_2011
@@ -8393,6 +8402,8 @@ class scelli(Variable):
             + report_scelli_2012
             + report_scelli_2013
             )
+        reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
+        return reductions_plaf
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -8536,7 +8547,10 @@ class scelli(Variable):
             P.taux13 * f7fa / 9,
             P.taux24 * maxi(f7fc / 9, f7fd / 5)))
 
-        return (
+        # plafonnement approximatif (supérieur ou égal au plafond effectif)
+        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        rni = foyer_fiscal('rni', period)
+        reductions = (
             reduc_scelli_2015_invest_2009
             + reduc_scelli_2015_invest_2010
             + reduc_scelli_2015_invest_2011
@@ -8550,6 +8564,8 @@ class scelli(Variable):
             + report_scelli_2013
             + report_scelli_2014
             )
+        reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
+        return reductions_plaf
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
@@ -8641,7 +8657,13 @@ class scelli(Variable):
         red_inv_3_6 = base_inv_3_6 * P09.taux_prorogation / 3
         red_inv_3_5 = base_inv_3_5 * P11.taux_prorogation / 3
 
-        return ri_rep + red_inv_5_40 + red_inv_5_36 + red_inv_5_24 + red_inv_9_40 + red_inv_9_36 + red_inv_9_25 + red_inv_9_24 + red_inv_9_22 + red_inv_9_15 + red_inv_9_13 + red_inv_9_6 + red_inv_3_6 + red_inv_3_5
+        # plafonnement approximatif (supérieur ou égal au plafond effectif)
+        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        rni = foyer_fiscal('rni', period)
+        reductions = ri_rep + red_inv_5_40 + red_inv_5_36 + red_inv_5_24 + red_inv_9_40 + red_inv_9_36 + red_inv_9_25 + red_inv_9_24 + red_inv_9_22 + red_inv_9_15 + red_inv_9_13 + red_inv_9_6 + red_inv_3_6 + red_inv_3_5
+        reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
+
+        return reductions_plaf
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -8730,7 +8752,13 @@ class scelli(Variable):
         red_inv_3_5 = base_inv_3_5 * P11.taux_prorogation / 3
         red_inv_3_4 = base_inv_3_4 * P12.taux_prorogation / 3
 
-        return ri_rep + red_inv_5_40 + red_inv_5_36 + red_inv_5_24 + red_inv_9_40 + red_inv_9_36 + red_inv_9_25 + red_inv_9_24 + red_inv_9_22 + red_inv_9_15 + red_inv_9_13 + red_inv_9_6 + red_inv_3_6 + red_inv_3_5 + red_inv_3_4
+        # plafonnement approximatif (supérieur ou égal au plafond effectif)
+        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        rni = foyer_fiscal('rni', period)
+        reductions = ri_rep + red_inv_5_40 + red_inv_5_36 + red_inv_5_24 + red_inv_9_40 + red_inv_9_36 + red_inv_9_25 + red_inv_9_24 + red_inv_9_22 + red_inv_9_15 + red_inv_9_13 + red_inv_9_6 + red_inv_3_6 + red_inv_3_5 + red_inv_3_4
+        reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
+
+        return reductions_plaf
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
@@ -8814,7 +8842,13 @@ class scelli(Variable):
         ri_5 = base_ri_5 * P11.taux_prorogation / 3
         ri_4 = base_ri_4 * P12.taux_prorogation / 3
 
-        return ri_rep + ri_6 + ri_5 + ri_4
+        # plafonnement approximatif (supérieur ou égal au plafond effectif)
+        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        rni = foyer_fiscal('rni', period)
+        reductions = ri_rep + ri_6 + ri_5 + ri_4
+        reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
+
+        return reductions_plaf
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
@@ -8888,7 +8922,13 @@ class scelli(Variable):
         ri_5 = base_ri_5 * P11.taux_prorogation / 3
         ri_4 = base_ri_4 * P12.taux_prorogation / 3
 
-        return ri_rep + ri_6 + ri_5 + ri_4
+        # plafonnement approximatif (supérieur ou égal au plafond effectif)
+        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        rni = foyer_fiscal('rni', period)
+        reductions = ri_rep + ri_6 + ri_5 + ri_4
+        reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
+
+        return reductions_plaf
 
     def formula_2020_01_01(foyer_fiscal, period, parameters):
         '''
@@ -8962,7 +9002,13 @@ class scelli(Variable):
         ri_5 = base_ri_5 * P11.taux_prorogation / 3
         ri_4 = base_ri_4 * P12.taux_prorogation / 3
 
-        return ri_rep + ri_6 + ri_5 + ri_4
+        # plafonnement approximatif (supérieur ou égal au plafond effectif)
+        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        rni = foyer_fiscal('rni', period)
+        reductions = ri_rep + ri_6 + ri_5 + ri_4
+        reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
+
+        return reductions_plaf
 
     def formula_2021_01_01(foyer_fiscal, period, parameters):
         '''
@@ -9047,8 +9093,13 @@ class scelli(Variable):
         ri_5 = base_ri_5 * P11.taux_prorogation / 3
         ri_4 = base_ri_4 * P12.taux_prorogation / 3
 
-        return ri_rep + ri_6 + ri_5 + ri_4
+        # plafonnement approximatif (supérieur ou égal au plafond effectif)
+        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        rni = foyer_fiscal('rni', period)
+        reductions = ri_rep + ri_6 + ri_5 + ri_4
+        reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
 
+        return reductions_plaf
 
 class sofica(Variable):
     value_type = float

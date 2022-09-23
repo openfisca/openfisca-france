@@ -11127,6 +11127,16 @@ class f7aa(Variable):
     definition_period = YEAR
 
 
+class f7ab(Variable):
+    cerfa_field = '7AB'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Dépenses en faveur de la qualité environnementale des logements donnés en location : Chaudières à micro-cogénération gaz'
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
 class f7ad(Variable):
     cerfa_field = '7AD'
     value_type = int
