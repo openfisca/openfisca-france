@@ -8,6 +8,8 @@ metadata:
   unit: /1
   reference:
     2019-01-01:
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038026966
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006585701/2019-01-01/
+      title: Article L741-16 du Code rural et de la pêche maritime
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038026966
       title: Article D741-60 du Code rural et de la pêche maritime
   last_review: "2022-09-21"
