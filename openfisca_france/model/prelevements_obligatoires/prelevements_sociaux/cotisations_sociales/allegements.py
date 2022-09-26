@@ -321,7 +321,7 @@ class allegement_fillon(Variable):
         allegement_mode_recouvrement = individu('allegement_fillon_mode_recouvrement', period)
         exoneration_cotisations_employeur_jei = individu('exoneration_cotisations_employeur_jei', period)
         exoneration_cotisations_employeur_tode = individu('exoneration_cotisations_employeur_tode', period)
-        non_cumulee = not_(exoneration_cotisations_employeur_jei) + not_(exoneration_cotisations_employeur_tode)
+        non_cumulee = not_(exoneration_cotisations_employeur_jei + exoneration_cotisations_employeur_tode)
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(
