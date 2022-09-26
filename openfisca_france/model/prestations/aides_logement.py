@@ -575,12 +575,10 @@ class aide_logement_base_ressources_individu(Variable):
 
         revenu_assimile_salaire = salaire_imposable + chomage_imposable + f1tt + f3vj
 
-        chomeur_longue_duree = individu('chomeur_longue_duree', period, options = [DIVIDE])
         frais_reels = individu('frais_reels', period_frais)
 
         abatpro = parameters(period.last_year).impot_revenu.calcul_revenus_imposables.tspr.abatpro
-        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abatpro.min), abatpro.max))
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
