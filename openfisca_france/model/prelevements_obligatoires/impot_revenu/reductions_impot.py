@@ -9,6 +9,7 @@ log = logging.getLogger(__name__)
 # TODO: Le plafonnement de locmeu, scelli, doment et domlog sont approximatifs
 # TODO: La formule ci_invfor est à améliorer, l'ordre de priorité des variables est chronologique (en cas de dépassement du plafond, on prend en compte les variables les plus anciennes)
 
+
 class reductions_plafonnees(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -4251,7 +4252,7 @@ class domlog(Variable):
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
         ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
-        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010),  ri_apres_2011)
+        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -4357,7 +4358,7 @@ class domlog(Variable):
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
         ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
-        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010),  ri_apres_2011)
+        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -4515,7 +4516,7 @@ class domlog(Variable):
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
         ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
-        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010),  ri_apres_2011)
+        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -4677,7 +4678,7 @@ class domlog(Variable):
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
         ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
-        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010),  ri_apres_2011)
+        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -4841,7 +4842,7 @@ class domlog(Variable):
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
         ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
-        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010),  ri_apres_2011)
+        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -5007,7 +5008,7 @@ class domlog(Variable):
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
         ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
-        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010),  ri_apres_2011)
+        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -8217,28 +8218,28 @@ class scelli(Variable):
         P09 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.scelli
 
         # plafonnement approximatif (supérieur ou égal au plafond effectif)
-        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P2009 = parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
         rni = foyer_fiscal('rni', period)
         reductions = (min_(P.max, maxi(
-                P.taux13 * max_(f7nf, f7nj) / 9,
-                P.taux15 * max_(f7ng, f7ni) / 9,
-                P.taux22 * max_(f7na, f7ne) / 9,
-                P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
-                P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-                P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)
-                ))
+            P.taux13 * max_(f7nf, f7nj) / 9,
+            P.taux15 * max_(f7ng, f7ni) / 9,
+            P.taux22 * max_(f7na, f7ne) / 9,
+            P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+            P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+            P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)
+            ))
             + min_(P.max, maxi(P.taux25 * max_(f7hj, f7hn), P.taux40 * max_(f7hk, f7ho))) / 9
             + min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9
             + min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz))
             + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu))
             + min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))
             + min_(P.max, maxi(
-                P09.taux_prorogation * maxi(f7jf, f7jj, f7fb) / 9,
-                P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
-                P.taux22 * maxi(f7jb, f7jd) / 9,
-                P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
-                P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)
-                ))
+            P09.taux_prorogation * maxi(f7jf, f7jj, f7fb) / 9,
+            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
+            P.taux22 * maxi(f7jb, f7jd) / 9,
+            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+            P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)
+            ))
             + f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz
             + f7mg
             + f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf
@@ -8389,7 +8390,7 @@ class scelli(Variable):
             P.taux24 * maxi(f7fc / 9, f7fd / 5)))
 
         # plafonnement approximatif (supérieur ou égal au plafond effectif)
-        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P2009 = parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
         rni = foyer_fiscal('rni', period)
         reductions = (
             reduc_scelli_2014_invest_2009
@@ -8550,7 +8551,7 @@ class scelli(Variable):
             P.taux24 * maxi(f7fc / 9, f7fd / 5)))
 
         # plafonnement approximatif (supérieur ou égal au plafond effectif)
-        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P2009 = parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
         rni = foyer_fiscal('rni', period)
         reductions = (
             reduc_scelli_2015_invest_2009
@@ -8660,7 +8661,7 @@ class scelli(Variable):
         red_inv_3_5 = base_inv_3_5 * P11.taux_prorogation / 3
 
         # plafonnement approximatif (supérieur ou égal au plafond effectif)
-        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P2009 = parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
         rni = foyer_fiscal('rni', period)
         reductions = ri_rep + red_inv_5_40 + red_inv_5_36 + red_inv_5_24 + red_inv_9_40 + red_inv_9_36 + red_inv_9_25 + red_inv_9_24 + red_inv_9_22 + red_inv_9_15 + red_inv_9_13 + red_inv_9_6 + red_inv_3_6 + red_inv_3_5
         reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
@@ -8755,7 +8756,7 @@ class scelli(Variable):
         red_inv_3_4 = base_inv_3_4 * P12.taux_prorogation / 3
 
         # plafonnement approximatif (supérieur ou égal au plafond effectif)
-        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P2009 = parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
         rni = foyer_fiscal('rni', period)
         reductions = ri_rep + red_inv_5_40 + red_inv_5_36 + red_inv_5_24 + red_inv_9_40 + red_inv_9_36 + red_inv_9_25 + red_inv_9_24 + red_inv_9_22 + red_inv_9_15 + red_inv_9_13 + red_inv_9_6 + red_inv_3_6 + red_inv_3_5 + red_inv_3_4
         reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
@@ -8845,7 +8846,7 @@ class scelli(Variable):
         ri_4 = base_ri_4 * P12.taux_prorogation / 3
 
         # plafonnement approximatif (supérieur ou égal au plafond effectif)
-        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P2009 = parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
         rni = foyer_fiscal('rni', period)
         reductions = ri_rep + ri_6 + ri_5 + ri_4
         reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
@@ -8925,7 +8926,7 @@ class scelli(Variable):
         ri_4 = base_ri_4 * P12.taux_prorogation / 3
 
         # plafonnement approximatif (supérieur ou égal au plafond effectif)
-        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P2009 = parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
         rni = foyer_fiscal('rni', period)
         reductions = ri_rep + ri_6 + ri_5 + ri_4
         reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
@@ -9005,7 +9006,7 @@ class scelli(Variable):
         ri_4 = base_ri_4 * P12.taux_prorogation / 3
 
         # plafonnement approximatif (supérieur ou égal au plafond effectif)
-        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P2009 = parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
         rni = foyer_fiscal('rni', period)
         reductions = ri_rep + ri_6 + ri_5 + ri_4
         reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
@@ -9096,12 +9097,13 @@ class scelli(Variable):
         ri_4 = base_ri_4 * P12.taux_prorogation / 3
 
         # plafonnement approximatif (supérieur ou égal au plafond effectif)
-        P2009 =  parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P2009 = parameters('2009-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
         rni = foyer_fiscal('rni', period)
         reductions = ri_rep + ri_6 + ri_5 + ri_4
         reductions_plaf = min_(reductions, P2009.plafond_1 + 0.1 * rni)
 
         return reductions_plaf
+
 
 class sofica(Variable):
     value_type = float
