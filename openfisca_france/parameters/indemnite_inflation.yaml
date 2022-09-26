@@ -5,7 +5,7 @@ values:
   2022-01-01:
     value: null
 metadata:
-  last_review: 2022-08-03
+  last_review: '2022-08-03'
   unit: currency
   reference:
     2021-01-01:
