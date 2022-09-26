@@ -5,7 +5,9 @@ from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
 
-# TODO: le plafonnement global des réductions d'impôts avant 19
+# TODO: le plafonnement global des réductions d'impôts avant 2013
+# TODO: Le plafonnement de locmeu, scelli, doment et domlog sont approximatifs
+# TODO: La formule ci_invfor est à améliorer, l'ordre de priorité des variables est chronologique (en cas de dépassement du plafond, on prend en compte les variables les plus anciennes)
 
 class reductions_plafonnees(Variable):
     value_type = float
@@ -20,7 +22,7 @@ class reductions_plafonnees(Variable):
             'deffor',  # fait partie de inv. for. ?
             'garext',
             'ri_invfor',
-            'locmeu',  # Censi-Bouvard
+            'locmeu',  # Censi-Bouvard, plafonnement approximatif
             'invlst',
             'invrev',
             'patnat',
