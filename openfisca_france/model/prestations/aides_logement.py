@@ -616,6 +616,49 @@ class aide_logement_base_ressources_individu(Variable):
 
         return revenus + revenu_assimile_pension + hsup + glo
 
+    def formula_2018_01_01(individu, period, parameters):
+
+        salaire_imposable = individu('salaire_imposable', period.n_2, options=[ADD])
+        chomage_imposable = individu('chomage_imposable', period.n_2, options=[ADD])
+        f1tt = individu('f1tt', period.n_2)
+        f3vj = individu('f3vj', period.n_2)
+
+        revenu_assimile_salaire = salaire_imposable + chomage_imposable + f1tt + f3vj
+
+        frais_reels = individu('frais_reels', period.n_2)
+
+        abatpro = parameters(period.n_2).impot_revenu.calcul_revenus_imposables.tspr.abatpro
+        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abatpro.min), abatpro.max))
+
+        abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
+
+        rpns = individu('rpns_imposables', period.n_2)
+        rpns_pvce = individu('rpns_pvce', period.n_2)
+        rpns_pvct = individu('rpns_pvct', period.n_2)
+        rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
+        rpns_mvlt = individu('moins_values_long_terme_non_salaries', period.n_2)
+
+        rpns = rpns + rpns_pvce + rpns_pvct + rpns_mvct + rpns_mvlt
+
+        revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period.n_2, options = [ADD])
+
+        abattement_revenus_activite_professionnelle = individu('aide_logement_abattement_revenus_activite_professionnelle', period)
+        abattement_indemnites_chomage = individu('aide_logement_abattement_indemnites_chomage', period)
+        aide_logement_condition_neutralisation = individu('aide_logement_condition_neutralisation', period)
+
+        taux_abattement = parameters(period).prestations_sociales.aides_logement.ressources.abattement_chomage_indemnise
+
+        revenus = (max_(0, salaire_imposable + f1tt + f3vj - abattement_frais_pro) + rpns) * (1 - taux_abattement * abattement_revenus_activite_professionnelle)
+
+        revenus = revenus + ((chomage_imposable + min_(0, (salaire_imposable + f1tt + f3vj - abattement_frais_pro) * (revenu_assimile_salaire > 0))) * (1 - taux_abattement * abattement_indemnites_chomage))
+
+        revenus = revenus * (1 - aide_logement_condition_neutralisation)
+
+        hsup = individu('hsup', period.n_2, options = [ADD])
+        glo = individu('glo', period.n_2)
+
+        return revenus + revenu_assimile_pension_apres_abattements + hsup + glo
+
     def formula(individu, period, parameters):
 
         salaire_imposable = individu('salaire_imposable', period.n_2, options=[ADD])
