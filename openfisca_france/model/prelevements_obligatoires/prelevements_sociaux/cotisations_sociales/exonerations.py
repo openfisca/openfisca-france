@@ -23,7 +23,7 @@ class exoneration_cotisations_employeur_tode_eligibilite(Variable):
         'https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels'
         ]
     definition_period = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
     end = '2022-12-31'
     documentation = '''
         Non modélisé (2022), tout employeur MSA sauf ces employeurs :
@@ -130,7 +130,7 @@ class choix_exoneration_cotisations_employeur_agricole(Variable):
     label = "L'employeur agricole choisit une exonération de cotisations employeur spécifique au secteur agricole"
     reference = 'https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels'
     definition_period = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
     documentation = '''
     Pour un travailleur occasionnel, l'employeur agricole a le choix
     entre la réduction générale de cotisations sur les bas salaires (Fillon)
