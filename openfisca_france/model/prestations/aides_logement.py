@@ -611,10 +611,9 @@ class aide_logement_base_ressources_individu(Variable):
 
         revenus = revenus * (1 - aide_logement_condition_neutralisation)
 
-        hsup = individu('hsup', period.last_year, options = [ADD])
         glo = individu('glo', period.last_year)
 
-        return revenus + revenu_assimile_pension + hsup + glo
+        return revenus + revenu_assimile_pension + glo
 
     def formula_2018_01_01(individu, period, parameters):
 
@@ -654,10 +653,9 @@ class aide_logement_base_ressources_individu(Variable):
 
         revenus = revenus * (1 - aide_logement_condition_neutralisation)
 
-        hsup = individu('hsup', period.n_2, options = [ADD])
         glo = individu('glo', period.n_2)
 
-        return revenus + revenu_assimile_pension_apres_abattements + hsup + glo
+        return revenus + revenu_assimile_pension_apres_abattements + glo
 
     def formula(individu, period, parameters):
 
