@@ -18,6 +18,8 @@ def modify_parameters(parameters):
     parameters.prestations_sociales.prestations_familiales.education_presence_parentale.asf.montant_asf.orphelin_assimile_deux_parents.update(period=reform_period, value=round( 0.375 * (1 + revalorisation)))
     parameters.prestations_sociales.prestations_familiales.education_presence_parentale.asf.montant_asf.orphelin_assimile_seul_parent.update(period=reform_period, value=round( 0.2813 * (1 + revalorisation)))
     
+    # Extension CMG
+    parameters.prestations_sociales.prestations_familiales.petite_enfance.paje.paje_cmg.limite_age.reduite.update(period=reform_period, value=12)
     return parameters
 
 
