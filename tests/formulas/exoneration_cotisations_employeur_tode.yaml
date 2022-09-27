@@ -79,7 +79,7 @@
 
     exoneration_cotisations_employeur_tode_eligibilite: true
     # 819.05 = 1603.15 * 1.5 * (0.07 + 0.0525 + 0.009 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
-    exoneration_cotisations_employeur_tode: 1.2 * (-819.05 / 0.4) * (1.6 * 1603.15 / (1603.15 * 1.5) - 1)
+    exoneration_cotisations_employeur_tode: 1.2 * (819.05 / 0.4) * (1.6 * 1603.15 / (1603.15 * 1.5) - 1)
     allegement_fillon: 0
     allegement_cotisation_allocations_familiales: 0
     exonerations_et_allegements: 819.05
