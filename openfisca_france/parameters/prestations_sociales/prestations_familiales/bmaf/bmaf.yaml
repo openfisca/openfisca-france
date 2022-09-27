@@ -180,6 +180,7 @@ metadata:
   description_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: bmaf
   unit: currency
+  last_review: "2022-09-27"
   reference:
     1946-07-01:
       title: Loi 46-1835 du 22/08/1946
