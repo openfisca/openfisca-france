@@ -7,6 +7,8 @@ from openfisca_france.model.base import *
 log = logging.getLogger(__name__)
 
 
+# TODO : mettre à jour quaenv() et prlire()
+
 class credits_impot(Variable):
     value_type = float
     entity = FoyerFiscal
