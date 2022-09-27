@@ -399,6 +399,21 @@ class allegement_cotisation_allocations_familiales(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2015_01_01(individu, period, parameters):
+        allegement_cotisation_allocations_familiales_base = individu('allegement_cotisation_allocations_familiales_base', period)
+        # Si l'employeur fait le choix de la TO-DE alors celle-ci remplace l'allègement de cotisation des allocations familiales.
+        choix_exoneration_cotisations_employeur_agricole = individu('choix_exoneration_cotisations_employeur_agricole', period)
+        return allegement_cotisation_allocations_familiales_base * not_(choix_exoneration_cotisations_employeur_agricole)
+
+
+class allegement_cotisation_allocations_familiales_base(Variable):
+    value_type = float
+    label = "Allègement des cotisations d'allocations familiales sur les bas et moyens salaires"
+    entity = Individu
+    reference = 'https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2015_01_01(individu, period, parameters):
         stagiaire = individu('stagiaire', period)
         apprenti = individu('apprenti', period)
         allegement_mode_recouvrement =\
@@ -411,7 +426,7 @@ class allegement_cotisation_allocations_familiales(Variable):
         allegement = switch_on_allegement_mode(
             individu, period, parameters,
             allegement_mode_recouvrement,
-            'allegement_cotisation_allocations_familiales',
+            'allegement_cotisation_allocations_familiales_base',
             )
 
         return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
@@ -440,13 +455,28 @@ class allegement_cotisation_maladie(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559'
 
     def formula_2019_01_01(individu, period, parameters):
+        allegement_cotisation_maladie_base = individu('allegement_cotisation_maladie_base', period)
+        # Si l'employeur fait le choix de la TO-DE alors celle-ci remplace l'allègement de cotisation maladie.
+        choix_exoneration_cotisations_employeur_agricole = individu('choix_exoneration_cotisations_employeur_agricole', period)
+        return allegement_cotisation_maladie_base * not_(choix_exoneration_cotisations_employeur_agricole)
+
+
+class allegement_cotisation_maladie_base(Variable):
+    value_type = float
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    label = 'Allègement des cotisations employeur d’assurance maladie sur les bas et moyens salaires (Ex-CICE)'
+    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947559'
+
+    def formula_2019_01_01(individu, period, parameters):
         # propose 3 modes de paiement possibles
         allegement_mode_recouvrement = individu('allegement_cotisation_maladie_mode_recouvrement', period)
 
         allegement = switch_on_allegement_mode(
             individu, period, parameters,
             allegement_mode_recouvrement,
-            'allegement_cotisation_maladie',
+            'allegement_cotisation_maladie_base',
             )
 
         return allegement

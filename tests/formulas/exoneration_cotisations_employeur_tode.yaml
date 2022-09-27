@@ -20,7 +20,7 @@
 
         mmid_employeur: -1 * 1603.15 * 1.2 * 0.13
         assiette_allegement: 1603.15 * 1.2
-        allegement_cotisation_maladie: (1603.15 * 1.2) * (0.13 - 0.07)  # sous 2.5 SMIC
+        allegement_cotisation_maladie_base: (1603.15 * 1.2) * (0.13 - 0.07)  # sous 2.5 SMIC
 
         famille: -1 * 1603.15 * 1.2 * 0.0345  # taux réduit sous 3.5 SMIC
         accident_du_travail: -1 * 1603.15 * 1.2 * 0.0116  # taux 2022
@@ -36,6 +36,7 @@
     # 625.61 = 1603.15 * 1.2 * (0.07 + 0.0345 + 0.0116 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
     exoneration_cotisations_employeur_tode: 625.61
     allegement_fillon: 0
+    allegement_cotisation_allocations_familiales: 0
     exonerations_et_allegements: 625.61
 
 
@@ -64,7 +65,7 @@
 
     mmid_employeur: -1 * 1603.15 * 1.5 * 0.13  # cotisation avant allègement
     assiette_allegement: 1603.15 * 1.5
-    allegement_cotisation_maladie: (1603.15 * 1.5) * (0.13 - 0.07)  # sous 2.5 SMIC
+    allegement_cotisation_maladie_base: (1603.15 * 1.5) * (0.13 - 0.07)  # sous 2.5 SMIC
 
     famille: -1 * 1603.15 * 1.5 * 0.0525  # FIXME: à <= 3.5 SMIC devrait être au prelevements_sociaux.cotisations_securite_sociale_regime_general.famille.taux_reduit
     accident_du_travail: -1 * 1603.15 * 1.5 * 0.009  # FIXME: taux 2018 à mettre à jour
@@ -80,6 +81,7 @@
     # 819.05 = 1603.15 * 1.5 * (0.07 + 0.0525 + 0.009 + 0.001 + 0.0855 + 0.019 + 0.0472 + 0.0129 + 0.003 + 0.0405)
     exoneration_cotisations_employeur_tode: 1.2 * (-819.05 / 0.4) * (1.6 * 1603.15 / (1603.15 * 1.5) - 1)
     allegement_fillon: 0
+    allegement_cotisation_allocations_familiales: 0
     exonerations_et_allegements: 819.05
 
 
@@ -108,7 +110,7 @@
 
     mmid_employeur: -1 * 1603.15 * 2.6 * 0.13
     assiette_allegement: 1603.15 * 2.6
-    allegement_cotisation_maladie: 0  # pas d'allègement au-delà de 2.5 SMIC
+    allegement_cotisation_maladie_base: 0  # pas d'allègement au-delà de 2.5 SMIC
 
     famille: -1 * 1603.15 * 2.6 * 0.0525  # FIXME: à <= 3.5 SMIC devrait être au prelevements_sociaux.cotisations_securite_sociale_regime_general.famille.taux_reduit
     accident_du_travail: -1 * 1603.15 * 2.6 * 0.009  # FIXME: taux 2018 à mettre à jour
@@ -124,4 +126,5 @@
     exoneration_cotisations_employeur_tode_eligibilite: true
     exoneration_cotisations_employeur_tode: 0
     allegement_fillon: 0
+    allegement_cotisation_allocations_familiales: 0
     exonerations_et_allegements: 0
