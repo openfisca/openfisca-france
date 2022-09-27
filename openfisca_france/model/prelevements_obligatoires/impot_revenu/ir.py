@@ -427,6 +427,19 @@ class revenu_assimile_salaire_apres_abattements(Variable):
             * max_(0, revenu_assimile_salaire - abatfor)
             )
 
+    def formula_2018_01_01(individu, period, parameters):
+        revenu_assimile_salaire = individu('revenu_assimile_salaire', period)
+        frais_reels = individu('frais_reels', period)
+        abatpro = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpro
+
+        abatfor = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abatpro.min), abatpro.max))
+        return (
+            (frais_reels > abatfor)
+            * (revenu_assimile_salaire - frais_reels)
+            + (frais_reels <= abatfor)
+            * max_(0, revenu_assimile_salaire - abatfor)
+            )
+
 
 class revenu_assimile_pension(Variable):
     value_type = float

@@ -15,6 +15,7 @@ class chomeur_longue_duree(Variable):
     entity = Individu
     label = "Demandeur d'emploi inscrit depuis plus d'un an"
     definition_period = YEAR
+    end = '2017-12-31'
     # Pour toutes les variables de ce type, les pac3 ne sont plus proposés après 2007
 
 

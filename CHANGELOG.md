@@ -1,5 +1,22 @@
 # Changelog
 
+### 117.0.5 [#1895]([https://github.com/openfisca/openfisca-france/pull/1895)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `openfisca_france/model/prestations/aides_logement.py`
+  - `openfisca_france/model/revenus/remplacement/chomage.py`
+  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpro/min2.yaml`
+  - `openfisca_france/parameters/indemnite_inflation.yaml`
+* Détails :
+  - Améliore la prise en compte d'une réforme.
+  - Ne devrait pas changer de calcul.
+  - Met un end date à une variable (une case concrètement) qui n'existe plus.
+  - Corrige des formules à partir de 2018.
+  - Petit bug fix dans un autre fichier (met des guillemets).
+
 ### 117.0.4 [#1891]([https://github.com/openfisca/openfisca-france/pull/1891)
 
 * Changement mineur.
