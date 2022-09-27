@@ -174,6 +174,8 @@ values:
     value: 414.81
   2022-04-01:
     value: 422.28
+  2022-07-01:
+    value: 439.17
 metadata:
   description_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: bmaf
@@ -430,6 +432,10 @@ metadata:
     2022-04-01:
       href: https://solidarites-sante.gouv.fr/fichiers/bo/2022/2022.8.sante.pdf#page=404
       title: Circulaire DSS/2B/2022/82 du 28/03/2022 page 404
+    2022-07-01:
+    - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
+    - href : https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046186749
+      title: Article 9, LOI n° 2022-1158 du 16 août 2022 portant mesures d'urgence pour la protection du pouvoir d'achat 
   official_journal_date:
     1946-07-01: "1946-08-23"
     1947-02-01: "1947-04-06"
@@ -590,6 +596,8 @@ metadata:
     - title: Revalorisation de 0,1%
     2022-04-01:
     - title: Revalorisation de 1,8%
+    2022-07-01:
+    - title: Revalorisation de 4%
 documentation: |-
   Notes :
   Le régime des prestations familiales est fixé par la loi 46-1835 du 22 août 1946
