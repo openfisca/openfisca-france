@@ -1566,7 +1566,7 @@ class f7pa(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013"
-    end = '2018-12-31'
+    end = '2019-12-31'
     definition_period = YEAR
 
 
