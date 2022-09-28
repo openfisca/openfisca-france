@@ -1,4 +1,4 @@
-# RSA 
+# RSA
 ## Avril 2022
 - name: Avril 2022 personne seule, sans ressources
   period: 2022-04
@@ -8,7 +8,7 @@
   output:
     rsa: 575.52
 
-## Juillet 2022 
+## Juillet 2022
 - name: Juillet 2022 personne seule, pas de bonification
   period: 2022-07
   absolute_error_margin: 0.005
@@ -29,7 +29,7 @@
     en_couple: 0
     af_nbenf: 0
   output:
-    aah: 919.86 
+    aah: 919.86
 
 ## Juillet 2022
 - name: AAH niveau Individu - Eligible, célibataire,  sans ressources et sans enfants
@@ -42,4 +42,4 @@
     en_couple: 0
     af_nbenf: 0
   output:
-    aah: 956.65 
+    aah: 956.65
