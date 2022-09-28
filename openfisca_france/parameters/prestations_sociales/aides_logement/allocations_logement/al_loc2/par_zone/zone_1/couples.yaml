@@ -38,11 +38,14 @@ values:
     value: 357.99
   2021-10-01:
     value: 359.49
+  2022-07-01:
+    value: 372.07
 metadata:
   ux_name: Couples
   description_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: plaf_loy_coup_z1
   unit: currency
+  last_review: "2022-09-28"
   reference:
     2001-01-01:
     - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006779920&cidTexte=JORFTEXT000000578227
@@ -110,6 +113,9 @@ metadata:
       title: Arrêté du 27/09/2019, art. 7
     2021-10-01:
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044137432/2021-10-01/#LEGIARTI000044137432
+      title: Arrêté du 27/09/2019, art. 7
+    2022-07-01:
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206217/2022-07-01
       title: Arrêté du 27/09/2019, art. 7
   official_journal_date:
     2001-01-01: "2000-12-28"
