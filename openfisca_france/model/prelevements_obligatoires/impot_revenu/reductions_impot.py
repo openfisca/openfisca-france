@@ -5,21 +5,33 @@ from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
 
-# Certaines réductions et certains crédits d'impôt sont plafonnés. La prise en compte de ces plafonnements est pour le moment approximative
-# et n'est codée qu'à compter de 2013.
+# Certaines réductions et certains crédits d'impôt sont plafonnés. Par manque de temps, la prise en compte de ces plafonnements est pour le moment
+# approximative et n'est codée qu'à compter de 2013.
 # Pour connaître le plafonnement d'un dispositif il faut se référer non pas à l'année de déclaration mais à l'année de la dépense. Les
-# réductions pour lesquelles le plafond est approximé sont :
-# - les investissements d'outremer (domlog, doment et domsoc),
-# - les investissements dans les PME (cappme), Censi-Bouvard (locmeu), Scellier (scelli), l'investissement pour le logement touristique (invlst) et
-#   la préservation du patrimoine naturel (patnat). Tous ces dispostifs ont été introduits avant 2013 et les dépenses réalisées avant 2013 qui
-#   donnent droit à des réductions d'impôts après 2013 sont soumises au plafonnement en vigueur au moment de la dépense initiale.
-#   Le montant du plafonnement global ayant diminué au cours du temps, l'approximation qui est faite pour le moment est une approximation
-#   qui sousestime le montant global des réductions d'impôt.
+# réductions pour lesquelles le plafond est approximé sont celles pour lesquelles la réduction s'étend sur plusieurs années :
+#  - les investissements dans les PME (cappme),
+#  - Censi-Bouvard (locmeu),
+#  - Scellier (scelli),
+#  - l'investissement pour le logement touristique (invlst),
+#  - la préservation du patrimoine naturel (patnat).
+# Tous ces dispostifs ont été introduits avant 2013, or si le montant du plafonnement global est le même
+# depuis 2013, il a été revu à la baisse à plusieurs occasions entre 2009 et 2013. Les dépenses réalisées avant 2013 donnent donc droit à des réductions
+# d'impôts, pour les déclarations après 2013, supérieures au plafond en vigueur l'année de la déclaration. Pour le moment on leur applique le montant en vigueur
+# l'année de la déclaration. L'approximation qui est faite est donc une approximation qui sousestime le montant global de ces réductions d'impôt.
 
-# TODO: le plafonnement global des réductions d'impôts avant 2013
+# Le cas particulier des investissements d'outremer (domsoc, domlog, doment): la mise à jour des formules et la prise en compte d'un plafond approximatif
+#   n'est réalisée qu'à partir de 2016. Au vu de la complexité de ces dispositifs (rétrocession, investissements avec des plafonds particuliers..),
+#   les plafonds sont approximés (par année et par dispositif) et ils ne prennent pas en compte les interactions entre les trois dispositifs d'outremer ni
+#   l'interaction avec le plafonnement global des avantages fiscaux. De ce point de vue, l'approximation surestime les plafonds pour les investissements d'outremer.
+#   D'un autre côté lors de la déclaration d'impôt il possible de choisir pour ces dispositifs entre un plafond absolu et un plafond relatif en pourcentage de RNI,
+#   seul le plafond absolu est codé pour le moment, cela peut entrainer une sous estimation des réductions d'impôt pour les personnes qui ont un RNI
+#   supérieur à environ 300 000.
+
+# TODO: le plafonnement global des réductions d'impôts avant 2013 (et la prise en compte du plafonnement des investissements d'outremer avant 2016)
 # TODO: La formule ci_invfor est à améliorer, l'ordre de priorité des variables est chronologique (en cas de dépassement du plafond, il
 # faut prendre en compte les variables les plus anciennes)
 # TODO: prendre en compte le plafond global en vigueur au moment de l'investisement, et non le plafond en vigueur à la date de déclaration
+# TODO: Améliorer la prise en compte des plafonds pour les investissements d'outremer
 
 
 class reductions_plafonnees(Variable):
@@ -68,7 +80,7 @@ class reductions_plafonnees_om_sofica(Variable):
         reductions_om_sofica = [
             'sofica',
             'duflot_pinel_denormandie_om',
-            'scelli',  # Approximation (dispositif qui se termine en 2012, soumis à des plafonds supérieurs)
+            'scelli',  # Approximation (dispositif qui se termine en 2012, soumis à des plafonds supérieurs à 18 000€)
             ]
 
         P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
