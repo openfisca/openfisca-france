@@ -4256,10 +4256,14 @@ class domlog(Variable):
         P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
         P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
 
+        rni = foyer_fiscal('rni', period)
+
         # si plafond rélatif à 11, 13, 15 % (case HQA)
-        ri_rel = (ri_avant_2011 * P2010.plaf_relatif
-            + ri_2011 * P2011.plaf_relatif
-            + ri_apres_2011 * P2012.plaf_relatif)
+        ri_plaf_rel_2010 = min_(ri_avant_2011, rni * P2010.plaf_relatif)
+        ri_plaf_rel_2011 = min_(max_(0, rni * P2011.plaf_relatif - ri_plaf_rel_2010), ri_2011)
+        ri_plaf_rel_2012 = min_(max_(0, rni * P2012.plaf_relatif - ri_plaf_rel_2011 - ri_plaf_rel_2010), ri_apres_2011)
+
+        ri_rel = ri_plaf_rel_2010 + ri_plaf_rel_2011 + ri_plaf_rel_2012
 
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
@@ -4275,7 +4279,13 @@ class domlog(Variable):
         # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
         #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
-        return ri_opt
+        # Pourquoi tout ce trouble de calculer ri_opt si on n'utilise que ri_abs à la fin ?
+        # C'est une approximation parce qu'il y a bel et bien l'option avec plafond relatif.
+        # En même temps on a dû faire des économies de temps, on ne pouvait pas coder le plafond relatif
+        # pour tous les trois dispositifs, juste ici pour domlog. Afin d'être cohérent, on utilise
+        # quand-même toujours le plafond absolu, mais on garde l'option de le changer facilement ici.
+
+        return ri_abs
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4362,10 +4372,14 @@ class domlog(Variable):
         P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
         P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
 
+        rni = foyer_fiscal('rni', period)
+
         # si plafond rélatif à 11, 13, 15 % (case HQA)
-        ri_rel = (ri_avant_2011 * P2010.plaf_relatif
-            + ri_2011 * P2011.plaf_relatif
-            + ri_apres_2011 * P2012.plaf_relatif)
+        ri_plaf_rel_2010 = min_(ri_avant_2011, rni * P2010.plaf_relatif)
+        ri_plaf_rel_2011 = min_(max_(0, rni * P2011.plaf_relatif - ri_plaf_rel_2010), ri_2011)
+        ri_plaf_rel_2012 = min_(max_(0, rni * P2012.plaf_relatif - ri_plaf_rel_2011 - ri_plaf_rel_2010), ri_apres_2011)
+
+        ri_rel = ri_plaf_rel_2010 + ri_plaf_rel_2011 + ri_plaf_rel_2012
 
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
@@ -4381,7 +4395,7 @@ class domlog(Variable):
         # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
         #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
-        return ri_opt
+        return ri_abs
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4520,10 +4534,14 @@ class domlog(Variable):
         P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
         P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
 
+        rni = foyer_fiscal('rni', period)
+
         # si plafond rélatif à 11, 13, 15 % (case HQA)
-        ri_rel = (ri_avant_2011 * P2010.plaf_relatif
-            + ri_2011 * P2011.plaf_relatif
-            + ri_apres_2011 * P2012.plaf_relatif)
+        ri_plaf_rel_2010 = min_(ri_avant_2011, rni * P2010.plaf_relatif)
+        ri_plaf_rel_2011 = min_(max_(0, rni * P2011.plaf_relatif - ri_plaf_rel_2010), ri_2011)
+        ri_plaf_rel_2012 = min_(max_(0, rni * P2012.plaf_relatif - ri_plaf_rel_2011 - ri_plaf_rel_2010), ri_apres_2011)
+
+        ri_rel = ri_plaf_rel_2010 + ri_plaf_rel_2011 + ri_plaf_rel_2012
 
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
@@ -4539,7 +4557,7 @@ class domlog(Variable):
         # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
         #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
-        return ri_opt
+        return ri_abs
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4682,10 +4700,14 @@ class domlog(Variable):
         P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
         P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
 
+        rni = foyer_fiscal('rni', period)
+
         # si plafond rélatif à 11, 13, 15 % (case HQA)
-        ri_rel = (ri_avant_2011 * P2010.plaf_relatif
-            + ri_2011 * P2011.plaf_relatif
-            + ri_apres_2011 * P2012.plaf_relatif)
+        ri_plaf_rel_2010 = min_(ri_avant_2011, rni * P2010.plaf_relatif)
+        ri_plaf_rel_2011 = min_(max_(0, rni * P2011.plaf_relatif - ri_plaf_rel_2010), ri_2011)
+        ri_plaf_rel_2012 = min_(max_(0, rni * P2012.plaf_relatif - ri_plaf_rel_2011 - ri_plaf_rel_2010), ri_apres_2011)
+
+        ri_rel = ri_plaf_rel_2010 + ri_plaf_rel_2011 + ri_plaf_rel_2012
 
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
@@ -4701,7 +4723,7 @@ class domlog(Variable):
         # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
         #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
-        return ri_opt
+        return ri_abs
 
     def formula_2020_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4846,10 +4868,14 @@ class domlog(Variable):
         P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
         P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
 
+        rni = foyer_fiscal('rni', period)
+
         # si plafond rélatif à 11, 13, 15 % (case HQA)
-        ri_rel = (ri_avant_2011 * P2010.plaf_relatif
-            + ri_2011 * P2011.plaf_relatif
-            + ri_apres_2011 * P2012.plaf_relatif)
+        ri_plaf_rel_2010 = min_(ri_avant_2011, rni * P2010.plaf_relatif)
+        ri_plaf_rel_2011 = min_(max_(0, rni * P2011.plaf_relatif - ri_plaf_rel_2010), ri_2011)
+        ri_plaf_rel_2012 = min_(max_(0, rni * P2012.plaf_relatif - ri_plaf_rel_2011 - ri_plaf_rel_2010), ri_apres_2011)
+
+        ri_rel = ri_plaf_rel_2010 + ri_plaf_rel_2011 + ri_plaf_rel_2012
 
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
@@ -4865,7 +4891,7 @@ class domlog(Variable):
         # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
         #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
-        return ri_opt
+        return ri_abs
 
     def formula_2021_01_01(foyer_fiscal, period, parameters):
         '''
@@ -5012,10 +5038,14 @@ class domlog(Variable):
         P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
         P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
 
+        rni = foyer_fiscal('rni', period)
+
         # si plafond rélatif à 11, 13, 15 % (case HQA)
-        ri_rel = (ri_avant_2011 * P2010.plaf_relatif
-            + ri_2011 * P2011.plaf_relatif
-            + ri_apres_2011 * P2012.plaf_relatif)
+        ri_plaf_rel_2010 = min_(ri_avant_2011, rni * P2010.plaf_relatif)
+        ri_plaf_rel_2011 = min_(max_(0, rni * P2011.plaf_relatif - ri_plaf_rel_2010), ri_2011)
+        ri_plaf_rel_2012 = min_(max_(0, rni * P2012.plaf_relatif - ri_plaf_rel_2011 - ri_plaf_rel_2010), ri_apres_2011)
+
+        ri_rel = ri_plaf_rel_2010 + ri_plaf_rel_2011 + ri_plaf_rel_2012
 
         # si plafond absolu
         ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
@@ -5031,7 +5061,7 @@ class domlog(Variable):
         # ri_choix = (foyer_fiscal('fhqa', period) * ri_rel
         #     + (1 - foyer_fiscal('fhqa', period)) * ri_abs)
 
-        return ri_opt
+        return ri_abs
 
 
 class domsoc(Variable):
