@@ -16,11 +16,14 @@ values:
     value: 553.71
   2022-04-01:
     value: 563.68
+  2022-07-01:
+    value: 586.23
 metadata:
   ux_name: Montant base
   description_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_montant_base
   unit: currency
+  last_review: "2022-09-27"
   reference:
     2015-10-01:
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031665102
@@ -52,6 +55,9 @@ metadata:
     2022-04-01:
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045668709
       title: Décret 2022-701 du 26/04/2022, art. 1
+    2022-07-01:
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
+      title: LOI n° 2022-1158 du 16/08/2022, art 9.
   official_journal_date:
     2016-01-01: "2015-12-22"
     2016-04-01: "2016-05-03"
@@ -66,4 +72,5 @@ metadata:
     - title: Création de la Prime pour l'Activité.
     2019-01-01:
     - title: Revalorisation de la Prime pour l'Activité suite à la loi 2018-1213 du 24/12/2018 portant mesures d'urgence économique et sociale. La Prime pour l'Activité augmente de 90 euros au niveau du Smic, via une augmentation de la bonification individuelle.
-  last_review: "2022-08-03"
+    2022-07-01:
+    - title: Revalorisation de 4%

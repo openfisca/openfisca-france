@@ -28,6 +28,8 @@ values:
     value: 263.29
   2021-10-01:
     value: 264.4
+  2022-07-01:
+    value: 273.65
 metadata:
   ux_name: Ménages
   description_en: Measure of rent for students living in university residences
@@ -97,6 +99,9 @@ metadata:
       title: Arrêté du 25/09/2020 art. 14
     2021-10-01:
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044137394/2021-10-01/#LEGIARTI000044137394
+      title: Arrêté du 27/09/2019, art. 43
+    2022-07-01:
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206187/2022-07-01
       title: Arrêté du 27/09/2019, art. 43
   official_journal_date:
     1994-07-01: "1994-11-16"

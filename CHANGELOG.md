@@ -1,5 +1,21 @@
 # Changelog
 
+## 117.1.0 [#1897]([https://github.com/openfisca/openfisca-france/pull/1897)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/08/2022.
+* Zones impactées : 
+  - `openfisca_france/parameters/prestations_sociales/aides_logement`
+  - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah`
+  - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/asi`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/bmaf`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale/asf`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa`
+
+* Détails :
+  - Mise à jour des prestations sociales suite à la revalorisation exceptionnelle de 4% en  Juillet 2022. 
+  - https://www.service-public.fr/particuliers/actualites/A15599
+
 ### 117.0.5 [#1895]([https://github.com/openfisca/openfisca-france/pull/1895)
 
 * Changement mineur.

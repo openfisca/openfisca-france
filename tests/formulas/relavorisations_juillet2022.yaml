@@ -1,0 +1,45 @@
+# RSA
+## Avril 2022
+- name: Avril 2022 personne seule, sans ressources
+  period: 2022-04
+  absolute_error_margin: 0.005
+  input:
+    age: 40
+  output:
+    rsa: 575.52
+
+## Juillet 2022
+- name: Juillet 2022 personne seule, pas de bonification
+  period: 2022-07
+  absolute_error_margin: 0.005
+  input:
+    age: 40
+  output:
+    rsa: 598.54
+
+# AAH
+## Avril 2022
+- name: AAH niveau Individu - Eligible, célibataire, sans ressources et sans enfants
+  description: Montant AAH au niveau de l individu
+  period: 2022-04
+  absolute_error_margin: 1
+  input:
+    taux_incapacite: 0.9
+    age: 22  # eligible aah
+    en_couple: 0
+    af_nbenf: 0
+  output:
+    aah: 919.86
+
+## Juillet 2022
+- name: AAH niveau Individu - Eligible, célibataire,  sans ressources et sans enfants
+  description: Montant AAH au niveau de l individu
+  period: 2022-07
+  absolute_error_margin: 1
+  input:
+    taux_incapacite: 0.9
+    age: 22  # eligible aah
+    en_couple: 0
+    af_nbenf: 0
+  output:
+    aah: 956.65
