@@ -909,7 +909,7 @@ class mhsup(Variable):
 class plafond_securite_sociale(Variable):
     value_type = float
     entity = Individu
-    label = 'Plafond de la securite sociale'
+    label = 'Plafond de la sécurite sociale'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     # TODO gérer les plafonds mensuel, trimestriel, annuel

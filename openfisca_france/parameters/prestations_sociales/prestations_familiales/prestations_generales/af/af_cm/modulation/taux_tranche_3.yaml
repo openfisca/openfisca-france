@@ -10,13 +10,13 @@ metadata:
   unit: BMAF
   reference:
     2015-07-01:
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318/2015-07-01/
+      title: Article D521-1 1) du Code de la sécurité sociale
     - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030674064
       title: Décret 2015-611 du 03/06/2015
     - title: Circulaire DSS/SD2B/2016/77 du 15/03/2016
     - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030055650/2015-01-01/
       title: Article L531-3 du code de la sécurité sociale
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318/
-      title: Article D521-1 1) du Code de la sécurité sociale
   official_journal_date:
     2015-07-01: "2015-06-05"
 documentation: |-
