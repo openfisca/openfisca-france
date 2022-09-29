@@ -25,7 +25,9 @@ metadata:
     1978-01-01:
       title: "Décret 78-107 du 31/01/78 (Taux : modif art. L544 du CSS)"
     1981-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517687
+    - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006762155/1981-07-01
+      title: Décret n°69-456 du 24/05/1969, art. 2
+    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517687
       title: Décret 81-683 du 30/06/1981
     1982-02-01:
     - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030674064
