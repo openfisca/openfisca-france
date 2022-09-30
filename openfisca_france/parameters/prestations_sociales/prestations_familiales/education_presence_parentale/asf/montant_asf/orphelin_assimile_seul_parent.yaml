@@ -16,6 +16,8 @@ values:
     value: 0.2813
   2022-11-01:
     value: 0.422
+  2023-01-01:
+    value: 0.2813 * 1.5
 metadata:
   ux_name: Orphelin ou assimilé d'un seul parent
   description_en: "Family support allowance (ASF): Amounts"
