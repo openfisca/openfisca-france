@@ -16,3 +16,6 @@ values:
   2018-04-01:
     value: 0.375
     reference : http://circulaires.legifrance.gouv.fr/pdf/2018/03/cir_43190.pdf
+  2022-11-01:
+    value: 0.5625
+    reference : https://www.gouvernement.fr/conseil-des-ministres/compte-rendu-du-conseil-des-ministres-26-09-2022#1b4bffd1-9b70-48cd-8ae6-dc82df951b49-4
