@@ -127,7 +127,7 @@ class f7db(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Sommes versées pour l'emploi d'un salarié à domicile par les personnes ayant excercé une activité professionnelle ou ayant été demandeur d'emploi l'année de perception des revenus déclarés"
+    label = "Sommes versées pour lemploi d'un salarié à domicile par les personnes ayant excercé une activité professionnelle ou ayant été demandeur d'emploi l'année de perception des revenus déclarés"
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
@@ -137,7 +137,7 @@ class f7dr(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = " Aides perçues pour l’emploi à domicile (APA, PCH, CESU préfinancé…)"
+    label = 'Aides perçues pour lemploi à domicile (APA, PCH, CESU préfinancé…)'
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
@@ -147,7 +147,7 @@ class f7dd(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Sommes versées pour l'emploi d'un salarié à domicile pour un ascendant bénéficiaire de l'APA "
+    label = 'Sommes versées pour lemploi dun salarié à domicile pour un ascendant bénéficiaire de lAPA'
     # start_date = date(2011, 1, 1)
     end = '2016-12-31'
     definition_period = YEAR
@@ -158,7 +158,7 @@ class f7df(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Sommes versées pour l'emploi d'un salarié à domicile par les personnes retraités, ou inactives l'année de perception des revenus déclarés"
+    label = 'Sommes versées pour lemploi dun salarié à domicile par les personnes retraités, ou inactives lannée de perception des revenus déclarés'
     end = '2016-12-31'
     definition_period = YEAR
 
@@ -205,7 +205,7 @@ class f7uh_2004(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Intcon"
+    label = 'Intcon'
     # start_date = date(2007, 1, 1)
     end = '2005-12-31'
     definition_period = YEAR
@@ -216,7 +216,7 @@ class f7uh_2009(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "EcoDev"
+    label = 'EcoDev'
     # start_date = date(2007, 1, 1)
     end = '2009-12-31'
     definition_period = YEAR
@@ -659,7 +659,7 @@ class f7vh(Variable):
     cerfa_field = '7VH'
     value_type = int
     entity = FoyerFiscal
-    label = "Inv. for."
+    label = 'Inv. for.'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
@@ -811,7 +811,7 @@ class f7vk(Variable):
     cerfa_field = '7VK'
     value_type = int
     entity = FoyerFiscal
-    label = "Inv. for."
+    label = 'Inv. for.'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -829,7 +829,7 @@ class f7vl(Variable):
     cerfa_field = '7VL'
     value_type = int
     entity = FoyerFiscal
-    label = "Inv. for."
+    label = 'Inv. for.'
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
@@ -970,7 +970,7 @@ class f7tp(Variable):
     cerfa_field = '7TP'
     value_type = int
     entity = FoyerFiscal
-    label = "Inv. forestiers: Report des dépenses de travaux des années antérieures 2016"
+    label = 'Inv. forestiers: Report des dépenses de travaux des années antérieures 2016'
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
@@ -988,7 +988,7 @@ class f7tq(Variable):
     cerfa_field = '7TQ'
     value_type = int
     entity = FoyerFiscal
-    label = "Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016"
+    label = 'Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2016'
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
@@ -1006,7 +1006,7 @@ class f7tr(Variable):
     cerfa_field = '7TR'
     value_type = int
     entity = FoyerFiscal
-    label = "Inv. forestiers: Report des dépenses de travaux des années antérieures 2017"
+    label = 'Inv. forestiers: Report des dépenses de travaux des années antérieures 2017'
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
@@ -1024,7 +1024,7 @@ class f7ts(Variable):
     cerfa_field = '7TS'
     value_type = int
     entity = FoyerFiscal
-    label = "Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2017"
+    label = 'Inv. forestiers: Report des dépenses de travaux des années antérieures avec adh. grp. prod. 2017'
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
@@ -5888,7 +5888,7 @@ class f7ok_2012(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Investissements outre-mer dans le logement"
+    label = 'Investissements outre-mer dans le logement'
     # start_date = date(2011, 1, 1)
     end = '2012-12-31'
     definition_period = YEAR
@@ -10855,7 +10855,7 @@ class f7up_2007(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "ACQGPL"
+    label = 'ACQGPL'
     # start_date = date(2002, 1, 1)
     end = '2007-12-31'
     definition_period = YEAR
@@ -10866,7 +10866,7 @@ class f7up(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Crédit d'impôt pour investissements forestiers: travaux"
+    label = 'Crédit dimpôt pour investissements forestiers: travaux'
     # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
@@ -10876,7 +10876,7 @@ class f7uq_2007(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "ACQGPL"
+    label = 'ACQGPL'
     # start_date = date(2002, 1, 1)
     end = '2007-12-31'
     definition_period = YEAR
@@ -11076,7 +11076,7 @@ class f7tu(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Inv. for."
+    label = 'Inv. for.'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -11097,7 +11097,7 @@ class f7tt(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Inf. for."
+    label = 'Inf. for.'
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
@@ -11118,7 +11118,7 @@ class f7tv(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Inv. for."
+    label = 'Inv. for.'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
