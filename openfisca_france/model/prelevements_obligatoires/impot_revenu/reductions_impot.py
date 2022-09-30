@@ -3901,8 +3901,8 @@ class domlog(Variable):
         '''
         f7ua = foyer_fiscal('f7ua_2007', period)
         f7ub = foyer_fiscal('f7ub_2007', period)
-        f7uc = foyer_fiscal('f7uc', period)
-        f7uj = foyer_fiscal('f7uj', period)
+        f7uc = foyer_fiscal('f7uc_2002', period)
+        f7uj = foyer_fiscal('f7uj_2002', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.domlog
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc)
@@ -3914,9 +3914,9 @@ class domlog(Variable):
         '''
         f7ua = foyer_fiscal('f7ua_2007', period)
         f7ub = foyer_fiscal('f7ub_2007', period)
-        f7uc = foyer_fiscal('f7uc', period)
+        f7uc = foyer_fiscal('f7uc_2002', period)
         f7ui = foyer_fiscal('f7ui_2008', period)
-        f7uj = foyer_fiscal('f7uj', period)
+        f7uj = foyer_fiscal('f7uj_2002', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.domlog
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc) + f7ui
@@ -3929,7 +3929,7 @@ class domlog(Variable):
         f7ua = foyer_fiscal('f7ua_2007', period)
         f7ub = foyer_fiscal('f7ub_2007', period)
         f7ui = foyer_fiscal('f7ui_2008', period)
-        f7uj = foyer_fiscal('f7uj', period)
+        f7uj = foyer_fiscal('f7uj_2002', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.domlog
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub) + f7ui
@@ -3948,10 +3948,10 @@ class domlog(Variable):
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2009
         '''
-        f7qb = foyer_fiscal('f7qb', period)
-        f7qc = foyer_fiscal('f7qc', period)
-        f7qd = foyer_fiscal('f7qd', period)
-        f7qk = foyer_fiscal('f7qk', period)
+        f7qb = foyer_fiscal('f7qb_2012', period)
+        f7qc = foyer_fiscal('f7qc_2012', period)
+        f7qd = foyer_fiscal('f7qd_2012', period)
+        f7qk = foyer_fiscal('f7qk_2009', period)
 
         return f7qb + f7qc + f7qd + f7qk / 2
 
@@ -3961,10 +3961,10 @@ class domlog(Variable):
         2010
         TODO: Plafonnement sur la notice
         '''
-        f7qb = foyer_fiscal('f7qb', period)
-        f7qc = foyer_fiscal('f7qc', period)
-        f7qd = foyer_fiscal('f7qd', period)
-        f7ql = foyer_fiscal('f7ql', period)
+        f7qb = foyer_fiscal('f7qb_2012', period)
+        f7qc = foyer_fiscal('f7qc_2012', period)
+        f7qd = foyer_fiscal('f7qd_2012', period)
+        f7ql = foyer_fiscal('f7ql_2012', period)
         f7qt = foyer_fiscal('f7qt_2012', period)
         f7qm = foyer_fiscal('f7qm_2012', period)
 
@@ -3976,19 +3976,19 @@ class domlog(Variable):
         2011
         TODO: Plafonnement sur la notice
         '''
-        f7qb = foyer_fiscal('f7qb', period)
-        f7qc = foyer_fiscal('f7qc', period)
-        f7qd = foyer_fiscal('f7qd', period)
-        f7ql = foyer_fiscal('f7ql', period)
+        f7qb = foyer_fiscal('f7qb_2012', period)
+        f7qc = foyer_fiscal('f7qc_2012', period)
+        f7qd = foyer_fiscal('f7qd_2012', period)
+        f7ql = foyer_fiscal('f7ql_2012', period)
         f7qm = foyer_fiscal('f7qm_2012', period)
         f7qt = foyer_fiscal('f7qt_2012', period)
-        f7oa = foyer_fiscal('f7oa', period)
-        f7ob = foyer_fiscal('f7ob', period)
-        f7oc = foyer_fiscal('f7oc', period)
-        f7oh = foyer_fiscal('f7oh', period)
-        f7oi = foyer_fiscal('f7oi', period)
-        f7oj = foyer_fiscal('f7oj', period)
-        f7ok = foyer_fiscal('f7ok', period)
+        f7oa = foyer_fiscal('f7oa_2012', period)
+        f7ob = foyer_fiscal('f7ob_2012', period)
+        f7oc = foyer_fiscal('f7oc_2012', period)
+        f7oh = foyer_fiscal('f7oh_2012', period)
+        f7oi = foyer_fiscal('f7oi_2012', period)
+        f7oj = foyer_fiscal('f7oj_2012', period)
+        f7ok = foyer_fiscal('f7ok_2012', period)
 
         return f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok
 
@@ -3998,31 +3998,31 @@ class domlog(Variable):
         2012
         TODO: Plafonnement sur la notice
         '''
-        f7qb = foyer_fiscal('f7qb', period)
-        f7qc = foyer_fiscal('f7qc', period)
-        f7qd = foyer_fiscal('f7qd', period)
-        f7ql = foyer_fiscal('f7ql', period)
+        f7qb = foyer_fiscal('f7qb_2012', period)
+        f7qc = foyer_fiscal('f7qc_2012', period)
+        f7qd = foyer_fiscal('f7qd_2012', period)
+        f7ql = foyer_fiscal('f7ql_2012', period)
         f7qm = foyer_fiscal('f7qm_2012', period)
         f7qt = foyer_fiscal('f7qt_2012', period)
-        f7oa = foyer_fiscal('f7oa', period)
-        f7ob = foyer_fiscal('f7ob', period)
-        f7oc = foyer_fiscal('f7oc', period)
-        f7oh = foyer_fiscal('f7oh', period)
-        f7oi = foyer_fiscal('f7oi', period)
-        f7oj = foyer_fiscal('f7oj', period)
-        f7ok = foyer_fiscal('f7ok', period)
-        f7ol = foyer_fiscal('f7ol', period)
-        f7om = foyer_fiscal('f7om', period)
-        f7on = foyer_fiscal('f7on', period)
-        f7oo = foyer_fiscal('f7oo', period)
+        f7oa = foyer_fiscal('f7oa_2012', period)
+        f7ob = foyer_fiscal('f7ob_2012', period)
+        f7oc = foyer_fiscal('f7oc_2012', period)
+        f7oh = foyer_fiscal('f7oh_2012', period)
+        f7oi = foyer_fiscal('f7oi_2012', period)
+        f7oj = foyer_fiscal('f7oj_2012', period)
+        f7ok = foyer_fiscal('f7ok_2012', period)
+        f7ol = foyer_fiscal('f7ol_2012', period)
+        f7om = foyer_fiscal('f7om_2012', period)
+        f7on = foyer_fiscal('f7on_2012', period)
+        f7oo = foyer_fiscal('f7oo_2012', period)
         f7op = foyer_fiscal('f7op_2012', period)
         f7oq = foyer_fiscal('f7oq_2012', period)
         f7or = foyer_fiscal('f7or_2012', period)
         f7os = foyer_fiscal('f7os_2012', period)
-        f7ot = foyer_fiscal('f7ot', period)
-        f7ou = foyer_fiscal('f7ou', period)
-        f7ov = foyer_fiscal('f7ov', period)
-        f7ow = foyer_fiscal('f7ow', period)
+        f7ot = foyer_fiscal('f7ot_2012', period)
+        f7ou = foyer_fiscal('f7ou_2012', period)
+        f7ov = foyer_fiscal('f7ov_2012', period)
+        f7ow = foyer_fiscal('f7ow_2012', period)
 
         return (
             f7qb + f7qc + f7qd + f7ql + f7qm + f7qt
