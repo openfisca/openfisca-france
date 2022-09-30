@@ -1,0 +1,231 @@
+
+- name: Après 2023, de 3-6 ans c'est full CMG
+  period: 2023-02
+  relative_error_margin: 0.01
+  input:
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 20000
+        activite: actif
+      parent2:
+        age: 40
+        salaire_imposable: 20000
+        activite: actif
+      enfant1:
+        age: 5
+    familles:
+      famille_0:
+        parents: [parent1, parent2]
+        enfants: [enfant1]
+        en_couple: 1 # parents en couple
+        af_nbenf: 1
+        gar_dom: true
+        ass_mat: 1
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+        personnes_a_charge: [enfant1]
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+        enfants: [enfant1]
+  output:
+    paje_cmg: 1609.31
+
+- name: Après 2023, de 0-3 ans c'est full CMG
+  period: 2023-02
+  relative_error_margin: 0.01
+  input:
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 20000
+        activite: actif
+      parent2:
+        age: 40
+        salaire_imposable: 20000
+        activite: actif
+      enfant1:
+        age: 2
+    familles:
+      famille_0:
+        parents: [parent1, parent2]
+        enfants: [enfant1]
+        en_couple: 1 # parents en couple
+        af_nbenf: 1
+        gar_dom: true
+        ass_mat: 1
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+        personnes_a_charge: [enfant1]
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+        enfants: [enfant1]
+  output:
+    paje_cmg: 1609.31
+
+- name: En 2022, CMG 2022 - full de 0 à 3
+  period: 2022-02
+  relative_error_margin: 0.5
+  input:
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 20000
+      parent2:
+        age: 40
+        salaire_imposable: 20000
+      enfant1:
+        age: 2
+    familles:
+      famille_0:
+        parents: [parent1, parent2]
+        enfants: [enfant1]
+        af_nbenf: 1
+        ass_mat: 1
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+        personnes_a_charge: [enfant1]
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+        enfants: [enfant1]
+  output:
+    paje_cmg: 715.84
+  
+- name: En 2022, CMG 2022 - reduit de 3 à 6
+  period: 2022-02
+  relative_error_margin: 0.5
+  input:
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 20000
+      parent2:
+        age: 40
+        salaire_imposable: 20000
+      enfant1:
+        age: 5
+    familles:
+      famille_0:
+        parents: [parent1, parent2]
+        enfants: [enfant1]
+        af_nbenf: 1
+        ass_mat: 1
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+        personnes_a_charge: [enfant1]
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+        enfants: [enfant1]
+  output:
+    paje_cmg: 715.84/2
+   
+
+- name: En 2022, CMG 2022 - rien apres 6 ans
+  period: 2022-02
+  relative_error_margin: 0.5
+  input:
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 20000
+      parent2:
+        age: 40
+        salaire_imposable: 20000
+      enfant1:
+        age: 7
+    familles:
+      famille_0:
+        parents: [parent1, parent2]
+        enfants: [enfant1]
+        af_nbenf: 1
+        ass_mat: 1
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+        personnes_a_charge: [enfant1]
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+        enfants: [enfant1]
+  output:
+    paje_cmg: 0
+   
+### OK
+
+- name: Après 2023, a 12 ans pas de cmg sauf si parent isole
+  period: 2023-02
+  relative_error_margin: 0.01
+  input:
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 20000
+      parent2:
+        age: 40
+        salaire_imposable: 20000
+      enfant1:
+        age: 10
+    familles:
+      famille_0:
+        parents: [parent1, parent2]
+        enfants: [enfant1]
+        en_couple: 0 # Parents isole !
+        gar_dom: true
+        af_nbenf: 1
+        ass_mat: 1
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+        enfants: [enfant1]
+  output:
+    paje_cmg: 1609.31
+    paje_base: 0
+ 
+- name: Après 2023, apres 6 ans pas de cmg 
+  period: 2023-02
+  relative_error_margin: 0.01
+  input:
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 20000
+        activite: actif
+      parent2:
+        age: 40
+        salaire_imposable: 20000
+        activite: actif
+      enfant1:
+        age: 10
+    familles:
+      famille_0:
+        parents: [parent1, parent2]
+        enfants: [enfant1]
+        en_couple: 1 # parents en couple
+        af_nbenf: 1
+        gar_dom: true
+        ass_mat: 1
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+        personnes_a_charge: [enfant1]
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+        enfants: [enfant1]
+  output:
+    paje_cmg: 0
