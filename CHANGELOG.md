@@ -1,5 +1,32 @@
 # Changelog
 
+### [#1900](https://github.com/openfisca/openfisca-france/pull/1900)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `parameters/impot_revenu/calcul_impot_revenu/plaf_qf/abat_dom/`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires`
+    * `apprentissage/`
+    * `construction/`
+    * `fin_syndic/financement_organisations_syndicales.yaml`
+    * `fnal/`
+  - `parameters/prelevements_sociaux/contributions_sociales`
+    * `crds/activite/abattement.yaml`
+    * `csg/remplacement/allocations_chomage/deductible/abattement.yaml`
+    * `csg/remplacement/allocations_chomage/imposable/abattement.yaml`
+    * `cotisations_secteur_public/fds/salarie/solidarite.yaml`
+    * `cotisations_securite_sociale_regime_general/csa/employeur/csa.yaml`
+    * `cotisations_securite_sociale_regime_general/penibilite/penibilite_base.yaml`
+  - `parameters/prestations_sociales/`
+    * `aides_logement/allocations_logement/al_param_accal/bareme_loyer_minimum_lo_apl1.yaml`
+    * `prestations_familiales/education_presence_parentale/asf/seuil.yaml`
+    * `solidarite_insertion/autre_solidarite/aefa/taux_majoration/tx_2p.yaml`
+* Détails :
+  - Corrige les unités de seuil des barèmes à une tranche de prélèvements sociaux.
+  - Emploie le plafond de la sécurité sociale (PSS) comme unité par défaut de ces barèmes.
+  - Corrige l'unité des abattements IR Guadeloupe, Martinique, Réunion et des libellés mineurs.
+
 ### 118.2.4 [#1915](https://github.com/openfisca/openfisca-france/pull/1915)
 
 * Changement mineur.
