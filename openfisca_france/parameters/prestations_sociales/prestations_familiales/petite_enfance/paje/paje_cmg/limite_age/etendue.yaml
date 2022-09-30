@@ -1,9 +1,9 @@
 description: Limite d'âge (stricte) pour une prestation réduite du Complément de libre choix de mode de garde (CMG) de ka Prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
-    value: 6
-  2023-01-01:
     value: null
+  2023-01-01:
+    value: 12
 metadata:
-  ux_name: Prestation réduite
+  ux_name: Prestation etendue
   unit: year

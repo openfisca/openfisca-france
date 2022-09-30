@@ -2,6 +2,8 @@ description: Limite d'âge (stricte) pour une prestation pleine du Complément d
 values:
   2004-01-01:
     value: 3
+  2023-01-01:
+    value: 6
 metadata:
   ux_name: Prestation pleine
   unit: year
