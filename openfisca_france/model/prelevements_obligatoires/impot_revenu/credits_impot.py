@@ -116,6 +116,7 @@ class credits_impot(Variable):
     def formula(foyer_fiscal, period, parameters):
         '''
         Crédits d'impôt pour l'impôt sur les revenus
+        Ancienne formule, pas vérifié si correcte pour toutes les années jusqu'à la nouvelle formule
         '''
         credits = [
             # Depuis 2002

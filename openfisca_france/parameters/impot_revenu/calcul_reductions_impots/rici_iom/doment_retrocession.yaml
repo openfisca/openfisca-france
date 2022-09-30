@@ -1,0 +1,134 @@
+plaf_partie_non_retro:
+  description: Plafond RI IOM LogEnt, rétrocession, partie non-rétrocédée
+  values:
+    2010-01-01:
+      value: 40000
+    2011-01-01:
+      value: 36000
+    2012-01-01:
+      value: 30600
+  metadata:
+    unit: currency
+
+
+taux_retro_avant_2011_1:
+  description: Plafond RI IOM LogEnt, rétrocession avant 2011, taux 1 à 60 %
+  values:
+    2017-01-01:
+      value: 0.6
+  metadata:
+    unit: /1
+plaf_retro_avant_2011_1:
+  description: Plafond RI IOM LogEnt, rétrocession avant 2011, taux 1 à 60 %
+  values:
+    2017-01-01:
+      value: 60000
+  metadata:
+    unit: currency
+
+taux_retro_avant_2011_2:
+  description: Plafond RI IOM LogEnt, rétrocession avant 2011, taux 1 à 60 %
+  values:
+    2017-01-01:
+      value: 0.5
+  metadata:
+    unit: /1
+plaf_retro_avant_2011_2:
+  description: Plafond RI IOM LogEnt, rétrocession avant 2011, taux 2 à 50 %
+  values:
+    2017-01-01:
+      value: 40000
+  metadata:
+    unit: currency
+
+
+taux_retro_2011_1:
+  description: Plafond RI IOM LogEnt, rétrocession 2011, taux 1 à 62.5 %
+  values:
+    2017-01-01:
+      value: 0.625
+  metadata:
+    unit: /1
+plaf_retro_2011_1:
+  description: Plafond RI IOM LogEnt, rétrocession 2011, taux 1 à 52.63 %
+  values:
+    2017-01-01:
+      value: 60000
+  metadata:
+    unit: currency
+
+taux_retro_2011_2:
+  description: Plafond RI IOM LogEnt, rétrocession 2011, taux 1 à 62.5 %
+  values:
+    2017-01-01:
+      value: 0.5263
+  metadata:
+    unit: /1
+plaf_retro_2011_2:
+  description: Plafond RI IOM LogEnt, rétrocession 2011, taux 2 à 52.63 %
+  values:
+    2017-01-01:
+      value: 40000
+  metadata:
+    unit: currency
+
+
+taux_retro_2012_1:
+  description: Plafond RI IOM LogEnt, rétrocession à partir de 2012, taux 1 à 62.5 %
+  values:
+    2017-01-01:
+      value: 0.625
+  metadata:
+    unit: /1
+plaf_retro_2012_1:
+  description: Plafond RI IOM LogEnt, rétrocession à partir de 2012, taux 1 à 52.63 %
+  values:
+    2017-01-01:
+      value: 51000
+  metadata:
+    unit: currency
+
+taux_retro_2012_2:
+  description: Plafond RI IOM LogEnt, rétrocession à partir de 2012, taux 1 à 62.5 %
+  values:
+    2017-01-01:
+      value: 0.5263
+  metadata:
+    unit: /1
+plaf_retro_2012_2:
+  description: Plafond RI IOM LogEnt, rétrocession à partir de 2012, taux 2 à 52.63 %
+  values:
+    2017-01-01:
+      value: 34000
+  metadata:
+    unit: currency
+
+taux_retro_2012_3:
+  description: Plafond RI IOM LogEnt, rétrocession à partir de 2012, taux 3 à 62.5 %
+  values:
+    2017-01-01:
+      value: 0.66
+  metadata:
+    unit: /1
+plaf_retro_2012_3:
+  description: Plafond RI IOM LogEnt, rétrocession à partir de 2012, taux 3 à 52.63 %
+  values:
+    2017-01-01:
+      value: 59400
+  metadata:
+    unit: currency
+
+taux_retro_2012_4:
+  description: Plafond RI IOM LogEnt, rétrocession à partir de 2012, taux 4 à 62.5 %
+  values:
+    2017-01-01:
+      value: 0.56
+  metadata:
+    unit: /1
+plaf_retro_2012_4:
+  description: Plafond RI IOM LogEnt, rétrocession à partir de 2012, taux 4 à 52.63 %
+  values:
+    2017-01-01:
+      value: 38945
+  metadata:
+    unit: currency
