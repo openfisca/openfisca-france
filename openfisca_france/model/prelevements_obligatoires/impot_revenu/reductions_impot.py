@@ -5935,14 +5935,6 @@ class domlog(Variable):
 
         return ri_opt
 
-        # return (
-        #     fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj
-        #     + fhok + fhol + fhom + fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov
-        #     + fhow + fhod + fhoe + fhof + fhog + fhox + fhoy + fhoz
-        #     + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug + fhuh + fhui + fhuj + fhuk + fhul
-        #     + fhum + fhun + fhuo + fhup + fhuq + fhur + fhus + fhut + fhuu
-        #     )
-
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
@@ -6872,48 +6864,72 @@ class domsoc(Variable):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2016
+
+        ATTENTION : Rupture importante à partir de cette année, prise en compte du plafond.
         '''
-        fhqj = foyer_fiscal('fhqj', period)
-        fhqk = foyer_fiscal('fhqk', period)
-        fhqn = foyer_fiscal('fhqn', period)
-        fhqs = foyer_fiscal('fhqs', period)
-        fhqu = foyer_fiscal('fhqu', period)
-        fhqw = foyer_fiscal('fhqw', period)
-        fhqx = foyer_fiscal('fhqx', period)
-        fhra = foyer_fiscal('fhra', period)
-        fhrb = foyer_fiscal('fhrb', period)
-        fhrc = foyer_fiscal('fhrc', period)
-        fhrd = foyer_fiscal('fhrd', period)
-        fhxa = foyer_fiscal('fhxa', period)
-        fhxb = foyer_fiscal('fhxb', period)
-        fhxc = foyer_fiscal('fhxc', period)
-        fhxe = foyer_fiscal('fhxe', period)
         fhxf = foyer_fiscal('fhxf', period)
         fhxg = foyer_fiscal('fhxg', period)
         fhxh = foyer_fiscal('fhxh', period)
         fhxi = foyer_fiscal('fhxi', period)
         fhxk = foyer_fiscal('fhxk', period)
+        fhxa = foyer_fiscal('fhxa', period)
+        fhxb = foyer_fiscal('fhxb', period)
+        fhxc = foyer_fiscal('fhxc', period)
+        fhxe = foyer_fiscal('fhxe', period)
+        fhra = foyer_fiscal('fhra', period)
+        fhrb = foyer_fiscal('fhrb', period)
+        fhrc = foyer_fiscal('fhrc', period)
+        fhrd = foyer_fiscal('fhrd', period)
+        fhqj = foyer_fiscal('fhqj', period)
+        fhqs = foyer_fiscal('fhqs', period)
+        fhqw = foyer_fiscal('fhqw', period)
+        fhqx = foyer_fiscal('fhqx', period)
+        fhqu = foyer_fiscal('fhqu', period)
+        fhqk = foyer_fiscal('fhqk', period)
+        fhqn = foyer_fiscal('fhqn', period)
         fhxl = foyer_fiscal('fhxl', period)
         fhxm = foyer_fiscal('fhxm', period)
         fhxn = foyer_fiscal('fhxn', period)
         fhxo = foyer_fiscal('fhxo', period)
         fhxp = foyer_fiscal('fhxp', period)
 
-        report_reduc_2011 = fhqn + fhqu + fhqk
-        report_reduc_2012 = fhqj + fhqs + fhqw + fhqx
-        report_reduc_2013 = fhra + fhrb + fhrc + fhrd
-        report_reduc_2014 = fhxa + fhxb + fhxc + fhxe
-        report_reduc_2015 = fhxf + fhxg + fhxh + fhxi + fhxk
-        reduc_invest_2016 = fhxl + fhxm + fhxn + fhxo + fhxp
+        ri_soc_65 = (fhqj
+            + fhqk
+            + fhqn
+            + fhqu
+            + fhqs
+            + fhqw
+            + fhqx
+            + fhra
+            + fhrb
+            + fhrc
+            + fhrd
+            + fhxa
+            + fhxb
+            + fhxc
+            + fhxe
+            + fhxf
+            + fhxg
+            + fhxh
+            + fhxi
+            + fhxl
+            + fhxm
+            + fhxn
+            + fhxo)
 
-        return (
-            report_reduc_2011
-            + report_reduc_2012
-            + report_reduc_2013
-            + report_reduc_2014
-            + report_reduc_2015
-            + reduc_invest_2016
-            )
+        ri_soc_70 = (fhxk
+            + fhxp
+        )
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
+
+        base_70 = max_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
+        base_65 = max_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+
+        rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
+        rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
+
+        return base_70 + base_65 + rc_70 + rc_65
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -6991,9 +7007,258 @@ class domsoc(Variable):
 
         return base_70 + base_65 + rc_70 + rc_65
 
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2018
+        '''
+        # 65 % - avant 2015
+        fhya = foyer_fiscal('fhya', period)
+        fhra = foyer_fiscal('fhra', period)
+        fhrb = foyer_fiscal('fhrb', period)
+        fhrc = foyer_fiscal('fhrc', period)
+        fhrd = foyer_fiscal('fhrd', period)
+        fhxa = foyer_fiscal('fhxa', period)
+        fhxb = foyer_fiscal('fhxb', period)
+        fhxc = foyer_fiscal('fhxc', period)
+        fhxe = foyer_fiscal('fhxe', period)
+        fhxf = foyer_fiscal('fhxf', period)
+        fhxg = foyer_fiscal('fhxg', period)
+        fhxh = foyer_fiscal('fhxh', period)
+        fhxi = foyer_fiscal('fhxi', period)
+        fhxl = foyer_fiscal('fhxl', period)
+        fhxm = foyer_fiscal('fhxm', period)
+        fhxn = foyer_fiscal('fhxn', period)
+        fhxo = foyer_fiscal('fhxo', period)
+        fhxq = foyer_fiscal('fhxq', period)
+        fhxr = foyer_fiscal('fhxr', period)
+        fhxs = foyer_fiscal('fhxs', period)
+        fhxt = foyer_fiscal('fhxt', period)
+
+        # 70 % - à partir de 2015
+        fhyb = foyer_fiscal('fhyb', period)
+        fhxk = foyer_fiscal('fhxk', period)
+        fhxp = foyer_fiscal('fhxp', period)
+        fhxu = foyer_fiscal('fhxu', period)
+
+        ri_soc_65 = (fhxq
+            + fhxr
+            + fhxs
+            + fhxt
+            + fhra
+            + fhrb
+            + fhrc
+            + fhrd
+            + fhxa
+            + fhxb
+            + fhxc
+            + fhxe
+            + fhxf
+            + fhxg
+            + fhxh
+            + fhxi
+            + fhxl
+            + fhxm
+            + fhxn
+            + fhxo
+            + fhya)
 
 
+        ri_soc_70 = (fhxu
+            + fhxk
+            + fhxp
+            + fhyb)
 
+        P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
+
+        base_70 = max_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
+        base_65 = max_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+
+        rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
+        rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
+
+        return base_70 + base_65 + rc_70 + rc_65
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2019
+        '''
+        # 65 % - avant 2015
+        fhyc = foyer_fiscal('fhyc', period)
+        fhxa = foyer_fiscal('fhxa', period)
+        fhxb = foyer_fiscal('fhxb', period)
+        fhxc = foyer_fiscal('fhxc', period)
+        fhxe = foyer_fiscal('fhxe', period)
+        fhxf = foyer_fiscal('fhxf', period)
+        fhxg = foyer_fiscal('fhxg', period)
+        fhxh = foyer_fiscal('fhxh', period)
+        fhxi = foyer_fiscal('fhxi', period)
+        fhxl = foyer_fiscal('fhxl', period)
+        fhxm = foyer_fiscal('fhxm', period)
+        fhxn = foyer_fiscal('fhxn', period)
+        fhxo = foyer_fiscal('fhxo', period)
+        fhxq = foyer_fiscal('fhxq', period)
+        fhxr = foyer_fiscal('fhxr', period)
+        fhxs = foyer_fiscal('fhxs', period)
+        fhxt = foyer_fiscal('fhxt', period)
+        fhya = foyer_fiscal('fhya', period)
+
+        # 70 % - à partir de 2015
+        fhyd = foyer_fiscal('fhyd', period)
+        fhxk = foyer_fiscal('fhxk', period)
+        fhxp = foyer_fiscal('fhxp', period)
+        fhxu = foyer_fiscal('fhxu', period)
+        fhyb = foyer_fiscal('fhyb', period)
+
+        ri_soc_65 = (fhyc
+            + fhxq
+            + fhxr
+            + fhxs
+            + fhxt
+            + fhxa
+            + fhxb
+            + fhxc
+            + fhxe
+            + fhxf
+            + fhxg
+            + fhxh
+            + fhxi
+            + fhxl
+            + fhxm
+            + fhxn
+            + fhxo
+            + fhya)
+
+        ri_soc_70 = (fhyd
+            + fhxu
+            + fhxk
+            + fhxp
+            + fhyb)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
+
+        base_70 = max_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
+        base_65 = max_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+
+        rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
+        rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
+
+        return base_70 + base_65 + rc_70 + rc_65
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2020
+        '''
+        # 65 % - avant 2015
+        fhxf = foyer_fiscal('fhxf', period)
+        fhxg = foyer_fiscal('fhxg', period)
+        fhxh = foyer_fiscal('fhxh', period)
+        fhxi = foyer_fiscal('fhxi', period)
+        fhxl = foyer_fiscal('fhxl', period)
+        fhxm = foyer_fiscal('fhxm', period)
+        fhxn = foyer_fiscal('fhxn', period)
+        fhxo = foyer_fiscal('fhxo', period)
+        fhxq = foyer_fiscal('fhxq', period)
+        fhxr = foyer_fiscal('fhxr', period)
+        fhxs = foyer_fiscal('fhxs', period)
+        fhxt = foyer_fiscal('fhxt', period)
+        fhya = foyer_fiscal('fhya', period)
+        fhyc = foyer_fiscal('fhyc', period)
+
+        # 70 % - à partir de 2015
+        fhye = foyer_fiscal('fhye', period)
+        fhxk = foyer_fiscal('fhxk', period)
+        fhxp = foyer_fiscal('fhxp', period)
+        fhxu = foyer_fiscal('fhxu', period)
+        fhyb = foyer_fiscal('fhyb', period)
+        fhyd = foyer_fiscal('fhyd', period)
+
+        ri_soc_65 = (fhyc
+            + fhxq
+            + fhxr
+            + fhxs
+            + fhxt
+            + fhxf
+            + fhxg
+            + fhxh
+            + fhxi
+            + fhxl
+            + fhxm
+            + fhxn
+            + fhxo
+            + fhya)
+
+        ri_soc_70 = (fhye
+            + fhyd
+            + fhxu
+            + fhxk
+            + fhxp
+            + fhyb)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
+
+        base_70 = max_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
+        base_65 = max_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+
+        rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
+        rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
+
+        return base_70 + base_65 + rc_70 + rc_65
+
+    def formula_2021_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2021
+        '''
+        # 65 % - avant 2015
+        fhxl = foyer_fiscal('fhxl', period)
+        fhxm = foyer_fiscal('fhxm', period)
+        fhxn = foyer_fiscal('fhxn', period)
+        fhxo = foyer_fiscal('fhxo', period)
+        fhxq = foyer_fiscal('fhxq', period)
+        fhxr = foyer_fiscal('fhxr', period)
+        fhxs = foyer_fiscal('fhxs', period)
+        fhxt = foyer_fiscal('fhxt', period)
+        fhya = foyer_fiscal('fhya', period)
+        fhyc = foyer_fiscal('fhyc', period)
+
+        # 70 % - à partir de 2015
+        fhyf = foyer_fiscal('fhyf', period)
+        fhxp = foyer_fiscal('fhxp', period)
+        fhxu = foyer_fiscal('fhxu', period)
+        fhye = foyer_fiscal('fhye', period)
+        fhyb = foyer_fiscal('fhyb', period)
+        fhyd = foyer_fiscal('fhyd', period)
+
+        ri_soc_65 = (fhyc
+            + fhxq
+            + fhxr
+            + fhxs
+            + fhxt
+            + fhxl
+            + fhxm
+            + fhxn
+            + fhxo
+            + fhya)
+
+        ri_soc_70 = (fhyf
+            + fhye
+            + fhyd
+            + fhxu
+            + fhxp
+            + fhyb)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
+
+        base_70 = max_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
+        base_65 = max_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+
+        rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
+        rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
+
+        return base_70 + base_65 + rc_70 + rc_65
 
 
 class ecodev(Variable):
