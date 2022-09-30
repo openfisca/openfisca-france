@@ -3241,7 +3241,6 @@ class domlog(Variable):
         '''
         f7ua = foyer_fiscal('f7ua_2007', period)
         f7ub = foyer_fiscal('f7ub_2007', period)
-        f7uc = foyer_fiscal('f7uc', period)  # noqa F841
         f7ui = foyer_fiscal('f7ui_2008', period)
         f7uj = foyer_fiscal('f7uj', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.domlog
