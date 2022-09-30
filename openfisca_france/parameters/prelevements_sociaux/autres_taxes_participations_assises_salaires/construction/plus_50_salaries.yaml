@@ -15,4 +15,5 @@ metadata:
       title: Loi 2019-486 du 22/05/2019, art. 11
   official_journal_date:
     2020-01-01: "2019-05-23"
-  threshold_unit: /1
+  rate_unit: /1
+  threshold_unit: PSS
