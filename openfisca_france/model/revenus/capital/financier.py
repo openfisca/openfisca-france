@@ -276,6 +276,16 @@ class f2bh(Variable):
     definition_period = YEAR
 
 
+class f2df(Variable):
+    cerfa_field = '2DF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Autres revenus déjà soumis aux prélèvements sociaux avec CSG déductible'
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
 class f2ca(Variable):
     cerfa_field = '2CA'
     value_type = int

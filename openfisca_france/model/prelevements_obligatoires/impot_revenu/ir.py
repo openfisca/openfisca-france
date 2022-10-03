@@ -1064,7 +1064,8 @@ class csg_patrimoine_deductible_ir(Variable):
         rbg = foyer_fiscal('rbg', period)
         f6de = foyer_fiscal('f6de', period)
         f2bh = foyer_fiscal('f2bh', period)
-        csg_deduc_patrimoine = max_(f6de, 0) + max_(csg_deductible * f2bh, 0)
+        f2df = foyer_fiscal('f2df', period)
+        csg_deduc_patrimoine = max_(f6de, 0) + max_(csg_deductible * (f2bh + f2df), 0)
 
         return min_(csg_deduc_patrimoine, max_(rbg, 0))
 
