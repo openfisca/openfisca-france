@@ -39,4 +39,7 @@ values:
   2021-01-01:
     value: 10881.75
   2022-01-01:
-    value: 11969.92
+    value: 11001.45
+  2022-07-01:
+    value: 11441.49
+    reference: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
