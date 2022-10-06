@@ -42,6 +42,10 @@ values:
     value: 10838.4
   2021-01-01:
     value: 10881.75
+  2022-01-01:
+    value: 11001.45
+  2022-07-01:
+    value: 11441.49
 metadata:
   ux_name: Couple
   description_en: Solidarity income for elderly (ASPA)
