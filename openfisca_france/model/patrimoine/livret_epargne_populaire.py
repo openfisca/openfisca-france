@@ -49,7 +49,7 @@ class livret_epargne_populaire_taux(Variable):
     label = "Taux du livret d'épargne populaire"
     reference = [
         "3° I de l'article 1 de l'arrêté du 27 janvier 2021 relatif aux taux d'intérêt des produits d'épargne réglementée",
-        'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000043114027/2022-07-31/'
+        'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000043114027/2022-07-31/',
         ]
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
