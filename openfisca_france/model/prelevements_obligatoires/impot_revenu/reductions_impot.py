@@ -5817,7 +5817,7 @@ class ri_invfor(Variable):
         f7un = foyer_fiscal('f7un', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
 
-        return P.taux * f7un
+        return P.taux_travaux * f7un
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
