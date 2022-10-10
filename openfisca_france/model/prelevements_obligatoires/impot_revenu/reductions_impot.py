@@ -5807,8 +5807,8 @@ class ri_invfor(Variable):
         f7un = foyer_fiscal('f7un', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
 
-        seuil = P.plafond * (maries_ou_pacses + 1)
-        return P.taux * min_(f7un, seuil)
+        seuil = P.plafond_ri_acquisition * (maries_ou_pacses + 1)
+        return P.taux_travaux * min_(f7un, seuil)
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
         '''
@@ -5829,8 +5829,8 @@ class ri_invfor(Variable):
         f7uq = foyer_fiscal('f7uq', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
 
-        return P.taux * (
-            min_(f7un, P.plafond * (maries_ou_pacses + 1))
+        return P.taux_travaux * (
+            min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
             + min_(f7up, P.plafond_travaux * (maries_ou_pacses + 1))
             + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
             )
@@ -5844,11 +5844,11 @@ class ri_invfor(Variable):
         f7un = foyer_fiscal('f7un', period)
         f7up = foyer_fiscal('f7up', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7uu = foyer_fiscal('f7uu', period)
+        f7uu = foyer_fiscal('f7uu_2017', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
 
-        return P.taux * (
-            min_(f7un, P.plafond * (maries_ou_pacses + 1))
+        return P.taux_travaux * (
+            min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
             + min_(f7up + f7uu + f7te, P.plafond_travaux * (maries_ou_pacses + 1))
             + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
             )
@@ -5864,20 +5864,22 @@ class ri_invfor(Variable):
         f7un = foyer_fiscal('f7un', period)
         f7up = foyer_fiscal('f7up', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7uu = foyer_fiscal('f7uu', period)
-        f7uv = foyer_fiscal('f7uv', period)
+        f7uu = foyer_fiscal('f7uu_2017', period)
+        f7uv = foyer_fiscal('f7uv_2016', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
 
         max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu - f7te - f7uv - f7tf)
         return (
-            P.taux * (
-                min_(f7un, P.plafond * (maries_ou_pacses + 1))
+            P.taux_travaux * (
+                min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
                 + min_(f7up, max1)
                 + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
                 )
-            + P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0)
-            + P.taux_assurance * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
+            + P10.taux_travaux * min_(f7uu + f7te + f7uv + f7tf, max0)
+            + P.taux_ri_ass * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -5892,10 +5894,13 @@ class ri_invfor(Variable):
         f7un = foyer_fiscal('f7un', period)
         f7up = foyer_fiscal('f7up', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7uu = foyer_fiscal('f7uu', period)
-        f7uv = foyer_fiscal('f7uv', period)
-        f7uw = foyer_fiscal('f7uw', period)
+        f7uu = foyer_fiscal('f7uu_2017', period)
+        f7uv = foyer_fiscal('f7uv_2016', period)
+        f7uw = foyer_fiscal('f7uw_2015', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
 
         report_depenses_2009 = f7uu + f7te
         report_depenses_2010 = f7uv + f7tf
@@ -5906,14 +5911,14 @@ class ri_invfor(Variable):
         max2 = max_(0, max1 - report_depenses_2011)
 
         return (
-            P.taux * (
-                min_(f7un, P.plafond * (maries_ou_pacses + 1))
+            P.taux_travaux * (
+                min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
                 + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
                 + min_(f7up, max2)
                 )
-            + P.taux_assurance * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
-            + P.report10 * min_(report_depenses_2009 + report_depenses_2010, max0) +
-            + P.report11 * min_(report_depenses_2011, max1)
+            + P.taux_ri_ass * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
+            + P10.taux_travaux * min_(report_depenses_2009 + report_depenses_2010, max0) +
+            + P11.taux_travaux * min_(report_depenses_2011, max1)
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -5929,11 +5934,15 @@ class ri_invfor(Variable):
         f7un = foyer_fiscal('f7un', period)
         f7up = foyer_fiscal('f7up', period)
         f7uq = foyer_fiscal('f7uq', period)
-        f7uu = foyer_fiscal('f7uu', period)
-        f7uv = foyer_fiscal('f7uv', period)
-        f7uw = foyer_fiscal('f7uw', period)
-        f7ux = foyer_fiscal('f7ux', period)
+        f7uu = foyer_fiscal('f7uu_2017', period)
+        f7uv = foyer_fiscal('f7uv_2016', period)
+        f7uw = foyer_fiscal('f7uw_2015', period)
+        f7ux = foyer_fiscal('f7ux_2018', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.invfor
 
         report_depenses_2009 = f7uu + f7te
         report_depenses_2010 = f7uv + f7tf
@@ -5946,15 +5955,15 @@ class ri_invfor(Variable):
         max3 = max_(0, max2 - report_depenses_2012)
 
         return (
-            P.taux * (
-                min_(f7un, P.plafond * (maries_ou_pacses + 1))
+            P.taux_travaux * (
+                min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
                 + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
                 + min_(f7up, max3)
                 )
-            + P.taux_assurance * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
-            + P.report10 * min_(report_depenses_2009 + report_depenses_2010, max0)
-            + P.report11 * min_(report_depenses_2011, max1)
-            + P.report12 * min_(report_depenses_2012, max2)
+            + P.taux_ri_ass * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
+            + P10.taux_travaux * min_(report_depenses_2009 + report_depenses_2010, max0)
+            + P11.taux_travaux * min_(report_depenses_2011, max1)
+            + P12.taux_travaux * min_(report_depenses_2012, max2)
             )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
