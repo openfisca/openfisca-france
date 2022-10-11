@@ -1,7 +1,21 @@
 description: Taux pour les acquisitions
 values:
-  2014-01-01:
+  2001-01-01:
+    value: 0.25
+  2011-01-01:
+    value: 0.22
+  2012-01-01:
     value: 0.18
 metadata:
-  last_review: "2022-08-27"
+  last_review: "2022-10-11"
   unit: /1
+  reference:
+    2001-01-01:
+      title: Loi 2001-602 du 09/07/2001 art. 9 III (créé art. 199 decies H du CGI)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000223691/
+    2011-01-01:
+      title: Décret 2011-520 du 13/05/2011 - art. 1 (modifie art. 199 decies H du CGI)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000023995358
+    2012-01-01:
+      title: Décret 2012-547 du 23/04/2012 (modifie art. 199 decies H du CGI)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025743489
