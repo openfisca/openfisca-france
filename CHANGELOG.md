@@ -5,9 +5,7 @@
 * Changement mineur.
 * Périodes concernées : aucune
 * Zones impactées : déploiement continu
-* Détails :
-       - Modification de la publication sur conda. Avant on ne construisait le paquet qu'après le merge sur master.
-       - Maintenant le paquet est construit et testé dès que `check-version-and-changelog` passe.
+* Détails : le paquet publié sur Conda est désormais testé avant le déploiement sur master.
 
 ### 118.3.2 [#1918](https://github.com/openfisca/openfisca-france/pull/1918)
 
