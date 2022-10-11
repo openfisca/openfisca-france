@@ -1,5 +1,4 @@
 import logging
-from numpy import around
 from openfisca_france.model.base import *
 
 
