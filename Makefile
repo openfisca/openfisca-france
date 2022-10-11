@@ -40,7 +40,7 @@ check-style:
 	flake8 `git ls-files | grep "\.py$$"`
 
 check-path-length:
-	@# Verify that there is no path exeeding Windows limit
+	@# Verify that there is no path exceeding Windows limit
 	python openfisca_france/scripts/check_longueur_chemins.py
 
 check-yaml:
