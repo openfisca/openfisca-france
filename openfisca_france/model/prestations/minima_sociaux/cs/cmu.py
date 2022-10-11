@@ -27,9 +27,10 @@ class cmu_forfait_logement_base(Variable):
     def formula(famille, period, parameters):
         cmu_nbp_foyer = famille('cmu_nbp_foyer', period)
         P = parameters(period).cs.cmu.forfait_logement
-        law_rsa = parameters(period).prestations.minima_sociaux.rmi
+        # law_rsa = parameters(period).prestations.minima_sociaux.rmi
+        law_minima_sociaux = parameters(period).prestations.minima_sociaux
 
-        return forfait_logement(cmu_nbp_foyer, P, law_rsa)
+        return forfait_logement(cmu_nbp_foyer, P, law_minima_sociaux)
 
 
 class cmu_forfait_logement_al(Variable):
@@ -43,9 +44,10 @@ class cmu_forfait_logement_al(Variable):
         nb_personnes_foyer = famille('cmu_nbp_foyer', period)
         aide_logement = famille('aide_logement', period)
         P = parameters(period).cs.cmu.forfait_logement_al
-        law_rsa = parameters(period).prestations.minima_sociaux.rmi
+        # law_rsa = parameters(period).prestations.minima_sociaux.rmi
+        law_minima_sociaux = parameters(period).prestations.minima_sociaux
 
-        return (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
+        return (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_minima_sociaux))
 
 
 class cmu_nbp_foyer(Variable):
@@ -187,14 +189,19 @@ class cmu_c(Variable):
 # Helper functions
 
 
-def forfait_logement(nbp_foyer, P, law_rsa):
+def forfait_logement(nbp_foyer, P, law_minima_sociaux):
     '''
     Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux
     '''
-    montant_rsa_socle = law_rsa.rmi * (
+
+    # conservation temporaire des taux dans le RMI car non présent dans RSA, à regler avec le rebase
+    law_rmi = law_minima_sociaux.rmi
+
+    law_rsa = law_minima_sociaux.rsa
+    montant_rsa_socle = law_rsa.montant_de_base_du_rsa * (
         1
-        + law_rsa.txp2 * (nbp_foyer >= 2)
-        + law_rsa.txp3 * (nbp_foyer >= 3)
+        + law_rmi.txp2 * (nbp_foyer >= 2)
+        + law_rmi.txp3 * (nbp_foyer >= 3)
         )
 
     return 12 * montant_rsa_socle * select(
