@@ -4,8 +4,7 @@
 
 * Changement mineur.
 * Périodes concernées : aucune
-* Zones impactées :
-        Github action workflow
+* Zones impactées : déploiement continu
 * Détails :
        - Modification de la publication sur conda. Avant on ne construisait le paquet qu'après le merge sur master.
        - Maintenant le paquet est construit et testé dès que `check-version-and-changelog` passe.
