@@ -3,7 +3,7 @@ values:
   2021-01-01:
     value: 3000
   2022-01-01:
-    value: null
+    value: 0
 metadata:
   last_review: "2022-10-11"
   unit: currency
