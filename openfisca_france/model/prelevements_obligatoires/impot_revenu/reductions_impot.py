@@ -5924,6 +5924,8 @@ class spfcpi(Variable):
         f7hl = foyer_fiscal('f7hl', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+        P1 = parameters('2020-08-01').impot_revenu.calcul_reductions_impots.spfcpi
+        P2 = parameters('2020-08-31').impot_revenu.calcul_reductions_impots.spfcpi
 
         max1 = P.plafond * (maries_ou_pacses + 1)
 
@@ -5940,10 +5942,10 @@ class spfcpi(Variable):
         mon_7hl = min_(max1 - mon_7fl, f7hl)
 
         return (P.taux1 * (mon_7gq + mon_7fq)
-            + P.taux2 * mon_7fm
-            + P.taux3 * mon_7fl
+            + P1.taux2 * mon_7fm
+            + P1.taux3 * mon_7fl
             + P.taux_fcp_fip_special * (mon_7gr + mon_7ft)
-            + P.taux_corse_om_special * (mon_7hm + mon_7hl))
+            + P2.taux2 * mon_7hm + P2.taux3 * mon_7hl)
 
     def formula_2021_01_01(foyer_fiscal, period, parameters):
         '''
