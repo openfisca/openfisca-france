@@ -46,6 +46,7 @@ class credits_impot(Variable):
             ]
 
         P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P2021 = parameters('2021-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
 
         # Get remainder of allowance for niches fiscales
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
@@ -55,7 +56,7 @@ class credits_impot(Variable):
         remaining_allowance = (P.plafond_1  # general limit
             - red_plaf  # - general reductions
             - max_(0, red_plaf_om - P.majoration_om)  # - general reductions used for DOM/SOFICA
-            - max_(0, red_plaf_esus_sfs - P.majoration_esus_sfs))  # - general reductions used for ESUS/SFS
+            - max_(0, red_plaf_esus_sfs - P2021.majoration_esus_sfs))  # - general reductions used for ESUS/SFS
 
         # credit available within the limit
         montants_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_plaf])

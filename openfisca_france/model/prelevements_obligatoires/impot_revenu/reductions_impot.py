@@ -101,6 +101,7 @@ class reductions_plafonnees_esus_sfs(Variable):
     entity = FoyerFiscal
     label = "Réductions d'impôt sur le revenu plafonnées, ESUS et SFS"
     definition_period = YEAR
+    end = '2021-12-31'
 
     def formula_2021_01_01(foyer_fiscal, period, parameters):
 
