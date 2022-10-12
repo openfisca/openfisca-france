@@ -573,12 +573,12 @@ class doment(Variable):
 
         ATTENTION : Rupture important à partir de cette date, prise en compte du plafond.
         '''
-        P10 = parameters('2010').impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
-        P11 = parameters('2011').impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
-        P12 = parameters('2012').impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
-        PP10 = parameters('2010').impot_revenu.calcul_reductions_impots.rici_iom.doment_propre_entreprise
-        PP11 = parameters('2011').impot_revenu.calcul_reductions_impots.rici_iom.doment_propre_entreprise
-        PP12 = parameters('2012').impot_revenu.calcul_reductions_impots.rici_iom.doment_propre_entreprise
+        P10 = parameters('2010').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        P11 = parameters('2011').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        P15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        PP10 = parameters('2010').impot_revenu.calcul_reductions_impots.outremer_investissement
+        PP11 = parameters('2011').impot_revenu.calcul_reductions_impots.outremer_investissement
+        PP15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement
 
         fhqv = foyer_fiscal('fhqv', period)
         fhpm = foyer_fiscal('fhpm', period)
@@ -701,23 +701,23 @@ class doment(Variable):
             + fhqp
             + fhqg)
 
-        nr_66_306_594 = min_(inv_66_306_594 * (1 - P12.taux_retro_2012_3), max_(0, P12.plaf_partie_non_retro))
-        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_2011_1), max_(0, P11.plaf_partie_non_retro - nr_66_306_594))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P12.taux_retro_2012_1), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60))
-        nr_60_40_60 = min_(inv_60_40_60 * (1 - P10.taux_retro_avant_2011_1), max_(0, P10.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P12.taux_retro_2012_4), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60))
-        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2011_2), max_(0, P11.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P12.taux_retro_2012_2), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40))
-        nr_50_40_40 = min_(inv_50_40_40 * (1 - P10.taux_retro_avant_2011_2), max_(0, P10.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40 - nr_5263_306_34))
+        nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
+        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P15.taux_retro_1), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60))
+        nr_60_40_60 = min_(inv_60_40_60 * (1 - P10.taux_retro_1), max_(0, PP10.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60))
+        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40))
+        nr_50_40_40 = min_(inv_50_40_40 * (1 - P10.taux_retro_2), max_(0, PP10.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40 - nr_5263_306_34))
 
-        r_66_306_594 = nr_66_306_594 / (1 - P12.taux_retro_2012_3) * P12.taux_retro_2012_3
-        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_2011_1) * P11.taux_retro_2011_1
-        r_625_306_51 = nr_625_306_51 / (1 - P12.taux_retro_2012_1) * P12.taux_retro_2012_1
-        r_60_40_60 = nr_60_40_60 / (1 - P10.taux_retro_avant_2011_1) * P10.taux_retro_avant_2011_1
-        r_56_306_38945 = nr_56_306_38945 / (1 - P12.taux_retro_2012_4) * P12.taux_retro_2012_4
-        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2011_2) * P11.taux_retro_2011_2
-        r_5263_306_34 = nr_5263_306_34 / (1 - P12.taux_retro_2012_2) * P12.taux_retro_2012_2
-        r_50_40_40 = nr_50_40_40 / (1 - P10.taux_retro_avant_2011_2) * P10.taux_retro_avant_2011_2
+        r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_1) * P11.taux_retro_1
+        r_625_306_51 = nr_625_306_51 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_60_40_60 = nr_60_40_60 / (1 - P10.taux_retro_1) * P10.taux_retro_1
+        r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2) * P11.taux_retro_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_50_40_40 = nr_50_40_40 / (1 - P10.taux_retro_2) * P10.taux_retro_2
 
         inv = (nr_66_306_594
             + nr_625_36_60
@@ -836,12 +836,12 @@ class doment(Variable):
 
         propre_100 = fhpr + fhpw
 
-        ri_propre = (min_(PP10.plaf_sans_exploitation, propre_40)
-            + min_(PP11.plaf_sans_exploitation, propre_36)
-            + min_(PP12.plaf_sans_exploitation, propre_306)
-            + min_(PP10.plaf_avec_exploitation, propre_100)
-            + min_(PP11.plaf_avec_exploitation, propre_90)
-            + min_(PP12.plaf_avec_exploitation, propre_765))
+        ri_propre = (min_(PP10.plafond, propre_40)
+            + min_(PP11.plafond, propre_36)
+            + min_(PP15.plafond, propre_306)
+            + min_(PP10.plafond * PP10.doment.propre_entreprise.majoration, propre_100)
+            + min_(PP11.plafond * PP11.doment.propre_entreprise.majoration, propre_90)
+            + min_(PP15.plafond * PP15.doment.propre_entreprise.majoration, propre_765))
 
         return ri_propre + inv_no_plaf + inv
 
@@ -849,12 +849,12 @@ class doment(Variable):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
-        P10 = parameters('2010').impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
-        P11 = parameters('2011').impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
-        P12 = parameters('2012').impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
-        PP10 = parameters('2010').impot_revenu.calcul_reductions_impots.rici_iom.doment_propre_entreprise
-        PP11 = parameters('2011').impot_revenu.calcul_reductions_impots.rici_iom.doment_propre_entreprise
-        PP12 = parameters('2012').impot_revenu.calcul_reductions_impots.rici_iom.doment_propre_entreprise
+        P10 = parameters('2010').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        P11 = parameters('2011').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        P15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        PP10 = parameters('2010').impot_revenu.calcul_reductions_impots.outremer_investissement
+        PP11 = parameters('2011').impot_revenu.calcul_reductions_impots.outremer_investissement
+        PP15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement
 
         fhpm = foyer_fiscal('fhpm', period)
         fhrj = foyer_fiscal('fhrj', period)
@@ -967,23 +967,23 @@ class doment(Variable):
         inv_60_40_60 = (fhpo
             + fhpt)
 
-        nr_66_306_594 = min_(inv_66_306_594 * (1 - P12.taux_retro_2012_3), max_(0, P12.plaf_partie_non_retro))
-        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_2011_1), max_(0, P11.plaf_partie_non_retro - nr_66_306_594))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P12.taux_retro_2012_1), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60))
-        nr_60_40_60 = min_(inv_60_40_60 * (1 - P10.taux_retro_avant_2011_1), max_(0, P10.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P12.taux_retro_2012_4), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60))
-        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2011_2), max_(0, P11.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P12.taux_retro_2012_2), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40))
-        nr_50_40_40 = min_(inv_50_40_40 * (1 - P10.taux_retro_avant_2011_2), max_(0, P10.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40 - nr_5263_306_34))
+        nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
+        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P15.taux_retro_1), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60))
+        nr_60_40_60 = min_(inv_60_40_60 * (1 - P10.taux_retro_1), max_(0, PP10.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60))
+        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40))
+        nr_50_40_40 = min_(inv_50_40_40 * (1 - P10.taux_retro_2), max_(0, PP10.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_60_40_60 - nr_56_306_38945 - nr_5263_36_40 - nr_5263_306_34))
 
-        r_66_306_594 = nr_66_306_594 / (1 - P12.taux_retro_2012_3) * P12.taux_retro_2012_3
-        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_2011_1) * P11.taux_retro_2011_1
-        r_625_306_51 = nr_625_306_51 / (1 - P12.taux_retro_2012_1) * P12.taux_retro_2012_1
-        r_60_40_60 = nr_60_40_60 / (1 - P10.taux_retro_avant_2011_1) * P10.taux_retro_avant_2011_1
-        r_56_306_38945 = nr_56_306_38945 / (1 - P12.taux_retro_2012_4) * P12.taux_retro_2012_4
-        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2011_2) * P11.taux_retro_2011_2
-        r_5263_306_34 = nr_5263_306_34 / (1 - P12.taux_retro_2012_2) * P12.taux_retro_2012_2
-        r_50_40_40 = nr_50_40_40 / (1 - P10.taux_retro_avant_2011_2) * P10.taux_retro_avant_2011_2
+        r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_1) * P11.taux_retro_1
+        r_625_306_51 = nr_625_306_51 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_60_40_60 = nr_60_40_60 / (1 - P10.taux_retro_1) * P10.taux_retro_1
+        r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2) * P11.taux_retro_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_50_40_40 = nr_50_40_40 / (1 - P10.taux_retro_2) * P10.taux_retro_2
 
         inv = (nr_66_306_594
             + nr_625_36_60
@@ -1104,12 +1104,12 @@ class doment(Variable):
 
         propre_100 = fhpr + fhpw
 
-        ri_propre = (min_(PP10.plaf_sans_exploitation, propre_40)
-            + min_(PP11.plaf_sans_exploitation, propre_36)
-            + min_(PP12.plaf_sans_exploitation, propre_306)
-            + min_(PP10.plaf_avec_exploitation, propre_100)
-            + min_(PP11.plaf_avec_exploitation, propre_90)
-            + min_(PP12.plaf_avec_exploitation, propre_765))
+        ri_propre = (min_(PP10.plafond, propre_40)
+            + min_(PP11.plafond, propre_36)
+            + min_(PP15.plafond, propre_306)
+            + min_(PP10.plafond * PP10.doment.propre_entreprise.majoration, propre_100)
+            + min_(PP11.plafond * PP11.doment.propre_entreprise.majoration, propre_90)
+            + min_(PP15.plafond * PP15.doment.propre_entreprise.majoration, propre_765))
 
         return ri_propre + inv_no_plaf + inv
 
@@ -1117,10 +1117,10 @@ class doment(Variable):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
-        P11 = parameters('2011').impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
-        P12 = parameters('2012').impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
-        PP11 = parameters('2011').impot_revenu.calcul_reductions_impots.rici_iom.doment_propre_entreprise
-        PP12 = parameters('2012').impot_revenu.calcul_reductions_impots.rici_iom.doment_propre_entreprise
+        P11 = parameters('2011').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        P15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        PP11 = parameters('2011').impot_revenu.calcul_reductions_impots.outremer_investissement
+        PP15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement
 
         fhdi = foyer_fiscal('fhdi', period)
         fhdn = foyer_fiscal('fhdn', period)
@@ -1208,19 +1208,19 @@ class doment(Variable):
             + fhsb
             + fhsg)
 
-        nr_66_306_594 = min_(inv_66_306_594 * (1 - P12.taux_retro_2012_3), max_(0, P12.plaf_partie_non_retro))
-        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_2011_1), max_(0, P11.plaf_partie_non_retro - nr_66_306_594))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P12.taux_retro_2012_1), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P12.taux_retro_2012_4), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
-        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2011_2), max_(0, P11.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P12.taux_retro_2012_2), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945 - nr_5263_36_40))
+        nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
+        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P15.taux_retro_1), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
+        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945 - nr_5263_36_40))
 
-        r_66_306_594 = nr_66_306_594 / (1 - P12.taux_retro_2012_3) * P12.taux_retro_2012_3
-        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_2011_1) * P11.taux_retro_2011_1
-        r_625_306_51 = nr_625_306_51 / (1 - P12.taux_retro_2012_1) * P12.taux_retro_2012_1
-        r_56_306_38945 = nr_56_306_38945 / (1 - P12.taux_retro_2012_4) * P12.taux_retro_2012_4
-        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2011_2) * P11.taux_retro_2011_2
-        r_5263_306_34 = nr_5263_306_34 / (1 - P12.taux_retro_2012_2) * P12.taux_retro_2012_2
+        r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_1) * P11.taux_retro_1
+        r_625_306_51 = nr_625_306_51 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2) * P11.taux_retro_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P15.taux_retro_2) * P15.taux_retro_2
 
         inv = (nr_66_306_594
             + nr_625_36_60
@@ -1317,10 +1317,10 @@ class doment(Variable):
             + fhae
             + fhaj)
 
-        ri_propre = (min_(PP11.plaf_sans_exploitation, propre_36)
-            + min_(PP12.plaf_sans_exploitation, propre_306)
-            + min_(PP11.plaf_avec_exploitation, propre_90)
-            + min_(PP12.plaf_avec_exploitation, propre_765))
+        ri_propre = (min_(PP11.plafond, propre_36)
+            + min_(PP15.plafond, propre_306)
+            + min_(PP11.plafond * PP11.doment.propre_entreprise.majoration, propre_90)
+            + min_(PP15.plafond * PP15.doment.propre_entreprise.majoration, propre_765))
 
         return ri_propre + inv
 
@@ -1328,10 +1328,10 @@ class doment(Variable):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
-        P11 = parameters('2011').impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
-        P12 = parameters('2012').impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
-        PP11 = parameters('2011').impot_revenu.calcul_reductions_impots.rici_iom.doment_propre_entreprise
-        PP12 = parameters('2012').impot_revenu.calcul_reductions_impots.rici_iom.doment_propre_entreprise
+        P11 = parameters('2011').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        P15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        PP11 = parameters('2011').impot_revenu.calcul_reductions_impots.outremer_investissement
+        PP15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement
 
         fhdi = foyer_fiscal('fhdi', period)
         fhdn = foyer_fiscal('fhdn', period)
@@ -1409,19 +1409,19 @@ class doment(Variable):
         inv_625_36_60 = (fhab
             + fhag)
 
-        nr_66_306_594 = min_(inv_66_306_594 * (1 - P12.taux_retro_2012_3), max_(0, P12.plaf_partie_non_retro))
-        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_2011_1), max_(0, P11.plaf_partie_non_retro - nr_66_306_594))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P12.taux_retro_2012_1), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P12.taux_retro_2012_4), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
-        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2011_2), max_(0, P11.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P12.taux_retro_2012_2), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945 - nr_5263_36_40))
+        nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
+        nr_625_36_60 = min_(inv_625_36_60 * (1 - P11.taux_retro_1), max_(0, PP11.plafond - nr_66_306_594))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P15.taux_retro_1), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51))
+        nr_5263_36_40 = min_(inv_5263_36_40 * (1 - P11.taux_retro_2), max_(0, PP11.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_36_60 - nr_625_306_51 - nr_56_306_38945 - nr_5263_36_40))
 
-        r_66_306_594 = nr_66_306_594 / (1 - P12.taux_retro_2012_3) * P12.taux_retro_2012_3
-        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_2011_1) * P11.taux_retro_2011_1
-        r_625_306_51 = nr_625_306_51 / (1 - P12.taux_retro_2012_1) * P12.taux_retro_2012_1
-        r_56_306_38945 = nr_56_306_38945 / (1 - P12.taux_retro_2012_4) * P12.taux_retro_2012_4
-        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2011_2) * P11.taux_retro_2011_2
-        r_5263_306_34 = nr_5263_306_34 / (1 - P12.taux_retro_2012_2) * P12.taux_retro_2012_2
+        r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_625_36_60 = nr_625_36_60 / (1 - P11.taux_retro_1) * P11.taux_retro_1
+        r_625_306_51 = nr_625_306_51 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_5263_36_40 = nr_5263_36_40 / (1 - P11.taux_retro_2) * P11.taux_retro_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P15.taux_retro_2) * P15.taux_retro_2
 
         inv = (nr_66_306_594
             + nr_625_36_60
@@ -1507,10 +1507,10 @@ class doment(Variable):
         propre_90 = (fhae
             + fhaj)
 
-        ri_propre = (min_(PP11.plaf_sans_exploitation, propre_36)
-            + min_(PP12.plaf_sans_exploitation, propre_306)
-            + min_(PP11.plaf_avec_exploitation, propre_90)
-            + min_(PP12.plaf_avec_exploitation, propre_765))
+        ri_propre = (min_(PP11.plafond, propre_36)
+            + min_(PP15.plafond, propre_306)
+            + min_(PP11.plafond * PP11.doment.propre_entreprise.majoration, propre_90)
+            + min_(PP15.plafond * PP15.doment.propre_entreprise.majoration, propre_765))
 
         return ri_propre + inv
 
@@ -1518,8 +1518,8 @@ class doment(Variable):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
-        P12 = parameters('2012').impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
-        PP12 = parameters('2012').impot_revenu.calcul_reductions_impots.rici_iom.doment_propre_entreprise
+        P15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        PP15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement
 
         fhdi = foyer_fiscal('fhdi', period)
         fhdn = foyer_fiscal('fhdn', period)
@@ -1579,15 +1579,15 @@ class doment(Variable):
             + fhcd
             + fhct)
 
-        nr_66_306_594 = min_(inv_66_306_594 * (1 - P12.taux_retro_2012_3), max_(0, P12.plaf_partie_non_retro))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P12.taux_retro_2012_1), max_(0, P12.plaf_partie_non_retro - nr_66_306_594))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P12.taux_retro_2012_4), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_306_51))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P12.taux_retro_2012_2), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_306_51 - nr_56_306_38945))
+        nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P15.taux_retro_1), max_(0, PP15.plafond - nr_66_306_594))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_306_51))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_306_51 - nr_56_306_38945))
 
-        r_66_306_594 = nr_66_306_594 / (1 - P12.taux_retro_2012_3) * P12.taux_retro_2012_3
-        r_625_306_51 = nr_625_306_51 / (1 - P12.taux_retro_2012_1) * P12.taux_retro_2012_1
-        r_56_306_38945 = nr_56_306_38945 / (1 - P12.taux_retro_2012_4) * P12.taux_retro_2012_4
-        r_5263_306_34 = nr_5263_306_34 / (1 - P12.taux_retro_2012_2) * P12.taux_retro_2012_2
+        r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_625_306_51 = nr_625_306_51 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P15.taux_retro_2) * P15.taux_retro_2
 
         inv = (nr_66_306_594
             + nr_625_306_51
@@ -1650,8 +1650,8 @@ class doment(Variable):
             + fhbm + fhbr + fhbw + fhcb
             + fhcg + fhcm + fhcr + fhcw)
 
-        ri_propre = (min_(PP12.plaf_sans_exploitation, propre_306)
-            + min_(PP12.plaf_avec_exploitation, propre_765))
+        ri_propre = (min_(PP15.plafond, propre_306)
+            + min_(PP15.plafond * PP15.doment.propre_entreprise.majoration, propre_765))
 
         return ri_propre + inv
 
@@ -1659,8 +1659,8 @@ class doment(Variable):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
-        P12 = parameters('2012').impot_revenu.calcul_reductions_impots.rici_iom.doment_retrocession
-        PP12 = parameters('2012').impot_revenu.calcul_reductions_impots.rici_iom.doment_propre_entreprise
+        P15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement.doment.retrocession
+        PP15 = parameters('2015').impot_revenu.calcul_reductions_impots.outremer_investissement
 
         fhdi = foyer_fiscal('fhdi', period)
         fhdn = foyer_fiscal('fhdn', period)
@@ -1706,15 +1706,15 @@ class doment(Variable):
             + fhgt
             + fhct)
 
-        nr_66_306_594 = min_(inv_66_306_594 * (1 - P12.taux_retro_2012_3), max_(0, P12.plaf_partie_non_retro))
-        nr_625_306_51 = min_(inv_625_306_51 * (1 - P12.taux_retro_2012_1), max_(0, P12.plaf_partie_non_retro - nr_66_306_594))
-        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P12.taux_retro_2012_4), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_306_51))
-        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P12.taux_retro_2012_2), max_(0, P12.plaf_partie_non_retro - nr_66_306_594 - nr_625_306_51 - nr_56_306_38945))
+        nr_66_306_594 = min_(inv_66_306_594 * (1 - P15.taux_retro_1), max_(0, PP15.plafond))
+        nr_625_306_51 = min_(inv_625_306_51 * (1 - P15.taux_retro_1), max_(0, PP15.plafond - nr_66_306_594))
+        nr_56_306_38945 = min_(inv_56_306_38945 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_306_51))
+        nr_5263_306_34 = min_(inv_5263_306_34 * (1 - P15.taux_retro_2), max_(0, PP15.plafond - nr_66_306_594 - nr_625_306_51 - nr_56_306_38945))
 
-        r_66_306_594 = nr_66_306_594 / (1 - P12.taux_retro_2012_3) * P12.taux_retro_2012_3
-        r_625_306_51 = nr_625_306_51 / (1 - P12.taux_retro_2012_1) * P12.taux_retro_2012_1
-        r_56_306_38945 = nr_56_306_38945 / (1 - P12.taux_retro_2012_4) * P12.taux_retro_2012_4
-        r_5263_306_34 = nr_5263_306_34 / (1 - P12.taux_retro_2012_2) * P12.taux_retro_2012_2
+        r_66_306_594 = nr_66_306_594 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_625_306_51 = nr_625_306_51 / (1 - P15.taux_retro_1) * P15.taux_retro_1
+        r_56_306_38945 = nr_56_306_38945 / (1 - P15.taux_retro_2) * P15.taux_retro_2
+        r_5263_306_34 = nr_5263_306_34 / (1 - P15.taux_retro_2) * P15.taux_retro_2
 
         inv = (nr_66_306_594
             + nr_625_306_51
@@ -1765,8 +1765,8 @@ class doment(Variable):
             + fhfw + fhgw
             + fhcm + fhcr + fhcw)
 
-        ri_propre = (min_(PP12.plaf_sans_exploitation, propre_306)
-            + min_(PP12.plaf_avec_exploitation, propre_765))
+        ri_propre = (min_(PP15.plafond, propre_306)
+            + min_(PP15.plafond * PP15.doment.propre_entreprise.majoration, propre_765))
 
         return ri_propre + inv
 
@@ -2148,9 +2148,9 @@ class domlog(Variable):
             + fhur + fhus + fhut + fhuu)
 
         # application du plafonnement
-        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement
 
         # rni = foyer_fiscal('rni', period)
 
@@ -2162,9 +2162,9 @@ class domlog(Variable):
         # ri_rel = ri_plaf_rel_2010 + ri_plaf_rel_2011 + ri_plaf_rel_2012
 
         # si plafond absolu
-        ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
-        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
+        ri_plaf_2010 = min_(ri_avant_2011, P2010.plafond)
+        ri_plaf_2011 = min_(max_(0, P2011.plafond - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P.plafond - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -2264,9 +2264,9 @@ class domlog(Variable):
             + fhvd + fhve + fhvf + fhvg)
 
         # application du plafonnement
-        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement
 
         # rni = foyer_fiscal('rni', period)
 
@@ -2278,9 +2278,9 @@ class domlog(Variable):
         # ri_rel = ri_plaf_rel_2010 + ri_plaf_rel_2011 + ri_plaf_rel_2012
 
         # si plafond absolu
-        ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
-        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
+        ri_plaf_2010 = min_(ri_avant_2011, P2010.plafond)
+        ri_plaf_2011 = min_(max_(0, P2011.plafond - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P.plafond - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -2426,9 +2426,9 @@ class domlog(Variable):
             + fhvg)
 
         # application du plafonnement
-        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement
 
         # rni = foyer_fiscal('rni', period)
 
@@ -2440,9 +2440,9 @@ class domlog(Variable):
         # ri_rel = ri_plaf_rel_2010 + ri_plaf_rel_2011 + ri_plaf_rel_2012
 
         # si plafond absolu
-        ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
-        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
+        ri_plaf_2010 = min_(ri_avant_2011, P2010.plafond)
+        ri_plaf_2011 = min_(max_(0, P2011.plafond - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P.plafond - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -2592,9 +2592,9 @@ class domlog(Variable):
             + fhvi)
 
         # application du plafonnement
-        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement
 
         # rni = foyer_fiscal('rni', period)
 
@@ -2606,9 +2606,9 @@ class domlog(Variable):
         # ri_rel = ri_plaf_rel_2010 + ri_plaf_rel_2011 + ri_plaf_rel_2012
 
         # si plafond absolu
-        ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
-        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
+        ri_plaf_2010 = min_(ri_avant_2011, P2010.plafond)
+        ri_plaf_2011 = min_(max_(0, P2011.plafond - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P.plafond - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -2760,9 +2760,9 @@ class domlog(Variable):
             + fhvj)
 
         # application du plafonnement
-        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement
 
         # rni = foyer_fiscal('rni', period)
 
@@ -2774,9 +2774,9 @@ class domlog(Variable):
         # ri_rel = ri_plaf_rel_2010 + ri_plaf_rel_2011 + ri_plaf_rel_2012
 
         # si plafond absolu
-        ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
-        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
+        ri_plaf_2010 = min_(ri_avant_2011, P2010.plafond)
+        ri_plaf_2011 = min_(max_(0, P2011.plafond - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P.plafond - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -2930,9 +2930,9 @@ class domlog(Variable):
             + fhvk)
 
         # application du plafonnement
-        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
-        P2012 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.rici_iom.domlog
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P2011 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement
 
         # rni = foyer_fiscal('rni', period)
 
@@ -2944,9 +2944,9 @@ class domlog(Variable):
         # ri_rel = ri_plaf_rel_2010 + ri_plaf_rel_2011 + ri_plaf_rel_2012
 
         # si plafond absolu
-        ri_plaf_2010 = min_(ri_avant_2011, P2010.plaf_absolu)
-        ri_plaf_2011 = min_(max_(0, P2011.plaf_absolu - ri_plaf_2010), ri_2011)
-        ri_plaf_2012 = min_(max_(0, P2012.plaf_absolu - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
+        ri_plaf_2010 = min_(ri_avant_2011, P2010.plafond)
+        ri_plaf_2011 = min_(max_(0, P2011.plafond - ri_plaf_2010), ri_2011)
+        ri_plaf_2012 = min_(max_(0, P.plafond - ri_plaf_2011 - ri_plaf_2010), ri_apres_2011)
 
         ri_abs = ri_plaf_2010 + ri_plaf_2011 + ri_plaf_2012
 
@@ -3188,13 +3188,14 @@ class domsoc(Variable):
         ri_soc_70 = (fhxk
             + fhxp)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
 
-        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
-        base_65 = min_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_taux))
+        base_65 = min_(P2010.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P2010.retrocession_taux))
 
-        rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
-        rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
+        rc_70 = base_70 * P.retrocession_taux / (1 - P.retrocession_taux)
+        rc_65 = base_65 * P2010.retrocession_taux / (1 - P2010.retrocession_taux)
 
         return base_70 + base_65 + rc_70 + rc_65
 
@@ -3263,13 +3264,14 @@ class domsoc(Variable):
             + fhxk
             + fhxp)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
 
-        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
-        base_65 = min_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_taux))
+        base_65 = min_(P2010.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P2010.retrocession_taux))
 
-        rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
-        rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
+        rc_70 = base_70 * P.retrocession_taux / (1 - P.retrocession_taux)
+        rc_65 = base_65 * P2010.retrocession_taux / (1 - P2010.retrocession_taux)
 
         return base_70 + base_65 + rc_70 + rc_65
 
@@ -3334,13 +3336,14 @@ class domsoc(Variable):
             + fhxp
             + fhyb)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
 
-        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
-        base_65 = min_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_taux))
+        base_65 = min_(P2010.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P2010.retrocession_taux))
 
-        rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
-        rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
+        rc_70 = base_70 * P.retrocession_taux / (1 - P.retrocession_taux)
+        rc_65 = base_65 * P2010.retrocession_taux / (1 - P2010.retrocession_taux)
 
         return base_70 + base_65 + rc_70 + rc_65
 
@@ -3401,13 +3404,14 @@ class domsoc(Variable):
             + fhxp
             + fhyb)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
 
-        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
-        base_65 = min_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_taux))
+        base_65 = min_(P2010.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P2010.retrocession_taux))
 
-        rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
-        rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
+        rc_70 = base_70 * P.retrocession_taux / (1 - P.retrocession_taux)
+        rc_65 = base_65 * P2010.retrocession_taux / (1 - P2010.retrocession_taux)
 
         return base_70 + base_65 + rc_70 + rc_65
 
@@ -3462,13 +3466,14 @@ class domsoc(Variable):
             + fhxp
             + fhyb)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
 
-        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
-        base_65 = min_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_taux))
+        base_65 = min_(P2010.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P2010.retrocession_taux))
 
-        rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
-        rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
+        rc_70 = base_70 * P.retrocession_taux / (1 - P.retrocession_taux)
+        rc_65 = base_65 * P2010.retrocession_taux / (1 - P2010.retrocession_taux)
 
         return base_70 + base_65 + rc_70 + rc_65
 
@@ -3515,12 +3520,13 @@ class domsoc(Variable):
             + fhxp
             + fhyb)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.rici_iom.domsoc
+        P = parameters(period).impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
+        P2010 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.outremer_investissement.domsoc
 
-        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_2_taux))
-        base_65 = min_(P.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P.retrocession_1_taux))
+        base_70 = min_(P.partie_non_retro_plaf_abs, ri_soc_70 * (1 - P.retrocession_taux))
+        base_65 = min_(P2010.partie_non_retro_plaf_abs - base_70, ri_soc_65 * (1 - P2010.retrocession_taux))
 
-        rc_70 = base_70 * P.retrocession_2_taux / (1 - P.retrocession_2_taux)
-        rc_65 = base_65 * P.retrocession_1_taux / (1 - P.retrocession_1_taux)
+        rc_70 = base_70 * P.retrocession_taux / (1 - P.retrocession_taux)
+        rc_65 = base_65 * P2010.retrocession_taux / (1 - P2010.retrocession_taux)
 
         return base_70 + base_65 + rc_70 + rc_65
