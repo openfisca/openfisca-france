@@ -29,10 +29,6 @@ class eligibilite_indemnite_inflation_non_salarie(Variable):
         rev_net_auto = individu('rpns_auto_entrepreneur_revenus_net', annee_2020, options = [ADD])
         rev_net_micro = individu('rpns_micro_entreprise_revenus_net', annee_2020, options = [ADD])
 
-        rsa = individu.famille('rsa', period)
-        somme_revenus = individu.famille.members('revenus', period)
-        revenus_chef_famille = individu.famille.members('revenus', period)
-
         rev_net = (rev_net_auto + rev_net_micro) / 12
 
         chiffre_d_affaires_micro = individu('rpns_micro_entreprise_chiffre_affaires', jan_sep_2021.this_year) * 9 / 12
