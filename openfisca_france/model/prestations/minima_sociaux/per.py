@@ -7,19 +7,19 @@ from numpy import logical_or as or_, logical_and as and_
 
 
 # 1 : Non-Salariés
-class eligibilite_indemnite_inflation_non_salarie(Variable):
+class eligibilite_prime_exceptionnelle_rentree(Variable):
     entity = Individu
     value_type = bool
-    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044471405'
-    label = "Eligibilité à l'indemnité inflation en tant que non-salarié"
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935'
+    label = "Eligibilité à la prime exceptionnelle de rentrée"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
 
-        oct_2021 = periods.period('2021-10')
+        juin_2022 = periods.period('2021-06')
 
         # non-salarié
-        eligibilite_cat_non_sal = (individu('categorie_non_salarie', oct_2021.this_year) != TypesCategorieNonSalarie.non_pertinent)
+        eligibilite_per = (individu('categorie_non_salarie', oct_2021.this_year) != TypesCategorieNonSalarie.non_pertinent)
 
         # revenu d'activité inférieure à € 2000 nets par mois en 2020 (selon déclaration annuelle des revenus)
         annee_2020 = periods.period('2020')
@@ -28,10 +28,6 @@ class eligibilite_indemnite_inflation_non_salarie(Variable):
         # chiffre d'affaires
         rev_net_auto = individu('rpns_auto_entrepreneur_revenus_net', annee_2020, options = [ADD])
         rev_net_micro = individu('rpns_micro_entreprise_revenus_net', annee_2020, options = [ADD])
-
-        rsa = individu.famille('rsa', period)
-        somme_revenus = individu.famille.members('revenus', period)
-        revenus_chef_famille = individu.famille.members('revenus', period)
 
         rev_net = (rev_net_auto + rev_net_micro) / 12
 
@@ -320,10 +316,10 @@ class eligibilite_indemnite_inflation(Variable):
 # L'aide finale de l'indemnité inflation
 ############################################
 
-class indemnite_inflation(Variable):
+class prime_exceptionnelle_rentree(Variable):
     entity = Individu
     value_type = float
-    label = 'Aide exceptionnelle de 100 euros pour les individus gagnant € 2000 ou moins'
+    label = 'Prime exceptionnelle de rentrée'
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044471405'
     definition_period = YEAR
     set_input = set_input_divide_by_period
