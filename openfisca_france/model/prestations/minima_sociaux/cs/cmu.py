@@ -42,7 +42,7 @@ class cmu_forfait_logement_base(Variable):
             [nbp_foyer == 1, nbp_foyer == 2, nbp_foyer > 2],
             [P.taux_1p, P.taux_2p, P.taux_3p_plus]
             )
-    
+
     def formula_2009_06_01(famille, period, parameters):
         nbp_foyer = famille('cmu_nbp_foyer', period)
         P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu.forfait_logement
