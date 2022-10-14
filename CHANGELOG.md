@@ -1,5 +1,14 @@
 # Changelog
 
+### 153.3.5 [#1651](https://github.com/openfisca/openfisca-france/pull/1651)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/07/2020.
+* Zones impactées : `openfisca_france/assets/apl/20110914_zonage.csv`.
+* Détails :
+  - Modification de la zone 2 en 1 pour la ville Trilport.
+  - Référence: [Arrêté du 27 mai 2020 modifiant l'arrêté du 17 mars 1978 modifié relatif au classement des communes par zones géographiques](https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041950513)
+  
 ### 153.3.4 [2191](https://github.com/openfisca/openfisca-france/pull/2191)
 
 * Changement mineur.
@@ -470,6 +479,7 @@ Le calcul se fait sur une période annuelle mais là formule actuelle effectue l
   ```python
   Instant((period.this_year.offset(-1), 9, 1))
   ```
+
 ### 149.1.1 [#2123](https://github.com/openfisca/openfisca-france/pull/2123)
 
 * Changement mineur : Ces changements modifient des éléments non fonctionnels de ce dépôt.
