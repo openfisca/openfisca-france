@@ -11,7 +11,7 @@ values:
 metadata:
   last_review: "2022-10-11"
   unit: /1
-  references:
+  reference:
     2011-01-01:
       title: Loi 2011-900 du 29/07/2011 de finances rectificative pour 2011 (1) art. 42-43 (modifie art. 199 terdecies-0 A du CGI)
       href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000024415853/2011-07-31/
