@@ -17,6 +17,17 @@ class eligibilite_prime_exceptionnelle_rentree(Variable):
     def formula(individu, period, parameters):
 
         juin_2022 = periods.period('2021-06')
+        eligibilité = individu.famille('rsa', juin_2022) * individu.has_role(Famille.PARENT)
+        + individu.famille('apl', juin_2022)
+        + individu.famille('alf', juin_2022)
+        + individu.famille('als', juin_2022)
+        + individu('ass', juin_2022)
+        + individu('aer',juin_2022)
+        + individu.famille('aspa',juin_2022)
+        + individu('aah',juin_2022)
+
+        eligibilite_etudiant = (individu('bourse_enseignement_sup',juin_2022) > 0) * (individu.famille('apl',juin_2022) > 0)
+        eligibilite_activite  =  
 
         # non-salarié
         eligibilite_per = (individu('categorie_non_salarie', oct_2021.this_year) != TypesCategorieNonSalarie.non_pertinent)
