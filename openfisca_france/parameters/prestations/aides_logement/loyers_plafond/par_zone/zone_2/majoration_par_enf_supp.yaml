@@ -44,3 +44,6 @@ values:
   2021-10-01:
     reference: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044126838
     value: 52.08
+  2022-07-01:
+    reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206217/2022-07-01
+    value: 53.90
