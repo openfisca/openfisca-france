@@ -27,7 +27,7 @@ class cmu_forfait_logement_base(Variable):
     Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux.
     '''
 
-    def formula_2019_10_01(famille, period, parameters):
+    def formula_2019_11_01(famille, period, parameters):
         nbp_foyer = famille('cmu_nbp_foyer', period)
         P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.css.forfait_logement
         law_rmi_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
