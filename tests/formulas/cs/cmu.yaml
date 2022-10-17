@@ -6,6 +6,7 @@
     cmu_nb_pac: 10
     aide_logement: 300
   output:
+    cmu_forfait_logement_base: 1585.0598
     cmu_forfait_logement_al: 12 * 155.83
 
 - name: 'CMU-C: Si les AL sont inférieures, au forfait, on retient le montant réel pour le forfait logement'
