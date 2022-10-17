@@ -7,6 +7,17 @@
 * Zones impactées : `openfisca_france/scripts/parameters/unfold_parameters.py`.
 * Détails :
   - Ajout d'un script qui déplie (ie décompose en sous paramètres) un paramètre OpenFisca (ou un barème IPP).
+### 118.0.0 [#1887](https://github.com/openfisca/openfisca-france/pull/1887)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah`
+  - `openfisca_france/model/prestations/minima_sociaux/aah.py`
+* Détails :
+  - Mise à jour de l'abattement sur les revenus du conjoint dans le calcul de la base ressource pour l'aah
+  - Changement du nom du paramètre existant et ajout d'un nouveau paramètre à partir de 2022
+
 
 ### 117.1.2 [#1904](https://github.com/openfisca/openfisca-france/pull/1904)
 
