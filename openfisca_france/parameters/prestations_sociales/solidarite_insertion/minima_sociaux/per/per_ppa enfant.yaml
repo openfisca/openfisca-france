@@ -1,7 +1,7 @@
-description: Prime exceptionnelle de rentrée supplémentaire par enfant
+description: Prime exceptionnelle de rentrée supplémentaire par enfant pour les bénéficiaires de la prime d'activité
 values:
   2022-01-01:
-    value: 50
+    value: 14
 metadata:
   last_review: "2022-10-12"
   unit: currency

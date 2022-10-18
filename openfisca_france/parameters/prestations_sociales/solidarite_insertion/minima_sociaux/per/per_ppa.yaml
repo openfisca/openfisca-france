@@ -1,7 +1,7 @@
-description: Prime exceptionnelle de rentrée supplémentaire pour les bénéficiaires de la prime d'activité
+description: Prime exceptionnelle de rentrée supplémentaire par enfant
 values:
   2022-01-01:
-    value: 28
+    value: 50
 metadata:
   last_review: "2022-10-12"
   unit: currency
@@ -9,5 +9,3 @@ metadata:
     2022-01-01:
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935
       title: Décret n° 2022-1234 du 14 septembre 2022 portant attribution d'une aide financière exceptionnelle pour les ménages les plus modestes
-
-
