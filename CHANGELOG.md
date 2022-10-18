@@ -1,5 +1,13 @@
 # Changelog
 
+### 117.1.3 [#1892](https://github.com/openfisca/openfisca-france/pull/1892)
+
+* Amélioration technique.
+* Périodes concernées : aucune
+* Zones impactées : `openfisca_france/scripts/parameters/unfold_parameters.py`.
+* Détails :
+  - Ajout d'un script qui déplie (ie décompose en sous paramètres) un paramètre OpenFisca (ou un barème IPP).
+
 ### 117.1.2 [#1904](https://github.com/openfisca/openfisca-france/pull/1904)
 
 * Changement mineur dans les métadonnées des paramètres
