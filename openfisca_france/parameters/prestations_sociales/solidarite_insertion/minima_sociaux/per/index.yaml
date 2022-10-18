@@ -4,4 +4,8 @@ metadata:
   description_en: Exceptional financial aid
   order:
   - per
-  - per_child
+  - per_enfant
+  - per_etudiants
+  - per_etudiants_enfant
+  - per_ppa
+  - per_ppa_enfant
