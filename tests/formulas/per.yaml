@@ -1,21 +1,14 @@
 - period: 2022-01-01
-  name: PER Cas N°1
+  name: PER Cas No 1
   absolute_error_margin: 0.03
   input:
     famille:
-      parents: [personne1]
-      aide_logement:
-        2022-06: 80
-    foyer_fiscal:
-      declarants: [personne1]
-    menage:
-      personne_de_reference: personne1
-      statut_occupation_logement: locataire_vide
+      parents: [parent1]
+      rsa:
+        2022-06: 900
     individus:
-      personne1:
-        date_naissance: 1980-01-10
-        salaire_net:
-          2022-06: 1300
+      parent1:
+        age: 40
   output:
     eligibilite_per:
       2022: TRUE
@@ -23,3 +16,22 @@
       2022: FALSE
     prime_exceptionnelle_rentree:
       2022: 100
+
+- period: 2022-01-01
+  name: PER Cas No 2
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1]
+      ppa:
+        2022-06: 500
+    individus:
+      parent1:
+        age: 40
+  output:
+    eligibilite_per:
+      2022: FALSE
+    eligibilite_per_ppa:
+      2022: TRUE
+    prime_exceptionnelle_rentree:
+      2022: 28
