@@ -314,5 +314,4 @@ jobs:
         run: |
           conda install anaconda-client
           conda info
-          # Add  --force if you want to ignore existing version
           anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u openfisca ./conda-build-tmp/noarch/openfisca-france-*-py_0.tar.bz2 --force
