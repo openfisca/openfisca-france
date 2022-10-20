@@ -240,12 +240,12 @@ jobs:
           conda install conda-build anaconda-client
           conda info
       - name: Build Conda package
-        run: conda build --croot ${{ env.RUNNER_TEMP }} .conda
+        run: conda build --croot $RUNNER_TEMP .conda
       - name: Upload Conda build
         uses: actions/upload-artifact@v3
         with:
           name: conda-build-${{ env.PACKAGE_VERSION }}
-          path: ${{ env.RUNNER_TEMP }}
+          path: $RUNNER_TEMP
           retention-days: 30
 
   test-on-windows:
