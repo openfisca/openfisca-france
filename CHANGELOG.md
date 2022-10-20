@@ -2352,7 +2352,7 @@ Ces changements :
     - Déplace le contenu de `parameters/prelevements_sociaux/`
     - Ajoute de nouvelles clefs aux metadata : `official_journal_date`, `description_en`, `last_review`, `notes`, `ux_name`
     - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
-  - Ajoute le script de vérification `openfisca_france/check_longueur_chemins.py`
+  - Ajoute le script de vérification `openfisca_france/check_path_length.py`
 
 ### 55.0.1 [#1571](https://github.com/openfisca/openfisca-france/pull/1571)
 
@@ -2503,7 +2503,7 @@ Ces changements :
     - Déplace le contenu de `parameters/prelevements_sociaux/contributions`
     - Ajoute de nouvelles clefs aux metadata : `date_parution_jo`, `description_en`, `last_review`, `notes`, `ux_name`
     - Met à jour des valeurs et des références (et ajoute de nouveaux paramètres) d'après l'IPP
-  - Ajoute le script de vérification `openfisca_france/check_longueur_chemins.py`
+  - Ajoute le script de vérification `openfisca_france/check_path_length.py`
 
 ## 52.2.0 [#1540](https://github.com/openfisca/openfisca-france/pull/1540)
 

@@ -41,7 +41,7 @@ check-style:
 
 check-path-length:
 	@# Verify that there is no path exceeding Windows limit
-	python openfisca_france/scripts/check_longueur_chemins.py
+	python openfisca_france/scripts/check_path_length.py
 
 check-yaml:
 	@# check yaml style
