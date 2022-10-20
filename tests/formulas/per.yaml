@@ -1,0 +1,21 @@
+- name: PER Cas N°1
+  period: 2022
+  absolute_error_margin: 0.03
+  input:
+  famille:
+      parents: [personne1]
+      aide_logement:
+        2022-06: 80
+    foyer_fiscal:
+      declarants: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-10
+        salaire_net:
+          2022-06: 134
+  output:
+    prime_exceptionnelle_rentree:
+      2022: 100  
