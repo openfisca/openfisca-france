@@ -1,8 +1,8 @@
-- name: PER Cas N°1
-  period: 2022
+- period: 2022-01-01
+  name: PER Cas N°1
   absolute_error_margin: 0.03
   input:
-  famille:
+    famille:
       parents: [personne1]
       aide_logement:
         2022-06: 80
@@ -15,7 +15,11 @@
       personne1:
         date_naissance: 1980-01-10
         salaire_net:
-          2022-06: 134
+          2022-06: 1300
   output:
+    eligibilite_per:
+      2022: TRUE
+    eligibilite_per_ppa:
+      2022: FALSE
     prime_exceptionnelle_rentree:
-      2022: 100  
+      2022: 100
