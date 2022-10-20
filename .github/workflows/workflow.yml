@@ -241,7 +241,7 @@ jobs:
         run: |
           conda install conda-build anaconda-client
           conda info
-      - name: Conda build
+      - name: Build Conda package
         run: conda build --croot /tmp/conda .conda
       - name: Upload Conda build
         uses: actions/upload-artifact@v3
