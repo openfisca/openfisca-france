@@ -248,7 +248,7 @@ jobs:
         with:
           name: conda-build-${{ env.PACKAGE_VERSION }}
           path: ${{ env.RUNNER_TEMP }}
-          retention-days: 30  # Default : 90
+          retention-days: 30
 
   test-on-windows:
     runs-on: "windows-latest"
@@ -299,8 +299,6 @@ jobs:
           activate-environment: true
       - name: Get source code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 # Fetch all the tags
       - name: Get version
         run: echo "PACKAGE_VERSION=$(python3 ./setup.py --version)" >> $GITHUB_ENV
       - name: Download conda build
