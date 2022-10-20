@@ -60,12 +60,13 @@ class eligibilite_per_ppa(Variable):
 
 class prime_exceptionnelle_rentree(Variable):
     entity = Famille
-    value_type = bool
+    value_type = float
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935'
     label = "Prime exceptionnelle de rentrée"
     definition_period = YEAR
 
     def formula(famille,period,parameters):
+<<<<<<< HEAD
 
         enfant_i = famille.members.has_role(Famille.ENFANT)
         nb_enfants = famille.sum(enfant_i)  
@@ -81,5 +82,19 @@ class prime_exceptionnelle_rentree(Variable):
         elif (famille('eligibilite_per',period) == 0)  & (famille('eligibilite_per_ppa',period) > 0):
         # & (famille('eligibilite_per_etudiants') == 0)
             ppa = parametres_per.per_ppa + nb_enfants * parametres_per.per_ppa_enfant
+=======
+
+        enfant_i = famille.members.has_role(Famille.ENFANT)
+        nb_enfants = famille.sum(enfant_i)  
+        parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.per
+
+        ppa=where(famille('eligibilite_per',period) > 0,
+                  parametres_per.per + nb_enfants * parametres_per.per_enfant,
+                  where(famille('eligibilite_per',period) == 0  & famille('eligibilite_per_ppa',period) > 0,
+                        parametres_per.per_ppa + nb_enfants * parametres_per.per_ppa_enfant,
+                        0
+                        )
+                 )
+>>>>>>> 386a5e363 (Crée test prime_exceptionnelle_rentrée)
 
         return parametres_per.per
