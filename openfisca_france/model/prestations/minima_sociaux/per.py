@@ -44,15 +44,15 @@ class eligibilite_per(Variable):
 #        return (eligibilite_etudiant) > 0
         
 class eligibilite_per_ppa(Variable):
-    entity = Individu
+    entity = Famille
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935'
     label = "Eligibilité à la prime exceptionnelle de rentrée des bénéficiaires de la prime d'activité"
     definition_period = ETERNITY
 
-    def formula(individu,period):
+    def formula(famille,period):
         juin_2022 = periods.period('2022-06')
-        eligibilite_ppa = (individu('ppa',juin_2022) > 0)
+        eligibilite_ppa = (famille('ppa',juin_2022) > 0)
 
         return (eligibilite_ppa) > 0
         
@@ -82,4 +82,4 @@ class prime_exceptionnelle_rentree(Variable):
         # & (famille('eligibilite_per_etudiants') == 0)
             ppa = parametres_per.per_ppa + nb_enfants * parametres_per.per_ppa_enfant
 
-        return ppa
+        return parametres_per.per
