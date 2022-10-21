@@ -94,7 +94,7 @@ jobs:
         with:
           python-version: 3.7.9
       - name: Test max path length
-        run: "python3 openfisca_france/scripts/check_path_length.py"
+        run: make check-path-length
 
   test-yaml:
     runs-on: ubuntu-latest
