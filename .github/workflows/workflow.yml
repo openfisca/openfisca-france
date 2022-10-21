@@ -218,8 +218,8 @@ jobs:
   build-conda:
     runs-on: "ubuntu-latest"
     needs: [ check-version-and-changelog ]
-    strategy:
-      fail-fast: false
+    # Do not build on master, the artifact will be used
+    if: github.ref != 'refs/heads/master'
     steps:
       - uses: conda-incubator/setup-miniconda@v2
         with:
@@ -244,20 +244,13 @@ jobs:
       - name: Upload Conda build
         uses: actions/upload-artifact@v3
         with:
-          name: conda-build-${{ env.PACKAGE_VERSION }}
+          name: conda-build-${{ env.PACKAGE_VERSION }}-${GITHUB_REF##*/}
           path: /tmp/conda
           retention-days: 30
-      # # Without downloading it back it is not available for next step (!!!)
-      # - name: Download Conda build
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: conda-build-${{ env.PACKAGE_VERSION }}
 
   test-on-windows:
     runs-on: "windows-latest"
     needs: [ build-conda ]
-    strategy:
-      fail-fast: false
     steps:
       - uses: conda-incubator/setup-miniconda@v2
         with:
@@ -277,7 +270,7 @@ jobs:
       - name: Download conda build
         uses: actions/download-artifact@v3
         with:
-          name: conda-build-${{ env.PACKAGE_VERSION }}
+          name: conda-build-${{ env.PACKAGE_VERSION }}-${GITHUB_REF##*/}
           path: conda-build-tmp
       - name: Install with conda
         run: |
@@ -287,9 +280,7 @@ jobs:
 
   publish-to-conda:
     runs-on: "ubuntu-latest"
-    needs: [ deploy, test-on-windows ]
-    strategy:
-      fail-fast: false
+    needs: [ deploy ]
     steps:
       - uses: conda-incubator/setup-miniconda@v2
         with:
@@ -305,7 +296,7 @@ jobs:
       - name: Download conda build
         uses: actions/download-artifact@v3
         with:
-          name: conda-build-${{ env.PACKAGE_VERSION }}
+          name: conda-build-${{ env.PACKAGE_VERSION }}-${GITHUB_REF##*/}
           path: conda-build-tmp
       - name: Conda upload
         # This shell is made necessary by https://github.com/conda-incubator/setup-miniconda/issues/128
