@@ -240,18 +240,18 @@ jobs:
           conda install conda-build anaconda-client
           conda info
       - name: Build Conda package
-        run: conda build --croot $RUNNER_TEMP .conda
+        run: conda build --croot /tmp/conda .conda
       - name: Upload Conda build
         uses: actions/upload-artifact@v3
         with:
           name: conda-build-${{ env.PACKAGE_VERSION }}
-          path: $RUNNER_TEMP
+          path: /tmp/conda
           retention-days: 30
-      # Without downloading it back it is not available for next step (!!!)
-      - name: Download Conda build
-        uses: actions/download-artifact@v3
-        with:
-          name: conda-build-${{ env.PACKAGE_VERSION }}
+      # # Without downloading it back it is not available for next step (!!!)
+      # - name: Download Conda build
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: conda-build-${{ env.PACKAGE_VERSION }}
 
   test-on-windows:
     runs-on: "windows-latest"
