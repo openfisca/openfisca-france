@@ -1,12 +1,5 @@
 # Changelog
 
-### 117.1.3 [#1892](https://github.com/openfisca/openfisca-france/pull/1892)
-
-* Amélioration technique.
-* Périodes concernées : aucune
-* Zones impactées : `openfisca_france/scripts/parameters/unfold_parameters.py`.
-* Détails :
-  - Ajout d'un script qui déplie (ie décompose en sous paramètres) un paramètre OpenFisca (ou un barème IPP).
 ### 118.0.0 [#1887](https://github.com/openfisca/openfisca-france/pull/1887)
 
 * Évolution du système socio-fiscal.
@@ -18,6 +11,13 @@
   - Mise à jour de l'abattement sur les revenus du conjoint dans le calcul de la base ressource pour l'aah
   - Changement du nom du paramètre existant et ajout d'un nouveau paramètre à partir de 2022
 
+### 117.1.3 [#1892](https://github.com/openfisca/openfisca-france/pull/1892)
+
+* Amélioration technique.
+* Périodes concernées : aucune
+* Zones impactées : `openfisca_france/scripts/parameters/unfold_parameters.py`.
+* Détails :
+  - Ajout d'un script qui déplie (ie décompose en sous paramètres) un paramètre OpenFisca (ou un barème IPP).
 
 ### 117.1.2 [#1904](https://github.com/openfisca/openfisca-france/pull/1904)
 
