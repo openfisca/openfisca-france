@@ -61,7 +61,14 @@ jobs:
         run: "${GITHUB_WORKSPACE}/.github/lint-changed-python-files.sh"
       - name: Lint YAML tests
         run: "${GITHUB_WORKSPACE}/.github/lint-changed-yaml-tests.sh"
-
+      ### TEST ##############################################################################
+      - name: Upload Conda build
+        uses: actions/upload-artifact@v3
+        with:
+          name: conda-build-${{ github.ref_name }}
+          path: ./Makefile
+          retention-days: 30
+      #################################################################################
   test-python:
     runs-on: ${{ matrix.os }}
     needs: [ build ]
