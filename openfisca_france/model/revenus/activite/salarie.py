@@ -806,9 +806,10 @@ class heures_non_remunerees_volume(Variable):
 
 
 class heures_remunerees_volume(Variable):
+    # N'est pas pris en compte lorsque type_contrat_travail = temps_plein
     value_type = float
     entity = Individu
-    label = 'Volume des heures rémunérées contractuellement (heures/mois, temps partiel)'
+    label = 'Volume des heures rémunérées contractuellement'
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
