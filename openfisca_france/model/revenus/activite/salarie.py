@@ -259,10 +259,10 @@ class TypesContratDeTravail(Enum):
     __order__ = 'temps_plein temps_partiel forfait_heures_semaines forfait_heures_mois forfait_heures_annee forfait_jours_annee sans_objet'  # Needed to preserve the enum order in Python 2
     temps_plein = 'Temps plein'
     temps_partiel = 'Temps partiel'
-    forfait_heures_semaines = "Convention de forfait heures sur la semaine"
-    forfait_heures_mois = "Convention de forfait heures sur le mois"
-    forfait_heures_annee = "Convention de forfait heures sur l'année"
-    forfait_jours_annee = "Convention de forfait hours sur l'année"
+    forfait_heures_semaines = 'Convention de forfait heures sur la semaine'
+    forfait_heures_mois = 'Convention de forfait heures sur le mois'
+    forfait_heures_annee = 'Convention de forfait heures sur l\'année'
+    forfait_jours_annee = 'Convention de forfait hours sur l\'année'
     sans_objet = 'Non renseigné'
 
 
