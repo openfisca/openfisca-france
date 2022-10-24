@@ -17,7 +17,7 @@ class css_participation_forfaitaire_montant_i(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.css
+        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.css.montant
         age = individu('age', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
         regime = where(
@@ -41,7 +41,6 @@ class css_participation_forfaitaire_montant_i(Variable):
                 TranchesComplementaireSanteSolidaire.cmu_plus_69_ans,
                 ],
             )
-
         return P[regime][tranche]
 
 
