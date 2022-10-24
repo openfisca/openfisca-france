@@ -60,6 +60,7 @@ brackets:
         value: null
 metadata:
   ux_name: Montant par âge
+  type: single_amount
   threshold_unit: year
   amount_unit: currency
   last_review: "2022-10-17"

@@ -1,4 +1,4 @@
-description: Majoration du plafond de ressources de la CMU pour l'éligibilité à l'ACS
+description: Majoration du plafond de ressources de la CMU pour l'éligibilité à l'Aide à l’Acquisition d’une Complémentaire Santé (ACS)
 values:
   2005-01-01:
     value: 0.15
@@ -11,6 +11,7 @@ values:
   2019-10-01:
     value: 0.35
 metadata:
+  ux_name: Majoration du plafond
   unit: /1
   reference:
     2005-01-01:

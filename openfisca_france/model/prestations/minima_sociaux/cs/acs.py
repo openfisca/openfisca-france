@@ -18,19 +18,22 @@ class acs_montant_i(Variable):
     def formula_2009_08_01(individu, period, parameters):
         P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.acs
         age = individu('age', period)
+        bareme = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.acs.bareme
+        print('age age ', age)
+        montant_si_parent = bareme.calc(age)
+        print('montant_si_parent', montant_si_parent)
+
         montant_si_pac = select(
             [(age <= 15) * (age >= 0), age <= 25],
-            [P.acs_moins_16_ans, P.acs_16_49_ans]
+            [bareme.calc(age),bareme.calc(age)]
             )
-        montant_si_parent = select(
-            [age <= 15, age <= 49, age <= 59, age >= 60],
-            [P.acs_moins_16_ans, P.acs_16_49_ans, P.acs_50_59_ans, P.acs_plus_60_ans],
-            )
+        
         return where(
             individu.has_role(Famille.PARENT),
             montant_si_parent,
             montant_si_pac
             )
+    
 
 
 class acs_montant(Variable):
