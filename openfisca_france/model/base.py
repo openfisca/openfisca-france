@@ -63,7 +63,7 @@ class TypesCategorieSalarie(Enum):
     public_titulaire_militaire = 'Titulaire de la fonction publique militaire'
     public_titulaire_territoriale = 'Titulaire de la fonction publique territoriale'
     public_titulaire_hospitaliere = 'Titulaire de la fonction publique hospitalière'
-    public_non_titulaire = 'Contractuel dans la fonction publique'
+    public_non_titulaire = 'Agent non-titulaire de la fonction publique' # Les agents non titulaires, c’est-à-dire titulaires d’aucun grade de la fonction publique, peuvent être des contractuels, des vacataires, des auxiliaires, des emplois aidés…Les assistants maternels et familiaux sont eux aussi des non-titulaires.
     non_pertinent = 'Non pertinent'
 
 
