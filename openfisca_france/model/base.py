@@ -50,32 +50,33 @@ class TypesSecteurActivite(Enum):
 class TypesCategorieNonSalarie(Enum):
     __order__ = 'non_pertinent artisan commercant profession_liberale'  # Needed to preserve the enum order in Python 2
     non_pertinent = "Non pertinent (l'individu n'est pas un travailleur indépendant)"
-    artisan = 'Artisant'
-    commercant = 'Commercant'
+    artisan = 'Artisan'
+    commercant = 'Commerçant'
     profession_liberale = 'Profession libérale'
 
 
 class TypesCategorieSalarie(Enum):
     __order__ = 'prive_non_cadre prive_cadre public_titulaire_etat public_titulaire_militaire public_titulaire_territoriale public_titulaire_hospitaliere public_non_titulaire non_pertinent'  # Needed to preserve the enum order in Python 2
-    prive_non_cadre = 'prive_non_cadre'
-    prive_cadre = 'prive_cadre'
-    public_titulaire_etat = 'public_titulaire_etat'
-    public_titulaire_militaire = 'public_titulaire_militaire'
-    public_titulaire_territoriale = 'public_titulaire_territoriale'
-    public_titulaire_hospitaliere = 'public_titulaire_hospitaliere'
-    public_non_titulaire = 'public_non_titulaire'
-    non_pertinent = 'non_pertinent'
+    prive_non_cadre = 'Non cadre du secteur privé'
+    prive_cadre = 'Cadre du secteur privé'
+    public_titulaire_etat = 'Titulaire de la fonction publique d\'État'
+    public_titulaire_militaire = 'Titulaire de la fonction publique militaire'
+    public_titulaire_territoriale = 'Titulaire de la fonction publique territoriale'
+    public_titulaire_hospitaliere = 'Titulaire de la fonction publique hospitalière'
+    public_non_titulaire = 'Contractuel dans la fonction publique'
+    non_pertinent = 'Non pertinent'
 
 
 class TypesStatutMarital(Enum):
+    # La mention jeune_veuf fait probablement référence à la case F du A de la déclaration de revenus. Elle indiquerait que la personne est devenue veuve dans l'année.
     __order__ = 'non_renseigne marie celibataire divorce veuf pacse jeune_veuf'  # Needed to preserve the enum order in Python 2
     non_renseigne = 'Non renseigné'
     marie = 'Marié'
-    celibataire = 'Celibataire'
+    celibataire = 'Célibataire'
     divorce = 'Divorcé'
     veuf = 'Veuf'
     pacse = 'Pacsé'
-    jeune_veuf = 'Jeune veuf'
+    jeune_veuf = 'Veuf d\'un conjoint décédé dans l\'année'
 
 
 class TypesStatutOccupationLogement(Enum):
