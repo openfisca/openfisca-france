@@ -588,10 +588,12 @@
       enfant1:
         age: 12
   output:
+    aah_base_ressources_activite_eval_trimestrielle:
+      2022-05: [17652, 12000, 0]
     aah_base_ressources:
       2022-05:
-        - 1052 # 1471 avec abat. bénéficiaire + 1000 avec abat. conjoint
-        - 1193 # 1471 avec abat. conjoint     + 1000 avec abat. bénéficiaire
+        - 1052 # [[(1 - 0.8) * min(0.3 * 12 * 10.85 * 151.67, 17652) + (1 - 0.44) * (17 652 - 5924)] + [12000*0.9 - (5000 + 1*1400)]] / 12 [[base ressource demandeur + base ressource conjoint]] /12
+        - 1193
         - 0
     aah_base:
       2022-05: [920, 0, 0]
