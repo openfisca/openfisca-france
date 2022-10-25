@@ -46,20 +46,6 @@
         taux_incapacite: 0.9
       parent2:
         age: 40
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - parent2
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - parent2
   output:
     af_nbenf: 0
     en_couple: 1
@@ -84,26 +70,6 @@
         taux_incapacite: 0.9
       enfant1:
         age: 12
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - parent2
-      foyer_fiscal_2:
-        declarants:
-        - enfant1
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - parent2
-      menage_2:
-        personne_de_reference:
-        - enfant1
   output:
     en_couple: 1
     af_nbenf: 1
@@ -129,26 +95,6 @@
         age: 40
       enfant1:
         age: 12
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - parent2
-      foyer_fiscal_2:
-        declarants:
-        - enfant1
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - parent2
-      menage_2:
-        personne_de_reference:
-        - enfant1
   output:
     en_couple: 1
     af_nbenf: 1
@@ -216,20 +162,6 @@
         age: 40
         salaire_imposable:
           2013: 1128.70 * 12
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - parent2
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - parent2
   output:
     aah_base_ressources:
       2015-11:
@@ -258,20 +190,6 @@
           2015-10: 1000
           2015-09: 1000
           2015-08: 1000
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - parent2
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - parent2
   output:
     aah_base_ressources:
       2015-11:
@@ -365,20 +283,6 @@
           2017-12: 2000
       enfant1:
         age: 15
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - enfant1
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - enfant1
   output:
     aah: [158.31, 0]
 - name: "Revalorisation 01-04-2018, Cas Passant 3 : AAH personne de 38 ans avec un taux d'incapacité supérieur à 80% et un revenu de 2500€ avec 1 personne de 36 ans avec un revenu de 19000€"
@@ -406,20 +310,6 @@
           2018-02: 3000
           2018-01: 3000
           2017-12: 3000
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - parent2
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - parent2
   output:
     aah: [0, 0]
 - name: "Revalorisation 01-04-2018, Cas Passant 4 : AAH personne de 38 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 12000€ avec 1 personne de 36 ans avec un revenu de 15000€ ainsi qu'un enfant de 7 ans"
@@ -451,26 +341,6 @@
           2017-12: 3000
       enfant1:
         age: 7
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - parent2
-      foyer_fiscal_2:
-        declarants:
-        - enfant1
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - parent2
-      menage_2:
-        personne_de_reference:
-        - enfant1
   output:
     aah: [0, 0, 0]
 - name: "Revalorisation 01-04-2018, Cas Passant 5 : AAH personne de 38 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 12000€ avec 1 personne de 36 ans avec un revenu de 20000€ ainsi que deux enfants de 7 et 5 ans"
@@ -504,32 +374,6 @@
         age: 7
       enfant2:
         age: 5
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - parent2
-      foyer_fiscal_2:
-        declarants:
-        - enfant1
-      foyer_fiscal_3:
-        declarants:
-        - enfant2
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - parent2
-      menage_2:
-        personne_de_reference:
-        - enfant1
-      menage_3:
-        personne_de_reference:
-        - enfant2
   output:
     aah: [0, 0, 0, 0]
 - name: "Revalorisation 01-04-2018, Cas Non Passant 1 : Non eligible AAH : personne seule de 50 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 12000€"
@@ -586,20 +430,6 @@
           2017-12: 3000
       enfant1:
         age: 15
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - enfant1
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - enfant1
   output:
     aah: 0
 
@@ -627,20 +457,6 @@
           2018-02: 4000
           2018-01: 4000
           2017-12: 4000
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - parent2
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - parent2
   output:
     aah: 0
 
@@ -673,26 +489,6 @@
           2017-12: 4000
       enfant1:
         age: 7
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - parent2
-      foyer_fiscal_2:
-        declarants:
-        - enfant1
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - parent2
-      menage_2:
-        personne_de_reference:
-        - enfant1
   output:
     aah: 0
 
@@ -727,31 +523,79 @@
         age: 7
       enfant2:
         age: 5
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-      foyer_fiscal_1:
-        declarants:
-        - parent2
-      foyer_fiscal_2:
-        declarants:
-        - enfant1
-      foyer_fiscal_3:
-        declarants:
-        - enfant2
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
-      menage_1:
-        personne_de_reference:
-        - parent2
-      menage_2:
-        personne_de_reference:
-        - enfant1
-      menage_3:
-        personne_de_reference:
-        - enfant2
   output:
     aah: 0
+
+- name: AAH demandeur et conjoint salariés
+  period: month:2022-05
+  relative_error_margin: 0.05
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2022-05: 1471
+          2022-04: 1471
+          2022-03: 1471
+          2022-02: 1471
+          2022-01: 1471
+      parent2:
+        age: 40
+        salaire_imposable:
+          2022-05: 1000
+          2022-04: 1000
+          2022-03: 1000
+          2022-02: 1000
+          2022-01: 1000
+  output:
+    aah_base_ressources:
+      2022-05:
+        - 1174 # 1471 avec abat. bénéficiaire + 1000 avec abat. conjoint
+        - 1315 # 1471 avec abat. conjoint     + 1000 avec abat. bénéficiaire
+    aah_base:
+      2022-05: [497, 0]
+    aah:
+      2022-05: [497, 0]
+
+- name: AAH demandeur et conjoint salariés avec enfant
+  period: month:2022-05
+  relative_error_margin: 0.05
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2022-05: 1471
+          2022-04: 1471
+          2022-03: 1471
+          2022-02: 1471
+          2022-01: 1471
+      parent2:
+        age: 40
+        salaire_imposable:
+          2022-05: 1000
+          2022-04: 1000
+          2022-03: 1000
+          2022-02: 1000
+          2022-01: 1000
+      enfant1:
+        age: 12
+  output:
+    aah_base_ressources_activite_eval_trimestrielle:
+      2022-05: [17652, 12000, 0]
+    aah_base_ressources:
+      2022-05:
+        - 1052 # [[(1 - 0.8) * min(0.3 * 12 * 10.85 * 151.67, 17652) + (1 - 0.44) * (17 652 - 5924)] + [12000*0.9 - (5000 + 1*1400)]] / 12 [[base ressource demandeur + base ressource conjoint]] /12
+        - 1193
+        - 0
+    aah_base:
+      2022-05: [920, 0, 0]
+    aah:
+      2022-05: [920, 0, 0]
