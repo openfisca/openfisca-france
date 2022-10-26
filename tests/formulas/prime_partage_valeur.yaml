@@ -144,8 +144,11 @@
       # L'IRPP ne doit pas changer pour ceux dont la prime est exonérée d'impôt
       2022: [-407, -407, -407, -407, -407, -407, -407]
       2023: [-407, -407, -548, -407, -407, -407, -548]
+    ppa:
+      # Le premier cas-type touche la PPA toute l'année, les autres partiellement.
+      2023-01: [139.38394, 139.38394, 139.38394, 139.38394, 139.38394, 139.38394, 139.38394]
+      2023-12: [139.38394,  41.88394,   0,       41.88394,  41.88394,   0.,       0     ]
     prestations_sociales:
-      # Le premier cas-type touche la PPA, pas les autres.
       2023: [1664.244, 694.11914, 288.33063, 694.11914, 694.11914, 277.37405, 277.37405]
     revenu_disponible:
       # revenu_disponible = (salaire_net*12) - irpp + prestations_sociales
