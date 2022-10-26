@@ -1,5 +1,14 @@
 # Changelog
 
+## 118.1.1 [#1907](https://github.com/openfisca/openfisca-france/pull/1907)
+
+* Changement mineur dans les tests
+* Périodes concernées : à partir du 01/07/2022
+* Zones impactées :
+  * `tests/formulas/prime_partage_valeur.yaml`
+* Détails :
+  * Prise en compte de la revalorisation de la PPA dans les tests de la prime de partage de la valeur.
+
 ## 118.1.0 [#1872](https://github.com/openfisca/openfisca-france/pull/1872)
 
 * Évolution du système socio-fiscal
