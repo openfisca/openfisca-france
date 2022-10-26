@@ -21,7 +21,13 @@ class assiette_csg_abattue(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
+        '''
+        Assiette CSG - CRDS
+            - 01/07/2022 : Ajout de la PPV à partir du 1er août 2022
+        '''
         primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
+        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
+
         salaire_de_base = individu('salaire_de_base', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         # indemnites_journalieres_maladie = individu('indemnites_journalieres_maladie', period)
@@ -41,6 +47,7 @@ class assiette_csg_abattue(Variable):
             + indemnite_compensatrice_csg
             + primes_fonction_publique
             + primes_salaires_non_exonerees
+            + prime_partage_valeur_exoneree
             + remuneration_principale
             + salaire_de_base
             + stage_gratification_reintegration
@@ -187,6 +194,41 @@ class forfait_social(Variable):
             assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
             )
 
+    def formula_2022_07_01(individu, period, parameters):
+        # Seule la PPV pérenne est sousmise au forfait social, et cela intégralement
+        prime_partage_valeur = individu('prime_partage_valeur', period, options=[DIVIDE])
+
+        prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options=[ADD])
+        effectif_entreprise = individu('effectif_entreprise', period)
+        parametres = parameters(period).prelevements_sociaux.contributions_assises_specifiquement_accessoires_salaire.forfait_social
+        taux_plein = parametres.taux_plein
+        # TODO : faire ça propre ! Il faut externaliser le paramètre.
+        prime_partage_valeur_a_integrer = prime_partage_valeur * (
+            effectif_entreprise >= 250
+            )
+        assiette_taux_plein = (
+            prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
+            + prime_partage_valeur_a_integrer
+            )
+
+        # Les cotisations de prévoyance complémentaire qui rentrent en compte dans l'assiette du taux réduit
+        # ne concernent que les entreprises de 10 ou 11 employés et plus
+        # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
+        seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
+        prise_en_charge_employeur_prevoyance_complementaire = individu('prise_en_charge_employeur_prevoyance_complementaire', period, options=[ADD])
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options=[ADD])
+
+        complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options=[ADD])
+        taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
+
+        assiette_taux_reduit = (
+            -prevoyance_obligatoire_cadre
+            + prise_en_charge_employeur_prevoyance_complementaire
+            - complementaire_sante_employeur
+            ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
+
+        return -(assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit)
+
 
 class salaire_imposable(Variable):
     value_type = float
@@ -206,8 +248,14 @@ class salaire_imposable(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period):
+        '''
+        Salaires imposables
+            - 01/07/2022 : Ajout PPV : prime_partage_valeur
+        '''
         salaire_de_base = individu('salaire_de_base', period)
         primes_salaires_non_exonerees = individu('primes_salaires_non_exonerees', period)
+        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
+
         primes_fonction_publique = individu('primes_fonction_publique', period)
         indemnite_residence = individu('indemnite_residence', period)
         indemnite_compensatrice_csg = individu('indemnite_compensatrice_csg', period)
@@ -219,12 +267,13 @@ class salaire_imposable(Variable):
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         complementaire_sante_salarie = individu('complementaire_sante_salarie', period)
         # Revenu du foyer fiscal projeté sur le demandeur
-        rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options = [DIVIDE])
+        rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options=[DIVIDE])
         rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
             salaire_de_base
             + primes_salaires_non_exonerees
+            + prime_partage_valeur_exoneree
             + remuneration_principale
             + primes_fonction_publique
             + indemnite_residence
@@ -267,6 +316,26 @@ class salaire_net(Variable):
         csg_imposable_salaire = individu('csg_imposable_salaire', period)
         prime_exceptionnelle_pouvoir_achat_exoneree = individu('prime_exceptionnelle_pouvoir_achat_exoneree', period, options = [DIVIDE])
         return salaire_imposable + crds_salaire + csg_imposable_salaire + prime_exceptionnelle_pouvoir_achat_exoneree
+
+    def formula_2022_07_01(individu, period, parameters):
+        '''
+        Calcul du salaire net d'après définition INSEE
+        net = net de csg et crds
+        '''
+        salaire_imposable = individu('salaire_imposable', period)
+        crds_salaire = individu('crds_salaire', period)
+        csg_imposable_salaire = individu('csg_imposable_salaire', period)
+        prime_partage_valeur_exoneree_exceptionnelle = individu(
+            'prime_partage_valeur_exoneree_exceptionnelle',
+            period,
+            options=[DIVIDE],
+            )
+        return (
+            salaire_imposable  # La prime pérenne est dans le salaire_imposable
+            + crds_salaire
+            + csg_imposable_salaire
+            + prime_partage_valeur_exoneree_exceptionnelle
+            )
 
 
 class tehr(Variable):

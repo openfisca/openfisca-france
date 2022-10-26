@@ -2262,6 +2262,7 @@ class rfr(Variable):
     def formula(foyer_fiscal, period, parameters):
         '''
         Revenu fiscal de référence
+        - 01/07/2022 : Ajout PPV
         '''
         abattements_plus_values = foyer_fiscal('abattements_plus_values', period)
         f2dm = foyer_fiscal('f2dm', period)
@@ -2278,12 +2279,19 @@ class rfr(Variable):
         rpns_info = foyer_fiscal.sum(rpns_info_i)
         rpns_exon = foyer_fiscal.sum(rpns_exon_i)
 
+        # Ajout de la PPV : Le reste de la PPV est compris dans le RNI (donc au total c'est bien
+        # l'ensemble de la PPV qui est compris dans le RFR).
+        prime_partage_valeur_exoneree_exceptionnelle_i = foyer_fiscal.members('prime_partage_valeur_exoneree_exceptionnelle', period)
+        # TODO: On applique ici l'abattement de 10% mais idéalement il faudrait tenir compte des frais réels le cas échéant.
+        prime_partage_valeur_exoneree_exceptionnelle = (foyer_fiscal.sum(prime_partage_valeur_exoneree_exceptionnelle_i) * 0.9)
+
         return (
             max_(0, rni)
             + rfr_charges_deductibles + rfr_plus_values_hors_rni + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rpns_exon + rpns_info
             + abattements_plus_values
             + f2dm + microentreprise
+            + prime_partage_valeur_exoneree_exceptionnelle
             )
 
         # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
