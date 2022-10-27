@@ -738,11 +738,12 @@ class indemnites_forfaitaires(Variable):
 
 
 class salaire_de_base(Variable):
+    # Salaire brut sans les primes et les heures supplémentaires - généralement la première ligne du bulletin de paye.
     value_type = float
     entity = Individu
-    label = 'Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie'
+    label = 'Salaire de base'
     set_input = set_input_divide_by_period
-    reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm'
+    reference = 'https://www.insee.fr/fr/metadonnees/definition/c1937'
     definition_period = MONTH
 
 
