@@ -22,7 +22,7 @@ class acs_montant_i(Variable):
 
         montant_si_pac = select(
             [(age <= 15) * (age >= 0), age <= 25],
-            [bareme.calc(age),bareme.calc(age)]
+            [bareme.calc(age), bareme.calc(age)]
             )
 
         return where(
