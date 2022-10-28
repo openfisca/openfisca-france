@@ -1007,3 +1007,26 @@
   output:
     ppa:
       2020-04: 209.69
+
+- name: PPA - Revalorisation 2022
+  period: 2023-01
+  relative_error_margin: 0.05
+  input:
+    date_naissance: '1997-01-01' # age > 18 sur le trimestre de référence
+    salaire_net:
+      2022: 1583.1951*12  # Correspond à un salaire_de_base de 2 000 € / mois
+  output:
+    # bonification_max = round_(P.prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.taux_bonification_max * ppa_base, 2)
+    # bonification_max = 0.29101 * 586.23 = 170.59
+    # seuil_1 = smic 11.07 * 59 = 653.19
+    # seuil_2 = smic 11.07 * 120 = 1 328,4
+    # bonification = bonification_max * (salaire_net - seuil_1) / (seuil_2 - seuil_1)
+    # bonification = 170.59 * (1583.1951 - 653.19) / (1_328.4 - 653.19) = 234.96
+    # bonification = min_(bonification, bonification_max) => 170.59
+    # Montant de la prime d'activité = (montant forfaitaire éventuellement majoré + 61 % des revenus professionnels du foyer + bonifications individuelles) – les ressources prises en compte du foyer.
+    # => (586.23 + 1583.1951*0.61 + 170.59) - 1583.1951 = 139.3739
+    ppa: 139.38394
+    ppa_eligibilite:
+      2022-10: true
+      2022-11: true
+      2022-12: true
