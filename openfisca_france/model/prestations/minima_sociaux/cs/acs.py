@@ -35,7 +35,6 @@ class acs_montant_i(Variable):
             )
     
 
-
 class acs_montant(Variable):
     value_type = float
     entity = Famille
