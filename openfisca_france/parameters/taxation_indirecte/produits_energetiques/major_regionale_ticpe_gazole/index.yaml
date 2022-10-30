@@ -1,0 +1,26 @@
+description: Majoration régionale TICPE gazole
+metadata:
+  description_en: Regional surcharge - diesel
+  order:
+  - alsace
+  - aquitaine
+  - auvergne
+  - basse_normandie
+  - bourgogne
+  - bretagne
+  - centre
+  - champagne_ardennes
+  - corse
+  - franche_comte
+  - haute_normandie
+  - ile_france
+  - languedoc_roussillon
+  - limousin
+  - lorraine
+  - midi_pyrenees
+  - nord_pas_calais
+  - pays_loire
+  - picardie
+  - poitou_charentes
+  - rhone_alpes
+  - paca

@@ -1,0 +1,79 @@
+description: Taxe sur les fonds de garantie des assurances obligatoires (FGAO)
+metadata:
+  description_en: Tax on guarantee fund for compulsory insurance
+  reference:
+    2004-08-05:
+      title: Arrêté du 16/07/2004
+    2008-01-01:
+      title: Arrêté du 07/11/2007 fixant contribution FGAO
+    2010-08-01:
+      title: Arrêté du 09/06/2010 fixant contribution FGAO
+    2017-11-27:
+      title: Arrêté du 27/11/2017
+    2019-01-01:
+      title: Arrêté du 28/02/2019
+      href: https://www.legifrance.gouv.fr/eli/arrete/2019/2/28/ECOT1901975A/jo/texte
+  official_journal_date:
+    2004-08-05: "2004-08-05"
+    2008-01-01: "2007-11-14"
+    2010-08-01: "2010-07-08"
+  order:
+    - contribution_assures_en_pourcentage_primes
+    - cotisation_responsables_accidents_non_assures_en_pourcentage_indemnites_restant_leur_charge_taux_normal
+    - cotisation_responsables_accidents_non_assures_en_pourcentage_indemnites_restant_leur_charge_taux_reduit
+    - contributions_entreprises_assurances_titre_1deg_article_r_421_27_1
+    - contributions_entreprises_assurances_titre_1deg_article_r_421_27_1_auto
+documentation: |-
+  Notes :
+  Données renseignées dans l'article A421-3 du code des assurances
+  (1) En % de la totalité des charges de la section relative aux opérations résultant de la défaillance d'entreprises d'assurance
+  (2) En % des indemnités restant à leur charge
+  (3) Au titre du 1° de l'article R-421-27
+contribution_assures_en_pourcentage_primes:
+  description: Contribution des assurés (en % des primes)
+  values:
+    2004-08-05:
+      value: 0.001
+    2008-01-01:
+      value: 0.006
+    2010-08-01:
+      value: 0.012
+  metadata:
+    ipp_csv_id: fgao_contrib_assures
+    unit: /1
+contributions_entreprises_assurances_titre_1deg_article_r_421_27_1:
+  description: Contributions des entreprises d'assurances (1) (3)
+  values:
+    2004-08-05:
+      value: 0.01
+  metadata:
+    ipp_csv_id: fgao_contrib_assurances
+    unit: /1
+contributions_entreprises_assurances_titre_1deg_article_r_421_27_1_auto:
+  description: Contributions des entreprises d'assurances pour la section "automobiles" (1) (3)
+  values:
+    2004-08-05:
+      value: 0.01
+    2017-11-27:
+      value: 0.12
+    2019-01-01:
+      value: 0.14
+  metadata:
+    ipp_csv_id: fgao_contrib_assurances_auto
+    unit: /1
+cotisation_responsables_accidents_non_assures_en_pourcentage_indemnites_restant_leur_charge_taux_normal:
+  description: Cotisation des responsables d'accidents non-assurés, taux normal (2)
+  values:
+    2004-08-05:
+      value: 0.1
+  metadata:
+    ipp_csv_id: fgao_respo_accidents_non_assures_tx_normal
+    unit: /1
+cotisation_responsables_accidents_non_assures_en_pourcentage_indemnites_restant_leur_charge_taux_reduit:
+  description: Cotisation des responsables d'accidents non-assurés, taux réduit (2)
+  values:
+    2004-08-05:
+      value: 0.05
+  metadata:
+    ipp_csv_id: fgao_respo_accidents_non_assures_tx_reduit
+    unit: /1
