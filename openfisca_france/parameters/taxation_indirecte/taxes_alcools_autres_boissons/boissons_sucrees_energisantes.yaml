@@ -74,7 +74,7 @@ boissons_energisantes:
       value: null
   metadata:
     ipp_csv_id: taxe_boiss_energie
-    unit: currency-EUR
+    unit: currency
 contribution_boissons_edulcorees_y_compris_mayotte:
   description: Contribution sur les boissons édulcorées (€/hl)
   values:
@@ -92,7 +92,7 @@ contribution_boissons_edulcorees_y_compris_mayotte:
       value: 3.11
   metadata:
     ipp_csv_id: taxe_boiss_edulcorees
-    unit: currency-EUR
+    unit: currency
 contribution_boissons_sucrees_edulcorees_eur_hl:
   description: Contribution sur les boissons sucrées ou édulcorées (€/hl)
   values:
@@ -110,7 +110,7 @@ contribution_boissons_sucrees_edulcorees_eur_hl:
       value: null
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_edulcorees
-    unit: currency-EUR
+    unit: currency
 contribution_boissons_sucrees_edulcorees_taux_applicables_uniquement_mayotte_eur_hl:
   description: Contribution sur les boissons sucrées ou édulcorées - Mayotte (€/hl)
   values:
@@ -128,7 +128,7 @@ contribution_boissons_sucrees_edulcorees_taux_applicables_uniquement_mayotte_eur
       value: null
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_edulcorees_mayotte
-    unit: currency-EUR
+    unit: currency
 contribution_boissons_sucrees_y_compris_mayotte:
   description: Contribution sur les boissons sucrées (€/hl)
   values:
@@ -140,4 +140,4 @@ contribution_boissons_sucrees_y_compris_mayotte:
       value: null
   metadata:
     ipp_csv_id: taxe_boiss_sucrees
-    unit: currency-EUR
+    unit: currency

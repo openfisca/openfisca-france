@@ -87,7 +87,7 @@ taux_specifique:
       ipp_csv_id: tx_spec_autres_tabac
       unit:
         2013-01-01: /1
-        2015-01-01: currency-EUR
+        2015-01-01: currency
   cigares:
     description: Cigares
     values:
@@ -111,7 +111,7 @@ taux_specifique:
       ipp_csv_id: tx_spec_cigares
       unit:
         2013-01-01: /1
-        2015-01-01: currency-EUR
+        2015-01-01: currency
   cigarettes:
     description: Cigarettes
     values:
@@ -143,7 +143,7 @@ taux_specifique:
       ipp_csv_id: tx_spec_cigarettes
       unit:
         1979-01-01: /1
-        2015-01-01: currency-EUR
+        2015-01-01: currency
   tabac_rouler:
     description: Tabac à rouler
     values:
@@ -167,7 +167,7 @@ taux_specifique:
       ipp_csv_id: tx_spec_tabac_rouler
       unit:
         2013-01-01: /1
-        2015-01-01: currency-EUR
+        2015-01-01: currency
   tabacs_chiquer:
     description: Tabacs à chiquer
     values:
@@ -179,7 +179,7 @@ taux_specifique:
       ipp_csv_id: tx_spec_tabac_chiquer
       unit:
         2013-01-01: /1
-        2015-01-01: currency-EUR
+        2015-01-01: currency
   tabacs_priser:
     description: Tabacs à priser
     values:
@@ -191,4 +191,4 @@ taux_specifique:
       ipp_csv_id: tx_spec_tabac_priser
       unit:
         2013-01-01: /1
-        2015-01-01: currency-EUR
+        2015-01-01: currency

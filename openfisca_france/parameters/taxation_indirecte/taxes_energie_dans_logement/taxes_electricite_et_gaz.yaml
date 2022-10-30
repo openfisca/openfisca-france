@@ -39,7 +39,7 @@ cspe:
       value: 22.5
   metadata:
     ipp_csv_id: cspe
-    unit: currency-EUR
+    unit: currency
 cta_electricite:
   description: Contribution tarifaire d'acheminement (CTA) portant sur la distribution d'électricité
   values:
@@ -83,7 +83,7 @@ ctssg_prix_par_mwh:
       value: null
   metadata:
     ipp_csv_id: ctssg
-    unit: currency-EUR
+    unit: currency
 plafonds_tcfe_compteurs_36_kva_en_euros_par_mwh:
   description: Plafonds de la taxe sur la consommation finale d'énergie (TCFE) pour les compteurs de puissance <= 36 kva - en euros par MWh
   values:
@@ -101,7 +101,7 @@ plafonds_tcfe_compteurs_36_kva_en_euros_par_mwh:
       value: 9.9
   metadata:
     ipp_csv_id: plafond_tcfe
-    unit: currency-EUR
+    unit: currency
 ticgn_prix_par_mwh:
   description: Taxe intérieure sur la consommation de gaz naturel (TICGN) - prix par MWh
   values:
@@ -121,4 +121,4 @@ ticgn_prix_par_mwh:
       value: 8.43
   metadata:
     ipp_csv_id: ticgn
-    unit: currency-EUR
+    unit: currency

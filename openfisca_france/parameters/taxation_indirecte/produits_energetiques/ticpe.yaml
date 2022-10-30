@@ -220,7 +220,7 @@ autres_gaz_petrole_liquefies_utilises_comme_carburants_autres_100kg:
     ipp_csv_id: ticpe_autres_gaz_liq_autres
     unit:
       1993-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 autres_gaz_petrole_liquefies_utilises_comme_carburants_sous_conditions_100kg:
   description: Autres gaz de pétrole liquéfiés utilisés comme carburants, sous conditions (100kg)
   values:
@@ -254,7 +254,7 @@ autres_gaz_petrole_liquefies_utilises_comme_carburants_sous_conditions_100kg:
     ipp_csv_id: ticpe_autres_gaz_liq_cond
     unit:
       1993-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 autres_huiles_legeres_hectolitre:
   description: Autres huiles légères (hectolitre)
   values:
@@ -295,7 +295,7 @@ autres_huiles_legeres_hectolitre:
   metadata:
     unit:
       1993-04-15: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 autres_huiles_moyennes_hectolitre:
   description: Autres huiles moyennes (hectolitre)
   values:
@@ -325,7 +325,7 @@ autres_huiles_moyennes_hectolitre:
     ipp_csv_id: ticpe_autres_huiles_moyennes
     unit:
       2000-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 butanes_liquefies_autres_100kg_nets:
   description: Butanes liquéfiés, autres (100kg nets)
   values:
@@ -349,7 +349,7 @@ butanes_liquefies_autres_100kg_nets:
     ipp_csv_id: ticpe_butane_autres
     unit:
       2000-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 butanes_liquefies_sous_condition_100kg_nets:
   description: Butanes liquéfiés, sous condition (100kg nets)
   values:
@@ -373,7 +373,7 @@ butanes_liquefies_sous_condition_100kg_nets:
     ipp_csv_id: ticpe_butane_cond
     unit:
       2000-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets:
   description: Butanes liquéfiés, usages autres que comme carburant (100kg nets)
   values:
@@ -382,7 +382,7 @@ butanes_liquefies_usages_autres_que_comme_carburant_100kg_nets:
     2018-01-01:
       value: 6.63
   metadata:
-    unit: currency-EUR
+    unit: currency
 carburant_constitue_100_estars_methyliques_acides_gras_hectolitre:
   description: Carburant constitué à 100% d'estars méthyliques d'acides gras (hectolitre)
   values:
@@ -391,7 +391,7 @@ carburant_constitue_100_estars_methyliques_acides_gras_hectolitre:
     2018-01-01:
       value: 11.83
   metadata:
-    unit: currency-EUR
+    unit: currency
 carburant_constitue_minimum_90_alcool_ethylique_agricole_hectolitre:
   description: Carburant constitué d'au minimum 90% d'alcool éthylique agricole (hectolitre)
   values:
@@ -403,7 +403,7 @@ carburant_constitue_minimum_90_alcool_ethylique_agricole_hectolitre:
       value: 6.43
   metadata:
     ipp_csv_id: ticpe_carburant_ethanol_agricole
-    unit: currency-EUR
+    unit: currency
 carburateurs_type_essence_autres_hectolitre:
   description: Carburateurs type essence, autres (hectolitre)
   values:
@@ -420,7 +420,7 @@ carburateurs_type_essence_autres_hectolitre:
     2018-01-01:
       value: 68.51
   metadata:
-    unit: currency-EUR
+    unit: currency
 carburateurs_type_essence_carburants_avion_hectolitre:
   description: Carburateurs type essence, carburants pour avion (hectolitre)
   values:
@@ -461,7 +461,7 @@ carburateurs_type_essence_carburants_avion_hectolitre:
   metadata:
     unit:
       1993-04-15: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 carburateurs_type_essence_sous_conditions_hectolitre:
   description: Carburateurs type essence, sous conditions (hectolitre)
   values:
@@ -492,7 +492,7 @@ carburateurs_type_essence_sous_conditions_hectolitre:
   metadata:
     unit:
       1993-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 carbureacteurs_type_petrole_lampant_autres_hectolitre:
   description: Carburéacteurs, type pétrole lampant, autres (hectolitre)
   values:
@@ -510,7 +510,7 @@ carbureacteurs_type_petrole_lampant_autres_hectolitre:
       value: 51.28
   metadata:
     ipp_csv_id: ticpe_carbu_petrole_lampant_autres
-    unit: currency-EUR
+    unit: currency
 carbureacteurs_type_petrole_lampant_carburant_moteurs_avion_hectolitre:
   description: Carburéacteurs, type pétrole lampant, carburant moteurs d'avion (hectolitre)
   values:
@@ -540,7 +540,7 @@ carbureacteurs_type_petrole_lampant_carburant_moteurs_avion_hectolitre:
     ipp_csv_id: ticpe_carbu_petrole_lampant
     unit:
       2000-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 carbureacteurs_type_petrole_lampant_sous_conditions_hectolitre:
   description: Carburéacteurs, type pétrole lampant , sous conditions (hectolitre)
   values:
@@ -572,7 +572,7 @@ carbureacteurs_type_petrole_lampant_sous_conditions_hectolitre:
     ipp_csv_id: ticpe_carbu_petrole_lampant_cond
     unit:
       1993-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 emulsion_eau_dans_gazole_autres_hectolitre:
   description: Emulsion d'eau dans du gazole …, autres (hectolitre)
   values:
@@ -602,7 +602,7 @@ emulsion_eau_dans_gazole_autres_hectolitre:
     ipp_csv_id: ticpe_emulsion_eau_gazole_autres
     unit:
       2000-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 emulsion_eau_dans_gazole_sous_conditions_hectolitre:
   description: Emulsion d'eau dans du gazole …, sous conditions (hectolitre)
   values:
@@ -626,7 +626,7 @@ emulsion_eau_dans_gazole_sous_conditions_hectolitre:
     ipp_csv_id: ticpe_emulsion_eau_gazole_cond
     unit:
       2000-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 essence_normale_hectolitre:
   description: Essence normale (hectolitre)
   values:
@@ -692,7 +692,7 @@ essences_speciales_utilisees_comme_carburants_combustibles_hectolitre:
     ipp_csv_id: ticpe_essences_speciales
     unit:
       1993-04-15: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 fioul_avec_point_eclair_inferieur_120deg_c_hectolitre:
   description: Fioul avec point d'éclair inférieur à 120° C (hectolitre)
   values:
@@ -708,7 +708,7 @@ fioul_avec_point_eclair_inferieur_120deg_c_hectolitre:
     ipp_csv_id: ticpe_fioul_lourd_cond
     unit:
       2000-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 fioul_lourd_100kg_net:
   description: Fioul lourd (100kg net)
   values:
@@ -728,7 +728,7 @@ fioul_lourd_100kg_net:
       value: 13.95
   metadata:
     ipp_csv_id: ticpe_fioul_lourd
-    unit: currency-EUR
+    unit: currency
 fioul_lourd_bts_100kg:
   description: Fioul lourd BTS (100kg)
   values:
@@ -758,7 +758,7 @@ fioul_lourd_bts_100kg:
     ipp_csv_id: ticpe_fioul_lourd_bts
     unit:
       1993-04-15: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 fioul_lourd_hts_100kg:
   description: Fioul lourd HTS (100kg)
   values:
@@ -788,7 +788,7 @@ fioul_lourd_hts_100kg:
     ipp_csv_id: ticpe_fioul_lourd_hts
     unit:
       1993-04-15: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires_100m3:
   description: Gaz naturel à l'état gazeux, utilisé sous conditions aux moteurs stationnaires (100m3)
   values:
@@ -808,7 +808,7 @@ gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires_100m3:
       value: 9.5
   metadata:
     ipp_csv_id: ticpe_gaz_naturels_gazeux_cond
-    unit: currency-EUR
+    unit: currency
 gaz_naturel_etat_gazeux_utilises_comme_carburants_100m3:
   description: Gaz naturel à l'état gazeux, utilisés comme carburants (100m3)
   values:
@@ -846,7 +846,7 @@ gaz_naturel_etat_gazeux_utilises_comme_carburants_100m3:
     ipp_csv_id: ticpe_gaz_naturels_gazeux
     unit:
       1993-04-15: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 gazol_b_10_hectolitre:
   description: Gazol B 10 (hectolitre)
   values:
@@ -857,7 +857,7 @@ gazol_b_10_hectolitre:
     2018-01-01:
       value: 59.4
   metadata:
-    unit: currency-EUR
+    unit: currency
 gazole:
   description: Gazole, autres (hectolitre) *
   values:
@@ -899,7 +899,7 @@ gazole:
     ipp_csv_id: ticpe_diesel
     unit:
       1993-04-15: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 gazole_comme_carburants_sous_conditions_hectolitre:
   description: Gazole comme carburants sous conditions (hectolitre)
   values:
@@ -941,7 +941,7 @@ gazole_comme_carburants_sous_conditions_hectolitre:
     ipp_csv_id: ticpe_gazole_cond
     unit:
       1993-04-15: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 gazole_fioul_domestique_hectolitre:
   description: Gazole, fioul domestique (hectolitre)
   values:
@@ -959,7 +959,7 @@ gazole_fioul_domestique_hectolitre:
       value: 15.62
   metadata:
     ipp_csv_id: ticpe_fioul_domestique
-    unit: currency-EUR
+    unit: currency
 goudrons_utilises_comme_combustibles_100kg:
   description: Goudrons utilisés comme combustibles, (100kg)
   values:
@@ -999,7 +999,7 @@ goudrons_utilises_comme_combustibles_100kg:
     ipp_csv_id: ticpe_goudron_combustible
     unit:
       1993-04-15: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 huiles_legeres_preparation_essence_aviation_hectolitre:
   description: Huiles légères et préparation, essence d'aviation (hectolitre)
   values:
@@ -1039,7 +1039,7 @@ huiles_legeres_preparation_essence_aviation_hectolitre:
     ipp_csv_id: ticpe_huiles_legeres_ess_avion
     unit:
       1993-04-15: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 petrole_lampant_autre_hectolitre:
   description: Pétrole lampant, autre (hectolitre)
   values:
@@ -1068,7 +1068,7 @@ petrole_lampant_autre_hectolitre:
   metadata:
     unit:
       2000-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 petrole_lampant_utilise_comme_combustible_hectolitre:
   description: Pétrole lampant utilisé comme combustible (hectolitre)
   values:
@@ -1091,7 +1091,7 @@ petrole_lampant_utilise_comme_combustible_hectolitre:
   metadata:
     unit:
       2000-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 propane_utilise_comme_carburants_autres_100kg_nets:
   description: Propane utilisé comme carburants, autres (100kg nets)
   values:
@@ -1115,7 +1115,7 @@ propane_utilise_comme_carburants_autres_100kg_nets:
     ipp_csv_id: ticpe_propane_autres
     unit:
       2000-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 propane_utilise_comme_carburants_sous_conditions_100kg_nets:
   description: Propane utilisé comme carburants, sous conditions (100kg nets)
   values:
@@ -1139,7 +1139,7 @@ propane_utilise_comme_carburants_sous_conditions_100kg_nets:
     ipp_csv_id: ticpe_propane_cond
     unit:
       2000-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 propane_utilise_comme_carburants_usages_autres_que_comme_carburant_100kg_nets:
   description: Propane utilisé comme carburants, usages autres que comme carburant (100kg nets)
   values:
@@ -1148,7 +1148,7 @@ propane_utilise_comme_carburants_usages_autres_que_comme_carburant_100kg_nets:
     2018-01-01:
       value: 6.63
   metadata:
-    unit: currency-EUR
+    unit: currency
 super_95_98:
   description: Supercarburants dont SP95 et SP98 (hectolitre)*
   values:
@@ -1186,7 +1186,7 @@ super_95_98:
     ipp_csv_id: ticpe_sp95_sp98
     unit:
       1993-04-15: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 super_e_85_utilise_comme_carburant_hectolitre:
   description: Super E 85 utilisé comme carburant (hectolitre)
   values:
@@ -1212,7 +1212,7 @@ super_e_85_utilise_comme_carburant_hectolitre:
       value: 11.83
   metadata:
     ipp_csv_id: ticpe_super_e85
-    unit: currency-EUR
+    unit: currency
 super_e10:
   description: SuperE10 (hectolitre) *
   values:
@@ -1230,7 +1230,7 @@ super_e10:
       value: 66.29
   metadata:
     ipp_csv_id: ticpe_super_e10
-    unit: currency-EUR
+    unit: currency
 super_plombe:
   description: Supercarburants contenant un additif (hectolitre)
   values:
@@ -1268,7 +1268,7 @@ super_plombe:
     ipp_csv_id: ticpe_super_additif
     unit:
       1993-04-15: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency
 white_spirit_utilise_comme_combustible_hectolitre:
   description: White Spirit utilisé comme combustible (hectolitre)
   values:
@@ -1292,4 +1292,4 @@ white_spirit_utilise_comme_combustible_hectolitre:
     ipp_csv_id: ticpe_white_spirit_combustible
     unit:
       2000-01-01: currency-FRF
-      2002-01-01: currency-EUR
+      2002-01-01: currency

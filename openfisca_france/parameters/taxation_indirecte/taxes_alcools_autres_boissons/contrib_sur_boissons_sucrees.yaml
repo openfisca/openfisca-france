@@ -46,7 +46,7 @@ metadata:
       value: 3.11
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_1kg
-    unit: currency-EUR
+    unit: currency
 2_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 2 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -60,7 +60,7 @@ metadata:
       value: 3.64
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_2kg
-    unit: currency-EUR
+    unit: currency
 3_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 3 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -74,7 +74,7 @@ metadata:
       value: 4.14
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_3kg
-    unit: currency-EUR
+    unit: currency
 4_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 4 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -88,7 +88,7 @@ metadata:
       value: 4.67
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_4kg
-    unit: currency-EUR
+    unit: currency
 5_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 5 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -102,7 +102,7 @@ metadata:
       value: 5.71
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_5kg
-    unit: currency-EUR
+    unit: currency
 6_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 6 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -116,7 +116,7 @@ metadata:
       value: 6.75
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_6kg
-    unit: currency-EUR
+    unit: currency
 7_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 7 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -130,7 +130,7 @@ metadata:
       value: 7.78
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_7kg
-    unit: currency-EUR
+    unit: currency
 8_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 8 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -144,7 +144,7 @@ metadata:
       value: 9.85
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_8kg
-    unit: currency-EUR
+    unit: currency
 9_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 9 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -158,7 +158,7 @@ metadata:
       value: 11.93
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_9kg
-    unit: currency-EUR
+    unit: currency
 10_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 10 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -172,7 +172,7 @@ metadata:
       value: 14
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_10kg
-    unit: currency-EUR
+    unit: currency
 11_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 11 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -186,7 +186,7 @@ metadata:
       value: 16.07
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_11kg
-    unit: currency-EUR
+    unit: currency
 12_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 12 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -200,7 +200,7 @@ metadata:
       value: 18.14
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_12kg
-    unit: currency-EUR
+    unit: currency
 13_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 13 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -214,7 +214,7 @@ metadata:
       value: 20.22
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_13kg
-    unit: currency-EUR
+    unit: currency
 14_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 14 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -228,7 +228,7 @@ metadata:
       value: 22.29
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_14kg
-    unit: currency-EUR
+    unit: currency
 15_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: 15 kg de sucres ajoutéspar hl de boisson (€ / hl)
   values:
@@ -242,7 +242,7 @@ metadata:
       value: 24.36
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_15kg
-    unit: currency-EUR
+    unit: currency
 tout_kg_dessus_15_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
   description: Pour tout kg au-dessus de 15 kg de sucres ajoutés par hl de boisson (€/hl)
   values:
@@ -256,4 +256,4 @@ tout_kg_dessus_15_kg_sucres_ajoutes_par_hl_boisson_eur_hl:
       value: 2.07
   metadata:
     ipp_csv_id: taxe_boiss_sucrees_kg_sup_15kg
-    unit: currency-EUR
+    unit: currency

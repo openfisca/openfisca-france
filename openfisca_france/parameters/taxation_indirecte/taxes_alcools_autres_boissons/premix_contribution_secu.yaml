@@ -34,7 +34,7 @@ premix_a_base_de_vin_eur_par_decilitre_alcool_pur:
   metadata:
     ipp_csv_id: taxe_premix_vin_decil_pur
     unit:
-      2002-03-31: currency-EUR
+      2002-03-31: currency
 premix_eur_par_decilitre:
   description: Prémix (€ par décilitre)
   values:
@@ -60,4 +60,4 @@ premix_eur_par_decilitre_alcool_pur:
     ipp_csv_id: taxe_premix_decil_pur
     unit:
       1999-03-31: currency-FRF
-      2002-03-31: currency-EUR
+      2002-03-31: currency

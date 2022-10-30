@@ -135,7 +135,7 @@ autres_alcools:
     ipp_csv_id: taxe_autres_alcools
     unit:
       1981-02-01: currency-FRF
-      2002-03-31: currency-EUR
+      2002-03-31: currency
 bouilleurs_cru_t_q_definis_art_317:
   description: Bouilleurs de cru (1)
   values:
@@ -169,7 +169,7 @@ bouilleurs_cru_t_q_definis_art_317:
       value: 901.33
   metadata:
     ipp_csv_id: taxe_bouilleurs_cru
-    unit: currency-EUR
+    unit: currency
 quantites_ajoutees_preparation_vins_mousseux_vins_doux_naturels_mentionnes_article_417:
   description: Quantités ajoutées pour la préparation de vins (2)
   values:
@@ -229,4 +229,4 @@ rhum_dom:
     ipp_csv_id: taxe_rhum_dom
     unit:
       1981-02-01: currency-FRF
-      2002-03-31: currency-EUR
+      2002-03-31: currency

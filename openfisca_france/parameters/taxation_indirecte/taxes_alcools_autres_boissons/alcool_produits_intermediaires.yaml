@@ -86,7 +86,7 @@ autres_produits_intermediaires_eur_hl:
     ipp_csv_id: taxe_autres_produits_inter_alcool
     unit:
       1993-07-01: currency-FRF
-      2002-03-31: currency-EUR
+      2002-03-31: currency
 vins_doux_naturels_vins_liqueurs_aop_mentionnes_aux_articles_417_417_bis_cgi_eur_hl:
   description: Vins doux naturels et vins de liqueurs AOP (€/hl) (1)
   values:
@@ -122,4 +122,4 @@ vins_doux_naturels_vins_liqueurs_aop_mentionnes_aux_articles_417_417_bis_cgi_eur
     ipp_csv_id: taxe_vdn_vdl
     unit:
       1993-07-01: currency-FRF
-      2002-03-31: currency-EUR
+      2002-03-31: currency

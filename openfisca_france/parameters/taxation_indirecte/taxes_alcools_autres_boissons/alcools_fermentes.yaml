@@ -97,7 +97,7 @@ boissons_fermentees_autres_que_vin_biere_eur_hl:
     ipp_csv_id: taxe_boiss_fermen_sauf_vin_biere
     unit:
       1982-01-01: currency-FRF
-      2002-03-31: currency-EUR
+      2002-03-31: currency
 cidres_poires_hydromels_eur_hl:
   description: Cidres / Poirés / Hydromels (€/hl)
   values:
@@ -131,7 +131,7 @@ cidres_poires_hydromels_eur_hl:
     ipp_csv_id: taxe_cidre_poire_hydromel
     unit:
       1982-01-01: currency-FRF
-      2002-03-31: currency-EUR
+      2002-03-31: currency
 exoneration_ensemble_vins_eur_hl:
   description: Exonération pour l'ensemble des vins (€/hl)
   values:
@@ -189,7 +189,7 @@ vins_mousseux_eur_hl:
     ipp_csv_id: taxe_vins_mousseux
     unit:
       1982-01-01: currency-FRF
-      2002-03-31: currency-EUR
+      2002-03-31: currency
 vins_tranquilles_eur_hl:
   description: Vins tranquilles (€/hl)
   values:
@@ -225,4 +225,4 @@ vins_tranquilles_eur_hl:
     ipp_csv_id: taxe_vins_tranquilles
     unit:
       1982-01-01: currency-FRF
-      2002-03-31: currency-EUR
+      2002-03-31: currency
