@@ -1,0 +1,7 @@
+description: Cotisation sécurité sociale sur les boissons alcooliques
+metadata:
+  description_en: Alcoholic beverage contribution on Social Security
+  order:
+  - cotisation_securite_sociale_eur_par_decilitre
+  - cotisation_alcools_taux_plein_eur_hlap
+  - cotisation_produits_intermediaires_titrant_plus_18_vol_taux_plein_eur_hl
