@@ -1,5 +1,14 @@
 # Changelog
 
+## 118.1.2 [#1910](https://github.com/openfisca/openfisca-france/pull/1910)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/taxation_indirecte`.
+* Détails :
+  - Harmonisation
+  - Découpage des fichiers en un seul paramètre par yaml
+
 ## 118.1.1 [#1907](https://github.com/openfisca/openfisca-france/pull/1907)
 
 * Changement mineur dans les tests

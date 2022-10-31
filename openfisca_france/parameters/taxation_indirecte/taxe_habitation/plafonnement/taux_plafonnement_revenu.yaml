@@ -5,6 +5,7 @@ values:
   2020-01-01:
     value: null
 metadata:
+  ux_name: Taux de plafonnement
   unit: /1
   reference:
     title: art. 1414 A du CGI
