@@ -5,7 +5,6 @@ metadata:
   - goudrons_utilises_comme_combustibles
   - white_spirit_utilise_comme_combustible
   - essences_speciales_utilisees_comme_carburants_combustibles
-  - huiles_legeres_preparation_essence_aviation
   - super
   - essence_normale
   - carburateurs
@@ -13,12 +12,11 @@ metadata:
   - petrole_lampant
   - gazole
   - fioul
-  - propane
-  - butanes
+  - propane_carburants
+  - butanes_liquefies
   - autres_gaz_petrole_liquefies_utilises_comme_carburants
   - gaz_naturel_etat_gazeux_utilises_comme_carburants
   - gaz_naturel_etat_gazeux_utilise_sous_conditions_aux_moteurs_stationnaires
   - emulsion_eau_gazole
-  - super_e_85_utilise_comme_carburant
   - carburant_constitue_minimum_90_alcool_ethylique_agricole
   - carburant_constitue_100_estars_methyliques_acides_gras
