@@ -1,0 +1,10 @@
+description: Alcools fermentés (vins, cidre, etc.)
+metadata:
+  description_en: Fermented alcohols (wine, cider, etc.)
+  order:
+  - vins_mousseux_eur_hl
+  - vins_tranquilles_eur_hl
+  - boissons_fermentees_autres_que_vin_biere_eur_hl
+  - cidres_poires_hydromels_eur_hl
+  - exoneration_ensemble_vins_eur_hl
+  - exoneration_petillants_voir_conditions_eur_hl
