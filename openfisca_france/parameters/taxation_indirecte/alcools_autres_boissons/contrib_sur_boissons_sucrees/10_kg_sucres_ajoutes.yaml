@@ -1,0 +1,29 @@
+description: 10 kg de sucres ajoutés par hl de boisson (en € / hl)
+values:
+  2018-07-01:
+    value: 13.5
+  2019-01-01:
+    value: 13.64
+  2020-01-01:
+    value: 13.86
+  2021-01-01:
+    value: 14
+metadata:
+  ipp_csv_id: taxe_boiss_sucrees_10kg
+  notes:
+    2018-07-01:
+    - title: Article 1613 ter du CGI. Avant juillet 2018, cette contribution faisait
+        partie de la "contribution sur les boissons sucrées ou édulcorées"
+  official_journal_date:
+    2018-07-01: '2017-12-31'
+  reference:
+    2018-07-01:
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358474&cidTexte=JORFTEXT000036339090
+      title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018), art. 19
+    2019-01-01:
+      href: http://circulaire.legifrance.gouv.fr/pdf/2018/12/cir_44175.pdf
+      title: Circulaire du 10/12/2018
+    2020-01-01:
+      href: https://bofip.impots.gouv.fr/bofip/11575-PGP.html/identifiant=BOI-BAREME-000038-20191230
+      title: BOI-BAREME-000038-30/12/2019
+  unit: currency
