@@ -2,6 +2,6 @@ description: TICPE - produits énergétiques, huiles
 metadata:
   description_en: TICPE - Energy products
   order:
-  - huiles_legeres_hectolitre
-  - huiles_moyennes_hectolitre
-  - huiles_legeres_preparation_essence_aviation_hectolitre.yaml
+  - huiles_legeres
+  - huiles_moyennes
+  - huiles_legeres_preparation_essence_aviation

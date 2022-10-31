@@ -2,5 +2,5 @@ description: TICPE - produits énergétiques, autres Gaz de pétrole liquéfiés
 metadata:
   description_en: TICPE - Energy products
   order:
-  - sous_condition_100kg
+  - sous_conditions_100kg
   - autres_100kg

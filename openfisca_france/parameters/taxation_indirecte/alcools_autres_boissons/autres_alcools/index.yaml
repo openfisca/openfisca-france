@@ -4,6 +4,6 @@ metadata:
   order:
   - rhum_dom
   - autres_alcools
-  - bouilleurs_cru_t_q_definis_art_317
-  - quantites_ajoutees_preparation_vins_mousseux_vins_doux_naturels_mentionnes_article_417
-  - aperitifs_base_vin_cidre_poire_vermouth_vins_liqueurs_assimiles
+  - bouilleurs_cru
+  - quantites_ajoutees_preparation_vins
+  - aperitifs_liqueurs_assimiles

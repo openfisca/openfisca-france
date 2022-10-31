@@ -2,10 +2,10 @@ description: Bières
 metadata:
   description_en: Biers
   order:
-  - bieres_moins_28_vol_eur_degre_hl
-  - bieres_plus_28_vol_eur_degre_hl
+  - bieres_moins_28
+  - bieres_plus_28
   - bieres_moins_46_vol_recipient_entre_65cl_1l
-  - bieres_non_comprises_dans_mention_precedente
-  - petites_brasseries_10_000hl_eur_degre_hl
-  - 10_000hl_petites_brasseries_50_000hl_eur_degre_hl
-  - 50_000hl_petites_brasseries_200_000hl_eur_degre_hl
+  - autres_bieres
+  - petites_brasseries_10_000hl
+  - 10_000hl_petites_brasseries_50_000hl
+  - 50_000hl_petites_brasseries_200_000hl

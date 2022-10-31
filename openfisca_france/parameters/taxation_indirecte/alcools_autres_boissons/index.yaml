@@ -4,7 +4,7 @@ metadata:
   order:
     - alcools_fermentes
     - bieres
-    - alcool_produits_intermediaires
+    - produits_intermediaires
     - autres_alcools
     - premix_contribution_secu
     - boissons_sucrees_energisantes
