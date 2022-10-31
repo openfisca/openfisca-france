@@ -1,7 +1,4 @@
 description: Majoration régionale TICPE Super en Haute-Normandie
-metadata:
-  ipp_csv_id: maj_ticpe_super_h_n
-  unit: currency
 values:
   2007-01-01:
     value: 1.77
