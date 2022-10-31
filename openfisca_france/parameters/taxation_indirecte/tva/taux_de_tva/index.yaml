@@ -1,0 +1,11 @@
+description: Taux de la Taxe sur la valeur ajoutée (TVA) (1968-)
+metadata:
+  description_en: Value added tax (VAT)
+  order:
+  - taux_reduit
+  - taux_intermediaire
+  - taux_normal
+  - taux_majore
+  - taux_particulier_super_reduit
+  - taux_reduit_2
+  - taux_normal_majore_temporaire
