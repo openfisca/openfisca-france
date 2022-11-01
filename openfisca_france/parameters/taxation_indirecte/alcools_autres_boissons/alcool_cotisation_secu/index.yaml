@@ -1,0 +1,7 @@
+description: Cotisation sécurité sociale sur les boissons alcooliques
+metadata:
+  description_en: Alcoholic beverage contribution on Social Security
+  order:
+  - taux_en_eur_par_dL
+  - alcools_taux_plein
+  - produits_intermediaires_plus_18_vol_taux_plein

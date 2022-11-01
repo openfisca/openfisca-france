@@ -1,0 +1,9 @@
+description: Autres alcools (rhum, bouilleurs de cru, etc.)
+metadata:
+  description_en: Other alcohols (specific rhums, etc.)
+  order:
+  - rhum_dom
+  - autres_alcools
+  - bouilleurs_cru
+  - quantites_ajoutees_preparation_vins
+  - aperitifs_liqueurs_assimiles

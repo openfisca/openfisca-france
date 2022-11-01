@@ -82,7 +82,7 @@ values:
     value: 1592
 metadata:
   last_review: "2022-08-08"
-  unit: currency-EUR
+  unit: currency
   reference:
     0001-01-01:
       - href: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_impot_revenu/plaf_qf/

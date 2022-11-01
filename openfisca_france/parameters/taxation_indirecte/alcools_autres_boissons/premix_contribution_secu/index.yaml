@@ -1,0 +1,6 @@
+description: Prémix (mélanges alcool et soda)
+metadata:
+  description_en: Premix (alcohol plus soda)
+  order:
+  - premix_eur_par_decilitre_alcool_pur
+  - premix_eur_par_decilitre

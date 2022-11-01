@@ -1,0 +1,57 @@
+description: Taux spécifique des taxes sur le tabac - Cigares
+values:
+  1979-01-01:
+    value: null
+  2013-01-01:
+    value: 0.05
+  2015-01-01:
+    value: 19
+  2018-03-01:
+    value: 24.7
+  2019-03-01:
+    value: 30
+  2019-11-01:
+    value: 35.3
+  2020-03-01:
+    value: 43.7
+  2020-11-01:
+    value: 48.2
+metadata:
+  ipp_csv_id: tx_spec_cigares
+  official_journal_date:
+    2013-01-01: '2012-12-18'
+    2015-01-01: '2014-12-30'
+    2018-03-01: '2017-12-31'
+    2019-03-01: '2017-12-31'
+    2019-11-01: '2017-12-31'
+    2020-03-01: '2020-12-30'
+    2020-11-01: '2020-12-30'
+  reference:
+    1979-01-01:
+      title: Art. 575 CGI
+    2013-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026785322
+      title: Loi 2012-1404 du 17/12/2012
+    2015-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029990432
+      title: Loi 2014-1655 du 29/12/2014
+    2018-03-01:
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358470&cidTexte=JORFTEXT000036339090
+      title: Loi 2017-1836 du 30/12/2017 (LFSS pour 2018) - art. 17
+    2019-03-01:
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/article_207
+      title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 207
+    2019-11-01:
+      href: https://www.legifrance.gouv.fr/eli/loi/2018/12/28/CPAX1823550L/jo/article_207
+      title: Loi 2018-1317 du 28/12/2018 (LF pour 2019) - art. 207
+    2020-03-01:
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+      title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+    2020-11-01:
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+      title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+  unit:
+    2013-01-01: /1
+    2015-01-01: currency
+documentation: |
+  A partir de 2015 la part spécifique est en euro et non plus en pourcentage

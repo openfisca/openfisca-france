@@ -1,5 +1,14 @@
 # Changelog
 
+## 118.1.3 [#1911](https://github.com/openfisca/openfisca-france/pull/1911)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/taxation_indirecte`.
+* Détails :
+  - Ajout des paramètres issus des `baremes-ipp`
+  - Découpage: 1 yaml = 1 paramètre
+  
 ## 118.1.2 [#1910](https://github.com/openfisca/openfisca-france/pull/1910)
 
 * Changement mineur.

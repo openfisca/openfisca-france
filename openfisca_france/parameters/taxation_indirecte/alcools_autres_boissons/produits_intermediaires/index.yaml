@@ -1,0 +1,6 @@
+description: Produits intermédiaires (vins de liqueurs, vins doux naturels, etc.)
+metadata:
+  description_en: Intermediary products (liquor wine, etc.)
+  order:
+  - vins_doux_naturels_vins_liqueurs_etc
+  - autres_produits_intermediaires
