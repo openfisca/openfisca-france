@@ -166,6 +166,8 @@ values:
     value: 3513.58
   2021-01-01:
     value: 3527.63
+  2022-01-01:
+    value: 3566.43
 metadata:
   ux_name: Montants annuels
   description_en: Allowance for elderly workers (AVTS)
@@ -427,7 +429,10 @@ metadata:
       title: Circulaire CNAV 2020/9 du 04/02/2020
     2021-01-01:
       href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_01_11012021.pdf
-      title: Circulare CNAV 2021/1 du 11/01/2021
+      title: Circulaire CNAV 2021/1 du 11/01/2021
+    2022-01-01:
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_03_11012022.pdf
+      title: Circulaire CNAV 2022/3 du 11/01/2022
   official_journal_date:
     1962-04-01: "1962-04-15"
     1963-07-01: "1963-09-08"

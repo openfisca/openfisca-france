@@ -178,6 +178,8 @@ values:
     value: 16826.64
   2021-01-01:
     value: 16893.68
+  2022-01-01:
+    value: 17079.77
 metadata:
   ux_name: Plafonds - Couples
   description_en: Allowance for elderly workers (AVTS)
@@ -440,6 +442,9 @@ metadata:
     2021-01-01:
       href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_01_11012021.pdf
       title: Circulare CNAV 2021/1 du 11/01/2021
+    2022-01-01:
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_03_11012022.pdf
+      title: Circulaire CNAV 2022/3 du 11/01/2022
   official_journal_date:
     1962-04-01: "1962-04-15"
     1963-07-01: "1963-09-08"
