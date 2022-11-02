@@ -1,6 +1,14 @@
 # Changelog
 
-## 118.1.3 [#1911](https://github.com/openfisca/openfisca-france/pull/1911)
+### 118.2.0 [#1911](https://github.com/openfisca/openfisca-france/pull/1913
+
+* Amélioration technique. 
+* Périodes concernées : 2022
+* Zones impactées : `parameters/prestations_sociales/solidarite_insertion/autre_solidarite/indemnite_inflation.yaml`.
+* Détails :
+  - Fusionne les doublons `parameters/indemnite_inflation.yaml` vers `parameters/prestations_sociales/solidarite_insertion/autre_solidarite/indemnite_inflation.yaml`
+
+### 118.1.3 [#1911](https://github.com/openfisca/openfisca-france/pull/1911)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
@@ -9,7 +17,7 @@
   - Ajout des paramètres issus des `baremes-ipp`
   - Découpage: 1 yaml = 1 paramètre
   
-## 118.1.2 [#1910](https://github.com/openfisca/openfisca-france/pull/1910)
+### 118.1.2 [#1910](https://github.com/openfisca/openfisca-france/pull/1910)
 
 * Changement mineur.
 * Périodes concernées : toutes.
