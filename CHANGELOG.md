@@ -1,6 +1,13 @@
 # Changelog
 
-### 118.2.0 [#1911](https://github.com/openfisca/openfisca-france/pull/1913
+### 118.2.1 [#1914](https://github.com/openfisca/openfisca-france/pull/1914
+
+* Amélioration technique. 
+* Zones impactées : `parameters/taxation_indirecte`.
+* Détails :
+  - Raccourci les chemins pour respecter le nombre maximal de caractères dans le path des paramètres
+
+## 118.2.0 [#1913](https://github.com/openfisca/openfisca-france/pull/1913
 
 * Amélioration technique. 
 * Périodes concernées : 2022
