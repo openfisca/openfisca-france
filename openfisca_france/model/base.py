@@ -76,7 +76,7 @@ class TypesStatutMarital(Enum):
     divorce = 'Divorcé'
     veuf = 'Veuf'
     pacse = 'Pacsé'
-    jeune_veuf = 'Veuf d\'un conjoint décédé dans l\'année'
+    jeune_veuf = 'Veuf d’un conjoint décédé dans l’année'
 
 
 class TypesStatutOccupationLogement(Enum):
