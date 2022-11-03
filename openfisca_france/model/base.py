@@ -68,7 +68,7 @@ class TypesCategorieSalarie(Enum):
 
 
 class TypesStatutMarital(Enum):
-    # La mention jeune_veuf fait probablement référence à la case F du A de la déclaration de revenus. Elle indiquerait que la personne est devenue veuve dans l'année.
+    # La mention jeune_veuf indique que la personne est devenue veuve dans l'année.
     __order__ = 'non_renseigne marie celibataire divorce veuf pacse jeune_veuf'  # Needed to preserve the enum order in Python 2
     non_renseigne = 'Non renseigné'
     marie = 'Marié'
