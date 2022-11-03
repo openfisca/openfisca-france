@@ -930,6 +930,7 @@ class salaire_de_base(Variable):
     set_input = set_input_divide_by_period
     reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm'
     definition_period = MONTH
+    unit = 'currency'
 
 
 class titre_restaurant_taux_employeur(Variable):
@@ -1345,6 +1346,7 @@ class remuneration_principale(Variable):
     label = 'Rémunération principale des agents titulaires de la fonction publique'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    unit = 'currency'
 
     def formula(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
