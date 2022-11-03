@@ -1,6 +1,19 @@
 # Changelog
 
-### 118.2.3 [#1916](https://github.com/openfisca/openfisca-france/pull/1916
+### 118.2.4 [#1915](https://github.com/openfisca/openfisca-france/pull/1915)
+
+* Changement mineur.
+* Zones impactées : 
+`openfisca_france/model/caracteristiques_socio_demographiques/logement.py`.
+`openfisca_france/model/revenus/activite/salarie.py`
+`openfisca_france/model/revenus/remplacement/chomage.py`
+`openfisca_france/model/revenus/remplacement/retraite.py`
+`openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/bonification/seuil_max_bonification.yaml`
+
+* Détails :
+  - Ajoute unit = "currency" sur certaines variables
+
+### 118.2.3 [#1916](https://github.com/openfisca/openfisca-france/pull/1916)
 
 * Amélioration technique.
 * Périodes concernées : toutes. 
@@ -8,13 +21,15 @@
 * Détails :
   - Ajout et découpage des `contributions_additionnelles`
   - Ajout et découpage de`impot_societe`
-### 118.2.1 [#1914](https://github.com/openfisca/openfisca-france/pull/1914
+
+### 118.2.1 [#1914](https://github.com/openfisca/openfisca-france/pull/1914)
 
 * Amélioration technique. 
 * Zones impactées : `parameters/taxation_indirecte`.
 * Détails :
   - Raccourci les chemins pour respecter le nombre maximal de caractères dans le path des paramètres
-## 118.2.0 [#1913](https://github.com/openfisca/openfisca-france/pull/1913
+
+## 118.2.0 [#1913](https://github.com/openfisca/openfisca-france/pull/1913)
 
 * Amélioration technique. 
 * Périodes concernées : 2022
