@@ -31,6 +31,7 @@ class loyer(Variable):
     value_type = float
     entity = Menage
     set_input = set_input_divide_by_period
+    unit = 'currency'
     label = "Loyer ou mensualité d'emprunt pour un primo-accédant"
     definition_period = MONTH
 
