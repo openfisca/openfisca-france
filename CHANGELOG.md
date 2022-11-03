@@ -1,12 +1,19 @@
 # Changelog
 
+### 118.2.3 [#1916](https://github.com/openfisca/openfisca-france/pull/1916
+
+* Amélioration technique.
+* Périodes concernées : toutes. 
+* Zones impactées : `parameters/taxation_societe`.
+* Détails :
+  - Ajout et découpage des `contributions_additionnelles`
+  - Ajout et découpage de`impot_societe`
 ### 118.2.1 [#1914](https://github.com/openfisca/openfisca-france/pull/1914
 
 * Amélioration technique. 
 * Zones impactées : `parameters/taxation_indirecte`.
 * Détails :
   - Raccourci les chemins pour respecter le nombre maximal de caractères dans le path des paramètres
-
 ## 118.2.0 [#1913](https://github.com/openfisca/openfisca-france/pull/1913
 
 * Amélioration technique. 
