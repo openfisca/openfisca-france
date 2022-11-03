@@ -165,7 +165,7 @@ class exposition_penibilite(Variable):
 class TypesAllegementModeRecouvrement(Enum):
     # Plus d'information sur la régularisation de la réduction appliquée sur le site des URSSAF : https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-2--le-calcul-de-la-reducti/la-regularisation.html
     __order__ = 'fin_d_annee anticipe progressif'  # Needed to preserve the enum order in Python 2
-    fin_d_annee = 'Régularisation unique en fin d\'année'
+    fin_d_annee = 'Régularisation unique en fin d’année'
     anticipe = 'anticipe_regularisation_fin_de_periode' #Label à préciser, s'agit-il d'une régularisation pour les contrats fini en cours d'année ?
     progressif = 'Régularisation progressive'
 
