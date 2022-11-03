@@ -262,7 +262,7 @@ class TypesContratDeTravail(Enum):
     temps_partiel = 'Temps partiel'
     forfait_heures_semaines = 'Convention de forfait heures sur la semaine'
     forfait_heures_mois = 'Convention de forfait heures sur le mois'
-    forfait_heures_annee = 'Convention de forfait heures sur l\'année'
+    forfait_heures_annee = 'Convention de forfait heures sur l’année'
     forfait_jours_annee = 'Convention de forfait hours sur l\'année'
     sans_objet = 'Non renseigné'
 
