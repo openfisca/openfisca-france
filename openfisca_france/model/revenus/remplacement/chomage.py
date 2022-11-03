@@ -50,6 +50,7 @@ class allocation_retour_emploi(Variable):
     label = "Allocation chômage d'aide au retour à l'emploi (ARE) mensuelle brute"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    unit = 'currency'
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/allocation-daide-au-retour-lemploi-are'
 
     def formula(individu, period):
