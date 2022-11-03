@@ -1,6 +1,6 @@
 # Changelog
 
-### 118.2.2 [#1915](https://github.com/openfisca/openfisca-france/pull/1915)
+### 118.2.4 [#1915](https://github.com/openfisca/openfisca-france/pull/1915)
 
 * Changement mineur.
 * Zones impactées : 
@@ -8,9 +8,19 @@
 `openfisca_france/model/revenus/activite/salarie.py`
 `openfisca_france/model/revenus/remplacement/chomage.py`
 `openfisca_france/model/revenus/remplacement/retraite.py`
+`openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/bonification/seuil_max_bonification.yaml`
 
 * Détails :
   - Ajoute unit = "currency" sur certaines variables
+
+### 118.2.3 [#1916](https://github.com/openfisca/openfisca-france/pull/1916)
+
+* Amélioration technique.
+* Périodes concernées : toutes. 
+* Zones impactées : `parameters/taxation_societe`.
+* Détails :
+  - Ajout et découpage des `contributions_additionnelles`
+  - Ajout et découpage de`impot_societe`
 
 ### 118.2.1 [#1914](https://github.com/openfisca/openfisca-france/pull/1914)
 

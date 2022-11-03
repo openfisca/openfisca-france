@@ -1,0 +1,12 @@
+description: Taux de contribution sociale
+values:
+  2000-01-01:
+    value: 0.033
+metadata:
+  official_journal_date:
+    2000-01-01: '1999-12-30'
+  reference:
+    2000-01-01:
+      title: Article 235 ter ZB créé par Loi 97-1026 et Article 235 ter ZC créé par
+        Loi 99-1140
+  unit: /1
