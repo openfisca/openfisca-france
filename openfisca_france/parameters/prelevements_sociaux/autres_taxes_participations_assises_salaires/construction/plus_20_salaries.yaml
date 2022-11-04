@@ -60,4 +60,5 @@ metadata:
     1992-01-01: "1990-01-17"
     2005-01-01: "2005-08-03"
     2020-01-01: "2019-05-23"
-  threshold_unit: /1
+  rate_unit: /1
+  threshold_unit: PSS
