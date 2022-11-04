@@ -1,6 +1,6 @@
 # Changelog
 
-### [#1900](https://github.com/openfisca/openfisca-france/pull/1900)
+### 118.2.5 [#1900](https://github.com/openfisca/openfisca-france/pull/1900)
 
 * Changement mineur.
 * Périodes concernées : toutes.
@@ -23,7 +23,7 @@
     * `prestations_familiales/education_presence_parentale/asf/seuil.yaml`
     * `solidarite_insertion/autre_solidarite/aefa/taux_majoration/tx_2p.yaml`
 * Détails :
-  - Corrige les unités de seuil des barèmes à une tranche de prélèvements sociaux.
+  - Corrige les unités de seuil des barèmes à une tranche des prélèvements sociaux.
   - Emploie le plafond de la sécurité sociale (PSS) comme unité par défaut de ces barèmes.
   - Corrige l'unité des abattements IR Guadeloupe, Martinique, Réunion et des libellés mineurs.
 
@@ -31,12 +31,11 @@
 
 * Changement mineur.
 * Zones impactées : 
-`openfisca_france/model/caracteristiques_socio_demographiques/logement.py`.
-`openfisca_france/model/revenus/activite/salarie.py`
-`openfisca_france/model/revenus/remplacement/chomage.py`
-`openfisca_france/model/revenus/remplacement/retraite.py`
-`openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/bonification/seuil_max_bonification.yaml`
-
+  - `model/caracteristiques_socio_demographiques/logement.py`.
+  - `model/revenus/activite/salarie.py`
+  - `model/revenus/remplacement/chomage.py`
+  - `model/revenus/remplacement/retraite.py`
+  - `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/bonification/seuil_max_bonification.yaml`
 * Détails :
   - Ajoute unit = "currency" sur certaines variables
 
