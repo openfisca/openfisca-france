@@ -1,4 +1,4 @@
-description: Plafonds de ressources pour les couples de l'Allocation aux vieux travailleurs salariés (AVTS)
+description: Plafonds de ressources pour les couples mariés de l'Allocation aux vieux travailleurs salariés (AVTS)
 values:
   1962-04-01:
     value: 3200
@@ -181,7 +181,7 @@ values:
   2022-01-01:
     value: 17079.77
 metadata:
-  ux_name: Plafonds - Couples
+  ux_name: Plafond - Couple
   description_en: Allowance for elderly workers (AVTS)
   ipp_csv_id: plaf_mv_men_avts
   unit: currency
