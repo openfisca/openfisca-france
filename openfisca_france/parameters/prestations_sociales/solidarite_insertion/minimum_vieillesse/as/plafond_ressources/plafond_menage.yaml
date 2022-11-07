@@ -1,4 +1,4 @@
-description: Plafond annuel de l'Allocation supplémentaire pour un ménage
+description: Plafond annuel de ressources pour toucher l'Allocation supplémentaire pour un couple marié
 values:
   1956-04-01:
     value: 258000
@@ -180,8 +180,10 @@ values:
     value: 16826.64
   2021-01-01:
     value: 16893.94
+  2022-01-01:
+    value: 17079.77
 metadata:
-  ux_name: Ménages
+  ux_name: Couple marié
   description_en: "Extra allowance (AS): Amount"
   ipp_csv_id: plaf_mv_men_as
   unit: currency
@@ -433,6 +435,9 @@ metadata:
     2021-01-01:
       href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_01_11012021.pdf
       title: Circulaire CNAV 2021/1 du 11/01/2021
+    2022-01-01:
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_03_11012022.pdf
+      title: Circulaire CNAV 2022/3 du 11/01/2023, page 8
   official_journal_date:
     1956-04-01: "1956-07-01"
     1958-01-01: "1958-09-27"

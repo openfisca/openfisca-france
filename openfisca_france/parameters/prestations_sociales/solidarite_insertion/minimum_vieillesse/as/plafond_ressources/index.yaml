@@ -1,6 +1,6 @@
-description: Plafonds annuels de l'Allocation supplémentaire - Minimum vieillesse
+description: Plafonds annuels de ressources de l'Allocation supplémentaire - Minimum vieillesse
 metadata:
-  ux_name: Plafonds
+  ux_name: Plafonds de ressources
   description_en: Extra allowance (AS)
   order:
   - plafond_seul

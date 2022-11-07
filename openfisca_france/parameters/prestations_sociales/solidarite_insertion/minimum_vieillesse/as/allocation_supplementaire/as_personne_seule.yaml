@@ -1,4 +1,4 @@
-description: Montants annuels de l'Allocation supplémentaire pour une personne seule
+description: Montant annuel de l'Allocation supplémentaire pour une personne seule
 values:
   1956-04-01:
     value: 31200
@@ -164,6 +164,8 @@ values:
     value: 7324.82
   2021-01-01:
     value: 7354.12
+  2022-01-01:
+    value: 7435.01
 metadata:
   ux_name: Personne seule
   description_en: "Extra allowance (AS): Amount"
@@ -417,6 +419,9 @@ metadata:
     2021-01-01:
       href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_01_11012021.pdf
       title: Circulaire CNAV 2021/1 du 11/01/2021
+    2022-01-01:
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_03_11012022.pdf
+      title: Circulaire CNAV 2022/3 du 11/01/2023, page 8
   official_journal_date:
     1956-04-01: "1956-07-01"
     1958-01-01: "1958-09-27"

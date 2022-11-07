@@ -1,4 +1,4 @@
-description: Plafond des ressources personnelles du conjoint pour bénéficier de la majoration de personne à charge
+description: Plafond annuel des ressources personnelles du conjoint pour bénéficier de la majoration de personne à charge
 values:
   1948-10-01:
     value: 58000
@@ -178,6 +178,8 @@ values:
     value: 10228.6
   2021-01-01:
     value: 10271.95
+  2022-01-01:
+    value: 10391.64
 metadata:
   ux_name: Plafond conjoint
   description_en: Additive allowance for spouse care (income threashold)
@@ -455,6 +457,9 @@ metadata:
     2021-01-01:
       href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_01_11012021.pdf
       title: Circulaire CNAV 2021/1 du 11/01/2021
+    2022-01-01:
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_03_11012022.pdf
+      title: Circulaire CNAV 2022/3 du 11/01/2023, page 9
   official_journal_date:
     1948-10-01: "1949-02-25"
     1949-04-01: "1949-07-14"

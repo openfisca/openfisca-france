@@ -14,6 +14,8 @@ values:
     value: 0.2702
   2018-04-01:
     value: 0.2813
+  2022-11-01:
+    value: 0.422
 metadata:
   ux_name: Orphelin ou assimilé d'un seul parent
   description_en: "Family support allowance (ASF): Amounts"
@@ -59,7 +61,12 @@ metadata:
       - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034419976&categorieLien=id
         title: Décret 2017-532 du 12/04/2017, art. 1
       - href: https://www.legifrance.gouv.fr/download/pdf/circ?id=43190
-        title: INSTRUCTION INTERMINISTERIELLE N°DSS/SD2B/2018/81 du 22/03/2018
+        title: Instruction Interministérielle n°DSS/SD2B/2018/81 du 22/03/2018
+    2022-11-01:
+      - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046498993
+        title: Article R523-7 du Code de la sécurité sociale
+      - href : https://www.gouvernement.fr/conseil-des-ministres/compte-rendu-du-conseil-des-ministres-26-09-2022#1b4bffd1-9b70-48cd-8ae6-dc82df951b49-4
+        title: Compte rendu du conseil des ministres du 26/09/2022
   official_journal_date:
     1970-12-26: "1970-12-25"
     1971-07-01: "1971-06-30"
