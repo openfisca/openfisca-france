@@ -1,5 +1,17 @@
 # Changelog
+ 
+## 118.3.0 [#1903](https://github.com/openfisca/openfisca-france/pull/1903)
 
+* Évolution du système socio-fiscal.
+* Périodes concernées :  à partir du 01/01/2022.
+* Zones impactées : `parameters/prestations_sociales`.
+* Détails des Revalorisations :
+  - Plafond CMU
+  - Janvier 2022: ASPA, AS, AVTS
+  - Juillet 2022: ASPA
+  - Novembre 2022: ASF
+  - Ajout de references pour l'ASI
+ 
 ### 118.2.5 [#1900](https://github.com/openfisca/openfisca-france/pull/1900)
 
 * Changement mineur.
