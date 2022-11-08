@@ -1,0 +1,10 @@
+description: Coefficient de progression au titre du barème de l'impôt général sur le revenu (IGR, 1917 - 1918)
+metadata:
+  ux_name: Coefficients de progression
+  description_en: Thresholds and marginal tax rates of the IGR tax (1917 - 1918)
+  order:
+  - intervalle_application_tranche_1
+  - intervalle_application_tranche_2
+  - intervalle_application_tranche_3
+  - intervalle_application_tranche_4
+  - intervalle_application_tranche_5
