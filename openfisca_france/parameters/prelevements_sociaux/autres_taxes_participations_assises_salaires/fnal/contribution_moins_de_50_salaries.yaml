@@ -17,10 +17,10 @@ metadata:
   ipp_csv_id: fnal_p_m50_0_1
   reference:
     2020-01-01:
-    - href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000038496102/#JORFARTI000038496156
-      title: Loi 2019-486 du 22/05/2019 (dite "loi PACTE"), art.11
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038839912/2020-01-01
-      title: Article L813-5 du Code de la Construction et de l'Habitation
+    - title: Loi 2019-486 du 22/05/2019 (dite "loi PACTE"), art.11
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000038496102/#JORFARTI000038496156
+    - title: Article L813-5 du Code de la Construction et de l'Habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038839912/2020-01-01
   official_journal_date:
     2020-01-01: "2019-05-23"
   last_review: "2021-12-07"

@@ -1,4 +1,14 @@
 description: Montant de la prestation complémentaire versé en fonction de besoins d'assistance
+metadata:
+  ux_name: Montant prestation complémentaire
+  unit: currency
+  reference:
+    2013-03-01:
+    - title: Article D434-2 I. du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027267037
+    - title: Décret 2013-278 du 2/04/2013
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000027267016/2013-04-05/
+  last_review: "2022-03-25"
 0:
   values:
     1985-12-21:
@@ -65,15 +75,3 @@ description: Montant de la prestation complémentaire versé en fonction de beso
       value: 1677.83
     2013-03-01:
       value: 1623.65
-metadata:
-  ux_name: Montant prestation complémentaire
-  unit: currency
-  reference:
-    2013-03-01:
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000027267037
-      title: Article D434-2 I. du Code de la sécurité sociale
-    - href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000027267016/2013-04-05/
-      title : Décret 2013-278 du 2/04/2013
-  notes:
-  last_review: "2022-03-25"
-documentation:

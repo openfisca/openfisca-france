@@ -10,8 +10,8 @@ metadata:
   unit: currency
   reference:
     2015-06-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2015/7/15/2015-860/jo/texte
       title: Décret 2015-860 du 15/07/2015
+      href: https://www.legifrance.gouv.fr/eli/decret/2015/7/15/2015-860/jo/texte
   official_journal_date:
     2015-06-01: "2015-07-16"
   notes:

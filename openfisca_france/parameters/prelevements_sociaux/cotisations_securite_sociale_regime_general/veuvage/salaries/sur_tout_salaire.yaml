@@ -10,22 +10,16 @@ metadata:
   ipp_csv_id: veuv_s_0_
   unit: /1
   reference:
-    1981-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000861526
-      title: Décret 80-1098 du 30/12/1980
     1982-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000319734
       title: Loi 82-1 du 04/01/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000319734
     2004-07-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2004/8/24/2004-858/jo/texte
       title: Décret 2004-858 du 24/08/2004
+      href: https://www.legifrance.gouv.fr/eli/decret/2004/8/24/2004-858/jo/texte
   official_journal_date:
-    1981-01-01: "1980-12-31"
     1982-01-01: "1982-01-05"
     2004-07-01: "2004-08-25"
   notes:
-    1981-01-01:
-    - title: En 1981, la cotisation veuvage nouvellemement créée de 0,1% ne s'applique que sous la partie du salaire sous-plafond.
     1982-01-01:
     - title: La cotisation veuvage est déplafonnée à compter du 1er janvier 1982.
     2004-07-01:

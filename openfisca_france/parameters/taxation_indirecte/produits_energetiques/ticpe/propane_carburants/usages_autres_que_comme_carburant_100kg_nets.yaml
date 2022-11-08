@@ -5,18 +5,18 @@ values:
   2018-01-01:
     value: 6.63
 metadata:
-  official_journal_date:
-    1993-01-01: '1992-12-31'
-    2018-01-01: '2017-12-31'
+  unit: currency
   reference:
     1993-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
     2018-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197
       title: Loi 2017-1837 du 30/12/2017 (LF pour 2018)
-  unit: currency
-documentation: |
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197
+  official_journal_date:
+    1993-01-01: "1992-12-31"
+    2018-01-01: "2017-12-31"
+documentation: |-
   *ces barèmes font l''objet de majorations dans la plupart des régions de France
   : une première tranche de 1,77€/hl puis une seconde de 0,73€/hl (deuxième tranche
   destinée uniquement à des financements d''infrastructures spécifiques

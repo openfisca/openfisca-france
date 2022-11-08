@@ -14,7 +14,6 @@ metadata:
   ux_name: 3 et enfants supplémentaires
   description_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_enf_sup
-  last_review: "2022-09-27"
   unit: BMAF
   reference:
     1946-09-01:
@@ -22,13 +21,13 @@ metadata:
     1978-01-01:
       title: "Décret 78-107 du 31/01/78 (Taux : modif art. L544 du CSS)"
     1981-07-01:
-    - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006762155/1981-07-01
-      title: Décret n°69-456 du 24/05/1969, art. 2
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517687
-      title: Décret 81-683 du 30/06/1981
+    - title: Décret n°69-456 du 24/05/1969, art. 2
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006762155/1981-07-01
+    - title: Décret 81-683 du 30/06/1981
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517687
     1986-01-01:
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318/
       title: Article D521-1, b) du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318/
   official_journal_date:
     1978-01-01: 1972-12-28; 1978-02-02
     1981-07-01: "1981-07-02"
@@ -38,6 +37,7 @@ metadata:
     - title: Majoration de 38% pour le 3e, 37% pour le 4e enfant. Soit 98% pour 4, 61% pour 3 enfants à charge, +35% par enfant supplémentaire
     1981-07-01:
     - title: Majoration 46% pour le 3e enfant, 41% pour le 4e
+  last_review: "2022-09-27"
 documentation: |-
   Notes :
   L'allocation familiale est créée en 1932 par la loi Landry du 11/03/1932, art. 1 et 2 (modif titres III et V du code du travail). Parution au JO 12/03/1932

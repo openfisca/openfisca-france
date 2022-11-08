@@ -9,5 +9,4 @@ metadata:
   - abattement_contribution_sociale
   - seuil_inferieur_contribution_exceptionnelle
   - seuil_inferieur_contribution_temporaireetsociale
-documentation: 
-  Ces contributions sont appliquées au montant d'IS dû, calculé avant crédits d'impôt et créances fiscales éventuelles.
+documentation: Ces contributions sont appliquées au montant d'IS dû, calculé avant crédits d'impôt et créances fiscales éventuelles.

@@ -15,17 +15,6 @@ metadata:
   description_en: SSCs on unemployment benefits
   ipp_csv_id: chom_mmid_tx
   unit: /1
-  reference:
-    1988-03-01:
-      title: Arrêté du 30/01/1988 portant agrément de la convention du 30/12/1987
-    1990-01-01:
-      title: Arrêté du 14/05/1990 portant agrément de la convention du 01/01/1990
-    1993-01-01:
-      title: Arrêté du 04/01/1993 portant agrément de la convention du 01/01/1993
-  official_journal_date:
-    1988-03-01: "1988-02-02"
-    1990-01-01: "1990-05-15"
-    1993-01-01: "1993-01-04"
   last_review: "1997-01-01"
 documentation: |-
   Note :

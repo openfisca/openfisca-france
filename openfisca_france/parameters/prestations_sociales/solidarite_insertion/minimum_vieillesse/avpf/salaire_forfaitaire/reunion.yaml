@@ -95,29 +95,29 @@ metadata:
   unit: currency
   reference:
     2014-01-01:
-      href: https://www.legislation.cnav.fr/Pages/texte.aspx?ID=63805
       title: Circulaire Cnav 2014/27 du 03/04/2014
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?ID=63805
     2015-01-01:
-      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2015_04_26012015.pdf
       title: Circulaire CNAV 2015/4 du 26/01/2015
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2015_04_26012015.pdf
     2016-01-01:
-      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2015_64_18122015.pdf
       title: Circulaire CNAV 2015/64 du 18/12/2015
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2015_64_18122015.pdf
     2017-01-01:
-      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_55_30122016.pdf
       title: Circulaire CNAV 2016/55 du 30/12/2016
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_55_30122016.pdf
     2018-01-01:
-      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_44_27122017.pdf
       title: Circulaire CNAV 2017/32 du 27/12/2017
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_44_27122017.pdf
     2019-01-01:
-      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2018_32_27122018.pdf
       title: Circulaire CNAV 2018/32 du 27/12/2018
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2018_32_27122018.pdf
     2020-01-01:
-      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2019_34_30122019.pdf
       title: Circulaire CNAV 2019/34 du 30/12/2019
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2019_34_30122019.pdf
     2021-01-01:
-      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2020_40_22122020.pdf
       title: Circulaire CNAV 2020/40 du 22/12/2020
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2020_40_22122020.pdf
   notes:
     2001-01-01:
     - title: Convergence des trois montants

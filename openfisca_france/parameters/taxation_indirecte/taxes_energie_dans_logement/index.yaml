@@ -2,4 +2,4 @@ description: Taxes sur l'énergie dans le logement
 metadata:
   description_en: Taxes on housing energy
   order:
-    - taxes_electricite_et_gaz
+  - taxes_electricite_et_gaz

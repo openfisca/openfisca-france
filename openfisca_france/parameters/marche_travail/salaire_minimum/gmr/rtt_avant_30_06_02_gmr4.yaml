@@ -21,16 +21,16 @@ metadata:
   unit: currency
   reference:
     2000-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006658125&cidTexte=JORFTEXT000000398162
       title: Loi 2000-37 du 19/01/2000, art. 32
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006658125&cidTexte=JORFTEXT000000398162
     2003-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006658848&cidTexte=JORFTEXT000000594652
       title: Loi 2003-47 du 17/01/2003, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006658848&cidTexte=JORFTEXT000000594652
     2004-07-01:
       title: Ordonnance 2004-602 du 24/06/2004, art. 9
     2005-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006658125&cidTexte=JORFTEXT000000398162
       title: Loi 2000-37 du 19/01/2000, art. 32.
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006658125&cidTexte=JORFTEXT000000398162
   official_journal_date:
     2000-01-01: "2000-01-20"
     2003-07-01: "2003-01-18"

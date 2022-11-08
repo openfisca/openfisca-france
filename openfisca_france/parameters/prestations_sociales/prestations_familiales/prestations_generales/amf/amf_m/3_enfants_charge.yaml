@@ -16,18 +16,12 @@ metadata:
     1974-07-01:
     - title: Loi 72-8 du 03/01/1972
     - title: Décret 72-528 et 530 du 9/06/1972 (AMF)
-    1978-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
-      title: Loi 77-765 du 12/07/1977
   official_journal_date:
     1955-06-01: 1955-05-09; 1955-11-03
     1974-07-01: 1972-01-05; 1972-06-30
-    1978-01-01: "1977-07-13"
   notes:
     1955-06-01:
     - title: Création de l'AMF
-    1978-01-01:
-    - title: Remplacé par "complément familial" depuis 01/01/1978
 documentation: |-
   Notes
   Le salaire de base auquel s'appliquent ces taux est le même qu'en matière d'allocation de salaire unique

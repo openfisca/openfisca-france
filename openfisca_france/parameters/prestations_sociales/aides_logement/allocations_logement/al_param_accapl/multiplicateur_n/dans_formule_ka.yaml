@@ -9,8 +9,8 @@ metadata:
   unit: currency
   reference:
     2007-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&categorieLien=id
       title: Arrêté du 27 septembre 2019 relatif au calcul des aides personnelles au logement et de la prime de déménagement
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&categorieLien=id
   official_journal_date:
     2007-07-01: "2007-07-12"
   notes:

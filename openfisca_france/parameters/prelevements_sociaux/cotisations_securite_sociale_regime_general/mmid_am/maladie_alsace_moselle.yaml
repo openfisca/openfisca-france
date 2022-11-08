@@ -47,33 +47,33 @@ metadata:
     rate: am_s_0_1, am_s_0_
   reference:
     1946-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000495973&categorieLien=id
       title: Décret 46-1428 du 12/06/1946
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000495973&categorieLien=id
     1947-07-01:
       title: Décret 47-1617 du 23/08/1947
     1967-10-01:
       title: Décret 67-814 du 25/09/1967
     1986-01-11:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000520605&categorieLien=id
       title: Décret 85-1507 du 31/12/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000520605&categorieLien=id
     1989-09-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517464
       title: Décret 89-541 du 03/08/1989
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517464
     1990-12-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000352108&categorieLien=id
       title: Décret 90-1077 du 04/12/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000352108&categorieLien=id
     1992-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000355432
       title: Décret 92-1 du 02/01/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000355432
     1993-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000361326&categorieLien=id
       title: Décret 93-43 du 12/01/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000361326&categorieLien=id
     1994-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000881274
       title: Décret 93-1359 du 30/12/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000881274
     1995-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000186097&categorieLien=id
       title: Décret 94-1152 du 27/12/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000186097&categorieLien=id
     1996-01-01:
       title: Décision du régime local du 20/11/1995 (Avis publié au JO)
     1997-01-01:
@@ -112,8 +112,8 @@ metadata:
     1946-07-01:
     - title: La date de début d'effet est supputée.
     2000-07-01:
-    - href: http://admi.net/jo/2000/09573.html
-      title: Référence de l'avis absent sur légifrance mais disponible ici
+    - title: Référence de l'avis absent sur légifrance mais disponible ici
+      href: http://admi.net/jo/2000/09573.html
   last_review: "2021-08-05"
   rate_unit: /1
   threshold_unit: PSS

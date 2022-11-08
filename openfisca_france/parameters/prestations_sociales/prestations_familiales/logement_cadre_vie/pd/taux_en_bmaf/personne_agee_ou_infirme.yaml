@@ -11,8 +11,8 @@ metadata:
   unit: BMAF
   reference:
     1976-08-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000688994
       title: Décret 76-768 du 16/08/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000688994
     1995-01-01:
       title: art. R542-31 du CSS
   official_journal_date:
