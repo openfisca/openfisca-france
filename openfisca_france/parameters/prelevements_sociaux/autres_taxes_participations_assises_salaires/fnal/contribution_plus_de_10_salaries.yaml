@@ -15,17 +15,17 @@ brackets:
 metadata:
   reference:
     1986-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000317305&categorieLien=id
       title: Loi 86-1317 du 30/12/1986, art. 82-II et III. (LF pour 1986)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000317305&categorieLien=id
     1989-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006275488&cidTexte=JORFTEXT000000508832
       title: Loi 88-1149 du 23/12/1988, art. 86 (LF pour 1989)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006275488&cidTexte=JORFTEXT000000508832
     1991-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006840531&cidTexte=JORFTEXT000000355163
       title: Loi 91-716 du 26/07/1991, art. 26
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006840531&cidTexte=JORFTEXT000000355163
     2007-01-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000615000
       title: LOI n° 2006-1666 du 21 décembre 2006 de finances pour 2007
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000615000
   official_journal_date:
     1986-01-01: "1985-12-31"
     1989-01-01: "1988-12-28"

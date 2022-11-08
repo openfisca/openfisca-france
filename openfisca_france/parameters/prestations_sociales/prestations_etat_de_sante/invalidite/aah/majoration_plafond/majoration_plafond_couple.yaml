@@ -12,18 +12,13 @@ metadata:
   ipp_csv_id: maj_couple_aah
   unit: /1
   reference:
-    2005-07-01:
-      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006242585/2005-06-30
-      title: Décret 2005-725 du 29/06/2005 art. 6 créé art. D821-9 du CSS
     2018-11-01:
-      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037552841/
       title: Décret 2018-948 du 31/10/2018 - Artcile  2
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037552841/
     2019-11-01:
-      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039207638/
       title: Décret 2019-1047 du 11/10/2019 - art. 1 et 2
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039207638/
   official_journal_date:
-    2005-07-01: "2005-07-01"
-    2018-04-01: "2017-05-04"
     2018-11-01: "2018-11-03"
     2019-11-01: "2019-11-13"
 documentation: |-

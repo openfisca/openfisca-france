@@ -11,12 +11,12 @@ metadata:
   unit: /1
   reference:
     1993-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657219&cidTexte=JORFTEXT000000529278
       title: Loi 93-953 du 27/07/1993, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657219&cidTexte=JORFTEXT000000529278
     1996-10-01:
     - title: Loi 95-1236 du 30/12/1995
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000554907
-      title: Décret 95-835 du 20/09/1996
+    - title: Décret 95-835 du 20/09/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000554907
   official_journal_date:
     1993-07-01: "1993-07-28"
     1996-10-01: "1996-09-22"

@@ -9,14 +9,7 @@ metadata:
   reference:
     title: Majoration par enfant à charge (en % de la base RSA) de la Prime pour l'Activité (PA)
   official_journal_date:
-    2016-01-01: "2015-12-22"
-    2016-04-01: "2016-05-03"
-    2017-04-01: "2017-05-05"
-    2018-04-01: "2018-05-04"
-    2018-08-01: "2018-10-04"
     2019-01-01: "2018-12-22"
-    2020-04-01: "2020-04-30"
-    2021-04-01: "2021-04-30"
   notes:
     2016-01-01:
     - title: Création de la Prime pour l'Activité.

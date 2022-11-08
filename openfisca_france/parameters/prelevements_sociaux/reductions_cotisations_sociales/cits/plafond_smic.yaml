@@ -10,11 +10,11 @@ metadata:
   unit: SMIC
   reference:
     2017-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000033760638&cidTexte=JORFTEXT000033734169
       title: Loi 2016-1917 du 29/12/2016 (LF pour 2017), art. 88
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000033760638&cidTexte=JORFTEXT000033734169
     2019-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377546&cidTexte=JORFTEXT000036339197
       title: Loi 2017-1837 du 30/12/2017 (LF pour 2018), art. 87
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377546&cidTexte=JORFTEXT000036339197
   official_journal_date:
     2017-01-01: "2016-12-30"
     2019-01-01: "2017-12-31"

@@ -84,18 +84,19 @@ values:
     value: 3850
   2020-01-01:
     value: 3858
-    reference:
-      title: Art. 2 de la loi no 2020-1721 du 29 décembre 2020 de finances pour 2021
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042753593
-      note: Revalorisation de (10 084 / 10 064) suivant l'évolution de la limite supérieure de la première tranche du barème de l'impôt sur le revenu
   2021-01-01:
     value: 3912
-    reference:
-      title: Art. 2 de la loi no 2021-1900 du 30 décembre 2021 de finances pour 2022
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044637653
-      note: Revalorisation de (10 225 / 10 084) suivant l'évolution de la limite supérieure de la première tranche du barème de l'impôt sur le revenu
 metadata:
   unit: currency
   reference:
-    title: Art. 158, 5, a, al. 2 du Code général des impôts
-    href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045768992
+    0001-01-01:
+      title: Art. 158, 5, a, al. 2 du Code général des impôts
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045768992
+    2020-01-01:
+      title: Art. 2 de la loi no 2020-1721 du 29 décembre 2020 de finances pour 2021
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042753593
+      note: Revalorisation de (10 084 / 10 064) suivant l'évolution de la limite supérieure de la première tranche du barème de l'impôt sur le revenu
+    2021-01-01:
+      title: Art. 2 de la loi no 2021-1900 du 30 décembre 2021 de finances pour 2022
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044637653
+      note: Revalorisation de (10 225 / 10 084) suivant l'évolution de la limite supérieure de la première tranche du barème de l'impôt sur le revenu

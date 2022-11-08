@@ -11,11 +11,11 @@ metadata:
   unit: year
   reference:
     1974-08-14:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000857489&categorieLien=id
       title: Décret 74-706 du 13/08/1974
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000857489&categorieLien=id
     1990-09-05:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006774940&cidTexte=JORFTEXT000000534901
       title: Décret 90-776 du 03/09/1990, art. 1 (modif R543-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006774940&cidTexte=JORFTEXT000000534901
   official_journal_date:
     1974-08-14: "1974-08-14"
     1990-09-05: "1990-09-05"

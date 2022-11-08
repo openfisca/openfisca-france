@@ -1,5 +1,14 @@
 # Changelog
- 
+
+### 118.3.1 [#1812](https://github.com/openfisca/openfisca-france/pull/1812)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters`.
+* Détails :
+  - Supprime, dans tous les paramètres de type valeur (et donc ni les nœuds, ni les barèmes), les parties des métadonnées "reference", "notes" et "official_journal_date" dont la date ne correspond à aucune valeur.
+  - Homogénéïse l'ordre des paramètres.
+
 ## 118.3.0 [#1903](https://github.com/openfisca/openfisca-france/pull/1903)
 
 * Évolution du système socio-fiscal.

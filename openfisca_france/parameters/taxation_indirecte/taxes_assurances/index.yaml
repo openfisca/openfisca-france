@@ -2,5 +2,5 @@ description: Taxes sur les assurances
 metadata:
   description_en: Taxes on insurances
   order:
-    - tsca
-    - fgao
+  - tsca
+  - fgao

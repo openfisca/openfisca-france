@@ -39,12 +39,13 @@ values:
   2017-01-01:
     value: 947
   2018-01-01:
-    value: NULL
-    reference:
-      title: I. 6° a) de l'article 30 de la LOI n° 2018-1317 du 28 décembre 2018 de finances pour 2019 (1)
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037882381
+    value: null
 metadata:
-  last_review: "2022-09-26"
   unit: currency
   reference:
-    title: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
+    0001-01-01:
+      title: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
+    2018-01-01:
+      title: I. 6° a) de l'article 30 de la LOI n° 2018-1317 du 28 décembre 2018 de finances pour 2019 (1)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037882381
+  last_review: "2022-09-26"

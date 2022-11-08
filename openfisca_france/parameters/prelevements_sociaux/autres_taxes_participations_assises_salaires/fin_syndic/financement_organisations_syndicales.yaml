@@ -11,10 +11,10 @@ metadata:
   ipp_csv_id: taux
   reference:
     2015-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030005593
-      title: Décret 2014-1718 du 30/12/2014
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030190792/
-      title: Article D2135-34 du Code du travail
+    - title: Décret 2014-1718 du 30/12/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030005593
+    - title: Article D2135-34 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030190792/
   official_journal_date:
     2015-01-01: "2014-12-31"
   last_review: "2021-12-07"

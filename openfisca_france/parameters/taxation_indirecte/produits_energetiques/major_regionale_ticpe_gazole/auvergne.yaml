@@ -1,7 +1,4 @@
 description: Majoration régionale TICPE gazole en Auvergne
-metadata:
-  ipp_csv_id: maj_ticpe_die_auv
-  unit: currency
 values:
   2007-01-01:
     value: 0.85
@@ -9,3 +6,6 @@ values:
     value: 1.15
   2011-01-01:
     value: 2.5
+metadata:
+  ipp_csv_id: maj_ticpe_die_auv
+  unit: currency

@@ -8,8 +8,8 @@ metadata:
   unit: currency
   reference:
     2015-11-01:
-      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031355378/2022-01-10/
       title: Décret 2015-1329 du 21/10/2015, art. 2
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031355378/2022-01-10/
   official_journal_date:
     2015-11-01: "2015-10-23"
   last_review: "2022-01-10"

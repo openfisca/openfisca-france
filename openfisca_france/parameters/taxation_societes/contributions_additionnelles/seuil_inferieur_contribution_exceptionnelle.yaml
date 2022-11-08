@@ -3,9 +3,9 @@ values:
   2011-12-31:
     value: 250000000
 metadata:
-  official_journal_date:
-    2011-12-31: '2011-12-31'
+  unit: currency
   reference:
     2011-12-31:
       title: Article 235 ter ZAA créé par Loi 2011-1978 - art. 30
-  unit: currency
+  official_journal_date:
+    2011-12-31: "2011-12-31"

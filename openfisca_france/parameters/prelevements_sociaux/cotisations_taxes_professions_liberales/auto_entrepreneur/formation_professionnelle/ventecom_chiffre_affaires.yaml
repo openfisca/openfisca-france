@@ -5,28 +5,28 @@ values:
   2011-01-01:
     value: 0.001
 metadata:
-  last_review: "2022-04-07"
   ux_name: Taux - Vente (commerçants)
   description_en: Self-employed specific scheme (auto-entrepreneurs)
   ipp_csv_id: auto_vente_form_ca
   unit: /1
   reference:
     2009-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951795
-      title: Décret 2008-1348 du 18/12/2008
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951825
-      title: Décret 2008-1349 du 18/12/2008
+    - title: Décret 2008-1348 du 18/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951795
+    - title: Décret 2008-1349 du 18/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019951825
     2011-01-01:
     - title: Loi 2010-1657 du 29/12/2010 de finances pour 2011, art. 137
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023382168/2011-01-01/
-      title: Article L6331-48 du Code du travail
-    - href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000044794656/2022-01-01/
-      title: LOI n°2021-1900 du 30 décembre 2021 - art. 121
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044981898/2022-01-01
-      title: Article L6331-48 du code du travail
+    - title: Article L6331-48 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023382168/2011-01-01/
+    - title: LOI n°2021-1900 du 30 décembre 2021 - art. 121
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000044794656/2022-01-01/
+    - title: Article L6331-48 du code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044981898/2022-01-01
   official_journal_date:
     2009-01-01: "2008-12-19"
     2011-01-01: "2010-12-30"
+  last_review: "2022-04-07"
 documentation: |-
   Notes :
   (i) L’auto-entrepreneur bénéficie d’un régime simplifié de calcul et de paiement des cotisations et contributions sociales obligatoires.

@@ -23,64 +23,34 @@ metadata:
   reference:
     1986-01-01:
       title: Décret 85-1353 du 17/12/1985, art. 1 (crée art. L522-2 et R522-2 du CSS)
-    2003-07-01:
-      title: Arrêté du 26/06/2003Décret 2003-1393 du 31/12/2003, art. 1 (modif art. R522-2 du CSS)
-    2004-07-01:
-      title: Arrêté du 16/07/2004
-    2005-07-01:
-      title: Arrêté du 01/08/2005
-    2006-07-01:
-      title: Arrêté du 17/07/2006
-    2007-07-01:
-      title: Arrêté du 10/07/2007
-    2009-01-01:
-      title: Arrêté du 31/12/2008
-    2010-01-01:
-      title: Arrêté du 29/12/2009
-    2011-01-01:
-      title: Arrêté du 30/12/2010
-    2012-01-01:
-      title: Arrêté du 28/12/2011, art. 1
-    2013-01-01:
-      title: Circulaire DSS/SD2B/2012/423
     2014-01-01:
     - title: Circulaire DSS/SD2B/2013/416
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028870537
-      title: Décret 2014-419 du 23/04/2014
+    - title: Décret 2014-419 du 23/04/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028870537
     2015-01-01:
       title: Circulaire DSS/SD2B/2014/345
     2016-01-01:
       title: Circulaire DSS/SD2B/2015/371
     2018-01-01:
     - title: Circulaire DSS/SD2B/2017/352 du 22/12/2017
-    - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036299566
-      title: Arrêté du 27/12/2017, art. 2
+    - title: Arrêté du 27/12/2017, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036299566
     2019-01-01:
     - title: Circulaire DSS/SD2B/2018/279 du 17/12/2018
-    - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037864993
-      title: Arrêté du 21/12/2018, art. 2
+    - title: Arrêté du 21/12/2018, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037864993
     2020-01-01:
-    - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039663227
-      title: Arrêté du 20/12/2019, art. 2
-    - href: https://solidarites-sante.gouv.fr/fichiers/bo/2019/19-12/ste_20190012_0000_0064.pdf
-      title: Circulaire DSS/SD2B/2019/261 du 18/12/2019
+    - title: Arrêté du 20/12/2019, art. 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039663227
+    - title: Circulaire DSS/SD2B/2019/261 du 18/12/2019
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2019/19-12/ste_20190012_0000_0064.pdf
     2021-01-01:
-    - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694990
-      title: Arrêté du 14/12/2020, art. 3
-    - href: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-12/ste_20200012_0000_0050.pdf
-      title: Circulaire DSS/2B/2020/226 du 14/12/2020
+    - title: Arrêté du 14/12/2020, art. 3
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694990
+    - title: Circulaire DSS/2B/2020/226 du 14/12/2020
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-12/ste_20200012_0000_0050.pdf
   official_journal_date:
     1986-01-01: "1985-12-21"
-    2003-07-01: 2004-01-01; 2003-06-28
-    2004-07-01: "2004-07-18"
-    2005-07-01: "2005-08-03"
-    2006-07-01: "2006-07-19"
-    2007-07-01: "2007-07-12"
-    2009-01-01: "2009-01-01"
-    2010-01-01: "2009-12-31"
-    2011-01-01: "2010-12-31"
-    2012-01-01: "2011-12-30"
-    2013-01-01: "2012-11-18"
     2015-01-01: "2014-12-16"
     2016-01-01: "2015-12-18"
     2018-01-01: "2017-12-29"
@@ -88,8 +58,6 @@ metadata:
   notes:
     1986-01-01:
     - title: "art. R222-2 : la réglementation des plafonds est la même que pour l'APJE"
-    2003-07-01:
-    - title: Suppression de l'APJE => le renvoi à la réglementation des plafonds de l'APJE n'est plus possible.; => règlementation propre au CF
     2014-01-01:
     - title: Ne pas confondre la circulaire pour la France métropolitaine avec celle pour les départements d'Outre-mer
     2016-01-01:

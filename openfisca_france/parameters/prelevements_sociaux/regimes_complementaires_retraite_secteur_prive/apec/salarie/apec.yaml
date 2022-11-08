@@ -29,8 +29,8 @@ metadata:
     rate: apec_s_0_4, apec_s_1_4
   reference:
     2011-01-01:
-      href: https://web.archive.org/web/20160627184906/https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc/201005df.pdf
       title: Circulaire AGIRC 2010-5-DF du 29/07/2010
+      href: https://web.archive.org/web/20160627184906/https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc/201005df.pdf
   official_journal_date:
     1976-01-01: "1976-02-26"
   notes:

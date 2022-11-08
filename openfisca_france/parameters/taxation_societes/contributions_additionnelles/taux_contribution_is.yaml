@@ -11,10 +11,10 @@ values:
   2006-01-01:
     value: null
 metadata:
+  unit: /1
   reference:
     1995-10-27:
-      title: Article 235 ter ZA créé par Loi 95-885 de finances rectificative pour
-        1995
+      title: Article 235 ter ZA créé par Loi 95-885 de finances rectificative pour 1995
     2001-01-01:
       title: Article 235 ter ZA modifié par Loi 2000-1352 de Finances pour 2001
     2002-01-01:
@@ -24,8 +24,7 @@ metadata:
     2006-01-01:
       title: Article 235 ter ZA abrogé par loi 2004-1484 Finances pour 2005
   official_journal_date:
-    1995-10-27: '1995-08-04'
-    2001-01-01: '2000-12-31'
-    2002-01-01: '2000-12-31'
-    2005-01-01: '2004-12-31'
-  unit: /1
+    1995-10-27: "1995-08-04"
+    2001-01-01: "2000-12-31"
+    2002-01-01: "2000-12-31"
+    2005-01-01: "2004-12-31"

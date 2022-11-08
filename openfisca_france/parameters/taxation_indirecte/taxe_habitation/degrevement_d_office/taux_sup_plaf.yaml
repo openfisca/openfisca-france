@@ -7,12 +7,12 @@ values:
   2022-01-01:
     value: 0.65
 metadata:
-  last_review: "2022-08-01"
   unit: /1
   reference:
-    2017-01-01: 
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041465111/
+    2017-01-01:
       title: art. 1414 C du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041465111/
     2022-01-01:
+      title: Décret n° 2022-782 du 4 mai 2022, article
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045757184
-      title: "Décret n° 2022-782 du 4 mai 2022, article"
+  last_review: "2022-08-01"

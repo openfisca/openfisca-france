@@ -30,13 +30,13 @@ metadata:
   reference:
     1996-07-01:
     - title: Ordonnance 96-51 du 24/01/1996
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000742893
-      title: Décret 96-553 du 20/06/1996
+    - title: Décret 96-553 du 20/06/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000742893
     1998-07-01:
       title: Références manquantes
     1999-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395773&categorieLien=id
       title: Décret 99-535 du 28/06/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000395773&categorieLien=id
     2000-07-01:
       title: Arrêté du 30/06/2000
     2001-07-01:
@@ -50,10 +50,10 @@ metadata:
     2005-07-01:
       title: Arrêté du 01/08/2005
     2007-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227363&cidTexte=JORFTEXT000000248223
-      title: Décret 2003-1393 du 31/12/2003, art. 2 (abroge art. R531-9 du CSS)
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
-      title: Loi 2003-1199 du 18/12/2003, art. 60 II (modif L531-2 du CSS)
+    - title: Décret 2003-1393 du 31/12/2003, art. 2 (abroge art. R531-9 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227363&cidTexte=JORFTEXT000000248223
+    - title: Loi 2003-1199 du 18/12/2003, art. 60 II (modif L531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
   official_journal_date:
     1996-07-01: 1996-01-25; 1996-06-22
     1999-07-01: "1999-06-29"

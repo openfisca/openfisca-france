@@ -16,10 +16,10 @@ metadata:
     1997-01-01:
       title: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
     1998-01-01:
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006740334/1998-01-01/
-      title: Article L136-8 du Code de la Sécurité sociale
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757359&cidTexte=JORFTEXT000000569121
-      title: Loi 97-1164 du 19/12/1997, art. 5 (LFSS pour 1998)
+    - title: Article L136-8 du Code de la Sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006740334/1998-01-01/
+    - title: Loi 97-1164 du 19/12/1997, art. 5 (LFSS pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757359&cidTexte=JORFTEXT000000569121
   official_journal_date:
     1991-02-01: "1990-12-30"
     1997-01-01: "1996-12-29"

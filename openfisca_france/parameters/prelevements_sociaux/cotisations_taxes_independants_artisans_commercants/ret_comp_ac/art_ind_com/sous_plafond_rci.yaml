@@ -8,100 +8,23 @@ metadata:
   ipp_csv_id: retc_rci_0_1plaf
   unit: /1
   reference:
-    1978-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000498711&categorieLien=id
-      title: Décret 78-351 du 14/03/1978
-    1985-01-01:
-      title: Décret 84-1064 du 30/11/1984
-    1997-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771716&cidTexte=JORFTEXT000000382287
-      title: Décret 97-166 du 24/02/1997 - art. 2
-    1998-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771716&cidTexte=JORFTEXT000000382287
-      title: Décret 97-166 du 24/02/1997 - art. 2
-    1999-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771716&cidTexte=JORFTEXT000000382287
-      title: Décret 97-166 du 24/02/1997 - art. 2
-    2000-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771716&cidTexte=JORFTEXT000000382287
-      title: Décret 97-166 du 24/02/1997 - art. 2
-    2003-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006225021&cidTexte=JORFTEXT000000429252
-      title: Décret 2003-1025 du 28/10/2003 - art. 1
-    2004-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758637&cidTexte=JORFTEXT000000781627
-      title: Loi 2003-775 du 21/08/2003 - art. 88
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006233585&cidTexte=JORFTEXT000000625026
-      title: Décret 2004-848 du 23/08/2004 - art. 1
-    2004-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006233585&cidTexte=JORFTEXT000000625026
-      title: Décret 2004-848 du 23/08/2004 - art. 1
-    2005-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000259384
-      title: Décret 2005-272 du 23/03/2005
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006233585&cidTexte=JORFTEXT000000625026
-      title: Décret 2004-848 du 23/08/2004 - art. 1
-    2008-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017852012&cidTexte=JORFTEXT000017765870
-      title: Décret 2007-1900 du 26/12/2007 - art. 1 (V)
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000017834337
-      title: Décret 2008-22 du 7/01/2008
-    2009-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017852012&cidTexte=JORFTEXT000017765870
-      title: Décret 2007-1900 du 26/12/2007 - art. 1 (V)
-    2010-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017852012&cidTexte=JORFTEXT000017765870
-      title: Décret 2007-1900 du 26/12/2007 - art. 1 (V)
     2011-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017852012&cidTexte=JORFTEXT000017765870
       title: Décret 2007-1900 du 26/12/2007 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017852012&cidTexte=JORFTEXT000017765870
     2012-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017852012&cidTexte=JORFTEXT000017765870
       title: Décret 2007-1900 du 26/12/2007 - art. 1 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017852012&cidTexte=JORFTEXT000017765870
     2013-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025626696
-      title: Décret 2012-443 du 03/04/2012
+    - title: Décret 2012-443 du 03/04/2012
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025626696
     - title: Circulaire RSI 2013-004 du 17/01/2013
-    2014-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025241814
-      title: Décret 2012-139 du 30/01/2012
   official_journal_date:
-    1978-01-01: "1978-03-19"
-    1985-01-01: "1984-12-02"
-    1997-01-01: "1997-02-26"
-    1998-01-01: "1997-02-26"
-    1999-01-01: "1997-02-26"
-    2000-01-01: "1997-02-26"
-    2003-01-01: "2003-10-29"
-    2004-01-01: 2003-08-22; 2004-08-24
-    2004-07-01: "2004-08-24"
-    2005-01-01: 2005-03-26; 2004-08-24
-    2008-01-01: 2007-12-30; 2008-01-08
-    2009-01-01: "2007-12-30"
-    2010-01-01: "2007-12-30"
     2011-01-01: "2007-12-30"
     2012-01-01: "2007-12-30"
     2013-01-01: "2012-04-04"
-    2014-01-01: "2012-12-31"
   notes:
-    1978-01-01:
-    - title: Institution du régime d'assurance vieillesse complémentaire obligatoire pour les artisans
-    2004-01-01:
-    - title: Pour les industriels et commerçants, taux de 3,5% sous 3 PSS pour le 1er semestre 2004, et 4,5% sous 3 PSS pour le 2ème semestre 2004
     2013-01-01:
     - title: Depuis le 1er janvier 2013, le taux de cotisations est unifié pour les différentes catégories d'independants.
-    2014-01-01:
-    - title: Rétabli l'article D. 635-7 du CSS donnant les taux.
-    2016-01-01:
-    - title: "Référence législative fixant le plafond spécifique des indépendants introuvable. Source: service-public.fr"
-    2018-01-01:
-    - title: "Référence législative fixant le plafond spécifique des indépendants introuvable. Source: service-public.fr"
-    2019-01-01:
-    - title: "Référence législative fixant le plafond spécifique des indépendants introuvable. Source: service-public.fr"
-    2020-01-01:
-    - title: "Référence législative fixant le plafond spécifique des indépendants introuvable. Source: secu-independants.fr"
-    2021-01-01:
-    - title: "Référence législative fixant le plafond spécifique des indépendants introuvable. Source: secu-independants.fr"
 documentation: |-
   Notes :
   (i) Les cotisations reportées financent les régimes complémentaires d'assurance vieillesse des artisans, industriels et commerçants.

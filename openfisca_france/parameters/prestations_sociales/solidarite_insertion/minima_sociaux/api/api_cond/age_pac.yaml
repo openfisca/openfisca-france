@@ -9,15 +9,13 @@ metadata:
   unit: year
   reference:
     2009-06-01:
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000022743618
-      title: Article R262-3 du Code de l'action sociale et des familles
-    - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000020764874
-      title: Déliberation 2009-327 du 4/06/2009
-    - href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000019860428/
-      title: Loi 2008-1249 du 1/12/2008
+    - title: Article R262-3 du Code de l'action sociale et des familles
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000022743618
+    - title: Déliberation 2009-327 du 4/06/2009
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000020764874
+    - title: Loi 2008-1249 du 1/12/2008
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000019860428/
   last_review: "2022-04-13"
-documentation:
+documentation: |-
   Depuis le  01/06/2009 l'allocation de parent isolé (API) a été intégrée dans le revenu de solidarité active (RSA)
-
-  https://drees.solidarites-sante.gouv.fr/sites/default/files/er744-2.pdf
-  https://www.dossierfamilial.com/famille/enfant/aides-et-allocations/parent-isole-aides-sociales-et-allocations-340950
+  https://drees.solidarites-sante.gouv.fr/sites/default/files/er744-2.pdf https://www.dossierfamilial.com/famille/enfant/aides-et-allocations/parent-isole-aides-sociales-et-allocations-340950

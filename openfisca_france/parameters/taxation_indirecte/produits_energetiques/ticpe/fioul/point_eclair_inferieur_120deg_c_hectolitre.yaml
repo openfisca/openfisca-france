@@ -10,26 +10,26 @@ values:
     value: null
 metadata:
   ipp_csv_id: ticpe_fioul_lourd_cond
-  official_journal_date:
-    1993-01-01: '1992-12-31'
-    2000-01-01: '1999-12-31'
-    2002-01-01: '2001-12-29'
-    2003-01-01: '2002-12-31'
+  unit: currency
   reference:
     1993-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
     2000-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
       title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
     2002-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
       title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
     2003-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
       title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
-  unit: currency
-documentation: |
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
+  official_journal_date:
+    1993-01-01: "1992-12-31"
+    2000-01-01: "1999-12-31"
+    2002-01-01: "2001-12-29"
+    2003-01-01: "2002-12-31"
+documentation: |-
   *ces barèmes font l''objet de majorations dans la plupart des régions de France
   : une première tranche de 1,77€/hl puis une seconde de 0,73€/hl (deuxième tranche
   destinée uniquement à des financements d''infrastructures spécifiques

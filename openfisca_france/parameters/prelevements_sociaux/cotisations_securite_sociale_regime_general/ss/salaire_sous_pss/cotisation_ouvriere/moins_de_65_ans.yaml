@@ -25,27 +25,10 @@ metadata:
       title: Décret loi du 28/10/1935, art. 2 § 2
     1945-01-01:
       title: Ordonnance du 30/12/1944
-    1947-01-01:
-      title: Arrêté du 24/03/1947
-    1948-07-01:
-      title: Loi 48-1306 du 23/08/1948 art. 18
-    1959-01-01:
-      title: Ordonnance 58-1374 du 30/12/1958, art. 10
-    1961-01-01:
-      title: Décret 60-1485 du 30/12/1960
-    1962-01-01:
-      title: Décret 61-1525 du 30/12/1961
-    1966-09-01:
-      title: Arrêté du 29/07/1966
   official_journal_date:
     1930-07-01: 1928-04-12; 1930-05-01
     1936-01-01: "1935-10-31"
     1937-01-01: "1935-10-31"
-    1948-07-01: "1948-08-24"
-    1959-01-01: "1958-12-31"
-    1961-01-01: "1960-12-31"
-    1962-01-01: "1961-12-31"
-    1966-09-01: "1966-08-17"
   notes:
     1930-07-01:
     - title: La date d'effet est bien le 01/07/1930.
@@ -53,8 +36,6 @@ metadata:
     - title: La baisse des taux est prévue comme une mesure provisoire d'un an (destinée à apporter une aide transitoire à la production)
     1937-01-01:
     - title: L'art. 2-§2 rappelle que les taux sont fixés à 4%, hors les dispositions exceptionnelles de 1936 prévues à l'art. 40
-    1947-01-01:
-    - title: 4% sont dues au titre de la contribution spéciale instaurée par l'ordonnance du 30/12/1944
     1967-09-01:
     - title: En 1967 la cotisation globale de Sécurité sociale est remplacée par des cotisations différenciées par branches
   last_review: "1967-01-01"
