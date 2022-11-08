@@ -5,5 +5,5 @@ metadata:
   order:
   - seuils
   - taux_effectifs
-  - coefficient_progression
+  - coefficients_progression
   - intervalle_application_coefficients
