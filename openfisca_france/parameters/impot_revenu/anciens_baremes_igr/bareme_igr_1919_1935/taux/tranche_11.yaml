@@ -1,0 +1,71 @@
+description: Taux marginal tranche 11 d'imposition au titre du barème de l'Impôt général
+  sur le revenu (IGR, 1919 - 1935)
+documentation: 'Notes :
+
+  Les revenus des années 1919-1935 étaient soumis à des barèmes exprimés en taux marginal
+  et l''échelle des revenus découpées en 25 tranches;
+
+  La fraction de revenu imposable comprise entre 6000 et 20000 francs était retenue
+  pour 1/25ème de son montant
+
+  La fraction comprise entre 20000 et 30000 francs est retenue pour 2/25èmes de son
+  montant, etc.
+
+  La fraction supérieure à 550000 francs est retenue pour 25/25èmes
+
+  Le taux appliqué au revenu ainsi obtenu était de 50% pour les revenus des années
+  1919-1922, 60% pour les revenus de 1923, 72 % pour les revenus de 1924, 60% pour
+  les revenus de 1925, etc. (valeur du taux de la dernière tranche)
+
+  Ces taux incluent les majorations applicables lors de l''imposition des années 1923-1925
+  et 1932-1933 indiquées sur le tableau 4-6 de Piketty (2001). Les revalorisations
+  de l''abattement général sont indiquées dans le tableau C-1 (Piketty 2001)
+
+  '
+metadata:
+  reference:
+    1919-01-01: 'T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités
+      et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à
+      à 4-4'
+    1923-01-01: 'T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités
+      et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à
+      à 4-4'
+    1924-01-01: 'T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités
+      et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à
+      à 4-4'
+    1925-01-01: 'T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités
+      et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à
+      à 4-4'
+    1926-01-01: 'T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités
+      et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à
+      à 4-4'
+    1928-01-01: 'T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités
+      et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à
+      à 4-4'
+    1932-01-01: 'T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités
+      et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à
+      à 4-4'
+    1934-01-01: 'T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités
+      et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à
+      à 4-4'
+  unit: /1
+  ux_name: Tranche 11
+values:
+  1919-01-01:
+    value: 0.2
+  1923-01-01:
+    value: 0.24
+  1924-01-01:
+    value: 0.288
+  1925-01-01:
+    value: 0.24
+  1926-01-01:
+    value: 0.12
+  1928-01-01:
+    value: 0.13332
+  1932-01-01:
+    value: 0.14668
+  1934-01-01:
+    value: 0.096
+  1936-01-01:
+    value: null
