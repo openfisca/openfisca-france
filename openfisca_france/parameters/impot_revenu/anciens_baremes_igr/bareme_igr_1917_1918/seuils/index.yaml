@@ -1,6 +1,7 @@
-description: Seuils et taux d'imposition au titre du barème de l'impôt général sur
+description: Seuils d'imposition au titre du barème de l'impôt général sur
   le revenu (IGR, 1917 - 1918)
 metadata:
+  ux_name: Seuils
   description_en: Thresholds and marginal tax rates of the IGR tax (1917 - 1918)
   order:
   - tranche_1
