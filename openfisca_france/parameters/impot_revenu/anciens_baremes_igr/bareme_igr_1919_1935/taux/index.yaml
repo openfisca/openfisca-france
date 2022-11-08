@@ -1,0 +1,31 @@
+description: Taux d'imposition au titre du barème de l'Impôt général
+  sur le revenu (IGR, 1919 - 1935)
+metadata:
+  description_en: Thresholds and marginal tax rates of the IGR tax (1919 - 1935)
+  order:
+  - tranche_1
+  - tranche_2
+  - tranche_3
+  - tranche_4
+  - tranche_5
+  - tranche_6
+  - tranche_7
+  - tranche_8
+  - tranche_9
+  - tranche_10
+  - tranche_11
+  - tranche_12
+  - tranche_13
+  - tranche_14
+  - tranche_15
+  - tranche_16
+  - tranche_17
+  - tranche_18
+  - tranche_19
+  - tranche_20
+  - tranche_21
+  - tranche_22
+  - tranche_23
+  - tranche_24
+  - tranche_25
+  - tranche_26
