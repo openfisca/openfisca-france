@@ -1,16 +1,11 @@
 description: Barème de l'imposition au taux neutre pour les contribuables domiciliés en Guadeloupe, Martinique ou Réunion
 brackets:
-- threshold: # Tranche 1
+- threshold:
     2019-01-01:
       value: 0
-    metadata:
-      ipp_csv_id: tranche1_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0
-    metadata:
-      ipp_csv_id: txmarg1_neutre
-      unit: /1
 - threshold: # Tranche 2
     2019-01-01:
       value: 1610
@@ -18,14 +13,9 @@ brackets:
       value: 1626
     2021-01-01:
       value: 1629
-    metadata:
-      ipp_csv_id: tranche2_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.005
-    metadata:
-      ipp_csv_id: txmarg2_neutre
-      unit: /1
 - threshold: # Tranche 3
     2019-01-01:
       value: 1707
@@ -33,16 +23,11 @@ brackets:
       value: 1724
     2021-01-01:
       value: 1728
-    metadata:
-      ipp_csv_id: tranche3_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.015
     2020-01-01:
       value: 0.013
-    metadata:
-      ipp_csv_id: txmarg3_neutre
-      unit: /1
 - threshold: # Tranche 4
     2019-01-01:
       value: 1837
@@ -50,16 +35,11 @@ brackets:
       value: 1900
     2021-01-01:
       value: 1904
-    metadata:
-      ipp_csv_id: tranche4_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.025
     2020-01-01:
       value: 0.021
-    metadata:
-      ipp_csv_id: txmarg4_neutre
-      unit: /1
 - threshold: # Tranche 5
     2019-01-01:
       value: 1948
@@ -67,16 +47,11 @@ brackets:
       value: 2075
     2021-01-01:
       value: 2079
-    metadata:
-      ipp_csv_id: tranche5_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.035
     2020-01-01:
       value: 0.029
-    metadata:
-      ipp_csv_id: txmarg5_neutre
-      unit: /1
 - threshold: # Tranche 6
     2019-01-01:
       value: 2117
@@ -84,16 +59,11 @@ brackets:
       value: 2292
     2021-01-01:
       value: 2296
-    metadata:
-      ipp_csv_id: tranche6_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.045
     2020-01-01:
       value: 0.035
-    metadata:
-      ipp_csv_id: txmarg6_neutre
-      unit: /1
 - threshold: # Tranche 7
     2019-01-01:
       value: 2377
@@ -101,16 +71,11 @@ brackets:
       value: 2417
     2021-01-01:
       value: 2421
-    metadata:
-      ipp_csv_id: tranche7_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.06
     2020-01-01:
       value: 0.041
-    metadata:
-      ipp_csv_id: txmarg7_neutre
-      unit: /1
 - threshold: # Tranche 8
     2019-01-01:
       value: 2784
@@ -118,16 +83,11 @@ brackets:
       value: 2500
     2021-01-01:
       value: 2505
-    metadata:
-      ipp_csv_id: tranche8_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.075
     2020-01-01:
       value: 0.053
-    metadata:
-      ipp_csv_id: txmarg8_neutre
-      unit: /1
 - threshold: # Tranche 9
     2019-01-01:
       value: 3176
@@ -135,16 +95,11 @@ brackets:
       value: 2750
     2021-01-01:
       value: 2755
-    metadata:
-      ipp_csv_id: tranche9_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.09
     2020-01-01:
       value: 0.075
-    metadata:
-      ipp_csv_id: txmarg9_neutre
-      unit: /1
 - threshold: # Tranche 10
     2019-01-01:
       value: 3696
@@ -152,16 +107,11 @@ brackets:
       value: 3400
     2021-01-01:
       value: 3406
-    metadata:
-      ipp_csv_id: tranche10_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.105
     2020-01-01:
       value: 0.099
-    metadata:
-      ipp_csv_id: txmarg10_neutre
-      unit: /1
 - threshold: # Tranche 11
     2019-01-01:
       value: 4365
@@ -169,16 +119,11 @@ brackets:
       value: 4350
     2021-01-01:
       value: 4359
-    metadata:
-      ipp_csv_id: tranche11_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.12
     2020-01-01:
       value: 0.119
-    metadata:
-      ipp_csv_id: txmarg11_neutre
-      unit: /1
 - threshold: # Tranche 12
     2019-01-01:
       value: 4910
@@ -186,16 +131,11 @@ brackets:
       value: 4942
     2021-01-01:
       value: 4959
-    metadata:
-      ipp_csv_id: tranche12_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.14
     2020-01-01:
       value: 0.138
-    metadata:
-      ipp_csv_id: txmarg12_neutre
-      unit: /1
 - threshold: # Tranche 13
     2019-01-01:
       value: 5730
@@ -203,16 +143,11 @@ brackets:
       value: 5725
     2021-01-01:
       value: 5736
-    metadata:
-      ipp_csv_id: tranche13_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.16
     2020-01-01:
       value: 0.158
-    metadata:
-      ipp_csv_id: txmarg13_neutre
-      unit: /1
 - threshold: # Tranche 14
     2019-01-01:
       value: 6855
@@ -220,16 +155,11 @@ brackets:
       value: 6858
     2021-01-01:
       value: 6872
-    metadata:
-      ipp_csv_id: tranche14_neutre_guad_mar_reu
   rate:
     2019-01-01:
       value: 0.18
     2020-01-01:
       value: 0.179
-    metadata:
-      ipp_csv_id: txmarg14_neutre
-      unit: /1
 - threshold: # Tranche 15
     2019-01-01:
       value: 7620
@@ -237,14 +167,9 @@ brackets:
       value: 7625
     2021-01-01:
       value: 7640
-    metadata:
-      ipp_csv_id: tranche15_neutre_guad_mar_reu
   rate:
     2019-01-01:
         value: 0.2
-    metadata:
-      ipp_csv_id: txmarg15_neutre
-      unit: /1
 - threshold: # Tranche 16
     2019-01-01:
       value: 9070
@@ -252,14 +177,9 @@ brackets:
       value: 8667
     2021-01-01:
       value: 8684
-    metadata:
-      ipp_csv_id: tranche16_neutre_guad_mar_reu
   rate:
     2019-01-01:
         value: 0.24
-    metadata:
-      ipp_csv_id: txmarg16_neutre
-      unit: /1
 - threshold: # Tranche 17
     2019-01-01:
       value: 11945
@@ -267,14 +187,9 @@ brackets:
       value: 11917
     2021-01-01:
       value: 11940
-    metadata:
-      ipp_csv_id: tranche17_neutre_guad_mar_reu
   rate:
     2019-01-01:
         value: 0.28
-    metadata:
-      ipp_csv_id: txmarg17_neutre
-      unit: /1
 - threshold: # Tranche 18
     2019-01-01:
       value: 16230
@@ -282,14 +197,9 @@ brackets:
       value: 15833
     2021-01-01:
       value: 15865
-    metadata:
-      ipp_csv_id: tranche18_neutre_guad_mar_reu
   rate:
     2019-01-01:
         value: 0.33
-    metadata:
-      ipp_csv_id: txmarg18_neutre
-      unit: /1
 - threshold: # Tranche 19
     2019-01-01:
       value: 24770
@@ -297,14 +207,9 @@ brackets:
       value: 24167
     2021-01-01:
       value: 24215
-    metadata:
-      ipp_csv_id: tranche19_neutre_guad_mar_reu
   rate:
     2019-01-01:
         value: 0.38
-    metadata:
-      ipp_csv_id: txmarg19_neutre
-      unit: /1
 - threshold: # Tranche 20
     2019-01-01:
       value: 52300
@@ -312,17 +217,17 @@ brackets:
       value: 52825
     2021-01-01:
       value: 52930
-    metadata:
-      ipp_csv_id: tranche20_neutre_guad_mar_reu
   rate:
     2019-01-01:
-        value: 0.43
-    metadata:
-      ipp_csv_id: txmarg20_neutre
-      unit: /1
+        value: 0.43  
 metadata:
   ux_name: Barème Guadeloupe, Martinique ou Réunion
-  unit: currency
+  unit: 
+    - rate: unit: /1
+    - threshold: currency
+  ipp_csv_id: 
+    - rate: txmarg_neutre
+    - threshold: tranche_neutre_guad_mar_reu
   reference:
     2019-01-01:
       title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)
