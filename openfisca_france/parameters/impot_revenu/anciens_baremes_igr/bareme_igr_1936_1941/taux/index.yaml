@@ -1,7 +1,7 @@
 description: Taux d'imposition au titre du barème de l'Impôt général sur le revenu
-  (IGR, 1936 - 1941)
+  (IGR, 1936-1941)
 metadata:
-  description_en: Thresholds and marginal tax rates of the IGR tax (1936 - 1941)
+  description_en: Thresholds and marginal tax rates of the IGR tax (1936-1941)
   order:
   - tranche_1
   - tranche_2

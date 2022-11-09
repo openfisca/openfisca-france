@@ -1,8 +1,8 @@
 description: Seuils et taux d'imposition au titre du barème de l'impôt général sur
-  le revenu (IGR, 1919 - 1935)
+  le revenu (IGR, 1919-1935)
 metadata:
   ux_name: Seuils
-  description_en: Thresholds and marginal tax rates of the IGR tax (1919 - 1935)
+  description_en: Thresholds and marginal tax rates of the IGR tax (1919-1935)
   order:
   - tranche_1
   - tranche_2
