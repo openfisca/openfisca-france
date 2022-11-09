@@ -1,0 +1,20 @@
+description: Taux marginal tranche 19 d'imposition au titre du barème de l'Impôt général
+  sur le revenu (IGR, 1942 - 1944)
+documentation: 'Notes :
+
+  Les revenus des années 1942-1944 étaient soumis à des barèmes exprimés en taux marginal.
+  Voir note de la feuille "Barème IGR 1917-1918".
+
+  '
+metadata:
+  reference:
+    1942-01-01: 'T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités
+      et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à
+      à 4-4'
+  unit: /1
+  ux_name: Tranche 19
+values:
+  1942-01-01:
+    value: 0.525
+  1945-01-01:
+    value: null
