@@ -1,7 +1,7 @@
-description: Seuils d'imposition au titre du barème de l'impôt général sur le revenu (IGR, 1915 - 1916)
+description: Seuils d'imposition au titre du barème de l'impôt général sur le revenu (IGR, 1915-1916)
 metadata:
   ux_name: Seuils
-  description_en: Thresholds and marginal tax rates of the IGR tax (1915 - 1916)
+  description_en: Thresholds and marginal tax rates of the IGR tax (1915-1916)
   unit: currency
   order:
   - tranche_1

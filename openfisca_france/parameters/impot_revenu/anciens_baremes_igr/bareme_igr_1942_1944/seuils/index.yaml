@@ -1,8 +1,8 @@
 description: Seuils d'imposition au titre du barème de l'Impôt général sur le revenu
-  (IGR, 1942 - 1944)
+  (IGR, 1942-1944)
 metadata:
   ux_name: Seuils
-  description_en: Thresholds and marginal tax rates of the IGR tax (1942 - 1944)
+  description_en: Thresholds and marginal tax rates of the IGR tax (1942-1944)
   order:
   - tranche_1
   - tranche_2

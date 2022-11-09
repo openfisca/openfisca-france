@@ -1,7 +1,7 @@
-description: Taux d'imposition au titre du barème de l'impôt général sur le revenu (IGR, 1915 - 1916)
+description: Taux d'imposition au titre du barème de l'impôt général sur le revenu (IGR, 1915-1916)
 metadata:
   ux_name: Taux marginaux
-  description_en: Thresholds and marginal tax rates of the IGR tax (1915 - 1916)
+  description_en: Thresholds and marginal tax rates of the IGR tax (1915-1916)
   order:
   - tranche_1
   - tranche_2
