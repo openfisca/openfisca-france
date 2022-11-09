@@ -4,4 +4,4 @@ metadata:
   description_en: Thresholds and marginal tax rates of the IGR tax (1942-1944)
   order:
     - seuils
-    - taux
+    - taux_marginaux
