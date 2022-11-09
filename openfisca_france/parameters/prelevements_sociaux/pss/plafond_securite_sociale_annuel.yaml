@@ -168,7 +168,7 @@ values:
     value: 41136
 metadata:
   ux_name: Annuel
-  description_en: Social security ceiling
+  description_en: Social security yearly ceiling
   ipp_csv_id: pss_a
   unit: currency
   reference:

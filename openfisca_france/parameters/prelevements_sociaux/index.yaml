@@ -1,7 +1,7 @@
 description: Prélèvements sociaux
 metadata:
   ux_name: Prélèvements sociaux
-  description_en: Contributions and taxes
+  description_en: Social security contributions
   order:
   - pss
   - contributions_sociales
