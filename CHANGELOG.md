@@ -1,5 +1,13 @@
 # Changelog
 
+### 118.3.2 [#1918](https://github.com/openfisca/openfisca-france/pull/1918)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/pss`.
+* Détails :
+  - Améliore des descriptions en anglais (pss)
+
 ### 118.3.1 [#1812](https://github.com/openfisca/openfisca-france/pull/1812)
 
 * Changement mineur.
@@ -20,7 +28,7 @@
   - Juillet 2022: ASPA
   - Novembre 2022: ASF
   - Ajout de references pour l'ASI
- 
+
 ### 118.2.5 [#1900](https://github.com/openfisca/openfisca-france/pull/1900)
 
 * Changement mineur.
@@ -51,7 +59,7 @@
 ### 118.2.4 [#1915](https://github.com/openfisca/openfisca-france/pull/1915)
 
 * Changement mineur.
-* Zones impactées : 
+* Zones impactées :
   - `model/caracteristiques_socio_demographiques/logement.py`.
   - `model/revenus/activite/salarie.py`
   - `model/revenus/remplacement/chomage.py`
@@ -63,7 +71,7 @@
 ### 118.2.3 [#1916](https://github.com/openfisca/openfisca-france/pull/1916)
 
 * Amélioration technique.
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées : `parameters/taxation_societe`.
 * Détails :
   - Ajout et découpage des `contributions_additionnelles`
@@ -71,14 +79,14 @@
 
 ### 118.2.1 [#1914](https://github.com/openfisca/openfisca-france/pull/1914)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Zones impactées : `parameters/taxation_indirecte`.
 * Détails :
   - Raccourci les chemins pour respecter le nombre maximal de caractères dans le path des paramètres
 
 ## 118.2.0 [#1913](https://github.com/openfisca/openfisca-france/pull/1913)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : 2022
 * Zones impactées : `parameters/prestations_sociales/solidarite_insertion/autre_solidarite/indemnite_inflation.yaml`.
 * Détails :
@@ -92,7 +100,7 @@
 * Détails :
   - Ajout des paramètres issus des `baremes-ipp`
   - Découpage: 1 yaml = 1 paramètre
-  
+
 ### 118.1.2 [#1910](https://github.com/openfisca/openfisca-france/pull/1910)
 
 * Changement mineur.
