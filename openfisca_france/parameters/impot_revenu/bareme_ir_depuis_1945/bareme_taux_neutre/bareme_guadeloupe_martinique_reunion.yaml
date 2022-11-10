@@ -6,7 +6,7 @@ brackets:
   rate:
     2019-01-01:
       value: 0
-- threshold: # Tranche 2
+- threshold:
     2019-01-01:
       value: 1610
     2020-01-01:
@@ -16,7 +16,7 @@ brackets:
   rate:
     2019-01-01:
       value: 0.005
-- threshold: # Tranche 3
+- threshold:
     2019-01-01:
       value: 1707
     2020-01-01:
@@ -28,7 +28,7 @@ brackets:
       value: 0.015
     2020-01-01:
       value: 0.013
-- threshold: # Tranche 4
+- threshold:
     2019-01-01:
       value: 1837
     2020-01-01:
@@ -40,7 +40,7 @@ brackets:
       value: 0.025
     2020-01-01:
       value: 0.021
-- threshold: # Tranche 5
+- threshold:
     2019-01-01:
       value: 1948
     2020-01-01:
@@ -52,7 +52,7 @@ brackets:
       value: 0.035
     2020-01-01:
       value: 0.029
-- threshold: # Tranche 6
+- threshold:
     2019-01-01:
       value: 2117
     2020-01-01:
@@ -64,7 +64,7 @@ brackets:
       value: 0.045
     2020-01-01:
       value: 0.035
-- threshold: # Tranche 7
+- threshold:
     2019-01-01:
       value: 2377
     2020-01-01:
@@ -76,7 +76,7 @@ brackets:
       value: 0.06
     2020-01-01:
       value: 0.041
-- threshold: # Tranche 8
+- threshold:
     2019-01-01:
       value: 2784
     2020-01-01:
@@ -88,7 +88,7 @@ brackets:
       value: 0.075
     2020-01-01:
       value: 0.053
-- threshold: # Tranche 9
+- threshold:
     2019-01-01:
       value: 3176
     2020-01-01:
@@ -100,7 +100,7 @@ brackets:
       value: 0.09
     2020-01-01:
       value: 0.075
-- threshold: # Tranche 10
+- threshold:
     2019-01-01:
       value: 3696
     2020-01-01:
@@ -112,7 +112,7 @@ brackets:
       value: 0.105
     2020-01-01:
       value: 0.099
-- threshold: # Tranche 11
+- threshold:
     2019-01-01:
       value: 4365
     2020-01-01:
@@ -124,7 +124,7 @@ brackets:
       value: 0.12
     2020-01-01:
       value: 0.119
-- threshold: # Tranche 12
+- threshold:
     2019-01-01:
       value: 4910
     2020-01-01:
@@ -136,7 +136,7 @@ brackets:
       value: 0.14
     2020-01-01:
       value: 0.138
-- threshold: # Tranche 13
+- threshold:
     2019-01-01:
       value: 5730
     2020-01-01:
@@ -148,7 +148,7 @@ brackets:
       value: 0.16
     2020-01-01:
       value: 0.158
-- threshold: # Tranche 14
+- threshold:
     2019-01-01:
       value: 6855
     2020-01-01:
@@ -160,7 +160,7 @@ brackets:
       value: 0.18
     2020-01-01:
       value: 0.179
-- threshold: # Tranche 15
+- threshold:
     2019-01-01:
       value: 7620
     2020-01-01:
@@ -170,7 +170,7 @@ brackets:
   rate:
     2019-01-01:
         value: 0.2
-- threshold: # Tranche 16
+- threshold:
     2019-01-01:
       value: 9070
     2020-01-01:
@@ -180,7 +180,7 @@ brackets:
   rate:
     2019-01-01:
         value: 0.24
-- threshold: # Tranche 17
+- threshold:
     2019-01-01:
       value: 11945
     2020-01-01:
@@ -190,7 +190,7 @@ brackets:
   rate:
     2019-01-01:
         value: 0.28
-- threshold: # Tranche 18
+- threshold:
     2019-01-01:
       value: 16230
     2020-01-01:
@@ -200,7 +200,7 @@ brackets:
   rate:
     2019-01-01:
         value: 0.33
-- threshold: # Tranche 19
+- threshold:
     2019-01-01:
       value: 24770
     2020-01-01:
@@ -210,7 +210,7 @@ brackets:
   rate:
     2019-01-01:
         value: 0.38
-- threshold: # Tranche 20
+- threshold:
     2019-01-01:
       value: 52300
     2020-01-01:
@@ -223,7 +223,7 @@ brackets:
 metadata:
   ux_name: Barème Guadeloupe, Martinique ou Réunion
   unit: 
-    - rate: unit: /1
+    - rate: /1
     - threshold: currency
   ipp_csv_id: 
     - rate: txmarg_neutre
