@@ -1,5 +1,9 @@
 import argparse
 import requests
+import logging
+
+
+logging.basicConfig(level=logging.INFO)
 
 
 def get_info(package_name: str = '') -> dict:
@@ -34,7 +38,7 @@ def replace_in_file(filepath: str, info: dict):
     meta = meta.replace('PYPI_SHA256', info['sha256'])
     with open(filepath, 'wt') as fout:
         fout.write(meta)
-    print(f'File {filepath} has been updated with informations from PyPi.')  # noqa: T201
+    logging.info(f'File {filepath} has been updated with informations from PyPi.')
 
 
 if __name__ == '__main__':
@@ -43,5 +47,5 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--filename', type=str, default='.conda/meta.yaml', help='Path to meta.yaml, with filename')
     args = parser.parse_args()
     info = get_info(args.package)
-    print('Information of the last published PyPi package :', info)  # noqa: T201
+    logging.info(f'Information of the last published PyPi package : {info}')
     replace_in_file(args.filename, info)

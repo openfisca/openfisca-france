@@ -40,3 +40,13 @@ _Cela fonctionne aussi sous macOS et Linux, à condition d'adapter les chemins._
     - `anaconda login` Pour vous connecter avec le compte _openfisca_, voir le Keepass OpenFisca.
     - `anaconda upload c:\temp\noarch\openfisca-france-<VERSION>-py_0.tar.bz2` pour publier le package.
 - Vérifier que tout c'est bien passé sur https://anaconda.org/search?q=openfisca.
+
+## Test avec Docker
+
+Docker peut être utilisé pour valider le bon fonctionnement
+
+```
+docker run -i -t continuumio/anaconda3 /bin/bash
+conda install -c openfisca -c conda-forge openfisca-france-dev
+openfisca test --country-package openfisca_france tests
+```

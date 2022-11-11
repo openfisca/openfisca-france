@@ -39,6 +39,10 @@ check-style:
 	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
 	flake8 `git ls-files | grep "\.py$$"`
 
+check-path-length:
+	@# Verify that there is no path exceeding Windows limit
+	python openfisca_france/scripts/check_path_length.py
+
 check-yaml:
 	@# check yaml style
 	.github/lint-changed-yaml-tests.sh
