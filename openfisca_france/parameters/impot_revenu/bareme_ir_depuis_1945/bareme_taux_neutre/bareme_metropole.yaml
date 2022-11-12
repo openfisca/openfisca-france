@@ -223,9 +223,8 @@ brackets:
 metadata:
   ux_name: Barème Métropole
   type: marginal_rate
-  unit: 
-    - rate: /1
-    - threshold: currency
+  rate_unit: /1
+  threshold_unit: currency
   ipp_csv_id: 
     - rate: txmarg_neutre
     - threshold: tranche_neutre_metropole
