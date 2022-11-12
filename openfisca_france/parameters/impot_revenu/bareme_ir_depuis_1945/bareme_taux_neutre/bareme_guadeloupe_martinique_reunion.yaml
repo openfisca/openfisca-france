@@ -1,4 +1,4 @@
-description: Barème de l'imposition au taux neutre pour les contribuables domiciliés en Guadeloupe, Martinique ou Réunion
+description: Barème marginal de l'imposition au taux neutre pour les contribuables domiciliés en Guadeloupe, Martinique ou Réunion
 brackets:
 - threshold:
     2019-01-01:
@@ -222,6 +222,7 @@ brackets:
         value: 0.43  
 metadata:
   ux_name: Barème Guadeloupe, Martinique ou Réunion
+  type: marginal_rate
   unit: 
     - rate: /1
     - threshold: currency
