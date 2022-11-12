@@ -197,6 +197,9 @@ brackets:
       value: 15833
     2021-01-01:
       value: 15865
+  rate:
+    2019-01-01:
+        value: 0.33
 - threshold:
     2019-01-01:
       value: 24770
@@ -204,6 +207,9 @@ brackets:
       value: 24167
     2021-01-01:
       value: 24215
+  rate:
+    2019-01-01:
+        value: 0.38
 - threshold:
     2019-01-01:
       value: 52300
@@ -213,7 +219,7 @@ brackets:
       value: 52930
   rate:
     2019-01-01:
-        value: 0.43
+        value: 0.43  
 metadata:
   ux_name: Barème Guadeloupe, Martinique ou Réunion
   type: marginal_rate
