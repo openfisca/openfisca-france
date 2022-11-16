@@ -1,7 +1,0 @@
-description: Barème de l'impôt général sur le revenu (IGR, 1915-1916)
-metadata:
-  ux_name: Barème IGR (1915-1916)
-  order:
-    - seuils
-    - taux_marginaux
-  description_en: Thresholds and marginal tax rates of the IGR tax (1915-1916)
