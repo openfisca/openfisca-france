@@ -1,9 +1,13 @@
-description: Taux
+description: Taux de crédit d'impôts pour l'acquisition de biens culturels
 values:
   2002-01-01:
     value: 0.4
 metadata:
+  ux_name: Taux
   unit: /1
   reference:
-  - href: http://bofip.impots.gouv.fr/bofip/805-PGP.html
-  - href: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000019202997&cidTexte=LEGITEXT000006069577
+    2002-01-01:
+      - href: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000019202997&cidTexte=LEGITEXT000006069577
+        title: Article 238 bis-0 AB du Code général des impôts
+documentation: |
+Référence - http://bofip.impots.gouv.fr/bofip/805-PGP.html
