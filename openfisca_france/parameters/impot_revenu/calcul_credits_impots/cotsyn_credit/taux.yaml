@@ -1,8 +1,9 @@
-description: Cotisations syndicales
+description: Taux des Cotisations syndicales
 values:
   2012-01-01:
     value: 0.66
   2013-01-01:
     value: null
 metadata:
+  ux_name: Taux
   unit: /1
