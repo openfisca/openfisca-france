@@ -135,7 +135,7 @@ class credits_impot(Variable):
             'drbail',
             'prlire',
             # Depuis 2005
-            'ci_garext',
+            'ci_gardenf',
             'aidmob',
             'assloy',
             'divide',
@@ -818,7 +818,7 @@ class autent(Variable):
         return f8uy
 
 
-class ci_garext(Variable):
+class ci_gardenf(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Frais de garde des enfants à l’extérieur du domicile'
@@ -836,7 +836,7 @@ class ci_garext(Variable):
         f7ge = foyer_fiscal('f7ge', period)
         f7gf = foyer_fiscal('f7gf', period)
         f7gg = foyer_fiscal('f7gg', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.garext
+        P = parameters(period).impot_revenu.calcul_credits_impots.gardenf
 
         max1 = P.plafond
         return P.taux * (
