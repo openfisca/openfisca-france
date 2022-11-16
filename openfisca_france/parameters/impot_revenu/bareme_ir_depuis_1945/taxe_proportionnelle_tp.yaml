@@ -19,9 +19,9 @@ metadata:
     1959-01-01: "1959-12-31"
   notes:
     1958-01-01:
-      - title: IRPP est dit « impôt unique ». Suppression de la SP et TP (voir note 5). Ces barèmes concernent uniquement la SP entre 1948 et 1958 puis l'IRPP dans son ensemble après 1958 (IR après 1970).
+    - title: IRPP est dit « impôt unique ». Suppression de la SP et TP (voir note 5). Ces barèmes concernent uniquement la SP entre 1948 et 1958 puis l'IRPP dans son ensemble après 1958 (IR après 1970).
     1959-01-01:
-      - title: Les montants sont en anciens Francs avant 1960. Création d'un « taxe complémentaire » (TC).
+    - title: Les montants sont en anciens Francs avant 1960. Création d'un « taxe complémentaire » (TC).
 documentation: |-
   Référence générale :
   T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001).

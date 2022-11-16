@@ -1208,10 +1208,6 @@ brackets:
       value: null
 metadata:
   ux_name: Barème de l'impôt sur le revenu
-  last_review: "2022-08-08"
-  type: marginal_rate
-  rate_unit: /1
-  threshold_unit: currency
   description_en: Thresholds and marginal tax rates (1945-)
   reference:
     1945-01-01:
@@ -1332,57 +1328,57 @@ metadata:
       title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
     1998-01-01:
-      - title: Loi 98-1266 du 30/12/1998 (LF pour 1999)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209044
-      - title: BOI 5 B-9-01 n°44 du 02/03/2001
+    - title: Loi 98-1266 du 30/12/1998 (LF pour 1999)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209044
+    - title: BOI 5 B-9-01 n°44 du 02/03/2001
     1999-01-01:
-      - title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
-      - title: BOI 5 B-19-00 n°163 du 05/09/2000
+    - title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
+    - title: BOI 5 B-19-00 n°163 du 05/09/2000
     2000-01-01:
-      - title: Loi 2000-1352 du 30/12/2000 (LF pour 2001)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000220595
-      - title: BOI 5 B-9-01 n°44 du 02/03/2001
+    - title: Loi 2000-1352 du 30/12/2000 (LF pour 2001)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000220595
+    - title: BOI 5 B-9-01 n°44 du 02/03/2001
     2001-01-01:
-      - title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
-      - title: BOI 5 B-3-02 n°18 du 25/01/2002
+    - title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+    - title: BOI 5 B-3-02 n°18 du 25/01/2002
     2002-01-01:
-      - title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
-      - title: BOI 5 B-6-03 n°16 du 27/01/2003
+    - title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
+    - title: BOI 5 B-6-03 n°16 du 27/01/2003
     2003-01-01:
-      - title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000612133
-      - title: BOI 5 B-8-04 n°37 du 25/02/2004
+    - title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000612133
+    - title: BOI 5 B-8-04 n°37 du 25/02/2004
     2004-01-01:
-      - title: Loi 2004-1484 du 30/12/2004 (LF pour 2005)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000789373
-      - title: BOI 5 B-9-05 n°33 du 18/02/2005
+    - title: Loi 2004-1484 du 30/12/2004 (LF pour 2005)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000789373
+    - title: BOI 5 B-9-05 n°33 du 18/02/2005
     2005-01-01:
-      - title: Loi 2005-1719 du 30/12/2005 (LF pour 2006)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000634802
-      - title: BOI 5 B-6-06 n°8 du 18/01/2006
+    - title: Loi 2005-1719 du 30/12/2005 (LF pour 2006)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000634802
+    - title: BOI 5 B-6-06 n°8 du 18/01/2006
     2006-01-01:
-      - title: Loi 2006-1666 du 21/12/2006 (LF pour 2007)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615000
-      - title: BOI 5 B-10-07 n°47 du 29/03/2007
+    - title: Loi 2006-1666 du 21/12/2006 (LF pour 2007)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000615000
+    - title: BOI 5 B-10-07 n°47 du 29/03/2007
     2007-01-01:
-      - title: Loi 2007-1822 du 24/12/2007 (LF pour 2008)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000017853368
-      - title: BOI 5 B-11-08 n°28 du 04/03/2008
+    - title: Loi 2007-1822 du 24/12/2007 (LF pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000017853368
+    - title: BOI 5 B-11-08 n°28 du 04/03/2008
     2008-01-01:
-      - title: Loi 2008-1425 du 27/12/2008 (LF pour 2009)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019995721
-      - title: BOI 5 B-9-09 n°35 du 31/03/2009
+    - title: Loi 2008-1425 du 27/12/2008 (LF pour 2009)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019995721
+    - title: BOI 5 B-9-09 n°35 du 31/03/2009
     2009-01-01:
-      - title: Loi 2009-1673 du 30/12/2009 (LF pour 2010)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021557902
-      - title: BOI 5 B-13-10;n°22 du 16/02/2010
+    - title: Loi 2009-1673 du 30/12/2009 (LF pour 2010)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021557902
+    - title: BOI 5 B-13-10;n°22 du 16/02/2010
     2010-01-01:
-      - title: Loi 2010-1657 du 29/12/2010 (LF pour 2011)
-        href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000023314376
-      - title: BOI 5 B-7-11 ; n°26 du 28/03/2011
+    - title: Loi 2010-1657 du 29/12/2010 (LF pour 2011)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000023314376
+    - title: BOI 5 B-7-11 ; n°26 du 28/03/2011
     2011-01-01:
       title: Loi 2011-1977 du 28/12/2011 (LF pour 2012)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025044460
@@ -1411,10 +1407,10 @@ metadata:
       title: Loi 2019-1479, art. 2 du 28/12/2019 (LF pour 2020)
       href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
     2020-01-01:
-      - title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
-        href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593
-      - title: Loi 2019-1479, 3° du I. de l'art. 2 du 28/12/2019 (LF pour 2020)
-        href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
+    - title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593
+    - title: Loi 2019-1479, 3° du I. de l'art. 2 du 28/12/2019 (LF pour 2020)
+      href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
     2021-01-01:
     - title: Loi 2021-1900, art. 2 du 30/12/2021 (LF pour 2022)
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
@@ -1486,27 +1482,30 @@ metadata:
     2020-01-01: 2020-12-30; 2019-12-29
   notes:
     1947-01-01:
-      - title: Coexistence IGR et impôts cédulaires (voir notes 1 à 4). Ces barèmes concernent l'IGR jusqu'en 1948. En 1948, un « prélèvement exceptionnel de lutte contre l'inflation » sur les revenus 1946 est instauré dans le cadre du « plan Mayer » (intégré dans le barème); les contribuables ayant le choix d'échapper à cette majoration du barème s'ils souscrivent à un « emprunt obligatoire » rémunéré à 3 % sur 10 ans.
+    - title: Coexistence IGR et impôts cédulaires (voir notes 1 à 4). Ces barèmes concernent l'IGR jusqu'en 1948. En 1948, un « prélèvement exceptionnel de lutte contre l'inflation » sur les revenus 1946 est instauré dans le cadre du « plan Mayer » (intégré dans le barème); les contribuables ayant le choix d'échapper à cette majoration du barème s'ils souscrivent à un « emprunt obligatoire » rémunéré à 3 % sur 10 ans.
     1948-01-01:
-      - title: Suppression des impôts cédulaires et création de l'IRPP (« impôt sur le revenu des personnes physiques », voir note 5) et « impôt sur les bénéfices des sociétés et autres personnes morales ».
+    - title: Suppression des impôts cédulaires et création de l'IRPP (« impôt sur le revenu des personnes physiques », voir note 5) et « impôt sur les bénéfices des sociétés et autres personnes morales ».
     1957-01-01:
-      - title: Les salaires et pensions sont exemptés de TP. Pour les bénéfices des « artisans et assimilés » et les BNC « autres que les produits des charges et offices » des taux réduits (9 et 5 %) s'appliquent par tranches selon les années. Les revenus de valeurs mobilières (dividendes, intérêts, etc.) bénéficient de décote et de taux réduits. Voir annexe C-7 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001) et Statistiques et Études Financières n°122 (ministère des Finances, février 1959).
+    - title: Les salaires et pensions sont exemptés de TP. Pour les bénéfices des « artisans et assimilés » et les BNC « autres que les produits des charges et offices » des taux réduits (9 et 5 %) s'appliquent par tranches selon les années. Les revenus de valeurs mobilières (dividendes, intérêts, etc.) bénéficient de décote et de taux réduits. Voir annexe C-7 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001) et Statistiques et Études Financières n°122 (ministère des Finances, février 1959).
     1958-01-01:
-      - title: IRPP est dit « impôt unique ». Suppression de la SP et TP (voir note 5). Ces barèmes concernent uniquement la SP entre 1948 et 1958 puis l'IRPP dans son ensemble après 1958 (IR après 1970).
+    - title: IRPP est dit « impôt unique ». Suppression de la SP et TP (voir note 5). Ces barèmes concernent uniquement la SP entre 1948 et 1958 puis l'IRPP dans son ensemble après 1958 (IR après 1970).
     1959-01-01:
-      - title: Les montants sont en anciens Francs avant 1960. Création d'un « taxe complémentaire » (TC).
+    - title: Les montants sont en anciens Francs avant 1960. Création d'un « taxe complémentaire » (TC).
     1968-01-01:
-      - title: Taux réduit à 3 % de la TC pour les « artisans et assimilés » et BNC « autres que les produits des charges et offices ».
+    - title: Taux réduit à 3 % de la TC pour les « artisans et assimilés » et BNC « autres que les produits des charges et offices ».
     1969-01-01:
-      - title: Suppression de la TC en 1970. Abattement général de 30 000 FRF sur les revenus 1969.
+    - title: Suppression de la TC en 1970. Abattement général de 30 000 FRF sur les revenus 1969.
     1970-01-01:
-      - title: IRPP rebaptisé « impôt sur le revenu » (IR).
+    - title: IRPP rebaptisé « impôt sur le revenu » (IR).
     1999-01-01:
-      - title: Voir aussi BOI 5 B-5-00 n°11 du 17/01/2000 et LFR pour 2000.
+    - title: Voir aussi BOI 5 B-5-00 n°11 du 17/01/2000 et LFR pour 2000.
     2006-01-01:
-      - title: Intégration de l'abattement de 20 % au barème de l'impôt sur le revenu et diminution du nombre de tranches de 7 à 5.
+    - title: Intégration de l'abattement de 20 % au barème de l'impôt sur le revenu et diminution du nombre de tranches de 7 à 5.
     2020-01-01:
-      - title: La modification du taux est codifiée par la LF 2019 (le A. du IV. de l'art. 2 précise que l'application se fait au titre des revenus perçus ou réalisés en 2020). Les seuils d'entrée des troisièmes et quatrièmes tranches sont abaissés en compensation de la baisse du taux d'imposition dans la deuxième tranche, afin que la baisse d'impôt profite en priorité aux contribuables des deux premières tranches.
+    - title: La modification du taux est codifiée par la LF 2019 (le A. du IV. de l'art. 2 précise que l'application se fait au titre des revenus perçus ou réalisés en 2020). Les seuils d'entrée des troisièmes et quatrièmes tranches sont abaissés en compensation de la baisse du taux d'imposition dans la deuxième tranche, afin que la baisse d'impôt profite en priorité aux contribuables des deux premières tranches.
+  last_review: "2022-08-08"
+  rate_unit: /1
+  threshold_unit: currency
 documentation: |-
   Référence générale :
   T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001).

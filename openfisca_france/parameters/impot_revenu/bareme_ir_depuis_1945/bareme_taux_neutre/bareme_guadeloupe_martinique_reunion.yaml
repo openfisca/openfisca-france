@@ -169,7 +169,7 @@ brackets:
       value: 7640
   rate:
     2019-01-01:
-        value: 0.2
+      value: 0.2
 - threshold:
     2019-01-01:
       value: 9070
@@ -179,7 +179,7 @@ brackets:
       value: 8684
   rate:
     2019-01-01:
-        value: 0.24
+      value: 0.24
 - threshold:
     2019-01-01:
       value: 11945
@@ -189,7 +189,7 @@ brackets:
       value: 11940
   rate:
     2019-01-01:
-        value: 0.28
+      value: 0.28
 - threshold:
     2019-01-01:
       value: 16230
@@ -199,7 +199,7 @@ brackets:
       value: 15865
   rate:
     2019-01-01:
-        value: 0.33
+      value: 0.33
 - threshold:
     2019-01-01:
       value: 24770
@@ -209,7 +209,7 @@ brackets:
       value: 24215
   rate:
     2019-01-01:
-        value: 0.38
+      value: 0.38
 - threshold:
     2019-01-01:
       value: 52300
@@ -219,12 +219,9 @@ brackets:
       value: 52930
   rate:
     2019-01-01:
-        value: 0.43  
+      value: 0.43
 metadata:
   ux_name: Barème Guadeloupe, Martinique ou Réunion
-  type: marginal_rate
-  rate_unit: /1
-  threshold_unit: currency
   reference:
     2019-01-01:
       title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)
@@ -239,3 +236,5 @@ metadata:
     2019-01-01: "2018-12-30"
     2020-01-01: "2019-12-29"
     2021-01-01: "2020-12-30"
+  rate_unit: /1
+  threshold_unit: currency

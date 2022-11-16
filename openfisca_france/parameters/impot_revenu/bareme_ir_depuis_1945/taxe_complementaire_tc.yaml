@@ -31,11 +31,11 @@ metadata:
     1970-01-01: "1970-12-22"
   notes:
     1959-01-01:
-      - title: Les montants sont en anciens Francs avant 1960. Création d'un « taxe complémentaire » (TC).
+    - title: Les montants sont en anciens Francs avant 1960. Création d'un « taxe complémentaire » (TC).
     1968-01-01:
-      - title: Taux réduit à 3 % de la TC pour les « artisans et assimilés » et BNC « autres que les produits des charges et offices ».
+    - title: Taux réduit à 3 % de la TC pour les « artisans et assimilés » et BNC « autres que les produits des charges et offices ».
     1969-01-01:
-      - title: Suppression de la TC en 1970. Abattement général de 30 000 FRF sur les revenus 1969.
+    - title: Suppression de la TC en 1970. Abattement général de 30 000 FRF sur les revenus 1969.
 documentation: |-
   Référence générale :
   T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001).
