@@ -1,5 +1,15 @@
 # Changelog
 
+## 119.0.0 [#1917](https://github.com/openfisca/openfisca-france/pull/1917)
+
+* Amélioration technique.
+* Périodes concernées : à partir du 1945.
+* Zones impactées : `parameters/impot_revenu/bareme_ir_depuis_1945`.
+* Détails :
+  - Ajoute les paramètres issus des `baremes_ipp`
+  - Découpe et harmonise les fichiers
+  - Regroupe les taux et les seuils sous forme de barèmes
+
 ### 118.3.4 [#1863](https://github.com/openfisca/openfisca-france/pull/1863)
 
 * Changement mineur.

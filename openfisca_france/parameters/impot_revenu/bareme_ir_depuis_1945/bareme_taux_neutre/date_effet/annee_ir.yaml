@@ -6,8 +6,10 @@ values:
     value: 2020
   2021-01-01:
     value: 2021
+  2022-01-01:
+    value: 2022
 metadata:
-  ux_name: Année IR
+  ux_name: Année d'imposition
   reference:
     2019-01-01:
       title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)

@@ -5,3 +5,5 @@ metadata:
   order:
   - bareme
   - bareme_taux_neutre
+  - taxe_complementaire_tc
+  - taxe_proportionnelle_tp
