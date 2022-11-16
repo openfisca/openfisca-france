@@ -1212,9 +1212,6 @@ metadata:
   type: marginal_rate
   rate_unit: /1
   threshold_unit: currency
-  ipp_csv_id: 
-    - rate: txmarg
-    - threshold: tranche
   description_en: Thresholds and marginal tax rates (1945-)
   reference:
     1945-01-01:

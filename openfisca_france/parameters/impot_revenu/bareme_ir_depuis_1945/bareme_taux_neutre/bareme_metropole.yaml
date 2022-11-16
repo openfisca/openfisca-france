@@ -225,9 +225,6 @@ metadata:
   type: marginal_rate
   rate_unit: /1
   threshold_unit: currency
-  ipp_csv_id: 
-    - rate: txmarg_neutre
-    - threshold: tranche_neutre_metropole
   reference:
     2019-01-01:
       title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)
