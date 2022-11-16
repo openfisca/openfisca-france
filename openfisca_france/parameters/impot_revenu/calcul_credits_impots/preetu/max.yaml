@@ -1,6 +1,7 @@
-description: Plafond
+description: Plafond du crédit d'impôt sur la Souscription de prêts étudiants
 values:
   2005-01-01:
     value: 1000
 metadata:
+  ux_name: Plafond
   unit: currency
