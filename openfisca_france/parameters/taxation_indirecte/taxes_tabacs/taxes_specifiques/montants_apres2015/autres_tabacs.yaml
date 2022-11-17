@@ -1,26 +1,20 @@
-description: Taux spécifique des taxes sur le tabac - Tabac à rouler
+description: Montant spécifique des taxes sur le tabac - Autres tabacs
 values:
-  1979-01-01:
-    value: null
-  2013-01-01:
-    value: 0.3
   2015-01-01:
-    value: 67.5
+    value: 17
   2018-03-01:
-    value: 68.5
+    value: 21.5
   2019-03-01:
-    value: 72.5
+    value: 23.4
   2019-11-01:
-    value: 76.2
+    value: 25.3
   2020-03-01:
-    value: 79.8
+    value: 29.1
   2020-11-01:
-    value: 82.6
+    value: 31
 metadata:
-  ipp_csv_id: tx_spec_tabac_rouler
-  unit:
-    2013-01-01: /1
-    2015-01-01: currency
+  ipp_csv_id: tx_spec_autres_tabac
+  unit: currency
   reference:
     1979-01-01:
       title: Art. 575 CGI
