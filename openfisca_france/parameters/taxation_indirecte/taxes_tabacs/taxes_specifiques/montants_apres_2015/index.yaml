@@ -1,0 +1,8 @@
+description: Montants spécifiques de taxes sur le tabac
+metadata:
+  description_en: Tobacco specific rates
+  order:
+  - cigarettes
+  - cigares
+  - tabac_rouler
+  - autres_tabacs

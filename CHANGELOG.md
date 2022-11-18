@@ -1,4 +1,11 @@
 # Changelog
+### 119.0.1 [#1922](https://github.com/openfisca/openfisca-france/pull/1922)
+
+*  Amélioration technique. 
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/taxation_indirecte/taxes_tabacs/taux_specifique`.
+* Détails :
+  - Découpage des taxes selon que ce soit des montants ou des taux
 
 ## 119.0.0 [#1917](https://github.com/openfisca/openfisca-france/pull/1917)
 
