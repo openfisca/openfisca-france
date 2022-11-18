@@ -52,11 +52,14 @@ class credits_impot(Variable):
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
         red_plaf_om = foyer_fiscal('reductions_plafonnees_om_sofica', period)
         red_plaf_esus_sfs = foyer_fiscal('reductions_plafonnees_esus_sfs', period)
+        impot_net = foyer_fiscal('ip_net', period)
 
-        remaining_allowance = (P.plafond_1  # general limit
-            - red_plaf  # - general reductions
-            - max_(0, red_plaf_om - P.majoration_om)  # - general reductions used for DOM/SOFICA
-            - max_(0, red_plaf_esus_sfs - P2021.majoration_esus_sfs))  # - general reductions used for ESUS/SFS
+        # prise en compte des possibles restitutions des CI lorsque les RI sont déjà plafonnées par le montant de l'impôt
+        reductions_plafonnees_tot = min_(impot_net, red_plaf
+            + max_(0, red_plaf_om - P.majoration_om)
+            + max_(0, red_plaf_esus_sfs - P2021.majoration_esus_sfs))
+
+        remaining_allowance = P.plafond_1 - reductions_plafonnees_tot
 
         # credit available within the limit
         montants_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_plaf])
@@ -102,10 +105,13 @@ class credits_impot(Variable):
         # Get remainder of allowance for niches fiscales
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
         red_plaf_om = foyer_fiscal('reductions_plafonnees_om_sofica', period)
+        impot_net = foyer_fiscal('ip_net', period)
 
-        remaining_allowance = (P.plafond_1  # general limit
-            - red_plaf  # - general reductions
-            - max_(0, red_plaf_om - P.majoration_om))  # - general reductions used for DOM/SOFICA
+        # prise en compte des possibles restitutions des CI lorsque les RI sont déjà plafonnées par le montant de l'impôt
+        reductions_plafonnees_tot = min_(impot_net, red_plaf
+            + max_(0, red_plaf_om - P.majoration_om))
+
+        remaining_allowance = P.plafond_1 - reductions_plafonnees_tot
 
         # credit available within the limit
         montants_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_plaf])
