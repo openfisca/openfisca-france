@@ -13,6 +13,7 @@ log = logging.getLogger(__name__)
 #   seul le plafond absolu est codé pour le moment, cela peut entrainer une sous estimation des réductions d'impôt pour les personnes qui ont un RNI
 #   supérieur à environ 300 000.
 
+
 class reductions_iom(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -28,7 +29,7 @@ class reductions_iom(Variable):
             'doment',
             'domlog',
             'domsoc',
-        ]
+            ]
 
         red_iom = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_om])
 
