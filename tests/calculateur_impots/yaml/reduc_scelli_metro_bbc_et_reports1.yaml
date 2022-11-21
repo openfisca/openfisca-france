@@ -12,7 +12,7 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 100000
+      f7fa: 1000
       f7gj: 500
       f7gk: 500
       f7gl: 500
@@ -26,13 +26,13 @@
       f7he: 500
       f7hf: 500
       f7hr_2017: 500
-      f7ht: 500
-      f7hv: 500
-      f7hx: 500
-      f7ya: 500
-      f7yb: 500
-      f7yc: 500
-      f7yd: 500
+      f7ht_2018: 500
+      f7hv_2018: 500
+      f7hx_2018: 500
+      f7ya: 200
+      f7yb: 200
+      f7yc: 200
+      f7yd: 200
       f7ye: 500
       f7yf: 500
       f7yg: 500
@@ -55,12 +55,12 @@
     menage:
       personne_de_reference: ind0
   output:
-    iai: 31040.0
-    irpp: -31040.0
+    iai: 33670.0
+    irpp: -33670.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 137843.0
-    reductions: 11944.0
+    reductions: 9314.0
     rfr: 137843.0
     rni: 137843.0
 - name: reduc_scelli_metro_bbc_et_reports1
@@ -85,11 +85,11 @@
       f7ha: 500
       f7hd: 500
       f7hf: 500
-      f7hl: 500
+      f7hl_2010: 500
       f7hr_2017: 500
-      f7ht: 500
-      f7hv: 500
-      f7hx: 500
+      f7ht_2018: 500
+      f7hv_2018: 500
+      f7hx_2018: 500
       f7yb: 500
       f7yd: 500
       f7yf: 500
@@ -137,7 +137,7 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 100000
+      f7fa: 10000
       f7gj: 500
       f7gl: 500
       f7gs: 500
@@ -146,20 +146,20 @@
       f7hd: 500
       f7hf: 500
       f7hr_2017: 500
-      f7ht: 500
-      f7hv: 500
-      f7hx: 500
-      f7yb: 500
+      f7ht_2018: 500
+      f7hv_2018: 500
+      f7hx_2018: 500
+      f7yb: 200
       f7yd: 500
-      f7yf: 500
+      f7yf: 200
       f7yh: 500
-      f7ym: 500
+      f7ym: 200
       f7yn: 500
-      f7yo: 500
+      f7yo: 200
       f7yp: 500
-      f7yt: 500
+      f7yt: 200
       f7yu: 500
-      f7yv: 500
+      f7yv: 200
       f7yw: 500
       nbF: 0.0
       nbG: 0.0
@@ -179,10 +179,62 @@
     menage:
       personne_de_reference: ind0
   output:
-    iai: 31502.0
-    irpp: -31502.0
+    iai: 34602.0
+    irpp: -34602.0
     nbptr: 1.0
     rbg: 137817.0
-    reductions: 11444.0
+    reductions: 8344.0
     rfr: 137817.0
     rni: 137817.0
+- name: reduc_scelli_metro_bbc_et_reports1
+  period: 2017
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7fa: 1000
+      f7ym: 2000
+      f7yn: 500
+      f7yo: 200
+      f7yp: 500
+      f7yt: 2000
+      f7yu: 500
+      f7yv: 2000
+      f7yw: 5000
+      f7wt: 200
+      f7wu: 500
+      f7wv: 2000
+      f7ww: 500
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 150000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 26846.0
+    irpp: -26846.0
+    nbptr: 1.0
+    rbg: 137695.0
+    reductions: 15914.0
+    rfr: 137695.0
+    rni: 137695.0

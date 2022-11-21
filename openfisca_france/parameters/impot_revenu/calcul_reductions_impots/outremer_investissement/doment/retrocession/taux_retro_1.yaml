@@ -1,0 +1,22 @@
+description: Taux de la réduction d'impôts des investissements d'outre-mer pour les entreprises - rétrocessions 1
+values:
+  2009-01-01:
+    value: 0.6
+  2011-01-01:
+    value: 0.625
+  2015-01-01:
+    value: 0.66
+metadata:
+  unit: /1
+  reference:
+    2011-01-01:
+      - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000023347537/
+        title: Loi 2010-1657 du 29/12/2010 - art. 105 (modifie Art. 199 undecies B)
+      - href: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069577/LEGISCTA000006191613/2011-11-04/
+        title: Art. 199 undecies B, I. du CGI
+    2015-01-01:
+      - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000030062101/
+        title: Loi 2013-1278 du 29/12/2013 de finances pour 2014 (modifie Art. 199 undecies B)
+      - href: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069577/LEGISCTA000006191613/#LEGISCTA000006191613
+        title: Art. 199 undecies B, I. du CGI
+  last_review: '2022-10-11'

@@ -14,7 +14,7 @@
       - ind0
       f8tb: 500
       f8tc: 0
-      f8te: 500
+      f8te_2018: 500
       f8tg: 500
       f8tl: 500
       f8ts: 500
@@ -72,7 +72,7 @@
       - ind0
       f8tb: 500
       f8tc: 0
-      f8te: 500
+      f8te_2018: 500
       f8tg: 500
       f8tl: 500
       f8ts: 500
@@ -129,7 +129,7 @@
       - ind0
       f8tb: 500
       f8tc: 0
-      f8te: 500
+      f8te_2018: 500
       f8tg: 500
       f8tl: 500
       f8ts: 500
@@ -186,7 +186,7 @@
       - ind0
       f8tb: 500
       f8tc: 0
-      f8te: 500
+      f8te_2018: 500
       f8tg: 500
       f8tl: 500
       f8ts: 500
@@ -223,6 +223,177 @@
   output:
     iai: 45755.0
     irpp: -37755.0
+    nbptr: 1.0
+    patnat: 0.0
+    rbg: 145000.0
+    rfr: 145000.0
+- name: reduc_credit_2042pro
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f8tb: 500
+      f8tc: 400
+      f8tf: 500
+      f8tg: 500
+      f8tl: 500
+      f8to: 300
+      f8tp: 200
+      f8ts: 500
+      f8uw: 500
+      f8uz: 500
+      f8wa: 500
+      f8wc: 100
+      f8wd: 200
+      f8wr: 300
+      f8wt: 400
+      f8wu: 500
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        abic_impn: 50000
+        activite: actif
+        arag_impg: 50000
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    creimp: 5000.0
+    iai: 45397.0
+    irpp: -40397.0
+    nbptr: 1.0
+    patnat: 0.0
+    rbg: 145000.0
+    rfr: 145000.0
+- name: reduc_credit_2042pro
+  period: 2020
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f8tb: 500
+      f8tc: 400
+      f8tf: 500
+      f8tg: 500
+      f8to: 300
+      f8tp: 200
+      f8ts: 500
+      f8uz: 500
+      f8wa: 500
+      f8wc: 100
+      f8wd: 200
+      f8wr: 300
+      f8wt: 400
+      f8te: 500
+      f8la: 200
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        abic_impn: 50000
+        activite: actif
+        arag_impg: 50000
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    creimp: 4200.0
+    iai: 45369.0
+    irpp: -41169.0
+    nbptr: 1.0
+    patnat: 0.0
+    rbg: 145000.0
+    rfr: 145000.0
+- name: reduc_credit_2042pro
+  period: 2021
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f8tb: 500
+      f8tc: 400
+      f8tf: 500
+      f8tg: 500
+      f8to: 300
+      f8tp: 200
+      f8ts: 500
+      f8uz: 500
+      f8wa: 500
+      f8wc: 100
+      f8wd: 200
+      f8wr: 300
+      f8wt: 400
+      f8te: 500
+      f8la: 200
+      f8wg: 300
+      f8wh: 150
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        abic_impn: 50000
+        activite: actif
+        arag_impg: 50000
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    creimp: 4650.0
+    iai: 45172.0
+    irpp: -40522.0
     nbptr: 1.0
     patnat: 0.0
     rbg: 145000.0

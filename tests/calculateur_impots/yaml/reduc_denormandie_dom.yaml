@@ -18,7 +18,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    denormandie: 4833.0
+    duflot_pinel_denormandie_om: 4833.0
     iai: 2811.0
     irpp: -2811.0
     nbptr: 1.0
@@ -47,7 +47,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    denormandie: 7667.0
+    duflot_pinel_denormandie_om: 7667.0
     iai: 0.0
     irpp: -0.0
     nbptr: 1.0
@@ -77,7 +77,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    denormandie: 5750.0
+    duflot_pinel_denormandie_om: 5750.0
     iai: 10407.0
     irpp: -10407.0
     nbptr: 1.0
@@ -107,7 +107,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    denormandie: 3833.0
+    duflot_pinel_denormandie_om: 11500.0
     iai: 7657.0
     irpp: -7657.0
     nbptr: 1.0
@@ -138,7 +138,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    denormandie: 6444.0
+    duflot_pinel_denormandie_om: 9666.0
     iai: 9491.0
     irpp: -9491.0
     nbptr: 1.0

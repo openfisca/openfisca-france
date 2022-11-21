@@ -202,7 +202,7 @@ class f6cb(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)"
-    # start_date = date(2009, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -214,7 +214,7 @@ class f6hj(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2009"
-    # start_date = date(2010, 1, 1)
+    end = '2019-12-31'
     definition_period = YEAR
 
 
@@ -776,3 +776,52 @@ class grosses_reparations(Variable):
         depenses_courantes = f6cb
 
         return min_(depenses_courantes + report_depenses_depuis_2009, plafond_grosses_reparations)
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Dépenses de grosses réparations des nus-propriétaires
+        A partir de 2018: pas de nouveaux dépenses, excl. reports des années précedentes
+        '''
+
+        report_depenses_depuis_2009 = sum(
+            foyer_fiscal(case_report, period)
+            for case_report in [
+                'f6hj',
+                'f6hk',
+                'f6hl',
+                'f6hm',
+                'f6hn',
+                'f6ho',
+                'f6hp',
+                'f6hq',
+                'f6hr',
+                ]
+            )
+
+        plafond_grosses_reparations = parameters('2017-01-01').impot_revenu.calcul_revenus_imposables.charges_deductibles.grosses_reparations.plafond
+
+        return min_(report_depenses_depuis_2009, plafond_grosses_reparations)
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Dépenses de grosses réparations des nus-propriétaires
+        Depuis 2020: Reports à partir de 2010
+        '''
+
+        report_depenses_depuis_2010 = sum(
+            foyer_fiscal(case_report, period)
+            for case_report in [
+                'f6hk',
+                'f6hl',
+                'f6hm',
+                'f6hn',
+                'f6ho',
+                'f6hp',
+                'f6hq',
+                'f6hr',
+                ]
+            )
+
+        plafond_grosses_reparations = parameters('2017-01-01').impot_revenu.calcul_revenus_imposables.charges_deductibles.grosses_reparations.plafond
+
+        return min_(report_depenses_depuis_2010, plafond_grosses_reparations)

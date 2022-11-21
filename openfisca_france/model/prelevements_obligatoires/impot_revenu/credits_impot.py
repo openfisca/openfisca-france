@@ -7,15 +7,125 @@ from openfisca_france.model.base import *
 log = logging.getLogger(__name__)
 
 
+# TODO : mettre à jour quaenv() et prlire()
+
 class credits_impot(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Crédits d'impôt pour l'impôt sur les revenus"
     definition_period = YEAR
 
+    def formula_2021_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédits d'impôt pour l'impôt sur les revenus, prenant en compte
+        le plafonnement des niches fiscales qui s'applique à la plupart
+        des réductions et crédits d'impôts
+        '''
+
+        credits_plaf = [
+            'ci_saldom',
+            'ci_garext',
+            'ci_invfor',
+
+            # dans le doute:
+            'aidper',
+            'assloy',
+            'autent',
+            'creimp',
+            'direpa',
+            'drbail',
+            'inthab',
+            'preetu',
+            'prlire',
+            'quaenv',
+            ]
+
+        credits_sans_plaf = [
+            # dans le doute:
+            'credit_cotisations_syndicales',
+            ]
+
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P2021 = parameters('2021-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+
+        # Get remainder of allowance for niches fiscales
+        red_plaf = foyer_fiscal('reductions_plafonnees', period)
+        red_plaf_om = foyer_fiscal('reductions_plafonnees_om_sofica', period)
+        red_plaf_esus_sfs = foyer_fiscal('reductions_plafonnees_esus_sfs', period)
+        impot_net = foyer_fiscal('ip_net', period)
+
+        # prise en compte des possibles restitutions des CI lorsque les RI sont déjà plafonnées par le montant de l'impôt
+        reductions_plafonnees_tot = min_(impot_net, red_plaf
+            + max_(0, red_plaf_om - P.majoration_om)
+            + max_(0, red_plaf_esus_sfs - P2021.majoration_esus_sfs))
+
+        remaining_allowance = P.plafond_1 - reductions_plafonnees_tot
+
+        # credit available within the limit
+        montants_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_plaf])
+        cred_plaf = min_(remaining_allowance, montants_plaf)
+
+        # credit available without the ceiling
+        cred_sans_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_sans_plaf])
+
+        return cred_plaf + cred_sans_plaf
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédits d'impôt pour l'impôt sur les revenus, prenant en compte
+        le plafonnement des niches fiscales qui s'applique à la plupart
+        des réductions et crédits d'impôts
+        '''
+
+        credits_plaf = [
+            'ci_saldom',
+            'ci_garext',
+            'ci_invfor',
+
+            # dans le doute:
+            'aidper',
+            'assloy',
+            'autent',
+            'creimp',
+            'direpa',
+            'drbail',
+            'inthab',
+            'preetu',
+            'prlire',
+            'quaenv',
+            ]
+
+        credits_sans_plaf = [
+            # dans le doute:
+            'credit_cotisations_syndicales',
+            ]
+
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+
+        # Get remainder of allowance for niches fiscales
+        red_plaf = foyer_fiscal('reductions_plafonnees', period)
+        red_plaf_om = foyer_fiscal('reductions_plafonnees_om_sofica', period)
+        impot_net = foyer_fiscal('ip_net', period)
+
+        # prise en compte des possibles restitutions des CI lorsque les RI sont déjà plafonnées par le montant de l'impôt
+        reductions_plafonnees_tot = min_(impot_net, red_plaf
+            + max_(0, red_plaf_om - P.majoration_om))
+
+        remaining_allowance = P.plafond_1 - reductions_plafonnees_tot
+
+        # credit available within the limit
+        montants_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_plaf])
+        cred_plaf = min_(remaining_allowance, montants_plaf)
+
+        # credit available without the ceiling
+        cred_sans_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_sans_plaf])
+
+        return cred_plaf + cred_sans_plaf
+
     def formula(foyer_fiscal, period, parameters):
         '''
         Crédits d'impôt pour l'impôt sur les revenus
+        Ancienne formule, pas vérifié si correcte pour toutes les années jusqu'à la nouvelle formule
         '''
         credits = [
             # Depuis 2002
@@ -36,7 +146,7 @@ class credits_impot(Variable):
             'quaenv',
             # Depuis 2007
             'inthab',
-            'saldom2',
+            'ci_saldom',
             # Depuis 2008
             'creimp_exc_2008',
             # Depuis 2009
@@ -68,6 +178,361 @@ class nb_pac2(Variable):
         return nbF + nbJ + nbpac_invalideR - nbH / 2
 
 
+class ci_invfor(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Crédit d'impôt au titre des investissements forestiers"
+    definition_period = YEAR
+
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements forestiers pour 2014
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        f7up = foyer_fiscal('f7up', period)
+        f7ut = foyer_fiscal('f7ut', period)
+
+        f7ua = foyer_fiscal('f7ua', period)
+        f7ub = foyer_fiscal('f7ub', period)
+        f7uq = foyer_fiscal('f7uq', period)
+        f7ui = foyer_fiscal('f7ui', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+
+        # travaux année N
+        ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub)
+        ci_trav = min_(P.plafond_travaux * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut)
+
+        ci_travaux = P.taux_travaux_adh_org_prod * ci_trav_adh + P.taux_travaux * ci_trav
+
+        # contrat de gestion
+        ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
+        ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
+
+        ci_cg_tot = P.taux_travaux_adh_org_prod * ci_cg_adh + P.taux_travaux * ci_cg
+
+        return ci_travaux + ci_cg_tot
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements forestiers pour 2015
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        f7up = foyer_fiscal('f7up', period)
+        f7ut = foyer_fiscal('f7ut', period)
+
+        f7ua = foyer_fiscal('f7ua', period)
+        f7ub = foyer_fiscal('f7ub', period)
+        f7uq = foyer_fiscal('f7uq', period)
+        f7ui = foyer_fiscal('f7ui', period)
+
+        f7ux = foyer_fiscal('f7ux_2018', period)
+        f7tj = foyer_fiscal('f7tj', period)
+        f7vp = foyer_fiscal('f7vp', period)
+        f7tk = foyer_fiscal('f7tk', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+
+        # travaux année N
+        ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7vp + f7tk)
+        ci_trav = min_(P.plafond_travaux * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7ux + f7tj)
+
+        ci_travaux = P.taux_travaux_adh_org_prod * ci_trav_adh + P.taux_travaux * ci_trav
+
+        # contrat de gestion
+        ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
+        ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
+
+        ci_cg_tot = P.taux_travaux_adh_org_prod * ci_cg_adh + P.taux_travaux * ci_cg
+
+        return ci_travaux + ci_cg_tot
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements forestiers pour 2016
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        f7up = foyer_fiscal('f7up', period)
+        f7ut = foyer_fiscal('f7ut', period)
+
+        f7ua = foyer_fiscal('f7ua', period)
+        f7ub = foyer_fiscal('f7ub', period)
+        f7uq = foyer_fiscal('f7uq', period)
+        f7ui = foyer_fiscal('f7ui', period)
+
+        f7ux = foyer_fiscal('f7ux_2018', period)
+        f7tj = foyer_fiscal('f7tj', period)
+        f7vp = foyer_fiscal('f7vp', period)
+        f7tk = foyer_fiscal('f7tk', period)
+        f7vm = foyer_fiscal('f7vm', period)
+        f7tm = foyer_fiscal('f7tm', period)
+        f7vn = foyer_fiscal('f7vn', period)
+        f7to = foyer_fiscal('f7to', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+
+        # travaux année N
+        ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7vp + f7tk + f7vn + f7to)
+        ci_trav = min_(P.plafond_travaux * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7ux + f7tj + f7vm + f7tm)
+
+        ci_travaux = P.taux_travaux_adh_org_prod * ci_trav_adh + P.taux_travaux * ci_trav
+
+        # contrat de gestion
+        ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
+        ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
+
+        ci_cg_tot = P.taux_travaux_adh_org_prod * ci_cg_adh + P.taux_travaux * ci_cg
+
+        return ci_travaux + ci_cg_tot
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements forestiers pour 2017
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        f7up = foyer_fiscal('f7up', period)
+        f7ut = foyer_fiscal('f7ut', period)
+
+        f7ua = foyer_fiscal('f7ua', period)
+        f7ub = foyer_fiscal('f7ub', period)
+        f7uq = foyer_fiscal('f7uq', period)
+        f7ui = foyer_fiscal('f7ui', period)
+
+        f7ux = foyer_fiscal('f7ux_2018', period)
+        f7tj = foyer_fiscal('f7tj', period)
+        f7vp = foyer_fiscal('f7vp', period)
+        f7tk = foyer_fiscal('f7tk', period)
+        f7vm = foyer_fiscal('f7vm', period)
+        f7tm = foyer_fiscal('f7tm', period)
+        f7vn = foyer_fiscal('f7vn', period)
+        f7to = foyer_fiscal('f7to', period)
+        f7vq = foyer_fiscal('f7vq', period)
+        f7tp = foyer_fiscal('f7tp', period)
+        f7vr = foyer_fiscal('f7vr', period)
+        f7tq = foyer_fiscal('f7tq', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+
+        # travaux année N
+        ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7vp + f7tk + f7vn + f7to + f7vr + f7tq)
+        ci_trav = min_(P.plafond_travaux * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7ux + f7tj + f7vm + f7tm + f7vq + f7tp)
+
+        ci_travaux = P.taux_travaux_adh_org_prod * ci_trav_adh + P.taux_travaux * ci_trav
+
+        # contrat de gestion
+        ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
+        ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
+
+        ci_cg_tot = P.taux_travaux_adh_org_prod * ci_cg_adh + P.taux_travaux * ci_cg
+
+        return ci_travaux + ci_cg_tot
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements forestiers pour 2018
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        f7up = foyer_fiscal('f7up', period)
+        f7ut = foyer_fiscal('f7ut', period)
+
+        f7ua = foyer_fiscal('f7ua', period)
+        f7ub = foyer_fiscal('f7ub', period)
+        f7uq = foyer_fiscal('f7uq', period)
+        f7ui = foyer_fiscal('f7ui', period)
+
+        f7ux = foyer_fiscal('f7ux_2018', period)
+        f7tj = foyer_fiscal('f7tj', period)
+        f7vp = foyer_fiscal('f7vp', period)
+        f7tk = foyer_fiscal('f7tk', period)
+        f7vm = foyer_fiscal('f7vm', period)
+        f7tm = foyer_fiscal('f7tm', period)
+        f7vn = foyer_fiscal('f7vn', period)
+        f7to = foyer_fiscal('f7to', period)
+        f7vq = foyer_fiscal('f7vq', period)
+        f7tp = foyer_fiscal('f7tp', period)
+        f7vr = foyer_fiscal('f7vr', period)
+        f7tq = foyer_fiscal('f7tq', period)
+        f7vs = foyer_fiscal('f7vs', period)
+        f7tr = foyer_fiscal('f7tr', period)
+        f7vl = foyer_fiscal('f7vl', period)
+        f7ts = foyer_fiscal('f7ts', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+
+        # travaux année N
+        ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7vp + f7tk + f7vn + f7to + f7vr + f7tq + f7vl + f7ts)
+        ci_trav = min_(P.plafond_travaux * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7ux + f7tj + f7vm + f7tm + f7vq + f7tp + f7vs + f7tr)
+
+        ci_travaux = P.taux_travaux_adh_org_prod * ci_trav_adh + P.taux_travaux * ci_trav
+
+        # contrat de gestion
+        ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
+        ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
+
+        ci_cg_tot = P.taux_travaux_adh_org_prod * ci_cg_adh + P.taux_travaux * ci_cg
+
+        return ci_travaux + ci_cg_tot
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements forestiers pour 2019
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        f7up = foyer_fiscal('f7up', period)
+        f7ut = foyer_fiscal('f7ut', period)
+
+        f7ua = foyer_fiscal('f7ua', period)
+        f7ub = foyer_fiscal('f7ub', period)
+        f7uq = foyer_fiscal('f7uq', period)
+        f7ui = foyer_fiscal('f7ui', period)
+
+        f7tj = foyer_fiscal('f7tj', period)
+        f7tk = foyer_fiscal('f7tk', period)
+
+        f7vm = foyer_fiscal('f7vm', period)
+        f7tm = foyer_fiscal('f7tm', period)
+        f7vn = foyer_fiscal('f7vn', period)
+        f7to = foyer_fiscal('f7to', period)
+        f7vq = foyer_fiscal('f7vq', period)
+        f7tp = foyer_fiscal('f7tp', period)
+        f7vr = foyer_fiscal('f7vr', period)
+        f7tq = foyer_fiscal('f7tq', period)
+        f7vs = foyer_fiscal('f7vs', period)
+        f7tr = foyer_fiscal('f7tr', period)
+        f7vl = foyer_fiscal('f7vl', period)
+        f7ts = foyer_fiscal('f7ts', period)
+        f7vj = foyer_fiscal('f7vj', period)
+        f7tt = foyer_fiscal('f7tt', period)
+        f7vk = foyer_fiscal('f7vk', period)
+        f7tu = foyer_fiscal('f7tu', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+
+        # travaux année N
+        ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7tk + f7vn + f7to + f7vr + f7tq + f7vl + f7ts + f7vk + f7tu)
+        ci_trav = min_(P.plafond_travaux * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tj + f7vm + f7tm + f7vq + f7tp + f7vs + f7tr + f7vj + f7tt)
+
+        ci_travaux = P.taux_travaux_adh_org_prod * ci_trav_adh + P.taux_travaux * ci_trav
+
+        # contrat de gestion
+        ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
+        ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
+
+        ci_cg_tot = P.taux_travaux_adh_org_prod * ci_cg_adh + P.taux_travaux * ci_cg
+
+        return ci_travaux + ci_cg_tot
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements forestiers pour 2020
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        f7up = foyer_fiscal('f7up', period)
+        f7ut = foyer_fiscal('f7ut', period)
+
+        f7ua = foyer_fiscal('f7ua', period)
+        f7ub = foyer_fiscal('f7ub', period)
+        f7uq = foyer_fiscal('f7uq', period)
+        f7ui = foyer_fiscal('f7ui', period)
+
+        f7tj = foyer_fiscal('f7tj', period)
+        f7tk = foyer_fiscal('f7tk', period)
+        f7tm = foyer_fiscal('f7tm', period)
+        f7to = foyer_fiscal('f7to', period)
+        f7vq = foyer_fiscal('f7vq', period)
+        f7tp = foyer_fiscal('f7tp', period)
+        f7vr = foyer_fiscal('f7vr', period)
+        f7tq = foyer_fiscal('f7tq', period)
+        f7vs = foyer_fiscal('f7vs', period)
+        f7tr = foyer_fiscal('f7tr', period)
+        f7vl = foyer_fiscal('f7vl', period)
+        f7ts = foyer_fiscal('f7ts', period)
+        f7vj = foyer_fiscal('f7vj', period)
+        f7tt = foyer_fiscal('f7tt', period)
+        f7vk = foyer_fiscal('f7vk', period)
+        f7tu = foyer_fiscal('f7tu', period)
+        f7vh = foyer_fiscal('f7vh', period)
+        f7tv = foyer_fiscal('f7tv', period)
+        f7vi = foyer_fiscal('f7vi', period)
+        f7tw = foyer_fiscal('f7tw', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+
+        # travaux année N
+        ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7tk + f7to + f7vr + f7tq + f7vl + f7ts + f7vk + f7tu + f7vi + f7tw)
+        ci_trav = min_(P.plafond_travaux * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tj + f7tm + f7vq + f7tp + f7vs + f7tr + f7vj + f7tt + f7vh + f7tv)
+
+        ci_travaux = P.taux_travaux_adh_org_prod * ci_trav_adh + P.taux_travaux * ci_trav
+
+        # contrat de gestion
+        ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
+        ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
+
+        ci_cg_tot = P.taux_travaux_adh_org_prod * ci_cg_adh + P.taux_travaux * ci_cg
+
+        return ci_travaux + ci_cg_tot
+
+    def formula_2021_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements forestiers pour 2021
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+
+        f7up = foyer_fiscal('f7up', period)
+        f7ut = foyer_fiscal('f7ut', period)
+
+        f7ua = foyer_fiscal('f7ua', period)
+        f7ub = foyer_fiscal('f7ub', period)
+        f7uq = foyer_fiscal('f7uq', period)
+        f7ui = foyer_fiscal('f7ui', period)
+
+        f7tj = foyer_fiscal('f7tj', period)
+        f7tk = foyer_fiscal('f7tk', period)
+        f7tm = foyer_fiscal('f7tm', period)
+        f7to = foyer_fiscal('f7to', period)
+        f7tp = foyer_fiscal('f7tp', period)
+        f7tq = foyer_fiscal('f7tq', period)
+        f7vs = foyer_fiscal('f7vs', period)
+        f7tr = foyer_fiscal('f7tr', period)
+        f7vl = foyer_fiscal('f7vl', period)
+        f7ts = foyer_fiscal('f7ts', period)
+        f7vj = foyer_fiscal('f7vj', period)
+        f7tt = foyer_fiscal('f7tt', period)
+        f7vk = foyer_fiscal('f7vk', period)
+        f7tu = foyer_fiscal('f7tu', period)
+        f7vh = foyer_fiscal('f7vh', period)
+        f7tv = foyer_fiscal('f7tv', period)
+        f7vi = foyer_fiscal('f7vi', period)
+        f7tw = foyer_fiscal('f7tw', period)
+        f7vm = foyer_fiscal('f7vm', period)
+        f7ta = foyer_fiscal('f7ta', period)
+        f7vn = foyer_fiscal('f7vn', period)
+        f7tb = foyer_fiscal('f7tb', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+
+        # travaux année N
+        ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7tk + f7to + f7tq + f7vl + f7ts + f7vk + f7tu + f7vi + f7tw + f7vn + f7tb)
+        ci_trav = min_(P.plafond_travaux * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tj + f7tm + f7tp + f7vs + f7tr + f7vj + f7tt + f7vh + f7tv + f7vm + f7ta)
+
+        ci_travaux = P.taux_travaux_adh_org_prod * ci_trav_adh + P.taux_travaux * ci_trav
+
+        # contrat de gestion
+        ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
+        ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
+
+        ci_cg_tot = P.taux_travaux_adh_org_prod * ci_cg_adh + P.taux_travaux * ci_cg
+
+        return ci_travaux + ci_cg_tot
+
+
 class acqgpl(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -80,8 +545,8 @@ class acqgpl(Variable):
         Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte
         2002-2007
         '''
-        f7up = foyer_fiscal('f7up', period)
-        f7uq = foyer_fiscal('f7uq', period)
+        f7up = foyer_fiscal('f7up_2007', period)
+        f7uq = foyer_fiscal('f7uq_2007', period)
         acqgpl = parameters(period).impot_revenu.calcul_credits_impots.acqgpl
 
         return f7up * acqgpl.mont_up + f7uq * acqgpl.mont_uq
@@ -206,7 +671,7 @@ class aidper(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        f7sf = foyer_fiscal('f7sf', period)
+        f7sf = foyer_fiscal('f7sf_2011', period)
         f7wi = foyer_fiscal('f7wi_2012', period)
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
@@ -446,7 +911,7 @@ class creimp(Variable):
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
         f8td_2002_2005 = foyer_fiscal('f8td_2002_2005', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
 
@@ -458,7 +923,7 @@ class creimp(Variable):
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
         f8td_2002_2005 = foyer_fiscal('f8td_2002_2005', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -472,7 +937,7 @@ class creimp(Variable):
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
         f8td_2002_2005 = foyer_fiscal('f8td_2002_2005', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -488,7 +953,7 @@ class creimp(Variable):
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
         f8td_2002_2005 = foyer_fiscal('f8td_2002_2005', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -510,7 +975,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -537,7 +1002,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -565,7 +1030,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -576,7 +1041,6 @@ class creimp(Variable):
         f8wb = foyer_fiscal('f8wb', period)
         f8wc = foyer_fiscal('f8wc', period)
         f8wd = foyer_fiscal('f8wd', period)
-        f8we = foyer_fiscal('f8we', period)  # noqa F841
         f8wr = foyer_fiscal('f8wr', period)
         f8ws = foyer_fiscal('f8ws', period)
         f8wt = foyer_fiscal('f8wt', period)
@@ -593,7 +1057,7 @@ class creimp(Variable):
         f2ab = foyer_fiscal('f2ab', period)
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -621,7 +1085,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -647,7 +1111,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -675,7 +1139,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
@@ -704,7 +1168,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
@@ -737,7 +1201,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
@@ -773,7 +1237,7 @@ class creimp(Variable):
         f8ta = foyer_fiscal('f8ta', period)
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
-        f8te = foyer_fiscal('f8te', period)
+        f8te = foyer_fiscal('f8te_2018', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
@@ -824,8 +1288,14 @@ class creimp(Variable):
         f8wt = foyer_fiscal('f8wt', period)
         f8wu = foyer_fiscal('f8wu', period)
 
+        # 8VM, 8WM, 8UM all in one (ind.-level) case? Why/how?
         f8vm_i = foyer_fiscal.members('f8vm', period)
         f8vm = foyer_fiscal.sum(f8vm_i)
+
+        # Alternatively, but need to check cases first:
+        # f8vm = (foyer_fiscal('f8vm', period)
+        #     + foyer_fiscal('f8wm', period)
+        #     + foyer_fiscal('f8um', period))
 
         return (
             f2ab + f8ta + f8tb + f8tc
@@ -833,6 +1303,75 @@ class creimp(Variable):
             + f8tl + f8ts + f8tz + f8uw + f8uz
             + f8vm + f8wa + f8wc + f8wd
             + f8wr + f8wt + f8wu + f8vl
+            )
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        f2ab = foyer_fiscal('f2ab', period)
+        f8ta = foyer_fiscal('f8ta', period)
+        f8tb = foyer_fiscal('f8tb', period)
+        f8tc = foyer_fiscal('f8tc', period)
+        f8tf = foyer_fiscal('f8tf', period)
+        f8tg = foyer_fiscal('f8tg', period)
+        f8tl = foyer_fiscal('f8tl', period)
+        f8to = foyer_fiscal('f8to', period)
+        f8tp = foyer_fiscal('f8tp', period)
+        f8ts = foyer_fiscal('f8ts', period)
+        f8uw = foyer_fiscal('f8uw', period)
+        f8uz = foyer_fiscal('f8uz', period)
+        f8vl = foyer_fiscal('f8vl', period)
+        f8wa = foyer_fiscal('f8wa', period)
+        f8wc = foyer_fiscal('f8wc', period)
+        f8wd = foyer_fiscal('f8wd', period)
+        f8wr = foyer_fiscal('f8wr', period)
+        f8wt = foyer_fiscal('f8wt', period)
+        f8te = foyer_fiscal('f8te', period)
+        f8la = foyer_fiscal('f8la', period)
+
+        f8vm_i = foyer_fiscal.members('f8vm', period)
+        f8vm = foyer_fiscal.sum(f8vm_i)
+
+        return (
+            f2ab + f8ta + f8tb + f8tc
+            - f8tf + f8tg + f8to - f8tp
+            + f8tl + f8ts + f8uw + f8uz
+            + f8vm + f8wa + f8wc + f8wd
+            + f8wr + f8wt + f8vl + f8te + f8la
+            )
+
+    def formula_2021_01_01(foyer_fiscal, period, parameters):
+        f2ab = foyer_fiscal('f2ab', period)
+        f8ta = foyer_fiscal('f8ta', period)
+        f8tb = foyer_fiscal('f8tb', period)
+        f8tc = foyer_fiscal('f8tc', period)
+        f8tf = foyer_fiscal('f8tf', period)
+        f8tg = foyer_fiscal('f8tg', period)
+        f8tl = foyer_fiscal('f8tl', period)
+        f8to = foyer_fiscal('f8to', period)
+        f8tp = foyer_fiscal('f8tp', period)
+        f8ts = foyer_fiscal('f8ts', period)
+        f8uw = foyer_fiscal('f8uw', period)
+        f8uz = foyer_fiscal('f8uz', period)
+        f8vl = foyer_fiscal('f8vl', period)
+        f8wa = foyer_fiscal('f8wa', period)
+        f8wc = foyer_fiscal('f8wc', period)
+        f8wd = foyer_fiscal('f8wd', period)
+        f8wr = foyer_fiscal('f8wr', period)
+        f8wt = foyer_fiscal('f8wt', period)
+        f8te = foyer_fiscal('f8te', period)
+        f8la = foyer_fiscal('f8la', period)
+        f8wg = foyer_fiscal('f8wg', period)
+        f8wh = foyer_fiscal('f8wh', period)
+
+        f8vm_i = foyer_fiscal.members('f8vm', period)
+        f8vm = foyer_fiscal.sum(f8vm_i)
+
+        return (
+            f2ab + f8ta + f8tb + f8tc
+            - f8tf + f8tg + f8to - f8tp
+            + f8tl + f8ts + f8uw + f8uz
+            + f8vm + f8wa + f8wc + f8wd
+            + f8wr + f8wt + f8vl + f8te
+            + f8la + f8wg + f8wh
             )
 
 
@@ -901,11 +1440,12 @@ class direpa(Variable):
     entity = FoyerFiscal
     label = 'Crédit d’impôt directive « épargne »'
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula_2006(foyer_fiscal, period, parameters):
         '''
         Crédit d’impôt directive « épargne » (case 2BG)
-        2006-
+        2006-2017
         '''
         f2bg = foyer_fiscal('f2bg', period)
 
@@ -938,11 +1478,12 @@ class drbail(Variable):
     entity = FoyerFiscal
     label = 'Crédit d’impôt représentatif de la taxe additionnelle au droit de bail'
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula_2002(foyer_fiscal, period, parameters):
         '''
         Crédit d’impôt représentatif de la taxe additionnelle au droit de bail (case 4TQ)
-        2002-
+        2002-2017
         '''
         f4tq = foyer_fiscal('f4tq', period)
         P = parameters(period).impot_revenu.calcul_credits_impots.drbail
@@ -968,7 +1509,7 @@ class inthab(Variable):
         invalidite_conj = foyer_fiscal('caseF', period)
         nbpac_invalideG = foyer_fiscal('nbG', period)
         nbpac_invalideR = foyer_fiscal('nbR', period)
-        f7uh = foyer_fiscal('f7uh', period)
+        f7uh = foyer_fiscal('f7uh_2007', period)
         P = parameters(period).impot_revenu.calcul_credits_impots.inthab
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
@@ -1265,6 +1806,26 @@ class inthab(Variable):
             + P.taux6 * min_(f7vt, max2)
             )
 
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédit d’impôt intérêts des emprunts pour l’habitation principale
+        2019
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
+        nbpac_invalideI = foyer_fiscal('nbI', period)
+        f7vx = foyer_fiscal('f7vx', period)
+        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
+        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
+
+        return P.taux1 * min_(f7vx, max0)
+
 
 class jeunes(Variable):
     value_type = float
@@ -1351,6 +1912,7 @@ class preetu(Variable):
     entity = FoyerFiscal
     label = 'Crédit d’impôt pour souscription de prêts étudiants'
     definition_period = YEAR
+    end = '2018-12-31'
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1418,8 +1980,8 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        f7wf = foyer_fiscal('f7wf', period)
-        f7wg = foyer_fiscal('f7wg', period)
+        f7wf = foyer_fiscal('f7wf_2012', period)
+        f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
         P = parameters(period).impot_revenu.calcul_credits_impots.quaenv
 
@@ -1442,8 +2004,8 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        f7wf = foyer_fiscal('f7wf', period)
-        f7wg = foyer_fiscal('f7wg', period)
+        f7wf = foyer_fiscal('f7wf_2012', period)
+        f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wq = foyer_fiscal('f7wq', period)
         P = parameters(period).impot_revenu.calcul_credits_impots.quaenv
@@ -1468,16 +2030,16 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        f7we = foyer_fiscal('f7we', period)
-        f7wf = foyer_fiscal('f7wf', period)
-        f7wg = foyer_fiscal('f7wg', period)
+        f7we = foyer_fiscal('f7we_2013', period)
+        f7wf = foyer_fiscal('f7wf_2012', period)
+        f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wk = foyer_fiscal('f7wk', period)
         f7wq = foyer_fiscal('f7wq', period)
         f7sb = foyer_fiscal('f7sb_2011', period)
         f7sc = foyer_fiscal('f7sc_2009', period)
-        f7sd = foyer_fiscal('f7sd', period)
-        f7se = foyer_fiscal('f7se', period)
+        f7sd = foyer_fiscal('f7sd_2015', period)
+        f7se = foyer_fiscal('f7se_2015', period)
         rfr = foyer_fiscal('rfr', period)
         P = parameters(period).impot_revenu.calcul_credits_impots.quaenv
 
@@ -1512,16 +2074,16 @@ class quaenv(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        f7we = foyer_fiscal('f7we', period)
-        f7wf = foyer_fiscal('f7wf', period)
-        f7wg = foyer_fiscal('f7wg', period)
+        f7we = foyer_fiscal('f7we_2013', period)
+        f7wf = foyer_fiscal('f7wf_2012', period)
+        f7wg = foyer_fiscal('f7wg_2013', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wk = foyer_fiscal('f7wk', period)
         f7wq = foyer_fiscal('f7wq', period)
         f7sb = foyer_fiscal('f7sb_2011', period)
-        f7sd = foyer_fiscal('f7sd', period)
-        f7se = foyer_fiscal('f7se', period)
-        f7sh = foyer_fiscal('f7sh', period)
+        f7sd = foyer_fiscal('f7sd_2015', period)
+        f7se = foyer_fiscal('f7se_2015', period)
+        f7sh = foyer_fiscal('f7sh_2015', period)
         rfr = foyer_fiscal('rfr', period)
         P = parameters(period).impot_revenu.calcul_credits_impots.quaenv
 
@@ -1550,26 +2112,26 @@ class quaenv(Variable):
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         2012
         '''
-        f7sd = foyer_fiscal('f7sd', period)
-        f7se = foyer_fiscal('f7se', period)
-        f7sf = foyer_fiscal('f7sf', period)
-        f7sg = foyer_fiscal('f7sg', period)
-        f7sh = foyer_fiscal('f7sh', period)
-        f7si = foyer_fiscal('f7si', period)
-        f7sj = foyer_fiscal('f7sj', period)
-        f7sk = foyer_fiscal('f7sk', period)
-        f7sl = foyer_fiscal('f7sl', period)
-        f7sm = foyer_fiscal('f7sm', period)
+        f7sd = foyer_fiscal('f7sd_2015', period)
+        f7se = foyer_fiscal('f7se_2015', period)
+        f7sf = foyer_fiscal('f7sf_2015', period)
+        f7sg = foyer_fiscal('f7sg_2015', period)
+        f7sh = foyer_fiscal('f7sh_2015', period)
+        f7si = foyer_fiscal('f7si_2015', period)
+        f7sj = foyer_fiscal('f7sj_2015', period)
+        f7sk = foyer_fiscal('f7sk_2015', period)
+        f7sl = foyer_fiscal('f7sl_2015', period)
+        f7sm = foyer_fiscal('f7sm_2015', period)
         f7sn = foyer_fiscal('f7sn_2015', period)
         f7so = foyer_fiscal('f7so_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
-        f7sq = foyer_fiscal('f7sq', period)
-        f7sr = foyer_fiscal('f7sr', period)
+        f7sq = foyer_fiscal('f7sq_2015', period)
+        f7sr = foyer_fiscal('f7sr_2015', period)
         f7ss = foyer_fiscal('f7ss', period)
-        f7tt = foyer_fiscal('f7tt', period)
-        f7tu = foyer_fiscal('f7tu', period)
-        f7tv = foyer_fiscal('f7tv', period)
-        f7tw = foyer_fiscal('f7tw', period)
+        f7tt = foyer_fiscal('f7tt_2012', period)
+        f7tu = foyer_fiscal('f7tu_2012', period)
+        f7tv = foyer_fiscal('f7tv_2012', period)
+        f7tw = foyer_fiscal('f7tw_2012', period)
         f7tx = foyer_fiscal('f7tx_2012', period)
         f7ty = foyer_fiscal('f7ty_2012', period)
         f7st = foyer_fiscal('f7st', period)
@@ -1577,10 +2139,8 @@ class quaenv(Variable):
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
         f7sz = foyer_fiscal('f7sz_2015', period)
-        f7wc = foyer_fiscal('f7wc', period)  # noqa F841
-        f7we = foyer_fiscal('f7we', period)
-        f7wg = foyer_fiscal('f7wg', period)
-        f7wh = foyer_fiscal('f7wh', period)  # noqa F841
+        f7we = foyer_fiscal('f7we_2013', period)
+        f7wg = foyer_fiscal('f7wg_2013', period)
         f7wk = foyer_fiscal('f7wk', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
@@ -1641,31 +2201,29 @@ class quaenv(Variable):
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         2013
         '''
-        f7sd = foyer_fiscal('f7sd', period)
-        f7se = foyer_fiscal('f7se', period)
-        f7sf = foyer_fiscal('f7sf', period)
-        f7sg = foyer_fiscal('f7sg', period)
-        f7sh = foyer_fiscal('f7sh', period)
-        f7si = foyer_fiscal('f7si', period)
-        f7sj = foyer_fiscal('f7sj', period)
-        f7sk = foyer_fiscal('f7sk', period)
-        f7sl = foyer_fiscal('f7sl', period)
-        f7sm = foyer_fiscal('f7sm', period)
+        f7sd = foyer_fiscal('f7sd_2015', period)
+        f7se = foyer_fiscal('f7se_2015', period)
+        f7sf = foyer_fiscal('f7sf_2015', period)
+        f7sg = foyer_fiscal('f7sg_2015', period)
+        f7sh = foyer_fiscal('f7sh_2015', period)
+        f7si = foyer_fiscal('f7si_2015', period)
+        f7sj = foyer_fiscal('f7sj_2015', period)
+        f7sk = foyer_fiscal('f7sk_2015', period)
+        f7sl = foyer_fiscal('f7sl_2015', period)
+        f7sm = foyer_fiscal('f7sm_2015', period)
         f7sn = foyer_fiscal('f7sn_2015', period)
         f7so = foyer_fiscal('f7so_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
-        f7sq = foyer_fiscal('f7sq', period)
-        f7sr = foyer_fiscal('f7sr', period)
+        f7sq = foyer_fiscal('f7sq_2015', period)
+        f7sr = foyer_fiscal('f7sr_2015', period)
         f7ss = foyer_fiscal('f7ss', period)
         f7st = foyer_fiscal('f7st', period)
         f7su = foyer_fiscal('f7su', period)
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
         f7sz = foyer_fiscal('f7sz_2015', period)
-        f7wc = foyer_fiscal('f7wc', period)  # noqa F841
-        f7we = foyer_fiscal('f7we', period)
-        f7wg = foyer_fiscal('f7wg', period)
-        f7wh = foyer_fiscal('f7wh', period)  # noqa F841
+        f7we = foyer_fiscal('f7we_2013', period)
+        f7wg = foyer_fiscal('f7wg_2013', period)
         f7wk = foyer_fiscal('f7wk', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
@@ -1711,57 +2269,53 @@ class quaenv(Variable):
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale (1.1-31.8.2014) et transition energétique (1.9-31.12.2014)
         2014
         '''
-        f7rg = foyer_fiscal('f7rg_2016', period)
+        f7rg = foyer_fiscal('f7rg_2015', period)
         f7rh = foyer_fiscal('f7rh_2016', period)
-        f7ri = foyer_fiscal('f7ri', period)
-        f7rj = foyer_fiscal('f7rj', period)
-        f7rk = foyer_fiscal('f7rk', period)
-        f7rl = foyer_fiscal('f7rl', period)
-        f7rn = foyer_fiscal('f7rn', period)
-        f7rp = foyer_fiscal('f7rp', period)
-        f7rq = foyer_fiscal('f7rq', period)
-        f7rr = foyer_fiscal('f7rr', period)
-        f7rs = foyer_fiscal('f7rs', period)
-        f7rt = foyer_fiscal('f7rt', period)
-        f7rv = foyer_fiscal('f7rv', period)
-        f7rw = foyer_fiscal('f7rw', period)
+        f7ri = foyer_fiscal('f7ri_2015', period)
+        f7rj = foyer_fiscal('f7rj_2015', period)
+        f7rk = foyer_fiscal('f7rk_2015', period)
+        f7rl = foyer_fiscal('f7rl_2015', period)
+        f7rn = foyer_fiscal('f7rn_2015', period)
+        f7rp = foyer_fiscal('f7rp_2015', period)
+        f7rq = foyer_fiscal('f7rq_2015', period)
+        f7rr = foyer_fiscal('f7rr_2015', period)
+        f7rs = foyer_fiscal('f7rs_2015', period)
+        f7rt = foyer_fiscal('f7rt_2015', period)
+        f7rv = foyer_fiscal('f7rv_2015', period)
+        f7rw = foyer_fiscal('f7rw_2015', period)
         f7rz = foyer_fiscal('f7rz_2015', period)
         f7sa = foyer_fiscal('f7sa_2015', period)
         f7sb = foyer_fiscal('f7sb_2015', period)
         f7sc = foyer_fiscal('f7sc_2016', period)
-        f7sd = foyer_fiscal('f7sd', period)
-        f7se = foyer_fiscal('f7se', period)
-        f7sf = foyer_fiscal('f7sf', period)
-        f7sg = foyer_fiscal('f7sg', period)
-        f7sh = foyer_fiscal('f7sh', period)
-        f7si = foyer_fiscal('f7si', period)
-        f7sj = foyer_fiscal('f7sj', period)
-        f7sk = foyer_fiscal('f7sk', period)
-        f7sl = foyer_fiscal('f7sl', period)
+        f7sd = foyer_fiscal('f7sd_2015', period)
+        f7se = foyer_fiscal('f7se_2015', period)
+        f7sf = foyer_fiscal('f7sf_2015', period)
+        f7sg = foyer_fiscal('f7sg_2015', period)
+        f7sh = foyer_fiscal('f7sh_2015', period)
+        f7si = foyer_fiscal('f7si_2015', period)
+        f7sj = foyer_fiscal('f7sj_2015', period)
+        f7sk = foyer_fiscal('f7sk_2015', period)
+        f7sl = foyer_fiscal('f7sl_2015', period)
         f7sn = foyer_fiscal('f7sn_2015', period)
-        f7so = foyer_fiscal('f7so_2015', period)  # noqa F841
         f7sp = foyer_fiscal('f7sp', period)
-        f7sq = foyer_fiscal('f7sq', period)
-        f7sr = foyer_fiscal('f7sr', period)
+        f7sq = foyer_fiscal('f7sq_2015', period)
+        f7sr = foyer_fiscal('f7sr_2015', period)
         f7ss = foyer_fiscal('f7ss', period)
         f7st = foyer_fiscal('f7st', period)
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
-        f7tv = foyer_fiscal('f7tv', period)
-        f7tw = foyer_fiscal('f7tw', period)
+        f7tv = foyer_fiscal('f7tv_2012', period)
+        f7tw = foyer_fiscal('f7tw_2012', period)
         f7vg = foyer_fiscal('f7vg', period)
-        f7vh = foyer_fiscal('f7vh', period)
-        f7wb = foyer_fiscal('f7wb', period)
-        f7wc = foyer_fiscal('f7wc', period)
-        f7we = foyer_fiscal('f7we', period)  # noqa F841
-        f7wg = foyer_fiscal('f7wg', period)  # noqa F841
+        f7vh = foyer_fiscal('f7vh_2014', period)
+        f7wb = foyer_fiscal('f7wb_2015', period)
+        f7wc = foyer_fiscal('f7wc_2015', period)
         f7wk = foyer_fiscal('f7wk', period)
         f7wt = foyer_fiscal('f7wt', period)
         f7wu = foyer_fiscal('f7wu', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
-        rfr = foyer_fiscal('rfr', period)  # noqa F841
         P = parameters(period).impot_revenu.calcul_credits_impots.quaenv
 
         depenses_transition_energetique = (
@@ -1844,81 +2398,77 @@ class quaenv(Variable):
         f7bh = foyer_fiscal('f7bh', period)
         f7bk = foyer_fiscal('f7bk', period)
         f7bl = foyer_fiscal('f7bl', period)
-        f7rg = foyer_fiscal('f7rg_2016', period)
+        f7rg = foyer_fiscal('f7rg_2015', period)
         f7rh = foyer_fiscal('f7rh_2016', period)
-        f7ri = foyer_fiscal('f7ri', period)
-        f7rj = foyer_fiscal('f7rj', period)
-        f7rk = foyer_fiscal('f7rk', period)
-        f7rl = foyer_fiscal('f7rl', period)
-        f7rn = foyer_fiscal('f7rn', period)
-        f7rp = foyer_fiscal('f7rp', period)
-        f7rq = foyer_fiscal('f7rq', period)
-        f7rr = foyer_fiscal('f7rr', period)
-        f7rs = foyer_fiscal('f7rs', period)
-        f7rt = foyer_fiscal('f7rt', period)
-        f7ru = foyer_fiscal('f7ru', period)
-        f7rv = foyer_fiscal('f7rv', period)
-        f7rw = foyer_fiscal('f7rw', period)
+        f7ri = foyer_fiscal('f7ri_2015', period)
+        f7rj = foyer_fiscal('f7rj_2015', period)
+        f7rk = foyer_fiscal('f7rk_2015', period)
+        f7rl = foyer_fiscal('f7rl_2015', period)
+        f7rn = foyer_fiscal('f7rn_2015', period)
+        f7rp = foyer_fiscal('f7rp_2015', period)
+        f7rq = foyer_fiscal('f7rq_2015', period)
+        f7rr = foyer_fiscal('f7rr_2015', period)
+        f7rs = foyer_fiscal('f7rs_2015', period)
+        f7rt = foyer_fiscal('f7rt_2015', period)
+        f7ru = foyer_fiscal('f7ru_2015', period)
+        f7rv = foyer_fiscal('f7rv_2015', period)
+        f7rw = foyer_fiscal('f7rw_2015', period)
         f7rz = foyer_fiscal('f7rz_2015', period)
         f7sa = foyer_fiscal('f7sa_2015', period)
         f7sb = foyer_fiscal('f7sb_2015', period)
         f7sc = foyer_fiscal('f7sc_2016', period)
-        f7sd = foyer_fiscal('f7sd', period)
-        f7se = foyer_fiscal('f7se', period)
-        f7sf = foyer_fiscal('f7sf', period)
-        f7sg = foyer_fiscal('f7sg', period)
-        f7sh = foyer_fiscal('f7sh', period)
-        f7si = foyer_fiscal('f7si', period)
-        f7sj = foyer_fiscal('f7sj', period)
-        f7sk = foyer_fiscal('f7sk', period)
-        f7sl = foyer_fiscal('f7sl', period)
-        f7sm = foyer_fiscal('f7sm', period)
+        f7sd = foyer_fiscal('f7sd_2015', period)
+        f7se = foyer_fiscal('f7se_2015', period)
+        f7sf = foyer_fiscal('f7sf_2015', period)
+        f7sg = foyer_fiscal('f7sg_2015', period)
+        f7sh = foyer_fiscal('f7sh_2015', period)
+        f7si = foyer_fiscal('f7si_2015', period)
+        f7sj = foyer_fiscal('f7sj_2015', period)
+        f7sk = foyer_fiscal('f7sk_2015', period)
+        f7sl = foyer_fiscal('f7sl_2015', period)
+        f7sm = foyer_fiscal('f7sm_2015', period)
         f7sn = foyer_fiscal('f7sn_2015', period)
         f7so = foyer_fiscal('f7so_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
-        f7sq = foyer_fiscal('f7sq', period)
-        f7sr = foyer_fiscal('f7sr', period)
+        f7sq = foyer_fiscal('f7sq_2015', period)
+        f7sr = foyer_fiscal('f7sr_2015', period)
         f7ss = foyer_fiscal('f7ss', period)
         f7st = foyer_fiscal('f7st', period)
         f7su = foyer_fiscal('f7su', period)
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
         f7sz = foyer_fiscal('f7sz_2015', period)
-        f7ta = foyer_fiscal('f7ta', period)
-        f7tb = foyer_fiscal('f7tb', period)
+        f7ta = foyer_fiscal('f7ta_2015', period)
+        f7tb = foyer_fiscal('f7tb_2015', period)
         f7tc = foyer_fiscal('f7tc', period)
         f7tn = foyer_fiscal('f7tn', period)
-        f7tp = foyer_fiscal('f7tp', period)
-        f7tq = foyer_fiscal('f7tq', period)
-        f7tr = foyer_fiscal('f7tr', period)
-        f7ts = foyer_fiscal('f7ts', period)
-        f7tt = foyer_fiscal('f7tt', period)
-        f7tv = foyer_fiscal('f7tv', period)
-        f7tw = foyer_fiscal('f7tw', period)
+        f7tp = foyer_fiscal('f7tp_2015', period)
+        f7tq = foyer_fiscal('f7tq_2015', period)
+        f7tr = foyer_fiscal('f7tr_2015', period)
+        f7ts = foyer_fiscal('f7ts_2015', period)
+        f7tt = foyer_fiscal('f7tt_2012', period)
+        f7tv = foyer_fiscal('f7tv_2012', period)
+        f7tw = foyer_fiscal('f7tw_2012', period)
         f7tx = foyer_fiscal('f7tx_2015', period)
         f7ty = foyer_fiscal('f7ty_2015', period)
         f7vg = foyer_fiscal('f7vg', period)
-        f7vh = foyer_fiscal('f7vh', period)
-        f7vi = foyer_fiscal('f7vi', period)
-        f7vk = foyer_fiscal('f7vk', period)
-        f7vl = foyer_fiscal('f7vl', period)
-        f7wb = foyer_fiscal('f7wb', period)
-        f7wc = foyer_fiscal('f7wc', period)
-        f7we = foyer_fiscal('f7we', period)  # noqa F841
-        f7wg = foyer_fiscal('f7wg', period)  # noqa F841
+        f7vh = foyer_fiscal('f7vh_2014', period)
+        f7vi = foyer_fiscal('f7vi_2015', period)
+        f7vk = foyer_fiscal('f7vk_2015', period)
+        f7vl = foyer_fiscal('f7vl_2015', period)
+        f7wb = foyer_fiscal('f7wb_2015', period)
+        f7wc = foyer_fiscal('f7wc_2015', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wi = foyer_fiscal('f7wi_2015', period)
-        f7wk = foyer_fiscal('f7wk', period)  # noqa F841
         f7wt = foyer_fiscal('f7wt', period)
         f7wu = foyer_fiscal('f7wu', period)
         f7wv = foyer_fiscal('f7wv', period)
         f7ww = foyer_fiscal('f7ww', period)
         f7xb = foyer_fiscal('f7xb', period)
-        f7xc = foyer_fiscal('f7xc', period)
+        f7xc = foyer_fiscal('f7xc_2015', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
-        rfr = foyer_fiscal('rfr', period)  # noqa F841
         P = parameters(period).impot_revenu.calcul_credits_impots.quaenv
 
         depenses_transition_energetique_bouquet_2ans_2014_part2 = (
@@ -2058,22 +2608,22 @@ class quaenv_bouquet(Variable):
         Les dépenses de travaux dépendent d'un bouquet de travaux
         2012
         '''
-        f7sd = foyer_fiscal('f7sd', period)
-        f7se = foyer_fiscal('f7se', period)
+        f7sd = foyer_fiscal('f7sd_2015', period)
+        f7se = foyer_fiscal('f7se_2015', period)
         f7sn = foyer_fiscal('f7sn_2015', period)
         f7so = foyer_fiscal('f7so_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
-        f7sq = foyer_fiscal('f7sq', period)
-        f7sr = foyer_fiscal('f7sr', period)
+        f7sq = foyer_fiscal('f7sq_2015', period)
+        f7sr = foyer_fiscal('f7sr_2015', period)
         f7ss = foyer_fiscal('f7ss', period)
         f7st = foyer_fiscal('f7st', period)
         f7ve = foyer_fiscal('f7ve', period)
         f7vf = foyer_fiscal('f7vf', period)
         f7vg = foyer_fiscal('f7vg', period)
-        f7wa = foyer_fiscal('f7wa', period)
-        f7wb = foyer_fiscal('f7wb', period)
-        f7wc = foyer_fiscal('f7wc', period)
-        f7wf = foyer_fiscal('f7wf', period)
+        f7wa = foyer_fiscal('f7wa_2012', period)
+        f7wb = foyer_fiscal('f7wb_2015', period)
+        f7wc = foyer_fiscal('f7wc_2015', period)
+        f7wf = foyer_fiscal('f7wf_2012', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wq = foyer_fiscal('f7wq', period)
         f7ws = foyer_fiscal('f7ws', period)
@@ -2093,17 +2643,17 @@ class quaenv_bouquet(Variable):
         Les dépenses de travaux dépendent d'un bouquet de travaux
         2013
         '''
-        f7sd = foyer_fiscal('f7sd', period)
-        f7se = foyer_fiscal('f7se', period)
+        f7sd = foyer_fiscal('f7sd_2015', period)
+        f7se = foyer_fiscal('f7se_2015', period)
         f7sn = foyer_fiscal('f7sn_2015', period)
         f7so = foyer_fiscal('f7so_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
-        f7sq = foyer_fiscal('f7sq', period)
-        f7sr = foyer_fiscal('f7sr', period)
+        f7sq = foyer_fiscal('f7sq_2015', period)
+        f7sr = foyer_fiscal('f7sr_2015', period)
         f7ss = foyer_fiscal('f7ss', period)
         f7st = foyer_fiscal('f7st', period)
         f7vg = foyer_fiscal('f7vg', period)
-        f7wc = foyer_fiscal('f7wc', period)
+        f7wc = foyer_fiscal('f7wc_2015', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wt = foyer_fiscal('f7wt', period)
 
@@ -2121,35 +2671,35 @@ class quaenv_bouquet(Variable):
         Les dépenses de travaux dépendent d'un bouquet de travaux
         2014
         '''
-        f7rn = foyer_fiscal('f7rn', period)
-        f7rp = foyer_fiscal('f7rp', period)
-        f7rq = foyer_fiscal('f7rq', period)
-        f7rr = foyer_fiscal('f7rr', period)
-        f7rs = foyer_fiscal('f7rs', period)
-        f7rt = foyer_fiscal('f7rt', period)
+        f7rn = foyer_fiscal('f7rn_2015', period)
+        f7rp = foyer_fiscal('f7rp_2015', period)
+        f7rq = foyer_fiscal('f7rq_2015', period)
+        f7rr = foyer_fiscal('f7rr_2015', period)
+        f7rs = foyer_fiscal('f7rs_2015', period)
+        f7rt = foyer_fiscal('f7rt_2015', period)
         f7sa = foyer_fiscal('f7sa_2015', period)
         f7sb = foyer_fiscal('f7sb_2015', period)
-        f7sd = foyer_fiscal('f7sd', period)
-        f7se = foyer_fiscal('f7se', period)
-        f7sf = foyer_fiscal('f7sf', period)
-        f7sg = foyer_fiscal('f7sg', period)
-        f7sh = foyer_fiscal('f7sh', period)
-        f7si = foyer_fiscal('f7si', period)
-        f7sj = foyer_fiscal('f7sj', period)
-        f7sk = foyer_fiscal('f7sk', period)
-        f7sl = foyer_fiscal('f7sl', period)
+        f7sd = foyer_fiscal('f7sd_2015', period)
+        f7se = foyer_fiscal('f7se_2015', period)
+        f7sf = foyer_fiscal('f7sf_2015', period)
+        f7sg = foyer_fiscal('f7sg_2015', period)
+        f7sh = foyer_fiscal('f7sh_2015', period)
+        f7si = foyer_fiscal('f7si_2015', period)
+        f7sj = foyer_fiscal('f7sj_2015', period)
+        f7sk = foyer_fiscal('f7sk_2015', period)
+        f7sl = foyer_fiscal('f7sl_2015', period)
         f7sn = foyer_fiscal('f7sn_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
-        f7sq = foyer_fiscal('f7sq', period)
-        f7sr = foyer_fiscal('f7sr', period)
+        f7sq = foyer_fiscal('f7sq_2015', period)
+        f7sr = foyer_fiscal('f7sr_2015', period)
         f7ss = foyer_fiscal('f7ss', period)
         f7st = foyer_fiscal('f7st', period)
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
         f7vg = foyer_fiscal('f7vg', period)
-        f7vh = foyer_fiscal('f7vh', period)
-        f7wb = foyer_fiscal('f7wb', period)
-        f7wc = foyer_fiscal('f7wc', period)
+        f7vh = foyer_fiscal('f7vh_2014', period)
+        f7wb = foyer_fiscal('f7wb_2015', period)
+        f7wc = foyer_fiscal('f7wc_2015', period)
         f7wt = foyer_fiscal('f7wt', period)
         f7wu = foyer_fiscal('f7wu', period)
 
@@ -2173,43 +2723,43 @@ class quaenv_bouquet(Variable):
         Les dépenses de travaux dépendent d'un bouquet de travaux (sur 2 ans)
         2015
         '''
-        f7rn = foyer_fiscal('f7rn', period)
-        f7rp = foyer_fiscal('f7rp', period)
-        f7rq = foyer_fiscal('f7rq', period)
-        f7rr = foyer_fiscal('f7rr', period)
-        f7rs = foyer_fiscal('f7rs', period)
-        f7rt = foyer_fiscal('f7rt', period)
+        f7rn = foyer_fiscal('f7rn_2015', period)
+        f7rp = foyer_fiscal('f7rp_2015', period)
+        f7rq = foyer_fiscal('f7rq_2015', period)
+        f7rr = foyer_fiscal('f7rr_2015', period)
+        f7rs = foyer_fiscal('f7rs_2015', period)
+        f7rt = foyer_fiscal('f7rt_2015', period)
         f7sa = foyer_fiscal('f7sa_2015', period)
         f7sb = foyer_fiscal('f7sb_2015', period)
-        f7sd = foyer_fiscal('f7sd', period)
-        f7se = foyer_fiscal('f7se', period)
-        f7sf = foyer_fiscal('f7sf', period)
-        f7sg = foyer_fiscal('f7sg', period)
-        f7sh = foyer_fiscal('f7sh', period)
-        f7si = foyer_fiscal('f7si', period)
-        f7sj = foyer_fiscal('f7sj', period)
-        f7sk = foyer_fiscal('f7sk', period)
-        f7sl = foyer_fiscal('f7sl', period)
+        f7sd = foyer_fiscal('f7sd_2015', period)
+        f7se = foyer_fiscal('f7se_2015', period)
+        f7sf = foyer_fiscal('f7sf_2015', period)
+        f7sg = foyer_fiscal('f7sg_2015', period)
+        f7sh = foyer_fiscal('f7sh_2015', period)
+        f7si = foyer_fiscal('f7si_2015', period)
+        f7sj = foyer_fiscal('f7sj_2015', period)
+        f7sk = foyer_fiscal('f7sk_2015', period)
+        f7sl = foyer_fiscal('f7sl_2015', period)
         f7sn = foyer_fiscal('f7sn_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
-        f7sq = foyer_fiscal('f7sq', period)
-        f7sr = foyer_fiscal('f7sr', period)
+        f7sq = foyer_fiscal('f7sq_2015', period)
+        f7sr = foyer_fiscal('f7sr_2015', period)
         f7ss = foyer_fiscal('f7ss', period)
         f7st = foyer_fiscal('f7st', period)
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
-        f7ta = foyer_fiscal('f7ta', period)
-        f7tb = foyer_fiscal('f7tb', period)
+        f7ta = foyer_fiscal('f7ta_2015', period)
+        f7tb = foyer_fiscal('f7tb_2015', period)
         f7tn = foyer_fiscal('f7tn', period)
-        f7tp = foyer_fiscal('f7tp', period)
-        f7tq = foyer_fiscal('f7tq', period)
-        f7tr = foyer_fiscal('f7tr', period)
-        f7ts = foyer_fiscal('f7ts', period)
-        f7tt = foyer_fiscal('f7tt', period)
+        f7tp = foyer_fiscal('f7tp_2015', period)
+        f7tq = foyer_fiscal('f7tq_2015', period)
+        f7tr = foyer_fiscal('f7tr_2015', period)
+        f7ts = foyer_fiscal('f7ts_2015', period)
+        f7tt = foyer_fiscal('f7tt_2012', period)
         f7vg = foyer_fiscal('f7vg', period)
-        f7vh = foyer_fiscal('f7vh', period)
-        f7wb = foyer_fiscal('f7wb', period)
-        f7wc = foyer_fiscal('f7wc', period)
+        f7vh = foyer_fiscal('f7vh_2014', period)
+        f7wb = foyer_fiscal('f7wb_2015', period)
+        f7wc = foyer_fiscal('f7wc_2015', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wt = foyer_fiscal('f7wt', period)
         f7wu = foyer_fiscal('f7wu', period)
@@ -2240,7 +2790,7 @@ class quaenv_bouquet(Variable):
         return bouquet
 
 
-class saldom2(Variable):
+class ci_saldom(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Crédit d’impôt emploi d’un salarié à domicile'
@@ -2287,3 +2837,67 @@ class saldom2(Variable):
         maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
 
         return P.taux * min_(f7db, maxEffectif)
+
+    def formula_2011_01_01(foyer_fiscal, period, parameters):
+        '''
+        Sommes versées pour l'emploi d'un salariés à domicile
+        2011 - 2016
+        NB: Normalement, le plafond est aussi augmenté pour chaque personne
+        agée de plus de 65 ans dans le foyer (en plus des PACs et des
+        ascendants de 65 ans remplissant les conditions de l'APA). On ne
+        prend pas en compte le nombre de ces individus ici.
+        '''
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
+
+        f7db = foyer_fiscal('f7db', period)
+        f7dl = foyer_fiscal('f7dl', period)
+
+        annee1 = foyer_fiscal('f7dq', period)
+        invalide = foyer_fiscal('f7dg', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+
+        # détérminer le plafond
+
+        if invalide.any():
+            plaf = P.max3
+        else:
+            if annee1.any():
+                plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
+            else:
+                plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
+
+        # calcul du CI
+        ci = min_(plaf, f7db) * P.taux
+
+        return ci
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Sommes versées pour l'emploi d'un salariés à domicile
+        2020
+        '''
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
+
+        f7db = foyer_fiscal('f7db', period)
+        f7dr = foyer_fiscal('f7dr', period)
+        f7dl = foyer_fiscal('f7dl', period)
+
+        annee1 = foyer_fiscal('f7dq', period)
+        invalide = foyer_fiscal('f7dg', period)
+
+        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+
+        # détérminer le plafond
+        if invalide.any():
+            plaf = P.max3
+        else:
+            if annee1.any():
+                plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
+            else:
+                plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
+
+        # calcul du CI
+        ci = min_(plaf, max_(0, f7db - f7dr)) * P.taux
+
+        return ci

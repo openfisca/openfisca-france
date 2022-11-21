@@ -125,12 +125,12 @@ class plf2016_counterfactual(Reform):
             dfppce = foyer_fiscal('dfppce', period)
             doment = foyer_fiscal('doment', period)
             domlog = foyer_fiscal('domlog', period)
-            donapd = foyer_fiscal('donapd', period)
-            duflot = foyer_fiscal('duflot', period)
+            duflot = foyer_fiscal('duflot_pinel_denormandie_metropole', period)
+            duflot_om = foyer_fiscal('duflot_pinel_denormandie_om', period)
             ecpess = foyer_fiscal('ecpess', period)
             garext = foyer_fiscal('garext', period)
             intagr = foyer_fiscal('intagr', period)
-            invfor = foyer_fiscal('invfor', period)
+            invfor = foyer_fiscal('ri_invfor', period)
             invlst = foyer_fiscal('invlst', period)
             ip_net = foyer_fiscal('ip_net', period)
             locmeu = foyer_fiscal('locmeu', period)
@@ -142,12 +142,12 @@ class plf2016_counterfactual(Reform):
             repsoc = foyer_fiscal('repsoc', period)
             resimm = foyer_fiscal('resimm', period)
             rsceha = foyer_fiscal('rsceha', period)
-            saldom = foyer_fiscal('saldom', period)
+            saldom = foyer_fiscal('ri_saldom', period)
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
             spfcpi = foyer_fiscal('spfcpi', period)
             total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog +\
-                donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
+                duflot + duflot_om + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
 
             return min_(ip_net, total_reductions)
@@ -222,12 +222,12 @@ class plf2016_counterfactual_2014(Reform):
             dfppce = foyer_fiscal('dfppce', period)
             doment = foyer_fiscal('doment', period)
             domlog = foyer_fiscal('domlog', period)
-            donapd = foyer_fiscal('donapd', period)
-            duflot = foyer_fiscal('duflot', period)
+            duflot = foyer_fiscal('duflot_pinel_denormandie_metropole', period)
+            duflot_om = foyer_fiscal('duflot_pinel_denormandie_om', period)
             ecpess = foyer_fiscal('ecpess', period)
             garext = foyer_fiscal('garext', period)
             intagr = foyer_fiscal('intagr', period)
-            invfor = foyer_fiscal('invfor', period)
+            invfor = foyer_fiscal('ri_invfor', period)
             invlst = foyer_fiscal('invlst', period)
             ip_net = foyer_fiscal('ip_net', period)
             locmeu = foyer_fiscal('locmeu', period)
@@ -239,12 +239,12 @@ class plf2016_counterfactual_2014(Reform):
             repsoc = foyer_fiscal('repsoc', period)
             resimm = foyer_fiscal('resimm', period)
             rsceha = foyer_fiscal('rsceha', period)
-            saldom = foyer_fiscal('saldom', period)
+            saldom = foyer_fiscal('ri_saldom', period)
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
             spfcpi = foyer_fiscal('spfcpi', period)
             total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog +\
-                donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
+                duflot + duflot_om + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
 
             return min_(ip_net, total_reductions)

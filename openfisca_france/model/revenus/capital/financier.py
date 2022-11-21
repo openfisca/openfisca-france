@@ -126,6 +126,15 @@ class f2fu(Variable):
     definition_period = YEAR
 
 
+class f2tq(Variable):
+    cerfa_field = '2TQ'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Intérêts imposables des obligations remboursables en actions détenues dans le PEA-PME'
+    definition_period = YEAR
+
+
 class f2ch(Variable):
     cerfa_field = '2CH'
     value_type = int
@@ -264,6 +273,16 @@ class f2bh(Variable):
     entity = FoyerFiscal
     label = 'Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible'
     # start_date = date(2007, 1, 1)
+    definition_period = YEAR
+
+
+class f2df(Variable):
+    cerfa_field = '2DF'
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = 'Autres revenus déjà soumis aux prélèvements sociaux avec CSG déductible'
+    # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
 

@@ -148,6 +148,7 @@ class f8th(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = 'Retenue à la source élus locaux'
+    end = '2016-12-31'
     definition_period = YEAR
 
 

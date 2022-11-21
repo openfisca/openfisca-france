@@ -1,0 +1,13 @@
+description: Taux spécial de réduction d'impôt pour les souscriptions de parts de FCPI et FIP
+values:
+  2020-01-01:
+    value: 0.25
+metadata:
+  last_review: '2022-10-11'
+  unit: /1
+  reference:
+    2020-01-01:
+      - title: Loi 2019-1479 du 28/12/2019 de finances pour 2020 (1) - art. 137 (modifie art. 199 terdecies-0 A du CGI)
+        href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000039793005/2019-12-30/
+      - title: Art. 199 terdecies-0 A, I. 1° du CGI
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042912844/2020-12-31/
