@@ -1,8 +1,38 @@
 import logging
+from numpy import around
 from openfisca_france.model.base import *
 
 
 log = logging.getLogger(__name__)
+
+# Le cas particulier des investissements d'outremer (domsoc, domlog, doment): la mise à jour des formules et la prise en compte d'un plafond approximatif
+#   n'est réalisée qu'à partir de 2016. Au vu de la complexité de ces dispositifs (rétrocession, investissements avec des plafonds particuliers..),
+#   les plafonds sont approximés (par année et par dispositif) et ils ne prennent pas en compte les interactions entre les trois dispositifs d'outremer ni
+#   l'interaction avec le plafonnement global des avantages fiscaux. De ce point de vue, l'approximation surestime les plafonds pour les investissements d'outremer.
+#   D'un autre côté lors de la déclaration d'impôt il possible de choisir pour ces dispositifs entre un plafond absolu et un plafond relatif en pourcentage de RNI,
+#   seul le plafond absolu est codé pour le moment, cela peut entrainer une sous estimation des réductions d'impôt pour les personnes qui ont un RNI
+#   supérieur à environ 300 000.
+
+class reductions_iom(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Réductions d'impôt sur les investissements d'outremer"
+    definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Approximations de plafonds déjà appliquées dans les formules
+        '''
+        reductions_om = [
+            # plafonds séparés, déjà appliqués dans les formules :
+            'doment',
+            'domlog',
+            'domsoc',
+        ]
+
+        red_iom = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_om])
+
+        return red_iom
 
 
 class doment(Variable):
