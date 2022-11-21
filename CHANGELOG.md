@@ -1,4 +1,24 @@
 # Changelog
+### 120.0.0 [#1876](https://github.com/openfisca/openfisca-france/pull/1876)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2000 - 2021.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/`
+  - `openfisca_france/model/revenus/`
+  - `openfisca_france/parameters/impot_revenu/`
+    * `calcul_credits_impots/`
+    * `calcul_revenus_imposables/charges_deductibles/grosses_reparations/plafond.yaml`
+    * `calcul_reductions_impots/`
+  - `openfisca_france/reform/plf2016.py`
+  - `openfisca_france/reform/plfr2014.py`
+  - `tests/calculateur_impots/yaml/`
+* Détails :
+  - Met à jour de la plupart des formules et paramètres des crédits et réductions d'impôt à l'exception de prlire et quaenv au moins à partir de 2016
+  - Ajoute et met à jour les cases fiscales correspondantes
+  - Découpe le fichier reductions_impot.py en trois fichiers
+  - Introduit une approximation du plafonnement global des crédits et réductions d'impôts à partir de 2013 (2016 pour les investissements d'outre-mer)
+
 ### 119.0.1 [#1922](https://github.com/openfisca/openfisca-france/pull/1922)
 
 *  Amélioration technique. 
