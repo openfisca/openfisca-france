@@ -1,13 +1,23 @@
 # Changelog
 
+### 132.0.1 [#1923](https://github.com/openfisca/openfisca-france/pull/1923)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `parameters/prelevements_sociaux/cotisations_secteur_public/ircantec`
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique.py`
+* Détails :
+  - N'utilise plus le champ `base` pour déduire les taux applelés des taux théoriques conforméméent  l'évolution de [`core`](https://github.com/openfisca/openfisca-core/pull/1162).
+
 # 132.0.0 [#1955](https://github.com/openfisca/openfisca-france/pull/1955)
 
 * Évolution du système socio-fiscal. | Amélioration technique.
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables`
     - exonerations: `exo_ir`
     - rpns: `microentreprise` et `microsocial`
-  
+
 * Détails :
   - Harmonisation et ajout de parametres
   - Fusion des doublons
