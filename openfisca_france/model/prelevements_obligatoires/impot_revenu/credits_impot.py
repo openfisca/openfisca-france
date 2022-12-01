@@ -45,8 +45,8 @@ class credits_impot(Variable):
             'credit_cotisations_syndicales',
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
-        P2021 = parameters('2021-01-01').impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich
+        P2021 = parameters('2021-01-01').impot_revenu.calcul_credits_impots.plaf_nich
 
         # Get remainder of allowance for niches fiscales
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
@@ -56,8 +56,8 @@ class credits_impot(Variable):
 
         # prise en compte des possibles restitutions des CI lorsque les RI sont déjà plafonnées par le montant de l'impôt
         reductions_plafonnees_tot = min_(impot_net, red_plaf
-            + max_(0, red_plaf_om - P.majoration_om)
-            + max_(0, red_plaf_esus_sfs - P2021.majoration_esus_sfs))
+            + max_(0, red_plaf_om - P.plafonnement_des_niches.majoration_om)
+            + max_(0, red_plaf_esus_sfs - P2021.plafonnement_des_niches.majoration_esus_sfs))
 
         remaining_allowance = P.plafond - reductions_plafonnees_tot
 
@@ -100,7 +100,7 @@ class credits_impot(Variable):
             'credit_cotisations_syndicales',
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich
 
         # Get remainder of allowance for niches fiscales
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
@@ -109,7 +109,7 @@ class credits_impot(Variable):
 
         # prise en compte des possibles restitutions des CI lorsque les RI sont déjà plafonnées par le montant de l'impôt
         reductions_plafonnees_tot = min_(impot_net, red_plaf
-            + max_(0, red_plaf_om - P.majoration_om))
+            + max_(0, red_plaf_om - P.plafonnement_des_niches.majoration_om))
 
         remaining_allowance = P.plafond - reductions_plafonnees_tot
 

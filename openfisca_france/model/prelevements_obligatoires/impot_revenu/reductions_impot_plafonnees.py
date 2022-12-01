@@ -52,7 +52,7 @@ class reductions_plafonnees(Variable):
             'reduction_impot_exceptionnelle',
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich
 
         # Step 1: Apply ceiling to general reductions
         montants_plaf = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_plafonnees])
@@ -75,7 +75,7 @@ class reductions_plafonnees_om_sofica(Variable):
             'scelli',  # Approximation (dispositif qui se termine en 2012, soumis à des plafonds supérieurs à 18 000€)
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich
 
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
         reste_gen = P.plafond - red_plaf
@@ -83,7 +83,7 @@ class reductions_plafonnees_om_sofica(Variable):
         # Step 2: Get additional reductions DOM-TOM and SOFICA
         # NB: Assuming the specific additional allowance is used first, and remaining general allowance is saved by preference for other reductions
         montants_om_sofica = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_om_sofica])
-        red_om_sofica = min_(P.majoration_om + reste_gen, montants_om_sofica)
+        red_om_sofica = min_(P.plafonnement_des_niches.majoration_om + reste_gen, montants_om_sofica)
 
         return red_om_sofica
 
@@ -101,16 +101,16 @@ class reductions_plafonnees_esus_sfs(Variable):
             'cappme_esus_sfs'
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich
 
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
         red_plaf_om = foyer_fiscal('reductions_plafonnees_om_sofica', period)
-        reste_gen = P.plafond_1 - red_plaf - max_(0, red_plaf_om - P.majoration_om)
+        reste_gen = P.plafond - red_plaf - max_(0, red_plaf_om - P.plafonnement_des_niches.majoration_om)
 
         # Step 3: Get additional reductions ESUS and SFS
         # NB: Assuming the specific additional allowance is used first, and remaining general allowance is saved by preference for other reductions
         montants_esus_sfs = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_esus_sfs])
-        red_esus_sfs = min_(P.majoration_esus_sfs + reste_gen, montants_esus_sfs)
+        red_esus_sfs = min_(P.plafonnement_des_niches.majoration_esus_sfs + reste_gen, montants_esus_sfs)
 
         return red_esus_sfs
 
