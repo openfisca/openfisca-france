@@ -1,4 +1,4 @@
-description: Seuil d'éligibilité - célibataire
+description: Seuils de RFR pour une personne seule pour être éligible à la Prime pour l'emploi (PPE, 2000 - 2015)
 values:
   1999-01-01:
     value: null
@@ -68,4 +68,3 @@ metadata:
     - title: Introduction de la majoration pour temps partiel
     2016-01-01:
     - title: A compter du 1e janvier 2016, la PPE est remplacée par la prime d'activité .
-  
