@@ -59,7 +59,7 @@ class credits_impot(Variable):
             + max_(0, red_plaf_om - P.majoration_om)
             + max_(0, red_plaf_esus_sfs - P2021.majoration_esus_sfs))
 
-        remaining_allowance = P.plafond_1 - reductions_plafonnees_tot
+        remaining_allowance = P.plafond - reductions_plafonnees_tot
 
         # credit available within the limit
         montants_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_plaf])
@@ -111,7 +111,7 @@ class credits_impot(Variable):
         reductions_plafonnees_tot = min_(impot_net, red_plaf
             + max_(0, red_plaf_om - P.majoration_om))
 
-        remaining_allowance = P.plafond_1 - reductions_plafonnees_tot
+        remaining_allowance = P.plafond - reductions_plafonnees_tot
 
         # credit available within the limit
         montants_plaf = sum([around(foyer_fiscal(credit, period)) for credit in credits_plaf])
