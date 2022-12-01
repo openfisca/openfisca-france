@@ -6,9 +6,8 @@
 * Périodes concernées : non applicable.
 * Zones impactées : `.github/`.
 * Détails :
-  - Corrige l'erreur d'intégration continue du type `Version 3.7.9 was not found in the local cache`
-  - Adapte les versions de Python suite à l'évolution du système d'exploitation en CI
-  - Choisit les version Python compatibles avec l'évolution d'`ubuntu-latest` de la v`20.04` à v`22.04`
+  - Corrige l'erreur d'intégration continue sous Linux du type `Version 3.7.9 was not found in the local cache`
+  - Fige l'OS à `ubuntu-20.04` pour compatibilité de versions Python suite à l'évolution `ubuntu-latest` de la v`20.04` à v`22.04` et par cohérence avec `openfisca-core`
 
 # 120.0.0 [#1876](https://github.com/openfisca/openfisca-france/pull/1876)
 

@@ -11,8 +11,8 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: ["ubuntu-latest"]  # On peut ajouter "macos-latest" si besoin
-        python-version: ["3.7.15", "3.8.14", "3.9.15"]
+        os: ["ubuntu-20.04"]  # On peut ajouter "macos-latest" si besoin
+        python-version: ["3.7.9", "3.8.9", "3.9.9"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -39,7 +39,7 @@ jobs:
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}
 
   lint-files:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: [ build ]
     steps:
       - uses: actions/checkout@v2
@@ -48,13 +48,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.15
+          python-version: 3.7.9
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-latest
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
       - run: make check-syntax-errors
       - run: make check-style
       - name: Lint Python files
@@ -67,8 +67,8 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ "ubuntu-latest" ]  # On peut ajouter "macos-latest" si besoin
-        python-version: ["3.7.15", "3.8.14", "3.9.15"]
+        os: [ "ubuntu-20.04" ]  # On peut ajouter "macos-latest" si besoin
+        python-version: ["3.7.9", "3.8.9", "3.9.9"]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -86,18 +86,18 @@ jobs:
           openfisca test tests/**/*.py
 
   test-path-length:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.7.15
+          python-version: 3.7.9
       - name: Test max path length
         run: make check-path-length
 
   test-yaml:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: [ build ]
     strategy:
       fail-fast: false
@@ -112,13 +112,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.15
+          python-version: 3.7.9
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-latest
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
       - name: Split YAML tests
         id: yaml-test
         env:
@@ -131,25 +131,25 @@ jobs:
           openfisca test ${TEST_FILES_SUBLIST}
 
   test-api:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: [ build ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.15
+          python-version: 3.7.9
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-latest
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
       - name: Test the Web API
         run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
 
   check-version-and-changelog:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: [ lint-files, test-python, test-yaml, test-api ] # Last job to run
     steps:
       - uses: actions/checkout@v2
@@ -158,7 +158,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.15
+          python-version: 3.7.9
       - name: Check version number has been properly updated
         run: "${GITHUB_WORKSPACE}/.github/is-version-number-acceptable.sh"
 
@@ -166,7 +166,7 @@ jobs:
   # We build a separate job to substitute the halt option.
   # The `deploy` job is dependent on the output of the `check-for-functional-changes` job.
   check-for-functional-changes:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ check-version-and-changelog ]
     outputs:
@@ -178,12 +178,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.15
+          python-version: 3.7.9
       - id: stop-early
         run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs: [ check-for-functional-changes ]
     if: needs.check-for-functional-changes.outputs.status == 'success'
     env:
@@ -196,26 +196,26 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.15
+          python-version: 3.7.9
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-latest
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
       - name: Cache release
         id: restore-release
         uses: actions/cache@v2
         with:
           path: dist
-          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-latest
+          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
       - name: Upload a Python package to PyPi
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
 
   build-conda:
-    runs-on: "ubuntu-latest"
+    runs-on: "ubuntu-20.04"
     needs: [ check-version-and-changelog ]
     # Do not build on master, the artifact will be used
     if: github.ref != 'refs/heads/master'
@@ -223,7 +223,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
-          python-version: "3.7.15"
+          python-version: "3.7.9"
           # Add conda-forge for OpenFisca-Core
           channels: conda-forge
           activate-environment: true
@@ -278,13 +278,13 @@ jobs:
         run: openfisca test --country-package openfisca_france tests
 
   publish-to-conda:
-    runs-on: "ubuntu-latest"
+    runs-on: "ubuntu-20.04"
     needs: [ deploy ]
     steps:
       - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
-          python-version: "3.7.15"
+          python-version: "3.7.9"
           # Add conda-forge for OpenFisca-Core
           channels: conda-forge
           activate-environment: true
