@@ -1,17 +1,27 @@
 # Changelog
-### 120.0.0 [#1876](https://github.com/openfisca/openfisca-france/pull/1876)
+
+### 120.0.1 [#1930](https://github.com/openfisca/openfisca-france/pull/1930)
+
+* Correction d'un crash.
+* Périodes concernées : non applicable.
+* Zones impactées : `.github/`.
+* Détails :
+  - Corrige l'erreur d'intégration continue sous Linux du type `Version 3.7.9 was not found in the local cache`
+  - Fige l'OS à `ubuntu-20.04` pour compatibilité de versions Python suite à l'évolution `ubuntu-latest` de la v`20.04` à v`22.04` et par cohérence avec `openfisca-core`
+
+# 120.0.0 [#1876](https://github.com/openfisca/openfisca-france/pull/1876)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2000 - 2021.
 * Zones impactées :
-  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/`
-  - `openfisca_france/model/revenus/`
-  - `openfisca_france/parameters/impot_revenu/`
+  - `model/prelevements_obligatoires/impot_revenu/`
+  - `model/revenus/`
+  - `parameters/impot_revenu/`
     * `calcul_credits_impots/`
     * `calcul_revenus_imposables/charges_deductibles/grosses_reparations/plafond.yaml`
     * `calcul_reductions_impots/`
-  - `openfisca_france/reform/plf2016.py`
-  - `openfisca_france/reform/plfr2014.py`
+  - `reform/plf2016.py`
+  - `reform/plfr2014.py`
   - `tests/calculateur_impots/yaml/`
 * Détails :
   - Met à jour de la plupart des formules et paramètres des crédits et réductions d'impôt à l'exception de prlire et quaenv au moins à partir de 2016
@@ -21,13 +31,13 @@
 
 ### 119.0.1 [#1922](https://github.com/openfisca/openfisca-france/pull/1922)
 
-*  Amélioration technique. 
+* Amélioration technique. 
 * Périodes concernées : toutes.
-* Zones impactées : `openfisca_france/parameters/taxation_indirecte/taxes_tabacs/taux_specifique`.
+* Zones impactées : `parameters/taxation_indirecte/taxes_tabacs/taux_specifique`.
 * Détails :
   - Découpage des taxes selon que ce soit des montants ou des taux
 
-## 119.0.0 [#1917](https://github.com/openfisca/openfisca-france/pull/1917)
+# 119.0.0 [#1917](https://github.com/openfisca/openfisca-france/pull/1917)
 
 * Amélioration technique.
 * Périodes concernées : à partir du 1945.
@@ -37,7 +47,7 @@
   - Découpe et harmonise les fichiers
   - Regroupe les taux et les seuils sous forme de barèmes
 
-### 118.3.4 [#1863](https://github.com/openfisca/openfisca-france/pull/1863)
+### 118.3.3 [#1863](https://github.com/openfisca/openfisca-france/pull/1863)
 
 * Changement mineur.
 * Périodes concernées : aucune
@@ -180,8 +190,8 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes
 * Zones impactées :
-  - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah`
-  - `openfisca_france/model/prestations/minima_sociaux/aah.py`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah`
+  - `model/prestations/minima_sociaux/aah.py`
 * Détails :
   - Mise à jour de l'abattement sur les revenus du conjoint dans le calcul de la base ressource pour l'aah
   - Changement du nom du paramètre existant et ajout d'un nouveau paramètre à partir de 2022
@@ -190,7 +200,7 @@
 
 * Amélioration technique.
 * Périodes concernées : aucune
-* Zones impactées : `openfisca_france/scripts/parameters/unfold_parameters.py`.
+* Zones impactées : `scripts/parameters/unfold_parameters.py`.
 * Détails :
   - Ajout d'un script qui déplie (ie décompose en sous paramètres) un paramètre OpenFisca (ou un barème IPP).
 
@@ -198,7 +208,7 @@
 
 * Changement mineur dans les métadonnées des paramètres
 * Périodes concernées : toutes
-* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/`
+* Zones impactées : `parameters/impot_revenu/calcul_revenus_imposables/tspr/`
 * Détails :
   - Renommage du champ "details" dans les références en "note".
 
@@ -214,12 +224,12 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/08/2022.
 * Zones impactées :
-  - `openfisca_france/parameters/prestations_sociales/aides_logement`
-  - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah`
-  - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/asi`
-  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/bmaf`
-  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale/asf`
-  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa`
+  - `parameters/prestations_sociales/aides_logement`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/asi`
+  - `parameters/prestations_sociales/prestations_familiales/bmaf`
+  - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/asf`
+  - `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa`
 
 * Détails :
   - Mise à jour des prestations sociales suite à la revalorisation exceptionnelle de 4% en  Juillet 2022.
@@ -230,11 +240,11 @@
 * Changement mineur.
 * Périodes concernées : à partir du 01/01/2018.
 * Zones impactées :
-  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
-  - `openfisca_france/model/prestations/aides_logement.py`
-  - `openfisca_france/model/revenus/remplacement/chomage.py`
-  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpro/min2.yaml`
-  - `openfisca_france/parameters/indemnite_inflation.yaml`
+  - `model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `model/prestations/aides_logement.py`
+  - `model/revenus/remplacement/chomage.py`
+  - `parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpro/min2.yaml`
+  - `parameters/indemnite_inflation.yaml`
 * Détails :
   - Améliore la prise en compte d'une réforme.
   - Ne devrait pas changer de calcul.
@@ -274,10 +284,10 @@
 * Évolution du système socio-fiscal
 * Périodes concernées : du 01/01/2020 au 31/12/2021
 * Zones impactées :
-  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpen/max.yaml`
-  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpen/min.yaml`
-  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpro/min.yaml`
-  - `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpro/min.yaml`
+  - `parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpen/max.yaml`
+  - `parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpen/min.yaml`
+  - `parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpro/min.yaml`
+  - `parameters/impot_revenu/calcul_revenus_imposables/tspr/abatpro/min.yaml`
 * Détails :
   - Mise à jour des montants minimum et maximum d'abattement pour les traitements et salaires et pour les pensions
   - Ajout de références législatives
@@ -289,8 +299,8 @@
 * Zones impactées :
   - `model/prestations/complement_are.py`,
   - `model/revenus/remplacement/chomage.py`,
-  - `openfisca_france/parameters/chomage/cotisation_retraite_complementaire.yaml`,
-  - `openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/cotisation_retraite_complementaire`
+  - `parameters/chomage/cotisation_retraite_complementaire.yaml`,
+  - `parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive/cotisation_retraite_complementaire`
 * Détails :
   - Empêcher le cumul de l'ARE et du complément ARE dans le calcul du montant du chômage et par conséquent dans la prime d'activité
   - Introduction du système d'éligibilité au complément ARE
