@@ -37,7 +37,7 @@ class reductions_plafonnees(Variable):
             'ri_saldom',
             'cappme',  # Approximation
             'deffor',  # fait partie de inv. for. ?
-            'garext',
+            'gardenf',
             'ri_invfor',
             'locmeu',  # Censi-Bouvard, plafonnement approximatif
             'invlst',  # Approximation
@@ -167,7 +167,7 @@ class reductions(Variable):
             'accult', 'adhcga', 'assvie', 'cappme', 'cappme_esus_sfs',
             'reduction_cotisations_syndicales',
             'daepad', 'dfppce', 'doment', 'domlog',
-            'ecpess', 'garext', 'intemp', 'ri_invfor', 'invrev',
+            'ecpess', 'gardenf', 'intemp', 'ri_invfor', 'invrev',
             'prcomp', 'rsceha', 'ri_saldom', 'spfcpi',
             # Introduites en 2003
             'mecena', 'repsoc',
@@ -1627,7 +1627,7 @@ class ecodev(Variable):
         return min_(f7uh * P.taux, min_(P.taux_plafond * rbg_int, P.plafond_par_personne))  # page3 ligne 18
 
 
-class garext(Variable):
+class gardenf(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur des dépenses de frais de garde des jeunes enfants"
@@ -1644,7 +1644,7 @@ class garext(Variable):
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.garext
+        P = parameters(period).impot_revenu.calcul_credits_impots.gardenf
 
         max1 = P.plafond
         return P.taux * (min_(f7ga, max1) + min_(f7gb, max1) + min_(f7gc, max1))
@@ -1661,7 +1661,7 @@ class garext(Variable):
         f7ge = foyer_fiscal('f7ge', period)
         f7gf = foyer_fiscal('f7gf', period)
         f7gg = foyer_fiscal('f7gg', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.garext
+        P = parameters(period).impot_revenu.calcul_credits_impots.gardenf
 
         max1 = P.plafond
         max2 = P.plafond / 2
