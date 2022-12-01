@@ -3501,20 +3501,20 @@ class ppe_brute(Variable):
             # cond1 = ligne1 | ligne3
             # cond2 = ligne2
             # return 1 / ppe_coef * ((cond1 & (base <= ppe_seuils.pour_taux_plein_cas_general)) * (base) * ppe.taux.phase_in +
-            #     (cond1 & (base > ppe_seuils.pour_taux_plein_cas_general) & (base <= ppe_seuils.maximum_cas_general)) * (ppe_seuils.maximum_cas_general - base) * ppe.taux.taux2 +
+            #     (cond1 & (base > ppe_seuils.pour_taux_plein_cas_general) & (base <= ppe_seuils.maximum_cas_general)) * (ppe_seuils.maximum_cas_general - base) * ppe.taux.phase_out_cas_general +
             #     (cond2 & (base <= ppe_seuils.pour_taux_plein_cas_general)) * (base * ppe.taux.phase_in) +
-            #     (cond2 & (base > ppe_seuils.pour_taux_plein_cas_general) & (base <= ppe_seuils.maximum_cas_general)) * ((ppe_seuils.maximum_cas_general - base) * ppe.taux.taux2) +
+            #     (cond2 & (base > ppe_seuils.pour_taux_plein_cas_general) & (base <= ppe_seuils.maximum_cas_general)) * ((ppe_seuils.maximum_cas_general - base) * ppe.taux.phase_out_cas_general) +
             #     (cond2 & (base > ppe_seuils.pour_taux_plein_couples_mono_revenus) & (base <= ppe_seuils.max_couples_mono_emploi_parents_isoles)) * (ppe_seuils.max_couples_mono_emploi_parents_isoles - base) * ppe.taux.phase_out_couples_mono_emploi)
             return (
                 (base <= ppe_seuils.pour_taux_plein_cas_general) * (base) * ppe.taux.phase_in
-                + (base > ppe_seuils.pour_taux_plein_cas_general) * (base <= ppe_seuils.maximum_cas_general) * (ppe_seuils.maximum_cas_general - base) * ppe.taux.taux2
+                + (base > ppe_seuils.pour_taux_plein_cas_general) * (base <= ppe_seuils.maximum_cas_general) * (ppe_seuils.maximum_cas_general - base) * ppe.taux.phase_out_cas_general
                 + ligne2 * (base > ppe_seuils.pour_taux_plein_couples_mono_revenus) * (base <= ppe_seuils.max_couples_mono_emploi_parents_isoles) * (ppe_seuils.max_couples_mono_emploi_parents_isoles - base) * ppe.taux.phase_out_couples_mono_emploi
                 )
 
         def ppe_bar2(base):
             return (
                 (base <= ppe_seuils.pour_taux_plein_cas_general) * (base) * ppe.taux.phase_in
-                + ((base > ppe_seuils.pour_taux_plein_cas_general) & (base <= ppe_seuils.maximum_cas_general)) * (ppe_seuils.maximum_cas_general - base) * ppe.taux.taux2)
+                + ((base > ppe_seuils.pour_taux_plein_cas_general) & (base <= ppe_seuils.maximum_cas_general)) * (ppe_seuils.maximum_cas_general - base) * ppe.taux.phase_out_cas_general)
 
         # calcul des primes individuelles.
 
