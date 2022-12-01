@@ -60,7 +60,7 @@
       - ind4
       personne_de_reference: ind0
   output:
-    ci_garext: 1725.0
+    ci_gardenff: 1725.0
     iai: 13460.0
     irpp: -11735.0
     nbptr: 2.75
@@ -130,7 +130,7 @@
       - ind4
       personne_de_reference: ind0
   output:
-    ci_garext: 1725.0
+    ci_gardenff: 1725.0
     iai: 13446.0
     irpp: -11721.0
     nbptr: 2.75
@@ -199,7 +199,7 @@
       - ind4
       personne_de_reference: ind0
   output:
-    ci_garext: 1725.0
+    ci_gardenff: 1725.0
     iai: 13431.0
     irpp: -11706.0
     nbptr: 2.75
@@ -268,7 +268,7 @@
       - ind4
       personne_de_reference: ind0
   output:
-    ci_garext: 1725.0
+    ci_gardenff: 1725.0
     iai: 13296.0
     irpp: -11571.0
     nbptr: 2.75
