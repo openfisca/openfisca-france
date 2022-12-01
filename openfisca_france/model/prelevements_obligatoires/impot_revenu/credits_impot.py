@@ -1674,7 +1674,7 @@ class inthab(Variable):
             + P.taux3 * min_(f7vu, max3)
             + P.taux4 * min_(f7vz, max4)
             + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max5)
-            + P.taux6 * min_(f7vt, max6)
+            + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max6)
             )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -1710,7 +1710,7 @@ class inthab(Variable):
             + P.taux3 * min_(f7vu, max1)
             + P.taux4 * min_(f7vz, max2)
             + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max3)
-            + P.taux6 * min_(f7vt, max4)
+            + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max4)
             )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -1743,7 +1743,7 @@ class inthab(Variable):
             P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + P.taux4 * min_(f7vz, max1)
             + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max2)
-            + P.taux6 * min_(f7vt, max3)
+            + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max3)
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -1773,7 +1773,7 @@ class inthab(Variable):
         return (
             P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + P.taux4 * min_(f7vz, max1)
-            + P.taux6 * min_(f7vt, max2)
+            + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max2)
             )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
@@ -1803,7 +1803,7 @@ class inthab(Variable):
         return (
             P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max1)
-            + P.taux6 * min_(f7vt, max2)
+            + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max2)
             )
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
