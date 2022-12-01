@@ -56,7 +56,7 @@ class reductions_plafonnees(Variable):
 
         # Step 1: Apply ceiling to general reductions
         montants_plaf = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_plafonnees])
-        red_plaf = min_(P.plafond_1, montants_plaf)
+        red_plaf = min_(P.plafond, montants_plaf)
 
         return red_plaf
 
@@ -78,7 +78,7 @@ class reductions_plafonnees_om_sofica(Variable):
         P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
 
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
-        reste_gen = P.plafond_1 - red_plaf
+        reste_gen = P.plafond - red_plaf
 
         # Step 2: Get additional reductions DOM-TOM and SOFICA
         # NB: Assuming the specific additional allowance is used first, and remaining general allowance is saved by preference for other reductions
