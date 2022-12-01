@@ -1,6 +1,6 @@
 # Changelog
 
-### [#1930](https://github.com/openfisca/openfisca-france/pull/1930)
+### 120.0.1 [#1930](https://github.com/openfisca/openfisca-france/pull/1930)
 
 * Correction d'un crash.
 * Périodes concernées : non applicable.
