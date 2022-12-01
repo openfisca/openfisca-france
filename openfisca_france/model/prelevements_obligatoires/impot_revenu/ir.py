@@ -3503,11 +3503,11 @@ class ppe_brute(Variable):
             #     (cond1 & (base > ppe.seuils_revenu_activite.pour_taux_plein_cas_general) & (base <= ppe.seuils_revenu_activite.maximum_cas_general)) * (ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2 +
             #     (cond2 & (base <= ppe.seuils_revenu_activite.pour_taux_plein_cas_general)) * (base * ppe.taux1) +
             #     (cond2 & (base > ppe.seuils_revenu_activite.pour_taux_plein_cas_general) & (base <= ppe.seuils_revenu_activite.maximum_cas_general)) * ((ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2) +
-            #     (cond2 & (base > ppe.seuils_revenu_activite.seuil4) & (base <= ppe.seuils_revenu_activite.seuil5)) * (ppe.seuils_revenu_activite.seuil5 - base) * ppe.taux3)
+            #     (cond2 & (base > ppe.seuils_revenu_activite.pour_taux_plein_couples_mono_revenus) & (base <= ppe.seuils_revenu_activite.seuil5)) * (ppe.seuils_revenu_activite.seuil5 - base) * ppe.taux3)
             return (
                 (base <= ppe.seuils_revenu_activite.pour_taux_plein_cas_general) * (base) * ppe.taux1
                 + (base > ppe.seuils_revenu_activite.pour_taux_plein_cas_general) * (base <= ppe.seuils_revenu_activite.maximum_cas_general) * (ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2
-                + ligne2 * (base > ppe.seuils_revenu_activite.seuil4) * (base <= ppe.seuils_revenu_activite.seuil5) * (ppe.seuils_revenu_activite.seuil5 - base) * ppe.taux3
+                + ligne2 * (base > ppe.seuils_revenu_activite.pour_taux_plein_couples_mono_revenus) * (base <= ppe.seuils_revenu_activite.seuil5) * (ppe.seuils_revenu_activite.seuil5 - base) * ppe.taux3
                 )
 
         def ppe_bar2(base):
@@ -3521,8 +3521,8 @@ class ppe_brute(Variable):
         ppec = elic * (1 / ppe_coef) * ppe_bar1(basec)
 
         # Primes de monoactivité
-        ppe_monact_vous = (eliv & ligne2 & (basevi >= ppe.seuils_revenu_activite.minimum) & (basev <= ppe.seuils_revenu_activite.seuil4)) * ppe.monact
-        ppe_monact_conj = (elic & ligne2 & (baseci >= ppe.seuils_revenu_activite.minimum) & (basec <= ppe.seuils_revenu_activite.seuil4)) * ppe.monact
+        ppe_monact_vous = (eliv & ligne2 & (basevi >= ppe.seuils_revenu_activite.minimum) & (basev <= ppe.seuils_revenu_activite.pour_taux_plein_couples_mono_revenus)) * ppe.monact
+        ppe_monact_conj = (elic & ligne2 & (baseci >= ppe.seuils_revenu_activite.minimum) & (basec <= ppe.seuils_revenu_activite.pour_taux_plein_couples_mono_revenus)) * ppe.monact
 
         # Primes pour enfants à charge
         maj_pac = ppe_elig * (eliv | elic) * (
