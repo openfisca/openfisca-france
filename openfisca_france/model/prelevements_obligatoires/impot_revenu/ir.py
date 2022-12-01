@@ -3551,7 +3551,7 @@ class ppe_brute(Variable):
 
         ppe_tot = ppe_vous + ppe_conj + ppe_pac + maj_pac
 
-        ppe_tot = (ppe_tot != 0) * max_(ppe.versmin, ppe_tot)
+        ppe_tot = (ppe_tot != 0) * max_(ppe.montant_minimum, ppe_tot)
 
         return ppe_tot
 
