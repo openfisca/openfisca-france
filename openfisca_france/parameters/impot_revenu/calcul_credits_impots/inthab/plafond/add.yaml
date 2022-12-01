@@ -1,9 +1,9 @@
-description: Plafond pour une personne seule (célibataire, veuve ou divorcée) du Crédit d'Impôt sur les Intérêts des emprunts pour l'habitation principale
+description: Majoration par enfant à charge du plafond du Crédit d'Impôt sur les Intérêts des emprunts pour l'habitation principale
 values:
   2007-01-01:
-    value: 3750
+    value: 500
 metadata:
-  ux_name: Personne seule
+  ux_name: Majoration par personne à charge
   unit: currency
 documentation: |
   Pour les contribuables fiscalement domiciliés en France ayant acquis ou fait construire une habitation principale 
