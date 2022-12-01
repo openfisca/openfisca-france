@@ -1595,7 +1595,7 @@ class inthab(Variable):
         return (
             P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
-            + P.taux2 * min_(f7vw, max2)
+            + P.taux_appliques_logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
             + P.taux3 * min_(f7vz, max3)
             )
 
@@ -1630,7 +1630,7 @@ class inthab(Variable):
         return (
             P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
-            + P.taux2 * min_(f7vw, max2)
+            + P.taux_appliques_logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
             + P.taux3 * min_(f7vu, max3)
             + P.taux4 * min_(f7vz, max4)
             + P.taux5 * min_(f7vv, max5)
@@ -1670,7 +1670,7 @@ class inthab(Variable):
         return (
             P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
-            + P.taux2 * min_(f7vw, max2)
+            + P.taux_appliques_logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
             + P.taux3 * min_(f7vu, max3)
             + P.taux4 * min_(f7vz, max4)
             + P.taux5 * min_(f7vv, max5)
