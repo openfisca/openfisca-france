@@ -3446,7 +3446,7 @@ class ppe_elig_individu(Variable):
         ppe_coef_tp = individu('ppe_coef_tp', period)
         ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
 
-        return (ppe_rev >= ppe.seuils_revenu_activite.seuil1) & (ppe_coef_tp != 0)
+        return (ppe_rev >= ppe.seuils_revenu_activite.minimum) & (ppe_coef_tp != 0)
 
 
 class ppe_brute(Variable):
@@ -3489,7 +3489,7 @@ class ppe_brute(Variable):
 
         nb_pac_ppe = max_(0, nb_pac - foyer_fiscal.sum(eligible_i, role = FoyerFiscal.PERSONNE_A_CHARGE))
 
-        ligne2 = maries_ou_pacses & xor_(basevi >= ppe.seuils_revenu_activite.seuil1, baseci >= ppe.seuils_revenu_activite.seuil1)
+        ligne2 = maries_ou_pacses & xor_(basevi >= ppe.seuils_revenu_activite.minimum, baseci >= ppe.seuils_revenu_activite.minimum)
         ligne3 = (celibataire_ou_divorce | veuf) & caseT & not_(veuf & caseT & caseL)
         ligne1 = not_(ligne2) & not_(ligne3)
 
@@ -3521,18 +3521,18 @@ class ppe_brute(Variable):
         ppec = elic * (1 / ppe_coef) * ppe_bar1(basec)
 
         # Primes de monoactivité
-        ppe_monact_vous = (eliv & ligne2 & (basevi >= ppe.seuils_revenu_activite.seuil1) & (basev <= ppe.seuils_revenu_activite.seuil4)) * ppe.monact
-        ppe_monact_conj = (elic & ligne2 & (baseci >= ppe.seuils_revenu_activite.seuil1) & (basec <= ppe.seuils_revenu_activite.seuil4)) * ppe.monact
+        ppe_monact_vous = (eliv & ligne2 & (basevi >= ppe.seuils_revenu_activite.minimum) & (basev <= ppe.seuils_revenu_activite.seuil4)) * ppe.monact
+        ppe_monact_conj = (elic & ligne2 & (baseci >= ppe.seuils_revenu_activite.minimum) & (basec <= ppe.seuils_revenu_activite.seuil4)) * ppe.monact
 
         # Primes pour enfants à charge
         maj_pac = ppe_elig * (eliv | elic) * (
             (ligne1 & maries_ou_pacses & ((ppev + ppec) != 0) & (min_(basev, basec) <= ppe.seuils_revenu_activite.maximum_cas_general)) * ppe.pac
             * (nb_pac_ppe + nbH * 0.5)
             + (ligne1 & (celibataire_ou_divorce | veuf) & eliv & (basev <= ppe.seuils_revenu_activite.maximum_cas_general)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
-            + (ligne2 & (base_monacti >= ppe.seuils_revenu_activite.seuil1) & (base_monact <= ppe.seuils_revenu_activite.maximum_cas_general)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
+            + (ligne2 & (base_monacti >= ppe.seuils_revenu_activite.minimum) & (base_monact <= ppe.seuils_revenu_activite.maximum_cas_general)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
             + (ligne2 & (base_monact > ppe.seuils_revenu_activite.maximum_cas_general) & (base_monact <= ppe.seuils_revenu_activite.seuil5)) * ppe.pac
             * ((nb_pac_ppe != 0) + 0.5 * ((nb_pac_ppe == 0) & (nbH != 0)))
-            + (ligne3 & (basevi >= ppe.seuils_revenu_activite.seuil1) & (basev <= ppe.seuils_revenu_activite.maximum_cas_general)) * (
+            + (ligne3 & (basevi >= ppe.seuils_revenu_activite.minimum) & (basev <= ppe.seuils_revenu_activite.maximum_cas_general)) * (
                 (min_(nb_pac_ppe, 1) * 2 * ppe.pac + max_(nb_pac_ppe - 1, 0) * ppe.pac)
                 + (nb_pac_ppe == 0) * (min_(nbH, 2) * ppe.pac + max_(nbH - 2, 0) * ppe.pac * 0.5))
             + (ligne3 & (basev > ppe.seuils_revenu_activite.maximum_cas_general) & (basev <= ppe.seuils_revenu_activite.seuil5)) * ppe.pac
