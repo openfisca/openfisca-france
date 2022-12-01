@@ -1,5 +1,16 @@
 # Changelog
-### 120.0.0 [#1876](https://github.com/openfisca/openfisca-france/pull/1876)
+
+### [#1930](https://github.com/openfisca/openfisca-france/pull/1930)
+
+* Correction d'un crash.
+* Périodes concernées : non applicable.
+* Zones impactées : `.github/`.
+* Détails :
+  - Corrige l'erreur d'intégration continue du type `Version 3.7.9 was not found in the local cache`
+  - Adapte les versions de Python suite à l'évolution du système d'exploitation en CI
+  - Choisit les version Python compatibles avec l'évolution d'`ubuntu-latest` de la v`20.04` à v`22.04`
+
+# 120.0.0 [#1876](https://github.com/openfisca/openfisca-france/pull/1876)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2000 - 2021.
@@ -21,13 +32,13 @@
 
 ### 119.0.1 [#1922](https://github.com/openfisca/openfisca-france/pull/1922)
 
-*  Amélioration technique. 
+* Amélioration technique. 
 * Périodes concernées : toutes.
 * Zones impactées : `openfisca_france/parameters/taxation_indirecte/taxes_tabacs/taux_specifique`.
 * Détails :
   - Découpage des taxes selon que ce soit des montants ou des taux
 
-## 119.0.0 [#1917](https://github.com/openfisca/openfisca-france/pull/1917)
+# 119.0.0 [#1917](https://github.com/openfisca/openfisca-france/pull/1917)
 
 * Amélioration technique.
 * Périodes concernées : à partir du 1945.
