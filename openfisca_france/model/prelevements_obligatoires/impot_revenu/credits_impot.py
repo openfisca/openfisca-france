@@ -1632,7 +1632,7 @@ class inthab(Variable):
             + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
             + P.taux_appliques_logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
             + P.taux3 * min_(f7vu, max3)
-            + P.taux4 * min_(f7vz, max4)
+            + P.cas_base.taux_2 * min_(f7vz, max4)
             + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max5)
             )
 
@@ -1672,7 +1672,7 @@ class inthab(Variable):
             + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
             + P.taux_appliques_logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
             + P.taux3 * min_(f7vu, max3)
-            + P.taux4 * min_(f7vz, max4)
+            + P.cas_base.taux_2 * min_(f7vz, max4)
             + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max5)
             + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max6)
             )
@@ -1708,7 +1708,7 @@ class inthab(Variable):
         return (
             P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + P.taux3 * min_(f7vu, max1)
-            + P.taux4 * min_(f7vz, max2)
+            + P.cas_base.taux_2 * min_(f7vz, max2)
             + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max3)
             + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max4)
             )
@@ -1741,7 +1741,7 @@ class inthab(Variable):
 
         return (
             P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
-            + P.taux4 * min_(f7vz, max1)
+            + P.cas_base.taux_2 * min_(f7vz, max1)
             + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max2)
             + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max3)
             )
@@ -1772,7 +1772,7 @@ class inthab(Variable):
 
         return (
             P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
-            + P.taux4 * min_(f7vz, max1)
+            + P.cas_base.taux_2 * min_(f7vz, max1)
             + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max2)
             )
 
