@@ -1,29 +1,29 @@
-description: Seuils de RFR d'un Couple marié ou pacsé pour être éligible à la Prime pour l'emploi (PPE, 2000 - 2015)
+description: Majoration par demi-part de quotient familial au-delà de 1 ou 2 du seuil de RFR pour être éligible à la Prime pour l'emploi (PPE, 2000 - 2015)
 values:
   1999-01-01:
     value: null
   2000-01-01:
-    value: 152000
+    value: 21000
   2001-01-01:
-    value: 23544
+    value: 3253
   2002-01-01:
-    value: 23944
+    value: 3308
   2003-01-01:
-    value: 24351
+    value: 3364
   2004-01-01:
-    value: 24765
+    value: 3421
   2005-01-01:
-    value: 25211
+    value: 3483
   2006-01-01:
-    value: 32081
+    value: 4432
   2007-01-01:
-    value: 32498
+    value: 4490
   2016-01-01:
     value: null
 metadata:
-  ux_name: Couple
+  ux_name: Incrément par demi-part
   unit: currency
-  ipp_csv_id: seuil_rfr_ppe_coup
+  ipp_csv_id: seuil_rfr_ppe_enf
   description_en: Employment Allowance (2001 - 2015)
   reference:
     2000-01-01:
