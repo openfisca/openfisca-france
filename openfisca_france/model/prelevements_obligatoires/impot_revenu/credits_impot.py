@@ -1514,7 +1514,7 @@ class inthab(Variable):
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
-        return P.taux1 * min_(max0, f7uh)
+        return P.cas_base.taux_applique_premiere_annuite_remboursement * min_(max0, f7uh)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1536,7 +1536,7 @@ class inthab(Variable):
         max1 = max_(max0 - f7vy, 0)
 
         return (
-            P.taux1 * min_(f7vy, max0)
+            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max0)
             + P.taux3 * min_(f7vz, max1)
             )
 
@@ -1563,8 +1563,8 @@ class inthab(Variable):
         max2 = max_(max1 - f7vy, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
-            + P.taux1 * min_(f7vy, max1)
+            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+            + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
             + P.taux3 * min_(f7vz, max2)
             )
 
@@ -1593,8 +1593,8 @@ class inthab(Variable):
         max3 = max_(max2 - f7vw, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
-            + P.taux1 * min_(f7vy, max1)
+            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+            + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
             + P.taux2 * min_(f7vw, max2)
             + P.taux3 * min_(f7vz, max3)
             )
@@ -1628,8 +1628,8 @@ class inthab(Variable):
         max5 = max_(max4 - f7vz, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
-            + P.taux1 * min_(f7vy, max1)
+            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+            + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
             + P.taux2 * min_(f7vw, max2)
             + P.taux3 * min_(f7vu, max3)
             + P.taux4 * min_(f7vz, max4)
@@ -1668,8 +1668,8 @@ class inthab(Variable):
         max6 = max_(max5 - f7vv, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
-            + P.taux1 * min_(f7vy, max1)
+            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+            + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
             + P.taux2 * min_(f7vw, max2)
             + P.taux3 * min_(f7vu, max3)
             + P.taux4 * min_(f7vz, max4)
@@ -1706,7 +1706,7 @@ class inthab(Variable):
         max4 = max_(max3 - f7vv, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
+            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + P.taux3 * min_(f7vu, max1)
             + P.taux4 * min_(f7vz, max2)
             + P.taux5 * min_(f7vv, max3)
@@ -1740,7 +1740,7 @@ class inthab(Variable):
         max3 = max_(max2 - f7vv, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
+            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + P.taux4 * min_(f7vz, max1)
             + P.taux5 * min_(f7vv, max2)
             + P.taux6 * min_(f7vt, max3)
@@ -1771,7 +1771,7 @@ class inthab(Variable):
         max2 = max_(max1 - f7vz, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
+            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + P.taux4 * min_(f7vz, max1)
             + P.taux6 * min_(f7vt, max2)
             )
@@ -1801,7 +1801,7 @@ class inthab(Variable):
         max2 = max_(max1 - f7vv, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
+            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
             + P.taux5 * min_(f7vv, max1)
             + P.taux6 * min_(f7vt, max2)
             )
@@ -1824,7 +1824,7 @@ class inthab(Variable):
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
 
-        return P.taux1 * min_(f7vx, max0)
+        return P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
 
 
 class jeunes(Variable):
