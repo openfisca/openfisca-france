@@ -1,8 +1,0 @@
-description: Taux 3 du Crédit d'Impôt sur les Intérêts des emprunts pour l'habitation principale
-values:
-  2007-01-01:
-    value: 0.2
-  2011-01-01:
-    value: 0.25
-metadata:
-  unit: /1
