@@ -3503,11 +3503,11 @@ class ppe_brute(Variable):
             #     (cond1 & (base > ppe.seuils_revenu_activite.pour_taux_plein_cas_general) & (base <= ppe.seuils_revenu_activite.maximum_cas_general)) * (ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2 +
             #     (cond2 & (base <= ppe.seuils_revenu_activite.pour_taux_plein_cas_general)) * (base * ppe.taux1) +
             #     (cond2 & (base > ppe.seuils_revenu_activite.pour_taux_plein_cas_general) & (base <= ppe.seuils_revenu_activite.maximum_cas_general)) * ((ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2) +
-            #     (cond2 & (base > ppe.seuils_revenu_activite.pour_taux_plein_couples_mono_revenus) & (base <= ppe.seuils_revenu_activite.seuil5)) * (ppe.seuils_revenu_activite.seuil5 - base) * ppe.taux3)
+            #     (cond2 & (base > ppe.seuils_revenu_activite.pour_taux_plein_couples_mono_revenus) & (base <= ppe.seuils_revenu_activite.max_couples_mono_emploi_parents_isoles)) * (ppe.seuils_revenu_activite.max_couples_mono_emploi_parents_isoles - base) * ppe.taux3)
             return (
                 (base <= ppe.seuils_revenu_activite.pour_taux_plein_cas_general) * (base) * ppe.taux1
                 + (base > ppe.seuils_revenu_activite.pour_taux_plein_cas_general) * (base <= ppe.seuils_revenu_activite.maximum_cas_general) * (ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2
-                + ligne2 * (base > ppe.seuils_revenu_activite.pour_taux_plein_couples_mono_revenus) * (base <= ppe.seuils_revenu_activite.seuil5) * (ppe.seuils_revenu_activite.seuil5 - base) * ppe.taux3
+                + ligne2 * (base > ppe.seuils_revenu_activite.pour_taux_plein_couples_mono_revenus) * (base <= ppe.seuils_revenu_activite.max_couples_mono_emploi_parents_isoles) * (ppe.seuils_revenu_activite.max_couples_mono_emploi_parents_isoles - base) * ppe.taux3
                 )
 
         def ppe_bar2(base):
@@ -3530,12 +3530,12 @@ class ppe_brute(Variable):
             * (nb_pac_ppe + nbH * 0.5)
             + (ligne1 & (celibataire_ou_divorce | veuf) & eliv & (basev <= ppe.seuils_revenu_activite.maximum_cas_general)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
             + (ligne2 & (base_monacti >= ppe.seuils_revenu_activite.minimum) & (base_monact <= ppe.seuils_revenu_activite.maximum_cas_general)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
-            + (ligne2 & (base_monact > ppe.seuils_revenu_activite.maximum_cas_general) & (base_monact <= ppe.seuils_revenu_activite.seuil5)) * ppe.pac
+            + (ligne2 & (base_monact > ppe.seuils_revenu_activite.maximum_cas_general) & (base_monact <= ppe.seuils_revenu_activite.max_couples_mono_emploi_parents_isoles)) * ppe.pac
             * ((nb_pac_ppe != 0) + 0.5 * ((nb_pac_ppe == 0) & (nbH != 0)))
             + (ligne3 & (basevi >= ppe.seuils_revenu_activite.minimum) & (basev <= ppe.seuils_revenu_activite.maximum_cas_general)) * (
                 (min_(nb_pac_ppe, 1) * 2 * ppe.pac + max_(nb_pac_ppe - 1, 0) * ppe.pac)
                 + (nb_pac_ppe == 0) * (min_(nbH, 2) * ppe.pac + max_(nbH - 2, 0) * ppe.pac * 0.5))
-            + (ligne3 & (basev > ppe.seuils_revenu_activite.maximum_cas_general) & (basev <= ppe.seuils_revenu_activite.seuil5)) * ppe.pac
+            + (ligne3 & (basev > ppe.seuils_revenu_activite.maximum_cas_general) & (basev <= ppe.seuils_revenu_activite.max_couples_mono_emploi_parents_isoles)) * ppe.pac
             * ((nb_pac_ppe != 0) * 2 + ((nb_pac_ppe == 0) & (nbH != 0))))
 
         def coef(coef_tp):
