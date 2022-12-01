@@ -24,7 +24,7 @@ class credits_impot(Variable):
 
         credits_plaf = [
             'ci_saldom',
-            'ci_garext',
+            'ci_gardenf',
             'ci_invfor',
 
             # dans le doute:
@@ -79,7 +79,7 @@ class credits_impot(Variable):
 
         credits_plaf = [
             'ci_saldom',
-            'ci_garext',
+            'ci_gardenf',
             'ci_invfor',
 
             # dans le doute:
