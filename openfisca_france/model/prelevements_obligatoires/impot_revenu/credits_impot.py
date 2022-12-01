@@ -1510,10 +1510,10 @@ class inthab(Variable):
         nbpac_invalideG = foyer_fiscal('nbG', period)
         nbpac_invalideR = foyer_fiscal('nbR', period)
         f7uh = foyer_fiscal('f7uh_2007', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+        P = parameters(period).impot_revenu.calcul_credits_impots.habitat_princ_credit
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
-        max0 = P.plafond.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.plafond.add
+        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
         return P.taux1 * min_(max0, f7uh)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
@@ -1529,10 +1529,10 @@ class inthab(Variable):
         nbpac_invalideR = foyer_fiscal('nbR', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+        P = parameters(period).impot_revenu.calcul_credits_impots.habitat_princ_credit
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
-        max0 = P.plafond.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.plafond.add
+        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
         max1 = max_(max0 - f7vy, 0)
 
         return (
@@ -1554,10 +1554,10 @@ class inthab(Variable):
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+        P = parameters(period).impot_revenu.calcul_credits_impots.habitat_princ_credit
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
-        max0 = P.plafond.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.plafond.add
+        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
@@ -1583,10 +1583,10 @@ class inthab(Variable):
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+        P = parameters(period).impot_revenu.calcul_credits_impots.habitat_princ_credit
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
-        max0 = P.plafond.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.plafond.add
+        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
@@ -1616,10 +1616,10 @@ class inthab(Variable):
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+        P = parameters(period).impot_revenu.calcul_credits_impots.habitat_princ_credit
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
-        max0 = P.plafond.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.plafond.add
+        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
@@ -1655,10 +1655,10 @@ class inthab(Variable):
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+        P = parameters(period).impot_revenu.calcul_credits_impots.habitat_princ_credit
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
-        max0 = P.plafond.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.plafond.add
+        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
@@ -1694,12 +1694,12 @@ class inthab(Variable):
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+        P = parameters(period).impot_revenu.calcul_credits_impots.habitat_princ_credit
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
-        max0 = P.plafond.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.plafond.add
+        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vu, 0)
         max3 = max_(max2 - f7vz, 0)
@@ -1729,12 +1729,12 @@ class inthab(Variable):
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+        P = parameters(period).impot_revenu.calcul_credits_impots.habitat_princ_credit
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
-        max0 = P.plafond.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.plafond.add
+        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vz, 0)
         max3 = max_(max2 - f7vv, 0)
@@ -1761,12 +1761,12 @@ class inthab(Variable):
         f7vt = foyer_fiscal('f7vt', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+        P = parameters(period).impot_revenu.calcul_credits_impots.habitat_princ_credit
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
-        max0 = P.plafond.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.plafond.add
+        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vz, 0)
 
@@ -1791,12 +1791,12 @@ class inthab(Variable):
         f7vt = foyer_fiscal('f7vt', period)
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+        P = parameters(period).impot_revenu.calcul_credits_impots.habitat_princ_credit
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
-        max0 = P.plafond.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.plafond.add
+        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vv, 0)
 
@@ -1819,10 +1819,10 @@ class inthab(Variable):
         nbpac_invalideR = foyer_fiscal('nbR', period)
         nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vx = foyer_fiscal('f7vx', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.inthab
+        P = parameters(period).impot_revenu.calcul_credits_impots.habitat_princ_credit
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
-        max0 = P.plafond.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.plafond.add
+        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
 
         return P.taux1 * min_(f7vx, max0)
 
