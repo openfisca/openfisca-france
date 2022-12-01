@@ -3499,21 +3499,21 @@ class ppe_brute(Variable):
         def ppe_bar1(base):
             # cond1 = ligne1 | ligne3
             # cond2 = ligne2
-            # return 1 / ppe_coef * ((cond1 & (base <= ppe.seuils_revenu_activite.seuil2)) * (base) * ppe.taux1 +
-            #     (cond1 & (base > ppe.seuils_revenu_activite.seuil2) & (base <= ppe.seuils_revenu_activite.maximum_cas_general)) * (ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2 +
-            #     (cond2 & (base <= ppe.seuils_revenu_activite.seuil2)) * (base * ppe.taux1) +
-            #     (cond2 & (base > ppe.seuils_revenu_activite.seuil2) & (base <= ppe.seuils_revenu_activite.maximum_cas_general)) * ((ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2) +
+            # return 1 / ppe_coef * ((cond1 & (base <= ppe.seuils_revenu_activite.pour_taux_plein_cas_general)) * (base) * ppe.taux1 +
+            #     (cond1 & (base > ppe.seuils_revenu_activite.pour_taux_plein_cas_general) & (base <= ppe.seuils_revenu_activite.maximum_cas_general)) * (ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2 +
+            #     (cond2 & (base <= ppe.seuils_revenu_activite.pour_taux_plein_cas_general)) * (base * ppe.taux1) +
+            #     (cond2 & (base > ppe.seuils_revenu_activite.pour_taux_plein_cas_general) & (base <= ppe.seuils_revenu_activite.maximum_cas_general)) * ((ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2) +
             #     (cond2 & (base > ppe.seuils_revenu_activite.seuil4) & (base <= ppe.seuils_revenu_activite.seuil5)) * (ppe.seuils_revenu_activite.seuil5 - base) * ppe.taux3)
             return (
-                (base <= ppe.seuils_revenu_activite.seuil2) * (base) * ppe.taux1
-                + (base > ppe.seuils_revenu_activite.seuil2) * (base <= ppe.seuils_revenu_activite.maximum_cas_general) * (ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2
+                (base <= ppe.seuils_revenu_activite.pour_taux_plein_cas_general) * (base) * ppe.taux1
+                + (base > ppe.seuils_revenu_activite.pour_taux_plein_cas_general) * (base <= ppe.seuils_revenu_activite.maximum_cas_general) * (ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2
                 + ligne2 * (base > ppe.seuils_revenu_activite.seuil4) * (base <= ppe.seuils_revenu_activite.seuil5) * (ppe.seuils_revenu_activite.seuil5 - base) * ppe.taux3
                 )
 
         def ppe_bar2(base):
             return (
-                (base <= ppe.seuils_revenu_activite.seuil2) * (base) * ppe.taux1
-                + ((base > ppe.seuils_revenu_activite.seuil2) & (base <= ppe.seuils_revenu_activite.maximum_cas_general)) * (ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2)
+                (base <= ppe.seuils_revenu_activite.pour_taux_plein_cas_general) * (base) * ppe.taux1
+                + ((base > ppe.seuils_revenu_activite.pour_taux_plein_cas_general) & (base <= ppe.seuils_revenu_activite.maximum_cas_general)) * (ppe.seuils_revenu_activite.maximum_cas_general - base) * ppe.taux2)
 
         # calcul des primes individuelles.
 

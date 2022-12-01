@@ -4,7 +4,7 @@ metadata:
   description_en: Employment Allowance (2001 - 2015)
   order:
     - minimum
-    - permettant_obtenir_ppe_taux_plein_cas_general
+    - pour_taux_plein_cas_general
     - maximum_cas_general
     - permettant_obtenir_ppe_taux_plein_couples_mono_revenus
     - maximum_couples_mono_emploi_parents_isoles
