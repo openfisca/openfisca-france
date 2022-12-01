@@ -3522,21 +3522,21 @@ class ppe_brute(Variable):
         ppec = elic * (1 / ppe_coef) * ppe_bar1(basec)
 
         # Primes de monoactivité
-        ppe_monact_vous = (eliv & ligne2 & (basevi >= ppe_seuils.minimum) & (basev <= ppe_seuils.pour_taux_plein_couples_mono_revenus)) * ppe.monact
-        ppe_monact_conj = (elic & ligne2 & (baseci >= ppe_seuils.minimum) & (basec <= ppe_seuils.pour_taux_plein_couples_mono_revenus)) * ppe.monact
+        ppe_monact_vous = (eliv & ligne2 & (basevi >= ppe_seuils.minimum) & (basev <= ppe_seuils.pour_taux_plein_couples_mono_revenus)) * ppe.supplements.couples_mono_emploi
+        ppe_monact_conj = (elic & ligne2 & (baseci >= ppe_seuils.minimum) & (basec <= ppe_seuils.pour_taux_plein_couples_mono_revenus)) * ppe.supplements.couples_mono_emploi
 
         # Primes pour enfants à charge
         maj_pac = ppe_elig * (eliv | elic) * (
-            (ligne1 & maries_ou_pacses & ((ppev + ppec) != 0) & (min_(basev, basec) <= ppe_seuils.maximum_cas_general)) * ppe.pac
+            (ligne1 & maries_ou_pacses & ((ppev + ppec) != 0) & (min_(basev, basec) <= ppe_seuils.maximum_cas_general)) * ppe.supplements.par_personne_charge
             * (nb_pac_ppe + nbH * 0.5)
-            + (ligne1 & (celibataire_ou_divorce | veuf) & eliv & (basev <= ppe_seuils.maximum_cas_general)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
-            + (ligne2 & (base_monacti >= ppe_seuils.minimum) & (base_monact <= ppe_seuils.maximum_cas_general)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
-            + (ligne2 & (base_monact > ppe_seuils.maximum_cas_general) & (base_monact <= ppe_seuils.max_couples_mono_emploi_parents_isoles)) * ppe.pac
+            + (ligne1 & (celibataire_ou_divorce | veuf) & eliv & (basev <= ppe_seuils.maximum_cas_general)) * ppe.supplements.par_personne_charge * (nb_pac_ppe + nbH * 0.5)
+            + (ligne2 & (base_monacti >= ppe_seuils.minimum) & (base_monact <= ppe_seuils.maximum_cas_general)) * ppe.supplements.par_personne_charge * (nb_pac_ppe + nbH * 0.5)
+            + (ligne2 & (base_monact > ppe_seuils.maximum_cas_general) & (base_monact <= ppe_seuils.max_couples_mono_emploi_parents_isoles)) * ppe.supplements.par_personne_charge
             * ((nb_pac_ppe != 0) + 0.5 * ((nb_pac_ppe == 0) & (nbH != 0)))
             + (ligne3 & (basevi >= ppe_seuils.minimum) & (basev <= ppe_seuils.maximum_cas_general)) * (
-                (min_(nb_pac_ppe, 1) * 2 * ppe.pac + max_(nb_pac_ppe - 1, 0) * ppe.pac)
-                + (nb_pac_ppe == 0) * (min_(nbH, 2) * ppe.pac + max_(nbH - 2, 0) * ppe.pac * 0.5))
-            + (ligne3 & (basev > ppe_seuils.maximum_cas_general) & (basev <= ppe_seuils.max_couples_mono_emploi_parents_isoles)) * ppe.pac
+                (min_(nb_pac_ppe, 1) * 2 * ppe.supplements.par_personne_charge + max_(nb_pac_ppe - 1, 0) * ppe.supplements.par_personne_charge)
+                + (nb_pac_ppe == 0) * (min_(nbH, 2) * ppe.supplements.par_personne_charge + max_(nbH - 2, 0) * ppe.supplements.par_personne_charge * 0.5))
+            + (ligne3 & (basev > ppe_seuils.maximum_cas_general) & (basev <= ppe_seuils.max_couples_mono_emploi_parents_isoles)) * ppe.supplements.par_personne_charge
             * ((nb_pac_ppe != 0) * 2 + ((nb_pac_ppe == 0) & (nbH != 0))))
 
         def coef(coef_tp):
