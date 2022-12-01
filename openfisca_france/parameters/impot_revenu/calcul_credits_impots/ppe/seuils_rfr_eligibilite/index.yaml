@@ -5,9 +5,4 @@ metadata:
   order:
     - personne_seule
     - couple_marie_pacse
-    - increment_par_demi_part_qf_dela_1_2
-    - revenu_activite_individuel_minimum
-    - revenu_activite_individuel_permettant_obtenir_ppe_taux_plein_cas_general
-    - revenu_activite_individuel_maximum_cas_general
-    - revenu_activite_individuel_permettant_obtenir_ppe_taux_plein_couples_mono_revenus
-    - revenu_activite_individuel_maximum_couples_mono_emploi_parents_isoles
+    - increment_par_demi_part
