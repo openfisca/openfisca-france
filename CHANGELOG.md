@@ -1,5 +1,16 @@
 # Changelog
 
+## 120.1.0 [#1822](https://github.com/openfisca/openfisca-france/pull/1822)
+
+* Amélioration technique. 
+* Périodes concernées : 1915 - 1944
+* Zones impactées : 
+- `parameters/impot_revenu/anciens_baremes_igr`
+* Détails : 
+  - Ajoute les `anciens_baremes_igr` de l'IPP
+  - Met sous forme de barème les barèmes en taux et seuils simples
+  - Pour les autres, découpe les fichiers en paramètres uniques
+  - Harmonise le format
 ### 120.0.1 [#1930](https://github.com/openfisca/openfisca-france/pull/1930)
 
 * Correction d'un crash.
