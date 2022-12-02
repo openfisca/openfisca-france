@@ -1697,7 +1697,7 @@ class taxation_plus_values_hors_bareme(Variable):
         # revenus taxés à un taux proportionnel
 
         return round_(
-            pv.plus_values.pvce * rpns_pvce
+            pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
             + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
             + pv.plus_values.taux_pv_mob_pro * f3vl
             + pv.plus_values.pea.taux_avant_2_ans * f3vm
@@ -1727,7 +1727,7 @@ class taxation_plus_values_hors_bareme(Variable):
         # revenus taxés à un taux proportionnel
 
         return round_(
-            pv.plus_values.pvce * rpns_pvce
+            pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
             + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
             + pv.plus_values.taux_pv_mob_pro * f3vl
             + pv.plus_values.pea.taux_avant_2_ans * f3vm
@@ -1760,7 +1760,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vf = foyer_fiscal.sum(f3vf_i)
 
         return round_(
-            pv.plus_values.pvce * rpns_pvce
+            pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
             + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
             + pv.actions_gratuites.taux2 * f3vd
             + pv.plus_values.taux_pv_mob_pro * f3vl
@@ -1793,7 +1793,7 @@ class taxation_plus_values_hors_bareme(Variable):
         pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         return round_(
-            pv.plus_values.pvce * rpns_pvce
+            pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
             + pv.plus_values.pea.taux_avant_2_ans * f3vm
             + pv.plus_values.pea.taux_posterieur * f3vt
             + pv.actions_gratuites.taux2 * f3vd
@@ -1825,7 +1825,7 @@ class taxation_plus_values_hors_bareme(Variable):
         pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         return round_(
-            pv.plus_values.pvce * rpns_pvce
+            pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
             + pv.plus_values.pea.taux_avant_2_ans * f3vm
             + pv.plus_values.pea.taux_posterieur * f3vt
             + pv.actions_gratuites.taux2 * f3vd
@@ -1861,7 +1861,7 @@ class taxation_plus_values_hors_bareme(Variable):
         pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         return round_(
-            pv.plus_values.pvce * rpns_pvce
+            pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
             + pv.actions_gratuites.taux2 * f3vd
             + pv.actions_gratuites.taux3 * f3vi
             + pv.actions_gratuites.taux4 * f3vf
@@ -1900,7 +1900,7 @@ class taxation_plus_values_hors_bareme(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rpns
 
         return round_(
-            pv.plus_values.pvce * rpns_pvce
+            pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
             + pv.actions_gratuites.taux2 * f3vd
             + pv.actions_gratuites.taux3 * f3vi
             + pv.actions_gratuites.taux4 * f3vf
