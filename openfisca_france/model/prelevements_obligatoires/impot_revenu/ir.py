@@ -1253,7 +1253,7 @@ class ir_plaf_qf(Variable):
 
         # plus de 590 euros si on a des plus de
         condition62cb = ((nbG + nbR + nbI) > 0) | caseP | caseF
-        D = plafond_qf.reduc_postplafond * (condition62ca + ~condition62ca * condition62cb * (
+        D = plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * (condition62ca + ~condition62ca * condition62cb * (
             1 * caseP + 1 * caseF + nbG + nbR + nbI / 2))
 
         E = max_(0, A - I - B)
@@ -1344,12 +1344,12 @@ class ir_plaf_qf(Variable):
         condition62d = (nb_pac > 0) & (veuf)
 
         E = condition62b * condition62c * (
-            plafond_qf.reduc_postplafond * condition62c0 * not_(condition62c1)
-            + plafond_qf.reduc_postplafond * 2 * condition62c1
-            + plafond_qf.reduc_postplafond * (nbG + nbI / 2 + nbR) * condition62c2
+            plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * condition62c0 * not_(condition62c1)
+            + plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * 2 * condition62c1
+            + plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * (nbG + nbI / 2 + nbR) * condition62c2
             )
 
-        D = condition62b * condition62d * plafond_qf.reduc_postplafond_veuf
+        D = condition62b * condition62d * plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond_veuf
 
         F = D + E
         G = max_(0, A - I - B)
