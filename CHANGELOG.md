@@ -1,5 +1,37 @@
 # Changelog
+# 121.0.0 [#1920](https://github.com/openfisca/openfisca-france/pull/1920)
 
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes
+* Zones impactées : `parameters/impot_revenu/calcul_credits_impots`.
+* Détails :
+   - Ajout de références et metadata issues des barèmes IPP
+   - Fusion de certains paramètres issus des barèmes IPP avec l'existant:
+      -  garext -> gardenf.yaml
+      -  inthab -> habitat_princ_credit.yaml
+      -  plaf_nich -> plaf_nich.yaml
+      -  ppe -> ppe.yaml
+      -  risque_techno.yaml
+      -  transition_energetique.yaml
+   - Ajout de nouveaux paramètres issus des barèmes IPP:
+      -  aide_a_domicile.yaml
+      -  risque_techno.yaml
+      -  transition_energetique.yaml 
+  - Mise en forme des autres paramètres OpenFisca
+      - accult
+      - acqgpl
+      - aidmob
+      - aidper
+      - assloy
+      - cotsyn_credit
+      - divide
+      - drbail
+      - jeunes
+      - percvm
+      - preetu
+      - prlire
+      - quaenv
+Note: un travail ultérieur reste à faire pour rapprocher ces acronymes des dispositifs qu'ils représentent (en utilisant les description des formules qui les utilisent) et ajouter des metadata et des références
 ## 120.1.0 [#1822](https://github.com/openfisca/openfisca-france/pull/1822)
 
 * Amélioration technique. 
