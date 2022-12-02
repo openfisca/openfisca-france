@@ -13,5 +13,7 @@ values:
     value: null
   1995-01-01:
     value: 0.3
+  2013-01-01:
+    value: null
 documentation: |
   Les options sur titres (ou stock-options) sont imposées sur la différence entre la valeur réelle de l’action à la date de la levée de l'option et le prix de souscription ou d’achat de l’action aux taux du barème si les options ont été attribuées avant le 28/09/2012. Si elles ont été attribuées à une date postérieure, le gain est imposé selon le régime du barème progressif.
