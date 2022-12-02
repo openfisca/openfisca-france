@@ -1,7 +1,7 @@
 description: Taux général du Crédit d'impôt à la transition énergétique (2014-2021) et Crédit d'impôt
   au développement durable (2005-2014)
 metadata:
-  ux-name: Taux général
+  ux_name: Taux général
   ipp_csv_id: taux_cite_general
   notes:
     2005-01-01:
