@@ -1,1 +1,49 @@
-description: Décote
+description: Seuils de la décote de l'impôt sur le revenu (1951 - )
+metadata:
+  ux_name: Seuils décote
+  order:
+  - seuil_celib
+  - seuil_couple
+  - seuil_1_1_part
+  - seuil_1_15_part
+  - seuil_1_faible_nombre_part
+  - seuil_2_faible_nombre_part
+  - nombre_part_limite
+  description_en: Family quotient ceiling and "decote" (1978 - )
+  notes:
+    1978-01-01:
+    - title: Si la personne rattachée est elle-même chef de famille, l'avantage fiscal
+        prend la forme d'un abattement. Les plafonds sont revalorisés chaque année
+        dans la même proportion que la limite de la première tranche du barème prévu
+        à l'article 197 du CGI. La loi de 1974 abaissant l'âge de la majorité de 21
+        à 18 ans a entraîné une modification importante de la prise en compte des
+        enfants à charge.
+    1979-01-01:
+    - title: Demi-part supplémentaire pour 5ème enfant à charge sur revenus 1979 (loi
+        18/01/1980) et pour 3ème enfant à charge sur revenus 1980 (loi 30/12/1980).
+    1980-01-01:
+    - title: Avant 1981, le plafond se calcule en multipliant le nombre d'enfant par
+        le montant de la colonne C
+    2016-01-01:
+    - title: Introduction d'une réduction d'impôt sous conditon de revenus qui s'impute
+        après la décote mais avant les réductions d'impôt classiques (art. 197-I-4
+        (b) du CGI)
+  official_journal_date:
+    1980-01-01: '1980-12-31'
+    1988-01-01: '1988-12-28'
+    2011-01-01: '2011-12-28'
+    2016-01-01: '2016-12-30'
+  reference:
+    1980-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000339460
+      title: Loi 80-1094 du 30/12/1980 (LF pour 1981)
+    1988-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000508832
+      title: Loi 88-1149 du 23/12/1988 (LF pour 1989)
+    2011-01-01:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025044460
+      title: Loi 2011-1977 du 28/12/2011 (LF pour 2012)
+    2016-01-01:
+    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000033760564&cidTexte=JORFTEXT000033734169
+      title: Loi 2016-1917, art. 2 du 29/12/2016 (LF pour 2017)
+    - title: BOI-IR-LIQ-20-20-30 du 06/04/2017

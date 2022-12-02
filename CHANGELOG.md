@@ -3052,7 +3052,7 @@ Ces changements :
 * Zones impactées : `parameters/impot_revenu/plafond_qf/veuf.yaml`.
 * Détails :
   - Suppression d'un paramètre dupliqué sur le plafonnement du quotient familial
-  - Le paramètre `plafond_qf.veuf` reprend `plafond_qf.plafond_avantages_procures_par_demi_part.plafond_avantages_procures_par_demi_part.reduc_postplafond_veuf`
+  - Le paramètre `plafond_qf.veuf` reprend `plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond_veuf`
   - Additionnellement, il n'est utilisé nulle part dans le code
   - Enfin, il n'est pas bien-fondé : ce barème ne devrait commencer qu'en 2012
 
