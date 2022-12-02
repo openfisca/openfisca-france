@@ -1,4 +1,13 @@
 # Changelog
+
+# 122.0.0 [#1931](https://github.com/openfisca/openfisca-france/pull/1931)
+
+* Amélioration technique
+* Périodes concernées : toutes
+* Zones impactées : `parameters/impot_revenu/calcul_impot_revenu/plaf_qf/`.
+* Détails :
+  - Ajout des paramètres issus du barème IPP
+  - Ajout des références dans les paramètres existants
 # 121.0.0 [#1920](https://github.com/openfisca/openfisca-france/pull/1920)
 
 * Évolution du système socio-fiscal
