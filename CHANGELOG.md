@@ -686,7 +686,7 @@ Note: un travail ultérieur reste à faire pour rapprocher ces acronymes des dis
 * Zones impactées :
   - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie`
 * Détails :
-  - Corrige `maladie_maternite_artisan_commercant_taux` dans le cas d'une division par `assiette _pss` nulle
+  - Corrige `maladie_maternite_artisan_commercant_taux dans le cas d'une division par `assiette _pss` nulle
 
 ### 113.0.3 [#1817](https://github.com/openfisca/openfisca-france/pull/1817)
 
@@ -1833,7 +1833,7 @@ git log --oneline commit_debut^..commit_fin | grep "variable_name"
 * Détails :
   - Ajoute et calcule l'`allegement_cotisation_maladie` qui remplace le CICE.
   - Ajoute cet allègement de cotisations employeur non contributives à la liste des `exonerations_et_allegements`.
-  - Modifie l'interface Python d'openfisca-france en transformant `prelevements_sociaux.cotisations_securite_sociale_regime_general.mmid.taux` de barème à paramètre simple.
+  - Modifie l'interface Python d'openfisca-france en transformant `prelevements_sociaux.cotisations_securite_sociale_regime_general.mmid.taux de barème à paramètre simple.
 
 ### 76.1.1 [#1686](https://github.com/openfisca/openfisca-france/pull/1686)
 
@@ -2245,7 +2245,7 @@ Ces changements :
 * Zones impactées :
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique`.
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing`.
-  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_totaux`.
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_totaux.
 * Détails :
   - Vérifie les formules des cotisations employeurs fonctions publiques présentes dans `travail_fonction_publique.py`, à l’exception de `contribution_exceptionnelle_solidarite`. N'ont pas été vérifiées non plus les cotisations employeurs de la fonction publique hors de ce fichier, car renvoyant à une formule commune avec les autres secteurs (ex : `mmid_employeur`).
 - Renomme plusieurs variables :
@@ -3558,7 +3558,7 @@ Ces changements :
   - `model/prelevements_obligatoires/impot_revenu/ir.py`
   - `parameters/impot_revenu/decote`
 * Détails :
-  - Ajoute un paramètre `impot_revenu.decote.taux` pour permettre d'éventuelles réformes.
+  - Ajoute un paramètre `impot_revenu.decote.taux pour permettre d'éventuelles réformes.
   - Factorise les formules `2014` et `2015` de la `decote`.
 
 ## 48.1.0 [#1354](https://github.com/openfisca/openfisca-france/pull/1354)

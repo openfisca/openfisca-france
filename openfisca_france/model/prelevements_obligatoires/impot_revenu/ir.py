@@ -1698,8 +1698,8 @@ class taxation_plus_values_hors_bareme(Variable):
 
         return round_(
             pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
-            + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
-            + pv.plus_values.taux_pv_mob_pro * f3vl
+            + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * max_(0, f3vg - f3vh)
+            + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * f3vl
             + pv.pea.taux_avant_2_ans * f3vm
             + pv.actions_gratuites.taux3 * f3vi
             + pv.actions_gratuites.taux4 * f3vf
@@ -1728,8 +1728,8 @@ class taxation_plus_values_hors_bareme(Variable):
 
         return round_(
             pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
-            + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
-            + pv.plus_values.taux_pv_mob_pro * f3vl
+            + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * max_(0, f3vg - f3vh)
+            + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * f3vl
             + pv.pea.taux_avant_2_ans * f3vm
             + pv.actions_gratuites.taux3 * f3vi
             + pv.actions_gratuites.taux4 * f3vf
@@ -1761,9 +1761,9 @@ class taxation_plus_values_hors_bareme(Variable):
 
         return round_(
             pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
-            + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
+            + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * max_(0, f3vg - f3vh)
             + pv.actions_gratuites.taux2 * f3vd
-            + pv.plus_values.taux_pv_mob_pro * f3vl
+            + pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * f3vl
             + pv.pea.taux_avant_2_ans * f3vm
             + pv.pea.taux_posterieur * f3vt
             + pv.plus_values.taux_pv_entrep * f3sa_2012
