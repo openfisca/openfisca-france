@@ -1349,7 +1349,7 @@ class ir_plaf_qf(Variable):
             + plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * (nbG + nbI / 2 + nbR) * condition62c2
             )
 
-        D = condition62b * condition62d * plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond_veuf
+        D = condition62b * condition62d * plafond_qf.plafond_avantages_procures_par_demi_part.plafond_avantages_procures_par_demi_part.reduc_postplafond_veuf
 
         F = D + E
         G = max_(0, A - I - B)
