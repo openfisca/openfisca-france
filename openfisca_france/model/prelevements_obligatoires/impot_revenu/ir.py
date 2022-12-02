@@ -1701,8 +1701,8 @@ class taxation_plus_values_hors_bareme(Variable):
             + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
             + pv.plus_values.taux_pv_mob_pro * f3vl
             + pv.plus_values.pea.taux_avant_2_ans * f3vm
-            + pv.plus_values.taux3 * f3vi
-            + pv.plus_values.taux4 * f3vf
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
             )
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
@@ -1731,9 +1731,9 @@ class taxation_plus_values_hors_bareme(Variable):
             + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
             + pv.plus_values.taux_pv_mob_pro * f3vl
             + pv.plus_values.pea.taux_avant_2_ans * f3vm
-            + pv.plus_values.taux3 * f3vi
-            + pv.plus_values.taux4 * f3vf
-            + pv.plus_values.taux2 * f3vd
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
+            + pv.actions_gratuites.taux2 * f3vd
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -1762,13 +1762,13 @@ class taxation_plus_values_hors_bareme(Variable):
         return round_(
             pv.plus_values.pvce * rpns_pvce
             + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
-            + pv.plus_values.taux2 * f3vd
+            + pv.actions_gratuites.taux2 * f3vd
             + pv.plus_values.taux_pv_mob_pro * f3vl
             + pv.plus_values.pea.taux_avant_2_ans * f3vm
             + pv.plus_values.pea.taux_posterieur * f3vt
             + pv.plus_values.taux_pv_entrep * f3sa_2012
-            + pv.plus_values.taux3 * f3vi
-            + pv.plus_values.taux4 * f3vf
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
             + pv.bspce.plus_3ans.pre_2018 * f3sj
             + pv.bspce.plus_3ans.pre_2018_conditionnel * f3sk
             )
@@ -1796,9 +1796,9 @@ class taxation_plus_values_hors_bareme(Variable):
             pv.plus_values.pvce * rpns_pvce
             + pv.plus_values.pea.taux_avant_2_ans * f3vm
             + pv.plus_values.pea.taux_posterieur * f3vt
-            + pv.plus_values.taux2 * f3vd
-            + pv.plus_values.taux3 * f3vi
-            + pv.plus_values.taux4 * f3vf
+            + pv.actions_gratuites.taux2 * f3vd
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
             + pv.bspce.plus_3ans.pre_2018 * f3sj
             + pv.bspce.plus_3ans.pre_2018_conditionnel * f3sk
             )
@@ -1828,9 +1828,9 @@ class taxation_plus_values_hors_bareme(Variable):
             pv.plus_values.pvce * rpns_pvce
             + pv.plus_values.pea.taux_avant_2_ans * f3vm
             + pv.plus_values.pea.taux_posterieur * f3vt
-            + pv.plus_values.taux2 * f3vd
-            + pv.plus_values.taux3 * f3vi
-            + pv.plus_values.taux4 * f3vf
+            + pv.actions_gratuites.taux2 * f3vd
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
             + pv.bspce.plus_3ans.pre_2018 * f3sj
             + pv.bspce.plus_3ans.pre_2018_conditionnel * f3sk
             + pv.plus_values.taux_plus_values_report * f3wi
@@ -1862,9 +1862,9 @@ class taxation_plus_values_hors_bareme(Variable):
 
         return round_(
             pv.plus_values.pvce * rpns_pvce
-            + pv.plus_values.taux2 * f3vd
-            + pv.plus_values.taux3 * f3vi
-            + pv.plus_values.taux4 * f3vf
+            + pv.actions_gratuites.taux2 * f3vd
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
             + pv.bspce.plus_3ans.pre_2018 * f3sj
             + pv.bspce.plus_3ans.pre_2018_conditionnel * f3sk
             + pv.plus_values.pea.taux_avant_2_ans * f3vm
@@ -1901,9 +1901,9 @@ class taxation_plus_values_hors_bareme(Variable):
 
         return round_(
             pv.plus_values.pvce * rpns_pvce
-            + pv.plus_values.taux2 * f3vd
-            + pv.plus_values.taux3 * f3vi
-            + pv.plus_values.taux4 * f3vf
+            + pv.actions_gratuites.taux2 * f3vd
+            + pv.actions_gratuites.taux3 * f3vi
+            + pv.actions_gratuites.taux4 * f3vf
             + P.taux10 * rpns_info
             + pv.bspce.plus_3ans.pre_2018 * f3sj
             + pv.bspce.plus_3ans.pre_2018_conditionnel * f3sk
