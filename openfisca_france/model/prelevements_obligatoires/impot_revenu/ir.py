@@ -1221,9 +1221,9 @@ class ir_plaf_qf(Variable):
         aa0 = (nb_parts - nb_adult) * 2  # nombre de demi part excédant nbadult
         aa1 = min_((nb_parts - 1) * 2, 2)  # deux première demi part excédants une part
 
-        B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.general * (aa0 - aa1)
-        B2 = plafond_qf.general * aa0
-        B3 = plafond_qf.celib
+        B1 = plafond_qf.plafond_avantages_procures_par_demi_part.celib_enf * aa1 / 2 + plafond_qf.plafond_avantages_procures_par_demi_part.general * (aa0 - aa1)
+        B2 = plafond_qf.plafond_avantages_procures_par_demi_part.general * aa0
+        B3 = plafond_qf.plafond_avantages_procures_par_demi_part.celib
 
         condition61 = celibataire_ou_divorce & caseT
         condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (annee_naissance_pac_alterne < int(period.start.year) - 25)
@@ -1253,7 +1253,7 @@ class ir_plaf_qf(Variable):
 
         # plus de 590 euros si on a des plus de
         condition62cb = ((nbG + nbR + nbI) > 0) | caseP | caseF
-        D = plafond_qf.reduc_postplafond * (condition62ca + ~condition62ca * condition62cb * (
+        D = plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * (condition62ca + ~condition62ca * condition62cb * (
             1 * caseP + 1 * caseF + nbG + nbR + nbI / 2))
 
         E = max_(0, A - I - B)
@@ -1314,9 +1314,9 @@ class ir_plaf_qf(Variable):
 
         aa0 = (nb_parts - nb_adult) * 2
         aa1 = min_((nb_parts - 1) * 2, 2)
-        B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.general * (aa0 - aa1)
-        B2 = plafond_qf.general * aa0
-        B3 = plafond_qf.celib
+        B1 = plafond_qf.plafond_avantages_procures_par_demi_part.celib_enf * aa1 / 2 + plafond_qf.plafond_avantages_procures_par_demi_part.general * (aa0 - aa1)
+        B2 = plafond_qf.plafond_avantages_procures_par_demi_part.general * aa0
+        B3 = plafond_qf.plafond_avantages_procures_par_demi_part.celib
 
         condition61 = celibataire_ou_divorce & caseT
         condition63 = (celibataire_ou_divorce | veuf) & (nb_pac == 0) & caseL
@@ -1344,12 +1344,12 @@ class ir_plaf_qf(Variable):
         condition62d = (nb_pac > 0) & (veuf)
 
         E = condition62b * condition62c * (
-            plafond_qf.reduc_postplafond * condition62c0 * not_(condition62c1)
-            + plafond_qf.reduc_postplafond * 2 * condition62c1
-            + plafond_qf.reduc_postplafond * (nbG + nbI / 2 + nbR) * condition62c2
+            plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * condition62c0 * not_(condition62c1)
+            + plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * 2 * condition62c1
+            + plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond * (nbG + nbI / 2 + nbR) * condition62c2
             )
 
-        D = condition62b * condition62d * plafond_qf.reduc_postplafond_veuf
+        D = condition62b * condition62d * plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond_veuf
 
         F = D + E
         G = max_(0, A - I - B)
@@ -1454,8 +1454,8 @@ class reduction_ss_condition_revenus(Variable):
         P = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.reduction_ss_condition_revenus
 
         ir_apres_plaf_qf_et_decote = ir_plaf_qf - decote
-        plafond1 = P.seuil1 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
-        plafond2 = P.seuil2 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
+        plafond1 = P.plafond_rfr_celib * nb_adult + P.majoration_plafond_par_demi_parts_supp * 2 * (nb_parts - nb_adult)
+        plafond2 = P.plafond_rfr_couple * nb_adult + P.majoration_plafond_par_demi_parts_supp * 2 * (nb_parts - nb_adult)
         reduction1 = P.taux * ir_apres_plaf_qf_et_decote
         reduction2 = P.taux * ir_apres_plaf_qf_et_decote * (plafond2 - rfr) / (plafond2 - plafond1)
 

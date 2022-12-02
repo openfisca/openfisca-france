@@ -1,4 +1,13 @@
 # Changelog
+
+# 122.0.0 [#1931](https://github.com/openfisca/openfisca-france/pull/1931)
+
+* Amélioration technique
+* Périodes concernées : toutes
+* Zones impactées : `parameters/impot_revenu/calcul_impot_revenu/plaf_qf/`.
+* Détails :
+  - Ajout des paramètres issus du barème IPP
+  - Ajout des références dans les paramètres existants
 # 121.0.0 [#1920](https://github.com/openfisca/openfisca-france/pull/1920)
 
 * Évolution du système socio-fiscal
@@ -3052,7 +3061,7 @@ Ces changements :
 * Zones impactées : `parameters/impot_revenu/plafond_qf/veuf.yaml`.
 * Détails :
   - Suppression d'un paramètre dupliqué sur le plafonnement du quotient familial
-  - Le paramètre `plafond_qf.veuf` reprend `plafond_qf.reduc_postplafond_veuf`
+  - Le paramètre `plafond_qf.veuf` reprend `plafond_qf.plafond_avantages_procures_par_demi_part.reduc_postplafond_veuf`
   - Additionnellement, il n'est utilisé nulle part dans le code
   - Enfin, il n'est pas bien-fondé : ce barème ne devrait commencer qu'en 2012
 
