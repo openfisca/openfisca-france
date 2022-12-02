@@ -1454,7 +1454,7 @@ class reduction_ss_condition_revenus(Variable):
         P = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.reduction_ss_condition_revenus
 
         ir_apres_plaf_qf_et_decote = ir_plaf_qf - decote
-        plafond1 = P.seuil1 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
+        plafond1 = P.plafond_rfr_celib * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
         plafond2 = P.seuil2 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
         reduction1 = P.taux * ir_apres_plaf_qf_et_decote
         reduction2 = P.taux * ir_apres_plaf_qf_et_decote * (plafond2 - rfr) / (plafond2 - plafond1)
