@@ -37,7 +37,7 @@ class reductions_plafonnees(Variable):
             'ri_saldom',
             'cappme',  # Approximation
             'deffor',  # fait partie de inv. for. ?
-            'garext',
+            'gardenf',
             'ri_invfor',
             'locmeu',  # Censi-Bouvard, plafonnement approximatif
             'invlst',  # Approximation
@@ -52,11 +52,11 @@ class reductions_plafonnees(Variable):
             'reduction_impot_exceptionnelle',
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich
 
         # Step 1: Apply ceiling to general reductions
         montants_plaf = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_plafonnees])
-        red_plaf = min_(P.plafond_1, montants_plaf)
+        red_plaf = min_(P.plafond, montants_plaf)
 
         return red_plaf
 
@@ -75,15 +75,15 @@ class reductions_plafonnees_om_sofica(Variable):
             'scelli',  # Approximation (dispositif qui se termine en 2012, soumis à des plafonds supérieurs à 18 000€)
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich
 
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
-        reste_gen = P.plafond_1 - red_plaf
+        reste_gen = P.plafond - red_plaf
 
         # Step 2: Get additional reductions DOM-TOM and SOFICA
         # NB: Assuming the specific additional allowance is used first, and remaining general allowance is saved by preference for other reductions
         montants_om_sofica = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_om_sofica])
-        red_om_sofica = min_(P.majoration_om + reste_gen, montants_om_sofica)
+        red_om_sofica = min_(P.plafonnement_des_niches.majoration_om + reste_gen, montants_om_sofica)
 
         return red_om_sofica
 
@@ -101,16 +101,16 @@ class reductions_plafonnees_esus_sfs(Variable):
             'cappme_esus_sfs'
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich.plafonnement_des_niches
+        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich
 
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
         red_plaf_om = foyer_fiscal('reductions_plafonnees_om_sofica', period)
-        reste_gen = P.plafond_1 - red_plaf - max_(0, red_plaf_om - P.majoration_om)
+        reste_gen = P.plafond - red_plaf - max_(0, red_plaf_om - P.plafonnement_des_niches.majoration_om)
 
         # Step 3: Get additional reductions ESUS and SFS
         # NB: Assuming the specific additional allowance is used first, and remaining general allowance is saved by preference for other reductions
         montants_esus_sfs = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_esus_sfs])
-        red_esus_sfs = min_(P.majoration_esus_sfs + reste_gen, montants_esus_sfs)
+        red_esus_sfs = min_(P.plafonnement_des_niches.majoration_esus_sfs + reste_gen, montants_esus_sfs)
 
         return red_esus_sfs
 
@@ -167,7 +167,7 @@ class reductions(Variable):
             'accult', 'adhcga', 'assvie', 'cappme', 'cappme_esus_sfs',
             'reduction_cotisations_syndicales',
             'daepad', 'dfppce', 'doment', 'domlog',
-            'ecpess', 'garext', 'intemp', 'ri_invfor', 'invrev',
+            'ecpess', 'gardenf', 'intemp', 'ri_invfor', 'invrev',
             'prcomp', 'rsceha', 'ri_saldom', 'spfcpi',
             # Introduites en 2003
             'mecena', 'repsoc',
@@ -1627,7 +1627,7 @@ class ecodev(Variable):
         return min_(f7uh * P.taux, min_(P.taux_plafond * rbg_int, P.plafond_par_personne))  # page3 ligne 18
 
 
-class garext(Variable):
+class gardenf(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur des dépenses de frais de garde des jeunes enfants"
@@ -1644,7 +1644,7 @@ class garext(Variable):
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.garext
+        P = parameters(period).impot_revenu.calcul_credits_impots.gardenf
 
         max1 = P.plafond
         return P.taux * (min_(f7ga, max1) + min_(f7gb, max1) + min_(f7gc, max1))
@@ -1661,7 +1661,7 @@ class garext(Variable):
         f7ge = foyer_fiscal('f7ge', period)
         f7gf = foyer_fiscal('f7gf', period)
         f7gg = foyer_fiscal('f7gg', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.garext
+        P = parameters(period).impot_revenu.calcul_credits_impots.gardenf
 
         max1 = P.plafond
         max2 = P.plafond / 2

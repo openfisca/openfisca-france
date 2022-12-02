@@ -3367,8 +3367,8 @@ class ppe_elig(Variable):
         ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
 
         seuil = (
-            (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3)
-            + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
+            (veuf | celibataire_ou_divorce) * (ppe.seuils_rfr_eligibilite.personne_seule + 2 * max_(nbptr - 1, 0) * ppe.seuils_rfr_eligibilite.increment_par_demi_part)
+            + maries_ou_pacses * (ppe.seuils_rfr_eligibilite.couple_marie_pacse + 2 * max_(nbptr - 2, 0) * ppe.seuils_rfr_eligibilite.increment_par_demi_part)
             )
 
         return (rfr * ppe_coef) <= seuil
@@ -3444,9 +3444,9 @@ class ppe_elig_individu(Variable):
         '''
         ppe_rev = individu('ppe_rev', period)
         ppe_coef_tp = individu('ppe_coef_tp', period)
-        ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
+        ppe_seuils = parameters(period).impot_revenu.calcul_credits_impots.ppe.seuils_revenu_activite
 
-        return (ppe_rev >= ppe.seuil1) & (ppe_coef_tp != 0)
+        return (ppe_rev >= ppe_seuils.minimum) & (ppe_coef_tp != 0)
 
 
 class ppe_brute(Variable):
@@ -3471,6 +3471,7 @@ class ppe_brute(Variable):
         caseL = foyer_fiscal('caseL', period)
         nbH = foyer_fiscal('nbH', period)
         ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
+        ppe_seuils = parameters(period).impot_revenu.calcul_credits_impots.ppe.seuils_revenu_activite
 
         eliv = foyer_fiscal.declarant_principal('ppe_elig_individu', period)
         elic = foyer_fiscal.conjoint('ppe_elig_individu', period)
@@ -3489,7 +3490,7 @@ class ppe_brute(Variable):
 
         nb_pac_ppe = max_(0, nb_pac - foyer_fiscal.sum(eligible_i, role = FoyerFiscal.PERSONNE_A_CHARGE))
 
-        ligne2 = maries_ou_pacses & xor_(basevi >= ppe.seuil1, baseci >= ppe.seuil1)
+        ligne2 = maries_ou_pacses & xor_(basevi >= ppe_seuils.minimum, baseci >= ppe_seuils.minimum)
         ligne3 = (celibataire_ou_divorce | veuf) & caseT & not_(veuf & caseT & caseL)
         ligne1 = not_(ligne2) & not_(ligne3)
 
@@ -3499,21 +3500,21 @@ class ppe_brute(Variable):
         def ppe_bar1(base):
             # cond1 = ligne1 | ligne3
             # cond2 = ligne2
-            # return 1 / ppe_coef * ((cond1 & (base <= ppe.seuil2)) * (base) * ppe.taux1 +
-            #     (cond1 & (base > ppe.seuil2) & (base <= ppe.seuil3)) * (ppe.seuil3 - base) * ppe.taux2 +
-            #     (cond2 & (base <= ppe.seuil2)) * (base * ppe.taux1) +
-            #     (cond2 & (base > ppe.seuil2) & (base <= ppe.seuil3)) * ((ppe.seuil3 - base) * ppe.taux2) +
-            #     (cond2 & (base > ppe.seuil4) & (base <= ppe.seuil5)) * (ppe.seuil5 - base) * ppe.taux3)
+            # return 1 / ppe_coef * ((cond1 & (base <= ppe_seuils.pour_taux_plein_cas_general)) * (base) * ppe.taux.phase_in +
+            #     (cond1 & (base > ppe_seuils.pour_taux_plein_cas_general) & (base <= ppe_seuils.maximum_cas_general)) * (ppe_seuils.maximum_cas_general - base) * ppe.taux.phase_out_cas_general +
+            #     (cond2 & (base <= ppe_seuils.pour_taux_plein_cas_general)) * (base * ppe.taux.phase_in) +
+            #     (cond2 & (base > ppe_seuils.pour_taux_plein_cas_general) & (base <= ppe_seuils.maximum_cas_general)) * ((ppe_seuils.maximum_cas_general - base) * ppe.taux.phase_out_cas_general) +
+            #     (cond2 & (base > ppe_seuils.pour_taux_plein_couples_mono_revenus) & (base <= ppe_seuils.max_couples_mono_emploi_parents_isoles)) * (ppe_seuils.max_couples_mono_emploi_parents_isoles - base) * ppe.taux.phase_out_couples_mono_emploi)
             return (
-                (base <= ppe.seuil2) * (base) * ppe.taux1
-                + (base > ppe.seuil2) * (base <= ppe.seuil3) * (ppe.seuil3 - base) * ppe.taux2
-                + ligne2 * (base > ppe.seuil4) * (base <= ppe.seuil5) * (ppe.seuil5 - base) * ppe.taux3
+                (base <= ppe_seuils.pour_taux_plein_cas_general) * (base) * ppe.taux.phase_in
+                + (base > ppe_seuils.pour_taux_plein_cas_general) * (base <= ppe_seuils.maximum_cas_general) * (ppe_seuils.maximum_cas_general - base) * ppe.taux.phase_out_cas_general
+                + ligne2 * (base > ppe_seuils.pour_taux_plein_couples_mono_revenus) * (base <= ppe_seuils.max_couples_mono_emploi_parents_isoles) * (ppe_seuils.max_couples_mono_emploi_parents_isoles - base) * ppe.taux.phase_out_couples_mono_emploi
                 )
 
         def ppe_bar2(base):
             return (
-                (base <= ppe.seuil2) * (base) * ppe.taux1
-                + ((base > ppe.seuil2) & (base <= ppe.seuil3)) * (ppe.seuil3 - base) * ppe.taux2)
+                (base <= ppe_seuils.pour_taux_plein_cas_general) * (base) * ppe.taux.phase_in
+                + ((base > ppe_seuils.pour_taux_plein_cas_general) & (base <= ppe_seuils.maximum_cas_general)) * (ppe_seuils.maximum_cas_general - base) * ppe.taux.phase_out_cas_general)
 
         # calcul des primes individuelles.
 
@@ -3521,21 +3522,21 @@ class ppe_brute(Variable):
         ppec = elic * (1 / ppe_coef) * ppe_bar1(basec)
 
         # Primes de monoactivité
-        ppe_monact_vous = (eliv & ligne2 & (basevi >= ppe.seuil1) & (basev <= ppe.seuil4)) * ppe.monact
-        ppe_monact_conj = (elic & ligne2 & (baseci >= ppe.seuil1) & (basec <= ppe.seuil4)) * ppe.monact
+        ppe_monact_vous = (eliv & ligne2 & (basevi >= ppe_seuils.minimum) & (basev <= ppe_seuils.pour_taux_plein_couples_mono_revenus)) * ppe.supplements.couples_mono_emploi
+        ppe_monact_conj = (elic & ligne2 & (baseci >= ppe_seuils.minimum) & (basec <= ppe_seuils.pour_taux_plein_couples_mono_revenus)) * ppe.supplements.couples_mono_emploi
 
         # Primes pour enfants à charge
         maj_pac = ppe_elig * (eliv | elic) * (
-            (ligne1 & maries_ou_pacses & ((ppev + ppec) != 0) & (min_(basev, basec) <= ppe.seuil3)) * ppe.pac
+            (ligne1 & maries_ou_pacses & ((ppev + ppec) != 0) & (min_(basev, basec) <= ppe_seuils.maximum_cas_general)) * ppe.supplements.par_personne_charge
             * (nb_pac_ppe + nbH * 0.5)
-            + (ligne1 & (celibataire_ou_divorce | veuf) & eliv & (basev <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
-            + (ligne2 & (base_monacti >= ppe.seuil1) & (base_monact <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
-            + (ligne2 & (base_monact > ppe.seuil3) & (base_monact <= ppe.seuil5)) * ppe.pac
+            + (ligne1 & (celibataire_ou_divorce | veuf) & eliv & (basev <= ppe_seuils.maximum_cas_general)) * ppe.supplements.par_personne_charge * (nb_pac_ppe + nbH * 0.5)
+            + (ligne2 & (base_monacti >= ppe_seuils.minimum) & (base_monact <= ppe_seuils.maximum_cas_general)) * ppe.supplements.par_personne_charge * (nb_pac_ppe + nbH * 0.5)
+            + (ligne2 & (base_monact > ppe_seuils.maximum_cas_general) & (base_monact <= ppe_seuils.max_couples_mono_emploi_parents_isoles)) * ppe.supplements.par_personne_charge
             * ((nb_pac_ppe != 0) + 0.5 * ((nb_pac_ppe == 0) & (nbH != 0)))
-            + (ligne3 & (basevi >= ppe.seuil1) & (basev <= ppe.seuil3)) * (
-                (min_(nb_pac_ppe, 1) * 2 * ppe.pac + max_(nb_pac_ppe - 1, 0) * ppe.pac)
-                + (nb_pac_ppe == 0) * (min_(nbH, 2) * ppe.pac + max_(nbH - 2, 0) * ppe.pac * 0.5))
-            + (ligne3 & (basev > ppe.seuil3) & (basev <= ppe.seuil5)) * ppe.pac
+            + (ligne3 & (basevi >= ppe_seuils.minimum) & (basev <= ppe_seuils.maximum_cas_general)) * (
+                (min_(nb_pac_ppe, 1) * 2 * ppe.supplements.par_personne_charge + max_(nb_pac_ppe - 1, 0) * ppe.supplements.par_personne_charge)
+                + (nb_pac_ppe == 0) * (min_(nbH, 2) * ppe.supplements.par_personne_charge + max_(nbH - 2, 0) * ppe.supplements.par_personne_charge * 0.5))
+            + (ligne3 & (basev > ppe_seuils.maximum_cas_general) & (basev <= ppe_seuils.max_couples_mono_emploi_parents_isoles)) * ppe.supplements.par_personne_charge
             * ((nb_pac_ppe != 0) * 2 + ((nb_pac_ppe == 0) & (nbH != 0))))
 
         def coef(coef_tp):
@@ -3550,7 +3551,7 @@ class ppe_brute(Variable):
 
         ppe_tot = ppe_vous + ppe_conj + ppe_pac + maj_pac
 
-        ppe_tot = (ppe_tot != 0) * max_(ppe.versmin, ppe_tot)
+        ppe_tot = (ppe_tot != 0) * max_(ppe.montant_minimum, ppe_tot)
 
         return ppe_tot
 

@@ -1,4 +1,11 @@
 description: Crédits d'impôt
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  description_en: Tax credits
+  order:
+  - gardenf
+  - ppe
+  - habitat_princ_credit
+  - plaf_nich
+  - transition_energetique
+  - aide_a_domicile
+  - risque_techno

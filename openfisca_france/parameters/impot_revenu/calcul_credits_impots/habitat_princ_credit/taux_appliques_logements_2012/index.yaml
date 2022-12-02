@@ -1,0 +1,5 @@
+description: Taux appliqués pour les logements neufs construits ou acquis en 2012
+metadata:
+  order:
+  - taux_2
+  - taux_applique_premiere_annuite_remboursement
