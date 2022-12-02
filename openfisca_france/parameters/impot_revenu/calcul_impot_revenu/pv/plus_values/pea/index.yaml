@@ -1,3 +1,5 @@
+description: PEA
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  order:
+  - taux_avant_2_ans
+  - taux_posterieur
