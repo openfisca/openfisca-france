@@ -37,7 +37,7 @@ values:
 metadata:
   ipp_csv_id: ticpe_diesel
   unit:
-    1993-04-15: currency-FRF
+    1993-04-15: currency
     2002-01-01: currency
   reference:
     1993-01-01:
