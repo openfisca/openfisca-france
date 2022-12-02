@@ -46,8 +46,8 @@ values:
     value: 20705
   2018-01-01:
     value: 21037
-  2019-01-01:
-    value: null
+  # 2019-01-01:
+  #  value: null
 documentation: |-
   Notes :
   > Création du quotient familial en 1945 (Loi 45-0195 du 31/02/1945).
