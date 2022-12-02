@@ -1,0 +1,8 @@
+description: Clôture PEA avant 2 ans (3VM)
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+values:
+  1991-01-01:
+    value: 0.225

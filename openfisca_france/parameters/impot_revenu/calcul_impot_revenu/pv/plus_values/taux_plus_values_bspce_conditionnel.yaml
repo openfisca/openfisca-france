@@ -1,0 +1,12 @@
+description: Taux spécial de taxation des cessions de bons de souscription de parts
+  de créateur d'entreprise (BSPCE). Ce taux est applicable si, à la date de cession
+  des titres, vous exercez votre activité dans la société depuis moins de trois ans
+  ou si, n’étant plus salarié de la société à la même date, vous y avez exercé votre
+  activité pendant moins de trois ans.
+metadata:
+  reference:
+    title: openfisca
+  unit: /1
+values:
+  2012-01-01:
+    value: 0.3

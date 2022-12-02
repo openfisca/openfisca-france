@@ -1,0 +1,15 @@
+description: Plus value de cession (RPNS)
+metadata:
+  reference:
+    1985-01-01:
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000882285
+      title: Décret 85-1007 du 24/09/1985, art. 1er
+    2018-01-01:
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036339237
+      title: Loi 2017-1837 du 30/12/2017, art. 29
+  unit: /1
+values:
+  1985-01-01:
+    value: 0.16
+  2018-01-01:
+    value: 0.128
