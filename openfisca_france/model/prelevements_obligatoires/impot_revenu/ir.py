@@ -1223,7 +1223,7 @@ class ir_plaf_qf(Variable):
 
         B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.general * (aa0 - aa1)
         B2 = plafond_qf.general * aa0
-        B3 = plafond_qf.celib
+        B3 = plafond_qf.plafond_avantages_procures_par_demi_part.celib
 
         condition61 = celibataire_ou_divorce & caseT
         condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (annee_naissance_pac_alterne < int(period.start.year) - 25)
@@ -1316,7 +1316,7 @@ class ir_plaf_qf(Variable):
         aa1 = min_((nb_parts - 1) * 2, 2)
         B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.general * (aa0 - aa1)
         B2 = plafond_qf.general * aa0
-        B3 = plafond_qf.celib
+        B3 = plafond_qf.plafond_avantages_procures_par_demi_part.celib
 
         condition61 = celibataire_ou_divorce & caseT
         condition63 = (celibataire_ou_divorce | veuf) & (nb_pac == 0) & caseL
