@@ -8,8 +8,6 @@ values:
     value: 3737
   2018-01-01:
     value: 3797
-  2019-01-01:
-    value: null
 metadata:
   ux_name: Majoration par demi-parts supp.
   ipp_csv_id: reduc_bas_revenus_plaf_enf
