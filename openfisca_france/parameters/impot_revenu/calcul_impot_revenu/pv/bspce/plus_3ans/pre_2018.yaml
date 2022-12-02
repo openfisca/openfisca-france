@@ -16,3 +16,6 @@ values:
     value: 0.3
   2012-01-01:
     value: 0.19
+documentation: |
+  Taux général de taxation des cessions de bons de souscription de parts
+  de créateur d'entreprise (BSPCE).

@@ -939,7 +939,7 @@ git log --oneline 66724eff27e8feb0^..60136e4a68e04 | grep "variable_name"
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
   - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
-  - `openfisca_france/parameters/impot_revenu/plus_values.yaml`
+  - `openfisca_france/parameters/impot_revenu/pv.plus_values.yaml`
   - `tests/calculateur_impots/yaml/regime_benef_reel_agricole_avec_cga.yaml`
   - `tests/calculateur_impots/yaml/rpns_pv.yaml`
 * Détails :
@@ -3204,7 +3204,7 @@ Ces changements :
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 01/01/2018 jusqu'au 31/12/2019
 * Zones impactées :
-  - `openfisca_france/parameters/impot_revenu/plus_values.yaml`.
+  - `openfisca_france/parameters/impot_revenu/pv.plus_values.yaml`.
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
   - `openfisca_france/model/revenus/capital/plus_value.py`
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`

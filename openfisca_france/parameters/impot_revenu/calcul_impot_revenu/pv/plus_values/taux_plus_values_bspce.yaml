@@ -1,9 +1,0 @@
-description: Taux général de taxation des cessions de bons de souscription de parts
-  de créateur d'entreprise (BSPCE).
-metadata:
-  reference:
-    title: openfisca
-  unit: /1
-values:
-  2012-01-01:
-    value: 0.19

@@ -1684,7 +1684,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vl = foyer_fiscal('f3vl', period)
         f3vm = foyer_fiscal('f3vm', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vd = foyer_fiscal.declarant_principal('f3vd', period)  # noqa F841
@@ -1697,12 +1697,12 @@ class taxation_plus_values_hors_bareme(Variable):
         # revenus taxés à un taux proportionnel
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux1 * max_(0, f3vg - f3vh)
-            + plus_values.taux_pv_mob_pro * f3vl
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
+            pv.plus_values.pvce * rpns_pvce
+            + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
+            + pv.plus_values.taux_pv_mob_pro * f3vl
+            + pv.plus_values.pea.taux_avant_2_ans * f3vm
+            + pv.plus_values.taux3 * f3vi
+            + pv.plus_values.taux4 * f3vf
             )
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
@@ -1714,7 +1714,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vl = foyer_fiscal('f3vl', period)
         f3vm = foyer_fiscal('f3vm', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vd = foyer_fiscal.declarant_principal('f3vd', period)
@@ -1727,13 +1727,13 @@ class taxation_plus_values_hors_bareme(Variable):
         # revenus taxés à un taux proportionnel
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux1 * max_(0, f3vg - f3vh)
-            + plus_values.taux_pv_mob_pro * f3vl
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
-            + plus_values.taux2 * f3vd
+            pv.plus_values.pvce * rpns_pvce
+            + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
+            + pv.plus_values.taux_pv_mob_pro * f3vl
+            + pv.plus_values.pea.taux_avant_2_ans * f3vm
+            + pv.plus_values.taux3 * f3vi
+            + pv.plus_values.taux4 * f3vf
+            + pv.plus_values.taux2 * f3vd
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -1752,7 +1752,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vi_i = foyer_fiscal.members('f3vi', period)
         f3vf_i = foyer_fiscal.members('f3vf', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
@@ -1760,17 +1760,17 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vf = foyer_fiscal.sum(f3vf_i)
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux1 * max_(0, f3vg - f3vh)
-            + plus_values.taux2 * f3vd
-            + plus_values.taux_pv_mob_pro * f3vl
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.pea.taux_posterieur * f3vt
-            + plus_values.taux_pv_entrep * f3sa_2012
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
-            + plus_values.taux_plus_values_bspce * f3sj
-            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
+            pv.plus_values.pvce * rpns_pvce
+            + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
+            + pv.plus_values.taux2 * f3vd
+            + pv.plus_values.taux_pv_mob_pro * f3vl
+            + pv.plus_values.pea.taux_avant_2_ans * f3vm
+            + pv.plus_values.pea.taux_posterieur * f3vt
+            + pv.plus_values.taux_pv_entrep * f3sa_2012
+            + pv.plus_values.taux3 * f3vi
+            + pv.plus_values.taux4 * f3vf
+            + pv.bspce.plus_3ans.pre_2018 * f3sj
+            + pv.bspce.plus_3ans.pre_2018_conditionnel * f3sk
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -1790,17 +1790,17 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.pea.taux_posterieur * f3vt
-            + plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
-            + plus_values.taux_plus_values_bspce * f3sj
-            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
+            pv.plus_values.pvce * rpns_pvce
+            + pv.plus_values.pea.taux_avant_2_ans * f3vm
+            + pv.plus_values.pea.taux_posterieur * f3vt
+            + pv.plus_values.taux2 * f3vd
+            + pv.plus_values.taux3 * f3vi
+            + pv.plus_values.taux4 * f3vf
+            + pv.bspce.plus_3ans.pre_2018 * f3sj
+            + pv.bspce.plus_3ans.pre_2018_conditionnel * f3sk
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -1822,19 +1822,19 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.pea.taux_posterieur * f3vt
-            + plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
-            + plus_values.taux_plus_values_bspce * f3sj
-            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
-            + plus_values.taux_plus_values_report * f3wi
-            + plus_values.taux_plus_values_report_conditionnel * f3wj
+            pv.plus_values.pvce * rpns_pvce
+            + pv.plus_values.pea.taux_avant_2_ans * f3vm
+            + pv.plus_values.pea.taux_posterieur * f3vt
+            + pv.plus_values.taux2 * f3vd
+            + pv.plus_values.taux3 * f3vi
+            + pv.plus_values.taux4 * f3vf
+            + pv.bspce.plus_3ans.pre_2018 * f3sj
+            + pv.bspce.plus_3ans.pre_2018_conditionnel * f3sk
+            + pv.plus_values.taux_plus_values_report * f3wi
+            + pv.plus_values.taux_plus_values_report_conditionnel * f3wj
             )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
@@ -1858,20 +1858,20 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
-            + plus_values.taux_plus_values_bspce * f3sj
-            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
-            + plus_values.pea.taux_avant_2_ans * f3vm
-            + plus_values.pea.taux_posterieur * f3vt
-            + plus_values.taux_plus_values_report * f3wi
-            + plus_values.taux_plus_values_report_conditionnel * f3wj
-            + plus_values.taux_plus_values_entc * f3pi
+            pv.plus_values.pvce * rpns_pvce
+            + pv.plus_values.taux2 * f3vd
+            + pv.plus_values.taux3 * f3vi
+            + pv.plus_values.taux4 * f3vf
+            + pv.bspce.plus_3ans.pre_2018 * f3sj
+            + pv.bspce.plus_3ans.pre_2018_conditionnel * f3sk
+            + pv.plus_values.pea.taux_avant_2_ans * f3vm
+            + pv.plus_values.pea.taux_posterieur * f3vt
+            + pv.plus_values.taux_plus_values_report * f3wi
+            + pv.plus_values.taux_plus_values_report_conditionnel * f3wj
+            + pv.plus_values.taux_plus_values_entc * f3pi
             )
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
@@ -1896,20 +1896,20 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values
+        pv = parameters(period).impot_revenu.calcul_impot_revenu.pv
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rpns
 
         return round_(
-            plus_values.pvce * rpns_pvce
-            + plus_values.taux2 * f3vd
-            + plus_values.taux3 * f3vi
-            + plus_values.taux4 * f3vf
+            pv.plus_values.pvce * rpns_pvce
+            + pv.plus_values.taux2 * f3vd
+            + pv.plus_values.taux3 * f3vi
+            + pv.plus_values.taux4 * f3vf
             + P.taux10 * rpns_info
-            + plus_values.taux_plus_values_bspce * f3sj
-            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
-            + plus_values.taux_plus_values_report * f3wi
-            + plus_values.taux_plus_values_report_conditionnel * f3wj
-            + plus_values.taux_plus_values_entc * f3pi
+            + pv.bspce.plus_3ans.pre_2018 * f3sj
+            + pv.bspce.plus_3ans.pre_2018_conditionnel * f3sk
+            + pv.plus_values.taux_plus_values_report * f3wi
+            + pv.plus_values.taux_plus_values_report_conditionnel * f3wj
+            + pv.plus_values.taux_plus_values_entc * f3pi
             )
 
 
