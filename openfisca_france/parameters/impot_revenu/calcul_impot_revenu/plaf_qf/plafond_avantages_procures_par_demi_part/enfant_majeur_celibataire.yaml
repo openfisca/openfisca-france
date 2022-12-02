@@ -18,10 +18,9 @@ values:
     value: null
 metadata:
   ux_name: Enfant majeur célibataire
-  unit: currency
-  last_review: "2022-08-08"
-  ipp_csv_id: plaf_qf_foy_maj
   description_en: Family quotient ceiling and "decote" (1978 - )
+  ipp_csv_id: plaf_qf_foy_maj
+  unit: currency
   reference:
     1980-01-01:
       title: Loi 80-1094 du 30/12/1980 (LF pour 1981)
@@ -39,6 +38,7 @@ metadata:
     - title: Demi-part supplémentaire pour 5ème enfant à charge sur revenus 1979 (loi 18/01/1980) et pour 3ème enfant à charge sur revenus 1980 (loi 30/12/1980).
     1980-01-01:
     - title: Avant 1981, le plafond se calcule en multipliant le nombre d'enfant par le montant de la colonne C
+  last_review: "2022-08-08"
 documentation: |-
   Notes :
   > Création du quotient familial en 1945 (Loi 45-0195 du 31/02/1945).
