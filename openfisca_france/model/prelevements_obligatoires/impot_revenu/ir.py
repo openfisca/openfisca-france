@@ -1700,7 +1700,7 @@ class taxation_plus_values_hors_bareme(Variable):
             pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
             + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
             + pv.plus_values.taux_pv_mob_pro * f3vl
-            + pv.plus_values.pea.taux_avant_2_ans * f3vm
+            + pv.pea.taux_avant_2_ans * f3vm
             + pv.actions_gratuites.taux3 * f3vi
             + pv.actions_gratuites.taux4 * f3vf
             )
@@ -1730,7 +1730,7 @@ class taxation_plus_values_hors_bareme(Variable):
             pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
             + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
             + pv.plus_values.taux_pv_mob_pro * f3vl
-            + pv.plus_values.pea.taux_avant_2_ans * f3vm
+            + pv.pea.taux_avant_2_ans * f3vm
             + pv.actions_gratuites.taux3 * f3vi
             + pv.actions_gratuites.taux4 * f3vf
             + pv.actions_gratuites.taux2 * f3vd
@@ -1764,8 +1764,8 @@ class taxation_plus_values_hors_bareme(Variable):
             + pv.plus_values.taux1 * max_(0, f3vg - f3vh)
             + pv.actions_gratuites.taux2 * f3vd
             + pv.plus_values.taux_pv_mob_pro * f3vl
-            + pv.plus_values.pea.taux_avant_2_ans * f3vm
-            + pv.plus_values.pea.taux_posterieur * f3vt
+            + pv.pea.taux_avant_2_ans * f3vm
+            + pv.pea.taux_posterieur * f3vt
             + pv.plus_values.taux_pv_entrep * f3sa_2012
             + pv.actions_gratuites.taux3 * f3vi
             + pv.actions_gratuites.taux4 * f3vf
@@ -1794,8 +1794,8 @@ class taxation_plus_values_hors_bareme(Variable):
 
         return round_(
             pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
-            + pv.plus_values.pea.taux_avant_2_ans * f3vm
-            + pv.plus_values.pea.taux_posterieur * f3vt
+            + pv.pea.taux_avant_2_ans * f3vm
+            + pv.pea.taux_posterieur * f3vt
             + pv.actions_gratuites.taux2 * f3vd
             + pv.actions_gratuites.taux3 * f3vi
             + pv.actions_gratuites.taux4 * f3vf
@@ -1826,8 +1826,8 @@ class taxation_plus_values_hors_bareme(Variable):
 
         return round_(
             pv.pv_cession_valeurs_mobilieres_pv_professionnelles.taux * rpns_pvce
-            + pv.plus_values.pea.taux_avant_2_ans * f3vm
-            + pv.plus_values.pea.taux_posterieur * f3vt
+            + pv.pea.taux_avant_2_ans * f3vm
+            + pv.pea.taux_posterieur * f3vt
             + pv.actions_gratuites.taux2 * f3vd
             + pv.actions_gratuites.taux3 * f3vi
             + pv.actions_gratuites.taux4 * f3vf
@@ -1867,8 +1867,8 @@ class taxation_plus_values_hors_bareme(Variable):
             + pv.actions_gratuites.taux4 * f3vf
             + pv.bspce.plus_3ans.pre_2018 * f3sj
             + pv.bspce.plus_3ans.pre_2018_conditionnel * f3sk
-            + pv.plus_values.pea.taux_avant_2_ans * f3vm
-            + pv.plus_values.pea.taux_posterieur * f3vt
+            + pv.pea.taux_avant_2_ans * f3vm
+            + pv.pea.taux_posterieur * f3vt
             + pv.plus_values.taux_plus_values_report * f3wi
             + pv.plus_values.taux_plus_values_report_conditionnel * f3wj
             + pv.plus_values.taux_plus_values_entc * f3pi
