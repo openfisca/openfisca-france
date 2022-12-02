@@ -3,6 +3,6 @@ metadata:
   ux_name: Plafond niches
   description_en: Global ceiling for tax reductions (2009 - )
   order:
-    - taux
-    - plafond
-    - majoration
+  - taux
+  - plafond
+  - majoration

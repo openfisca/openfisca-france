@@ -22,9 +22,9 @@ values:
     value: null
 metadata:
   ux_name: Cas général
-  unit: currency
-  ipp_csv_id: seuil_ppe_max
   description_en: Employment Allowance (2001 - 2015)
+  ipp_csv_id: seuil_ppe_max
+  unit: currency
   reference:
     2000-01-01:
     - title: Loi 2001-458 du 30/05/2001

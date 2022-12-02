@@ -3,5 +3,5 @@ metadata:
   ux_name: Suppléments
   description_en: Employment Allowance (2001 - 2015)
   order:
-    - couples_mono_emploi
-    - par_personne_charge
+  - couples_mono_emploi
+  - par_personne_charge

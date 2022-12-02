@@ -10,9 +10,9 @@ values:
     value: 0.5
 metadata:
   ux_name: Plafond
-  unit: /1
-  ipp_csv_id: txgardenf
   description_en: Child care costs (1979 - )
+  ipp_csv_id: txgardenf
+  unit: /1
   reference:
     1988-01-01:
       title: Loi 88-1149 du 23/12/1988 (LF pour 1989) - art. 4 (I)

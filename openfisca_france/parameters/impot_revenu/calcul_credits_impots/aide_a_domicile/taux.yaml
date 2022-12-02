@@ -3,9 +3,9 @@ values:
   2017-01-01:
     value: 0.5
 metadata:
+  description_en: Tax credits for personal care assistant employment (2017-)
   ipp_csv_id: taux_aide_credit_impot
   unit: /1
-  description_en: Tax credits for personal care assistant employment (2017-)
   reference:
     2017-01-01:
       title: Loi n° 2016-1917 du 29 décembre 2016 (LF 2017), art. 82

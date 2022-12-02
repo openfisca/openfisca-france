@@ -20,9 +20,9 @@ values:
     value: null
 metadata:
   ux_name: Couples mono-emploi
+  description_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: supp_ppe_coup
   unit: currency
-  description_en: Employment Allowance (2001 - 2015)
   reference:
     2000-01-01:
     - title: Loi 2001-458 du 30/05/2001
@@ -40,9 +40,6 @@ metadata:
     2004-01-01:
     - title: LF pour 2005
     - title: BOI 5 B-2-05; n°11 DU 17/01/2005
-    2005-01-01:
-    - title: LF pour 2006
-    - title: BOI 5 B-16-06; n°82 DU 17/05/2006
     2006-01-01:
     - title: LF pour 2007
     - title: BOI 5 B-8-07; n°45 DU 27/03/2007
@@ -56,7 +53,6 @@ metadata:
     2002-01-01: "2002-12-31"
     2003-01-01: "2003-12-31"
     2004-01-01: "2004-12-31"
-    2005-01-01: "2005-12-31"
     2006-01-01: "2006-12-27"
     2007-01-01: "2007-12-27"
   notes:

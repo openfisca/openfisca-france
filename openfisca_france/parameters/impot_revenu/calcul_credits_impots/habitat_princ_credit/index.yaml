@@ -1,5 +1,7 @@
 description: Crédit d'impôt - intérêts d'emprunt pour l'habitation principale (réforme Sarkozy)
 metadata:
+  ux_name: Intérêts d'emprunt pour l'habitation principale
+  description_en: Tax credits on loan interests for households' main accomodation
   order:
   - cas_base
   - logements_performance_energetique_globale_elevee
@@ -9,8 +11,4 @@ metadata:
   - plafond_base
   - plafond_handicap
   - majoration_plafond_par_enfant_charge
-  ux_name: Intérêts d'emprunt pour l'habitation principale
-  description_en: Tax credits on loan interests for households' main accomodation
-documentation: |-
-  Référence législative : art. 200 quaterdecies du CGI
-  
+documentation: "Référence législative : art. 200 quaterdecies du CGI"
