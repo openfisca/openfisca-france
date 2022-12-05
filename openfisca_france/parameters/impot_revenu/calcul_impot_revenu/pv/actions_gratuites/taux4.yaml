@@ -1,7 +1,9 @@
 description: Imposition des gains d'acquisition d'actions gratuites à 40%
 values:
-  2008-01-01:
-    value: 0.18
+  2000-01-01:
+    value: 0.4
+  2010-01-01:
+    value: 0.41
 metadata:
   ux_name: Taux 40%
   unit: /1
