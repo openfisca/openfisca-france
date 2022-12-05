@@ -8,6 +8,8 @@ values:
     value: 18685
   2018-01-01:
     value: 18985
+  2019-01-01:
+    value: null
 metadata:
   ux_name: Plafond RFR Célibataire
   ipp_csv_id: reduc_bas_revenus_plaf1

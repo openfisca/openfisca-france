@@ -8,6 +8,8 @@ values:
     value: 20705
   2018-01-01:
     value: 21037
+  2019-01-01:
+    value: null
 metadata:
   ux_name: Plafond RFR Couple
   ipp_csv_id: reduc_bas_revenus_plaf2
