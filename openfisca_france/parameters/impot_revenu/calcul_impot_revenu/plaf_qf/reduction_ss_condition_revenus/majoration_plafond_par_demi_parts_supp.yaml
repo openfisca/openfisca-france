@@ -8,7 +8,7 @@ values:
     value: 3737
   2018-01-01:
     value: 3797
-  2019-01-01:
+  2019-12-31:
     value: null
 metadata:
   ux_name: Majoration par demi-parts supp.
