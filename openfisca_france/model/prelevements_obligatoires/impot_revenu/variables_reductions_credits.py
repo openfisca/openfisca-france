@@ -216,7 +216,7 @@ class f7uh_2009(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'EcoDev'
+    label = 'codev'
     # start_date = date(2007, 1, 1)
     end = '2009-12-31'
     definition_period = YEAR

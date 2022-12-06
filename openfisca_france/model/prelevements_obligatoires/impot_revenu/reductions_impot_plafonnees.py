@@ -180,7 +180,7 @@ class reductions(Variable):
             # Introduites en 2008
             'mohist',
             # Introduites en 2009
-            'domsoc', 'ecodev', 'locmeu', 'resimm', 'scelli',
+            'domsoc', 'codev', 'locmeu', 'resimm', 'scelli',
             'sofipe',
             # Introduites en 2010
             'patnat',
@@ -1608,10 +1608,10 @@ class deffor(Variable):
         return P.taux * min_(f7uc, P.max)
 
 
-class ecodev(Variable):
+class codev(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'ecodev'
+    label = 'codev'
     end = '2009-12-31'
     definition_period = YEAR
 
@@ -1622,7 +1622,7 @@ class ecodev(Variable):
         '''
         f7uh = foyer_fiscal('f7uh_2009', period)
         rbg_int = foyer_fiscal('rbg_int', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.ecodev
+        P = parameters(period).impot_revenu.calcul_reductions_impots.codev
 
         return min_(f7uh * P.taux, min_(P.taux_plafond * rbg_int, P.plafond_par_personne))  # page3 ligne 18
 

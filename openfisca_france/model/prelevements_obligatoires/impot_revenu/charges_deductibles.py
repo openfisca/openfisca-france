@@ -727,9 +727,9 @@ class epargne_codeveloppement(Variable):
         '''
         f6eh = foyer_fiscal('f6eh', period)
         rbg_int = foyer_fiscal('rbg_int', period)
-        ecodev = parameters(period).impot_revenu.calcul_revenus_imposables.charges_deductibles.compte_epargne_codev
+        codev = parameters(period).impot_revenu.calcul_revenus_imposables.charges_deductibles.compte_epargne_codev
 
-        plafond = min_(ecodev.plafond_pct_rng * rbg_int, ecodev.plafond)
+        plafond = min_(codev.plafond_pct_rng * rbg_int, codev.plafond)
         return min_(f6eh, plafond)
 
 
