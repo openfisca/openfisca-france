@@ -1,0 +1,7 @@
+description: Abattement pour durée de détention de droit commun
+metadata:
+  order:
+  - 2ans
+  - 4ans
+  - 6ans
+  - 8ans

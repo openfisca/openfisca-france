@@ -1,0 +1,7 @@
+description: Imposition des plus-values de cession de valeurs mobilières et des plus-values
+  professionnelles
+metadata:
+  ux_name: Valeurs mobilières et pro.
+  order:
+  - taux
+  - seuil_imposition

@@ -4,6 +4,8 @@ values:
     value: null
   2016-01-01:
     value: 0.2
+  2020-01-01:
+    value: null
 metadata:
   ux_name: Taux
   ipp_csv_id: reduc_bas_revenus_tx

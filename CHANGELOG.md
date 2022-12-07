@@ -1,5 +1,16 @@
 # Changelog
+# 123.0.0 [#1933](https://github.com/openfisca/openfisca-france/pull/1933)
 
+* Amélioration technique
+* Périodes concernées : toutes
+* Zones impactées : `parameters.calcul_impot_revenu.pv`.
+* Détails :
+  - Ajout des paramètres issus du barème IPP
+  - Ajout des références dans les paramètres existants
+
+* Guide pour la migration :
+  - Vous pouvez chercher où sont passés vos fichiers avec la commande suivante :
+    `git log --oneline 4f196ea8187d7fa97efa^..ce71e8ce69b8645b99738 | grep "variable_name"`
 # 122.0.0 [#1931](https://github.com/openfisca/openfisca-france/pull/1931)
 
 * Amélioration technique
@@ -8,6 +19,10 @@
 * Détails :
   - Ajout des paramètres issus du barème IPP
   - Ajout des références dans les paramètres existants
+
+* Guide pour la migration :
+  - Vous pouvez chercher où sont passés vos fichiers avec la commande suivante :
+    `git log --oneline 73fde874877281584d69^..7b89ccd1268b7 | grep "variable_name"`
 # 121.0.0 [#1920](https://github.com/openfisca/openfisca-france/pull/1920)
 
 * Évolution du système socio-fiscal

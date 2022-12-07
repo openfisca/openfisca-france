@@ -1,0 +1,10 @@
+description: Cessions titres réalisées par un entrepreneur
+metadata:
+  reference:
+    title: openfisca
+  unit: /1
+values:
+  2012-01-01:
+    value: 0.19
+  2013-01-01:
+    value: null
