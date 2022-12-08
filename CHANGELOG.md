@@ -40,7 +40,7 @@
    - Ajout de nouveaux paramètres issus des barèmes IPP:
       -  aide_a_domicile.yaml
       -  risque_techno.yaml
-      -  transition_energetique.yaml 
+      -  transition_energetique.yaml
   - Mise en forme des autres paramètres OpenFisca
       - accult
       - acqgpl
@@ -58,11 +58,11 @@
 Note: un travail ultérieur reste à faire pour rapprocher ces acronymes des dispositifs qu'ils représentent (en utilisant les description des formules qui les utilisent) et ajouter des metadata et des références
 ## 120.1.0 [#1822](https://github.com/openfisca/openfisca-france/pull/1822)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : 1915 - 1944
-* Zones impactées : 
+* Zones impactées :
 - `parameters/impot_revenu/anciens_baremes_igr`
-* Détails : 
+* Détails :
   - Ajoute les `anciens_baremes_igr` de l'IPP
   - Met sous forme de barème les barèmes en taux et seuils simples
   - Pour les autres, découpe les fichiers en paramètres uniques
@@ -98,7 +98,7 @@ Note: un travail ultérieur reste à faire pour rapprocher ces acronymes des dis
 
 ### 119.0.1 [#1922](https://github.com/openfisca/openfisca-france/pull/1922)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/taxation_indirecte/taxes_tabacs/taux_specifique`.
 * Détails :
