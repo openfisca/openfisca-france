@@ -1,3 +1,5 @@
+description: Dons pour Notre-Dame de Paris
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  order:
+  - taux
+  - plafond
