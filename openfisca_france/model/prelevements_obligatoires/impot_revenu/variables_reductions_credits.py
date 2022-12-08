@@ -8123,7 +8123,7 @@ class f7hm(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'SPFCPI'
+    label = 'souscriptions_parts_fcpi_fip'
     # start_date = date(2020, 1, 1)
     end = '2020-12-31'
     definition_period = YEAR

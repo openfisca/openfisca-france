@@ -45,7 +45,7 @@ class reductions_plafonnees(Variable):
             'patnat',  # Approximation
             'rehab',
             'mohist',
-            'spfcpi',
+            'souscriptions_parts_fcpi_fip',
             'duflot_pinel_denormandie_metropole',
 
             # Pas clair, dans le doute compté parmi les plafonnées :
@@ -168,7 +168,7 @@ class reductions(Variable):
             'reduction_cotisations_syndicales',
             'daepad', 'dfppce', 'doment', 'domlog',
             'reduction_enfants_scolarises', 'gardenf', 'intemp', 'ri_invfor', 'invrev',
-            'prcomp', 'rsceha', 'ri_saldom', 'spfcpi',
+            'prcomp', 'rsceha', 'ri_saldom', 'souscriptions_parts_fcpi_fip',
             # Introduites en 2003
             'mecena', 'repsoc',
             # Introduites en 2004
@@ -4917,10 +4917,10 @@ class sofipe(Variable):
         return P.taux * min_(f7gs, max1)
 
 
-class spfcpi(Variable):
+class souscriptions_parts_fcpi_fip(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'spfcpi'
+    label = 'souscriptions_parts_fcpi_fip'
     reference = 'http://bofip.impots.gouv.fr/bofip/5321-PGP'
     definition_period = YEAR
 
@@ -4932,7 +4932,7 @@ class spfcpi(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7gq = foyer_fiscal('f7gq', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
         max1 = P.plafond * (maries_ou_pacses + 1)
         return P.taux1 * min_(f7gq, max1)
@@ -4946,7 +4946,7 @@ class spfcpi(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7gq = foyer_fiscal('f7gq', period)
         f7fq = foyer_fiscal('f7fq', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
         max1 = P.plafond * (maries_ou_pacses + 1)
         return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
@@ -4961,7 +4961,7 @@ class spfcpi(Variable):
         f7gq = foyer_fiscal('f7gq', period)
         f7fq = foyer_fiscal('f7fq', period)
         f7fm = foyer_fiscal('f7fm', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
         max1 = P.plafond * (maries_ou_pacses + 1)
 
@@ -4980,7 +4980,7 @@ class spfcpi(Variable):
         f7fq = foyer_fiscal('f7fq', period)
         f7fm = foyer_fiscal('f7fm', period)
         f7fl = foyer_fiscal('f7fl', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
         max1 = P.plafond * (maries_ou_pacses + 1)
 
@@ -5005,9 +5005,9 @@ class spfcpi(Variable):
         f7fl = foyer_fiscal('f7fl', period)
         f7hl = foyer_fiscal('f7hl', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
-        P1 = parameters('2020-08-01').impot_revenu.calcul_reductions_impots.spfcpi
-        P2 = parameters('2020-08-31').impot_revenu.calcul_reductions_impots.spfcpi
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
+        P1 = parameters('2020-08-01').impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
+        P2 = parameters('2020-08-31').impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
         max1 = P.plafond * (maries_ou_pacses + 1)
 
@@ -5043,7 +5043,7 @@ class spfcpi(Variable):
         f7fm = foyer_fiscal('f7fm', period)
         f7fl = foyer_fiscal('f7fl', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.spfcpi
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
         max1 = P.plafond * (maries_ou_pacses + 1)
 
