@@ -1,4 +1,14 @@
 # Changelog
+## 123.1.0 [#1938](https://github.com/openfisca/openfisca-france/pull/1938)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/12/2022.
+* Zones impactées :
+  - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/agepi`
+
+* Détails :
+  - Revalorisation des montants de l'AGEPI.
+  - https://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2022-57-du-23-novembre-2022-bope-n-2022-79.html?type=dossiers/2022/bope-n-2022-79-du-30-novembre-2022
 # 123.0.0 [#1933](https://github.com/openfisca/openfisca-france/pull/1933)
 
 * Amélioration technique
