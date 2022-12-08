@@ -1,0 +1,7 @@
+description: Enfants à charge poursuivant leurs études secondaires ou supérieures
+metadata:
+  order:
+  - college
+  - lycee
+  - universite
+  description_en: Reduction for educated children (1993 -)

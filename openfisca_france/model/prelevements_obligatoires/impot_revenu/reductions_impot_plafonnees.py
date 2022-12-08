@@ -167,7 +167,7 @@ class reductions(Variable):
             'accult', 'adhcga', 'assvie', 'cappme', 'cappme_esus_sfs',
             'reduction_cotisations_syndicales',
             'daepad', 'dfppce', 'doment', 'domlog',
-            'ecpess', 'gardenf', 'intemp', 'ri_invfor', 'invrev',
+            'reduction_enfants_scolarises', 'gardenf', 'intemp', 'ri_invfor', 'invrev',
             'prcomp', 'rsceha', 'ri_saldom', 'spfcpi',
             # Introduites en 2003
             'mecena', 'repsoc',

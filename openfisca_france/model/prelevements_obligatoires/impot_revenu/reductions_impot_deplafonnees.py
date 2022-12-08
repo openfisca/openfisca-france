@@ -26,7 +26,7 @@ class reductions_deplafonnees(Variable):
             'prcomp',
             'repsoc',
             'resimm',  # Malraux, non plafonnées pour les investissements réalisés après 2013
-            'ecpess',
+            'reduction_enfants_scolarises',
             'accult',
             'rsceha',
             ]
@@ -468,10 +468,10 @@ class dfppce(Variable):
         return red_7ud_7va + red_7uj + P.dons_aux_oeuvres.taux * min_(base, max)
 
 
-class ecpess(Variable):
+class reduction_enfants_scolarises(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'ecpess'
+    label = 'reduction_enfants_scolarises'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -484,12 +484,12 @@ class ecpess(Variable):
         f7ed = foyer_fiscal('f7ed', period)
         f7ef = foyer_fiscal('f7ef', period)
         f7eg = foyer_fiscal('f7eg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.ecpess
+        P = parameters(period).impot_revenu.calcul_reductions_impots.enfants_scolarises
 
         return (
-            P.col * (f7ea + f7eb / 2)
-            + P.lyc * (f7ec + f7ed / 2)
-            + P.sup * (f7ef + f7eg / 2)
+            P.college * (f7ea + f7eb / 2)
+            + P.lycee * (f7ec + f7ed / 2)
+            + P.universite * (f7ef + f7eg / 2)
             )
 
 
