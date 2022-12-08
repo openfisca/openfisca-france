@@ -1728,19 +1728,19 @@ class ri_investissement_forestier(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7un = foyer_fiscal('f7un', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        seuil = P.plafond_ri_acquisition * (maries_ou_pacses + 1)
-        return P.taux_ri_acquisition * min_(f7un, seuil)
+        seuil = P.acquisition.plafond * (maries_ou_pacses + 1)
+        return P.acquisition.taux * min_(f7un, seuil)
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2006-2008
         '''
         f7un = foyer_fiscal('f7un', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        return P.taux_ri_acquisition * f7un
+        return P.acquisition.taux * f7un
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1750,11 +1750,11 @@ class ri_investissement_forestier(Variable):
         f7un = foyer_fiscal('f7un', period)
         f7up = foyer_fiscal('f7up', period)
         f7uq = foyer_fiscal('f7uq', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        return P.taux_ri_acquisition * (
-            min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
-            + min_(f7up, P.plafond_travaux * (maries_ou_pacses + 1))
+        return P.acquisition.taux * (
+            min_(f7un, P.acquisition.plafond * (maries_ou_pacses + 1))
+            + min_(f7up, P.travaux.plafond * (maries_ou_pacses + 1))
             + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
             )
 
@@ -1768,11 +1768,11 @@ class ri_investissement_forestier(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7uq = foyer_fiscal('f7uq', period)
         f7uu = foyer_fiscal('f7uu_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        return P.taux_ri_acquisition * (
-            min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
-            + min_(f7up + f7uu + f7te, P.plafond_travaux * (maries_ou_pacses + 1))
+        return P.acquisition.taux * (
+            min_(f7un, P.acquisition.plafond * (maries_ou_pacses + 1))
+            + min_(f7up + f7uu + f7te, P.travaux.plafond * (maries_ou_pacses + 1))
             + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
             )
 
@@ -1789,20 +1789,20 @@ class ri_investissement_forestier(Variable):
         f7uq = foyer_fiscal('f7uq', period)
         f7uu = foyer_fiscal('f7uu_2017', period)
         f7uv = foyer_fiscal('f7uv_2016', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
+        max0 = max_(0, P.travaux.plafond * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu - f7te - f7uv - f7tf)
         return (
-            P.taux_ri_acquisition * (
-                min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
+            P.acquisition.taux * (
+                min_(f7un, P.acquisition.plafond * (maries_ou_pacses + 1))
                 + min_(f7up, max1)
                 + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
                 )
-            + P10.taux_ri_acquisition * min_(f7uu + f7te + f7uv + f7tf, max0)
-            + P.taux_ri_ass * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
+            + P10.acquisition.taux * min_(f7uu + f7te + f7uv + f7tf, max0)
+            + P.assurance.taux * min_(f7ul, P.travaux.plafond * (maries_ou_pacses + 1))
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -1820,28 +1820,28 @@ class ri_investissement_forestier(Variable):
         f7uu = foyer_fiscal('f7uu_2017', period)
         f7uv = foyer_fiscal('f7uv_2016', period)
         f7uw = foyer_fiscal('f7uw_2015', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         report_depenses_2009 = f7uu + f7te
         report_depenses_2010 = f7uv + f7tf
         report_depenses_2011 = f7uw + f7tg
 
-        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
+        max0 = max_(0, P.travaux.plafond * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - report_depenses_2009 - report_depenses_2010)
         max2 = max_(0, max1 - report_depenses_2011)
 
         return (
-            P.taux_ri_acquisition * (
-                min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
+            P.acquisition.taux * (
+                min_(f7un, P.acquisition.plafond * (maries_ou_pacses + 1))
                 + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
                 + min_(f7up, max2)
                 )
-            + P.taux_ri_ass * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
-            + P10.taux_ri_acquisition * min_(report_depenses_2009 + report_depenses_2010, max0) +
-            + P11.taux_ri_acquisition * min_(report_depenses_2011, max1)
+            + P.assurance.taux * min_(f7ul, P.travaux.plafond * (maries_ou_pacses + 1))
+            + P10.acquisition.taux * min_(report_depenses_2009 + report_depenses_2010, max0) +
+            + P11.acquisition.taux * min_(report_depenses_2011, max1)
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -1861,32 +1861,32 @@ class ri_investissement_forestier(Variable):
         f7uv = foyer_fiscal('f7uv_2016', period)
         f7uw = foyer_fiscal('f7uw_2015', period)
         f7ux = foyer_fiscal('f7ux_2018', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         report_depenses_2009 = f7uu + f7te
         report_depenses_2010 = f7uv + f7tf
         report_depenses_2011 = f7uw + f7tg
         report_depenses_2012 = f7ux + f7th
 
-        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
+        max0 = max_(0, P.travaux.plafond * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - report_depenses_2009 - report_depenses_2010)
         max2 = max_(0, max1 - report_depenses_2011)
         max3 = max_(0, max2 - report_depenses_2012)
 
         return (
-            P.taux_ri_acquisition * (
-                min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
+            P.acquisition.taux * (
+                min_(f7un, P.acquisition.plafond * (maries_ou_pacses + 1))
                 + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
                 + min_(f7up, max3)
                 )
-            + P.taux_ri_ass * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
-            + P10.taux_ri_acquisition * min_(report_depenses_2009 + report_depenses_2010, max0)
-            + P11.taux_ri_acquisition * min_(report_depenses_2011, max1)
-            + P12.taux_ri_acquisition * min_(report_depenses_2012, max2)
+            + P.assurance.taux * min_(f7ul, P.travaux.plafond * (maries_ou_pacses + 1))
+            + P10.acquisition.taux * min_(report_depenses_2009 + report_depenses_2010, max0)
+            + P11.acquisition.taux * min_(report_depenses_2011, max1)
+            + P12.acquisition.taux * min_(report_depenses_2012, max2)
             )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -1907,21 +1907,21 @@ class ri_investissement_forestier(Variable):
         f7ux = foyer_fiscal('f7ux_2018', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7te + f7tf + f7uu)
-        rep_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011, f7uv + f7tg)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uw + f7th + f7ux + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7te + f7tf + f7uu)
+        rep_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011, f7uv + f7tg)
+        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uw + f7th + f7ux + f7ti)
 
-        ri_ass_rep = (rep_avant_2011 * P10.taux_ri_acquisition
-            + rep_2011 * P11.taux_ri_acquisition
-            + ass_rep_2012 * P.taux_ri_acquisition)
+        ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
+            + rep_2011 * P11.acquisition.taux
+            + ass_rep_2012 * P.acquisition.taux)
 
         return ri_acq + ri_ass_rep
 
@@ -1942,21 +1942,21 @@ class ri_investissement_forestier(Variable):
         f7uw = foyer_fiscal('f7uw_2015', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7te + f7tf)
-        rep_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011, f7uu + f7tg)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uv + f7th + f7uw + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7te + f7tf)
+        rep_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011, f7uu + f7tg)
+        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uv + f7th + f7uw + f7ti)
 
-        ri_ass_rep = (rep_avant_2011 * P10.taux_ri_acquisition
-            + rep_2011 * P11.taux_ri_acquisition
-            + ass_rep_2012 * P.taux_ri_acquisition)
+        ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
+            + rep_2011 * P11.acquisition.taux
+            + ass_rep_2012 * P.acquisition.taux)
 
         return ri_acq + ri_ass_rep
 
@@ -1976,21 +1976,21 @@ class ri_investissement_forestier(Variable):
         f7uv = foyer_fiscal('f7uv_2016', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7te + f7tf)
-        rep_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uu + f7th + f7uv + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7te + f7tf)
+        rep_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
+        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uu + f7th + f7uv + f7ti)
 
-        ri_ass_rep = (rep_avant_2011 * P10.taux_ri_acquisition
-            + rep_2011 * P11.taux_ri_acquisition
-            + ass_rep_2012 * P.taux_ri_acquisition)
+        ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
+            + rep_2011 * P11.acquisition.taux
+            + ass_rep_2012 * P.acquisition.taux)
 
         return ri_acq + ri_ass_rep
 
@@ -2009,21 +2009,21 @@ class ri_investissement_forestier(Variable):
         f7uu = foyer_fiscal('f7uu_2017', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7te + f7tf)
-        rep_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uu + f7th + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7te + f7tf)
+        rep_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
+        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uu + f7th + f7ti)
 
-        ri_ass_rep = (rep_avant_2011 * P10.taux_ri_acquisition
-            + rep_2011 * P11.taux_ri_acquisition
-            + ass_rep_2012 * P.taux_ri_acquisition)
+        ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
+            + rep_2011 * P11.acquisition.taux
+            + ass_rep_2012 * P.acquisition.taux)
 
         return ri_acq + ri_ass_rep
 
@@ -2040,21 +2040,21 @@ class ri_investissement_forestier(Variable):
         f7th = foyer_fiscal('f7th', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7tf)
-        rep_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7th + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7tf)
+        rep_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
+        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7th + f7ti)
 
-        ri_ass_rep = (rep_avant_2011 * P10.taux_ri_acquisition
-            + rep_2011 * P11.taux_ri_acquisition
-            + ass_rep_2012 * P.taux_ri_acquisition)
+        ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
+            + rep_2011 * P11.acquisition.taux
+            + ass_rep_2012 * P.acquisition.taux)
 
         return ri_acq + ri_ass_rep
 
@@ -2070,18 +2070,18 @@ class ri_investissement_forestier(Variable):
         f7th = foyer_fiscal('f7th', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_2011 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7tg)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1) - rep_2011, f7ul + f7th + f7ti)
+        rep_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7tg)
+        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_2011, f7ul + f7th + f7ti)
 
-        ri_ass_rep = (rep_2011 * P11.taux_ri_acquisition
-            + ass_rep_2012 * P.taux_ri_acquisition)
+        ri_ass_rep = (rep_2011 * P11.acquisition.taux
+            + ass_rep_2012 * P.acquisition.taux)
 
         return ri_acq + ri_ass_rep
 
@@ -2096,14 +2096,14 @@ class ri_investissement_forestier(Variable):
         f7th = foyer_fiscal('f7th', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7ul + f7th + f7ti)
-        ri_ass_rep = ass_rep_2012 * P.taux_ri_acquisition
+        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7ul + f7th + f7ti)
+        ri_ass_rep = ass_rep_2012 * P.acquisition.taux
 
         return ri_acq + ri_ass_rep
 
@@ -2117,14 +2117,14 @@ class ri_investissement_forestier(Variable):
         f7ul = foyer_fiscal('f7ul', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # acquisition
-        ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
+        ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        ass_rep_2012 = min_(P.plafond_ri_assurance * (maries_ou_pacses + 1), f7ul + f7ti)
-        ri_ass_rep = ass_rep_2012 * P.taux_ri_acquisition
+        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7ul + f7ti)
+        ri_ass_rep = ass_rep_2012 * P.acquisition.taux
 
         return ri_acq + ri_ass_rep
 
