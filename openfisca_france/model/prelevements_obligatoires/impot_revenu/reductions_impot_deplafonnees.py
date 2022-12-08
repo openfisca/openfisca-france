@@ -355,7 +355,7 @@ class dfppce(Variable):
         red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
         report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
 
-        dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol
         max = P.dons_interet_general.plafond * rni
@@ -392,7 +392,7 @@ class dfppce(Variable):
         red_notre_dame = min_(PND.plafond, f7ue) * PND.taux
         report_notre_dame = max_(0, f7ue - PND.plafond)
 
-        dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol + report_notre_dame
         max = P.dons_interet_general.plafond * rni
@@ -424,7 +424,7 @@ class dfppce(Variable):
         red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
         report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
 
-        dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol
         max = P.dons_interet_general.plafond * rni
@@ -460,7 +460,7 @@ class dfppce(Variable):
         red_7uj = min_(P.dons_assoc_cult, f7uj) * taux_donapd
         report_7uj = max_(0, f7uj - P.dons_assoc_cult)
 
-        dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + report_7uj + dons_partipol
         max = P.dons_interet_general.plafond * rni
