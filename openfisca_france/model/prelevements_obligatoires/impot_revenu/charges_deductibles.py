@@ -508,9 +508,9 @@ class cd2(Variable):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
-        epargne_codeveloppement = foyer_fiscal('epargne_codeveloppement', period)
+        epargne_codeveloppement_deduc = foyer_fiscal('epargne_codeveloppement_deduc', period)
 
-        niches2 = epargne_codeveloppement
+        niches2 = epargne_codeveloppement_deduc
         return niches2
 
 
@@ -713,11 +713,12 @@ class souscriptions_cinema_audiovisuel(Variable):
         return min_(f6aa, max1)
 
 
-class epargne_codeveloppement(Variable):
+class epargne_codeveloppement_deduc(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Versements sur un compte épargne codéveloppement'
     end = '2008-12-31'
+    # En 2009, on passe d'un montant déductible à une réduction d'impôt : voir reductions_impots_plafonnees.py
     definition_period = YEAR
 
     def formula_2007(foyer_fiscal, period, parameters):
