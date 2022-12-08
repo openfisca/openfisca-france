@@ -35,14 +35,16 @@ class eligibilite_per_etudiant(Variable):
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289843'
     label = "Eligibilité à la prime exceptionnelle de rentrée des étudiants boursiers"
-    definition_period = YEAR
+    definition_period = ETERNITY
 
     def formula(individu,period):
         juin_2022 = periods.period('2022-06')
-        role=individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         eligibilite_etudiant=where(individu('boursier',juin_2022)==0,
                                    0,
-                                   where(eligibilite_per(individu.famille,juin_2022)==1 and role==1,0,1))
+                                   where(individu.famille('eligibilite_per',juin_2022)==1,0,
+                                         1
+                                         )
+                                  )
         return eligibilite_etudiant
 
 class eligibilite_per_ppa(Variable):
