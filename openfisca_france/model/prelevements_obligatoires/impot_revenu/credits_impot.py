@@ -198,19 +198,19 @@ class ci_investissement_forestier(Variable):
         f7uq = foyer_fiscal('f7uq', period)
         f7ui = foyer_fiscal('f7ui', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7ua + f7ub)
         ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut)
 
-        ci_travaux = P.travaux.taux_adh_org_prod * ci_trav_adh + P.travaux.taux * ci_trav
+        ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
         # contrat de gestion
         ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
         ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
 
-        ci_cg_tot = P.travaux.taux_adh_org_prod * ci_cg_adh + P.travaux.taux * ci_cg
+        ci_cg_tot = P.travaux.taux_adhesion_org_producteurs * ci_cg_adh + P.travaux.taux * ci_cg
 
         return ci_travaux + ci_cg_tot
 
@@ -233,19 +233,19 @@ class ci_investissement_forestier(Variable):
         f7vp = foyer_fiscal('f7vp', period)
         f7tk = foyer_fiscal('f7tk', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7ua + f7ub + f7vp + f7tk)
         ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7ux + f7tj)
 
-        ci_travaux = P.travaux.taux_adh_org_prod * ci_trav_adh + P.travaux.taux * ci_trav
+        ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
         # contrat de gestion
         ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
         ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
 
-        ci_cg_tot = P.travaux.taux_adh_org_prod * ci_cg_adh + P.travaux.taux * ci_cg
+        ci_cg_tot = P.travaux.taux_adhesion_org_producteurs * ci_cg_adh + P.travaux.taux * ci_cg
 
         return ci_travaux + ci_cg_tot
 
@@ -272,19 +272,19 @@ class ci_investissement_forestier(Variable):
         f7vn = foyer_fiscal('f7vn', period)
         f7to = foyer_fiscal('f7to', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7ua + f7ub + f7vp + f7tk + f7vn + f7to)
         ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7ux + f7tj + f7vm + f7tm)
 
-        ci_travaux = P.travaux.taux_adh_org_prod * ci_trav_adh + P.travaux.taux * ci_trav
+        ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
         # contrat de gestion
         ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
         ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
 
-        ci_cg_tot = P.travaux.taux_adh_org_prod * ci_cg_adh + P.travaux.taux * ci_cg
+        ci_cg_tot = P.travaux.taux_adhesion_org_producteurs * ci_cg_adh + P.travaux.taux * ci_cg
 
         return ci_travaux + ci_cg_tot
 
@@ -315,19 +315,19 @@ class ci_investissement_forestier(Variable):
         f7vr = foyer_fiscal('f7vr', period)
         f7tq = foyer_fiscal('f7tq', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7ua + f7ub + f7vp + f7tk + f7vn + f7to + f7vr + f7tq)
         ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7ux + f7tj + f7vm + f7tm + f7vq + f7tp)
 
-        ci_travaux = P.travaux.taux_adh_org_prod * ci_trav_adh + P.travaux.taux * ci_trav
+        ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
         # contrat de gestion
         ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
         ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
 
-        ci_cg_tot = P.travaux.taux_adh_org_prod * ci_cg_adh + P.travaux.taux * ci_cg
+        ci_cg_tot = P.travaux.taux_adhesion_org_producteurs * ci_cg_adh + P.travaux.taux * ci_cg
 
         return ci_travaux + ci_cg_tot
 
@@ -362,19 +362,19 @@ class ci_investissement_forestier(Variable):
         f7vl = foyer_fiscal('f7vl', period)
         f7ts = foyer_fiscal('f7ts', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7ua + f7ub + f7vp + f7tk + f7vn + f7to + f7vr + f7tq + f7vl + f7ts)
         ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7ux + f7tj + f7vm + f7tm + f7vq + f7tp + f7vs + f7tr)
 
-        ci_travaux = P.travaux.taux_adh_org_prod * ci_trav_adh + P.travaux.taux * ci_trav
+        ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
         # contrat de gestion
         ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
         ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
 
-        ci_cg_tot = P.travaux.taux_adh_org_prod * ci_cg_adh + P.travaux.taux * ci_cg
+        ci_cg_tot = P.travaux.taux_adhesion_org_producteurs * ci_cg_adh + P.travaux.taux * ci_cg
 
         return ci_travaux + ci_cg_tot
 
@@ -412,19 +412,19 @@ class ci_investissement_forestier(Variable):
         f7vk = foyer_fiscal('f7vk', period)
         f7tu = foyer_fiscal('f7tu', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7ua + f7ub + f7tk + f7vn + f7to + f7vr + f7tq + f7vl + f7ts + f7vk + f7tu)
         ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tj + f7vm + f7tm + f7vq + f7tp + f7vs + f7tr + f7vj + f7tt)
 
-        ci_travaux = P.travaux.taux_adh_org_prod * ci_trav_adh + P.travaux.taux * ci_trav
+        ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
         # contrat de gestion
         ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
         ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
 
-        ci_cg_tot = P.travaux.taux_adh_org_prod * ci_cg_adh + P.travaux.taux * ci_cg
+        ci_cg_tot = P.travaux.taux_adhesion_org_producteurs * ci_cg_adh + P.travaux.taux * ci_cg
 
         return ci_travaux + ci_cg_tot
 
@@ -463,19 +463,19 @@ class ci_investissement_forestier(Variable):
         f7vi = foyer_fiscal('f7vi', period)
         f7tw = foyer_fiscal('f7tw', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7ua + f7ub + f7tk + f7to + f7vr + f7tq + f7vl + f7ts + f7vk + f7tu + f7vi + f7tw)
         ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tj + f7tm + f7vq + f7tp + f7vs + f7tr + f7vj + f7tt + f7vh + f7tv)
 
-        ci_travaux = P.travaux.taux_adh_org_prod * ci_trav_adh + P.travaux.taux * ci_trav
+        ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
         # contrat de gestion
         ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
         ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
 
-        ci_cg_tot = P.travaux.taux_adh_org_prod * ci_cg_adh + P.travaux.taux * ci_cg
+        ci_cg_tot = P.travaux.taux_adhesion_org_producteurs * ci_cg_adh + P.travaux.taux * ci_cg
 
         return ci_travaux + ci_cg_tot
 
@@ -516,19 +516,19 @@ class ci_investissement_forestier(Variable):
         f7vn = foyer_fiscal('f7vn', period)
         f7tb = foyer_fiscal('f7tb', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7ua + f7ub + f7tk + f7to + f7tq + f7vl + f7ts + f7vk + f7tu + f7vi + f7tw + f7vn + f7tb)
         ci_trav = min_(P.travaux.plafond * (maries_ou_pacses + 1) - ci_trav_adh, f7up + f7ut + f7tj + f7tm + f7tp + f7vs + f7tr + f7vj + f7tt + f7vh + f7tv + f7vm + f7ta)
 
-        ci_travaux = P.travaux.taux_adh_org_prod * ci_trav_adh + P.travaux.taux * ci_trav
+        ci_travaux = P.travaux.taux_adhesion_org_producteurs * ci_trav_adh + P.travaux.taux * ci_trav
 
         # contrat de gestion
         ci_cg_adh = min_(P.plafond_cga * (maries_ou_pacses + 1), f7ui)
         ci_cg = min_(P.plafond_cga * (maries_ou_pacses + 1) - ci_cg_adh, f7uq)
 
-        ci_cg_tot = P.travaux.taux_adh_org_prod * ci_cg_adh + P.travaux.taux * ci_cg
+        ci_cg_tot = P.travaux.taux_adhesion_org_producteurs * ci_cg_adh + P.travaux.taux * ci_cg
 
         return ci_travaux + ci_cg_tot
 
