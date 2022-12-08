@@ -41,9 +41,15 @@ class eligibilite_per_etudiant(Variable):
         juin_2022 = periods.period('2022-06')
         eligibilite_etudiant=where(individu('boursier',juin_2022)==0,
                                    0,
+<<<<<<< HEAD
                                    where(and_(individu.has_role(Famille.ENFANT)!=1, individu.famille('aide_logement',juin_2022)>0),0,
                                         1
                                         )
+=======
+                                   where(individu.famille('eligibilite_per',juin_2022)==1,0,
+                                         1
+                                         )
+>>>>>>> 788c0bca4 (Crée test per)
                                   )
         return eligibilite_etudiant
 
