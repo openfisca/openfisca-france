@@ -30,19 +30,21 @@ class eligibilite_per(Variable):
 
         return (eligibilite + eligibilite_ass + eligibilite_aer + eligibilite_aah ) > 0
 
-#class eligibilite_per_etudiant(Variable):
-#    entity = Individu
-#    value_type = bool
-#    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289843'
-#    label = "Eligibilité à la prime exceptionnelle de rentrée des étudiants boursiers"
-#    definition_period = YEAR
+class eligibilite_per_etudiant(Variable):
+    entity = Individu
+    value_type = bool
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289843'
+    label = "Eligibilité à la prime exceptionnelle de rentrée des étudiants boursiers"
+    definition_period = YEAR
 
-#    def formula(individu):
-#        juin_2022 = periods.period('2022-06')
-#        eligibilite_etudiant = (individu.famille('bourse_enseignement_sup',juin_2022) > 0) * (individu.famille('aide_logement',juin_2022) == 0)
+    def formula(individu,period):
+        juin_2022 = periods.period('2022-06')
+        role=individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        eligibilite_etudiant=where(individu('boursier',juin_2022)==0,
+                                   0,
+                                   where(eligibilite_per(individu.famille,juin_2022)==1 and role==1,0,1))
+        return eligibilite_etudiant
 
-#        return (eligibilite_etudiant) > 0
-        
 class eligibilite_per_ppa(Variable):
     entity = Famille
     value_type = bool
@@ -52,9 +54,9 @@ class eligibilite_per_ppa(Variable):
 
     def formula(famille,period):
         juin_2022 = periods.period('2022-06')
-        eligibilite_ppa = (famille('ppa',juin_2022) > 0)
+        eligibilite_ppa = (famille('ppa',juin_2022) > 0) * (famille('eligibilite_per',juin_2022)==0)
 
-        return (eligibilite_ppa) > 0
+        return eligibilite_ppa
         
 
 
@@ -88,13 +90,32 @@ class prime_exceptionnelle_rentree(Variable):
         nb_enfants = famille.sum(enfant_i)  
         parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.per
 
-        ppa=where(famille('eligibilite_per',period) > 0,
+        per=where(famille('eligibilite_per',period) > 0,
                   parametres_per.per + nb_enfants * parametres_per.per_enfant,
-                  where(famille('eligibilite_per',period) == 0  & famille('eligibilite_per_ppa',period) > 0,
+                  where(famille('eligibilite_per_ppa',period) > 0,
                         parametres_per.per_ppa + nb_enfants * parametres_per.per_ppa_enfant,
                         0
                         )
                  )
 >>>>>>> 386a5e363 (Crée test prime_exceptionnelle_rentrée)
 
-        return parametres_per.per
+        return per
+
+class prime_exceptionnelle_rentree_etudiant(Variable):
+    entity = Individu
+    value_type = float
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935'
+    label = "Prime exceptionnelle de rentrée pour les étudiants boursiers"
+    definition_period = YEAR
+
+    def formula(individu,period,parameters):
+        enfant_i = individu.famille.members.has_role(Famille.ENFANT)
+        nb_enfants = individu.famille.sum(enfant_i)  
+        parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.per
+
+        per_etudiant=where(individu('eligibilite_per_etudiant',period) > 0,
+                  parametres_per.per_etudiant + nb_enfants * parametres_per.per_etudiant_enfant,
+                  0
+                 )
+
+        return per_etudiant
