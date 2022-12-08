@@ -860,7 +860,7 @@ class credit_cotisations_syndicales(Variable):
         '''
         Cotisations syndicales : réduction d'impôt (2002-2011) puis crédit d'impôt (2012- )
         '''
-        return foyer_fiscal('cotsyn', period)
+        return foyer_fiscal('cotisations_syndicales', period)
 
 
 class creimp_exc_2008(Variable):
