@@ -4989,7 +4989,7 @@ class souscriptions_parts_fcpi_fip(Variable):
             + P.taux_corse * min_(f7fm, max1)
             + P.taux_outre_mer * min_(f7fl, max1))
 
-    def formula_2020_01_01(foyer_fiscal, period, parameters):
+    def formula_2020_08_01(foyer_fiscal, period, parameters):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
