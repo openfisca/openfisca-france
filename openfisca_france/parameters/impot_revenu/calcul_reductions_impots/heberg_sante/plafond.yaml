@@ -1,14 +1,21 @@
-
-description: Taux de la réductions d'impôt pour dépenses d'accueil dans établissement pour les personnes âgées
+description: Plafond de la réductions d'impôt pour dépenses d'accueil dans établissement pour les personnes âgées
 values:
   1988-01-01:
     value: null
   1989-01-01:
-    value: 0.25
+    value: 13000
+  2000-01-01:
+    value: 15000
+  2001-01-01:
+    value: 2300
+  2003-01-01:
+    value: 3000
+  2006-01-01:
+    value: 10000
 metadata:
-  ux_name: Taux
-  ipp_csv_id: tx_hebergante
-  unit: /1
+  ux_name: Plafond
+  ipp_csv_id: plaf_hebergante
+  unit: currency
   reference:
     1990-01-01:
       title: Décret 91-883 du 09/09/1991 - art. 1 / JORF 10/09/1991
