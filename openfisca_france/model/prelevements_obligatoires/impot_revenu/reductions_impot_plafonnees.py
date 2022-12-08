@@ -4934,7 +4934,7 @@ class souscriptions_parts_fcpi_fip(Variable):
         f7gq = foyer_fiscal('f7gq', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
-        max1 = P.plafond * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return P.taux1 * min_(f7gq, max1)
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
@@ -4948,7 +4948,7 @@ class souscriptions_parts_fcpi_fip(Variable):
         f7fq = foyer_fiscal('f7fq', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
-        max1 = P.plafond * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
@@ -4963,7 +4963,7 @@ class souscriptions_parts_fcpi_fip(Variable):
         f7fm = foyer_fiscal('f7fm', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
-        max1 = P.plafond * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
 
         return (P.taux1 * min_(f7gq, max1)
             + P.taux1 * min_(f7fq, max1)
@@ -4982,7 +4982,7 @@ class souscriptions_parts_fcpi_fip(Variable):
         f7fl = foyer_fiscal('f7fl', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
-        max1 = P.plafond * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
 
         return (P.taux1 * min_(f7gq, max1)
             + P.taux1 * min_(f7fq, max1)
@@ -5009,7 +5009,7 @@ class souscriptions_parts_fcpi_fip(Variable):
         P1 = parameters('2020-08-01').impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
         P2 = parameters('2020-08-31').impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
-        max1 = P.plafond * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
 
         mon_7gr = min_(max1, f7gr)
         mon_7gq = min_(max1 - mon_7gr, f7gq)
@@ -5045,7 +5045,7 @@ class souscriptions_parts_fcpi_fip(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
-        max1 = P.plafond * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
 
         mon_7gr = min_(max1, f7gr)
         mon_7gq = min_(max1 - mon_7gr, f7gq)
