@@ -1915,9 +1915,9 @@ class ri_investissement_forestier(Variable):
         ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7te + f7tf + f7uu)
-        rep_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011, f7uv + f7tg)
-        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uw + f7th + f7ux + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7te + f7tf + f7uu)
+        rep_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011, f7uv + f7tg)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uw + f7th + f7ux + f7ti)
 
         ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
             + rep_2011 * P11.acquisition.taux
@@ -1950,9 +1950,9 @@ class ri_investissement_forestier(Variable):
         ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7te + f7tf)
-        rep_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011, f7uu + f7tg)
-        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uv + f7th + f7uw + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7te + f7tf)
+        rep_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011, f7uu + f7tg)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uv + f7th + f7uw + f7ti)
 
         ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
             + rep_2011 * P11.acquisition.taux
@@ -1984,9 +1984,9 @@ class ri_investissement_forestier(Variable):
         ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7te + f7tf)
-        rep_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
-        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uu + f7th + f7uv + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7te + f7tf)
+        rep_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uu + f7th + f7uv + f7ti)
 
         ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
             + rep_2011 * P11.acquisition.taux
@@ -2017,9 +2017,9 @@ class ri_investissement_forestier(Variable):
         ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7te + f7tf)
-        rep_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
-        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uu + f7th + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7te + f7tf)
+        rep_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7uu + f7th + f7ti)
 
         ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
             + rep_2011 * P11.acquisition.taux
@@ -2048,9 +2048,9 @@ class ri_investissement_forestier(Variable):
         ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_avant_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7tf)
-        rep_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
-        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7th + f7ti)
+        rep_avant_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7tf)
+        rep_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011, f7tg)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_avant_2011 - rep_2011, f7ul + f7th + f7ti)
 
         ri_ass_rep = (rep_avant_2011 * P10.acquisition.taux
             + rep_2011 * P11.acquisition.taux
@@ -2077,8 +2077,8 @@ class ri_investissement_forestier(Variable):
         ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        rep_2011 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7tg)
-        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1) - rep_2011, f7ul + f7th + f7ti)
+        rep_2011 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7tg)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1) - rep_2011, f7ul + f7th + f7ti)
 
         ri_ass_rep = (rep_2011 * P11.acquisition.taux
             + ass_rep_2012 * P.acquisition.taux)
@@ -2102,7 +2102,7 @@ class ri_investissement_forestier(Variable):
         ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7ul + f7th + f7ti)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7ul + f7th + f7ti)
         ri_ass_rep = ass_rep_2012 * P.acquisition.taux
 
         return ri_acq + ri_ass_rep
@@ -2123,7 +2123,7 @@ class ri_investissement_forestier(Variable):
         ri_acq = min_(P.acquisition.plafond * (maries_ou_pacses + 1), f7un)
 
         # assurance + reports des travaux (même plafond)
-        ass_rep_2012 = min_(P.assurance.plafondurance * (maries_ou_pacses + 1), f7ul + f7ti)
+        ass_rep_2012 = min_(P.assurance.plafond * (maries_ou_pacses + 1), f7ul + f7ti)
         ri_ass_rep = ass_rep_2012 * P.acquisition.taux
 
         return ri_acq + ri_ass_rep
