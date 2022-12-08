@@ -15,7 +15,7 @@ class reductions_deplafonnees(Variable):
     def formula_2013_01_01(foyer_fiscal, period, parameters):
 
         reductions_sans_plafond = [
-            'daepad',
+            'heberg_sante',
             'dfppce',
             'adhcga',
             'assvie',
@@ -166,10 +166,10 @@ class creaen(Variable):
             )
 
 
-class daepad(Variable):
+class heberg_sante(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'daepad'
+    label = 'Hébergement santé'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -179,7 +179,7 @@ class daepad(Variable):
         '''
         f7cd = foyer_fiscal('f7cd', period)
         f7ce = foyer_fiscal('f7ce', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.daepad
+        P = parameters(period).impot_revenu.calcul_reductions_impots.heberg_sante
 
         return P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
 

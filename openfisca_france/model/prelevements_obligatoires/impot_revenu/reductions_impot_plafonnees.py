@@ -166,7 +166,7 @@ class reductions(Variable):
             # Depuis 2002
             'accult', 'adhcga', 'assvie', 'cappme', 'cappme_esus_sfs',
             'reduction_cotisations_syndicales',
-            'daepad', 'dfppce', 'doment', 'domlog',
+            'heberg_sante', 'dfppce', 'doment', 'domlog',
             'reduction_enfants_scolarises', 'gardenf', 'intemp', 'ri_investissement_forestier', 'invrev',
             'prcomp', 'rsceha', 'ri_saldom', 'souscriptions_parts_fcpi_fip',
             # Introduites en 2003
