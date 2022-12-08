@@ -718,7 +718,7 @@ class epargne_codeveloppement_deduc(Variable):
     entity = FoyerFiscal
     label = 'Versements sur un compte épargne codéveloppement'
     end = '2008-12-31'
-    # En 2009, on passe d'un montant déductible à une réduction d'impôt : voir reductions_impots_plafonnees.py
+    # En 2009, on passe d'un montant déductible à une réduction d'impôt : voir reductions_impot_plafonnees.py
     definition_period = YEAR
 
     def formula_2007(foyer_fiscal, period, parameters):
@@ -729,7 +729,7 @@ class epargne_codeveloppement_deduc(Variable):
         f6eh = foyer_fiscal('f6eh', period)
         rbg_int = foyer_fiscal('rbg_int', period)
         codev = parameters(period).impot_revenu.calcul_reductions_impots.compte_epargne_co_developpement
-        
+
         plafond = min_(codev.plafond_en_revenu_net_global * rbg_int, codev.plafond_par_personne)
         return min_(f6eh, plafond)
 

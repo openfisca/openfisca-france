@@ -1614,6 +1614,7 @@ class codev(Variable):
     label = 'codev'
     end = '2009-12-31'
     definition_period = YEAR
+    # Avant 2009, il s'agissait d'un montant déductible : voir charges_deductibles.py
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1623,7 +1624,7 @@ class codev(Variable):
         f7uh = foyer_fiscal('f7uh_2009', period)
         rbg_int = foyer_fiscal('rbg_int', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.compte_epargne_co_developpement
-
+        
         return min_(f7uh * P.taux, min_(P.plafond_en_revenu_net_global * rbg_int, P.plafond_par_personne))  # page3 ligne 18
 
 
