@@ -45,7 +45,7 @@ class plfr2014(Reform):
             reduction_enfants_scolarises = foyer_fiscal('reduction_enfants_scolarises', period)
             gardenf = foyer_fiscal('gardenf', period)
             intagr = foyer_fiscal('intagr', period)
-            invfor = foyer_fiscal('ri_invfor', period)
+            investissement_forestier = foyer_fiscal('ri_investissement_forestier', period)
             invlst = foyer_fiscal('invlst', period)
             ip_net = foyer_fiscal('ip_net', period)
             locmeu = foyer_fiscal('locmeu', period)
@@ -62,7 +62,7 @@ class plfr2014(Reform):
             sofica = foyer_fiscal('sofica', period)
             souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
             total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog +\
-                duflot + duflot_om + reduction_enfants_scolarises + gardenf + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
+                duflot + duflot_om + reduction_enfants_scolarises + gardenf + intagr + investissement_forestier + invlst + locmeu + mecena + mohist + patnat +\
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
             return min_(ip_net, total_reductions)
 

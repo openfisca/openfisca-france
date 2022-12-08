@@ -11081,7 +11081,7 @@ class f7tb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'InvFor'
+    label = 'Dépenses en investissements forestiers'
     # start_date = date(2021, 1, 1)
     definition_period = YEAR
 

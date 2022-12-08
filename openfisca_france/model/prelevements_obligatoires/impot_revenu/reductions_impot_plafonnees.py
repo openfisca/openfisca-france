@@ -20,7 +20,7 @@ log = logging.getLogger(__name__)
 # l'année de la déclaration. L'approximation qui est faite est donc une approximation qui sousestime le montant global de ces réductions d'impôt.
 
 # TODO: le plafonnement global des réductions d'impôts avant 2013 (et la prise en compte du plafonnement des investissements d'outremer avant 2016)
-# TODO: La formule ci_invfor est à améliorer, l'ordre de priorité des variables est chronologique (en cas de dépassement du plafond, il
+# TODO: La formule ci_investissement_forestier est à améliorer, l'ordre de priorité des variables est chronologique (en cas de dépassement du plafond, il
 # faut prendre en compte les variables les plus anciennes)
 # TODO: prendre en compte le plafond global en vigueur au moment de l'investisement, et non le plafond en vigueur à la date de déclaration
 # TODO: Améliorer la prise en compte des plafonds pour les investissements d'outremer
@@ -38,7 +38,7 @@ class reductions_plafonnees(Variable):
             'cappme',  # Approximation
             'deffor',  # fait partie de inv. for. ?
             'gardenf',
-            'ri_invfor',
+            'ri_investissement_forestier',
             'locmeu',  # Censi-Bouvard, plafonnement approximatif
             'invlst',  # Approximation
             'invrev',
@@ -167,7 +167,7 @@ class reductions(Variable):
             'accult', 'adhcga', 'assvie', 'cappme', 'cappme_esus_sfs',
             'reduction_cotisations_syndicales',
             'daepad', 'dfppce', 'doment', 'domlog',
-            'reduction_enfants_scolarises', 'gardenf', 'intemp', 'ri_invfor', 'invrev',
+            'reduction_enfants_scolarises', 'gardenf', 'intemp', 'ri_investissement_forestier', 'invrev',
             'prcomp', 'rsceha', 'ri_saldom', 'souscriptions_parts_fcpi_fip',
             # Introduites en 2003
             'mecena', 'repsoc',
@@ -1716,7 +1716,7 @@ class intemp(Variable):
         return P.taux * min_(f7wg, max1)
 
 
-class ri_invfor(Variable):
+class ri_investissement_forestier(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Crédit d'impôt au titre des investissements forestiers"
@@ -1728,7 +1728,7 @@ class ri_invfor(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7un = foyer_fiscal('f7un', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         seuil = P.plafond_ri_acquisition * (maries_ou_pacses + 1)
         return P.taux_ri_acquisition * min_(f7un, seuil)
@@ -1738,7 +1738,7 @@ class ri_invfor(Variable):
         Investissements forestiers pour 2006-2008
         '''
         f7un = foyer_fiscal('f7un', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         return P.taux_ri_acquisition * f7un
 
@@ -1750,7 +1750,7 @@ class ri_invfor(Variable):
         f7un = foyer_fiscal('f7un', period)
         f7up = foyer_fiscal('f7up', period)
         f7uq = foyer_fiscal('f7uq', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         return P.taux_ri_acquisition * (
             min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
@@ -1768,7 +1768,7 @@ class ri_invfor(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7uq = foyer_fiscal('f7uq', period)
         f7uu = foyer_fiscal('f7uu_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         return P.taux_ri_acquisition * (
             min_(f7un, P.plafond_ri_acquisition * (maries_ou_pacses + 1))
@@ -1789,9 +1789,9 @@ class ri_invfor(Variable):
         f7uq = foyer_fiscal('f7uq', period)
         f7uu = foyer_fiscal('f7uu_2017', period)
         f7uv = foyer_fiscal('f7uv_2016', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
 
         max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu - f7te - f7uv - f7tf)
@@ -1820,10 +1820,10 @@ class ri_invfor(Variable):
         f7uu = foyer_fiscal('f7uu_2017', period)
         f7uv = foyer_fiscal('f7uv_2016', period)
         f7uw = foyer_fiscal('f7uw_2015', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
 
         report_depenses_2009 = f7uu + f7te
         report_depenses_2010 = f7uv + f7tf
@@ -1861,11 +1861,11 @@ class ri_invfor(Variable):
         f7uv = foyer_fiscal('f7uv_2016', period)
         f7uw = foyer_fiscal('f7uw_2015', period)
         f7ux = foyer_fiscal('f7ux_2018', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P12 = parameters('2012-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
 
         report_depenses_2009 = f7uu + f7te
         report_depenses_2010 = f7uv + f7tf
@@ -1907,9 +1907,9 @@ class ri_invfor(Variable):
         f7ux = foyer_fiscal('f7ux_2018', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # acquisition
         ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
@@ -1942,9 +1942,9 @@ class ri_invfor(Variable):
         f7uw = foyer_fiscal('f7uw_2015', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # acquisition
         ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
@@ -1976,9 +1976,9 @@ class ri_invfor(Variable):
         f7uv = foyer_fiscal('f7uv_2016', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # acquisition
         ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
@@ -2009,9 +2009,9 @@ class ri_invfor(Variable):
         f7uu = foyer_fiscal('f7uu_2017', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # acquisition
         ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
@@ -2040,9 +2040,9 @@ class ri_invfor(Variable):
         f7th = foyer_fiscal('f7th', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
-        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P10 = parameters('2010-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # acquisition
         ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
@@ -2070,8 +2070,8 @@ class ri_invfor(Variable):
         f7th = foyer_fiscal('f7th', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
-        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P11 = parameters('2011-01-01').impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # acquisition
         ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
@@ -2096,7 +2096,7 @@ class ri_invfor(Variable):
         f7th = foyer_fiscal('f7th', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # acquisition
         ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)
@@ -2117,7 +2117,7 @@ class ri_invfor(Variable):
         f7ul = foyer_fiscal('f7ul', period)
         f7ti = foyer_fiscal('f7ti', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # acquisition
         ri_acq = min_(P.plafond_ri_acquisition * (maries_ou_pacses + 1), f7un)

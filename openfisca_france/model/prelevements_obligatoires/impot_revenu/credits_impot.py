@@ -25,7 +25,7 @@ class credits_impot(Variable):
         credits_plaf = [
             'ci_saldom',
             'ci_gardenf',
-            'ci_invfor',
+            'ci_investissement_forestier',
 
             # dans le doute:
             'aidper',
@@ -80,7 +80,7 @@ class credits_impot(Variable):
         credits_plaf = [
             'ci_saldom',
             'ci_gardenf',
-            'ci_invfor',
+            'ci_investissement_forestier',
 
             # dans le doute:
             'aidper',
@@ -178,7 +178,7 @@ class nb_pac2(Variable):
         return nbF + nbJ + nbpac_invalideR - nbH / 2
 
 
-class ci_invfor(Variable):
+class ci_investissement_forestier(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Crédit d'impôt au titre des investissements forestiers"
@@ -198,7 +198,7 @@ class ci_invfor(Variable):
         f7uq = foyer_fiscal('f7uq', period)
         f7ui = foyer_fiscal('f7ui', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub)
@@ -233,7 +233,7 @@ class ci_invfor(Variable):
         f7vp = foyer_fiscal('f7vp', period)
         f7tk = foyer_fiscal('f7tk', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7vp + f7tk)
@@ -272,7 +272,7 @@ class ci_invfor(Variable):
         f7vn = foyer_fiscal('f7vn', period)
         f7to = foyer_fiscal('f7to', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7vp + f7tk + f7vn + f7to)
@@ -315,7 +315,7 @@ class ci_invfor(Variable):
         f7vr = foyer_fiscal('f7vr', period)
         f7tq = foyer_fiscal('f7tq', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7vp + f7tk + f7vn + f7to + f7vr + f7tq)
@@ -362,7 +362,7 @@ class ci_invfor(Variable):
         f7vl = foyer_fiscal('f7vl', period)
         f7ts = foyer_fiscal('f7ts', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7vp + f7tk + f7vn + f7to + f7vr + f7tq + f7vl + f7ts)
@@ -412,7 +412,7 @@ class ci_invfor(Variable):
         f7vk = foyer_fiscal('f7vk', period)
         f7tu = foyer_fiscal('f7tu', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7tk + f7vn + f7to + f7vr + f7tq + f7vl + f7ts + f7vk + f7tu)
@@ -463,7 +463,7 @@ class ci_invfor(Variable):
         f7vi = foyer_fiscal('f7vi', period)
         f7tw = foyer_fiscal('f7tw', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7tk + f7to + f7vr + f7tq + f7vl + f7ts + f7vk + f7tu + f7vi + f7tw)
@@ -516,7 +516,7 @@ class ci_invfor(Variable):
         f7vn = foyer_fiscal('f7vn', period)
         f7tb = foyer_fiscal('f7tb', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invfor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.plafond_travaux * (maries_ou_pacses + 1), f7ua + f7ub + f7tk + f7to + f7tq + f7vl + f7ts + f7vk + f7tu + f7vi + f7tw + f7vn + f7tb)
