@@ -23,11 +23,27 @@
   input:
     famille:
       parents: [parent1]
+      rsa:
+        2022-06: 0
+      apl:
+        2022-06: 0
+      als:
+        2022-06: 0
+      alf:
+        2022-06: 0
+      aspa:
+        2022-06: 0
       ppa:
         2022-06: 500
     individus:
       parent1:
         age: 40
+        aer:
+          2022-06: 0
+        ass:
+          2022-06: 0
+        aah:
+          2022-06: 0
   output:
     eligibilite_per:
       2022: FALSE
@@ -35,3 +51,91 @@
       2022: TRUE
     prime_exceptionnelle_rentree:
       2022: 28
+
+- period: 2022-01-01
+  name: PER Cas No 3
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1]
+      rsa:
+        2022-06: 0
+      apl:
+        2022-06: 0
+      als:
+        2022-06: 0
+      alf:
+        2022-06: 0
+      aspa:
+        2022-06: 0
+      ppa:
+        2022-06: 500
+    individus:
+      parent1:
+        age: 40
+        aer:
+          2022-06: 0
+        ass:
+          2022-06: 0
+        aah:
+          2022-06: 800
+  output:
+    eligibilite_per:
+      2022: TRUE
+    eligibilite_per_ppa:
+      2022: FALSE
+    prime_exceptionnelle_rentree:
+      2022: 100
+  
+
+- period: 2022-01-01
+  name: PER Cas No 4
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1, parent2]
+      rsa:
+        2022-06: 500
+      apl:
+        2022-06: 0
+      als:
+        2022-06: 0
+      alf:
+        2022-06: 0
+      aspa:
+        2022-06: 0
+      ppa:
+        2022-06: 0
+    individus:
+      parent1:
+        age: 40
+        aer:
+          2022-06: 0
+        ass:
+          2022-06: 0
+        aah:
+          2022-06: 0
+      parent2:
+        age: 40
+        aer:
+          2022-06: 0
+        ass:
+          2022-06: 0
+        aah:
+          2022-06: 0
+        boursier:
+          2022-06: 1
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+    foyers_fiscal:
+      declarants: [parent1, parent2]
+  output:
+    eligibilite_per:
+      2022: TRUE
+    eligibilite_per_etudiant:
+      2022: TRUE
+#    prime_exceptionnelle_rentree:
+#      2022: 100
+#    prime_exceptionnelle_rentree_etudiant:
+#      2022: 100  
