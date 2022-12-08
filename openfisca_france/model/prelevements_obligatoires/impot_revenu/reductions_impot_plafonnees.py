@@ -1622,9 +1622,9 @@ class codev(Variable):
         '''
         f7uh = foyer_fiscal('f7uh_2009', period)
         rbg_int = foyer_fiscal('rbg_int', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.codev
+        P = parameters(period).impot_revenu.calcul_reductions_impots.compte_epargne_co_developpement
 
-        return min_(f7uh * P.taux, min_(P.taux_plafond * rbg_int, P.plafond_par_personne))  # page3 ligne 18
+        return min_(f7uh * P.taux, min_(P.plafond_en_revenu_net_global * rbg_int, P.plafond_par_personne))  # page3 ligne 18
 
 
 class gardenf(Variable):
@@ -4868,7 +4868,7 @@ class sofica(Variable):
         rng = foyer_fiscal('rng', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.sofica
 
-        max0 = min_(P.taux_plafond * max_(rng, 0), P.max)
+        max0 = min_(P.plafond_en_revenu_net_global * max_(rng, 0), P.max)
         max1 = max_(0, max0 - f7gn)
 
         return P.taux36 * min_(f7gn, max0) + P.taux30 * min_(f7fn, max1)
@@ -4884,7 +4884,7 @@ class sofica(Variable):
         rng = foyer_fiscal('rng', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.sofica
 
-        max0 = min_(P.taux_plafond * max_(rng, 0), P.max)
+        max0 = min_(P.plafond_en_revenu_net_global * max_(rng, 0), P.max)
         max1 = max_(0, max0 - f7en)
         max2 = max_(0, max0 - f7gn)
 
