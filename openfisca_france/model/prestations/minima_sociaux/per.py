@@ -35,20 +35,22 @@ class eligibilite_per_etudiant(Variable):
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289843'
     label = "Eligibilité à la prime exceptionnelle de rentrée des étudiants boursiers"
-    definition_period = YEAR
+    definition_period = ETERNITY
 
     def formula(individu,period):
         juin_2022 = periods.period('2022-06')
-        role=individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         eligibilite_etudiant=where(individu('boursier',juin_2022)==0,
                                    0,
-                                   where(eligibilite_per(individu.famille,juin_2022)==1 and role==1,0,1))
+                                   where(and_(individu.has_role(Famille.ENFANT)!=1, individu.famille('aide_logement',juin_2022)>0),0,
+                                        1
+                                        )
+                                  )
         return eligibilite_etudiant
 
 class eligibilite_per_ppa(Variable):
     entity = Famille
     value_type = bool
-    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935'
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046556491'
     label = "Eligibilité à la prime exceptionnelle de rentrée des bénéficiaires de la prime d'activité"
     definition_period = ETERNITY
 
@@ -104,7 +106,7 @@ class prime_exceptionnelle_rentree(Variable):
 class prime_exceptionnelle_rentree_etudiant(Variable):
     entity = Individu
     value_type = float
-    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935'
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289843'
     label = "Prime exceptionnelle de rentrée pour les étudiants boursiers"
     definition_period = YEAR
 
@@ -113,9 +115,10 @@ class prime_exceptionnelle_rentree_etudiant(Variable):
         nb_enfants = individu.famille.sum(enfant_i)  
         parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.per
 
-        per_etudiant=where(individu('eligibilite_per_etudiant',period) > 0,
-                  parametres_per.per_etudiant + nb_enfants * parametres_per.per_etudiant_enfant,
-                  0
-                 )
+        per_etudiant=where(individu('eligibilite_per_etudiant',period)==0,0,
+                           where(individu.has_role(Famille.ENFANT)==1,parametres_per.per_etudiant, 
+                                 parametres_per.per_etudiant + nb_enfants * parametres_per.per_etudiant_enfant
+                                )
+                            )
 
         return per_etudiant
