@@ -4935,7 +4935,7 @@ class souscriptions_parts_fcpi_fip(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
-        return P.taux1 * min_(f7gq, max1)
+        return P.taux * min_(f7gq, max1)
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4949,7 +4949,7 @@ class souscriptions_parts_fcpi_fip(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions_parts_fcpi_fip
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
-        return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
+        return (P.taux * min_(f7gq, max1) + P.taux * min_(f7fq, max1))
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4965,9 +4965,9 @@ class souscriptions_parts_fcpi_fip(Variable):
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
 
-        return (P.taux1 * min_(f7gq, max1)
-            + P.taux1 * min_(f7fq, max1)
-            + P.taux2 * min_(f7fm, max1))
+        return (P.taux * min_(f7gq, max1)
+            + P.taux * min_(f7fq, max1)
+            + P.taux_corse * min_(f7fm, max1))
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4984,10 +4984,10 @@ class souscriptions_parts_fcpi_fip(Variable):
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
 
-        return (P.taux1 * min_(f7gq, max1)
-            + P.taux1 * min_(f7fq, max1)
-            + P.taux2 * min_(f7fm, max1)
-            + P.taux3 * min_(f7fl, max1))
+        return (P.taux * min_(f7gq, max1)
+            + P.taux * min_(f7fq, max1)
+            + P.taux_corse * min_(f7fm, max1)
+            + P.taux_outre_mer * min_(f7fl, max1))
 
     def formula_2020_01_01(foyer_fiscal, period, parameters):
         '''
@@ -5023,11 +5023,11 @@ class souscriptions_parts_fcpi_fip(Variable):
         mon_7fl = min_(max1, f7fl)
         mon_7hl = min_(max1 - mon_7fl, f7hl)
 
-        return (P.taux1 * (mon_7gq + mon_7fq)
-            + P1.taux2 * mon_7fm
-            + P1.taux3 * mon_7fl
-            + P.taux_fcp_fip_special * (mon_7gr + mon_7ft)
-            + P2.taux2 * mon_7hm + P2.taux3 * mon_7hl)
+        return (P.taux * (mon_7gq + mon_7fq)
+            + P1.taux_corse * mon_7fm
+            + P1.taux_outre_mer * mon_7fl
+            + P.taux_special * (mon_7gr + mon_7ft)
+            + P2.taux_corse * mon_7hm + P2.taux_outre_mer * mon_7hl)
 
     def formula_2021_01_01(foyer_fiscal, period, parameters):
         '''
@@ -5057,10 +5057,10 @@ class souscriptions_parts_fcpi_fip(Variable):
 
         mon_7fl = min_(max1, f7fl)
 
-        return (P.taux1 * (mon_7gq + mon_7fq)
-            + P.taux2 * mon_7fm
-            + P.taux3 * mon_7fl
-            + P.taux_fcp_fip_special * (mon_7gr + mon_7ft))
+        return (P.taux * (mon_7gq + mon_7fq)
+            + P.taux_corse * mon_7fm
+            + P.taux_outre_mer * mon_7fl
+            + P.taux_special * (mon_7gr + mon_7ft))
 
 
 def mini(a, b, *args):
