@@ -181,7 +181,7 @@ class accueil_dans_etablissement_personnes_agees(Variable):
         f7ce = foyer_fiscal('f7ce', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.accueil_dans_etablissement_personnes_agees
 
-        return P.taux * (min_(f7cd, P.plafond + min_(f7ce, P.plafond))
+        return P.taux * (min_(f7cd, P.plafond + min_(f7ce, P.plafond)))
 
 
 class dfppce(Variable):
