@@ -310,5 +310,4 @@ def preprocess_parameters(parameters):
             if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
 
-    print(cotsoc.cotisations_salarie.children["public_non_titulaire"])
     return parameters
