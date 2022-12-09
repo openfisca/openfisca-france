@@ -181,7 +181,7 @@ class heberg_sante(Variable):
         f7ce = foyer_fiscal('f7ce', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.heberg_sante
 
-        return P.taux * (min_(f7cd, P.max) + min_(f7ce, P.plafond))
+        return P.taux * (min_(f7cd, P.plafond + min_(f7ce, P.plafond))
 
 
 class dfppce(Variable):
