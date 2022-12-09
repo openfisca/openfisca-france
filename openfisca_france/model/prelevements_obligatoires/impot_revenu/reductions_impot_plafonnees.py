@@ -3600,10 +3600,10 @@ class ri_saldom(Variable):
         '''
         f7df = foyer_fiscal('f7df', period)
         invalide = foyer_fiscal('f7dg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
-        max1 = P.max1 * not_(invalide) + P.max3 * invalide
-        return P.taux * min_(f7df, max1)
+        plafond = P.plafond * not_(invalide) + P.plafond_invalides * invalide
+        return P.taux * min_(f7df, plafond)
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3614,14 +3614,14 @@ class ri_saldom(Variable):
         f7df = foyer_fiscal('f7df', period)
         f7dl = foyer_fiscal('f7dl', period)
         invalide = foyer_fiscal('f7dg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        max_base = P.max1
-        max_du_max_non_inv = P.max2
-        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
-        max1 = max_non_inv * not_(invalide) + P.max3 * invalide
-        return P.taux * min_(f7df, max1)
+        max_base = P.plafond
+        max_du_max_non_inv = P.plafond_maximum
+        max_non_inv = min_(max_base + P.increment_plafond * nbpacmin, max_du_max_non_inv)
+        plafond = max_non_inv * not_(invalide) + P.plafond_invalides * invalide
+        return P.taux * min_(f7df, plafond)
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3633,15 +3633,15 @@ class ri_saldom(Variable):
         f7df = foyer_fiscal('f7df', period)
         f7dl = foyer_fiscal('f7dl', period)
         invalide = foyer_fiscal('f7dg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        max_base = P.max1
-        max_du_max_non_inv = P.max2
-        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
-        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
-        max1 = max_effectif - min_(f7db, max_effectif)
-        return P.taux * min_(f7df, max1)
+        max_base = P.plafond
+        max_du_max_non_inv = P.plafond_maximum
+        max_non_inv = min_(max_base + P.increment_plafond * nbpacmin, max_du_max_non_inv)
+        max_effectif = max_non_inv * not_(invalide) + P.plafond_invalides * invalide
+        plafond = max_effectif - min_(f7db, max_effectif)
+        return P.taux * min_(f7df, plafond)
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3654,17 +3654,17 @@ class ri_saldom(Variable):
         f7dl = foyer_fiscal('f7dl', period)
         annee1 = foyer_fiscal('f7dq', period)
         invalide = foyer_fiscal('f7dg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        max_base = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
-        max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
-        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
-        max_non_inv2 = min_(max_base + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
-        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
-        max_effectif2 = max_non_inv2 * not_(invalide) + P.max3 * invalide
-        max1 = max_effectif - min_(f7db, max_effectif2)
-        return P.taux * min_(f7df, max1)
+        max_base = P.plafond * not_(annee1) + P.plafond_1ere_annee * annee1
+        max_du_max_non_inv = P.plafond_maximum * not_(annee1) + P.plafond_invalides_1ere_annee * annee1
+        max_non_inv = min_(max_base + P.increment_plafond * nbpacmin, max_du_max_non_inv)
+        max_non_inv2 = min_(max_base + P.increment_plafond * nb_pac_majoration_plafond, max_du_max_non_inv)
+        max_effectif = max_non_inv * not_(invalide) + P.plafond_invalides * invalide
+        max_effectif2 = max_non_inv2 * not_(invalide) + P.plafond_invalides * invalide
+        plafond = max_effectif - min_(f7db, max_effectif2)
+        return P.taux * min_(f7df, plafond)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3685,17 +3685,17 @@ class ri_saldom(Variable):
         annee1 = foyer_fiscal('f7dq', period)
         invalide = foyer_fiscal('f7dg', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
         # détérminer le plafond
 
         if invalide.any():
-            plaf = P.max3
+            plaf = P.plafond_invalides
         else:
             if annee1.any():
-                plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_invalides_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
             else:
-                plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
 
         # calcul de la RI et du CI
 

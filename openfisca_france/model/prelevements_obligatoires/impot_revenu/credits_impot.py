@@ -516,7 +516,7 @@ class ci_investissement_forestier(Variable):
         f7vn = foyer_fiscal('f7vn', period)
         f7tb = foyer_fiscal('f7tb', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7ua + f7ub + f7tk + f7to + f7tq + f7vl + f7ts + f7vk + f7tu + f7vi + f7tw + f7vn + f7tb)
@@ -2805,14 +2805,14 @@ class ci_saldom(Variable):
         f7db = foyer_fiscal('f7db', period)
         f7dg = foyer_fiscal('f7dg', period)
         f7dl = foyer_fiscal('f7dl', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
         isinvalid = f7dg
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        maxBase = P.max1
-        maxDuMaxNonInv = P.max2
-        maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
-        maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
+        maxBase = P.plafond
+        maxDuMaxNonInv = P.plafond_maximum
+        maxNonInv = min_(maxBase + P.increment_plafond * nbpacmin, maxDuMaxNonInv)
+        maxEffectif = maxNonInv * not_(isinvalid) + P.plafond_invalides * isinvalid
 
         return P.taux * min_(f7db, maxEffectif)
 
@@ -2826,15 +2826,15 @@ class ci_saldom(Variable):
         f7dg = foyer_fiscal('f7dg', period)
         f7dl = foyer_fiscal('f7dl', period)
         f7dq = foyer_fiscal('f7dq', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
         isinvalid = f7dg
         annee1 = f7dq
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        maxBase = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
-        maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
-        maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
-        maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
+        maxBase = P.plafond * not_(annee1) + P.plafond_1ere_annee * annee1
+        maxDuMaxNonInv = P.plafond_maximum * not_(annee1) + P.plafond_invalides_1ere_annee * annee1
+        maxNonInv = min_(maxBase + P.increment_plafond * nbpacmin, maxDuMaxNonInv)
+        maxEffectif = maxNonInv * not_(isinvalid) + P.plafond_invalides * isinvalid
 
         return P.taux * min_(f7db, maxEffectif)
 
@@ -2855,17 +2855,17 @@ class ci_saldom(Variable):
         annee1 = foyer_fiscal('f7dq', period)
         invalide = foyer_fiscal('f7dg', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
         # détérminer le plafond
 
         if invalide.any():
-            plaf = P.max3
+            plaf = P.plafond_invalides
         else:
             if annee1.any():
-                plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_invalides_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
             else:
-                plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
 
         # calcul du CI
         ci = min_(plaf, f7db) * P.taux
@@ -2886,16 +2886,16 @@ class ci_saldom(Variable):
         annee1 = foyer_fiscal('f7dq', period)
         invalide = foyer_fiscal('f7dg', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.calcul_reductions_impots.emploi_salarie_domicile
 
         # détérminer le plafond
         if invalide.any():
-            plaf = P.max3
+            plaf = P.plafond_invalides
         else:
             if annee1.any():
-                plaf = min_(P.max2_premiere_annee, P.max1_premiere_annee + P.pac * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_invalides_1ere_annee, P.plafond_1ere_annee + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
             else:
-                plaf = min_(P.max2, P.max1 + P.pac * (nb_pac_majoration_plafond + f7dl))
+                plaf = min_(P.plafond_maximum, P.plafond + P.increment_plafond * (nb_pac_majoration_plafond + f7dl))
 
         # calcul du CI
         ci = min_(plaf, max_(0, f7db - f7dr)) * P.taux

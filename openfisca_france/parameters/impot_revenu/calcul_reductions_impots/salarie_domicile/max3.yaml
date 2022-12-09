@@ -1,8 +1,0 @@
-description: Plafond si présence d'un invalide
-values:
-  2001-01-01:
-    value: 13800
-  2005-01-01:
-    value: 20000
-metadata:
-  unit: currency
