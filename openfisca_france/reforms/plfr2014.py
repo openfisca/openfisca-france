@@ -52,7 +52,7 @@ class plfr2014(Reform):
             mecena = foyer_fiscal('mecena', period)
             mohist = foyer_fiscal('mohist', period)
             patnat = foyer_fiscal('patnat', period)
-            prcomp = foyer_fiscal('prcomp', period)
+            prestations_compensatoires = foyer_fiscal('prestations_compensatoires', period)
             reduction_impot_exceptionnelle = foyer_fiscal('reduction_impot_exceptionnelle', period)
             repsoc = foyer_fiscal('repsoc', period)
             resimm = foyer_fiscal('resimm', period)
@@ -63,7 +63,7 @@ class plfr2014(Reform):
             souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
             total_reductions = accult + adhcga + cappme + creaen + accueil_dans_etablissement_personnes_agees + deffor + dfppce + doment + domlog +\
                 duflot + duflot_om + reduction_enfants_scolarises + gardenf + intagr + investissement_forestier + invlst + location_meublee + mecena + mohist + patnat +\
-                prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
+                prestations_compensatoires + repsoc + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
             return min_(ip_net, total_reductions)
 
     def apply(self):

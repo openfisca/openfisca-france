@@ -23,7 +23,7 @@ class reductions_deplafonnees(Variable):
             'creaen',
             'intagr',
             'mecena',
-            'prcomp',
+            'prestations_compensatoires',
             'repsoc',
             'resimm',  # Malraux, non plafonnées pour les investissements réalisés après 2013
             'reduction_enfants_scolarises',
@@ -528,7 +528,7 @@ class mecena(Variable):
         return f7us
 
 
-class prcomp(Variable):
+class prestations_compensatoires(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Prestations compensatoires'
@@ -542,7 +542,7 @@ class prcomp(Variable):
         f7wn = foyer_fiscal('f7wn', period)
         f7wo = foyer_fiscal('f7wo', period)
         f7wp = foyer_fiscal('f7wp', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.prcomp
+        P = parameters(period).impot_revenu.calcul_reductions_impots.prestations_compensatoires
 
         div = (f7wo == 0) * 1 + f7wo  # Pour éviter les divisions par zéro
 
