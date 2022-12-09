@@ -4869,10 +4869,10 @@ class sofica(Variable):
         rng = foyer_fiscal('rng', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.sofica
 
-        max0 = min_(P.taux_plafond * max_(rng, 0), P.max)
+        max0 = min_(P.plafond_revenu_net_global * max_(rng, 0), P.plafond)
         max1 = max_(0, max0 - f7gn)
 
-        return P.taux36 * min_(f7gn, max0) + P.taux30 * min_(f7fn, max1)
+        return P.taux_1 * min_(f7gn, max0) + P.taux_2 * min_(f7fn, max1)
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4885,14 +4885,14 @@ class sofica(Variable):
         rng = foyer_fiscal('rng', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.sofica
 
-        max0 = min_(P.taux_plafond * max_(rng, 0), P.max)
+        max0 = min_(P.plafond_revenu_net_global * max_(rng, 0), P.plafond)
         max1 = max_(0, max0 - f7en)
         max2 = max_(0, max0 - f7gn)
 
         return (
-            P.taux48 * min_(f7en, max0)
-            + P.taux36 * min_(f7gn, max1)
-            + P.taux30 * min_(f7fn, max2)
+            P.taux_3 * min_(f7en, max0)
+            + P.taux_1 * min_(f7gn, max1)
+            + P.taux_2 * min_(f7fn, max2)
             )
 
 
