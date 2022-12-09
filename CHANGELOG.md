@@ -6,7 +6,8 @@
 * Périodes concernées : toutes.
 * Zones impactées :
   - `parameters/prelevements_sociaux/cotisations_secteur_public/ircantec`
-  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique.py`
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py`
+
 * Détails :
   - N'utilise plus le champ `base` pour déduire les taux applelés des taux théoriques conforméméent  l'évolution de [`core`](https://github.com/openfisca/openfisca-core/pull/1162).
 
