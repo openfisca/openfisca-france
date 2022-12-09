@@ -1,4 +1,9 @@
-description: Prestations compensatoires
+description: Réduction d'impôt sur les prestations compensatoires (2001 -)
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  description_en: Compensatory allowance (2001 -)
+  order:
+    - taux
+    - plafond
+documentation: |-
+  Notes :
+  (1) Voir art. 270 et 271 du code civil

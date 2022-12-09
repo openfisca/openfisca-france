@@ -548,15 +548,15 @@ class prestations_compensatoires(Variable):
 
         return (
             (f7wm == 0) * (
-                (f7wn == f7wo) * P.taux * min_(f7wn, P.seuil)
-                + (f7wn < f7wo) * (f7wo <= P.seuil) * P.taux * f7wn
-                + max_(0, (f7wn < f7wo) * (f7wo > P.seuil) * P.taux * P.seuil * f7wn / div)
+                (f7wn == f7wo) * P.taux * min_(f7wn, P.plafond)
+                + (f7wn < f7wo) * (f7wo <= P.plafond) * P.taux * f7wn
+                + max_(0, (f7wn < f7wo) * (f7wo > P.plafond) * P.taux * P.plafond * f7wn / div)
                 )
             + (f7wm != 0) * (
-                (f7wn == f7wm) * (f7wo <= P.seuil) * P.taux * f7wm
-                + max_(0, (f7wn == f7wm) * (f7wo >= P.seuil) * P.taux * f7wm / div)
-                + (f7wn > f7wm) * (f7wo <= P.seuil) * P.taux * f7wn
-                + max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)
+                (f7wn == f7wm) * (f7wo <= P.plafond) * P.taux * f7wm
+                + max_(0, (f7wn == f7wm) * (f7wo >= P.plafond) * P.taux * f7wm / div)
+                + (f7wn > f7wm) * (f7wo <= P.plafond) * P.taux * f7wn
+                + max_(0, (f7wn > f7wm) * (f7wo >= P.plafond) * P.taux * f7wn / div)
                 )
             + P.taux * f7wp
             )
