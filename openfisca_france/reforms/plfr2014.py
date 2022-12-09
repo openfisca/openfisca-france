@@ -35,7 +35,7 @@ class plfr2014(Reform):
             adhcga = foyer_fiscal('adhcga', period)
             cappme = foyer_fiscal('cappme', period)
             creaen = foyer_fiscal('creaen', period)
-            heberg_sante = foyer_fiscal('heberg_sante', period)
+            accueil_dans_etablissement_personnes_agees = foyer_fiscal('accueil_dans_etablissement_personnes_agees', period)
             deffor = foyer_fiscal('deffor', period)
             dfppce = foyer_fiscal('dfppce', period)
             doment = foyer_fiscal('doment', period)
@@ -61,7 +61,7 @@ class plfr2014(Reform):
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
             souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
-            total_reductions = accult + adhcga + cappme + creaen + heberg_sante + deffor + dfppce + doment + domlog +\
+            total_reductions = accult + adhcga + cappme + creaen + accueil_dans_etablissement_personnes_agees + deffor + dfppce + doment + domlog +\
                 duflot + duflot_om + reduction_enfants_scolarises + gardenf + intagr + investissement_forestier + invlst + locmeu + mecena + mohist + patnat +\
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
             return min_(ip_net, total_reductions)
