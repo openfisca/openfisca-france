@@ -6,8 +6,7 @@ metadata:
     - plafond
     - increment_plafond
     - plafond_maximum
-    - plafond_premiere_annee_emploi_salarie_domicile
-    - plafond_maximum_premiere_annee_emploi_salarie_domicile
+    - plafond_1ere_annee
     - plafond_invalides
 documentation: |-
   Notes :

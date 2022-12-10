@@ -1,5 +1,5 @@
 description: Cotisations syndicales (1989 - )
 metadata:
   order:
-  - date_entree_en_vigueur
-  - reduction_impot_cotisations_syndicales
+  - taux
+  - plafond

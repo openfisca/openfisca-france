@@ -34,7 +34,6 @@ values:
     value: 6700
   2018-01-01:
     value: 4050
-    metadata:
 metadata:
   ux_name: Plafond
   ipp_csv_id: plaf_reduction_ir_guyane
