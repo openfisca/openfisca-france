@@ -4,8 +4,6 @@ values:
     value: null
   1985-01-01:
     value: 0.25
-  2006-01-01:
-    value: null
 metadata:
   ipp_csv_id: base_sofica
   unit: /1

@@ -6,8 +6,6 @@ values:
     value: 120000
   2001-01-01:
     value: 18000
-  2006-01-01:
-    value: null
 metadata:
   ux_name: Plafond
   unit: currency
