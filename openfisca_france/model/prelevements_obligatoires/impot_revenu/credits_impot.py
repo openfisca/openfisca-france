@@ -516,7 +516,7 @@ class ci_investissement_forestier(Variable):
         f7vn = foyer_fiscal('f7vn', period)
         f7tb = foyer_fiscal('f7tb', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.depenses_investissement_forestier
 
         # travaux année N
         ci_trav_adh = min_(P.travaux.plafond * (maries_ou_pacses + 1), f7ua + f7ub + f7tk + f7to + f7tq + f7vl + f7ts + f7vk + f7tu + f7vi + f7tw + f7vn + f7tb)

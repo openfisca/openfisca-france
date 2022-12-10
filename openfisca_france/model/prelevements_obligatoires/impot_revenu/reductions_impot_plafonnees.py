@@ -2490,7 +2490,7 @@ class location_meublee(Variable):
         f7ij = foyer_fiscal('f7ij', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.location_meublee
 
-        return P.taux * min_(P.max, f7ij) / 9
+        return P.taux * min_(P.plafond, f7ij) / 9
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
