@@ -1,5 +1,13 @@
 # Changelog
 
+### 124.0.1 [#1940](https://github.com/openfisca/openfisca-france/pull/1940)
+
+*  Changement mineur.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/aide_mobilite`.
+* Détails :
+  - Découpe le fichier en paramètres distincts
+  - Ajoute les `ux_name`
+
 # 124.0.0 [#1935](https://github.com/openfisca/openfisca-france/pull/1935)
 
 * Amélioration technique. 
@@ -9,27 +17,21 @@
     - Harmonisation avec le dossier IPP
     - Décision de fusionner les paramètres en double: pour les dispositifs qui sont passés d'une charge à une réduction d'impôt (ou l'inverse), les paramètres sont rangés dans le dossier qui correspond au dispositif en cours (voir issue #1936 )
    - Dispositifs traités dans cette PR (la suite dans la PR suivante:)
-     -  codev.yaml
-     - deduc_sal.yaml
-     - divers.yaml
-     - dons.yaml
-     - enfscol.yaml
-     - fcp.yaml
+     - codev
+     - deduc_sal
+     - dons
+     - enfscol
+     - fcp
      - foret.yam
-     - habitat_princ_reduc.yaml
-     - heberg_sante.yaml
-     - index.yaml
+     - heberg_sante
      - locmeu.yam
-     - outremer_investissement.yaml
-     - pme.yaml
-     - prest_compen.yaml
-     - reduc_exceptionnelle.yaml
-     - reduc_invest_immo.yaml
-     - reduction_ir_domtom.yaml
-     - sal_dom.yaml
-     - sofica.yaml
-     - sofipeche.yaml
-
+     - pme
+     - prest_compen
+     - reduc_exceptionnelle
+     - reduction_ir_domtom
+     - sal_dom
+     - sofica
+     - sofipeche
 ## 123.2.0 [#1939](https://github.com/openfisca/openfisca-france/pull/1939)
 
 * Évolution du système socio-fiscal.
