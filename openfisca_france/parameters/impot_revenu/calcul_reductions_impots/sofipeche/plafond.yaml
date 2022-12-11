@@ -1,12 +1,29 @@
-description: Maximum
+description: Plafond de la réduction d'impôt pour souscriptions de parts au capital de SOFIPECHE (1999 - 2012)
 values:
+  1997-01-01:
+    value: null
   1998-01-01:
     value: 125000
   2001-01-01:
     value: 19000
   2007-01-01:
     value: null
+  2009-01-01:
+    value: 19000
+  2012-01-01:
+    value: null
 metadata:
-  unit: currency
+  ux_name: Plafond
+  ipp_csv_id: plaf_sofipeche
+  notes:
+    1998-01-01:
+    - title: Création sous forme de charge déductible du revenu global
+  official_journal_date:
+    2009-01-01: '2010-12-30'
   reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+    2009-01-01:
+      title: Loi de finances pour 2011 2010-1657 du 29/12/2010 art. 105
+  unit: currency
+documentation: |-
+  Notes :
+  (1) Souscription au capital d'une SOFIPECHE : plafonnement à doubler pour couple

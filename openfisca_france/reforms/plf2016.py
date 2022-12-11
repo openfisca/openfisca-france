@@ -120,24 +120,24 @@ class plf2016_counterfactual(Reform):
             adhcga = foyer_fiscal('adhcga', period)
             cappme = foyer_fiscal('cappme', period)
             creaen = foyer_fiscal('creaen', period)
-            daepad = foyer_fiscal('daepad', period)
+            accueil_dans_etablissement_personnes_agees = foyer_fiscal('accueil_dans_etablissement_personnes_agees', period)
             deffor = foyer_fiscal('deffor', period)
             dfppce = foyer_fiscal('dfppce', period)
             doment = foyer_fiscal('doment', period)
             domlog = foyer_fiscal('domlog', period)
             duflot = foyer_fiscal('duflot_pinel_denormandie_metropole', period)
             duflot_om = foyer_fiscal('duflot_pinel_denormandie_om', period)
-            ecpess = foyer_fiscal('ecpess', period)
+            reduction_enfants_scolarises = foyer_fiscal('reduction_enfants_scolarises', period)
             gardenf = foyer_fiscal('gardenf', period)
             intagr = foyer_fiscal('intagr', period)
-            invfor = foyer_fiscal('ri_invfor', period)
+            investissement_forestier = foyer_fiscal('ri_investissement_forestier', period)
             invlst = foyer_fiscal('invlst', period)
             ip_net = foyer_fiscal('ip_net', period)
-            locmeu = foyer_fiscal('locmeu', period)
+            location_meublee = foyer_fiscal('location_meublee', period)
             mecena = foyer_fiscal('mecena', period)
             mohist = foyer_fiscal('mohist', period)
             patnat = foyer_fiscal('patnat', period)
-            prcomp = foyer_fiscal('prcomp', period)
+            prestations_compensatoires = foyer_fiscal('prestations_compensatoires', period)
             reduction_impot_exceptionnelle = foyer_fiscal('reduction_impot_exceptionnelle', period)
             repsoc = foyer_fiscal('repsoc', period)
             resimm = foyer_fiscal('resimm', period)
@@ -145,10 +145,10 @@ class plf2016_counterfactual(Reform):
             saldom = foyer_fiscal('ri_saldom', period)
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
-            spfcpi = foyer_fiscal('spfcpi', period)
-            total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog +\
-                duflot + duflot_om + ecpess + gardenf + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
-                prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
+            souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
+            total_reductions = accult + adhcga + cappme + creaen + accueil_dans_etablissement_personnes_agees + deffor + dfppce + doment + domlog +\
+                duflot + duflot_om + reduction_enfants_scolarises + gardenf + intagr + investissement_forestier + invlst + location_meublee + mecena + mohist + patnat +\
+                prestations_compensatoires + repsoc + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
 
             return min_(ip_net, total_reductions)
 
@@ -217,24 +217,24 @@ class plf2016_counterfactual_2014(Reform):
             adhcga = foyer_fiscal('adhcga', period)
             cappme = foyer_fiscal('cappme', period)
             creaen = foyer_fiscal('creaen', period)
-            daepad = foyer_fiscal('daepad', period)
+            accueil_dans_etablissement_personnes_agees = foyer_fiscal('accueil_dans_etablissement_personnes_agees', period)
             deffor = foyer_fiscal('deffor', period)
             dfppce = foyer_fiscal('dfppce', period)
             doment = foyer_fiscal('doment', period)
             domlog = foyer_fiscal('domlog', period)
             duflot = foyer_fiscal('duflot_pinel_denormandie_metropole', period)
             duflot_om = foyer_fiscal('duflot_pinel_denormandie_om', period)
-            ecpess = foyer_fiscal('ecpess', period)
+            reduction_enfants_scolarises = foyer_fiscal('reduction_enfants_scolarises', period)
             gardenf = foyer_fiscal('gardenf', period)
             intagr = foyer_fiscal('intagr', period)
-            invfor = foyer_fiscal('ri_invfor', period)
+            investissement_forestier = foyer_fiscal('ri_investissement_forestier', period)
             invlst = foyer_fiscal('invlst', period)
             ip_net = foyer_fiscal('ip_net', period)
-            locmeu = foyer_fiscal('locmeu', period)
+            location_meublee = foyer_fiscal('location_meublee', period)
             mecena = foyer_fiscal('mecena', period)
             mohist = foyer_fiscal('mohist', period)
             patnat = foyer_fiscal('patnat', period)
-            prcomp = foyer_fiscal('prcomp', period)
+            prestations_compensatoires = foyer_fiscal('prestations_compensatoires', period)
             reduction_impot_exceptionnelle = foyer_fiscal('reduction_impot_exceptionnelle', period)
             repsoc = foyer_fiscal('repsoc', period)
             resimm = foyer_fiscal('resimm', period)
@@ -242,10 +242,10 @@ class plf2016_counterfactual_2014(Reform):
             saldom = foyer_fiscal('ri_saldom', period)
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
-            spfcpi = foyer_fiscal('spfcpi', period)
-            total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog +\
-                duflot + duflot_om + ecpess + gardenf + intagr + invfor + invlst + locmeu + mecena + mohist + patnat +\
-                prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
+            souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
+            total_reductions = accult + adhcga + cappme + creaen + accueil_dans_etablissement_personnes_agees + deffor + dfppce + doment + domlog +\
+                duflot + duflot_om + reduction_enfants_scolarises + gardenf + intagr + investissement_forestier + invlst + location_meublee + mecena + mohist + patnat +\
+                prestations_compensatoires + repsoc + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
 
             return min_(ip_net, total_reductions)
 

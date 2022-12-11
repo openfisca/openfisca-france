@@ -15,7 +15,7 @@ class reductions_deplafonnees(Variable):
     def formula_2013_01_01(foyer_fiscal, period, parameters):
 
         reductions_sans_plafond = [
-            'daepad',
+            'accueil_dans_etablissement_personnes_agees',
             'dfppce',
             'adhcga',
             'assvie',
@@ -23,10 +23,10 @@ class reductions_deplafonnees(Variable):
             'creaen',
             'intagr',
             'mecena',
-            'prcomp',
+            'prestations_compensatoires',
             'repsoc',
             'resimm',  # Malraux, non plafonnées pour les investissements réalisés après 2013
-            'ecpess',
+            'reduction_enfants_scolarises',
             'accult',
             'rsceha',
             ]
@@ -166,10 +166,10 @@ class creaen(Variable):
             )
 
 
-class daepad(Variable):
+class accueil_dans_etablissement_personnes_agees(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'daepad'
+    label = 'Hébergement santé'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -179,9 +179,9 @@ class daepad(Variable):
         '''
         f7cd = foyer_fiscal('f7cd', period)
         f7ce = foyer_fiscal('f7ce', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.daepad
+        P = parameters(period).impot_revenu.calcul_reductions_impots.accueil_dans_etablissement_personnes_agees
 
-        return P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
+        return P.taux * (min_(f7cd, P.plafond + min_(f7ce, P.plafond)))
 
 
 class dfppce(Variable):
@@ -201,8 +201,8 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
 
         base = f7uf
-        max1 = P.max_dons_oeuvres * rni
-        return P.taux_dons_oeuvres * min_(base, max1)
+        max1 = P.dons_interet_general.plafond * rni
+        return P.dons_aux_oeuvres.taux * min_(base, max1)
 
     def formula_2004_01_01(foyer_fiscal, period, parameters):
         '''
@@ -215,8 +215,8 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
 
         base = f7uf + f7xs
-        max1 = P.max_dons_oeuvres * rni
-        return P.taux_dons_oeuvres * min_(base, max1)
+        max1 = P.dons_interet_general.plafond * rni
+        return P.dons_aux_oeuvres.taux * min_(base, max1)
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
@@ -230,8 +230,8 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
 
         base = f7uf + f7xs + f7xt
-        max1 = P.max_dons_oeuvres * rni
-        return P.taux_dons_oeuvres * min_(base, max1)
+        max1 = P.dons_interet_general.plafond * rni
+        return P.dons_aux_oeuvres.taux * min_(base, max1)
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
         '''
@@ -246,8 +246,8 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu
-        max1 = P.max_dons_oeuvres * rni
-        return P.taux_dons_oeuvres * min_(base, max1)
+        max1 = P.dons_interet_general.plafond * rni
+        return P.dons_aux_oeuvres.taux * min_(base, max1)
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
@@ -263,8 +263,8 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw
-        max1 = P.max_dons_oeuvres * rni
-        return P.taux_dons_oeuvres * min_(base, max1)
+        max1 = P.dons_interet_general.plafond * rni
+        return P.dons_aux_oeuvres.taux * min_(base, max1)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
         '''
@@ -281,8 +281,8 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.max_dons_oeuvres * rni
-        return P.taux_dons_oeuvres * min_(base, max1)
+        max1 = P.dons_interet_general.plafond * rni
+        return P.dons_aux_oeuvres.taux * min_(base, max1)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -304,8 +304,8 @@ class dfppce(Variable):
 
         report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud
-        max1 = P.max_dons_oeuvres * rni
-        return P.taux_dons_oeuvres * min_(base, max1)
+        max1 = P.dons_interet_general.plafond * rni
+        return P.dons_aux_oeuvres.taux * min_(base, max1)
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -327,8 +327,8 @@ class dfppce(Variable):
 
         report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud
-        max1 = P.max_dons_oeuvres * rni
-        return P.taux_dons_oeuvres * min_(base, max1)
+        max1 = P.dons_interet_general.plafond * rni
+        return P.dons_aux_oeuvres.taux * min_(base, max1)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -355,12 +355,12 @@ class dfppce(Variable):
         red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
         report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
 
-        dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol
-        max = P.max_dons_oeuvres * rni
+        max = P.dons_interet_general.plafond * rni
 
-        return red_7ud_7va + P.taux_dons_oeuvres * min_(base, max)
+        return red_7ud_7va + P.dons_aux_oeuvres.taux * min_(base, max)
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
@@ -392,12 +392,12 @@ class dfppce(Variable):
         red_notre_dame = min_(PND.plafond, f7ue) * PND.taux
         report_notre_dame = max_(0, f7ue - PND.plafond)
 
-        dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol + report_notre_dame
-        max = P.max_dons_oeuvres * rni
+        max = P.dons_interet_general.plafond * rni
 
-        return red_notre_dame + red_7ud_7va + P.taux_dons_oeuvres * min_(base, max)
+        return red_notre_dame + red_7ud_7va + P.dons_aux_oeuvres.taux * min_(base, max)
 
     def formula_2020_01_01(foyer_fiscal, period, parameters):
         '''
@@ -424,12 +424,12 @@ class dfppce(Variable):
         red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
         report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
 
-        dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + dons_partipol
-        max = P.max_dons_oeuvres * rni
+        max = P.dons_interet_general.plafond * rni
 
-        return red_7ud_7va + P.taux_dons_oeuvres * min_(base, max)
+        return red_7ud_7va + P.dons_aux_oeuvres.taux * min_(base, max)
 
     def formula_2021_01_01(foyer_fiscal, period, parameters):
         '''
@@ -460,18 +460,18 @@ class dfppce(Variable):
         red_7uj = min_(P.dons_assoc_cult, f7uj) * taux_donapd
         report_7uj = max_(0, f7uj - P.dons_assoc_cult)
 
-        dons_partipol = min_(P.max_dons_partipo_seul * (1 + maries_ou_pacses), f7uh)
+        dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + report_7uj + dons_partipol
-        max = P.max_dons_oeuvres * rni
+        max = P.dons_interet_general.plafond * rni
 
-        return red_7ud_7va + red_7uj + P.taux_dons_oeuvres * min_(base, max)
+        return red_7ud_7va + red_7uj + P.dons_aux_oeuvres.taux * min_(base, max)
 
 
-class ecpess(Variable):
+class reduction_enfants_scolarises(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'ecpess'
+    label = 'reduction_enfants_scolarises'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -484,12 +484,12 @@ class ecpess(Variable):
         f7ed = foyer_fiscal('f7ed', period)
         f7ef = foyer_fiscal('f7ef', period)
         f7eg = foyer_fiscal('f7eg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.ecpess
+        P = parameters(period).impot_revenu.calcul_reductions_impots.enfants_scolarises
 
         return (
-            P.col * (f7ea + f7eb / 2)
-            + P.lyc * (f7ec + f7ed / 2)
-            + P.sup * (f7ef + f7eg / 2)
+            P.college * (f7ea + f7eb / 2)
+            + P.lycee * (f7ec + f7ed / 2)
+            + P.universite * (f7ef + f7eg / 2)
             )
 
 
@@ -528,7 +528,7 @@ class mecena(Variable):
         return f7us
 
 
-class prcomp(Variable):
+class prestations_compensatoires(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Prestations compensatoires'
@@ -542,21 +542,21 @@ class prcomp(Variable):
         f7wn = foyer_fiscal('f7wn', period)
         f7wo = foyer_fiscal('f7wo', period)
         f7wp = foyer_fiscal('f7wp', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.prcomp
+        P = parameters(period).impot_revenu.calcul_reductions_impots.prestations_compensatoires
 
         div = (f7wo == 0) * 1 + f7wo  # Pour éviter les divisions par zéro
 
         return (
             (f7wm == 0) * (
-                (f7wn == f7wo) * P.taux * min_(f7wn, P.seuil)
-                + (f7wn < f7wo) * (f7wo <= P.seuil) * P.taux * f7wn
-                + max_(0, (f7wn < f7wo) * (f7wo > P.seuil) * P.taux * P.seuil * f7wn / div)
+                (f7wn == f7wo) * P.taux * min_(f7wn, P.plafond)
+                + (f7wn < f7wo) * (f7wo <= P.plafond) * P.taux * f7wn
+                + max_(0, (f7wn < f7wo) * (f7wo > P.plafond) * P.taux * P.plafond * f7wn / div)
                 )
             + (f7wm != 0) * (
-                (f7wn == f7wm) * (f7wo <= P.seuil) * P.taux * f7wm
-                + max_(0, (f7wn == f7wm) * (f7wo >= P.seuil) * P.taux * f7wm / div)
-                + (f7wn > f7wm) * (f7wo <= P.seuil) * P.taux * f7wn
-                + max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)
+                (f7wn == f7wm) * (f7wo <= P.plafond) * P.taux * f7wm
+                + max_(0, (f7wn == f7wm) * (f7wo >= P.plafond) * P.taux * f7wm / div)
+                + (f7wn > f7wm) * (f7wo <= P.plafond) * P.taux * f7wn
+                + max_(0, (f7wn > f7wm) * (f7wo >= P.plafond) * P.taux * f7wn / div)
                 )
             + P.taux * f7wp
             )
@@ -573,10 +573,10 @@ class reduction_cotisations_syndicales(Variable):
         '''
         Cotisations syndicales : réduction d'impôt (2002-2011) puis crédit d'impôt (2012- )
         '''
-        return foyer_fiscal('cotsyn', period)
+        return foyer_fiscal('cotisations_syndicales', period)
 
 
-class cotsyn(Variable):
+class cotisations_syndicales(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Montant de la réduction ou crédit d'impôt pour cotisations syndicales"
@@ -596,9 +596,9 @@ class cotsyn(Variable):
         chomage_imposable = foyer_fiscal.members('chomage_imposable', period, options = [ADD])
         retraite_imposable = foyer_fiscal.members('retraite_imposable', period, options = [ADD])
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cotsyn
+        P = parameters(period).impot_revenu.calcul_reductions_impots.cotisations_syndicales
 
-        plafond = (salaire_imposable + chomage_imposable + retraite_imposable) * P.seuil
+        plafond = (salaire_imposable + chomage_imposable + retraite_imposable) * P.plafond
 
         return (P.taux * foyer_fiscal.sum(min_(cotisations_versees, plafond)))
 

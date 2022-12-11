@@ -1,0 +1,27 @@
+description: Plafond (en % du rev net global) de la réduction d'impôt pour souscriptions de parts au capital de SOFIPECHE (1999 - 2012)
+metadata:
+  ux_name: Plafond (% revenu net global)
+  ipp_csv_id: base_sofipeche
+  notes:
+    1998-01-01:
+    - title: Création sous forme de charge déductible du revenu global
+  official_journal_date:
+    2009-01-01: '2010-12-30'
+  reference:
+    2009-01-01:
+      title: Loi de finances pour 2011 2010-1657 du 29/12/2010 art. 105
+  unit: /1
+values:
+  1997-01-01:
+    value: null
+  1998-01-01:
+    value: 0.25
+  2007-01-01:
+    value: null
+  2009-01-01:
+    value: 0.25
+  2012-01-01:
+    value: null
+documentation: |-
+  Notes :
+  (1) Souscription au capital d'une SOFIPECHE : plafonnement à doubler pour couple

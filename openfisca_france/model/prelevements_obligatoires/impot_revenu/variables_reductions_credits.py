@@ -216,7 +216,7 @@ class f7uh_2009(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'EcoDev'
+    label = 'codev'
     # start_date = date(2007, 1, 1)
     end = '2009-12-31'
     definition_period = YEAR
@@ -858,7 +858,7 @@ class f7sm(Variable):
     cerfa_field = '7SM'
     value_type = int
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = date(2021, 1, 1)
     definition_period = YEAR
 
@@ -1435,7 +1435,7 @@ class f7oz(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     definition_period = YEAR
 
 
@@ -1899,7 +1899,7 @@ class f7pl(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = '2016-01-01'
     definition_period = YEAR
 
@@ -1917,7 +1917,7 @@ class f7pm(Variable):
     cerfa_field = '7PM'
     value_type = int
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = '2016-01-01'
     definition_period = YEAR
 
@@ -1935,7 +1935,7 @@ class f7pn(Variable):
     cerfa_field = '7PN'
     value_type = int
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = '2016-01-01'
     definition_period = YEAR
 
@@ -1978,7 +1978,7 @@ class f7po(Variable):
     cerfa_field = '7PO'
     value_type = int
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = '2016-01-01'
     definition_period = YEAR
 
@@ -4806,7 +4806,7 @@ class f7iy_2018(Variable):
     cerfa_field = '7IY'
     value_type = int
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     end = '2018-12-31'
     definition_period = YEAR
 
@@ -6477,7 +6477,7 @@ class f7ol(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -6487,7 +6487,7 @@ class f7om(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -6497,7 +6497,7 @@ class f7on(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -6507,7 +6507,7 @@ class f7oo(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -6594,7 +6594,7 @@ class f7ov(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
 
@@ -6615,7 +6615,7 @@ class f7ow(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -8123,7 +8123,7 @@ class f7hm(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'SPFCPI'
+    label = 'souscriptions_parts_fcpi_fip'
     # start_date = date(2020, 1, 1)
     end = '2020-12-31'
     definition_period = YEAR
@@ -8768,7 +8768,7 @@ class f7hv(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
@@ -8789,7 +8789,7 @@ class f7hw(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
@@ -8810,7 +8810,7 @@ class f7hx(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
@@ -8862,7 +8862,7 @@ class f7hu(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'LocMeu Censi B'
+    label = 'Location Meublée Censi B'
     # start_date = date(2020, 1, 1)
     definition_period = YEAR
 
@@ -11081,7 +11081,7 @@ class f7tb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'InvFor'
+    label = 'Dépenses en investissements forestiers'
     # start_date = date(2021, 1, 1)
     definition_period = YEAR
 
