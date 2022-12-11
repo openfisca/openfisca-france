@@ -1,5 +1,13 @@
 # Changelog
 
+### 124.0.1 [#1940](https://github.com/openfisca/openfisca-france/pull/1940)
+
+*  Changement mineur.
+* Zones impactées : `openfisca_france/parameters/prestations_sociales/aide_mobilite`.
+* Détails :
+  - Découpe le fichier en paramètres distincts
+  - Ajoute les `ux_name`
+
 # 124.0.0 [#1935](https://github.com/openfisca/openfisca-france/pull/1935)
 
 * Amélioration technique. 
