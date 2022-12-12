@@ -3461,7 +3461,7 @@ class patnat(Variable):
         2010
         '''
         f7ka = foyer_fiscal('f7ka_2013', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.patnat
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.patnat
 
         max1 = P.max
         return P.taux * min_(f7ka, max1)
@@ -3473,7 +3473,7 @@ class patnat(Variable):
         '''
         f7ka = foyer_fiscal('f7ka_2013', period)
         f7kb = foyer_fiscal('f7kb_2016', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.patnat
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.patnat
 
         max1 = P.max
         return P.taux * min_(f7ka, max1) + f7kb
@@ -3486,7 +3486,7 @@ class patnat(Variable):
         f7ka = foyer_fiscal('f7ka_2013', period)
         f7kb = foyer_fiscal('f7kb_2016', period)
         f7kc = foyer_fiscal('f7kc_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.patnat
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.patnat
 
         max1 = P.max
         return P.taux * min_(f7ka, max1) + f7kb + f7kc
@@ -3500,7 +3500,7 @@ class patnat(Variable):
         f7kb = foyer_fiscal('f7kb_2016', period)
         f7kc = foyer_fiscal('f7kc_2017', period)
         f7kd = foyer_fiscal('f7kd_2018', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.patnat
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.patnat
 
         max1 = P.max
         return P.taux * min_(f7ka, max1) + f7kb + f7kc + f7kd
