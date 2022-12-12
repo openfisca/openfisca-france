@@ -208,7 +208,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         '''
         Duflot
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh', period)  # Métropole
@@ -228,7 +228,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         even though they may contain OM investments as well (only relevant after 2015,
         but since there are no separate cases, nothing one can potentially do).
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh', period)  # Métropole
@@ -266,7 +266,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         Investissement locatif privé - Dispositif Pinel
         De 2015 à 2018
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gh = foyer_fiscal('f7gh', period)  # Métropole
@@ -355,7 +355,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         '''
         Duflot + Pinel + Denormandie
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
@@ -426,7 +426,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         NB: it is not clear whether the extension of the Pinel investment should also
         count towards the ceiling of € 300K. I will assume it does.
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7qp', 9, 'outremer'),  # Pinel 2017
@@ -505,7 +505,7 @@ class duflot_pinel_denormandie_metropole(Variable):
         '''
         Duflot + Pinel + Denormandie
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
                 ('f7qu', 9, 'outremer'),
@@ -602,7 +602,7 @@ class duflot_pinel_denormandie_om(Variable):
         '''
         Duflot
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
@@ -620,7 +620,7 @@ class duflot_pinel_denormandie_om(Variable):
         even though they may contain OM investments as well (only relevant after 2015,
         but since there are no separate cases, nothing one can potentially do).
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
@@ -648,7 +648,7 @@ class duflot_pinel_denormandie_om(Variable):
         '''
         Duflot + Pinel
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         # Duflot année N, 2013
         f7gi = foyer_fiscal('f7gi', period)  # Outre-Mer
@@ -724,7 +724,7 @@ class duflot_pinel_denormandie_om(Variable):
         '''
         Duflot + Pinel + Denormandie
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
@@ -787,7 +787,7 @@ class duflot_pinel_denormandie_om(Variable):
         NB: it is not clear whether the extension of the Pinel investment should also
         count towards the ceiling of € 300K. I will assume it does.
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
@@ -858,7 +858,7 @@ class duflot_pinel_denormandie_om(Variable):
         '''
         Duflot + Pinel + Denormandie
         '''
-        P = parameters(period).impot_revenu.calcul_reductions_impots.duflot_pinel_denormandie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.duflot_pinel_denormandie
 
         cases_investissement = {
             2019: [  # A compter de 2019, le plafonnement de la base de calcul est commun à tous les investissements réalisés
