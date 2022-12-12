@@ -1710,7 +1710,7 @@ class intemp(Variable):
         '''
         nb_pac = foyer_fiscal('nb_pac', period)
         f7wg = foyer_fiscal('f7wg_2003', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.intemp
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.intemp
 
         max1 = P.max + P.pac * nb_pac
         return P.taux * min_(f7wg, max1)
