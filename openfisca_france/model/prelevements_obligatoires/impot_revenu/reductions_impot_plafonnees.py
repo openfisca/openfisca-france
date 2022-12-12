@@ -1690,7 +1690,7 @@ class intcon(Variable):
         2004-2005
         '''
         f7uh = foyer_fiscal('f7uh_2004', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.intcon
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.intcon
 
         max1 = P.max
         return P.taux * min_(f7uh, max1)
