@@ -1,0 +1,7 @@
+description: Dispositif Duflot
+metadata:
+  order:
+  - plafond
+  - taux_metropole
+  - taux_outre_mer
+  - duree

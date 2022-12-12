@@ -1,0 +1,5 @@
+description: Logements en Outre-Mer (9)
+metadata:
+  order:
+  - taux
+  - duree_reduction

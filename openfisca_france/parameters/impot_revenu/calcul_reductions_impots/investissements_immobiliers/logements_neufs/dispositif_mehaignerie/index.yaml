@@ -1,0 +1,6 @@
+description: Dispositifs Méhaignerie et Quilès-Méhaignerie
+metadata:
+  order:
+  - plafond
+  - taux
+  - duree
