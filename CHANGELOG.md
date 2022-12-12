@@ -1,5 +1,15 @@
 # Changelog
 
+# 125.0.0 [#1941](https://github.com/openfisca/openfisca-france/pull/1941)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_reductions_impots`
+* Détails :
+  - Ajout des parametres `outremer_investissements`
+  - Rangement des `investissements_immobiliers` (les doublons seront fusionnés plus tard)
+  - Rangement du dossier `divers` (les doublons seront fusionnés plus tard)
+
 ### 124.0.1 [#1940](https://github.com/openfisca/openfisca-france/pull/1940)
 
 *  Changement mineur.
