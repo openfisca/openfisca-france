@@ -3579,7 +3579,7 @@ class rehab(Variable):
         '''
         f7xx = foyer_fiscal('f7xx', period)  # TO DO: Coder le plafond glissant sur 3 années
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.rehab
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.rehab
         depenses_2017 = min_(P.max, f7xx)
 
         return (P.taux * depenses_2017)
