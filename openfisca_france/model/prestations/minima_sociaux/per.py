@@ -41,15 +41,9 @@ class eligibilite_per_etudiant(Variable):
         juin_2022 = periods.period('2022-06')
         eligibilite_etudiant=where(individu('boursier',juin_2022)==0,
                                    0,
-<<<<<<< HEAD
                                    where(and_(individu.has_role(Famille.ENFANT)!=1, individu.famille('aide_logement',juin_2022)>0),0,
                                         1
                                         )
-=======
-                                   where(individu.famille('eligibilite_per',juin_2022)==1,0,
-                                         1
-                                         )
->>>>>>> 788c0bca4 (Crée test per)
                                   )
         return eligibilite_etudiant
 
@@ -76,23 +70,6 @@ class prime_exceptionnelle_rentree(Variable):
     definition_period = YEAR
 
     def formula(famille,period,parameters):
-<<<<<<< HEAD
-
-        enfant_i = famille.members.has_role(Famille.ENFANT)
-        nb_enfants = famille.sum(enfant_i)  
-        parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.per
-        ppa=0
-
-        if famille('eligibilite_per',period) > 0:    
-            ppa = parametres_per.per + nb_enfants * parametres_per.per_enfant
-
-        #elif ((famille('eligibilite_per',period)) == 0 & (famille('eligibilite_per_etudiant',period) > 0)):
-        #    ppa = parametres_per.per_etudiant + nb_enfants * parametres_per.per_etudiant_enfant
-
-        elif (famille('eligibilite_per',period) == 0)  & (famille('eligibilite_per_ppa',period) > 0):
-        # & (famille('eligibilite_per_etudiants') == 0)
-            ppa = parametres_per.per_ppa + nb_enfants * parametres_per.per_ppa_enfant
-=======
 
         enfant_i = famille.members.has_role(Famille.ENFANT)
         nb_enfants = famille.sum(enfant_i)  
@@ -105,7 +82,6 @@ class prime_exceptionnelle_rentree(Variable):
                         0
                         )
                  )
->>>>>>> 386a5e363 (Crée test prime_exceptionnelle_rentrée)
 
         return per
 
