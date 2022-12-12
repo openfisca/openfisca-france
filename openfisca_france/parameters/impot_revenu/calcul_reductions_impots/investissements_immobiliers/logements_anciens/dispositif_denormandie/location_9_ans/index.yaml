@@ -1,0 +1,6 @@
+description: Le propriétaire s'engage à louer pour 9 ans minimum
+metadata:
+  order:
+  - taux_9_ans_metropole
+  - taux_9_ans_outre_mer
+  - taux_3_ans

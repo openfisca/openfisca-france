@@ -1,0 +1,5 @@
+description: Logements Bâtiment Basse Consommation (BBC)
+metadata:
+  order:
+  - taux
+  - duree_reduction

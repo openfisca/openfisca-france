@@ -1,0 +1,6 @@
+description: Dispositif Pinel
+metadata:
+  order:
+  - plafond
+  - location_9_ans
+  - location_6_ans

@@ -68,7 +68,7 @@ class adhcga(Variable):
         '''
         f7ff = foyer_fiscal('f7ff', period)
         f7fg = foyer_fiscal('f7fg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.adhcga
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.adhcga
 
         return min_(f7ff, P.max * f7fg)
 
@@ -89,7 +89,7 @@ class assvie(Variable):
         f7gw = foyer_fiscal('f7gw_2004', period)
         f7gx = foyer_fiscal('f7gx_2004', period)
         f7gy = foyer_fiscal('f7gy_2004', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.assvie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.assvie
 
         max1 = P.max + nb_pac * P.pac
         return P.taux * min_(f7gw + f7gx + f7gy, max1)
@@ -109,7 +109,7 @@ class creaen(Variable):
         '''
         f7fy = foyer_fiscal('f7fy_2011', period)
         f7gy = foyer_fiscal('f7gy_2010', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.creaen
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.creaen
 
         return (P.base * f7fy + P.hand * f7gy)
 
@@ -124,7 +124,7 @@ class creaen(Variable):
         f7hy = foyer_fiscal('f7hy_2011', period)
         f7ky = foyer_fiscal('f7ky_2011', period)
         f7iy = foyer_fiscal('f7iy_2011', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.creaen
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.creaen
 
         return (
             P.base * ((f7jy + f7fy) + f7hy / 2)
@@ -144,7 +144,7 @@ class creaen(Variable):
         f7iy = foyer_fiscal('f7iy_2011', period)
         f7ly = foyer_fiscal('f7ly_2010', period)
         f7my = foyer_fiscal('f7my_2010', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.creaen
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.creaen
 
         return (
             P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2)
@@ -158,7 +158,7 @@ class creaen(Variable):
         '''
         f7ly = foyer_fiscal('f7ly_2010', period)
         f7my = foyer_fiscal('f7my_2010', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.creaen
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.creaen
 
         return (
             P.base * (f7ly / 2)
@@ -300,9 +300,9 @@ class dfppce(Variable):
         f7va = foyer_fiscal('f7va', period)
         f7vc = foyer_fiscal('f7vc', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
-        plafond_reduction_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.max
+        plafond_reduction_don_coluche = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.plafond
 
-        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud
         max1 = P.dons_interet_general.plafond * rni
         return P.dons_aux_oeuvres.taux * min_(base, max1)
@@ -323,9 +323,9 @@ class dfppce(Variable):
         f7va = foyer_fiscal('f7va', period)
         f7vc = foyer_fiscal('f7vc', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
-        plafond_reduction_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.max
+        plafond_reduction_don_coluche = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.plafond
 
-        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud
         max1 = P.dons_interet_general.plafond * rni
         return P.dons_aux_oeuvres.taux * min_(base, max1)
@@ -348,12 +348,12 @@ class dfppce(Variable):
         f7vc = foyer_fiscal('f7vc', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
-        plafond_reduction_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.max
-        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.taux
+        plafond_reduction_don_coluche = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.plafond
+        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.taux
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
-        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
+        red_7ud_7va = min_(plafond_reduction_don_coluche, f7va + f7ud) * taux_donapd
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
 
         dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
@@ -382,12 +382,12 @@ class dfppce(Variable):
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
         PND = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_notre_dame
-        plafond_reduction_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.max
-        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.taux
+        plafond_reduction_don_coluche = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.plafond
+        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.taux
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
-        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
+        red_7ud_7va = min_(plafond_reduction_don_coluche, f7va + f7ud) * taux_donapd
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
 
         red_notre_dame = min_(PND.plafond, f7ue) * PND.taux
         report_notre_dame = max_(0, f7ue - PND.plafond)
@@ -417,12 +417,12 @@ class dfppce(Variable):
         f7vc = foyer_fiscal('f7vc', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
-        plafond_reduction_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.max
-        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.taux
+        plafond_reduction_don_coluche = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.plafond
+        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.taux
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
-        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
+        red_7ud_7va = min_(plafond_reduction_don_coluche, f7va + f7ud) * taux_donapd
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
 
         dons_partipol = min_(P.dons_aux_partis_politiques.plafond_seul * (1 + maries_ou_pacses), f7uh)
 
@@ -450,12 +450,12 @@ class dfppce(Variable):
         f7vc = foyer_fiscal('f7vc', period)
 
         P = parameters(period).impot_revenu.calcul_reductions_impots.dons
-        plafond_reduction_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.max
-        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.donapd.taux
+        plafond_reduction_don_coluche = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.plafond
+        taux_donapd = parameters(period).impot_revenu.calcul_reductions_impots.dons.dons_coluche.taux
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        red_7ud_7va = min_(plafond_reduction_donapd, f7va + f7ud) * taux_donapd
-        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
+        red_7ud_7va = min_(plafond_reduction_don_coluche, f7va + f7ud) * taux_donapd
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_don_coluche)
 
         red_7uj = min_(P.dons_assoc_cult, f7uj) * taux_donapd
         report_7uj = max_(0, f7uj - P.dons_assoc_cult)
@@ -506,7 +506,7 @@ class intagr(Variable):
         '''
         f7um = foyer_fiscal('f7um', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.intagr
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.intagr
 
         max1 = P.max * (1 + maries_ou_pacses)
         return P.taux * min_(f7um, max1)
@@ -616,7 +616,7 @@ class repsoc(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7fh = foyer_fiscal('f7fh', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.repsoc
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.repsoc
 
         seuil = P.seuil * (maries_ou_pacses + 1)
         return P.taux * min_(f7fh, seuil)
@@ -636,7 +636,7 @@ class resimm(Variable):
         '''
         f7ra = foyer_fiscal('f7ra_2015', period)
         f7rb = foyer_fiscal('f7rb_2015', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7rb, 0)
@@ -651,7 +651,7 @@ class resimm(Variable):
         f7rb = foyer_fiscal('f7rb_2015', period)
         f7rc = foyer_fiscal('f7rc_2015', period)
         f7rd = foyer_fiscal('f7rd_2015', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7rd, 0)
@@ -676,7 +676,7 @@ class resimm(Variable):
         f7rd = foyer_fiscal('f7rd_2015', period)
         f7re = foyer_fiscal('f7re_2016', period)
         f7rf = foyer_fiscal('f7rf_2016', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7rd, 0)
@@ -705,7 +705,7 @@ class resimm(Variable):
         f7rf = foyer_fiscal('f7rf_2016', period)
         f7sx = foyer_fiscal('f7sx_2017', period)
         f7sy = foyer_fiscal('f7sy_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7rd, 0)
@@ -731,7 +731,7 @@ class resimm(Variable):
         f7rf = foyer_fiscal('f7rf_2016', period)
         f7sx = foyer_fiscal('f7sx_2017', period)
         f7sy = foyer_fiscal('f7sy_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7nx - f7sy - f7rf, 0)
@@ -755,7 +755,7 @@ class resimm(Variable):
         f7tx = foyer_fiscal('f7tx', period)
         f7ty = foyer_fiscal('f7ty', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         depenses_secteur_degrade = f7sy + f7nx
         depenses_secteur_patrimoine_remarquable = f7sx + f7ny
@@ -792,7 +792,7 @@ class resimm(Variable):
         # reports
         f7kz = foyer_fiscal('f7kz', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         base_nx = min_(P.max, f7nx)
         base_ny = min_(P.max - f7nx, f7ny)
@@ -823,7 +823,7 @@ class resimm(Variable):
         f7kz = foyer_fiscal('f7kz', period)
         f7ky = foyer_fiscal('f7ky', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         base_nx = min_(P.max, f7nx)
         base_ny = min_(P.max - f7nx, f7ny)
@@ -855,7 +855,7 @@ class resimm(Variable):
         f7ky = foyer_fiscal('f7ky', period)
         f7kx = foyer_fiscal('f7kx', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         base_nx = min_(P.max, f7nx)
         base_ny = min_(P.max - f7nx, f7ny)
@@ -883,7 +883,7 @@ class resimm(Variable):
         f7kx = foyer_fiscal('f7kx', period)
         f7kw = foyer_fiscal('f7kw', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         base_tx = min_(P.max2, f7tx)
         base_ty = min_(P.max2 - f7tx, f7ty)
