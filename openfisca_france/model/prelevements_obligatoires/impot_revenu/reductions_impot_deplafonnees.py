@@ -636,7 +636,7 @@ class resimm(Variable):
         '''
         f7ra = foyer_fiscal('f7ra_2015', period)
         f7rb = foyer_fiscal('f7rb_2015', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7rb, 0)
@@ -651,7 +651,7 @@ class resimm(Variable):
         f7rb = foyer_fiscal('f7rb_2015', period)
         f7rc = foyer_fiscal('f7rc_2015', period)
         f7rd = foyer_fiscal('f7rd_2015', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7rd, 0)
@@ -676,7 +676,7 @@ class resimm(Variable):
         f7rd = foyer_fiscal('f7rd_2015', period)
         f7re = foyer_fiscal('f7re_2016', period)
         f7rf = foyer_fiscal('f7rf_2016', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7rd, 0)
@@ -705,7 +705,7 @@ class resimm(Variable):
         f7rf = foyer_fiscal('f7rf_2016', period)
         f7sx = foyer_fiscal('f7sx_2017', period)
         f7sy = foyer_fiscal('f7sy_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7rd, 0)
@@ -731,7 +731,7 @@ class resimm(Variable):
         f7rf = foyer_fiscal('f7rf_2016', period)
         f7sx = foyer_fiscal('f7sx_2017', period)
         f7sy = foyer_fiscal('f7sy_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7nx - f7sy - f7rf, 0)
@@ -755,7 +755,7 @@ class resimm(Variable):
         f7tx = foyer_fiscal('f7tx', period)
         f7ty = foyer_fiscal('f7ty', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         depenses_secteur_degrade = f7sy + f7nx
         depenses_secteur_patrimoine_remarquable = f7sx + f7ny
@@ -792,7 +792,7 @@ class resimm(Variable):
         # reports
         f7kz = foyer_fiscal('f7kz', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         base_nx = min_(P.max, f7nx)
         base_ny = min_(P.max - f7nx, f7ny)
@@ -823,7 +823,7 @@ class resimm(Variable):
         f7kz = foyer_fiscal('f7kz', period)
         f7ky = foyer_fiscal('f7ky', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         base_nx = min_(P.max, f7nx)
         base_ny = min_(P.max - f7nx, f7ny)
@@ -855,7 +855,7 @@ class resimm(Variable):
         f7ky = foyer_fiscal('f7ky', period)
         f7kx = foyer_fiscal('f7kx', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         base_nx = min_(P.max, f7nx)
         base_ny = min_(P.max - f7nx, f7ny)
@@ -883,7 +883,7 @@ class resimm(Variable):
         f7kx = foyer_fiscal('f7kx', period)
         f7kw = foyer_fiscal('f7kw', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
 
         base_tx = min_(P.max2, f7tx)
         base_ty = min_(P.max2 - f7tx, f7ty)
