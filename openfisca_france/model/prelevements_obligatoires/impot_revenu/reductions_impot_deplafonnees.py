@@ -616,7 +616,7 @@ class repsoc(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7fh = foyer_fiscal('f7fh', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.repsoc
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.repsoc
 
         seuil = P.seuil * (maries_ou_pacses + 1)
         return P.taux * min_(f7fh, seuil)
