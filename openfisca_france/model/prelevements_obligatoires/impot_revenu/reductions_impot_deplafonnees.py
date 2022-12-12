@@ -506,7 +506,7 @@ class intagr(Variable):
         '''
         f7um = foyer_fiscal('f7um', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.intcon
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.intagr
 
         max1 = P.max * (1 + maries_ou_pacses)
         return P.taux * min_(f7um, max1)
