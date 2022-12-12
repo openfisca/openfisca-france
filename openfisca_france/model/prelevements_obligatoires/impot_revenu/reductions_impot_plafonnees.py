@@ -2465,7 +2465,7 @@ class invrev(Variable):
         f7xg = foyer_fiscal('f7xg_2002', period)
         f7gu = foyer_fiscal('f7gu_2003', period)
         f7gv = foyer_fiscal('f7gv_2003', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invrev
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invrev
 
         return (
             P.taux_gs * min_(f7gs, P.seuil_gs * (1 + maries_ou_pacses)) / 4
