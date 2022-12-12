@@ -949,7 +949,7 @@ class cappme(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7cf = foyer_fiscal('f7cf', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -963,7 +963,7 @@ class cappme(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7cf = foyer_fiscal('f7cf', period)
         f7cl = foyer_fiscal('f7cl', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf + f7cl
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -978,7 +978,7 @@ class cappme(Variable):
         f7cf = foyer_fiscal('f7cf', period)
         f7cl = foyer_fiscal('f7cl', period)
         f7cm = foyer_fiscal('f7cm', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf + f7cl + f7cm
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -994,7 +994,7 @@ class cappme(Variable):
         f7cl = foyer_fiscal('f7cl', period)
         f7cm = foyer_fiscal('f7cm', period)
         f7cn = foyer_fiscal('f7cn', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf + f7cl + f7cm + f7cn
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -1011,7 +1011,7 @@ class cappme(Variable):
         f7cm = foyer_fiscal('f7cm', period)
         f7cn = foyer_fiscal('f7cn', period)
         f7cu = foyer_fiscal('f7cu', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf + f7cl + f7cm + f7cn + f7cu
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -1030,7 +1030,7 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cl + f7cm + f7cn + f7cq
         seuil = P.seuil_tpe * (maries_ou_pacses + 1) * (f7cu > 0) + P.seuil * (maries_ou_pacses + 1) * (f7cu <= 0)
@@ -1049,7 +1049,7 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         # TODO: gérer les changements de situation familiale
         base = f7cl + f7cm + f7cn
@@ -1076,7 +1076,7 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cl + f7cm
         seuil1 = P.seuil * (maries_ou_pacses + 1)
@@ -1104,7 +1104,7 @@ class cappme(Variable):
         f7cr = foyer_fiscal('f7cr', period)
         f7cu = foyer_fiscal('f7cu', period)
         report_cappme_2013_plaf_general = foyer_fiscal('f7cy', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1156,7 +1156,7 @@ class cappme(Variable):
         f7cv = foyer_fiscal('f7cv', period)
         f7cy = foyer_fiscal('f7cy', period)
         f7dy = foyer_fiscal('f7dy', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1220,7 +1220,7 @@ class cappme(Variable):
         f7dy = foyer_fiscal('f7dy', period)
         f7ey = foyer_fiscal('f7ey', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1279,7 +1279,7 @@ class cappme(Variable):
         f7ey = foyer_fiscal('f7ey', period)
         f7fy = foyer_fiscal('f7fy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1338,7 +1338,7 @@ class cappme(Variable):
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1394,7 +1394,7 @@ class cappme(Variable):
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1449,7 +1449,7 @@ class cappme(Variable):
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1507,7 +1507,7 @@ class cappme(Variable):
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
 
@@ -1565,7 +1565,7 @@ class cappme_esus_sfs(Variable):
         f7cs = foyer_fiscal('f7cs', period)
         f7bs = foyer_fiscal('f7bs', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
 
