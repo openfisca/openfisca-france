@@ -2155,7 +2155,7 @@ class invlst(Variable):
         f7xm = foyer_fiscal('f7xm_2013', period)
         f7xn = foyer_fiscal('f7xn_2017', period)
         f7xo = foyer_fiscal('f7xo_2013', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
         seuil2 = P.seuil2 * (1 + maries_ou_pacses)
@@ -2196,7 +2196,7 @@ class invlst(Variable):
         f7xm = foyer_fiscal('f7xm_2013', period)
         f7xn = foyer_fiscal('f7xn_2017', period)
         f7xo = foyer_fiscal('f7xo_2013', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
         seuil2 = P.seuil2 * (1 + maries_ou_pacses)
@@ -2238,7 +2238,7 @@ class invlst(Variable):
         f7xp = foyer_fiscal('f7xp_2016', period)
         f7xq = foyer_fiscal('f7xq_2016', period)
         f7xr = foyer_fiscal('f7xr', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
         seuil2 = P.seuil2 * (1 + maries_ou_pacses)
@@ -2280,7 +2280,7 @@ class invlst(Variable):
         f7xv = foyer_fiscal('f7xv', period)
         f7xx = foyer_fiscal('f7xx_2012', period)
         f7xz = foyer_fiscal('f7xz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
         seuil2 = P.seuil2 * (1 + maries_ou_pacses)
@@ -2317,7 +2317,7 @@ class invlst(Variable):
         f7xq = foyer_fiscal('f7xq_2016', period)
         f7xr = foyer_fiscal('f7xr', period)
         f7xv = foyer_fiscal('f7xv', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         xi = P.taux_xi * (f7xf + f7xi + f7xp + f7xn + f7uy)
         xj = P.taux_xj * (f7xm + f7xj + f7xq + f7xv + f7uz)
@@ -2341,7 +2341,7 @@ class invlst(Variable):
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
         report_residence_sociale_2009 = foyer_fiscal('f7xk_2014', period)
         report_residence_sociale_2010 = foyer_fiscal('f7xr', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2009 + report_logement_neuf_2010 + report_logement_neuf_2011 + report_logement_neuf_2012)
         red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2009 + report_rehabilitation_2010 + report_rehabilitation_2011 + report_rehabilitation_2012)
@@ -2369,7 +2369,7 @@ class invlst(Variable):
         report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
         report_residence_sociale_2010 = foyer_fiscal('f7xr', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2009 + report_logement_neuf_2010 + report_logement_neuf_2011 + report_logement_neuf_2012)
         red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2009 + report_rehabilitation_2010 + report_rehabilitation_2011 + report_rehabilitation_2012)
@@ -2393,7 +2393,7 @@ class invlst(Variable):
         report_rehabilitation_2010 = foyer_fiscal('f7xq_2016', period)
         report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2010 + report_logement_neuf_2011 + report_logement_neuf_2012)
         red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2010 + report_rehabilitation_2011 + report_rehabilitation_2012)
@@ -2413,7 +2413,7 @@ class invlst(Variable):
         report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
         report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2011 + report_logement_neuf_2012)
         red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2011 + report_rehabilitation_2012)
@@ -2431,7 +2431,7 @@ class invlst(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)  # noqa F841
         report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
         report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.invlst
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissements_immobiliers.invlst
 
         red_neuf = min_(P.seuil1 * (1 + maries_ou_pacses), report_logement_neuf_2012)
         red_rehab = min_(P.seuil1 * (1 + maries_ou_pacses) - red_neuf, report_rehabilitation_2012)
