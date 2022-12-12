@@ -3442,7 +3442,7 @@ class mohist(Variable):
         2008-
         '''
         f7nz = foyer_fiscal('f7nz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.mohist
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.mohist
 
         return P.taux * min_(f7nz, P.max)
 
