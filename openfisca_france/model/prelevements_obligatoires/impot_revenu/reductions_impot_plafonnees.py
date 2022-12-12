@@ -36,7 +36,7 @@ class reductions_plafonnees(Variable):
         reductions_plafonnees = [
             'ri_saldom',
             'cappme',  # Approximation
-            'deffor',  # fait partie de inv. for. ?
+            'defense_forets_contre_incendies',  # fait partie de inv. for. ?
             'gardenf',
             'ri_investissement_forestier',
             'location_meublee',  # Censi-Bouvard, plafonnement approximatif
@@ -176,7 +176,7 @@ class reductions(Variable):
             # Introduites en 2005
             'intagr',
             # Introduites en 2006
-            'creaen', 'deffor', 'sofica',
+            'creaen', 'defense_forets_contre_incendies', 'sofica',
             # Introduites en 2008
             'mohist',
             # Introduites en 2009
@@ -1591,10 +1591,10 @@ class cappme_esus_sfs(Variable):
         return base_esus_sfs
 
 
-class deffor(Variable):
+class defense_forets_contre_incendies(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'deffor'
+    label = 'defense_forets_contre_incendies'
     definition_period = YEAR
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -1603,9 +1603,9 @@ class deffor(Variable):
         2006-
         '''
         f7uc = foyer_fiscal('f7uc', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.deffor
+        P = parameters(period).impot_revenu.calcul_reductions_impots.investissement_forestier.defense_forets_contre_incendies
 
-        return P.taux * min_(f7uc, P.max)
+        return P.taux * min_(f7uc, P.plafond)
 
 
 class codev(Variable):
