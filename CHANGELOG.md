@@ -1,5 +1,13 @@
 # Changelog
 
+# 126.0.0 [#1945](https://github.com/openfisca/openfisca-france/pull/1945)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`.
+* Détails :
+  - Retire une variable inutilisée et obsolète.
+
 # 125.0.0 [#1941](https://github.com/openfisca/openfisca-france/pull/1941)
 
 * Amélioration technique.
@@ -20,10 +28,10 @@
 
 # 124.0.0 [#1935](https://github.com/openfisca/openfisca-france/pull/1935)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters.impot_revenu.calcul_reductions_impots.`
-* Détails: 
+* Détails:
     - Harmonisation avec le dossier IPP
     - Décision de fusionner les paramètres en double: pour les dispositifs qui sont passés d'une charge à une réduction d'impôt (ou l'inverse), les paramètres sont rangés dans le dossier qui correspond au dispositif en cours (voir issue #1936 )
    - Dispositifs traités dans cette PR (la suite dans la PR suivante:)
