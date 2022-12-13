@@ -1,8 +1,9 @@
-description: Rémunération dans la fonction publique - Marché du travail
+description: Rémunération dans la fonction publique
 metadata:
   ux_name: Rémunération Fonction publique
   description_en: Pays in the public sector
   order:
   - sft
+  - indemnite_residence
   - indicefp
   - gipa

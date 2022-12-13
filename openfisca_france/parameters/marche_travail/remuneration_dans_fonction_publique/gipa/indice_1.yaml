@@ -1,4 +1,4 @@
-description: Indice 1 de la Garantie Individuelle du Pouvoir d'Achat (GIPA) - Rémunération dans la fonction publique - Marché du travail
+description: Indice 1
 values:
   2008-01-01:
     value: 52.4933
@@ -20,7 +20,7 @@ values:
     value: 55.5635
 metadata:
   ux_name: Indice 1
-  description_en: Guarantee of purchasing power (GIPA) (2008-2017)
+  description_en: Index 1
   unit: currency
   reference:
     2008-01-01:
@@ -55,12 +55,3 @@ metadata:
   notes:
     2008-01-01:
     - title: "\"Ce dispositif n’a pas vocation à être pérenne, des mesures spécifiques étant prévues pour en traiter les causes.\""
-documentation: |-
-  Notes :
-  GIPA = Garantie Individuelle du Pouvoir d'Achat - compense l'érosion des bas salaires de la FP due à l'inflation
-  G = TIB de l'année de début de la période de référence * (1 + inflation sur la période de référence) - TIB de l'année de fin de la période de référence.
-  (1) La période de référence s'étend sur 4 ans, du 31/12 de l'année de la date d'effet moins cinq ans, au 31/12 de l'année précédent la date d'effet (article 5 - décret n°2008-539)
-  (2) Inflation sur la période de référence = (Moyenne IPC de l'année de fin de la période de référence/Moyenne IPC de l'année de début de la période de référence) ― 1
-  (3) Le TIB de l'année pris en compte correspond à l'indice majoré détenu au 31 décembre de chacune des deux années bornant la période de référence multiplié par la valeur moyenne annuelle du point pour chacune de ces deux années.
-  (4) Les indices 1 et 2 réfèrent à la valeur annuelle moyenne du point d'indice, respectivement en début et en fin de période de référence
-  (5) Les bénéficiaires du GIPA ont un indice sommital maximum qui correspond à HEB
