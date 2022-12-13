@@ -65,19 +65,19 @@ class css_participation_forfaitaire(Variable):
 
     def formula_2019_11_01(famille, period):
         cmu_c = famille('cmu_c', period)
-        cmu_base_ressources = famille('cmu_base_ressources', period)
+        css_cmu_base_ressources = famille('css_cmu_base_ressources', period)
         css_plafond = famille('acs_plafond', period)
         css_participation_forfaitaire_montant = famille('css_participation_forfaitaire_montant', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
-        cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
+        css_cmu_acs_eligibilite = famille('css_cmu_acs_eligibilite', period)
         acs = famille('acs', period)
 
         return (
-            cmu_acs_eligibilite
+            css_cmu_acs_eligibilite
             * not_(residence_mayotte)
             * not_(cmu_c)
             * (acs == 0)
-            * (cmu_base_ressources <= css_plafond)
+            * (css_cmu_base_ressources <= css_plafond)
             * css_participation_forfaitaire_montant
             )
 

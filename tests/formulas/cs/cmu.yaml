@@ -6,8 +6,8 @@
     cmu_nb_pac: 10
     aide_logement: 300
   output:
-    cmu_forfait_logement_base: 1585.0598
-    cmu_forfait_logement_al: 12 * 155.83
+    css_cmu_forfait_logement_base: 1585.0598
+    css_cmu_forfait_logement_al: 12 * 155.83
 
 - name: 'CMU-C: Si les AL sont inférieures, au forfait, on retient le montant réel pour le forfait logement'
   period: 2016-01
@@ -17,7 +17,7 @@
     cmu_nb_pac: 10
     aide_logement: 50
   output:
-    cmu_forfait_logement_al: 12 * 50
+    css_cmu_forfait_logement_al: 12 * 50
 
 
 - name: 'CMU-C: Pas de CMU si demandeur moins de 25 ans à charge des parents'
@@ -28,7 +28,7 @@
     enfant_a_charge:
       2016: true
   output:
-    cmu_acs_eligibilite: false
+    css_cmu_acs_eligibilite: false
     cmu_c: false
 
 - name: 'CMU-C: Pas de CMU si demandeur moins de 25 ans et habite chez ses parents'
@@ -39,7 +39,7 @@
     enfant_a_charge:
       2016: true
   output:
-    cmu_acs_eligibilite: false
+    css_cmu_acs_eligibilite: false
     cmu_c: false
 
 - name: 'CMU-C: Pas de CMU si demandeur moins de 25 ans et reçoit une pension alimentaire'
@@ -50,7 +50,7 @@
     pensions_alimentaires_percues:
       year:2015-01: 4000
   output:
-    cmu_acs_eligibilite: false
+    css_cmu_acs_eligibilite: false
     cmu_c: false
 
 - name: 'CMU-C: CMU ok si demandeur moins de 25 ans et indépendant fiscalement, géographiquement, et financièrement'
@@ -59,7 +59,7 @@
   input:
     date_naissance: '1994-01-01' # 22 ans
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c: true
 
 - name: 'CMU: Plafonds pour 3 enfants et 1 parent'
@@ -176,7 +176,7 @@
       2017-06: 1500
       2017-05: 810
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c_plafond: 8810
     acs_plafond: 11894
     cmu_c: true
@@ -223,7 +223,7 @@
     famille:
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2]
-      cmu_forfait_logement_al: 1638.57
+      css_cmu_forfait_logement_al: 1638.57
       af:
         2018-04: 131.16
         2018-03: 131.16
@@ -278,7 +278,7 @@
         personne_de_reference:
         - enfant2
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c_plafond: 18501
     acs_plafond: 24976
     cmu_c: true
@@ -326,7 +326,7 @@
     famille:
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2]
-      cmu_forfait_logement_al: 1638.57
+      css_cmu_forfait_logement_al: 1638.57
       af:
         2018-04: 131.16
         2018-03: 131.16
@@ -373,7 +373,7 @@
         personne_de_reference:
         - enfant2
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c_plafond: 18501
     acs_plafond: 24976
     cmu_c: true
@@ -397,7 +397,7 @@
       2017-07: 542
       2017-06: 542
       2017-05: 542
-    cmu_forfait_logement_base: 780.27
+    css_cmu_forfait_logement_base: 780.27
     af:
       2018-04: 0
       2018-03: 0
@@ -426,7 +426,7 @@
       2017-05: 0
     rsa: 450
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c_plafond: 8810
     acs_plafond: 11894
     cmu_c: true

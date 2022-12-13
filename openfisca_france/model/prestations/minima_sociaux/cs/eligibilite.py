@@ -2,7 +2,7 @@ from numpy import logical_not as not_
 from openfisca_france.model.base import Variable, Famille, MONTH, ADD, set_input_dispatch_by_period
 
 
-class cmu_acs_eligibilite(Variable):
+class css_cmu_acs_eligibilite(Variable):
     value_type = bool
     entity = Famille
     label = "Pré-éligibilité à l'ACS, la CMU-C et à la CSS, avant prise en compte des ressources"

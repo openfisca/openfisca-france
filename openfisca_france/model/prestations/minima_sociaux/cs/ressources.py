@@ -12,7 +12,7 @@ from openfisca_france.model.base import (
     )
 
 
-class cmu_base_ressources_individu(Variable):
+class css_cmu_base_ressources_individu(Variable):
     value_type = float
     label = "Base de ressources de l'individu prise en compte pour l'éligibilité à la ACS / CMU-C / CSS"
     reference = [
@@ -85,7 +85,7 @@ class cmu_base_ressources_individu(Variable):
             )
 
 
-class cmu_base_ressources(Variable):
+class css_cmu_base_ressources(Variable):
     value_type = float
     label = "Base de ressources prise en compte pour l'éligibilité à la ACS / CMU-C / CSS"
     entity = Famille
@@ -110,8 +110,8 @@ class cmu_base_ressources(Variable):
             ])
 
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        cmu_forfait_logement_base = famille('cmu_forfait_logement_base', period)
-        cmu_forfait_logement_al = famille('cmu_forfait_logement_al', period)
+        css_cmu_forfait_logement_base = famille('css_cmu_forfait_logement_base', period)
+        css_cmu_forfait_logement_al = famille('css_cmu_forfait_logement_al', period)
 
         P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.cmu
 
@@ -120,11 +120,11 @@ class cmu_base_ressources(Variable):
 
         forfait_logement = (
             (proprietaire + heberge_titre_gratuit)
-            * cmu_forfait_logement_base
-            + cmu_forfait_logement_al
+            * css_cmu_forfait_logement_base
+            + css_cmu_forfait_logement_al
             )
 
-        ressources_individuelles = famille.members('cmu_base_ressources_individu', period)
+        ressources_individuelles = famille.members('css_cmu_base_ressources_individu', period)
         ressources_parents = famille.sum(ressources_individuelles, role = Famille.PARENT)
 
         age = famille.members('age', period)

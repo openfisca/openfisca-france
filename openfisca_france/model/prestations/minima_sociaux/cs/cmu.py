@@ -17,7 +17,7 @@ from openfisca_france.model.base import (
     )
 
 
-class cmu_forfait_logement_base(Variable):
+class css_cmu_forfait_logement_base(Variable):
     value_type = float
     entity = Famille
     label = "Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
@@ -76,7 +76,7 @@ class cmu_forfait_logement_base(Variable):
             )
 
 
-class cmu_forfait_logement_al(Variable):
+class css_cmu_forfait_logement_al(Variable):
     value_type = float
     entity = Famille
     label = "Forfait logement applicable en cas d'aide au logement, pour la métropole"
@@ -253,9 +253,9 @@ class cmu_c(Variable):
 
     def formula(famille, period):
         cmu_c_plafond = famille('cmu_c_plafond', period)
-        cmu_base_ressources = famille('cmu_base_ressources', period)
+        css_cmu_base_ressources = famille('css_cmu_base_ressources', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
-        cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
+        css_cmu_acs_eligibilite = famille('css_cmu_acs_eligibilite', period)
 
         if period.start.date >= date(2016, 1, 1):
             eligibilite_rsa = famille('rsa', period) > 0
@@ -269,10 +269,10 @@ class cmu_c(Variable):
             rsa = famille('rsa', period)
             eligibilite_rsa = (rsa > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
 
-        eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
+        eligibilite_basique = css_cmu_base_ressources <= cmu_c_plafond
 
         return (
-            cmu_acs_eligibilite
+            css_cmu_acs_eligibilite
             * not_(residence_mayotte)
             * or_(eligibilite_basique, eligibilite_rsa)
             )
