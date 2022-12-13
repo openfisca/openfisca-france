@@ -1151,12 +1151,42 @@ class indemnite_residence(Variable):
         categorie_salarie = individu('categorie_salarie', period)
         zone_apl = individu.menage('zone_apl', period)
         TypesZoneApl = zone_apl.possible_values
-        _P = parameters(period)
+        indemnite_residence = parameters(period).marche_travail.remuneration_dans_fonction_publique.indemnite_residence
 
-        P = _P.prestations_sociales.fonc.indem_resid
-        min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
-        taux = P.taux.zone1 * (zone_apl == TypesZoneApl.zone_1) + P.taux.zone2 * (zone_apl == TypesZoneApl.zone_2) + P.taux.zone3 * (zone_apl == TypesZoneApl.zone_3)
-        plancher = min_zone_1 * (zone_apl == TypesZoneApl.zone_1) + min_zone_2 * (zone_apl == TypesZoneApl.zone_2) + min_zone_3 * (zone_apl == TypesZoneApl.zone_3)
+        (min_zone_1, min_zone_2, min_zone_3) = (
+            indemnite_residence.min * indemnite_residence.taux.zone1,
+            indemnite_residence.min * indemnite_residence.taux.zone2,
+            indemnite_residence.min * indemnite_residence.taux.zone3
+            )
+
+        taux = select(
+            [
+                (zone_apl == TypesZoneApl.zone_1),
+                (zone_apl == TypesZoneApl.zone_2),
+                (zone_apl == TypesZoneApl.zone_3),
+                ],
+            [
+                indemnite_residence.taux.zone1,
+                indemnite_residence.taux.zone2,
+                indemnite_residence.taux.zone3,
+                ],
+            default = 0
+            )
+
+        plancher = select(
+            [
+                (zone_apl == TypesZoneApl.zone_1),
+                (zone_apl == TypesZoneApl.zone_2),
+                (zone_apl == TypesZoneApl.zone_3),
+                ],
+            [
+                min_zone_1,
+                min_zone_2,
+                min_zone_3,
+                ],
+            default = 0
+            )
+
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
@@ -1181,9 +1211,7 @@ class indice_majore(Variable):
         period = period.start.period('month').offset('first-of')
         categorie_salarie = individu('categorie_salarie', period)
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
-        _P = parameters(period)
-
-        traitement_annuel_brut = _P.prestations_sociales.fonc.IM_100
+        traitement_annuel_brut = parameters(period).prestations_sociales.fonc.IM_100
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
