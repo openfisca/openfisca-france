@@ -86,7 +86,6 @@ output:
   mmid_salarie: -14.25 # devrait être -14.39
   # contribution_exceptionnelle_solidarite: 0
   csg_deductible_salaire: -93.99
-  mhsup: 0
   # salaire_net: 1549.61
 
   csg_imposable_salaire: -44.23

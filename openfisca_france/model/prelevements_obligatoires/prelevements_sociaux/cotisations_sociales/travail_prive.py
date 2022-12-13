@@ -894,18 +894,6 @@ class mmida_employeur(Variable):
         return cotisation + contribution_solidarite_autonomie
 
 
-class mhsup(Variable):
-    calculate_output = calculate_output_add
-    value_type = float
-    entity = Individu
-    label = 'Heures supplémentaires comptées négativement'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula(individu, period, parameters):
-        return - individu('hsup', period)
-
-
 class plafond_securite_sociale(Variable):
     value_type = float
     entity = Individu
