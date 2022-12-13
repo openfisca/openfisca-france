@@ -1152,13 +1152,11 @@ class indemnite_residence(Variable):
         zone_apl = individu.menage('zone_apl', period)
         TypesZoneApl = zone_apl.possible_values
         indemnite_residence = parameters(period).marche_travail.remuneration_dans_fonction_publique.indemnite_residence
-
         (min_zone_1, min_zone_2, min_zone_3) = (
             indemnite_residence.min * indemnite_residence.taux.zone1,
             indemnite_residence.min * indemnite_residence.taux.zone2,
             indemnite_residence.min * indemnite_residence.taux.zone3
             )
-
         taux = select(
             [
                 (zone_apl == TypesZoneApl.zone_1),
@@ -1172,7 +1170,6 @@ class indemnite_residence(Variable):
                 ],
             default = 0
             )
-
         plancher = select(
             [
                 (zone_apl == TypesZoneApl.zone_1),
@@ -1186,7 +1183,6 @@ class indemnite_residence(Variable):
                 ],
             default = 0
             )
-
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
