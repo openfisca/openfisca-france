@@ -1,4 +1,4 @@
-description: Taux forfait logement (en % du RSA) pour 2 personnes non bénéficiaires d'aide personnelle au logement ou logées à titre gratuit
+description: Taux forfait logement (en % du RSA) pour 2 personnes non bénéficiaires d'aide personnelle au logement ou logées à titre gratuit, logées à titre gratuit ou propriétaires
 values:
   2019-11-01:
     value: 0.14
