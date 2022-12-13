@@ -1,4 +1,4 @@
-from numpy import select, where, logical_not as not_
+from numpy import logical_not as not_
 from openfisca_france.model.base import (
     Variable,
     Individu,
@@ -15,21 +15,11 @@ class acs_montant_i(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2009_08_01(individu, period, parameters):
+    def formula_2005_01_01(individu, period, parameters):
         age = individu('age', period)
         bareme = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.acs.bareme
-        montant_si_parent = bareme.calc(age)
 
-        montant_si_pac = select(
-            [(age <= 15) * (age >= 0), age <= 25],
-            [bareme.calc(age), bareme.calc(age)]
-            )
-
-        return where(
-            individu.has_role(Famille.PARENT),
-            montant_si_parent,
-            montant_si_pac
-            )
+        return (age >= 0) * bareme.calc(age)
 
 
 class acs_montant(Variable):
