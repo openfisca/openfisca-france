@@ -248,6 +248,8 @@ jobs:
       - name: Update meta.yaml
         run: |
           python3 -m pip install requests argparse
+          # Sleep to allow PyPi to update its API
+          sleep 60
           python3 .github/get_pypi_info.py -p OpenFisca-France
       - name: Get version
         run: echo "PACKAGE_VERSION=$(python3 ./setup.py --version)" >> $GITHUB_ENV
