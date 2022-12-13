@@ -48,7 +48,7 @@
           2017-07: 0
     famille:
       parents: [parent1, parent2]
-      cmu_forfait_logement_al: 1374.39
+      css_cmu_forfait_logement_al: 1374.39
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -66,8 +66,8 @@
   output:
     cmu_c_plafond: 13215
     acs_plafond: 17841
-    cmu_base_ressources: 12874.39
-    cmu_acs_eligibilite: true
+    css_cmu_base_ressources: 12874.39
+    css_cmu_acs_eligibilite: true
     cmu_c: true
 
 - name: 'cas 2: passant rente AT  taux IPP  à 85%, foyer composé de 3 personnes : Mme Perçoit des salaires, Mr perçoit une rente AT avec un taux IPP à 85% et une prestation complémentaire pour recours à tierce personne (PCRTP), enfant de moins de 18 ans sans revenu'
@@ -123,7 +123,7 @@
     famille:
       parents: [parent1, parent2]
       enfants: [enfant1]
-      cmu_forfait_logement_al: 1649.28
+      css_cmu_forfait_logement_al: 1649.28
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -147,8 +147,8 @@
   output:
     cmu_c_plafond: 15858
     acs_plafond: 21409
-    cmu_base_ressources: 15029.28
-    cmu_acs_eligibilite: true
+    css_cmu_base_ressources: 15029.28
+    css_cmu_acs_eligibilite: true
     cmu_c: true
 
 - name: 'Cas 3: Cas non passant rente AT avec taux IPP de 25%, foyer composé de 2 personnes : Mme perçoit une rente AT trimestrielle et des salaires, Mr perçoit des salaires'
@@ -228,9 +228,9 @@
   output:
     cmu_c_plafond: 15858
     acs_plafond: 21409
-    cmu_base_ressources: 26340.00
+    css_cmu_base_ressources: 26340.00
     cmu_c: false
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
 
 - name: Cas 4 passant rente AT avec taux IPP de 45% versée trimestriellement + salaires pour l'assuré bénificiant de la RAT Foyer composé de 4 personnes , Mme perçoit des salaires, les deux enfants ont moins de 18 ans, et n'ont pas de revenu
   period: 2018-07
@@ -330,6 +330,6 @@
   output:
     cmu_c_plafond: 18501
     acs_plafond: 24977
-    cmu_base_ressources: 19195
+    css_cmu_base_ressources: 19195
     cmu_c: false
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true

@@ -61,7 +61,7 @@
       declarants:
       - parent1
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c_plafond: 8810
     acs_plafond: 11894
     cmu_c: false
@@ -154,7 +154,7 @@
     famille:
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2, enfant3, enfant4]
-      cmu_forfait_logement_base: 1638.57
+      css_cmu_forfait_logement_base: 1638.57
       af:
         2018-04: 532.83
         2018-03: 532.83
@@ -193,7 +193,7 @@
       enfants: [enfant1, enfant2, enfant3, enfant4]
       statut_occupation_logement: proprietaire
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c_plafond: 25550
     acs_plafond: 34492.5
     cmu_c: false
@@ -273,7 +273,7 @@
     famille:
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2, enfant3]
-      cmu_forfait_logement_al: 1642.14
+      css_cmu_forfait_logement_al: 1642.14
       af:
         2018-04: 249.83
         2018-03: 249.83
@@ -321,7 +321,7 @@
         personne_de_reference:
         - enfant3
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c_plafond: 20704
     acs_plafond: 27950
     cmu_c: false

@@ -17,7 +17,7 @@ class css_participation_forfaitaire_montant_i(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.css
+        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.css.montant
         age = individu('age', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
         regime = where(
@@ -41,7 +41,6 @@ class css_participation_forfaitaire_montant_i(Variable):
                 TranchesComplementaireSanteSolidaire.cmu_plus_69_ans,
                 ],
             )
-
         return P[regime][tranche]
 
 
@@ -66,19 +65,19 @@ class css_participation_forfaitaire(Variable):
 
     def formula_2019_11_01(famille, period):
         cmu_c = famille('cmu_c', period)
-        cmu_base_ressources = famille('cmu_base_ressources', period)
+        css_cmu_base_ressources = famille('css_cmu_base_ressources', period)
         css_plafond = famille('acs_plafond', period)
         css_participation_forfaitaire_montant = famille('css_participation_forfaitaire_montant', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
-        cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
+        css_cmu_acs_eligibilite = famille('css_cmu_acs_eligibilite', period)
         acs = famille('acs', period)
 
         return (
-            cmu_acs_eligibilite
+            css_cmu_acs_eligibilite
             * not_(residence_mayotte)
             * not_(cmu_c)
             * (acs == 0)
-            * (cmu_base_ressources <= css_plafond)
+            * (css_cmu_base_ressources <= css_plafond)
             * css_participation_forfaitaire_montant
             )
 
