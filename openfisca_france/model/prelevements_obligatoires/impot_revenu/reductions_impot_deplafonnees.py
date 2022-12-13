@@ -909,7 +909,7 @@ class rsceha(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         nbR = foyer_fiscal('nbR', period)
         f7gz = foyer_fiscal('f7gz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.rsceha
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.rsceha
 
         max1 = P.seuil1 + (nb_pac_majoration_plafond - nbR) * P.seuil2
         return P.taux * min_(f7gz, max1)
