@@ -365,7 +365,7 @@ class lieu_emploi_ou_formation(Variable):
 
 class contrat_de_travail_duree(Variable):
     value_type = float
-    default_value = 0.
+    default_value = 0
     entity = Individu
     label = 'Durée du contrat de travail en mois'
     definition_period = MONTH
