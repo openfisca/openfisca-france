@@ -3442,9 +3442,9 @@ class mohist(Variable):
         2008-
         '''
         f7nz = foyer_fiscal('f7nz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.mohist
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_monuments_historiques
 
-        return P.taux * min_(f7nz, P.max)
+        return P.taux * min_(f7nz, P.plafond)
 
 
 class patnat(Variable):
