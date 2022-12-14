@@ -1,5 +1,13 @@
 # Changelog
 
+# 128.0.1 [#1937](https://github.com/openfisca/openfisca-france/pull/1937)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse/`.
+* Détails :
+  - Nettoyage de certaines métadonnées
+
 # 128.0.0 [#1945](https://github.com/openfisca/openfisca-france/pull/1945)
 
 * Changement mineur.
