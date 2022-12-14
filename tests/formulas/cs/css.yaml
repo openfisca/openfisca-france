@@ -75,7 +75,7 @@
       declarants: [parent1]
   output:
     acs: 0.0
-    cmu_base_ressources: 10000
+    css_cmu_base_ressources: 10000
 
 - name: "CSS: Base de ressource de deux personnes"
   period: 2019-11
@@ -176,7 +176,7 @@
       declarants: [parent1, parent2]
   output:
     acs: 0.0
-    cmu_base_ressources: 14000
+    css_cmu_base_ressources: 14000
 
 - name: "CSS: Base de ressource de cinq personnes"
   period: 2019-11
@@ -286,7 +286,7 @@
       personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
     acs: 0.0
-    cmu_base_ressources: 24000
+    css_cmu_base_ressources: 24000
 
 - name: "CSS: Montant de cotisation CSS - France"
   period: 2019-11

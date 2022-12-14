@@ -1,4 +1,4 @@
-description: Part fixe 4 du montant du supplément familial de traitement (SFT) (Rémunération dans la fonction publique - Marché du travail)
+description: Part fixe 4 du montant du supplément familial de traitement (SFT)
 values:
   1985-11-01:
     value: 240
@@ -17,9 +17,6 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006454594&cidTexte=JORFTEXT000000872483
     1988-02-07:
       title: Décret 86-167 du 31/01/1986, art. 1 VI
-    1999-07-01:
-      title: Décret 99-491 du 10/06/1999
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000394805
     2002-01-01:
       title: Décret 2001-895 du 26/09/2001
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000773694&categorieLien=id
@@ -27,10 +24,3 @@ metadata:
     1985-11-01: "1985-11-05"
     1988-02-07: "1986-02-07"
     2002-01-01: "2001-09-29"
-documentation: |-
-  Notes:
-  SFT =supplément familial de traitement (concerne les fonctionaires)
-  (1) Les montants en euros sont mensuels tandis que les montants en FRF sont annuels.
-  (2) Le montant du SFT varie en fonction du nombre d'enfants à charge: part fixe par enfant et versement proportionnel au traitement brut de l'agent à partir du deuxième enfant
-  (3) Les montants mensuels sont limités par le plancher et le plafond à partir d'un certain indice majoré (IM)
-  (4) Les part fixe et taux 1, 2 et 3 sont attribués aux fonctionnaires ayant 1, 2 ou 3 enfants à charge. Les PF et taux 4 par enfant additionnels

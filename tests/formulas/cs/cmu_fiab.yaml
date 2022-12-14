@@ -106,7 +106,7 @@
     famille:
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2, enfant3]
-      cmu_forfait_logement_base: 1642.14
+      css_cmu_forfait_logement_base: 1642.14
       af:
         2018-04: 0
         2018-03: 0
@@ -156,10 +156,10 @@
       declarants: [parent1, parent2]
       personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c_plafond: 20704
     acs_plafond: 27950.40
-    cmu_base_ressources: 20709.40 #cas de test fourni : 21655.78, ecart de 946.39, soit exactement la PAJE Naissance qui devrait être exclu
+    css_cmu_base_ressources: 20709.40 #cas de test fourni : 21655.78, ecart de 946.39, soit exactement la PAJE Naissance qui devrait être exclu
     cmu_c: false
 
 - name: 'CMU-C: N°2 refus CMU-C, accord ACS'
@@ -301,7 +301,7 @@
         2017-07: 170.71
         2017-06: 170.71
         2017-05: 170.71
-      cmu_forfait_logement_al: 1642.14
+      css_cmu_forfait_logement_al: 1642.14
       ars:
         2018: 369.57
       rsa: 0
@@ -315,10 +315,10 @@
       declarants: [parent1, parent2]
       personnes_a_charge: [enfant1, enfant2, enfant3, enfant4]
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c_plafond: 25550
     acs_plafond: 34492.5
-    cmu_base_ressources: 29140.64 #cas de test fourni : 29510.21, ecart de 369.57, soit exactement l'ARS qui devrait être exclu
+    css_cmu_base_ressources: 29140.64 #cas de test fourni : 29510.21, ecart de 369.57, soit exactement l'ARS qui devrait être exclu
     cmu_c: false
 
 - name: 'CMU-C: N°3 accord CMU-C'
@@ -417,8 +417,8 @@
         2017-07: 0
         2017-06: 0
         2017-05: 0
-      cmu_forfait_logement_base: 0
-      cmu_forfait_logement_al: 0
+      css_cmu_forfait_logement_base: 0
+      css_cmu_forfait_logement_al: 0
       rsa: 0
     menage:
       personne_de_reference: parent1
@@ -429,10 +429,10 @@
       declarants: [parent1, parent2]
       personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c_plafond: 22026
     acs_plafond: 29735.10
-    cmu_base_ressources: 19323
+    css_cmu_base_ressources: 19323
     cmu_c: true
 
 - name: 'CMU-C: N°4 refus CMU-C, accord ACS'
@@ -515,8 +515,8 @@
           2017-05: 0
     famille:
       parents: [parent1, parent2]
-      cmu_forfait_logement_base: 0
-      cmu_forfait_logement_al: 0
+      css_cmu_forfait_logement_base: 0
+      css_cmu_forfait_logement_al: 0
       rsa: 0
     menage:
       personne_de_reference: parent1
@@ -525,10 +525,10 @@
     foyer_fiscal:
       declarants: [parent1, parent2]
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c_plafond: 13215
     acs_plafond: 17840.25
-    cmu_base_ressources: 14615
+    css_cmu_base_ressources: 14615
     cmu_c: false
 
 - name: 'CMU-C: N°5 accord CMU-C'
@@ -640,8 +640,8 @@
         2017-07: 0
         2017-06: 0
         2017-05: 0
-      cmu_forfait_logement_base: 0
-      cmu_forfait_logement_al: 0
+      css_cmu_forfait_logement_base: 0
+      css_cmu_forfait_logement_al: 0
       rsa: 0
     menage:
       personne_de_reference: parent1
@@ -651,8 +651,8 @@
       declarants: [parent1]
       personnes_a_charge: [enfant1, enfant2, enfant3, enfant4]
   output:
-    cmu_acs_eligibilite: true
+    css_cmu_acs_eligibilite: true
     cmu_c_plafond: 19823
     acs_plafond: 26761
-    cmu_base_ressources: 18403.76
+    css_cmu_base_ressources: 18403.76
     cmu_c: true

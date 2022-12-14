@@ -1,6 +1,6 @@
 # Changelog
 
-# 126.0.0 [#1945](https://github.com/openfisca/openfisca-france/pull/1945)
+# 128.0.0 [#1945](https://github.com/openfisca/openfisca-france/pull/1945)
 
 * Changement mineur.
 * Périodes concernées : toutes.
@@ -8,11 +8,41 @@
 * Détails :
   - Retire une variable inutilisée et obsolète.
 
+# 127.0.0 [#1947](https://github.com/openfisca/openfisca-france/pull/1947)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/revenus/activite/salarie.py`
+  - `parameters/marche_travail/remuneration_dans_fonction_publique/indemnite_residence`
+  - `parameters/prestations_sociales/fonc/indemn_resid`
+* Détails :
+  - Déplace les paramètres des indemnités de résidence en un endroit plus approprié
+
+
+# 126.0.0 [#1840](https://github.com/openfisca/openfisca-france/pull/1840)
+
+* Évolution du système socio-fiscal **non rétrocompatible**
+* Périodes concernées : à partir du 01/01/2005
+* Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs`
+* Détails :
+  -  Met à jour les paramètres d'ACS, CMU devenus CSS (dite aussi C2S) au 1er novembre 2019 (valeurs, références et `last_review`)
+      * Regroupe les paramètres `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/acs/` dans `bareme.yaml`
+      * Dans `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/`, `cmu/` et `css/` :
+        - Renomme `forfait_logement` en `forfait_logement_sans_al`
+        - Renomme `forfait_logement_al` en `forfait_logement_avec_al`
+  - Explicite les noms de variables communes entre la CMU et la CSS
+    * Renomme `cmu_base_ressources` en `css_cmu_base_ressources`
+    * Renomme `cmu_forfait_logement_base` en `css_cmu_forfait_logement_base`
+    * Renomme `cmu_acs_eligibilite` en `css_cmu_acs_eligibilite`
+    * Renomme `cmu_forfait_logement_al` en `css_cmu_forfait_logement_al`
+    * Renomme `cmu_base_ressources_individu` en `css_cmu_base_ressources_individu`
+
 # 125.0.0 [#1941](https://github.com/openfisca/openfisca-france/pull/1941)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_reductions_impots`
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots`
 * Détails :
   - Ajout des parametres `outremer_investissements`
   - Rangement des `investissements_immobiliers` (les doublons seront fusionnés plus tard)
@@ -20,8 +50,8 @@
 
 ### 124.0.1 [#1940](https://github.com/openfisca/openfisca-france/pull/1940)
 
-*  Changement mineur.
-* Zones impactées : `openfisca_france/parameters/prestations_sociales/aide_mobilite`.
+* Changement mineur.
+* Zones impactées : `parameters/prestations_sociales/aide_mobilite`.
 * Détails :
   - Découpe le fichier en paramètres distincts
   - Ajoute les `ux_name`
@@ -56,20 +86,20 @@
 * Périodes concernées : à partir du 01/12/2022.
 * Zones impactées :
   - `parameters/prestations_sociales/prestations_familiales/aide_mobilite.yaml`
-
 * Détails :
   - Revalorisation des montants de l'Aide à la mobilité.
   - https://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2022-56-du-23-novembre-2022-bope-n-2022-79.html?type=dossiers/2022/bope-n-2022-79-du-30-novembre-2022
+
 ## 123.1.0 [#1938](https://github.com/openfisca/openfisca-france/pull/1938)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/12/2022.
 * Zones impactées :
   - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/agepi`
-
 * Détails :
   - Revalorisation des montants de l'AGEPI.
   - https://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n-2022-57-du-23-novembre-2022-bope-n-2022-79.html?type=dossiers/2022/bope-n-2022-79-du-30-novembre-2022
+
 # 123.0.0 [#1933](https://github.com/openfisca/openfisca-france/pull/1933)
 
 * Amélioration technique
@@ -82,6 +112,7 @@
 * Guide pour la migration :
   - Vous pouvez chercher où sont passés vos fichiers avec la commande suivante :
     `git log --oneline 4f196ea8187d7fa97efa^..ce71e8ce69b8645b99738 | grep "variable_name"`
+
 # 122.0.0 [#1931](https://github.com/openfisca/openfisca-france/pull/1931)
 
 * Amélioration technique
@@ -94,6 +125,7 @@
 * Guide pour la migration :
   - Vous pouvez chercher où sont passés vos fichiers avec la commande suivante :
     `git log --oneline 73fde874877281584d69^..7b89ccd1268b7 | grep "variable_name"`
+
 # 121.0.0 [#1920](https://github.com/openfisca/openfisca-france/pull/1920)
 
 * Évolution du système socio-fiscal
@@ -127,6 +159,7 @@
       - prlire
       - quaenv
 Note: un travail ultérieur reste à faire pour rapprocher ces acronymes des dispositifs qu'ils représentent (en utilisant les description des formules qui les utilisent) et ajouter des metadata et des références
+
 ## 120.1.0 [#1822](https://github.com/openfisca/openfisca-france/pull/1822)
 
 * Amélioration technique.
@@ -138,6 +171,7 @@ Note: un travail ultérieur reste à faire pour rapprocher ces acronymes des dis
   - Met sous forme de barème les barèmes en taux et seuils simples
   - Pour les autres, découpe les fichiers en paramètres uniques
   - Harmonise le format
+
 ### 120.0.1 [#1930](https://github.com/openfisca/openfisca-france/pull/1930)
 
 * Correction d'un crash.

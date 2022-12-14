@@ -74,7 +74,7 @@
   output:
     asi_aspa_base_ressources:
       2015-01: 1000 # Mensuel
-    cmu_base_ressources:
+    css_cmu_base_ressources:
       2015-01: 12000 # Annuel
     ass_base_ressources:
       2015-01: 12000 # Annuel
@@ -89,7 +89,7 @@
   output:
     asi_aspa_base_ressources:
       2015-01: 1000 * (1 - 0.5) # Mensuel
-    cmu_base_ressources:
+    css_cmu_base_ressources:
       2015-01: 12000 * (1 - 0.5) # Annuel
     ass_base_ressources:
       2015-01: 12000 * (1 - 0.5) # Annuel
@@ -115,7 +115,7 @@
   output:
     asi_aspa_base_ressources:
       2015-02: 1000 * (1 - 0.34) # Mensuel
-    cmu_base_ressources:
+    css_cmu_base_ressources:
       2015-02: 12000 * (1 - 0.34) # Annuel
     ass_base_ressources:
       2015-02: 12000 * (1 - 0.34) # Annuel
@@ -130,7 +130,7 @@
   output:
     asi_aspa_base_ressources:
       2015-01: 1000 # Mensuel
-    cmu_base_ressources:
+    css_cmu_base_ressources:
       2015-01: 12000 # Annuel
     ass_base_ressources:
       2015-01: 12000 # Annuel

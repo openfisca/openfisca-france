@@ -1,4 +1,4 @@
-from numpy import select, where, logical_not as not_
+from numpy import logical_not as not_
 from openfisca_france.model.base import (
     Variable,
     Individu,
@@ -15,22 +15,11 @@ class acs_montant_i(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2009_08_01(individu, period, parameters):
-        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.acs
+    def formula_2005_01_01(individu, period, parameters):
         age = individu('age', period)
-        montant_si_pac = select(
-            [(age <= 15) * (age >= 0), age <= 25],
-            [P.acs_moins_16_ans, P.acs_16_49_ans]
-            )
-        montant_si_parent = select(
-            [age <= 15, age <= 49, age <= 59, age >= 60],
-            [P.acs_moins_16_ans, P.acs_16_49_ans, P.acs_50_59_ans, P.acs_plus_60_ans],
-            )
-        return where(
-            individu.has_role(Famille.PARENT),
-            montant_si_parent,
-            montant_si_pac
-            )
+        bareme = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.cs.acs.bareme
+
+        return (age >= 0) * bareme.calc(age)
 
 
 class acs_montant(Variable):
@@ -72,16 +61,16 @@ class acs(Variable):
 
     def formula(famille, period):
         cmu_c = famille('cmu_c', period)
-        cmu_base_ressources = famille('cmu_base_ressources', period)
+        css_cmu_base_ressources = famille('css_cmu_base_ressources', period)
         acs_plafond = famille('acs_plafond', period)
         acs_montant = famille('acs_montant', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
-        cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
+        css_cmu_acs_eligibilite = famille('css_cmu_acs_eligibilite', period)
 
         return (
-            cmu_acs_eligibilite
+            css_cmu_acs_eligibilite
             * not_(residence_mayotte)
             * not_(cmu_c)
-            * (cmu_base_ressources <= acs_plafond)
+            * (css_cmu_base_ressources <= acs_plafond)
             * acs_montant
             )
