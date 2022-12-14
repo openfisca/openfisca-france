@@ -109,9 +109,9 @@ class creaen(Variable):
         '''
         f7fy = foyer_fiscal('f7fy_2011', period)
         f7gy = foyer_fiscal('f7gy_2010', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.creaen
+        P = parameters(period).impot_revenu.calcul_reductions_impots.diversaide_createurs_repreneurs_entreprise
 
-        return (P.base * f7fy + P.hand * f7gy)
+        return (P.reduction * f7fy + P.surplus_si_invalide * f7gy)
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -124,11 +124,11 @@ class creaen(Variable):
         f7hy = foyer_fiscal('f7hy_2011', period)
         f7ky = foyer_fiscal('f7ky_2011', period)
         f7iy = foyer_fiscal('f7iy_2011', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.creaen
+        P = parameters(period).impot_revenu.calcul_reductions_impots.diversaide_createurs_repreneurs_entreprise
 
         return (
-            P.base * ((f7jy + f7fy) + f7hy / 2)
-            + P.hand * ((f7ky + f7gy) + f7iy / 2)
+            P.reduction * ((f7jy + f7fy) + f7hy / 2)
+            + P.surplus_si_invalide * ((f7ky + f7gy) + f7iy / 2)
             )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -144,11 +144,11 @@ class creaen(Variable):
         f7iy = foyer_fiscal('f7iy_2011', period)
         f7ly = foyer_fiscal('f7ly_2010', period)
         f7my = foyer_fiscal('f7my_2010', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.creaen
+        P = parameters(period).impot_revenu.calcul_reductions_impots.diversaide_createurs_repreneurs_entreprise
 
         return (
-            P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2)
-            + P.hand * ((f7ky + f7gy) + (f7iy + f7my) / 2)
+            P.reduction * ((f7jy + f7fy) + (f7hy + f7ly) / 2)
+            + P.surplus_si_invalide * ((f7ky + f7gy) + (f7iy + f7my) / 2)
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -158,11 +158,11 @@ class creaen(Variable):
         '''
         f7ly = foyer_fiscal('f7ly_2010', period)
         f7my = foyer_fiscal('f7my_2010', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.creaen
+        P = parameters(period).impot_revenu.calcul_reductions_impots.diversaide_createurs_repreneurs_entreprise
 
         return (
-            P.base * (f7ly / 2)
-            + P.hand * (f7my / 2)
+            P.reduction * (f7ly / 2)
+            + P.surplus_si_invalide * (f7my / 2)
             )
 
 
