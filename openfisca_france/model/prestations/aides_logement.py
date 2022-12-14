@@ -922,7 +922,7 @@ class al_abattement_forfaitaire_assistants_et_journalistes(Variable):
         assistant_familial = individu('assistant_familial', period)
         journaliste = individu('journaliste', period)
         salaire_imposable = individu('salaire_imposable', period)
-        abat = parameters(period).prestations.al_assistant_journaliste.abattement.montant
+        abat = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_assistant_journaliste.abattement
 
         montant_abattement = select([assistant_maternel, assistant_familial, journaliste],
             [abat.assistant_maternel, abat.assistant_familial, abat.journaliste],
