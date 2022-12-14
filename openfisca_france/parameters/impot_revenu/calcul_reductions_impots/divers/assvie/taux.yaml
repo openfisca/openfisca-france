@@ -1,8 +1,0 @@
-description: Taux
-values:
-  1984-01-01:
-    value: 0.25
-  2005-01-01:
-    value: null
-metadata:
-  unit: /1

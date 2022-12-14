@@ -1,3 +1,19 @@
+description: Autres réductions d'impôts (1979 -)
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  description_en: Other tax reductions (1979 -)
+    order:
+  - date_entree_en_vigueur
+  - depenses_formation_chefs_entreprises
+  - assurances_vie
+  - frais_comptabilite_cf_3
+  - rente_survie_cf_4
+  - rachat_entreprise
+  - versement_fond_salarial
+  - prets_consommation_cf_7
+  - interets_emprunt_reprise_societe_cf_8
+  - interets_paiements_differes_agriculteurs_cf_9
+  - aide_aux_repreneurs_entreprise_cf_10
+  - depenses_restauration_monuments_historiques_cf_11
+  - restauration_patrimoine_bati_cf_12
+  - protection_patrimoine_naturel_cf_13
+  - rehabilitation_residences_touristiques_cf_14

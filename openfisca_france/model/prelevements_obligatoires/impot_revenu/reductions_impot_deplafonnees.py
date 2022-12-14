@@ -89,10 +89,10 @@ class assvie(Variable):
         f7gw = foyer_fiscal('f7gw_2004', period)
         f7gx = foyer_fiscal('f7gx_2004', period)
         f7gy = foyer_fiscal('f7gy_2004', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.assvie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.assurances_vie
 
-        max1 = P.max + nb_pac * P.pac
-        return P.taux * min_(f7gw + f7gx + f7gy, max1)
+        plafond = P.plafond + nb_pac * P.increment
+        return P.taux * min_(f7gw + f7gx + f7gy, plafond)
 
 
 class creaen(Variable):

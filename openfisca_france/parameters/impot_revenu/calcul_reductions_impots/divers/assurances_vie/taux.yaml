@@ -1,4 +1,7 @@
+description: Taux de la réduction d'impôt sur les assurances-vie
 values:
+  1977-01-01:
+    value: null
   1978-01-01:
     value: 0
   1983-01-01:
@@ -8,6 +11,11 @@ values:
   2005-01-01:
     value: null
 metadata:
+  ux_name: Taux
+  ipp_csv_id: tx_avie
   unit: /1
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  notes:
+    1983-01-01:
+    - title: À partir de 1984, les bénéfices liés aux primes d'assurances vie et rentes-survie prennent la forme d'une réduction d'împôt, alors qu'ils consistaient en une déduction du revenu net.
+documentation: |-
+  Assurance-vie : Le montant reporté case MG de la déclaration ouvre droit à la réduction sans condition, ceux reportés case MH sont sous condition que l'impôt de référence soit inférieur ou égal à 7000 FRF
