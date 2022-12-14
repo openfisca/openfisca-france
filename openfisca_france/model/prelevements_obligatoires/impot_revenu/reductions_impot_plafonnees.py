@@ -1682,7 +1682,7 @@ class interets_prets_a_la_consommation(Variable):
     entity = FoyerFiscal
     label = 'Intérêts prêts consommation'
     end = '2005-12-31'
-    definition_period = YEARgit 
+    definition_period = YEAR
 
     def formula_2004_01_01(foyer_fiscal, period, parameters):
         '''
