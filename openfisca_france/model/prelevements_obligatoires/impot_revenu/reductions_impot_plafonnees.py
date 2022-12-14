@@ -172,7 +172,7 @@ class reductions(Variable):
             # Introduites en 2003
             'mecena', 'interets_emprunt_reprise_societe',
             # Introduites en 2004
-            'intcon', 'invlst',
+            'interets_prets_a_la_consommation', 'invlst',
             # Introduites en 2005
             'interets_paiements_differes_agriculteurs',
             # Introduites en 2006
@@ -1677,12 +1677,12 @@ class gardenf(Variable):
             )
 
 
-class intcon(Variable):
+class interets_prets_a_la_consommation(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'intcon'
+    label = 'Intérêts prêts consommation'
     end = '2005-12-31'
-    definition_period = YEAR
+    definition_period = YEARgit 
 
     def formula_2004_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1690,7 +1690,7 @@ class intcon(Variable):
         2004-2005
         '''
         f7uh = foyer_fiscal('f7uh_2004', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.intcon
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.interets_prets_a_la_consommation
 
         max1 = P.max
         return P.taux * min_(f7uh, max1)
