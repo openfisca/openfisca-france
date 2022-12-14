@@ -170,7 +170,7 @@ class reductions(Variable):
             'reduction_enfants_scolarises', 'gardenf', 'intemp', 'ri_investissement_forestier', 'invrev',
             'prestations_compensatoires', 'rsceha', 'ri_saldom', 'souscriptions_parts_fcpi_fip',
             # Introduites en 2003
-            'mecena', 'repsoc',
+            'mecena', 'interets_emprunt_reprise_societe',
             # Introduites en 2004
             'intcon', 'invlst',
             # Introduites en 2005

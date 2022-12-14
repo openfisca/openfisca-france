@@ -24,7 +24,7 @@ class reductions_deplafonnees(Variable):
             'intagr',
             'mecena',
             'prestations_compensatoires',
-            'repsoc',
+            'interets_emprunt_reprise_societe',
             'resimm',  # Malraux, non plafonnées pour les investissements réalisés après 2013
             'reduction_enfants_scolarises',
             'accult',
@@ -603,23 +603,23 @@ class cotisations_syndicales(Variable):
         return (P.taux * foyer_fiscal.sum(min_(cotisations_versees, plafond)))
 
 
-class repsoc(Variable):
+class interets_emprunt_reprise_societe(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'repsoc'
+    label = 'Intérêts emprunts pour reprise de société'
     definition_period = YEAR
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
         '''
-        Intérèts d'emprunts pour reprises de société
+        Intérêts d'emprunts pour reprise de société
         2003-
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7fh = foyer_fiscal('f7fh', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.repsoc
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.interets_emprunt_reprise_societe
 
-        seuil = P.seuil * (maries_ou_pacses + 1)
-        return P.taux * min_(f7fh, seuil)
+        plafond = P.plafond * (maries_ou_pacses + 1)
+        return P.taux * min_(f7fh, plafond)
 
 
 class resimm(Variable):

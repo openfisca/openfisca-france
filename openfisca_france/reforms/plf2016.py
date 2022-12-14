@@ -139,7 +139,7 @@ class plf2016_counterfactual(Reform):
             patnat = foyer_fiscal('patnat', period)
             prestations_compensatoires = foyer_fiscal('prestations_compensatoires', period)
             reduction_impot_exceptionnelle = foyer_fiscal('reduction_impot_exceptionnelle', period)
-            repsoc = foyer_fiscal('repsoc', period)
+            interets_emprunt_reprise_societe = foyer_fiscal('interets_emprunt_reprise_societe', period)
             resimm = foyer_fiscal('resimm', period)
             rsceha = foyer_fiscal('rsceha', period)
             saldom = foyer_fiscal('ri_saldom', period)
@@ -148,7 +148,7 @@ class plf2016_counterfactual(Reform):
             souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
             total_reductions = accult + adhcga + cappme + creaen + accueil_dans_etablissement_personnes_agees + defense_forets_contre_incendies + dfppce + doment + domlog +\
                 duflot + duflot_om + reduction_enfants_scolarises + gardenf + intagr + investissement_forestier + invlst + location_meublee + mecena + mohist + patnat +\
-                prestations_compensatoires + repsoc + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
+                prestations_compensatoires + interets_emprunt_reprise_societe + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
 
             return min_(ip_net, total_reductions)
 
@@ -236,7 +236,7 @@ class plf2016_counterfactual_2014(Reform):
             patnat = foyer_fiscal('patnat', period)
             prestations_compensatoires = foyer_fiscal('prestations_compensatoires', period)
             reduction_impot_exceptionnelle = foyer_fiscal('reduction_impot_exceptionnelle', period)
-            repsoc = foyer_fiscal('repsoc', period)
+            interets_emprunt_reprise_societe = foyer_fiscal('interets_emprunt_reprise_societe', period)
             resimm = foyer_fiscal('resimm', period)
             rsceha = foyer_fiscal('rsceha', period)
             saldom = foyer_fiscal('ri_saldom', period)
@@ -245,7 +245,7 @@ class plf2016_counterfactual_2014(Reform):
             souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
             total_reductions = accult + adhcga + cappme + creaen + accueil_dans_etablissement_personnes_agees + defense_forets_contre_incendies + dfppce + doment + domlog +\
                 duflot + duflot_om + reduction_enfants_scolarises + gardenf + intagr + investissement_forestier + invlst + location_meublee + mecena + mohist + patnat +\
-                prestations_compensatoires + repsoc + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
+                prestations_compensatoires + interets_emprunt_reprise_societe + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
 
             return min_(ip_net, total_reductions)
 
