@@ -1,5 +1,17 @@
 # Changelog
 
+# 127.0.0 [#1947](https://github.com/openfisca/openfisca-france/pull/1947)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/revenus/activite/salarie.py`
+  - `parameters/marche_travail/remuneration_dans_fonction_publique/indemnite_residence`
+  - `parameters/prestations_sociales/fonc/indemn_resid`
+* Détails :
+  - Déplace les paramètres des indemnités de résidence en un endroit plus approprié
+
+
 # 126.0.0 [#1840](https://github.com/openfisca/openfisca-france/pull/1840)
 
 * Évolution du système socio-fiscal **non rétrocompatible**
@@ -7,8 +19,8 @@
 * Zones impactées : `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs`
 * Détails :
   -  Met à jour les paramètres d'ACS, CMU devenus CSS (dite aussi C2S) au 1er novembre 2019 (valeurs, références et `last_review`)
-      * Regroupe les paramètres `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/acs/` dans `bareme.yaml` 
-      * Dans `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/`, `cmu/` et `css/` : 
+      * Regroupe les paramètres `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/acs/` dans `bareme.yaml`
+      * Dans `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/cs/`, `cmu/` et `css/` :
         - Renomme `forfait_logement` en `forfait_logement_sans_al`
         - Renomme `forfait_logement_al` en `forfait_logement_avec_al`
   - Explicite les noms de variables communes entre la CMU et la CSS
@@ -38,10 +50,10 @@
 
 # 124.0.0 [#1935](https://github.com/openfisca/openfisca-france/pull/1935)
 
-* Amélioration technique. 
+* Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters.impot_revenu.calcul_reductions_impots.`
-* Détails: 
+* Détails:
     - Harmonisation avec le dossier IPP
     - Décision de fusionner les paramètres en double: pour les dispositifs qui sont passés d'une charge à une réduction d'impôt (ou l'inverse), les paramètres sont rangés dans le dossier qui correspond au dispositif en cours (voir issue #1936 )
    - Dispositifs traités dans cette PR (la suite dans la PR suivante:)
