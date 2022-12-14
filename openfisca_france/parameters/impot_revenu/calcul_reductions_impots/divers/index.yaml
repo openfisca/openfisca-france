@@ -1,7 +1,7 @@
 description: Autres réductions d'impôts (1979 -)
 metadata:
   description_en: Other tax reductions (1979 -)
-    order:
+  order:
   - date_entree_en_vigueur
   - depenses_formation_chefs_entreprises
   - assurances_vie

@@ -109,7 +109,7 @@ class creaen(Variable):
         '''
         f7fy = foyer_fiscal('f7fy_2011', period)
         f7gy = foyer_fiscal('f7gy_2010', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.diversaide_createurs_repreneurs_entreprise
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.aide_createurs_repreneurs_entreprise
 
         return (P.reduction * f7fy + P.surplus_si_invalide * f7gy)
 
@@ -124,7 +124,7 @@ class creaen(Variable):
         f7hy = foyer_fiscal('f7hy_2011', period)
         f7ky = foyer_fiscal('f7ky_2011', period)
         f7iy = foyer_fiscal('f7iy_2011', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.diversaide_createurs_repreneurs_entreprise
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.aide_createurs_repreneurs_entreprise
 
         return (
             P.reduction * ((f7jy + f7fy) + f7hy / 2)
@@ -144,7 +144,7 @@ class creaen(Variable):
         f7iy = foyer_fiscal('f7iy_2011', period)
         f7ly = foyer_fiscal('f7ly_2010', period)
         f7my = foyer_fiscal('f7my_2010', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.diversaide_createurs_repreneurs_entreprise
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.aide_createurs_repreneurs_entreprise
 
         return (
             P.reduction * ((f7jy + f7fy) + (f7hy + f7ly) / 2)
@@ -158,7 +158,7 @@ class creaen(Variable):
         '''
         f7ly = foyer_fiscal('f7ly_2010', period)
         f7my = foyer_fiscal('f7my_2010', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.diversaide_createurs_repreneurs_entreprise
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.aide_createurs_repreneurs_entreprise
 
         return (
             P.reduction * (f7ly / 2)
@@ -508,7 +508,7 @@ class interets_paiements_differes_agriculteurs(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.divers.interets_paiements_differes_agriculteurs
 
-        max1 = P.max * (1 + maries_ou_pacses)
+        max1 = P.plafond * (1 + maries_ou_pacses)
         return P.taux * min_(f7um, max1)
 
 
