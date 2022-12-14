@@ -1,0 +1,14 @@
+description: Plafond de la réduction d'impôt sur les dépenses de formation des chefs d'entreprise
+values:
+  1977-01-01:
+    value: null
+  1992-01-01:
+    value: 5000
+  1997-01-01:
+    value: null
+metadata:
+  ux_name: Plafond
+  ipp_csv_id: plaf_formachef
+  unit: currency
+documentation: |-
+  Dépenses de formation du chef d'entreprise individuelle : ensemble des dépenses effectuées entre le 01/01/1994 et le 31/12/1996
