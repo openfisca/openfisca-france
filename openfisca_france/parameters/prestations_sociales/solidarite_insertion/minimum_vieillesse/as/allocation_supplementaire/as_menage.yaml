@@ -110,9 +110,6 @@ metadata:
   ipp_csv_id: alloc_sup_men
   unit: currency
   reference:
-    1980-10-01:
-      title: Décret 80-865 du 31/10/1980
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000681571
     1982-07-01:
       title: Décret 82-560 du 29/06/1982
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336521&categorieLien=id
@@ -265,7 +262,6 @@ metadata:
       title: Circulaire CNAV 2022/3 du 11/01/2023, page 8
       href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_03_11012022.pdf
   official_journal_date:
-    1980-10-01: "1980-11-06"
     1982-07-01: "1982-07-02"
     1983-01-01: "1982-12-30"
     1983-07-01: "1982-12-30"
@@ -309,10 +305,3 @@ metadata:
     2016-04-01:
     - title: L'AVTS est remplacée par l'ASPA en 2007 par le décret 2007-57. Cependant, comme le mentionne l'ordonnance 2004-605, les personnes qui bénéficiaient au moment de l'entrée en vigueur de l'ASPA des anciens dispositifs de mimimum vieillesse continuent à percevoir ces anciennes prestations selon les règles applicables avant cette entrée en vigueur. D'où le fait qu'on garde les barèmes de l'AVTS après 2007.
   last_review: "2021-01-01"
-documentation: |-
-  Notes :
-  Le complément versé entre 1958 et 1962 est à ajouter au montant de l'allocation supplémentaire. Il s'agit de compléments cumulés.
-  A partir de 1963, il y a simple revalorisation. Après 1962, le complément est une majoration exceptionnelle.
-  Sources :
-  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe A.
-  CNAV, site web législation - barèmes.
