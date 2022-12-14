@@ -174,7 +174,7 @@ class reductions(Variable):
             # Introduites en 2004
             'intcon', 'invlst',
             # Introduites en 2005
-            'intagr',
+            'interets_paiements_differes_agriculteurs',
             # Introduites en 2006
             'creaen', 'defense_forets_contre_incendies', 'sofica',
             # Introduites en 2008

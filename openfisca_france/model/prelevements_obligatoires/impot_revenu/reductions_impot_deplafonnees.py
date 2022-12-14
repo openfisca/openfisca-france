@@ -21,7 +21,7 @@ class reductions_deplafonnees(Variable):
             'assvie',
             'reduction_cotisations_syndicales',
             'creaen',
-            'intagr',
+            'interets_paiements_differes_agriculteurs',
             'mecena',
             'prestations_compensatoires',
             'interets_emprunt_reprise_societe',
@@ -493,10 +493,10 @@ class reduction_enfants_scolarises(Variable):
             )
 
 
-class intagr(Variable):
+class interets_paiements_differes_agriculteurs(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'intagr'
+    label = 'Intérêts paiement différé agriculteurs'
     definition_period = YEAR
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
@@ -506,7 +506,7 @@ class intagr(Variable):
         '''
         f7um = foyer_fiscal('f7um', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.intagr
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.interets_paiements_differes_agriculteurs
 
         max1 = P.max * (1 + maries_ou_pacses)
         return P.taux * min_(f7um, max1)
