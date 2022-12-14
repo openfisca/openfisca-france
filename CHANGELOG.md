@@ -1,5 +1,13 @@
 # Changelog
 
+# 128.0.0 [#1945](https://github.com/openfisca/openfisca-france/pull/1945)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`.
+* Détails :
+  - Retire une variable inutilisée et obsolète.
+
 # 127.0.0 [#1947](https://github.com/openfisca/openfisca-france/pull/1947)
 
 * Amélioration technique.
