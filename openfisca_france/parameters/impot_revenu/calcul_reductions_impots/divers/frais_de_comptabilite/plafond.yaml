@@ -1,4 +1,4 @@
-description: Montant de la réduction d'impôt sur les frais de comptabilité
+description: Montant plafond (par exploitation) de la réduction d'impôt sur les frais de comptabilité et d'adhésion CGA
 values:
   1977-01-01:
     value: null

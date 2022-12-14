@@ -1,4 +1,4 @@
-- name: reduc_adhcga
+- name: reduc_frais_de_comptabilite
   period: 2014
   absolute_error_margin: 1
   input:
@@ -33,7 +33,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    adhcga: 500.0
+    frais_de_comptabilite: 500.0
     iai: 24918.0
     irpp: -24918.0
     nbptr: 1.0
@@ -42,7 +42,7 @@
     reductions: 500.0
     rfr: 95000.0
     rni: 95000.0
-- name: reduc_adhcga
+- name: reduc_frais_de_comptabilite
   period: 2015
   absolute_error_margin: 1
   input:
@@ -77,7 +77,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    adhcga: 500.0
+    frais_de_comptabilite: 500.0
     iai: 24905.0
     irpp: -24905.0
     nbptr: 1.0
@@ -85,7 +85,7 @@
     reductions: 500.0
     rfr: 95000.0
     rni: 95000.0
-- name: reduc_adhcga
+- name: reduc_frais_de_comptabilite
   period: 2016
   absolute_error_margin: 1
   input:
@@ -120,7 +120,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    adhcga: 500.0
+    frais_de_comptabilite: 500.0
     iai: 24891.0
     irpp: -24891.0
     nbptr: 1.0
@@ -128,7 +128,7 @@
     reductions: 500.0
     rfr: 95000.0
     rni: 95000.0
-- name: reduc_adhcga
+- name: reduc_frais_de_comptabilite
   period: 2017
   absolute_error_margin: 1
   input:
@@ -163,7 +163,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    adhcga: 500.0
+    frais_de_comptabilite: 500.0
     iai: 24755.0
     irpp: -24755.0
     nbptr: 1.0

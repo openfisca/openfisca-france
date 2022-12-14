@@ -117,7 +117,7 @@ class plf2016_counterfactual(Reform):
 
         def formula_2013_01_01(foyer_fiscal, period, parameters):
             accult = foyer_fiscal('accult', period)
-            adhcga = foyer_fiscal('adhcga', period)
+            frais_de_comptabilite = foyer_fiscal('frais_de_comptabilite', period)
             cappme = foyer_fiscal('cappme', period)
             creaen = foyer_fiscal('creaen', period)
             accueil_dans_etablissement_personnes_agees = foyer_fiscal('accueil_dans_etablissement_personnes_agees', period)
@@ -146,7 +146,7 @@ class plf2016_counterfactual(Reform):
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
             souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
-            total_reductions = accult + adhcga + cappme + creaen + accueil_dans_etablissement_personnes_agees + defense_forets_contre_incendies + dfppce + doment + domlog +\
+            total_reductions = accult + frais_de_comptabilite + cappme + creaen + accueil_dans_etablissement_personnes_agees + defense_forets_contre_incendies + dfppce + doment + domlog +\
                 duflot + duflot_om + reduction_enfants_scolarises + gardenf + interets_paiements_differes_agriculteurs + investissement_forestier + invlst + location_meublee + mecena + mohist + protection_patrimoine_naturel +\
                 prestations_compensatoires + interets_emprunt_reprise_societe + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
 
@@ -214,7 +214,7 @@ class plf2016_counterfactual_2014(Reform):
 
         def formula_2013_01_01(foyer_fiscal, period, parameters):
             accult = foyer_fiscal('accult', period)
-            adhcga = foyer_fiscal('adhcga', period)
+            frais_de_comptabilite = foyer_fiscal('frais_de_comptabilite', period)
             cappme = foyer_fiscal('cappme', period)
             creaen = foyer_fiscal('creaen', period)
             accueil_dans_etablissement_personnes_agees = foyer_fiscal('accueil_dans_etablissement_personnes_agees', period)
@@ -243,7 +243,7 @@ class plf2016_counterfactual_2014(Reform):
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
             souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
-            total_reductions = accult + adhcga + cappme + creaen + accueil_dans_etablissement_personnes_agees + defense_forets_contre_incendies + dfppce + doment + domlog +\
+            total_reductions = accult + frais_de_comptabilite + cappme + creaen + accueil_dans_etablissement_personnes_agees + defense_forets_contre_incendies + dfppce + doment + domlog +\
                 duflot + duflot_om + reduction_enfants_scolarises + gardenf + interets_paiements_differes_agriculteurs + investissement_forestier + invlst + location_meublee + mecena + mohist + protection_patrimoine_naturel +\
                 prestations_compensatoires + interets_emprunt_reprise_societe + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
 

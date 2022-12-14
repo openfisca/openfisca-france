@@ -164,7 +164,7 @@ class reductions(Variable):
         '''
         reductions = [
             # Depuis 2002
-            'accult', 'adhcga', 'assvie', 'cappme', 'cappme_esus_sfs',
+            'accult', 'frais_de_comptabilite', 'assvie', 'cappme', 'cappme_esus_sfs',
             'reduction_cotisations_syndicales',
             'accueil_dans_etablissement_personnes_agees', 'dfppce', 'doment', 'domlog',
             'reduction_enfants_scolarises', 'gardenf', 'intemp', 'ri_investissement_forestier', 'invrev',

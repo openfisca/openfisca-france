@@ -17,7 +17,7 @@ class reductions_deplafonnees(Variable):
         reductions_sans_plafond = [
             'accueil_dans_etablissement_personnes_agees',
             'dfppce',
-            'adhcga',
+            'frais_de_comptabilite',
             'assvie',
             'reduction_cotisations_syndicales',
             'creaen',
@@ -55,10 +55,10 @@ class accult(Variable):
         return P.taux * f7uo
 
 
-class adhcga(Variable):
+class frais_de_comptabilite(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'adhcga'
+    label = 'frais_de_comptabilite'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -68,9 +68,9 @@ class adhcga(Variable):
         '''
         f7ff = foyer_fiscal('f7ff', period)
         f7fg = foyer_fiscal('f7fg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.adhcga
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.frais_de_comptabilite
 
-        return min_(f7ff, P.max * f7fg)
+        return min_(f7ff, P.plafond * f7fg)
 
 
 class assvie(Variable):
