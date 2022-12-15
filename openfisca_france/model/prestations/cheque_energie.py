@@ -31,7 +31,7 @@ class cheque_energie_eligibilite_logement(Variable):
         'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6A3717E70623B148432581CC8F585C5F.tplgfr31s_1?idArticle=LEGIARTI000006394061&cidTexte=LEGITEXT000006070633&dateTexte=20180316',
         ]
     label = 'Éligibilité du logement occupé au chèque énergie'
-    definition_period = YEAR
+    definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
     def formula_2017(menage, period, parameters):
@@ -79,7 +79,7 @@ class cheque_energie(Variable):
     value_type = float
     reference = 'https://chequeenergie.gouv.fr'
     label = 'Montant auquel le ménage peut prétendre au titre du chèque energie'
-    definition_period = YEAR
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2017(menage, period):
