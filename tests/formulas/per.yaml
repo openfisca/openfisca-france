@@ -11,9 +11,9 @@
         age: 40
   output:
     eligibilite_per:
-      2022: TRUE
+      2022: true
     eligibilite_per_ppa:
-      2022: FALSE
+      2022: false
     prime_exceptionnelle_rentree:
       2022: 100
 
@@ -33,9 +33,9 @@
         age: 10
   output:
     eligibilite_per:
-      2022: TRUE
+      2022: true
     eligibilite_per_ppa:
-      2022: FALSE
+      2022: false
     prime_exceptionnelle_rentree:
       2022: 150
 
@@ -68,9 +68,9 @@
           2022-06: 0
   output:
     eligibilite_per:
-      2022: FALSE
+      2022: false
     eligibilite_per_ppa:
-      2022: TRUE
+      2022: true
     prime_exceptionnelle_rentree:
       2022: 28
 
@@ -106,9 +106,9 @@
         age: 10
   output:
     eligibilite_per:
-      2022: FALSE
+      2022: false
     eligibilite_per_ppa:
-      2022: TRUE
+      2022: true
     prime_exceptionnelle_rentree:
       2022: 42
 
@@ -141,12 +141,12 @@
           2022-06: 800
   output:
     eligibilite_per:
-      2022: TRUE
+      2022: true
     eligibilite_per_ppa:
-      2022: FALSE
+      2022: false
     prime_exceptionnelle_rentree:
       2022: 100
-  
+
 
 - period: 2022-01-01
   name: PER Cas No 4 - Couple (dont un adulte étudiant boursier) percevant le RSA
@@ -187,9 +187,9 @@
           2022-06: 1
   output:
     eligibilite_per:
-      2022: TRUE
+      2022: true
     eligibilite_per_etudiant:
-      2022: FALSE
+      2022: [false, true]
 
 - period: 2022-01-01
   name: PER Cas No 4
@@ -235,6 +235,8 @@
       declarants: [parent1, parent2]
   output:
     eligibilite_per_etudiant:
-      2022: [FALSE, TRUE]
-#    prime_exceptionnelle_rentree_etudiant:
-#      2022: 0
+      2022: [false, false, true]
+    prime_exceptionnelle_rentree_etudiant:
+      2022: [0, 0, 100]
+    prime_exceptionnelle_rentree:
+      2022: 150
