@@ -6,8 +6,8 @@ from numpy import logical_and as and_
 class eligibilite_per(Variable):
     entity = Famille
     value_type = bool
-    reference = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935"
-    label = "Eligibilité à la prime exceptionnelle de rentrée"
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935'
+    label = 'Eligibilité à la prime exceptionnelle de rentrée'
     definition_period = ETERNITY
 
     def formula(famille, period):
@@ -31,11 +31,12 @@ class eligibilite_per(Variable):
 
         return (eligibilite + eligibilite_ass + eligibilite_aer + eligibilite_aah) > 0
 
+
 class eligibilite_per_etudiant(Variable):
     entity = Individu
     value_type = bool
-    reference = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289843"
-    label = "Eligibilité à la prime exceptionnelle de rentrée des étudiants boursiers"
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289843'
+    label = 'Eligibilité à la prime exceptionnelle de rentrée des étudiants boursiers'
     definition_period = ETERNITY
 
     def formula(individu, period):
@@ -48,11 +49,12 @@ class eligibilite_per_etudiant(Variable):
                                   )
         return eligibilite_etudiant
 
+
 class eligibilite_per_ppa(Variable):
     entity = Famille
     value_type = bool
-    reference = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046556491"
-    label = "Eligibilité à la prime exceptionnelle de rentrée des bénéficiaires de la prime d'activité"
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046556491'
+    label = 'Eligibilité à la prime exceptionnelle de rentrée des bénéficiaires de la prime d activité'
     definition_period = ETERNITY
 
     def formula(famille, period):
@@ -66,8 +68,8 @@ class eligibilite_per_ppa(Variable):
 class prime_exceptionnelle_rentree(Variable):
     entity = Famille
     value_type = float
-    reference = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935"
-    label = "Prime exceptionnelle de rentrée"
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935'
+    label = 'Prime exceptionnelle de rentrée'
     definition_period = YEAR
 
     def formula(famille, period, parameters):
@@ -78,7 +80,7 @@ class prime_exceptionnelle_rentree(Variable):
 
         per=where(famille('eligibilite_per', period) > 0,
                   parametres_per.per + nb_enfants * parametres_per.per_enfant,
-                  where(famille('eligibilite_per_ppa',period) > 0,
+                  where(famille('eligibilite_per_ppa', period) > 0,
                         parametres_per.per_ppa + nb_enfants * parametres_per.per_ppa_enfant,
                         0
                         )
@@ -86,11 +88,12 @@ class prime_exceptionnelle_rentree(Variable):
 
         return per
 
+
 class prime_exceptionnelle_rentree_etudiant(Variable):
     entity = Individu
     value_type = float
-    reference = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289843"
-    label = "Prime exceptionnelle de rentrée pour les étudiants boursiers"
+    reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289843'
+    label = 'Prime exceptionnelle de rentrée pour les étudiants boursiers'
     definition_period = YEAR
 
     def formula(individu, period, parameters):

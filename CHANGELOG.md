@@ -1,5 +1,15 @@
 # Changelog
 
+## 138.2.0 [#1942](https://github.com/openfisca/openfisca-france/pull/1942)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2022
+* Zones impactées :
+   - `openfisca-france\openfisca_france\model\prestations\minima_sociaux\per.py`.
+   - `openfisca_france\parameters\prestations_sociales\solidarite_insertion\minima_sociaux\per`
+* Détails :
+  - Ajout de la prime exceptionnelle de rentrée versée en 2022
+
 ### 138.1.5 [#1995](https://github.com/openfisca/openfisca-france/pull/1995)
 
 * Changement mineur.
