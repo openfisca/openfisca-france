@@ -18,7 +18,7 @@
       2022: 100
 
 - period: 2022-01-01
-  name: PER Cas No 1b - Célibataire recevant le RSA avec un enfant
+  name: PER Cas No 2 - Célibataire recevant le RSA avec un enfant
   absolute_error_margin: 0.03
   input:
     famille:
@@ -40,7 +40,7 @@
       2022: 150
 
 - period: 2022-01-01
-  name: PER Cas No 2 - Célibataire recevant la prime d'activité
+  name: PER Cas No 3 - Célibataire recevant la prime d'activité
   absolute_error_margin: 0.03
   input:
     famille:
@@ -75,7 +75,7 @@
       2022: 28
 
 - period: 2022-01-01
-  name: PER Cas No 2 - Célibataire recevant la prime d'activité avec un enfant
+  name: PER Cas No 4 - Célibataire recevant la prime d'activité avec un enfant
   absolute_error_margin: 0.03
   input:
     famille:
@@ -113,7 +113,7 @@
       2022: 42
 
 - period: 2022-01-01
-  name: PER Cas No 3 - Célibataire recevant la prime d'activité et l'AAH
+  name: PER Cas No 5 - Célibataire recevant la prime d'activité et l'AAH
   absolute_error_margin: 0.03
   input:
     famille:
@@ -149,7 +149,7 @@
 
 
 - period: 2022-01-01
-  name: PER Cas No 4 - Couple (dont un adulte étudiant boursier) percevant le RSA
+  name: PER Cas No 6 - Couple (dont un adulte étudiant boursier) percevant le RSA
   absolute_error_margin: 0.03
   input:
     famille:
@@ -192,13 +192,14 @@
       2022: [false, true]
 
 - period: 2022-01-01
-  name: PER Cas No 4
+  name: PER Cas No 7 - Couple éligible au RSA avec un enfant à charge boursier
   absolute_error_margin: 0.03
   input:
     famille:
       parents: [parent1, parent2]
+      enfants: [enfant1]
       rsa:
-        2022-06: 0
+        2022-06: 500
       apl:
         2022-06: 0
       als:
@@ -218,7 +219,7 @@
           2022-06: 0
         aah:
           2022-06: 0
-      parent1:
+      parent2:
         age: 40
         aer:
           2022-06: 0
@@ -226,13 +227,10 @@
           2022-06: 0
         aah:
           2022-06: 0
+      enfant1:
+        age: 18
         boursier:
           2022-06: 1
-    menage:
-      personne_de_reference: parent1
-      conjoint: parent2
-    foyers_fiscal:
-      declarants: [parent1, parent2]
   output:
     eligibilite_per_etudiant:
       2022: [false, false, true]
