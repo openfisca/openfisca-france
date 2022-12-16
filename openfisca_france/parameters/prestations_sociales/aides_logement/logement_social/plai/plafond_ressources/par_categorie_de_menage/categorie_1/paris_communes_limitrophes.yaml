@@ -2,8 +2,13 @@ description: Catégorie 1 / Paris et communes limitrophes - Plafonds de ressourc
 values:
   2017-01-01:
     value: 12733
+  2018-01-01:
+    value: 12848
 metadata:
   unit: currency
   reference:
     2017-01-01:
       href: https://www.legifrance.gouv.fr/eli/arrete/2016/12/22/LHAL1629455A/jo/texte
+    2018-01-01:
+      href: https://www.anil.org/aj-plafonds-ressources-2018-logement-social/
+  
