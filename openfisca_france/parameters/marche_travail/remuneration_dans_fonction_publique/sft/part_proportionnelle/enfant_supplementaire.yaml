@@ -1,11 +1,11 @@
-description: Taux 3 du montant du supplément familial de traitement (SFT)
+description: Taux du montant du supplément familial de traitement par enfant supplémentaire au delà de 3 enfants
 values:
   1985-11-01:
-    value: 0.08
+    value: 0.06
 metadata:
-  ux_name: Taux 3
+  ux_name: Par enfant supplémentaire au delà de 3 enfants
   description_en: Family income supplement (SFT)
-  ipp_csv_id: txenf3
+  ipp_csv_id: txenf4
   unit: /1
   reference:
     1985-11-01:

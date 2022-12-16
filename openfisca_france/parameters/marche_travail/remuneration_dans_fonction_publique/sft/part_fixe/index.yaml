@@ -1,0 +1,8 @@
+description: Part fixe du supplément familial de traitement
+metadata:
+  ux_name: Part fixe
+  description_en: Fixed share
+  order:
+  - part_fixe_deux_enfants.yaml
+  - part_fixe_enfant_supplementaire.yaml
+  - part_fixe_un_enfant.yaml

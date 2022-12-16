@@ -1,0 +1,8 @@
+description: Part proportionnelle au traitement brut
+metadata:
+  ux_name: Part proportionnelle
+  description_en: Proportional share
+  order:
+  - un_enfant
+  - deux_enfants
+  - enfant_supplementaire
