@@ -82,10 +82,10 @@ class prime_exceptionnelle_rentree(Variable):
         parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.per
 
         per = where(
-            not_(famille('eligibilite_per', period)),
+            famille('eligibilite_per', period),
             parametres_per.per + nb_enfants * parametres_per.per_enfant,
             where(
-                not_(famille('eligibilite_per_ppa', period)),
+                famille('eligibilite_per_ppa', period),
                 parametres_per.per_ppa + nb_enfants * parametres_per.per_ppa_enfant,
                 0
                 )
