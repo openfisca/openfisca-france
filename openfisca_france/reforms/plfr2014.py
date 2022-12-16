@@ -55,7 +55,7 @@ class plfr2014(Reform):
             prestations_compensatoires = foyer_fiscal('prestations_compensatoires', period)
             reduction_impot_exceptionnelle = foyer_fiscal('reduction_impot_exceptionnelle', period)
             interets_emprunt_reprise_societe = foyer_fiscal('interets_emprunt_reprise_societe', period)
-            resimm = foyer_fiscal('resimm', period)
+            restauration_patrimoine_bati = foyer_fiscal('restauration_patrimoine_bati', period)
             rente_survie = foyer_fiscal('rente_survie', period)
             saldom = foyer_fiscal('ri_saldom', period)
             scelli = foyer_fiscal('scelli', period)
@@ -63,7 +63,7 @@ class plfr2014(Reform):
             souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
             total_reductions = accult + frais_de_comptabilite + cappme + creaen + accueil_dans_etablissement_personnes_agees + defense_forets_contre_incendies + dfppce + doment + domlog +\
                 duflot + duflot_om + reduction_enfants_scolarises + gardenf + interets_paiements_differes_agriculteurs + investissement_forestier + invlst + location_meublee + mecena + mohist + protection_patrimoine_naturel +\
-                prestations_compensatoires + interets_emprunt_reprise_societe + resimm + rente_survie + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
+                prestations_compensatoires + interets_emprunt_reprise_societe + restauration_patrimoine_bati + rente_survie + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
             return min_(ip_net, total_reductions)
 
     def apply(self):

@@ -180,7 +180,7 @@ class reductions(Variable):
             # Introduites en 2008
             'mohist',
             # Introduites en 2009
-            'domsoc', 'codev', 'location_meublee', 'resimm', 'scelli',
+            'domsoc', 'codev', 'location_meublee', 'restauration_patrimoine_bati', 'scelli',
             'sofipe',
             # Introduites en 2010
             'protection_patrimoine_naturel',
