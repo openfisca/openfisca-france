@@ -1,6 +1,15 @@
 # Changelog
 
-# 128.0.1 [#1937](https://github.com/openfisca/openfisca-france/pull/1937)
+# 129.0.0 [#1944](https://github.com/openfisca/openfisca-france/pull/1944)
+
+* Évolution du système socio-fiscal. | Amélioration technique. 
+* Périodes concernées : toutes. 
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/pme`
+* Détails :
+  - Fusionne, déplace et renomme les paramètres dans le cadre de l'Harmonisation avec les barèmes IPP
+  - Ajout de références et de documentation
+
+### 128.0.1 [#1937](https://github.com/openfisca/openfisca-france/pull/1937)
 
 * Changement mineur.
 * Périodes concernées : toutes.
