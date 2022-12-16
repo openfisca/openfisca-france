@@ -1,9 +1,24 @@
 # Changelog
 
+# 130.0.0 [#1948](https://github.com/openfisca/openfisca-france/pull/1948)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `parameters/prestations_sociales/fonc/`.
+  - `model/revenus/activite/salarie.py`
+  - `marche_travail/remuneration_dans_fonction_publique/sft`
+
+* Détails :
+  - Retrait de paramètres en doublon
+  - Retire `prestations_sociales.fonc`
+  - Nettoyage de `supplement_familiall_traitement`
+  - Renome `marche_travail.remuneration_dans_fonction_publique.IM_min` en `marche_travail.remuneration_dans_fonction_publique.indice_majore_minimal`
+
 # 129.0.0 [#1944](https://github.com/openfisca/openfisca-france/pull/1944)
 
-* Évolution du système socio-fiscal. | Amélioration technique. 
-* Périodes concernées : toutes. 
+* Évolution du système socio-fiscal. | Amélioration technique.
+* Périodes concernées : toutes.
 * Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/pme`
 * Détails :
   - Fusionne, déplace et renomme les paramètres dans le cadre de l'Harmonisation avec les barèmes IPP

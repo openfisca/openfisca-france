@@ -1,15 +1,15 @@
-description: Part fixe 4 du montant du supplément familial de traitement (SFT)
+description: Part fixe pour deux enfants du montant du supplément familial de traitement (SFT)
 values:
   1985-11-01:
-    value: 240
+    value: 480
   1988-02-07:
-    value: 360
+    value: 840
   2002-01-01:
-    value: 4.57
+    value: 10.67
 metadata:
-  ux_name: Part fixe 4
-  description_en: Family income supplement (SFT) (1985-2017)
-  ipp_csv_id: enf4
+  ux_name: Part pour deux enfants
+  description_en: Family income supplement (SFT)
+  ipp_csv_id: enf2
   unit: currency
   reference:
     1985-11-01:
@@ -24,3 +24,4 @@ metadata:
     1985-11-01: "1985-11-05"
     1988-02-07: "1986-02-07"
     2002-01-01: "2001-09-29"
+documentation: Les montants en euros sont mensuels tandis que les montants en FRF sont annuels.

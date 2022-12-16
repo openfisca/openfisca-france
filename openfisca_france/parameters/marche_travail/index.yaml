@@ -3,4 +3,7 @@ metadata:
   ux_name: Marché du travail
   order:
   - salaire_minimum
+  - prime_pepa
+  - prime_partage_valeur
   - remuneration_dans_fonction_publique
+  - age_majorite

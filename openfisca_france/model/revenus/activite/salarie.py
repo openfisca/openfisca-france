@@ -1288,60 +1288,33 @@ class supplement_familial_traitement(Variable):
     def formula(individu, period, parameters):
         categorie_salarie = individu('categorie_salarie', period)
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
-        _P = parameters(period)
+        fonction_publique = parameters(period).marche_travail.remuneration_dans_fonction_publique
+        indice_majore_100 = 100 * fonction_publique.indicefp.point_indice_en_nominal
 
         fonc_nbenf = individu.famille('af_nbenf_fonc', period) * individu.has_role(Famille.DEMANDEUR)
 
-        P = _P.prestations_sociales.fonc.supplement_familial
-        part_fixe_1 = P.fixe.enf1
-        part_fixe_2 = P.fixe.enf2
-        part_fixe_supp = P.fixe.enfsupp
+        sft = fonction_publique.sft
 
         part_fixe = (
-            part_fixe_1 * (fonc_nbenf == 1)
-            + part_fixe_2 * (fonc_nbenf == 2)
-            + part_fixe_supp * max_(0, fonc_nbenf - 2)
+            sft.part_fixe.un_enfant * (fonc_nbenf == 1)
+            + sft.part_fixe.deux_enfants * (fonc_nbenf >= 2)
+            + sft.part_fixe.enfant_supplementaire * max_(0, fonc_nbenf - 2)
             )
-
-        # pct_variable_1 = 0
-        pct_variable_2 = P.prop.enf2
-        pct_variable_3 = P.prop.enf3
-        pct_variable_supp = P.prop.enfsupp
 
         pct_variable = (
-            pct_variable_2 * (fonc_nbenf == 2)
-            + (pct_variable_3) * (fonc_nbenf == 3)
-            + pct_variable_supp * max_(0, fonc_nbenf - 3)
+            sft.part_proportionnelle.deux_enfants * (fonc_nbenf == 2)
+            + sft.part_proportionnelle.trois_enfants * (fonc_nbenf >= 3)
+            + sft.part_proportionnelle.enfant_supplementaire * max_(0, fonc_nbenf - 3)
             )
 
-        indice_maj_min = P.IM_min
-        indice_maj_max = P.IM_max
+        indice_maj_min = sft.im_plancher
+        indice_maj_max = sft.im_plafond
 
-        traitement_brut_mensuel_min = _traitement_brut_mensuel(indice_maj_min, _P.prestations_sociales.fonc.IM_100)
-        plancher_mensuel_1 = part_fixe
-        plancher_mensuel_2 = part_fixe + traitement_brut_mensuel_min * pct_variable_2
-        plancher_mensuel_3 = part_fixe + traitement_brut_mensuel_min * pct_variable_3
-        plancher_mensuel_supp = traitement_brut_mensuel_min * pct_variable_supp
+        traitement_brut_mensuel_min = _traitement_brut_mensuel(indice_maj_min, indice_majore_100)
+        plancher = part_fixe + traitement_brut_mensuel_min * pct_variable
 
-        plancher = (
-            plancher_mensuel_1 * (fonc_nbenf == 1)
-            + plancher_mensuel_2 * (fonc_nbenf == 2)
-            + plancher_mensuel_3 * (fonc_nbenf >= 3)
-            + plancher_mensuel_supp * max_(0, fonc_nbenf - 3)
-            )
-
-        traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, _P.prestations_sociales.fonc.IM_100)
-        plafond_mensuel_1 = part_fixe
-        plafond_mensuel_2 = part_fixe + traitement_brut_mensuel_max * pct_variable_2
-        plafond_mensuel_3 = part_fixe + traitement_brut_mensuel_max * pct_variable_3
-        plafond_mensuel_supp = traitement_brut_mensuel_max * pct_variable_supp
-
-        plafond = (
-            plafond_mensuel_1 * (fonc_nbenf == 1)
-            + plafond_mensuel_2 * (fonc_nbenf == 2)
-            + plafond_mensuel_3 * (fonc_nbenf == 3)
-            + plafond_mensuel_supp * max_(0, fonc_nbenf - 3)
-            )
+        traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, indice_majore_100)
+        plafond = part_fixe + traitement_brut_mensuel_max * pct_variable
 
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
