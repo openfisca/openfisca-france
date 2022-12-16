@@ -1,4 +1,4 @@
-description: Zone sans abattement du SMIG horaire brut (Salaire minimum garanti - 1950-1969) - Marché du travail
+description: Zone sans abattement du SMIG horaire brut
 values:
   1950-09-01:
     value: 78
@@ -60,7 +60,7 @@ values:
     value: null
 metadata:
   ux_name: Zone sans abattement
-  description_en: Minimum wage - SMIG (1950-1969)
+  description_en: Minimum wage
   ipp_csv_id: smig_h_sans_ab
   unit: currency
   notes:
@@ -68,10 +68,3 @@ metadata:
     - title: Les montants sont exprimés en anciens Francs de 1950 à 1959.
     1970-01-01:
     - title: Remplacé par le SMIC
-documentation: |-
-  Sources de la législation:
-  Annuaire Statistique de la France 1971 de 1966 à 1970; Annuaire Statistique de la France 1966 de 1950 à 1966
-  Notes:
-  Entre 1950 et 1968 il existe des abattements par zone géographique (20 zones, Paris 0 abattement);
-  Entre 1950 et 1968, il existe un SMAG qui est limité à l'agriculture et dont le montant est inférieur au SMIG.
-  Les montants des DOM-TOM ne sont pas indiqués
