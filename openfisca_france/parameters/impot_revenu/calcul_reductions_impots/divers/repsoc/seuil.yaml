@@ -1,8 +1,0 @@
-description: Seuil
-values:
-  2004-01-01:
-    value: 10000
-  2008-01-01:
-    value: 20000
-metadata:
-  unit: currency

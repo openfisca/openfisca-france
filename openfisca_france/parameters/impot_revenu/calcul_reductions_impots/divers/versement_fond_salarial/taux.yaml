@@ -1,9 +1,0 @@
-values:
-  1996-01-01:
-    value: 0.25
-  1997-01-01:
-    value: null
-metadata:
-  unit: /1
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/

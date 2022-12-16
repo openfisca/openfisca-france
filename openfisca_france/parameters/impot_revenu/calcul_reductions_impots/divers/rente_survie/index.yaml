@@ -1,0 +1,7 @@
+description: Réduction d'impôts sur rente survie et contrat d'épargne handicap
+metadata:
+  ux_name: Rente survie
+  order:
+  - taux
+  - plafond
+  - increment

@@ -242,7 +242,7 @@
     iai: 33267.0
     irpp: -33267.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 137695.0
     reductions: 9493.0
     rfr: 137695.0
@@ -295,7 +295,7 @@
     iai: 36227.0
     irpp: -36227.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 137373.0
     rfr: 137373.0
 - name: reduc_location_meublee_plafonnee test plafond
@@ -341,7 +341,7 @@
     # iai: 32232.0
     # irpp: -32232.0
     # nbptr: 1.0
-    # patnat: 0.0
+    # protection_patrimoine_naturel: 0.0
     # rbg: 137348.0
     # rfr: 137348.0
 - name: reduc_location_meublee_plafonnee
@@ -391,6 +391,6 @@
     # iai: 38696.0
     # irpp: -38696.0
     # nbptr: 1.0
-    # patnat: 0.0
+    # protection_patrimoine_naturel: 0.0
     # rbg: 137171.0
     # rfr: 137171.0

@@ -1,6 +1,0 @@
-description: Plafond
-values:
-  2010-01-01:
-    value: 10000
-metadata:
-  unit: currency

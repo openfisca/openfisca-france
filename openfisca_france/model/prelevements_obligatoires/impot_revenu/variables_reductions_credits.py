@@ -205,7 +205,7 @@ class f7uh_2004(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = 'Intcon'
+    label = 'Intérêts prêts consommation'
     # start_date = date(2007, 1, 1)
     end = '2005-12-31'
     definition_period = YEAR

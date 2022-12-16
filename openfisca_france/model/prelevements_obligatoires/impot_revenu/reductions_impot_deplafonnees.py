@@ -17,18 +17,18 @@ class reductions_deplafonnees(Variable):
         reductions_sans_plafond = [
             'accueil_dans_etablissement_personnes_agees',
             'dfppce',
-            'adhcga',
+            'frais_de_comptabilite',
             'assvie',
             'reduction_cotisations_syndicales',
             'creaen',
-            'intagr',
+            'interets_paiements_differes_agriculteurs',
             'mecena',
             'prestations_compensatoires',
-            'repsoc',
-            'resimm',  # Malraux, non plafonnées pour les investissements réalisés après 2013
+            'interets_emprunt_reprise_societe',
+            'restauration_patrimoine_bati',  # Malraux, non plafonnées pour les investissements réalisés après 2013
             'reduction_enfants_scolarises',
             'accult',
-            'rsceha',
+            'rente_survie',
             ]
 
         # Step 4: Get other uncapped reductions
@@ -55,10 +55,10 @@ class accult(Variable):
         return P.taux * f7uo
 
 
-class adhcga(Variable):
+class frais_de_comptabilite(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'adhcga'
+    label = 'frais_de_comptabilite'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -68,9 +68,9 @@ class adhcga(Variable):
         '''
         f7ff = foyer_fiscal('f7ff', period)
         f7fg = foyer_fiscal('f7fg', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.adhcga
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.frais_de_comptabilite
 
-        return min_(f7ff, P.max * f7fg)
+        return min_(f7ff, P.plafond * f7fg)
 
 
 class assvie(Variable):
@@ -89,10 +89,10 @@ class assvie(Variable):
         f7gw = foyer_fiscal('f7gw_2004', period)
         f7gx = foyer_fiscal('f7gx_2004', period)
         f7gy = foyer_fiscal('f7gy_2004', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.assvie
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.assurances_vie
 
-        max1 = P.max + nb_pac * P.pac
-        return P.taux * min_(f7gw + f7gx + f7gy, max1)
+        plafond = P.plafond + nb_pac * P.increment
+        return P.taux * min_(f7gw + f7gx + f7gy, plafond)
 
 
 class creaen(Variable):
@@ -109,9 +109,9 @@ class creaen(Variable):
         '''
         f7fy = foyer_fiscal('f7fy_2011', period)
         f7gy = foyer_fiscal('f7gy_2010', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.creaen
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.aide_createurs_repreneurs_entreprise
 
-        return (P.base * f7fy + P.hand * f7gy)
+        return (P.reduction * f7fy + P.surplus_si_invalide * f7gy)
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -124,11 +124,11 @@ class creaen(Variable):
         f7hy = foyer_fiscal('f7hy_2011', period)
         f7ky = foyer_fiscal('f7ky_2011', period)
         f7iy = foyer_fiscal('f7iy_2011', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.creaen
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.aide_createurs_repreneurs_entreprise
 
         return (
-            P.base * ((f7jy + f7fy) + f7hy / 2)
-            + P.hand * ((f7ky + f7gy) + f7iy / 2)
+            P.reduction * ((f7jy + f7fy) + f7hy / 2)
+            + P.surplus_si_invalide * ((f7ky + f7gy) + f7iy / 2)
             )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -144,11 +144,11 @@ class creaen(Variable):
         f7iy = foyer_fiscal('f7iy_2011', period)
         f7ly = foyer_fiscal('f7ly_2010', period)
         f7my = foyer_fiscal('f7my_2010', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.creaen
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.aide_createurs_repreneurs_entreprise
 
         return (
-            P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2)
-            + P.hand * ((f7ky + f7gy) + (f7iy + f7my) / 2)
+            P.reduction * ((f7jy + f7fy) + (f7hy + f7ly) / 2)
+            + P.surplus_si_invalide * ((f7ky + f7gy) + (f7iy + f7my) / 2)
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -158,11 +158,11 @@ class creaen(Variable):
         '''
         f7ly = foyer_fiscal('f7ly_2010', period)
         f7my = foyer_fiscal('f7my_2010', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.creaen
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.aide_createurs_repreneurs_entreprise
 
         return (
-            P.base * (f7ly / 2)
-            + P.hand * (f7my / 2)
+            P.reduction * (f7ly / 2)
+            + P.surplus_si_invalide * (f7my / 2)
             )
 
 
@@ -493,10 +493,10 @@ class reduction_enfants_scolarises(Variable):
             )
 
 
-class intagr(Variable):
+class interets_paiements_differes_agriculteurs(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'intagr'
+    label = 'Intérêts paiement différé agriculteurs'
     definition_period = YEAR
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
@@ -506,9 +506,9 @@ class intagr(Variable):
         '''
         f7um = foyer_fiscal('f7um', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.intagr
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.interets_paiements_differes_agriculteurs
 
-        max1 = P.max * (1 + maries_ou_pacses)
+        max1 = P.plafond * (1 + maries_ou_pacses)
         return P.taux * min_(f7um, max1)
 
 
@@ -603,26 +603,26 @@ class cotisations_syndicales(Variable):
         return (P.taux * foyer_fiscal.sum(min_(cotisations_versees, plafond)))
 
 
-class repsoc(Variable):
+class interets_emprunt_reprise_societe(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'repsoc'
+    label = 'Intérêts emprunts pour reprise de société'
     definition_period = YEAR
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
         '''
-        Intérèts d'emprunts pour reprises de société
+        Intérêts d'emprunts pour reprise de société
         2003-
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7fh = foyer_fiscal('f7fh', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.repsoc
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.interets_emprunt_reprise_societe
 
-        seuil = P.seuil * (maries_ou_pacses + 1)
-        return P.taux * min_(f7fh, seuil)
+        plafond = P.plafond * (maries_ou_pacses + 1)
+        return P.taux * min_(f7fh, plafond)
 
 
-class resimm(Variable):
+class restauration_patrimoine_bati(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt au titre des dépenses de restauration immobilière - Dispositif Malraux"
@@ -636,9 +636,9 @@ class resimm(Variable):
         '''
         f7ra = foyer_fiscal('f7ra_2015', period)
         f7rb = foyer_fiscal('f7rb_2015', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
 
-        max1 = P.max
+        max1 = P.plafond
         max2 = max_(max1 - f7rb, 0)
         return P.taux_rb * min_(f7rb, max1) + P.taux_ra * min_(f7ra, max2)
 
@@ -651,9 +651,9 @@ class resimm(Variable):
         f7rb = foyer_fiscal('f7rb_2015', period)
         f7rc = foyer_fiscal('f7rc_2015', period)
         f7rd = foyer_fiscal('f7rd_2015', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
 
-        max1 = P.max
+        max1 = P.plafond
         max2 = max_(max1 - f7rd, 0)
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc, 0)
@@ -676,9 +676,9 @@ class resimm(Variable):
         f7rd = foyer_fiscal('f7rd_2015', period)
         f7re = foyer_fiscal('f7re_2016', period)
         f7rf = foyer_fiscal('f7rf_2016', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
 
-        max1 = P.max
+        max1 = P.plafond
         max2 = max_(max1 - f7rd, 0)
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc - f7rf, 0)
@@ -705,9 +705,9 @@ class resimm(Variable):
         f7rf = foyer_fiscal('f7rf_2016', period)
         f7sx = foyer_fiscal('f7sx_2017', period)
         f7sy = foyer_fiscal('f7sy_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
 
-        max1 = P.max
+        max1 = P.plafond
         max2 = max_(max1 - f7rd, 0)
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc - f7sy - f7rf, 0)
@@ -731,9 +731,9 @@ class resimm(Variable):
         f7rf = foyer_fiscal('f7rf_2016', period)
         f7sx = foyer_fiscal('f7sx_2017', period)
         f7sy = foyer_fiscal('f7sy_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
 
-        max1 = P.max
+        max1 = P.plafond
         max2 = max_(max1 - f7nx - f7sy - f7rf, 0)
 
         return (
@@ -755,20 +755,21 @@ class resimm(Variable):
         f7tx = foyer_fiscal('f7tx', period)
         f7ty = foyer_fiscal('f7ty', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
+        P0 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
 
         depenses_secteur_degrade = f7sy + f7nx
         depenses_secteur_patrimoine_remarquable = f7sx + f7ny
         depenses_PSMV_2017 = f7tx
         depenses_non_PSMV_2017 = f7ty
 
-        max1 = max_(P.max - depenses_secteur_degrade, 0)
-        max3 = max_(P.max2 - depenses_PSMV_2017, 0)
+        max1 = max_(P0.plafond - depenses_secteur_degrade, 0)
+        max3 = max_(P.plafond - depenses_PSMV_2017, 0)
 
         return (
             P.taux_30 * (
-                min_(depenses_secteur_degrade, P.max)
-                + min_(depenses_PSMV_2017, P.max2)
+                min_(depenses_secteur_degrade, P0.plafond)
+                + min_(depenses_PSMV_2017, P.plafond)
                 )
             + P.taux_22 * (
                 min_(depenses_secteur_patrimoine_remarquable, max1)
@@ -792,13 +793,14 @@ class resimm(Variable):
         # reports
         f7kz = foyer_fiscal('f7kz', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
+        P0 = parameters('2009-01-01').impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
 
-        base_nx = min_(P.max, f7nx)
-        base_ny = min_(P.max - f7nx, f7ny)
+        base_nx = min_(P.plafond, f7nx)
+        base_ny = min_(P.plafond - f7nx, f7ny)
 
-        base_tx = min_(P.max2, f7tx)
-        base_ty = min_(P.max2 - f7tx, f7ty)
+        base_tx = min_(P0.plafond, f7tx)
+        base_ty = min_(P0.plafond - f7tx, f7ty)
 
         ri = (f7kz
             + P.taux_30 * (base_nx + base_tx)
@@ -823,13 +825,14 @@ class resimm(Variable):
         f7kz = foyer_fiscal('f7kz', period)
         f7ky = foyer_fiscal('f7ky', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
+        P0 = parameters('2019-01-01').impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
 
-        base_nx = min_(P.max, f7nx)
-        base_ny = min_(P.max - f7nx, f7ny)
+        base_nx = min_(P.plafond, f7nx)
+        base_ny = min_(P.plafond - f7nx, f7ny)
 
-        base_tx = min_(P.max2, f7tx)
-        base_ty = min_(P.max2 - f7tx, f7ty)
+        base_tx = min_(P0.plafond, f7tx)
+        base_ty = min_(P0.plafond - f7tx, f7ty)
 
         ri = (f7kz + f7ky
             + P.taux_30 * (base_nx + base_tx)
@@ -855,13 +858,14 @@ class resimm(Variable):
         f7ky = foyer_fiscal('f7ky', period)
         f7kx = foyer_fiscal('f7kx', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
+        P0 = parameters('2019-01-01').impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
 
-        base_nx = min_(P.max, f7nx)
-        base_ny = min_(P.max - f7nx, f7ny)
+        base_nx = min_(P.plafond, f7nx)
+        base_ny = min_(P.plafond - f7nx, f7ny)
 
-        base_tx = min_(P.max2, f7tx)
-        base_ty = min_(P.max2 - f7tx, f7ty)
+        base_tx = min_(P0.plafond, f7tx)
+        base_ty = min_(P0.plafond - f7tx, f7ty)
 
         ri = (f7kz + f7ky + f7kx
             + P.taux_30 * (base_nx + base_tx)
@@ -883,10 +887,10 @@ class resimm(Variable):
         f7kx = foyer_fiscal('f7kx', period)
         f7kw = foyer_fiscal('f7kw', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.resimm
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_patrimoine_bati
 
-        base_tx = min_(P.max2, f7tx)
-        base_ty = min_(P.max2 - f7tx, f7ty)
+        base_tx = min_(P.plafond, f7tx)
+        base_ty = min_(P.plafond - f7tx, f7ty)
 
         ri = (f7ky + f7kx + f7kw
             + P.taux_30 * (base_tx)
@@ -895,10 +899,10 @@ class resimm(Variable):
         return ri
 
 
-class rsceha(Variable):
+class rente_survie(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'rsceha'
+    label = 'rente_survie'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -909,7 +913,7 @@ class rsceha(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         nbR = foyer_fiscal('nbR', period)
         f7gz = foyer_fiscal('f7gz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.rsceha
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.rente_survie
 
-        max1 = P.seuil1 + (nb_pac_majoration_plafond - nbR) * P.seuil2
+        max1 = P.plafond + (nb_pac_majoration_plafond - nbR) * P.increment
         return P.taux * min_(f7gz, max1)

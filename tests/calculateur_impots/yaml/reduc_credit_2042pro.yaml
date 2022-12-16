@@ -224,7 +224,7 @@
     iai: 45755.0
     irpp: -37755.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 145000.0
     rfr: 145000.0
 - name: reduc_credit_2042pro
@@ -281,7 +281,7 @@
     iai: 45397.0
     irpp: -40397.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 145000.0
     rfr: 145000.0
 - name: reduc_credit_2042pro
@@ -337,7 +337,7 @@
     iai: 45369.0
     irpp: -41169.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 145000.0
     rfr: 145000.0
 - name: reduc_credit_2042pro
@@ -395,6 +395,6 @@
     iai: 45172.0
     irpp: -40522.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 145000.0
     rfr: 145000.0

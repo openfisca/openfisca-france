@@ -1,8 +1,0 @@
-description: Plafond
-values:
-  2001-01-01:
-    value: 610
-  2005-01-01:
-    value: null
-metadata:
-  unit: currency

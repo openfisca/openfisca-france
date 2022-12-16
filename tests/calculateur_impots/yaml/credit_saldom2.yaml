@@ -160,7 +160,7 @@
     iai: 7793.0
     irpp: -1793.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     rfr: 45000.0
 
@@ -201,7 +201,7 @@
     iai: 7506.0
     irpp: -756.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     rfr: 45000.0
 - name: credit_saldom2
@@ -241,6 +241,6 @@
     iai: 7506.0
     irpp: -1506.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     rfr: 45000.0

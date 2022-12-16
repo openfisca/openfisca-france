@@ -183,7 +183,7 @@
     iai: 2356.0
     irpp: -2356.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     rfr: 45000.0
 - name: reduc_pinel_dom - test plafond 300 000
@@ -236,7 +236,7 @@
     iai: 24760.0
     irpp: -24760.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 137695.0
     rfr: 137695.0
 - name: reduc_pinel_dom
@@ -293,7 +293,7 @@
     iai: 1481.0
     irpp: -1481.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     rfr: 45000.0
 - name: reduc_pinel_dom
@@ -352,7 +352,7 @@
     iai: 395.0
     irpp: -395.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     rfr: 45000.0
 - name: reduc_pinel_dom
@@ -416,7 +416,7 @@
     iai: 0.0
     irpp: -0.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     rfr: 45000.0
 - name: reduc_pinel_dom
@@ -477,6 +477,6 @@
     # iai: 29266.0
     # irpp: -29266.0
     # nbptr: 1.0
-    # patnat: 0.0
+    # protection_patrimoine_naturel: 0.0
     # rbg: 137171.0
     # rfr: 137171.0

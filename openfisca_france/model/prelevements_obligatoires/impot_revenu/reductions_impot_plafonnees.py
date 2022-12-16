@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 #  - Censi-Bouvard (location_meublee),
 #  - Scellier (scelli),
 #  - l'investissement pour le logement touristique (invlst),
-#  - la préservation du patrimoine naturel (patnat).
+#  - la préservation du patrimoine naturel (protection_patrimoine_naturel).
 # Tous ces dispostifs ont été introduits avant 2013, or si le montant du plafonnement global est le même
 # depuis 2013, il a été revu à la baisse à plusieurs occasions entre 2009 et 2013. Les dépenses réalisées avant 2013 donnent donc droit à des réductions
 # d'impôts, pour les déclarations après 2013, supérieures au plafond en vigueur l'année de la déclaration. Pour le moment on leur applique le montant en vigueur
@@ -42,7 +42,7 @@ class reductions_plafonnees(Variable):
             'location_meublee',  # Censi-Bouvard, plafonnement approximatif
             'invlst',  # Approximation
             'invrev',
-            'patnat',  # Approximation
+            'protection_patrimoine_naturel',  # Approximation
             'rehab',
             'mohist',
             'souscriptions_parts_fcpi_fip',
@@ -164,26 +164,26 @@ class reductions(Variable):
         '''
         reductions = [
             # Depuis 2002
-            'accult', 'adhcga', 'assvie', 'cappme', 'cappme_esus_sfs',
+            'accult', 'frais_de_comptabilite', 'assvie', 'cappme', 'cappme_esus_sfs',
             'reduction_cotisations_syndicales',
             'accueil_dans_etablissement_personnes_agees', 'dfppce', 'doment', 'domlog',
             'reduction_enfants_scolarises', 'gardenf', 'intemp', 'ri_investissement_forestier', 'invrev',
-            'prestations_compensatoires', 'rsceha', 'ri_saldom', 'souscriptions_parts_fcpi_fip',
+            'prestations_compensatoires', 'rente_survie', 'ri_saldom', 'souscriptions_parts_fcpi_fip',
             # Introduites en 2003
-            'mecena', 'repsoc',
+            'mecena', 'interets_emprunt_reprise_societe',
             # Introduites en 2004
-            'intcon', 'invlst',
+            'interets_prets_consommation', 'invlst',
             # Introduites en 2005
-            'intagr',
+            'interets_paiements_differes_agriculteurs',
             # Introduites en 2006
             'creaen', 'defense_forets_contre_incendies', 'sofica',
             # Introduites en 2008
             'mohist',
             # Introduites en 2009
-            'domsoc', 'codev', 'location_meublee', 'resimm', 'scelli',
+            'domsoc', 'codev', 'location_meublee', 'restauration_patrimoine_bati', 'scelli',
             'sofipe',
             # Introduites en 2010
-            'patnat',
+            'protection_patrimoine_naturel',
             # Introduites en 2013
             'reduction_impot_exceptionnelle',
             'duflot_pinel_denormandie_metropole',
@@ -949,7 +949,7 @@ class cappme(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7cf = foyer_fiscal('f7cf', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -963,7 +963,7 @@ class cappme(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7cf = foyer_fiscal('f7cf', period)
         f7cl = foyer_fiscal('f7cl', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf + f7cl
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -978,7 +978,7 @@ class cappme(Variable):
         f7cf = foyer_fiscal('f7cf', period)
         f7cl = foyer_fiscal('f7cl', period)
         f7cm = foyer_fiscal('f7cm', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf + f7cl + f7cm
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -994,7 +994,7 @@ class cappme(Variable):
         f7cl = foyer_fiscal('f7cl', period)
         f7cm = foyer_fiscal('f7cm', period)
         f7cn = foyer_fiscal('f7cn', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf + f7cl + f7cm + f7cn
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -1011,7 +1011,7 @@ class cappme(Variable):
         f7cm = foyer_fiscal('f7cm', period)
         f7cn = foyer_fiscal('f7cn', period)
         f7cu = foyer_fiscal('f7cu', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cf + f7cl + f7cm + f7cn + f7cu
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -1030,7 +1030,7 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cl + f7cm + f7cn + f7cq
         seuil = P.seuil_tpe * (maries_ou_pacses + 1) * (f7cu > 0) + P.seuil * (maries_ou_pacses + 1) * (f7cu <= 0)
@@ -1049,7 +1049,7 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         # TODO: gérer les changements de situation familiale
         base = f7cl + f7cm + f7cn
@@ -1076,7 +1076,7 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         base = f7cl + f7cm
         seuil1 = P.seuil * (maries_ou_pacses + 1)
@@ -1104,7 +1104,7 @@ class cappme(Variable):
         f7cr = foyer_fiscal('f7cr', period)
         f7cu = foyer_fiscal('f7cu', period)
         report_cappme_2013_plaf_general = foyer_fiscal('f7cy', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1156,7 +1156,7 @@ class cappme(Variable):
         f7cv = foyer_fiscal('f7cv', period)
         f7cy = foyer_fiscal('f7cy', period)
         f7dy = foyer_fiscal('f7dy', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1220,7 +1220,7 @@ class cappme(Variable):
         f7dy = foyer_fiscal('f7dy', period)
         f7ey = foyer_fiscal('f7ey', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1279,7 +1279,7 @@ class cappme(Variable):
         f7ey = foyer_fiscal('f7ey', period)
         f7fy = foyer_fiscal('f7fy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1338,7 +1338,7 @@ class cappme(Variable):
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1394,7 +1394,7 @@ class cappme(Variable):
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1449,7 +1449,7 @@ class cappme(Variable):
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_PME = P.seuil * (maries_ou_pacses + 1)
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1507,7 +1507,7 @@ class cappme(Variable):
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
 
@@ -1565,7 +1565,7 @@ class cappme_esus_sfs(Variable):
         f7cs = foyer_fiscal('f7cs', period)
         f7bs = foyer_fiscal('f7bs', period)
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.cappme
+        P = parameters(period).impot_revenu.calcul_reductions_impots.pme.souscription_capital
 
         plafond_TPE = P.seuil_tpe * (maries_ou_pacses + 1)
 
@@ -1677,10 +1677,10 @@ class gardenf(Variable):
             )
 
 
-class intcon(Variable):
+class interets_prets_consommation(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'intcon'
+    label = 'Intérêts prêts consommation'
     end = '2005-12-31'
     definition_period = YEAR
 
@@ -1690,9 +1690,9 @@ class intcon(Variable):
         2004-2005
         '''
         f7uh = foyer_fiscal('f7uh_2004', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.intcon
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.interets_prets_consommation
 
-        max1 = P.max
+        max1 = P.plafond
         return P.taux * min_(f7uh, max1)
 
 
@@ -3442,12 +3442,12 @@ class mohist(Variable):
         2008-
         '''
         f7nz = foyer_fiscal('f7nz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.mohist
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.restauration_monuments_historiques
 
-        return P.taux * min_(f7nz, P.max)
+        return P.taux * min_(f7nz, P.plafond)
 
 
-class patnat(Variable):
+class protection_patrimoine_naturel(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Réduction d'impôt en faveur des dépenses de préservation du patrimoine naturel"
@@ -3461,9 +3461,9 @@ class patnat(Variable):
         2010
         '''
         f7ka = foyer_fiscal('f7ka_2013', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.patnat
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.protection_patrimoine_naturel
 
-        max1 = P.max
+        max1 = P.plafond
         return P.taux * min_(f7ka, max1)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
@@ -3473,9 +3473,9 @@ class patnat(Variable):
         '''
         f7ka = foyer_fiscal('f7ka_2013', period)
         f7kb = foyer_fiscal('f7kb_2016', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.patnat
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.protection_patrimoine_naturel
 
-        max1 = P.max
+        max1 = P.plafond
         return P.taux * min_(f7ka, max1) + f7kb
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -3486,9 +3486,9 @@ class patnat(Variable):
         f7ka = foyer_fiscal('f7ka_2013', period)
         f7kb = foyer_fiscal('f7kb_2016', period)
         f7kc = foyer_fiscal('f7kc_2017', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.patnat
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.protection_patrimoine_naturel
 
-        max1 = P.max
+        max1 = P.plafond
         return P.taux * min_(f7ka, max1) + f7kb + f7kc
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -3500,9 +3500,9 @@ class patnat(Variable):
         f7kb = foyer_fiscal('f7kb_2016', period)
         f7kc = foyer_fiscal('f7kc_2017', period)
         f7kd = foyer_fiscal('f7kd_2018', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.patnat
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.protection_patrimoine_naturel
 
-        max1 = P.max
+        max1 = P.plafond
         return P.taux * min_(f7ka, max1) + f7kb + f7kc + f7kd
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -3579,8 +3579,8 @@ class rehab(Variable):
         '''
         f7xx = foyer_fiscal('f7xx', period)  # TO DO: Coder le plafond glissant sur 3 années
 
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.rehab
-        depenses_2017 = min_(P.max, f7xx)
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.rehabilitation_residences_touristiques
+        depenses_2017 = min_(P.plafond, f7xx)
 
         return (P.taux * depenses_2017)
 

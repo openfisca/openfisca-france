@@ -1,8 +1,0 @@
-description: Par enfant à charge
-values:
-  2001-01-01:
-    value: 150
-  2005-01-01:
-    value: null
-metadata:
-  unit: currency
