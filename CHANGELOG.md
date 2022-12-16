@@ -13,6 +13,7 @@
   - Retrait de paramètres en doublon
   - Retire `prestations_sociales.fonc`
   - Nettoyage de `supplement_familiall_traitement`
+  - Renome `marche_travail.remuneration_dans_fonction_publique.IM_min` en `marche_travail.remuneration_dans_fonction_publique.indice_majore_minimal`
 
 # 129.0.0 [#1944](https://github.com/openfisca/openfisca-france/pull/1944)
 
