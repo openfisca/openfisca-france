@@ -168,7 +168,7 @@ class reductions(Variable):
             'reduction_cotisations_syndicales',
             'accueil_dans_etablissement_personnes_agees', 'dfppce', 'doment', 'domlog',
             'reduction_enfants_scolarises', 'gardenf', 'intemp', 'ri_investissement_forestier', 'invrev',
-            'prestations_compensatoires', 'rsceha', 'ri_saldom', 'souscriptions_parts_fcpi_fip',
+            'prestations_compensatoires', 'rente_survie', 'ri_saldom', 'souscriptions_parts_fcpi_fip',
             # Introduites en 2003
             'mecena', 'interets_emprunt_reprise_societe',
             # Introduites en 2004

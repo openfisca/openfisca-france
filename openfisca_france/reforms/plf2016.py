@@ -141,14 +141,14 @@ class plf2016_counterfactual(Reform):
             reduction_impot_exceptionnelle = foyer_fiscal('reduction_impot_exceptionnelle', period)
             interets_emprunt_reprise_societe = foyer_fiscal('interets_emprunt_reprise_societe', period)
             resimm = foyer_fiscal('resimm', period)
-            rsceha = foyer_fiscal('rsceha', period)
+            rente_survie = foyer_fiscal('rente_survie', period)
             saldom = foyer_fiscal('ri_saldom', period)
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
             souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
             total_reductions = accult + frais_de_comptabilite + cappme + creaen + accueil_dans_etablissement_personnes_agees + defense_forets_contre_incendies + dfppce + doment + domlog +\
                 duflot + duflot_om + reduction_enfants_scolarises + gardenf + interets_paiements_differes_agriculteurs + investissement_forestier + invlst + location_meublee + mecena + mohist + protection_patrimoine_naturel +\
-                prestations_compensatoires + interets_emprunt_reprise_societe + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
+                prestations_compensatoires + interets_emprunt_reprise_societe + resimm + rente_survie + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
 
             return min_(ip_net, total_reductions)
 
@@ -238,14 +238,14 @@ class plf2016_counterfactual_2014(Reform):
             reduction_impot_exceptionnelle = foyer_fiscal('reduction_impot_exceptionnelle', period)
             interets_emprunt_reprise_societe = foyer_fiscal('interets_emprunt_reprise_societe', period)
             resimm = foyer_fiscal('resimm', period)
-            rsceha = foyer_fiscal('rsceha', period)
+            rente_survie = foyer_fiscal('rente_survie', period)
             saldom = foyer_fiscal('ri_saldom', period)
             scelli = foyer_fiscal('scelli', period)
             sofica = foyer_fiscal('sofica', period)
             souscriptions_parts_fcpi_fip = foyer_fiscal('souscriptions_parts_fcpi_fip', period)
             total_reductions = accult + frais_de_comptabilite + cappme + creaen + accueil_dans_etablissement_personnes_agees + defense_forets_contre_incendies + dfppce + doment + domlog +\
                 duflot + duflot_om + reduction_enfants_scolarises + gardenf + interets_paiements_differes_agriculteurs + investissement_forestier + invlst + location_meublee + mecena + mohist + protection_patrimoine_naturel +\
-                prestations_compensatoires + interets_emprunt_reprise_societe + resimm + rsceha + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
+                prestations_compensatoires + interets_emprunt_reprise_societe + resimm + rente_survie + saldom + scelli + sofica + souscriptions_parts_fcpi_fip + reduction_impot_exceptionnelle
 
             return min_(ip_net, total_reductions)
 

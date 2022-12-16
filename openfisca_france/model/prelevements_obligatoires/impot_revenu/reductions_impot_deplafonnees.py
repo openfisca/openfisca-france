@@ -28,7 +28,7 @@ class reductions_deplafonnees(Variable):
             'resimm',  # Malraux, non plafonnées pour les investissements réalisés après 2013
             'reduction_enfants_scolarises',
             'accult',
-            'rsceha',
+            'rente_survie',
             ]
 
         # Step 4: Get other uncapped reductions
@@ -899,10 +899,10 @@ class resimm(Variable):
         return ri
 
 
-class rsceha(Variable):
+class rente_survie(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'rsceha'
+    label = 'rente_survie'
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -913,7 +913,7 @@ class rsceha(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         nbR = foyer_fiscal('nbR', period)
         f7gz = foyer_fiscal('f7gz', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.rsceha
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.rente_survie
 
-        max1 = P.seuil1 + (nb_pac_majoration_plafond - nbR) * P.seuil2
+        max1 = P.plafond + (nb_pac_majoration_plafond - nbR) * P.increment
         return P.taux * min_(f7gz, max1)
