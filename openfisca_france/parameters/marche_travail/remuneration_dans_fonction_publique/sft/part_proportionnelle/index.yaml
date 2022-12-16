@@ -3,6 +3,6 @@ metadata:
   ux_name: Part proportionnelle
   description_en: Proportional share
   order:
-  - un_enfant
   - deux_enfants
+  - trois_enfants
   - enfant_supplementaire
