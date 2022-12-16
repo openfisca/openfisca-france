@@ -1692,7 +1692,7 @@ class interets_prets_a_la_consommation(Variable):
         f7uh = foyer_fiscal('f7uh_2004', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.divers.interets_prets_a_la_consommation
 
-        max1 = P.max
+        max1 = P.plafond
         return P.taux * min_(f7uh, max1)
 
 
