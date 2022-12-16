@@ -172,7 +172,7 @@ class reductions(Variable):
             # Introduites en 2003
             'mecena', 'interets_emprunt_reprise_societe',
             # Introduites en 2004
-            'interets_prets_a_la_consommation', 'invlst',
+            'interets_prets_consommation', 'invlst',
             # Introduites en 2005
             'interets_paiements_differes_agriculteurs',
             # Introduites en 2006
@@ -1677,7 +1677,7 @@ class gardenf(Variable):
             )
 
 
-class interets_prets_a_la_consommation(Variable):
+class interets_prets_consommation(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Intérêts prêts consommation'
@@ -1690,7 +1690,7 @@ class interets_prets_a_la_consommation(Variable):
         2004-2005
         '''
         f7uh = foyer_fiscal('f7uh_2004', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.interets_prets_a_la_consommation
+        P = parameters(period).impot_revenu.calcul_reductions_impots.divers.interets_prets_consommation
 
         max1 = P.plafond
         return P.taux * min_(f7uh, max1)
