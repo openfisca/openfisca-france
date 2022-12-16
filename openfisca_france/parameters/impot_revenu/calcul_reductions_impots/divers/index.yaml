@@ -5,15 +5,15 @@ metadata:
   order:
   - formation_chefs_entreprises
   - assurances_vie
-  - frais_comptabilite
+  - frais_de_comptabilite
   - rente_survie
   - rachat_entreprise
-  - versement_fond_salarial
-  - prets_consommation
+  - versement_fonds_salarial
+  - interets_prets_consommation
   - interets_emprunt_reprise_societe
   - interets_paiements_differes_agriculteurs
   - aide_createurs_repreneurs_entreprise
-  - depenses_restauration_monuments_historiques
+  - restauration_monuments_historiques
   - restauration_patrimoine_bati
   - protection_patrimoine_naturel
   - rehabilitation_residences_touristiques
