@@ -3,7 +3,7 @@ metadata:
   ux_name: Divers
   description_en: Other tax reductions (1979 -)
   order:
-  -formation_chefs_entreprises
+  - formation_chefs_entreprises
   - assurances_vie
   - frais_comptabilite
   - rente_survie
