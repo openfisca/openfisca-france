@@ -6,6 +6,8 @@ values:
     value: 11167
   2019-01-01:
     value: 11342
+  2020-01-01:
+    value: 11478
 metadata:
   unit: currency
   reference:
@@ -18,3 +20,6 @@ metadata:
     2019-01-01:
       title: Arrêté du 29/07/1987
       href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000038053742/2019-01-01/
+    2020-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000041461671/2020-01-02/
