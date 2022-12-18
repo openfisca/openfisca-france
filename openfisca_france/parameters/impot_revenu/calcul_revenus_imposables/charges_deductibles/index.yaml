@@ -1,4 +1,16 @@
-description: Charges déductibles
+description: Charges déductibles du revenu brut global (1975 -)
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  ux_name: Charges déductibles
+  description_en: Deductible charges of global gross income (1975 -)
+  order:
+  - deduction_frais_accueil_une_personne_plus_75_ans
+  - deduction_pensions_alimentaires
+  - deduction_versements_perp
+  - reduction_souscriptions_parts_sofica
+  - acquisition_navire
+  - deductions_navires_commerce
+  - deductions_pertes_en_capital_societes_nouvelles
+  - deductions_souscription_parts_sofipeche
+  - deductions_investissements_en_actions
+  - reduction_versement_compte_epargne_codev
+  - deductions_grosses_reparations
