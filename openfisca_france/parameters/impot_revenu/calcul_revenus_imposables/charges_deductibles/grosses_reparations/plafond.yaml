@@ -1,10 +1,14 @@
-description: Plafond des dépenses
+description: Plafond des dépenses de la déduction pour grosses réparations des nus-propriétaires
 values:
+  1973-01-01:
+    value: null
   2009-01-01:
     value: 25000
   2018-01-01:
     value: null
 metadata:
+  ux_name: Plafond
+  ipp_csv_id: plaf_grossedepense
   last_review: "2022-08-11"
   unit: currency
   reference:
