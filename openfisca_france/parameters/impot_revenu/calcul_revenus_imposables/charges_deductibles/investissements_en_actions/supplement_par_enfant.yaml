@@ -217,3 +217,5 @@ metadata:
     2019-01-01: "2019-12-29"
     2020-01-01: "2020-12-30"
     2021-01-01: "2021-12-31"
+documentation: |
+  Détaxation du revenu investi en actions : détaxation limitée à plaf_action + increment_action par enfant jusqu'au deuxième + 2*increment_action par enfant à charge à partir du 3ème enfant
