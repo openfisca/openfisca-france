@@ -8,6 +8,8 @@ values:
     value: 8377
   2021-01-01:
     value: 8416
+  2022-01-01:
+    value: 8486
 metadata:
   unit: currency
   reference:
