@@ -8,6 +8,8 @@ values:
     value: 30521
   2020-01-01:
     value: 30887
+  2021-01-01:
+    value: 31029
 metadata:
   unit: currency
   reference:
