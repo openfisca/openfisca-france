@@ -1,4 +1,6 @@
-description: Déduction pour versements sur PERP
+description: Déduction pour versements sur un Plan Epargne Retraite Populaire (PERP)
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  ux_name: Versements PERP
+  order:
+  - minimum
+  - maximum
