@@ -1,0 +1,5 @@
+description: Déductions pour navires de commerce
+metadata:
+  ux_name: Navires de commerce
+  order:
+    - plafond
