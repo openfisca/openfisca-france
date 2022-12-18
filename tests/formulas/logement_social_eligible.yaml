@@ -1,5 +1,5 @@
 - name: Logement social - Paris et communes limitrophes
-  period: 2018-01
+  period: 2017-01
   input:
     logement_social_categorie_menage: [categorie_1, categorie_1, categorie_1]
     zone_logement_social: [paris_communes_limitrophes, paris_communes_limitrophes, paris_communes_limitrophes]
