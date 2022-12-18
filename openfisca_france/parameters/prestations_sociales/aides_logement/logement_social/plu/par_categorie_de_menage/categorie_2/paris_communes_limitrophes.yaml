@@ -2,6 +2,8 @@ description: Catégorie 2 / Paris et communes limitrophes - Plafonds de ressourc
 values:
   2018-01-01:
     value: 34904
+  2019-01-01:
+    value: 35452
 metadata:
   unit: currency
   reference:

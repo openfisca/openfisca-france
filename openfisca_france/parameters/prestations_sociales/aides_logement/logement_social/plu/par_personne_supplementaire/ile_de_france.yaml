@@ -2,6 +2,8 @@ description: Île-de-France - Par personne supplémentaire
 values:
   2018-01-01:
     value: 7460
+  2019-01-01:
+    value: 7577
 metadata:
   unit: currency
   reference:

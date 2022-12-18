@@ -2,6 +2,8 @@ description: Catégorie 4 / Autres régions - Plafonds de ressources annuelles a
 values:
   2018-01-01:
     value: 39364
+  2019-01-01:
+    value: 39982
 metadata:
   unit: currency
   reference:

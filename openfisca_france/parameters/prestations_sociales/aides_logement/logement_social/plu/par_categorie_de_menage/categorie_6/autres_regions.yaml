@@ -2,6 +2,8 @@ description: Catégorie 6 / Autres régions - Plafonds de ressources annuelles a
 values:
   2018-01-01:
     value: 52189
+  2019-01-01:
+    value: 53008
 metadata:
   unit: currency
   reference:

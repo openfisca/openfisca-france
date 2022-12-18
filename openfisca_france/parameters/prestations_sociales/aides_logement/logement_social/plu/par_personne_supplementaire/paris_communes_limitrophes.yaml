@@ -2,6 +2,8 @@ description: Paris et communes limitrophes - Par personne supplémentaire
 values:
   2018-01-01:
     value: 8150
+  2019-01-01:
+    value: 8278
 metadata:
   unit: currency
   reference:

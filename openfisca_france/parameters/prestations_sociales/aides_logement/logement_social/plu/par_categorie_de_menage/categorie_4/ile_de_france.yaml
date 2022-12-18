@@ -2,6 +2,8 @@ description: Catégorie 4 / Île-de-France - Plafonds de ressources annuelles ap
 values:
   2018-01-01:
     value: 50257
+  2019-01-01:
+    value: 51046
 metadata:
   unit: currency
   reference:
