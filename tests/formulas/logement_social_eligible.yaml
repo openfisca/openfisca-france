@@ -9,4 +9,5 @@
       2017: [12700, 12700, 12700, 11428, 12700] # 11428 < 0.9*12700
       2018: [12700, 12700, 12700, 12700, 11428] # 11428 < 0.9*12700
   output:
+    logement_social_plafond_ressources: [12848, 12848, 12848, 12848, 12848]
     logement_social_eligible: [true, false, false, true, true]
