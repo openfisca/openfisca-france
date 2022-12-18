@@ -172,3 +172,7 @@ class logement_social_eligible(Variable):
         revenu_fiscal_de_reference = famille.demandeur.foyer_fiscal('rfr', period.n_2)
 
         return parent_majeur * (revenu_fiscal_de_reference <= logement_social_plafond_ressources)
+# TODO  : Modification de la formule : Le montant des ressources à prendre en considération pour l'attribution d'un logement HLM,
+# est égal à la somme des revenus fiscaux de référence de chaque personne composant le ménage au titre de l'année n-2, soit 2016 pour 2018.
+# Toutefois, il est tenu compte des revenus de l'année n-1 ou des revenus des douze derniers mois, s'ils sont inférieurs d'au moins 10 % par
+# rapport à ceux de l'année n-2.
