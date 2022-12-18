@@ -1,0 +1,102 @@
+description: Abattement exceptionnel (1978)
+metadata:
+  description_en: Temporary tax exemption (1978)
+  reference:
+    1978-01-01:
+      title: Loi 78-1239 du 29/12/1978 (LF pour 1979), art. 2, III.
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006273132&cidTexte=JORFTEXT000000886458
+  official_journal_date:
+    1978-01-01: "1978-12-30"
+  notes:
+    1978-01-01:
+    - title: L'abattement de 2000 FRF s'applique au foyer dont le nombre de part est égal à 1 et dont les revenus nets globaux sont inférieurs à 16000 FRF et constitués de traitements et salaires au moins pour moitié.
+  order:
+  - date_entree_en_vigueur
+  - en_faveur_certains_contribuables_seuls_1
+  - en_faveur_personnes_agees_invalides_2
+en_faveur_certains_contribuables_seuls_1:
+  description: En faveur de certains contribuables seuls (1)
+  metadata:
+    order:
+    - abattement
+    - maximum_revenu_net_global
+  abattement:
+    description: Abattement
+    values:
+      1977-01-01:
+        value: null
+      1978-01-01:
+        value: 2000
+      1979-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: abat_contrib_seuls
+      unit: currency
+  maximum_revenu_net_global:
+    description: Maximum revenu net global
+    values:
+      1977-01-01:
+        value: null
+      1978-01-01:
+        value: 16000
+      1979-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: plaf_contrib_seuls
+      unit: currency
+en_faveur_personnes_agees_invalides_2:
+  description: En faveur des personnes âgées ou invalides (2)
+  metadata:
+    order:
+    - seuil_1_revenu_net_global
+    - seuil_2_revenu_net_global
+    - abattement_1
+    - abattement_2
+  abattement_1:
+    description: Abattement 1
+    values:
+      1977-01-01:
+        value: null
+      1978-01-01:
+        value: 3720
+      1979-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: abat_contrib_ages_invalides_abat1
+      unit: currency
+  abattement_2:
+    description: Abattement 2
+    values:
+      1977-01-01:
+        value: null
+      1978-01-01:
+        value: 1860
+      1979-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: abat_contrib_ages_invalides_abat2
+      unit: currency
+  seuil_1_revenu_net_global:
+    description: seuil 1 de revenu net global
+    values:
+      1977-01-01:
+        value: null
+      1978-01-01:
+        value: 23000
+      1979-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: abat_contrib_ages_invalides_plaf1
+      unit: currency
+  seuil_2_revenu_net_global:
+    description: seuil 2 de revenu net global
+    values:
+      1977-01-01:
+        value: null
+      1978-01-01:
+        value: 37000
+      1979-01-01:
+        value: null
+    metadata:
+      ipp_csv_id: abat_contrib_ages_invalides_plaf2
+      unit: currency
