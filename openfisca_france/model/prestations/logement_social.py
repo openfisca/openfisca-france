@@ -165,14 +165,19 @@ class logement_social_eligible(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     label = 'Logement social - Éligibilité'
-
+    ''' Le montant des ressources à prendre en considération pour l'attribution d'un logement HLM,
+        est égal à la somme des revenus fiscaux de référence de chaque personne composant le ménage au titre de l'année n-2, soit 2016 pour 2018.
+        Toutefois, il est tenu compte des revenus de l'année n-1 ou des revenus des douze derniers mois, s'ils sont inférieurs d'au moins 10 % par
+        rapport à ceux de l'année n-2.'''
     def formula_2017(famille, period, parameters):
         parent_majeur = famille.any(famille.members('majeur', period), role = Famille.PARENT)
         logement_social_plafond_ressources = famille('logement_social_plafond_ressources', period)
-        revenu_fiscal_de_reference = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        rfr_n0 = famille.demandeur.foyer_fiscal('rfr', period.start.offset('first-of', 'year').period('year'))
+        rfr_n1 = famille.demandeur.foyer_fiscal('rfr', period.last_year)
+        rfr_n2 = famille.demandeur.foyer_fiscal('rfr', period.n_2)
 
-        return parent_majeur * (revenu_fiscal_de_reference <= logement_social_plafond_ressources)
-# TODO  : Modification de la formule : Le montant des ressources à prendre en considération pour l'attribution d'un logement HLM,
-# est égal à la somme des revenus fiscaux de référence de chaque personne composant le ménage au titre de l'année n-2, soit 2016 pour 2018.
-# Toutefois, il est tenu compte des revenus de l'année n-1 ou des revenus des douze derniers mois, s'ils sont inférieurs d'au moins 10 % par
-# rapport à ceux de l'année n-2.
+        elig = (rfr_n2 <= logement_social_plafond_ressources)
+        + ((rfr_n1 <= 0.9 * rfr_n2) * (rfr_n1 <= logement_social_plafond_ressources))
+        + ((rfr_n0 <= 0.9 * rfr_n2) * (rfr_n0 <= logement_social_plafond_ressources))
+
+        return parent_majeur * elig
