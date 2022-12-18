@@ -1,7 +1,9 @@
-description: Catégorie 2 / Paris et communes limitrophes - Plafonds de ressources annuelles imposables
+description: Catégorie 2 / Paris et communes limitrophes - Plafonds de ressources annuelles applicables aux logements financés avec un Prêt Locatif Aidé d'Intégration (PLAI)
 values:
   2017-01-01:
     value: 20756
+  2018-01-01:
+    value: 20943
 metadata:
   unit: currency
   reference:

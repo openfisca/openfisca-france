@@ -1,7 +1,9 @@
-description: Catégorie 4 / Autres régions - Plafonds de ressources annuelles imposables
+description: Catégorie 4 / Autres régions - Plafonds de ressources annuelles applicables aux logements financés avec un Prêt Locatif Aidé d'Intégration (PLAI)
 values:
   2017-01-01:
     value: 21575
+  2018-01-01:
+    value: 21769
 metadata:
   unit: currency
   reference:

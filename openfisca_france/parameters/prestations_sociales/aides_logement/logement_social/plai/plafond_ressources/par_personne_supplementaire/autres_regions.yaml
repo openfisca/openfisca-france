@@ -2,6 +2,8 @@ description: Autres régions - Par personne supplémentaire
 values:
   2017-01-01:
     value: 3173
+  2018-01-01:
+    value: 3202
 metadata:
   unit: currency
   reference:

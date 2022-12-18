@@ -1,0 +1,10 @@
+description: Catégorie 2 / Île-de-France - Plafonds de ressources annuelles applicables aux logements financés avec le Prêt Locatif à Usage Social (PLUS)
+values:
+  2018-01-01:
+    value: 34904
+metadata:
+  unit: currency
+  reference:
+    2018-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000036484518/2018-01-01/

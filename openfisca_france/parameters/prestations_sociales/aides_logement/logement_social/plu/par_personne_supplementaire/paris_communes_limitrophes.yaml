@@ -1,0 +1,10 @@
+description: Paris et communes limitrophes - Par personne supplémentaire
+values:
+  2018-01-01:
+    value: 8150
+metadata:
+  unit: currency
+  reference:
+    2018-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000036484518/2018-01-01/
