@@ -6,6 +6,8 @@ values:
     value: 27540
   2020-01-01:
     value: 27870
+  2021-01-01:
+    value: 27998
 metadata:
   unit: currency
   reference:
