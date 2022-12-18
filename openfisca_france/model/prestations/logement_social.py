@@ -176,8 +176,12 @@ class logement_social_eligible(Variable):
         rfr_n1 = famille.demandeur.foyer_fiscal('rfr', period.last_year)
         rfr_n2 = famille.demandeur.foyer_fiscal('rfr', period.n_2)
 
-        elig = (rfr_n2 <= logement_social_plafond_ressources)
-        + ((rfr_n1 <= 0.9 * rfr_n2) * (rfr_n1 <= logement_social_plafond_ressources))
-        + ((rfr_n0 <= 0.9 * rfr_n2) * (rfr_n0 <= logement_social_plafond_ressources))
+        elig = (rfr_n2 <= logement_social_plafond_ressources) + ((rfr_n1 < 0.9 * rfr_n2) * (rfr_n1 < logement_social_plafond_ressources)) + ((rfr_n0 < 0.9 * rfr_n2) * (rfr_n0 < logement_social_plafond_ressources))
+       
+        print((rfr_n2 <= logement_social_plafond_ressources))
+        print(((rfr_n1 < 0.9 * rfr_n2) * (rfr_n1 < logement_social_plafond_ressources)))
+        print(((rfr_n0 < 0.9 * rfr_n2) * (rfr_n0 < logement_social_plafond_ressources)))
+        print(elig)
+        print( False+False+True)
 
         return parent_majeur * elig
