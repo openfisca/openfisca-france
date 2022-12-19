@@ -93,7 +93,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     fonc.add_child('contract', ParameterNode('contract', data=dict(description='Cotisations sociales employeur du secteur public pour les agents contractuels')))
 
     # Contractuel
-    pat.children['fonc'].children['contract'] = public.ircantec.taux_cotisations_theoriques.employeur
+    pat.children['fonc'].children['contract'] = public.ircantec.taux_cotisations_appeles.employeur
     pat.children['fonc'].children['contract'].children.update(commun.children)
 
     # Etat
@@ -245,7 +245,7 @@ def build_sal(node_json):
     sal.children['public_titulaire_hospitaliere'] = sal.children['fonc'].children['colloc']
 
     # Contractuel
-    sal.children['fonc'].children['contract'] = public.ircantec.taux_cotisations_theoriques.salarie
+    sal.children['fonc'].children['contract'] = public.ircantec.taux_cotisations_appeles.salarie
     sal.children['public_non_titulaire'] = sal.children['fonc'].children['contract']
 
     # Commun
@@ -309,4 +309,5 @@ def preprocess_parameters(parameters):
         for category, bareme in baremes.items():
             if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
+
     return parameters
