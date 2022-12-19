@@ -3031,7 +3031,7 @@ class rpns_imposables(Variable):
             max_(
                 0,
                 (aacc_impn + (aacc_gits > 0) * max_(
-                    micro.microentreprise.montant_minimum, 
+                    micro.microentreprise.montant_minimum,
                     aacc_gits * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
                     ))
                 + (aacc_imps > 0) * max_(
@@ -3054,7 +3054,7 @@ class rpns_imposables(Variable):
 
         # # E revenus non commerciaux non professionnels
         # regime déclaratif special ou micro-bnc
-        mncn_timp = abat_rpns(mncn_impo, micro.microentreprise.regime_micro_bnc)
+        mncn_timp = abat_rpns(mncn_impo, micro.microentreprise.regime_micro_bnc.services)
 
         # régime de la déclaration controlée
         # total 11
@@ -3063,7 +3063,7 @@ class rpns_imposables(Variable):
 
         # # D revenus non commerciaux professionnels
         # regime déclaratif special ou micro-bnc
-        mbnc_timp = abat_rpns(mbnc_impo, micro.microentreprise.regime_micro_bnc)
+        mbnc_timp = abat_rpns(mbnc_impo, micro.microentreprise.regime_micro_bnc.services)
 
         # regime de la déclaration contrôlée bénéficiant de l'abattement association agréée
         abnc_timp = abnc_impo - abnc_defi
