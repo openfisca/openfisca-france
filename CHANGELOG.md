@@ -1,6 +1,6 @@
 # Changelog
 
-### 132.0.1 [#1923](https://github.com/openfisca/openfisca-france/pull/1923)
+### 132.1.1 [#1923](https://github.com/openfisca/openfisca-france/pull/1923)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
@@ -10,6 +10,17 @@
 
 * Détails :
   - N'utilise plus le champ `base` pour déduire les taux applelés des taux théoriques conforméméent  l'évolution de [`core`](https://github.com/openfisca/openfisca-core/pull/1162).
+
+## 132.1.0 [#1956](https://github.com/openfisca/openfisca-france/pull/1956)
+
+* Amélioration technique.
+* Périodes concernées : 2002-2006
+* Zones impactées :
+    - `model/prelevements_obligatoires/impot_revenu/charges_deductibles.py`.
+    -`parameters/impot_revenu/calcul_revenus_imposables/charges_deductibles/pensions_alimentaires/taux_jgt_2006`
+* Détails :
+  - Correction suite issue: https://github.com/openfisca/openfisca-france/issues/1954
+  - Correction de la date d'entrée en vigueur de la déduction d'impôt pour pensions alimentaires
 
 # 132.0.0 [#1955](https://github.com/openfisca/openfisca-france/pull/1955)
 
