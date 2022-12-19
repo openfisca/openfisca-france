@@ -623,7 +623,7 @@ class prime_partage_valeur_exoneree_exceptionnelle(Variable):
 
         prime_partage_valeur = individu('prime_partage_valeur_exceptionnelle', period)
         accord_interessement = individu('accord_interessement', period.first_month)
-        ppv_parameters = parameters(period).marche_travail.prime_partage_valeur
+        ppv_parameters = parameters(period).primes_exceptionnelles.prime_partage_valeur
         plafond_ppv_exoneree = where(
             accord_interessement,
             ppv_parameters.plafond_exoneration_avec_accord_interessement,
@@ -681,7 +681,7 @@ class ppv_eligibilite_exceptionnelle(Variable):
         salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
         smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
         quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
-        plafond_salaire = parameters(period).marche_travail.prime_partage_valeur.plafond_salaire
+        plafond_salaire = parameters(period).primes_exceptionnelles.prime_partage_valeur.plafond_salaire
         return (salaire_de_base_annuel) < (
             smic_b_annuel * plafond_salaire * quotite_de_travail
             )
@@ -707,7 +707,7 @@ class prime_partage_valeur_exoneree(Variable):
         prime_partage_valeur = individu('prime_partage_valeur', period)
         accord_interessement = individu('accord_interessement', period.first_month)
 
-        ppv_parameters = parameters(period).marche_travail.prime_partage_valeur
+        ppv_parameters = parameters(period).primes_exceptionnelles.prime_partage_valeur
         plafond_ppv_exoneree = where(
             accord_interessement,
             ppv_parameters.plafond_exoneration_avec_accord_interessement,
@@ -778,7 +778,7 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
         salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
         smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
         quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
-        plafond_salaire = parameters(period).marche_travail.prime_pepa.plafond_salaire
+        plafond_salaire = parameters(period).primes_exceptionnelles.prime_pepa.plafond_salaire
 
         # "une rémunération inférieure à trois fois la valeur annuelle du salaire minimum de croissance
         # correspondant à la durée de travail prévue au contrat"
@@ -792,14 +792,14 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
             'prime_exceptionnelle_pouvoir_achat',
             period)
 
-        plafond_exoneration = parameters(period).marche_travail.prime_pepa.plafond_exoneration
+        plafond_exoneration = parameters(period).primes_exceptionnelles.prime_pepa.plafond_exoneration
         prime_inf_seuil_1 = prime_exceptionnelle_pouvoir_achat <= plafond_exoneration
 
         accord_interessement = individu('accord_interessement', period.first_month)
         effectif_entreprise = individu('effectif_entreprise', period.first_month)
-        plafond_effectif_entreprise = parameters(period).marche_travail.prime_pepa.plafond_effectif_entreprise
+        plafond_effectif_entreprise = parameters(period).primes_exceptionnelles.prime_pepa.plafond_effectif_entreprise
         condition_entreprise = accord_interessement + (effectif_entreprise < plafond_effectif_entreprise)
-        plafond_exoneration_avec_accord_interessement = parameters(period).marche_travail.prime_pepa.plafond_exoneration_avec_accord_interessement
+        plafond_exoneration_avec_accord_interessement = parameters(period).primes_exceptionnelles.prime_pepa.plafond_exoneration_avec_accord_interessement
         return (condition_remuneration
                 * where(
                     prime_inf_seuil_1,
