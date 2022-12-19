@@ -1,5 +1,15 @@
 # Changelog
 
+## 132.2.0 [#1951](https://github.com/openfisca/openfisca-france/pull/1951)
+
+* Évolution du système socio-fiscal. 
+* Périodes concernées : 2017-2022
+* Zones impactées : 
+    - `parameters/prestations_sociales/aides_logement/logement_social.plai`.
+    -  `parameters/prestations_sociales/aides_logement/logement_social.plu`.
+* Détails :
+  - Mise à jour des paramètres et ajout des références
+  - En réponse à l'issue: https://github.com/openfisca/openfisca-france/issues/1946
 ## 132.1.0 [#1956](https://github.com/openfisca/openfisca-france/pull/1956)
 
 * Amélioration technique.
@@ -498,7 +508,6 @@ Note: un travail ultérieur reste à faire pour rapprocher ces acronymes des dis
  - Retire un paramètre qui est un extrait de formule, non référencé et non utilisé
 
 ### 117.0.3 [#1884](https://github.com/openfisca/openfisca-france/pull/1884)
-
 
 * Changement mineur.
 * Périodes concernées : à partir du 01/01/2022
