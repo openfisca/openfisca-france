@@ -1,4 +1,6 @@
-description: Abattement 20%
+description: Déduction supplémentaire de 20%
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  order:
+  - taux
+  - max
+  - salaire_plafond
