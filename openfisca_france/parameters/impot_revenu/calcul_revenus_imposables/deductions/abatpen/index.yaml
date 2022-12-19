@@ -1,4 +1,3 @@
 description: Abattement sur les pensions
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  ux_name: Pensions
