@@ -936,10 +936,10 @@ class revenu_categoriel_foncier(Variable):
             log.error(('Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba) et de déficits (f4bb, f4bc)'))
         if ((f4be != 0) & ((f4ba != 0) | (f4bb != 0) | (f4bc != 0))).any():
             log.error(('Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)'))
-        if (f4be > microfoncier.max).any():
+        if (f4be > microfoncier.plafond_recettes).any():
             log.error(('Problème de déclarations des revenus : les revenus microfonciers (f4be) dépassent le maximum légal'))
 
-        micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
+        micro = min_(f4be, microfoncier.plafond_recettes) * (1 - microfoncier.taux)
 
         # Conditions
         deficit = (f4bc > 0) | (f4bb > 0)
@@ -947,7 +947,7 @@ class revenu_categoriel_foncier(Variable):
 
         # Calculs
         si_deficit = -f4bc
-        si_micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
+        si_micro = min_(f4be, microfoncier.plafond_recettes) * (1 - microfoncier.taux)
         sinon = max_(0, f4ba - f4bd)
 
         return select([deficit, micro],
