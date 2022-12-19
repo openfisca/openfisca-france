@@ -1,3 +1,6 @@
+description: Imputation sur le revenu global pour les régimes micro-entreprise et microfoncier
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  ux_name: Imputation sur le revenu global
+  order:
+  - plafond_deficits_agricoles
+  - plafond_deficits_fonciers

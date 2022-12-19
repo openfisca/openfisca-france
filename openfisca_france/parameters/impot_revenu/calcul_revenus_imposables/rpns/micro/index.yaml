@@ -3,9 +3,7 @@ metadata:
   ux_name: Régimes micro
   description_en: Micro-firms and micro-landed schemes (1980 -)
   order:
-  - abattement_recettes_microentreprises
-  - abattement_regime_micro_bnc
-  - abattement_regime_micro_ba
-  - abattement_regime_microfoncier
-  - imputation_revenu_global
+  - microentreprise
+  - microfoncier
+  - imputation_sur_le_revenu_global
   - versement_liberatoire_regime_auto_entrepreneur
