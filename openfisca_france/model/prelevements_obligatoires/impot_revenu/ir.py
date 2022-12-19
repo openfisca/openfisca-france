@@ -687,10 +687,10 @@ class revenu_categoriel_capital(Variable):
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        g12a = -min_(f2dc_bis * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
+        g12b = max_(f2dc_bis * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement)
 
         # Abattements, limité au revenu
         h12 = rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
@@ -722,15 +722,15 @@ class revenu_categoriel_capital(Variable):
         parameter_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         part_frais_imputes_sur_f2dc = f2ca / max_(1, f2dc + f2ts) * f2dc
-        part_frais_restant_a_imputer = -min_(f2dc * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
+        part_frais_restant_a_imputer = -min_(f2dc * (1 - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
 
-        dividendes_apres_abattements = max_(f2dc * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
+        dividendes_apres_abattements = max_(f2dc * (1 - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
         revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, parameter_rvcm.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses))
         rvcm_apres_abattements_proportionnels = (
             revenus_assurance_vie_apres_abattements
             + dividendes_apres_abattements
             + f2gr
-            + f2fu * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0))
+            + f2fu * (1 - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
             )
         rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses))
         autres_rvcm_sans_abattements = (
@@ -757,7 +757,7 @@ class revenu_categoriel_capital(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
         abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
@@ -785,7 +785,7 @@ class revenu_categoriel_capital(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
         abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
@@ -820,7 +820,7 @@ class revenu_categoriel_capital(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
         abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
@@ -875,20 +875,20 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         F1 = f2ca / den * f2dc  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie positive
-        g12b = max_(f2dc * (1 - rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0))
+        g12b = max_(f2dc * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
 
         # Abattements, limité au revenu
         h12 = rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
-        return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc + f2fu) * (f2da == 0) - i121, 0)
+        return max_((rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) * (f2dc + f2fu) * (f2da == 0) - i121, 0)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f2dc = foyer_fiscal('f2dc', period)
         f2fu = foyer_fiscal('f2fu', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
 
         return abattement_dividende
 
