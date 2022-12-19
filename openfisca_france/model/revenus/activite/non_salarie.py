@@ -2117,9 +2117,9 @@ class rpns_auto_entrepreneur_benefice(Variable):
 
         bareme = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
-        benefice = ((rpns_auto_entrepreneur_CA_achat_revente * (1 - bareme.microentreprise.taux_ventes_de_marchandises))
-                    + (rpns_auto_entrepreneur_CA_bnc * (1 - bareme.specialbnc.taux))
-                    + (rpns_auto_entrepreneur_CA_bic * (1 - bareme.microentreprise.taux_prestations_de_services)))
+        benefice = ((rpns_auto_entrepreneur_CA_achat_revente * (1 - bareme.microentreprise.regime_micro_bnc.marchandises.taux))
+                    + (rpns_auto_entrepreneur_CA_bnc * (1 - bareme.microentreprise.regime_micro_bnc.taux))
+                    + (rpns_auto_entrepreneur_CA_bic * (1 - bareme.microentreprise.regime_micro_bnc.services.taux)))
 
         return benefice
 
@@ -2140,9 +2140,9 @@ class rpns_micro_entreprise_benefice(Variable):
 
         bareme = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
-        benefice = ((rpns_micro_entreprise_CA_bic_vente_imp * (1 - bareme.microentreprise.taux_ventes_de_marchandises))
-                    + (rpns_micro_entreprise_CA_bnc_imp * (1 - bareme.specialbnc.taux))
-                    + (rpns_micro_entreprise_CA_bic_service_imp * (1 - bareme.microentreprise.taux_prestations_de_services))
+        benefice = ((rpns_micro_entreprise_CA_bic_vente_imp * (1 - bareme.microentreprise.regime_micro_bnc.marchandises.taux))
+                    + (rpns_micro_entreprise_CA_bnc_imp * (1 - bareme.microentreprise.regime_micro_bnc.taux))
+                    + (rpns_micro_entreprise_CA_bic_service_imp * (1 - bareme.microentreprise.regime_micro_bnc.services.taux))
                     + rpns_micro_entreprise_CA_bnc_exon
                     + rpns_micro_entreprise_bic_exon)
 

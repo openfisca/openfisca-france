@@ -1,0 +1,6 @@
+description: Abattement pour le régime micro-BA
+metadata:
+  ux_name: Régime Micro-BA
+  order:
+  - plafond_recettes
+  - taux

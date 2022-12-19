@@ -1,3 +1,7 @@
+description: Abattement sur recettes des microentreprises
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  ux_name: Microentreprises
+  order:
+    - regime_micro_ba
+    - regime_micro_bnc
+    - montant_minimum
