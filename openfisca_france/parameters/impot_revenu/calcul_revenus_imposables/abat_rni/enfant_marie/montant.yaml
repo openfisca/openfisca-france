@@ -94,6 +94,7 @@ metadata:
   ux_name: Abattement
   description_en: Tax allowance for net taxable income ( 1978 - )
   unit: currency
+  ipp_csv_id: abt_enfmaries
   reference:
     1979-07-01:
       title: Article 196 B du CGI - Valeurs pour l'imposition des revenus de 1974 à 1978 inclus
@@ -286,3 +287,10 @@ documentation: |-
   Autres références:
   https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/abat_rni/
   http://bofip.impots.gouv.fr/bofip/2036-PGP.html
+
+  Notes :
+  (1) Abattement et plafond de ressources pour personne âgée : art. 157 bis du CGI (abattement doublé si le conjoint répond aux mêmes conditions)
+  (2) Abattement pour rattachement d'enfants mariés : art. 196 B du CGI
+  (3) Abattement par personne rattachée - à doubler dans le cas d'un jeune ménage ou d'un célibataire avec jeune enfant, à tripler pour couple avec enfant rattaché
+  Les ressources à considérer sont le revenu net global du foyer fiscal
+  (4) Les invalides qui bénéficient d'une pension militaire d'invalidité pour une invalidité d'au moins 40 % ou d'une pension d'invalidité pour un accident du travail d'au moins 40 % ou de la carte d'invalidité

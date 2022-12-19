@@ -1,10 +1,10 @@
-description: Taux de la déduction des souscriptions en faveur du cinéma ou de l'audiovisuel (case AA)
+description: Plafond de la déduction des souscriptions en faveur du cinéma ou de l'audiovisuel (case AA)
 values:
-  1984-01-01:
-    value: 0.25
+  2001-01-01:
+    value: 18000
 metadata:
-  ux_name: Taux
-  unit: /1
+  ux_name: Plafond
+  unit: currency
   reference:
     2001-01-01:
     - href: http://bofip.impots.gouv.fr/bofip/1371-PGP.html

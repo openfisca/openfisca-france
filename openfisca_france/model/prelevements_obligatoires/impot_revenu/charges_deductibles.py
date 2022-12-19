@@ -709,7 +709,7 @@ class souscriptions_cinema_audiovisuel(Variable):
         rbg_int = foyer_fiscal('rbg_int', period)
         cinema = parameters(period).impot_revenu.calcul_revenus_imposables.charges_deductibles.cinema
 
-        max1 = min_(cinema.taux * rbg_int, cinema.max)
+        max1 = min_(cinema.taux * rbg_int, cinema.plafond)
         return min_(f6aa, max1)
 
 

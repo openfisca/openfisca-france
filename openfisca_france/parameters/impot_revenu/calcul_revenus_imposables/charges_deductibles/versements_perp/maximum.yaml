@@ -1,78 +1,40 @@
-description: Plafond par personne de la déduction pour frais d'accueil d'une personne de plus de 75 ans
+description: Maximum par personne de la déduction pour versements sur un Plan Epargne Retraite Populaire (PERP)
 values:
   1973-01-01:
     value: null
-  1984-01-01:
-    value: 12810
-  1985-01-01:
-    value: 13310
-  1986-01-01:
-    value: 13620
-  1987-01-01:
-    value: 14090
-  1988-01-01:
-    value: 14470
-  1990-01-01:
-    value: 15730
-  1991-01-01:
-    value: 15900
-  1992-01-01:
-    value: 16400
-  1993-01-01:
-    value: 16660
-  1994-01-01:
-    value: 16910
-  1995-01-01:
-    value: 17160
-  1996-01-01:
-    value: 17550
-  1997-01-01:
-    value: 17680
-  1998-01-01:
-    value: 17840
-  1999-01-01:
-    value: 17910
-  2000-01-01:
-    value: 18140
-  2001-01-01:
-    value: 2826
-  2002-01-01:
-    value: 2862
-  2003-01-01:
-    value: 3000
   2004-01-01:
-    value: 3051
+    value: 24153.6
   2005-01-01:
-    value: 3106
+    value: 24854.4
   2006-01-01:
-    value: 3162
+    value: 25747.2
   2007-01-01:
-    value: 3203
+    value: 26620.8
   2008-01-01:
-    value: 3296
+    value: 27446.4
   2009-01-01:
-    value: 3309
+    value: 27696
   2010-01-01:
-    value: 3359
+    value: 28281.6
+  2011-01-01:
+    value: 29097
   2013-01-01:
-    value: 3386
+    value: 29098
   2014-01-01:
-    value: 3403
+    value: 29626
   2015-01-01:
-    value: 3407
+    value: 30038
   2016-01-01:
-    value: 3411
+    value: 30432
   2017-01-01:
-    value: 3445
+    value: 30893
   2018-01-01:
-    value: 3500
+    value: 31382
   2019-01-01:
-    value: 3535
-  2020-01-01:
-    value: 3542
+    value: 31786
 metadata:
-  ux_name: Plafond
-  ipp_csv_id: plaf_frais
+  ux_name: Maximum
+  ipp_csv_id: max_deduc_perp
   unit: currency
   reference:
     1974-01-01:
@@ -282,7 +244,5 @@ metadata:
     2020-01-01: "2020-12-30"
     2021-01-01: "2021-12-31"
 documentation: |
-  Plafond frais personnes de plus de 75 ans : art. 156-II-2° ter du CGI
-  https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
-  http://bofip.impots.gouv.fr/bofip/1860-PGP.html#1860-PGP_80_027
-  https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037671023&cidTexte=LEGITEXT000006069577
+  Déductions pour plan épargne populaire (PERP) : art. 163 quatervicies du CGI
+  https://www.service-public.fr/particuliers/vosdroits/F10259

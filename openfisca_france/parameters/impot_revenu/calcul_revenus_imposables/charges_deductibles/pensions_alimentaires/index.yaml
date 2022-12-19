@@ -1,4 +1,6 @@
-description: Pensions alimentaires
+description: Déduction pour pensions alimentaires
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  ux_name: Pensions alimentaires
+  order:
+    - plafond
+    - taux_jgt_2006
