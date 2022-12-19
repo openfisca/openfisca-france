@@ -1,5 +1,21 @@
 # Changelog
 
+# 132.0.0 [#1957](https://github.com/openfisca/openfisca-france/pull/1957)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `marche_travail.epargne.yaml`.
+  - `marche_travail.age_majorite.yaml`
+  - `marche_travail.prime_pepa.yaml`
+  - `marche_travail.prime_partage_valeur.yaml`
+
+* Détails :
+  - Dans `parameters/marche_travail` :
+        - Déplace `epargne` vers `taxation_capital`
+        - Déplace `age_majorite` vers `geopolitique`
+        - Déplace `prime_pepa` et `prime_partage_valeur` vers `marche_travail.primes_excptionnelles`
+
 # 131.0.0 [#1952](https://github.com/openfisca/openfisca-france/pull/1952)
 
 * Évolution du système socio-fiscal. | Amélioration technique.
