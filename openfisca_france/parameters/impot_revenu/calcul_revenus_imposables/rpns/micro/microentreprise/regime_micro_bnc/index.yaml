@@ -2,6 +2,6 @@ description: Abattement pour le Régime spécial micro BNC
 metadata:
   ux_name: Micro BNC
   order:
-  - plafond_recettes_marchandises
-  - plafond_recettes_services
+  - marchandises
+  - services
   - taux
