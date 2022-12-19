@@ -2734,7 +2734,7 @@ class rnc(Variable):
         nbnc_impo = individu('nbnc_impo', period)
         abnc_defi = individu('abnc_defi', period)
         nbnc_defi = individu('nbnc_defi', period)
-        specialbnc = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.microentreprise.regime_micro_bnc
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.microentreprise
 
         zbnc = (
             mbnc_exon + mbnc_impo
@@ -2746,8 +2746,8 @@ class rnc(Variable):
         cbnc = min_(
             mbnc_exon + mbnc_impo,
             max_(
-                specialbnc.services.min,
-                round_((mbnc_exon + mbnc_impo) * specialbnc.taux)
+                micro.montant_minimum,
+                round_((mbnc_exon + mbnc_impo) * micro.regime_micro_bnc.taux)
                 )
             )
 
