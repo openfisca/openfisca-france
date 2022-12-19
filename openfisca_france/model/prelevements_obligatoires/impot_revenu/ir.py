@@ -504,9 +504,9 @@ class abattement_salaires_pensions(Variable):
     def formula(individu, period, parameters):
         revenu_assimile_salaire_apres_abattements = individu('revenu_assimile_salaire_apres_abattements', period)
         revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
-        abatsalpen = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abatsalpen
+        abat_supp = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abat_supp
 
-        return min_(abatsalpen.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abatsalpen.max)
+        return min_(abat_supp.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abat_supp.max)
 
 
 class rente_viagere_titre_onereux(Variable):
