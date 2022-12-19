@@ -1,4 +1,4 @@
-description: Conditions de ressources pour les apprentis pour exonération d'Impôt sur le Revenu
+description: Conditions de ressources pour les moins de 65 ans pour exonération d'Impôt sur le Revenu
 values:
   1977-01-01:
     value: 15200
@@ -55,42 +55,26 @@ values:
   2004-01-01:
     value: 7640
   2005-01-01:
-    value: 15051.4
+    value: 7780
   2006-01-01:
-    value: 15360.8
+    value: 7920
   2007-01-01:
-    value: 15852.2
+    value: 8030
   2008-01-01:
-    value: 16052.4
+    value: 8270
   2009-01-01:
-    value: 16125.2
+    value: 8310
   2010-01-01:
-    value: 16380
-  2011-01-01:
-    value: 16416
+    value: 8440
   2012-01-01:
-    value: 16944
+    value: 8610
   2013-01-01:
-    value: 17163
+    value: 8680
   2014-01-01:
-    value: 17345
-  2015-01-01:
-    value: 17490
-  2016-01-01:
-    value: 17599
-  2017-01-01:
-    value: 17763
-  2018-01-01:
-    value: 17982
-  2019-01-01:
-    value: 18255
-  2020-01-01:
-    value: 18473
-  2021-01-01:
-    value: 18655
+    value: null
 metadata:
-  ux_name: Apprentis
-  ipp_csv_id: exo_apprenti
+  ux_name: Moins de 65 ans
+  ipp_csv_id: exo_irmoins65
   unit: currency
   reference:
     1998-01-01:
@@ -166,8 +150,11 @@ metadata:
     - title: Voir note (1)
 documentation: |-
   Notes :
-  (1) Exonération des apprentis : cf. art. 81 bis du CGI. Le montant annuel de référence pour l’exonération des salaires des apprentis est obtenu en multipliant le montant moyen du SMIC horaire brut sur l’année d’imposition par 1 820 heures (35 h x 52)
-  (2) Les plafonds font référence aux revenus nets de frais professionnels.
-  (3) Conditions de ressources pour exonération IR : art. 5-2° bis du CGI
+  Les plafonds font référence aux revenus nets de frais professionnels.
+  Conditions de ressources pour exonération IR : art. 5-2° bis du CGI
+  En application du troisième alinéa du 2° bis de l'article 5 du CGI,
+  ces montants sont relevés chaque année dans la même proportion que la limite
+  supérieure de la première tranche du barème de l'impôt sur le revenus.
+  Les montants obtenus sont arrondis, s'il y a lieu, à la dizaine d'euros supérieure
   http://bofip.impots.gouv.fr/bofip/5893-PGP#5893-PGP_Portee_de_lexoneration_210
   https://www.insee.fr/fr/statistiques/1375188

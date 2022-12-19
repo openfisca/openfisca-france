@@ -1,96 +1,80 @@
-description: Conditions de ressources pour les apprentis pour exonération d'Impôt sur le Revenu
+description: Conditions de ressources pour les plus de 65 ans pour exonération d'Impôt sur le Revenu
 values:
   1977-01-01:
-    value: 15200
+    value: 16600
   1978-01-01:
-    value: 16800
+    value: 18300
   1979-01-01:
-    value: 18600
+    value: 20300
   1980-01-01:
-    value: 21100
+    value: 23000
   1981-01-01:
-    value: 24000
+    value: 26200
   1982-01-01:
     value: null
   1984-01-01:
-    value: 31800
+    value: 34700
   1985-01-01:
-    value: 33600
-  1986-01-01:
-    value: 34500
-  1987-01-01:
-    value: 35700
-  1988-01-01:
     value: 36700
+  1986-01-01:
+    value: 37600
+  1987-01-01:
+    value: 38900
+  1988-01-01:
+    value: 40000
   1989-01-01:
     value: null
   1990-01-01:
-    value: 39300
+    value: 42800
   1991-01-01:
-    value: 40500
+    value: 44100
   1992-01-01:
-    value: 41700
-  1993-01-01:
-    value: 42500
-  1994-01-01:
-    value: 43200
-  1995-01-01:
-    value: 44000
-  1996-01-01:
-    value: 44900
-  1997-01-01:
     value: 45400
+  1993-01-01:
+    value: 46300
+  1994-01-01:
+    value: 47000
+  1995-01-01:
+    value: 47900
+  1996-01-01:
+    value: 48900
+  1997-01-01:
+    value: 49500
   1998-01-01:
-    value: 45800
+    value: 50000
   1999-01-01:
-    value: 46100
+    value: 50300
   2000-01-01:
-    value: 46800
+    value: 51100
   2001-01-01:
-    value: 7250
+    value: 7920
   2002-01-01:
-    value: 7380
+    value: 8060
   2003-01-01:
-    value: 7510
+    value: 8200
   2004-01-01:
-    value: 7640
+    value: 8340
   2005-01-01:
-    value: 15051.4
+    value: 8507
   2006-01-01:
-    value: 15360.8
+    value: 8660
   2007-01-01:
-    value: 15852.2
+    value: 8780
   2008-01-01:
-    value: 16052.4
+    value: 9040
   2009-01-01:
-    value: 16125.2
+    value: 9080
   2010-01-01:
-    value: 16380
-  2011-01-01:
-    value: 16416
+    value: 9220
   2012-01-01:
-    value: 16944
+    value: 9410
   2013-01-01:
-    value: 17163
+    value: 9490
   2014-01-01:
-    value: 17345
-  2015-01-01:
-    value: 17490
-  2016-01-01:
-    value: 17599
-  2017-01-01:
-    value: 17763
-  2018-01-01:
-    value: 17982
-  2019-01-01:
-    value: 18255
-  2020-01-01:
-    value: 18473
-  2021-01-01:
-    value: 18655
+    value: null
 metadata:
-  ux_name: Apprentis
-  ipp_csv_id: exo_apprenti
+  ux_name: Plus de 65 ans
+  ipp_csv_id: exo_irplus65
   unit: currency
   reference:
     1998-01-01:
@@ -166,8 +150,11 @@ metadata:
     - title: Voir note (1)
 documentation: |-
   Notes :
-  (1) Exonération des apprentis : cf. art. 81 bis du CGI. Le montant annuel de référence pour l’exonération des salaires des apprentis est obtenu en multipliant le montant moyen du SMIC horaire brut sur l’année d’imposition par 1 820 heures (35 h x 52)
-  (2) Les plafonds font référence aux revenus nets de frais professionnels.
-  (3) Conditions de ressources pour exonération IR : art. 5-2° bis du CGI
+  Les plafonds font référence aux revenus nets de frais professionnels.
+  Conditions de ressources pour exonération IR : art. 5-2° bis du CGI
+  En application du troisième alinéa du 2° bis de l'article 5 du CGI,
+  ces montants sont relevés chaque année dans la même proportion que la limite
+  supérieure de la première tranche du barème de l'impôt sur le revenus.
+  Les montants obtenus sont arrondis, s'il y a lieu, à la dizaine d'euros supérieure
   http://bofip.impots.gouv.fr/bofip/5893-PGP#5893-PGP_Portee_de_lexoneration_210
   https://www.insee.fr/fr/statistiques/1375188
