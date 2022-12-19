@@ -1645,7 +1645,7 @@ class microentreprise(Variable):
         ebic_impv = foyer_fiscal.sum(ebic_impv_i)
         return (
             max_(0, ebnc_impo - max_(micro.microentreprise.montant_minimum, micro.regime_micro_bnc.taux * ebnc_impo))
-            + max_(0, ebic_imps - max_(micro.microentreprise.montant_minimum, micro.microentreprise.taux_prestations_services * ebic_imps))
+            + max_(0, ebic_imps - max_(micro.microentreprise.montant_minimum, micro.regime_micro_bnc.services.taux * ebic_imps))
             + max_(0, ebic_impv - max_(micro.microentreprise.montant_minimum, micro.microentreprise.taux_ventes_marchandises * ebic_impv))
             )
 
