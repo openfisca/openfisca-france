@@ -548,7 +548,7 @@ class pensions_alimentaires_deduites(Variable):
     reference = 'http://frederic.anne.free.fr/Cours/ITV.htm'
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, parameters):
+    def formula_2006_01_01(foyer_fiscal, period, parameters):
         f6gi = foyer_fiscal('f6gi', period)
         f6gj = foyer_fiscal('f6gj', period)
         f6gp = foyer_fiscal('f6gp', period)
