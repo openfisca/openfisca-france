@@ -607,7 +607,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
 
     def formula_2009_06_01(individu, period, parameters):
         livret_a = individu('livret_a', period)
-        taux_livret_a = parameters(period).marche_travail.epargne.livret_a.taux
+        taux_livret_a = parameters(period).taxation_capital.epargne.livret_a.taux
         epargne_revenus_non_imposables = individu('epargne_revenus_non_imposables', period)
         revenus_capital = individu('revenus_capital', period)
         valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)

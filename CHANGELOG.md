@@ -1,13 +1,25 @@
 # Changelog
 
-### 132.2.1 [#1923](https://github.com/openfisca/openfisca-france/pull/1923)
+# 133.0.0 [#1957](https://github.com/openfisca/openfisca-france/pull/1957)
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `marche_travail.epargne.yaml`.
+  - `marche_travail.age_majorite.yaml`
+  - `marche_travail.prime_pepa.yaml`
+  - `marche_travail.prime_partage_valeur.yaml`
+* Détails :
+  - Dans `parameters/marche_travail` :
+        - Déplace `epargne` vers `taxation_capital`
+        - Déplace `age_majorite` vers `geopolitique`
+        - Déplace `prime_pepa` et `prime_partage_valeur` vers `marche_travail.primes_excptionnelles`
 
+### 132.2.1 [#1923](https://github.com/openfisca/openfisca-france/pull/1923)
 * Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées :
   - `parameters/prelevements_sociaux/cotisations_secteur_public/ircantec`
   - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/preprocessing.py`
-
 * Détails :
   - N'utilise plus le champ `base` pour déduire les taux applelés des taux théoriques conforméméent  l'évolution de [`core`](https://github.com/openfisca/openfisca-core/pull/1162).
 
