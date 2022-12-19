@@ -1,5 +1,17 @@
 # Changelog
 
+# 132.0.0 [#1955](https://github.com/openfisca/openfisca-france/pull/1955)
+
+* Évolution du système socio-fiscal. | Amélioration technique.
+* Périodes concernées : toutes. 
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables`
+    - exonerations: `exo_ir`
+    - rpns: `microentreprise` et `microsocial`
+  
+* Détails :
+  - Harmonisation et ajout de parametres
+  - Fusion des doublons
+
 # 131.0.0 [#1952](https://github.com/openfisca/openfisca-france/pull/1952)
 
 * Évolution du système socio-fiscal. | Amélioration technique.
