@@ -1606,7 +1606,7 @@ class assiette_proflib(Variable):
         # http://vosdroits.service-public.fr/professionnels-entreprises/F23267.xhtml
         return foyer_fiscal.sum(ebnc_impo_i)
 
-    # assert (ebnc_impo <= P.regime_micro_bnc.max)
+    # assert (ebnc_impo <= P.regime_micro_bnc.plafond)
 
 
 class microsocial(Variable):
@@ -2514,7 +2514,7 @@ class defacc(Variable):
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         def abat_rpns(rev, P):
-            return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
+            return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), P.montant_minimum)))
 
         nacc_impn = foyer_fiscal.sum(nacc_impn_i)
         macc_pvct = foyer_fiscal.sum(macc_pvct_i)
@@ -2548,7 +2548,7 @@ class defncn(Variable):
         specialbnc = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.regime_micro_bnc
 
         def abat_rpns(rev, P):
-            return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
+            return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), P.montant_minimum)))
         cncn_bene = foyer_fiscal.sum(cncn_bene_i)
         mncn_impo = foyer_fiscal.sum(mncn_impo_i)
         mncn_pvct = foyer_fiscal.sum(mncn_pvct_i)
@@ -2992,7 +2992,7 @@ class rpns_imposables(Variable):
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         def abat_rpns(rev, P):
-            return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
+            return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), P.montant_minimum)))
 
         # Jeunes agriculteurs montant de l'abattement de 50% ou 100%
         # nrag_ajag = f5hm + f5im + f5jm

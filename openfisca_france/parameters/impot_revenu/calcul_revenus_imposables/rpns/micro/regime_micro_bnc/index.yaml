@@ -1,4 +1,7 @@
-description: Régime spécial BNC
+description: Abattement pour le Régime spécial micro BNC
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  ux_name: Micro BNC
+  order:
+  - plafond_recettes_marchandises
+  - plafond_recettes_services
+  - taux

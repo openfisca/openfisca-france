@@ -1,4 +1,5 @@
-description: Activité de vente
+description: Abattement pour le Régime spécial micro BNC, pour les activités de vente (marchandises)
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  ux_name: Vente
+  order:
+  - plafond
