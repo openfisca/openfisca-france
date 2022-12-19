@@ -693,7 +693,7 @@ class revenu_categoriel_capital(Variable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        h12 = rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -732,7 +732,7 @@ class revenu_categoriel_capital(Variable):
             + f2gr
             + f2fu * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0))
             )
-        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - parameter_rvcm.abatmob * (1 + maries_ou_pacses))
+        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses))
         autres_rvcm_sans_abattements = (
             f2ts - (f2ca - part_frais_imputes_sur_f2dc)
             + f2go * parameter_rvcm.majoration_revenus_reputes_distribues
@@ -879,7 +879,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0))
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        h12 = rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
         return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc + f2fu) * (f2da == 0) - i121, 0)
 
