@@ -1,6 +1,6 @@
 # Changelog
 
-# 132.0.0 [#1957](https://github.com/openfisca/openfisca-france/pull/1957)
+# 133.0.0 [#1957](https://github.com/openfisca/openfisca-france/pull/1957)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
@@ -15,6 +15,29 @@
         - Déplace `epargne` vers `taxation_capital`
         - Déplace `age_majorite` vers `geopolitique`
         - Déplace `prime_pepa` et `prime_partage_valeur` vers `marche_travail.primes_excptionnelles`
+
+## 132.1.0 [#1956](https://github.com/openfisca/openfisca-france/pull/1956)
+
+* Amélioration technique.
+* Périodes concernées : 2002-2006
+* Zones impactées :
+    - `model/prelevements_obligatoires/impot_revenu/charges_deductibles.py`.
+    -`parameters/impot_revenu/calcul_revenus_imposables/charges_deductibles/pensions_alimentaires/taux_jgt_2006`
+* Détails :
+  - Correction suite issue: https://github.com/openfisca/openfisca-france/issues/1954
+  - Correction de la date d'entrée en vigueur de la déduction d'impôt pour pensions alimentaires
+
+# 132.0.0 [#1955](https://github.com/openfisca/openfisca-france/pull/1955)
+
+* Évolution du système socio-fiscal. | Amélioration technique.
+* Périodes concernées : toutes. 
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables`
+    - exonerations: `exo_ir`
+    - rpns: `microentreprise` et `microsocial`
+  
+* Détails :
+  - Harmonisation et ajout de parametres
+  - Fusion des doublons
 
 # 131.0.0 [#1952](https://github.com/openfisca/openfisca-france/pull/1952)
 

@@ -1,49 +1,13 @@
-description: Plafond (déficits agricoles) de l'Imputation sur le revenu global pour les régimes micro-entreprise et microfoncier
+description: Taux de l'abattement pour le régime micro-BA
 values:
   1979-01-01:
-    value: 40000
-  1988-01-01:
-    value: 70000
-  1989-01-01:
-    value: 100000
-  1994-01-01:
-    value: 150000
-  1995-01-01:
-    value: 200000
-  2000-01-01:
-    value: 350000
-  2001-01-01:
-    value: 53360
-  2004-01-01:
-    value: 60000
-  2006-01-01:
-    value: 100000
-  2007-01-01:
-    value: 101300
-  2009-01-01:
-    value: 104238
-  2010-01-01:
-    value: 104665
-  2011-01-01:
-    value: 106225
-  2013-01-01:
-    value: 107075
-  2014-01-01:
-    value: 107610
-  2015-01-01:
-    value: 107718
+    value: null
   2016-01-01:
-    value: 107826
-  2017-01-01:
-    value: 108904
-  2018-01-01:
-    value: 110646
-  2019-01-01:
-    value: 111752
+    value: 0.87
 metadata:
-  ux_name: Plafond (déficits agricoles)
-  ipp_csv_id: plaf_defba
-  unit: currency
+  ux_name: Taux
+  ipp_csv_id: taux_micro_ba
+  unit: /1
   reference:
     1979-01-01:
       title: Loi 80-30 du 18/01/1980 (LF pour 1980)
@@ -230,4 +194,10 @@ metadata:
     - title: "Création du régime d'autoentrepreneur : voir BOI-BIC-DECLA-10-40 du 09/12/2012"
 documentation: |-
   Notes :
-  Plafond déficits agricoles : art. 156-I-1° du CGI
+  (1) Abattement concernant les entrepreneurs individuels. Pour les autoentrepreneurs, voir art. 151-0 du CGI
+  (2) BNC : bénéfices non commerciaux. Si soumis à la TVA voir art. 293-B du CGI
+  (3) Régime microfoncier : art. 32-1 du CGI
+  (4) Plafonnement de l'imputations des déficits agricoles: art. 156-I-1° du CGI
+  (5) Plafond déficits agricoles : art. 156-I-1° du CGI
+  (6) Plafond déficits fonciers : art. 156-I-3° du CGI
+  (7) Micro-BA : art. 64 bis du CGI. Définition des plafonds de ressources à l'art. 69 du CGI.

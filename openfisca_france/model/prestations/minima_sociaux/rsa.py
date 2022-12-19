@@ -761,8 +761,8 @@ class rsa_eligibilite_tns(Variable):
             return rpns_benefice_agricole < plafond_benefice_agricole_majore
 
         def eligibilite_chiffre_affaire(ca, type_activite, P_micro):
-            plaf_vente = P_micro.specialbnc.marchandises.max
-            plaf_service = P_micro.specialbnc.services.max
+            plaf_vente = P_micro.microentreprise.regime_micro_bnc.marchandises.plafond
+            plaf_service = P_micro.microentreprise.regime_micro_bnc.services.plafond
 
             TypesTnsTypeActivite = type_activite.possible_values
             achat_revente = (type_activite == TypesTnsTypeActivite.achat_revente)

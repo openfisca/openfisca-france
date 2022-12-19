@@ -936,10 +936,10 @@ class revenu_categoriel_foncier(Variable):
             log.error(('Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba) et de déficits (f4bb, f4bc)'))
         if ((f4be != 0) & ((f4ba != 0) | (f4bb != 0) | (f4bc != 0))).any():
             log.error(('Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)'))
-        if (f4be > microfoncier.max).any():
+        if (f4be > microfoncier.plafond_recettes).any():
             log.error(('Problème de déclarations des revenus : les revenus microfonciers (f4be) dépassent le maximum légal'))
 
-        micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
+        micro = min_(f4be, microfoncier.plafond_recettes) * (1 - microfoncier.taux)
 
         # Conditions
         deficit = (f4bc > 0) | (f4bb > 0)
@@ -947,7 +947,7 @@ class revenu_categoriel_foncier(Variable):
 
         # Calculs
         si_deficit = -f4bc
-        si_micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
+        si_micro = min_(f4be, microfoncier.plafond_recettes) * (1 - microfoncier.taux)
         sinon = max_(0, f4ba - f4bd)
 
         return select([deficit, micro],
@@ -1606,7 +1606,7 @@ class assiette_proflib(Variable):
         # http://vosdroits.service-public.fr/professionnels-entreprises/F23267.xhtml
         return foyer_fiscal.sum(ebnc_impo_i)
 
-    # assert (ebnc_impo <= P.specialbnc.max)
+    # assert (ebnc_impo <= P.microentreprise.regime_micro_bnc.services.plafond)
 
 
 class microsocial(Variable):
@@ -1644,9 +1644,9 @@ class microentreprise(Variable):
         ebic_imps = foyer_fiscal.sum(ebic_imps_i)
         ebic_impv = foyer_fiscal.sum(ebic_impv_i)
         return (
-            max_(0, ebnc_impo - max_(micro.microentreprise.montant_minimum, micro.specialbnc.taux * ebnc_impo))
-            + max_(0, ebic_imps - max_(micro.microentreprise.montant_minimum, micro.microentreprise.taux_prestations_de_services * ebic_imps))
-            + max_(0, ebic_impv - max_(micro.microentreprise.montant_minimum, micro.microentreprise.taux_ventes_de_marchandises * ebic_impv))
+            max_(0, ebnc_impo - max_(micro.microentreprise.montant_minimum, micro.microentreprise.regime_micro_bnc.taux * ebnc_impo))
+            + max_(0, ebic_imps - max_(micro.microentreprise.montant_minimum, micro.microentreprise.regime_micro_bnc.services.taux * ebic_imps))
+            + max_(0, ebic_impv - max_(micro.microentreprise.montant_minimum, micro.microentreprise.regime_micro_bnc.marchandises.taux * ebic_impv))
             )
 
 
@@ -2514,14 +2514,14 @@ class defacc(Variable):
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         def abat_rpns(rev, P):
-            return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
+            return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), micro.microentreprise.montant_minimum)))
 
         nacc_impn = foyer_fiscal.sum(nacc_impn_i)
         macc_pvct = foyer_fiscal.sum(macc_pvct_i)
         macc_impv = foyer_fiscal.sum(macc_impv_i)
         macc_imps = foyer_fiscal.sum(macc_imps_i)
         aacc_impn = foyer_fiscal.sum(aacc_impn_i)
-        macc_timp = abat_rpns(macc_impv, micro.specialbnc.marchandises) + abat_rpns(macc_imps, micro.specialbnc.services)
+        macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bnc.services)
         return (
             min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp + (1 + cga) * nacc_impn)
             )
@@ -2545,10 +2545,11 @@ class defncn(Variable):
         cncn_aimp_i = foyer_fiscal.members('cncn_aimp', period)
         cncn_bene_i = foyer_fiscal.members('cncn_bene', period)
         cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
-        specialbnc = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.specialbnc
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
+        specialbnc = micro.microentreprise.regime_micro_bnc
 
         def abat_rpns(rev, P):
-            return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
+            return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), micro.microentreprise.montant_minimum)))
         cncn_bene = foyer_fiscal.sum(cncn_bene_i)
         mncn_impo = foyer_fiscal.sum(mncn_impo_i)
         mncn_pvct = foyer_fiscal.sum(mncn_pvct_i)
@@ -2653,14 +2654,14 @@ class ric(Variable):
             )
 
         cond = (mbic_impv > 0) & (mbic_imps == 0)
-        taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * not_(cond)
+        taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
 
         cbic = min_(
             mbic_impv + mbic_imps + mbic_exon,
             max_(
-                micro.specialbnc.marchandises.min,
+                micro.microentreprise.montant_minimum,
                 round_(
-                    mbic_impv * micro.specialbnc.marchandises.taux + mbic_imps * micro.specialbnc.services.taux + mbic_exon * taux
+                    mbic_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux + mbic_imps * micro.microentreprise.regime_micro_bnc.services.taux + mbic_exon * taux
                     )
                 )
             )
@@ -2704,12 +2705,12 @@ class rac(Variable):
 
     # TODO: aacc_imps aacc_defs
         cond = (macc_impv > 0) & (macc_imps == 0)
-        taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * not_(cond)
+        taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
 
-        cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.specialbnc.marchandises.min, round_(
-            macc_impv * micro.specialbnc.marchandises.taux
-            + macc_imps * micro.specialbnc.services.taux + macc_exon * taux
-            + mncn_impo * micro.specialbnc.taux)))
+        cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.microentreprise.montant_minimum, round_(
+            macc_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux
+            + macc_imps * micro.microentreprise.regime_micro_bnc.services.taux + macc_exon * taux
+            + mncn_impo * micro.microentreprise.regime_micro_bnc.taux)))
 
         return zacc - cacc
 
@@ -2733,7 +2734,7 @@ class rnc(Variable):
         nbnc_impo = individu('nbnc_impo', period)
         abnc_defi = individu('abnc_defi', period)
         nbnc_defi = individu('nbnc_defi', period)
-        specialbnc = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.specialbnc
+        micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro.microentreprise
 
         zbnc = (
             mbnc_exon + mbnc_impo
@@ -2745,8 +2746,8 @@ class rnc(Variable):
         cbnc = min_(
             mbnc_exon + mbnc_impo,
             max_(
-                specialbnc.services.min,
-                round_((mbnc_exon + mbnc_impo) * specialbnc.taux)
+                micro.montant_minimum,
+                round_((mbnc_exon + mbnc_impo) * micro.regime_micro_bnc.taux)
                 )
             )
 
@@ -2877,8 +2878,8 @@ class rpns_revenus_microBA_agricole(Variable):
         date_creation = individu('date_creation', period)
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
-        frag_impo_n2_maj = frag_impo_n2 * (1 + micro.maj_frag)
-        frag_impo_n1_maj = frag_impo_n1 * (1 + micro.maj_frag)
+        frag_impo_n2_maj = frag_impo_n2 * (1 + micro.microentreprise.regime_micro_ba.maj_frag)
+        frag_impo_n1_maj = frag_impo_n1 * (1 + micro.microentreprise.regime_micro_ba.maj_frag)
         benefices_estimes_3 = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1_maj + arag_impo_n1) / 3
         benefices_estimes_2 = (mrag_impo + frag_impo_n1_maj + arag_impo_n1) / 2
 
@@ -2888,7 +2889,7 @@ class rpns_revenus_microBA_agricole(Variable):
             + (date_creation == 2016) * mrag_impo
             )
 
-        return montant_benef * (1 - micro.taux_mBA)
+        return montant_benef * (1 - micro.microentreprise.regime_micro_ba.taux)
 
     def formula_2017_01_01(individu, period, parameters):
         mrag_impo = individu('mrag_impo', period)
@@ -2898,7 +2899,7 @@ class rpns_revenus_microBA_agricole(Variable):
         date_creation = individu('date_creation', period)
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
-        frag_impo_n2_maj = frag_impo_n2 * (1 + micro.maj_frag)
+        frag_impo_n2_maj = frag_impo_n2 * (1 + micro.microentreprise.regime_micro_ba.maj_frag)
         benefices_estimes_3 = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1) / 3
         benefices_estimes_2 = (mrag_impo + frag_impo_n1) / 2
 
@@ -2908,13 +2909,13 @@ class rpns_revenus_microBA_agricole(Variable):
             + (date_creation == 2017) * mrag_impo
             )
 
-        return montant_benef * (1 - micro.taux_mBA)
+        return montant_benef * (1 - micro.microentreprise.regime_micro_ba.taux)
 
     def formula_2018_01_01(individu, period, parameters):
         mrag_impo = individu('mrag_impo', period)
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
-        return mrag_impo * (1 - micro.taux_mBA)
+        return mrag_impo * (1 - micro.microentreprise.regime_micro_ba.taux)
 
 
 class rpns_imposables(Variable):
@@ -2992,7 +2993,7 @@ class rpns_imposables(Variable):
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         def abat_rpns(rev, P):
-            return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
+            return max_(0, rev - min_(rev, max_(P.taux * min_(P.plafond, rev), micro.microentreprise.montant_minimum)))
 
         # Jeunes agriculteurs montant de l'abattement de 50% ou 100%
         # nrag_ajag = f5hm + f5im + f5jm
@@ -3009,7 +3010,7 @@ class rpns_imposables(Variable):
 
         # # B revenus industriels et commerciaux professionnels
         # regime micro entreprise
-        mbic_timp = abat_rpns(mbic_impv, micro.specialbnc.marchandises) + abat_rpns(mbic_imps, micro.specialbnc.services)
+        mbic_timp = abat_rpns(mbic_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(mbic_imps, micro.microentreprise.regime_micro_bnc.services)
 
         # Régime du bénéfice réel bénéficiant de l'abattement CGA
         abic_timp = abic_impn + abic_imps - (abic_defn + abic_defs)
@@ -3024,26 +3025,26 @@ class rpns_imposables(Variable):
         # (revenus accesoires du foyers en nomenclature INSEE)
 
         # regime micro entreprise
-        macc_timp = abat_rpns(macc_impv, micro.specialbnc.marchandises) + abat_rpns(macc_imps, micro.specialbnc.services)
+        macc_timp = abat_rpns(macc_impv, micro.microentreprise.regime_micro_bnc.marchandises) + abat_rpns(macc_imps, micro.microentreprise.regime_micro_bnc.services)
         # Régime du bénéfice réel bénéficiant de l'abattement CGA
         aacc_timp = (
             max_(
                 0,
                 (aacc_impn + (aacc_gits > 0) * max_(
-                    micro.specialbnc.services.min,
-                    aacc_gits * (1 - micro.specialbnc.marchandises.taux)
+                    micro.microentreprise.montant_minimum,
+                    aacc_gits * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
                     ))
                 + (aacc_imps > 0) * max_(
-                    micro.specialbnc.marchandises.min,
-                    aacc_imps * (1 - micro.specialbnc.services.taux)
+                    micro.microentreprise.montant_minimum,
+                    aacc_imps * (1 - micro.microentreprise.regime_micro_bnc.services.taux)
                     )
                 + (nacc_meup > 0) * max_(
-                    micro.specialbnc.services.min,
-                    nacc_meup * (1 - micro.specialbnc.marchandises.taux)
+                    micro.microentreprise.montant_minimum,
+                    nacc_meup * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
                     )
                 + (nacc_meuc > 0) * max_(
-                    micro.specialbnc.services.min,
-                    nacc_meuc * (1 - micro.specialbnc.services.taux)
+                    micro.microentreprise.montant_minimum,
+                    nacc_meuc * (1 - micro.microentreprise.regime_micro_bnc.services.taux)
                     )
                 + max_(0, nacc_defs - alnp_defs) - aacc_defn - aacc_defs
                 )
@@ -3053,7 +3054,7 @@ class rpns_imposables(Variable):
 
         # # E revenus non commerciaux non professionnels
         # regime déclaratif special ou micro-bnc
-        mncn_timp = abat_rpns(mncn_impo, micro.specialbnc)
+        mncn_timp = abat_rpns(mncn_impo, micro.microentreprise.regime_micro_bnc.services)
 
         # régime de la déclaration controlée
         # total 11
@@ -3062,7 +3063,7 @@ class rpns_imposables(Variable):
 
         # # D revenus non commerciaux professionnels
         # regime déclaratif special ou micro-bnc
-        mbnc_timp = abat_rpns(mbnc_impo, micro.specialbnc)
+        mbnc_timp = abat_rpns(mbnc_impo, micro.microentreprise.regime_micro_bnc.services)
 
         # regime de la déclaration contrôlée bénéficiant de l'abattement association agréée
         abnc_timp = abnc_impo - abnc_defi

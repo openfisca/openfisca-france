@@ -1,48 +1,30 @@
-description: Plafond (déficits agricoles) de l'Imputation sur le revenu global pour les régimes micro-entreprise et microfoncier
+description: Plafond de l'abattement pour le Régime spécial micro BNC pour les activités de service
 values:
-  1979-01-01:
-    value: 40000
-  1988-01-01:
+  1991-01-01:
     value: 70000
-  1989-01-01:
+  1996-01-01:
     value: 100000
-  1994-01-01:
-    value: 150000
-  1995-01-01:
-    value: 200000
-  2000-01-01:
-    value: 350000
+  1999-01-01:
+    value: 175000
   2001-01-01:
-    value: 53360
-  2004-01-01:
-    value: 60000
-  2006-01-01:
-    value: 100000
-  2007-01-01:
-    value: 101300
+    value: 26678.58
+  2002-01-01:
+    value: 27000
   2009-01-01:
-    value: 104238
+    value: 32000
   2010-01-01:
-    value: 104665
+    value: 32100
   2011-01-01:
-    value: 106225
+    value: 32600
   2013-01-01:
-    value: 107075
-  2014-01-01:
-    value: 107610
-  2015-01-01:
-    value: 107718
-  2016-01-01:
-    value: 107826
+    value: 32900
   2017-01-01:
-    value: 108904
-  2018-01-01:
-    value: 110646
-  2019-01-01:
-    value: 111752
+    value: 70000
+  2020-01-01:
+    value: 72600
 metadata:
-  ux_name: Plafond (déficits agricoles)
-  ipp_csv_id: plaf_defba
+  ux_name: Plafond
+  ipp_csv_id: limit_micro_service
   unit: currency
   reference:
     1979-01-01:
@@ -230,4 +212,5 @@ metadata:
     - title: "Création du régime d'autoentrepreneur : voir BOI-BIC-DECLA-10-40 du 09/12/2012"
 documentation: |-
   Notes :
-  Plafond déficits agricoles : art. 156-I-1° du CGI
+  (1) Abattement concernant les entrepreneurs individuels. Pour les autoentrepreneurs, voir art. 151-0 du CGI
+  (2) BNC : bénéfices non commerciaux. Si soumis à la TVA voir art. 293-B du CGI
