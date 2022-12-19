@@ -1,9 +1,4 @@
-description: Déductions salaires, pensions (1978 -)
+description: Total salaires pensions et rentes
 metadata:
-  ux_name: Déductions
-  description_en: Wages and pensions deductions (1978 -)
-  order:
-  - deduction_supplementaire
-  - abattement_forfaitaire_frais_professionnels_salaires_pensions
-  - minimum_abattement_frais_professionnels
-  - maximum_abattement_frais_professionnels
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/

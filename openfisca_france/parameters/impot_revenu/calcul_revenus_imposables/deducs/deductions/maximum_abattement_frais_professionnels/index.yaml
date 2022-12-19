@@ -1,0 +1,5 @@
+description: Maximum de l'abattement pour frais professionnels
+metadata:
+  order:
+  - salaires
+  - pensions

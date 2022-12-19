@@ -1,0 +1,9 @@
+description: Déductions salaires, pensions (1978 -)
+metadata:
+  ux_name: Déductions
+  description_en: Wages and pensions deductions (1978 -)
+  order:
+  - deduction_supplementaire
+  - abattement_forfaitaire_frais_professionnels_salaires_pensions
+  - minimum_abattement_frais_professionnels
+  - maximum_abattement_frais_professionnels

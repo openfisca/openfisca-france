@@ -1,0 +1,6 @@
+description: Déduction supplémentaire
+metadata:
+  order:
+  - taux
+  - abattement_maximal
+  - salaire_plafond

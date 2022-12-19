@@ -1,0 +1,9 @@
+description: Taux
+metadata:
+  ipp_csv_id: tx_abt_sal
+  unit: /1
+values:
+  1942-01-01:
+    value: null
+  1943-01-01:
+    value: 0.1

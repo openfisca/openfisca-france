@@ -1,0 +1,6 @@
+description: Minimum de l'abattement pour frais professionnels
+metadata:
+  order:
+  - salaires
+  - allocations_chomage
+  - pensions
