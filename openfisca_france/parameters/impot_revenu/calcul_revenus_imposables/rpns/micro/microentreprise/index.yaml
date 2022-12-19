@@ -2,6 +2,6 @@ description: Abattement sur recettes des microentreprises
 metadata:
   ux_name: Microentreprises
   order:
-    - taux_ventes_marchandises
-    - taux_prestations_services
+    - regime_micro_ba
+    - regime_micro_bnc
     - montant_minimum

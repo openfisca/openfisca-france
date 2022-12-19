@@ -2659,7 +2659,7 @@ class ric(Variable):
         cbic = min_(
             mbic_impv + mbic_imps + mbic_exon,
             max_(
-                micro.microentreprise.regime_micro_bnc.marchandises.min,
+                micro.microentreprise.montant_minimum,
                 round_(
                     mbic_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux + mbic_imps * micro.microentreprise.regime_micro_bnc.services.taux + mbic_exon * taux
                     )
@@ -2707,7 +2707,7 @@ class rac(Variable):
         cond = (macc_impv > 0) & (macc_imps == 0)
         taux = micro.microentreprise.regime_micro_bnc.marchandises.taux * cond + micro.microentreprise.regime_micro_bnc.services.taux * not_(cond)
 
-        cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.microentreprise.regime_micro_bnc.marchandises.min, round_(
+        cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.microentreprise.montant_minimum, round_(
             macc_impv * micro.microentreprise.regime_micro_bnc.marchandises.taux
             + macc_imps * micro.microentreprise.regime_micro_bnc.services.taux + macc_exon * taux
             + mncn_impo * micro.microentreprise.regime_micro_bnc.taux)))
@@ -3031,19 +3031,19 @@ class rpns_imposables(Variable):
             max_(
                 0,
                 (aacc_impn + (aacc_gits > 0) * max_(
-                    micro.microentreprise.regime_micro_bnc.services.min,
+                    micro.microentreprise.montant_minimum, 
                     aacc_gits * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
                     ))
                 + (aacc_imps > 0) * max_(
-                    micro.microentreprise.regime_micro_bnc.marchandises.min,
+                    micro.microentreprise.montant_minimum,
                     aacc_imps * (1 - micro.microentreprise.regime_micro_bnc.services.taux)
                     )
                 + (nacc_meup > 0) * max_(
-                    micro.microentreprise.regime_micro_bnc.services.min,
+                    micro.microentreprise.montant_minimum,
                     nacc_meup * (1 - micro.microentreprise.regime_micro_bnc.marchandises.taux)
                     )
                 + (nacc_meuc > 0) * max_(
-                    micro.microentreprise.regime_micro_bnc.services.min,
+                    micro.microentreprise.montant_minimum,
                     nacc_meuc * (1 - micro.microentreprise.regime_micro_bnc.services.taux)
                     )
                 + max_(0, nacc_defs - alnp_defs) - aacc_defn - aacc_defs
