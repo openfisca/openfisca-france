@@ -1606,7 +1606,7 @@ class assiette_proflib(Variable):
         # http://vosdroits.service-public.fr/professionnels-entreprises/F23267.xhtml
         return foyer_fiscal.sum(ebnc_impo_i)
 
-    # assert (ebnc_impo <= P.microentreprise.regime_micro_bnc.plafond)
+    # assert (ebnc_impo <= P.microentreprise.regime_micro_bnc.services.plafond)
 
 
 class microsocial(Variable):
