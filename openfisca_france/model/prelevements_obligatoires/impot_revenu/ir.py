@@ -416,10 +416,10 @@ class revenu_assimile_salaire_apres_abattements(Variable):
         revenu_assimile_salaire = individu('revenu_assimile_salaire', period)
         chomeur_longue_duree = individu('chomeur_longue_duree', period)
         frais_reels = individu('frais_reels', period)
-        abatpro = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abatpro
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
-        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abatfor = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+        abattement_minimum = where(chomeur_longue_duree, P.abatpro.min2, P.abatpro.min)
+        abatfor = round_(min_(max_(P.taux_salaires_pensions * revenu_assimile_salaire, abattement_minimum), P.abatpro.max))
         return (
             (frais_reels > abatfor)
             * (revenu_assimile_salaire - frais_reels)
@@ -430,9 +430,9 @@ class revenu_assimile_salaire_apres_abattements(Variable):
     def formula_2018_01_01(individu, period, parameters):
         revenu_assimile_salaire = individu('revenu_assimile_salaire', period)
         frais_reels = individu('frais_reels', period)
-        abatpro = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abatpro
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
-        abatfor = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abatpro.min), abatpro.max))
+        abatfor = round_(min_(max_(P.taux_salaires_pensions * revenu_assimile_salaire, P.abatpro.min), P.abatpro.max))
         return (
             (frais_reels > abatfor)
             * (revenu_assimile_salaire - frais_reels)
@@ -464,17 +464,17 @@ class revenu_assimile_pension_apres_abattements(Variable):
 
     def formula(individu, period, parameters):
         revenu_assimile_pension = individu('revenu_assimile_pension', period)
-        abatpen = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abatpen
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
         #    TODO: problème car les pensions sont majorées au niveau du foyer
     #    d11 = ( AS + BS + CS + DS + ES +
     #            AO + BO + CO + DO + EO )
     #    penv2 = (d11-f11> abatpen.max)*(penv + (d11-f11-abatpen.max)) + (d11-f11<= abatpen.max)*penv
     #    Plus d'abatement de 20% en 2006
-        return max_(0, revenu_assimile_pension - round_(max_(abatpen.taux * revenu_assimile_pension, abatpen.min)))
+        return max_(0, revenu_assimile_pension - round_(max_(P.taux_salaires_pensions * revenu_assimile_pension, P.abatpen.min)))
 
 
-#    return max_(0, revenu_assimile_pension - min_(round_(max_(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
+#    return max_(0, revenu_assimile_pension - min_(round_(max_(P.taux_salaires_pensions*revenu_assimile_pension , P.abatpen.min)), P.abatpen.max))  le max se met au niveau du foyer
 
 class indu_plaf_abat_pen(Variable):
     value_type = float
@@ -485,13 +485,13 @@ class indu_plaf_abat_pen(Variable):
     def formula(foyer_fiscal, period, parameters):
         rev_pen_i = foyer_fiscal.members('revenu_assimile_pension', period)
         pen_net_i = foyer_fiscal.members('revenu_assimile_pension_apres_abattements', period)
-        abatpen = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abatpen
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
         revenu_assimile_pension_apres_abattements = foyer_fiscal.sum(pen_net_i)
         revenu_assimile_pension = foyer_fiscal.sum(rev_pen_i)
 
         abat = revenu_assimile_pension - revenu_assimile_pension_apres_abattements
-        return abat - min_(abat, abatpen.max)
+        return abat - min_(abat, P.abatpen.max)
 
 
 class abattement_salaires_pensions(Variable):
@@ -504,9 +504,9 @@ class abattement_salaires_pensions(Variable):
     def formula(individu, period, parameters):
         revenu_assimile_salaire_apres_abattements = individu('revenu_assimile_salaire_apres_abattements', period)
         revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
-        abat_supp = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abat_supp
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
-        return min_(abat_supp.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abat_supp.max)
+        return min_(P.abat_supp.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), P.abat_supp.max)
 
 
 class rente_viagere_titre_onereux(Variable):
