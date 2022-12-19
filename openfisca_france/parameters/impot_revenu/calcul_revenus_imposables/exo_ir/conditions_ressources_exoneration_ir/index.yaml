@@ -2,6 +2,6 @@ description: Conditions de ressources pour exonération d'Impôt sur le Revenu
 metadata:
   ux_name: Conditions ressources
   order:
-  - moins_65_ans
-  - plus_65_ans
+  - moins_de_65_ans
+  - plus_de_65_ans
   - apprentis

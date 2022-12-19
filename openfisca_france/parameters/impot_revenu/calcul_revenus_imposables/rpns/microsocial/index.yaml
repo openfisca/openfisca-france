@@ -2,6 +2,6 @@ description: Versement libératoire (régime auto-entrepreneur/micro-social)
 metadata:
   ux_name: Versement libératoire
   order:
-    - taux_regime_micro_bic_vente
-    - taux_regime_micro_bic_service
-    - taux_regime_micro_bnc
+    - bnc
+    - servi
+    - vente
