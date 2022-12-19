@@ -11,6 +11,5 @@ documentation: 'Notes :
 metadata:
   description_en: Investment gains and securities income (1980 -)
   order:
-  - date_entree_en_vigueur
   - produits_assurances_vies_assimiles
   - revenus_capitaux_mobiliers_dividendes
