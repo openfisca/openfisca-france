@@ -3,9 +3,6 @@ brackets:
 - threshold:
     1971-01-01:
       value: 0
-  base:
-    1971-01-01:
-      value: 1.25
   rate:
     1971-01-01:
       value: 0.0126
@@ -36,9 +33,6 @@ brackets:
 - threshold:
     1971-01-01:
       value: 1
-  base:
-    1971-01-01:
-      value: 1.25
   rate:
     1971-01-01:
       value: null
@@ -73,7 +67,7 @@ brackets:
     1991-04-01:
       value: 0.11087999999999999
     1992-01-01:
-      value: null
+      value: 0
 metadata:
   ux_name: Contribution employeur
   description_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
