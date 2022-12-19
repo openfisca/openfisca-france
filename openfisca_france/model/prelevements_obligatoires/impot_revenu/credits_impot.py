@@ -1962,7 +1962,7 @@ class prlire(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         P = parameters(period)
 
-        plaf_resid = max_(P.impot_revenu.calcul_revenus_imposables.rvcm.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
+        plaf_resid = max_(P.impot_revenu.calcul_revenus_imposables.rvcm.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses) - f2ch, 0)
         return P.impot_revenu.calcul_credits_impots.prlire.taux * min_(f2dh, plaf_resid)
 
 

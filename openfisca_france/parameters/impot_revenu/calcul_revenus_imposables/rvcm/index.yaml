@@ -1,4 +1,16 @@
-description: Revenus des valeurs et capitaux mobiliers
+description: Revenu des valeurs et capitaux mobiliers (1980 -)
+documentation: 'Notes :
+
+  (1) Taux de l''abattement sur dividendes : art. 158-3-2° du CGI (ancêtre de tx_abt_rcm)
+
+  (2) Abattement sur assurance-vie : l''abattement est multiplié par deux pour les
+  couples. Cet abattement concerne les contrats d''une durée d''au moins six ans,
+  pour les contrats souscrits entre le 01/01/1983 et le 31/12/1989, et d''au moins
+  huits ans pour les contrats souscrits depuis le 01/01/1990. voir l''art. 125-0 A
+  du CGI.'
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  description_en: Investment gains and securities income (1980 -)
+  order:
+  - date_entree_en_vigueur
+  - produits_assurances_vies_assimiles
+  - revenus_capitaux_mobiliers_dividendes
