@@ -1,4 +1,11 @@
-description: Régime microentreprise/Spécial bnc
+description: Abattements des régimes micro-entreprise/spécial BNC et microfoncier (1980 -)
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  ux_name: Régimes micro
+  description_en: Micro-firms and micro-landed schemes (1980 -)
+  order:
+  - abattement_recettes_microentreprises
+  - abattement_regime_micro_bnc
+  - abattement_regime_micro_ba
+  - abattement_regime_microfoncier
+  - imputation_revenu_global
+  - versement_liberatoire_regime_auto_entrepreneur
