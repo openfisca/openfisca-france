@@ -1,5 +1,15 @@
 # Changelog
 
+# 131.0.0 [#1952](https://github.com/openfisca/openfisca-france/pull/1952)
+
+* Évolution du système socio-fiscal. | Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables`.
+* Détails :
+  - Harmonise les sous-dossiers:
+  - 'abat_rni'
+  - 'abat_exceptionnel'
+  - charges_deductibles'
 # 130.0.0 [#1948](https://github.com/openfisca/openfisca-france/pull/1948)
 
 * Amélioration technique.
