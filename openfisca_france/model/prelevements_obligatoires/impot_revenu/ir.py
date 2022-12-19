@@ -2888,7 +2888,7 @@ class rpns_revenus_microBA_agricole(Variable):
             + (date_creation == 2016) * mrag_impo
             )
 
-        return montant_benef * (1 - micro.taux_mBA)
+        return montant_benef * (1 - micro.regime_micro_ba.taux)
 
     def formula_2017_01_01(individu, period, parameters):
         mrag_impo = individu('mrag_impo', period)
@@ -2908,13 +2908,13 @@ class rpns_revenus_microBA_agricole(Variable):
             + (date_creation == 2017) * mrag_impo
             )
 
-        return montant_benef * (1 - micro.taux_mBA)
+        return montant_benef * (1 - micro.regime_micro_ba.taux)
 
     def formula_2018_01_01(individu, period, parameters):
         mrag_impo = individu('mrag_impo', period)
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
-        return mrag_impo * (1 - micro.taux_mBA)
+        return mrag_impo * (1 - micro.regime_micro_ba.taux)
 
 
 class rpns_imposables(Variable):
