@@ -1,4 +1,7 @@
 from numpy import fabs, timedelta64
+
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import Individu, Variable, MONTH, Enum, not_, ADD,\
     set_input_dispatch_by_period, set_input_divide_by_period, min_, date
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import TypesLieuResidence
@@ -326,7 +329,7 @@ class aide_mobilite(Variable):
         eligibilite_amob = individu('aide_mobilite_eligible', period)
         parametres_amob = parameters(period).prestations_sociales.aide_mobilite
 
-        annee_glissante = period.start.period('year').offset(-1)
+        annee_glissante = Period('year', period.start).offset(-1)
 
         aide_mobilite_12_derniers_mois = individu('aide_mobilite', annee_glissante, options=[ADD])
 

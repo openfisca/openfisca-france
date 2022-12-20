@@ -1,3 +1,5 @@
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 
 
@@ -10,7 +12,7 @@ class rente_accident_travail(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period):
-        previous_year = period.start.period('year').offset(-1)
+        previous_year = Period('year', period.start).offset(-1)
         non_salarie_agricole = individu('rpns_benefice_exploitant_agricole', previous_year, options=[ADD]) != 0
         rente_accident_travail_salarie = individu('rente_accident_travail_salarie', period)
         rente_accident_travail_exploitant_agricole = individu('rente_accident_travail_exploitant_agricole', period)
@@ -27,7 +29,7 @@ class rente_accident_travail_salarie(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period):
-        previous_year = period.start.period('year').offset(-1)
+        previous_year = Period('year', period.start).offset(-1)
         salarie = individu('salaire_net', previous_year, options=[ADD]) != 0
         rente_accident_travail_rachat = individu('rente_accident_travail_rachat', period)
         taux_incapacite = individu('taux_accident_travail', period)
@@ -52,7 +54,7 @@ class rente_accident_travail_exploitant_agricole(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period):
-        previous_year = period.start.period('year').offset(-1)
+        previous_year = Period('year', period.start).offset(-1)
         non_salarie_agricole = individu('rpns_benefice_exploitant_agricole', previous_year, options=[ADD]) != 0
         rente_accident_travail_rachat = individu('rente_accident_travail_rachat', period)
         taux_incapacite = individu('taux_accident_travail', period)
@@ -180,7 +182,7 @@ class rente_accident_travail_salaire_utile(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        previous_year = period.start.period('year').offset(-1)
+        previous_year = Period('year', period.start).offset(-1)
         rente_at = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.accident_travail.rente
 
         salaire_net = individu('salaire_net', previous_year, options=[ADD])

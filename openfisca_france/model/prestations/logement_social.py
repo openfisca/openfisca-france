@@ -1,7 +1,7 @@
 from numpy import isin, logical_not as not_, select
 
 from openfisca_core.indexed_enums import Enum
-from openfisca_core.periods import MONTH
+from openfisca_core.periods import MONTH, Period
 from openfisca_core.variables import Variable
 
 from openfisca_france.entities import Famille, Menage
@@ -172,7 +172,7 @@ class logement_social_eligible(Variable):
     def formula_2017(famille, period, parameters):
         parent_majeur = famille.any(famille.members('majeur', period), role = Famille.PARENT)
         logement_social_plafond_ressources = famille('logement_social_plafond_ressources', period)
-        rfr_n0 = famille.demandeur.foyer_fiscal('rfr', period.start.offset('first-of', 'year').period('year'))
+        rfr_n0 = famille.demandeur.foyer_fiscal('rfr', Period('year', period.start.offset('first-of', 'year')))
         rfr_n1 = famille.demandeur.foyer_fiscal('rfr', period.last_year)
         rfr_n2 = famille.demandeur.foyer_fiscal('rfr', period.n_2)
 
