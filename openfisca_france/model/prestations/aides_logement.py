@@ -7,9 +7,9 @@ import sys
 
 from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
 
-import openfisca_france
-from openfisca_core.periods import Instant
+from openfisca_core.periods import Instant, Period
 
+import openfisca_france
 from openfisca_france.model.base import *
 from openfisca_france.model.revenus.activite.salarie import TypesConges
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -566,7 +566,7 @@ class aide_logement_base_ressources_individu(Variable):
 
     def formula_2021_01_01(individu, period, parameters):
         period_frais = period.last_year
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
+        annee_glissante = Period('year', period.start).offset(-1).offset(-1, 'month')
 
         salaire_imposable = individu('salaire_imposable', annee_glissante, options=[ADD])
         chomage_imposable = individu('chomage_imposable', annee_glissante, options=[ADD])

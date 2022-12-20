@@ -2,6 +2,8 @@ import logging
 
 from numpy import busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64
 
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
@@ -535,7 +537,7 @@ def compute_allegement_anticipe(individu, period, parameters, variable_name, com
     if period.start.month == 12:
         cumul = individu(
             variable_name,
-            period.start.offset('first-of', 'year').period('month', 11), options = [ADD])
+            Period('month', period.start.offset('first-of', 'year'), 11), options = [ADD])
         return compute_function(
             individu, period.this_year, parameters
             ) - cumul
@@ -546,8 +548,8 @@ def compute_allegement_progressif(individu, period, parameters, variable_name, c
         return compute_function(individu, period.first_month, parameters)
 
     if period.start.month > 1:
-        up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
-        up_to_previous_month = period.start.offset('first-of', 'year').period('month', period.start.month - 1)
+        up_to_this_month = Period('month', period.start.offset('first-of', 'year'), period.start.month)
+        up_to_previous_month = Period('month', period.start.offset('first-of', 'year'), period.start.month - 1)
         cumul = individu(variable_name, up_to_previous_month, options = [ADD])
         return compute_function(individu, up_to_this_month, parameters) - cumul
 
