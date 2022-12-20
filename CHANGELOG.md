@@ -1,5 +1,4 @@
 # Changelog 
-
 # 134.0.0 [#1958](https://github.com/openfisca/openfisca-france/pull/1958)
 
 * Évolution du système socio-fiscal. | Amélioration technique.
