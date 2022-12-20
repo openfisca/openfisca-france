@@ -1,4 +1,14 @@
 # Changelog 
+
+### 134.0.1 [#1960](https://github.com/openfisca/openfisca-france/pull/1960)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes. 
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables.`.
+* Ajoute et harmonise les paramètres issus des barèmes IPP: 
+  - `exo_maire_autres`
+  - `foncier_deduc`
+  - `deduc_invest_locatif`
 # 134.0.0 [#1958](https://github.com/openfisca/openfisca-france/pull/1958)
 
 * Évolution du système socio-fiscal. | Amélioration technique.
