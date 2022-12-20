@@ -1234,7 +1234,7 @@ class af_nbenf_fonc(Variable):
             D'où l'introduction de cette variable alternative.
         '''
 
-        salaire_de_base_mensualise = famille.members('salaire_de_base', Period('month', period.start, 6).offset(-6), options = [ADD])
+        salaire_de_base_mensualise = famille.members('salaire_de_base', Period(('month', period.start, 6)).offset(-6), options = [ADD])
         law = parameters(period)
         nbh_travaillees = 169
         smic_mensuel_brut = law.marche_travail.salaire_minimum.smic.smic_b_horaire * nbh_travaillees

@@ -1,6 +1,8 @@
 from numpy import datetime64, logical_and as and_, logical_or as or_
 
+from openfisca_core import periods
 from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
@@ -676,7 +678,7 @@ class rsa_eligibilite(Variable):
 
         etudiant_i = famille.members('etudiant', period)
 
-        if period.start < Period('2009-06').start:
+        if period.start < periods.period('2009-06').start:
             # Les jeunes de moins de 25 ans ne sont pas éligibles au RMI
             rsa_jeune_condition_i = False
         else:
@@ -939,7 +941,7 @@ class rsa_non_calculable_tns_individu(Variable):
     # En fait l'évaluation par le PCD est plutôt l'exception que la règle. En général on retient plutôt le bénéfice déclaré au FISC (après abattement forfaitaire ou réel).
 
     def formula(individu, period):
-        this_year_and_last_year = Period('year', period.start.offset('first-of', 'year'), 2).offset(-1)
+        this_year_and_last_year = Period(('year', period.start.offset('first-of', 'year'), 2)).offset(-1)
         rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD])
         rpns_micro_entreprise_chiffre_affaires = individu('rpns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD])
         rpns_autres_revenus = individu('rpns_autres_revenus', this_year_and_last_year, options = [ADD])
