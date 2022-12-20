@@ -680,7 +680,7 @@ class ppv_eligibilite_exceptionnelle(Variable):
     '''
 
     def formula_2022_07_01(individu, period, parameters):
-        annee_glissante = Period('year', period.start).offset(-1)
+        annee_glissante = Period(('year', period.start, 1)).offset(-1)
         salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
         smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
         quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
@@ -777,7 +777,7 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
         sinon
             Pas d'exonération
         '''
-        annee_glissante = Period('year', period.start).offset(-1)
+        annee_glissante = Period(('year', period.start, 1)).offset(-1)
         salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
         smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
         quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
@@ -1181,7 +1181,7 @@ class indice_majore(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        period = Period('month', period.start).offset('first-of')
+        period = Period(('month', period.start, 1)).offset('first-of')
         categorie_salarie = individu('categorie_salarie', period)
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         _P = parameters(period)

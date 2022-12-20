@@ -587,7 +587,7 @@ class aide_logement_base_ressources_individu(Variable):
 
     def formula_2021_01_01(individu, period, parameters):
         period_frais = period.last_year
-        annee_glissante = Period('year', period.start).offset(-1).offset(-1, 'month')
+        annee_glissante = Period(('year', period.start, 1)).offset(-1).offset(-1, 'month')
 
         # salaire imposable pour les journaliste et les assistants mat/fam apres l'aplication de l'abattement forfaitaire
         # dans le cas des frais réels déclaré superieur a Zero.
