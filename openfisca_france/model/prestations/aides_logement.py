@@ -566,7 +566,7 @@ class aide_logement_base_ressources_individu(Variable):
 
     def formula_2021_01_01(individu, period, parameters):
         period_frais = period.last_year
-        annee_glissante = Period('year', period.start).offset(-1).offset(-1, 'month')
+        annee_glissante = Period(('year', period.start)).offset(-1).offset(-1, 'month')
 
         salaire_imposable = individu('salaire_imposable', annee_glissante, options=[ADD])
         chomage_imposable = individu('chomage_imposable', annee_glissante, options=[ADD])

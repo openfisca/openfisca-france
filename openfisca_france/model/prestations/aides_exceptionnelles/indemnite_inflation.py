@@ -1,4 +1,4 @@
-from openfisca_core.periods import Period
+from openfisca_core import periods
 
 from openfisca_france.model.base import *
 
@@ -18,14 +18,14 @@ class eligibilite_indemnite_inflation_non_salarie(Variable):
 
     def formula(individu, period, parameters):
 
-        oct_2021 = Period('2021-10')
+        oct_2021 = periods.period('2021-10')
 
         # non-salarié
         eligibilite_cat_non_sal = (individu('categorie_non_salarie', oct_2021.this_year) != TypesCategorieNonSalarie.non_pertinent)
 
         # revenu d'activité inférieure à € 2000 nets par mois en 2020 (selon déclaration annuelle des revenus)
-        annee_2020 = Period('2020')
-        jan_sep_2021 = Period('month:2021-01:9')
+        annee_2020 = periods.period('2020')
+        jan_sep_2021 = periods.period('month:2021-01:9')
 
         # chiffre d'affaires
         rev_net_auto = individu('rpns_auto_entrepreneur_revenus_net', annee_2020, options = [ADD])
@@ -57,7 +57,7 @@ class eligibilite_indemnite_inflation_salarie_prive(Variable):
     def formula(individu, period, parameters):
 
         # éligibilité statut
-        oct_2021 = Period('2021-10')
+        oct_2021 = periods.period('2021-10')
         eligibilite_activite = individu('activite', oct_2021) == TypesActivite.actif
         eligibilite_alternance = individu('alternant', oct_2021) > 0
         eligibilite = (eligibilite_activite + eligibilite_alternance) > 0
@@ -81,7 +81,7 @@ class eligibilite_indemnite_inflation_salarie_prive(Variable):
         tsal = 0
 
         for rp in rev_periods:
-            per = Period(rp)
+            per = periods.period(rp)
             sal = individu('salaire_net', per, options=[ADD])
 
             if sal > 0:
@@ -108,7 +108,7 @@ class eligibilite_indemnite_inflation_public(Variable):
 
     def formula(individu, period, parameters):
 
-        oct_2021 = Period('2021-10')
+        oct_2021 = periods.period('2021-10')
 
         # agent public
         eligibilite_public = ((individu('categorie_salarie', oct_2021) == TypesCategorieSalarie.public_titulaire_etat)
@@ -136,7 +136,7 @@ class eligibilite_indemnite_inflation_public(Variable):
         tsal = 0
 
         for rp in rev_periods:
-            per = Period(rp)
+            per = periods.period(rp)
             sal = individu('salaire_net', per, options=[ADD])
 
             if sal > 0:
@@ -164,8 +164,8 @@ class eligibilite_indemnite_inflation_retraite(Variable):
 
     def formula(individu, period, parameters):
 
-        oct_2021 = Period('2021-10')
-        annee_2021 = Period('2021')
+        oct_2021 = periods.period('2021-10')
+        annee_2021 = periods.period('2021')
 
         # bénéficiaire d'une pension de retraite en octobre 2021
         eligibilite_retraite = (individu('activite', oct_2021) == TypesActivite.retraite)
@@ -196,7 +196,7 @@ class eligibilite_indemnite_inflation_prest_soc(Variable):
 
     def formula(individu, period, parameters):
 
-        oct_2021 = Period('2021-10')
+        oct_2021 = periods.period('2021-10')
 
         # pension d'invalidité <= 2000 par mois
         eligibilite_pension_invalidite = (individu('pensions_invalidite', oct_2021) <= 2000) * (individu('pensions_invalidite', oct_2021) > 0)
@@ -226,7 +226,7 @@ class eligibilite_indemnite_inflation_jeune(Variable):
 
     def formula(individu, period, parameters):
 
-        oct_2021 = Period('2021-10')
+        oct_2021 = periods.period('2021-10')
 
         # au moins 16 ans
         eligibilite_age = individu('age', oct_2021) >= 16
@@ -273,7 +273,7 @@ class eligibilite_indemnite_inflation_demandeur_emploi(Variable):
 
     def formula(individu, period, parameters):
 
-        oct_2021 = Period('2021-10')
+        oct_2021 = periods.period('2021-10')
 
         # chômeur en octobre 2021
         eligibilite_chomeur = (individu('activite', oct_2021) == TypesActivite.chomeur)
