@@ -566,7 +566,7 @@ class eligibilite_caah(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2015_07_01(individu, period, parameters):
-        annee_precedente = Period(('year', period.start)).offset(-1)
+        annee_precedente = Period(('year', period.start, 1)).offset(-1)
         prestations = parameters(period).prestations_sociales
         taux_incapacite_min = prestations.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite
         aah = individu('aah', period)
