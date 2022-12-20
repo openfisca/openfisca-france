@@ -1,4 +1,7 @@
 from numpy import logical_not as not_
+
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
@@ -15,8 +18,8 @@ class ars(Variable):
         Allocation de rentrée scolaire brute de CRDS
         '''
         janvier = period.first_month
-        octobre = period.start.offset('first-of', 'year').offset(9, 'month').period('month')
-        decembre = period.start.offset('first-of', 'year').offset(11, 'month').period('month')
+        octobre = Period('month', period.start.offset('first-of', 'year').offset(9, 'month'))
+        decembre = Period('month', period.start.offset('first-of', 'year').offset(11, 'month'))
         af_nbenf = famille('af_nbenf', octobre)
         base_ressources = famille('prestations_familiales_base_ressources', janvier)
         ars = parameters(octobre).prestations_sociales.prestations_familiales.education_presence_parentale.ars
