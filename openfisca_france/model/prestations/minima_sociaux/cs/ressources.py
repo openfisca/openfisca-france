@@ -1,5 +1,7 @@
 from numpy import absolute as abs_, logical_or as or_, logical_not as not_
 
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import (
     Variable,
     Individu,
@@ -29,7 +31,7 @@ class cmu_base_ressources_individu(Variable):
 
     def formula(individu, period, parameters):
         # Rolling year
-        previous_year = period.start.period('year').offset(-1).offset(-1, 'month')
+        previous_year = Period('year', period.start).offset(-1).offset(-1, 'month')
         # N-1
         last_year = period.last_year
         last_month = period.last_month
@@ -93,7 +95,7 @@ class cmu_base_ressources(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        previous_year = period.start.period('year').offset(-1).offset(-1, 'month')
+        previous_year = Period('year', period.start).offset(-1).offset(-1, 'month')
 
         ressources_famille_a_inclure = [
             'af',

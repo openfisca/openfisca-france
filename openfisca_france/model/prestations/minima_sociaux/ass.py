@@ -1,5 +1,7 @@
 from numpy import absolute as abs_, logical_and as and_
 
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import *
 
 
@@ -79,7 +81,7 @@ class ass_base_ressources_individu(Variable):
 
     def formula(individu, period, parameters):
         # Rolling year
-        previous_year = period.start.period('year').offset(-1)
+        previous_year = Period('year', period.start).offset(-1)
         # N-1
         last_year = period.last_year
         # last month
@@ -135,9 +137,9 @@ class ass_base_ressources_conjoint(Variable):
 
     def formula(individu, period, parameters):
         # Rolling year
-        previous_year = period.start.period('year').offset(-1)
+        previous_year = Period('year', period.start).offset(-1)
 
-        last_month = period.start.period('month').offset(-1)
+        last_month = Period('month', period.start).offset(-1)
 
         ass_base_ressources_individu = individu('ass_base_ressources_individu', period)
         chomage_net_interrompue = individu('chomage_net', last_month) == 0
@@ -152,14 +154,14 @@ class ass_base_ressources_conjoint(Variable):
 
 
 def calculateWithAbatement(individu, parameters, period, ressourceName):
-    last_month = period.start.period('month').offset(-1)
+    last_month = Period('month', period.start).offset(-1)
     has_ressources_substitution = (
         individu('chomage_net', last_month)
         + individu('indemnites_journalieres', last_month)
         + individu('retraite_nette', last_month)
         ) > 0
     # Rolling year
-    previous_year = period.start.period('year').offset(-1)
+    previous_year = Period('year', period.start).offset(-1)
 
     ressource_year = individu(ressourceName, previous_year, options=[ADD])
     ressource_last_month = individu(ressourceName, last_month)
