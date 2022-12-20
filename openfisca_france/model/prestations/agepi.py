@@ -85,7 +85,7 @@ class agepi_eligible(Variable):
         condition_nb_enfants = individu.famille('agepi_nbenf', period) > 0
 
         # L'individu n'a pas touché l'AGEPI dans les 12 derniers mois (condition de durée entre faits générateurs)
-        annee_glissante = Period(('year', period.start).offset(-1).offset(-1, 'month')
+        annee_glissante = Period(('year', period.start)).offset(-1).offset(-1, 'month')
         agepi_non_percues = not_(individu('agepi', annee_glissante, options=[ADD]))
 
         # L'individu est inscrit en catégorie 1, 2, 3, 4 "stagiaire de la formation professionnelle" ou 5 "contrat aidé"
