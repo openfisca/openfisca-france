@@ -605,7 +605,6 @@ class aide_logement_base_ressources_individu(Variable):
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
-        #rpns = individu('rpns_imposables', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
         rpns_pvct = individu('rpns_pvct', period.n_2)
         rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
@@ -944,7 +943,7 @@ class aide_logement_base_ressources(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2021_01_01(famille, period, parameters):
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
+        annee_glissante = Period(('year', period.start, 1)).offset(-1).offset(-1, 'month')
         biactivite = famille('aide_logement_biactivite', period)
         parametres_ressources = parameters(period).prestations_sociales.aides_logement.allocations_logement.ressources
         age_etudiant_max = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_etudiant.age_max

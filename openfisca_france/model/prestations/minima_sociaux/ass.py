@@ -85,7 +85,7 @@ class ass_base_ressources_individu(Variable):
         # N-1
         last_year = period.last_year
         # last month
-        last_month = period.start.period('month').offset(-1)
+        last_month = Period(('month', period.start, 1)).offset(-1)
 
         salaire_imposable = calculateWithAbatement(individu, parameters, period, 'salaire_imposable')
         retraite_imposable = calculateWithAbatement(individu, parameters, period, 'retraite_imposable')
