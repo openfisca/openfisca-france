@@ -416,10 +416,10 @@ class revenu_assimile_salaire_apres_abattements(Variable):
         revenu_assimile_salaire = individu('revenu_assimile_salaire', period)
         chomeur_longue_duree = individu('chomeur_longue_duree', period)
         frais_reels = individu('frais_reels', period)
-        abatpro = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpro
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
-        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abatfor = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+        abattement_minimum = where(chomeur_longue_duree, P.abatpro.min2, P.abatpro.min)
+        abatfor = round_(min_(max_(P.taux_salaires_pensions * revenu_assimile_salaire, abattement_minimum), P.abatpro.max))
         return (
             (frais_reels > abatfor)
             * (revenu_assimile_salaire - frais_reels)
@@ -430,9 +430,9 @@ class revenu_assimile_salaire_apres_abattements(Variable):
     def formula_2018_01_01(individu, period, parameters):
         revenu_assimile_salaire = individu('revenu_assimile_salaire', period)
         frais_reels = individu('frais_reels', period)
-        abatpro = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpro
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
-        abatfor = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abatpro.min), abatpro.max))
+        abatfor = round_(min_(max_(P.taux_salaires_pensions * revenu_assimile_salaire, P.abatpro.min), P.abatpro.max))
         return (
             (frais_reels > abatfor)
             * (revenu_assimile_salaire - frais_reels)
@@ -464,17 +464,17 @@ class revenu_assimile_pension_apres_abattements(Variable):
 
     def formula(individu, period, parameters):
         revenu_assimile_pension = individu('revenu_assimile_pension', period)
-        abatpen = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpen
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
         #    TODO: problème car les pensions sont majorées au niveau du foyer
     #    d11 = ( AS + BS + CS + DS + ES +
     #            AO + BO + CO + DO + EO )
     #    penv2 = (d11-f11> abatpen.max)*(penv + (d11-f11-abatpen.max)) + (d11-f11<= abatpen.max)*penv
     #    Plus d'abatement de 20% en 2006
-        return max_(0, revenu_assimile_pension - round_(max_(abatpen.taux * revenu_assimile_pension, abatpen.min)))
+        return max_(0, revenu_assimile_pension - round_(max_(P.taux_salaires_pensions * revenu_assimile_pension, P.abatpen.min)))
 
 
-#    return max_(0, revenu_assimile_pension - min_(round_(max_(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
+#    return max_(0, revenu_assimile_pension - min_(round_(max_(P.taux_salaires_pensions*revenu_assimile_pension , P.abatpen.min)), P.abatpen.max))  le max se met au niveau du foyer
 
 class indu_plaf_abat_pen(Variable):
     value_type = float
@@ -485,13 +485,13 @@ class indu_plaf_abat_pen(Variable):
     def formula(foyer_fiscal, period, parameters):
         rev_pen_i = foyer_fiscal.members('revenu_assimile_pension', period)
         pen_net_i = foyer_fiscal.members('revenu_assimile_pension_apres_abattements', period)
-        abatpen = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatpen
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
         revenu_assimile_pension_apres_abattements = foyer_fiscal.sum(pen_net_i)
         revenu_assimile_pension = foyer_fiscal.sum(rev_pen_i)
 
         abat = revenu_assimile_pension - revenu_assimile_pension_apres_abattements
-        return abat - min_(abat, abatpen.max)
+        return abat - min_(abat, P.abatpen.max)
 
 
 class abattement_salaires_pensions(Variable):
@@ -504,9 +504,9 @@ class abattement_salaires_pensions(Variable):
     def formula(individu, period, parameters):
         revenu_assimile_salaire_apres_abattements = individu('revenu_assimile_salaire_apres_abattements', period)
         revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
-        abatsalpen = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatsalpen
+        P = parameters(period).impot_revenu.calcul_revenus_imposables.deductions
 
-        return min_(abatsalpen.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abatsalpen.max)
+        return min_(P.abat_supp.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), P.abat_supp.max)
 
 
 class rente_viagere_titre_onereux(Variable):
@@ -549,7 +549,7 @@ class rente_viagere_titre_onereux_net(Variable):
         f1bw = foyer_fiscal('f1bw', period)
         f1cw = foyer_fiscal('f1cw', period)
         f1dw = foyer_fiscal('f1dw', period)
-        abatviag = parameters(period).impot_revenu.calcul_revenus_imposables.tspr.abatviag
+        abatviag = parameters(period).impot_revenu.calcul_revenus_imposables.deductions.abatviag
 
         return round_(
             + abatviag.taux1 * f1aw
@@ -570,7 +570,7 @@ class traitements_salaires_pensions_rentes(Variable):
         revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
         abattement_salaires_pensions = individu('abattement_salaires_pensions', period)
 
-        # Quand tspr est calculé sur une année glissante, rente_viagere_titre_onereux_net est calculé sur l'année légale
+        # Quand deductions est calculé sur une année glissante, rente_viagere_titre_onereux_net est calculé sur l'année légale
         # correspondante.
         rente_viagere_titre_onereux_net = individu.foyer_fiscal('rente_viagere_titre_onereux_net', period.offset('first-of'))
         rente_viagere_titre_onereux_net_declarant1 = rente_viagere_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -619,7 +619,7 @@ class revenu_categoriel_plus_values(Variable):
         return f3wb
 
 
-class revenu_categoriel_tspr(Variable):
+class revenu_categoriel_deductions(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Revenu catégoriel - Traitements, salaires, pensions et rentes'
@@ -627,10 +627,10 @@ class revenu_categoriel_tspr(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        tspr_i = foyer_fiscal.members('traitements_salaires_pensions_rentes', period)
+        deductions_i = foyer_fiscal.members('traitements_salaires_pensions_rentes', period)
         indu_plaf_abat_pen = foyer_fiscal('indu_plaf_abat_pen', period)
 
-        traitements_salaires_pensions_rentes = foyer_fiscal.sum(tspr_i)
+        traitements_salaires_pensions_rentes = foyer_fiscal.sum(deductions_i)
 
         return traitements_salaires_pensions_rentes + indu_plaf_abat_pen
 
@@ -680,20 +680,20 @@ class revenu_categoriel_capital(Variable):
         f2tr_bis = f2tr
         # # Calcul du revenu catégoriel
         # 1.2 Revenus des valeurs et capitaux mobiliers
-        b12 = min_(f2ch, rvcm.abat_assvie * (1 + maries_ou_pacses))
+        b12 = min_(f2ch, rvcm.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses))
         TOT1 = f2ch - b12  # c12
         # Part des frais s'imputant sur les revenus déclarés case DC
         den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        g12a = -min_(f2dc_bis * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
+        g12b = max_(f2dc_bis * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        h12 = rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -722,17 +722,17 @@ class revenu_categoriel_capital(Variable):
         parameter_rvcm = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         part_frais_imputes_sur_f2dc = f2ca / max_(1, f2dc + f2ts) * f2dc
-        part_frais_restant_a_imputer = -min_(f2dc * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
+        part_frais_restant_a_imputer = -min_(f2dc * (1 - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
 
-        dividendes_apres_abattements = max_(f2dc * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
-        revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, parameter_rvcm.abat_assvie * (1 + maries_ou_pacses))
+        dividendes_apres_abattements = max_(f2dc * (1 - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
+        revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, parameter_rvcm.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses))
         rvcm_apres_abattements_proportionnels = (
             revenus_assurance_vie_apres_abattements
             + dividendes_apres_abattements
             + f2gr
-            + f2fu * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0))
+            + f2fu * (1 - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
             )
-        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - parameter_rvcm.abatmob * (1 + maries_ou_pacses))
+        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - parameter_rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses))
         autres_rvcm_sans_abattements = (
             f2ts - (f2ca - part_frais_imputes_sur_f2dc)
             + f2go * parameter_rvcm.majoration_revenus_reputes_distribues
@@ -757,8 +757,8 @@ class revenu_categoriel_capital(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
-        abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
@@ -785,8 +785,8 @@ class revenu_categoriel_capital(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
-        abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
@@ -820,8 +820,8 @@ class revenu_categoriel_capital(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         # Revenus après abatemment
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
-        abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
@@ -843,7 +843,7 @@ class revenu_categoriel_capital(Variable):
         f2yy = foyer_fiscal('f2yy', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
+        abattement_assurance_vie = P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2yy
             + f2ch - min_(f2ch, abattement_assurance_vie)
@@ -875,20 +875,20 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         F1 = f2ca / den * f2dc  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie positive
-        g12b = max_(f2dc * (1 - rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0))
+        g12b = max_(f2dc * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0)) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement * (f2da == 0))
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        h12 = rvcm.revenus_capitaux_mobiliers_dividendes.abattement_forfaitaire * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
-        return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc + f2fu) * (f2da == 0) - i121, 0)
+        return max_((rvcm.revenus_capitaux_mobiliers_dividendes.taux_abattement) * (f2dc + f2fu) * (f2da == 0) - i121, 0)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f2dc = foyer_fiscal('f2dc', period)
         f2fu = foyer_fiscal('f2fu', period)
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
+        abattement_dividende = (f2fu + f2dc) * P.revenus_capitaux_mobiliers_dividendes.taux_abattement
 
         return abattement_dividende
 
@@ -907,7 +907,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         P = parameters(period).impot_revenu.calcul_revenus_imposables.rvcm
 
         abattement_assurance_vie = (
-            (f2ch < P.abat_assvie * (1 + maries_ou_pacses)) * max_(0, min_(f2vv + f2ww, P.abat_assvie * (1 + maries_ou_pacses) - f2ch - f2dh))
+            (f2ch < P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses)) * max_(0, min_(f2vv + f2ww, P.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses) - f2ch - f2dh))
             )
 
         return - abattement_assurance_vie
@@ -993,13 +993,13 @@ class revenu_categoriel(Variable):
         '''
         Revenus Categoriels
         '''
-        rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
+        rev_cat_deductions = foyer_fiscal('revenu_categoriel_deductions', period)
         rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
         rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
         rev_cat_rpns = foyer_fiscal('revenu_categoriel_non_salarial', period)
         rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
 
-        return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
+        return rev_cat_deductions + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
 
 
 ###############################################################################
