@@ -326,7 +326,7 @@ class degrevement_plafonnement_taxe_habitation(Variable):
         taux_th_commune = menage('taux_th_commune', period)
         taux_th_epci = menage('taux_th_epci', period)
         ecart_avec_2000 = period.start.offset('first-of', 'year').year - 2000
-        annee_2000 = Period('year', period.start.offset('first-of', 'year')).offset(-ecart_avec_2000)
+        annee_2000 = Period(('year', period.start.offset('first-of', 'year'), 1)).offset(-ecart_avec_2000)
         taux_th_commune_2000 = menage('taux_th_commune', annee_2000)
         taux_th_epci_2000 = menage('taux_th_epci', annee_2000)
 

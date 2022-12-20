@@ -19,7 +19,7 @@ class contrat_engagement_jeune_montant(Variable):
         montant_degressivite = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.degressivite.montant
         age = individu('age', period)
         majeur = individu('majeur', period)
-        previous_year = Period('year', period.start).offset(-1)
+        previous_year = Period(('year', period.start, 1)).offset(-1)
         tranche = individu.foyer_fiscal('ir_tranche', previous_year)
 
         degressivite = majeur * (tranche > 0) * montant_degressivite
@@ -93,7 +93,7 @@ class contrat_engagement_jeune_eligibilite_ressources(Variable):
 
         niveau_ressources = (niveau_ressources_individuelles_3_mois) / 3
 
-        previous_year = Period('year', period.start).offset(-1)
+        previous_year = Period(('year', period.start, 1)).offset(-1)
         tranche = individu.foyer_fiscal('ir_tranche', previous_year) <= 1
         return (niveau_ressources <= plafond) * sans_rsa * sans_ppa * tranche
 

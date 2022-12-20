@@ -81,7 +81,7 @@ class ass_base_ressources_individu(Variable):
 
     def formula(individu, period, parameters):
         # Rolling year
-        previous_year = Period('year', period.start).offset(-1)
+        previous_year = Period(('year', period.start, 1)).offset(-1)
         # N-1
         last_year = period.last_year
         # last month
@@ -137,9 +137,9 @@ class ass_base_ressources_conjoint(Variable):
 
     def formula(individu, period, parameters):
         # Rolling year
-        previous_year = Period('year', period.start).offset(-1)
+        previous_year = Period(('year', period.start, 1)).offset(-1)
 
-        last_month = Period('month', period.start).offset(-1)
+        last_month = Period(('month', period.start, 1)).offset(-1)
 
         ass_base_ressources_individu = individu('ass_base_ressources_individu', period)
         chomage_net_interrompue = individu('chomage_net', last_month) == 0
@@ -154,14 +154,18 @@ class ass_base_ressources_conjoint(Variable):
 
 
 def calculateWithAbatement(individu, parameters, period, ressourceName):
-    last_month = Period('month', period.start).offset(-1)
+    last_month = Period(('month', period.start, 1)).offset(-1)
     has_ressources_substitution = (
         individu('chomage_net', last_month)
         + individu('indemnites_journalieres', last_month)
         + individu('retraite_nette', last_month)
         ) > 0
     # Rolling year
+<<<<<<< HEAD
     previous_year = Period('year', period.start).offset(-1)
+=======
+    previous_year = Period(('year', period.start, 1)).offset(-1)
+>>>>>>> fafb8ea4e (Ensure that Period tuple argument is always a triple)
 
     ressource_year = individu(ressourceName, previous_year, options=[ADD])
     ressource_last_month = individu(ressourceName, last_month)
