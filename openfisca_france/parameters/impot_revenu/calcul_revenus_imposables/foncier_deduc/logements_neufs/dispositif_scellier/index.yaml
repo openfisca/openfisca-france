@@ -1,0 +1,5 @@
+description: Pour les logements sous dispositif Scellier
+metadata:
+  order:
+  - scellier_classique
+  - scellier_intermediaire
