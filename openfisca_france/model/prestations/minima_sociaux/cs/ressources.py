@@ -31,7 +31,7 @@ class css_cmu_base_ressources_individu(Variable):
 
     def formula(individu, period, parameters):
         # Rolling year
-        previous_year = Period('year', period.start).offset(-1)
+        previous_year = Period(('year', period.start)).offset(-1)
         # N-1
         last_year = period.last_year
         last_month = period.last_month
@@ -95,7 +95,7 @@ class css_cmu_base_ressources(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        previous_year = Period('year', period.start).offset(-1)
+        previous_year = Period(('year', period.start)).offset(-1)
 
         ressources_famille_a_inclure = [
             'af',

@@ -18,8 +18,8 @@ class ars(Variable):
         Allocation de rentrée scolaire brute de CRDS
         '''
         janvier = period.first_month
-        octobre = Period('month', period.start.offset('first-of', 'year').offset(9, 'month'))
-        decembre = Period('month', period.start.offset('first-of', 'year').offset(11, 'month'))
+        octobre = Period(('month', period.start.offset('first-of', 'year').offset(9, 'month')))
+        decembre = Period(('month', period.start.offset('first-of', 'year').offset(11, 'month')))
         af_nbenf = famille('af_nbenf', octobre)
         base_ressources = famille('prestations_familiales_base_ressources', janvier)
         ars = parameters(octobre).prestations_sociales.prestations_familiales.education_presence_parentale.ars

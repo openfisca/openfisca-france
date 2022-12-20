@@ -5,7 +5,6 @@ from openfisca_core.periods import Period
 from openfisca_france.model.base import *
 
 
-
 class autonomie_financiere(Variable):
     value_type = bool
     entity = Individu
@@ -19,7 +18,7 @@ class autonomie_financiere(Variable):
 
     def formula(individu, period, parameters):
         # D'après service-public.fr, la condition de dépassement du salaire plafonds n'est pas évalué de la même manière suivant si l'enfant est étudiant ou salarié/apprenti/stagiaire.
-        salaire_net_mensualise = individu('salaire_net', Period('month', period.start, 6).offset(-6), options = [ADD]) / 6
+        salaire_net_mensualise = individu('salaire_net', Period(('month', period.start, 6)).offset(-6), options = [ADD]) / 6
 
         _P = parameters(period)
 

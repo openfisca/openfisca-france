@@ -21,7 +21,7 @@ class contrat_engagement_jeune_montant_forfaitaire(Variable):
     def formula_2022_03_01(individu, period, parameters):
         parameters_montants = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.montants
         majeur = individu('majeur', period)
-        previous_year = Period('year', period.start).offset(-1)
+        previous_year = Period(('year', period.start)).offset(-1)
         tranche = individu.foyer_fiscal('ir_tranche', previous_year)
 
         montant_forfaitaire = (
