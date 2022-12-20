@@ -199,6 +199,7 @@ class apa_etablissement(Variable):
         perte_autonomie_personnes_agees = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
         smic_brut_horaire = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
         seuil_non_versement = perte_autonomie_personnes_agees.apa_institution.seuil_versement_en_part_smic_brut_horaire * smic_brut_horaire
+
         en_couple = individu.famille('en_couple', period)
         apa_eligibilite = individu('apa_eligibilite', period)
         gir = individu('gir', period)  # noqa F841
