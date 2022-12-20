@@ -1,6 +1,14 @@
-# Changelog
+# Changelog 
 
+# 134.0.0 [#1958](https://github.com/openfisca/openfisca-france/pull/1958)
+
+* Évolution du système socio-fiscal. | Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables`.
+* Détails :
+  - Harmonise `deductions`
 # 133.0.0 [#1957](https://github.com/openfisca/openfisca-france/pull/1957)
+
 * Amélioration technique.
 * Périodes concernées : toutes.
 * Zones impactées :
