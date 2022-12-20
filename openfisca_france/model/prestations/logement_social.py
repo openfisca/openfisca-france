@@ -1,7 +1,7 @@
 from numpy import isin, logical_not as not_, select
 
 from openfisca_core.indexed_enums import Enum
-from openfisca_core.periods import MONTH
+from openfisca_core.periods import MONTH, Period
 from openfisca_core.variables import Variable
 
 from openfisca_france.entities import Famille, Menage
