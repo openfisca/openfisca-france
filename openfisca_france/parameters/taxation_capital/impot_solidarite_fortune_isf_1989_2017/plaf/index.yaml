@@ -5,3 +5,4 @@ metadata:
   order:
   - plafonnement_taux_imposition
   - plafonnement_plafonnement
+  - plaf
