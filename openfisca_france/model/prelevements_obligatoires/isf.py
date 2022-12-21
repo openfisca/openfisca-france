@@ -286,7 +286,7 @@ class isf_ifi_imm_non_bati(Variable):
         non_bati = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.forfait_mobilier.non_bati
 
         # forêts
-        b1bd = b1bc * non_bati.taux_f
+        b1bd = b1bc * non_bati.taux_bois_forets
         # bien ruraux loués à long terme
         b1bf = min_(b1be, non_bati.seuil) * non_bati.taux_biens_ruraux
         b1bg = max_(b1be - non_bati.seuil, 0) * non_bati.taux_forestier_agricole
