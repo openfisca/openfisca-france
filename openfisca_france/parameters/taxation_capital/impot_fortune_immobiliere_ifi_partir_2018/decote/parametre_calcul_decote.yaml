@@ -1,10 +1,10 @@
-description: Paramètre de calcul de la décote de l'Impôt sur la fortune immobilière (IFI) - à partir de 2018
+description: Paramètre de calcul de la décote de l'Impôt sur la fortune immobilière (IFI)
 values:
   2018-01-01:
     value: 17500
 metadata:
   ux_name: Paramètre de calcul
-  description_en: "\"Décote\" computation"
+  description_en: Décote computation
   ipp_csv_id: decote_1_ifi
   unit: currency
   reference:
