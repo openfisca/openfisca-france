@@ -283,7 +283,7 @@ class isf_ifi_imm_non_bati(Variable):
         b1be = foyer_fiscal('b1be', period)
         b1bh = foyer_fiscal('b1bh', period)
         b1bk = foyer_fiscal('b1bk', period)
-        non_bati = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.forfait_mobilier.nonbat
+        non_bati = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.forfait_mobilier.non_bati
 
         # forêts
         b1bd = b1bc * non_bati.taux_f
