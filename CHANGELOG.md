@@ -1,5 +1,16 @@
 # Changelog 
 
+### 134.1.0 [#1963](https://github.com/openfisca/openfisca-france/pull/1963)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2019.
+* Zones impactées 
+  -`openfisca_france\parameters\impot_revenu\calcul_impot_revenu\plaf_qf\reduction_ss_condition_revenus\plafond_rfr_couple.yaml`
+  - `openfisca_france\parameters\impot_revenu\calcul_impot_revenu\plaf_qf\reduction_ss_condition_revenus\plafond_rfr_celib.yaml`
+  - `openfisca_france\parameters\impot_revenu\calcul_impot_revenu\plaf_qf\reduction_ss_condition_revenus\majoration_plafond_par_demi_parts_supp.yaml`
+* Détails :
+  - Rajoute la valeurs des plafonds de la réduction sous condition de ressources de l'impôt sur le revenu, pour les revenus 2019.
+
 ### 134.0.2 [#1964](https://github.com/openfisca/openfisca-france/pull/1964)
 
 * Amélioration technique.
