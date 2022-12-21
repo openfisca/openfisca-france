@@ -1,5 +1,13 @@
 # Changelog 
 
+### 134.0.2 [#1964](https://github.com/openfisca/openfisca-france/pull/1964)
+
+* Amélioration technique.
+* Périodes concernées : toutes. 
+* Zones impactées : `/openfisca_france/scripts/parameters/unfold_parameters.py`.
+* Détails :
+  - Ajoute `encoding = 'utf-8'` par défaut dans la fonction `write_parameter`  de `unfold_parameters`
+
 ### 134.0.1 [#1960](https://github.com/openfisca/openfisca-france/pull/1960)
 
 * Évolution du système socio-fiscal.

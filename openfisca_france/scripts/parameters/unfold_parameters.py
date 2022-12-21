@@ -154,7 +154,7 @@ def unfold_parameter(
 def write_parameter(ids, parameter, target_dir):
     dir = os.path.join(target_dir, *ids[:-1])
     os.makedirs(dir, exist_ok=True)
-    with open(os.path.join(dir, f'{ids[-1]}.yaml'), 'w') as parameter_file:
+    with open(os.path.join(dir, f'{ids[-1]}.yaml'), 'w', encoding='utf-8') as parameter_file:
         yaml.dump(parameter, parameter_file, allow_unicode=True, Dumper=NoAliasDumper)
 
 
