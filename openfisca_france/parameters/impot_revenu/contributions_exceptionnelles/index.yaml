@@ -3,7 +3,7 @@ metadata:
   ux_name: Taxes exceptionnelles
   description_en: Exceptional contributions
   order:
-  - taxe_hr
-  - majo_excep
+  - contribution_exceptionnelle_hauts_revenus
+  - majorations_exceptionnelles
   - mino_excep
   - taxe_prop
