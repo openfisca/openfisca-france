@@ -1,10 +1,25 @@
-# Changelog 
+# Changelog
+
+### 135.0.0 [#1965](https://github.com/openfisca/openfisca-france/pull/1965)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `parameters/taxation_capital`
+  - `prelevements_obligatoires/isf.py`
+* Détails :
+  -  Dans `taxation_capital.impot_solidarite_fortune_isf_1989_2017.forfait_mobilier`, et `taxation_capital.impot_fortune_immobiliere_ifi_partir_2018.forfait_mobilier` renomme:
+    - `nonbat` en `non_bati`
+    - `nonbat.seuil` en `non_bati.seuil`
+    - `nonbat.taux_f` en `non_bati.taux_biens_ruraux`
+    - `nonbat.taux_r1` en `non_bati.taux_bois_forets`
+    - `nonbat.taux_r2` en `non_bati.taux_forestier_agricole`
 
 ### 134.1.0 [#1963](https://github.com/openfisca/openfisca-france/pull/1963)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2019.
-* Zones impactées 
+* Zones impactées
   -`openfisca_france\parameters\impot_revenu\calcul_impot_revenu\plaf_qf\reduction_ss_condition_revenus\plafond_rfr_couple.yaml`
   - `openfisca_france\parameters\impot_revenu\calcul_impot_revenu\plaf_qf\reduction_ss_condition_revenus\plafond_rfr_celib.yaml`
   - `openfisca_france\parameters\impot_revenu\calcul_impot_revenu\plaf_qf\reduction_ss_condition_revenus\majoration_plafond_par_demi_parts_supp.yaml`
@@ -14,7 +29,7 @@
 ### 134.0.2 [#1964](https://github.com/openfisca/openfisca-france/pull/1964)
 
 * Amélioration technique.
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées : `/openfisca_france/scripts/parameters/unfold_parameters.py`.
 * Détails :
   - Ajoute `encoding = 'utf-8'` par défaut dans la fonction `write_parameter`  de `unfold_parameters`
@@ -22,9 +37,9 @@
 ### 134.0.1 [#1960](https://github.com/openfisca/openfisca-france/pull/1960)
 
 * Évolution du système socio-fiscal.
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables.`.
-* Ajoute et harmonise les paramètres issus des barèmes IPP: 
+* Ajoute et harmonise les paramètres issus des barèmes IPP:
   - `exo_maire_autres`
   - `foncier_deduc`
   - `deduc_invest_locatif`
@@ -61,9 +76,9 @@
 
 ## 132.2.0 [#1951](https://github.com/openfisca/openfisca-france/pull/1951)
 
-* Évolution du système socio-fiscal. 
+* Évolution du système socio-fiscal.
 * Périodes concernées : 2017-2022
-* Zones impactées : 
+* Zones impactées :
     - `parameters/prestations_sociales/aides_logement/logement_social.plai`.
     -  `parameters/prestations_sociales/aides_logement/logement_social.plu`.
 * Détails :
