@@ -1,7 +1,8 @@
-description: Réductions et abattements de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+description: Réductions et abattements de l'impôt de solidarité sur la fortune
 metadata:
   ux_name: Réductions et abattements
   description_en: Discount and rebate
   order:
   - reduction_enfant_charge
+  - reduction_enfant_garde_alternee
   - abattement_residence_principale

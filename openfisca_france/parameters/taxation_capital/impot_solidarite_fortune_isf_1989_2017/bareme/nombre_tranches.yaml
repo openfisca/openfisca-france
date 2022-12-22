@@ -1,4 +1,4 @@
-description: Nombre de tranches du barème de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+description: Nombre de tranches du barème de l'impôt de solidarité sur la fortune (ISF, 1989-2017)
 values:
   1989-01-01:
     value: 4
