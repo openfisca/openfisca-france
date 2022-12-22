@@ -1479,11 +1479,11 @@ class nat_imp(Variable):
         '''
         iai = foyer_fiscal('iai', period)
         credits_impot = foyer_fiscal('credits_impot', period)
-        cehr = foyer_fiscal('cehr', period)
+        contribution_exceptionnelle_hauts_revenus = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
 
         # def _nat_imp(rni, nbptr, non_imposable = law.impot_revenu.calcul_impot_revenu.non_imposable):
         # seuil = non_imposable.seuil + (nbptr - 1)*non_imposable.supp
-        return (iai - credits_impot + cehr) > 0
+        return (iai - credits_impot + contribution_exceptionnelle_hauts_revenus) > 0
 
 
 class ip_net(Variable):
@@ -2158,7 +2158,7 @@ class iai(Variable):
         return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + indemnite_compensatrice_agents_assurance
 
 
-class cehr(Variable):
+class contribution_exceptionnelle_hauts_revenus(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Contribution exceptionnelle sur les hauts revenus'
@@ -2172,7 +2172,7 @@ class cehr(Variable):
         '''
         rfr = foyer_fiscal('rfr', period)
         nb_adult = foyer_fiscal('nb_adult', period)
-        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.cehr
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.contribution_exceptionnelle_hauts_revenus
 
         return bareme.calc(rfr / nb_adult) * nb_adult
         # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
@@ -2196,10 +2196,10 @@ class irpp(Variable):
         iai = foyer_fiscal('iai', period)
         credits_impot = foyer_fiscal('credits_impot', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
-        cehr = foyer_fiscal('cehr', period)
+        contribution_exceptionnelle_hauts_revenus = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
         P = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
 
-        pre_result = iai - credits_impot - acomptes_ir + cehr
+        pre_result = iai - credits_impot - acomptes_ir + contribution_exceptionnelle_hauts_revenus
 
         return (
             (iai > P.seuil) * (
