@@ -1,9 +1,10 @@
-description: Impôt sur le revenu
+description: Impôts sur le revenu
 metadata:
-  ux_name: Taxes exceptionnelles
-  description_en: Exceptional contributions
   order:
-  - taxe_hr
-  - majo_excep
-  - mino_excep
-  - taxe_prop
+  - bareme_ir_depuis_1945
+  - anciens_baremes_igr
+  - calcul_revenus_imposables
+  - calcul_impot_revenu
+  - calcul_reductions_impots
+  - calcul_credits_impots
+  - contributions_exceptionnelles
