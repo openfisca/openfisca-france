@@ -1538,7 +1538,7 @@ class cont_rev_loc(Variable):
         return round_(crl.taux * (f4bl >= crl.seuil) * f4bl)
 
 
-class teicaa(Variable):  # f5rm
+class indemnite_compensatrice_agents_assurance(Variable):  # f5rm
     value_type = float
     entity = FoyerFiscal
     label = "Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance"
@@ -1548,7 +1548,7 @@ class teicaa(Variable):  # f5rm
         '''
         Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance
         '''
-        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.teicaa
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.indemnite_compensatrice_agents_assurance
 
         f5qm = foyer_fiscal.declarant_principal('f5qm', period)
         f5rm = foyer_fiscal.conjoint('f5qm', period)
@@ -2141,9 +2141,9 @@ class iai(Variable):
         iaidrdi = foyer_fiscal('iaidrdi', period)
         taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
-        teicaa = foyer_fiscal('teicaa', period)
+        indemnite_compensatrice_agents_assurance = foyer_fiscal('indemnite_compensatrice_agents_assurance', period)
 
-        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + teicaa
+        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + indemnite_compensatrice_agents_assurance
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2153,9 +2153,9 @@ class iai(Variable):
         taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
         tax_rvcm_forfaitaire = foyer_fiscal('tax_rvcm_forfaitaire', period)
-        teicaa = foyer_fiscal('teicaa', period)
+        indemnite_compensatrice_agents_assurance = foyer_fiscal('indemnite_compensatrice_agents_assurance', period)
 
-        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
+        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + indemnite_compensatrice_agents_assurance
 
 
 class cehr(Variable):
