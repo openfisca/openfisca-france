@@ -1533,9 +1533,9 @@ class cont_rev_loc(Variable):
         Contribution sur les revenus locatifs
         '''
         f4bl = foyer_fiscal('f4bl', period)
-        crl = parameters(period).impot_revenu.contributions_exceptionnelles.crl
+        contribution_revenus_locatifs = parameters(period).impot_revenu.contributions_exceptionnelles.contribution_revenus_locatifs
 
-        return round_(crl.taux * (f4bl >= crl.seuil) * f4bl)
+        return round_(contribution_revenus_locatifs.taux * (f4bl >= contribution_revenus_locatifs.seuil) * f4bl)
 
 
 class indemnite_compensatrice_agents_assurance(Variable):  # f5rm
