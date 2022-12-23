@@ -1,5 +1,17 @@
 # Changelog
 
+### 135.0.1 [#1959](https://github.com/openfisca/openfisca-france/pull/1959)
+
+* Amélioration technique.
+* Périodes concernées : 1985 à aujourd'hui.
+* Zones impactées :
+  - `parameters/marche_travail/remuneration_dans_fonction_publique/indice_majore_minimal.yaml`
+* Détails :
+  -  Dans `parameters/marche_travail/remuneration_dans_fonction_publique/indice_majore_minimal.yaml`:
+    - mise à jour des valeurs récentes
+    - remonte à l'origine du barème en 1985
+    - documente les ref legislatives, last_review, et date JORF
+
 ### 135.0.0 [#1965](https://github.com/openfisca/openfisca-france/pull/1965)
 
 * Amélioration technique.
