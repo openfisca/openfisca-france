@@ -1479,11 +1479,11 @@ class nat_imp(Variable):
         '''
         iai = foyer_fiscal('iai', period)
         credits_impot = foyer_fiscal('credits_impot', period)
-        cehr = foyer_fiscal('cehr', period)
+        contribution_exceptionnelle_hauts_revenus = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
 
         # def _nat_imp(rni, nbptr, non_imposable = law.impot_revenu.calcul_impot_revenu.non_imposable):
         # seuil = non_imposable.seuil + (nbptr - 1)*non_imposable.supp
-        return (iai - credits_impot + cehr) > 0
+        return (iai - credits_impot + contribution_exceptionnelle_hauts_revenus) > 0
 
 
 class ip_net(Variable):
@@ -1533,12 +1533,12 @@ class cont_rev_loc(Variable):
         Contribution sur les revenus locatifs
         '''
         f4bl = foyer_fiscal('f4bl', period)
-        crl = parameters(period).impot_revenu.contributions_exceptionnelles.crl
+        contribution_revenus_locatifs = parameters(period).impot_revenu.contributions_exceptionnelles.contribution_revenus_locatifs
 
-        return round_(crl.taux * (f4bl >= crl.seuil) * f4bl)
+        return round_(contribution_revenus_locatifs.taux * (f4bl >= contribution_revenus_locatifs.seuil) * f4bl)
 
 
-class teicaa(Variable):  # f5rm
+class indemnite_compensatrice_agents_assurance(Variable):  # f5rm
     value_type = float
     entity = FoyerFiscal
     label = "Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance"
@@ -1548,7 +1548,7 @@ class teicaa(Variable):  # f5rm
         '''
         Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance
         '''
-        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.teicaa
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.indemnite_compensatrice_agents_assurance
 
         f5qm = foyer_fiscal.declarant_principal('f5qm', period)
         f5rm = foyer_fiscal.conjoint('f5qm', period)
@@ -2141,9 +2141,9 @@ class iai(Variable):
         iaidrdi = foyer_fiscal('iaidrdi', period)
         taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
-        teicaa = foyer_fiscal('teicaa', period)
+        indemnite_compensatrice_agents_assurance = foyer_fiscal('indemnite_compensatrice_agents_assurance', period)
 
-        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + teicaa
+        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + indemnite_compensatrice_agents_assurance
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2153,12 +2153,12 @@ class iai(Variable):
         taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
         tax_rvcm_forfaitaire = foyer_fiscal('tax_rvcm_forfaitaire', period)
-        teicaa = foyer_fiscal('teicaa', period)
+        indemnite_compensatrice_agents_assurance = foyer_fiscal('indemnite_compensatrice_agents_assurance', period)
 
-        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
+        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + indemnite_compensatrice_agents_assurance
 
 
-class cehr(Variable):
+class contribution_exceptionnelle_hauts_revenus(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Contribution exceptionnelle sur les hauts revenus'
@@ -2172,7 +2172,7 @@ class cehr(Variable):
         '''
         rfr = foyer_fiscal('rfr', period)
         nb_adult = foyer_fiscal('nb_adult', period)
-        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.cehr
+        bareme = parameters(period).impot_revenu.contributions_exceptionnelles.contribution_exceptionnelle_hauts_revenus
 
         return bareme.calc(rfr / nb_adult) * nb_adult
         # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
@@ -2196,10 +2196,10 @@ class irpp(Variable):
         iai = foyer_fiscal('iai', period)
         credits_impot = foyer_fiscal('credits_impot', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
-        cehr = foyer_fiscal('cehr', period)
+        contribution_exceptionnelle_hauts_revenus = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
         P = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
 
-        pre_result = iai - credits_impot - acomptes_ir + cehr
+        pre_result = iai - credits_impot - acomptes_ir + contribution_exceptionnelle_hauts_revenus
 
         return (
             (iai > P.seuil) * (

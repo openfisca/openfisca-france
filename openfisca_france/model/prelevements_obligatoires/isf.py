@@ -564,7 +564,7 @@ class isf_ifi_avant_plaf(Variable):
 class total_impots_plafonnement_isf_ifi(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Total des impôts dus au titre des revenus et produits (irpp, cehr, prélèvements forfaitaires, prélèvements sociaux) + ISF et IFI. Utilisé pour calculer le montant du plafonnement de l'ISF et de l'IFI."
+    label = "Total des impôts dus au titre des revenus et produits (irpp, contribution_exceptionnelle_hauts_revenus, prélèvements forfaitaires, prélèvements sociaux) + ISF et IFI. Utilisé pour calculer le montant du plafonnement de l'ISF et de l'IFI."
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
