@@ -88,6 +88,7 @@ values:
     value: 15560
 metadata:
   ux_name: Plafond 1
+  last_review: '2022-12-26'
   unit: currency
   ipp_csv_id: plaf_pers_age1
   description_en: Tax allowance for net taxable income ( 1978 - )
