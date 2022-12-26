@@ -1,4 +1,4 @@
-description: Montant pour la deuxième tranche de l'abattement l'impôt sur le revenu, pour les personnes âgées ou invalides à charge
+description: Montant (pour la 2ème tranche) de l'abattement l'impôt sur le revenu pour les personnes âgées ou invalides à charge
 values:
   1977-01-01:
     value: 1700
@@ -10,6 +10,8 @@ values:
     value: 2315
   1981-01-01:
     value: 2630
+  1982-01-01:
+    value: null
   1984-01-01:
     value: 3480
   1985-01-01:
@@ -20,6 +22,8 @@ values:
     value: 3900
   1988-01-01:
     value: 4010
+  1989-01-01:
+    value: null
   1990-01-01:
     value: 4290
   1991-01-01:
@@ -74,12 +78,15 @@ values:
     value: 1188
   2018-01-01:
     value: 1208
-  2019-01-01:
-    value: 1221
   2020-01-01:
+    value: 1221
+  2021-01-01:
     value: 1224
+  2022-01-01:
+    value: 1242
 metadata:
   ux_name: Montant 2e tranche
+  last_review: '2022-12-26'
   ipp_csv_id: abt_pers_age2
   unit: currency
   description_en: Tax allowance for net taxable income ( 1978 - )
@@ -175,6 +182,9 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
     - title: Décret 2021-744, art 1 du 09/06/2021
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043641803
+    2022-01-01:
+      title: Code général des impôts, art. 157 bis
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042158963/2022-12-26/
   official_journal_date:
     1984-01-01: "1984-12-30"
     1985-01-01: "1985-12-31"
