@@ -2,3 +2,8 @@ description: Abattement de l'impôt sur le revenu, pour les personnes âgées ou
 metadata:
   ux_name: Personne âgée ou invalide à charge
   description_en: Tax allowance for net taxable income
+  order:
+    - montant_1
+    - montant_2
+    - plafond_1
+    - plafond_2

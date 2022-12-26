@@ -2,3 +2,5 @@ description: Abattement de l'impôt sur le revenu, pour les enfants à charge ay
 metadata:
   ux_name: Enfant à charge (ou chargé de famille) à charge
   description_en: Tax allowance for net taxable income
+  order:
+  - montant
