@@ -1,5 +1,16 @@
 # Changelog
 
+# 136.0.0 [#1962](https://github.com/openfisca/openfisca-france/pull/1962)
+
+* Évolution du système socio-fiscal. | Amélioration technique.
+* Périodes concernées : toutes
+* Zones impactées : `openfisca_france/parameters/impot_revenu/contributions_exceptionnelles`.
+* Détails :
+  - Harmonise `contribution_revenus_locatifs`
+  - Harmonise et renomme `cehr` vers `contribution_exceptionnelle_hauts_revenus`
+  - Harmonise et renomme `teicaa` vers `indemnite_compensatrice_agents_assurance` et ajoute l'historique du barème ainsi que les références législatives
+  - Harmonise et renomme `majo_excep.majorations_exceptionnelles_d_impot` vers `majorations_exceptionnelles`
+
 ### 135.0.1 [#1959](https://github.com/openfisca/openfisca-france/pull/1959)
 
 * Amélioration technique.
