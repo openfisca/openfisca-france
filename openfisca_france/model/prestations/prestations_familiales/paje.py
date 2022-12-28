@@ -61,6 +61,7 @@ class gar_dom(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+
 class remuneration_horaire_brute_employe(Variable):
     value_type = float
     entity = Famille
@@ -68,6 +69,7 @@ class remuneration_horaire_brute_employe(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     unit = 'currency'
+
 
 class paje(Variable):
     value_type = float
@@ -391,6 +393,7 @@ class paje_cmg(Variable):
         ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
+
     def formula_2023_01_01(famille, period, parameters):
         """
         Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
@@ -536,15 +539,15 @@ class paje_cmg(Variable):
                 )
             )
         )
-        
+
         # TODO: connecter avec le crédit d'impôt
         # TODO: vérfiez les règles de cumul
         # TODO: le versement de la CMG est fait 'à la condition que la rémunération horaire de [la personne effectuant la garde] n’excède pas un plafond fixé par décret'
-        salaire_horaire_brut =  famille("remuneration_horaire_brute_employe", period)
+        salaire_horaire_brut = famille("remuneration_horaire_brute_employe", period)
         plaf_agree = paje.paje_cmg.remuneration_horaire_max.assistante_maternelle
         plaf_non_agree = paje.paje_cmg.remuneration_horaire_max.salarie
         condition_remuneration = (emploi_direct * (salaire_horaire_brut < plaf_non_agree)) + (assistant_maternel * (salaire_horaire_brut < plaf_agree))
-        
+
         paje_cmg = eligible * montant_cmg * condition_remuneration
 
         # La CMG rentre dans la liste des prestations (comme les Allocations Familiales) qui sont partagées entre les 2 parents en cas de garde alternée
