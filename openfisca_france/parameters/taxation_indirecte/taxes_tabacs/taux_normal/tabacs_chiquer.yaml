@@ -28,6 +28,7 @@ values:
     value: 0.407
 metadata:
   ipp_csv_id: tx_tabac_chiquer
+  last_review: "2022-12-28"
   unit: /1
   reference:
     1991-01-01:
@@ -67,8 +68,12 @@ metadata:
       title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
       href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
     2020-11-01:
-      title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
-      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+      - title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
+        href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+      - title: Code des impositions sur les biens et services, art L314-24
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603389
+      - title: Code des impositions sur les biens et services, art L314-24
+        href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046805433/2023-03-01/
   official_journal_date:
     1991-01-01: "1990-12-30"
     1991-09-30: "1990-12-30"
