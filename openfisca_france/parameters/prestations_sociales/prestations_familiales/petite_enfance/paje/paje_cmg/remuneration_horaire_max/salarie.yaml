@@ -1,0 +1,17 @@
+description: Rémunération horaire brute maximale d'un salarié non agréé (par jour et par enfant) (en multiple du SMIC horaire) pour le Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+values:
+  2004-01-01:
+    value: 5
+metadata:
+  ux_name: Salarié non agréé
+  description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
+  unit: SMIC
+  reference:
+    2004-01-01:
+    - title: Décret 2003-1394 du 31/12/2003 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
+    - title: Article D531-17 (multiplicateur du smic horaire)
+  official_journal_date:
+    2004-01-01: "2004-01-01"
+documentation: |-
+  Il s'agit des salariés employés par des particuliers à leur domicile privé pour réaliser des travaux à caractère familial ou ménager

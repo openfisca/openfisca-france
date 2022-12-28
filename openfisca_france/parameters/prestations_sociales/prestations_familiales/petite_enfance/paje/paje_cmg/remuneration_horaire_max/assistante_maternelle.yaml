@@ -1,13 +1,13 @@
-description: Rémunération brute maximale de l'assistante maternelle (par jour et par enfant) (en multiple du SMIC horaire) pour le Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+description: Rémunération horaire brute maximale de l'assistant maternel agréé (par jour et par enfant) (en multiple du SMIC horaire) pour le Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
     value: 5
 metadata:
-  ux_name: Rémunération max assistante maternelle
+  ux_name: Assistant maternel
   description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
   unit: SMIC
   reference:
-    2004-01-01:
+    2004-01-01:s
     - title: Décret 2003-1394 du 31/12/2003 - art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
     - title: Article D531-17 (multiplicateur du smic horaire)
