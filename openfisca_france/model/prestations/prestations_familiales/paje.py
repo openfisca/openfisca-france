@@ -544,7 +544,7 @@ class paje_cmg(Variable):
         # TODO: vérfiez les règles de cumul
         # TODO: le versement de la CMG est fait 'à la condition que la rémunération horaire de [la personne effectuant la garde] n’excède pas un plafond fixé par décret'
         salaire_horaire_brut = famille("remuneration_horaire_brute_employe", period)
-        plaf_agree = paje.paje_cmg.remuneration_horaire_max.assistante_maternelle
+        plaf_agree = paje.paje_cmg.remuneration_horaire_max.assistant_maternel
         plaf_non_agree = paje.paje_cmg.remuneration_horaire_max.salarie
         condition_remuneration = (emploi_direct * (salaire_horaire_brut < plaf_non_agree)) + (assistant_maternel * (salaire_horaire_brut < plaf_agree))
 
