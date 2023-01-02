@@ -14,8 +14,6 @@ values:
     value: 0.375
   2022-11-01:
     value: 0.5625
-  2023-01-01:
-    value: 0.375 * 1.5
 metadata:
   ux_name: Orphelin ou assimilé des deux parents
   description_en: "Family support allowance (ASF): Amounts"
@@ -60,8 +58,8 @@ metadata:
     2022-11-01:
     - title: Article R523-7 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046498993
-    - title: Compte rendu du conseil des ministres du 26/09/2022
-      href: https://www.gouvernement.fr/conseil-des-ministres/compte-rendu-du-conseil-des-ministres-26-09-2022#1b4bffd1-9b70-48cd-8ae6-dc82df951b49-4
+    - title: Décret n° 2022-1370 du 27/10/2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046497145
   official_journal_date:
     1970-12-26: "1970-12-25"
     1971-07-01: "1971-06-30"
