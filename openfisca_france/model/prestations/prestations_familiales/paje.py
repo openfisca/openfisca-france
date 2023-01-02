@@ -395,63 +395,51 @@ class paje_cmg(Variable):
     set_input = set_input_divide_by_period
 
     def formula_2023_01_01(famille, period, parameters):
-        """
-        Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
-
+        '''
+        Prestation d'accueil du jeune enfant - Complément de libre choix du mode de garde
         Les conditions
-
         Vous devez :
-
             avoir un enfant de moins de 6 ans né, adopté ou recueilli en vue d'adoption à partir du 1er janvier 2004
             employer une assistante maternelle agréée ou une garde à domicile.
 
         Vous n'avez pas besoin de justifier d'une activité min_ si vous êtes :
-
             bénéficiaire de l'allocation aux adultes handicapés (Aah)
             au chômage et bénéficiaire de l'allocation d'insertion ou de l'allocation de solidarité spécifique
             bénéficiaire du Revenu de solidarité active (Rsa), sous certaines conditions de ressources étudiées par
             votre Caf, et inscrit dans une démarche d'insertionétudiant (si vous vivez en couple,
             vous devez être tous les deux étudiants).
 
-        Autres conditions à remplir : Assistante maternelle agréée     Garde à domicile
+        Autres conditions à remplir : Assistante maternelle agréée  / Garde à domicile
         Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut,
         soit au max 45,00 €.
         Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
-        """
+        '''
         # Récupération des données
-        inactif = famille("inactif", period)
-        partiel1 = famille("partiel1", period)
-        nombre_enfants = famille("af_nbenf", period)
-        base_ressources = famille(
-            "prestations_familiales_base_ressources", period.first_month
-        )
-        emploi_direct = famille("empl_dir", period)
-        assistant_maternel = famille("ass_mat", period)
-        garde_a_domicile = famille("gar_dom", period)
-        paje_prepare = famille("paje_prepare", period)
+        inactif = famille('inactif', period)
+        partiel1 = famille('partiel1', period)
+        nombre_enfants = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
+        emploi_direct = famille('empl_dir', period)
+        assistant_maternel = famille('ass_mat', period)
+        garde_a_domicile = famille('gar_dom', period)
+        paje_prepare = famille('paje_prepare', period)
         paje = parameters(
             period
-        ).prestations_sociales.prestations_familiales.petite_enfance.paje
+            ).prestations_sociales.prestations_familiales.petite_enfance.paje
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
-        parent_isole = not_(famille("en_couple", period))
+        parent_isole = not_(famille('en_couple', period))
 
-        aah_i = famille.members("aah", period)
+        aah_i = famille.members('aah', period)
         aah = famille.sum(aah_i)
 
-        etudiant_i = famille.members("etudiant", period)
+        etudiant_i = famille.members('etudiant', period)
         parent_etudiant = famille.any(etudiant_i, role=Famille.PARENT)
 
         # condition de revenu minimal
 
         # L'enfant doit avoir un age (0-6 ans) ou (0-12 ans si parents isolé)
         cond_age_enf = (
-            (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1)
-            > 0)
-            |
-            (parent_isole
-            * (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.etendue - 1)
-            > 0)
-        ))
+            (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1) > 0) | (parent_isole * (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.etendue - 1) > 0)))
 
         # TODO:    cond_rpns    =
         # TODO: RSA insertion, alloc insertion, ass
@@ -473,7 +461,7 @@ class paje_cmg(Variable):
             * paje.plaf_cmg.premier_plafond_ne_adopte_avant_04_2014.deux_enfants
             + max_(nombre_enfants - 2, 0)
             * paje.plaf_cmg.premier_plafond_ne_adopte_avant_04_2014.majoration_enfant_supp
-        )
+            )
 
         seuil_revenus_2 = (
             (nombre_enfants == 1)
@@ -482,7 +470,7 @@ class paje_cmg(Variable):
             * paje.plaf_cmg.deuxieme_plafond_ne_adopte_avant_04_2014.deux_enfants
             + max_(nombre_enfants - 2, 0)
             * paje.plaf_cmg.deuxieme_plafond_ne_adopte_avant_04_2014.majoration_enfant_supp
-        )
+            )
 
         #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
         #        dans l'entreprise), vous cumulez intégralement la PreParE et le Cmg.
@@ -499,7 +487,7 @@ class paje_cmg(Variable):
             * (
                 1.0 * (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1) > 0)
                 + 1.0 * parent_isole * (nb_enf(famille, period, paje.paje_cmg.limite_age.pleine, paje.paje_cmg.limite_age.etendue - 1) > 0)
-            )
+                )
             * (
                 emploi_direct
                 * (
@@ -508,11 +496,11 @@ class paje_cmg(Variable):
                     + (
                         (base_ressources >= seuil_revenus_1)
                         & (base_ressources < seuil_revenus_2)
-                    )
+                        )
                     * paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_45_plaf
                     + (base_ressources >= seuil_revenus_2)
                     * paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_plaf
-                )
+                    )
                 + assistant_maternel
                 * (
                     (base_ressources < seuil_revenus_1)
@@ -520,11 +508,11 @@ class paje_cmg(Variable):
                     + (
                         (base_ressources >= seuil_revenus_1)
                         & (base_ressources < seuil_revenus_2)
-                    )
+                        )
                     * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_second_plafond
                     + (base_ressources >= seuil_revenus_2)
                     * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.apres_second_plafond
-                )
+                    )
                 + garde_a_domicile
                 * (
                     (base_ressources < seuil_revenus_1)
@@ -532,18 +520,18 @@ class paje_cmg(Variable):
                     + (
                         (base_ressources >= seuil_revenus_1)
                         & (base_ressources < seuil_revenus_2)
-                    )
+                        )
                     * paje.paje_cmg.garde_domicile.sous_second_plafond
                     + (base_ressources >= seuil_revenus_2)
                     * paje.paje_cmg.garde_domicile.apres_second_plafond
+                    )
                 )
             )
-        )
 
         # TODO: connecter avec le crédit d'impôt
         # TODO: vérfiez les règles de cumul
         # TODO: le versement de la CMG est fait 'à la condition que la rémunération horaire de [la personne effectuant la garde] n’excède pas un plafond fixé par décret'
-        salaire_horaire_brut = famille("remuneration_horaire_brute_employe", period)
+        salaire_horaire_brut = famille('remuneration_horaire_brute_employe', period)
         plaf_agree = paje.paje_cmg.remuneration_horaire_max.assistant_maternel
         plaf_non_agree = paje.paje_cmg.remuneration_horaire_max.salarie
         condition_remuneration = (emploi_direct * (salaire_horaire_brut < plaf_non_agree)) + (assistant_maternel * (salaire_horaire_brut < plaf_agree))
@@ -551,7 +539,7 @@ class paje_cmg(Variable):
         paje_cmg = eligible * montant_cmg * condition_remuneration
 
         # La CMG rentre dans la liste des prestations (comme les Allocations Familiales) qui sont partagées entre les 2 parents en cas de garde alternée
-        coeff_garde_alternee = famille("af_coeff_garde_alternee", period)
+        coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
         paje_cmg_montant = paje_cmg * coeff_garde_alternee * remuneration_plafond
 
         return paje_cmg_montant
