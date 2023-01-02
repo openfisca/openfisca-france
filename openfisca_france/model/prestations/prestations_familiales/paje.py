@@ -535,6 +535,7 @@ class paje_cmg(Variable):
         plaf_agree = paje.paje_cmg.remuneration_horaire_max.assistant_maternel
         plaf_non_agree = paje.paje_cmg.remuneration_horaire_max.salarie
         condition_remuneration = (emploi_direct * (salaire_horaire_brut < plaf_non_agree)) + (assistant_maternel * (salaire_horaire_brut < plaf_agree))
+        print(condition_remuneration)
 
         paje_cmg = eligible * montant_cmg * condition_remuneration
 
