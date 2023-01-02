@@ -7,3 +7,10 @@ values:
 metadata:
   ux_name: Prestation réduite
   unit: year
+  reference:
+    2023-01-01:
+      title: LOI n° 2022-1616 du 23/12/2022 de financement de la sécurité sociale, art. 86, I-4ºb) et II-1º
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046791873
+documentation: |
+  Au 1er janvier 2023, l' âge limite peut être fixé à une valeur supérieure pour les parents isolés,
+  et le complément de garde peut alors être versé à taux réduit.
