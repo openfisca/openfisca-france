@@ -77,8 +77,11 @@ class region(Variable):
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
         P = parameters(period).geopolitique.regions
-        regions = [(P.guadeloupe, TypesCodeInseeRegion.guadeloupe), 
-                   (P.martinique, TypesCodeInseeRegion.martinique)]
+        regions = [
+            (P.guadeloupe, TypesCodeInseeRegion.guadeloupe), 
+            (P.martinique, TypesCodeInseeRegion.martinique),
+            (P.guyane, TypesCodeInseeRegion.guyane),
+                   ]
         regions_elig = [sum([startswith(depcom, str.encode(code)) for code in PR.departements]) > 0 for (PR,_) in regions]
         regions_value = [RV for (_,RV) in regions]
         
