@@ -83,6 +83,7 @@ class region(Variable):
             (P.guyane, TypesCodeInseeRegion.guyane),
             (P.reunion, TypesCodeInseeRegion.reunion),
             (P.ile_de_france, TypesCodeInseeRegion.ile_de_france),
+            (P.centre_val_de_loire, TypesCodeInseeRegion.centre_val_de_loire),
                    ]
         regions_elig = [sum([startswith(depcom, str.encode(code)) for code in PR.departements]) > 0 for (PR,_) in regions]
         regions_value = [RV for (_,RV) in regions]
