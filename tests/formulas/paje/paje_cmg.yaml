@@ -141,7 +141,7 @@
       famille_0:
         parents: [parent1, parent2]
         enfants: [enfant1]
-        en_couple: 1 # parents en couple
+        en_couple: 1
         af_nbenf: 1
         gar_dom: true
         ass_mat: 1
@@ -176,7 +176,7 @@
       famille_0:
         parents: [parent1, parent2]
         enfants: [enfant1]
-        en_couple: 1 # parents en couple
+        en_couple: 1
         af_nbenf: 1
         gar_dom: true
         ass_mat: 1
@@ -306,7 +306,7 @@
       famille_0:
         parents: [parent1, parent2]
         enfants: [enfant1]
-        en_couple: 0 # Parents isole !
+        en_couple: 0
         gar_dom: true
         af_nbenf: 1
         ass_mat: 1
@@ -339,7 +339,7 @@
       famille_0:
         parents: [parent1, parent2]
         enfants: [enfant1]
-        en_couple: 1 # parents en couple
+        en_couple: 1
         af_nbenf: 1
         gar_dom: true
         ass_mat: 1
