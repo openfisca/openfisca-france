@@ -10,6 +10,7 @@
      "25056",
      "14118",
      "59350",
+     "67482",
      ]
   output:
     region: [
@@ -22,4 +23,5 @@
      "bourgogne_franche_comte",
      "normandie",
      "hauts_de_france",
+     "grand_est",
      ]
