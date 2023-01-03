@@ -14,6 +14,7 @@
      "44109",
      "35238",
      "33063",
+     "34172",
      ]
   output:
     region: [
@@ -30,4 +31,5 @@
      "pays_de_la_loire",
      "bretagne",
      "nouvelle_aquitaine",
+     "occitanie",
      ]
