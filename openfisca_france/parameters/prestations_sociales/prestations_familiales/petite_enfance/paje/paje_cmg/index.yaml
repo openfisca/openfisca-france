@@ -3,7 +3,7 @@ metadata:
   ux_name: CMG
   description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
   order:
-  - remuneration_brute_maximale_assistante_maternelle
+  - remuneration_horaire_max
   - complement_libre_choix_mode_garde
   - assistante_mat_asso_entreprise_microcreche
   - garde_domicile
