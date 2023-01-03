@@ -13,6 +13,7 @@
      "67482",
      "44109",
      "35238",
+     "33063",
      ]
   output:
     region: [
@@ -28,4 +29,5 @@
      "grand_est",
      "pays_de_la_loire",
      "bretagne",
+     "nouvelle_aquitaine",
      ]
