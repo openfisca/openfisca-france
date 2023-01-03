@@ -1,5 +1,5 @@
 - period: 2023-01
   input:
-    depcom: ["97134", "97212", "97320", "97411"]
+    depcom: ["97134", "97212", "97320", "97411", "75002"]
   output:
-    region: ["guadeloupe", "martinique", "guyane", reunion]
+    region: ["guadeloupe", "martinique", "guyane", reunion, "ile_de_france"]
