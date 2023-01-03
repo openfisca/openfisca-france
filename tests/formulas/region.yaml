@@ -17,6 +17,7 @@
      "34172",
      "69389",
      "13055",
+     "2A004",
      ]
   output:
     region: [
@@ -36,4 +37,5 @@
      "occitanie",
      "auvergne_rhone_alpes",
      "provence_alpes_cote_d_azur",
+     "corse",
      ]
