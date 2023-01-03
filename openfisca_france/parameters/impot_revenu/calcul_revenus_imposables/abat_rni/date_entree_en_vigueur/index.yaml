@@ -1,10 +1,8 @@
-description: Abattements spéciaux de l'impôt sur le revenu
+description: Date d'entrée en vigueur
 metadata:
-  description_en: Tax allowance for net taxable income
+  description_en: Tax allowance for net taxable income ( 1978 - )
   order:
-  - date_entree_en_vigueur
-  - personne_agee_ou_invalide
-  - enfant_marie
+  - annee_ir
 documentation: |-
   Notes :
   (1) Abattement et plafond de ressources pour personne âgée : art. 157 bis du CGI (abattement doublé si le conjoint répond aux mêmes conditions)

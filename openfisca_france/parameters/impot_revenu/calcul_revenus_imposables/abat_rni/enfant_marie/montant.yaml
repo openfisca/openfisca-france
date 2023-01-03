@@ -84,15 +84,15 @@ values:
     value: 5795
   2018-01-01:
     value: 5888
-  2020-01-01:
+  2019-01-01:
     value: 5947
-  2021-01-01:
+  2020-01-01:
     value: 5959
-  2022-01-01:
+  2021-01-01:
     value: 6042
 metadata:
   ux_name: Abattement
-  description_en: Tax allowance for net taxable income ( 1978 - )
+  description_en: Tax allowance for net taxable income
   unit: currency
   ipp_csv_id: abt_enfmaries
   reference:
@@ -150,12 +150,6 @@ metadata:
       title: LF pour 2010 - art. 18
     2010-01-01:
       title: LF pour 2011 - art. 2
-    2012-01-01:
-      title: Loi 2012-1509 du 29/12/2012 (LF pour 2013)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026856853
-    2013-01-01:
-      title: Loi 2013-1278 du 29/12/2013 (LF pour 2014)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028399511
     2014-01-01:
       title: Loi 2014-1654 du 29/12/2014 (LF pour 2015)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029988857
@@ -173,15 +167,15 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037935215&cidTexte=JORFTEXT000037882341
     - title: Décret 2019-559, art. 1 du 06/06/2019
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000038559363&categorieLien=id
-    2020-01-01:
+    2019-01-01:
       title: Loi 2019-1479, art. 2 du 28/12/2019 (LF pour 2020)
       href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
-    2021-01-01:
+    2020-01-01:
     - title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042753593
     - title: Décret 2020-897, art 1 du 22/07/2020
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042143210
-    2022-01-01:
+    2021-01-01:
     - title: Loi 2021-1900, art. 2 du 30/12/2021 (LF pour 2022)
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
     - title: Décret 2021-744, art 1 du 09/06/2021
@@ -216,17 +210,14 @@ metadata:
     2008-01-01: "2008-12-28"
     2009-01-01: "2009-12-31"
     2010-01-01: "2010-12-30"
-    2011-01-01: "2011-12-28"
-    2012-01-01: "2012-12-29"
-    2013-01-01: "2013-12-30"
     2014-01-01: "2014-12-30"
     2015-01-01: "2015-12-30"
     2016-01-01: "2016-12-30"
     2017-01-01: "2017-12-31"
     2018-01-01: "2018-12-30"
-    2020-01-01: "2019-12-29"
-    2021-01-01: 2020-12-30; 2020-07-24
-    2022-01-01: 2021-12-31; 2021-06-11
+    2019-01-01: "2019-12-29"
+    2020-01-01: 2020-12-30; 2020-07-24
+    2021-01-01: 2021-12-31; 2021-06-11
   notes:
     2001-01-01:
     - title: Voir aussi Loi 2001-1276 du 28/12/2001 - art. 51 (LFR pour 2001)
@@ -242,10 +233,6 @@ metadata:
     - title: Décret 2011-645 du 09/06/2011 - art. 1 - JORF 11/06/2011
     2011-01-01:
     - title: Gel des barèmes d'imposition lors de l'imposition des revenus 2011.
-    2012-01-01:
-    - title: Gel des barèmes d'imposition lors de l'imposition des revenus 2012.
-    2013-01-01:
-    - title: Voir documentation
 documentation: |-
   Abattement pour rattachement d'enfants mariés : article 196 B du CGI
   Abattement par personne rattachée - à doubler dans le cas d'un jeune ménage ou d'un célibataire avec jeune enfant, à tripler pour couple avec enfant rattaché
