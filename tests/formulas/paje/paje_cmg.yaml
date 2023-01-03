@@ -122,7 +122,7 @@
     paje: (0.4595 * 411.92) + (1.7257 * 411.92 + 355.43)
 
 
-- name: Après 2023, de 3-6 ans c'est full CMG
+- name: Après 2023, de 3-6 ans la CMG est pleine
   period: 2023-02
   relative_error_margin: 0.01
   input:
@@ -157,7 +157,7 @@
   output:
     paje_cmg: 1673.68
 
-- name: Après 2023, de 0-3 ans c'est full CMG
+- name: Après 2023, de 0-3 ans la CMG est pleine
   period: 2023-02
   relative_error_margin: 0.01
   input:
@@ -193,7 +193,7 @@
     paje_cmg: 1673.68
 
 
-- name: En 2022, CMG 2022 - full de 0 à 3
+- name: En 2022, CMG 2022 - CMG pleine de 0 à 3
   period: 2022-02
   relative_error_margin: 0.5
   input:
@@ -225,7 +225,7 @@
     paje_cmg: 715.84
 
 
-- name: En 2022, CMG 2022 - reduit de 3 à 6
+- name: En 2022, CMG 2022 - réduite de 3 à 6
   period: 2022-02
   relative_error_margin: 0.5
   input:
@@ -257,7 +257,7 @@
     paje_cmg: 715.84/2
    
 
-- name: En 2022, CMG 2022 - rien apres 6 ans
+- name: En 2022, CMG 2022 - rien après 6 ans
   period: 2022-02
   relative_error_margin: 0.5
   input:
@@ -289,7 +289,7 @@
     paje_cmg: 0
 
 
-- name: Après 2023, a 12 ans pas de cmg sauf si parent isole
+- name: Après 2023, à 12 ans pas de cmg sauf si parent isolé
   period: 2023-02
   relative_error_margin: 0.01
   input:
@@ -320,7 +320,7 @@
     paje_base: 0
 
 
-- name: Après 2023, apres 6 ans pas de cmg 
+- name: Après 2023, apres 6 ans pas de CMG
   period: 2023-02
   relative_error_margin: 0.01
   input:
