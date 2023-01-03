@@ -1,0 +1,5 @@
+description: Liste des départements membre de la région Île de France
+unit: Code INSEE
+values:
+  2015-01-16:
+    value: ["75","77","78","91","92","93","94","95"]

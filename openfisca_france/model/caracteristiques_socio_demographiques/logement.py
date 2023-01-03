@@ -45,7 +45,7 @@ class depcom(Variable):
     set_input = set_input_dispatch_by_period
 
 class TypesCodeInseeRegion(Enum):
-    __order__ = 'non_renseigne guadeloupe'
+    __order__ = 'non_renseigne guadeloupe martinique guyane reunion ile_de_france centre_val_de_loire bourgogne_franche_comte normandie hauts_de_france grand_est pays_de_la_loire bretagne nouvelle_aquitaine occitanie auvergne_rhone_alpes provence_alpes_cote_d_azur corse'
     non_renseigne = 'Non renseigné'
     guadeloupe = '01'
     martinique = '02'
@@ -67,6 +67,8 @@ class TypesCodeInseeRegion(Enum):
 
 class region(Variable):
     value_type = Enum
+    possible_values = TypesCodeInseeRegion
+    default_value = TypesCodeInseeRegion.non_renseigne
     entity = Menage
     label = 'Code INSEE de la région du lieu de résidence'
     definition_period = MONTH
@@ -74,19 +76,15 @@ class region(Variable):
     
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
-        P = parameters(period).regions
+        P = parameters(period).geopolitique.regions
         regions = [(P.guadeloupe, TypesCodeInseeRegion.guadeloupe), 
                    (P.martinique, TypesCodeInseeRegion.martinique)]
         regions_elig = [sum([startswith(depcom, str.encode(code)) for code in PR.departements]) > 0 for (PR,_) in regions]
         regions_value = [RV for (_,RV) in regions]
         
-        select(regions_elig,regions_value,default = TypesCodeInseeRegion.non_renseigne)
-        # select([sum([startswith(depcom, str.encode(code)) for code in P.guadeloupe.departements]) > 0,
-        #         sum([startswith(depcom, str.encode(code)) for code in P.martinique.departements]) > 0],
-        #        [TypesCodeInseeRegion.guadeloupe,TypesCodeInseeRegion.martinique,],
-        #        default = TypesCodeInseeRegion.non_renseigne
-        #        )
-        return True
+        return select(regions_elig,regions_value,default = TypesCodeInseeRegion.non_renseigne)
+        
+        
 class charges_locatives(Variable):
     value_type = float
     entity = Menage
