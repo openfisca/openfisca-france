@@ -1,4 +1,4 @@
-- name: "Personne âgée née avant 1931, application de l'abattement spécial accordé aux personnes âgées nées avant 1930 ou en 1930 "
+- name: "Personne âgée née avant 1931, application de l'abattement spécial accordé aux personnes âgées nées avant 1930 ou en 1930"
   period: 2021-02
   relative_error_margin: 0.01
   input:
@@ -19,7 +19,7 @@
     foyer_fiscal:
       declarants: [personne1]
   output:
-    aide_logement_base_ressources: 9600
+    aide_logement_base_ressources: 9500
     aide_logement: 100.71
 
 - name: "Personne âgée née en 1931, pas d'application de l'abattement spécial accordé aux personnes âgées"
