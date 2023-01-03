@@ -89,6 +89,7 @@ class region(Variable):
             (P.hauts_de_france, TypesCodeInseeRegion.hauts_de_france),
             (P.grand_est, TypesCodeInseeRegion.grand_est),
             (P.pays_de_la_loire, TypesCodeInseeRegion.pays_de_la_loire),
+            (P.bretagne, TypesCodeInseeRegion.bretagne),
                    ]
         regions_elig = [sum([startswith(depcom, str.encode(code)) for code in PR.departements]) > 0 for (PR,_) in regions]
         regions_value = [RV for (_,RV) in regions]
