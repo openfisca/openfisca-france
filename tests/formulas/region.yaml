@@ -12,6 +12,7 @@
      "59350",
      "67482",
      "44109",
+     "35238",
      ]
   output:
     region: [
@@ -26,4 +27,5 @@
      "hauts_de_france",
      "grand_est",
      "pays_de_la_loire",
+     "bretagne",
      ]
