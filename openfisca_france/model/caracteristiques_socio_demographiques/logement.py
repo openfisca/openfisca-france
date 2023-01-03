@@ -76,26 +76,29 @@ class region(Variable):
     
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
-        P = parameters(period).geopolitique.regions
+        regions_list = [
+        'guadeloupe',
+        'martinique',
+        'guyane',
+        'reunion',
+        'ile_de_france',
+        'centre_val_de_loire',
+        'bourgogne_franche_comte',
+        'normandie',
+        'hauts_de_france',
+        'grand_est',
+        'pays_de_la_loire',
+        'bretagne',
+        'nouvelle_aquitaine',
+        'occitanie',
+        'auvergne_rhone_alpes',
+        'provence_alpes_cote_d_azur',
+        'corse']
         regions = [
-            (P.guadeloupe, TypesCodeInseeRegion.guadeloupe), 
-            (P.martinique, TypesCodeInseeRegion.martinique),
-            (P.guyane, TypesCodeInseeRegion.guyane),
-            (P.reunion, TypesCodeInseeRegion.reunion),
-            (P.ile_de_france, TypesCodeInseeRegion.ile_de_france),
-            (P.centre_val_de_loire, TypesCodeInseeRegion.centre_val_de_loire),
-            (P.bourgogne_franche_comte, TypesCodeInseeRegion.bourgogne_franche_comte),
-            (P.normandie, TypesCodeInseeRegion.normandie),
-            (P.hauts_de_france, TypesCodeInseeRegion.hauts_de_france),
-            (P.grand_est, TypesCodeInseeRegion.grand_est),
-            (P.pays_de_la_loire, TypesCodeInseeRegion.pays_de_la_loire),
-            (P.bretagne, TypesCodeInseeRegion.bretagne),
-            (P.nouvelle_aquitaine, TypesCodeInseeRegion.nouvelle_aquitaine),
-            (P.occitanie, TypesCodeInseeRegion.occitanie),
-            (P.auvergne_rhone_alpes, TypesCodeInseeRegion.auvergne_rhone_alpes),
-            (P.provence_alpes_cote_d_azur, TypesCodeInseeRegion.provence_alpes_cote_d_azur),
-            (P.corse, TypesCodeInseeRegion.corse),
-                   ]
+            (parameters(period).geopolitique.regions[region], TypesCodeInseeRegion[region])
+            for region in regions_list
+            ]
+
         regions_elig = [sum([startswith(depcom, str.encode(code)) for code in PR.departements]) > 0 for (PR,_) in regions]
         regions_value = [RV for (_,RV) in regions]
         
