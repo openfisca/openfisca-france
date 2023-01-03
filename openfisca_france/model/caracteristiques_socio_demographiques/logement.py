@@ -40,11 +40,53 @@ class depcom(Variable):
     value_type = str
     max_length = 5
     entity = Menage
-    label = 'Code INSEE (depcom) du lieu de résidence'
+    label = 'Code INSEE (depcom) de la commune du lieu de résidence'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+class TypesCodeInseeRegion(Enum):
+    __order__ = 'non_renseigne guadeloupe'
+    non_renseigne = 'Non renseigné'
+    guadeloupe = '01'
+    martinique = '02'
+    guyane = '03'
+    reunion = '04'
+    ile_de_france = '11'
+    centre_val_de_loire = '24'
+    bourgogne_franche_comte = '27'
+    normandie = '28'
+    hauts_de_france = '32'
+    grand_est = '44'
+    pays_de_la_loire = '52'
+    bretagne = '53'
+    nouvelle_aquitaine = '75'
+    occitanie = '76'
+    auvergne_rhone_alpes = '84'
+    provence_alpes_cote_d_azur = '93'
+    corse = '94'
 
+class region(Variable):
+    value_type = Enum
+    entity = Menage
+    label = 'Code INSEE de la région du lieu de résidence'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+    
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period)
+        P = parameters(period).regions
+        regions = [(P.guadeloupe, TypesCodeInseeRegion.guadeloupe), 
+                   (P.martinique, TypesCodeInseeRegion.martinique)]
+        regions_elig = [sum([startswith(depcom, str.encode(code)) for code in PR.departements]) > 0 for (PR,_) in regions]
+        regions_value = [RV for (_,RV) in regions]
+        
+        select(regions_elig,regions_value,default = TypesCodeInseeRegion.non_renseigne)
+        # select([sum([startswith(depcom, str.encode(code)) for code in P.guadeloupe.departements]) > 0,
+        #         sum([startswith(depcom, str.encode(code)) for code in P.martinique.departements]) > 0],
+        #        [TypesCodeInseeRegion.guadeloupe,TypesCodeInseeRegion.martinique,],
+        #        default = TypesCodeInseeRegion.non_renseigne
+        #        )
+        return True
 class charges_locatives(Variable):
     value_type = float
     entity = Menage
