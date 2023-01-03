@@ -92,6 +92,7 @@ class region(Variable):
             (P.bretagne, TypesCodeInseeRegion.bretagne),
             (P.nouvelle_aquitaine, TypesCodeInseeRegion.nouvelle_aquitaine),
             (P.occitanie, TypesCodeInseeRegion.occitanie),
+            (P.auvergne_rhone_alpes, TypesCodeInseeRegion.auvergne_rhone_alpes),
                    ]
         regions_elig = [sum([startswith(depcom, str.encode(code)) for code in PR.departements]) > 0 for (PR,_) in regions]
         regions_value = [RV for (_,RV) in regions]
