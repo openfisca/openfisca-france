@@ -94,6 +94,7 @@ class region(Variable):
             (P.occitanie, TypesCodeInseeRegion.occitanie),
             (P.auvergne_rhone_alpes, TypesCodeInseeRegion.auvergne_rhone_alpes),
             (P.provence_alpes_cote_d_azur, TypesCodeInseeRegion.provence_alpes_cote_d_azur),
+            (P.corse, TypesCodeInseeRegion.corse),
                    ]
         regions_elig = [sum([startswith(depcom, str.encode(code)) for code in PR.departements]) > 0 for (PR,_) in regions]
         regions_value = [RV for (_,RV) in regions]
