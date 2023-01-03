@@ -141,7 +141,7 @@
       famille_0:
         parents: [parent1, parent2]
         enfants: [enfant1]
-        en_couple: 1
+        en_couple: 1t
         af_nbenf: 1
         gar_dom: true
         ass_mat: 1
@@ -255,7 +255,6 @@
         enfants: [enfant1]
   output:
     paje_cmg: 715.84/2
-   
 
 - name: En 2022, CMG 2022 - rien après 6 ans
   period: 2022-02
