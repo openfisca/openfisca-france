@@ -87,7 +87,7 @@ values:
   2021-01-01:
     value: 15560
 metadata:
-  ux_name: Plafond de la première tranche
+  ux_name: Plafond de la 1ère tranche
   last_review: '2022-12-26'
   unit: currency
   ipp_csv_id: plaf_pers_age1
