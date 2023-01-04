@@ -165,6 +165,35 @@
   - Corrrection des dates d'entrée en vigueur pour les plafonds et les montants
   - Ajout des valeurs pour 2022, de leur référence, et du `last_review`
 
+# 136.1.0 [#1969]https://github.com/openfisca/openfisca-france/pull/1969
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 16/01/2015.
+* Zones impactées :
+  - `model/caracteristiques_socio_demographiques/logement.py`
+  - `parameters/geopolitique/departements_idf.yaml`
+  - `parameters/geopolitique/regions/guadeloupe/departements.yaml`
+  - `parameters/geopolitique/regions/martinique/departements.yaml`
+  - `parameters/geopolitique/regions/guyane/departements.yaml`
+  - `parameters/geopolitique/regions/reunion/departements.yaml`
+  - `parameters/geopolitique/regions/ile_de_france/departements.yaml`
+  - `parameters/geopolitique/regions/centre_val_de_loire/departements.yaml`
+  - `parameters/geopolitique/regions/bourgogne_franche_comte/departements.yaml`
+  - `parameters/geopolitique/regions/normandie/departements.yaml`
+  - `parameters/geopolitique/regions/hauts_de_france/departements.yaml`
+  - `parameters/geopolitique/regions/grand_est/departements.yaml`
+  - `parameters/geopolitique/regions/pays_de_la_loire/departements.yaml`
+  - `parameters/geopolitique/regions/bretagne/departements.yaml`
+  - `parameters/geopolitique/regions/nouvelle_aquitaine/departements.yaml`
+  - `parameters/geopolitique/regions/occitanie/departements.yaml`
+  - `parameters/geopolitique/regions/auvergne_rhone_alpes/departements.yaml`
+  - `parameters/geopolitique/regions/provence_alpes_cote_d_azur/departements.yaml`
+  - `parameters/geopolitique/regions/corse/departements.yaml`
+  
+* Détails :
+  - Déplace le fichier de paramètre contenant la liste des départements de la région Île-de-France dans le dossier `regions`.
+  - Ajoute un fichier de paramètres contenant la liste des départements pour chaque région de France
+  - Ajoute l'Enum `TypesCodeInseeRegion` contenant la liste des code INSEE de chaque région de France
+  - Ajoute la variable `region` qui indique dans quel région un ménage réside.
 # 136.0.0 [#1962](https://github.com/openfisca/openfisca-france/pull/1962)
 
 * Évolution du système socio-fiscal. | Amélioration technique.
