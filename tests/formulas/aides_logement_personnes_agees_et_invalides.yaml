@@ -20,7 +20,7 @@
       declarants: [personne1]
   output:
     aide_logement_base_ressources: 9500
-    aide_logement: 100.71
+    aide_logement: 103.79
 
 - name: "Personne âgée née en 1931, pas d'application de l'abattement spécial accordé aux personnes âgées"
   period: 2021-02
