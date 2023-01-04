@@ -89,16 +89,34 @@ class cheque_energie(Variable):
         return declarant * eligible * montant
 
 
+class cheque_energie_exceptionnel_montant(Variable):
+    entity = Menage
+    value_type = float
+    reference = ['https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044387624',
+        'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046720566',
+        ]
+    label = 'Montant du chèque énergie exceptionnel'
+    definition_period = YEAR
+
+    def formula_2021(menage, period, parameters):
+        bareme = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.aide_exceptionnelle
+
+        uc_menage = menage('cheque_energie_unites_consommation', period)
+        rfr = menage.sum(menage.members.foyer_fiscal('rfr', period.n_2), role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        ressources_par_uc = rfr / uc_menage
+
+        return bareme.calc(ressources_par_uc)#à vérifier
+
 class aide_exceptionnelle_cheque_energie(Variable):
     entity = Menage
     value_type = float
-    label = 'Aide exceptionnelle de 100 euros pour les personnes bénéficiaires du chèque énergie'
-    definition_period = MONTH
+    label = 'Aide exceptionnelle sous forme de cheque energie a partir de 2021'
+    definition_period = YEAR#Annuel en 2022, et en 2021 revalorisation en décembre du chèque annuel, donc à changer. Sinon, le donner en janvier 2022 uniquement 
     set_input = set_input_divide_by_period
-    end = '2021-12-31'
 
-    def formula_2021_12_01(menage, period, parameters):
-        cheque_energie = menage('cheque_energie', period.this_year)
-        montant_aide = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.aide_exceptionnelle
-
-        return montant_aide * (cheque_energie > 0)
+    def formula_2021(menage, period, parameters):
+        eligible = menage('cheque_energie_eligibilite_logement', period)
+        declarant = menage.sum(menage.members('age', period.first_month) * 0 + 1, role = FoyerFiscal.DECLARANT) > 0  # une colocation de personnes à la charge de leurs parents n'est pas éligible aux chèques énergie, par exemple
+        montant = menage('cheque_energie_exceptionnel_montant', period.this_year)
+        return declarant * eligible #* montant
