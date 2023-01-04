@@ -148,7 +148,7 @@ class residence_ile_de_france(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
-        return sum([startswith(depcom, str.encode(departement_idf)) for departement_idf in parameters(period).geopolitique.departements_idf])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
+        return sum([startswith(depcom, str.encode(departement_idf)) for departement_idf in parameters(period).geopolitique.regions.ile_de_france.departements])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
 
 class residence_dom(Variable):
