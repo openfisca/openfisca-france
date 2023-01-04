@@ -1,5 +1,12 @@
 # Changelog
 
+### 138.0.4 [#1970](https://github.com/openfisca/openfisca-france/pull/1970)
+
+* Changement mineur
+* Périodes concernées : du 01/02/2022 jusqu'au 01/08/2022
+* Zones impactées : `openfisca_france/parameters/taxation_capital/epargne/livret_a/taux.yaml`.
+* Détails :
+  - Mise à jour du taux du livret A au date du 1 février 2022 et au 1 août 2022
 ### 138.0.3 [#1987](https://github.com/openfisca/openfisca-france/pull/1987)
 * Changement mineur.
 * Périodes concernées : toutes.
@@ -22,7 +29,7 @@
   - Ajoute les labels de certains enum de variables
   - Modifie le nom de certaines variables
 
-# 138.0.1 [#1976](https://github.com/openfisca/openfisca-france/pull/1976)
+### 138.0.1 [#1976](https://github.com/openfisca/openfisca-france/pull/1976)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -39,7 +46,7 @@
 * Détails :
   - Dans `taxation_capital/impot_solidarite_fortune_isf_1989_2017`, renomme `droits_soc` en `droits_sociaux`
 
-# 137.1.1 [#1983](https://github.com/openfisca/openfisca-france/pull/1983)
+### 137.1.1 [#1983](https://github.com/openfisca/openfisca-france/pull/1983)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
@@ -76,6 +83,7 @@
   - Du plafond du crédit d'impôt pour la garde des jeunes enfants
   - Du seuil supérieur de bénéfices sur lesquels le taux réduit d'IS est applicable (taxation sur les sociétés)
 * Remarque: ici on pense avoir pris en compte toutes les modifications du PLF sur les dispositifs qui sont actuellement codés dans openfisca-france. La partie 'collectivités territoriales' sera codée dans le répertoire dédié.
+
 
 ### 136.0.2 [#1973](https://github.com/openfisca/openfisca-france/pull/1973)
 
