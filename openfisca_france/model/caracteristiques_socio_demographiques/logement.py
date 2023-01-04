@@ -44,6 +44,7 @@ class depcom(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+
 class TypesCodeInseeRegion(Enum):
     __order__ = 'non_renseigne guadeloupe martinique guyane reunion ile_de_france centre_val_de_loire bourgogne_franche_comte normandie hauts_de_france grand_est pays_de_la_loire bretagne nouvelle_aquitaine occitanie auvergne_rhone_alpes provence_alpes_cote_d_azur corse'
     non_renseigne = 'Non renseigné'
@@ -65,6 +66,7 @@ class TypesCodeInseeRegion(Enum):
     provence_alpes_cote_d_azur = '93'
     corse = '94'
 
+
 class region(Variable):
     value_type = Enum
     possible_values = TypesCodeInseeRegion
@@ -73,38 +75,39 @@ class region(Variable):
     label = 'Code INSEE de la région du lieu de résidence'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    
+
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
         regions_list = [
-        'guadeloupe',
-        'martinique',
-        'guyane',
-        'reunion',
-        'ile_de_france',
-        'centre_val_de_loire',
-        'bourgogne_franche_comte',
-        'normandie',
-        'hauts_de_france',
-        'grand_est',
-        'pays_de_la_loire',
-        'bretagne',
-        'nouvelle_aquitaine',
-        'occitanie',
-        'auvergne_rhone_alpes',
-        'provence_alpes_cote_d_azur',
-        'corse']
+            'guadeloupe',
+            'martinique',
+            'guyane',
+            'reunion',
+            'ile_de_france',
+            'centre_val_de_loire',
+            'bourgogne_franche_comte',
+            'normandie',
+            'hauts_de_france',
+            'grand_est',
+            'pays_de_la_loire',
+            'bretagne',
+            'nouvelle_aquitaine',
+            'occitanie',
+            'auvergne_rhone_alpes',
+            'provence_alpes_cote_d_azur',
+            'corse']
+
         regions = [
             (parameters(period).geopolitique.regions[region], TypesCodeInseeRegion[region])
             for region in regions_list
             ]
 
-        regions_elig = [sum([startswith(depcom, str.encode(code)) for code in PR.departements]) > 0 for (PR,_) in regions]
-        regions_value = [RV for (_,RV) in regions]
-        
-        return select(regions_elig,regions_value,default = TypesCodeInseeRegion.non_renseigne)
-        
-        
+        regions_elig = [sum([startswith(depcom, str.encode(code)) for code in PR.departements]) > 0 for (PR, _) in regions]
+        regions_value = [RV for (_, RV) in regions]
+
+        return select(regions_elig, regions_value, default = TypesCodeInseeRegion.non_renseigne)
+
+
 class charges_locatives(Variable):
     value_type = float
     entity = Menage
