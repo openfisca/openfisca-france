@@ -122,7 +122,7 @@
     paje: (0.4595 * 411.92) + (1.7257 * 411.92 + 355.43)
 
 
-- name: Après 2023, de 3-6 ans la CMG est pleine
+- name: Après 2023, de 3 à 6 ans, la CMG est pleine
   period: 2023-02
   relative_error_margin: 0.01
   input:
