@@ -1516,7 +1516,6 @@ metadata:
     - title: Intégration de l'abattement de 20 % au barème de l'impôt sur le revenu et diminution du nombre de tranches de 7 à 5.
     2020-01-01:
     - title: La modification du taux est codifiée par la LF 2019 (le A. du IV. de l'art. 2 précise que l'application se fait au titre des revenus perçus ou réalisés en 2020). Les seuils d'entrée des troisièmes et quatrièmes tranches sont abaissés en compensation de la baisse du taux d'imposition dans la deuxième tranche, afin que la baisse d'impôt profite en priorité aux contribuables des deux premières tranches.
-  last_review: "2022-08-08"
   rate_unit: /1
   threshold_unit: currency
 documentation: |-
