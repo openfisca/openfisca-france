@@ -1,5 +1,13 @@
 # Changelog
 
+# 136.0.2 [#1973](https://github.com/openfisca/openfisca-france/pull/1973)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/abat_rni/personne_agee_ou_invalide/`.
+* Détails :
+  - Application du nettoyeur de paramètres pour harmonisation
+
 # 136.0.1 [#1968](https://github.com/openfisca/openfisca-france/pull/1968)
 
 * Correction d'un crash.
