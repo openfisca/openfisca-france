@@ -21,7 +21,7 @@ values:
 metadata:
   ux_name: Plafond
   description_en: Child care costs (1979 - )
-  last_review: "2022-01-01"
+  last_review: "2023-01-05"
   ipp_csv_id: plafgardenf
   unit: currency
   reference:
