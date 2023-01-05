@@ -8,7 +8,10 @@ metadata:
   unit: SMIC
   reference:
     2004-01-01:
+    - title: Article D531-17 du Code de la Sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044809221
     - title: Décret 2003-1394 du 31/12/2003 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
     - title: Article D531-17 (multiplicateur du smic horaire)
   official_journal_date:
