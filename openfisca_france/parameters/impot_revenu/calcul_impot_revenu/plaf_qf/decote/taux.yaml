@@ -12,7 +12,7 @@ metadata:
   unit: /1
   last_review: "2023-01-05"
   reference:
-    0001-01-01:
+    2001-01-01:
       href: http://bofip.impots.gouv.fr/bofip/2495-PGP
     2020-01-01:
       title: Article 197, I.4.a. du Code général des impôts
