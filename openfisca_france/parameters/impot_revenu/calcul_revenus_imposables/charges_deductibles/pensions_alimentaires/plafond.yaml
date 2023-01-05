@@ -90,8 +90,11 @@ values:
     value: 5959
   2021-01-01:
     value: 6042
+  2022-01-01:
+    value: 6368
 metadata:
   ux_name: Plafond
+  last_review: "2023-01-05"
   ipp_csv_id: plaf_penalim
   unit: currency
   reference:
@@ -254,6 +257,9 @@ metadata:
     2021-01-01:
       title: Loi 2021-1900, art. 2 du 30/12/2021 (LF pour 2022)
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
+    2022-01-01:
+      title: LOI n° 2022-1726, art. 2 du 30/12/2022 (LF pour 2023)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046845640
   official_journal_date:
     1974-01-01: "1974-12-31"
     1975-01-01: "1975-12-31"
@@ -303,9 +309,10 @@ metadata:
     2019-01-01: "2019-12-29"
     2020-01-01: "2020-12-30"
     2021-01-01: "2021-12-31"
+    2022-01-01: "2022-12-31"
 documentation: |
   Pensions alimentaires : 
   plafond : 2° du II de art. 156 du CGI, et art. 196 B du CGI; https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037990984
-  coefficient majoration pour les pensions suite à une décision de justice avant le 01/01/2006 : art. 158 du CGI
+  Coefficient majoration pour les pensions suite à une décision de justice avant le 01/01/2006 : art. 158 du CGI
   http://bofip.impots.gouv.fr/bofip/4930-PGP
   https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037985596&cidTexte=LEGITEXT0000
