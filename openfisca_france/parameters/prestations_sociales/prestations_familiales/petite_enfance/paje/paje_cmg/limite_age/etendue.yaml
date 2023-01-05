@@ -5,7 +5,7 @@ values:
   2023-01-01:
     value: 12
 metadata:
-  ux_name: Prestation etendue
+  ux_name: Prestation étendue
   unit: year
   reference:
       2023-01-01:
