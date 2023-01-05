@@ -1216,6 +1216,7 @@ brackets:
       value: null
 metadata:
   ux_name: Barème de l'impôt sur le revenu
+  last_review: "2023-01-05"
   description_en: Thresholds and marginal tax rates (1945-)
   reference:
     1945-01-01:
@@ -1491,7 +1492,7 @@ metadata:
     2018-01-01: "2018-12-30"
     2019-01-01: "2019-12-29"
     2020-01-01: 2020-12-30; 2019-12-29
-    2023-01-01: "2022-12-31"
+    2022-01-01: "2022-12-31"
   notes:
     1947-01-01:
     - title: Coexistence IGR et impôts cédulaires (voir notes 1 à 4). Ces barèmes concernent l'IGR jusqu'en 1948. En 1948, un « prélèvement exceptionnel de lutte contre l'inflation » sur les revenus 1946 est instauré dans le cadre du « plan Mayer » (intégré dans le barème); les contribuables ayant le choix d'échapper à cette majoration du barème s'ils souscrivent à un « emprunt obligatoire » rémunéré à 3 % sur 10 ans.
