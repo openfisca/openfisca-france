@@ -4,6 +4,8 @@ values:
     value: null
   2001-01-01:
     value: 5700
+  2022-01-01:
+    value: 6250
 metadata:
   ux_name: Plafond
   ipp_csv_id: plaf_foret
@@ -14,10 +16,13 @@ metadata:
         title: Loi 2001-602 du 09/07/2001 art. 9 III (créé art. 199 decies H du CGI)
       - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036364311/
         title: Art. 199 decies H du CGI
+    2022-01-01:
+      title: LOI n° 2022-1726, art. 10 du 30/12/2022 (LF pour 2023)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046845648
   notes:
     2001-01-01:
     - title: Crée par loi d'orientation sur la forêt n°2001-602 du 9 juillet 2001 - JOFR 11/07/2001
-  last_review: "2022-10-11"
+  last_review: "2023-01-01"
 documentation: |-
   Notes :
   (1) En 2007, investissements forestiers renommés en investissements et travaux forestiers
