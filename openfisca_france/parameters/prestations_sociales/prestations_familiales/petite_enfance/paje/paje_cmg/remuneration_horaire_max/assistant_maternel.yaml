@@ -1,4 +1,4 @@
-description: Rémunération horaire brute maximale de l'assistant maternel agréé (par jour et par enfant) (en multiple du SMIC horaire) pour le Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
+description: Rémunération horaire brute maximale de l'assistant maternel agréé (par jour, par enfant et en multiple du SMIC horaire) pour le Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
     value: 5
