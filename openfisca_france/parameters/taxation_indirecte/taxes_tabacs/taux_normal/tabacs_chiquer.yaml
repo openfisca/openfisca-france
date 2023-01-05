@@ -28,6 +28,7 @@ values:
     value: 0.407
 metadata:
   ipp_csv_id: tx_tabac_chiquer
+  ux_name: Tabacs à mâcher
   last_review: "2022-12-28"
   unit: /1
   reference:
