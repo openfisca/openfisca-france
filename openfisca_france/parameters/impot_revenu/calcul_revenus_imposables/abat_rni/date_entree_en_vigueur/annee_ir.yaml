@@ -1,95 +1,96 @@
-description: Montant (pour la 1ère tranche) de l'abattement de l'impôt sur le revenu pour les personnes âgées ou invalides à charge
+description: Année IR
 values:
   1977-01-01:
-    value: 3400
+    value: 1978
   1978-01-01:
-    value: 3720
+    value: 1979
   1979-01-01:
-    value: 4080
+    value: 1980
   1980-01-01:
-    value: 4630
+    value: 1981
   1981-01-01:
-    value: 5260
+    value: 1982
   1982-01-01:
-    value: null
+    value: 1983
+  1983-01-01:
+    value: 1984
   1984-01-01:
-    value: 6960
+    value: 1985
   1985-01-01:
-    value: 7360
+    value: 1986
   1986-01-01:
-    value: 7540
+    value: 1987
   1987-01-01:
-    value: 7800
+    value: 1988
   1988-01-01:
-    value: 8020
+    value: 1989
   1989-01-01:
-    value: null
+    value: 1990
   1990-01-01:
-    value: 8580
+    value: 1991
   1991-01-01:
-    value: 8860
+    value: 1992
   1992-01-01:
-    value: 9120
+    value: 1993
   1993-01-01:
-    value: 9300
+    value: 1994
   1994-01-01:
-    value: 9440
+    value: 1995
   1995-01-01:
-    value: 9620
+    value: 1996
   1996-01-01:
-    value: 9820
+    value: 1997
   1997-01-01:
-    value: 9940
+    value: 1998
   1998-01-01:
-    value: 10040
+    value: 1999
   1999-01-01:
-    value: 10100
+    value: 2000
   2000-01-01:
-    value: 10260
+    value: 2001
   2001-01-01:
-    value: 1590
+    value: 2002
   2002-01-01:
-    value: 1618
+    value: 2003
   2003-01-01:
-    value: 1646
+    value: 2004
   2004-01-01:
-    value: 1674
+    value: 2005
   2005-01-01:
-    value: 1706
+    value: 2006
   2006-01-01:
-    value: 2172
+    value: 2007
   2007-01-01:
-    value: 2202
+    value: 2008
   2008-01-01:
-    value: 2266
+    value: 2009
   2009-01-01:
-    value: 2276
+    value: 2010
   2010-01-01:
-    value: 2312
+    value: 2011
+  2011-01-01:
+    value: 2012
+  2012-01-01:
+    value: 2013
   2013-01-01:
-    value: 2332
+    value: 2014
   2014-01-01:
-    value: 2344
+    value: 2015
   2015-01-01:
-    value: 2348
+    value: 2016
   2016-01-01:
-    value: 2352
+    value: 2017
   2017-01-01:
-    value: 2376
+    value: 2018
   2018-01-01:
-    value: 2416
+    value: 2019
   2019-01-01:
-    value: 2442
+    value: 2020
   2020-01-01:
-    value: 2448
+    value: 2021
   2021-01-01:
-    value: 2484
+    value: 2022
 metadata:
-  ux_name: Montant 1ère tranche
-  last_review: '2022-12-26'
-  unit: currency
-  ipp_csv_id: abt_pers_age1
-  description_en: Tax allowance for net taxable income
   reference:
     1984-01-01:
       title: LF pour 1983
@@ -145,6 +146,9 @@ metadata:
       title: LF pour 2010 - art. 18
     2010-01-01:
       title: LF pour 2011 - art. 2
+    2012-01-01:
+      title: Loi 2012-1509 du 29/12/2012 (LF pour 2013)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026856853
     2013-01-01:
       title: Loi 2013-1278 du 29/12/2013 (LF pour 2014)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028399511
@@ -165,15 +169,15 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037935215&cidTexte=JORFTEXT000037882341
     - title: Décret 2019-559, art. 1 du 06/06/2019
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000038559363&categorieLien=id
-    2019-01-01:
+    2020-01-01:
       title: Loi 2019-1479, art. 2 du 28/12/2019 (LF pour 2020)
       href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
-    2020-01-01:
+    2021-01-01:
     - title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042753593
     - title: Décret 2020-897, art 1 du 22/07/2020
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042143210
-    2021-01-01:
+    2022-01-01:
     - title: Loi 2021-1900, art. 2 du 30/12/2021 (LF pour 2022)
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
     - title: Décret 2021-744, art 1 du 09/06/2021
@@ -208,35 +212,21 @@ metadata:
     2008-01-01: "2008-12-28"
     2009-01-01: "2009-12-31"
     2010-01-01: "2010-12-30"
+    2011-01-01: "2011-12-28"
+    2012-01-01: "2012-12-29"
     2013-01-01: "2013-12-30"
     2014-01-01: "2014-12-30"
     2015-01-01: "2015-12-30"
     2016-01-01: "2016-12-30"
     2017-01-01: "2017-12-31"
     2018-01-01: "2018-12-30"
-    2019-01-01: "2019-12-29"
-    2020-01-01: 2020-12-30; 2020-07-24
-    2021-01-01: 2021-12-31; 2021-06-11
-  notes:
-    2001-01-01:
-    - title: Voir aussi Loi 2001-1276 du 28/12/2001 - art. 51 (LFR pour 2001)
-    2005-01-01:
-    - title: Voir aussi Loi 2005-1719 du 30/12/2005 - art. 76 (LF pour 2006)
-    2007-01-01:
-    - title: Décret 2008-294 du 01/04/2008 - art. 1 - JORF 02/04/2008
-    2008-01-01:
-    - title: Décret 2009-389 du 07/04/2009 - art. 1 - JORF 09/04/2009
-    2009-01-01:
-    - title: Décret 2010-421 du 27/04/2010 - art. 1 - JORF 30/04/2010
-    2010-01-01:
-    - title: Décret 2011-645 du 09/06/2011 - art. 1 - JORF 11/06/2011
-    2011-01-01:
-    - title: Gel des barèmes d'imposition lors de l'imposition des revenus 2011.
-    2013-01-01:
-    - title: Voir documentation
+    2020-01-01: "2019-12-29"
+    2021-01-01: 2020-12-30; 2020-07-24
+    2022-01-01: 2021-12-31; 2021-06-11
 documentation: |-
   Notes :
-  Ref - https://bofip.impots.gouv.fr/bofip/2036-PGP.html/identifiant=BOI-IR-BASE-40-20220516
-  Abattement et plafond de ressources pour personne âgée : art. 157 bis du CGI (abattement doublé si le conjoint répond aux mêmes conditions)
+  (1) Abattement et plafond de ressources pour personne âgée : art. 157 bis du CGI (abattement doublé si le conjoint répond aux mêmes conditions)
+  (2) Abattement pour rattachement d'enfants mariés : art. 196 B du CGI
+  (3) Abattement par personne rattachée - à doubler dans le cas d'un jeune ménage ou d'un célibataire avec jeune enfant, à tripler pour couple avec enfant rattaché
   Les ressources à considérer sont le revenu net global du foyer fiscal
-  Les invalides qui bénéficient d'une pension militaire d'invalidité pour une invalidité d'au moins 40 % ou d'une pension d'invalidité pour un accident du travail d'au moins 40 % ou de la carte d'invalidité
+  (4) Les invalides qui bénéficient d'une pension militaire d'invalidité pour une invalidité d'au moins 40 % ou d'une pension d'invalidité pour un accident du travail d'au moins 40 % ou de la carte d'invalidité

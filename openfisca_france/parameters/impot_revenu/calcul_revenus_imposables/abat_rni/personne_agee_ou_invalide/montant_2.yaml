@@ -1,4 +1,4 @@
-description: Montant pour la deuxième tranche de l'abattement l'impôt sur le revenu, pour les personnes âgées ou invalides à charge
+description: Montant (pour la 2ème tranche) de l'abattement l'impôt sur le revenu pour les personnes âgées ou invalides à charge
 values:
   1977-01-01:
     value: 1700
@@ -10,6 +10,8 @@ values:
     value: 2315
   1981-01-01:
     value: 2630
+  1982-01-01:
+    value: null
   1984-01-01:
     value: 3480
   1985-01-01:
@@ -20,6 +22,8 @@ values:
     value: 3900
   1988-01-01:
     value: 4010
+  1989-01-01:
+    value: null
   1990-01-01:
     value: 4290
   1991-01-01:
@@ -78,11 +82,14 @@ values:
     value: 1221
   2020-01-01:
     value: 1224
+  2021-01-01:
+    value: 1242
 metadata:
   ux_name: Montant 2e tranche
+  last_review: '2022-12-26'
   ipp_csv_id: abt_pers_age2
   unit: currency
-  description_en: Tax allowance for net taxable income ( 1978 - )
+  description_en: Tax allowance for net taxable income
   reference:
     1984-01-01:
       title: LF pour 1983
@@ -138,9 +145,6 @@ metadata:
       title: LF pour 2010 - art. 18
     2010-01-01:
       title: LF pour 2011 - art. 2
-    2012-01-01:
-      title: Loi 2012-1509 du 29/12/2012 (LF pour 2013)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026856853
     2013-01-01:
       title: Loi 2013-1278 du 29/12/2013 (LF pour 2014)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028399511
@@ -167,7 +171,6 @@ metadata:
     2020-01-01:
     - title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042753593
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042158963/2020-07-25
     - title: Décret 2020-897, art 1 du 22/07/2020
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042143210
     2021-01-01:
@@ -175,6 +178,8 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
     - title: Décret 2021-744, art 1 du 09/06/2021
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043641803
+    - title: Code général des impôts, art. 157 bis
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042158963/2022-12-26/
   official_journal_date:
     1984-01-01: "1984-12-30"
     1985-01-01: "1985-12-31"
@@ -203,8 +208,6 @@ metadata:
     2008-01-01: "2008-12-28"
     2009-01-01: "2009-12-31"
     2010-01-01: "2010-12-30"
-    2011-01-01: "2011-12-28"
-    2012-01-01: "2012-12-29"
     2013-01-01: "2013-12-30"
     2014-01-01: "2014-12-30"
     2015-01-01: "2015-12-30"
@@ -229,14 +232,11 @@ metadata:
     - title: Décret 2011-645 du 09/06/2011 - art. 1 - JORF 11/06/2011
     2011-01-01:
     - title: Gel des barèmes d'imposition lors de l'imposition des revenus 2011.
-    2012-01-01:
-    - title: Gel des barèmes d'imposition lors de l'imposition des revenus 2012.
     2013-01-01:
-    - title: Voir Notes (1), (2) et (3)
+    - title: Voir documentation
 documentation: |-
   Notes :
-  (1) Abattement et plafond de ressources pour personne âgée : art. 157 bis du CGI (abattement doublé si le conjoint répond aux mêmes conditions)
-  (2) Abattement pour rattachement d'enfants mariés : art. 196 B du CGI
-  (3) Abattement par personne rattachée - à doubler dans le cas d'un jeune ménage ou d'un célibataire avec jeune enfant, à tripler pour couple avec enfant rattaché
+  Ref - https://bofip.impots.gouv.fr/bofip/2036-PGP.html/identifiant=BOI-IR-BASE-40-20220516
+  Abattement et plafond de ressources pour personne âgée : art. 157 bis du CGI (abattement doublé si le conjoint répond aux mêmes conditions)
   Les ressources à considérer sont le revenu net global du foyer fiscal
-  (4) Les invalides qui bénéficient d'une pension militaire d'invalidité pour une invalidité d'au moins 40 % ou d'une pension d'invalidité pour un accident du travail d'au moins 40 % ou de la carte d'invalidité
+  Les invalides qui bénéficient d'une pension militaire d'invalidité pour une invalidité d'au moins 40 % ou d'une pension d'invalidité pour un accident du travail d'au moins 40 % ou de la carte d'invalidité
