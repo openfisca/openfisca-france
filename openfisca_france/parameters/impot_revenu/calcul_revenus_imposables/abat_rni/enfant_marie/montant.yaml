@@ -93,8 +93,8 @@ values:
 metadata:
   ux_name: Abattement
   description_en: Tax allowance for net taxable income
-  unit: currency
   ipp_csv_id: abt_enfmaries
+  unit: currency
   reference:
     1984-01-01:
       title: LF pour 1983
@@ -237,4 +237,3 @@ documentation: |-
   Abattement pour rattachement d'enfants mariés : article 196 B du CGI
   Abattement par personne rattachée - à doubler dans le cas d'un jeune ménage ou d'un célibataire avec jeune enfant, à tripler pour couple avec enfant rattaché
   Les ressources à considérer sont le revenu net global du foyer fiscal
-  

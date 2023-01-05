@@ -1,14 +1,12 @@
 # Changelog
 
-# 136.0.1 [#1968](https://github.com/openfisca/openfisca-france/pull/1968)
+# 136.0.2 [#1973](https://github.com/openfisca/openfisca-france/pull/1973)
 
-* Correction d'un crash.
-* Périodes concernées : à partir du 01/01/2019.
+* Amélioration technique.
+* Périodes concernées : toutes.
 * Zones impactées : `openfisca_france/parameters/impot_revenu/calcul_revenus_imposables/abat_rni/personne_agee_ou_invalide/`.
 * Détails :
-  - Harmonise les plafonds et les montants avec les valeurs IPP
-  - Corrrection des dates d'entrée en vigueur pour les plafonds et les montants
-  - Ajout des valeurs pour 2022, de leur référence, et du `last_review`
+  - Application du nettoyeur de paramètres pour harmonisation
 
 # 136.0.0 [#1962](https://github.com/openfisca/openfisca-france/pull/1962)
 
