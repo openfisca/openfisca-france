@@ -18,6 +18,7 @@ metadata:
   ux_name: Seuil QF=1,5
   ipp_csv_id: decote_np1_5
   unit: currency
+  last_review: "2023-01-05"
   reference:
     1981-01-01:
       title: Loi 81-1160 du 30/12/1981 (LF pour 1982)
