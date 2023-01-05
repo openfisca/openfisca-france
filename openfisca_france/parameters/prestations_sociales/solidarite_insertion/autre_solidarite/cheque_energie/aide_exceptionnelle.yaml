@@ -4,26 +4,30 @@ brackets:
     2021-01-01:
       value: 0
   amount:
-    2021-01-01:
+    2021-12-01:
       value: 100
     2022-01-01:
+      value: 0
+    2022-12-01:
       value: 200
     2023-01-01:
-      value: 0
+      value: null
 - threshold:
     2021-01-01:
       value: 10800
   amount:
-    2021-01-01:
+    2021-12-01:
       value: 0
     2022-01-01:
+      value: 0
+    2022-12-01:
       value: 100
 - threshold:
     2022-01-01:
       value: 17400
   amount: 
     2022-01-01:
-      value: 0
+      value: null
 metadata:
   ux_name: Aides exceptionnelles 2021-2022
   reference:

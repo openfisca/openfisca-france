@@ -23,7 +23,7 @@ brackets:
     2017-01-01:
       value: 48
     2019-01-01:
-      value: 113
+      value: 98
 - threshold:
     2017-01-01:
       value: 7700
@@ -36,7 +36,7 @@ brackets:
     2019-01-01:
       value: 10700
     2021-01-01:
-      value: 10801
+      value: 10800
   amount:
     2019-01-01:
       value: 0

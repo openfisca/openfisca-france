@@ -88,7 +88,6 @@ class cheque_energie(Variable):
         montant = menage('cheque_energie_montant', period.this_year)
         return declarant * eligible * montant
 
-
 class cheque_energie_exceptionnel_montant(Variable):
     entity = Menage
     value_type = float
@@ -96,27 +95,28 @@ class cheque_energie_exceptionnel_montant(Variable):
         'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046720566',
         ]
     label = 'Montant du chèque énergie exceptionnel'
-    definition_period = YEAR
+    definition_period = MONTH
+    end="2022-12-31"
 
     def formula_2021(menage, period, parameters):
         bareme = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.aide_exceptionnelle
 
-        uc_menage = menage('cheque_energie_unites_consommation', period)
+        uc_menage = menage('cheque_energie_unites_consommation', period.this_year)
         rfr = menage.sum(menage.members.foyer_fiscal('rfr', period.n_2), role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         ressources_par_uc = rfr / uc_menage
 
-        return bareme.calc(ressources_par_uc)#à vérifier
+        return bareme.calc(ressources_par_uc)
 
 class aide_exceptionnelle_cheque_energie(Variable):
     entity = Menage
     value_type = float
     label = 'Aide exceptionnelle sous forme de cheque energie a partir de 2021'
-    definition_period = YEAR#Annuel en 2022, et en 2021 revalorisation en décembre du chèque annuel, donc à changer. Sinon, le donner en janvier 2022 uniquement 
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def formula_2021(menage, period, parameters):
         eligible = menage('cheque_energie_eligibilite_logement', period)
         declarant = menage.sum(menage.members('age', period.first_month) * 0 + 1, role = FoyerFiscal.DECLARANT) > 0  # une colocation de personnes à la charge de leurs parents n'est pas éligible aux chèques énergie, par exemple
-        montant = menage('cheque_energie_exceptionnel_montant', period.this_year)
-        return declarant * eligible #* montant
+        montant = menage('cheque_energie_exceptionnel_montant', period.first_month)
+        return declarant * eligible * montant
