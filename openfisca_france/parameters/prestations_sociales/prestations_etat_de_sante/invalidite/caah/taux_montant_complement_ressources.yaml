@@ -1,6 +1,6 @@
 description: Taux du montant mensuel du complément de l'allocation pour adulte handicapé (CAAH), avant 2005
 values:
-  2002-01-01:
+  1994-07-01:
     value: 0.16
   2008-09-01:
     value: null
@@ -9,6 +9,9 @@ metadata:
   description_en: Additional adult disability allowance (CAAH)
   unit: /1
   reference:
+    1994-07-01:
+      title: Code de la sécurité sociale-Titre 2-Allocation aux adultes handicapés. (Articles D821-3)
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006739695/1994-07-01/
     2002-01-01:
       title: Décret 2001-1203 du 17/12/2001 - art. 25
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006780555&cidTexte=JORFTEXT000000580421

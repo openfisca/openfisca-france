@@ -126,6 +126,38 @@ class aah_base_ressources(Variable):
             base_ressource_eval_trim() / 12,
             base_ressource_eval_annuelle() / 12
             )
+
+    def formula_2023_10_01(individu, period, parameters):
+        law = parameters(period)
+        aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
+
+        en_activite = individu('salaire_imposable', period) > 0
+
+        def assiette_revenu_activite_demandeur(revenus_demandeur):
+            smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
+            tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
+            tranche2 = revenus_demandeur - tranche1
+            return (1 - aah.travail_ordinaire.abattement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
+
+        def base_ressource_eval_trim():
+            three_previous_months = period.first_month.start.period('month', 3).offset(-3)
+            base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+
+            base_ressource_demandeur = assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite
+
+            return base_ressource_demandeur
+
+        def base_ressource_eval_annuelle():
+            base_ressource = individu('aah_base_ressources_eval_annuelle', period)
+
+            return assiette_revenu_activite_demandeur(base_ressource)
+
+        return where(
+            en_activite,
+            base_ressource_eval_trim() / 12,
+            base_ressource_eval_annuelle() / 12
+            )
         # TODO: - Prendre en compte les abattements temporaires sur les ressources en cas de changement de situation
         #       - La formule du calcul de la base de ressource est celle en vigueur à partir de 2011, avant 2011:
         #           - les abattements sur les revenus d'activité de l'allocataire diffèrent (art. D821-9 du CSS)
@@ -300,8 +332,40 @@ class aah_eligible(Variable):
         En cas d'incapacité d'au moins 80 %, une AAH différentielle (c'est-à-dire une allocation mensuelle réduite)
         peut être versée au-delà de l'âge minimum légal de départ à la retraite en complément d'une retraite inférieure
         au minimum vieillesse.
+
+        Avant 2011, l'allocation était perçue uniquement pour les personnes sans activité les douze mois précédents (ref https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006739685/2005-06-30/) 
     '''
 
+    def formula_2011(individu, period, parameters):
+        law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        taux_incapacite = individu('taux_incapacite', period)
+        rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
+
+        age = individu('age', period)
+        autonomie_financiere = individu('autonomie_financiere', period)
+        eligible_aah = (
+            ((taux_incapacite >= law.taux_capacite.taux_incapacite) + (taux_incapacite >= law.taux_capacite.taux_incapacite_rsdae) * rsdae)
+            * ((age <= law.age_legal_retraite) + (taux_incapacite >= law.taux_capacite.taux_incapacite)*individu('retraite', period))#test prise en compte retraite
+            * ((age >= law.age_minimal) + ((age >= 16) * (autonomie_financiere)))
+            )
+
+        return eligible_aah
+
+    def formula_2005(individu, period, parameters):
+        law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        taux_incapacite = individu('taux_incapacite', period)
+        rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
+
+        age = individu('age', period)
+        autonomie_financiere = individu('autonomie_financiere', period)
+        eligible_aah = (
+            ((taux_incapacite >= law.taux_capacite.taux_incapacite) + (taux_incapacite >= law.taux_capacite.taux_incapacite_rsdae) * rsdae
+            * (individu('salaire_imposable', period.last_year, options=[ADD])<=0))#last_year est-il bien la bonne période (12 mois précédents) ? inégalité/égalité, une politique fixée ?
+            * (age <= law.age_legal_retraite)
+            * ((age >= law.age_minimal) + ((age >= 16) * (autonomie_financiere)))
+            )
+        return eligible_aah
+    
     def formula(individu, period, parameters):
         law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         taux_incapacite = individu('taux_incapacite', period)
@@ -314,10 +378,6 @@ class aah_eligible(Variable):
             * (age <= law.age_legal_retraite)
             * ((age >= law.age_minimal) + ((age >= 16) * (autonomie_financiere)))
             )
-
-        return eligible_aah
-
-        # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
 
 
 class aah_base_non_cumulable(Variable):
@@ -410,6 +470,8 @@ class eligibilite_caah(Variable):
     entity = Individu
     value_type = float
     label = "Eligibilité aux compléments à l'aah"
+    reference = ['https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039802699']
+
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -422,6 +484,7 @@ class eligibilite_caah(Variable):
         asi = individu('asi', period)  # montant asi de la famille
         benef_asi = (asi_eligibilite * (asi > 0))
         taux_incapacite = individu('taux_incapacite', period)
+        logement_independant = individu.has_role(menage.personne_de_reference) + individu.has_role(menage.conjoint)
 
         locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
         salaire_net = individu('salaire_net', annee_precedente, options = [ADD])
@@ -430,6 +493,7 @@ class eligibilite_caah(Variable):
             (taux_incapacite >= taux_incapacite_min)
             * ((aah > 0) | (benef_asi > 0))
             * not_(locataire_foyer)
+            * logement_independant
             * (salaire_net == 0)
             )
 
@@ -454,10 +518,12 @@ class caah(Variable):
         return max_(complement_ressources_aah, mva) * eligibilite_caah
 
     def formula_2005_07_01(individu, period, parameters):
-        law = parameters(period).prestations_sociales
+        law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite
+        annee_precedente = period.start.period('year').offset(-1)
+        salaire_net = individu('salaire_net', annee_precedente, options = [ADD])
 
-        garantie_ressources = law.prestations_etat_de_sante.invalidite.caah.garantie_ressources
-        aah_montant = law.prestations_etat_de_sante.invalidite.aah.montant
+        garantie_ressources = law.caah.garantie_ressources
+        aah_montant = law..aah.montant
 
         aah = individu('aah', period)
         asi_eligibilite = individu('asi_eligibilite', period)
@@ -467,22 +533,25 @@ class caah(Variable):
         # montant allocs logement de la famille
         al = individu.famille('aide_logement_montant', period)
         taux_incapacite = individu('taux_incapacite', period)
+        taux_capacite = individu('taux_capacite_travail', period)
+        logement_independant = individu.has_role(menage.personne_de_reference) + individu.has_role(menage.conjoint)
+        locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
+        incapacite = (taux_incapacite >= law.aah.taux_capacite_travail.taux_incapacite)
+        non_capacite = (taux_capacite < law.aah.taux_capacite.taux_capacite_travail)
 
-        elig_cpl = ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite)
-        # TODO: & logement indépendant & inactif 12 derniers mois
-        # & capa de travail < 5%
+        elig_cpl = ((aah > 0) | (benef_asi > 0)) * incapacite * (salaire_net==0) * non_capacite * logement_independant * not_(locataire_foyer)
+        # TODO: revenus professionnels ?
         compl_ress = elig_cpl * max_(garantie_ressources - aah_montant, 0)
 
-        elig_mva = (al > 0) * ((aah > 0) | (benef_asi > 0))
-        # TODO: & logement indépendant & pas de revenus professionnels
-        # propres & capa de travail < 5% & taux d'incapacité >= 80%
-        # TODO: rentrer mva dans paramètres. mva (mensuelle) = 104,77 en 2015, était de 101,80 en 2006, et de 119,72 en 2007
-        mva = 0.0 * elig_mva
+        elig_mva = (al > 0) * ((aah > 0) | (benef_asi > 0)) * incapacite * (salaire_net==0) * non_capacite * logement_independant * _not(locataire_foyer)
+        # TODO:  & revenus d'activité à caractère professionnels plutôt que salaire net (si différent)
+
+        mva = law.caah.majoration_vie_autonome * elig_mva
 
         return max_(compl_ress, mva)
 
-    # TODO FIXME start date
-    def formula_2002_01_01(individu, period, parameters):
+ 
+    def formula_1994_07_01(individu, period, parameters):
         law = parameters(period).prestations_sociales
 
         cpltx = law.prestations_etat_de_sante.invalidite.caah.taux_montant_complement_ressources
@@ -495,12 +564,12 @@ class caah(Variable):
         # montant allocs logement de la famille
         al = individu.famille('aide_logement_montant', period)
         taux_incapacite = individu('taux_incapacite', period)
+        locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
 
-        # TODO: & logement indépendant
-        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite)
+        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite)*_not(locataire_foyer)
 
         ancien_caah = cpltx * aah_montant * elig_ancien_caah
-        # En fait le taux cpltx perdure jusqu'en 2008
+        # En fait le taux cpltx perdure jusqu'en 2008 officiellement, la différence garantie-ressource et aah restant cependant constante égale à la valeur du complément d'allocation, 179,31
 
         return ancien_caah
 

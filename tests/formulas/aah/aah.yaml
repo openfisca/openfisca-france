@@ -599,3 +599,48 @@
       2022-05: [920, 0, 0]
     aah:
       2022-05: [920, 0, 0]
+
+
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2004-04
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+      parent2:
+        age: 40
+        salaire_imposable:
+          2002: 1128.70 * 12
+  output:
+    aah_base_ressources:
+      2004-04:
+        - 812.66 # 1128.70 avec les abattements pour conjoint
+        - 546.36 # 1128.70 avec les abattements pour bénéficiaire
+
+
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2007-01
+  absolute_error_margin: 0.005
+  input:
+    menage:
+      personne_de_reference: [pers1]
+      conjoint: [autre1]
+    individus:
+      pers1:
+        age: 25
+        salaire_imposable:
+          2005: 1200
+      autre1:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2005: 200.70 * 12
+  output:
+    caah:
+      2007-04:
+        - 0 
+        - 0
