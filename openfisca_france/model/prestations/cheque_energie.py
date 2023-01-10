@@ -98,7 +98,7 @@ class cheque_energie_exceptionnel_montant(Variable):
     definition_period = MONTH
     end="2022-12-31"
 
-    def formula_2021(menage, period, parameters):
+    def formula_2021_12_01(menage, period, parameters):
         bareme = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.aide_exceptionnelle
 
         uc_menage = menage('cheque_energie_unites_consommation', period.this_year)
