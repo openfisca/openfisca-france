@@ -621,20 +621,53 @@
         - 812.66 # 1128.70 avec les abattements pour conjoint
         - 546.36 # 1128.70 avec les abattements pour bénéficiaire
 
+- name: AAH retraité, retraite 400
+  period: 2015-11
+  absolute_error_margin: 1
+  input:
+    age: 65
+    taux_incapacite: 0.9
+    retraite_imposable:
+      2015-11: 400
+      2015-10: 400
+      2015-09: 400
+      2015-08: 400
+  output:
+    #aah_base_ressources: #TODO
+      #2015-11: 80
+    aah: 407.65
+    aah_base:
+      2015-11: 407.65
+    
 
-- name: AAH demandeur sans ressource et conjoint salarié
+- name: AAH demandeur sans ressource et autre
   period: month:2007-01
   absolute_error_margin: 0.005
   input:
+    familles:
+      famille0:
+        parents: [albert, estelle] 
+      famille1:
+        parents: [autre1, autre2]
     menage:
-      personne_de_reference: [pers1]
-      conjoint: [autre1]
+      personne_de_reference: [albert]
+      conjoint: [estelle]
+      autres: [autre1, autre2]
     individus:
-      pers1:
+      albert:
         age: 25
         salaire_imposable:
           2005: 1200
+      estelle:
+        age: 25
+        salaire_imposable:
+          2005: 0
       autre1:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2005: 200.70 * 12
+      autre2:
         age: 40
         taux_incapacite: 0.9
         salaire_imposable:
@@ -644,3 +677,29 @@
       2007-04:
         - 0 
         - 0
+        - 0
+        - 0
+
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2007-01
+  absolute_error_margin: 0.005
+  input:
+    menage:
+      personne_de_reference: [personne_de_reference]
+      conjoint: [conjoint]
+    individus:
+      personne_de_reference:
+        age: 25
+        salaire_imposable:
+          2005: 1200
+      conjoint:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2005: 200.70 * 12
+  output:
+    caah:
+      2007-04:
+        - 0 
+        - 0
+

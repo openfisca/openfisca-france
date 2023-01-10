@@ -344,10 +344,11 @@ class aah_eligible(Variable):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         eligible_aah = (
-            ((taux_incapacite >= law.taux_capacite.taux_incapacite) + (taux_incapacite >= law.taux_capacite.taux_incapacite_rsdae) * rsdae)
-            * ((age <= law.age_legal_retraite) + (taux_incapacite >= law.taux_capacite.taux_incapacite)*individu('retraite', period))#test prise en compte retraite
+            ((taux_incapacite >= law.taux_capacite.taux_incapacite) + (taux_incapacite >= law.taux_capacite.taux_incapacite_rsdae) * rsdae * (age <= law.age_legal_retraite))
+            #* ((age <= law.age_legal_retraite) + (taux_incapacite >= law.taux_capacite.taux_incapacite) * (individu('activite', period) == TypesActivite.retraite))#test prise en compte retraite
             * ((age >= law.age_minimal) + ((age >= 16) * (autonomie_financiere)))
             )
+        #TODO : vérifier que la prise en compte de la retraite correspond et la mettre dans les autres dates ; mettre plus tard un aah + retraite < aah_max
 
         return eligible_aah
 
@@ -436,13 +437,14 @@ class aah_base(Variable):
         aah_eligible = individu('aah_eligible', period)
         aah_base_ressources = individu('aah_base_ressources', period)
         plaf_ress_aah = individu('aah_plafond_ressources', period)
+        retraite_imposable = individu('retraite_imposable', period)
         # Le montant de l'AAH est plafonné au montant de base.
         montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
         montant_aah = min_(montant_max, max_(0, plaf_ress_aah - aah_base_ressources))
 
         aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
 
-        return aah_eligible * min_(montant_aah, max_(0, montant_max - aah_base_non_cumulable))
+        return aah_eligible * min_(max_(0, montant_aah-retraite_imposable), max_(0, montant_max - aah_base_non_cumulable))#re-réfléchir à la validité du placement de la retraite (et imposable ?)!
 
 
 class aah(Variable):
@@ -523,7 +525,7 @@ class caah(Variable):
         salaire_net = individu('salaire_net', annee_precedente, options = [ADD])
 
         garantie_ressources = law.caah.garantie_ressources
-        aah_montant = law..aah.montant
+        aah_montant = law.aah.montant
 
         aah = individu('aah', period)
         asi_eligibilite = individu('asi_eligibilite', period)
@@ -534,16 +536,17 @@ class caah(Variable):
         al = individu.famille('aide_logement_montant', period)
         taux_incapacite = individu('taux_incapacite', period)
         taux_capacite = individu('taux_capacite_travail', period)
-        logement_independant = individu.has_role(menage.personne_de_reference) + individu.has_role(menage.conjoint)
+        #role = Menage.PERSONNE_DE_REFERENCE#####
         locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
-        incapacite = (taux_incapacite >= law.aah.taux_capacite_travail.taux_incapacite)
+        logement_independant = (individu.has_role(Menage.PERSONNE_DE_REFERENCE) + individu.has_role(Menage.CONJOINT)) * not_(locataire_foyer)
+        incapacite = (taux_incapacite >= law.aah.taux_capacite.taux_incapacite)
         non_capacite = (taux_capacite < law.aah.taux_capacite.taux_capacite_travail)
 
-        elig_cpl = ((aah > 0) | (benef_asi > 0)) * incapacite * (salaire_net==0) * non_capacite * logement_independant * not_(locataire_foyer)
+        elig_cpl = ((aah > 0) | (benef_asi > 0)) * incapacite * (salaire_net==0) * non_capacite * logement_independant 
         # TODO: revenus professionnels ?
         compl_ress = elig_cpl * max_(garantie_ressources - aah_montant, 0)
 
-        elig_mva = (al > 0) * ((aah > 0) | (benef_asi > 0)) * incapacite * (salaire_net==0) * non_capacite * logement_independant * _not(locataire_foyer)
+        elig_mva = (al > 0) * ((aah > 0) | (benef_asi > 0)) * incapacite * (salaire_net==0) * non_capacite * logement_independant 
         # TODO:  & revenus d'activité à caractère professionnels plutôt que salaire net (si différent)
 
         mva = law.caah.majoration_vie_autonome * elig_mva
@@ -566,7 +569,7 @@ class caah(Variable):
         taux_incapacite = individu('taux_incapacite', period)
         locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
 
-        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite)*_not(locataire_foyer)
+        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite)*not_(locataire_foyer)
 
         ancien_caah = cpltx * aah_montant * elig_ancien_caah
         # En fait le taux cpltx perdure jusqu'en 2008 officiellement, la différence garantie-ressource et aah restant cependant constante égale à la valeur du complément d'allocation, 179,31

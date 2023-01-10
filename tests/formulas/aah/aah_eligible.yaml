@@ -51,3 +51,25 @@
     taux_incapacite: 0.4
   output:
     aah_eligible: false
+
+- name: "Eligibilité à l'AAH: taux d'incapacité supérieur à 50% et rsdae"
+  description: Eligible à AAH
+  period: 2013-07
+  input:
+    age: 50
+    aah_restriction_substantielle_durable_acces_emploi: true
+    handicap: true
+    taux_incapacite: 0.6
+  output:
+    aah_eligible: true
+
+- name: "Eligibilité à l'AAH: Retraité avec taux d'incapacité supérieur à 80%"
+  description: Eligible à AAH
+  period: 2013-07
+  input:
+    age: 70
+    handicap: true
+    taux_incapacite: 0.85
+    activite: TypesActivite.retraite
+  output:
+    aah_eligible: true
