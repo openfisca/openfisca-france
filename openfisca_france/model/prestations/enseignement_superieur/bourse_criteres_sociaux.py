@@ -2,6 +2,8 @@ from openfisca_core.model_api import not_, select, where, Variable, MONTH, set_i
 from openfisca_france.model.base import Famille, Individu, TypesStatutMarital
 from openfisca_france.model.prestations.education import TypesScolarite, StatutsEtablissementScolaire
 from openfisca_france.model.prestations.education import TypesClasse
+
+
 class bourse_criteres_sociaux(Variable):
     value_type = float
     entity = Individu
@@ -20,9 +22,9 @@ class bourse_criteres_sociaux(Variable):
         en_doctorat_2 = individu('annee_etude', period) == TypesClasse.doctorat_2
         en_doctorat_3 = individu('annee_etude', period) == TypesClasse.doctorat_3
         en_doctorat = en_doctorat_1 + en_doctorat_2 + en_doctorat_3
-        annee_etude = individu('annee_etude', period)
         # If the student is a phD, the amount of the bourse is 0
         return montants.calc(echelon) * (1 - en_doctorat)
+
 
 class bourse_criteres_sociaux_eligibilite_etude(Variable):
     value_type = bool
