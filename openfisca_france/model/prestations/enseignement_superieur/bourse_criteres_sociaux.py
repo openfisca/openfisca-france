@@ -18,12 +18,13 @@ class bourse_criteres_sociaux(Variable):
     def formula(individu, period, parameters):
         montants = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.montants
         echelon = individu('bourse_criteres_sociaux_echelon', period)
-        en_doctorat_1 = individu('annee_etude', period) == TypesClasse.doctorat_1
-        en_doctorat_2 = individu('annee_etude', period) == TypesClasse.doctorat_2
-        en_doctorat_3 = individu('annee_etude', period) == TypesClasse.doctorat_3
-        en_doctorat = en_doctorat_1 + en_doctorat_2 + en_doctorat_3
-        # If the student is a phD, the amount of the bourse is 0
-        return montants.calc(echelon) * (1 - en_doctorat)
+        annee_etude = individu('annee_etude', period)
+        en_doctorat_1 = annee_etude == TypesClasse.doctorat_1
+        en_doctorat_2 = annee_etude == TypesClasse.doctorat_2
+        en_doctorat_3 = annee_etude == TypesClasse.doctorat_3
+        doctorant = en_doctorat_1 + en_doctorat_2 + en_doctorat_3
+        # Si l'étudiant est en doctorat, il ne perçoit pas la bourse sur critères sociaux
+        return montants.calc(echelon) * (1 - doctorant)
 
 
 class bourse_criteres_sociaux_eligibilite_etude(Variable):
