@@ -68,7 +68,7 @@ class eligibilite_per_ppa(Variable):
         return eligibilite_ppa
 
 
-class prime_exceptionnelle_rentree(Variable):
+class prime_exceptionnelle_rentree_non_etudiant(Variable):
     entity = Famille
     value_type = float
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935'
