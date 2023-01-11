@@ -24,7 +24,7 @@ class bourse_criteres_sociaux(Variable):
         en_doctorat_3 = annee_etude == TypesClasse.doctorat_3
         doctorant = en_doctorat_1 + en_doctorat_2 + en_doctorat_3
         # Si l'étudiant est en doctorat, il ne perçoit pas la bourse sur critères sociaux
-        return montants.calc(echelon) * (1 - doctorant)
+        return montants.calc(echelon) * not_(doctorant)
 
 
 class bourse_criteres_sociaux_eligibilite_etude(Variable):
