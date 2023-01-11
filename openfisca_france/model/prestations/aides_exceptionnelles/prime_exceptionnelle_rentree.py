@@ -1,6 +1,6 @@
 from openfisca_france.model.base import *
 from openfisca_core import periods
-from numpy import logical_and as and_, logical_not as not_
+from numpy import logical_and as and_, logical_not as not_, logical_or as or_
 
 
 class eligibilite_per(Variable):
@@ -44,7 +44,7 @@ class eligibilite_per_etudiant(Variable):
     def formula_2022(individu, period):
         juin_2022 = periods.period('2022-06')
         eligibilite_etudiant = where(
-            not_(individu('boursier', juin_2022)),
+            not_(or_(individu('bourse_criteres_sociaux', period) > 0, individu('bourse_enseignement_sup') > 0)),
             False,
             where(
                 and_(individu.has_role(Famille.ENFANT), individu.famille('aide_logement', juin_2022) > 0),
