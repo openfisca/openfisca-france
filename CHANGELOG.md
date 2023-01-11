@@ -4,7 +4,7 @@
 
 * Changement mineur
 * Périodes concernées : du 01/02/2022 jusqu'au 01/08/2022
-* Zones impactées : `openfisca_france/parameters/taxation_capital/epargne/livret_a/taux.yaml`.
+* Zones impactées : `parameters/taxation_capital/epargne/livret_a/taux.yaml`.
 * Détails :
   - Mise à jour du taux du livret A au date du 1 février 2022 et au 1 août 2022
 ### 138.0.3 [#1987](https://github.com/openfisca/openfisca-france/pull/1987)
