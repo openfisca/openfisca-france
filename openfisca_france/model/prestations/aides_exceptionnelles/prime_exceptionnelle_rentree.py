@@ -9,6 +9,7 @@ class eligibilite_per(Variable):
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935'
     label = 'Eligibilité à la prime exceptionnelle de rentrée'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2022(famille, period):
 
@@ -38,6 +39,7 @@ class eligibilite_per_etudiant(Variable):
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289843'
     label = 'Eligibilité à la prime exceptionnelle de rentrée des étudiants boursiers'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2022(individu, period):
         juin_2022 = periods.period('2022-06')
@@ -60,6 +62,7 @@ class eligibilite_per_ppa(Variable):
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046556491'
     label = 'Eligibilité à la prime exceptionnelle de rentrée des bénéficiaires de la prime d activité'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2022(famille, period):
         juin_2022 = periods.period('2022-06')
@@ -74,6 +77,7 @@ class prime_exceptionnelle_rentree_non_etudiant(Variable):
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935'
     label = 'Prime exceptionnelle de rentrée'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2022(famille, period, parameters):
 
@@ -100,6 +104,7 @@ class prime_exceptionnelle_rentree_etudiant(Variable):
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289843'
     label = 'Prime exceptionnelle de rentrée pour les étudiants boursiers'
     definition_period = YEAR
+    end = '2022-12-31'
 
     def formula_2022(individu, period, parameters):
         enfant_i = individu.famille.members.has_role(Famille.ENFANT)
