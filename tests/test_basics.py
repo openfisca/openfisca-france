@@ -41,5 +41,4 @@ def test_basics(scenario_arguments):
     simulation = scenario.new_simulation(debug = False)
     period = scenario_arguments['period']
     assert simulation.calculate('revenu_disponible', period = period) is not None, "Can't compute revenu_disponible on period {}".format(period)
-    assert simulation.calculate_add('salaire_super_brut', period = period) is not None,\
-        "Can't compute salaire_super_brut on period {}".format(period)
+    assert simulation.calculate_add('salaire_super_brut', period = period) is not None, "Can't compute salaire_super_brut on period {}".format(period)
