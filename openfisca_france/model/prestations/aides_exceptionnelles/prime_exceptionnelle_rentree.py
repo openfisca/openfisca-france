@@ -10,7 +10,7 @@ class eligibilite_per(Variable):
     label = 'Eligibilité à la prime exceptionnelle de rentrée'
     definition_period = YEAR
 
-    def formula(famille, period):
+    def formula_2022(famille, period):
 
         juin_2022 = periods.period('2022-06')
 
@@ -39,7 +39,7 @@ class eligibilite_per_etudiant(Variable):
     label = 'Eligibilité à la prime exceptionnelle de rentrée des étudiants boursiers'
     definition_period = YEAR
 
-    def formula(individu, period):
+    def formula_2022(individu, period):
         juin_2022 = periods.period('2022-06')
         eligibilite_etudiant = where(
             not_(individu('boursier', juin_2022)),
@@ -61,7 +61,7 @@ class eligibilite_per_ppa(Variable):
     label = 'Eligibilité à la prime exceptionnelle de rentrée des bénéficiaires de la prime d activité'
     definition_period = YEAR
 
-    def formula(famille, period):
+    def formula_2022(famille, period):
         juin_2022 = periods.period('2022-06')
         eligibilite_ppa = (famille('ppa', juin_2022) > 0) * (not_(famille('eligibilite_per', juin_2022)))
 
@@ -75,7 +75,7 @@ class prime_exceptionnelle_rentree_non_etudiant(Variable):
     label = 'Prime exceptionnelle de rentrée'
     definition_period = YEAR
 
-    def formula(famille, period, parameters):
+    def formula_2022(famille, period, parameters):
 
         enfant_i = famille.members.has_role(Famille.ENFANT)
         nb_enfants = famille.sum(enfant_i)
@@ -101,7 +101,7 @@ class prime_exceptionnelle_rentree_etudiant(Variable):
     label = 'Prime exceptionnelle de rentrée pour les étudiants boursiers'
     definition_period = YEAR
 
-    def formula(individu, period, parameters):
+    def formula_2022(individu, period, parameters):
         enfant_i = individu.famille.members.has_role(Famille.ENFANT)
         nb_enfants = individu.famille.sum(enfant_i)
         parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.per
