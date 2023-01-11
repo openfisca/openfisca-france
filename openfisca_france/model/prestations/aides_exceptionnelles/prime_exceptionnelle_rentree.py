@@ -8,7 +8,7 @@ class eligibilite_per(Variable):
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289935'
     label = 'Eligibilité à la prime exceptionnelle de rentrée'
-    definition_period = ETERNITY
+    definition_period = YEAR
 
     def formula(famille, period):
 
@@ -37,7 +37,7 @@ class eligibilite_per_etudiant(Variable):
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046289843'
     label = 'Eligibilité à la prime exceptionnelle de rentrée des étudiants boursiers'
-    definition_period = ETERNITY
+    definition_period = YEAR
 
     def formula(individu, period):
         juin_2022 = periods.period('2022-06')
@@ -59,7 +59,7 @@ class eligibilite_per_ppa(Variable):
     value_type = bool
     reference = 'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046556491'
     label = 'Eligibilité à la prime exceptionnelle de rentrée des bénéficiaires de la prime d activité'
-    definition_period = ETERNITY
+    definition_period = YEAR
 
     def formula(famille, period):
         juin_2022 = periods.period('2022-06')
