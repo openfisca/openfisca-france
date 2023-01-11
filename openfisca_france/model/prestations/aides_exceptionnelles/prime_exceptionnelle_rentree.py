@@ -29,8 +29,11 @@ class eligibilite_per(Variable):
 
         eligibilite_aah_i = famille.members('aah', juin_2022)
         eligibilite_aah = famille.sum(eligibilite_aah_i)
+        
+        eligibilite_pfmra_i = famille.members('prime_forfaitaire_mensuelle_reprise_activite', juin_2022)
+        eligibilite_pfmra = famille.sum(eligibilite_pfmra_i)
 
-        return (eligibilite + eligibilite_ass + eligibilite_aer + eligibilite_aah) > 0
+        return (eligibilite + eligibilite_ass + eligibilite_aer + eligibilite_aah + eligibilite_pfmra) > 0
 
 
 class eligibilite_per_etudiant(Variable):
