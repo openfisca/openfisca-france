@@ -88,15 +88,15 @@ class cheque_energie(Variable):
         montant = menage('cheque_energie_montant', period.this_year)
         return declarant * eligible * montant
 
+
 class cheque_energie_exceptionnel_montant(Variable):
     entity = Menage
     value_type = float
     reference = ['https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044387624',
-        'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046720566',
-        ]
+        'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046720566']
     label = 'Montant du chèque énergie exceptionnel'
     definition_period = MONTH
-    end="2022-12-31"
+    end = '2022-12-31'
 
     def formula_2021_12_01(menage, period, parameters):
         bareme = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.cheque_energie.aide_exceptionnelle
@@ -107,6 +107,7 @@ class cheque_energie_exceptionnel_montant(Variable):
         ressources_par_uc = rfr / uc_menage
 
         return bareme.calc(ressources_par_uc)
+
 
 class aide_exceptionnelle_cheque_energie(Variable):
     entity = Menage
