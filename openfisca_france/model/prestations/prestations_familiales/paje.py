@@ -410,13 +410,13 @@ class paje_cmg(Variable):
             votre Caf, et inscrit dans une démarche d'insertion
             - étudiant (si vous vivez en couple, vous devez être tous les deux étudiants).
 
-        Autres conditions à remplir : Assistante maternelle agréée  / Garde à domicile 
+        Autres conditions à remplir : Assistante maternelle agréée  / Garde à domicile
         Son salaire brut ne doit pas dépasser par jour de garde et par enfant un certain nombre de fois le montant du Smic horaire brut.
         Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
-        
+
         En cas de travail à temps partiel, le CMG peut être cumulé avec la PreParE.
         Si le parent à temps partiel a un temps de travail inférieur ou égal à 50 % de son temps de travail habituel, le montant du CMG est divisé par 2.
-        
+
         '''
         # Récupération des données
         inactif = famille('inactif', period)
@@ -439,8 +439,6 @@ class paje_cmg(Variable):
         etudiant_i = famille.members('etudiant', period)
         parent_etudiant = famille.any(etudiant_i, role=Famille.PARENT)
 
-        # condition de revenu minimal
-
         # L'enfant doit avoir un age (0-6 ans) ou (0-12 ans si parents isolé)
         cond_age_enf = (
             (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1) > 0) | (parent_isole * (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.etendue - 1) > 0)))
@@ -451,9 +449,8 @@ class paje_cmg(Variable):
 
         cond_eligibilite = cond_age_enf & (not_(inactif) | cond_non_act)
 
-        # Si vous bénéficiez de la PreParE taux plein
-        # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
-        # vous ne pouvez pas bénéficier du Cmg.
+        # TODO: voir les montants partiels si PreParE
+        # Si vous bénéficiez de la PreParE taux plein (= vous ne travaillez plus ou interrompez votre activité professionnelle), vous ne pouvez pas bénéficier du Cmg.
         paje_prepare_inactif = (paje_prepare > 0) * inactif
         eligible = cond_eligibilite * not_(paje_prepare_inactif)
 
