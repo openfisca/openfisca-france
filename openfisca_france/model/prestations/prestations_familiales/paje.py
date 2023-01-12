@@ -400,20 +400,23 @@ class paje_cmg(Variable):
         Prestation d'accueil du jeune enfant - Complément de libre choix du mode de garde
         Les conditions
         Vous devez :
-            avoir un enfant de moins de 6 ans né, adopté ou recueilli en vue d'adoption à partir du 1er janvier 2004
-            employer une assistante maternelle agréée ou une garde à domicile.
+            - avoir un enfant de moins de 6 ans né, adopté ou recueilli en vue d'adoption à partir du 1er janvier 2004, gardé au moins 16h par mois
+            - employer une assistante maternelle agréée ou une garde à domicile en emploi direct (et non pas par un organisme)
 
         Vous n'avez pas besoin de justifier d'une activité min_ si vous êtes :
-            bénéficiaire de l'allocation aux adultes handicapés (Aah)
-            au chômage et bénéficiaire de l'allocation d'insertion ou de l'allocation de solidarité spécifique
-            bénéficiaire du Revenu de solidarité active (Rsa), sous certaines conditions de ressources étudiées par
-            votre Caf, et inscrit dans une démarche d'insertionétudiant (si vous vivez en couple,
-            vous devez être tous les deux étudiants).
+            - bénéficiaire de l'allocation aux adultes handicapés (AAH)
+            - au chômage et bénéficiaire de l'allocation de solidarité spécifique
+            - bénéficiaire du Revenu de solidarité active (RSA), sous certaines conditions de ressources étudiées par
+            votre Caf, et inscrit dans une démarche d'insertion
+            - étudiant (si vous vivez en couple, vous devez être tous les deux étudiants).
 
-        Autres conditions à remplir : Assistante maternelle agréée  / Garde à domicile
-        Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut,
-        soit au max 45,00 €.
+        Autres conditions à remplir : Assistante maternelle agréée  / Garde à domicile 
+        Son salaire brut ne doit pas dépasser par jour de garde et par enfant un certain nombre de fois le montant du Smic horaire brut.
         Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
+        
+        En cas de travail à temps partiel, le CMG peut être cumulé avec la PreParE.
+        Si le parent à temps partiel a un temps de travail inférieur ou égal à 50 % de son temps de travail habituel, le montant du CMG est divisé par 2.
+        
         '''
         # Récupération des données
         inactif = famille('inactif', period)
@@ -533,15 +536,20 @@ class paje_cmg(Variable):
         # TODO: vérfiez les règles de cumul
         # TODO: le versement de la CMG est fait 'à la condition que la rémunération horaire de [la personne effectuant la garde] n’excède pas un plafond fixé par décret'
         salaire_horaire_brut = famille('remuneration_horaire_brute_employe', period)
-        plaf_agree = paje.paje_cmg.remuneration_horaire_max.assistant_maternel
-        plaf_non_agree = paje.paje_cmg.remuneration_horaire_max.salarie
+        smic_hb = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
+        # Plusieurs plafonds selon le type d'assistant
+        plaf_agree = paje.paje_cmg.remuneration_horaire_max.assistant_maternel * smic_hb
+        plaf_non_agree = paje.paje_cmg.remuneration_horaire_max.salarie * smic_hb
         condition_remuneration = (emploi_direct * (salaire_horaire_brut < plaf_non_agree)) + (assistant_maternel * (salaire_horaire_brut < plaf_agree))
 
         paje_cmg = eligible * montant_cmg * condition_remuneration
 
+        #  Un minimum de 15 % des frais reste à votre charge.
+        paje_cmg_ = max(0.15 * paje_cmg, paje_cmg)
+
         # La CMG rentre dans la liste des prestations (comme les Allocations Familiales) qui sont partagées entre les 2 parents en cas de garde alternée
         coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
-        paje_cmg_montant = paje_cmg * coeff_garde_alternee
+        paje_cmg_montant = paje_cmg_ * coeff_garde_alternee
 
         return paje_cmg_montant
 
