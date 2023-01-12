@@ -88,7 +88,7 @@ class prime_exceptionnelle_rentree_non_etudiant(Variable):
         juin_2022 = periods.period('2022-06')
         prestations_familiales_enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', juin_2022)
         nb_enfants = famille.sum(prestations_familiales_enfant_a_charge_i)
-        parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.per
+        parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sautre_solidarite.prime_exceptionnelle_rentree
 
         per = where(
             famille('eligibilite_per', period),
@@ -120,8 +120,7 @@ class prime_exceptionnelle_rentree_etudiant(Variable):
         juin_2022 = periods.period('2022-06')
         prestations_familiales_enfant_a_charge_i = individu.famille.members('prestations_familiales_enfant_a_charge', juin_2022)
         nb_enfants = individu.famille.sum(prestations_familiales_enfant_a_charge_i)
-        parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.per
-
+        parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sautre_solidarite.prime_exceptionnelle_rentree
         per_etudiant = where(
             not_(individu('eligibilite_per_etudiant', period)),
             0,
