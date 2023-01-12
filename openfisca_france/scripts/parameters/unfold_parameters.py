@@ -70,17 +70,17 @@ def unfold_file(yaml_source_file_path, remove_source = False):
 
 def unfold_path(yaml_source_path, remove_source = False):
     if os.path.isfile(yaml_source_path):
-        logger.debug("Unfolding file {}".format(yaml_source_path))
+        logger.debug('Unfolding file {}'.format(yaml_source_path))
         unfold_file(yaml_source_file_path = yaml_source_path, remove_source = remove_source)
     else:
         assert os.path.isdir(yaml_source_path)
         if len(os.listdir(yaml_source_path)) == 0:
             return
-        logger.debug("Unfolding directory {}".format(yaml_source_path))
+        logger.debug('Unfolding directory {}'.format(yaml_source_path))
 
-        yaml_source_files_paths = glob.glob(os.path.join(yaml_source_path, "**/*.yaml"))
+        yaml_source_files_paths = glob.glob(os.path.join(yaml_source_path, '**/*.yaml'))
         for yaml_source_file_path in yaml_source_files_paths:
-            if yaml_source_file_path.endswith("index.yaml"):
+            if yaml_source_file_path.endswith('index.yaml'):
                 continue
             unfold_path(yaml_source_file_path, remove_source = remove_source)
 
@@ -98,7 +98,7 @@ def unfold_parameter(
         encountered_dates,
         ):
     assert 'reference' not in source_parameter, \
-        f'Property "reference" of parameter {".".join(ids)} must be moved into metadata'
+        f'Property "reference" of parameter {'.'.join(ids)} must be moved into metadata'
     if 'brackets' in source_parameter:
         # Parameter is a scale.
         brackets = source_parameter['brackets']
@@ -210,5 +210,5 @@ def main():
     unfold_path(yaml_source_path, remove_source = remove_source)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     sys.exit(main())
