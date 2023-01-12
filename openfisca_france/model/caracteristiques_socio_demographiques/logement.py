@@ -79,25 +79,7 @@ class region(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
-        regions_list = [
-            'guadeloupe',
-            'martinique',
-            'guyane',
-            'reunion',
-            'mayotte',
-            'ile_de_france',
-            'centre_val_de_loire',
-            'bourgogne_franche_comte',
-            'normandie',
-            'hauts_de_france',
-            'grand_est',
-            'pays_de_la_loire',
-            'bretagne',
-            'nouvelle_aquitaine',
-            'occitanie',
-            'auvergne_rhone_alpes',
-            'provence_alpes_cote_d_azur',
-            'corse']
+        regions_list = parameters(period).geopolitique.regions.liste
 
         regions = [
             (parameters(period).geopolitique.regions[region], TypesCodeInseeRegion[region])
