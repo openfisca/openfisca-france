@@ -530,6 +530,7 @@ class paje_cmg(Variable):
             )
 
         # TODO: connecter avec le crédit d'impôt
+        # TODO: un minimum de 15 % des frais de rémunération reste à votre charge
         # TODO: vérfiez les règles de cumul
         # Le versement de la CMG est fait 'à la condition que la rémunération horaire de [la personne effectuant la garde] n’excède pas un plafond fixé par décret'
         salaire_horaire_brut = famille('remuneration_horaire_brute_employe', period)
@@ -541,12 +542,9 @@ class paje_cmg(Variable):
 
         paje_cmg = eligible * condition_remuneration * montant_cmg
 
-        #  Un minimum de 15 % des frais reste à votre charge.
-        paje_cmg_ = max(0.15 * paje_cmg, paje_cmg)
-
         # La CMG rentre dans la liste des prestations (comme les Allocations Familiales) qui sont partagées entre les 2 parents en cas de garde alternée
         coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
-        paje_cmg_montant = paje_cmg_ * coeff_garde_alternee
+        paje_cmg_montant = paje_cmg * coeff_garde_alternee
 
         return paje_cmg_montant
 
