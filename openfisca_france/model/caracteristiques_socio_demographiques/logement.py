@@ -102,8 +102,8 @@ class region(Variable):
             for region in regions_list
             ]
 
-        regions_elig = [sum([startswith(depcom, str.encode(code)) for code in PR.departements]) > 0 for (PR, _) in regions]
-        regions_value = [RV for (_, RV) in regions]
+        regions_elig = [sum([startswith(depcom, str.encode(code)) for code in pr.departements]) > 0 for (pr, _) in regions]
+        regions_value = [rv for (_, rv) in regions]
 
         return select(regions_elig, regions_value, default = TypesCodeInseeRegion.non_renseigne)
 
