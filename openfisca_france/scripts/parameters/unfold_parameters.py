@@ -98,7 +98,7 @@ def unfold_parameter(
         encountered_dates,
         ):
     assert 'reference' not in source_parameter, \
-        f'Property "reference" of parameter {'.'.join(ids)} must be moved into metadata'
+        f"Property 'reference' of parameter {'.'.join(ids)} must be moved into metadata"
     if 'brackets' in source_parameter:
         # Parameter is a scale.
         brackets = source_parameter['brackets']
