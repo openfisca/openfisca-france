@@ -69,8 +69,9 @@ class eligibilite_per_ppa(Variable):
     end = '2022-12-31'
 
     def formula_2022(famille, period):
+        annee_2022 = periods.period('2022')
         juin_2022 = periods.period('2022-06')
-        eligibilite_ppa = (famille('ppa', juin_2022) > 0) * (not_(famille('eligibilite_per', juin_2022)))
+        eligibilite_ppa = (famille('ppa', juin_2022) > 0) * (not_(famille('eligibilite_per', annee_2022)))
 
         return eligibilite_ppa
 
@@ -88,7 +89,7 @@ class prime_exceptionnelle_rentree_non_etudiant(Variable):
         juin_2022 = periods.period('2022-06')
         prestations_familiales_enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', juin_2022)
         nb_enfants = famille.sum(prestations_familiales_enfant_a_charge_i)
-        parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sautre_solidarite.prime_exceptionnelle_rentree
+        parametres_per = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.prime_exceptionnelle_rentree
 
         per = where(
             famille('eligibilite_per', period),
@@ -120,7 +121,8 @@ class prime_exceptionnelle_rentree_etudiant(Variable):
         juin_2022 = periods.period('2022-06')
         prestations_familiales_enfant_a_charge_i = individu.famille.members('prestations_familiales_enfant_a_charge', juin_2022)
         nb_enfants = individu.famille.sum(prestations_familiales_enfant_a_charge_i)
-        parametres_per = parameters(period).prestations_sociales.solidarite_insertion.minima_sautre_solidarite.prime_exceptionnelle_rentree
+        parametres_per = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.prime_exceptionnelle_rentree
+
         per_etudiant = where(
             not_(individu('eligibilite_per_etudiant', period)),
             0,
