@@ -240,7 +240,7 @@ values:
     value: 1709.28
 metadata:
   ux_name: SMIC brut mensuel
-  description_en: Minimum wage - SMIC (1970-2017)
+  description_en: Minimum wage - SMIC (1970+)
   ipp_csv_id: smic_m
   unit: currency
   reference:
