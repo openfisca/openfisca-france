@@ -1,5 +1,15 @@
 # Changelog
 
+### [#1984](https://github.com/openfisca/openfisca-france/pull/1984)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2023.
+* Zones impactées :
+  - `parameters/marche_travail/salaire_minimum/smic/smic_b_horaire` 
+  - `parameters/marche_travail/salaire_minimum/smic/smic_b_mensuel`
+* Détails :
+  - Met à jour le SMIC suite à sa revalorisation mécanique au 1er janvier 2023.
+
 ## 138.1.0 [#1899](https://github.com/openfisca/openfisca-france/pull/1899)
 
 * Évolution du système socio-fiscal.
