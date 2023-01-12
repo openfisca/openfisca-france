@@ -385,10 +385,11 @@ class paje_cmg(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = 'PAJE - Complément de libre choix du mode de garde'
+    label = 'PAJE - Complément de libre choix du mode de garde (CMG) emploi direct'
     set_input = set_input_divide_by_period
     reference = [
-        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=C92307A93BE5F694EB49FE51DC09602C.tplgfr29s_1?idArticle=LEGIARTI000031500755&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte=',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029336644',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046809111'
         'https://www.caf.fr/allocataires/aides-et-demarches/droits-et-prestations/vie-personnelle/le-complement-de-libre-choix-du-mode-de-garde-cmg'
         ]
     definition_period = MONTH
