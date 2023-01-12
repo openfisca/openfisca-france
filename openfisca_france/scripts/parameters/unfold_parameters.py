@@ -1,15 +1,27 @@
 #! /usr/bin/env python
+'''
+Unfold parameters located in path
+'''
 
+
+import argparse
+import glob
+import logging
 import os
 import re
 import sys
 
 import yaml
 
+
 DATE_REGEXP = re.compile(
     r'^(0001-01-01|[12]\d{3}-(0[1-9]|1[012])-(0[1-9]|[12]\d|3[01]))$'
     )
 SHARED_KEYS = ['description', 'documentation', 'file_path', 'metadata', 'name', 'unit']
+
+
+app_name = os.path.splitext(os.path.basename(__file__))[0]
+logger = logging.getLogger(app_name)
 
 
 # See https://ttl255.com/yaml-anchors-and-aliases-and-how-to-disable-them/
@@ -43,6 +55,34 @@ def add_dated_metadata_to_parameter(
     if metadata and parameter.get('metadata') is None:
         parameter.metadata = metadata
     encountered_dates.update(dates)
+
+
+def unfold_file(yaml_source_file_path, remove_source = False):
+    assert yaml_source_file_path.endswith('.yaml'), '{} must be a YAML file path.'.format(yaml_source_file_path)
+    with open(yaml_source_file_path, 'r', encoding='utf-8') as yaml_source_file:
+        source_parameter = yaml.safe_load(yaml_source_file)
+    target_dir, yaml_source_filename = os.path.split(yaml_source_file_path)
+    id = os.path.splitext(yaml_source_filename)[0]
+    unfold_parameter([id], source_parameter, target_dir, {}, {}, {}, set())
+    if remove_source:
+        os.remove(yaml_source_file_path)
+
+
+def unfold_path(yaml_source_path, remove_source = False):
+    if os.path.isfile(yaml_source_path):
+        logger.debug("Unfolding file {}".format(yaml_source_path))
+        unfold_file(yaml_source_file_path = yaml_source_path, remove_source = remove_source)
+    else:
+        assert os.path.isdir(yaml_source_path)
+        if len(os.listdir(yaml_source_path)) == 0:
+            return
+        logger.debug("Unfolding directory {}".format(yaml_source_path))
+
+        yaml_source_files_paths = glob.glob(os.path.join(yaml_source_path, "**/*.yaml"))
+        for yaml_source_file_path in yaml_source_files_paths:
+            if yaml_source_file_path.endswith("index.yaml"):
+                continue
+            unfold_path(yaml_source_file_path, remove_source = remove_source)
 
 
 def unfold_parameter(
@@ -158,10 +198,17 @@ def write_parameter(ids, parameter, target_dir):
         yaml.dump(parameter, parameter_file, allow_unicode=True, Dumper=NoAliasDumper)
 
 
-yaml_source_file_path = sys.argv[1]
-assert yaml_source_file_path.endswith('.yaml'), 'Argument must be a YAML file path.'
-with open(yaml_source_file_path, 'r', encoding='utf-8') as yaml_source_file:
-    source_parameter = yaml.safe_load(yaml_source_file)
-target_dir, yaml_source_filename = os.path.split(yaml_source_file_path)
-id = os.path.splitext(yaml_source_filename)[0]
-unfold_parameter([id], source_parameter, target_dir, {}, {}, {}, set())
+def main():
+    parser = argparse.ArgumentParser(description = __doc__)
+    parser.add_argument('-p', '--path', help = 'Parameters path a file or a directory)')
+    parser.add_argument('-r', '--remove-source', action = 'store_true', default = False, help = 'remove source files')
+    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = 'increase output verbosity')
+    args = parser.parse_args()
+    logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING)
+    yaml_source_path = args.path
+    remove_source = args.remove_source
+    unfold_path(yaml_source_path, remove_source = remove_source)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
