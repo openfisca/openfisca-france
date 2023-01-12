@@ -46,12 +46,13 @@ class depcom(Variable):
 
 
 class TypesCodeInseeRegion(Enum):
-    __order__ = 'non_renseigne guadeloupe martinique guyane reunion ile_de_france centre_val_de_loire bourgogne_franche_comte normandie hauts_de_france grand_est pays_de_la_loire bretagne nouvelle_aquitaine occitanie auvergne_rhone_alpes provence_alpes_cote_d_azur corse'
+    __order__ = 'non_renseigne guadeloupe martinique guyane reunion mayotte ile_de_france centre_val_de_loire bourgogne_franche_comte normandie hauts_de_france grand_est pays_de_la_loire bretagne nouvelle_aquitaine occitanie auvergne_rhone_alpes provence_alpes_cote_d_azur corse'
     non_renseigne = 'Non renseigné'
     guadeloupe = '01'
     martinique = '02'
     guyane = '03'
     reunion = '04'
+    mayotte = '06'
     ile_de_france = '11'
     centre_val_de_loire = '24'
     bourgogne_franche_comte = '27'
@@ -83,6 +84,7 @@ class region(Variable):
             'martinique',
             'guyane',
             'reunion',
+            'mayotte',
             'ile_de_france',
             'centre_val_de_loire',
             'bourgogne_franche_comte',
