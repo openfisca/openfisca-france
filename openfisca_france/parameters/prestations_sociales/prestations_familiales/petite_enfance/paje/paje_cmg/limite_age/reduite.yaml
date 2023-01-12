@@ -1,4 +1,4 @@
-description: Limite d'âge (stricte) pour une prestation réduite du Complément de libre choix de mode de garde (CMG) de ka Prestation d'accueil du jeune enfant (PAJE)
+description: Limite d'âge (stricte) pour un montant réduit du Complément de libre choix de mode de garde (CMG)
 values:
   2004-01-01:
     value: 6
@@ -12,5 +12,7 @@ metadata:
       title: Article 86, I.4.b et II.1 de la Loi n° 2022-1616 du 23/12/2022 de financement de la sécurité sociale
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046791873
 documentation: |
-  Au 1er janvier 2023, l' âge limite peut être fixé à une valeur supérieure pour les parents isolés,
-  et le complément de garde peut alors être versé à taux réduit.
+  Ce dispositif contient les emplois directs, et non pas la notion d'emploi via organisme (i.e. CMG Assistance maternelle "via un organisme"
+  ou CMG Garde à domicile "via organisme" ou CMG Micro-crèche)
+  Au 1er janvier 2023, la prestation est versée à taux plein jusqu'à l'âge de 6 ans.
+  Cet âge limite peut être fixé à une valeur supérieure pour les parents isolés.
