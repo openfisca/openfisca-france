@@ -79,17 +79,19 @@ class region(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
-        regions_list = parameters(period).geopolitique.regions.liste
-
+        regions_list: list[str] = parameters(period).geopolitique.regions.liste
         regions = [
             (parameters(period).geopolitique.regions[region], TypesCodeInseeRegion[region])
             for region in regions_list
             ]
 
-        regions_elig = [sum([startswith(depcom, str.encode(code)) for code in pr.departements]) > 0 for (pr, _) in regions]
-        regions_value = [rv for (_, rv) in regions]
+        regions_elig = [
+            sum([startswith(depcom, str.encode(codes_insee)) for codes_insee in parametres_region.departements]) > 0
+            for (parametres_region, _) in regions
+            ]
+        codes_insee_regions = [code_insee_region for (_, code_insee_region) in regions]
 
-        return select(regions_elig, regions_value, default = TypesCodeInseeRegion.non_renseigne)
+        return select(regions_elig, codes_insee_regions, default = TypesCodeInseeRegion.non_renseigne)
 
 
 class charges_locatives(Variable):
