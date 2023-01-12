@@ -18,6 +18,7 @@
      "69389",
      "13055",
      "2A004",
+     "97608 "
      ]
   output:
     region: [
@@ -38,4 +39,5 @@
      "auvergne_rhone_alpes",
      "provence_alpes_cote_d_azur",
      "corse",
+     "mayotte"
      ]
