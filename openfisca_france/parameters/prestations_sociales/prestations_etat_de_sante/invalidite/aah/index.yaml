@@ -5,10 +5,12 @@ metadata:
   order:
   - age_minimal
   - age_maximal
+  - age_fin_educ
   - montant
   - pourcentage_aah
   - abattement_special
   - abattement_conjoint
+  - abattement_changement_situation
   - travail_esat
   - travail_ordinaire
   - majoration_plafond

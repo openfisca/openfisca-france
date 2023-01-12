@@ -1,0 +1,7 @@
+description: Abattements sur les revenus du bénéficiaire (revenus d'activité) pour le calcul de l'Allocation pour adulte handicapé (AAH)
+metadata:
+  ux_name: Abattement sur les revenus du bénéficiaire suite à un changement de situation
+  description_en: Disability allowance
+  order:
+  - abattement_neoinactif
+  - abattement_reprise_activite
