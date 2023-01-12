@@ -534,7 +534,7 @@ class paje_cmg(Variable):
 
         # TODO: connecter avec le crédit d'impôt
         # TODO: vérfiez les règles de cumul
-        # TODO: le versement de la CMG est fait 'à la condition que la rémunération horaire de [la personne effectuant la garde] n’excède pas un plafond fixé par décret'
+        # Le versement de la CMG est fait 'à la condition que la rémunération horaire de [la personne effectuant la garde] n’excède pas un plafond fixé par décret'
         salaire_horaire_brut = famille('remuneration_horaire_brute_employe', period)
         smic_hb = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
         # Plusieurs plafonds selon le type d'assistant
@@ -542,7 +542,7 @@ class paje_cmg(Variable):
         plaf_non_agree = paje.paje_cmg.remuneration_horaire_max.salarie * smic_hb
         condition_remuneration = (emploi_direct * (salaire_horaire_brut < plaf_non_agree)) + (assistant_maternel * (salaire_horaire_brut < plaf_agree))
 
-        paje_cmg = eligible * montant_cmg * condition_remuneration
+        paje_cmg = eligible * condition_remuneration * montant_cmg
 
         #  Un minimum de 15 % des frais reste à votre charge.
         paje_cmg_ = max(0.15 * paje_cmg, paje_cmg)
