@@ -489,8 +489,8 @@ class paje_cmg(Variable):
         montant_cmg = (
             bmaf
             * (
-                1.0 * (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1) > 0)
-                + 1.0 * parent_isole * (nb_enf(famille, period, paje.paje_cmg.limite_age.pleine, paje.paje_cmg.limite_age.etendue - 1) > 0)
+                (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1) > 0)
+                + parent_isole * (nb_enf(famille, period, paje.paje_cmg.limite_age.pleine, paje.paje_cmg.limite_age.etendue - 1) > 0)
                 )
             * (
                 emploi_direct
