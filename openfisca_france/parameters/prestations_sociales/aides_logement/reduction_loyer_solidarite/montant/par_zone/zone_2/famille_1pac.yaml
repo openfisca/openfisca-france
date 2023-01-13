@@ -14,6 +14,8 @@ values:
     value: 62.29
   2022-01-01:
     value: 61.04
+  2023-01-01:
+    value: 62.50
 metadata:
   ux_name: Famille avec 1 personne à charge
   ipp_csv_id: rls_z2_famille_1pac

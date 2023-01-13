@@ -14,6 +14,8 @@ values:
     value: 56.26
   2022-01-01:
     value: 54.49
+  2023-01-01:
+    value: 55.79
 metadata:
   ux_name: Réduction du loyer de solidarité en zone 2
   ipp_csv_id: rls_z2_couple
