@@ -310,9 +310,9 @@ class isf_actions_sal(Variable):  # non présent en 2005
         Parts ou actions détenues par les salariés et mandataires sociaux
         '''
         b1cl = foyer_fiscal('b1cl', period)
-        droits_soc = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.droits_soc
+        droits_sociaux = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.droits_sociaux
 
-        return b1cl * droits_soc.taux1
+        return b1cl * droits_sociaux.taux_salaries_mandataires_sociaux
 
 
 class isf_droits_sociaux(Variable):
@@ -329,9 +329,9 @@ class isf_droits_sociaux(Variable):
         b1ce = foyer_fiscal('b1ce', period)
         b1cf = foyer_fiscal('b1cf', period)
         b1cg = foyer_fiscal('b1cg', period)
-        droits_soc = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.droits_soc
+        droits_sociaux = parameters(period).taxation_capital.impot_solidarite_fortune_isf_1989_2017.droits_sociaux
 
-        b1cc = b1cb * droits_soc.taux2
+        b1cc = b1cb * droits_sociaux.taux_actions_conservees_6_ans
         return isf_actions_sal + b1cc + b1cd + b1ce + b1cf + b1cg
 
 

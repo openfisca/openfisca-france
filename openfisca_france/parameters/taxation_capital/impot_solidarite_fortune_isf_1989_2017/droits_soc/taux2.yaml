@@ -1,8 +1,0 @@
-description: Taux parts et actions avec engagement de conservation de 6 ans minimum
-values:
-  2002-01-01:
-    value: 0.5
-  2006-01-01:
-    value: 0.25
-metadata:
-  unit: /1
