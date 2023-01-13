@@ -63,8 +63,8 @@ def unfold_file(yaml_source_file_path, remove_source = False):
         source_parameter = yaml.safe_load(yaml_source_file)
     target_dir, yaml_source_filename = os.path.split(yaml_source_file_path)
     id = os.path.splitext(yaml_source_filename)[0]
-    unfold_parameter([id], source_parameter, target_dir, {}, {}, {}, set())
-    if remove_source:
+    parameter_is_unfolded = unfold_parameter([id], source_parameter, target_dir, {}, {}, {}, set())
+    if remove_source and parameter_is_unfolded:
         os.remove(yaml_source_file_path)
 
 
@@ -116,6 +116,7 @@ def unfold_parameter(
             encountered_dates,
             )
         write_parameter(ids, source_parameter, target_dir)
+        return False  # File has not been unfolded.
     else:
         values = source_parameter.get('values')
         if values is None:
@@ -136,6 +137,7 @@ def unfold_parameter(
                     encountered_dates,
                     )
                 write_parameter(ids, source_parameter, target_dir)
+                return False  # File has not been unfolded.
             else:
                 # Parameter is a node to unfold.
 
@@ -178,6 +180,7 @@ def unfold_parameter(
                     }
                 if index:
                     write_parameter(ids + ['index'], index, target_dir)
+                return True  # File has been unfolded.
         else:
             # Parameter is a value.
             add_dated_metadata_to_parameter(
@@ -189,6 +192,7 @@ def unfold_parameter(
                 encountered_dates,
                 )
             write_parameter(ids, source_parameter, target_dir)
+            return False  # File has not been unfolded.
 
 
 def write_parameter(ids, parameter, target_dir):
