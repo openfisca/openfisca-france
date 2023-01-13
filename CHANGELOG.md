@@ -1,5 +1,14 @@
 # Changelog
 
+# 137.1.1 [#1983](https://github.com/openfisca/openfisca-france/pull/1983)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `scripts/parameters/unfold_parameters.py`.
+* Détails :
+  - Permet de déplier un répertoire entier
+  - Ajoute une option pour effacer les fichiers de paramètres YAML sources
+
 ### 137.0.1 [#1974](https://github.com/openfisca/openfisca-france/pull/1974)
 
 * Évolution du système socio-fiscal.
@@ -16,17 +25,17 @@
 
 # 137.0.0 [#1972](https://github.com/openfisca/openfisca-france/pull/1972)
 
-* Évolution du système socio-fiscal: Loi de Finances pour 2023 
+* Évolution du système socio-fiscal: Loi de Finances pour 2023
 * Périodes concernées : à partir du 01-01-2022
 * Zones impactées : `openfisca_france/parameters/impot_revenu/`
 * Mise à jour suite à la Loi Finances de 2023:
-    - Des tranches de l'impôt sur le revenu
-    - De l'abattement pour enfant détaché du foyer (et des pensions alimentaires qui y sont rattachées)
-    - Des plafonds du quotient familial
-    - Des seuils de la décote
-    - Du plafond du crédit d'impôt pour investissements forestiers
-    - Du plafond du crédit d'impôt pour la garde des jeunes enfants
-    - Du seuil supérieur de bénéfices sur lesquels le taux réduit d'IS est applicable (taxation sur les sociétés)
+  - Des tranches de l'impôt sur le revenu
+  - De l'abattement pour enfant détaché du foyer (et des pensions alimentaires qui y sont rattachées)
+  - Des plafonds du quotient familial
+  - Des seuils de la décote
+  - Du plafond du crédit d'impôt pour investissements forestiers
+  - Du plafond du crédit d'impôt pour la garde des jeunes enfants
+  - Du seuil supérieur de bénéfices sur lesquels le taux réduit d'IS est applicable (taxation sur les sociétés)
 * Remarque: ici on pense avoir pris en compte toutes les modifications du PLF sur les dispositifs qui sont actuellement codés dans openfisca-france. La partie 'collectivités territoriales' sera codée dans le répertoire dédié.
 
 ### 136.0.2 [#1973](https://github.com/openfisca/openfisca-france/pull/1973)
