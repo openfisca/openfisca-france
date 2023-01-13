@@ -1,7 +1,6 @@
 # Changelog
 
-
-# 137.1.0 [#1983](https://github.com/openfisca/openfisca-france/pull/1983)
+# 137.1.1 [#1983](https://github.com/openfisca/openfisca-france/pull/1983)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
@@ -9,6 +8,20 @@
 * Détails :
   - Permet de déplier un répertoire entier
   - Ajoute une option pour effacer les fichiers de paramètres YAML sources
+
+### 137.0.1 [#1974](https://github.com/openfisca/openfisca-france/pull/1974)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/12/2021.
+* Zones impactées:
+     - `parameters/prestations-sociales/solidarite_insertion/autre_solidarite/cheque_energie/aide_exceptionnelle`.
+     - `parameters/prestations-sociales/solidarite_insertion/autre_solidarite/cheque_energie/une_uc`.
+     - `model/prestations/cheque_energie`.
+
+* Détails :
+  - Prise en compte du chèque énergie exceptionnel 2022
+  - Correction d'une erreur de paramétrage dans les chèques énergie depuis 2019.
+  - Ajout de références manquantes sur un changement de paramètre de 2021.
 
 # 137.0.0 [#1972](https://github.com/openfisca/openfisca-france/pull/1972)
 
