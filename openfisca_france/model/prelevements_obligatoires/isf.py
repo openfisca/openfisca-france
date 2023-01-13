@@ -695,7 +695,7 @@ class isf_ifi_apres_plaf(Variable):
         # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas
         # si entre les deux seuils; l'allègement est limité au 1er seuil
         # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement
-        #    est limité à 50% de l'ISF
+        # est limité à 50% de l'ISF
         plafonnement = max_(total_impots_plafonnement_isf_ifi - revenus_et_produits_plafonnement_isf_ifi, 0)
         limitationplaf = (
             (isf_ifi_avant_plaf <= plaf.plaf.seuil1) * plafonnement
