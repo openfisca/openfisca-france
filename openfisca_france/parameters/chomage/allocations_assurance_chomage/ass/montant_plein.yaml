@@ -74,6 +74,10 @@ values:
     value: 16.89
   2021-04-01:
     value: 16.91
+  2022-04-01:
+    value: 17.21
+  2022-07-01:
+    value: 17.90
 metadata:
   ux_name: Montant journalier (Taux plein)
   description_en: Special UI scheme
@@ -194,6 +198,12 @@ metadata:
     2021-04-01:
       title: Décret n° 2021-523 du 29/04/2021
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459270
+    2022-04-01:
+      title: Décret n° 2022-493 du 06/04/2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045522919
+    2022-07-01:
+      title: Loi n° 2022-1158 du 16/08/2022, Article 9
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046186749
   official_journal_date:
     1984-04-01: 1984-06-05; 1984-11-23
     1984-10-01: "1984-12-27"
@@ -231,6 +241,8 @@ metadata:
     2018-04-01: "2018-06-06"
     2019-04-01: "2019-05-18"
     2020-04-01: "2020-06-04"
+    2022-04-01: "2022-04-06"
+    2022-07-01: "2022-08-16"
   notes:
     1984-04-01:
     - title: "Nouvelle convention: création de l'ASS"
