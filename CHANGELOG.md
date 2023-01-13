@@ -1,5 +1,13 @@
 # Changelog
 
+# 138.0.0 [#1989](https://github.com/openfisca/openfisca-france/pull/1989)
+
+* Évolution du système socio-fiscal. Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `taxation_capital/impot_solidarite_fortune_isf_1989_2017/droits_sociaux`.
+* Détails :
+  - Dans `taxation_capital/impot_solidarite_fortune_isf_1989_2017`, renomme `droits_soc` en `droits_sociaux`
+
 # 137.1.1 [#1983](https://github.com/openfisca/openfisca-france/pull/1983)
 
 * Amélioration technique.
