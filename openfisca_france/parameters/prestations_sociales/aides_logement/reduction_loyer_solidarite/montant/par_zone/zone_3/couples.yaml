@@ -14,6 +14,8 @@ values:
     value: 52.24
   2022-01-01:
     value: 50.59
+  2023-01-01:
+    value: 51.80
 metadata:
   ux_name: Réduction du loyer de solidarité en zone 3
   ipp_csv_id: rls_z3_couple

@@ -14,6 +14,8 @@ values:
     value: 8.04
   2022-01-01:
     value: 8.03
+  2023-01-01:
+    value: 8.22
 metadata:
   ux_name: Majoration par personne à charge supplémentaire
   ipp_csv_id: rls_z3_pac_supplementaire

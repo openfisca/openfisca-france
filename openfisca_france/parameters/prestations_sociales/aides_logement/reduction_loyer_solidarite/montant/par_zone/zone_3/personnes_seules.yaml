@@ -14,6 +14,8 @@ values:
     value: 43.2
   2022-01-01:
     value: 41.76
+  2023-01-01:
+    value: 42.76
 metadata:
   ux_name: Personne isolée
   ipp_csv_id: rls_z3_personne_isolee
