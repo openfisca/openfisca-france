@@ -14,6 +14,8 @@ values:
     value: 71.33
   2022-10-01:
     value: 66.51
+  2023-01-01:
+    value: 71.14
 metadata:
   short_label: Bénéficiaire isolé ou couple ayant 1 personne à charge
   last_value_still_valid_on: "2023-05-24"
