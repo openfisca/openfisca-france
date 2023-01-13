@@ -1,3 +1,6 @@
+description: Prélèvement forfaitaire sur les revenus du capital
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  order:
+  - prelevement_liberatoire_taux_fixe
+  - prelevement_liberatoire_assurance_vie
+  - prelevement_forfaitaire_partir_2018
