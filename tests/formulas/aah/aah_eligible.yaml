@@ -29,7 +29,6 @@
   output:
     aah_eligible: false
 
-
 - name: Eligibilité AAH -Handicap, âge inférieur à l'âge limite AEEH, autonomie financière vàv des prestations familiales
   description: Eligible à AAH
   period: 2013-07
@@ -40,7 +39,6 @@
     autonomie_financiere: true
   output:
     aah_eligible: true
-
 
 - name: "Ineligibilité à l'AAH: taux d'incapacité inférieur à 50%"
   description: Eligible à AAH

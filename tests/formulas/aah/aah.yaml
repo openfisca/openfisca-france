@@ -666,7 +666,7 @@
   input:
     familles:
       famille0:
-        parents: [albert, estelle] 
+        parents: [albert, estelle]
       famille1:
         parents: [autre1, autre2]
     menage:
