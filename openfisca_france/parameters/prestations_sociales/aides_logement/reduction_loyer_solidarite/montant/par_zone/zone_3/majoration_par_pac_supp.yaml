@@ -16,6 +16,8 @@ values:
     value: 8.03
   2022-10-01:
     value: 7.69
+  2023-01-01:
+    value: 8.22
 metadata:
   short_label: Majoration par personne à charge supplémentaire
   last_value_still_valid_on: "2023-05-24"
