@@ -386,10 +386,13 @@
       2023: [12, 11.9, 12.1]
     salaire_de_base:
       # SMIC 2022-08-01: 1678.95 * 3 * 12 = 60_442,2
-      2022: [60_442, 60_442, 60_442]
-      # SMIC 2023-01-01: 1_709 * 3 * 12 = 61_524
-      2023: [61_524, 61_524, 61_524]
-
+      #2022: [60_442, 60_442, 60_442]
+      
+      # SMIC 2023-01-01: 1_709.28 * 12 = 20_511.36, 20_511.36 * 3 = 61_534.08
+      # On doit donner la même chose en 2022 car le salaire pour l'éligibilité
+      # doit être calculé sur une année glissante.
+      2022: [61_534, 61_534, 61_534]
+      2023: [61_534, 61_534, 61_534]
     prime_partage_valeur_exceptionnelle: [1200, 1200, 1200]
   output:
     quotite_de_travail:
@@ -399,9 +402,9 @@
     prime_partage_valeur_exoneree_exceptionnelle: [1_200, 0, 1_200]
     prime_partage_valeur_non_exoneree_exceptionnelle: [0, 0, 0]
     salaire_de_base:
-      2023-01: [5_036, 5_036, 5_036]
+      2023-01: [5_127, 5_127, 5_127]
     salaire_net:
-      2023-01: [4_099, 3_999, 4_098]
+      2023-01: [4_172, 4_072, 4_172]
 
 - name: PEPA + PPV la même année, il ne faut pas dépasser le plafond PPV, en intégrant PEPA+PPV
   period: 2022
