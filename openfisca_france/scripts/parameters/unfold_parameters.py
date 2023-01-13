@@ -53,7 +53,7 @@ def add_dated_metadata_to_parameter(
                 if metadata_value.get(date) is None:
                     metadata_value[date] = value_at_date
     if metadata and parameter.get('metadata') is None:
-        parameter.metadata = metadata
+        parameter["metadata"] = metadata
     encountered_dates.update(dates)
 
 
@@ -73,12 +73,12 @@ def unfold_path(yaml_source_path, remove_source = False):
         logger.debug('Unfolding file {}'.format(yaml_source_path))
         unfold_file(yaml_source_file_path = yaml_source_path, remove_source = remove_source)
     else:
-        assert os.path.isdir(yaml_source_path)
+        assert os.path.isdir(yaml_source_path), "{} is not a directory".format(yaml_source_path)
         if len(os.listdir(yaml_source_path)) == 0:
             return
         logger.debug('Unfolding directory {}'.format(yaml_source_path))
 
-        yaml_source_files_paths = glob.glob(os.path.join(yaml_source_path, '**/*.yaml'))
+        yaml_source_files_paths = glob.glob(os.path.join(yaml_source_path, '**/*.yaml'), recursive = True)
         for yaml_source_file_path in yaml_source_files_paths:
             if yaml_source_file_path.endswith('index.yaml'):
                 continue
