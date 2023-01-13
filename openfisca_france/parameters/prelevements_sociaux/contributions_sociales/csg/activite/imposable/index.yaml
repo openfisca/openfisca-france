@@ -2,3 +2,6 @@ description: Contribution Sociale Généralisée (CSG) imposable sur les revenus
 metadata:
   ux_name: CSG imposable
   description_en: Social contributions
+  order:
+    - taux
+    - abattement
