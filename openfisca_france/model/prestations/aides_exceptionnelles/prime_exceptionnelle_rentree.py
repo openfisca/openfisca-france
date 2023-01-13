@@ -116,6 +116,7 @@ class prime_exceptionnelle_rentree_etudiant(Variable):
 
         '''
         Hypothèse : Si l'étudiant  est un enfant dans sa famille, ses enfants ne sont pas identifiés. La majoration pour enfant ne rentre donc pas en compte dans le calcul.
+        Hypothèse 2 : Si un jeune est boursier et vit chez ses parents, il faut toucher la PER étudiant.
         '''
 
         juin_2022 = periods.period('2022-06')
