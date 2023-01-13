@@ -615,11 +615,11 @@
         age: 40
         salaire_imposable:
           2002: 1128.70 * 12
-  output: #de ce que j'ai vu, les abattements sur le revenu des conjoints (permettant d'obtenir cette valeur sont faites en juillet 2005) 
+  output:
     aah_base_ressources:
       2004-04:
         - 812.66 # 1128.70 avec les abattements pour conjoint
-        - 1128.7 #- 546.36 # 1128.70 avec les abattements pour bénéficiaire
+        - 1128.7
 
 - name: AAH demandeur sans ressource et conjoint salarié
   period: month:2006-04
@@ -637,11 +637,11 @@
           2006: 1128.70 * 12
           2005: 1128.70 * 12
           2004: 1128.70 * 12
-  output: #de ce que j'ai vu, les abattements sur le revenu des conjoints (permettant d'obtenir cette valeur sont faites en juillet 2005) 
+  output:
     aah_base_ressources:
       2006-04:
         - 812.66 # 1128.70 avec les abattements pour conjoint
-        - 546.36 # 1128.70 avec les abattements pour bénéficiaire
+        - 887.8 # 1128.70 avec les abattements pour bénéficiaire
 
 - name: AAH retraité, retraite 400
   period: 2015-11
@@ -650,17 +650,15 @@
     age: 65
     taux_incapacite: 0.9
     retraite_imposable:
-      2015-11: 400
-      2015-10: 400
-      2015-09: 400
-      2015-08: 400
+      2013-11: 400
+      2013-10: 400
+      2013-09: 400
+      2013-08: 400
   output:
-    #aah_base_ressources: #TODO
-      #2015-11: 80
-    aah: 407.65
-    aah_base:
-      2015-11: 407.65
-    
+    aah_base_ressources_hors_activite_eval_annuelle:
+      2015-11: 1600
+    aah_base_ressources: 1600/12
+    aah: 674.32 # 807.65-1600/12
 
 - name: AAH demandeur sans ressource et autre
   period: month:2007-01
@@ -697,7 +695,7 @@
   output:
     caah:
       2007-04:
-        - 0 
+        - 0
         - 0
         - 0
         - 0
@@ -722,6 +720,5 @@
   output:
     caah:
       2007-04:
-        - 0 
         - 0
-
+        - 0

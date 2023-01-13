@@ -10,7 +10,7 @@ metadata:
   - pourcentage_aah
   - abattement_special
   - abattement_conjoint
-  - abattement_changement_situation
+  - abattement_reprise_activite
   - travail_esat
   - travail_ordinaire
   - majoration_plafond
