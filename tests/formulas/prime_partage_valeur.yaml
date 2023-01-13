@@ -387,7 +387,6 @@
     salaire_de_base:
       # SMIC 2022-08-01: 1678.95 * 3 * 12 = 60_442,2
       #2022: [60_442, 60_442, 60_442]
-      
       # SMIC 2023-01-01: 1_709.28 * 12 = 20_511.36, 20_511.36 * 3 = 61_534.08
       # On doit donner la même chose en 2022 car le salaire pour l'éligibilité
       # doit être calculé sur une année glissante.
