@@ -1,6 +1,7 @@
 from openfisca_core.model_api import not_, select, where, Variable, MONTH, set_input_divide_by_period, set_input_dispatch_by_period
 from openfisca_france.model.base import Famille, Individu, TypesStatutMarital
 from openfisca_france.model.prestations.education import TypesScolarite, StatutsEtablissementScolaire
+from openfisca_france.model.prestations.education import TypesClasse
 
 
 class bourse_criteres_sociaux(Variable):
@@ -17,8 +18,13 @@ class bourse_criteres_sociaux(Variable):
     def formula(individu, period, parameters):
         montants = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.montants
         echelon = individu('bourse_criteres_sociaux_echelon', period)
-
-        return montants.calc(echelon)
+        annee_etude = individu('annee_etude', period)
+        en_doctorat_1 = annee_etude == TypesClasse.doctorat_1
+        en_doctorat_2 = annee_etude == TypesClasse.doctorat_2
+        en_doctorat_3 = annee_etude == TypesClasse.doctorat_3
+        doctorant = en_doctorat_1 + en_doctorat_2 + en_doctorat_3
+        # Si l'étudiant est en doctorat, il ne perçoit pas la bourse sur critères sociaux
+        return montants.calc(echelon) * not_(doctorant)
 
 
 class bourse_criteres_sociaux_eligibilite_etude(Variable):
