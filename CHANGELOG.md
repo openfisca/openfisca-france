@@ -1,5 +1,18 @@
 # Changelog
 
+### 138.1.2 [#1864](https://github.com/openfisca/openfisca-france/pull/1864)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : 
+  - `parameters/impot_revenu/calcul_impot_revenu/pv/pv_immo/taux.yaml`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/majoration_plafond/majoration_plafond_couple.yaml`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/montant.yaml`
+  - `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/montant_de_base.yaml`
+* Détails :
+  - Ajoute des références législatives aux plus-values immobilières et à l'AAH.
+  - Ajoute les dates de `last_review` pour ces paramètres et la PPA.
+
 ### 138.1.1 [#1984](https://github.com/openfisca/openfisca-france/pull/1984)
 
 * Évolution du système socio-fiscal.
