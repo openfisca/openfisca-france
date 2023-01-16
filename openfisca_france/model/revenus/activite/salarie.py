@@ -165,9 +165,9 @@ class exposition_penibilite(Variable):
 class TypesAllegementModeRecouvrement(Enum):
     # Informations sur la régularisation de la réduction appliquée sur le site des URSSAF : https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-2--le-calcul-de-la-reducti/la-regularisation.html
     __order__ = 'fin_d_annee anticipe progressif'  # Needed to preserve the enum order in Python 2
-    fin_d_annee = 'Paiement en fin d'année des cotisations avec l'allègement exact'
-    anticipe = 'Paiement anticipé des cotisations et régularisation de l'allègement en fin de période'
-    progressif = 'Paiement anticipé des cotisations et régularisation progressive de l'allègement' #La régularisation est faite à chaque paiement anticipé, «en faisant masse des éléments nécessaires au calcul de la réduction»
+    fin_d_annee = "Paiement en fin d'année des cotisations avec l'allègement exact"
+    anticipe = "Paiement anticipé des cotisations et régularisation de l'allègement en fin de période"
+    progressif = "Paiement anticipé des cotisations et régularisation progressive de l'allègement" #La régularisation est faite à chaque paiement anticipé, «en faisant masse des éléments nécessaires au calcul de la réduction»
 
 
 class allegement_fillon_mode_recouvrement(Variable):
