@@ -91,6 +91,7 @@ values:
   2021-01-01:
     value: 2022
 metadata:
+  unit: year
   reference:
     1984-01-01:
       title: LF pour 1983
