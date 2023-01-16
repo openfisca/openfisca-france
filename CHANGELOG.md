@@ -1,5 +1,17 @@
 # Changelog
 
+# 138.0.2 [#1905](https://github.com/openfisca/openfisca-france/pull/1905)
+
+* Changement mineur.
+* Toutes périodes concernées
+* Zones impactées :
+  - openfisca_france/model/revenus/activite/salarie.py
+  - openfisca_france/model/base.py
+  - openfisca_france/model/caracteristiques_socio_demographiques/demographie.py
+* Détails :
+  - Ajoute les labels de certains enum de variables
+  - Modifie le nom de certaines variables
+
 # 138.0.1 [#1976](https://github.com/openfisca/openfisca-france/pull/1976)
 
 * Évolution du système socio-fiscal.
