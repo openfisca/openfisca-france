@@ -1,6 +1,8 @@
-description: Plafonnement des effets du quotient familial
+description: Décote et plafonnement des effets du quotient familial
 metadata:
   order:
-  - plafond_avantages_procures_par_demi_part
   - decote
+  - quotient_familial
+  - plafond_avantages_procures_par_demi_part
   - reduction_ss_condition_revenus
+  - abat_dom
