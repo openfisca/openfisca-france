@@ -28,8 +28,8 @@ metadata:
   ipp_csv_id: mmid_h_p_0_1
   reference:
     1967-10-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000877738
       title: Décret 67-850 du 30/09/1967
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000877738
     1970-08-01:
       title: Décret 70-682 du 30/07/1970
     1976-01-01:
@@ -47,20 +47,20 @@ metadata:
     1986-01-01:
       title: Décret 85-1354 du 17/12/1985, art.
     1988-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006772889&cidTexte=LEGITEXT000006073413
       title: Décret 88-795 du 22/06/1988, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006772889&cidTexte=LEGITEXT000006073413
     1991-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775948&cidTexte=JORFTEXT000000719893
       title: Décret 91-615 du 28/06/1991, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775948&cidTexte=JORFTEXT000000719893
     1997-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771403&cidTexte=JORFTEXT000000381201
       title: Décret 96-1151 du 26/12/1996, art. 8
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771403&cidTexte=JORFTEXT000000381201
     1998-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771952&cidTexte=JORFTEXT000000753405
       title: Décret 97-1249 du 29/12/1997, art. 8
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771952&cidTexte=JORFTEXT000000753405
     2018-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036454185&cidTexte=JORFTEXT000036342274
       title: Décret 2017-1890 du 30/12/2017, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036454185&cidTexte=JORFTEXT000036342274
   official_journal_date:
     1967-10-01: "1967-10-03"
     1970-08-01: "1970-07-31"

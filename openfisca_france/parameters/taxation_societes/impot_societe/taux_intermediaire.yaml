@@ -1,0 +1,17 @@
+description: Taux intermédiaire
+values:
+  2002-01-01:
+    value: 0.28
+  2020-01-01:
+    value: null
+metadata:
+  unit: /1
+  reference:
+    2002-01-01:
+      title: Article 219 CGI modifié par Loi 2000-1352 du 30/12/2000 - art. 7-9 de Finances pour 2001
+    2020-01-01:
+      title: Article 219 CGI modifié par Loi 2016-1918 du 29/12/2016 - art. 91 & Loi 2017-1837 du 30/12/2017 - art. 84
+  official_journal_date:
+    2002-01-01: "2000-12-31"
+    2020-01-01: "2017-12-31"
+documentation: Baisse prévue du taux normal pour les exercices fiscaux à venir par la Loi 2017-1837 du 30/12/2017 - art. 84.

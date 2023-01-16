@@ -1,0 +1,86 @@
+description: Bières moins de 2,8% vol. (€/degré/hl)
+values:
+  1979-07-01:
+    value: null
+  1993-01-01:
+    value: 6.25
+  1997-01-01:
+    value: 8.5
+  2002-03-31:
+    value: 1.3
+  2009-04-10:
+    value: 1.32
+  2010-05-01:
+    value: 1.36
+  2012-01-01:
+    value: 1.38
+  2013-01-01:
+    value: 3.6
+  2014-01-01:
+    value: 3.66
+  2015-10-09:
+    value: 3.69
+  2017-01-01:
+    value: 3.7
+  2018-01-01:
+    value: 3.71
+  2019-01-01:
+    value: 3.75
+  2020-01-01:
+    value: 3.81
+  2021-01-01:
+    value: 3.84
+metadata:
+  ipp_csv_id: taxe_bieres_inf_28
+  unit: currency
+  reference:
+    1993-01-01:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    1997-01-01:
+      title: Loi no 96-1160 du 27/12/1996 (LFSS pour 1997)
+    2002-03-31:
+      title: Ordonnance 2000-916 du 19/09/2000
+    2009-04-10:
+      title: Décret 2009-389 du 7/04/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/4/7/2009-389/jo/texte
+    2010-05-01:
+      title: Décret 2010-421 du 27/04/2010
+      href: https://www.legifrance.gouv.fr/eli/decret/2010/4/27/2010-421/jo/texte
+    2012-01-01:
+      title: Décret 2012-653 du 4/05/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/5/4/2012-653/jo/texte
+    2013-01-01:
+      title: Loi 2012-1404 du 17/12/2012 (LFSS pour 2013)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026785322
+    2014-01-01:
+      title: Décret 2014-549 du 26/05/2014
+      href: https://www.legifrance.gouv.fr/eli/decret/2014/5/26/2014-549/jo/texte
+    2015-10-09:
+      title: Ordonnance 2015-1247 du 07/10/2015
+    2017-01-01:
+      title: Arrêté du 27/12/2016 (tarifS accises alcools 2017)
+    2018-01-01:
+      title: Arrêté du 22/12/2017 (tarifs accises alcools 2018)
+    2019-01-01:
+      title: Circulaire du 10/12/2018
+      href: http://circulaire.legifrance.gouv.fr/pdf/2018/12/cir_44175.pdf
+    2020-01-01:
+      title: Arrêté du 19/12/2019
+      href: https://www.legifrance.gouv.fr/eli/arrete/2019/12/19/CPAD1935243A/jo/texte
+    2021-01-01:
+      title: Arrêté du 28/12/2020
+      href: https://www.legifrance.gouv.fr/eli/arrete/2020/12/28/CCPD2036946A/jo/texte
+  official_journal_date:
+    1993-01-01: "1992-12-31"
+    1997-01-01: "1996-12-29"
+    2002-03-31: "2000-09-22"
+    2009-04-10: "2009-04-09"
+    2010-05-01: "2010-04-30"
+    2012-01-01: "2012-05-06"
+    2013-01-01: "2012-12-18"
+    2014-01-01: "2014-05-29"
+    2015-10-09: "2015-10-08"
+    2017-01-01: "2016-12-31"
+    2018-01-01: "2017-12-27"
+documentation: Données renseignées dans l'article 520A du code général des impôts

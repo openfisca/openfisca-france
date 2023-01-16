@@ -11,8 +11,9 @@ metadata:
   ipp_csv_id: cons_p50_0_
   reference:
     2020-01-01:
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000038496156
       title: Loi 2019-486 du 22/05/2019, art. 11
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000038496156
   official_journal_date:
     2020-01-01: "2019-05-23"
-  threshold_unit: /1
+  rate_unit: /1
+  threshold_unit: PSS

@@ -1,0 +1,13 @@
+description: Seuil inférieur de chiffre d'affaires (HT) au-dela duquel les sociétés sont redevables de la contribution temporaire et de la contribution sociale
+values:
+  1997-01-01:
+    value: 50000000
+  2002-03-31:
+    value: 7630000
+metadata:
+  unit: currency
+  reference:
+    1997-01-01:
+      title: Article 235 ter ZB créé par Loi 97-1026
+  official_journal_date:
+    1997-01-01: "1997-11-11"

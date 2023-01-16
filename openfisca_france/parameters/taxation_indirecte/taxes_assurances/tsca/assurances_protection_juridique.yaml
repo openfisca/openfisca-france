@@ -1,0 +1,26 @@
+description: Assurances de protection juridique
+values:
+  1979-07-01:
+    value: null
+  2015-01-01:
+    value: 0.116
+  2016-01-01:
+    value: 0.134
+metadata:
+  ipp_csv_id: taxe_assu_protec_juridique
+  unit: /1
+  reference:
+    2015-01-01:
+      title: Loi 2014-1654 du 29/12/2014 (LF pour 2015)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029988857
+    2016-01-01:
+      title: Loi 2014-1554 du 22/12/2014 (LFSS pour 2015) - art. 22
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029954707&cidTexte=JORFTEXT000029953502
+  official_journal_date:
+    2015-01-01: "2014-12-30"
+    2016-01-01: "2014-12-24"
+documentation: |-
+  Déductions pour les véhicules de plus de 3,5 tonnes
+  Les assurances dépendance sont exonérées de la TSCA
+  NB : données renseignées dans l''article 1001 du code général des impôts, et L137-6 du code de la sécurité sociale.
+  Art. L127-1 code des assurances et L224-1 code de la mutualité.

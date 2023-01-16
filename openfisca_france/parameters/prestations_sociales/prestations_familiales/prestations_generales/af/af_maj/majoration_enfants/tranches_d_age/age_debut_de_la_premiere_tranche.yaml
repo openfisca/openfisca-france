@@ -13,15 +13,15 @@ metadata:
   unit: year
   reference:
     1999-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006772373&cidTexte=JORFTEXT000000209409
       title: Décret 98-1214 du 29/12/1998, art. 1 (modif art. D521-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006772373&cidTexte=JORFTEXT000000209409
     2008-05-01:
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000018731950&cidTexte=JORFTEXT000018730813
-      title: Décret 2008-409 du 28/04/2008, art. 1 (modif art. R521-1 du CSS)
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000018731994&cidTexte=JORFTEXT000018730821
-      title: Décret 2008-410 du 28/04/2008, art. 1 (modif art. D521-1 du CSS)
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018735853
-      title: Article R521-1 du Code de la sécurité sociale
+    - title: Décret 2008-409 du 28/04/2008, art. 1 (modif art. R521-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000018731950&cidTexte=JORFTEXT000018730813
+    - title: Décret 2008-410 du 28/04/2008, art. 1 (modif art. D521-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000018731994&cidTexte=JORFTEXT000018730821
+    - title: Article R521-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018735853
   official_journal_date:
     1999-01-01: "1998-12-30"
     2008-05-01: "2008-04-29"

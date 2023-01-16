@@ -11,15 +11,15 @@ metadata:
   unit: BMAF
   reference:
     2004-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
-      title: Loi 2003-1199 du 18/12/2003, art. 60 II (modif art. L531-2 du CSS)
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
-      title: Décret 2003-1394 du 31/12/2003, art. 1 (crée art. D531-2 du CSS)
+    - title: Loi 2003-1199 du 18/12/2003, art. 60 II (modif art. L531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
+    - title: Décret 2003-1394 du 31/12/2003, art. 1 (crée art. D531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
     2005-08-01:
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006242678&cidTexte=JORFTEXT000000262154
-      title: Loi 2005-744 du 04/07/2005, art. 8 (modif art. L531-2 du CSS)
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006245153&cidTexte=JORFTEXT000000606227
-      title: Décret 2005-1172 du 12/09/2005, art. 1 (modif art. D531-2 du CSS)
+    - title: Loi 2005-744 du 04/07/2005, art. 8 (modif art. L531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006242678&cidTexte=JORFTEXT000000262154
+    - title: Décret 2005-1172 du 12/09/2005, art. 1 (modif art. D531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006245153&cidTexte=JORFTEXT000000606227
   official_journal_date:
     2004-01-01: 2003-12-19; 2004-01-01
     2005-08-01: 2005-07-05; 2005-09-17

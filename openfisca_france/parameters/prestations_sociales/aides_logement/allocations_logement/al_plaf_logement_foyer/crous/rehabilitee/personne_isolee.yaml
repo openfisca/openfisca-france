@@ -11,21 +11,21 @@ values:
   2022-07-01:
     value: 176.07
 metadata:
-  unit: currency
   ux_name: Seuls
-  last_review: "2022-09-28"
+  unit: currency
   reference:
     2017-10-01:
       href: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11
     2019-10-01:
+      title: Arrêté du 27/09/2019, art. 43
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039160329
-      title: Arrêté du 27/09/2019, art. 43
     2020-10-01:
+      title: Arrêté du 27/09/2019, art. 43
       href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039160329/2020-10-01/
-      title: Arrêté du 27/09/2019, art. 43
     2021-10-01:
+      title: Arrêté du 27/09/2019, art. 43
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044137394/2021-10-01
-      title: Arrêté du 27/09/2019, art. 43
     2022-07-01:
-      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044137394/2022-10-01
       title: Arrêté du 27/09/2019, art. 43
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044137394/2022-10-01
+  last_review: "2022-09-28"

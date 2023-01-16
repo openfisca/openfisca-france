@@ -1,0 +1,23 @@
+description: Contribution des assurés (en % des primes) sur les fonds de garantie des assurances obligatoires (FGAO)
+values:
+  2004-08-05:
+    value: 0.001
+  2008-01-01:
+    value: 0.006
+  2010-08-01:
+    value: 0.012
+metadata:
+  ipp_csv_id: fgao_contrib_assures
+  unit: /1
+  reference:
+    2004-08-05:
+      title: Arrêté du 16/07/2004
+    2008-01-01:
+      title: Arrêté du 07/11/2007 fixant contribution FGAO
+    2010-08-01:
+      title: Arrêté du 09/06/2010 fixant contribution FGAO
+  official_journal_date:
+    2004-08-05: "2004-08-05"
+    2008-01-01: "2007-11-14"
+    2010-08-01: "2010-07-08"
+documentation: Données renseignées dans l''article A421-3 du code des assurances

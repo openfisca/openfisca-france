@@ -326,7 +326,7 @@ class indemnite_inflation(Variable):
     end = '2021-12-31'
 
     def formula_2021_01_01(individu, period, parameters):
-        montant_indemnite = parameters(period).indemnite_inflation
+        montant_indemnite = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.indemnite_inflation
         eligibilite_indemnite_inflation = individu('eligibilite_indemnite_inflation', period.this_year)
 
         return montant_indemnite * (eligibilite_indemnite_inflation > 0)

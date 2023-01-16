@@ -1,0 +1,101 @@
+description: Autres alcools - Rhum des DOM
+values:
+  1981-02-01:
+    value: 4150
+  1982-01-01:
+    value: 4405
+  1987-02-01:
+    value: 4495
+  1993-08-18:
+    value: 5215
+  1997-01-01:
+    value: 5474
+  2002-03-31:
+    value: 835
+  2010-05-01:
+    value: 858.38
+  2010-11-21:
+    value: 859.24
+  2012-01-01:
+    value: 872.13
+  2012-05-01:
+    value: 903
+  2013-01-01:
+    value: 918.8
+  2013-06-07:
+    value: 845
+  2014-01-01:
+    value: 859.79
+  2015-06-06:
+    value: 865.81
+  2016-01-01:
+    value: 869.27
+  2018-01-01:
+    value: 871.01
+  2019-01-01:
+    value: 879.72
+  2020-01-01:
+    value: 893.3
+  2021-01-01:
+    value: 901.84
+metadata:
+  ipp_csv_id: taxe_rhum_dom
+  unit: currency
+  reference:
+    1981-02-01:
+      title: Loi 80-1094 du 30/12/1980 (LF pour 1981)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000339460
+    1982-01-01:
+      title: Loi 81-1160 du 30/12/1981 (LF pour 1982)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000515870
+    1997-01-01:
+      title: Loi 96-1160 du 27/12/1996 (LFSS pour 1997)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000198309
+    2010-05-01:
+      title: Décret 2010-421 du 27/04/2010
+      href: https://www.legifrance.gouv.fr/eli/decret/2010/4/27/2010-421/jo/texte
+    2010-11-21:
+      title: Arrêté du 12/10/2010
+    2012-01-01:
+      title: Arrêté du 22/12/2011 (tarifs accises alcools 2012)
+    2012-05-01:
+      title: Loi 2012-354 du 14/03/2012 (LFR pour 2012)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025509584
+    2013-01-01:
+      title: Arrêté du 15/12/2012 (tarifs accises alcools 2013)
+    2014-01-01:
+      title: Arrêté du 29/12/2013
+    2015-06-06:
+      title: Décret 2015-608 du 03/06/2015
+      href: https://www.legifrance.gouv.fr/eli/decret/2015/6/3/2015-608/jo/texte
+    2016-01-01:
+      title: Arrêté du 18/12/2015
+    2018-01-01:
+      title: Arrêté du 22/12/2017 (tarifs accises alcools 2018)
+    2019-01-01:
+      title: Circulaire du 10/12/2018
+      href: http://circulaire.legifrance.gouv.fr/pdf/2018/12/cir_44175.pdf
+    2020-01-01:
+      title: Arrêté du 19/12/2019
+      href: https://www.legifrance.gouv.fr/eli/arrete/2019/12/19/CPAD1935243A/jo/texte
+    2021-01-01:
+      title: Arrêté du 28/12/2020
+      href: https://www.legifrance.gouv.fr/eli/arrete/2020/12/28/CCPD2036946A/jo/texte
+  official_journal_date:
+    1981-02-01: "1980-12-31"
+    1982-01-01: "1981-12-31"
+    1997-01-01: "1996-12-29"
+    2010-05-01: "2010-04-30"
+    2010-11-21: "2010-11-20"
+    2012-01-01: "2011-12-30"
+    2012-05-01: "2012-03-15"
+    2013-01-01: "2012-12-23"
+    2014-01-01: "2013-12-31"
+    2015-06-06: "2015-06-05"
+    2016-01-01: "2015-12-24"
+    2018-01-01: "2017-12-27"
+documentation: |-
+  Données renseignées dans l'article 403 du code général des impôts.
+  (1) : Tels que définis dans l'article 317 du CGI.
+  (2) : De vins mousseux et de vins doux naturels mentionnés à l''article 417 du CGI.
+  (3) : À base de vin, cidre, poiré, vermouth, vins de liqueurs et assimilés.

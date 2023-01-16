@@ -1,4 +1,4 @@
-description: Borne inférieure de la décote de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+description: Borne inférieure de la décote de l'impôt de solidarité sur la fortune
 values:
   2013-01-01:
     value: 1300000

@@ -1,0 +1,14 @@
+description: Seuil supérieur de bénéfices sur lesquels le taux intermédiaire d'IS est applicable
+values:
+  2017-01-01:
+    value: 75000
+  2018-01-01:
+    value: 500000
+metadata:
+  unit: currency
+  reference:
+    2017-01-01:
+      title: Article 219 CGI modifié par Loi 2016-1918 du 29/12/2016 - art. 91
+  official_journal_date:
+    2017-01-01: "2016-12-31"
+documentation: Baisse prévue du taux normal pour les exercices fiscaux à venir par la Loi 2017-1837 du 30/12/2017 - art. 84.

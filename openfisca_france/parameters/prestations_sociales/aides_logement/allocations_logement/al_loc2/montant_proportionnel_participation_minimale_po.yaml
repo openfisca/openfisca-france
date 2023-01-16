@@ -6,11 +6,6 @@ metadata:
   description_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: p0_tx
   unit: /1
-  reference:
-    2001-07-01:
-      title: Arrêté du 31/07/2001
-  official_journal_date:
-    2001-07-01: "2001-08-02"
   notes:
     2001-01-01:
     - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)

@@ -1,4 +1,4 @@
-description: Plafond annuel pour une personne seule de la Couverture Maladie Universelle (CMU)
+description: Plafond annuel de ressources pour une personne seule de la Couverture Maladie Universelle (CMU)
 values:
   2003-07-01:
     value: 6798
@@ -34,14 +34,25 @@ values:
     value: 8951
   2021-04-01:
     value: 9041
+  2022-04-01:
+    value: 9203
+  2022-07-01:
+    value: 9571
 metadata:
   ux_name: Plafond annuel
   unit: currency
   reference:
     2019-04-01:
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000038260960
       title: Arrêté du 20/03/2019, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000038260960
     2021-04-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043306326
       title: Arrêté du 29/03/2021, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043306326
+    2022-07-01:
+      title: LOI n° 2022-1158 du 16/08/2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
   last_review: "2021-04-01"
+documentation: |-
+  Le plafond varie selon la composition du foyer. Il est revalorisé au 1er avril de chaque année.
+  Le montant ainsi revalorisé est constaté par arrêté du ministre chargé de la sécurité sociale.
+  Source - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037950247

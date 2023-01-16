@@ -9,6 +9,6 @@ metadata:
   unit: currency
   reference:
     2007-05-01:
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750610
       title: Article R521-3 du code de la Sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750610
   last_review: "2022-03-01"

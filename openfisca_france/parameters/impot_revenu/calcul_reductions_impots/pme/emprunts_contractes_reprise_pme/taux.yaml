@@ -1,0 +1,62 @@
+description: Taux de la réduction d'impôt pour emprunts contractés pour la reprise d'une PME 
+values:
+  1991-01-01:
+    value: null
+  1992-01-01:
+    value: 0.25
+  2015-01-01:
+    value: 0.18
+  2019-08-10:
+    value: 0.25
+metadata:
+  ux_name: Taux
+  ipp_csv_id: tx_pme
+  unit: /1
+  reference:
+    2006-01-01:
+      title: Loi 2006-1771 du 30/12/2006 - art. 56
+    2007-01-01:
+      title: Loi 2008-776 du 4 août 2008 - art. 67 (V)
+    2008-01-01:
+      title: Loi 2008-1443 du 30/12/2008 - art. 114 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020042213&cidTexte=JORFTEXT000020014790
+    2009-01-01:
+      title: Décret 2009-389 du 07/04/2009 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020499734&cidTexte=JORFTEXT000020496091
+    2010-01-01:
+      title: Loi 2010-1657 du 29/12/2010 - art. 38 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023347223&cidTexte=JORFTEXT000023314376
+    2011-01-01:
+      title: Loi 2011-1978 du 28/12/2011 - art. 59 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025062850&cidTexte=JORFTEXT000025045613
+    2013-01-01:
+      title: BOI-IR-RICI-130-20 du 06/03/2014
+    2015-01-01:
+      title: Loi 2015-1786 du 29/12/2015 de finances rectificative pour 2015- art. 26, 2°
+    2019-08-10:
+    - title: Décret n° 2020-1014 du 7 août 2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042220890
+    - title: Décret n° 2021-559 du 06/05/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043486453
+  official_journal_date:
+    2006-01-01: "2006-12-31"
+    2007-01-01: "2008-08-05"
+    2008-01-01: "2008-12-31"
+    2009-01-01: "2009-04-09"
+    2010-01-01: "2010-12-30"
+    2011-01-01: "2011-12-29"
+    2015-01-01: "2012-12-30"
+    2019-08-10: 2020-08-09; 2021-05-08
+  notes:
+    1994-01-01:
+    - title: "plaf_PME1 : sommes versées avant le 31/07/1995"
+    1995-01-01:
+    - title: "plaf_PME2 : sommes versées à partir du 01/08/1995"
+    1999-01-01:
+    - title: Augmentation des seuils des chiffres d'affaires (de 140 à 260 millions FRF) ou de total de bilan (de 70 à 175 millions FRF)
+    2019-08-10:
+    - title: Le montant de la réduction d'impôt sur le revenu a été augmenté à 25 % pour les investissements effectués à partir du 10 août 2020 jusqu'au 31 décembre 2020. Cette modification a été reconduite jusqu'au 31 décembre 2021.
+documentation: |-
+  Notes :
+  (1) Souscription au capital des PME : 1° du I de l'article 199 terdecies OA du CGI
+  (2) Plafond doublé pour les couples

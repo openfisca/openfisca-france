@@ -12,21 +12,21 @@ metadata:
   unit: /1
   reference:
     2011-01-01:
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024430161/2011-07-31
-      title: Article 230H - II-1º du CGI
-    - href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000024413922
-      title: art.23, Loi n° 2011-900 du 29 juillet 2011 de finances rectificative pour 2011
+    - title: Article 230H - II-1º du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024430161/2011-07-31
+    - title: art.23, Loi n° 2011-900 du 29 juillet 2011 de finances rectificative pour 2011
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000024413922
     2012-01-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025509790
       title: art.22, LOI n° 2012-354 du 14 mars 2012 de finances rectificative pour 2012
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025509790
     2013-01-01:
+      title: art.22, LOI n° 2012-354 du 14 mars 2012 de finances rectificative pour 2012
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025509790
-      title: art.22, LOI n° 2012-354 du 14 mars 2012 de finances rectificative pour 2012
     2014-01-01:
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025516217/2012-03-16/
-      title: Article 230H - II-1º du CGI
-    - href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025509790
-      title: art.22, LOI n° 2012-354 du 14 mars 2012 de finances rectificative pour 2012
+    - title: Article 230H - II-1º du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025516217/2012-03-16/
+    - title: art.22, LOI n° 2012-354 du 14 mars 2012 de finances rectificative pour 2012
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025509790
   official_journal_date:
     2011-01-01: "2011-07-30"
     2012-01-01: "2012-03-15"

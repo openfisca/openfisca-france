@@ -1,7 +1,11 @@
-description: Taxation sur les revenus financiers
+description: Taxation du capital 
 metadata:
-  ux_name: Taxation capital
-  description_en: Taxes on financial income
+  ux_name: Taxation du capital
+  description_en: Taxes on financial income and wealth
   order:
   - prelevement_forfaitaire
   - prelevements_sociaux
+  - impot_grandes_fortunes_1982_1986
+  - impot_solidarite_fortune_isf_1989_2017
+  - impot_fortune_immobiliere_ifi_partir_2018
+  - epargne

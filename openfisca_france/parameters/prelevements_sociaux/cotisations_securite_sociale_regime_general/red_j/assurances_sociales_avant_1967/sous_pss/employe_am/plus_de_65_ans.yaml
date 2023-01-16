@@ -12,13 +12,10 @@ metadata:
   reference:
     1964-01-01:
       title: Arrêté du 09/12/1963
-    1966-10-01:
-      title: Arrêté du 15/09/1966
     1967-10-01:
       title: Arrêté du 29/09/1967
   official_journal_date:
     1964-01-01: "1963-12-22"
-    1966-10-01: "1966-09-27"
     1967-10-01: "1967-10-01"
   last_review: "1967-01-01"
 documentation: |-

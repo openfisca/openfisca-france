@@ -208,3 +208,25 @@
         cheque_energie: 240
       menage_1:
         cheque_energie: 0
+
+- name: montant chèque énergie exceptionnel
+  period: 2022-11
+  input:
+    cheque_energie_unites_consommation:
+      2022: 3
+    rfr:
+      2020: 10701*3
+  output:
+    cheque_energie_exceptionnel_montant:
+      2022-11: 0
+
+- name: montant chèque énergie exceptionnel 2022-100
+  period : 2022-12
+  input:
+    cheque_energie_unites_consommation:
+      2022: 3
+    rfr:
+      2020: 10701*3
+  output:
+    cheque_energie_exceptionnel_montant:
+      2022-12: 200

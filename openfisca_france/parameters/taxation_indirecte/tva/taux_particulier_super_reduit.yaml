@@ -1,0 +1,24 @@
+description: Taux particulier ("super réduit") de la Taxe sur la valeur ajoutée (TVA)
+values:
+  1954-07-01:
+    value: null
+  1986-07-01:
+    value: 0.021
+metadata:
+  ipp_csv_id: tx_superreduit
+  unit: /1
+  reference:
+    1954-07-01:
+      title: Loi 54-404 du 10/04/1954
+    1986-07-01:
+    - title: Loi 85-1403 du 30/12/1985.
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000878230
+    - title: Décret 86-414 du 13/03/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000521986
+  official_journal_date:
+    1954-07-01: "1954-04-11"
+    1986-07-01: 1985-12-31; 1986-03-15
+documentation: |-
+  Le montant de TVA est appliqué au prix TTC jusqu''au 1er janvier 1970, puis au prix hors taxe depuis.
+  Création de la TVA avec la loi 54-404 du 10 avril 1954 (JO 11/04/1954) et le décret 55-465 du 30/04/1955 (JO 03/05/1955).
+  "Taux de TVA appliqués dans les Etats membres de l''Union européenne", Commission européenne, Fiscalité et union douanière, 2014, page 26.'

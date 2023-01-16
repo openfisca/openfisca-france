@@ -19,32 +19,32 @@ metadata:
   unit: currency
   reference:
     2015-07-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2015/6/3/2015-611/jo/texte
       title: Décret 2015-611 du 03/06/2015
+      href: https://www.legifrance.gouv.fr/eli/decret/2015/6/3/2015-611/jo/texte
     2016-01-01:
     - title: Circulaire DSS/SD2B/2015/371 du 18/12/2015
-    - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031634884/#LEGIARTI000031634884
-      title: Arrêté du 08/12/2015, art. 1
+    - title: Arrêté du 08/12/2015, art. 1
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031634884/#LEGIARTI000031634884
     2018-01-01:
     - title: Circulaire DSS/SD2B/2017/352 du 22/12/2017
     - title: Arrêté du 27/12/2017
-    - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036299563
-      title: Arrêté du 27/12/2017, art. 1
+    - title: Arrêté du 27/12/2017, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036299563
     2019-01-01:
     - title: Circulaire DSS/SD2B/2018/279 du 17/12/2018
     - title: Arrêté du 21/12/2018
-    - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037864990
-      title: Arrêté du 21/12/2018, art. 1
+    - title: Arrêté du 21/12/2018, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037864990
     2020-01-01:
-    - href: https://solidarites-sante.gouv.fr/fichiers/bo/2019/19-12/ste_20190012_0000_0064.pdf
-      title: Instruction  interministerielle  no  DSS/SD2B/2019/261  du  18  décembre  2019
-    - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039663224
-      title: Arrêté du 20/12/2019, art. 1
+    - title: Instruction  interministerielle  no  DSS/SD2B/2019/261  du  18  décembre  2019
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2019/19-12/ste_20190012_0000_0064.pdf
+    - title: Arrêté du 20/12/2019, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039663224
     2021-01-01:
-    - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694985
-      title: Arrêté du 14/12/2020, art. 1
-    - href: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-12/ste_20200012_0000_0050.pdf
-      title: Instruction no DSS/2B/2020/226 du 14 décembre 2020
+    - title: Arrêté du 14/12/2020, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694985
+    - title: Instruction no DSS/2B/2020/226 du 14 décembre 2020
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-12/ste_20200012_0000_0050.pdf
   official_journal_date:
     2015-07-01: "2015-06-05"
     2016-01-01: "2015-12-12"

@@ -4,9 +4,8 @@ metadata:
   unit: currency
   reference:
     1954-12-17:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030308553&categorieLien=id
       title: Arrêté du 17 décembre 1954 page 12353 I. Rentes Viagères
-  notes:
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030308553&categorieLien=id
   last_review: "2022-03-15"
 16:
   values:

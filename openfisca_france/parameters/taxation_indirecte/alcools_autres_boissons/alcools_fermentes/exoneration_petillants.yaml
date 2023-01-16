@@ -1,0 +1,20 @@
+description: Alcools fermentés  - Exonération des pétillants (voir conditions) (€/hl)
+values:
+  1982-01-01:
+    value: 5.4
+  1993-02-01:
+    value: null
+metadata:
+  ipp_csv_id: exoneration_taxe_petillants
+  unit: currency
+  reference:
+    1982-01-01:
+      title: Loi 81-1160 du 30/12/1981 (LF pour 1982)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000515870
+    1993-02-01:
+      title: Loi 92-1476 du 31/12/1992 (LFR pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000179313
+  official_journal_date:
+    1982-01-01: "1981-12-31"
+    1993-02-01: "1993-01-04"
+documentation: Données renseignées dans l''article 438 du code général des impôts'

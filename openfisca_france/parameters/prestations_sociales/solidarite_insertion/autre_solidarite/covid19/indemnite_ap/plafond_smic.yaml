@@ -8,10 +8,10 @@ metadata:
   unit: SMIC
   reference:
     2020-03-01:
-    - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042056546
-      title: Décret nº2020-810 du 29/06/2020, art. 1
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044877405/
-      title: Article D5122-13 du Code du travail
+    - title: Décret nº2020-810 du 29/06/2020, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042056546
+    - title: Article D5122-13 du Code du travail
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044877405/
   official_journal_date:
     2020-03-01: "2020-06-30"
   last_review: "2022-01-10"

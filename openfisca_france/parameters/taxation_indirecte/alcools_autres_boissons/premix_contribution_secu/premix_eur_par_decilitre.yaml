@@ -1,0 +1,22 @@
+description: Prémix (€ par décilitre)
+values:
+  1997-03-31:
+    value: 1.5
+  1999-03-31:
+    value: null
+metadata:
+  ipp_csv_id: taxe_premix_decil_tot
+  unit: currency
+  reference:
+    1997-03-31:
+      title: Loi 96-1160 du 27/12/1996 (LFSS pour 1997)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000198309
+    1999-03-31:
+      title: Loi 98-1194 du 23/12/1998 (LFSS pour 1999)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000392993
+  official_journal_date:
+    1997-03-31: "1996-12-29"
+    1999-03-31: "1998-12-27"
+documentation: |-
+  Données renseignées dans l''article 1613 bis du code général des impôts
+  Définition prémix : mélange pré-fait d''un alcool et d''une boisson non alcoolisée, le plus souvent un soda

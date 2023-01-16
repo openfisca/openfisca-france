@@ -7,10 +7,10 @@ metadata:
   description_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
   reference:
     2015-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000030046638&cidTexte=JORFTEXT000030005057
-      title: Décret 2014-1708 du 30/12/2014 - art. 1
-    - href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000030046609/2015-01-01/
-      title: Décret 2014-1705 du 30/122014 - art. 1 (modifie art. R531-2 du CSS)
+    - title: Décret 2014-1708 du 30/12/2014 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000030046638&cidTexte=JORFTEXT000030005057
+    - title: Décret 2014-1705 du 30/122014 - art. 1 (modifie art. R531-2 du CSS)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000030046609/2015-01-01/
   official_journal_date:
     2015-01-01: "2014-12-31"
   notes:

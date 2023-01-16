@@ -18,26 +18,26 @@ metadata:
   unit: currency
   reference:
     1989-11-12:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006774702&cidTexte=JORFTEXT000000700911
       title: Décret 89-831 du 10/11/1989, art. 2 (modif art. D542-7 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006774702&cidTexte=JORFTEXT000000700911
     2002-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006780032&cidTexte=JORFTEXT000000393997
-      title: Décret 2001-698 du 31/07/2001, art. 7 (modif art. D542-7 du CSS)
+    - title: Décret 2001-698 du 31/07/2001, art. 7 (modif art. D542-7 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006780032&cidTexte=JORFTEXT000000393997
     - title: Arrêté du 08/11/2007 (modif. Art. 5 de l'arrêté du 30/06/1979)
     2004-06-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006231021&cidTexte=JORFTEXT000000438122
       title: Décret 2004-463 du 28/05/2004, art. 1 (modif art. D542-7 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006231021&cidTexte=JORFTEXT000000438122
     2007-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006258876&cidTexte=JORFTEXT000000462553
       title: Décret 2006-1817 du 23/12/2006, art. 1 (modif art. D542-7 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006258876&cidTexte=JORFTEXT000000462553
     2017-10-01:
-    - href: https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801552A/jo/article_1
-      title: Arrêté du 27/02/2018, art. 1
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000035666743&cidTexte=JORFTEXT000035665790
-      title: Décret 2017-1413 du 28/09/2017, art. 3 (modif art. D542-7 du CSS)
+    - title: Arrêté du 27/02/2018, art. 1
+      href: https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801552A/jo/article_1
+    - title: Décret 2017-1413 du 28/09/2017, art. 3 (modif art. D542-7 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000035666743&cidTexte=JORFTEXT000035665790
     2018-03-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036650026
       title: Arrêté du 27/02/2018
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036650026
   official_journal_date:
     1989-11-12: "1989-11-11"
     2002-01-01: "2001-08-02"

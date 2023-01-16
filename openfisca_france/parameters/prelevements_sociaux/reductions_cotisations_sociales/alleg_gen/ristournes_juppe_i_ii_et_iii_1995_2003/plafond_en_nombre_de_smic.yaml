@@ -14,27 +14,23 @@ metadata:
   ipp_csv_id: plaf_juppe
   unit: SMIC
   reference:
-    1995-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006657310&cidTexte=JORFTEXT000000864578
-      title: Loi 93-1313 du 20/12/1993, art. 1
     1995-09-01:
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000371685
-      title: Loi 95-882 du 04/08/1995
+    - title: Loi 95-882 du 04/08/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000371685
     - title: Décrets 95-942 et 95-943 du 25/08/1995
     1996-10-01:
     - title: Loi 95-1236 du 30/12/1995
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000554907
-      title: Décret 95-835 du 20/09/1996
+    - title: Décret 95-835 du 20/09/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000554907
     1998-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
-      title: Loi 97-1269 du 30/12/1997
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569809
-      title: Décret 97-1330 du 31/12/1997
+    - title: Loi 97-1269 du 30/12/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
+    - title: Décret 97-1330 du 31/12/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569809
     2003-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000594652
       title: Loi 2003-47 du 17/01/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000594652
   official_journal_date:
-    1995-01-01: "1993-12-21"
     1995-09-01: 1985-08-05; 1985-08-26
     1996-10-01: "1996-09-22"
     1998-01-01: 1997-12-31; 1997-01-03

@@ -607,7 +607,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
 
     def formula_2009_06_01(individu, period, parameters):
         livret_a = individu('livret_a', period)
-        taux_livret_a = parameters(period).marche_travail.epargne.livret_a.taux
+        taux_livret_a = parameters(period).taxation_capital.epargne.livret_a.taux
         epargne_revenus_non_imposables = individu('epargne_revenus_non_imposables', period)
         revenus_capital = individu('revenus_capital', period)
         valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
@@ -761,8 +761,8 @@ class rsa_eligibilite_tns(Variable):
             return rpns_benefice_agricole < plafond_benefice_agricole_majore
 
         def eligibilite_chiffre_affaire(ca, type_activite, P_micro):
-            plaf_vente = P_micro.specialbnc.marchandises.max
-            plaf_service = P_micro.specialbnc.services.max
+            plaf_vente = P_micro.microentreprise.regime_micro_bnc.marchandises.plafond
+            plaf_service = P_micro.microentreprise.regime_micro_bnc.services.plafond
 
             TypesTnsTypeActivite = type_activite.possible_values
             achat_revente = (type_activite == TypesTnsTypeActivite.achat_revente)

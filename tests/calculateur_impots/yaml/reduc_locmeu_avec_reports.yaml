@@ -1,4 +1,4 @@
-- name: reduc_locmeu_avec_reports
+- name: reduc_location_meublee_avec_reports
   period: 2014
   absolute_error_margin: 0.1
   input:
@@ -12,32 +12,32 @@
       caseW: false
       declarants:
       - ind0
-      f7ia: 500
-      f7ic: 500
+      f7ia_2019: 500
+      f7ic_2019: 500
       f7id: 10000
-      f7ie: 10000
-      f7if: 10000
-      f7ig: 10000
-      f7ih: 10
+      f7ie_2016: 10000
+      f7if_2016: 10000
+      f7ig_2016: 10000
+      f7ih_2017: 10
       f7ij: 10000
       f7il: 10000
       f7im: 10000
       f7in: 10000
-      f7io: 10000
-      f7ip: 500
-      f7ir: 500
-      f7it: 10
-      f7iu: 10
-      f7iv: 10000
-      f7iw: 10000
-      f7ix: 10
-      f7iy: 10
-      f7iz: 10
-      f7jc: 10
-      f7ji: 10
-      f7js: 10
-      f7jt: 10000
-      f7ju: 10000
+      f7io_2015: 10000
+      f7ip_2018: 500
+      f7ir_2018: 500
+      f7it_2016: 10
+      f7iu_2016: 10
+      f7iv_2016: 10000
+      f7iw_2016: 10000
+      f7ix_2017: 10
+      f7iy_2018: 10
+      f7iz_2017: 10
+      f7jc_2018: 10
+      f7ji_2018: 10
+      f7js_2018: 10
+      f7jt_2019: 10000
+      f7ju_2016: 10000
       f7jv: 500
       f7jx: 500
       f7oa: 500
@@ -46,9 +46,9 @@
       f7ou: 10000
       f7pa: 10
       f7pb: 10
-      f7pc: 10
-      f7pd: 10
-      f7pe: 10
+      f7pc_2019: 10
+      f7pd_2019: 10
+      f7pe_2019: 10
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -76,7 +76,7 @@
     rfr: 137843.0
     rni: 137843.0
 
-- name: reduc_locmeu_avec_reports
+- name: reduc_location_meublee_avec_reports
   period: 2015
   absolute_error_margin: 0.1
   input:
@@ -90,32 +90,32 @@
       caseW: false
       declarants:
       - ind0
-      f7ia: 500
-      f7ic: 500
+      f7ia_2019: 500
+      f7ic_2019: 500
       f7id: 10000
-      f7ie: 10000
-      f7if: 10000
-      f7ig: 10000
-      f7ih: 10
+      f7ie_2016: 10000
+      f7if_2016: 10000
+      f7ig_2016: 10000
+      f7ih_2017: 10
       f7ij: 10000
       f7il: 10000
       f7im: 10000
       f7in: 10000
-      f7io: 10000
-      f7ip: 500
-      f7ir: 500
-      f7it: 10
-      f7iu: 10
-      f7iv: 10000
-      f7iw: 10000
-      f7ix: 10
-      f7iy: 10
-      f7iz: 10
-      f7jc: 10
-      f7ji: 10
-      f7js: 10
-      f7jt: 10000
-      f7ju: 10000
+      f7io_2015: 10000
+      f7ip_2018: 500
+      f7ir_2018: 500
+      f7it_2016: 10
+      f7iu_2016: 10
+      f7iv_2016: 10000
+      f7iw_2016: 10000
+      f7ix_2017: 10
+      f7iy_2018: 10
+      f7iz_2017: 10
+      f7jc_2018: 10
+      f7ji_2018: 10
+      f7js_2018: 10
+      f7jt_2019: 10000
+      f7ju_2016: 10000
       f7jv: 500
       f7jx: 500
       f7oa: 500
@@ -128,9 +128,9 @@
       f7ov: 10000
       f7pa: 10
       f7pb: 10
-      f7pc: 10
-      f7pd: 10
-      f7pe: 10
+      f7pc_2019: 10
+      f7pd_2019: 10
+      f7pe_2019: 10
       f7pf: 10
       f7pg: 10
       f7ph: 10
@@ -154,7 +154,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    locmeu: 8250.0
+    location_meublee: 8250.0
     reductions: 8250.0
     iai: 34715.0
     irpp: -34715.0
@@ -163,7 +163,7 @@
     rfr: 137830.0
     rni: 137830.0
 
-- name: reduc_locmeu_avec_reports
+- name: reduc_location_meublee_avec_reports
   period: 2016
   absolute_error_margin: 0.1
   input:
@@ -177,31 +177,31 @@
       caseW: false
       declarants:
       - ind0
-      f7ia: 500
-      f7ic: 500
+      f7ia_2019: 500
+      f7ic_2019: 500
       f7id: 10000
-      f7ie: 10000
-      f7if: 10000
-      f7ig: 10000
-      f7ih: 10
+      f7ie_2016: 10000
+      f7if_2016: 10000
+      f7ig_2016: 10000
+      f7ih_2017: 10
       f7ij: 10000
       f7il: 10000
       f7im: 10000
       f7in: 10000
-      f7ip: 500
-      f7ir: 500
-      f7it: 10
-      f7iu: 10
-      f7iv: 10000
-      f7iw: 10000
-      f7ix: 10
-      f7iy: 10
-      f7iz: 10
-      f7jc: 10
-      f7ji: 10
-      f7js: 10
-      f7jt: 10000
-      f7ju: 10000
+      f7ip_2018: 500
+      f7ir_2018: 500
+      f7it_2016: 10
+      f7iu_2016: 10
+      f7iv_2016: 10000
+      f7iw_2016: 10000
+      f7ix_2017: 10
+      f7iy_2018: 10
+      f7iz_2017: 10
+      f7jc_2018: 10
+      f7ji_2018: 10
+      f7js_2018: 10
+      f7jt_2019: 10000
+      f7ju_2016: 10000
       f7jv: 500
       f7jx: 500
       f7oa: 500
@@ -218,9 +218,9 @@
       f7ow: 10000
       f7pa: 10
       f7pb: 10
-      f7pc: 10
-      f7pd: 10
-      f7pe: 10
+      f7pc_2019: 10
+      f7pd_2019: 10
+      f7pe_2019: 10
       f7pf: 10
       f7pg: 10
       f7ph: 10
@@ -249,7 +249,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    locmeu: 9634.0
+    location_meublee: 9634.0
     reductions: 9634.0
     iai: 33312.0
     irpp: -33312.0
@@ -258,7 +258,7 @@
     rfr: 137817.0
     rni: 137817.0
 
-- name: reduc_locmeu_avec_reports
+- name: reduc_location_meublee_avec_reports
   period: 2017
   absolute_error_margin: 0.1
   input:
@@ -272,20 +272,20 @@
       caseW: false
       declarants:
       - ind0
-      f7ia: 500
-      f7ic: 500
+      f7ia_2019: 500
+      f7ic_2019: 500
       f7id: 10000
-      f7ih: 10
+      f7ih_2017: 10
       f7ij: 10000
-      f7ip: 500
-      f7ir: 500
-      f7ix: 10
-      f7iy: 10
-      f7iz: 10
-      f7jc: 10
-      f7ji: 10
-      f7js: 10
-      f7jt: 10000
+      f7ip_2018: 500
+      f7ir_2018: 500
+      f7ix_2017: 10
+      f7iy_2018: 10
+      f7iz_2017: 10
+      f7jc_2018: 10
+      f7ji_2018: 10
+      f7js_2018: 10
+      f7jt_2019: 10000
       f7jv: 500
       f7jx: 500
       f7oa: 500
@@ -306,9 +306,9 @@
       f7ox: 10000
       f7pa: 10
       f7pb: 10
-      f7pc: 10
-      f7pd: 10
-      f7pe: 10
+      f7pc_2019: 10
+      f7pd_2019: 10
+      f7pe_2019: 10
       f7pf: 10
       f7pg: 10
       f7ph: 10
@@ -342,12 +342,12 @@
     menage:
       personne_de_reference: ind0
   output:
-    locmeu: 9442.0
+    location_meublee: 9442.0
     reductions: 9442.0
     iai: 33318.0
     irpp: -33318.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 137695.0
     rfr: 137695.0
 
@@ -368,7 +368,7 @@
         salaire_imposable: 70000.0
         statut_marital: celibataire
   output:
-    locmeu: 6833.0
+    location_meublee: 6833.0
     reductions: 6833.0
     iai: 6211.0
     irpp: -6211.0

@@ -9,7 +9,6 @@ metadata:
   unit: year
   reference:
     2009-06-01:
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033979137/2017-02-03/
       title: Article R262-2 du Code de l'action sociale et des familles
-  notes:
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033979137/2017-02-03/
   last_review: "2022-03-31"

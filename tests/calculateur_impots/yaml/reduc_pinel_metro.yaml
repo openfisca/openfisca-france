@@ -12,8 +12,8 @@
       caseW: false
       declarants:
       - ind0
-      f7qa: 200000
-      f7qb: 200000
+      f7qa_2018: 200000
+      f7qb_2018: 200000
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -56,8 +56,8 @@
       - ind0
       f7ai: 500
       f7bi: 500
-      f7qa: 100000
-      f7qb: 100000
+      f7qa_2018: 100000
+      f7qb_2018: 100000
       f7qe: 100000
       f7qf: 100000
       nbF: 0.0
@@ -102,12 +102,12 @@
       f7bi: 500
       f7bz: 500
       f7cz: 500
-      f7qa: 10000
-      f7qb: 10000
+      f7qa_2018: 10000
+      f7qb_2018: 10000
       f7qe: 10000
       f7qf: 10000
-      f7qi: 10000
-      f7qj: 10000
+      f7qi_2019: 10000
+      f7qj_2019: 10000
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -151,12 +151,12 @@
       f7bi: 500
       f7bz: 500
       f7cz: 500
-      f7qa: 10000
-      f7qb: 10000
+      f7qa_2018: 10000
+      f7qb_2018: 10000
       f7qe: 10000
       f7qf: 10000
-      f7qi: 10000
-      f7qj: 10000
+      f7qi_2019: 10000
+      f7qj_2019: 10000
       f7qm: 10000
       f7qn: 10000
       f7rz: 500
@@ -181,7 +181,7 @@
     iai: 3693.0
     irpp: -3693.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     reductions: 4100.0
     rfr: 45000.0
@@ -205,12 +205,12 @@
       f7cz: 500
       f7ra: 300
       f7rb: 200
-      f7qa: 0
-      f7qb: 10000
+      f7qa_2018: 0
+      f7qb_2018: 10000
       f7qe: 10000
       f7qf: 0
-      f7qi: 10000
-      f7qj: 10000
+      f7qi_2019: 10000
+      f7qj_2019: 10000
       f7qm: 10000
       f7qn: 10000
       f7qr: 5000
@@ -237,7 +237,183 @@
     iai: 3102.0
     irpp: -3102.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     reductions: 4600.0
+    rfr: 45000.0
+- name: reduc_pinel_metro
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7ai: 500
+      f7bi: 500
+      f7bz: 500
+      f7cz: 500
+      f7ra: 300
+      f7rb: 200
+      f7qi_2019: 10000
+      f7qj_2019: 10000
+      f7qm: 10000
+      f7qn: 10000
+      f7qr: 5000
+      f7qs: 15000
+      f7qw: 0
+      f7qx: 0
+      f7rz: 500
+      f7na: 10000
+      f7nb: 10000
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 3044.0
+    irpp: -3044.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    reductions: 4600.0
+    rfr: 45000.0
+- name: reduc_pinel_metro
+  period: 2020
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7bi: 500
+      f7bz: 500
+      f7cz: 500
+      f7ra: 300
+      f7rb: 200
+      f7jm: 400
+      f7km: 400
+      f7fi: 10000
+      f7qm: 10000
+      f7qn: 10000
+      f7qr: 5000
+      f7qs: 15000
+      f7qw: 0
+      f7qx: 0
+      f7rr: 500
+      f7na: 10000
+      f7nb: 10000
+      f7ne: 5000
+      f7nf: 15000
+      f7ja: 1000
+      f7jb: 750
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 0.0
+    irpp: 0.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    reductions: 7506.0
+    rfr: 45000.0
+- name: reduc_pinel_metro
+  period: 2021
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7bi: 500
+      f7cz: 500
+      f7ra: 300
+      f7rb: 200
+      f7jm: 400
+      f7km: 400
+      f7fi: 10000
+      f7qr: 5000
+      f7qs: 15000
+      f7qw: 0
+      f7qx: 0
+      f7rr: 500
+      f7na: 10000
+      f7nb: 10000
+      f7ne: 5000
+      f7nf: 15000
+      f7ni: 7500
+      f7nj: 20000
+      f7ja: 1000
+      f7jb: 750
+      f7jr: 100
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 0.0
+    irpp: 0.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    reductions: 7422.0
     rfr: 45000.0

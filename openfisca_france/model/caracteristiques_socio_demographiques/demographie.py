@@ -20,7 +20,7 @@ class majeur(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        majeur = individu('age', period) >= parameters(period).marche_travail.age_majorite
+        majeur = individu('age', period) >= parameters(period).geopolitique.age_majorite
         mineur_emancipe = individu('mineur_emancipe', period)
 
         return majeur + mineur_emancipe

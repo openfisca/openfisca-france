@@ -1,4 +1,4 @@
-description: Taux
+description: Taux pour les Primes d'assurances pour loyers impayés
 values:
   2005-01-01:
     value: 0.5
@@ -7,4 +7,5 @@ values:
   2012-01-01:
     value: 0.38
 metadata:
+  ux_name: Taux
   unit: /1

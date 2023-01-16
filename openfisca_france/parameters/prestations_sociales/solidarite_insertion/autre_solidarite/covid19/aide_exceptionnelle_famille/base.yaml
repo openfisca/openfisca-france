@@ -15,13 +15,13 @@ metadata:
   unit: currency
   reference:
     2020-05-01:
-    - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041849630/
-      title: Décret 2020-519 du 05/05/2020
-    - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042032514
-      title: Décret 2020-769 du 24/06/2020
+    - title: Décret 2020-519 du 05/05/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041849630/
+    - title: Décret 2020-769 du 24/06/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042032514
     2020-10-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042574431
       title: Décret n°2020-1453 du 27/11/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042574431
   official_journal_date:
     2020-05-01: 2020-05-06; 2020-06-25
     2020-10-01: "2020-11-28"

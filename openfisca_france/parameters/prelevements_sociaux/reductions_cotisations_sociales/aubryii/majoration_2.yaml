@@ -17,19 +17,19 @@ metadata:
   unit: currency
   reference:
     2000-02-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000568188&categorieLien=id
       title: Décret 2000-73 du 28/01/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000568188&categorieLien=id
     2000-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000404748
       title: Décret 2001-107 du 5/02/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000404748
     2001-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000393830&categorieLien=id
       title: Décret 2001-1120 du 26/11/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000393830&categorieLien=id
     2002-07-01:
       title: Arrêté du 20/12/2002
     2003-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000594652
       title: Loi 2003-47 du 17/01/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000594652
   official_journal_date:
     2000-02-01: "2000-01-29"
     2000-07-01: "2001-02-07"

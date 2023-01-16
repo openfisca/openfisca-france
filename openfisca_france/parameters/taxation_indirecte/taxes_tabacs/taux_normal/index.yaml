@@ -1,0 +1,9 @@
+description: Taux normaux des taxes sur les tabacs
+metadata:
+  order:
+  - cigarettes
+  - cigares
+  - tabac_rouler
+  - autres_tabacs
+  - tabacs_priser
+  - tabacs_chiquer

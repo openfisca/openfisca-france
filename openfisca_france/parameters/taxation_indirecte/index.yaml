@@ -1,1 +1,9 @@
 description: Paramètres de la taxation locale
+metadata:
+  order:
+  - tva
+  - taxes_tabacs
+  - produits_energetiques
+  - alcools_autres_boissons
+  - taxes_assurances
+  - taxes_energie_dans_logement

@@ -1,0 +1,421 @@
+- name: Forfait social
+  period: 2023
+  input:
+    effectif_entreprise: [249, 250, 251, 25, 251]
+    salaire_de_base:
+      month:2022-01:24: [120_000, 120_000, 120_000, 20_000, 120_000]
+    prime_partage_valeur:
+      2023: [1_200, 1_200, 1_200, 0, 0]
+    prime_partage_valeur_exceptionnelle:
+      2023: [0, 0, 0, 1_200, 1_200]
+  output:
+    prime_partage_valeur_exoneree:
+       2023: [1_200, 1_200, 1_200, 0, 0]
+    forfait_social:
+      2023-09: [0, -20, -20, 0, 0]
+
+- name: Prime de partage de la valeur en 2023
+  period: 2023
+  input:
+    salaire_de_base:
+      month:2022-01:24: 24 * 2_000
+    prime_partage_valeur:
+      2023: 3_000
+    prime_partage_valeur_exceptionnelle:
+      2023: 3_000
+  output:
+    prime_partage_valeur_exoneree:
+      2023: 3_000
+    prime_partage_valeur_exoneree_exceptionnelle:
+      2023: 3_000
+
+
+- name: Prime de partage de la valeur fonctionne en 2022
+  period: 2022
+  input:
+    salaire_de_base:
+      month:2021-01:24: 48_000
+    prime_partage_valeur:
+      2021: 0
+      2022: 3_000
+      2023: 3_000
+  output:
+    prime_partage_valeur:
+      2021: 0
+      2022: 3_000
+      2023: 3_000
+    prime_partage_valeur_exoneree:
+      2021: 0
+      2022: 0  # TODO : KO, ça doit être 3_000 KO, OpenFisca ne sait pas calculer la PPV pour 2022, on ne peut pas faire ce test !!!
+      2023: 3_000
+
+- name: Prime de partage de la valeur visible en mensuel
+  period: 2023
+  input:
+    salaire_de_base:
+      month:2021-01:36: 48_000
+    prime_partage_valeur: 3_000
+  output:
+    prime_partage_valeur_exoneree:
+      2023: 3_000
+      # TODO KO 2023-09: 250  # ERROR 'prime_partage_valeur' must be computed for a whole year.
+
+
+- name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 (réservée aux < 3 SMIC)
+# On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
+# 1 : Sans accord, Pas de prime
+# 2 : Sans accord, Prime au plafond
+# 3 : Sans accord, Prime au dessus du plafond
+# 4 : Avec accord, Pas de prime
+# 5 : Avec accord, Prime au premier plafond
+# 6 : Avec accord, Prime au deuxième plafond
+# 7 : Avec accord, Prime au dessus du plafond
+  period: 2023-09
+  absolute_error_margin: 0.01
+  input:
+    effectif_entreprise:
+      2022: [250, 250, 250, 250, 250, 250, 250]
+      2023: [250, 250, 250, 250, 250, 250, 250]
+    salaire_de_base:
+      month:2021-01:36: [72_000, 72_000, 72_000, 72_000, 72_000, 72_000, 72_000]  # 2 000 * 36 = 72 000 €
+    prime_partage_valeur_exceptionnelle:
+      2022: [0, 3_000, 4_200, 3_000, 3_000, 6_000, 7_200]
+      2023: [0, 3_000, 4_200, 3_000, 3_000, 6_000, 7_200]
+      # Soit en mensuel :
+      #     [0, 250, 350, 250, 250, 500, 600]
+    accord_interessement:
+      month:2021-01:36: [false, false, false, true, true, true, true]
+  output:
+    prime_partage_valeur_exceptionnelle:
+      2021: [0, 0, 0, 0, 0, 0, 0]
+      2023: [0, 3_000, 4_200, 3_000, 3_000, 6_000, 7_200]
+    ppv_eligibilite_exceptionnelle:
+      2023: [1, 1, 1, 1, 1, 1, 1]
+    prime_partage_valeur_exoneree_exceptionnelle:
+      2022: [0, 0, 0, 0, 0, 0, 0]
+      2023: [0, 3_000, 3_000, 3_000, 3_000, 6_000, 6_000]
+    prime_partage_valeur_non_exoneree_exceptionnelle:
+      2022: [0, 0, 0, 0, 0, 0, 0]
+      2023: [0, 0, 1_200, 0, 0, 0, 1_200]
+    assiette_csg_abattue:
+      # Comprend uniquement sur la partie qui dépasse l'exonération
+      # 2 000 + 1 200 / 12 = 2100
+      2022-09: [2000, 2000, 2000, 2000, 2000, 2000, 2000]
+      2023-09: [2000, 2000, 2100, 2000, 2000, 2000, 2100]
+    crds_salaire: # 0.5% après abattement de 1.75%
+      # Versement uniquement sur la partie qui dépasse l'exonération
+      # CRDS du 3° individus - CRDS du 1° = écart de CRDS dû à la prime
+      # 10,31−9,825=0.485
+      # Prime mensuel au dessus du plafond pour le 3° : 100 €
+      # CRDS = (prime - abattement 1.75%) * 0.5%
+      # 100-1.75=98.25*0.005=0.491
+      # 0.491 ~= 0.485, le calcul est donc bon.
+      2023-09: [-9.825, -9.825, -10.31, -9.825, -9.825, -9.825, -10.31]
+    csg_imposable_salaire:
+      # Versement uniquement sur la partie qui dépasse l'exonération
+      # C'est bien le 3° et le dernier individu qui ont un montant différent.
+      2023-09: [-47.16, -47.16, -49.51, -47.16, -47.16, -47.16, -49.51]
+    csg_deductible_salaire:
+      # Versement uniquement sur la partie qui dépasse l'exonération
+      # CSG déductible = (dépassement - abattement 1.75%) * taux 6.8%
+      # 100-1.75=98.25*0.068=6.681 ; 133.62-140.3=-6.68
+      # 6.681 ~= 6.68 => Le calcul est bon.
+      2023-09: [-133.62, -133.62, -140.30, -133.62, -133.62, -133.62, -140.30]
+    forfait_social:
+      # Pas de forfait social, même sur la partie qui dépasse le plafond
+      2023-09: [-0, -0, -0, -0, -0, -0, -0]
+    salaire_super_brut:
+      # On ajoute le montant de la prime exonérée et le montant de la prime non exonérée + CSG/CRDS
+      # 3 000/12=250 ; 2 829.12 + 250 = 3 079.12
+      # 3506.28-3113.12=393
+      # ATTENTION: le calcul est faux pour la partie non exonérée car il manque CSG/CRDS
+      # C'est un problème OpenFisca qui ne remonte pas l'arbre des dépendance
+      # Pour calculer le salaire_super_brut alors qu'on lui donne le salaire_de_base.
+      2023-09: [2863.12, 3113.12, 3256.28, 3113.12, 3113.12, 3363.12, 3506.28]
+    salaire_imposable:
+      # Il n'y a que pour la partie qui dépasse le plafond qu'il y a un impact sur salaire_imposable
+      2023-09: [1640.18, 1640.18, 1722.189, 1640.18, 1640.18, 1640.18, 1722.189]
+    salaire_net:
+      # 3 000/12=250 ; 1583 + 250 = 1833, ajout de 0.     250.     250.     329.     500.     763.8655
+      # Soit salaire_imposable - CSG salaire - CRDS salaire + la prime exonérée + les contributions CSG et CRDS sur la partie qui dépasse le plafond
+      # 1583 = 1640.18 -9.82 (CRDS) - 47.16 (csg_imposable_salaire)
+      2023-09: [1583.1951, 1833.1951, 1912.35, 1833.1951, 1833.1951, 2083.195, 2162.35]
+    revenu_assimile_salaire:
+      # revenu_assimile_salaire = salaire_imposable * 12
+      2022: [19682.158, 19682.158, 19682.158, 19682.158, 19682.158, 19682.158, 19682.158]
+      2023: [19682.158, 19682.158, 20666.271, 19682.158, 19682.158, 19682.158, 20666.271]
+    rfr:
+      # La prime est intégrée au RFR
+      # rfr = (revenu_assimile_salaire + prime_partage_valeur_exoneree_exceptionnelle) * 0.9 (abattement frais pro)
+      # 21299.271 = (20666.271 + 3_000) * 0.9
+      2022: [17714.158, 17714.158, 17714.158, 17714.158, 17714.158, 17714.158, 17714.158]
+      2023: [17714.158, 20414.158, 21299.271, 20414.158, 20414.158, 23114.158, 23999.271]
+    irpp:
+      # L'IRPP ne doit pas changer pour ceux dont la prime est exonérée d'impôt
+      2022: [-275, -275, -275, -275, -275, -275, -275]
+      2023: [-275, -275, -416, -275, -275, -275, -416]
+    ppa:
+      # Le premier cas-type touche la PPA toute l'année, les autres partiellement.
+      2023-01: [139.38394, 139.38394, 139.38394, 139.38394, 139.38394, 139.38394, 139.38394]
+      2023-12: [139.38394, 41.88394, 0, 41.88394, 41.88394, 0, 0]
+    prestations_sociales:
+      2023: [1664.244, 694.11914, 288.33063, 694.11914, 694.11914, 277.37405, 277.37405]
+    revenu_disponible:
+      # revenu_disponible = (salaire_net*12) - irpp + prestations_sociales
+      # Pour le 2e individu : 1833.1951*12-275+694.1191 = 22417.46 => C'est bon !
+      2023: [20387.586, 22417.46, 22820.588, 22417.46, 22417.46, 25000.717, 25809.635]
+
+
+- name: Prime pérenne de partage de la valeur pour salaire < 3 SMIC
+# On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
+# 1 : Sans accord, Pas de prime
+# 2 : avec le montant de la prime dans le salaire
+# 3 : Sans accord, Prime au plafond
+# 4 : Sans accord, Prime au dessus du plafond
+# 5 : Avec accord, Pas de prime
+# 6 : Avec accord, Prime au premier plafond
+# 7 : Avec accord, Prime au deuxième plafond
+# 8 : Avec accord, Prime au dessus du plafond
+  period: 2023-09
+  absolute_error_margin: 0.05
+  input:
+    effectif_entreprise:
+      2022: [250, 250, 250, 250, 250, 250, 250, 250]
+      2023: [250, 250, 250, 250, 250, 250, 250, 250]
+    salaire_de_base:
+      month:2021-01:36: [72_000, 81_000, 72_000, 72_000, 72_000, 72_000, 72_000, 72_000]  # 2 000 * 36 = 72 000 €
+    prime_partage_valeur:
+      #2022: [0, 0, 3_000, 4_200, 3_000, 3_000, 6_000, 7_200]
+      2023: [0, 0, 3_000, 4_200, 3_000, 3_000, 6_000, 7_200]
+      # Soit en mensuel :
+      #     [0, 250, 350, 250, 250, 500, 600]
+    accord_interessement:
+      month:2021-01:36: [false, false, false, false, true, true, true, true]
+  output:
+    prime_partage_valeur:
+      2021: [0, 0, 0, 0, 0, 0, 0, 0]
+      2023: [0, 0, 3_000, 4_200, 3_000, 3_000, 6_000, 7_200]
+    prime_partage_valeur_exoneree:
+      2022: [0, 0, 0, 0, 0, 0, 0, 0]
+      2023: [0, 0, 3_000, 3_000, 3_000, 3_000, 6_000, 6_000]
+    prime_partage_valeur_non_exoneree:
+      2022: [0, 0, 0, 0, 0, 0, 0, 0]
+      2023: [0, 0, 0, 1_200, 0, 0, 0, 1_200]
+    primes_salaires_non_exonerees:
+      # La partie supérieure au plafond n'est pas exonérée,
+      # On la traite donc comme une prime classique.
+      2023-09: [0, 0, 0, 100, 0, 0, 0, 100]
+    ppv_eligibilite_exceptionnelle:
+      2023: [1, 1, 1, 1, 1, 1, 1, 1]
+    assiette_csg_abattue:
+      # Prime soumise en totalité à la CSG
+      # 2 000 + 6 000 / 12 + 1 200 / 12 = 2 600
+      2023-09: [2000, 2250, 2250, 2350, 2250, 2250, 2500, 2600]
+    crds_salaire: # 0.5% après abattement de 1.75%
+      # Prime soumise en totalité à la CRDS
+      # ((3000÷12)×(1−0,0175))×0,005 = 1.228
+      # 11.05-9.825=1.225
+      # 1.225 ~= 1.228 => OK
+      2023-09: [-9.825, -11.0531, -11.0531, -11.54435, -11.0531, -11.0531, -12.28125, -12.7725]
+    csg_imposable_salaire:
+      # Prime soumise en totalité à la CSG
+      2023-09: [-47.16, -53.05488, -53.05488, -55.41288, -53.05488, -53.05488, -58.95, -61.308]
+    csg_deductible_salaire:
+      # Prime soumise en totalité à la CSG
+      # csg_deductible_salaire = ((prime/12) - abattement 1.75%) * taux CSG
+      # ((3000÷12)×(1−0,0175))×0,068 = 16.70
+      # 150.32 - 133.62 = 16.699 €
+      # 16.699 ~= 16.70 => OK
+      2023-09: [-133.62, -150.32216, -150.32216, -157.00316, -150.32216, -150.32216, -167.025, -173.7]
+    forfait_social:
+      # Pas d'exonération du forfait social pour la prime pérenne dans les entreprises > 250 salariés
+      2023-09: [-0, 0, -50, -70, -50, -50, -100, -120]
+    #salaire_super_brut: On ne peut pas le demander car OF ne sait pas remonter dans le Waterfall pour inclure la CSG de la prime.
+    salaire_imposable:
+      # La prime pérenne est imposable en totalité
+      # salaire_imposable sans prime + prime - csg_deductible_salaire = salaire_imposable avec prime
+      # 1_640.18 + 250 + -16.699 = 1_873.481
+      2023-09: [1640.18, 1845.1978, 1873.4778, 1955.4868, 1873.4778, 1873.4778, 2106.7751, 2188.784]
+    salaire_net:
+      # salaire_net = salaire_imposable + crds_salaire + csg_imposable_salaire
+      # 1845.1978 + -11.0531 + -53.05488 = 1781.08 => OK
+      2023-09: [1583.1951, 1781.08, 1809.3699, 1888.5297, 1809.3699, 1809.3699, 2035.5438, 2114.7036]
+    revenu_assimile_salaire:
+      # C'est le salaire imposable * 12
+      # 1_873.4778*12=22_481.7336
+      2023: [19682.16, 22_142.37, 22_481.7336, 23465.8416, 22481.7336, 22481.7336, 25281.3012, 26265.408]
+    rfr:
+      # rfr = revenu_assimile_salaire * 0.9 (abattement pro)
+      # 22_481 ×,09 = 20_233
+      2023: [17714.158, 19_928.37, 20233.734, 21118.838, 20233.734, 20233.734, 22753.303, 23638.404]
+    irpp:
+      # La prime pérenne est soumise à l'impôt
+      # De 10 777 € à 27 478 € : Première tranche 11%
+      # (17_714.158 - 10_777)*0.11 = 763.087
+      # Décote LF2023 : La décote est égale à la différence entre 833 € (célibataire), et 45,25 % du montant de l'impôt.
+      # 763.087 - (833- 763.087*0.4525) = 275.38
+      # (20_233.734 - 10_777)*0.11 - (833 - ((20_233.734 - 10_777)*0.11)*0.4525 ) = 677.94
+      2023: [-275, -630, -678, -820, -678, -678, -1080, -1222]
+    prestations_sociales:
+      2023: [1664.244, 742.7274, 786.57324, 479.39383, 786.57324, 786.57324, 277.37405, 277.37405]
+    revenu_disponible:
+      # revenu_disponible = salaire_net*12 - irpp + prestations_sociales
+      # 1_781 * 12 - 630 + 742 = 21_484 ~= 21485.803 OK
+      2023: [20387.586, 21485.803, 21821.012, 22321.748, 21821.012, 21821.012, 23623.898, 24431.814]
+
+
+- name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 pour salaire >= 3 SMIC
+# Non, éligible, on le vérifie quand même.
+  period: 2023-09
+  absolute_error_margin: 0.01
+  input:
+    effectif_entreprise:
+      2023: [250, 250, 250, 250, 250, 250, 250]
+    salaire_de_base:
+      month:2021-01:36: [200_000, 200_000, 200_000, 200_000, 200_000, 200_000, 200_000]  # 1 678,65 * 36 = 181_294.20 €
+    prime_partage_valeur_exceptionnelle:
+      2023: [0, 3_000, 4_200, 3_000, 3_000, 6_000, 7_200]
+    accord_interessement:
+      month:2021-01:36: [false, false, false, true, true, true, true]
+  output:
+    # Pas de prime pour les salariés >= 3 x SMIC
+    ppv_eligibilite_exceptionnelle:
+      2023: [0, 0, 0, 0, 0, 0, 0]
+    prime_partage_valeur_exceptionnelle:
+      2023: [0, 3_000, 4_200, 3_000, 3_000, 6_000, 7_200]
+    prime_partage_valeur_exoneree_exceptionnelle:
+      2022: [0, 0, 0, 0, 0, 0, 0]
+      2023: [0, 0, 0, 0, 0, 0, 0]
+    prime_partage_valeur_non_exoneree_exceptionnelle:
+      2022: [0, 0, 0, 0, 0, 0, 0]
+      2023: [0, 0, 0, 0, 0, 0, 0]
+    salaire_net:
+      2022-09: [4415.30, 4415.30, 4415.30, 4415.30, 4415.30, 4415.30, 4415.30]
+      2023-09: [4415.30, 4415.30, 4415.30, 4415.30, 4415.30, 4415.30, 4415.30]
+    irpp:
+      2022: [-8413, -8413, -8413, -8413, -8413, -8413, -8413]
+      2023: [-8413, -8413, -8413, -8413, -8413, -8413, -8413]
+
+
+- name: Prime pérenne de partage de la valeur pour salaire >= 3 SMIC
+# On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
+# 1 : Sans accord, Pas de prime
+# 2 : Sans accord, Prime au plafond
+# 3 : Sans accord, Prime au dessus du plafond
+# 4 : Avec accord, Pas de prime
+# 5 : Avec accord, Prime au premier plafond
+# 6 : Avec accord, Prime au deuxième plafond
+# 7 : Avec accord, Prime au dessus du plafond
+  period: 2023-09
+  absolute_error_margin: 0.01
+  input:
+    effectif_entreprise:
+      2022: [250, 250, 250, 250, 250, 250, 250]
+      2023: [250, 250, 250, 250, 250, 250, 250]
+    salaire_de_base:
+      month:2021-01:36: [200_000, 200_000, 200_000, 200_000, 200_000, 200_000, 200_000]  # 1 678,65 * 36 = 181_294.20 €
+    prime_partage_valeur:
+      2022: [0, 3_000, 4_200, 3_000, 3_000, 6_000, 7_200]
+      2023: [0, 3_000, 4_200, 3_000, 3_000, 6_000, 7_200]
+    accord_interessement:
+      month:2021-01:36: [false, false, false, true, true, true, true]
+  output:
+    prime_partage_valeur:
+      2021: [0, 0, 0, 0, 0, 0, 0]
+      2023: [0, 3_000, 4_200, 3_000, 3_000, 6_000, 7_200]
+    prime_partage_valeur_exoneree:
+      2022: [0, 0, 0, 0, 0, 0, 0]
+      2023: [0, 3_000, 3_000, 3_000, 3_000, 6_000, 6_000]
+    prime_partage_valeur_non_exoneree:
+      2022: [0, 0, 0, 0, 0, 0, 0]
+      2023: [0, 0, 1_200, 0, 0, 0, 1_200]
+    assiette_csg_abattue:
+      # La totalité de la prime est soumise à la CSG
+      2023-09: [5555.5557, 5805.5557, 5905.5557, 5805.5557, 5805.5557, 6055.5557, 6155.5557] # + [0, 250, 350, 250, 250, 500, 600]
+    forfait_social:
+      2022-09: [-0, -50, -70, -50, -50, -100, -120]
+      2023-09: [-0, -50, -70, -50, -50, -100, -120]
+    salaire_net:
+      2023-09: [4415.30, 4641.4814, 4721.692, 4641.4814, 4641.4814, 4867.656, 4947.8657]
+    rfr:
+      # La totalité de la prime est dans le RFR
+      2023: [49396.887, 51916.477, 52814.19, 51916.477, 51916.477, 54436.043, 55333.754]
+    irpp:
+      # La totalité de la prime est soumise à l'IR
+      2023: [-8413, -9169, -9438, -9169, -9169, -9925, -10194]
+
+
+- name: Prime pérenne de partage de la valeur vs primes_salaires
+  period: 2023-09
+  absolute_error_margin: 0.01
+  input:
+    effectif_entreprise:
+      2023: [250, 250]
+    salaire_de_base:
+      2023: [60_000, 60_000]
+    prime_partage_valeur:
+      2023: [0, 1_000]
+    primes_salaires:
+      2023: [1_000, 0]
+    accord_interessement:
+      month:2021-01:36: [false, false]
+  output:
+    assiette_csg_abattue:
+      # La totalité de la prime est soumise à la CSG
+      2023-09: [5083.3335, 5083.3335]
+    salaire_net:
+      # L'exonération de charge sociale fait monter le salaire_net
+      2023-09: [4036.5398, 4045.0896]
+    rfr:
+      # La totalité de la prime est dans le RFR
+      2023: [45161.223, 45253.82]
+    irpp:
+      # La totalité de la prime est soumise à l'IR
+      2023: [-7142, -7170]
+    revenu_disponible:
+      2023: [42050.17, 42124.773]
+
+- name: Prime exceptionnelle de partage de la valeur pour un salarié à temps partiel < 3*SMIC mais dont l'équivalent temps plein est > 3*SMIC
+  period: 2023
+  relative_error_margin: 0.01
+  input:
+    categorie_salarie: [salarie, salarie, salarie]
+    # Pour un même salaire on fait varier la quotité de travail
+    quotite_de_travail:
+      2022: [12, 11.9, 12.1]
+      2023: [12, 11.9, 12.1]
+    salaire_de_base:
+      # SMIC 2022-08-01: 1678.95 * 3 * 12 = 60_442,2
+      2022: [60_442, 60_442, 60_442]
+      # SMIC 2023-01-01: 1_709 * 3 * 12 = 61_524
+      # A changer quand la valeur du SMIC sera à jour 2023: [61_524, 61_524, 61_524]
+      2023: [60_442, 60_442, 60_442]
+
+    prime_partage_valeur_exceptionnelle: [1200, 1200, 1200]
+  output:
+    quotite_de_travail:
+      2023-01: [1, 0.99, 1.008]
+    # Le deuxième n'a pas le droit de toucher la prime exceptionnelle car son salaire équivalent temps plein est > 3 SMIC
+    ppv_eligibilite_exceptionnelle: [1, 0, 1]
+    prime_partage_valeur_exoneree_exceptionnelle: [1_200, 0, 1_200]
+    prime_partage_valeur_non_exoneree_exceptionnelle: [0, 0, 0]
+    salaire_de_base:
+      2023-01: [5_036, 5_036, 5_036]
+    salaire_net:
+      2023-01: [4_099, 3_999, 4_098]
+
+- name: PEPA + PPV la même année, il ne faut pas dépasser le plafond PPV, en intégrant PEPA+PPV
+  period: 2022
+  absolute_error_margin: 0.01
+  input:
+    effectif_entreprise: [250, 250]
+    salaire_de_base: [24_000, 24_000]
+    prime_partage_valeur: [7_000, 6_000]
+    prime_exceptionnelle_pouvoir_achat: [3_000, 2_000]
+    accord_interessement: [true, true]
+  output:
+    # TODO: KO, OpenFisca ne sait pas calculer la PPV pour 2022, on ne peut pas faire ce test !!!
+    #prime_partage_valeur_exoneree: [0, 6_000]
+    #prime_partage_valeur_non_exoneree: [1_000, 0]
+    prime_exceptionnelle_pouvoir_achat_exoneree: [2_000, 2_000]
+    prime_exceptionnelle_pouvoir_achat_non_exoneree: [1_000, 0]

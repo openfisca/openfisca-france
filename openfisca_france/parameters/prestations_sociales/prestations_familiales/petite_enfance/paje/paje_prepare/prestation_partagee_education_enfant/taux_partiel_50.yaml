@@ -8,16 +8,16 @@ metadata:
   unit: BMAF
   reference:
     2015-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000030046638&cidTexte=JORFTEXT000030005057
-      title: Décret 2014-1708 du 30/12/2014 - art. 1
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030058471/2015-01-01
-      title: Article D531-4 du Code de la sécurité sociale
-  last_review: "2022-09-27"
+    - title: Décret 2014-1708 du 30/12/2014 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000030046638&cidTexte=JORFTEXT000030005057
+    - title: Article D531-4 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030058471/2015-01-01
   official_journal_date:
     2015-01-01: "2014-12-31"
   notes:
     2015-01-01:
     - title: Pas de modification pour 2017 cf. DSS/SD2B/2017/97 du 21/03/2017
+  last_review: "2022-09-27"
 documentation: |-
   Notes :
   La PreParE remplace la CLCA pour les enfants nés ou adoptés à compter du 1er janvier 2015.

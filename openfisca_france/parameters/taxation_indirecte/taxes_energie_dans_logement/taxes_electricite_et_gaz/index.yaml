@@ -1,0 +1,10 @@
+description: Taxes électricité et gaz
+metadata:
+  description_en: Taxes on electricity and gas
+  order:
+  - cspe
+  - cta_electricite
+  - cta_gaz
+  - ticgn_prix_par_mwh
+  - ctssg_prix_par_mwh
+  - plafonds_tcfe_compteurs_36_kva_en_euros_par_mwh

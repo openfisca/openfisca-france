@@ -148,6 +148,6 @@
     decote_gain_fiscal: 294.0
     irpp: -0.0
     nbptr: 1.5
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 18000.0
     rfr: 16812.0

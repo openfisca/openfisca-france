@@ -1,6 +1,7 @@
-description: Forfait mobilier de l'Impôt de solidarité sur la fortune (ISF, 1989-2017)
+description: Forfait mobilier de l'impôt de solidarité sur la fortune
 metadata:
   ux_name: Forfait mobilier
   description_en: Furniture package
   order:
   - majoration_forfaitaire
+  - non_bati

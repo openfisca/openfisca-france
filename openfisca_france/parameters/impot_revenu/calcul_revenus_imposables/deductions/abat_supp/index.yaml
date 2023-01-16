@@ -1,0 +1,6 @@
+description: Déduction supplémentaire de 20%
+metadata:
+  order:
+  - taux
+  - max
+  - salaire_plafond

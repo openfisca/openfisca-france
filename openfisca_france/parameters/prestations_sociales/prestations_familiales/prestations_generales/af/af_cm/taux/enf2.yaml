@@ -14,26 +14,25 @@ metadata:
   ux_name: Taux 2 enfants
   description_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_t1_2enf
-  last_review: "2022-09-27"
   unit: BMAF
   reference:
     1946-09-01:
       title: Loi du 22 aout 1946
     1976-08-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000688994
       title: Décret 76-768 du 16/08/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000688994
     1978-01-01:
       title: "Décret 78-107 du 31/01/78 (Taux : modif art. L544 du CSS)"
     1981-07-01:
-    - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006762155/1981-07-01
-      title: Décret n°69-456 du 24/05/1969, art. 2
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517687
-      title: Décret 81-683 du 30/06/1981
+    - title: Décret n°69-456 du 24/05/1969, art. 2
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006762155/1981-07-01
+    - title: Décret 81-683 du 30/06/1981
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000517687
     1982-02-01:
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030674064
-      title: Décret 2015-611 du 03/06/2015
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318/
-      title: Article D521-1 1) du Code de la sécurité sociale
+    - title: Décret 2015-611 du 03/06/2015
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030674064
+    - title: Article D521-1 1) du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318/
   official_journal_date:
     1976-08-01: "1976-08-17"
     1978-01-01: 1972-12-28; 1978-02-02
@@ -48,6 +47,7 @@ metadata:
     - title: Majoration 46% pour le 3e enfant, 41% pour le 4e
     1982-02-01:
     - title: Baisse de 46% à 40% pour le 3e enfant
+  last_review: "2022-09-27"
 documentation: |-
   Notes :
   L'allocation familiale est créée en 1932 par la loi Landry du 11/03/1932, art. 1 et 2 (modif titres III et V du code du travail). Parution au JO 12/03/1932

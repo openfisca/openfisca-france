@@ -23,8 +23,8 @@ metadata:
     rate: cnav_p_0_
   reference:
     1967-10-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000330826
       title: Décret 67-803 du 20/09/1967
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000330826
     1970-08-01:
       title: Décret 70-680 du 30/07/1970
     1974-01-01:
@@ -38,41 +38,41 @@ metadata:
     1984-01-01:
       title: Décret 83-1198 du 30/12/1983
     1986-08-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699968&categorieLien=id
       title: Décret 86-876 du 29/07/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699968&categorieLien=id
     1987-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516870&categorieLien=id
       title: Décret 87-453 du 29/06/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516870&categorieLien=id
     1989-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684191
       title: Décret 88-1234 du 30/12/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684191
     1991-02-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000718256&categorieLien=id
       title: Décret 91-91 du 23/01/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000718256&categorieLien=id
     1995-09-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757266&cidTexte=JORFTEXT000000371685
       title: Loi 95-882 du 04/08/1995, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757266&cidTexte=JORFTEXT000000371685
     2004-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006781393&cidTexte=JORFTEXT000000802356
       title: Décret 2004-858 du 24/08/2004, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006781393&cidTexte=JORFTEXT000000802356
     2006-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2005/12/26/2005-1657/jo/texte
       title: Décret 2005-1657 du 26/12/2005
+      href: https://www.legifrance.gouv.fr/eli/decret/2005/12/26/2005-1657/jo/texte
     2012-11-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026116730&cidTexte=JORFTEXT000026106324
       title: Décret 2012-847 du 02/07/2012, art. 5
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026116730&cidTexte=JORFTEXT000026106324
     2014-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1290/jo/texte
       title: Décret 2013-1290 du 27/12/2013
+      href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1290/jo/texte
     2015-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
       title: Décret 2014-1531 du 17/12/2014, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
     2016-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
       title: Décret 2014-1531 du 17/12/2014, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
     2017-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
       title: Décret 2014-1531 du 17/12/2014, art. 4
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029921990&cidTexte=JORFTEXT000029920824
   official_journal_date:
     1967-10-01: "1967-09-24"
     1970-08-01: "1970-07-31"

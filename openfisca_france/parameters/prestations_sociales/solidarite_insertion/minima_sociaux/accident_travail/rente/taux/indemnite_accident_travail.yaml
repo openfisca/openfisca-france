@@ -19,15 +19,15 @@ brackets:
     2005-04-01:
       value: 362.49
     2006-04-01:
-      value: 369.00
+      value: 369
     2007-04-01:
       value: 375.27
     2008-04-01:
       value: 379.03
     2009-04-01:
-      value: 390.40
+      value: 390.4
     2010-04-01:
-      value: 394.30
+      value: 394.3
     2011-04-01:
       value: 398.25
     2012-04-01:
@@ -45,7 +45,7 @@ brackets:
     2018-04-01:
       value: 416.46
     2019-04-01:
-      value: 417.70
+      value: 417.7
     2020-04-01:
       value: 418.12
     2021-04-01:
@@ -65,7 +65,7 @@ brackets:
     2005-04-01:
       value: 589.09
     2006-04-01:
-      value: 599.70
+      value: 599.7
     2007-04-01:
       value: 609.89
     2008-04-01:
@@ -85,7 +85,7 @@ brackets:
     2015-04-01:
       value: 672.09
     2016-04-01:
-      value: 668.20
+      value: 668.2
     2017-04-01:
       value: 674.79
     2018-04-01:
@@ -119,7 +119,7 @@ brackets:
     2009-04-01:
       value: 927.13
     2010-04-01:
-      value: 936.40
+      value: 936.4
     2011-04-01:
       value: 945.76
     2012-04-01:
@@ -137,7 +137,7 @@ brackets:
     2018-04-01:
       value: 986.04
     2019-04-01:
-      value: 989.00
+      value: 989
     2020-04-01:
       value: 991.97
     2021-04-01:
@@ -165,15 +165,15 @@ brackets:
     2009-04-01:
       value: 1463.27
     2010-04-01:
-      value: 1477.90
+      value: 1477.9
     2011-04-01:
       value: 1492.68
     2012-04-01:
       value: 1507.61
     2013-04-01:
-      value: 1525.70
+      value: 1525.7
     2014-04-01:
-      value: 1534.70
+      value: 1534.7
     2015-04-01:
       value: 1550.05
     2016-04-01:
@@ -221,7 +221,7 @@ brackets:
     2014-04-01:
       value: 1944.16
     2015-04-01:
-      value: 1963.60
+      value: 1963.6
     2016-04-01:
       value: 1952.33
     2017-04-01:
@@ -325,7 +325,7 @@ brackets:
     2020-04-01:
       value: 3004.39
     2021-04-01:
-      value: 3007.40
+      value: 3007.4
     2022-04-01:
       value: 3061.53
 - threshold:
@@ -369,7 +369,7 @@ brackets:
     2019-04-01:
       value: 3573.68
     2020-04-01:
-      value: 3584.40
+      value: 3584.4
     2021-04-01:
       value: 3587.99
     2022-04-01:
@@ -413,7 +413,7 @@ brackets:
     2018-04-01:
       value: 4191.73
     2019-04-01:
-      value: 4204.30
+      value: 4204.3
     2020-04-01:
       value: 4216.92
     2021-04-01:
@@ -428,25 +428,22 @@ brackets:
       value: 0
 metadata:
   ux_name: Montant indemnité
-  amount_unit: currency
-  type: single_amount
   reference:
     2002-04-01:
-    - href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006736995/2002-03-30/
-      title: Article D434-1 du Code de la sécurité sociale
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743074/1998-12-27/
-      title: Article L434-17 du Code de la sécurité sociale
+    - title: Article D434-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006736995/2002-03-30/
+    - title: Article L434-17 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743074/1998-12-27/
     2016-04-01:
-    - href: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006172216/
-      title: Article D431-1 du Code de la sécurité sociale
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/2015-12-23/
-      title: Article L434-17 du Code de la sécurité sociale
+    - title: Article D431-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006172216/
+    - title: Article L434-17 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/2015-12-23/
     2022-04-01:
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/
-      title: Article L434-17 du Code de la sécurité sociale
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031781092/
-      title: Article L161-25 du Code de la sécurité sociale
-  last_review: "2022-04-13"
+    - title: Article L434-17 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/
+    - title: Article L161-25 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031781092/
   notes:
     2003-04-01:
     - title: Revalorisation de 0,0029%
@@ -488,9 +485,7 @@ metadata:
     - title: Revalorisation de 0,1%
     2022-04-01:
     - title: Revalorisation de 1,8%
-  documentation:
-    https://www.unsaaerien.com/wp-content/uploads/2021/04/20210419_Accidents-du-travail_Revalorisations-rentes-AT-MP.pdf
-    circulaire CNAM numéro 10/2021 du 24 mars 2021 - Barème des indemnités en capital 1/04/2021
-    Pour le calcul j'ai utilisé les taux d'inflation utilisé par le gouvernement qu'on trouve dans le paramètre BMAF qui est aussi revalorisé en fonction de l'inflation
-      valeurs pour 1986 - https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006736994/1986-10-30/ 
-      revalorisation entre 1986 et 1998 - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743073/1985-12-21/
+  amount_unit: currency
+  last_review: "2022-04-13"
+  type: single_amount
+documentation: https://www.unsaaerien.com/wp-content/uploads/2021/04/20210419_Accidents-du-travail_Revalorisations-rentes-AT-MP.pdf circulaire CNAM numéro 10/2021 du 24 mars 2021 - Barème des indemnités en capital 1/04/2021 Pour le calcul j'ai utilisé les taux d'inflation utilisé par le gouvernement qu'on trouve dans le paramètre BMAF qui est aussi revalorisé en fonction de l'inflation valeurs pour 1986 - https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006736994/1986-10-30/ revalorisation entre 1986 et 1998 - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743073/1985-12-21/

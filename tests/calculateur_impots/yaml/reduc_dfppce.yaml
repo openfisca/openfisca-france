@@ -182,7 +182,7 @@
     iai: 4293.0
     irpp: -4293.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     reductions: 3500.0
     rfr: 45000.0
@@ -238,7 +238,200 @@
     iai: 1853.0
     irpp: -1853.0
     rbg: 45000.0
-    dfppce: 1980.0
-    donpartipol: 3960.0
+    dfppce: 5940.0
     reductions: 5940.0
+    rfr: 45000.0
+
+- name: reduc_dfppce
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7uf: 500
+      f7uh: 400
+      f7ue: 200
+      f7ud: 400
+      f7vc: 500
+      f7va: 150
+      f7xs: 700
+      f7xt: 1000
+      f7xu: 300
+      f7xw: 100
+      f7xy: 300
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 4573.0
+    irpp: -4573.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    reductions: 3071.0
+    rfr: 45000.0
+
+- name: reduc_dfppce
+  period: 2020
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7uf: 500
+      f7uh: 400
+      f7ud: 200
+      f7vc: 500
+      f7va: 150
+      f7xs: 700
+      f7xt: 1000
+      f7xu: 300
+      f7xw: 100
+      f7xy: 350
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 4702.0
+    irpp: -4702.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    reductions: 2804.0
+    rfr: 45000.0
+
+- name: reduc_dfppce
+  period: 2021
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7uf: 5000
+      f7uh: 6000
+      f7ud: 2000
+      f7uj: 3700
+      f7vc: 5000
+      f7va: 1500
+      f7xs: 7000
+      f7xt: 1000
+      f7xu: 3000
+      f7xw: 2000
+      f7xy: 1500
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 316.0
+    irpp: -316.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    reductions: 7106.0
+    rfr: 45000.0
+
+- name: reduc_dfppce
+  period: 2021
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7vc: 50000
+      f7va: 15000
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 732.0
+    irpp: -732.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    reductions: 6690.0
     rfr: 45000.0

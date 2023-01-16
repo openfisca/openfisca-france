@@ -11,13 +11,13 @@ metadata:
   unit: year
   reference:
     1989-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006756315&cidTexte=JORFTEXT000000875188
       title: Loi 88-1088 du 01/12/1988, art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006756315&cidTexte=JORFTEXT000000875188
     2009-06-01:
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019860428
-      title: Loi 2008-1249 du 01/12/2008
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006756315&cidTexte=JORFTEXT000000875188
-      title: Loi 88-1088 du 01/12/1988 art. 2
+    - title: Loi 2008-1249 du 01/12/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019860428
+    - title: Loi 88-1088 du 01/12/1988 art. 2
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006756315&cidTexte=JORFTEXT000000875188
   official_journal_date:
     1989-01-01: "1988-12-03"
     2009-06-01: "2008-12-03"

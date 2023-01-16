@@ -98,8 +98,8 @@ class ppe_elig_bis(Variable):
         nbptr = foyer_fiscal('nbptr', period)
         variator = foyer_fiscal('variator', period)
         ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
-        seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3)\
-            + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
+        seuil = (veuf | celibataire_ou_divorce) * (ppe.seuils_rfr_eligibilite.personne_seule + 2 * max_(nbptr - 1, 0) * ppe.seuils_rfr_eligibilite.increment_par_demi_part)\
+            + maries_ou_pacses * (ppe.seuils_rfr_eligibilite.couple_marie_pacse + 2 * max_(nbptr - 2, 0) * ppe.seuils_rfr_eligibilite.increment_par_demi_part)
         return (rfr * ppe_coef) <= (seuil * variator)
 
 

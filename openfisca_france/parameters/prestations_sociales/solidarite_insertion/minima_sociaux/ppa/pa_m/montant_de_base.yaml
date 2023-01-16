@@ -23,43 +23,38 @@ metadata:
   description_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_montant_base
   unit: currency
-  last_review: "2022-09-27"
   reference:
     2015-10-01:
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031665102
       title: Décret 2015-1710 du 21/12/2015, art. 1
-    2016-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000031673709&cidTexte=JORFTEXT000031665094
-      title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031665102
     2016-04-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000032482324&categorieLien=id
       title: Décret 2016-536 du 27/04/2016, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000032482324&categorieLien=id
     2017-04-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2017/5/4/AFSA1710709D/jo/article_1
       title: Décret 2017-740 du 04/05/2017, art. 1
+      href: https://www.legifrance.gouv.fr/eli/decret/2017/5/4/AFSA1710709D/jo/article_1
     2018-04-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2018/5/3/SSAA1805962D/jo/texte
       title: Décret 2018-323 du 03/05/2018, art. 1
+      href: https://www.legifrance.gouv.fr/eli/decret/2018/5/3/SSAA1805962D/jo/texte
     2018-08-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2018/10/3/SSAA1822062D/jo/texte
       title: Décret 2018-836 du 03/10/2018, art. 1 et 2
+      href: https://www.legifrance.gouv.fr/eli/decret/2018/10/3/SSAA1822062D/jo/texte
     2019-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037846000&idArticle=&categorieLien=id
       title: Décret 2018-1197 du 21/12/2018, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037846000&idArticle=&categorieLien=id
     2020-04-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000041835204
       title: Décret 2020-491 du 29/04/2020, art. 1
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000041835204
     2021-04-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459542
       title: Décret 2021-528 du 29/04/2021, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459542
     2022-04-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045668709
       title: Décret 2022-701 du 26/04/2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045668709
     2022-07-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
       title: LOI n° 2022-1158 du 16/08/2022, art 9.
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
   official_journal_date:
-    2016-01-01: "2015-12-22"
     2016-04-01: "2016-05-03"
     2017-04-01: "2017-05-05"
     2018-04-01: "2018-05-04"
@@ -74,3 +69,4 @@ metadata:
     - title: Revalorisation de la Prime pour l'Activité suite à la loi 2018-1213 du 24/12/2018 portant mesures d'urgence économique et sociale. La Prime pour l'Activité augmente de 90 euros au niveau du Smic, via une augmentation de la bonification individuelle.
     2022-07-01:
     - title: Revalorisation de 4%
+  last_review: "2022-09-27"

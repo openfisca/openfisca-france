@@ -44,38 +44,35 @@ metadata:
       title: Loi 46-2153 du 07/10/1946
     1947-08-01:
       title: Loi 47-1127 du 25/06/1947, art. 19
-    1948-01-01:
-      title: Loi 48-35 du 07/01/1948
     1948-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684490
       title: Loi 48-1306 du 23/08/1948
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000684490
     1948-10-01:
       title: Loi 49-244 du 24/02/1949
     1949-04-01:
       title: Loi 49-922 du 13/07/1949
     1950-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000878353
       title: Loi 50-147 du 03/02/1950
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000878353
     1951-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336226
       title: Loi 51-374 du 27/03/1951
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336226
     1951-10-01:
       title: Loi 15-1126 du 26/09/1951
     1954-01-01:
       title: Loi 54-301 du 20/03/1954
     1956-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
       title: Loi 56-331 du 27/03/1956
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
     1960-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
       title: Loi 56-331 du 27/03/1956
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880561
   official_journal_date:
     1941-01-01: "1941-03-15"
     1945-01-01: "1945-06-03"
     1946-01-01: "1946-01-04"
     1946-07-01: "1946-10-08"
     1947-08-01: "1947-06-26"
-    1948-01-01: "1948-01-08"
     1948-07-01: "1948-08-24"
     1948-10-01: "1949-02-25"
     1949-04-01: "1949-07-14"
@@ -88,11 +85,3 @@ metadata:
   notes:
     1960-01-01:
     - title: "Un décret du 14 avril 1962 supprime les différences pour la France. Sources: site législation CNAV depuis 1956, Sécurité sociales - son histoire à travers les textes p 242 avant."
-documentation: |-
-  Condition d'attribution de l'AVTS : Le bénéficiaire doit être âgé de plus de 65 ans (de plus de 60 ans en cas d'invalidité ou de résidence dans un département d'outre-mer). Il doit également avoir été salarié pendant 15 ans après l'âge de 50 ans ou 25 années au cours de son activité, sachant que pour être comptabilisées, les périodes d'activité salariées doivent avoir été exercées en France (ou en Algérie ou à Monaco selon certaines conditions) et avoir procuré au demandeur une rémunération annuelle minimum.
-  Condition d'attribution de l'allocation spéciale : Elle est égale au montant de l'AVTS et vise les personnes de plus de 65 ans qui n'ont droit à aucune prestation vieillesse. Elle peut ainsi être attribuée aux personnes ne relevant d'aucun régime de vieillesse de base (toutes les dépenses qui se rattachent au service de cette allocation sont également prises en charge par le FSV).
-  Condition d'attribution de l'AMF : l'Allocation aux mères de famille est attribuée selon les mêmes montants et plafonds que l'AVTS. Elle est destinée aux femmes de salariés qui ont élevé au moins 5 enfants. (Voir aussi secours viagier, alligné sur ATVS).
-  Condition d'attribution de l'allocation aux vieux travailleurs non salariés (AVTNS): Elle correspond à l'extension de l'AVTS aux personnes relevant des régimes de non salariés des professions artisanales, industrielles et commerciales.
-  Attention : Ces conditions sont celles en vigueur à partir de 1956. Pour les évolutions législatives, notamment pour l'allongement progressif de la durée de travail salarié après 50 ans, se référer à la loi du 14 mars 1941 qui créé l'allocation puis à l'ordonnance 45/170 du 2/02/1945.
-  Sources:
-  Bozio, A. (2006), Réformes des retraites : estimations sur données françaises, thèse de doctorat, EHESS, annexe A.

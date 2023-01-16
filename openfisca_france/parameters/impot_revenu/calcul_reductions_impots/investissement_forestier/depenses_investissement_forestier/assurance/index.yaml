@@ -1,0 +1,6 @@
+description: Dépenses d'investissement forestier (cotisations d'assurance)
+metadata:
+  ux_name: Assurance
+  order:
+  - plafond
+  - taux

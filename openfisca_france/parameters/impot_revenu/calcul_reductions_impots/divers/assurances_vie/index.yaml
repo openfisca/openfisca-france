@@ -1,3 +1,8 @@
+description: Réduction d'impôt sur les Assurances-vie
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  ux_name: Assurances vie
+  description_en: Tax reduction on life insurances
+  order:
+    - taux
+    - plafond
+    - increment

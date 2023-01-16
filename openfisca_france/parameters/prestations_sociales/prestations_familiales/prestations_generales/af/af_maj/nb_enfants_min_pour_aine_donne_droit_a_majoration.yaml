@@ -9,8 +9,8 @@ metadata:
   unit: year
   reference:
     1984-01-01:
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018735853/2008-04-30
       title: Article R521-1 du Code de la SS
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018735853/2008-04-30
   last_review: "2022-02-22"
 documentation: |-
   Notes :

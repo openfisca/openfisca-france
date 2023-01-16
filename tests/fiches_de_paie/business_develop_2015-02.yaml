@@ -74,7 +74,6 @@ output:
   # mmid_salarie: -22.82
   contribution_exceptionnelle_solidarite: 0
   csg_deductible_salaire: -109.7
-  mhsup: 0
   salaire_imposable: 1726.13 + 0.01
   csg_imposable_salaire: -(2172.9 * 0.9825 + 16.08)*.024
   crds_salaire: -(2172.9 * 0.9825 + 16.08)*.005

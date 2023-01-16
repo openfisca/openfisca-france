@@ -6,36 +6,25 @@ values:
     value: 0.4165
 metadata:
   ux_name: Taux de base
-  last_review: 2022-09-27
   description_en: "Family complement (CF): General conditions and amounts"
   ipp_csv_id: tx_cf
   unit: BMAF
   reference:
     1978-01-01:
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
-      title: Loi 77-765 du 12/07/1977
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000518801
-      title: Décret 77-1265 du 16/11/1977
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000331149
-      title: Décret 78-957 du 05/09/1978
+    - title: Loi 77-765 du 12/07/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886344
+    - title: Décret 77-1265 du 16/11/1977
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000518801
+    - title: Décret 78-957 du 05/09/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000331149
     1983-01-01:
-      - title: cf. "évolution de la législation familiale en métropole depuis 1945"
-      - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737116/
-        title: Article D522-1 du Code de la sécurité sociale
+    - title: cf. "évolution de la législation familiale en métropole depuis 1945"
+    - title: Article D522-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737116/
   official_journal_date:
     1978-01-01: 1977-07-13; 1977-11-17; 1978-09-06
-    1986-07-01: 1985-12-21; 1989-08-31
-    1987-01-01: "1986-12-30"
-    1997-01-01: "1996-01-25"
-    2000-02-01: "2000-01-29"
     2003-12-19: "2003-12-19"
-    2015-04-01: "2015-03-19"
   notes:
     1978-01-01:
     - title: Au moins un enfant de moins de 3 ans ou alors 3+ enfants.; Le complément familial remplace l'AFG et l'AMF à compter du 01/01/1978
-    1986-07-01:
-    - title: Trois enfants de plus de 3 ans.; Suppression du CF de maintenance lorsque la famille passe de 3 à 2 enfants
-    2000-02-01:
-    - title: Passage de l'âge limite à 21 ans (sous réserve d'un plafond de ressources)
-    2014-04-01:
-    - title: Majoration progressive de 50 % d'ici à 2018 du CF
+  last_review: "2022-09-27"

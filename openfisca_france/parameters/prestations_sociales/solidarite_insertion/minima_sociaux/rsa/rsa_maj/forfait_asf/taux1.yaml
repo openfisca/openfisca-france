@@ -16,22 +16,21 @@ metadata:
   unit: BMAF
   reference:
     1985-12-21:
+      title: Article R523-7 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750632/1985-12-21/
-      title: Article R523-7 du Code de la sécurité sociale
     2014-04-01:
+      title: Article R523-7 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028878999/2014-04-01/
-      title: Article R523-7 du Code de la sécurité sociale
     2015-04-01:
+      title: Article R523-7 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030381064/2015-04-01/
-      title: Article R523-7 du Code de la sécurité sociale
     2016-04-01:
+      title: Article R523-7 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032363885/2016-04-03/
-      title: Article R523-7 du Code de la sécurité sociale
     2017-04-15:
+      title: Article R523-7 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034427380/2017-04-15/
-      title: Article R523-7 du Code de la sécurité sociale
     2018-04-01:
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038249358/2018-04-01/
       title: Article R523-7 du Code de la sécurité sociale
-  notes:
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038249358/2018-04-01/
   last_review: "2022-04-07"

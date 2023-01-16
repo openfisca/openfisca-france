@@ -42,11 +42,11 @@ class irpp(Variable):
         iai = foyer_fiscal('iai', period)
         credits_impot = foyer_fiscal('credits_impot', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
-        cehr = foyer_fiscal('cehr', period)
+        contribution_exceptionnelle_hauts_revenus = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
         cesthra = foyer_fiscal('cesthra', period = period)
         P = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
 
-        pre_result = iai - credits_impot - acomptes_ir + cehr + cesthra
+        pre_result = iai - credits_impot - acomptes_ir + contribution_exceptionnelle_hauts_revenus + cesthra
 
         return (
             (iai > P.seuil)

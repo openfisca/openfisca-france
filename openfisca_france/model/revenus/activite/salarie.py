@@ -556,6 +556,183 @@ class primes_salaires(Variable):
     set_input = set_input_divide_by_period
 
 
+class prime_partage_valeur(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Prime pérenne de partage de la valeur (PPV)'
+    definition_period = (YEAR)  # La PPV est versée en fonction du salaire des 12 derniers mois
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
+    set_input = set_input_divide_by_period
+    documentation = '''
+        La PPV exonérée représente l'éxonération de la prime des cotisations salariales,
+        patronales et l'impôt sur le revenu. La PPV prévoit l'absence de substitution et
+        donc le caractère « fantôme » de la prime au regard des ressources des
+        administrations publiques et singulièrement de la sécurité sociale.
+
+        la condition de rémunération est valable jusqu'au 31 décembre 2023.
+        Alors, lorsque la rémunération est inférieure à 3 SMIC, la PPV est **aussi**
+        exonérée d'impôt sur le revenu, ainsi que des contributions prévues
+        à l'article L. 136-1 du code de la sécurité sociale
+        [CSG activité = https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033712581]
+        et à l'article 14 de l'ordonnance n° 96-50 du 24 janvier 1996 relative au remboursement
+        de la dette sociale (⑯).
+        [CRDS = https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038834962/]
+        Néanmoins, elle est incluse dans le revenu fiscal de référence (⑰).
+        => Sous 3 SMIC les 12 derniers mois, on est en plus exonéré d'IR, CSG et CRDS.
+
+        Pour tout niveau de revenu :
+        PPV est exonérée, dans la limite de 3 000 euros :
+        * de toutes les cotisations sociales d'origine légale ou conventionnelle à la charge du salarié et de l'employeur,
+        ainsi que des participations, taxes et contributions prévues :
+        * à l'article 235 bis du code général des impôts
+        [PEEC applicable au-dessus de 50 salariés = https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038586341/]
+        * et à l'article L. 6131-1 du code du travail,
+        [
+            contribution unique à la formation professionnelle (CFP ?),
+            la contribution supplémentaire,
+            contribution dédiée au financement du compte personnel de formation
+            = article L. 6131-1 du code du travail
+            ]
+        dans leur rédaction en vigueur à la date de son versement.
+        '''
+
+
+class prime_partage_valeur_exceptionnelle(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Prime exceptionnelle de partage de la valeur (PPV)'
+    definition_period = (YEAR)  # La PPV est versée en fonction du salaire des 12 derniers mois
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
+    set_input = set_input_divide_by_period
+
+
+class prime_partage_valeur_exoneree_exceptionnelle(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Prime exceptionnelle de partage de la valeur (PPV), partie exonérée'
+    definition_period = YEAR
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
+
+    set_input = set_input_divide_by_period
+
+    def formula_2022_07_01(individu, period, parameters):
+        '''
+        La prime exceptionnelle de partage de la valeur (PPV),
+        est réservée aux salariés qui ont un salaire de base inférieur à 3 x SMIC.
+        Elle ne peut plus être versée après le 31 décembre 2023.
+        '''
+
+        prime_partage_valeur = individu('prime_partage_valeur_exceptionnelle', period)
+        accord_interessement = individu('accord_interessement', period.first_month)
+        ppv_parameters = parameters(period).marche_travail.primes_exceptionnelles.prime_partage_valeur
+        plafond_ppv_exoneree = where(
+            accord_interessement,
+            ppv_parameters.plafond_exoneration_avec_accord_interessement,
+            ppv_parameters.plafond_exoneration,
+            )
+        # Le plafond doit être diminué de la prime PEPA éventuellement versée début 2022
+        prime_exceptionnelle_pouvoir_achat = individu('prime_exceptionnelle_pouvoir_achat', period)
+        plafond_ppv_exoneree = plafond_ppv_exoneree - prime_exceptionnelle_pouvoir_achat
+        ppv_eligibilite_exceptionnelle = individu('ppv_eligibilite_exceptionnelle', period)
+        return (
+            min_(prime_partage_valeur, plafond_ppv_exoneree)
+            * ppv_eligibilite_exceptionnelle  # Neutralisation de la prime pour >= 3 x SMIC
+            )
+
+
+class prime_partage_valeur_non_exoneree_exceptionnelle(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Prime exceptionnelle de partage de la valeur (PPV), partie non exonérée'
+    definition_period = YEAR
+    set_input = set_input_divide_by_period
+
+    def formula_2022_07_01(individu, period, parameters):
+        prime_partage_valeur_exceptionnelle = individu('prime_partage_valeur_exceptionnelle', period)
+        ppv_eligibilite_exceptionnelle = individu('ppv_eligibilite_exceptionnelle', period)
+        prime_partage_valeur_exoneree_exceptionnelle = individu('prime_partage_valeur_exoneree_exceptionnelle', period)
+        return (
+            prime_partage_valeur_exceptionnelle
+            - prime_partage_valeur_exoneree_exceptionnelle
+            ) * ppv_eligibilite_exceptionnelle  # Neutralisation de la prime pour >= 3 x SMIC
+
+
+class ppv_eligibilite_exceptionnelle(Variable):
+    '''
+    Cette variable sert à neutraliser la prime pour les personnes qui touchent plus que 3xSMIC
+    Car dans ce cas il n'est pas autorisé de leur verser la prime exceptionnelle.
+    L'employeur doit alors opter pour la prime temporaire/exceptionnelle.
+    '''
+
+    value_type = float
+    entity = Individu
+    label = 'Eligibilité aux exonérations complémentaires pour la PPV'
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+    end = '2023-12-31'
+    documentation = '''
+    L'individu est éligible à des exonérations complémentaires
+    sur la prime de partage de valeur (PPV) pour une rémunération
+    inférieure à 3 SMIC : exonération de CSG, CRDS
+    et impôt sur le revenu.
+    '''
+
+    def formula_2022_07_01(individu, period, parameters):
+        annee_glissante = period.start.period('year').offset(-1)
+        salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
+        smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
+        quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
+        plafond_salaire = parameters(period).marche_travail.primes_exceptionnelles.prime_partage_valeur.plafond_salaire
+        return (salaire_de_base_annuel) < (
+            smic_b_annuel * plafond_salaire * quotite_de_travail
+            )
+
+
+class prime_partage_valeur_exoneree(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Prime pérenne de partage de la valeur (PPV), partie exonérée'
+    definition_period = YEAR
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
+    set_input = set_input_divide_by_period
+
+    def formula_2022_07_01(individu, period, parameters):
+        '''
+        Il y a deux plafond suivant que l'employeur ait ou non :
+        # * un dispositif d'intéressement,
+        # * TODO : par un organisme d'intérêt général
+        # * TODO : ou, s'agissant des primes versées aux travailleurs handicapés,
+        #          par un établissement ou service d'aide par le travail
+        '''
+
+        prime_partage_valeur = individu('prime_partage_valeur', period)
+        accord_interessement = individu('accord_interessement', period.first_month)
+
+        ppv_parameters = parameters(period).marche_travail.primes_exceptionnelles.prime_partage_valeur
+        plafond_ppv_exoneree = where(
+            accord_interessement,
+            ppv_parameters.plafond_exoneration_avec_accord_interessement,
+            ppv_parameters.plafond_exoneration,
+            )
+        return min_(prime_partage_valeur, plafond_ppv_exoneree)
+
+
+class prime_partage_valeur_non_exoneree(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Prime pérenne de partage de la valeur (PPV), partie non exonérée'
+    definition_period = YEAR
+    reference = 'https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188457/2022-08-18'
+    set_input = set_input_divide_by_period
+
+    def formula_2022_07_01(individu, period, parameters):
+        prime_partage_valeur = individu('prime_partage_valeur', period)
+        prime_partage_valeur_exoneree = individu(
+            'prime_partage_valeur_exoneree', period
+            )
+        return prime_partage_valeur - prime_partage_valeur_exoneree
+
+
 class prime_exceptionnelle_pouvoir_achat(Variable):
     value_type = float
     entity = Individu
@@ -602,7 +779,7 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
         salaire_de_base_annuel = individu('salaire_de_base', annee_glissante, options=[ADD])
         smic_b_annuel = parameters(period).marche_travail.salaire_minimum.smic.smic_b_mensuel * 12
         quotite_de_travail = individu('quotite_de_travail', period, options=[ADD]) / 12
-        plafond_salaire = parameters(period).marche_travail.prime_pepa.plafond_salaire
+        plafond_salaire = parameters(period).marche_travail.primes_exceptionnelles.prime_pepa.plafond_salaire
 
         # "une rémunération inférieure à trois fois la valeur annuelle du salaire minimum de croissance
         # correspondant à la durée de travail prévue au contrat"
@@ -616,24 +793,24 @@ class prime_exceptionnelle_pouvoir_achat_exoneree(Variable):
             'prime_exceptionnelle_pouvoir_achat',
             period)
 
-        plafond_exoneration = parameters(period).marche_travail.prime_pepa.plafond_exoneration
+        plafond_exoneration = parameters(period).marche_travail.primes_exceptionnelles.prime_pepa.plafond_exoneration
         prime_inf_seuil_1 = prime_exceptionnelle_pouvoir_achat <= plafond_exoneration
 
         accord_interessement = individu('accord_interessement', period.first_month)
         effectif_entreprise = individu('effectif_entreprise', period.first_month)
-        plafond_effectif_entreprise = parameters(period).marche_travail.prime_pepa.plafond_effectif_entreprise
+        plafond_effectif_entreprise = parameters(period).marche_travail.primes_exceptionnelles.prime_pepa.plafond_effectif_entreprise
         condition_entreprise = accord_interessement + (effectif_entreprise < plafond_effectif_entreprise)
-        plafond_exoneration_avec_accord_interessement = parameters(period).marche_travail.prime_pepa.plafond_exoneration_avec_accord_interessement
+        plafond_exoneration_avec_accord_interessement = parameters(period).marche_travail.primes_exceptionnelles.prime_pepa.plafond_exoneration_avec_accord_interessement
         return (condition_remuneration
-            * where(
-                prime_inf_seuil_1,
-                min_(prime_exceptionnelle_pouvoir_achat, plafond_exoneration),
-                where(
-                    condition_entreprise,
-                    min_(prime_exceptionnelle_pouvoir_achat, plafond_exoneration_avec_accord_interessement),
-                    plafond_exoneration
+                * where(
+                    prime_inf_seuil_1,
+                    min_(prime_exceptionnelle_pouvoir_achat, plafond_exoneration),
+                    where(
+                        condition_entreprise,
+                        min_(prime_exceptionnelle_pouvoir_achat, plafond_exoneration_avec_accord_interessement),
+                        plafond_exoneration
+                        )
                     )
-                )
                 )
 
 
@@ -647,7 +824,7 @@ class prime_exceptionnelle_pouvoir_achat_non_exoneree(Variable):
 
     def formula_2019_01_01(individu, period, parameters):
         prime_exceptionnelle_pouvoir_achat = individu('prime_exceptionnelle_pouvoir_achat', period)
-        prime_exceptionnelle_pouvoir_achat_exoneree = \
+        prime_exceptionnelle_pouvoir_achat_exoneree =\
             individu('prime_exceptionnelle_pouvoir_achat_exoneree', period)
         return prime_exceptionnelle_pouvoir_achat - prime_exceptionnelle_pouvoir_achat_exoneree
 
@@ -659,9 +836,19 @@ class primes_salaires_non_exonerees(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    def formula_2022_07_01(individu, period, parameters):
+        primes_salaires = individu('primes_salaires', period)
+        prime_partage_valeur_non_exoneree = individu('prime_partage_valeur_non_exoneree', period, options=[DIVIDE])
+        prime_partage_valeur_non_exoneree_exceptionnelle = individu('prime_partage_valeur_non_exoneree_exceptionnelle', period, options=[DIVIDE])
+        return (
+            primes_salaires
+            + prime_partage_valeur_non_exoneree
+            + prime_partage_valeur_non_exoneree_exceptionnelle
+            )
+
     def formula_2019_01_01(individu, period, parameters):
         primes_salaires = individu('primes_salaires', period)
-        prime_exceptionnelle_pouvoir_achat_non_exoneree = \
+        prime_exceptionnelle_pouvoir_achat_non_exoneree =\
             individu('prime_exceptionnelle_pouvoir_achat_non_exoneree', period, options = [DIVIDE])
         return primes_salaires + prime_exceptionnelle_pouvoir_achat_non_exoneree
 
@@ -745,6 +932,7 @@ class salaire_de_base(Variable):
     set_input = set_input_divide_by_period
     reference = 'https://www.insee.fr/fr/metadonnees/definition/c1937'
     definition_period = MONTH
+    unit = 'currency'
 
 
 class titre_restaurant_taux_employeur(Variable):
@@ -966,12 +1154,38 @@ class indemnite_residence(Variable):
         categorie_salarie = individu('categorie_salarie', period)
         zone_apl = individu.menage('zone_apl', period)
         TypesZoneApl = zone_apl.possible_values
-        _P = parameters(period)
-
-        P = _P.prestations_sociales.fonc.indem_resid
-        min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
-        taux = P.taux.zone1 * (zone_apl == TypesZoneApl.zone_1) + P.taux.zone2 * (zone_apl == TypesZoneApl.zone_2) + P.taux.zone3 * (zone_apl == TypesZoneApl.zone_3)
-        plancher = min_zone_1 * (zone_apl == TypesZoneApl.zone_1) + min_zone_2 * (zone_apl == TypesZoneApl.zone_2) + min_zone_3 * (zone_apl == TypesZoneApl.zone_3)
+        indemnite_residence = parameters(period).marche_travail.remuneration_dans_fonction_publique.indemnite_residence
+        (min_zone_1, min_zone_2, min_zone_3) = (
+            indemnite_residence.min * indemnite_residence.taux.zone1,
+            indemnite_residence.min * indemnite_residence.taux.zone2,
+            indemnite_residence.min * indemnite_residence.taux.zone3
+            )
+        taux = select(
+            [
+                (zone_apl == TypesZoneApl.zone_1),
+                (zone_apl == TypesZoneApl.zone_2),
+                (zone_apl == TypesZoneApl.zone_3),
+                ],
+            [
+                indemnite_residence.taux.zone1,
+                indemnite_residence.taux.zone2,
+                indemnite_residence.taux.zone3,
+                ],
+            default = 0
+            )
+        plancher = select(
+            [
+                (zone_apl == TypesZoneApl.zone_1),
+                (zone_apl == TypesZoneApl.zone_2),
+                (zone_apl == TypesZoneApl.zone_3),
+                ],
+            [
+                min_zone_1,
+                min_zone_2,
+                min_zone_3,
+                ],
+            default = 0
+            )
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
@@ -996,9 +1210,7 @@ class indice_majore(Variable):
         period = period.start.period('month').offset('first-of')
         categorie_salarie = individu('categorie_salarie', period)
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
-        _P = parameters(period)
-
-        traitement_annuel_brut = _P.prestations_sociales.fonc.IM_100
+        traitement_annuel_brut = parameters(period).prestations_sociales.fonc.IM_100
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
@@ -1079,60 +1291,33 @@ class supplement_familial_traitement(Variable):
     def formula(individu, period, parameters):
         categorie_salarie = individu('categorie_salarie', period)
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
-        _P = parameters(period)
+        fonction_publique = parameters(period).marche_travail.remuneration_dans_fonction_publique
+        indice_majore_100 = 100 * fonction_publique.indicefp.point_indice_en_nominal
 
         fonc_nbenf = individu.famille('af_nbenf_fonc', period) * individu.has_role(Famille.DEMANDEUR)
 
-        P = _P.prestations_sociales.fonc.supplement_familial
-        part_fixe_1 = P.fixe.enf1
-        part_fixe_2 = P.fixe.enf2
-        part_fixe_supp = P.fixe.enfsupp
+        sft = fonction_publique.sft
 
         part_fixe = (
-            part_fixe_1 * (fonc_nbenf == 1)
-            + part_fixe_2 * (fonc_nbenf == 2)
-            + part_fixe_supp * max_(0, fonc_nbenf - 2)
+            sft.part_fixe.un_enfant * (fonc_nbenf == 1)
+            + sft.part_fixe.deux_enfants * (fonc_nbenf >= 2)
+            + sft.part_fixe.enfant_supplementaire * max_(0, fonc_nbenf - 2)
             )
-
-        # pct_variable_1 = 0
-        pct_variable_2 = P.prop.enf2
-        pct_variable_3 = P.prop.enf3
-        pct_variable_supp = P.prop.enfsupp
 
         pct_variable = (
-            pct_variable_2 * (fonc_nbenf == 2)
-            + (pct_variable_3) * (fonc_nbenf == 3)
-            + pct_variable_supp * max_(0, fonc_nbenf - 3)
+            sft.part_proportionnelle.deux_enfants * (fonc_nbenf == 2)
+            + sft.part_proportionnelle.trois_enfants * (fonc_nbenf >= 3)
+            + sft.part_proportionnelle.enfant_supplementaire * max_(0, fonc_nbenf - 3)
             )
 
-        indice_maj_min = P.IM_min
-        indice_maj_max = P.IM_max
+        indice_maj_min = sft.im_plancher
+        indice_maj_max = sft.im_plafond
 
-        traitement_brut_mensuel_min = _traitement_brut_mensuel(indice_maj_min, _P.prestations_sociales.fonc.IM_100)
-        plancher_mensuel_1 = part_fixe
-        plancher_mensuel_2 = part_fixe + traitement_brut_mensuel_min * pct_variable_2
-        plancher_mensuel_3 = part_fixe + traitement_brut_mensuel_min * pct_variable_3
-        plancher_mensuel_supp = traitement_brut_mensuel_min * pct_variable_supp
+        traitement_brut_mensuel_min = _traitement_brut_mensuel(indice_maj_min, indice_majore_100)
+        plancher = part_fixe + traitement_brut_mensuel_min * pct_variable
 
-        plancher = (
-            plancher_mensuel_1 * (fonc_nbenf == 1)
-            + plancher_mensuel_2 * (fonc_nbenf == 2)
-            + plancher_mensuel_3 * (fonc_nbenf >= 3)
-            + plancher_mensuel_supp * max_(0, fonc_nbenf - 3)
-            )
-
-        traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, _P.prestations_sociales.fonc.IM_100)
-        plafond_mensuel_1 = part_fixe
-        plafond_mensuel_2 = part_fixe + traitement_brut_mensuel_max * pct_variable_2
-        plafond_mensuel_3 = part_fixe + traitement_brut_mensuel_max * pct_variable_3
-        plafond_mensuel_supp = traitement_brut_mensuel_max * pct_variable_supp
-
-        plafond = (
-            plafond_mensuel_1 * (fonc_nbenf == 1)
-            + plafond_mensuel_2 * (fonc_nbenf == 2)
-            + plafond_mensuel_3 * (fonc_nbenf == 3)
-            + plafond_mensuel_supp * max_(0, fonc_nbenf - 3)
-            )
+        traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, indice_majore_100)
+        plafond = part_fixe + traitement_brut_mensuel_max * pct_variable
 
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
@@ -1161,6 +1346,7 @@ class remuneration_principale(Variable):
     label = 'Rémunération principale des agents titulaires de la fonction publique'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    unit = 'currency'
 
     def formula(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
@@ -1265,6 +1451,28 @@ class salaire_super_brut(Variable):
         exonerations_et_allegements = individu('exonerations_et_allegements', period)
         prime_exceptionnelle_pouvoir_achat_exoneree = individu('prime_exceptionnelle_pouvoir_achat_exoneree', period, options = [DIVIDE])
         return salaire_super_brut_hors_allegements - exonerations_et_allegements + prime_exceptionnelle_pouvoir_achat_exoneree
+
+    def formula_2022_07_01(individu, period, parameters):
+        '''
+        Apparition de la PPV le 1er aout 2022:
+        Au niveau du salaire super brut, la PPV se comporte comme la PEPA.
+        Pour tout niveau de revenu, la part de prime sous plafond est exonérée
+        de toutes les cotisations sociales d'origine légale ou conventionnelle
+        à la charge du salarié et de l'employeur (mais pas de contribution
+        "forfait social") et la part de la prime non exonérée
+        (sur plafond) est soumise aux cotisations.
+        '''
+        period = period
+        salaire_super_brut_hors_allegements = individu('salaire_super_brut_hors_allegements', period)
+        exonerations_et_allegements = individu('exonerations_et_allegements', period)
+        prime_partage_valeur_exoneree = individu('prime_partage_valeur_exoneree', period, options=[DIVIDE])
+        prime_partage_valeur_exoneree_exceptionnelle = individu('prime_partage_valeur_exoneree_exceptionnelle', period, options=[DIVIDE])
+        return (
+            salaire_super_brut_hors_allegements
+            - exonerations_et_allegements
+            + prime_partage_valeur_exoneree
+            + prime_partage_valeur_exoneree_exceptionnelle
+            )
 
 
 class exonerations_et_allegements(Variable):

@@ -1,0 +1,16 @@
+description: Contributions des entreprises d'assurances sur les fonds de garantie des assurances obligatoires (FGAO)
+values:
+  2004-08-05:
+    value: 0.01
+metadata:
+  ipp_csv_id: fgao_contrib_assurances
+  unit: /1
+  reference:
+    2004-08-05:
+      title: Arrêté du 16/07/2004
+  official_journal_date:
+    2004-08-05: "2004-08-05"
+documentation: |-
+  Données renseignées dans l''article A421-3 du code des assurances
+  En % de la totalité des charges de la section relative aux opérations résultant de la défaillance d''entreprises d''assurance
+  Au titre du 1° de l''article R-421-27'

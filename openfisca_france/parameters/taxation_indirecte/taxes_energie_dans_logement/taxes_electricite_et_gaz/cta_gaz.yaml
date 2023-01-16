@@ -1,0 +1,18 @@
+description: Contribution tarifaire d'acheminement (CTA) portant sur la distribution de gaz
+values:
+  2003-01-01:
+    value: null
+  2006-01-01:
+    value: 0.157
+  2013-05-01:
+    value: 0.208
+metadata:
+  ipp_csv_id: cta
+  unit: /1
+documentation: |-
+  http://www.gaznaturel-3frontieres.fr/upload/banque-image/Circulaire%20TICGN%2029%20avril%202014.pdf
+
+  Il y a plusieurs conflits entre les diverses sources sur les taux de TICGN. Vraisemblablement on avait annoncé une hausse de 1,19 à 1,41, puis 2,93 et 4,01 ou 4,45, mais les taux appliqués ont été différents. On utilise ici les taux ex post
+  Source : http://selectra.info/CTSSG.html
+  La contribution biométhane et la CTSSG ont fusionné avec la TICGN au 1er janvier 2016. Les montants de la contribution biométhane sont minimes. 
+  TICGN : taxe renseignée à l''article 266 quinquies du code des douanes'

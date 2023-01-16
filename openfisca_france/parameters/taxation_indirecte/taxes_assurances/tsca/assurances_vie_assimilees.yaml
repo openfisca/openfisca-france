@@ -1,0 +1,15 @@
+description: Assurances vie et assimilées
+values:
+  1979-07-01:
+    value: 0.048
+  1981-01-01:
+    value: 0.0515
+  1990-01-01:
+    value: null
+metadata:
+  ipp_csv_id: taxe_assu_vie_et_assimiliees
+  unit: /1
+documentation: |-
+  Déductions pour les véhicules de plus de 3,5 tonnes
+  Les assurances dépendance sont exonérées de la TSCA
+  NB : données renseignées dans l''article 1001 du code général des impôts, et L137-6 du code de la sécurité sociale.

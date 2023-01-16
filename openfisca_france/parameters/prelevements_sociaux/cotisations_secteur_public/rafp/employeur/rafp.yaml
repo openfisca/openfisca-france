@@ -12,8 +12,8 @@ metadata:
   ipp_csv_id: rafp_p
   reference:
     2005-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2004/6/18/2004-569/jo/texte
       title: Décret 2004-569 du 18/06/2004
+      href: https://www.legifrance.gouv.fr/eli/decret/2004/6/18/2004-569/jo/texte
   official_journal_date:
     2005-01-01: "2004-06-19"
   last_review: "2021-08-24"

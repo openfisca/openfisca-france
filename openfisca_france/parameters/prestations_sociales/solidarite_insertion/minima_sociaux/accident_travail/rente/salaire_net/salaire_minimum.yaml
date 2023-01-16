@@ -35,7 +35,7 @@ values:
   2019-04-01:
     value: 18575.57
   2020-04-01:
-    value: 18631.30
+    value: 18631.3
   2021-04-01:
     value: 18649.93
 metadata:
@@ -43,23 +43,21 @@ metadata:
   unit: currency
   reference:
     2015-12-23:
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/
       title: Article L434-17 Section 2 Calcul de la rente
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688375/
     2016-04-01:
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688421
       title: Article L413-7 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688421
   notes:
     2017-04-01:
-      - title: revalorisation de 0,3%
+    - title: revalorisation de 0,3%
     2018-04-01:
-      - title: revalorisation de 1%
+    - title: revalorisation de 1%
     2019-04-01:
-      - title: revalorisation de 0,3%
-    2029-04-01:
-      - title: revalorisation de 0,3%
+    - title: revalorisation de 0,3%
     2021-04-01:
-      - title: revalorisation de 0,1%
+    - title: revalorisation de 0,1%
+    2029-04-01:
+    - title: revalorisation de 0,3%
   last_review: "2021-04-01"
-documentation: 
-  Modalités du calcul de la rente précisées dans l'article L434-16 - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688385/
-  Depuis 2016, le salaire est revalorisé au niveau de l'inflation.
+documentation: Modalités du calcul de la rente précisées dans l'article L434-16 - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688385/ Depuis 2016, le salaire est revalorisé au niveau de l'inflation.

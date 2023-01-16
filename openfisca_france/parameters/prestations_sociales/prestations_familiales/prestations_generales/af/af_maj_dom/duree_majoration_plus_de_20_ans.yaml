@@ -9,12 +9,12 @@ metadata:
   unit: year
   reference:
     1991-08-06:
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775833&cidTexte=JORFTEXT000000571496
-      title: Décret 91-761 du 5/08/1991 - art. 1
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029963006/2015-07-01/
-      title: Article L521-1 du Code de la sécurité sociale
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031323778
-      title: Article L751-1 du Code de la sécurité sociale
+    - title: Décret 91-761 du 5/08/1991 - art. 1
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775833&cidTexte=JORFTEXT000000571496
+    - title: Article L521-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029963006/2015-07-01/
+    - title: Article L751-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031323778
   official_journal_date:
     1991-08-06: "1991-08-06"
   last_review: "2022-03-10"

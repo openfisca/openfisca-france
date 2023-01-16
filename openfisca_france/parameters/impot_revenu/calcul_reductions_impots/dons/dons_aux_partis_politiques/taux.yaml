@@ -1,4 +1,19 @@
+description: Taux des dons aux partis politiques
+metadata:
+  ux_name: Taux
+  ipp_csv_id: tx_partipol
+  official_journal_date:
+    2002-01-01: '2003-08-02'
+    2005-01-01: '2005-01-19'
+  reference:
+    2002-01-01:
+      title: Loi 2003-709 du 01/08/2003 - art. 1 (V)
+    2005-01-01:
+      title: Loi n° 2005-32 du 18/01/2005
+  unit: /1
 values:
+  1975-01-01:
+    value: null
   1996-01-01:
     value: 0.4
   1999-01-01:
@@ -7,7 +22,6 @@ values:
     value: 0.6
   2005-01-01:
     value: 0.66
-metadata:
-  unit: /1
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+documentation: |-
+  Notes :
+  Dons aux partis politiques : 3. de l'art. 200 du CGI

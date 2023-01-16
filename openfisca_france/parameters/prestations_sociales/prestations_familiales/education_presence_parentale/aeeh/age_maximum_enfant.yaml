@@ -12,10 +12,10 @@ metadata:
     - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006682303&cidTexte=JORFTEXT000000809647
     - title: Loi 2005-102 du 11/02/2005, art. 68 (modif. Art. L541 du CSS)
     - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000268753
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041979747
-      title: Article L511-1 du Code de la sécurité sociale
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750602
-      title: Article R512-2 du Code de la sécurité sociale
+    - title: Article L511-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041979747
+    - title: Article R512-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750602
   official_journal_date:
     2006-01-01: 2005-02-12; 2006-01-01
   notes:

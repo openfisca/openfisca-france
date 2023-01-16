@@ -32,7 +32,6 @@
     menage:
       personne_de_reference: ind0
   output:
-    donapd: 150.0
     iai: 7711.0
     irpp: -7711.0
     nbptr: 1.0
@@ -75,7 +74,6 @@
     menage:
       personne_de_reference: ind0
   output:
-    donapd: 150.0
     iai: 7705.0
     irpp: -7705.0
     nbptr: 1.0
@@ -117,7 +115,6 @@
     menage:
       personne_de_reference: ind0
   output:
-    donapd: 150.0
     iai: 7700.0
     irpp: -7700.0
     nbptr: 1.0
@@ -159,11 +156,10 @@
     menage:
       personne_de_reference: ind0
   output:
-    donapd: 150.0
     iai: 7643.0
     irpp: -7643.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     reductions: 150.0
     rfr: 45000.0

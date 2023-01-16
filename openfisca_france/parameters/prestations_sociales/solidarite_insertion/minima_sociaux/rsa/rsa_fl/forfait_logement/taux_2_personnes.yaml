@@ -9,10 +9,10 @@ metadata:
   unit: /1
   reference:
     2009-06-01:
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020526192/2022-01-21/
-      title: Article R262-9 2. du Code de l'action sociale et des familles
-    - href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020522717&cidTexte=JORFTEXT000020521930
-      title: Décret 2009-404 du 15/04/2009, art. 2 (modif art. R262-9 et R262-10 du CASF)
+    - title: Article R262-9 2. du Code de l'action sociale et des familles
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020526192/2022-01-21/
+    - title: Décret 2009-404 du 15/04/2009, art. 2 (modif art. R262-9 et R262-10 du CASF)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020522717&cidTexte=JORFTEXT000020521930
   official_journal_date:
     2009-06-01: "2009-04-16"
   notes:

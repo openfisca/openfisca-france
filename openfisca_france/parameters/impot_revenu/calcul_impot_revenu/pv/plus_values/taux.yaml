@@ -1,0 +1,17 @@
+metadata:
+  reference:
+    href: https://www.ipp.eu/outils/baremes-ipp/
+  unit: /1
+values:
+  1978-01-01:
+    value: 0.15
+  1984-01-01:
+    value: 0.16
+  2008-01-01:
+    value: 0.18
+  2011-01-01:
+    value: 0.19
+  2012-01-01:
+    value: 0.24
+  2013-01-01:
+    value: null

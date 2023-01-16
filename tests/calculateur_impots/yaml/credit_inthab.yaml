@@ -167,6 +167,46 @@
     inthab: 450.0
     irpp: -7343.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 45000.0
+    rfr: 45000.0
+- name: credit_inthab
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7vx: 10000
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    credits_impot: 1500
+    iai: 7644.0
+    irpp: -6144.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
     rbg: 45000.0
     rfr: 45000.0

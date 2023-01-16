@@ -1,0 +1,15 @@
+description: Assurance bateaux de sport ou de plaisance
+values:
+  1979-07-01:
+    value: 0.0875
+  1981-01-01:
+    value: 0.12
+  1984-01-01:
+    value: 0.19
+metadata:
+  ipp_csv_id: taxe_assu_bateaux_sport_plaisance
+  unit: /1
+documentation: |-
+  Déductions pour les véhicules de plus de 3,5 tonnes
+  Les assurances dépendance sont exonérées de la TSCA
+  NB : données renseignées dans l''article 1001 du code général des impôts, et L137-6 du code de la sécurité sociale.

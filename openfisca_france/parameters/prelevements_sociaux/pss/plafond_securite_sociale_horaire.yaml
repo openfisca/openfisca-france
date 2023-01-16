@@ -10,31 +10,22 @@ values:
     value: 24
 metadata:
   ux_name: Plafond horaire
-  description_en: Social security ceiling
+  description_en: Social security hourly ceiling
   unit: currency
   reference:
     2009-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2008/12/19/2008-1394/jo/texte
       title: Décret 2008-1394 du 19/12/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/12/19/2008-1394/jo/texte
     2010-01-01:
       title: Arrêté du 18/11/2009
-    2011-01-01:
-      title: Arrêté du 26/11/2010
     2012-01-01:
       title: Arrêté du 30/12/2011
-    2013-01-01:
-      title: Arrêté du 12/12/2012
-    2014-01-01:
-      title: Arrêté du 07/11/2013
     2015-01-01:
       title: Arrêté du 26/12/2014
   official_journal_date:
     2009-01-01: "2008-12-24"
     2010-01-01: "2009-11-26"
-    2011-01-01: "2010-11-28"
     2012-01-01: "2011-12-31"
-    2013-01-01: "2012-12-21"
-    2014-01-01: "2013-11-19"
     2015-01-01: "2014-12-09"
   last_review: "2015-01-01"
 documentation: |-

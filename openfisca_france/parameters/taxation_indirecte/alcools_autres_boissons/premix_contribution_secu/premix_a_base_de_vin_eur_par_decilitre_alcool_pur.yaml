@@ -1,0 +1,15 @@
+description: Prémix définies à l'article 435 (€ par décilitre d'alcool pur)
+values:
+  2019-12-31:
+    value: null
+  2020-01-01:
+    value: 3
+metadata:
+  ipp_csv_id: taxe_premix_vin_decil_pur
+  unit: currency
+  reference:
+    2020-01-01:
+      title: TODO
+documentation: |-
+  Données renseignées dans l''article 1613 bis du code général des impôts
+  Définition prémix : mélange pré-fait d''un alcool et d''une boisson non alcoolisée, le plus souvent un soda

@@ -1,0 +1,62 @@
+description: Cotisation sécurité sociale sur les produits intermédiaires titrant plus de 18% vol. - Taux plein (€/hl)
+values:
+  1983-04-01:
+    value: null
+  2011-12-23:
+    value: 45
+  2013-01-01:
+    value: 45.79
+  2014-01-01:
+    value: 46.59
+  2015-01-01:
+    value: 46.92
+  2017-01-01:
+    value: 47.11
+  2018-01-01:
+    value: 47.2
+  2019-01-01:
+    value: 47.67
+  2020-01-01:
+    value: 48.43
+  2021-01-01:
+    value: 48.87
+metadata:
+  ipp_csv_id: coti_secu_alcool_inter_tx_plein
+  unit: currency
+  reference:
+    1983-04-01:
+      title: Loi 83-25 du 19/01/1983 - art. 26
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006274080&cidTexte=JORFTEXT000000504452
+    2011-12-23:
+      title: "Loi 2011-1906 du 21/12/2011 (LFSS pour 2012)\_- art. 22"
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025007634&cidTexte=JORFTEXT000025005833
+    2013-01-01:
+      title: "Loi 2011-1906 du 21/12/2011 (LFSS pour 2012)\_- art. 22"
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025007634&cidTexte=JORFTEXT000025005833
+    2014-01-01:
+      title: Loi 2011-1906 du 21/12/2011 (LFSS pour 2012) - art. 22
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025007634&cidTexte=JORFTEXT000025005833
+    2015-01-01:
+      title: Arrêté du 19/12/2014
+    2017-01-01:
+      title: Arrêté du 27/12/2016
+    2018-01-01:
+      title: Arrêté du 22/12/2017
+    2019-01-01:
+      title: Circulaire du 10/12/2018
+      href: http://circulaire.legifrance.gouv.fr/pdf/2018/12/cir_44175.pdf
+    2020-01-01:
+      title: Arrêté du 19/12/2019
+      href: https://www.legifrance.gouv.fr/eli/arrete/2019/12/19/CPAD1935243A/jo/texte
+    2021-01-01:
+      title: Arrêté du 28/12/2020
+      href: https://www.legifrance.gouv.fr/eli/arrete/2020/12/28/CCPD2036946A/jo/texte
+  official_journal_date:
+    1983-04-01: "1983-01-20"
+    2011-12-23: "2011-12-22"
+    2013-01-01: "2011-12-22"
+    2014-01-01: "2011-12-22"
+    2015-01-01: "2014-12-26"
+    2017-01-01: "2016-12-31"
+    2018-01-01: "2017-12-27"
+documentation: Données renseignées dans l''article L245-9 du code de la sécurité sociale'

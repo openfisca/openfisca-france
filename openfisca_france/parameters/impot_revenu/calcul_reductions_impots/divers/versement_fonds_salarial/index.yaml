@@ -1,0 +1,6 @@
+description: Réduction d'impôt sur les versements à un fonds salarial
+metadata:
+  ux_name: Versements fonds salarial
+  order:
+  - taux
+  - plafond

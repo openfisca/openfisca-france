@@ -1,0 +1,30 @@
+description: Taux de contribution sur l'impôt sur les sociétés
+values:
+  1995-10-27:
+    value: 0.1
+  2001-01-01:
+    value: 0.06
+  2002-01-01:
+    value: 0.03
+  2005-01-01:
+    value: 0.015
+  2006-01-01:
+    value: null
+metadata:
+  unit: /1
+  reference:
+    1995-10-27:
+      title: Article 235 ter ZA créé par Loi 95-885 de finances rectificative pour 1995
+    2001-01-01:
+      title: Article 235 ter ZA modifié par Loi 2000-1352 de Finances pour 2001
+    2002-01-01:
+      title: Article 235 ter ZA modifié par Loi 2000-1352 de Finances pour 2001
+    2005-01-01:
+      title: Article 235 ter ZA modifié par loi 2004-1484 Finances pour 2005
+    2006-01-01:
+      title: Article 235 ter ZA abrogé par loi 2004-1484 Finances pour 2005
+  official_journal_date:
+    1995-10-27: "1995-08-04"
+    2001-01-01: "2000-12-31"
+    2002-01-01: "2000-12-31"
+    2005-01-01: "2004-12-31"

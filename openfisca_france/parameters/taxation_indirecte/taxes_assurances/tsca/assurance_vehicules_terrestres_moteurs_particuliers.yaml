@@ -1,0 +1,17 @@
+description: Assurance pour les véhicules terrestres à moteurs (particuliers)
+values:
+  1979-07-01:
+    value: null
+  1984-01-01:
+    value: 0.18
+  1989-01-01:
+    value: 0.07
+  1991-01-01:
+    value: 0.18
+metadata:
+  ipp_csv_id: taxe_assu_vtm_particuliers
+  unit: /1
+documentation: |-
+  Déductions pour les véhicules de plus de 3,5 tonnes
+  Les assurances dépendance sont exonérées de la TSCA
+  NB : données renseignées dans l''article 1001 du code général des impôts, et L137-6 du code de la sécurité sociale.

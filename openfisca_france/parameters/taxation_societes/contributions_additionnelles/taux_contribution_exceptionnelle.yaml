@@ -1,0 +1,16 @@
+description: Taux de contribution exceptionnelle
+values:
+  2011-12-31:
+    value: 0.05
+  2014-01-01:
+    value: 0.107
+metadata:
+  unit: /1
+  reference:
+    2011-12-31:
+      title: Article 235 ter ZAA créé par Loi 2011-1978 - art. 30
+    2014-01-01:
+      title: Article 235 ter ZAA modifié par Loi 2013-1278 - art. 16
+  official_journal_date:
+    2011-12-31: "2011-12-31"
+    2014-01-01: "2013-12-30"

@@ -1,0 +1,9 @@
+description: Boissons sucrées, édulcorées ou énergisantes
+metadata:
+  description_en: Energy drinks, sweet or sweetened beverages
+  order:
+  - boissons_sucrees_edulcorees
+  - boissons_sucrees_edulcorees_taux_applicables_uniquement_mayotte
+  - boissons_edulcorees_y_compris_mayotte
+  - boissons_sucrees_y_compris_mayotte
+  - boissons_energisantes

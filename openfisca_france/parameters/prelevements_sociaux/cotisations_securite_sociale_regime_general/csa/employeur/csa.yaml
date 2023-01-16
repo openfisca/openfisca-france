@@ -12,15 +12,16 @@ metadata:
   ipp_csv_id: csa_p_0_
   reference:
     2004-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006682208&cidTexte=JORFTEXT000000622485
       title: Loi 2004-626 du 26/06/2004, art. 11
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006682208&cidTexte=JORFTEXT000000622485
     2021-01-01:
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042675240
       title: Article L1374-40 du Code de la Sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042675240
   official_journal_date:
     2004-07-01: "2004-07-01"
   last_review: "2021-12-07"
-  threshold_unit: /1
+  rate_unit: /1
+  threshold_unit: PSS
 documentation: |-
   Parfois le taux de maladie (MMID) est présenté en incluant le taux de CSA (notamment sur le site de l'URSSAFF). Ici nous distinguons les deux.
   L'art. 11 de la Loi 2004-626 du 26/06/2004 a été transféré et devient l'article L.14-10-4 du Code de l'action sociale et des familles.

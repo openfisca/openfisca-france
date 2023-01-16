@@ -1,0 +1,135 @@
+description: Carburéacteurs, type pétrole lampant , sous conditions (hectolitre)
+values:
+  1993-01-01:
+    value: 11.97
+  1993-04-15:
+    value: 12.22
+  1994-01-01:
+    value: 13.58
+  1995-01-01:
+    value: 13.81
+  1996-01-01:
+    value: 14.07
+  1997-01-01:
+    value: 14.37
+  1998-01-01:
+    value: 14.56
+  1999-01-01:
+    value: 14.69
+  2000-01-01:
+    value: 14.76
+  2002-01-01:
+    value: 2.25
+  2003-01-01:
+    value: 2.54
+  2014-04-01:
+    value: null
+metadata:
+  ipp_csv_id: ticpe_carbu_petrole_lampant_cond
+  unit: currency
+  reference:
+    1993-01-01:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    1993-04-15:
+      title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
+    1994-01-01:
+      title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000509319
+    1995-01-01:
+      title: Loi 94-1162 du 29/12/1994 (LF pour 1995)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000367398
+    1996-01-01:
+      title: Loi 95-1346 du 30/12/1995 (LF pour 1996)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000191068
+    1997-01-01:
+      title: Loi 96-1181 du 30/12/1996 (LF pour 1997)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000380034
+    1998-01-01:
+      title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000569621
+    1999-01-01:
+      title: Loi 98-1266 du 30/12/1998 (LF pour 1999)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209044
+    2000-01-01:
+      title: Loi 99-1172 du 30/12/1999 (LF pour 2000)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762233
+    2002-01-01:
+      title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+    2003-01-01:
+      title: Loi 2002-1575 du 30/12/2002 (LF pour 2003)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000234121
+    2014-04-01:
+      title: Loi 2013-1278 du 29/12/2013 (LF pour 2014) - art. 32
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000028402549&cidTexte=JORFTEXT000028399511
+  official_journal_date:
+    1993-01-01: "1992-12-31"
+    1993-04-15: "1992-12-31"
+    1994-01-01: "1993-12-31"
+    1995-01-01: "1994-12-30"
+    1996-01-01: "1995-12-31"
+    1997-01-01: "1996-12-31"
+    1998-01-01: "1997-12-31"
+    1999-01-01: "1998-12-31"
+    2000-01-01: "1999-12-31"
+    2002-01-01: "2001-12-29"
+    2003-01-01: "2002-12-31"
+    2014-04-01: "2013-12-30"
+documentation: |-
+  *ces barèmes font l''objet de majorations dans la plupart des régions de France
+  : une première tranche de 1,77€/hl puis une seconde de 0,73€/hl (deuxième tranche
+  destinée uniquement à des financements d''infrastructures spécifiques
+
+  NB : données renseignées dans l''article 265 du code des douanes
+
+  NB : les produits énergétiques sont rangés dans l''ordre de leur numérotation dans
+  l''article 265 du code des douanes avec pour seul objectif la lisibilité.
+
+  NB : en 2011 le nom de TIPP (taxe intérieure de consommation sur les produits pétroliers)
+  change pour TICPE (taxe intérieure de consommation sur les produits énergétiques).
+  L''objectif est de souligner le changement d''assiette récent qui incorpore désormais
+  les biocarburants.
+
+  Attention : 28 aout 2012, baisse de la TICPE sur les carburants de 3 centimes. La
+  baisse est ramenée à 2 centimes le 1er décembre 2012, 1,5c le 11 décembre, 1c le
+  21 décembre et prend fin le 11 janvier 2013
+
+  Dans le code des douanes, les produits énergétiques sont désignés par les indices
+  suivants :
+
+  1 - Goudrons utilisés comme combustibles
+  4 bis - White Spirit utilisé comme combustible
+  6 - essences spéciales utilisées comme carburants et combustibles
+  10 - huiles légères et préparation, essence d''aviation
+  11 - supercarburants dont SP95 et SP98
+  11 bis - supercarburants contenant un additif
+  11 ter - superE10
+  12 - essence normale
+  17 - carburéacteurs, type pétrole lampant , sous conditions
+  17 bis - carburéacteurs, type pétrole lampant, carburant moteurs d''avion
+  17 ter - carburéacteurs, type pétrole lampant, autres
+  18 - autres huiles moyennes
+  20 - gazole comme carburants sous conditions
+  21 - gazole, fioul domestique
+  22 - gazole, autres
+  24 - fioul lourd
+  26 - fioul avec point d''éclair inférieur à 120° C
+  28 - fioul lourd HTS
+  28 bis - fioul lourd BTS
+  30 bis - propane utilisé comme carburants, sous conditions
+  30 ter - propane utilisé comme carburants, autres
+  31 bis - butanes liquéfiés, sous condition
+  31 ter - butanes liquéfiés, autres
+  33 bis - Autres gaz de pétrole liquéfiés utilisés comme carburants, sous conditions
+  34 - Autres gaz de pétrole liquéfiés utilisés comme carburants, autres
+  36 - Gaz naturel à l''état gazeux, utilisés comme carburants
+  36 bis - Gaz naturel à l''état gazeux, utilisé sous conditions aux moteurs stationnaires
+  38 bis - Autres gaz de pétrole et autres hydrocarbures à l''état gazeux : même tarification
+  que 36 ou 36 bis selon condition d''emploi
+  52 - Emulsion d''eau dans du gazole …, sous conditions
+  53 - Emulsion d''eau dans du gazole …, autres
+  55 - Super E 85 utilisé comme carburant
+  56 - Carburant constitué d''un mélange d''au minimum 90 % d''alcool éthylique d''origine
+  agricole, d''eau et d''additifs'

@@ -28,8 +28,6 @@ metadata:
   reference:
     1967-10-01:
       title: Décret 67-667 du 04/08/1967
-    1968-06-01:
-      title: Décret 68-764 du 23/08/1968
     1968-09-30:
       title: Décret 68-846 du 28/09/1968
     1970-07-06:
@@ -48,12 +46,8 @@ metadata:
       title: Décret 77-314 du 28/03/1977
     1978-02-20:
       title: Décret 78-196 du 24/02/1978
-    1979-04-02:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000338371
-      title: Décret 79-530 du 03/07/1979
   official_journal_date:
     1967-10-01: "1967-08-08"
-    1968-06-01: "1968-08-28"
     1968-09-30: "1968-09-29"
     1970-07-06: "1970-07-05"
     1972-01-31: "1972-02-02"
@@ -63,10 +57,6 @@ metadata:
     1976-02-23: "1976-03-10"
     1977-04-04: "1977-03-30"
     1978-02-20: "1978-02-26"
-    1979-04-02: "1979-07-04"
-  notes:
-    1979-04-02:
-    - title: "Allocation d'aide publique supprimée par Loi cadre n° 79-32 du 16 janvier 1979: nouveau système où régimes d'assurance et de solidarité sont rassemblés"
 documentation: |-
   Allocation de solidarité versée sans limite de durée, mais les allocations et majorations sont réduites de 10% après 12 mois pour chaque année supplémentaire.
   Sources:

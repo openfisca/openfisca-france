@@ -1,0 +1,7 @@
+description: Dépenses d'investissement forestier (travaux)
+metadata:
+  ux_name: Travaux
+  order:
+  - plafond
+  - taux
+  - taux_adhesion_org_producteurs

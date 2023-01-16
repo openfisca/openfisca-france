@@ -9,8 +9,8 @@ metadata:
   unit: year
   reference:
     2008-05-01:
-    - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000018731950/2022-02-28/
-      title: Décret 2008-409 du 28/04/2008
+    - title: Décret 2008-409 du 28/04/2008
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000018731950/2022-02-28/
     - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018735853/2008-04-30
     - title: Article R521-1 du Code de la sécurité sociale Allocations familiales
   last_review: "2022-02-28"

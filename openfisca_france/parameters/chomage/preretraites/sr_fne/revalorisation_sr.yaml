@@ -91,11 +91,11 @@ metadata:
     1983-10-01:
       title: Arrêté du 27/12/1983
     1984-04-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000337265&categorieLien=id
       title: Décret 84-495 du 25/06/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000337265&categorieLien=id
     1984-10-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699391&categorieLien=id
       title: Décret 84-523 du 28/06/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699391&categorieLien=id
     1985-01-01:
       title: Arrêté du 12/03/1985
     1985-07-01:
@@ -103,8 +103,8 @@ metadata:
     1986-01-01:
       title: Arrêté du 15/01/1986
     1986-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699775
       title: Décret 86-791 du 30/06/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000699775
     1986-10-01:
       title: Arrêté du 01/12/1986
     1987-01-01:
@@ -115,8 +115,6 @@ metadata:
       title: Loi du 05/01/1988
     1988-07-01:
       title: Loi du 05/01/1988
-    1989-01-01:
-      title: Loi du 13/01/1989
     1989-07-01:
       title: Loi du 13/01/1989
     1990-01-01:
@@ -151,8 +149,6 @@ metadata:
       title: Arrêté du 29/12/1999
     2001-01-01:
       title: Arrêté du 26/12/2000
-    2002-01-01:
-      title: Arrêté du 25/12/2002
     2003-01-01:
       title: Arrêté du 31/12/2002
     2004-01-01:

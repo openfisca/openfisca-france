@@ -97,7 +97,6 @@
     mmid_salarie: -3000 * 0.0075  # est agrégée avec vieillesse déplaf. sur la fiche de paie
     contribution_exceptionnelle_solidarite: 0
     csg_deductible_salaire: -150.32 - 3.01
-    mhsup: 0
     salaire_net: 3000 - (722.46 - 30.82) - 0.17 # moitié de la mutuelle et erreur de 0.17 gmp
 
 

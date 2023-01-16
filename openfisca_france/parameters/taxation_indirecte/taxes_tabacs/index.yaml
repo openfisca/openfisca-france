@@ -1,0 +1,6 @@
+description: Taxes sur les tabacs
+metadata:
+  description_en: Excises on tobacco
+  order:
+  - taux_normal
+  - taxes_specifiques

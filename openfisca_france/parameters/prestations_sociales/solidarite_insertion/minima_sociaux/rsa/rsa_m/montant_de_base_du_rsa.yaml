@@ -45,70 +45,69 @@ metadata:
   description_en: "Active solidarity income (RSA): Basic amount"
   ipp_csv_id: brsa
   unit: currency
-  last_review: "2022-09-27"
   reference:
     2009-06-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2009/4/15/2009-404/jo/texte
       title: Décret 2009-404 du 15/04/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/4/15/2009-404/jo/texte
     2010-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2010/1/15/2010-54/jo/texte
       title: Décret 2010-54 du 15/01/2010
+      href: https://www.legifrance.gouv.fr/eli/decret/2010/1/15/2010-54/jo/texte
     2011-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2011/3/1/2011-230/jo/texte
       title: Décret 2011-230 du 01/03/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/3/1/2011-230/jo/texte
     2012-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2011/12/28/2011-2040/jo/texte
       title: Décret 2011-2040 du 28/12/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/12/28/2011-2040/jo/texte
     2013-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2012/12/28/2012-1488/jo/texte
       title: Décret 2012-1488 du 28/12/2012
+      href: https://www.legifrance.gouv.fr/eli/decret/2012/12/28/2012-1488/jo/texte
     2013-09-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000027914449
       title: Décret 2013-793 du 30/08/2013
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000027914449
     2014-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1263/jo/texte
       title: Décret 2013-1263 du 27/12/2013
+      href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1263/jo/texte
     2014-09-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029535258
       title: Décret 2014-1127 du 03/10/2014
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029535258
     2015-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2014/12/23/2014-1589/jo/texte
       title: Décret 2014-1589 du 23/12/2014
+      href: https://www.legifrance.gouv.fr/eli/decret/2014/12/23/2014-1589/jo/texte
     2015-09-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000031276427
       title: Décret 2015-1231 du 06/10/2015
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000031276427
     2016-04-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2016/4/27/2016-538/jo/texte
       title: Décret 2016-538 du 27/04/2016
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/4/27/2016-538/jo/texte
     2016-09-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2016/9/29/2016-1276/jo/texte
       title: Décret 2016-1276 du 29/09/2016
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/9/29/2016-1276/jo/texte
     2017-04-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2017/5/4/2017-739/jo/texte
       title: Décret 2017-739 du 04/05/2017
-    2017-09-01:
       href: https://www.legifrance.gouv.fr/eli/decret/2017/5/4/2017-739/jo/texte
+    2017-09-01:
       title: Décret 2017-739 du 04/05/2017, art. 1
+      href: https://www.legifrance.gouv.fr/eli/decret/2017/5/4/2017-739/jo/texte
     2018-04-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2018/5/3/2018-324/jo/texte
       title: Décret 2018-324 du 03/05/2018, art. 1
+      href: https://www.legifrance.gouv.fr/eli/decret/2018/5/3/2018-324/jo/texte
     2019-04-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2019/5/2/SSAA1907609D/jo/texte
       title: Décret 2019-400 du 02/05/2019, art. 1
+      href: https://www.legifrance.gouv.fr/eli/decret/2019/5/2/SSAA1907609D/jo/texte
     2020-04-01:
-      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000041835196/
       title: Décret 2020-490 du 29/04/2020, art. 1
+      href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000041835196/
     2021-04-01:
-    - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459557
-      title: Décret 2021-530 du 29/04/2021, art. 1
-    - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000043459562
-      title: Article 1 du Décret 2021-530 du 29/04/2021
+    - title: Décret 2021-530 du 29/04/2021, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459557
+    - title: Article 1 du Décret 2021-530 du 29/04/2021
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000043459562
     2022-04-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045668694
       title: Décret n° 2022-699 du 26/042022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045668694
     2022-07-01:
+      title: LOI n° 2022-1158 du 16/08/2022, art. 9
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
-      title: LOI n° 2022-1158 du 16/08/2022, art. 9								
   official_journal_date:
     2009-06-01: "2009-04-16"
     2010-01-01: "2010-01-17"
@@ -131,3 +130,4 @@ metadata:
   notes:
     2022-07-01:
     - title: Revalorisation de 4%
+  last_review: "2022-09-27"

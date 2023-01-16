@@ -1,0 +1,20 @@
+description: Assurances véhicules terrestres à moteur
+values:
+  1979-07-01:
+    value: null
+  2016-01-01:
+    value: 0.33
+metadata:
+  ipp_csv_id: taxe_assu_vtm_autres
+  unit: /1
+  reference:
+    2016-01-01:
+      title: Loi 2014-1554 du 22/12/2014 (LFSS pour 2015) - art. 22
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029954707&cidTexte=JORFTEXT000029953502
+  official_journal_date:
+    2016-01-01: "2014-12-24"
+documentation: |-
+  Déductions pour les véhicules de plus de 3,5 tonnes
+  Les assurances dépendance sont exonérées de la TSCA
+  NB : données renseignées dans l''article 1001 du code général des impôts, et L137-6 du code de la sécurité sociale.
+  Art. L211-1 code des assurances

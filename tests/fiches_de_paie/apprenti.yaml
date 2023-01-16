@@ -108,7 +108,6 @@ output:
   mmid_salarie: -5.36
   # contribution_exceptionnelle_solidarite: 0
   csg_deductible_salaire: 0
-  mhsup: 0
   # salaire_net: 0
 
   # salaire imposable

@@ -1,4 +1,4 @@
-- name: reduc_locmeu_plafonnee
+- name: reduc_location_meublee_plafonnee
   period: 2014
   absolute_error_margin: 2
   input:
@@ -12,22 +12,22 @@
       caseW: false
       declarants:
       - ind0
-      f7ib: 500
+      f7ib_2019: 500
       f7id: 10000
-      f7ie: 10000
-      f7if: 10000
-      f7ig: 10000
+      f7ie_2016: 10000
+      f7if_2016: 10000
+      f7ig_2016: 10000
       f7ij: 10000
       f7ik: 500
       f7il: 10000
       f7im: 10000
       f7in: 10000
-      f7io: 10000
-      f7iq: 500
-      f7iv: 10000
-      f7iw: 10000
-      f7jt: 100000
-      f7ju: 10000
+      f7io_2015: 10000
+      f7iq_2018: 500
+      f7iv_2016: 10000
+      f7iw_2016: 10000
+      f7jt_2019: 100000
+      f7ju_2016: 10000
       f7jw: 500
       f7jy: 500
       f7ob: 500
@@ -59,7 +59,7 @@
     reductions: 7638.0
     rfr: 137843.0
     rni: 137843.0
-- name: reduc_locmeu_plafonnee
+- name: reduc_location_meublee_plafonnee
   period: 2015
   absolute_error_margin: 2
   input:
@@ -73,22 +73,22 @@
       caseW: false
       declarants:
       - ind0
-      f7ib: 500
+      f7ib_2019: 500
       f7id: 10000
-      f7ie: 10000
-      f7if: 10000
-      f7ig: 10000
+      f7ie_2016: 10000
+      f7if_2016: 10000
+      f7ig_2016: 10000
       f7ij: 10000
       f7ik: 500
       f7il: 10000
       f7im: 10000
       f7in: 10000
-      f7io: 10000
-      f7iq: 500
-      f7iv: 10000
-      f7iw: 10000
-      f7jt: 10000
-      f7ju: 10000
+      f7io_2015: 10000
+      f7iq_2018: 500
+      f7iv_2016: 10000
+      f7iw_2016: 10000
+      f7jt_2019: 10000
+      f7ju_2016: 10000
       f7jw: 500
       f7jy: 500
       f7ob: 500
@@ -122,7 +122,7 @@
     reductions: 8760.0
     rfr: 137830.0
     rni: 137830.0
-- name: reduc_locmeu_plafonnee
+- name: reduc_location_meublee_plafonnee
   period: 2016
   absolute_error_margin: 2
   input:
@@ -136,21 +136,21 @@
       caseW: false
       declarants:
       - ind0
-      f7ib: 500
+      f7ib_2019: 500
       f7id: 10000
-      f7ie: 10000
-      f7if: 10000
-      f7ig: 10000
+      f7ie_2016: 10000
+      f7if_2016: 10000
+      f7ig_2016: 10000
       f7ij: 10000
       f7ik: 500
       f7il: 10000
       f7im: 10000
       f7in: 10000
-      f7iq: 500
-      f7iv: 10000
-      f7iw: 10000
-      f7jt: 10000
-      f7ju: 10000
+      f7iq_2018: 500
+      f7iv_2016: 10000
+      f7iw_2016: 10000
+      f7jt_2019: 10000
+      f7ju_2016: 10000
       f7jw: 500
       f7jy: 500
       f7ob: 500
@@ -187,7 +187,7 @@
     reductions: 9604.0
     rfr: 137817.0
     rni: 137817.0
-- name: reduc_locmeu_plafonnee
+- name: reduc_location_meublee_plafonnee
   period: 2017
   absolute_error_margin: 2
   input:
@@ -201,12 +201,12 @@
       caseW: false
       declarants:
       - ind0
-      f7ib: 500
+      f7ib_2019: 500
       f7id: 10000
       f7ij: 10000
       f7ik: 500
-      f7iq: 500
-      f7jt: 10000
+      f7iq_2018: 500
+      f7jt_2019: 10000
       f7jw: 500
       f7jy: 500
       f7ob: 500
@@ -242,7 +242,155 @@
     iai: 33267.0
     irpp: -33267.0
     nbptr: 1.0
-    patnat: 0.0
+    protection_patrimoine_naturel: 0.0
     rbg: 137695.0
     reductions: 9493.0
     rfr: 137695.0
+- name: reduc_location_meublee_plafonnee
+  period: 2019
+  absolute_error_margin: 2
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7jt_2019: 10000
+      f7ou: 10000
+      f7ov: 10000
+      f7ow: 50000
+      f7ox: 200000
+      f7pz: 10000
+      f7pm: 300
+      f7pd_2019: 200
+      f7ps: 200
+      f7hq: 500
+      f7pu: 500
+      f7sa: 300
+      f7sn: 500
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 150000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    reductions: 6043.0
+    iai: 36227.0
+    irpp: -36227.0
+    nbptr: 1.0
+    protection_patrimoine_naturel: 0.0
+    rbg: 137373.0
+    rfr: 137373.0
+- name: reduc_location_meublee_plafonnee test plafond
+  period: 2020
+  absolute_error_margin: 2
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7ou: 100000
+      f7ov: 100000
+      f7ow: 150000
+      f7ox: 200000
+      f7oy: 100000
+      f7pz: 150000
+      f7mz: 70000
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 150000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    reductions: 10000.0
+    # iai: 32232.0
+    # irpp: -32232.0
+    # nbptr: 1.0
+    # protection_patrimoine_naturel: 0.0
+    # rbg: 137348.0
+    # rfr: 137348.0
+- name: reduc_location_meublee_plafonnee
+  period: 2021
+  absolute_error_margin: 2
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7ov: 10000
+      f7ow: 15000
+      f7ox: 20000
+      f7oy: 10000
+      f7pz: 15000
+      f7mz: 70000
+      f7mw: 25000
+      f7oc: 200
+      f7pr: 150
+      f7ht: 300
+      f7sp: 600
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 150000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    reductions: 3266.0
+    # iai: 38696.0
+    # irpp: -38696.0
+    # nbptr: 1.0
+    # protection_patrimoine_naturel: 0.0
+    # rbg: 137171.0
+    # rfr: 137171.0

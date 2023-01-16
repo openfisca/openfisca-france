@@ -10,22 +10,13 @@ metadata:
   ipp_csv_id: mmid_j_i65_s_0_1
   unit: /1
   reference:
-    1964-01-01:
-      title: Arrêté du 09/12/1963
-    1966-10-01:
-      title: Arrêté du 15/09/1966
     1967-10-01:
       title: Arrêté du 29/09/1967
     1969-01-01:
       title: Arrêté du 31/12/1968
-    1969-06-01:
-      title: Arrêté du 23/05/1969
   official_journal_date:
-    1964-01-01: "1963-12-22"
-    1966-10-01: "1966-09-27"
     1967-10-01: "1967-10-01"
     1969-01-01: "1969-01-01"
-    1969-06-01: "1969-06-07"
   last_review: "1969-01-01"
 documentation: |-
   Note générale :

@@ -1,0 +1,25 @@
+description: Contributions des entreprises d'assurances pour la section "automobiles" sur les fonds de garantie des assurances obligatoires (FGAO)
+values:
+  2004-08-05:
+    value: 0.01
+  2017-11-27:
+    value: 0.12
+  2019-01-01:
+    value: 0.14
+metadata:
+  ipp_csv_id: fgao_contrib_assurances_auto
+  unit: /1
+  reference:
+    2004-08-05:
+      title: Arrêté du 16/07/2004
+    2017-11-27:
+      title: Arrêté du 27/11/2017
+    2019-01-01:
+      title: Arrêté du 28/02/2019
+      href: https://www.legifrance.gouv.fr/eli/arrete/2019/2/28/ECOT1901975A/jo/texte
+  official_journal_date:
+    2004-08-05: "2004-08-05"
+documentation: |-
+  Données renseignées dans l''article A421-3 du code des assurances
+  En % de la totalité des charges de la section relative aux opérations résultant de la défaillance d''entreprises d''assurance
+  Au titre du 1° de l''article R-421-27'

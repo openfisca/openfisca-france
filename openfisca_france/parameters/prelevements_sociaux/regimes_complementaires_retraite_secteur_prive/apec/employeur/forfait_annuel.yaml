@@ -85,8 +85,8 @@ metadata:
     - title: Avenant n°4 du 21/11/1973
     1976-01-01:
     - title: Protocole d'accord Agirc-Apec du 30/12/1975.
-    - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000668581&categorieLien=id
-      title: Avenant n°5 du 17/11/1975
+    - title: Avenant n°5 du 17/11/1975
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000668581&categorieLien=id
     2006-01-01:
       title: Circulaire AGIRC-ARRCO 2005-19-DRE du 13/12/2005
     2007-01-01:

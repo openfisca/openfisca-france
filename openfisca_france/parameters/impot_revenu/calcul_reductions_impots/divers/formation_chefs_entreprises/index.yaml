@@ -1,0 +1,6 @@
+description: Réduction d'impôt sur les dépenses pour la formation des chefs d'entreprises
+metadata:
+  ux_name: Formation chefs d'entreprise
+  order:
+  - taux
+  - plafond

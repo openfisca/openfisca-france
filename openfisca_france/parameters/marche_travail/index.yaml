@@ -3,4 +3,5 @@ metadata:
   ux_name: Marché du travail
   order:
   - salaire_minimum
+  - primes_exceptionnelles
   - remuneration_dans_fonction_publique

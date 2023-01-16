@@ -33,7 +33,7 @@ values:
   2021-04-01:
     value: 9600
   2022-04-01:
-    value: 9772.80
+    value: 9772.8
   2022-07-01:
     value: 10163.71
 metadata:
@@ -41,67 +41,66 @@ metadata:
   description_en: "Supplementary disability allowance (ASI): Amount"
   ipp_csv_id: plaf_ressource_seul
   unit: currency
-  last_review: "2022-09-28"
   reference:
     2006-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000613344
       title: Décret 2007-57 du 12/01/2007 (créé art. D815-19 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000613344
     2007-01-01:
-      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2006075_20122006
       title: Circulaire CNAV 2006/75 du 20/12/2006
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2006075_20122006
     2008-01-01:
-    - href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2007076_07122007
-      title: Circulaire CNAV 2007/76 du 07/12/2007
+    - title: Circulaire CNAV 2007/76 du 07/12/2007
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2007076_07122007
     - title: Arrêté du 21/12/2007
     2008-09-01:
-      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2008045_12082008
       title: Circulaire CNAV 2008/45 du 12/08/2008
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2008045_12082008
     2009-04-01:
-      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2009031_16042009
       title: Circulaire CNAV 2009/31 du 16/04/2009
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2009031_16042009
     2010-04-01:
-      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2010043_23042010
       title: Circulaire CNAV 2010/43 du 23/04/2010
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2010043_23042010
     2011-04-01:
-      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2011030_14042011
       title: Circulaire CNAV 2011/30 du 14/04/2011
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2011030_14042011
     2012-04-01:
-      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2012_35_17042012
       title: Circulaire CNAV 2012/35 du 17/04/2012
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2012_35_17042012
     2013-04-01:
-      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2013_29_18042013
       title: Circulaire CNAV 2013-29 du 18/04/2013
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2013_29_18042013
     2014-04-01:
-      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2014_029_09042014
       title: Circulaire CNAV 2014/29 du 09/04/2014
+      href: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2014_029_09042014
     2016-04-01:
-      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_21_04042016.pdf
       title: Circulaire CNAV 2016/18 du 04/04/2016
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_21_04042016.pdf
     2017-04-01:
-      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
       title: Circulaire CNAV 2017/13 du 04/04/2017
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
     2018-04-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036756121
       title: Décret 2018-227 du 30/04/2018
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036756121
     2019-04-01:
-      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2019_15_05042019.pdf
       title: Décret 2019-15 du 05/04/2019
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2019_15_05042019.pdf
     2020-04-01:
-    - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042421132
-      title: Décret 2020-1251 du 13/10/2020 - art. 1 et 2 (modifie art. D815-19 du CSS et abroge D815-16-1)
-    - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000039793505/2019-12-30
-      title: LOI 2019-1479 du 28/12/2019 art.270 (modifie art. L815-24-1 du CSS)
+    - title: Décret 2020-1251 du 13/10/2020 - art. 1 et 2 (modifie art. D815-19 du CSS et abroge D815-16-1)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042421132
+    - title: LOI 2019-1479 du 28/12/2019 art.270 (modifie art. L815-24-1 du CSS)
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000039793505/2019-12-30
     2021-04-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042840981
       title: Décret 2020-1802 du 30/12/2020 - art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042840981
     2022-04-01:
-    - href: https://www.legislation.cnav.fr/Documents/instruction_ministerielle_2022_63_04032022.pdf
-      title: INSTRUCTION INTERMINISTERIELLE N° DSS/2A/2C/2022/63 du 4 mars 2022
+      title: Instruction Interministérielle n° DSS/2A/2C/2022/63 du 4 mars 2022
+      href: https://www.legislation.cnav.fr/Documents/instruction_ministerielle_2022_63_04032022.pdf
     2022-07-01:
-    - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188473
-      title: LOI n° 2022-1158 du 16/08/2022
-    - href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_22_22082022.pdf
-      title: Circulaire CNAV 2022-22 du 22/08/2022
+    - title: LOI n° 2022-1158 du 16/08/2022
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188473
+    - title: Circulaire CNAV 2022-22 du 22/08/2022
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_22_22082022.pdf
   official_journal_date:
     2006-01-01: "2007-01-13"
     2008-01-01: "2007-12-28"
@@ -114,9 +113,12 @@ metadata:
     - title: La circulaire Cnav 2009/9 du 03/02/2009 met en œuvre de l'article 73 de la loi 2008-1330 du 17/12/2008 concernant la déconnexion de la revalorisation des montants et des plafonds de ressources de l'ASI de ceux de l'ASPA.
     2020-04-01:
     - title: Depuis le 01/04/2020, l'ASI cesse d'être une allocation forfaitaire (2).
+  last_review: "2022-09-28"
 documentation: |-
-  Notes :
   (1) Entre le 1er janvier 2006 et 31 mars 2020, le montant maximum "couple" s'applique uniquement dans le cadre des couples mariés. Le plafond "couple" s'applique aux couples mariés, pacsés ou en concubinage. Ainsi pour un couple non marié, ce sont les ressources du couple et le plafond "couple" qui sont pris en compte, mais c'est le montant maximal individuel qui est perçu. 
   (2) Modification du calcul de l'ASI en 2020: 
   - Du 1er janvier 2006 au 31 mars 2020, l'ASI est due à son montant maximal si la somme de l'ASI et des ressources de l'intéressé ou du couple, ne dépasse pas le plafond correspondant à la situation maritale. Lorsque cette somme dépasse le plafond, l'allocation est réduite du dépassement.
   - A partir du 1er avril 2020, le montant de l'ASI est défini comme la différence entre le plafond et les ressources de l'intéressé ou du couple (concubinage, PACS ou mariage).
+
+  Les montants de l'allocation et des plafonds de ressources prévus pour son attribution sont revalorisés au 1er janvier de chaque année
+  (Article Article L816-3 https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041474264 )

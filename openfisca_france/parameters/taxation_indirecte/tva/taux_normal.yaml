@@ -1,0 +1,63 @@
+description: Taux normal de la Taxe sur la valeur ajoutée (TVA)
+values:
+  1954-07-01:
+    value: 0.165
+  1955-07-01:
+    value: 0.195
+  1968-12-01:
+    value: 0.19
+  1970-01-01:
+    value: 0.23
+  1972-01-01:
+    value: 0.2
+  1977-01-01:
+    value: 0.176
+  1982-07-01:
+    value: 0.186
+  1995-08-01:
+    value: 0.206
+  2000-04-01:
+    value: 0.196
+  2014-01-01:
+    value: 0.2
+metadata:
+  ipp_csv_id: tx_normal
+  unit: /1
+  reference:
+    1954-07-01:
+      title: Loi 54-404 du 10/04/1954
+    1955-07-01:
+      title: Décret 55-465 du 30/04/1955
+    1968-12-01:
+      title: Loi 68-1043 du 29/11/1968, art. 3
+    1970-01-01:
+      title: Loi 69-1161 du 24/12/1969 (LF pour 1970), art. 9
+    1977-01-01:
+      title: Loi 76-1232 du 29/12/1976
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000522254
+    1982-07-01:
+      title: Loi 82-540 du 28/06/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000691740
+    1995-08-01:
+      title: Loi 95-858 du 28/07/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000370300
+    2000-04-01:
+      title: Loi 2000-656 du 13/07/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000400546
+    2014-01-01:
+      title: Loi 2012-1510 du 29/12/2012
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026857857
+  official_journal_date:
+    1954-07-01: "1954-04-11"
+    1955-07-01: "1955-05-03"
+    1968-12-01: "1968-11-30"
+    1970-01-01: "1969-12-27"
+    1977-01-01: "1976-12-30"
+    1982-07-01: "1982-06-29"
+    1995-08-01: "1995-07-29"
+    2000-04-01: "2000-07-14"
+    2014-01-01: "2012-12-30"
+documentation: |-
+  Le montant de TVA est appliqué au prix TTC jusqu''au 1er janvier 1970, puis au prix hors taxe depuis.
+  Création de la TVA avec la loi 54-404 du 10 avril 1954 (JO 11/04/1954) et le décret 55-465 du 30/04/1955 (JO 03/05/1955).
+  "Taux de TVA appliqués dans les Etats membres de l''Union européenne", Commission européenne, Fiscalité et union douanière, 2014, page 26.'

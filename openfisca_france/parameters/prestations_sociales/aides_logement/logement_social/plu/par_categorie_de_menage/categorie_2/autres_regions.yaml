@@ -1,0 +1,30 @@
+description: Catégorie 2 / Autres régions - Plafonds de ressources annuelles applicables aux logements financés avec le prêt locatif à usage social (PLUS)
+values:
+  2018-01-01:
+    value: 27114
+  2019-01-01:
+    value: 27540
+  2020-01-01:
+    value: 27870
+  2021-01-01:
+    value: 27998
+  2022-01-01:
+    value: 28231
+metadata:
+  unit: currency
+  reference:
+    2018-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000036484518/2018-01-01/
+    2019-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000038053742/2019-01-01/
+    2020-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000041461671/2020-01-02/
+    2021-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000043030087/2021-01-01/
+    2022-01-01:
+      title: Arrêté du 29/07/1987
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000045015082/2022-01-01/

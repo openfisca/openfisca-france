@@ -212,7 +212,7 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
         f2vv = foyer_fiscal('f2vv', period)
         f2ww = foyer_fiscal('f2ww', period)
 
-        abattement_residuel = max_(P2.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
+        abattement_residuel = max_(P2.produits_assurances_vies_assimiles.abattement * (1 + maries_ou_pacses) - f2ch, 0)
         abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
         pfu_ir_sur_assurance_vie = -(
             (f2zz * P1_taux)

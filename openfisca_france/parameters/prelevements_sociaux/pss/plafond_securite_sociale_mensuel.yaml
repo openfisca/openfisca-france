@@ -184,28 +184,12 @@ values:
     value: 3428
 metadata:
   ux_name: Plafond mensuel
-  description_en: Social security ceiling
+  description_en: Social security monthly ceiling
   ipp_csv_id: pss_m
   unit: currency
   reference:
     1930-07-01:
       title: Loi du 05/04/1928 modifiée
-    1936-01-01:
-      title: Décret-loi du 28/10/1935 art. 2 § 2
-    1937-01-01:
-      title: Loi du 26/08/1936 modifiée
-    1938-07-01:
-      title: Décret-loi du 14/06/1938
-    1941-04-01:
-      title: Loi du 14/03/1941 art. 19
-    1942-01-01:
-      title: Loi du 06/01/1942
-    1944-01-01:
-      title: Loi du 06/01/1942
-    1944-09-01:
-      title: Ordonnance du 20/10/1944
-    1945-04-01:
-      title: Ordonnance du 20/06/1945
     1946-07-01:
       title: Ordonnance 45-2250 du 04/10/1945 art. 31
     1946-10-01:
@@ -221,8 +205,8 @@ metadata:
     1951-10-01:
       title: Loi 51-1126 du 26/09/1951, art. 8
     1952-04-01:
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006319215&cidTexte=JORFTEXT000000516428
       title: Loi 52-401 du 14/04/1952, art. 18
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006319215&cidTexte=JORFTEXT000000516428
     1955-10-01:
       title: Décret 55-1272 du 29/09/1955
     1958-01-01:
@@ -274,127 +258,127 @@ metadata:
     1979-01-01:
       title: Décret 78-1212 du 26/12/1978
     1980-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000329018&categorieLien=id
       title: Décret 79-1136 du 28/12/1979
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000329018&categorieLien=id
     1981-01-01:
       title: Décret 80-1080 du 24/12/1980
     1982-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000876015
       title: Décret 81-1164 du 30/12/1981
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000876015
     1982-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336516&categorieLien=id
       title: Décret 82-543 du 29/06/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336516&categorieLien=id
     1983-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000334833&categorieLien=id
       title: Décret 82-1119 du 28/12/1982
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000334833&categorieLien=id
     1983-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000861342&categorieLien=id
       title: Décret 83-530 du 28/06/1983
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000861342&categorieLien=id
     1984-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000690641
       title: Décret 83-1197 du 30/12/1983
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000690641
     1984-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000520709&categorieLien=id
       title: Décret 84-520 du 28/06/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000520709&categorieLien=id
     1985-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000331529&categorieLien=id
       title: Décret 84-1197 du 28/12/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000331529&categorieLien=id
     1985-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000331529&categorieLien=id
       title: Décret 84-1197 du 28/12/1984
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000331529&categorieLien=id
     1986-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000884660&categorieLien=id
       title: Décret 85-1492 du 31/12/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000884660&categorieLien=id
     1986-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000884660&categorieLien=id
       title: Décret 85-1492 du 31/12/1985
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000884660&categorieLien=id
     1987-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000518114&categorieLien=id
       title: Décret 86-1374 du 31/12/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000518114&categorieLien=id
     1987-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000518114&categorieLien=id
       title: Décret 86-1374 du 31/12/1986
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000518114&categorieLien=id
     1988-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000695675&categorieLien=id
       title: Décret 87-1057 du 29/12/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000695675&categorieLien=id
     1988-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000695675&categorieLien=id
       title: Décret 87-1057 du 29/12/1987
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000695675&categorieLien=id
     1989-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000314793
       title: Décret 88-1236 du 30/12/1988
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000314793
     1989-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000885613
       title: Décret 89-439 du 30/06/1989
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000885613
     1990-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000158660
       title: Décret 90-6 du 02/01/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000158660
     1990-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000158660
       title: Décret 90-6 du 02/01/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000158660
     1991-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000169054&categorieLien=id
       title: Décret 90-1240 du 31/12/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000169054&categorieLien=id
     1991-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000169054&categorieLien=id
       title: Décret 90-1240 du 31/12/1990
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000169054&categorieLien=id
     1992-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000522936
       title: Décret 91-1374 du 30/12/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000522936
     1992-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000522936
       title: Décret 91-1374 du 30/12/1991
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000522936
     1993-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000360143&categorieLien=id
       title: Décret 92-1371 du 29/12/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000360143&categorieLien=id
     1993-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000360143&categorieLien=id
       title: Décret 92-1371 du 29/12/1992
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000360143&categorieLien=id
     1994-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336676&categorieLien=id
       title: Décret 93-1308 du 15/12/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336676&categorieLien=id
     1994-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336676&categorieLien=id
       title: Décret 93-1308 du 15/12/1993
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000336676&categorieLien=id
     1995-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000551724&categorieLien=id
       title: Décret 94-1154 du 28/12/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000551724&categorieLien=id
     1995-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000551724&categorieLien=id
       title: Décret 94-1154 du 28/12/1994
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000551724&categorieLien=id
     1996-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000373689
       title: Décret 95-1357 du 30/12/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000373689
     1996-07-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000373689
       title: Décret 95-1357 du 30/12/1995
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000373689
     1997-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000380632&categorieLien=id
       title: Décret 96-1169 du 27/12/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000380632&categorieLien=id
     1998-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000568533&categorieLien=id
       title: Décret 97-1251 du 29/12/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000568533&categorieLien=id
     1999-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000574504&categorieLien=id
       title: Décret 98-1225 du 29/12/1998
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000574504&categorieLien=id
     2000-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000212929&categorieLien=id
       title: Décret 99-1029 du 09/12/1999
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000212929&categorieLien=id
     2001-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000768354&categorieLien=id
       title: Décret 2000-1284 du 26/12/2000
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000768354&categorieLien=id
     2002-01-01:
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000403609&categorieLien=id
       title: Décret 2001-1069 du 16/11/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000403609&categorieLien=id
     2003-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2002/11/22/2002-1374/jo/texte
       title: Décret 2002-1374 du 22/11/2002
+      href: https://www.legifrance.gouv.fr/eli/decret/2002/11/22/2002-1374/jo/texte
     2004-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2003/12/4/2003-1159/jo/texte
       title: Décret 2003-1159 du 04/12/2003
+      href: https://www.legifrance.gouv.fr/eli/decret/2003/12/4/2003-1159/jo/texte
     2005-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2004/11/26/2004-1292/jo/texte
       title: Décret 2004-1292 du 26/11/2004
+      href: https://www.legifrance.gouv.fr/eli/decret/2004/11/26/2004-1292/jo/texte
     2006-01-01:
       title: Arrêté du 02/12/2005
     2007-01-01:
@@ -402,8 +386,8 @@ metadata:
     2008-01-01:
       title: Arrêté du 30/10/2007
     2009-01-01:
-      href: https://www.legifrance.gouv.fr/eli/decret/2008/12/19/2008-1394/jo/texte
       title: Décret 2008-1394 du 19/12/2008
+      href: https://www.legifrance.gouv.fr/eli/decret/2008/12/19/2008-1394/jo/texte
     2010-01-01:
       title: Arrêté du 18/11/2009
     2011-01-01:
@@ -425,13 +409,12 @@ metadata:
     2019-01-01:
       title: Arrêté du 11/12/2018
     2020-01-01:
-      href: https://www.legifrance.gouv.fr/eli/arrete/2019/12/2/SSAS1934384A/jo/texte
       title: Arrêté du 02/12/2019
+      href: https://www.legifrance.gouv.fr/eli/arrete/2019/12/2/SSAS1934384A/jo/texte
     2021-01-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042748904
       title: Arrêté du 22/12/2020
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042748904
   official_journal_date:
-    1938-07-01: "1938-06-15"
     1946-07-01: "1945-10-06"
     1946-10-01: "1946-10-08"
     1947-10-01: "1947-09-25"
@@ -525,13 +508,6 @@ metadata:
   notes:
     1930-07-01:
     - title: Voir référence sur Gallica.bnf.fr
-    1936-01-01:
-    - title: Voir référence sur Gallica.bnf.fr
-    1937-01-01:
-    - title: Voir référence sur Gallica.bnf.fr
-    1938-07-01:
-    - href: http://gallica.bnf.fr/ark:/12148/bpt6k6550526r/f20.image.r=journal%20officiel%201948.langFR
-      title: JO sur gallica
     1951-10-01:
     - title: Référence erronée dans legislation.cnav.fr
     1960-01-01:
