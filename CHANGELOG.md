@@ -132,7 +132,6 @@
   - Du seuil supérieur de bénéfices sur lesquels le taux réduit d'IS est applicable (taxation sur les sociétés)
 * Remarque: ici on pense avoir pris en compte toutes les modifications du PLF sur les dispositifs qui sont actuellement codés dans openfisca-france. La partie 'collectivités territoriales' sera codée dans le répertoire dédié.
 
-
 ### 136.0.2 [#1973](https://github.com/openfisca/openfisca-france/pull/1973)
 
 * Amélioration technique.
