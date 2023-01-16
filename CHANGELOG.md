@@ -1,5 +1,13 @@
 # Changelog
 
+### 138.1.3 [#1981](https://github.com/openfisca/openfisca-france/pull/1981)
+
+* Changement mineur.
+* Périodes concernées : jusqu'au 08/2022.
+* Zones impactées : `parameters/taxation_capital/epargne/taux_inflation.yaml`.
+* Détails :
+  - Ajoute un taux d'inflation par défaut à zéro pour permettre les calculs avant août 2022
+
 ### 138.1.2 [#1864](https://github.com/openfisca/openfisca-france/pull/1864)
 
 * Changement mineur.
