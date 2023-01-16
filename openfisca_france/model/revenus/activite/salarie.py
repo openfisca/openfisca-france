@@ -167,7 +167,7 @@ class TypesAllegementModeRecouvrement(Enum):
     __order__ = 'fin_d_annee anticipe progressif'  # Needed to preserve the enum order in Python 2
     fin_d_annee = "Paiement en fin d'année des cotisations avec l'allègement exact"
     anticipe = "Paiement anticipé des cotisations et régularisation de l'allègement en fin de période"
-    progressif = "Paiement anticipé des cotisations et régularisation progressive de l'allègement" #La régularisation est faite à chaque paiement anticipé, «en faisant masse des éléments nécessaires au calcul de la réduction»
+    progressif = "Paiement anticipé des cotisations et régularisation progressive de l'allègement"  #La régularisation est faite à chaque paiement anticipé, «en faisant masse des éléments nécessaires au calcul de la réduction»
 
 
 class allegement_fillon_mode_recouvrement(Variable):
