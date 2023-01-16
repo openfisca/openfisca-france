@@ -1,6 +1,6 @@
 # Changelog
 
-### [#1984](https://github.com/openfisca/openfisca-france/pull/1984)
+### 138.1.1 [#1984](https://github.com/openfisca/openfisca-france/pull/1984)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2023.
