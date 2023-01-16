@@ -62,15 +62,6 @@ class gar_dom(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class remuneration_horaire_brute_employe(Variable):
-    value_type = float
-    entity = Famille
-    label = "Rémunération horaire brute d'un employé"
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-    unit = 'currency'
-
-
 class paje(Variable):
     value_type = float
     entity = Famille
@@ -385,168 +376,14 @@ class paje_cmg(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = 'PAJE - Complément de libre choix du mode de garde (CMG) emploi direct'
+    label = 'PAJE - Complément de libre choix du mode de garde'
     set_input = set_input_divide_by_period
     reference = [
-        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029336644',
-        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046809111'
-        'https://www.caf.fr/allocataires/aides-et-demarches/droits-et-prestations/vie-personnelle/le-complement-de-libre-choix-du-mode-de-garde-cmg'
+        'http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=C92307A93BE5F694EB49FE51DC09602C.tplgfr29s_1?idArticle=LEGIARTI000031500755&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte='
         ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
-
-    def formula_2023_01_01(famille, period, parameters):
-        '''
-        Prestation d'accueil du jeune enfant - Complément de libre choix du mode de garde
-        Les conditions
-        Vous devez :
-            - avoir un enfant de moins de 6 ans né, adopté ou recueilli en vue d'adoption à partir du 1er janvier 2004, gardé au moins 16h par mois
-            - employer une assistante maternelle agréée ou une garde à domicile en emploi direct (et non pas par un organisme)
-
-        Vous n'avez pas besoin de justifier d'une activité min_ si vous êtes :
-            - bénéficiaire de l'allocation aux adultes handicapés (AAH)
-            - au chômage et bénéficiaire de l'allocation de solidarité spécifique
-            - bénéficiaire du Revenu de solidarité active (RSA), sous certaines conditions de ressources étudiées par
-            votre Caf, et inscrit dans une démarche d'insertion
-            - étudiant (si vous vivez en couple, vous devez être tous les deux étudiants).
-
-        Autres conditions à remplir : Assistante maternelle agréée  / Garde à domicile
-        Son salaire brut ne doit pas dépasser par jour de garde et par enfant un certain nombre de fois le montant du Smic horaire brut.
-        Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
-
-        En cas de travail à temps partiel, le CMG peut être cumulé avec la PreParE.
-        Si le parent à temps partiel a un temps de travail inférieur ou égal à 50 % de son temps de travail habituel, le montant du CMG est divisé par 2.
-
-        '''
-        # Récupération des données
-        inactif = famille('inactif', period)
-        partiel1 = famille('partiel1', period)
-        nombre_enfants = famille('af_nbenf', period)
-        base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
-        emploi_direct = famille('empl_dir', period)
-        assistant_maternel = famille('ass_mat', period)
-        garde_a_domicile = famille('gar_dom', period)
-        paje_prepare = famille('paje_prepare', period)
-        paje = parameters(
-            period
-            ).prestations_sociales.prestations_familiales.petite_enfance.paje
-        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
-        parent_isole = not_(famille('en_couple', period))
-
-        aah_i = famille.members('aah', period)
-        aah = famille.sum(aah_i)
-
-        etudiant_i = famille.members('etudiant', period)
-        parent_etudiant = famille.any(etudiant_i, role=Famille.PARENT)
-
-        # L'enfant doit avoir un age (0-6 ans) ou (0-12 ans si parents isolé)
-        cond_age_enf = (
-            (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1) > 0) | (parent_isole * (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.etendue - 1) > 0)))
-
-        # TODO:    cond_rpns    =
-        # TODO: RSA insertion, alloc insertion, ass
-        cond_non_act = (aah > 0) | parent_etudiant  # | (ass>0)
-
-        cond_eligibilite = cond_age_enf & (not_(inactif) | cond_non_act)
-
-        # TODO: voir les montants partiels si PreParE
-        # Si vous bénéficiez de la PreParE taux plein (= vous ne travaillez plus ou interrompez votre activité professionnelle), vous ne pouvez pas bénéficier du Cmg.
-        paje_prepare_inactif = (paje_prepare > 0) * inactif
-        eligible = cond_eligibilite * not_(paje_prepare_inactif)
-
-        # Les plafonds de ressources
-        seuil_revenus_1 = (
-            (nombre_enfants == 1)
-            * paje.plaf_cmg.premier_plafond_ne_adopte_avant_04_2014.enfant
-            + (nombre_enfants >= 2)
-            * paje.plaf_cmg.premier_plafond_ne_adopte_avant_04_2014.deux_enfants
-            + max_(nombre_enfants - 2, 0)
-            * paje.plaf_cmg.premier_plafond_ne_adopte_avant_04_2014.majoration_enfant_supp
-            )
-
-        seuil_revenus_2 = (
-            (nombre_enfants == 1)
-            * paje.plaf_cmg.deuxieme_plafond_ne_adopte_avant_04_2014.enfant
-            + (nombre_enfants >= 2)
-            * paje.plaf_cmg.deuxieme_plafond_ne_adopte_avant_04_2014.deux_enfants
-            + max_(nombre_enfants - 2, 0)
-            * paje.plaf_cmg.deuxieme_plafond_ne_adopte_avant_04_2014.majoration_enfant_supp
-            )
-
-        #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
-        #        dans l'entreprise), vous cumulez intégralement la PreParE et le Cmg.
-        #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez à 50% ou moins de la durée
-        #        du travail fixée dans l'entreprise), le montant des plafonds Cmg est divisé par 2.
-
-        paje_prepare_temps_partiel = (paje_prepare > 0) * partiel1
-        seuil_revenus_1 = seuil_revenus_1 * (1 - 0.5 * paje_prepare_temps_partiel)
-        seuil_revenus_2 = seuil_revenus_2 * (1 - 0.5 * paje_prepare_temps_partiel)
-
-        # calcul du montant
-        montant_cmg = (
-            bmaf
-            * (
-                (nb_enf(famille, period, 0, paje.paje_cmg.limite_age.pleine - 1) > 0)
-                + parent_isole * (nb_enf(famille, period, paje.paje_cmg.limite_age.pleine, paje.paje_cmg.limite_age.etendue - 1) > 0)
-                )
-            * (
-                emploi_direct
-                * (
-                    (base_ressources < seuil_revenus_1)
-                    * paje.paje_cmg.complement_libre_choix_mode_garde.revenus_inferieurs_45_plaf
-                    + (
-                        (base_ressources >= seuil_revenus_1)
-                        & (base_ressources < seuil_revenus_2)
-                        )
-                    * paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_45_plaf
-                    + (base_ressources >= seuil_revenus_2)
-                    * paje.paje_cmg.complement_libre_choix_mode_garde.revenus_superieurs_plaf
-                    )
-                + assistant_maternel
-                * (
-                    (base_ressources < seuil_revenus_1)
-                    * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_premier_plafond
-                    + (
-                        (base_ressources >= seuil_revenus_1)
-                        & (base_ressources < seuil_revenus_2)
-                        )
-                    * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.sous_second_plafond
-                    + (base_ressources >= seuil_revenus_2)
-                    * paje.paje_cmg.assistante_mat_asso_entreprise_microcreche.apres_second_plafond
-                    )
-                + garde_a_domicile
-                * (
-                    (base_ressources < seuil_revenus_1)
-                    * paje.paje_cmg.garde_domicile.sous_premier_plafond
-                    + (
-                        (base_ressources >= seuil_revenus_1)
-                        & (base_ressources < seuil_revenus_2)
-                        )
-                    * paje.paje_cmg.garde_domicile.sous_second_plafond
-                    + (base_ressources >= seuil_revenus_2)
-                    * paje.paje_cmg.garde_domicile.apres_second_plafond
-                    )
-                )
-            )
-
-        # TODO: connecter avec le crédit d'impôt
-        # TODO: un minimum de 15 % des frais de rémunération reste à votre charge
-        # TODO: vérfiez les règles de cumul
-        # Le versement de la CMG est fait 'à la condition que la rémunération horaire de [la personne effectuant la garde] n’excède pas un plafond fixé par décret'
-        salaire_horaire_brut = famille('remuneration_horaire_brute_employe', period)
-        smic_hb = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
-        # Plusieurs plafonds selon le type d'assistant
-        plaf_agree = paje.paje_cmg.remuneration_horaire_max.assistant_maternel * smic_hb
-        plaf_non_agree = paje.paje_cmg.remuneration_horaire_max.salarie * smic_hb
-        condition_remuneration = (emploi_direct * (salaire_horaire_brut < plaf_non_agree)) + (assistant_maternel * (salaire_horaire_brut < plaf_agree))
-
-        paje_cmg = eligible * condition_remuneration * montant_cmg
-
-        # La CMG rentre dans la liste des prestations (comme les Allocations Familiales) qui sont partagées entre les 2 parents en cas de garde alternée
-        coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
-        paje_cmg_montant = paje_cmg * coeff_garde_alternee
-
-        return paje_cmg_montant
 
     def formula_2017_04_01(famille, period, parameters):
         '''
@@ -597,9 +434,9 @@ class paje_cmg(Variable):
 
         # TODO:    cond_rpns    =
         # TODO: RSA insertion, alloc insertion, ass
-        cond_non_act = (aah > 0) | parent_etudiant  # | (ass>0)
+        cond_nonact = (aah > 0) | parent_etudiant  # | (ass>0)
 
-        cond_eligibilite = cond_age_enf & (not_(inactif) | cond_non_act)
+        cond_eligibilite = cond_age_enf & (not_(inactif) | cond_nonact)
 
         # Si vous bénéficiez de la PreParE taux plein
         # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
