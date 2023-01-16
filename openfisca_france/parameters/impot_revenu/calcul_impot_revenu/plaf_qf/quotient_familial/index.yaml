@@ -1,1 +1,9 @@
 description: Parts de quotient familial
+metadata:
+  order:
+  - conj
+  - enf1
+  - enf2
+  - isol
+  - not32
+  - veuf
