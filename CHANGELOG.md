@@ -1,5 +1,18 @@
 # Changelog
 
+## 138.1.0 [#1899](https://github.com/openfisca/openfisca-france/pull/1899)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2023.
+* Zones impactées : 
+    * `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/asf/montant_asf/`
+    * `parameters/taxation_indirecte/taxes_tabacs/`
+ * Détails :
+    - Mise à jour des paramètres à la suite du vote du PLFSS 2023.
+      * Améliore les références de l'Allocation de soutien familial (ASF)
+      * Met à jour l'augmentation des taxes sur le tabac et ses produits dérivés.
+      * Introduit `autres_tabacs_a_chauffer`, `autres_tabacs_a_fumer_apres_chauffer` et `tabacs_batonnets` pour `taux_normal` et `taxes_specifiques` après 2015.
+
 ### 138.0.3 [#1987](https://github.com/openfisca/openfisca-france/pull/1987)
 * Changement mineur.
 * Périodes concernées : toutes.
@@ -22,7 +35,7 @@
   - Ajoute les labels de certains enum de variables
   - Modifie le nom de certaines variables
 
-# 138.0.1 [#1976](https://github.com/openfisca/openfisca-france/pull/1976)
+### 138.0.1 [#1976](https://github.com/openfisca/openfisca-france/pull/1976)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -39,7 +52,7 @@
 * Détails :
   - Dans `taxation_capital/impot_solidarite_fortune_isf_1989_2017`, renomme `droits_soc` en `droits_sociaux`
 
-# 137.1.1 [#1983](https://github.com/openfisca/openfisca-france/pull/1983)
+## 137.1.1 [#1983](https://github.com/openfisca/openfisca-france/pull/1983)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
