@@ -1,6 +1,6 @@
 # Changelog
 
-### 138.1.4 [#1970](https://github.com/openfisca/openfisca-france/pull/1970)
+### 138.1.4 [#1993](https://github.com/openfisca/openfisca-france/pull/1993)
 
 * Changement mineur
 * Périodes concernées : du 01/02/2022 jusqu'au 01/08/2022
