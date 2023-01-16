@@ -1,6 +1,16 @@
 # Changelog
 
-# 138.0.2 [#1905](https://github.com/openfisca/openfisca-france/pull/1905)
+### 138.0.3 [#1987](https://github.com/openfisca/openfisca-france/pull/1987)
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `parameters/impot_revenu/`
+  - `parameters/prelevements_sociaux/contributions_sociales/`
+  - `prestations_sociales/prestations_familiales/education_presence_parentale/ars/`
+* Détails :
+  - Ajout de metadata aux paramètres.
+
+### 138.0.2 [#1905](https://github.com/openfisca/openfisca-france/pull/1905)
 
 * Changement mineur.
 * Toutes périodes concernées
