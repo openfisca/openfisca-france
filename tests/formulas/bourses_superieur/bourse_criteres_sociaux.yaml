@@ -89,6 +89,7 @@
 
 - period: 2021-03
   input:
-    bourse_criteres_sociaux_echelon: [-1, 0, 8]
+    bourse_criteres_sociaux_echelon: [-1, 0, 8, 8, 5, 0]
+    annee_etude: [licence_1, licence_2, master_2, doctorat_1, doctorat_2, doctorat_3]
   output:
-    bourse_criteres_sociaux: [0, 103.2, 567.9]
+    bourse_criteres_sociaux: [0, 103.2, 567.9, 0, 0, 0]

@@ -1,5 +1,14 @@
 # Changelog
 
+# 138.0.1 [#1976](https://github.com/openfisca/openfisca-france/pull/1976)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prestations/enseignement_superieur/bourse_criteres_sociaux`.
+* Détails :
+  - Les individus en année d'étude de doctorat ne peuvent plus recevoir de bourse sur critère sociaux
+  - Le doctorat ne fait pas partie des diplômes concernés pour l'obention de la bourse sur critères sociaiux, cf. (source)[https://www.enseignementsup-recherche.gouv.fr/fr/bo/22/Hebdo13/ESRS2209377C.htm?cbo=1&cid_bo=160009].
+
 # 138.0.0 [#1989](https://github.com/openfisca/openfisca-france/pull/1989)
 
 * Évolution du système socio-fiscal. Changement mineur.
