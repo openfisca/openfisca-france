@@ -1,5 +1,13 @@
 # Changelog
 
+### 138.1.5 [#1995](https://github.com/openfisca/openfisca-france/pull/1995)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `CHANGELOG.md`.
+* Détails :
+  - Retire un résidu de gestion de conflit du CHANGELOG.
+
 ### 138.1.4 [#1993](https://github.com/openfisca/openfisca-france/pull/1993)
 
 * Changement mineur
@@ -7,6 +15,7 @@
 * Zones impactées : `parameters/taxation_capital/epargne/livret_a/taux.yaml`.
 * Détails :
   - Mise à jour du taux du livret A au date du 1 février 2022 et au 1 août 2022
+
 ### 138.1.3 [#1981](https://github.com/openfisca/openfisca-france/pull/1981)
 
 * Changement mineur.
@@ -90,11 +99,7 @@
 * Détails :
   - Dans `taxation_capital/impot_solidarite_fortune_isf_1989_2017`, renomme `droits_soc` en `droits_sociaux`
 
-<<<<<<< HEAD
 ## 137.1.1 [#1983](https://github.com/openfisca/openfisca-france/pull/1983)
-=======
-### 137.1.1 [#1983](https://github.com/openfisca/openfisca-france/pull/1983)
->>>>>>> 97e788c94 (met à jour le numéro de version et le changelog)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
