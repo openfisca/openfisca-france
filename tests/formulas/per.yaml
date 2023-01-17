@@ -189,7 +189,7 @@
     prime_exceptionnelle_rentree_non_etudiant:
       2022: 100
     prime_exceptionnelle_rentree_etudiant:
-      2022: [0, 100]
+      2022: [0, 0]
 
 - period: 2022-01-01
   name: PER Cas No 7 - Couple éligible au RSA avec un enfant à charge boursier
@@ -235,4 +235,4 @@
     prime_exceptionnelle_rentree_etudiant:
       2022: [0, 0, 100]
     prime_exceptionnelle_rentree_non_etudiant:
-      2022: 150
+      2022: 100

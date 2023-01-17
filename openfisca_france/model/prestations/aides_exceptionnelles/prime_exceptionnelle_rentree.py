@@ -46,12 +46,11 @@ class eligibilite_per_etudiant(Variable):
 
     def formula_2022(individu, period):
         juin_2022 = periods.period('2022-06')
-        annee_2022 = periods.period('2022')
         eligibilite_etudiant = where(
             not_(or_(individu('bourse_criteres_sociaux', juin_2022) > 0, individu('bourse_enseignement_sup', juin_2022) > 0)),
             False,
             where(
-                and_(individu.has_role(Famille.DEMANDEUR), individu.famille('eligibilite_per', annee_2022)),
+                and_(individu.has_role(Famille.PARENT), individu.famille('eligibilite_per', period)),
                 False,
                 True
                 )
@@ -69,9 +68,8 @@ class eligibilite_per_ppa(Variable):
     end = '2022-12-31'
 
     def formula_2022(famille, period):
-        annee_2022 = periods.period('2022')
         juin_2022 = periods.period('2022-06')
-        eligibilite_ppa = (famille('ppa', juin_2022) > 0) * (not_(famille('eligibilite_per', annee_2022)))
+        eligibilite_ppa = (famille('ppa', juin_2022) > 0) * (not_(famille('eligibilite_per', period)))
 
         return eligibilite_ppa
 
@@ -85,10 +83,16 @@ class prime_exceptionnelle_rentree_non_etudiant(Variable):
     end = '2022-12-31'
 
     def formula_2022(famille, period, parameters):
+        '''
+        Hypothèse : Vu qu'on suppose qu'un jeune boursier vivant chez ses parents peut aussi toucher la PER étudiant, même si ses parents
+                    touchent la PER aussi (voir la docstring de la variable prime_exceptionnelle_rentree_etudiant), on retire ces enfants-là
+                    des enfants à charge.
+        '''
 
         juin_2022 = periods.period('2022-06')
         prestations_familiales_enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', juin_2022)
-        nb_enfants = famille.sum(prestations_familiales_enfant_a_charge_i)
+        eligibilite_per_etudiant_i = famille.members('eligibilite_per_etudiant', period)
+        nb_enfants = famille.sum(prestations_familiales_enfant_a_charge_i * (1 - eligibilite_per_etudiant_i))
         parametres_per = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.prime_exceptionnelle_rentree
 
         per = where(
@@ -113,10 +117,11 @@ class prime_exceptionnelle_rentree_etudiant(Variable):
     end = '2022-12-31'
 
     def formula_2022(individu, period, parameters):
-
         '''
-        Hypothèse : Si l'étudiant  est un enfant dans sa famille, ses enfants ne sont pas identifiés. La majoration pour enfant ne rentre donc pas en compte dans le calcul.
-        Hypothèse 2 : Si un jeune est boursier et vit chez ses parents, il faut toucher la PER étudiant.
+        Hypothèse 1 : Si l'étudiant a le rôle enfant dans son entité famille, ses enfants ne sont pas identifiés. La majoration pour enfant
+                      n'entre donc pas en compte dans le calcul.
+        Hypothèse 2 : Si un jeune est boursier et vit chez ses parents, il touche la PER étudiant, même si ses parents touchent aussi la PER.
+                      Il n'a pas été trouvé de réponse claire à ce cas de figure dans la loi. D'où le fait de faire une hypothèse ici.
         '''
 
         juin_2022 = periods.period('2022-06')
