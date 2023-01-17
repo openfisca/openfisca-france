@@ -1,4 +1,4 @@
-description: Plancher de ressources pour les étudiants (R. 351-7-2)
+description: Plancher de ressources (avant 2021) puis forfait de ressources (depuis 2021) pour les étudiants (avant oct 2019, R.351-7-2 du CCH et art. 1 quater de l'arrêté du 3 juillet 1978 ; oct 2019 - dec 2020, art. 6 de l'arrêté du 27 sept 2019 et art. R822-21 du CCH ; depuis janv 2021, même arrêté et art. R822-20 du CCH
 values:
   2002-01-01:
     value: 5411.62
@@ -18,8 +18,16 @@ values:
     value: 7600
   2018-01-01:
     value: 7700
+  2022-01-01:
+    value: 7800
+  2022-08-01:
+    value: 8100
 metadata:
   unit: currency
   reference:
     2018-01-01:
-      href: https://www.legifrance.gouv.fr/eli/arrete/2017/12/29/TERL1732837A/jo/texte
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036341227
+    2022-01-01:
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044572817/#JORFARTI000044572819
+    2022-08-01:
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046114992/#JORFARTI000046114998
