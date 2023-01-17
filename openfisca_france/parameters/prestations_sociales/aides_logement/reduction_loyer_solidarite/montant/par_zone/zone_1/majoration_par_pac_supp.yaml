@@ -14,6 +14,8 @@ values:
     value: 10.05
   2022-01-01:
     value: 10.0
+  2023-01-01:
+    value: 10.24
 metadata:
   ux_name: Majoration par personne à charge supplémentaire
   ipp_csv_id: rls_z1_pac_supplementaire
@@ -40,6 +42,9 @@ metadata:
     2022-01-01:
       title: Arrêté du 20/12/2021, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044560604
+    2023-01-01:
+      title: Arrêté du 30/12/2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046848188
   official_journal_date:
     2018-01-01: "2018-02-28"
     2019-01-01: "2018-12-29"
