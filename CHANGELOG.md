@@ -1,5 +1,13 @@
 # Changelog
 
+### 138.1.5 [#1995](https://github.com/openfisca/openfisca-france/pull/1995)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `CHANGELOG.md`.
+* Détails :
+  - Retire un résidu de gestion de conflit du CHANGELOG.
+
 ### 138.1.4 [#1993](https://github.com/openfisca/openfisca-france/pull/1993)
 
 * Changement mineur
