@@ -2,6 +2,8 @@ description: Prélèvements libératoires sur les revenus des valeurs mobilière
 values:
   2008-01-01:
     value: 0.05
+  2018-01-01:
+    value: null
 metadata:
   ux_name: Produits d'épargne solidaire de partage
   description_en: Levy in discharge on capital income (1965 - 2012)
@@ -9,15 +11,13 @@ metadata:
   reference:
     2008-01-01:
       title: Loi 2007-1822 du 24/12/2007, art. 10 et 12 (LF pour 2008)
-    2010-03-01:
-      title: Loi 2009-1674 du 30/12/2009, art. 22
-      href: https://www.legifrance.gouv.fr/eli/loi/2009/12/30/2009-1674/jo/article_22
   official_journal_date:
     2008-01-01: "2007-12-27"
-    2010-03-01: "2009-12-31"
   notes:
     2008-01-01:
     - title: Création du prélèvement libératoire sur les placements à revenus variables, notamment sur les dividendes (crée art. 117 quater du CGI)
+    2018-01-01:
+    - title: Le prélèvement libératoire est remplacé par un prélèvement forfaitaire unique non-libératoire, dont la valeur est telle que la somme du taux de ce prélèvement et des prélèvements sociaux est de 30%.
 documentation: |-
   Notes :
   Références du Code général des impôts : l'article 125 A du CGI régit le prélèvement sur les produits de placements à revenu fixe tandis que l'article 117 quater régit le prélèvement sur les dividendes.
