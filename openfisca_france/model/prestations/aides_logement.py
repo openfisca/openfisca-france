@@ -1202,7 +1202,7 @@ class aide_logement_R0(Variable):
             + al.al_param_r0.r0.taux3pac * (al_nb_pac == 3)
             + al.al_param_r0.r0.taux4pac * (al_nb_pac == 4)
             + al.al_param_r0.r0.taux5pac * (al_nb_pac == 5)
-            + al.al_param_r0.r0.taux6pac * (al_nb_pac >= 6) # la dernière valeur est un montant additionnel à rajouter pour chaque pac au-delà de 6.
+            + al.al_param_r0.r0.taux6pac * (al_nb_pac >= 6) #  la dernière valeur est un montant additionnel à rajouter pour chaque pac au-delà de 6.
             + al.al_param_r0.r0.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
             )
 
