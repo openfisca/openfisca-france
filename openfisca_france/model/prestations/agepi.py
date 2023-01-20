@@ -20,7 +20,7 @@ class agepi_nbenf(Variable):
     def formula_2014_01_20(famille, period, parameters):
         age_membres_famille = famille.members('age', period)
         parametres_agepi = parameters(period).prestations_sociales.prestations_familiales.education_presence_parentale.agepi
-        age_eligibles = (age_membres_famille < parametres_agepi.age_enfant_maximum) * (age_membres_famille > 0)
+        age_eligibles = (age_membres_famille < parametres_agepi.age_enfant_maximum) * (age_membres_famille >= 0)
         nb_enfants_eligibles = famille.sum(age_eligibles, role=Famille.ENFANT)
 
         return nb_enfants_eligibles
