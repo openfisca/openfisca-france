@@ -63,7 +63,10 @@ setup(
             'pytest >= 5.0.0, < 7.0.0',
             'requests >= 2.8',
             'scipy >= 0.17',  # Only used to test de_net_a_brut reform
-            ]
+            ],
+        'ci': [
+            'twine',
+            ],
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [

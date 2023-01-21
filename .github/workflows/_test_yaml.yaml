@@ -1,0 +1,72 @@
+name: Test package
+
+on:
+  workflow_call:
+    inputs:
+      os:
+        required: true
+        type: string
+
+      numpy:
+        required: true
+        type: string
+
+      python:
+        required: true
+        type: string
+
+      activate_command:
+        required: true
+        type: string
+
+      ci_node_total:
+        required: true
+        type: number
+
+      ci_node_index:
+        required: true
+        type: number
+
+jobs:
+  test_yaml:
+    runs-on: ${{ inputs.os }}
+    name: test-core-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TERM: xterm-256color  # To colorize output of make tasks.
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python }}
+
+      - name: Use zstd for faster cache restore (windows)
+        if: ${{ startsWith(inputs.os, 'windows') }}
+        shell: cmd
+        run: echo C:\Program Files\Git\usr\bin>>"%GITHUB_PATH%"
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: venv
+          key: deps-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}-${{ hashFiles('setup.py') }}
+
+      - name: Cache build
+        uses: actions/cache@v3
+        with:
+          path: venv/**/[Oo]pen[Ff]isca*
+          key: build-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+
+      - name: Split YAML tests
+        run: |
+          ${{ inputs.activate_command }}
+          echo "TEST_FILES_SUBLIST=$(python "${GITHUB_WORKSPACE}/.github/split_tests.py" ${{ inputs.ci_node_total }} ${{ inputs.ci_node_index }})" >> $GITHUB_ENV
+
+      - name: Run YAML tests
+        run: |
+          ${{ inputs.activate_command }}
+          python -m openfisca_core.scripts.openfisca_command test ${TEST_FILES_SUBLIST}

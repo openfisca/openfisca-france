@@ -1,0 +1,218 @@
+name: OpenFisca-Core / Deploy package to PyPi & Conda
+
+on:
+  push:
+    branches: [master]
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  setup:
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-20.04, windows-latest]
+        numpy: [1.20.3]
+        python: [3.9.9, 3.8.9] # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+        include:
+        - os: ubuntu-20.04
+          activate_command: source venv/bin/activate
+        - os: windows-latest
+          activate_command: .\venv\Scripts\activate
+    uses: ./.github/workflows/_before.yaml
+    with:
+        os: ${{ matrix.os }}
+        numpy: ${{ matrix.numpy }}
+        python: ${{ matrix.python }}
+        activate_command: ${{ matrix.activate_command }}
+
+  lint:
+    needs: [setup]
+    strategy:
+      fail-fast: true
+      matrix:
+        numpy: [1.20.3]
+        python: [3.9.9, 3.8.9] # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+    uses: ./.github/workflows/_lint.yaml
+    with:
+        os: ubuntu-20.04
+        numpy: ${{ matrix.numpy }}
+        python: ${{ matrix.python }}
+        activate_command: source venv/bin/activate
+
+  test:
+    needs: [setup]
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-20.04, windows-latest]
+        numpy: [1.20.3]
+        python: [3.9.9, 3.8.9] # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+        include:
+        - os: ubuntu-20.04
+          activate_command: source venv/bin/activate
+        - os: windows-latest
+          activate_command: .\venv\Scripts\activate
+    uses: ./.github/workflows/_test.yaml
+    with:
+        os: ${{ matrix.os }}
+        numpy: ${{ matrix.numpy }}
+        python: ${{ matrix.python }}
+        activate_command: ${{ matrix.activate_command }}
+
+  test-yaml:
+    needs: [setup]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-20.04, windows-latest]
+        numpy: [1.20.3]
+        python: [3.9.9, 3.8.9] # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+        # Set N number of parallel jobs to run tests on. Here we use 10 jobs
+        # Remember to update ci_node_index below to 0..N-1
+        ci_node_total: [10]
+        ci_node_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        include:
+        - os: ubuntu-20.04
+          activate_command: source venv/bin/activate
+        - os: windows-latest
+          activate_command: .\venv\Scripts\activate
+    uses: ./.github/workflows/_test_yaml.yaml
+    with:
+        os: ${{ matrix.os }}
+        numpy: ${{ matrix.numpy }}
+        python: ${{ matrix.python }}
+        activate_command: ${{ matrix.activate_command }}
+        ci_node_total: ${{ matrix.ci_node_total }}
+        ci_node_index: ${{ matrix.ci_node_index }}
+
+  # The idea behind these dependencies is we want to give feedback to
+  # contributors on the version number only after they have passed all tests,
+  # so they don't have to do it twice after changes happened to the main branch
+  # during the time they took to fix the tests.
+  check-version:
+    runs-on: ubuntu-20.04
+    needs: [lint, test, test-yaml]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all the tags
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9.9 # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+
+      - name: Check version number has been properly updated
+        run: "${GITHUB_WORKSPACE}/.github/is-version-number-acceptable.sh"
+
+  # GitHub Actions does not have a halt job option, to stop from deploying if
+  # no functional changes were found. We build a separate job to substitute the
+  # halt option. The `deploy` job is dependent on the output of the
+  # `check-for-functional-changes`job.
+  check-for-functional-changes:
+    runs-on: ubuntu-20.04
+    needs: [check-version] # Last job to run
+    outputs:
+      status: ${{ steps.stop-early.outputs.status }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all the tags
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9.9 # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+
+      - id: stop-early
+        run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi # The `check-for-functional-changes` job should always succeed regardless of the `has-functional-changes` script's exit code. Consequently, we do not use that exit code to trigger deploy, but rather a dedicated output variable `status`, to avoid a job failure if the exit code is different from 0. Conversely, if the job fails the entire workflow would be marked as `failed` which is disturbing for contributors.
+
+  publish-to-pypi:
+    runs-on: ubuntu-20.04
+    needs: [check-for-functional-changes]
+    if: needs.check-for-functional-changes.outputs.status == 'success'
+    env:
+      PYPI_USERNAME: openfisca-bot
+      PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all the tags
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9.9 # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+
+      - name: Cache deps
+        uses: actions/cache@v3
+        with:
+          path: venv
+          key: deps-ubuntu-20.04-np1.20.3-py3.8.10-${{ hashFiles('setup.py') }}
+
+      - name: Cache build
+        uses: actions/cache@v3
+        with:
+          path: venv/**/[oO]pen[fF]isca*
+          key: build-ubuntu-20.04-np1.20.3-py3.8.10-${{ hashFiles('setup.py') }}-${{ github.sha }}
+
+      - name: Cache release
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: release-ubuntu-20.04-np1.20.3-py3.8.10-${{ hashFiles('setup.py') }}-${{ github.sha }}
+
+      - name: Upload package to PyPi
+        run: |
+          source venv/bin/activate
+          make publish
+
+  publish-to-conda:
+    runs-on: ubuntu-20.04
+    needs: [publish-to-pypi]
+
+    steps:
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: 3.9.9 # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+          channels: conda-forge
+          activate-environment: true
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all the tags
+
+      - name: Update meta.yaml
+        run: |
+          source venv/bin/activate
+          python3 -m pip install requests argparse
+          python3 .github/get_pypi_info.py -p OpenFisca-France
+
+      - name: Get version
+        run: |
+          source venv/bin/activate
+          echo "PACKAGE_VERSION=$(python3 ./setup.py --version)" >> $GITHUB_ENV
+
+      - name: Conda config
+        run: |
+          conda install conda-build anaconda-client
+          conda info
+
+      - name: Conda build
+        run: |
+          source venv/bin/activate
+          conda build --croot /tmp/conda .conda
+
+      - name: Conda publish
+        uses: actions/upload-artifact@v3
+        with:
+          name: conda-build-${{ env.PACKAGE_VERSION }}-${{ github.sha }}
+          path: /tmp/conda
+          retention-days: 30

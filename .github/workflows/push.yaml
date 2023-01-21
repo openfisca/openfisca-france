@@ -1,0 +1,110 @@
+name: OpenFisca-Core / Pull request review
+
+on:
+  pull_request:
+    types: [assigned, opened, reopened, synchronize, ready_for_review]
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  setup:
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-20.04, windows-latest]
+        numpy: [1.20.3]
+        python: [3.9.9, 3.8.9] # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+        include:
+        - os: ubuntu-20.04
+          activate_command: source venv/bin/activate
+        - os: windows-latest
+          activate_command: .\venv\Scripts\activate
+    uses: ./.github/workflows/_before.yaml
+    with:
+        os: ${{ matrix.os }}
+        numpy: ${{ matrix.numpy }}
+        python: ${{ matrix.python }}
+        activate_command: ${{ matrix.activate_command }}
+
+  lint:
+    needs: [setup]
+    strategy:
+      fail-fast: true
+      matrix:
+        numpy: [1.20.3]
+        python: [3.9.9, 3.8.9] # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+    uses: ./.github/workflows/_lint.yaml
+    with:
+        os: ubuntu-20.04
+        numpy: ${{ matrix.numpy }}
+        python: ${{ matrix.python }}
+        activate_command: source venv/bin/activate
+
+  test:
+    needs: [setup]
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-20.04, windows-latest]
+        numpy: [1.20.3]
+        python: [3.9.9, 3.8.9] # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+        include:
+        - os: ubuntu-20.04
+          activate_command: source venv/bin/activate
+        - os: windows-latest
+          activate_command: .\venv\Scripts\activate
+    uses: ./.github/workflows/_test.yaml
+    with:
+        os: ${{ matrix.os }}
+        numpy: ${{ matrix.numpy }}
+        python: ${{ matrix.python }}
+        activate_command: ${{ matrix.activate_command }}
+
+  test-yaml:
+    needs: [setup]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-20.04, windows-latest]
+        numpy: [1.20.3]
+        python: [3.9.9, 3.8.9] # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+        # Set N number of parallel jobs to run tests on. Here we use 10 jobs
+        # Remember to update ci_node_index below to 0..N-1
+        ci_node_total: [10]
+        ci_node_index: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        include:
+        - os: ubuntu-20.04
+          activate_command: source venv/bin/activate
+        - os: windows-latest
+          activate_command: .\venv\Scripts\activate
+    uses: ./.github/workflows/_test_yaml.yaml
+    with:
+        os: ${{ matrix.os }}
+        numpy: ${{ matrix.numpy }}
+        python: ${{ matrix.python }}
+        activate_command: ${{ matrix.activate_command }}
+        ci_node_total: ${{ matrix.ci_node_total }}
+        ci_node_index: ${{ matrix.ci_node_index }}
+
+  # The idea behind these dependencies is we want to give feedback to
+  # contributors on the version number only after they have passed all tests,
+  # so they don't have to do it twice after changes happened to the main branch
+  # during the time they took to fix the tests.
+  check-version:
+    runs-on: ubuntu-20.04
+    needs: [lint, test, test-yaml]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all the tags
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9.9 # Patch version must be specified to avoid any cache confusion, since the cache key depends on the full Python version. If left unspecified, different patch versions could be allocated between jobs, and any such difference would lead to a cache not found error.
+
+      - name: Check version number has been properly updated
+        run: "${GITHUB_WORKSPACE}/.github/is-version-number-acceptable.sh"

@@ -1,0 +1,102 @@
+name: Setup package
+
+on:
+  workflow_call:
+    inputs:
+      os:
+        required: true
+        type: string
+
+      numpy:
+        required: true
+        type: string
+
+      python:
+        required: true
+        type: string
+
+      activate_command:
+        required: true
+        type: string
+
+jobs:
+  deps:
+    runs-on: ${{ inputs.os }}
+    name: deps-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}
+    env:
+      TERM: xterm-256color  # To colorize output of make tasks.
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python }}
+
+      - name: Use zstd for faster cache restore (windows)
+        if: ${{ startsWith(inputs.os, 'windows') }}
+        shell: cmd
+        run: echo C:\Program Files\Git\usr\bin>>"%GITHUB_PATH%"
+
+      - name: Cache dependencies
+        id: restore-deps
+        uses: actions/cache@v3
+        with:
+          path: venv
+          key: deps-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}-${{ hashFiles('setup.py') }}
+          restore-keys: deps-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}-
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          ${{ inputs.activate_command }}
+          make install-deps install-dist
+
+  build:
+    runs-on: ${{ inputs.os }}
+    needs: [ deps ]
+    name: build-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}
+    env:
+      TERM: xterm-256color  # To colorize output of make tasks.
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python }}
+
+      - name: Use zstd for faster cache restore (windows)
+        if: ${{ startsWith(inputs.os, 'windows') }}
+        shell: cmd
+        run: echo C:\Program Files\Git\usr\bin>>"%GITHUB_PATH%"
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: venv
+          key: deps-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}-${{ hashFiles('setup.py') }}
+
+      - name: Cache build
+        uses: actions/cache@v3
+        with:
+          path: venv/**/[Oo]pen[Ff]isca*
+          key: build-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          restore-keys: |
+            build-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}-${{ hashFiles('setup.py') }}-
+            build-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}-
+
+      - name: Cache release
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: release-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+
+      - name: Build package
+        run: |
+          ${{ inputs.activate_command }}
+          make clean build

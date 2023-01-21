@@ -1,0 +1,61 @@
+name: Lint package
+
+on:
+  workflow_call:
+    inputs:
+      os:
+        required: true
+        type: string
+
+      numpy:
+        required: true
+        type: string
+
+      python:
+        required: true
+        type: string
+
+      activate_command:
+        required: true
+        type: string
+
+jobs:
+  lint:
+    runs-on: ${{ inputs.os }}
+    name: lint-doc-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}
+    env:
+      TERM: xterm-256color  # To colorize output of make tasks.
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python }}
+
+      - name: Use zstd for faster cache restore (windows)
+        if: ${{ startsWith(inputs.os, 'windows') }}
+        shell: cmd
+        run: echo C:\Program Files\Git\usr\bin>>"%GITHUB_PATH%"
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: venv
+          key: deps-${{ inputs.os }}-np${{ inputs.numpy }}-py${{ inputs.python }}-${{ hashFiles('setup.py') }}
+
+      - name: Validate YAML
+        uses: tax-benefit/actions/.github/workflows/validate_yaml.yml@v1
+        with:
+          parameters_path: openfisca_france/parameters
+        secrets:
+          token: ${{ secrets.CONTROL_CENTER_TOKEN }}
+
+      - name: Lint files
+        run: |
+          ${{ inputs.activate_command }}
+          make check-syntax-errors check-style
+          "${GITHUB_WORKSPACE}/.github/lint-changed-python-files.sh"
+          "${GITHUB_WORKSPACE}/.github/lint-changed-yaml-tests.sh"
