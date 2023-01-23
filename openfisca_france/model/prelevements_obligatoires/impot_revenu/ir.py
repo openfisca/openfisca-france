@@ -20,7 +20,7 @@ log = logging.getLogger(__name__)
 # jeune_veuf = zeros(taille, dtype = bool)
 # Reprise du crédit d'impôt en faveur des jeunes, des accomptes et des versements mensues de prime pour l'emploi
 # reprise = zeros(taille) # TODO : reprise=J80
-# Pcredit = P.calcul_credits_impotss
+# Pcredit = P.credits_impotss
 # if hasattr(P.calcul_reductions_impots,'saldom'): Pcredit.saldom = P.calcul_reductions_impots.saldom
 # credits_impot = Credits(Pcredit, table)
 # Réduction d'impôt
@@ -3365,7 +3365,7 @@ class ppe_elig(Variable):
         veuf = foyer_fiscal('veuf', period)
         celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
         nbptr = foyer_fiscal('nbptr', period)
-        ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
+        ppe = parameters(period).impot_revenu.credits_impots.ppe
 
         seuil = (
             (veuf | celibataire_ou_divorce) * (ppe.seuils_rfr_eligibilite.personne_seule + 2 * max_(nbptr - 1, 0) * ppe.seuils_rfr_eligibilite.increment_par_demi_part)
@@ -3386,7 +3386,7 @@ class ppe_rev(Variable):
         salaire_imposable = individu('salaire_imposable', period, options = [ADD])
         hsup = individu('hsup', period, options = [ADD])
         rpns = individu('rpns_imposables', period)
-        ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
+        ppe = parameters(period).impot_revenu.credits_impots.ppe
 
         # Revenu d'activité salarié
         rev_sa = salaire_imposable + hsup  # TODO: + TV + TW + TX + AQ + LZ + VJ
@@ -3408,7 +3408,7 @@ class ppe_coef_tp(Variable):
         ppe_du_ns = individu('ppe_du_ns', period)
         ppe_tp_sa = individu('ppe_tp_sa', period)
         ppe_tp_ns = individu('ppe_tp_ns', period)
-        ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
+        ppe = parameters(period).impot_revenu.credits_impots.ppe
 
         frac_sa = ppe_du_sa / ppe.TP_nbh
         frac_ns = ppe_du_ns / ppe.TP_nbj
@@ -3445,7 +3445,7 @@ class ppe_elig_individu(Variable):
         '''
         ppe_rev = individu('ppe_rev', period)
         ppe_coef_tp = individu('ppe_coef_tp', period)
-        ppe_seuils = parameters(period).impot_revenu.calcul_credits_impots.ppe.seuils_revenu_activite
+        ppe_seuils = parameters(period).impot_revenu.credits_impots.ppe.seuils_revenu_activite
 
         return (ppe_rev >= ppe_seuils.minimum) & (ppe_coef_tp != 0)
 
@@ -3471,8 +3471,8 @@ class ppe_brute(Variable):
         caseT = foyer_fiscal('caseT', period.first_month)
         caseL = foyer_fiscal('caseL', period)
         nbH = foyer_fiscal('nbH', period)
-        ppe = parameters(period).impot_revenu.calcul_credits_impots.ppe
-        ppe_seuils = parameters(period).impot_revenu.calcul_credits_impots.ppe.seuils_revenu_activite
+        ppe = parameters(period).impot_revenu.credits_impots.ppe
+        ppe_seuils = parameters(period).impot_revenu.credits_impots.ppe.seuils_revenu_activite
 
         eliv = foyer_fiscal.declarant_principal('ppe_elig_individu', period)
         elic = foyer_fiscal.conjoint('ppe_elig_individu', period)

@@ -52,7 +52,7 @@ class reductions_plafonnees(Variable):
             'reduction_impot_exceptionnelle',
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich
+        P = parameters(period).impot_revenu.credits_impots.plaf_nich
 
         # Step 1: Apply ceiling to general reductions
         montants_plaf = sum([around(foyer_fiscal(reduction, period)) for reduction in reductions_plafonnees])
@@ -75,7 +75,7 @@ class reductions_plafonnees_om_sofica(Variable):
             'scelli',  # Approximation (dispositif qui se termine en 2012, soumis à des plafonds supérieurs à 18 000€)
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich
+        P = parameters(period).impot_revenu.credits_impots.plaf_nich
 
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
         reste_gen = P.plafond - red_plaf
@@ -101,7 +101,7 @@ class reductions_plafonnees_esus_sfs(Variable):
             'cappme_esus_sfs'
             ]
 
-        P = parameters(period).impot_revenu.calcul_credits_impots.plaf_nich
+        P = parameters(period).impot_revenu.credits_impots.plaf_nich
 
         red_plaf = foyer_fiscal('reductions_plafonnees', period)
         red_plaf_om = foyer_fiscal('reductions_plafonnees_om_sofica', period)
@@ -1645,7 +1645,7 @@ class gardenf(Variable):
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.gardenf
+        P = parameters(period).impot_revenu.credits_impots.gardenf
 
         max1 = P.plafond
         return P.taux * (min_(f7ga, max1) + min_(f7gb, max1) + min_(f7gc, max1))
@@ -1662,7 +1662,7 @@ class gardenf(Variable):
         f7ge = foyer_fiscal('f7ge', period)
         f7gf = foyer_fiscal('f7gf', period)
         f7gg = foyer_fiscal('f7gg', period)
-        P = parameters(period).impot_revenu.calcul_credits_impots.gardenf
+        P = parameters(period).impot_revenu.credits_impots.gardenf
 
         max1 = P.plafond
         max2 = P.plafond / 2
