@@ -1529,15 +1529,15 @@ class inthab(Variable):
         nbpac_invalideR = foyer_fiscal('nbR', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
+        interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
         max1 = max_(max0 - f7vy, 0)
 
         return (
-            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max0)
-            + P.taux_appliques_logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vz, max1)
+            interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max0)
+            + interets_emprunt_habitation_principale.logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vz, max1)
             )
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -1554,18 +1554,18 @@ class inthab(Variable):
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
+        interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
-        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
+        max0 = interets_emprunt_habitation_principale.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * interets_emprunt_habitation_principale.majoration_plafond_par_enfant_charge
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
 
         return (
-            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
-            + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
-            + P.taux_appliques_logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vz, max2)
+            interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+            + interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
+            + interets_emprunt_habitation_principale.logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vz, max2)
             )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -1583,7 +1583,7 @@ class inthab(Variable):
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
+        interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
@@ -1593,10 +1593,10 @@ class inthab(Variable):
         max3 = max_(max2 - f7vw, 0)
 
         return (
-            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
-            + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
-            + P.taux_appliques_logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
-            + P.taux_appliques_logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vz, max3)
+            interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+            + interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
+            + interets_emprunt_habitation_principale.logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
+            + interets_emprunt_habitation_principale.logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vz, max3)
             )
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
@@ -1616,10 +1616,10 @@ class inthab(Variable):
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
+        interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
-        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
+        max0 = interets_emprunt_habitation_principale.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * interets_emprunt_habitation_principale.majoration_plafond_par_enfant_charge
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
@@ -1628,12 +1628,12 @@ class inthab(Variable):
         max5 = max_(max4 - f7vz, 0)
 
         return (
-            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
-            + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
-            + P.taux_appliques_logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
-            + P.taux_appliques_logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vu, max3)
-            + P.cas_base.taux_2 * min_(f7vz, max4)
-            + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max5)
+            interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+            + interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
+            + interets_emprunt_habitation_principale.logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
+            + interets_emprunt_habitation_principale.logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vu, max3)
+            + interets_emprunt_habitation_principale.cas_base.taux_2 * min_(f7vz, max4)
+            + interets_emprunt_habitation_principale.logements_2010.taux_2 * min_(f7vv, max5)
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -1655,10 +1655,10 @@ class inthab(Variable):
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
+        interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
-        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
+        max0 = interets_emprunt_habitation_principale.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * interets_emprunt_habitation_principale.majoration_plafond_par_enfant_charge
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
@@ -1668,13 +1668,13 @@ class inthab(Variable):
         max6 = max_(max5 - f7vv, 0)
 
         return (
-            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
-            + P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
-            + P.taux_appliques_logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
-            + P.taux_appliques_logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vu, max3)
-            + P.cas_base.taux_2 * min_(f7vz, max4)
-            + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max5)
-            + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max6)
+            interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+            + interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vy, max1)
+            + interets_emprunt_habitation_principale.logements_2010.taux_applique_premiere_annuite_remboursement * min_(f7vw, max2)
+            + interets_emprunt_habitation_principale.logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vu, max3)
+            + interets_emprunt_habitation_principale.cas_base.taux_2 * min_(f7vz, max4)
+            + interets_emprunt_habitation_principale.logements_2010.taux_2 * min_(f7vv, max5)
+            + interets_emprunt_habitation_principale.logements_2011.taux_2 * min_(f7vt, max6)
             )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -1694,23 +1694,23 @@ class inthab(Variable):
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
+        interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
-        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
+        max0 = interets_emprunt_habitation_principale.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * interets_emprunt_habitation_principale.majoration_plafond_par_enfant_charge
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vu, 0)
         max3 = max_(max2 - f7vz, 0)
         max4 = max_(max3 - f7vv, 0)
 
         return (
-            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
-            + P.taux_appliques_logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vu, max1)
-            + P.cas_base.taux_2 * min_(f7vz, max2)
-            + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max3)
-            + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max4)
+            interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+            + interets_emprunt_habitation_principale.logements_2011.taux_applique_premiere_annuite_remboursement * min_(f7vu, max1)
+            + interets_emprunt_habitation_principale.cas_base.taux_2 * min_(f7vz, max2)
+            + interets_emprunt_habitation_principale.logements_2010.taux_2 * min_(f7vv, max3)
+            + interets_emprunt_habitation_principale.logements_2011.taux_2 * min_(f7vt, max4)
             )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -1729,21 +1729,21 @@ class inthab(Variable):
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
+        interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
-        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
+        max0 = interets_emprunt_habitation_principale.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * interets_emprunt_habitation_principale.majoration_plafond_par_enfant_charge
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vz, 0)
         max3 = max_(max2 - f7vv, 0)
 
         return (
-            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
-            + P.cas_base.taux_2 * min_(f7vz, max1)
-            + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max2)
-            + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max3)
+            interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+            + interets_emprunt_habitation_principale.cas_base.taux_2 * min_(f7vz, max1)
+            + interets_emprunt_habitation_principale.logements_2010.taux_2 * min_(f7vv, max2)
+            + interets_emprunt_habitation_principale.logements_2011.taux_2 * min_(f7vt, max3)
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -1761,19 +1761,19 @@ class inthab(Variable):
         f7vt = foyer_fiscal('f7vt', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
+        interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
-        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
+        max0 = interets_emprunt_habitation_principale.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * interets_emprunt_habitation_principale.majoration_plafond_par_enfant_charge
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vz, 0)
 
         return (
-            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
-            + P.cas_base.taux_2 * min_(f7vz, max1)
-            + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max2)
+            interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+            + interets_emprunt_habitation_principale.cas_base.taux_2 * min_(f7vz, max1)
+            + interets_emprunt_habitation_principale.logements_2011.taux_2 * min_(f7vt, max2)
             )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
@@ -1791,19 +1791,19 @@ class inthab(Variable):
         f7vt = foyer_fiscal('f7vt', period)
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
-        P = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
+        interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
-        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
+        max0 = interets_emprunt_habitation_principale.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * interets_emprunt_habitation_principale.majoration_plafond_par_enfant_charge
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vv, 0)
 
         return (
-            P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
-            + P.taux_appliques_logements_2010.taux_2 * min_(f7vv, max1)
-            + P.taux_appliques_logements_2011.taux_2 * min_(f7vt, max2)
+            interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+            + interets_emprunt_habitation_principale.logements_2010.taux_2 * min_(f7vv, max1)
+            + interets_emprunt_habitation_principale.logements_2011.taux_2 * min_(f7vt, max2)
             )
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
@@ -1819,12 +1819,12 @@ class inthab(Variable):
         nbpac_invalideR = foyer_fiscal('nbR', period)
         nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vx = foyer_fiscal('f7vx', period)
-        P = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
+        interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
-        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
+        max0 = interets_emprunt_habitation_principale.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * interets_emprunt_habitation_principale.majoration_plafond_par_enfant_charge
 
-        return P.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
+        return interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(f7vx, max0)
 
 
 class jeunes(Variable):
