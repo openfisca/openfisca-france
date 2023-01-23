@@ -1,4 +1,4 @@
-description: Taux unique pour les logements à performance énergétique globale élevée au titre du Crédit d'impôt - intérêts d'emprunt pour l'habitation principale (réforme Sarkozy)
+description: Taux unique
 values:
   2007-01-01:
     value: null
@@ -18,4 +18,3 @@ metadata:
   official_journal_date:
     2007-01-01: "2007-12-27"
     2008-01-01: "2008-12-28"
-documentation: Dans le cas de logement à performance énergétique globale élevée, les intérêts ouvrants droit au crédit d'impôt sont ceux des sept premières années d'annuité

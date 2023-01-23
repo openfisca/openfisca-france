@@ -1,9 +1,8 @@
-description: Taux appliqué à la première annuité de remboursement pour le Crédit d'impôt - intérêts d'emprunt pour l'habitation principale (réforme Sarkozy)
+description: Taux (2)
 values:
   2007-01-01:
-    value: 0.4
+    value: 0.2
 metadata:
-  ux_name: Taux 1ère année
   unit: /1
   reference:
     2007-01-01:
