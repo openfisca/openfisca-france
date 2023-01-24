@@ -4,33 +4,79 @@ PURPLE='\033[0;95m'
 CYAN='\033[0;36m'
 COLOR_RESET='\033[0m'
 
-
 EXPECTED_PATHS=(
-    "lost_path_test"
+    "openfisca_france"
+    "openfisca_france/parameters"    
+    "openfisca_france/parameters/chomage"
+    "openfisca_france/parameters/chomage/allocation_retour_emploi"
+    "openfisca_france/parameters/chomage/allocations_assurance_chomage"
+    "openfisca_france/parameters/chomage/allocations_chomage_solidarite"
+    "openfisca_france/parameters/chomage/preretraites"
+    "openfisca_france/parameters/geopolitique"
     "openfisca_france/parameters/impot_revenu"
     "openfisca_france/parameters/marche_travail"
+    "openfisca_france/parameters/marche_travail/epargne"
+    "openfisca_france/parameters/marche_travail/remuneration_dans_fonction_publique"
+    "openfisca_france/parameters/marche_travail/salaire_minimum"
+    "openfisca_france/parameters/prelevements_sociaux"
+    "openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires"
+    "openfisca_france/parameters/prelevements_sociaux/contributions_assises_specifiquement_accessoires_salaire"
+    "openfisca_france/parameters/prelevements_sociaux/contributions_sociales"
+    "openfisca_france/parameters/prelevements_sociaux/cotisations_regime_assurance_chomage"
+    "openfisca_france/parameters/prelevements_sociaux/cotisations_secteur_public"
+    "openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general"
+    "openfisca_france/parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants"
+    "openfisca_france/parameters/prelevements_sociaux/cotisations_taxes_professions_liberales"
+    "openfisca_france/parameters/prelevements_sociaux/pss"
+    "openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales"
+    "openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive"
+    "openfisca_france/parameters/prestations_sociales"
+    "openfisca_france/parameters/prestations_sociales/aides_jeunes"
+    "openfisca_france/parameters/prestations_sociales/aides_logement"
+    "openfisca_france/parameters/prestations_sociales/fonc"
+    "openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante"
+    "openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite"
+    "openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees"
+    "openfisca_france/parameters/prestations_sociales/prestations_familiales"
+    "openfisca_france/parameters/prestations_sociales/prestations_familiales/bmaf"
+    "openfisca_france/parameters/prestations_sociales/prestations_familiales/def_biactif"
+    "openfisca_france/parameters/prestations_sociales/prestations_familiales/def_pac"
+    "openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale"
+    "openfisca_france/parameters/prestations_sociales/prestations_familiales/logement_cadre_vie"
+    "openfisca_france/parameters/prestations_sociales/prestations_familiales/petite_enfance"
+    "openfisca_france/parameters/prestations_sociales/prestations_familiales/prestations_generales"
+    "openfisca_france/parameters/prestations_sociales/solidarite_insertion"
+    "openfisca_france/parameters/prestations_sociales/solidarite_insertion/autre_solidarite"
+    "openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux"
+    "openfisca_france/parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse"
+    "openfisca_france/parameters/prestations_sociales/transport"
+    "openfisca_france/parameters/taxation_capital"
+    "openfisca_france/parameters/taxation_capital/impot_fortune_immobiliere_ifi_partir_2018"
+    "openfisca_france/parameters/taxation_capital/impot_grandes_fortunes_1982_1986"
+    "openfisca_france/parameters/taxation_capital/impot_solidarite_fortune_isf_1989_2017"
+    "openfisca_france/parameters/taxation_capital/prelevement_forfaitaire"
+    "openfisca_france/parameters/taxation_capital/prelevements_sociaux"
+    "openfisca_france/parameters/taxation_indirecte"
+    "openfisca_france/parameters/taxation_societes"
     )
-EXPECTED_PATHS_MAX_DEPTH=3  # EXPECTED_PATHS and EXPECTED_PATHS_MAX_DEPTH should be consistent
+EXPECTED_PATHS_MAX_DEPTH=4  # EXPECTED_PATHS and EXPECTED_PATHS_MAX_DEPTH should be consistent
 
 
-# list git indexed parameters paths according to checked depth
-checked_tree_root="openfisca_france/parameters/"
+# compare with last published git tag: 
+# list indexed parameters paths indexd in current branch according to EXPECTED_PATHS_MAX_DEPTH
+BRANCH_PATHS_ROOT="openfisca_france/parameters/"
 last_tagged_commit=`git describe --tags --abbrev=0 --first-parent`  # --first-parent ensures we don't follow tags not published in master through an unlikely intermediary merge commit
-checked_tree=`git ls-tree ${last_tagged_commit} -d --name-only -r ${checked_tree_root} | cut -d / -f-${EXPECTED_PATHS_MAX_DEPTH} | uniq`
+checked_tree=`git ls-tree ${last_tagged_commit} -d --name-only -r ${BRANCH_PATHS_ROOT} | cut -d / -f-${EXPECTED_PATHS_MAX_DEPTH} | uniq`
+
 
 # compare current parameters tree with EXPECTED_PATHS
 all_paths=`echo ${EXPECTED_PATHS[@]} ${checked_tree[@]} | tr ' ' '\n' | sort | uniq -D | uniq`
 
-added=`echo ${all_paths[@]} ${checked_tree[@]} | tr ' ' '\n' | sort | uniq -u | uniq` 
+added=`echo ${all_paths[@]} ${checked_tree[@]} | tr ' ' '\n' | sort | uniq -u | uniq`
 if [[ ${added[@]} ]]; then
     echo "${CYAN}The current branch adds the following directories:${COLOR_RESET}"
-
-    added_array=(${added})
-    if [[ ${added_array[0]} == "openfisca_france" && ${added_array[1]} == "openfisca_france/parameters" ]]; then
-        printf '%s\n' "${added_array[@]:$((2))}"
-    fi
+    printf '%s\n' ${added}
 fi
-
 
 lost=`echo ${all_paths[@]} ${EXPECTED_PATHS[@]} | tr ' ' '\n' | sort | uniq -u | uniq`
 if [[ ${added[@]} ]]; then
