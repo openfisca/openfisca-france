@@ -1,5 +1,15 @@
 # Changelog
 
+### 139.0.1 [#2005](https://github.com/openfisca/openfisca-france/pull/2005)
+
+* Évolution du système socio-fiscal. Changement mineur.
+* Périodes concernées : à partir du 01/01/2015.
+* Zones impactées : prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.
+* Détails :
+  - Mise à jour du plafond mensuel 2023
+  - Mise à jour calculée des montants annuels et horaires les plus récents, qui ne sont plus explicites depuis 2015
+  - Documentation de ce calcul et d'anciennes valeurs
+
 # 139.0.0 [#1969]https://github.com/openfisca/openfisca-france/pull/1969
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 16/01/2015.
