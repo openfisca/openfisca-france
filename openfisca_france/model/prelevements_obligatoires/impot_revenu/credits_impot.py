@@ -1586,7 +1586,7 @@ class inthab(Variable):
         interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
-        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
+        max0 = interets_emprunt_habitation_principale.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * interets_emprunt_habitation_principale.majoration_plafond_par_enfant_charge
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
