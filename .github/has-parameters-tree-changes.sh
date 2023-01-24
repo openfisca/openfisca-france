@@ -1,9 +1,11 @@
 #! /usr/bin/env bash
 
-PURPLE='\033[0;95m'
-CYAN='\033[0;36m'
+RED='\033[0;31m'
+BLUE='\033[0;34m'
 COLOR_RESET='\033[0m'
 
+
+# openfisca-france expected paths for parameters
 EXPECTED_PATHS=(
     "openfisca_france"
     "openfisca_france/parameters"    
@@ -59,7 +61,7 @@ EXPECTED_PATHS=(
     "openfisca_france/parameters/taxation_indirecte"
     "openfisca_france/parameters/taxation_societes"
     )
-EXPECTED_PATHS_MAX_DEPTH=4  # EXPECTED_PATHS and EXPECTED_PATHS_MAX_DEPTH should be consistent
+EXPECTED_PATHS_MAX_DEPTH=4  # ! EXPECTED_PATHS and EXPECTED_PATHS_MAX_DEPTH should be consistent
 
 
 # compare with last published git tag: 
@@ -69,17 +71,30 @@ last_tagged_commit=`git describe --tags --abbrev=0 --first-parent`  # --first-pa
 checked_tree=`git ls-tree ${last_tagged_commit} -d --name-only -r ${BRANCH_PATHS_ROOT} | cut -d / -f-${EXPECTED_PATHS_MAX_DEPTH} | uniq`
 
 
-# compare current parameters tree with EXPECTED_PATHS
+# compare current indexed parameters tree with EXPECTED_PATHS
 all_paths=`echo ${EXPECTED_PATHS[@]} ${checked_tree[@]} | tr ' ' '\n' | sort | uniq -D | uniq`
+error_status=0
 
 added=`echo ${all_paths[@]} ${checked_tree[@]} | tr ' ' '\n' | sort | uniq -u | uniq`
 if [[ ${added[@]} ]]; then
-    echo "${CYAN}The current branch adds the following directories:${COLOR_RESET}"
+    echo "${BLUE}INFO Ces répertoires de paramètres ont été ajoutés :${COLOR_RESET}"
     printf '%s\n' ${added}
+    error_status=1
 fi
 
 lost=`echo ${all_paths[@]} ${EXPECTED_PATHS[@]} | tr ' ' '\n' | sort | uniq -u | uniq`
 if [[ ${added[@]} ]]; then
-    echo "${PURPLE}The current branch removes the following directories:${COLOR_RESET}"
+    echo "${BLUE}INFO Ces répertoires de paramètres ont été supprimés :${COLOR_RESET}"
     printf '%s\n' "${lost[@]}"
+    error_status=2
 fi
+
+
+if [[ ${error_status} ]]; then
+    echo "${RED}ERREUR L'arborescence des paramètres a été modifiée.${COLOR_RESET}"
+    echo "Elle est commune à openfisca-france et aux Barèmes IPP sur ${EXPECTED_PATHS_MAX_DEPTH} niveaux." 
+    echo "Corriger les écarts constatés ci-dessus ou proposer la modification de cette arborescence commune"
+    echo "dans une nouvelle issue : https://github.com/openfisca/openfisca-france/issues/new"
+    echo "Pour en savoir plus : https://github.com/openfisca/openfisca-france/issues/1811"
+fi
+exit ${error_status}
