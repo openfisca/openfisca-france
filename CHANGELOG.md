@@ -1,5 +1,19 @@
 # Changelog
 
+# 139.0.0 [#1969]https://github.com/openfisca/openfisca-france/pull/1969
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 16/01/2015.
+* Zones impactées :
+  - `model/caracteristiques_socio_demographiques/logement.py`
+  - `parameters/geopolitique/departements_idf.yaml`
+  - `parameters/geopolitique/regions/*/departements.yaml`
+
+* Détails :
+  - Déplace le paramètre `geopolitique.departements_idf` vers `geopolitique.regions.ile_de_france.departements`.
+  - Ajoute un fichier de paramètres contenant la liste des départements pour chaque région de France
+  - Ajoute l'Enum `TypesCodeInseeRegion` contenant la liste des code INSEE de chaque région de France
+  - Ajoute la variable `region` qui indique dans quel région un ménage réside.
+
 ## 138.2.0 [#1942](https://github.com/openfisca/openfisca-france/pull/1942)
 
 * Évolution du système socio-fiscal.
