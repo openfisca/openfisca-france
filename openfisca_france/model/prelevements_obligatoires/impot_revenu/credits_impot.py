@@ -1510,11 +1510,11 @@ class inthab(Variable):
         nbpac_invalideG = foyer_fiscal('nbG', period)
         nbpac_invalideR = foyer_fiscal('nbR', period)
         f7uh = foyer_fiscal('f7uh_2007', period)
-        P = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
+        interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
-        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
-        return P.cas_base.taux_applique_premiere_annuite_remboursement * min_(max0, f7uh)
+        max0 = interets_emprunt_habitation_principale.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * interets_emprunt_habitation_principale.majoration_plafond_par_enfant_charge
+        return interets_emprunt_habitation_principale.cas_base.taux_applique_premiere_annuite_remboursement * min_(max0, f7uh)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1532,7 +1532,7 @@ class inthab(Variable):
         interets_emprunt_habitation_principale = parameters(period).impot_revenu.credits_impots.interets_emprunt_habitation_principale
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
-        max0 = P.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.majoration_plafond_par_enfant_charge
+        max0 = interets_emprunt_habitation_principale.plafond_base * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * interets_emprunt_habitation_principale.majoration_plafond_par_enfant_charge
         max1 = max_(max0 - f7vy, 0)
 
         return (
