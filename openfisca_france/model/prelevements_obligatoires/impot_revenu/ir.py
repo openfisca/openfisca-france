@@ -12,19 +12,6 @@ log = logging.getLogger(__name__)
 
 
 # TODO: 8ti et 8tk (cerfa 2047)
-# TODO: CSG, CRDS et prélèvements sociaux sur revenu du patrimione, d'activité et de remplacement
-# TODO: finir RPNS (prise en compte des plafonds / cases non codées : codées pour certaines années mais pas pour
-# d'autres - car des cases sont réutilisées pour des variables différentes suivant les années)
-
-# zetrf = zeros(taille)
-# jeune_veuf = zeros(taille, dtype = bool)
-# Reprise du crédit d'impôt en faveur des jeunes, des accomptes et des versements mensues de prime pour l'emploi
-# reprise = zeros(taille) # TODO : reprise=J80
-# Pcredit = P.credits_impotss
-# if hasattr(P.calcul_reductions_impots,'saldom'): Pcredit.saldom = P.calcul_reductions_impots.saldom
-# credits_impot = Credits(Pcredit, table)
-# Réduction d'impôt
-# reductions = Reductions(IPnet, P.calcul_reductions_impots)
 
 # def mcirra():
 #    # impôt sur le revenu
