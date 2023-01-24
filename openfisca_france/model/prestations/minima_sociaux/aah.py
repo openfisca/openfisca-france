@@ -416,10 +416,10 @@ class aah_eligible(Variable):
         rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
 
         age = individu('age', period)
-        autonomie_financiere = individu('autonomie_financiere', period)
+        prestations_familiales_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
         eligible_aah = (
             (taux_incapacite_max + (taux_incapacite_rsdae * rsdae * (age <= law.age_legal_retraite)))
-            * ((age >= law.age_minimal) + ((age >= law.age_fin_educ) * (autonomie_financiere)))
+            * ((age >= law.age_minimal) + ((age >= law.age_fin_educ) * not_(prestations_familiales_enfant_a_charge)))
             )
 
         return eligible_aah
@@ -432,11 +432,11 @@ class aah_eligible(Variable):
         rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
 
         age = individu('age', period)
-        autonomie_financiere = individu('autonomie_financiere', period)
+        prestations_familiales_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
         eligible_aah = (
             (taux_incapacite_max + (taux_incapacite_rsdae * rsdae * (age <= law.age_legal_retraite))
             * (individu('salaire_imposable', period.last_year, options=[ADD]) <= 0))
-            * ((age >= law.age_minimal) + ((age >= 16) * (autonomie_financiere)))
+            * ((age >= law.age_minimal) + ((age >= law.age_fin_educ) * not_(prestations_familiales_enfant_a_charge)))
             )
         return eligible_aah
 
@@ -448,11 +448,11 @@ class aah_eligible(Variable):
         rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
 
         age = individu('age', period)
-        autonomie_financiere = individu('autonomie_financiere', period)
+        prestations_familiales_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
         eligible_aah = (
             (taux_incapacite_max + (taux_incapacite_rsdae * rsdae
             * (age <= law.age_legal_retraite)))
-            * ((age >= law.age_minimal) + ((age >= 16) * (autonomie_financiere)))
+            * ((age >= law.age_minimal) + ((age >= law.age_fin_educ) * not_(prestations_familiales_enfant_a_charge)))
             )
         return eligible_aah
 
