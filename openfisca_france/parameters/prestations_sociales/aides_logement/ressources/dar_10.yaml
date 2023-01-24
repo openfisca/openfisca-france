@@ -1,7 +1,5 @@
 description: Abattement forfaitaire R351-11
 values:
-  2002-01-01:
-    value: 0
   2002-07-01:
     value: 2034
   2003-07-01:
