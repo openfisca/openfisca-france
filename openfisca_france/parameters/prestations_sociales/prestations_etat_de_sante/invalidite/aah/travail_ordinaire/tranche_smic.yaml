@@ -8,10 +8,10 @@ metadata:
   unit: SMIC
   reference:
     2011-01-01:
-      title: Décret n° 2010-1403 du 12/11/2010
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023097737
+      title: Décret n° 2010-1403 du 12/11/2010, art. 1 (modifie art. D821-9 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000023086051/#JORFARTI000023086056
   official_journal_date:
-    2011-01-01: JORF n°0265 du 16 novembre 2010
+    2011-01-01: "2010-11-16"
 documentation: |-
   Notes :
   Dispositif créé par la loi 75-534 du 30 juin 1975
