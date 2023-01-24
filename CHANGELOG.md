@@ -1,5 +1,15 @@
 # Changelog
 
+
+## 139.0.0 [#2007](https://github.com/openfisca/openfisca-france/pull/2007)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : parameters/impot_revenu/calcul_credits_impots
+* Détails :
+  - Renome parameters/impot_revenu/calcul_credits_impots en parameters/impot_revenu/credits_impots
+  - Renome impot_revenu/credits_impots/habitat_princ_credit en impot_revenu/credits_impots/interets_emprunt_habitation_principale
+
 ## 138.2.0 [#1942](https://github.com/openfisca/openfisca-france/pull/1942)
 
 * Évolution du système socio-fiscal.
@@ -9,7 +19,6 @@
    - `openfisca_france\parameters\prestations_sociales\solidarite_insertion\minima_sociaux\per`
 * Détails :
   - Ajout de la prime exceptionnelle de rentrée versée en 2022
-
 ### 138.1.5 [#1995](https://github.com/openfisca/openfisca-france/pull/1995)
 
 * Changement mineur.
@@ -38,7 +47,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
   - `parameters/impot_revenu/calcul_impot_revenu/pv/pv_immo/taux.yaml`
   - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/majoration_plafond/majoration_plafond_couple.yaml`
   - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/montant.yaml`
@@ -52,7 +61,7 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2023.
 * Zones impactées :
-  - `parameters/marche_travail/salaire_minimum/smic/smic_b_horaire` 
+  - `parameters/marche_travail/salaire_minimum/smic/smic_b_horaire`
   - `parameters/marche_travail/salaire_minimum/smic/smic_b_mensuel`
 * Détails :
   - Met à jour le SMIC suite à sa revalorisation mécanique au 1er janvier 2023.
@@ -61,7 +70,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2023.
-* Zones impactées : 
+* Zones impactées :
     * `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/asf/montant_asf/`
     * `parameters/taxation_indirecte/taxes_tabacs/`
  * Détails :
