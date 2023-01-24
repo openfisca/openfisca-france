@@ -14,10 +14,10 @@ EXPECTED_PATHS=(
     "openfisca_france/parameters/chomage/allocations_assurance_chomage"
     "openfisca_france/parameters/chomage/allocations_chomage_solidarite"
     "openfisca_france/parameters/chomage/preretraites"
-    "openfisca_france/parameters/geopolitique"
-    "openfisca_france/parameters/impot_revenu"
+    "openfisca_france/parameters/geopolitique"  # premier niveau bloqué seulement ; n'existe pas dans les barèmes IPP
+    "openfisca_france/parameters/impot_revenu"  # premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
     "openfisca_france/parameters/marche_travail"
-    "openfisca_france/parameters/marche_travail/epargne"
+    "openfisca_france/parameters/marche_travail/epargne"  # bloqué mais n'existe pas dans les barèmes IPP
     "openfisca_france/parameters/marche_travail/remuneration_dans_fonction_publique"
     "openfisca_france/parameters/marche_travail/salaire_minimum"
     "openfisca_france/parameters/prelevements_sociaux"
@@ -29,7 +29,7 @@ EXPECTED_PATHS=(
     "openfisca_france/parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general"
     "openfisca_france/parameters/prelevements_sociaux/cotisations_taxes_independants_artisans_commercants"
     "openfisca_france/parameters/prelevements_sociaux/cotisations_taxes_professions_liberales"
-    "openfisca_france/parameters/prelevements_sociaux/pss"
+    "openfisca_france/parameters/prelevements_sociaux/pss"  # bloqué mais est un dispositif législatif, pas une catégorie métier
     "openfisca_france/parameters/prelevements_sociaux/reductions_cotisations_sociales"
     "openfisca_france/parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive"
     "openfisca_france/parameters/prestations_sociales"
@@ -40,7 +40,7 @@ EXPECTED_PATHS=(
     "openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite"
     "openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees"
     "openfisca_france/parameters/prestations_sociales/prestations_familiales"
-    "openfisca_france/parameters/prestations_sociales/prestations_familiales/bmaf"
+    "openfisca_france/parameters/prestations_sociales/prestations_familiales/bmaf"  # bloqué mais est un dispositif législatif, pas une catégorie métier
     "openfisca_france/parameters/prestations_sociales/prestations_familiales/def_biactif"
     "openfisca_france/parameters/prestations_sociales/prestations_familiales/def_pac"
     "openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale"
@@ -58,14 +58,14 @@ EXPECTED_PATHS=(
     "openfisca_france/parameters/taxation_capital/impot_solidarite_fortune_isf_1989_2017"
     "openfisca_france/parameters/taxation_capital/prelevement_forfaitaire"
     "openfisca_france/parameters/taxation_capital/prelevements_sociaux"
-    "openfisca_france/parameters/taxation_indirecte"
-    "openfisca_france/parameters/taxation_societes"
+    "openfisca_france/parameters/taxation_indirecte"  # premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
+    "openfisca_france/parameters/taxation_societes"  # premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
     )
 EXPECTED_PATHS_MAX_DEPTH=4  # ! EXPECTED_PATHS and EXPECTED_PATHS_MAX_DEPTH should be consistent
 
 
 # compare with last published git tag: 
-# list indexed parameters paths indexd in current branch according to EXPECTED_PATHS_MAX_DEPTH
+# list indexed parameters paths indexed in current branch according to EXPECTED_PATHS_MAX_DEPTH
 BRANCH_PATHS_ROOT="openfisca_france/parameters/"
 last_tagged_commit=`git describe --tags --abbrev=0 --first-parent`  # --first-parent ensures we don't follow tags not published in master through an unlikely intermediary merge commit
 checked_tree=`git ls-tree ${last_tagged_commit} -d --name-only -r ${BRANCH_PATHS_ROOT} | cut -d / -f-${EXPECTED_PATHS_MAX_DEPTH} | uniq`
