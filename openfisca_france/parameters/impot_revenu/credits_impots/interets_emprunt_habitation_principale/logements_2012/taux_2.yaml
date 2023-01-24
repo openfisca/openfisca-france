@@ -7,6 +7,7 @@ values:
   2010-01-01:
     value: null
 metadata:
+  ux_name: Taux spécifique
   unit: /1
   reference:
     2007-01-01:
@@ -24,3 +25,4 @@ metadata:
     2007-01-01: "2007-12-27"
     2009-01-01: "2009-12-31"
     2010-01-01: "2010-12-30"
+documentation: Taux appliqué aux intérêts payés au titre des cinq premières annuités de remboursement, à l'exclusion des frais d'emprunt et des cotisations d'assurances contractées en vue de garantir le remboursement des prêts.

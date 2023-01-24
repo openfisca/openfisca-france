@@ -1,8 +1,9 @@
-description: Taux appliqué à la première annuité de remboursement
+description: Taux appliqué à la première annuité de remboursement pour le crédit d'impôt sur les intérêts d'emprunt pour l'habitation principale
 values:
   2007-01-01:
     value: 0.4
 metadata:
+  ux_name: Taux 1ère année
   unit: /1
   reference:
     2007-01-01:

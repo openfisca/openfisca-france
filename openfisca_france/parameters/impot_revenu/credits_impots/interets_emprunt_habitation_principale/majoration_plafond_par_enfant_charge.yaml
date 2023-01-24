@@ -3,6 +3,7 @@ values:
   2007-01-01:
     value: 500
 metadata:
+  ux_name: Majoration par enfant à charge
   unit: currency
   reference:
     2007-01-01:
