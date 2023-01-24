@@ -40,9 +40,58 @@ class depcom(Variable):
     value_type = str
     max_length = 5
     entity = Menage
-    label = 'Code INSEE (depcom) du lieu de résidence'
+    label = 'Code INSEE (depcom) de la commune du lieu de résidence'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
+
+class TypesCodeInseeRegion(Enum):
+    __order__ = 'non_renseigne guadeloupe martinique guyane reunion mayotte ile_de_france centre_val_de_loire bourgogne_franche_comte normandie hauts_de_france grand_est pays_de_la_loire bretagne nouvelle_aquitaine occitanie auvergne_rhone_alpes provence_alpes_cote_d_azur corse'
+    non_renseigne = 'Non renseigné'
+    guadeloupe = '01'
+    martinique = '02'
+    guyane = '03'
+    reunion = '04'
+    mayotte = '06'
+    ile_de_france = '11'
+    centre_val_de_loire = '24'
+    bourgogne_franche_comte = '27'
+    normandie = '28'
+    hauts_de_france = '32'
+    grand_est = '44'
+    pays_de_la_loire = '52'
+    bretagne = '53'
+    nouvelle_aquitaine = '75'
+    occitanie = '76'
+    auvergne_rhone_alpes = '84'
+    provence_alpes_cote_d_azur = '93'
+    corse = '94'
+
+
+class region(Variable):
+    value_type = Enum
+    possible_values = TypesCodeInseeRegion
+    default_value = TypesCodeInseeRegion.non_renseigne
+    entity = Menage
+    label = 'Code INSEE de la région du lieu de résidence'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period)
+        regions_list: list[str] = parameters(period).geopolitique.regions.liste
+        regions = [
+            (parameters(period).geopolitique.regions[region], TypesCodeInseeRegion[region])
+            for region in regions_list
+            ]
+
+        regions_elig = [
+            sum([startswith(depcom, str.encode(codes_insee)) for codes_insee in parametres_region.departements]) > 0
+            for (parametres_region, _) in regions
+            ]
+        codes_insee_regions = [code_insee_region for (_, code_insee_region) in regions]
+
+        return select(regions_elig, codes_insee_regions, default = TypesCodeInseeRegion.non_renseigne)
 
 
 class charges_locatives(Variable):
@@ -88,7 +137,7 @@ class residence_ile_de_france(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
-        return sum([startswith(depcom, str.encode(departement_idf)) for departement_idf in parameters(period).geopolitique.departements_idf])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
+        return sum([startswith(depcom, str.encode(departement_idf)) for departement_idf in parameters(period).geopolitique.regions.ile_de_france.departements])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
 
 class residence_dom(Variable):

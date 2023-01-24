@@ -1,7 +1,6 @@
 # Changelog
 
-
-## 139.0.0 [#2007](https://github.com/openfisca/openfisca-france/pull/2007)
+# 140.0.0 [#2007](https://github.com/openfisca/openfisca-france/pull/2007)
 
 * Changement mineur.
 * Périodes concernées : toutes.
@@ -9,6 +8,48 @@
 * Détails :
   - Renome parameters/impot_revenu/calcul_credits_impots en parameters/impot_revenu/credits_impots
   - Renome impot_revenu/credits_impots/habitat_princ_credit en impot_revenu/credits_impots/interets_emprunt_habitation_principale
+
+## 139.1.0 [#1994](https://github.com/openfisca/openfisca-france/pull/1994)
+
+* Évolution du système socio-fiscal. Corrections.
+* Périodes concernées : à partir du 01/01/2021.
+* Zones impactées:
+  - model/prestations/prestations_familiales/paje.py
+  - model/prestations/prestations_familiales/ars.py
+  - model/prestations/aides_logement.py
+* Détails :
+  - PAJE et ARS : actualisation des plafonds 2022 et 2023 et des majorations par enfant
+  - Aides au logement:
+    - corrige un plafond
+    - Met fin en 2021 à certains paramètres de l’évaluation forfaitaire
+    - Actualise des revalorisations passées de montants forfaitaires de ressources pour les moins de 25 ans.
+    - Documente certains montants permettant leur calcul
+    - Corrige le mode de calcul de r0 au-delà de 6 enfants (erreur dans le cas normal)
+    - Actualise la formule de calcul de cf en outre-mer
+
+### 139.0.1 [#2005](https://github.com/openfisca/openfisca-france/pull/2005)
+
+* Évolution du système socio-fiscal. Changement mineur.
+* Périodes concernées : à partir du 01/01/2015.
+* Zones impactées : prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.
+* Détails :
+  - Mise à jour du plafond mensuel 2023
+  - Mise à jour calculée des montants annuels et horaires les plus récents, qui ne sont plus explicites depuis 2015
+  - Documentation de ce calcul et d'anciennes valeurs
+
+# 139.0.0 [#1969]https://github.com/openfisca/openfisca-france/pull/1969
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 16/01/2015.
+* Zones impactées :
+  - `model/caracteristiques_socio_demographiques/logement.py`
+  - `parameters/geopolitique/departements_idf.yaml`
+  - `parameters/geopolitique/regions/*/departements.yaml`
+
+* Détails :
+  - Déplace le paramètre `geopolitique.departements_idf` vers `geopolitique.regions.ile_de_france.departements`.
+  - Ajoute un fichier de paramètres contenant la liste des départements pour chaque région de France
+  - Ajoute l'Enum `TypesCodeInseeRegion` contenant la liste des code INSEE de chaque région de France
+  - Ajoute la variable `region` qui indique dans quel région un ménage réside.
 
 ## 138.2.0 [#1942](https://github.com/openfisca/openfisca-france/pull/1942)
 
