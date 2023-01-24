@@ -1,5 +1,23 @@
 # Changelog
 
+### 139.1.0 [#1994](https://github.com/openfisca/openfisca-france/pull/1994)
+
+* Évolution du système socio-fiscal. Corrections.
+* Périodes concernées : à partir du 01/01/2021.
+* Zones impactées:
+  - model/prestations/prestations_familiales/paje.py
+  - model/prestations/prestations_familiales/ars.py
+  - model/prestations/aides_logement.py
+* Détails :
+  - PAJE et ARS : actualisation des plafonds 2022 et 2023 et des majorations par enfant
+  - Aides au logement:
+    - corrige un plafond
+    - Met fin en 2021 à certains paramètres de l’évaluation forfaitaire
+    - Actualise des revalorisations passées de montants forfaitaires de ressources pour les moins de 25 ans.
+    - Documente certains montants permettant leur calcul
+    - corrige le mode de calcul de r0 au-delà de 6 enfants (erreur dans le cas normal)
+    - actualise la formule de calcul de cf en outre-mer
+
 ### 139.0.1 [#2005](https://github.com/openfisca/openfisca-france/pull/2005)
 
 * Évolution du système socio-fiscal. Changement mineur.
