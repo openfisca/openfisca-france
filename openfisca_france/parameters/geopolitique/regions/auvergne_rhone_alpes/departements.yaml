@@ -1,0 +1,5 @@
+description: Liste des départements membre de la région Auvergne Rhône Alpes
+unit: Code INSEE
+values:
+  2015-01-16:
+    value: [ "01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74" ]

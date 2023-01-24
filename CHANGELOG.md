@@ -1,5 +1,19 @@
 # Changelog
 
+# 139.0.0 [#1969]https://github.com/openfisca/openfisca-france/pull/1969
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 16/01/2015.
+* Zones impactées :
+  - `model/caracteristiques_socio_demographiques/logement.py`
+  - `parameters/geopolitique/departements_idf.yaml`
+  - `parameters/geopolitique/regions/*/departements.yaml`
+
+* Détails :
+  - Déplace le paramètre `geopolitique.departements_idf` vers `geopolitique.regions.ile_de_france.departements`.
+  - Ajoute un fichier de paramètres contenant la liste des départements pour chaque région de France
+  - Ajoute l'Enum `TypesCodeInseeRegion` contenant la liste des code INSEE de chaque région de France
+  - Ajoute la variable `region` qui indique dans quel région un ménage réside.
+
 ## 138.2.0 [#1942](https://github.com/openfisca/openfisca-france/pull/1942)
 
 * Évolution du système socio-fiscal.
@@ -38,7 +52,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
   - `parameters/impot_revenu/calcul_impot_revenu/pv/pv_immo/taux.yaml`
   - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/majoration_plafond/majoration_plafond_couple.yaml`
   - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/montant.yaml`
@@ -52,7 +66,7 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2023.
 * Zones impactées :
-  - `parameters/marche_travail/salaire_minimum/smic/smic_b_horaire` 
+  - `parameters/marche_travail/salaire_minimum/smic/smic_b_horaire`
   - `parameters/marche_travail/salaire_minimum/smic/smic_b_mensuel`
 * Détails :
   - Met à jour le SMIC suite à sa revalorisation mécanique au 1er janvier 2023.
@@ -61,7 +75,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2023.
-* Zones impactées : 
+* Zones impactées :
     * `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/asf/montant_asf/`
     * `parameters/taxation_indirecte/taxes_tabacs/`
  * Détails :
