@@ -1,4 +1,4 @@
-description: Taux pour Personnes isolées  - R1 (en % du RMI puis RSA socle) - secteur locatif (après 2001)
+description: Taux pour personnes isolées  - R1 (en % du RMI puis RSA socle) - secteur locatif (après 2001)
 values:
   2001-01-01:
     value: 0.88
