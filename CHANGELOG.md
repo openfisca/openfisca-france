@@ -1,6 +1,15 @@
 # Changelog
 
-### 139.1.0 [#1994](https://github.com/openfisca/openfisca-france/pull/1994)
+# 140.0.0 [#2007](https://github.com/openfisca/openfisca-france/pull/2007)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : parameters/impot_revenu/calcul_credits_impots
+* Détails :
+  - Renome parameters/impot_revenu/calcul_credits_impots en parameters/impot_revenu/credits_impots
+  - Renome impot_revenu/credits_impots/habitat_princ_credit en impot_revenu/credits_impots/interets_emprunt_habitation_principale
+
+## 139.1.0 [#1994](https://github.com/openfisca/openfisca-france/pull/1994)
 
 * Évolution du système socio-fiscal. Corrections.
 * Périodes concernées : à partir du 01/01/2021.
@@ -15,8 +24,8 @@
     - Met fin en 2021 à certains paramètres de l’évaluation forfaitaire
     - Actualise des revalorisations passées de montants forfaitaires de ressources pour les moins de 25 ans.
     - Documente certains montants permettant leur calcul
-    - corrige le mode de calcul de r0 au-delà de 6 enfants (erreur dans le cas normal)
-    - actualise la formule de calcul de cf en outre-mer
+    - Corrige le mode de calcul de r0 au-delà de 6 enfants (erreur dans le cas normal)
+    - Actualise la formule de calcul de cf en outre-mer
 
 ### 139.0.1 [#2005](https://github.com/openfisca/openfisca-france/pull/2005)
 
@@ -51,7 +60,6 @@
    - `openfisca_france\parameters\prestations_sociales\solidarite_insertion\minima_sociaux\per`
 * Détails :
   - Ajout de la prime exceptionnelle de rentrée versée en 2022
-
 ### 138.1.5 [#1995](https://github.com/openfisca/openfisca-france/pull/1995)
 
 * Changement mineur.

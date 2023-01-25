@@ -1,0 +1,56 @@
+- name: /1
+  label: ""
+- name: BMAF
+  label:
+    one: Base mensuelle des allocations familiales
+    other: Bases mensuelles des allocations familiales
+  parameter: prestations_sociales.prestations_familiales.bmaf.bmaf
+  short_label: BMAF
+- name: codes départements
+- name: currency
+  units:
+    1795-01-01:
+      label:
+        one: Ancien franc
+        other: Anciens francs
+      name: currency-AFRF
+      short_label: AFRF
+    1960-01-01:
+      label:
+        one: Nouveau franc
+        other: Nouveaux francs
+      name: currency-FRF
+      short_label: FRF
+    2002-01-01:
+      label:
+        one: Euro
+        other: Euros
+      name: currency-EUR
+      short_label: €
+- name: hour
+  label:
+    one: heure
+    other: heures
+- name: ISO 3166-1 alpha-2
+- name: month
+  label: mois
+- name: people
+  label:
+    one: personne
+    other: personnes
+- name: PSS
+  label:
+    one: Plafond de la sécurité sociale
+    other: Plafonds de la sécurité sociale
+  parameter: prelevements_sociaux.pss.plafond_securite_sociale_mensuel
+  short_label: PSS
+- name: SMIC
+  label:
+    one: Salaire minimum interprofessionnel de croissance
+    other: Salaires minima interprofessionnels de croissance
+  parameter: marche_travail.salaire_minimum.smic.smic_b_horaire
+  short_label: Smic
+- name: year
+  label:
+    one: année
+    other: années
