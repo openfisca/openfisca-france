@@ -1,7 +1,7 @@
 description: Taux du SMIC qui délimite la tranche 2 et 3 pour les taux d'abattement des revenus ordinaires pour l'AAH
 values:
   2005-07-01:
-    value: 700  
+    value: 700
   2011-01-01:
     value: null
 metadata:
