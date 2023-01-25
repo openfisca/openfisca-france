@@ -38,6 +38,8 @@ values:
     value: 21732
   2022-01-01:
     value: 21776
+  2023-01-01:
+    value: 22123
 metadata:
   ux_name: Sans enfants
   description_en: "Family complement (CF): Extra allowances"
@@ -95,6 +97,9 @@ metadata:
     2022-01-01:
       title: Arrêté du 16/12/2021, art. 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044572370
+    2023-01-01:
+      title: TODO
+      href: TODO
   official_journal_date:
     1986-01-01: "1985-12-21"
     2003-07-01: 2004-01-01; 2003-06-28
