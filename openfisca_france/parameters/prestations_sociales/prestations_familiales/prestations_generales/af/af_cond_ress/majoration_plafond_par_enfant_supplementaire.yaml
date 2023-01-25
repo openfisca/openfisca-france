@@ -14,6 +14,8 @@ values:
     value: 5827
   2022-01-01:
     value: 5839
+  2023-01-01:
+    value: 5932
 metadata:
   ux_name: Majoration ressource par enfant supplémentaire
   description_en: "Family allowances (AF): Thresholds for means-testing"
@@ -48,6 +50,9 @@ metadata:
     - title: Instruction no DSS/2B/2020/226 du 14 décembre 2020
       href: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-12/ste_20200012_0000_0050.pdf
     2022-01-01:
+      title: TODO REF MANQUANTE
+      href: TODO
+    2023-01-01:
       title: TODO REF MANQUANTE
       href: TODO
   official_journal_date:

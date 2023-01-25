@@ -14,6 +14,8 @@ values:
     value: 58279
   2022-01-01:
     value: 58396
+  2023-01-01:
+    value: 59330
 metadata:
   reference:
     2016-01-01:
@@ -32,6 +34,9 @@ metadata:
       title: Arrêté du 14/12/2020, art. 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694985
     2022-01-01:
+      title: TODO REF MANQUANTE
+      href: TODO
+    2023-01-01:
       title: TODO REF MANQUANTE
       href: TODO
   last_review: "2022-02-24"
