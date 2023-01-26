@@ -1,4 +1,4 @@
-description: Montant annuel maximal pour une personne seule de l'Allocation supplémentaire d'invalidité (ASI)
+description: Montant annuel maximal pour une personne seule de l'allocation supplémentaire d'invalidité (ASI)
 values:
   2006-01-01:
     value: 4314.03
@@ -29,7 +29,7 @@ values:
   2019-04-01:
     value: 4991.81
 metadata:
-  ux_name: Montant Seul
+  ux_name: Montant annuel maximal pour une personne seule
   description_en: "Supplementary disability allowance (ASI): Amount"
   ipp_csv_id: asi1
   unit: currency
@@ -75,6 +75,8 @@ metadata:
       title: Décret 2018-227 du 30/04/2018
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036756121
     2019-04-01:
+    - title: Article L816-3 du Code de la sécurité sociale 
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041474264
     - title: Instruction n° DSS/2A/2C/2019/49 du 6 mars 2019
       href: https://solidarites-sante.gouv.fr/fichiers/bo/2019/19-04/ste_20190004_0000_0066.pdf
     - title: Décret 2019-15 du 05/04/2019
