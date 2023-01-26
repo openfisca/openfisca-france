@@ -1,5 +1,17 @@
 # Changelog
 
+# 140.0.1 [#2013](https://github.com/openfisca/openfisca-france/pull/2013)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/parameters/geopolitique/regions/`
+  - `openfisca_france/parameters/impot_revenu/`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale/ars/`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/autre_solidarite/prime_exceptionnelle_rentree/`
+* Détails :
+  - Corrections de diverses erreurs dans les fichiers YAML des paramètres, dont une typo qui rendait le YAML invalide.
+
 # 140.0.0 [#2007](https://github.com/openfisca/openfisca-france/pull/2007)
 
 * Changement mineur.
