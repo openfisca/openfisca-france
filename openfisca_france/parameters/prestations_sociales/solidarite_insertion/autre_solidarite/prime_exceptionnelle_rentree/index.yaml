@@ -5,7 +5,7 @@ metadata:
   order:
   - per
   - per_enfant
-  - per_etudiants
-  - per_etudiants_enfant
+  - per_etudiant
+  - per_etudiant_enfant
   - per_ppa
   - per_ppa_enfant
