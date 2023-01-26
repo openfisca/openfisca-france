@@ -5,6 +5,6 @@ metadata:
   - calcul_impot_revenu
   - calcul_revenus_imposables
   - calcul_reductions_impots
-  - calcul_credits_impots
+  - credits_impots
   - contributions_exceptionnelles
   - anciens_baremes_igr
