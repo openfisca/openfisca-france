@@ -337,7 +337,8 @@ class aah_base_ressources_activite_eval_annuelle(Variable):
     def formula(individu, period, parameters):
         return (
             individu('salaire_imposable', period.n_2, options = [ADD])
-            + individu('rpns_imposables', period.n_2))
+            + individu('rpns_imposables', period.n_2)
+            + individu('chomage_imposable', period.n_2, options = [ADD]))
 
 
 class aah_base_ressources_hors_activite_eval_annuelle(Variable):
@@ -376,6 +377,7 @@ class aah_eligible(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+    reference = ['Article 821-1 du Code de la sécurité sociale', 'https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006739685/']
 
     '''
         Allocation adulte handicapé
@@ -405,10 +407,12 @@ class aah_eligible(Variable):
         peut être versée au-delà de l'âge minimum légal de départ à la retraite en complément d'une retraite inférieure
         au minimum vieillesse.
 
-        Avant 2011, l'allocation était perçue uniquement pour les personnes sans activité les douze mois précédents (ref https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006739685/2005-06-30/)
+        Avant 2011, l'allocation était perçue uniquement pour les personnes sans activité les douze mois précédents 
+        (ref https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006739685/2005-06-30/),
+        mais ce n'était pas le cas avant 2005 ref https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002101708
     '''
 
-    def formula_2011(individu, period, parameters):
+    def formula_2008(individu, period, parameters):
         law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         taux_incapacite = individu('taux_incapacite', period)
         taux_incapacite_max = (taux_incapacite >= law.taux_capacite.taux_incapacite)
@@ -503,7 +507,7 @@ class aah_base(Variable):
     reference = [
         'Article L821-1 du Code de la sécurité sociale',
         'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=53AFF5AA4010B01F0539052A33180B39.tplgfr35s_1?idArticle=LEGIARTI000033813790&cidTexte=LEGITEXT000006073189&dateTexte=20180412'
-        ]
+        " D'après service-public : 'Si vous touchez une pension ou une rente, vous recevez la différence entre le montant de votre pension ou rente et le montant maximal de l'AAH', le montant évoqué est donc le maximal"]
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -513,14 +517,13 @@ class aah_base(Variable):
         aah_eligible = individu('aah_eligible', period)
         aah_base_ressources = individu('aah_base_ressources', period)
         plaf_ress_aah = individu('aah_plafond_ressources', period)
-        retraite_imposable = individu('retraite_imposable', period)
         # Le montant de l'AAH est plafonné au montant de base.
         montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
         montant_aah = min_(montant_max, max_(0, plaf_ress_aah - aah_base_ressources))
 
         aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
 
-        return aah_eligible * min_(max_(0, montant_aah - retraite_imposable), max_(0, montant_max - aah_base_non_cumulable))
+        return aah_eligible * min_(max_(0, montant_aah), max_(0, montant_max - aah_base_non_cumulable))
 
 
 class aah(Variable):
