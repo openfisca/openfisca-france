@@ -333,6 +333,7 @@ class aah_base_ressources_activite_eval_annuelle(Variable):
         ]
     # TODO prendre en compte l'abattement sur les revenus de l'année précédente entre 2005 et 2010 lorsqu'une période d'inactivité
     # sans revenu de remplacement survient (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006739692/2005-07-01/)
+    # et les autres abattements sur reprise d'activité https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000023086051/#JORFARTI000023086056 (notamment Art.D. 821-9 1°)
 
     def formula(individu, period, parameters):
         return (
