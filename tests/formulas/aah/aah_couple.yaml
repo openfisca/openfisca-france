@@ -157,9 +157,9 @@
         personne_de_reference: parent1
         conjoint: parent2
   output:
-    aah_base_ressources: [998.53, 0]
-    aah_base: [733.01, 956.65]
-    aah: [733.01, 956.65]  # 956.65 maximum en attendant l'actualisation du montant min((956.65 * 1.81 - 998.53), 965.65)
+    aah_base_ressources: [994.88, 0]
+    aah_base: [736.65, 956.65]
+    aah: [736.65, 956.65]  # 956.65 maximum en attendant l'actualisation du montant min((956.65 * 1.81 - 998.53), 965.65)
 
 - name: Couple de personnes en situation de handicap, juste avant déconjugalisation
   period: 2023-08
@@ -184,7 +184,7 @@
         personne_de_reference: parent1
         conjoint: parent2
   output:
-    aah_base_ressources: [998.53, 1383.33]  #[..., 24000/12*0.9-5000/12]
-    aah_base: [733.01, 348.21]
-    aah: [733.01, 348.21]  # 956.65 maximum en attendant l'actualisation du montant min((956.65 * 1.81 - 998.53), 965.65)
+    aah_base_ressources: [994.88, 1383.33]  #[..., 24000/12*0.9-5000/12]
+    aah_base: [736.65, 348.21]
+    aah: [736.65, 348.21]
 

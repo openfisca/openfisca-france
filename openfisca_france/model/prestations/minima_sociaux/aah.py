@@ -412,7 +412,7 @@ class aah_eligible(Variable):
         mais ce n'était pas le cas avant 2005 ref https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002101708
     '''
 
-    def formula_2008(individu, period, parameters):
+    def formula_2011_01_01(individu, period, parameters):
         law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         taux_incapacite = individu('taux_incapacite', period)
         taux_incapacite_max = (taux_incapacite >= law.taux_capacite.taux_incapacite)
@@ -428,7 +428,7 @@ class aah_eligible(Variable):
 
         return eligible_aah
 
-    def formula_2005(individu, period, parameters):
+    def formula_2005_07_01(individu, period, parameters):
         law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         taux_incapacite = individu('taux_incapacite', period)
         taux_incapacite_max = (taux_incapacite >= law.taux_capacite.taux_incapacite)

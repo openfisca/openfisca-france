@@ -254,4 +254,4 @@
         - enfant2
   output:
     aah_base: [0, 0, 287, 0, 790] # xxxxx.xx (conucub + 2enf à charge, grille montants pre-Sept.2014) - 25000 / 12  = 3446.48 / 12
-    caah: [0,0,0,0,0]
+    caah: [0, 0, 0, 0, 0]
