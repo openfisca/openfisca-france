@@ -1,6 +1,6 @@
 # Changelog
 
-### 140.0.2 []()
+### 140.0.2 [2014](https://github.com/openfisca/openfisca-france/pull/2014)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/02/2023.
