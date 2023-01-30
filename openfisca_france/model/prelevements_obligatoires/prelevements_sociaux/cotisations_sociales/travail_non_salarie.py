@@ -320,7 +320,7 @@ class formation_profession_liberale(Variable):
     def formula(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'formation_profession_liberale')
-        taux = parameters(period).prelevements_sociaux.cotisations_taxes_professions_liberales.formation_pl.sous_pss
+        taux = parameters(period).prelevements_sociaux.professions_liberales.formation_pl.sous_pss
         bareme.add_bracket(0, taux)
         bareme.add_bracket(1, 0)
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
@@ -464,7 +464,7 @@ class vieillesse_profession_liberale(Variable):
     def formula_2015(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).prelevements_sociaux.pss.plafond_securite_sociale_annuel
         bareme = MarginalRateTaxScale(name = 'vieillesse')
-        assurance_vieillesse = parameters(period).prelevements_sociaux.cotisations_taxes_professions_liberales.ret_pl.assurance_vieillesse
+        assurance_vieillesse = parameters(period).prelevements_sociaux.professions_liberales.ret_pl.assurance_vieillesse
         bareme.add_bracket(0, assurance_vieillesse.sous_1_pss)
         bareme.add_bracket(1, assurance_vieillesse.entre_1_et_5_pss)
         bareme.add_bracket(5, 0)
