@@ -407,7 +407,7 @@ class aah_eligible(Variable):
         peut être versée au-delà de l'âge minimum légal de départ à la retraite en complément d'une retraite inférieure
         au minimum vieillesse.
 
-        Avant 2011, l'allocation était perçue uniquement pour les personnes sans activité les douze mois précédents 
+        Avant 2011, l'allocation était perçue uniquement pour les personnes sans activité les douze mois précédents
         (ref https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006739685/2005-06-30/),
         mais ce n'était pas le cas avant 2005 ref https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002101708
     '''
