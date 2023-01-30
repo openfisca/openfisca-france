@@ -25,7 +25,7 @@
     age: 19
     handicap: true
     taux_incapacite: 0.9
-    prestations_familiales_enfant_a_charge: false
+    prestations_familiales_enfant_a_charge: true
   output:
     aah_eligible: false
 
@@ -36,7 +36,7 @@
     age: 18
     handicap: true
     taux_incapacite: 0.9
-    prestations_familiales_enfant_a_charge: true
+    prestations_familiales_enfant_a_charge: false
   output:
     aah_eligible: true
 
