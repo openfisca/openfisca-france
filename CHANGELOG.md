@@ -1,5 +1,11 @@
 # Changelog
 
+### 140.0.2 []()
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/02/2023.
+* Détails :
+  - Prends en compte le taux d'inflation dans celui du Livret d'Épargne Populaire
 # 140.0.1 [#2013](https://github.com/openfisca/openfisca-france/pull/2013)
 
 * Changement mineur.
