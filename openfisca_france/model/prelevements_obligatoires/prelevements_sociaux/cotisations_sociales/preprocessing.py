@@ -176,7 +176,7 @@ def build_sal(node_json):
     regime_general = node_json.prelevements_sociaux.cotisations_securite_sociale_regime_general
     public = node_json.prelevements_sociaux.cotisations_secteur_public
     indep = node_json.prelevements_sociaux.cotisations_taxes_independants_artisans_commercants
-    liberal = node_json.prelevements_sociaux.cotisations_taxes_professions_liberales
+    liberal = node_json.prelevements_sociaux.professions_liberales
 
     # Création de commun
     commun.children.update(chomage.chomage.salarie.children)

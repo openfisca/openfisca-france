@@ -1,12 +1,21 @@
 # Changelog
 
+# 141.0.0 [2015](https://github.com/openfisca/openfisca-france/pull/2015)
+
+* Évolution du système socio-fiscal.  Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/professions_liberales`.
+* Détails :
+  - Renomme  `parameters/prelevements_sociaux/cotisations_taxes_professions_liberales` en`parameters/prelevements_sociaux/professions_liberales`
+
 ### 140.0.2 [2014](https://github.com/openfisca/openfisca-france/pull/2014)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/02/2023.
 * Détails :
   - Prends en compte le taux d'inflation dans celui du Livret d'Épargne Populaire
-# 140.0.1 [#2013](https://github.com/openfisca/openfisca-france/pull/2013)
+
+### 140.0.1 [#2013](https://github.com/openfisca/openfisca-france/pull/2013)
 
 * Changement mineur.
 * Périodes concernées : toutes.
