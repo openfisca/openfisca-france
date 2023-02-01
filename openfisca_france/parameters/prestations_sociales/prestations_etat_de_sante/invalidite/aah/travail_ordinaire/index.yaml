@@ -10,3 +10,8 @@ metadata:
   - abattement_700
   - abattement_1100
   - abattement_1500
+  - tranche_smic
+  - tranche_smic_horaire1
+  - tranche_smic_horaire2
+  - tranche_smic_horaire3
+  - tranche_smic_horaire4

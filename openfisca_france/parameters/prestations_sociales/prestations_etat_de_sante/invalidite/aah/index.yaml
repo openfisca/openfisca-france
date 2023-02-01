@@ -4,7 +4,7 @@ metadata:
   description_en: Disability
   order:
   - age_minimal
-  - age_maximal
+  - age_fin_educ
   - montant
   - pourcentage_aah
   - abattement_special
