@@ -1,5 +1,15 @@
 # Changelog
 
+# 141.0.1 [1988](https://github.com/openfisca/openfisca-france/pull/1988)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes.
+* Zones impactées : model/prestations/minima_sociaux/aah.
+* Détails :
+  - Code la déconjugalisation à partir d'octobre 2023
+  - Exclut les pensions des abattements sur les revenus d'activité
+  - Améliore l'historique des abattements et de l'attribution de l'aah
+
 # 141.0.0 [2015](https://github.com/openfisca/openfisca-france/pull/2015)
 
 * Évolution du système socio-fiscal.  Changement mineur.
