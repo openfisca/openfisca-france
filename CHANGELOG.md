@@ -1,6 +1,14 @@
 # Changelog
 
-# 141.0.1 [1988](https://github.com/openfisca/openfisca-france/pull/1988)
+### 141.0.2 [2011](https://github.com/openfisca/openfisca-france/pull/2011)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir de 2023
+* Zones impactées : `prelevements_obligatoires/taxe_habitation/taxe_habitation.py`
+* Détails :
+  - Code la suppression de la taxe d'habitation sur les résidences principales
+
+### 141.0.1 [1988](https://github.com/openfisca/openfisca-france/pull/1988)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes.
