@@ -1,11 +1,11 @@
-description: Âge de début de la 2ème majoration
+description: Âge seuil de la 2ème majoration
 values:
   2002-01-01:
     value: 16
   2008-05-01:
     value: 14
 metadata:
-  ux_name: Age début 2ème majoration
+  ux_name: Âge seuil 2ème majoration
   unit: year
   reference:
     2008-05-01:

@@ -1,4 +1,4 @@
-description: Nombre d'enfant à partir duquel l'aîné donne droit à majoration, Allocations Familiales (AF)
+description: Nombre d'enfant à partir duquel l'aîné donne droit à majoration, allocations familiales (AF)
 values:
   1984-01-01:
     value: 3
@@ -9,9 +9,9 @@ metadata:
   unit: year
   reference:
     1984-01-01:
-      title: Article R521-1 du Code de la SS
+      title: Article R521-1 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018735853/2008-04-30
-  last_review: "2022-02-22"
+  last_review: "2023-02-02"
 documentation: |-
   Notes :
   (1) La deuxième tranche de la majoration est créée pour début 1999 (la majoration est augmentée à partir de 16 ans). Cette mesure est supprimée en 2008, mais seulement pour les nouveaux bénéficiaires: le premier taux de 9% s'applique donc jusqu'aux 16 ans des anciens bénéficiaires (jusqu'au 31 avril 2013 inclus)
