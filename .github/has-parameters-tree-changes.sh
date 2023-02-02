@@ -5,7 +5,7 @@ BLUE='\033[0;34m'
 COLOR_RESET='\033[0m'
 
 
-# openfisca-france expected paths for parameters
+# openfisca-france array of expected paths for parameters
 EXPECTED_PATHS=(
     "openfisca_france"
     "openfisca_france/parameters"    
@@ -15,7 +15,7 @@ EXPECTED_PATHS=(
     "openfisca_france/parameters/chomage/allocations_chomage_solidarite"
     "openfisca_france/parameters/chomage/preretraites"
     "openfisca_france/parameters/geopolitique"  # premier niveau bloqué seulement ; n'existe pas dans les barèmes IPP
-    "openfisca_france/parameters/impot_revenu"  # premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
+    "openfisca_france/parameters/impot_revenu"  # + 1 niveau / premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
     "openfisca_france/parameters/marche_travail"
     "openfisca_france/parameters/marche_travail/epargne"  # bloqué mais n'existe pas dans les barèmes IPP
     "openfisca_france/parameters/marche_travail/remuneration_dans_fonction_publique"
@@ -58,7 +58,7 @@ EXPECTED_PATHS=(
     "openfisca_france/parameters/taxation_capital/impot_solidarite_fortune_isf_1989_2017"
     "openfisca_france/parameters/taxation_capital/prelevement_forfaitaire"
     "openfisca_france/parameters/taxation_capital/prelevements_sociaux"
-    "openfisca_france/parameters/taxation_indirecte"  # premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
+    "openfisca_france/parameters/taxation_indirecte"  # + 1 niveau ; premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
     "openfisca_france/parameters/taxation_societes"  # premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
     )
 EXPECTED_PATHS_MAX_DEPTH=4  # ! EXPECTED_PATHS and EXPECTED_PATHS_MAX_DEPTH should be consistent
@@ -76,9 +76,41 @@ all_paths=`echo ${EXPECTED_PATHS[@]} ${checked_tree[@]} | tr ' ' '\n' | sort | u
 error_status=0
 
 added=`echo ${all_paths[@]} ${checked_tree[@]} | tr ' ' '\n' | sort | uniq -u | uniq`
+added_checked=()
 if [[ ${added[@]} ]]; then
+    for item in $added; do
+        # DEBUG echo "😈  "$item
+        # item seems new; should we list it or should we ignore this depth ?
+        item_parent=`dirname $item`
+        item_parent_depth=`echo $item_parent | grep -o / | wc -l`
+
+        if [[ " ${EXPECTED_PATHS[*]} " =~ " ${item_parent} " ]]; then            
+            # est-ce qu'il existe des sous-répertoires (de même niveau que item ou plus bas) à respecter ?
+            parent_and_subdirs_expected=`echo ${EXPECTED_PATHS[@]} | tr ' ' '\n' | grep ${item_parent}`
+            parent_and_subdirs_expected_array=($parent_and_subdirs_expected)
+            list_length=`echo "$parent_and_subdirs_expected"  | wc -l`
+            
+            # DEBUG echo "> le parent "$item_parent" est dans la liste à respecter avec ce nombre d'occurrences : "$list_length
+            # DEBUG printf '%s\n' "${parent_and_subdirs_expected[@]}"
+
+            j=0
+            while [ $j -lt $list_length ]; do
+                expected_item_depth=`echo ${parent_and_subdirs_expected_array[$j]} | grep -o / | wc -l`
+                
+                # DEBUG echo "$j on compare ce répertoire supposément ajouté à la liste des répertoires obligatoires : "${parent_and_subdirs_expected_array[$j]}
+                
+                if [ $expected_item_depth -gt $item_parent_depth ]; then
+                    # 👹 il existe au moins un répertoire de même profondeur ou plus que l'item courant donc, l'item courant est louche
+                    added_checked+=($item)
+                    break
+                fi
+                ((j++))
+            done            
+        fi 
+    done
+
     echo "${BLUE}INFO Ces répertoires de paramètres ont été ajoutés :${COLOR_RESET}"
-    printf '%s\n' ${added}
+    printf '%s\n' ${added_checked[@]}
     error_status=1
 fi
 
