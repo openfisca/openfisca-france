@@ -1,4 +1,4 @@
-description: Taux Global de la Contribution Sociale Généralisée (CSG) sur les revenus d'activité
+description: Taux global de la contribution sociale généralisée (CSG) sur les revenus d'activité
 values:
   1991-02-01:
     value: 0.011
@@ -11,7 +11,7 @@ values:
   2018-01-01:
     value: 0.092
 metadata:
-  ux_name: Taux Global
+  ux_name: Taux global
   description_en: CSG - rates on work incomes
   ipp_csv_id: csg_act
   unit: /1
