@@ -194,7 +194,7 @@ class aah_base_ressources(Variable):
             return (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
 
         def base_ressource_eval_trim():
-            three_previous_months = period.first_month.start.period('month', 3).offset(-3)
+            three_previous_months = Period(('month', period.first_month.start, 3)).offset(-3)
             base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
             base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
 
@@ -608,7 +608,7 @@ class caah(Variable):
 
     def formula_2005_07_01(individu, period, parameters):
         invalidite = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite
-        annee_precedente = period.start.period('year').offset(-1)
+        annee_precedente = Period(('year', period.start, 1)).offset(-1)
         activite_12_mois = individu('salaire_imposable', annee_precedente, options = [ADD]) + individu('rpns_imposables', annee_precedente)
 
         garantie_ressources = invalidite.caah.garantie_ressources
