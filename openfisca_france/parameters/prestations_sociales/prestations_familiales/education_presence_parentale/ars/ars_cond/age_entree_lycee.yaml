@@ -1,13 +1,13 @@
 description: Deuxième seuil d'âge de l'enfant impliquant modulation de l'Allocation de rentrée scolaire (ARS)
 values:
-  2008-08-03:
+  2002-01-01:
     value: 15
 metadata:
   last_review: "2023-01-27"
   ux_name: Deuxième seuil d'âge de l'enfant
   unit: year
   reference:
-    2008-08-03:
+    2002-01-01:
     - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019281633/2008-08-03/
       title: Article D543-1 du Code de la sécurité sociale
     - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000019278188
