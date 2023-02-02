@@ -115,7 +115,7 @@ if [[ ${added[@]} ]]; then
 fi
 
 lost=`echo ${all_paths[@]} ${EXPECTED_PATHS[@]} | tr ' ' '\n' | sort | uniq -u | uniq`
-if [[ ${added[@]} ]]; then
+if [[ ${lost[@]} ]]; then
     echo "${BLUE}INFO Ces répertoires de paramètres ont été supprimés :${COLOR_RESET}"
     printf '%s\n' "${lost[@]}"
     error_status=2
