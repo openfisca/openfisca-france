@@ -30,3 +30,22 @@ class chomage_cotisation_retraite_complementaire_journaliere(Variable):
                 -1 * cotisation_theorique,
                 0),
             2)
+
+class chomage_cotisation_retraite_complementaire(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisation de retraite complémentaire sur allocation chômage'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula(individu, period, parameters):
+        chomage_cotisation_retraite_complementaire_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)
+        debut_mois = datetime64(period.start.offset('first-of', 'month'))
+        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
+        nombre_jours_mois = busday_count(
+            debut_mois,
+            fin_mois,
+            weekmask= '1' * 7
+            )
+
+        return chomage_cotisation_retraite_complementaire_journaliere * nombre_jours_mois

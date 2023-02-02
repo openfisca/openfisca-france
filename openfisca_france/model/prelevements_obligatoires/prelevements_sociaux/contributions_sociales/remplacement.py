@@ -118,8 +118,8 @@ class csg_deductible_chomage(Variable):
             )
 
         chomage_brut = individu('chomage_brut', period)
-        chomage_cotisation_retraite_complementaire_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)
-        assiette_csg_chomage = chomage_brut - chomage_cotisation_retraite_complementaire_journaliere
+        chomage_cotisation_retraite_complementaire = individu('chomage_cotisation_retraite_complementaire', period)
+        assiette_csg_chomage = chomage_brut - chomage_cotisation_retraite_complementaire
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_chomage,
@@ -183,8 +183,8 @@ class csg_imposable_chomage(Variable):
             )
 
         chomage_brut = individu('chomage_brut', period)
-        chomage_cotisation_retraite_complementaire_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)
-        assiette_csg_chomage = chomage_brut - chomage_cotisation_retraite_complementaire_journaliere
+        chomage_cotisation_retraite_complementaire = individu('chomage_cotisation_retraite_complementaire', period)
+        assiette_csg_chomage = chomage_brut - chomage_cotisation_retraite_complementaire
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_chomage,
@@ -246,8 +246,8 @@ class crds_chomage(Variable):
         heures_mensuelles = parameters.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
 
         chomage_brut = individu('chomage_brut', period)
-        chomage_cotisation_retraite_complementaire_journaliere = individu('chomage_cotisation_retraite_complementaire_journaliere', period)
-        assiette_crds_chomage = chomage_brut - chomage_cotisation_retraite_complementaire_journaliere
+        chomage_cotisation_retraite_complementaire = individu('chomage_cotisation_retraite_complementaire', period)
+        assiette_crds_chomage = chomage_brut - chomage_cotisation_retraite_complementaire
 
         cho_seuil_exo = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.allocations_chomage.min_exo * heures_mensuelles * smic_h_b
         eligible = (
