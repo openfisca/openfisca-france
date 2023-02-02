@@ -1,4 +1,4 @@
-description: Taux pour les collégiens (11-14 ans, en % de la BMAF) de l'Allocation de rentrée scolaire (ARS)
+description: Montant pour la 2ème tranche d'âge (collégiens de 11-14 ans), en % de la BMAF, de l'allocation de rentrée scolaire (ARS)
 values:
   1978-01-01:
     value: 0.2
@@ -13,7 +13,7 @@ values:
   2012-09-03:
     value: 0.9467
 metadata:
-  ux_name: Taux collège (11-14 ans)
+  ux_name: Montant pour la 2ème tranche d'âge
   description_en: "Back-to-school allowance (ARS): Amounts"
   ipp_csv_id: ars1114
   unit: BMAF

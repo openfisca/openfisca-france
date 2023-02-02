@@ -1,4 +1,4 @@
-description: Taux pour les lycéens  (6-10 ans, en % de la BMAF) de l'Allocation de rentrée scolaire (ARS)
+description: Montant pour la 3ème tranche d'âge (lycéens de 6-10 ans), en % de la BMAF, de l'Allocation de rentrée scolaire (ARS)
 values:
   1978-01-01:
     value: 0.2
@@ -13,7 +13,7 @@ values:
   2012-09-03:
     value: 0.9795
 metadata:
-  ux_name: Taux lycée (15-17 ans)
+  ux_name: Montant pour la 3ème tranche d'âge
   description_en: "Back-to-school allowance (ARS): Amounts"
   ipp_csv_id: ars1517
   unit: BMAF

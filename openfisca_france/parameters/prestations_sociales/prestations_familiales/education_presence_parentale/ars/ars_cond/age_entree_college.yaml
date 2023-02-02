@@ -4,7 +4,7 @@ values:
     value: 11
 metadata:
   last_review: "2023-01-27"
-  ux_name: Premier seuil d'âge de l'enfant
+  ux_name: Premier seuil d'âge
   unit: year
   reference:
     2002-01-01:

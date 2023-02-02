@@ -1,4 +1,4 @@
-description: Majoration du plafond de ressources par enfant à charge de l'Allocation de rentrée scolaire (ARS)
+description: Majoration en % de la base du plafond de ressources par enfant à charge - allocation de rentrée scolaire (ARS)
 values:
   1978-07-13:
     value: 0.3
@@ -18,7 +18,7 @@ values:
     value: 0.3
 metadata:
   last_review: "2023-01-27"
-  ux_name: Majoration du plafond de ressources par enfant 
+  ux_name: Majoration par enfant, en % de la base du plafond de ressources
   description_en: "Back-to-school allowance (ARS): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_ars_enf
   unit: /1
@@ -41,6 +41,8 @@ metadata:
     2014-01-01:
     - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750743
       title: Article R543-5 du Code de la sécurité sociale
+    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951022
+      title: Article L543-1 du Code de la sécurité sociale
     - href: https://www-valid.social-sante.gouv.fr/fichiers/bo/2015/15-01/ste_20150001_0000_0062.pdf
       title: Circulaire DSS/SD2B/2013/417
     2017-01-01:
