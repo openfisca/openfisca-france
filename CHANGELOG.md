@@ -1,8 +1,16 @@
 # Changelog
 
+# 142.0.1 [#2020](https://github.com/openfisca/openfisca-france/pull/2020)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/cotsoc`.
+* Détails :
+  - Ajout de champs `order` aux cotsocs après passage dans le preprocessing.
+
 # 142.0.0 [#2000](https://github.com/openfisca/openfisca-france/pull/2000)
 
-* Correction d'un crash. 
+* Correction d'un crash.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/chomage`.
 * Détails - L'ajout du `complement_are` n'a pas été fait en respectant les bonnes pratiques de modélisation:
