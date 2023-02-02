@@ -232,7 +232,10 @@ def build_sal(node_json):
     Construit le dictionnaire de barèmes des cotisations salariales
     '''
     sal = ParameterNode('sal', data=dict(description='Cotisations sociales salariales'))  # Génère sal
-    commun = ParameterNode('commun', data=dict(description='Cotisations sociales salariales communes à plusieurs régimes'))  # Génère commun
+    commun = ParameterNode('commun', data=dict(
+        description='Cotisations sociales salariales communes à plusieurs régimes',
+        metadata=dict(order=[]),
+        ))  # Génère commun
 
     # Réindexation: nouveaux chemins
     retraites = node_json.prelevements_sociaux.regimes_complementaires_retraite_secteur_prive
@@ -244,30 +247,48 @@ def build_sal(node_json):
 
     # Création de commun
     commun.children.update(chomage.chomage.salarie.children)
+    if chomage.chomage.salarie.metadata is not None and chomage.chomage.salarie.metadata.get('order') is not None:
+        commun.metadata['order'] += chomage.chomage.salarie.metadata['order']
+
     commun.children.update(chomage.asf.salarie.children)
+    if chomage.asf.salarie.metadata is not None and chomage.asf.salarie.metadata.get('order') is not None:
+        commun.metadata['order'] += chomage.asf.salarie.metadata['order']
 
     commun.children.update(regime_general.mmid.salarie.children)
     del commun.children['reduction_plus_65_ans']
+    if regime_general.mmid.salarie.metadata is not None and regime_general.mmid.salarie.metadata.get('order') is not None:
+        commun.metadata['order'] += regime_general.mmid.salarie.metadata['order']
 
     commun.children.update(regime_general.mmid_am.children)
     del commun.children['allocations_chomage_et_preretraite']
     del commun.children['avantages_vieillesse']
+    if regime_general.mmid_am.metadata is not None and regime_general.mmid_am.metadata.get('order') is not None:
+        commun.metadata['order'] += regime_general.mmid_am.metadata['order']
 
     commun.children.update(regime_general.cnav.salarie.children)
+    if regime_general.cnav.salarie.metadata is not None and regime_general.cnav.salarie.metadata.get('order') is not None:
+        commun.metadata['order'] += regime_general.cnav.salarie.metadata['order']
 
     # Non Cadre
     # Initialisation
-    noncadre = ParameterNode('noncadre', data=dict(description='Cotisations salariales pour salarié non cadre'))
+    noncadre = ParameterNode('noncadre', data=dict(
+        description='Cotisations salariales pour salarié non cadre',
+        metadata=dict(order=[]),
+        ))
     sal.add_child('noncadre', noncadre)
     sal.children['noncadre'].children.update(retraites.agff.salarie.noncadre.children)
     sal.children['noncadre'].children.update(retraites.arrco.taux_effectifs_salaries_employeurs.salarie.noncadre.children)
-    sal.children['noncadre'].children.update(commun.children)
     sal.children['noncadre'].children.update(retraites.ceg.salarie.children)
     sal.children['noncadre'].children.update(retraites.cet2019.salarie.children)
     sal.children['noncadre'].children.update(retraites.agirc_arrco.salarie.children)
+    sal.children['noncadre'].children.update(commun.children)
+    sal.children['noncadre'].metadata['order'] += commun.metadata['order']
 
     # Cadre
-    cadre = ParameterNode('cadre', data=dict(description='Cotisations salariales pour salarié cadre'))
+    cadre = ParameterNode('cadre', data=dict(
+        description='Cotisations salariales pour salarié cadre',
+        metadata=dict(order=[]),
+        ))
     sal.add_child('cadre', cadre)
     sal.children['cadre'].children.update(retraites.agff.salarie.cadre.children)
     sal.children['cadre'].children.update(retraites.arrco.taux_effectifs_salaries_employeurs.salarie.cadre.children)
@@ -280,6 +301,7 @@ def build_sal(node_json):
 
     sal.children['cadre'].children.update(retraites.cet.salarie.children)
     sal.children['cadre'].children.update(commun.children)
+    sal.children['cadre'].metadata['order'] += commun.metadata['order']
 
     # Renaming
     sal.children['prive_non_cadre'] = sal.children.pop('noncadre')
@@ -289,10 +311,22 @@ def build_sal(node_json):
     # Initialisation
     fonc = ParameterNode('fonc', data=dict(description='Cotisations salariales du secter public'))
     sal.add_child('fonc', fonc)
-    fonc.add_child('colloc', ParameterNode('colloc', data=dict(description='Cotisations sociales salariales du secteur public pour les collectivités locales')))
-    fonc.add_child('etat', ParameterNode('etat', data=dict(description="Cotisations sociales salariales du secteur public pour les fonctions d'Etat")))
-    fonc.add_child('contract', ParameterNode('contract', data=dict(description='Cotisations sociales salariales du secteur public pour les agents contractuels')))
-    fonc.add_child('commun', ParameterNode('commun', data=dict(description='Cotisations sociales salariales communes à plusieurs régimes')))
+    fonc.add_child('colloc', ParameterNode('colloc', data=dict(
+        description='Cotisations sociales salariales du secteur public pour les collectivités locales',
+        metadata=dict(order=[]),
+        )))
+    fonc.add_child('etat', ParameterNode('etat', data=dict(
+        description="Cotisations sociales salariales du secteur public pour les fonctions d'Etat",
+        metadata=dict(order=[]),
+        )))
+    fonc.add_child('contract', ParameterNode('contract', data=dict(
+        description='Cotisations sociales salariales du secteur public pour les agents contractuels',
+        metadata=dict(order=[]),
+        )))
+    fonc.add_child('commun', ParameterNode('commun', data=dict(
+        description='Cotisations sociales salariales communes à plusieurs régimes',
+        metadata=dict(order=[]),
+        )))
 
     # Etat
     sal.children['fonc'].children['etat'].children.update(public.rafp.salarie.children)
@@ -327,6 +361,7 @@ def build_sal(node_json):
     for type_sal_category in ['public_titulaire_territoriale', 'public_titulaire_hospitaliere']:
         sal.children[type_sal_category].children['rafp'] = sal.children['fonc'].children['etat'].children['rafp']
     sal.children['public_non_titulaire'].children.update(commun.children)
+    sal.children['public_non_titulaire'].metadata['order'] += commun.metadata['order']
     del sal.children['public_non_titulaire'].children['chomage']
     del sal.children['public_non_titulaire'].children['asf']
 
