@@ -12,7 +12,10 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     '''Construit le dictionnaire de barèmes des cotisations employeur à partir des paramètres de parameters.'''
     # TODO: contribution patronale de prévoyance complémentaire
     pat = ParameterNode('pat', data=dict(description='Cotisations sociales employeur'))  # Génère pat
-    commun = ParameterNode('commun', data=dict(description='Cotisations sociales employeur communes à plusieurs régimes'))  # Génère commun
+    commun = ParameterNode('commun', data=dict(
+        description='Cotisations sociales employeur communes à plusieurs régimes',
+        metadata=dict(order=[]),
+        ))  # Génère commun
 
     # Réindexation : nouveaux chemins suite à l'harmonisation avec les répertoires des barèmes IPP
     autres = node_json.prelevements_sociaux.autres_taxes_participations_assises_salaires
@@ -24,11 +27,16 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     # Création de commun
     # Apprentissage (avec effacement)
     commun.children.update(autres.apprentissage.children)
+    if autres.apprentissage.metadata is not None and autres.apprentissage.metadata.get('order') is not None:
+        commun.metadata['order'] += autres.apprentissage.metadata['order']
+
     del commun.children['csa']  # n'est pas un barème et est utilisé directement
     del commun.children['cotisation_supplementaire']
 
     # Formation
     commun.children.update(autres.formation.employeur_tout_salaire.children)
+    if autres.formation.employeur_tout_salaire.metadata is not None and autres.formation.employeur_tout_salaire.metadata.get('order') is not None:
+        commun.metadata['order'] += autres.formation.employeur_tout_salaire.metadata['order']
 
     # Construction (avec renommage et effacement)
     commun.children.update(autres.construction.children)
@@ -36,15 +44,36 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['construction_plus_de_20_salaries'] = commun.children.pop('plus_20_salaries')
     commun.children['construction_plus_de_50_salaries'] = commun.children.pop('plus_50_salaries')
     del commun.children['seuil']
+    commun.metadata['order'] += [
+        'construction_plus_de_10_salaries',
+        'construction_plus_de_20_salaries',
+        'construction_plus_de_50_salaries',
+        ]
     # Autres thématiques
     commun.children.update(chomage.ags.employeur.children)
+    if chomage.ags.employeur.metadata is not None and chomage.ags.employeur.metadata.get('order') is not None:
+        commun.metadata['order'] += chomage.ags.employeur.metadata['order']
     commun.children.update(chomage.asf.employeur.children)
+    if chomage.asf.employeur.metadata is not None and chomage.asf.employeur.metadata.get('order') is not None:
+        commun.metadata['order'] += chomage.asf.employeur.metadata['order']
     commun.children.update(chomage.chomage.employeur.children)
+    if chomage.chomage.employeur.metadata is not None and chomage.chomage.employeur.metadata.get('order') is not None:
+        commun.metadata['order'] += chomage.chomage.employeur.metadata['order']
     commun.children.update(regime_general.csa.employeur.children)
+    if regime_general.csa.employeur.metadata is not None and regime_general.csa.employeur.metadata.get('order') is not None:
+        commun.metadata['order'] += regime_general.csa.employeur.metadata['order']
     commun.children.update(regime_general.famille.employeur.children)
+    if regime_general.famille.employeur.metadata is not None and regime_general.famille.employeur.metadata.get('order') is not None:
+        commun.metadata['order'] += regime_general.famille.employeur.metadata['order']
     commun.children.update(regime_general.penibilite.children)
+    if regime_general.penibilite.metadata is not None and regime_general.penibilite.metadata.get('order') is not None:
+        commun.metadata['order'] += regime_general.penibilite.metadata['order']
     commun.children.update(regime_general.cnav.employeur.children)
+    if regime_general.cnav.employeur.metadata is not None and regime_general.cnav.employeur.metadata.get('order') is not None:
+        commun.metadata['order'] += regime_general.cnav.employeur.metadata['order']
     commun.children.update(regime_general.mmid.employeur.children)
+    if regime_general.mmid.employeur.metadata is not None and regime_general.mmid.employeur.metadata.get('order') is not None:
+        commun.metadata['order'] += regime_general.mmid.employeur.metadata['order']
 
     # Fnal (avec renommage)
     commun.children.update(autres.fnal.children)
@@ -55,12 +84,25 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     commun.children['fnal_contribution_plus_de_50_salaries'] = commun.children.pop('contribution_plus_de_50_salaries')
     commun.children['fnal_cotisation'] = commun.children.pop('cotisation')
     del commun.children['tout_employeur']
+    commun.metadata['order'] += [
+        'fnal_contribution_plus_de_10_salaries',
+        'fnal_contribution_moins_de_20_salaries',
+        'fnal_contribution_plus_de_20_salaries',
+        'fnal_contribution_moins_de_50_salaries',
+        'fnal_contribution_plus_de_50_salaries',
+        'fnal_cotisation',
+        ]
 
     commun.children.update(autres.fin_syndic.children)  # À harmoniser !
+    if autres.fin_syndic.metadata is not None and autres.fin_syndic.metadata.get('order') is not None:
+        commun.metadata['order'] += autres.fin_syndic.metadata['order']
 
     # Réindexation NonCadre
     # Initialisation
-    noncadre = ParameterNode('noncadre', data=dict(description='Cotisations employeur pour salarié non cadre'))
+    noncadre = ParameterNode('noncadre', data=dict(
+        description='Cotisations employeur pour salarié non cadre',
+        metadata=dict(order=[]),
+        ))
     pat.add_child('noncadre', noncadre)
     pat.children['noncadre'].children.update(retraites.agff.employeur.noncadre.children)
     pat.children['noncadre'].children.update(retraites.arrco.taux_effectifs_salaries_employeurs.employeur.noncadre.children)
@@ -68,10 +110,14 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     pat.children['noncadre'].children.update(retraites.cet2019.employeur.children)
     pat.children['noncadre'].children.update(retraites.agirc_arrco.employeur.children)
     pat.children['noncadre'].children.update(commun.children)
+    pat.children['noncadre'].metadata['order'] += commun.metadata['order']
 
     # Réindexation Cadre
     # Initialisation
-    cadre = ParameterNode('cadre', data=dict(description='Cotisations employeur pour salarié cadre'))
+    cadre = ParameterNode('cadre', data=dict(
+        description='Cotisations employeur pour salarié cadre',
+        metadata=dict(order=[]),
+        ))
     pat.add_child('cadre', cadre)
     pat.children['cadre'].children.update(retraites.agff.employeur.cadre.children)
     pat.children['cadre'].children.update(retraites.arrco.taux_effectifs_salaries_employeurs.employeur.cadre.children)
@@ -83,18 +129,33 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     del pat.children['cadre'].children['forfait_annuel']
     pat.children['cadre'].children.update(retraites.cet.employeur.children)
     pat.children['cadre'].children.update(commun.children)
+    pat.children['cadre'].metadata['order'] += commun.metadata['order']
+
     # Réindexation Fonc
     # Initialisation
     fonc = ParameterNode('fonc', data=dict(description='Cotisations sociales employeur du secteur public'))
     pat.add_child('fonc', fonc)
-    fonc.add_child('colloc', ParameterNode('colloc', data=dict(description='Cotisations sociales employeur du secteur public pour les collectivités locales')))
-    fonc.add_child('etat', ParameterNode('etat', data=dict(description="Cotisations sociales employeur du secteur public pour les fonctions d'Etat")))
-    fonc.add_child('militaire', ParameterNode('militaire', data=dict(description='Cotisations sociales employeur du secteur public pour les militaires')))
-    fonc.add_child('contract', ParameterNode('contract', data=dict(description='Cotisations sociales employeur du secteur public pour les agents contractuels')))
+    fonc.add_child('colloc', ParameterNode('colloc', data=dict(
+        description='Cotisations sociales employeur du secteur public pour les collectivités locales',
+        metadata=dict(order=[]),
+        )))
+    fonc.add_child('etat', ParameterNode('etat', data=dict(
+        description="Cotisations sociales employeur du secteur public pour les fonctions d'Etat",
+        metadata=dict(order=[]),
+        )))
+    fonc.add_child('militaire', ParameterNode('militaire', data=dict(
+        description='Cotisations sociales employeur du secteur public pour les militaires',
+        metadata=dict(order=[]),
+        )))
+    fonc.add_child('contract', ParameterNode('contract', data=dict(
+        description='Cotisations sociales employeur du secteur public pour les agents contractuels',
+        metadata=dict(order=[]),
+        )))
 
     # Contractuel
     pat.children['fonc'].children['contract'] = public.ircantec.taux_cotisations_appeles.employeur
     pat.children['fonc'].children['contract'].children.update(commun.children)
+    pat.children['fonc'].children['contract'].metadata['order'] += commun.metadata['order']
 
     # Etat
     pat.children['fonc'].children['etat'].children.update(public.mmid.etat.tout_traitement.employeur.children)
@@ -134,8 +195,11 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
         del pat.children['fonc'].children['contract'].children[var]
 
     pat.children['fonc'].children['etat'].children.update(commun.children)
+    pat.children['fonc'].children['etat'].metadata['order'] += commun.metadata['order']
     pat.children['fonc'].children['colloc'].children.update(commun.children)
+    pat.children['fonc'].children['colloc'].metadata['order'] += commun.metadata['order']
     pat.children['fonc'].children['militaire'].children.update(commun.children)
+    pat.children['fonc'].children['militaire'].metadata['order'] += commun.metadata['order']
 
     pat.children['etat_t'] = pat.children['fonc'].children['etat']  # Il semble que ce soient des sauvegardes temporaires ?
     pat.children['colloc_t'] = pat.children['fonc'].children['colloc']

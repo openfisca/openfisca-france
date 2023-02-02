@@ -4,6 +4,7 @@ metadata:
   description_en: Other payroll and workforce taxes
   order:
   - tout_employeur
+  - contribution_plus_de_10_salaries
   - contribution_moins_de_20_salaries
   - contribution_plus_de_20_salaries
   - contribution_moins_de_50_salaries
