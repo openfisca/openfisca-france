@@ -43,7 +43,10 @@ class prelevement_forfaitaire_liberatoire(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'Prelèvement forfaitaire libératoire sur les revenus du capital'
-    reference = 'art. 125-0 A du Code Général des Impôts'
+    reference = [
+        'Article 125-0 A du Code général des impôts',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006308140'
+        ]
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):

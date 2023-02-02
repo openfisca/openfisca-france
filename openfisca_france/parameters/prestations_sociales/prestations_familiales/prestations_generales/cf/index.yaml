@@ -1,6 +1,6 @@
 description: Complément familial (CF)
 metadata:
-  ux_name: CF
+  ux_name: Complément familial
   description_en: Family complement (CF)
   order:
   - cf_cm

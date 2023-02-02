@@ -1,6 +1,6 @@
 description: Allocation de soutien familial (ASF)
 metadata:
-  ux_name: ASF
+  ux_name: Allocation de soutien familial
   description_en: "Family support allowance (ASF): Amounts"
   order:
   - montant_asf

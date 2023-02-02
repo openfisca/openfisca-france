@@ -1,4 +1,4 @@
-description: Barème employeur Tout traitement pour la Fonction publique hospitalière et Collectivités locales des cotisations maladie spécifiques à la fonction publique
+description: Barème employeur tout traitement pour la fonction publique hospitalière et collectivités locales des cotisations maladie spécifiques à la fonction publique
 brackets:
 - threshold:
     1967-10-01:
@@ -17,7 +17,7 @@ brackets:
     2018-01-01:
       value: 0.0988
 metadata:
-  ux_name: Barème Employeur
+  ux_name: Barème employeur
   description_en: Health insurance contributions - local governments and hospital administration
   ipp_csv_id: mmid_h_p_0_
   reference:
@@ -53,8 +53,10 @@ metadata:
       title: Décret 97-1249 du 29/12/1997, art. 8
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771952&cidTexte=JORFTEXT000000753405
     2018-01-01:
-      title: Décret 2017-1890 du 30/12/2017, art. 1
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036454185&cidTexte=JORFTEXT000036342274
+    - title: Article 2 du décret n°67-850 du 30/09/1967
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000036461646
+    - title: Décret 2017-1890 du 30/12/2017, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036342284
   official_journal_date:
     1967-10-01: "1967-10-03"
     1970-08-01: "1970-07-31"

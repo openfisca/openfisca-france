@@ -1,4 +1,4 @@
-description: Plafond de ressources (allocation comprise) pour une personne seule pour avoir droit à l'Allocation supplémentaire d'invalidité (ASI)
+description: Plafond de ressources (allocation comprise) pour une personne seule pour avoir droit à l'allocation supplémentaire d'invalidité (ASI)
 values:
   2006-01-01:
     value: 7500.53
@@ -37,7 +37,7 @@ values:
   2022-07-01:
     value: 10163.71
 metadata:
-  ux_name: Montant Couple
+  ux_name: Plafond de ressources pour une personne seule
   description_en: "Supplementary disability allowance (ASI): Amount"
   ipp_csv_id: plaf_ressource_seul
   unit: currency
@@ -97,6 +97,14 @@ metadata:
       title: Instruction Interministérielle n° DSS/2A/2C/2022/63 du 4 mars 2022
       href: https://www.legislation.cnav.fr/Documents/instruction_ministerielle_2022_63_04032022.pdf
     2022-07-01:
+    - title: Article L815-24-1 du Code de la sécurité sociale (règle du plafond de ressources)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041474269
+    - title: Article D815-19 du Code de la sécurité sociale (plafond en 2021)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042956446/2021-01-01/
+    - title: Article L816-3 du Code de la sécurité sociale (revalorisation)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041474264
+    - title: Article L161-25 du Code de la sécurité sociale (coefficient de revalorisation)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031781092
     - title: LOI n° 2022-1158 du 16/08/2022
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046188473
     - title: Circulaire CNAV 2022-22 du 22/08/2022
@@ -121,4 +129,4 @@ documentation: |-
   - A partir du 1er avril 2020, le montant de l'ASI est défini comme la différence entre le plafond et les ressources de l'intéressé ou du couple (concubinage, PACS ou mariage).
 
   Les montants de l'allocation et des plafonds de ressources prévus pour son attribution sont revalorisés au 1er janvier de chaque année
-  (Article Article L816-3 https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041474264 )
+  (Article L816-3 https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041474264 )

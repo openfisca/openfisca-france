@@ -156,7 +156,10 @@ class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_eta
     value_type = float
     entity = FoyerFiscal
     label = "Partie du prélèvement forfaitaire unique associée à l'impôt sur le revenu (hors assurance-vie, épargne solidaire et produits venant des états non-coopératifs)"
-    reference = 'https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197'  # Art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
+    reference = [
+        'Article 28 de la Loi n° 2017-1837 du 30 décembre 2017 de finances pour 2018 (modifie art. 125 A, 125-0 A, 200 A et art. 117 quater du CGI)',
+        'https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197'
+        ]
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):

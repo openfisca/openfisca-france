@@ -1,5 +1,40 @@
 # Changelog
 
+# 141.0.3 [#2012](https://github.com/openfisca/openfisca-france/pull/2012)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées :
+   - `impot_revenu/prelevements_forfaitaires/`
+   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage/apprentissage_taxe`
+   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage/csa`
+   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/construction`
+   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/fin_syndic`
+   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/contribution_unique_formation`
+   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/fnal`
+   - `prelevements_sociaux/contributions_assises_specifiquement_accessoires_salaire/forfait_social`
+   - `prelevements_sociaux/cotisations_secteur_public/mmid`
+   - `prelevements_sociaux/cotisations_securite_sociale_regime_general/cnav`
+   - `prelevements_sociaux/regimes_complementaires_retraite_secteur_prive`
+   - `prestations_sociales/aides_logement/reduction_loyer_solidarite`
+   - `prelevements_sociaux/contributions_sociales/crds`
+   - `prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid`
+   - `prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales`
+   - `prelevements_sociaux/reductions_cotisations_sociales/fillon`
+   - `prestations_sociales/prestations_etat_de_sante/invalidite/aah`
+   - `prestations_sociales/prestations_etat_de_sante/invalidite/asi`
+   - `prestations_sociales/prestations_familiales/bmaf`
+   - `prestations_sociales/prestations_familiales/education_presence_parentale/aeeh`
+   - `prestations_sociales/prestations_familiales/education_presence_parentale/ars`
+   - `prestations_sociales/prestations_familiales/petite_enfance/paje`
+   - `prestations_sociales/prestations_familiales/prestations_generales/af`
+   - `prestations_sociales/prestations_familiales/prestations_generales/cf`
+* Détails :
+  - Change des labels (ux_name et description) pour corriger des erreurs ou préciser le sens.
+  - Ajoute des références :
+    - Articles codifiés
+    - Change parfois les URL des décrets pour mener vers la version qui montre le paramètre
+
 ### 141.0.2 [2011](https://github.com/openfisca/openfisca-france/pull/2011)
 
 * Évolution du système socio-fiscal.
