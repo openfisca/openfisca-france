@@ -1,5 +1,16 @@
 # Changelog
 
+# 142.0.0 [#2000](https://github.com/openfisca/openfisca-france/pull/2000)
+
+* Correction d'un crash. 
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/chomage`.
+* Détails - L'ajout du `complement_are` n'a pas été fait en respectant les bonnes pratiques de modélisation:
+  -  plusieurs paramètres dans un même yaml
+  - l'arborescence de rangement n'est pas respectée
+  - le formatage du paramètre est à revoir (ux_name, references)
+  - il y a un doublon avec un autre paramètre
+
 # 141.0.3 [#2012](https://github.com/openfisca/openfisca-france/pull/2012)
 
 * Changement mineur.
