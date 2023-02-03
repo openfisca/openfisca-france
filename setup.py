@@ -1,15 +1,21 @@
 #! /usr/bin/env python
 
 from setuptools import setup, find_packages
+from distutils.util import convert_path
 from pathlib import Path
 
 # Read the contents of our README file for PyPi
 this_directory = Path(__file__).parent
 long_description = (this_directory / 'README.md').read_text()
 
+main_ns = {}
+ver_path = convert_path('openfisca_france/version.py')
+with open(ver_path) as ver_file:
+    exec(ver_file.read(), main_ns)
+
 setup(
     name = 'OpenFisca-France',
-    version = '142.0.1',
+    version=main_ns['__version__'],
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
