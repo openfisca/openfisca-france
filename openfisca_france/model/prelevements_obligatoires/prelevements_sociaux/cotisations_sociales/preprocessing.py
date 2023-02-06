@@ -99,10 +99,10 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     # Enlève de commun.metadata['order'] les paramètres qui ne font pas partie de commun.
     for id in commun.metadata['order'].copy():
-        if all(child_id != id for child_id in commun.children.keys()):
+        if id not in commun.children.keys():
             commun.metadata['order'].remove(id)
 
-    # Réindexation NonCadre
+    # Réindexation Non Cadre
     # Initialisation
     noncadre = ParameterNode('noncadre', data=dict(
         description='Cotisations employeur pour salarié non cadre',
@@ -200,6 +200,8 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
                 'formprof_moins_de_10_salaries', 'formprof_moins_de_11_salaries', 'formprof_20_salaries_et_plus', 'formprof_11_salaries_et_plus', 'formprof_entre_10_et_19_salaries',
                 'ags', 'construction_plus_de_10_salaries', 'construction_plus_de_20_salaries', 'construction_plus_de_50_salaries', 'chomage', 'asf']:
         del pat.children['fonc'].children['contract'].children[var]
+        if var in pat.children['fonc'].children['contract'].metadata['order']:
+            pat.children['fonc'].children['contract'].metadata['order'].remove(var)
 
     pat.children['fonc'].children['etat'].children.update(commun.children)
     pat.children['fonc'].children['etat'].metadata['order'] += commun.metadata['order']
@@ -275,6 +277,11 @@ def build_sal(node_json):
     commun.children.update(regime_general.cnav.salarie.children)
     if regime_general.cnav.salarie.metadata is not None and regime_general.cnav.salarie.metadata.get('order') is not None:
         commun.metadata['order'] += regime_general.cnav.salarie.metadata['order']
+
+    # Enlève de commun.metadata['order'] les paramètres qui ne font pas partie de commun.
+    for id in commun.metadata['order'].copy():
+        if id not in commun.children.keys():
+            commun.metadata['order'].remove(id)
 
     # Non Cadre
     # Initialisation
@@ -369,8 +376,10 @@ def build_sal(node_json):
         sal.children[type_sal_category].children['rafp'] = sal.children['fonc'].children['etat'].children['rafp']
     sal.children['public_non_titulaire'].children.update(commun.children)
     sal.children['public_non_titulaire'].metadata['order'] += commun.metadata['order']
-    del sal.children['public_non_titulaire'].children['chomage']
-    del sal.children['public_non_titulaire'].children['asf']
+    for var in ['chomage', 'asf']:
+        del sal.children['public_non_titulaire'].children[var]
+        if sal.children['public_non_titulaire'].metadata['order']:
+            sal.children['public_non_titulaire'].metadata['order'].remove(var)
 
     # Cleaning
     del sal.children['fonc'].children['etat']
