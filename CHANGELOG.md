@@ -1,5 +1,22 @@
 # Changelog
 
+### 142.0.4 [#2021](https://github.com/openfisca/openfisca-france/pull/2021)
+
+* Changement mineur.
+* Périodes concernées : toutes. | jusqu'au JJ/MM/AAAA. | à partir du JJ/MM/AAAA.
+* Zones impactées : 
+     * `parameters/prelevements_sociaux/contributions_sociales/crds`.
+     *  `prelevements_sociaux/contributions_sociales/csg`
+     *  `prestations_sociales/prestations_familiales/education_presence_parentale/aeeh`
+     *  `prestations_sociales/prestations_familiales/petite_enfance/paje`
+     *  `prestations_sociales/prestations_familiales/prestations_generales/af`
+     *  `prestations_sociales/prestations_familiales/prestations_generales/cf/cf_cm/complement_familial`
+
+* Détails 
+    - Modifie les labels pour les rendre plus explicites
+    - Rectifie des erreurs de labels
+    - Ajoute des références, notamment les articles codifiés.
+
 ### 142.0.3 [#2025](https://github.com/openfisca/openfisca-france/pull/2025)
 
 * Changement mineur.
