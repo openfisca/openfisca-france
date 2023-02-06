@@ -99,7 +99,7 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
 
     # Enlève de commun.metadata['order'] les paramètres qui ne font pas partie de commun.
     for id in commun.metadata['order'].copy():
-        if all(child.id != id for child in commun.children):
+        if all(child_id != id for child_id in commun.children.keys()):
             commun.metadata['order'].remove(id)
 
     # Réindexation NonCadre
