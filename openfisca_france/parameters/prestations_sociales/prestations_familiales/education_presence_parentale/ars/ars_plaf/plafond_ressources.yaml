@@ -1,4 +1,4 @@
-description: Plafond de ressources (sans enfant) de l'Allocation de rentrée scolaire (ARS)
+description: Base du plafond de ressources (sans avoir compté les majorations par enfant) de l'allocation de rentrée scolaire (ARS)
 values:
   1978-07-13:
     value: 25500
@@ -57,7 +57,7 @@ values:
   2023-01-01:
     value: 19827
 metadata:
-  ux_name: Majoration par enfant
+  ux_name: Base du plafond de ressources
   description_en: "Back-to-school allowance (ARS): Thresholds for means-testing"
   ipp_csv_id: plaf_ars_0enf
   unit: currency

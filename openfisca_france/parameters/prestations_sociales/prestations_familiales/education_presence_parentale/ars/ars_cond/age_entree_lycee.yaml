@@ -1,10 +1,10 @@
-description: Deuxième seuil d'âge de l'enfant impliquant modulation de l'Allocation de rentrée scolaire (ARS)
+description: Deuxième seuil d'âge de l'enfant impliquant modulation de l'allocation de rentrée scolaire (ARS)
 values:
   2002-01-01:
     value: 15
 metadata:
   last_review: "2023-01-27"
-  ux_name: Deuxième seuil d'âge de l'enfant
+  ux_name: Deuxième seuil d'âge
   unit: year
   reference:
     2002-01-01:

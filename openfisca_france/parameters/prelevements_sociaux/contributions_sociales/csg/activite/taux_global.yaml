@@ -1,4 +1,4 @@
-description: Taux Global de la Contribution Sociale Généralisée (CSG) sur les revenus d'activité
+description: Taux global de la contribution sociale généralisée (CSG) sur les revenus d'activité
 values:
   1991-02-01:
     value: 0.011
@@ -11,7 +11,7 @@ values:
   2018-01-01:
     value: 0.092
 metadata:
-  ux_name: Taux Global
+  ux_name: Taux global
   description_en: CSG - rates on work incomes
   ipp_csv_id: csg_act
   unit: /1
@@ -49,7 +49,7 @@ metadata:
   notes:
     1991-02-01:
     - title: Une circulaire ministérielle du 16/01/1991 relative à la mise en œuvre de la CSG fournit des indications sur les assiettes et les exonérations.
-  last_review: "2021-12-15"
+  last_review: "2023-02-02"
 documentation: |-
   Notes :
   L'art. 2.III de la loi 93-1352 publiée au JO le 30/12/1993 (LF pour 1994) a annulé la déductibilité prévue et a donc empêché l'application de la déductibilité de la CSG pour les revenus 1993.
