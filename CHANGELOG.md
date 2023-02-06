@@ -1,6 +1,14 @@
 # Changelog
 
-# 142.0.1 [#2020](https://github.com/openfisca/openfisca-france/pull/2020)
+### 142.0.2 [#2023](https://github.com/openfisca/openfisca-france/pull/2023)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/cotsoc`.
+* Détails :
+  - Suppression des valeurs superflues dans les `order` des cotsocs après passage dans le preprocessing.
+
+### 142.0.1 [#2020](https://github.com/openfisca/openfisca-france/pull/2020)
 
 * Changement mineur.
 * Périodes concernées : toutes.

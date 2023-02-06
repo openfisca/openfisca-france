@@ -97,6 +97,11 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
     if autres.fin_syndic.metadata is not None and autres.fin_syndic.metadata.get('order') is not None:
         commun.metadata['order'] += autres.fin_syndic.metadata['order']
 
+    # Enlève de commun.metadata['order'] les paramètres qui ne font pas partie de commun.
+    for id in commun.metadata['order'].copy():
+        if all(child_id != id for child_id in commun.children.keys()):
+            commun.metadata['order'].remove(id)
+
     # Réindexation NonCadre
     # Initialisation
     noncadre = ParameterNode('noncadre', data=dict(
@@ -188,6 +193,8 @@ def build_pat(node_json):  # Ici node_json c'est le dossier 'parameters'
                 'formprof_moins_de_10_salaries', 'formprof_moins_de_11_salaries', 'formprof_20_salaries_et_plus', 'formprof_11_salaries_et_plus', 'formprof_entre_10_et_19_salaries',
                 'vieillesse_deplafonnee', 'vieillesse_plafonnee']:
         del commun.children[var]
+        if var in commun.metadata['order']:
+            commun.metadata['order'].remove(var)
 
     for var in ['apprentissage_taxe', 'apprentissage_contribution_additionnelle', 'apprentissage_taxe_alsace_moselle',
                 'formprof_moins_de_10_salaries', 'formprof_moins_de_11_salaries', 'formprof_20_salaries_et_plus', 'formprof_11_salaries_et_plus', 'formprof_entre_10_et_19_salaries',
