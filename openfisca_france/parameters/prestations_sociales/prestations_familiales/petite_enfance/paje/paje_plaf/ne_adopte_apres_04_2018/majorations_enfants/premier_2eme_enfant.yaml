@@ -1,9 +1,9 @@
-description: Majorations enfants (à appliquer au plafond 0 enfant correspondant au cas de figure) pour les 2 premiers enfants nés ou adoptés à partir du 01/04/2018 de la Prestation d'accueil du jeune enfant (PAJE)
+description: Majoration en % de la base du plafond de ressources (plafond taux plein ou plafond taux partiel selon le cas de figure), pour les deux premiers enfants nés ou adoptés à partir du 01/04/2018- Prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
     value: 0.25
 metadata:
-  ux_name: 1er et 2ème enfants
+  ux_name: Majoration, par enfant, en % de la base du plafond de ressources, pour les deux premiers enfants
   description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_paje_enf1et2_a_partir_20180401
   unit: /1

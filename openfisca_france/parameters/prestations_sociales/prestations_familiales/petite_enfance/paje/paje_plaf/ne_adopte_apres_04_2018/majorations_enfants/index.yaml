@@ -1,6 +1,6 @@
-description: Majorations enfants (à appliquer au plafond 0 enfant correspondant au cas de figure) pour enfants nés ou adoptés à partir du 01/04/2018 de la Prestation d'accueil du jeune enfant (PAJE)
+description: Majorations de la base du plafond de ressources (plafond taux plein ou plafond taux partiel selon le cas de figure) par enfant né ou adopté à partir du 01/04/2018 - Prestation d'accueil du jeune enfant (PAJE)
 metadata:
-  ux_name: Majorations enfants
+  ux_name: Majorations par enfant du plafond de ressources 
   description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
   order:
   - premier_2eme_enfant
