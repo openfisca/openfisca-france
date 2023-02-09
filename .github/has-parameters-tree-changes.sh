@@ -5,7 +5,7 @@ BLUE='\033[0;34m'
 COLOR_RESET='\033[0m'
 
 
-# openfisca-france array of expected _directories_ paths for parameters (without trailing slash)
+# openfisca-france array of expected _directories_ paths for parameters (without trailing slash and no duplicates)
 EXPECTED_PATHS=(
     "openfisca_france"
     "openfisca_france/parameters"    
@@ -89,17 +89,17 @@ error_status=0
 
 check_change(){
     local item_path="$1"
-    
     # item_path is a change in the GIT indexed items; it's a file because GIT doesn't index empty directories
-    # we compare its parent directory with EXPECTED_PATHS list
+    
+    # we compare item_path parent directory with EXPECTED_PATHS list
     local item_parent=`dirname $item_path`
     local item_parent_depth=`echo $item_parent | grep -o / | wc -l`
 
     # does EXPECTED_PATHS contain the parent directory?
     local matching_expected_paths=`echo ${EXPECTED_PATHS[@]} | tr ' ' '\n' | grep ${item_parent}`
     local matching_expected_paths_array=($matching_expected_paths)
-  
-    if [[ ${matching_expected_paths_array[@]} ]]; then  
+
+    if [[ ${matching_expected_paths_array[@]} ]]; then  # -> (path analysis direction)
         local list_length=`echo "$matching_expected_paths"  | wc -l`
         local j=0
 
@@ -107,10 +107,9 @@ check_change(){
         # its path is as long or longer than item_parent path length 
         while [ $j -lt $list_length ]; do
             local expected_item_depth=`echo ${matching_expected_paths_array[$j]} | grep -o / | wc -l`
-
             if [ $expected_item_depth -eq $item_parent_depth ]; then
                 break
-            else
+            elif [ $expected_item_depth -gt $item_parent_depth ]; then
                 # EXPECTED_PATHS contains a directory longer than current item directory's path
                 # list current item directory as a change in the tree hierarchy
                 echo $item_parent
@@ -118,13 +117,22 @@ check_change(){
             ((j++))
         done
     else
-        # the parent directory is new! it looks like the top tree hierarchy was changed
-        # list it as a change in the tree hierarchy as its path doesn't match any directory path of EXPECTED_PATHS
-        echo $item_parent           
+        # <- (path analysis direction)
+        # the parent directory is new! does it have siblings? 
+        # = are there any expectations in EXPECTED_PATHS for this path depth?
+        local item_grand_parent=`dirname $item_parent`
+        local grand_parent_matching_expected_paths=`echo ${EXPECTED_PATHS[@]} | tr ' ' '\n' | grep ${item_grand_parent}`
+        local grand_parent_matching_expected_paths_array=($grand_parent_matching_expected_paths)
+        local siblings_number=`expr ${#grand_parent_matching_expected_paths_array[@]} - 1` 
+        
+        if [[ $siblings_number -gt 0 ]]; then
+            echo $item_parent
+        fi         
     fi 
 }
 
 added=`git diff-index --name-only --diff-filter=A --exit-code ${last_tagged_commit}  -- ${BRANCH_PATHS_ROOT}`
+# echo "🤖 "$added
 added_checked=()
 if [[ ${added[@]} ]]; then
     for item_path in $added; do
@@ -139,6 +147,7 @@ if [[ ${added_checked[@]} ]]; then
 fi
 
 lost=`git diff-index --name-only --diff-filter=D --exit-code ${last_tagged_commit}  -- ${BRANCH_PATHS_ROOT}`
+# echo "💀 "$lost
 lost_checked=()
 if [[ ${lost[@]} ]]; then
     for item_path in $lost; do
