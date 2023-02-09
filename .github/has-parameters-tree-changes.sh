@@ -75,16 +75,14 @@ EXPECTED_PATHS=(
     "openfisca_france/parameters/taxation_indirecte/tva"
     "openfisca_france/parameters/taxation_societes"  # premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
     )
-EXPECTED_PATHS_MAX_DEPTH=4  # ! EXPECTED_PATHS and EXPECTED_PATHS_MAX_DEPTH should be consistent
 
 
-# compare with last published git tag: 
-# list indexed parameters paths indexed in current branch according to EXPECTED_PATHS_MAX_DEPTH
-BRANCH_PATHS_ROOT="openfisca_france/parameters/"
+# get last published git tag: 
 last_tagged_commit=`git describe --tags --abbrev=0 --first-parent`  # --first-parent ensures we don't follow tags not published in master through an unlikely intermediary merge commit
 
-
 # compare indexed parameters diff tree with EXPECTED_PATHS
+BRANCH_PATHS_ROOT="openfisca_france/parameters/"
+
 # MEMO list indexed files: git ls-files openfisca_france/parameters/
 error_status=0
 
@@ -135,7 +133,7 @@ fi
 
 if [[ ${error_status} -gt 0 ]]; then
     echo "${RED}ERREUR L'arborescence des paramètres a été modifiée.${COLOR_RESET}"
-    echo "Elle est commune à openfisca-france et aux Barèmes IPP sur ${EXPECTED_PATHS_MAX_DEPTH} niveaux." 
+    echo "Elle est commune à openfisca-france et aux Barèmes IPP sur les premiers niveaux de répertoires." 
     echo "Corriger les écarts constatés ci-dessus ou proposer la modification de cette arborescence commune"
     echo "dans une nouvelle issue : https://github.com/openfisca/openfisca-france/issues/new"
     echo "Pour en savoir plus : https://github.com/openfisca/openfisca-france/issues/1811"
