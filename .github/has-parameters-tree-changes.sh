@@ -65,7 +65,14 @@ EXPECTED_PATHS=(
     "openfisca_france/parameters/taxation_capital/impot_solidarite_fortune_isf_1989_2017"
     "openfisca_france/parameters/taxation_capital/prelevement_forfaitaire"
     "openfisca_france/parameters/taxation_capital/prelevements_sociaux"
-    "openfisca_france/parameters/taxation_indirecte"  # + 1 niveau ; premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
+    "openfisca_france/parameters/taxation_indirecte"
+    "openfisca_france/parameters/taxation_indirecte/alcools_autres_boissons"
+    "openfisca_france/parameters/taxation_indirecte/produits_energetiques"
+    "openfisca_france/parameters/taxation_indirecte/taxe_habitation"
+    "openfisca_france/parameters/taxation_indirecte/taxes_assurances"
+    "openfisca_france/parameters/taxation_indirecte/taxes_energie_dans_logement"
+    "openfisca_france/parameters/taxation_indirecte/taxes_tabacs"
+    "openfisca_france/parameters/taxation_indirecte/tva"
     "openfisca_france/parameters/taxation_societes"  # premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
     )
 EXPECTED_PATHS_MAX_DEPTH=4  # ! EXPECTED_PATHS and EXPECTED_PATHS_MAX_DEPTH should be consistent
