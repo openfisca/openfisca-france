@@ -15,7 +15,14 @@ EXPECTED_PATHS=(
     "openfisca_france/parameters/chomage/allocations_chomage_solidarite"
     "openfisca_france/parameters/chomage/preretraites"
     "openfisca_france/parameters/geopolitique"  # premier niveau bloqué seulement ; n'existe pas dans les barèmes IPP
-    "openfisca_france/parameters/impot_revenu"  # + 1 niveau / premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
+    "openfisca_france/parameters/impot_revenu"
+    "openfisca_france/parameters/impot_revenu/anciens_baremes_igr"
+    "openfisca_france/parameters/impot_revenu/bareme_ir_depuis_1945"
+    "openfisca_france/parameters/impot_revenu/calcul_impot_revenu"
+    "openfisca_france/parameters/impot_revenu/calcul_reductions_impots"
+    "openfisca_france/parameters/impot_revenu/calcul_revenus_imposables"
+    "openfisca_france/parameters/impot_revenu/contributions_exceptionnelles"
+    "openfisca_france/parameters/impot_revenu/credits_impots"
     "openfisca_france/parameters/marche_travail"
     "openfisca_france/parameters/marche_travail/epargne"  # bloqué mais n'existe pas dans les barèmes IPP
     "openfisca_france/parameters/marche_travail/remuneration_dans_fonction_publique"
