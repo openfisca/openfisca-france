@@ -5,7 +5,7 @@ BLUE='\033[0;34m'
 COLOR_RESET='\033[0m'
 
 
-# openfisca-france array of expected paths for parameters
+# openfisca-france array of expected _directories_ paths for parameters (without trailing slash)
 EXPECTED_PATHS=(
     "openfisca_france"
     "openfisca_france/parameters"    
@@ -77,8 +77,9 @@ EXPECTED_PATHS=(
     )
 
 
-# get last published git tag: 
-last_tagged_commit=`git describe --tags --abbrev=0 --first-parent`  # --first-parent ensures we don't follow tags not published in master through an unlikely intermediary merge commit
+# get last published git tag
+# --first-parent ensures we don't follow tags not published in master through an unlikely intermediary merge commit 
+last_tagged_commit=`git describe --tags --abbrev=0 --first-parent`
 
 # compare indexed parameters diff tree with EXPECTED_PATHS
 BRANCH_PATHS_ROOT="openfisca_france/parameters/"
@@ -86,47 +87,68 @@ BRANCH_PATHS_ROOT="openfisca_france/parameters/"
 # MEMO list indexed files: git ls-files openfisca_france/parameters/
 error_status=0
 
+check_change(){
+    local item_path="$1"
+    
+    # item_path is a change in the GIT indexed items; it's a file because GIT doesn't index empty directories
+    # we compare its parent directory with EXPECTED_PATHS list
+    local item_parent=`dirname $item_path`
+    local item_parent_depth=`echo $item_parent | grep -o / | wc -l`
+
+    # does EXPECTED_PATHS contain the parent directory?
+    local matching_expected_paths=`echo ${EXPECTED_PATHS[@]} | tr ' ' '\n' | grep ${item_parent}`
+    local matching_expected_paths_array=($matching_expected_paths)
+  
+    if [[ ${matching_expected_paths_array[@]} ]]; then  
+        local list_length=`echo "$matching_expected_paths"  | wc -l`
+        local j=0
+
+        # look into each EXPECTED_PATHS containing item_parent
+        # its path is as long or longer than item_parent path length 
+        while [ $j -lt $list_length ]; do
+            local expected_item_depth=`echo ${matching_expected_paths_array[$j]} | grep -o / | wc -l`
+
+            if [ $expected_item_depth -eq $item_parent_depth ]; then
+                break
+            else
+                # EXPECTED_PATHS contains a directory longer than current item directory's path
+                # list current item directory as a change in the tree hierarchy
+                echo $item_parent
+            fi
+            ((j++))
+        done
+    else
+        # the parent directory is new! it looks like the top tree hierarchy was changed
+        # list it as a change in the tree hierarchy as its path doesn't match any directory path of EXPECTED_PATHS
+        echo $item_parent           
+    fi 
+}
+
 added=`git diff-index --name-only --diff-filter=A --exit-code ${last_tagged_commit}  -- ${BRANCH_PATHS_ROOT}`
 added_checked=()
 if [[ ${added[@]} ]]; then
-    for item in $added; do
-        # item seems new; should we list it or should we ignore this depth ?
-        item_parent=`dirname $item`
-        item_parent_depth=`echo $item_parent | grep -o / | wc -l`
-
-        if [[ " ${EXPECTED_PATHS[*]} " =~ " ${item_parent} " ]]; then            
-            # est-ce qu'il existe des sous-répertoires (de même niveau que item ou plus bas) à respecter ?
-            parent_and_subdirs_expected=`echo ${EXPECTED_PATHS[@]} | tr ' ' '\n' | grep ${item_parent}`
-            parent_and_subdirs_expected_array=($parent_and_subdirs_expected)
-            list_length=`echo "$parent_and_subdirs_expected"  | wc -l`
-            j=0
-            while [ $j -lt $list_length ]; do
-                expected_item_depth=`echo ${parent_and_subdirs_expected_array[$j]} | grep -o / | wc -l`
-                
-                # DEBUG echo "$j on compare ce répertoire supposément ajouté à la liste des répertoires obligatoires : "${parent_and_subdirs_expected_array[$j]}
-                
-                if [ $expected_item_depth -gt $item_parent_depth ]; then
-                    # 👹 il existe au moins un répertoire de même profondeur ou plus que l'item courant donc, l'item courant est louche
-                    added_checked+=($item)
-                    break
-                fi
-                ((j++))
-            done
-        else
-            # even parent directory is new!
-            added_checked+=($item)           
-        fi 
+    for item_path in $added; do
+        result=`check_change $item_path`
+        added_checked+=($result)
     done
-
+fi
+if [[ ${added_checked[@]} ]]; then
     echo "${BLUE}INFO Ces répertoires de paramètres ont été ajoutés :${COLOR_RESET}"
     printf '%s\n' ${added_checked[@]}
     error_status=1
 fi
 
 lost=`git diff-index --name-only --diff-filter=D --exit-code ${last_tagged_commit}  -- ${BRANCH_PATHS_ROOT}`
+lost_checked=()
 if [[ ${lost[@]} ]]; then
+    for item_path in $lost; do
+        result=`check_change $item_path`
+        lost_checked+=($result)
+    done
+fi
+if [[ ${lost_checked[@]} ]]; then
     echo "${BLUE}INFO Ces répertoires de paramètres ont été supprimés :${COLOR_RESET}"
-    printf '%s\n' "${lost[@]}"
+    printf '%s\n' ${lost_checked[@]}
     error_status=2
 fi
 
