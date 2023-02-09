@@ -68,18 +68,16 @@ EXPECTED_PATHS_MAX_DEPTH=4  # ! EXPECTED_PATHS and EXPECTED_PATHS_MAX_DEPTH shou
 # list indexed parameters paths indexed in current branch according to EXPECTED_PATHS_MAX_DEPTH
 BRANCH_PATHS_ROOT="openfisca_france/parameters/"
 last_tagged_commit=`git describe --tags --abbrev=0 --first-parent`  # --first-parent ensures we don't follow tags not published in master through an unlikely intermediary merge commit
-checked_tree=`git ls-tree ${last_tagged_commit} -d --name-only -r ${BRANCH_PATHS_ROOT} | cut -d / -f-${EXPECTED_PATHS_MAX_DEPTH} | uniq`
 
 
-# compare current indexed parameters tree with EXPECTED_PATHS
-all_paths=`echo ${EXPECTED_PATHS[@]} ${checked_tree[@]} | tr ' ' '\n' | sort | uniq -D | uniq`
+# compare indexed parameters diff tree with EXPECTED_PATHS
+# MEMO list indexed files: git ls-files openfisca_france/parameters/
 error_status=0
 
-added=`echo ${all_paths[@]} ${checked_tree[@]} | tr ' ' '\n' | sort | uniq -u | uniq`
+added=`git diff-index --name-only --diff-filter=A --exit-code ${last_tagged_commit}  -- ${BRANCH_PATHS_ROOT}`
 added_checked=()
 if [[ ${added[@]} ]]; then
     for item in $added; do
-        # DEBUG echo "😈  "$item
         # item seems new; should we list it or should we ignore this depth ?
         item_parent=`dirname $item`
         item_parent_depth=`echo $item_parent | grep -o / | wc -l`
@@ -89,10 +87,6 @@ if [[ ${added[@]} ]]; then
             parent_and_subdirs_expected=`echo ${EXPECTED_PATHS[@]} | tr ' ' '\n' | grep ${item_parent}`
             parent_and_subdirs_expected_array=($parent_and_subdirs_expected)
             list_length=`echo "$parent_and_subdirs_expected"  | wc -l`
-            
-            # DEBUG echo "> le parent "$item_parent" est dans la liste à respecter avec ce nombre d'occurrences : "$list_length
-            # DEBUG printf '%s\n' "${parent_and_subdirs_expected[@]}"
-
             j=0
             while [ $j -lt $list_length ]; do
                 expected_item_depth=`echo ${parent_and_subdirs_expected_array[$j]} | grep -o / | wc -l`
@@ -105,7 +99,10 @@ if [[ ${added[@]} ]]; then
                     break
                 fi
                 ((j++))
-            done            
+            done
+        else
+            # even parent directory is new!
+            added_checked+=($item)           
         fi 
     done
 
@@ -114,7 +111,7 @@ if [[ ${added[@]} ]]; then
     error_status=1
 fi
 
-lost=`echo ${all_paths[@]} ${EXPECTED_PATHS[@]} | tr ' ' '\n' | sort | uniq -u | uniq`
+lost=`git diff-index --name-only --diff-filter=D --exit-code ${last_tagged_commit}  -- ${BRANCH_PATHS_ROOT}`
 if [[ ${lost[@]} ]]; then
     echo "${BLUE}INFO Ces répertoires de paramètres ont été supprimés :${COLOR_RESET}"
     printf '%s\n' "${lost[@]}"
@@ -122,7 +119,7 @@ if [[ ${lost[@]} ]]; then
 fi
 
 
-if [[ ${error_status} ]]; then
+if [[ ${error_status} -gt 0 ]]; then
     echo "${RED}ERREUR L'arborescence des paramètres a été modifiée.${COLOR_RESET}"
     echo "Elle est commune à openfisca-france et aux Barèmes IPP sur ${EXPECTED_PATHS_MAX_DEPTH} niveaux." 
     echo "Corriger les écarts constatés ci-dessus ou proposer la modification de cette arborescence commune"
