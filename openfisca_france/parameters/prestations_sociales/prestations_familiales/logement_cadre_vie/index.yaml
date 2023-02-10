@@ -1,7 +1,7 @@
 description: Logement et cadre de vie, prestations familiales
 metadata:
   short_label: Logement et cadre de vie
-  description_en: Housing and living environment
+  label_en: Housing and living environment
   order:
   - pd
   - pjm_c_plaf

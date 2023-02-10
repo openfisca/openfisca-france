@@ -184,7 +184,7 @@ values:
     value: 11001.44
 metadata:
   short_label: Plafond - Personne seule
-  description_en: Allowance for elderly workers (AVTS)
+  label_en: Allowance for elderly workers (AVTS)
   ipp_csv_id: plaf_mv_seul_avts
   unit: currency
   reference:

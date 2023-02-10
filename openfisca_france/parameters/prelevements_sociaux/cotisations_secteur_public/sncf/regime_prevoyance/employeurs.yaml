@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Taux employeur
-  description_en: Contributions to the SNCF scheme (public railway company)
+  label_en: Contributions to the SNCF scheme (public railway company)
   unit: /1
   reference:
     2007-01-01:

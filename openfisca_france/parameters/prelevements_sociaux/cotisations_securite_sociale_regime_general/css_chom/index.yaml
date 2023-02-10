@@ -1,7 +1,7 @@
 description: Cotisations de sécurité sociale (SS) du régime général sur les allocations chômage
 metadata:
   short_label: Cotisations sur les allocations chômage
-  description_en: SSCs on unemployment benefits
+  label_en: SSCs on unemployment benefits
   order:
   - cotisation_speciale_assurance_maladie
   - participation_retraite_complementaire

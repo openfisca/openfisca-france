@@ -74,7 +74,7 @@ values:
     value: 1857.9
 metadata:
   short_label: Couple
-  description_en: Special UI scheme
+  label_en: Special UI scheme
   ipp_csv_id: ass_plaf_couple
   unit: currency
   reference:

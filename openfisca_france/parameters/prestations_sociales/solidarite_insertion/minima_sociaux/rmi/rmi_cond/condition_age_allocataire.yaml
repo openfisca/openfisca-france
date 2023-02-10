@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Âge minimum
-  description_en: "Minimum insertion income (RMI): General conditions"
+  label_en: "Minimum insertion income (RMI): General conditions"
   ipp_csv_id: age_rmi
   unit: year
   reference:

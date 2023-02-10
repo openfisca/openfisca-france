@@ -1,6 +1,6 @@
 description: Prime de déménagement (PD), Logement et cadre de vie, prestations familiales
 metadata:
   short_label: Prime de déménagement
-  description_en: Relocation allowance (PD) - Rate and maximum amount
+  label_en: Relocation allowance (PD) - Rate and maximum amount
   order:
   - taux_en_bmaf

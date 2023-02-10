@@ -4,7 +4,7 @@ values:
     value: 0.2
 metadata:
   short_label: Assiette plafond
-  description_en: Contributions to the scheme of Additional pension of the public sector (RAFP)
+  label_en: Contributions to the scheme of Additional pension of the public sector (RAFP)
   ipp_csv_id: plafond_tib
   unit: /1
   reference:

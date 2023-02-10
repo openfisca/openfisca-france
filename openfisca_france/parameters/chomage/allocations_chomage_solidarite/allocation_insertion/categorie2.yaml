@@ -12,7 +12,7 @@ values:
     value: null
 metadata:
   short_label: Catégorie 2
-  description_en: Insertion allowance (AI)
+  label_en: Insertion allowance (AI)
   ipp_csv_id: ai_jeune_lic
   unit: currency
   reference:

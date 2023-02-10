@@ -12,7 +12,7 @@ values:
     value: null
 metadata:
   short_label: Majoration 1
-  description_en: Reduction in SSCs defined by the laws "Aubry II" (2000-2003)
+  label_en: Reduction in SSCs defined by the laws "Aubry II" (2000-2003)
   ipp_csv_id: aubry2_5
   unit: currency
   reference:

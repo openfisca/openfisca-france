@@ -1,7 +1,7 @@
 description: Prime Pour l'Activité (PA ou PPA)
 metadata:
   short_label: PPA
-  description_en: "Activity prenium (PA) : accomodation allowance"
+  label_en: "Activity prenium (PA) : accomodation allowance"
   order:
   - pa_m
   - pa_fl

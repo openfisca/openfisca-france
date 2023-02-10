@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: A partir du 2e enfant
-  description_en: "Postnatal allowance (APN): Rate and payment"
+  label_en: "Postnatal allowance (APN): Rate and payment"
   ipp_csv_id: majo_naiss_adop
   unit: /1
   reference:

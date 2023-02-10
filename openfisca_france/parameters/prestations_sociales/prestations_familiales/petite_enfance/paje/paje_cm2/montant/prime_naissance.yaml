@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: Montant prime naissance
   last_review: "2023-01-27"
-  description_en: "Early childhood benefit (PAJE) -- Birth and adoption premium : conditions and amounts"
+  label_en: "Early childhood benefit (PAJE) -- Birth and adoption premium : conditions and amounts"
   ipp_csv_id: tx_paje_naiss
   unit: BMAF
   reference:

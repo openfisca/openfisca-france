@@ -4,7 +4,7 @@ values:
     value: 0.3603
 metadata:
   short_label: Taux tps partiel 50-80%
-  description_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
+  label_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
   unit: BMAF
   reference:
     2015-01-01:

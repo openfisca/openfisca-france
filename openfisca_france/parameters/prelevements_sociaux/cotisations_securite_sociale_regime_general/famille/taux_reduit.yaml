@@ -6,7 +6,7 @@ values:
     value: 0.0345
 metadata:
   short_label: Taux réduit
-  description_en: SSCs for family benefits
+  label_en: SSCs for family benefits
   unit: /1
   reference:
     1946-10-01:

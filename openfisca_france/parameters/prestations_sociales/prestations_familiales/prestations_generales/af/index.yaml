@@ -1,7 +1,7 @@
 description: Allocations Familiales (AF)
 metadata:
   short_label: Allocations Familiales
-  description_en: Family allowances (AF)
+  label_en: Family allowances (AF)
   order:
   - af_cm
   - af_cond_ress

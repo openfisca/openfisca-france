@@ -16,7 +16,7 @@ values:
     value: null
 metadata:
   short_label: RTT avant 30/06/02 (GMR4)
-  description_en: Minimal ressources guarantee (GMR)
+  label_en: Minimal ressources guarantee (GMR)
   ipp_csv_id: GMR4
   unit: currency
   reference:

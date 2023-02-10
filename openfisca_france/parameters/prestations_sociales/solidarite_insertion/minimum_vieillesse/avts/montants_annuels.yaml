@@ -170,7 +170,7 @@ values:
     value: 3566.43
 metadata:
   short_label: Montants annuels
-  description_en: Allowance for elderly workers (AVTS)
+  label_en: Allowance for elderly workers (AVTS)
   ipp_csv_id: avts
   unit: currency
   reference:

@@ -10,7 +10,7 @@ values:
     value: 20
 metadata:
   short_label: Âge maximal
-  description_en: Definition of dependants
+  label_en: Definition of dependants
   ipp_csv_id: age_max_pac
   unit: year
   reference:

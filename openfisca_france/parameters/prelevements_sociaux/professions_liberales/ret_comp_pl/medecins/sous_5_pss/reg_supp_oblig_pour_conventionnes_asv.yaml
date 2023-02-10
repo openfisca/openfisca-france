@@ -22,7 +22,7 @@ values:
     value: 0.038
 metadata:
   short_label: Médecins conventionnés secteur 2 (ASV)
-  description_en: Contribution for complementary pension scheme (professionals)
+  label_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: asv_med_0_5
   unit: /1
   reference:

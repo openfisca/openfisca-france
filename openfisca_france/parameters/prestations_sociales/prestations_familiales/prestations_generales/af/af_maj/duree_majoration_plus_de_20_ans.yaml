@@ -6,7 +6,7 @@ values:
     value: 1
 metadata:
   short_label: Durée versement maj.>20 ans
-  description_en: "Family allowances (AF): Extra allowances"
+  label_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: duree_maj
   unit: year
   reference:

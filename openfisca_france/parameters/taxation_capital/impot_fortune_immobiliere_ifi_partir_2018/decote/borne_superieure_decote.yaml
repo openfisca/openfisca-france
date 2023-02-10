@@ -4,7 +4,7 @@ values:
     value: 1400000
 metadata:
   short_label: Borne supérieure
-  description_en: "\"Décote\" computation"
+  label_en: "\"Décote\" computation"
   ipp_csv_id: sup_decote1_ifi
   unit: currency
   reference:

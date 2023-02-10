@@ -1,6 +1,6 @@
 description: Cotisations de sécurité sociale (SS) des journalistes pigistes pour les assurances sociales avant 1967
 metadata:
   short_label: Assurances sociales avant 1967
-  description_en: SSCs for freelance journalists (1964-1974)
+  label_en: SSCs for freelance journalists (1964-1974)
   order:
   - sous_pss

@@ -12,7 +12,7 @@ metadata:
   short_label: Taux
   ipp_csv_id: tx_cotsynd
   unit: /1
-  description_en: Union dues (1989 - 2016)
+  label_en: Union dues (1989 - 2016)
   reference:
     1988-01-01:
       title: Loi 1988-1149 du 28/12/1988, art. 8-I, II (LF pour 1989)

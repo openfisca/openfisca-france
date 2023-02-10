@@ -12,7 +12,7 @@ values:
     value: null
 metadata:
   short_label: 5e enfant
-  description_en: "Family allowances (AF): Extra allowances for oversea territories"
+  label_en: "Family allowances (AF): Extra allowances for oversea territories"
   unit: BMAF
   reference:
     1991-08-06:

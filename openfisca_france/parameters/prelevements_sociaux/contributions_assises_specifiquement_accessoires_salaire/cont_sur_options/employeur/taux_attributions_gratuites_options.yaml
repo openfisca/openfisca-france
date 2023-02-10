@@ -10,7 +10,7 @@ values:
     value: 0.2
 metadata:
   short_label: Taux attributions gratuites d'options
-  description_en: Contribution levied on options and shares granted for free
+  label_en: Contribution levied on options and shares granted for free
   unit: /1
   reference:
     2007-10-16:

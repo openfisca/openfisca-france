@@ -1,7 +1,7 @@
 description: Prestations sociales
 metadata:
   short_label: Prestations sociales
-  description_en: Allowances
+  label_en: Allowances
   order:
   - prestations_familiales
   - aides_logement

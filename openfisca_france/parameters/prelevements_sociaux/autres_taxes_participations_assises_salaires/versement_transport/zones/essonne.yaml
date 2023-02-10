@@ -26,7 +26,7 @@ values:
     value: 0.0201
 metadata:
   short_label: Essonne
-  description_en: Transport tax (VT) (contribution to public transports)
+  label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_91
   unit: /1
   reference:

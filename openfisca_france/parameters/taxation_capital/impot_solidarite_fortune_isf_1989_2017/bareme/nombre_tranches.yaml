@@ -12,7 +12,7 @@ values:
     value: null
 metadata:
   short_label: Nombre de tranches
-  description_en: Wealth tax schedule
+  label_en: Wealth tax schedule
   ipp_csv_id: nbtranches_isf
   reference:
     1989-01-01:

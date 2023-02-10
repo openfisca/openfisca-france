@@ -6,7 +6,7 @@ values:
     value: 192
 metadata:
   short_label: Logements en résidence sociale
-  description_en: Help for energy expenses voucher
+  label_en: Help for energy expenses voucher
   ipp_csv_id: chq_energie_residents_sociaux
   unit: currency
   reference:

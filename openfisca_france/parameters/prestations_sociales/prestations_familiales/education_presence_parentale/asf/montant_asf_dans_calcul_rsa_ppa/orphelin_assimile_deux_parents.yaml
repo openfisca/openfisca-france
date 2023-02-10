@@ -4,7 +4,7 @@ values:
     value: 0.3
 metadata:
   short_label: Orphelin ou assimilé des 2 parents
-  description_en: "Family support allowance (ASF): Amounts"
+  label_en: "Family support allowance (ASF): Amounts"
   ipp_csv_id: asf_2parents_rsa
   unit: BMAF
   reference:

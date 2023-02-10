@@ -4,7 +4,7 @@ values:
     value: 0.4
 metadata:
   short_label: Par enfant supplémentaire
-  description_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
+  label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: rsa_rmi_enf3
   unit: /1
   reference:

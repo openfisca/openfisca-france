@@ -4,7 +4,7 @@ values:
     value: 0.5
 metadata:
   short_label: Part du tarif dépendance GIR 1-2
-  description_en: Attendance allowance for individuals living in a nursing home (APA)
+  label_en: Attendance allowance for individuals living in a nursing home (APA)
   ipp_csv_id: part_tarif_dependance_gir_1_2_etablissement_accueil
   unit: /1
   reference:

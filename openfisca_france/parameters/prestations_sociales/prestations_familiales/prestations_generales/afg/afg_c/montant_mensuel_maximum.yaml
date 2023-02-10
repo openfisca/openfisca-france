@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Montant mensuel max
-  description_en: "Child care costs allowance (AFG): General conditions and amounts"
+  label_en: "Child care costs allowance (AFG): General conditions and amounts"
   unit: currency
   reference:
     1976-07-01:

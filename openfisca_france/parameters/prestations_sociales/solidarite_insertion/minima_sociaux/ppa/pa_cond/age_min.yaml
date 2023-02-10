@@ -4,7 +4,7 @@ values:
     value: 18
 metadata:
   short_label: Âge minimal
-  description_en: "Active solidarity income - Activity premium (PA) : Amounts"
+  label_en: "Active solidarity income - Activity premium (PA) : Amounts"
   unit: year
   reference:
     2015-10-01:

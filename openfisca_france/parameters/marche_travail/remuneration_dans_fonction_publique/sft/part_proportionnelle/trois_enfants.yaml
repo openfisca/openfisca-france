@@ -4,7 +4,7 @@ values:
     value: 0.08
 metadata:
   short_label: Taux pour trois enfants
-  description_en: Family income supplement (SFT)
+  label_en: Family income supplement (SFT)
   ipp_csv_id: txenf3
   unit: /1
   reference:

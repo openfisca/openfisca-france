@@ -34,7 +34,7 @@ values:
     value: 0.1715
 metadata:
   short_label: Taux sous PSS
-  description_en: SSCs for old-age insurance (sales retailers and craftsmen)
+  label_en: SSCs for old-age insurance (sales retailers and craftsmen)
   ipp_csv_id: ret_art_0_1
   unit: /1
   reference:

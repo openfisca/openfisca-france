@@ -16,7 +16,7 @@ values:
     value: 27
 metadata:
   short_label: Plafond horaire
-  description_en: Social security hourly ceiling
+  label_en: Social security hourly ceiling
   unit: currency
   reference:
     2009-01-01:

@@ -12,7 +12,7 @@ values:
     value: 10
 metadata:
   short_label: non-APL
-  description_en: Minimal amount
+  label_en: Minimal amount
   unit: currency
   reference:
     1989-11-12:

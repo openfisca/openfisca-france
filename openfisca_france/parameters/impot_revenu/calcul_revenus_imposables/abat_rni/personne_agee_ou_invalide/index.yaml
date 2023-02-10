@@ -1,7 +1,7 @@
 description: Abattement de l'impôt sur le revenu, pour les personnes âgées ou invalides à charge
 metadata:
   short_label: Abattement pour personnes agées de + de 65 ans ou invalide
-  description_en: Tax allowance for net taxable income
+  label_en: Tax allowance for net taxable income
   order:
   - montant_1
   - montant_2

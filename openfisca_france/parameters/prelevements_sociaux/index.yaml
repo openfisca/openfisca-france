@@ -1,7 +1,7 @@
 description: Prélèvements sociaux
 metadata:
   short_label: Prélèvements sociaux
-  description_en: Social security contributions
+  label_en: Social security contributions
   order:
   - pss
   - contributions_sociales

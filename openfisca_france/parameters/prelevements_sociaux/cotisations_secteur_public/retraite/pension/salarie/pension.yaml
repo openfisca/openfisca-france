@@ -40,7 +40,7 @@ brackets:
       value: 0.111
 metadata:
   short_label: Pension
-  description_en: Contributions for pensions - central government (employee contribution)
+  label_en: Contributions for pensions - central government (employee contribution)
   ipp_csv_id: retpens_pu_s
   reference:
     1925-01-01:

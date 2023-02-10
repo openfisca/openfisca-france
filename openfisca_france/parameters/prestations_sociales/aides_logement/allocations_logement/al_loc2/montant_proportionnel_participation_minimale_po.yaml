@@ -3,7 +3,7 @@ values:
   2001-01-01:
     value: 0.085
 metadata:
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: p0_tx
   unit: /1
   notes:

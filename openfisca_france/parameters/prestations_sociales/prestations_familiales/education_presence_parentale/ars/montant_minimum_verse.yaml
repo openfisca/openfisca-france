@@ -4,7 +4,7 @@ values:
     value: 15
 metadata:
   short_label: Montant minimum versé
-  description_en: "Back-to-school allowance (ARS): Minimal amount"
+  label_en: "Back-to-school allowance (ARS): Minimal amount"
   ipp_csv_id: min_ars
   unit: currency
   reference:

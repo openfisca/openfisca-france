@@ -1,7 +1,7 @@
 description: Réduction pour investissements dans FCPI ou FIP dans les PME de l'Impôt sur la fortune immobilière
 metadata:
   short_label: Réduction pour investissements dans FCPI ou FIP dans les PME
-  description_en: Tax reductions for investment and donations
+  label_en: Tax reductions for investment and donations
   order:
   - plafond
   - taux_investissement

@@ -4,7 +4,7 @@ values:
     value: 6
 metadata:
   short_label: Montant mimimum
-  description_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
+  label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: min_rsa_rmi
   unit: currency
   reference:

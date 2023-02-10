@@ -4,7 +4,7 @@ values:
     value: 0.16
 metadata:
   short_label: Taux Réduit 2
-  description_en: Contribution levied on various earnings supplements ("Forfait social")
+  label_en: Contribution levied on various earnings supplements ("Forfait social")
   ipp_csv_id: forf_soc_tx3
   unit: /1
   reference:

@@ -4,7 +4,7 @@ values:
     value: 0.015
 metadata:
   short_label: Taux employeur
-  description_en: Death contribution - executives
+  label_en: Death contribution - executives
   ipp_csv_id: deces_p_0_1
   unit: /1
   reference:

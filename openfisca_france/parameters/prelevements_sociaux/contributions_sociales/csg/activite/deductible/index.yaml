@@ -1,7 +1,7 @@
 description: Contribution Sociale Généralisée (CSG) déductible sur les revenus d'activité
 metadata:
   short_label: CSG déductible
-  description_en: Social contributions
+  label_en: Social contributions
   order:
   - taux
   - abattement

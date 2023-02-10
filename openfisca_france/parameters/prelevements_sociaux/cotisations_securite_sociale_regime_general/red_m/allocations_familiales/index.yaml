@@ -1,6 +1,6 @@
 description: Cotisations de sécurité sociale (SS) des professions médicales à temps partiel (1961-1974), pour les allocations familiales
 metadata:
   short_label: Branche allocations familiales
-  description_en: SSCs for physicians working part-time (1961-1974)
+  label_en: SSCs for physicians working part-time (1961-1974)
   order:
   - sous_pss

@@ -38,7 +38,7 @@ values:
     value: 21732
 metadata:
   short_label: Base du plafond de ressources
-  description_en: "Family complement (CF): Extra allowances"
+  label_en: "Family complement (CF): Extra allowances"
   ipp_csv_id: plaf_cf_apje_adopt_0enf
   unit: currency
   reference:

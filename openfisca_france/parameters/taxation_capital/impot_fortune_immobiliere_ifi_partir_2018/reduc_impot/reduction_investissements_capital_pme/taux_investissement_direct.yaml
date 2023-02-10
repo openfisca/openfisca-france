@@ -6,7 +6,7 @@ values:
     value: 0.75
 metadata:
   short_label: Taux
-  description_en: Tax reductions for investment and donations
+  label_en: Tax reductions for investment and donations
   ipp_csv_id: plaf_plaf_ifi
   unit: /1
   reference:

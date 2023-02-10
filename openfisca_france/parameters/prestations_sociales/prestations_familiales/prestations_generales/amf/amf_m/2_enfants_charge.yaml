@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: 2 enfants à charge
-  description_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"
+  label_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"
   ipp_csv_id: tx_amf_2enf
   unit: /1
   reference:

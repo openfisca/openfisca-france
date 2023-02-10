@@ -6,6 +6,6 @@ values:
     value: 1
 metadata:
   short_label: Abattement revenus interrompus et non substitués
-  description_en: Special UI scheme
+  label_en: Special UI scheme
   unit: /1
 documentation: Pas de pension de retraite, ni de chômage, etc.

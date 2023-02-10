@@ -1,6 +1,6 @@
 description: Allocation de rentrée scolaire (ARS)
 metadata:
-  description_en: Back-to-school allowance (ARS)
+  label_en: Back-to-school allowance (ARS)
   order:
   - montant_minimum_verse
   - ars_m

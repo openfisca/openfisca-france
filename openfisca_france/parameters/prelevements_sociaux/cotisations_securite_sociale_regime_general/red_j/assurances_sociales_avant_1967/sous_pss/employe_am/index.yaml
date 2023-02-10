@@ -1,7 +1,7 @@
 description: Taux employé (en Alsace-Moselle) des cotisations de sécurité sociale (SS) des journalistes pigistes pour les assurances sociales avant 1967, sous le plafond de la sécurité sociale (PSS)
 metadata:
   short_label: Employé AM
-  description_en: SSCs for freelance journalists (1964-1974)
+  label_en: SSCs for freelance journalists (1964-1974)
   order:
   - moins_de_65_ans
   - plus_de_65_ans

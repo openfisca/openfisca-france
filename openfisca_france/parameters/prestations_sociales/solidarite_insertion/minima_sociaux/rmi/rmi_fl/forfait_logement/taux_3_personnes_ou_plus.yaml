@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: 3 personnes ou plus
-  description_en: "Minimum insertion income (RMI): Accomodation allowance"
+  label_en: "Minimum insertion income (RMI): Accomodation allowance"
   ipp_csv_id: rmi_logt3
   unit: /1
   reference:

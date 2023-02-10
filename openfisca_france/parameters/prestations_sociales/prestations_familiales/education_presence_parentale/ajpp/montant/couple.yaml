@@ -4,7 +4,7 @@ values:
     value: 0.1063
 metadata:
   short_label: Couple
-  description_en: "Daily parental presence allowance (AJPP): Amounts"
+  label_en: "Daily parental presence allowance (AJPP): Amounts"
   ipp_csv_id: ajpp_couple
   unit: BMAF
   reference:

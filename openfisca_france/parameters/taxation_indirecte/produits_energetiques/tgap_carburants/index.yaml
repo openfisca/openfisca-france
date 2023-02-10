@@ -1,6 +1,6 @@
 description: TGAP carburants (2005 - )
 metadata:
-  description_en: Tax on polluting activities - fuel
+  label_en: Tax on polluting activities - fuel
   order:
   - super_95
   - super_98

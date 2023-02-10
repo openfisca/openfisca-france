@@ -1,7 +1,7 @@
 description: Majorations des Allocations Familiales (AF)
 metadata:
   short_label: Majorations
-  description_en: "Family allowances (AF): Extra allowances"
+  label_en: "Family allowances (AF): Extra allowances"
   order:
   - majoration_enfants
   - nb_enfants_min_pour_majoration_forfaitaire_plus_20ans

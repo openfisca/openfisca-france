@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Plafond
-  description_en: Tax credit on the payroll tax (CITS)
+  label_en: Tax credit on the payroll tax (CITS)
   unit: SMIC
   reference:
     2017-01-01:

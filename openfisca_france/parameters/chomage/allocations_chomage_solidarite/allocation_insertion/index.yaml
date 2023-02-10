@@ -1,7 +1,7 @@
 description: Allocations d'insertion
 metadata:
   short_label: Insertion
-  description_en: Insertion allowance (AI)
+  label_en: Insertion allowance (AI)
   order:
   - ai_16_25
   - categorie1

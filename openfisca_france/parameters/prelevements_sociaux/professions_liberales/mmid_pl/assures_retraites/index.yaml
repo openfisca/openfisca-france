@@ -1,7 +1,7 @@
 description: Cotisation de sécurité sociale (SS) pour les assurés retraités, branche maladie, maternité, invalidité, décès, Professions libérales
 metadata:
   short_label: Assurés retraités
-  description_en: SSCs for sickness and maternity benefits (professionals)
+  label_en: SSCs for sickness and maternity benefits (professionals)
   order:
   - pension_totale
   - pensions_sous_pss

@@ -6,7 +6,7 @@ values:
     value: 67
 metadata:
   short_label: Ascendants et leur conjoint
-  description_en: Definition of dependants
+  label_en: Definition of dependants
   ipp_csv_id: ag_min_ascendants1
   unit: year
   reference:

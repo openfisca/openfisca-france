@@ -1,6 +1,6 @@
 description: Montant de la majoration pour aide constante d'une tierce personne (MTP), Perte d'autonomie des personnes âgées
 metadata:
   short_label: MTP
-  description_en: Amount of markup for constant support to a third party (MTP)
+  label_en: Amount of markup for constant support to a third party (MTP)
   order:
   - mtp

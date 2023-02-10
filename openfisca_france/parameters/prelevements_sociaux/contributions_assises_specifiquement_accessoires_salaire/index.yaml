@@ -1,7 +1,7 @@
 description: Contributions assises spécifiquement sur les accessoires du salaire
 metadata:
   short_label: Contrib. accessoires du salaire
-  description_en: Contributions levied specifically on supplements to base salary
+  label_en: Contributions levied specifically on supplements to base salary
   order:
   - prevoyance
   - forfait_social

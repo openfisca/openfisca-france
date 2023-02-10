@@ -40,7 +40,7 @@ values:
     value: 1423.03
 metadata:
   short_label: 1ère tranche
-  description_en: Parameters for new home-buyers and students residences
+  label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: seuil_tr1_lo
   unit: currency
   reference:

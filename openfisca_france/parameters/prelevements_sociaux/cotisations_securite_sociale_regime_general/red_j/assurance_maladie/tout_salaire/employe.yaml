@@ -4,7 +4,7 @@ values:
     value: 0.008
 metadata:
   short_label: Taux employé
-  description_en: SSCs for freelance journalists (1964-1974)
+  label_en: SSCs for freelance journalists (1964-1974)
   ipp_csv_id: mmid_j_s_0_
   unit: /1
   reference:

@@ -1,7 +1,7 @@
 description: Cotisations des agents à la Caisse nationale de retraite des agents des collectivités locales (CNRACL)
 metadata:
   short_label: Cotisations salarié
-  description_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
+  label_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
   order:
   - cnracl_s_nbi
   - cnracl_s_ti

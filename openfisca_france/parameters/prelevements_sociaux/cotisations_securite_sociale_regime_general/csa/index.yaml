@@ -1,6 +1,6 @@
 description: Contribution solidarité autonomie (CSA) du régime général de la sécurité sociale (SS)
 metadata:
   short_label: Contribution solidarité autonomie (CSA)
-  description_en: "SSC for autonomy (CSA: Solidarity Contribution for Autonomy)"
+  label_en: "SSC for autonomy (CSA: Solidarity Contribution for Autonomy)"
   order:
   - employeur

@@ -1,6 +1,6 @@
 description: Exonération d'Impôt sur le Revenu (1978 -)
 metadata:
   short_label: Exonération IR
-  description_en: IR Exemptions (1978 -)
+  label_en: IR Exemptions (1978 -)
   order:
   - conditions_ressources_exoneration_ir

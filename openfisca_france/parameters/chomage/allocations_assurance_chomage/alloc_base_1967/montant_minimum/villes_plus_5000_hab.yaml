@@ -20,7 +20,7 @@ values:
     value: null
 metadata:
   short_label: Moins de 5000 hab.
-  description_en: UI scheme (1958-1967)
+  label_en: UI scheme (1958-1967)
   ipp_csv_id: base_min_p5000
   unit: currency
   reference:

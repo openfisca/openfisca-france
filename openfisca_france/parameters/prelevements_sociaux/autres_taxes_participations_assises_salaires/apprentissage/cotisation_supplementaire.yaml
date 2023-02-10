@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Cotisation supplémentaire
-  description_en: Apprenticeship tax (tax for the financing of apprenticeship)
+  label_en: Apprenticeship tax (tax for the financing of apprenticeship)
   ipp_csv_id: apprensup_p_0_
   unit: /1
   reference:

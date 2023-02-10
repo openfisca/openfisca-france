@@ -1,7 +1,7 @@
 description: Cotisations au régime de l'assurance chômage
 metadata:
   short_label: Cotisations chômage
-  description_en: Unemployment insurance scheme contributions
+  label_en: Unemployment insurance scheme contributions
   order:
   - chomage
   - ags

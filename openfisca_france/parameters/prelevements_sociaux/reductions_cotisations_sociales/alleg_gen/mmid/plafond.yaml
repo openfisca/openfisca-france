@@ -4,7 +4,7 @@ values:
     value: 2.5
 metadata:
   short_label: Plafond de rémunération des salariés
-  description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+  label_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
   unit: SMIC
   reference:
     2019-01-01:

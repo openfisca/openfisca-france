@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Naissances multiples
-  description_en: "Postnatal allowance (APN): Rate and payment"
+  label_en: "Postnatal allowance (APN): Rate and payment"
   ipp_csv_id: majo_mult
   unit: /1
   reference:

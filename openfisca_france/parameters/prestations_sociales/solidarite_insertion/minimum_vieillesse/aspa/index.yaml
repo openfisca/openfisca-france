@@ -1,7 +1,7 @@
 description: Allocation solidarité aux personne agées (ASPA) - Minimum vieillesse
 metadata:
   short_label: ASPA
-  description_en: Solidarity income for elderly (ASPA)
+  label_en: Solidarity income for elderly (ASPA)
   order:
   - abattement_forfaitaire
   - montant_maximum_annuel

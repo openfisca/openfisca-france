@@ -1,7 +1,7 @@
 description: Allocation personnalisée d'autonomie en institution (APA)
 metadata:
   short_label: Perte d'autonomie
-  description_en: Attendance allowance for individuals living in a nursing home (APA)
+  label_en: Attendance allowance for individuals living in a nursing home (APA)
   order:
   - seuil_inferieur
   - seuil_superieur

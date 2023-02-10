@@ -42,7 +42,7 @@ values:
     value: 598.54
 metadata:
   short_label: RSA socle
-  description_en: "Active solidarity income (RSA): Basic amount"
+  label_en: "Active solidarity income (RSA): Basic amount"
   ipp_csv_id: brsa
   unit: currency
   reference:

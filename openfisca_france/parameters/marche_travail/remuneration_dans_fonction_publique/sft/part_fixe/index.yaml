@@ -1,7 +1,7 @@
 description: Part fixe du supplément familial de traitement
 metadata:
   short_label: Part fixe
-  description_en: Fixed share
+  label_en: Fixed share
   order:
   - un_enfant
   - deux_enfants

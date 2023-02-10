@@ -4,7 +4,7 @@ values:
     value: 0
 metadata:
   short_label: TL pour la 1ère tranche
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tl_0
   unit: /1
   reference:

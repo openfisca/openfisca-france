@@ -6,7 +6,7 @@ values:
     value: 0.22
 metadata:
   short_label: Majoration pour enfant supplémentaire
-  description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_paje_enf_entre_20140401_20180331
   unit: /1
   reference:

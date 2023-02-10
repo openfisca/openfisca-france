@@ -28,7 +28,7 @@ values:
     value: 0.0377
 metadata:
   short_label: Inflation
-  description_en: Inflation
+  label_en: Inflation
   unit: /1
   reference:
     2008-01-01:

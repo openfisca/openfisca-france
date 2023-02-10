@@ -1,7 +1,7 @@
 description: Cotisations de sécurité sociale (SS) des journalistes pigistes (1964-1974) pour l'assurance maladie, tout salaire
 metadata:
   short_label: Tout salaire
-  description_en: SSCs for freelance journalists (1964-1974)
+  label_en: SSCs for freelance journalists (1964-1974)
   order:
   - employe
   - employeur

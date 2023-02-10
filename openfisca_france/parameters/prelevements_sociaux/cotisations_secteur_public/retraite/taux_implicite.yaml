@@ -24,7 +24,7 @@ values:
     value: null
 metadata:
   short_label: Taux implicite
-  description_en: Contributions for pensions - central government (employer contribution)
+  label_en: Contributions for pensions - central government (employer contribution)
   ipp_csv_id: tximp_pu_p
   unit: /1
   notes:

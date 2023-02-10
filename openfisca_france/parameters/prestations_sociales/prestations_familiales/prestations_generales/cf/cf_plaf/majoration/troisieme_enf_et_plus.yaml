@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Majoration, par enfant, en % de la base du plafond de ressources, à partir du 3ème enfant
   last_review: "2023-01-27"
-  description_en: "Family complement (CF): Extra allowances"
+  label_en: "Family complement (CF): Extra allowances"
   ipp_csv_id: maj_plaf_cf_apje_adopt_enf3pl
   unit: /1
   reference:

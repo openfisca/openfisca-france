@@ -1,7 +1,7 @@
 description: Allocation supplémentaire - Minimum vieillesse
 metadata:
   short_label: Allocation supplémentaire
-  description_en: Extra allowance (AS)
+  label_en: Extra allowance (AS)
   order:
   - allocation_supplementaire
   - complement_exceptionnel

@@ -1,7 +1,7 @@
 description: Cotisations spéciales assurance maladie sur les avantages retraite
 metadata:
   short_label: Avantages retraite
-  description_en: Special SSC on pension benefits for sickness insurance
+  label_en: Special SSC on pension benefits for sickness insurance
   order:
   - regime_general
   - regimes_comp

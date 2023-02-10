@@ -6,7 +6,7 @@ values:
     value: 0.24
 metadata:
   short_label: Emis entre le 01/06/78 et le 20/01/80
-  description_en: Levy in discharge on capital income (1965 - 2012)
+  label_en: Levy in discharge on capital income (1965 - 2012)
   ipp_csv_id: tx_bons_7880
   unit: /1
   reference:

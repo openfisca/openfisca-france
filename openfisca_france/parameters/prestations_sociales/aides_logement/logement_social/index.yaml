@@ -1,6 +1,6 @@
 description: Logements très sociaux, aides au logement
 metadata:
   short_label: Logements très sociaux
-  description_en: Housing allowances
+  label_en: Housing allowances
   order:
   - plai

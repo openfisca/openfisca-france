@@ -26,7 +26,7 @@ brackets:
       value: null
 metadata:
   short_label: 10 à 19 salariés
-  description_en: Employer's participation to lifelong professional training
+  label_en: Employer's participation to lifelong professional training
   ipp_csv_id: form_1020_p_0_
   reference:
     1972-01-01:

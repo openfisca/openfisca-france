@@ -52,7 +52,7 @@ brackets:
       value: 0.0525
 metadata:
   short_label: Barème employeur
-  description_en: SSCs for family benefits
+  label_en: SSCs for family benefits
   ipp_csv_id:
     rate: fam_p_0_1, fam_p_0_
   reference:

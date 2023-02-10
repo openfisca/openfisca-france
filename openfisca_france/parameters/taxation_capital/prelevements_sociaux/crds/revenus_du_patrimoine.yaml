@@ -8,7 +8,7 @@ values:
     value: 0.005
 metadata:
   short_label: Taux CRDS capital revenus du patrimoine
-  description_en: CRDS on financial income
+  label_en: CRDS on financial income
   ipp_csv_id: tx_crds_rk_patr
   unit: /1
   reference:

@@ -1,7 +1,7 @@
 description: Cotisations pour l'association pour l'emploi des cades (APEC), régimes complémentaires de retraite (secteur privé)
 metadata:
   short_label: Cotisations pour l'association pour l'emploi des cades (APEC)
-  description_en: Contributions for the Association for the employment of executives (APEC)
+  label_en: Contributions for the Association for the employment of executives (APEC)
   order:
   - employeur
   - salarie

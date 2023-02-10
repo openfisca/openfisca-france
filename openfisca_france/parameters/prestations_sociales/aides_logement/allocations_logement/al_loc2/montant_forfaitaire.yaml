@@ -5,7 +5,7 @@ values:
   2017-10-01:
     value: 5
 metadata:
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  label_en: Parameters for the rental sector (after the 2001 reform)
   unit: currency
   reference:
     2017-10-01:

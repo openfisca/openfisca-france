@@ -18,7 +18,7 @@ brackets:
       value: 0.0988
 metadata:
   short_label: Barème employeur
-  description_en: Health insurance contributions - local governments and hospital administration
+  label_en: Health insurance contributions - local governments and hospital administration
   ipp_csv_id: mmid_h_p_0_
   reference:
     1967-10-01:

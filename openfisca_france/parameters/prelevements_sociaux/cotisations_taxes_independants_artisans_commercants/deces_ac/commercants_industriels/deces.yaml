@@ -32,7 +32,7 @@ values:
     value: null
 metadata:
   short_label: Montant des cotisations décès
-  description_en: SSCs for disability and death benefits (sales retailers and craftsmen)
+  label_en: SSCs for disability and death benefits (sales retailers and craftsmen)
   ipp_csv_id: deces_ic_0_1
   unit: currency
   reference:

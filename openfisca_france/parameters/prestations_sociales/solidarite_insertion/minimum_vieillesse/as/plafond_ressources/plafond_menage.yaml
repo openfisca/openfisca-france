@@ -184,7 +184,7 @@ values:
     value: 17079.77
 metadata:
   short_label: Couple marié
-  description_en: "Extra allowance (AS): Amount"
+  label_en: "Extra allowance (AS): Amount"
   ipp_csv_id: plaf_mv_men_as
   unit: currency
   reference:

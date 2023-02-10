@@ -1,7 +1,7 @@
 description: Réductions sur les cotisations de Sécurité sociale (SS)
 metadata:
   short_label: Réductions de cotisations de Sécurité sociale (SS)
-  description_en: Reduction in SSCs
+  label_en: Reduction in SSCs
   order:
   - alleg_gen
   - robien

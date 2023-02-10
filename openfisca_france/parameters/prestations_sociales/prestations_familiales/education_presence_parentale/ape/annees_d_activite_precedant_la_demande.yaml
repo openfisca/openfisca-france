@@ -4,7 +4,7 @@ values:
     value: 2
 metadata:
   short_label: Années d'activité précédant la demande
-  description_en: "Parental leave allowance (APE): Conditions and amounts"
+  label_en: "Parental leave allowance (APE): Conditions and amounts"
   ipp_csv_id: min_annee_act
   unit: year
   reference:

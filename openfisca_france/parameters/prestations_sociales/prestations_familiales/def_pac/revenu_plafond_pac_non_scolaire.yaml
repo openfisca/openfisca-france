@@ -4,7 +4,7 @@ values:
     value: 0.55
 metadata:
   short_label: Revenu plafond
-  description_en: Definition of dependants
+  label_en: Definition of dependants
   ipp_csv_id: af_plaf_revenf
   unit: SMIC
   reference:

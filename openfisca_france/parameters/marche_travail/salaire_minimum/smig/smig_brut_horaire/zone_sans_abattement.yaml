@@ -60,7 +60,7 @@ values:
     value: null
 metadata:
   short_label: Zone sans abattement
-  description_en: Minimum wage
+  label_en: Minimum wage
   ipp_csv_id: smig_h_sans_ab
   unit: currency
   notes:

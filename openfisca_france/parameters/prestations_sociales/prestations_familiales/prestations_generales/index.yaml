@@ -1,7 +1,7 @@
 description: Prestations familiales générales
 metadata:
   short_label: Prestations générales
-  description_en: General benefits
+  label_en: General benefits
   order:
   - af
   - icaf

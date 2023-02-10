@@ -8,7 +8,7 @@ values:
     value: 0.062
 metadata:
   short_label: Taux global
-  description_en: CSG - rates on unemployement incomes
+  label_en: CSG - rates on unemployement incomes
   ipp_csv_id: csg_cho
   unit: /1
   reference:

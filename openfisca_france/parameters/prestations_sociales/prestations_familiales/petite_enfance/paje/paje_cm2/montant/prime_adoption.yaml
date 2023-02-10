@@ -6,7 +6,7 @@ values:
     value: 4.595
 metadata:
   short_label: Montant prime adoption
-  description_en: "Early childhood benefit (PAJE) -- Birth and adoption premium : conditions and amounts"
+  label_en: "Early childhood benefit (PAJE) -- Birth and adoption premium : conditions and amounts"
   ipp_csv_id: tx_paje_adopt
   unit: BMAF
   reference:

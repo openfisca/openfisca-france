@@ -12,7 +12,7 @@ values:
     value: 0.004
 metadata:
   short_label: Plus de 2000, moins de 1%
-  description_en: Apprenticeship tax (tax for the financing of apprenticeship)
+  label_en: Apprenticeship tax (tax for the financing of apprenticeship)
   unit: /1
   reference:
     1972-07-01:

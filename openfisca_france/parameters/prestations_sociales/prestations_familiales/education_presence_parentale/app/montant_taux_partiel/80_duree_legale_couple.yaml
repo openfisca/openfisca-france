@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: 80% durée légale, Couple
-  description_en: "Parental presence allowance (AA): Amounts"
+  label_en: "Parental presence allowance (AA): Amounts"
   ipp_csv_id: app_tx_partiel1_couple
   unit: BMAF
   reference:

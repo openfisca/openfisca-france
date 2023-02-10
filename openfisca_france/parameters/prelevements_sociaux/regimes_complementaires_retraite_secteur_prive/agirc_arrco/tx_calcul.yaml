@@ -20,7 +20,7 @@ brackets:
       value: 0
 metadata:
   short_label: Taux de calcul de points
-  description_en: Complementary pension contributions
+  label_en: Complementary pension contributions
   reference:
     2019-01-01:
       title: Accord national interprofessionnel du 17/11/2017 relatif au régime Agirc-Arrco de retraite complémentaire

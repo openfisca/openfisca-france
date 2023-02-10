@@ -1,7 +1,7 @@
 description: Base de l'IFI sur l'immobilier non-bâti
 metadata:
   short_label: Base immobilier non-bâti
-  description_en: Furniture tax base
+  label_en: Furniture tax base
   order:
   - seuil
   - taux_bois_forets

@@ -14,7 +14,7 @@ values:
     value: null
 metadata:
   short_label: Personne seule
-  description_en: Attendance allowance (PSD, 1997-2001))
+  label_en: Attendance allowance (PSD, 1997-2001))
   unit: currency
   reference:
     1997-05-01:

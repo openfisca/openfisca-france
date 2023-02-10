@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Coefficient multiplicateur pour poly-exposés
-  description_en: SSCs for arduous working conditions
+  label_en: SSCs for arduous working conditions
   unit: /1
   reference:
     2015-01-01:

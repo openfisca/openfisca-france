@@ -4,7 +4,7 @@ values:
     value: 0.005
 metadata:
   short_label: Taux
-  description_en: CRDS
+  label_en: CRDS
   ipp_csv_id: crds
   unit: /1
   reference:

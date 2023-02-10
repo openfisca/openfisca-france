@@ -1,7 +1,7 @@
 description: Cotisations maladie (sous plafond) spécifiques à la fonction publique (Fonction publique hospitalière et Collectivités locales)
 metadata:
   short_label: Sous plafond
-  description_en: Health insurance contributions - local governments and hospital administration
+  label_en: Health insurance contributions - local governments and hospital administration
   order:
   - employeur
   - salarie

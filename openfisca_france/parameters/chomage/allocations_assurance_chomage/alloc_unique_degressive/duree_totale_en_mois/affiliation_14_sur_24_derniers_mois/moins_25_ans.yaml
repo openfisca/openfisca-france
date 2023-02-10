@@ -4,7 +4,7 @@ values:
     value: 30
 metadata:
   short_label: Moins de 25 ans
-  description_en: UI scheme - degressive schedule
+  label_en: UI scheme - degressive schedule
   unit: month
   reference:
     1993-01-01:

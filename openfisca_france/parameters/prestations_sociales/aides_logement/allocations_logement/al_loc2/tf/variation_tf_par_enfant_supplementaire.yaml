@@ -8,7 +8,7 @@ values:
     value: -0.0006
 metadata:
   short_label: Variation de TF par enfant supplémentaire
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tf_enfsupp
   unit: /1
   reference:

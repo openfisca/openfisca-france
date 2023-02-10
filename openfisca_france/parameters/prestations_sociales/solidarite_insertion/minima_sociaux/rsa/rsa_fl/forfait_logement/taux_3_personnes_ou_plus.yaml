@@ -4,7 +4,7 @@ values:
     value: 0.165
 metadata:
   short_label: 3 personnes ou plus
-  description_en: "Active solidarity income (RSA): accomodation allowance"
+  label_en: "Active solidarity income (RSA): accomodation allowance"
   ipp_csv_id: rsa_rmi_logt3
   unit: /1
   reference:

@@ -4,7 +4,7 @@ values:
     value: 17500
 metadata:
   short_label: Paramètre de calcul
-  description_en: Décote computation
+  label_en: Décote computation
   ipp_csv_id: decote_1_ifi
   unit: currency
   reference:

@@ -62,7 +62,7 @@ values:
     value: null
 metadata:
   short_label: Cotisation forfaitaire annuelle
-  description_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
+  label_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
   ipp_csv_id: gmp_cot_f_a
   unit: currency
   reference:

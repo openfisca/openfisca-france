@@ -1,7 +1,7 @@
 description: Abattements des régimes micro-entreprise/spécial BNC et microfoncier (1980 -)
 metadata:
   short_label: Régimes micro
-  description_en: Micro-firms and micro-landed schemes (1980 -)
+  label_en: Micro-firms and micro-landed schemes (1980 -)
   order:
   - microentreprise
   - microfoncier

@@ -130,7 +130,7 @@ values:
     value: 29.38
 metadata:
   short_label: 3 premiers mois
-  description_en: "UI scheme: lump-sum and minimum"
+  label_en: "UI scheme: lump-sum and minimum"
   ipp_csv_id: base_min_0_3
   unit: currency
   reference:

@@ -30,7 +30,7 @@ values:
     value: 4991.81
 metadata:
   short_label: Montant annuel maximal pour une personne seule
-  description_en: "Supplementary disability allowance (ASI): Amount"
+  label_en: "Supplementary disability allowance (ASI): Amount"
   ipp_csv_id: asi1
   unit: currency
   reference:

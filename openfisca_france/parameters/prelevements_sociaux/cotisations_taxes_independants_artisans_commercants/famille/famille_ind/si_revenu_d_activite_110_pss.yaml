@@ -8,7 +8,7 @@ values:
     value: 0
 metadata:
   short_label: Si revenu d'activité < 110 % PSS
-  description_en: SSCs for family benefits (independent workers)
+  label_en: SSCs for family benefits (independent workers)
   unit: /1
   reference:
     1974-04-01:

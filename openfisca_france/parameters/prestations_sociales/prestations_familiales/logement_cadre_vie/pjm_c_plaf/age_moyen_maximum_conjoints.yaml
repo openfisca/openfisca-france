@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Age moyen maximum des conjoints
-  description_en: "Loans to young household (PJM): Thresholds for means-testing"
+  label_en: "Loans to young household (PJM): Thresholds for means-testing"
   ipp_csv_id: age_moyen_conjoint
   unit: year
   reference:

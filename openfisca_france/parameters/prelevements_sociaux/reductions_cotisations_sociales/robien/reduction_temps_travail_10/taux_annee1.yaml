@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Taux (1ère année)
-  description_en: Robien reductions (1996-2005)
+  label_en: Robien reductions (1996-2005)
   unit: /1
   reference:
     1996-07-01:

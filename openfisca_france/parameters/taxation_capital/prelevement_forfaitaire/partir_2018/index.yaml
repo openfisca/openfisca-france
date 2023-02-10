@@ -1,7 +1,7 @@
 description: Prélèvements libératoires sur les revenus des valeurs mobilières après 2018
 metadata:
   short_label: Revenus des valeurs mobilières après 2018
-  description_en: Flat tax on capital income (from 2018)
+  label_en: Flat tax on capital income (from 2018)
   order:
   - taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc
   - taux_prelevement_produits_assurance_vie_non_eligibles_prelevement_forfaitaire_unique

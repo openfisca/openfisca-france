@@ -182,7 +182,7 @@ values:
     value: 10391.64
 metadata:
   short_label: Plafond conjoint
-  description_en: Additive allowance for spouse care (income threashold)
+  label_en: Additive allowance for spouse care (income threashold)
   ipp_csv_id: plaf_maj_avts_conj
   unit: currency
   reference:

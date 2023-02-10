@@ -20,7 +20,7 @@ values:
     value: 55.5635
 metadata:
   short_label: Indice 1
-  description_en: Index 1
+  label_en: Index 1
   unit: currency
   reference:
     2008-01-01:

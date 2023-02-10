@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Taux de la décote
-  description_en: "\"Décote\" computation"
+  label_en: "\"Décote\" computation"
   ipp_csv_id: tx_decote_isf
   unit: /1
   reference:

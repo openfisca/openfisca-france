@@ -16,7 +16,7 @@ values:
     value: null
 metadata:
   short_label: Accession à la propriété (logement neuf ou ancien)
-  description_en: "Loans to young household (PJM): Amount of loans"
+  label_en: "Loans to young household (PJM): Amount of loans"
   ipp_csv_id: pret_max_accession
   unit: currency
   reference:

@@ -1,7 +1,7 @@
 description: Cotisation des Médecins pour la retraite complémentaire, Professions libérales
 metadata:
   short_label: Médecins
-  description_en: Contribution for complementary pension scheme (professionals)
+  label_en: Contribution for complementary pension scheme (professionals)
   order:
   - sous_3_5_pss
   - sous_5_pss

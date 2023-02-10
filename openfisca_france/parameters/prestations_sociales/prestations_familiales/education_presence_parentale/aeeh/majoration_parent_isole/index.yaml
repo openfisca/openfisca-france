@@ -1,7 +1,7 @@
 description: Majoration spécifique pour parent isolé de l'allocation d'éducation de l'enfant handicapé (AEEH)
 metadata:
   short_label: Majoration spécifique pour parent isolé
-  description_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
+  label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   order:
   - 2e_categorie
   - 3e_categorie

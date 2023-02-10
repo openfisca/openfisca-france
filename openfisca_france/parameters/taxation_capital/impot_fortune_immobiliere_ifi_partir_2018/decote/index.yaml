@@ -1,7 +1,7 @@
 description: Calcul de la décote de l'Impôt sur la fortune immobilière
 metadata:
   short_label: Décote
-  description_en: Real estate tax computation
+  label_en: Real estate tax computation
   order:
   - parametre_calcul_decote
   - borne_inferieure_decote

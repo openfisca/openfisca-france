@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Montant
-  description_en: "Adoption allowance (AA): General conditions and amounts"
+  label_en: "Adoption allowance (AA): General conditions and amounts"
   ipp_csv_id: aa_montant
   unit: /1
   reference:

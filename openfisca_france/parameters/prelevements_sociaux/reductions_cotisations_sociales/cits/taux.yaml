@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Taux
-  description_en: Tax credit on the payroll tax (CITS)
+  label_en: Tax credit on the payroll tax (CITS)
   unit: /1
   reference:
     2017-01-01:

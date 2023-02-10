@@ -6,7 +6,7 @@ values:
     value: 0.8
 metadata:
   short_label: Pourcentage minimal de handicap pour les ascendants ou descendants
-  description_en: Definition of dependants
+  label_en: Definition of dependants
   ipp_csv_id: pct_handicap
   unit: /1
   reference:

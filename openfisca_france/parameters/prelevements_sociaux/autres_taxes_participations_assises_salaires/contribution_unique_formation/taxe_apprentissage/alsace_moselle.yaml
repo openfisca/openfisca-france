@@ -4,7 +4,7 @@ values:
     value: 0.0044
 metadata:
   short_label: En Alsace-Moselle
-  description_en: Unique employer's participation to lifelong professional training and apprenticeship
+  label_en: Unique employer's participation to lifelong professional training and apprenticeship
   unit: /1
   reference:
     2019-01-01:

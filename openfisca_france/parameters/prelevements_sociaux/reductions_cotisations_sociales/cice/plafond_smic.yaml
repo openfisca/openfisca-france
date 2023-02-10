@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Plafond
-  description_en: Tax credit for competitivness and employment (CICE)
+  label_en: Tax credit for competitivness and employment (CICE)
   ipp_csv_id: cice_plaf
   unit: SMIC
   reference:

@@ -615,7 +615,7 @@ metadata:
   threshold_unit: currency
   rate_unit: /1
   type: marginal_rate
-  description_en: Thresholds and marginal tax rates of the IGR tax (1919-1935)
+  label_en: Thresholds and marginal tax rates of the IGR tax (1919-1935)
   reference:
     1919-01-01:
       title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"

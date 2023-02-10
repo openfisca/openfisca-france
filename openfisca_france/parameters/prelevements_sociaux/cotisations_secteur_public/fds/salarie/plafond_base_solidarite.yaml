@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Plafond de la contrib. exceptionnelle de solidarité
-  description_en: Contributions to the Solidarity Fund (FDS)
+  label_en: Contributions to the Solidarity Fund (FDS)
   unit: currency
   reference:
     2002-01-01:

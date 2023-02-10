@@ -4,7 +4,7 @@ values:
     value: 1217.26
 metadata:
   short_label: Dans la formule de KL (numérateur)
-  description_en: Parameters for new home-buyers (APL)
+  label_en: Parameters for new home-buyers (APL)
   ipp_csv_id: mult_kl2_apl
   unit: currency
   reference:

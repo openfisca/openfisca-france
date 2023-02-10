@@ -18,7 +18,7 @@ values:
     value: 0.24
 metadata:
   short_label: Dividendes
-  description_en: Levy in discharge on capital income (1965 - 2012)
+  label_en: Levy in discharge on capital income (1965 - 2012)
   ipp_csv_id: tx_titres
   unit: /1
   reference:

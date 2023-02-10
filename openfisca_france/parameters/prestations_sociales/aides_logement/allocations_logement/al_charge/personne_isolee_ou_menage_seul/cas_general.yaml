@@ -44,7 +44,7 @@ values:
     value: 56.12
 metadata:
   short_label: Cas général
-  description_en: Lump sum extra allowance for charges
+  label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_gen
   unit: currency
   reference:

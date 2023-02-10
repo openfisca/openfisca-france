@@ -90,7 +90,7 @@ values:
     value: 1715.35
 metadata:
   short_label: Guadeloupe Guyane Martinique
-  description_en: Elderly insurance for stay-at-home parents (AVPF )
+  label_en: Elderly insurance for stay-at-home parents (AVPF )
   ipp_csv_id: avpf_ggm
   unit: currency
   reference:

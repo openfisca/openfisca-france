@@ -12,7 +12,7 @@ values:
     value: null
 metadata:
   short_label: Partie fixe
-  description_en: Special UI scheme for economic layoffs (1979-1983)
+  label_en: Special UI scheme for economic layoffs (1979-1983)
   ipp_csv_id: journ_fixe
   unit: currency
   reference:

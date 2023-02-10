@@ -4,7 +4,7 @@ values:
     value: 4.5
 metadata:
   short_label: Plafond versement
-  description_en: Exceptional benefit - COVID-19 crisis
+  label_en: Exceptional benefit - COVID-19 crisis
   unit: SMIC
   reference:
     2020-03-01:

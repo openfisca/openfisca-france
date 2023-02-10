@@ -1,7 +1,7 @@
 description: Participation à la formation professionnelle continue, Artisans-Commerçants
 metadata:
   short_label: Participation à la formation professionnelle continue
-  description_en: Contribution to lifelong professional training (sales retailers and craftsmen)
+  label_en: Contribution to lifelong professional training (sales retailers and craftsmen)
   order:
   - artisans
   - commercants_industriels

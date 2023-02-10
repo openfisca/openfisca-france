@@ -22,7 +22,7 @@ brackets:
       value: null
 metadata:
   short_label: Abattement
-  description_en: CSG - rates on work incomes
+  label_en: CSG - rates on work incomes
   ipp_csv_id: csg_abt
   reference:
     1991-02-01:

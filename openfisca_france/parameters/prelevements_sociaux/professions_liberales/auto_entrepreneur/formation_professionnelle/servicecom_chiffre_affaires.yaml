@@ -6,7 +6,7 @@ values:
     value: 0.002
 metadata:
   short_label: Taux - Prestation de services (commerçants)
-  description_en: Self-employed specific scheme (auto-entrepreneurs)
+  label_en: Self-employed specific scheme (auto-entrepreneurs)
   ipp_csv_id: auto_servcom_form_ca
   unit: /1
   reference:

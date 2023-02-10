@@ -10,7 +10,7 @@ values:
     value: 0.75
 metadata:
   short_label: Montant maximum (% SJR)
-  description_en: "UI scheme: rates and maximum"
+  label_en: "UI scheme: rates and maximum"
   ipp_csv_id: base_max
   unit: /1
   reference:

@@ -4,7 +4,7 @@ values:
     value: 3.4
 metadata:
   short_label: Majoration pers. supp.
-  description_en: "Asylum-seeker allowance (ADA): Amounts"
+  label_en: "Asylum-seeker allowance (ADA): Amounts"
   unit: currency
   reference:
     2015-11-01:

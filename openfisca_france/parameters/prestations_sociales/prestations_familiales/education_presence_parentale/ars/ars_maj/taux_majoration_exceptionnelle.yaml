@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Taux
-  description_en: "Back-to-school allowance (ARS): Exceptionnal extra allowance"
+  label_en: "Back-to-school allowance (ARS): Exceptionnal extra allowance"
   ipp_csv_id: maj_ars_bmaf
   unit: BMAF
   reference:

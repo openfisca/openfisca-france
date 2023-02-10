@@ -12,7 +12,7 @@ brackets:
       value: null
 metadata:
   short_label: Taux
-  description_en: Exceptional solidarity tax on high wages ("75% tax")
+  label_en: Exceptional solidarity tax on high wages ("75% tax")
   ipp_csv_id:
     threshold: tehr_seuil
     rate: tehr_tx

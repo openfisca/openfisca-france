@@ -1,7 +1,7 @@
 description: Cotisations de retraite complémentaire des Cotisations de sécurité sociale (SS) du régime général sur les allocations chômage
 metadata:
   short_label: Branche retraite complémentaire
-  description_en: SSCs on unemployment benefits
+  label_en: SSCs on unemployment benefits
   order:
   - taux
   - assiette_sjr

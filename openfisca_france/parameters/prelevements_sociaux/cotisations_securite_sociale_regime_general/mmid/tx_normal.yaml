@@ -4,7 +4,7 @@ values:
     value: 0.13
 metadata:
   short_label: Taux normal
-  description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+  label_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
   ipp_csv_id: mmid_p_250_
   unit: /1
   reference:

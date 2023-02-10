@@ -4,7 +4,7 @@ values:
     value: 0.95
 metadata:
   short_label: Constante du coefficient K
-  description_en: Parameters for new home-buyers (APL)
+  label_en: Parameters for new home-buyers (APL)
   ipp_csv_id: cons_k_apl
   unit: /1
   reference:

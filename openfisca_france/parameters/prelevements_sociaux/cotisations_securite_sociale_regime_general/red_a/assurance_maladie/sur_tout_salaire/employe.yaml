@@ -6,7 +6,7 @@ values:
     value: 0.007
 metadata:
   short_label: Taux employé
-  description_en: SSCs for artists (1960-1974)
+  label_en: SSCs for artists (1960-1974)
   ipp_csv_id: mmid_a_s_0_
   unit: /1
   reference:

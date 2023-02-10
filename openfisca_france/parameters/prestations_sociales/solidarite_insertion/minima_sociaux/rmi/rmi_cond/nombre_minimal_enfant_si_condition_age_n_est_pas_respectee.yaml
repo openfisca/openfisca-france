@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Nb minimal d'enfants
-  description_en: "Minimum insertion income (RMI): General conditions"
+  label_en: "Minimum insertion income (RMI): General conditions"
   ipp_csv_id: min_npac_rmi_rsa
   unit: year
   reference:

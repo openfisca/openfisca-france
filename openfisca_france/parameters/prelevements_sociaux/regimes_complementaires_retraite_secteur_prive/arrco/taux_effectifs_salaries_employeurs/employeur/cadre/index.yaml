@@ -1,6 +1,6 @@
 description: Barème employeur (cadre) des cotisations retraites des non-cadres (ARRCO) aux régimes complémentaires de retraite (secteur privé)
 metadata:
   short_label: Cadre
-  description_en: Pension contributions for non-executives (ARRCO)
+  label_en: Pension contributions for non-executives (ARRCO)
   order:
   - arrco

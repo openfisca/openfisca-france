@@ -1,6 +1,6 @@
 description: Majoration régionale TICPE gazole
 metadata:
-  description_en: Regional surcharge - diesel
+  label_en: Regional surcharge - diesel
   order:
   - alsace
   - aquitaine

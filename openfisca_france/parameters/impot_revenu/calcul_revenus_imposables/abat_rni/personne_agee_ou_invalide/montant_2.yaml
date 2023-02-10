@@ -86,7 +86,7 @@ values:
     value: 1242
 metadata:
   short_label: Montant 2e tranche
-  description_en: Tax allowance for net taxable income
+  label_en: Tax allowance for net taxable income
   ipp_csv_id: abt_pers_age2
   unit: currency
   reference:

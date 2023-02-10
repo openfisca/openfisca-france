@@ -78,7 +78,7 @@ values:
     value: 0.012
 metadata:
   short_label: Revalorisation du salaire de référence
-  description_en: Indexation of reference wage for FNE early retirement benefit
+  label_en: Indexation of reference wage for FNE early retirement benefit
   ipp_csv_id: sr_fne
   unit: /1
   reference:

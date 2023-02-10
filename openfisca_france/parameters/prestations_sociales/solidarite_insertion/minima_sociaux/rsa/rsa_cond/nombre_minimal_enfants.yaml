@@ -4,7 +4,7 @@ values:
     value: 1
 metadata:
   short_label: Nombre minimal d'enfants
-  description_en: "Active solidarity income (RSA): General conditions"
+  label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: min_npac_rmi
   unit: /1
   reference:

@@ -1,7 +1,7 @@
 description: Cotisations maladie spécifiques (tout traitement) de la Fonction publique d'Etat
 metadata:
   short_label: Tout traitement
-  description_en: Health insurance contributions
+  label_en: Health insurance contributions
   order:
   - employeur
   - salarie

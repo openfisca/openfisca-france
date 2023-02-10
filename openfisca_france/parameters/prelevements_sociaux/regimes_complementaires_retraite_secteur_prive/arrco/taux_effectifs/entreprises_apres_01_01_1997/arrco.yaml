@@ -60,7 +60,7 @@ brackets:
       value: null
 metadata:
   short_label: Tranches 1 et 2
-  description_en: Pension contributions for non-executives (ARRCO)
+  label_en: Pension contributions for non-executives (ARRCO)
   reference:
     1982-01-01:
       title: (pas de référence)

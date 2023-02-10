@@ -14,7 +14,7 @@ values:
     value: null
 metadata:
   short_label: Ménage seul
-  description_en: Parameters for the rental sector (before the 2001 reform)
+  label_en: Parameters for the rental sector (before the 2001 reform)
   ipp_csv_id: plaf_loy_coup_z1_acc
   unit: currency
   reference:

@@ -1,7 +1,7 @@
 description: Conditions spécifiques pour les DOM des allocations familiales (AF)
 metadata:
   short_label: Conditions spécifiques DOM
-  description_en: Family allowances (AF)
+  label_en: Family allowances (AF)
   order:
   - allocations_familiales_un_enfant
   - tranches_age

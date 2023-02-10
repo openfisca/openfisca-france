@@ -30,7 +30,7 @@ brackets:
       value: 0
 metadata:
   short_label: Barème salarié
-  description_en: Contributions to the financial structure ASF (1984-2001)
+  label_en: Contributions to the financial structure ASF (1984-2001)
   ipp_csv_id:
     rate: asf_s_0_1, asf_s_1_4
   reference:

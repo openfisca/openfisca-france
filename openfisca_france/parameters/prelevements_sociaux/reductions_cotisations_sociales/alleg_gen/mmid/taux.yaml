@@ -4,7 +4,7 @@ values:
     value: 0.06
 metadata:
   short_label: Taux d'allègement des cotisations d'assurance maladie
-  description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+  label_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
   unit: /1
   reference:
     2019-01-01:

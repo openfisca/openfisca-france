@@ -1,7 +1,7 @@
 description: Versement transport (VT), parmi les autres taxes et participations assises sur les salaires
 metadata:
   short_label: Versement transport (VT)
-  description_en: Transport tax (VT) (contribution to public transports)
+  label_en: Transport tax (VT) (contribution to public transports)
   order:
   - paris
   - essonne

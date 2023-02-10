@@ -1,6 +1,6 @@
 description: Cotisations de sécurité sociale (SS) des artistes du spectacle pour les accidents du travail
 metadata:
   short_label: Branche accidents du travail
-  description_en: SSCs for artists (1960-1974)
+  label_en: SSCs for artists (1960-1974)
   order:
   - sous_pss

@@ -16,7 +16,7 @@ values:
     value: null
 metadata:
   short_label: Phase-out (cas général)
-  description_en: Employment Allowance (2001 - 2015)
+  label_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: tx_ppe
   unit: /1
   reference:

@@ -12,7 +12,7 @@ values:
     value: null
 metadata:
   short_label: Plafonnement du taux d'imposition
-  description_en: Wealth tax ceiling
+  label_en: Wealth tax ceiling
   ipp_csv_id: tx_plaf
   unit: /1
   reference:

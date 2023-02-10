@@ -22,7 +22,7 @@ values:
     value: null
 metadata:
   short_label: Plafond de ressources - sans enfant
-  description_en: "Loans to young household (PJM): Thresholds for means-testing"
+  label_en: "Loans to young household (PJM): Thresholds for means-testing"
   ipp_csv_id: plaf_0enf
   unit: currency
   reference:

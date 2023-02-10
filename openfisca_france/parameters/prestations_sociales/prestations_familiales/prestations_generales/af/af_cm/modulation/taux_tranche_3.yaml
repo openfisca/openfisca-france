@@ -4,7 +4,7 @@ values:
     value: 0.25
 metadata:
   short_label: Taux Tranche 3
-  description_en: "Family allowances (AF): General conditions and amount"
+  label_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_modulation_taux2
   unit: BMAF
   reference:

@@ -4,7 +4,7 @@ values:
     value: 0.3
 metadata:
   short_label: 3ème enfant et plus
-  description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_paje_enf3pl_avant_20140401
   unit: /1
   reference:

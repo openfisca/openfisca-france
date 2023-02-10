@@ -28,7 +28,7 @@ values:
     value: 47405
 metadata:
   short_label: Un enfant
-  description_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
+  label_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
   unit: currency
   reference:
     2007-07-01:

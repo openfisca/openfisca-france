@@ -20,7 +20,7 @@ values:
     value: 3500
 metadata:
   short_label: Plafond
-  description_en: Child care costs (1979 - )
+  label_en: Child care costs (1979 - )
   last_review: "2023-01-05"
   ipp_csv_id: plafgardenf
   unit: currency

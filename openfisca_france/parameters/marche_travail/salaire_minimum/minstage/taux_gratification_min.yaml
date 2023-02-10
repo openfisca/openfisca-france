@@ -8,7 +8,7 @@ values:
     value: 0.15
 metadata:
   short_label: Part du PSS
-  description_en: Minimum compensation for interns
+  label_en: Minimum compensation for interns
   unit: /1
   reference:
     2006-07-01:

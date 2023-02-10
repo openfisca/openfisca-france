@@ -12,7 +12,7 @@ values:
     value: null
 metadata:
   short_label: Taux sous 0,85 PSS
-  description_en: SSCs for old-age insurance (professionals)
+  label_en: SSCs for old-age insurance (professionals)
   ipp_csv_id: ret_plib_0_85
   unit: /1
   reference:

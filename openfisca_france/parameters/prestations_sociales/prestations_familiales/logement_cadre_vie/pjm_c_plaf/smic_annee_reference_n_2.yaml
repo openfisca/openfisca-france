@@ -16,7 +16,7 @@ values:
     value: null
 metadata:
   short_label: Smic année (n-2)
-  description_en: "Loans to young household (PJM): Thresholds for means-testing"
+  label_en: "Loans to young household (PJM): Thresholds for means-testing"
   ipp_csv_id: smic_ref
   unit: currency
   reference:

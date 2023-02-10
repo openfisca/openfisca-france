@@ -4,7 +4,7 @@ values:
     value: 0.4314
 metadata:
   short_label: Revenus > plafond
-  description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
+  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
   ipp_csv_id: clcmg_03ans_rev3
   unit: BMAF
   reference:

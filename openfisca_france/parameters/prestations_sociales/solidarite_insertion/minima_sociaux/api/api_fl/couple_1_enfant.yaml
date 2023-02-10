@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Couple, 1 enfant
-  description_en: "Single parent allowance (API): Accomodation allowance"
+  label_en: "Single parent allowance (API): Accomodation allowance"
   ipp_csv_id: api_logt2
   unit: /1
   reference:

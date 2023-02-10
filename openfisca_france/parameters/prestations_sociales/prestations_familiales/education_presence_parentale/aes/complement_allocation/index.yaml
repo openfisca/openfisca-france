@@ -1,7 +1,7 @@
 description: Complément d'allocation de l'Allocation d'éducation spéciale (AES, 1976-2005)
 metadata:
   short_label: Complément d'allocation
-  description_en: "Special education allowance (AES): Conditions and amounts"
+  label_en: "Special education allowance (AES): Conditions and amounts"
   order:
   - 1ere_categorie
   - 2e_categorie

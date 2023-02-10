@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Max 1 enfant sans moins de 2 ans
-  description_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"
+  label_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"
   ipp_csv_id: tx_agri_2ans
   unit: BMAF
   reference:

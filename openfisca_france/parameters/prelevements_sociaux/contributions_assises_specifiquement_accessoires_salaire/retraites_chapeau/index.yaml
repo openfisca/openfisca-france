@@ -1,7 +1,7 @@
 description: Contribution spéciale sur les contributions versées par l'employeur pour les régimes de retraites supplémentaires à prestations définies
 metadata:
   short_label: Retraites Chapeau
-  description_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
+  label_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
   order:
   - taux_1
   - taux_2

@@ -12,7 +12,7 @@ values:
     value: null
 metadata:
   short_label: 16-25 ans
-  description_en: Insertion allowance (AI)
+  label_en: Insertion allowance (AI)
   ipp_csv_id: ai_16_25
   unit: currency
   reference:

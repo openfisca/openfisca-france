@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Majoration forfaitaire
-  description_en: Furniture package
+  label_en: Furniture package
   ipp_csv_id: tx_majo_isf
   unit: /1
   reference:

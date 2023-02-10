@@ -12,7 +12,7 @@ values:
     value: null
 metadata:
   short_label: Catégorie 4
-  description_en: Insertion allowance (AI)
+  label_en: Insertion allowance (AI)
   ipp_csv_id: ai_service
   unit: currency
   reference:

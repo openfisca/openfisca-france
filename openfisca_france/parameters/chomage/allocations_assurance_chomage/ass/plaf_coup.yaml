@@ -4,6 +4,6 @@ values:
     value: 110
 metadata:
   short_label: Multiple couple
-  description_en: Special UI scheme
+  label_en: Special UI scheme
   unit: /1
 documentation: ""

@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: 4e catégorie
-  description_en: "Special education allowance (AES): Conditions and amounts"
+  label_en: "Special education allowance (AES): Conditions and amounts"
   ipp_csv_id: aes_cplt4
   unit: /1
   reference:

@@ -114,7 +114,7 @@ values:
     value: null
 metadata:
   short_label: Montant minimum
-  description_en: Minimum income guarantee (1972-1999)
+  label_en: Minimum income guarantee (1972-1999)
   ipp_csv_id: gr_min
   unit: currency
   reference:

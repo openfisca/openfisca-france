@@ -1,7 +1,7 @@
 description: Cotisations de sécurité sociale (SS) pour les accidents du travail et les maladies professionnelles (AT-MP)
 metadata:
   short_label: Accidents du Travail et Maladies professionnelles
-  description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
+  label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   order:
   - employeur_sous_pss
   - employeur_tout_salaire

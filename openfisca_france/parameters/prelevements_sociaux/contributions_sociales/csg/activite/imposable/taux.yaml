@@ -6,7 +6,7 @@ values:
     value: 0.024
 metadata:
   short_label: Taux
-  description_en: CSG - rates on work incomes
+  label_en: CSG - rates on work incomes
   unit: /1
   reference:
     1991-02-01:

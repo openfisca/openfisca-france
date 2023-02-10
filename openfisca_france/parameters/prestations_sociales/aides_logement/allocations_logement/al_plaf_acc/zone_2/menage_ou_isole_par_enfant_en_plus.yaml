@@ -46,7 +46,7 @@ values:
     value: 37.71
 metadata:
   short_label: Ménage ou isolé - par enfant en plus
-  description_en: Annual ceiling of reimbursement for new homebuyers
+  label_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_enfsupp_z2_al
   unit: currency
   reference:

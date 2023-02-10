@@ -1,7 +1,7 @@
 description: Impôt sur le revenu
 metadata:
   short_label: Taxes exceptionnelles
-  description_en: Exceptional contributions
+  label_en: Exceptional contributions
   order:
   - contribution_exceptionnelle_hauts_revenus
   - majorations_exceptionnelles

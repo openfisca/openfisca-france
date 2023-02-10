@@ -8,7 +8,7 @@ values:
     value: 10.67
 metadata:
   short_label: Part pour deux enfants
-  description_en: Family income supplement (SFT)
+  label_en: Family income supplement (SFT)
   ipp_csv_id: enf2
   unit: currency
   reference:

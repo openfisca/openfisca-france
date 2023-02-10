@@ -32,7 +32,7 @@ values:
     value: null
 metadata:
   short_label: Taux d'appel
-  description_en: Pension contributions for executives (AGIRC)
+  label_en: Pension contributions for executives (AGIRC)
   unit: /1
   reference:
     1948-01-01:

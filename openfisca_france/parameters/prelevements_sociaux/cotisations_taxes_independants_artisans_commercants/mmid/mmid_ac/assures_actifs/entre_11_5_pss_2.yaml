@@ -6,7 +6,7 @@ values:
     value: 0.072
 metadata:
   short_label: Entre 1,1 et 5 PSS, dont IJ
-  description_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
   unit: /1
   reference:
     1970-04-01:

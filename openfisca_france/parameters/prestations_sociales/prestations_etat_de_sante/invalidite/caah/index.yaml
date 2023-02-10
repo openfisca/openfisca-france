@@ -1,6 +1,6 @@
 description: Complément de l'allocation pour adulte handicapé (CAAH)
 metadata:
-  description_en: Additional adult disability allowance (CAAH)
+  label_en: Additional adult disability allowance (CAAH)
   order:
   - majoration_vie_autonome
   - montant_complement_ressources

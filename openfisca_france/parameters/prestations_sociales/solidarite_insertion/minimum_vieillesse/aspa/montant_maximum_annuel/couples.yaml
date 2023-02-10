@@ -40,7 +40,7 @@ values:
     value: 17762.96
 metadata:
   short_label: Couple
-  description_en: Solidarity income for elderly (ASPA)
+  label_en: Solidarity income for elderly (ASPA)
   ipp_csv_id: aspa_men
   unit: currency
   reference:

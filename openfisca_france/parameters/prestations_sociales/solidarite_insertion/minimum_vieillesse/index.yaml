@@ -1,7 +1,7 @@
 description: Minimum vieillesse et droits non-contributifs de retraite
 metadata:
   short_label: Minimum vieillesse
-  description_en: Social minima for elderly
+  label_en: Social minima for elderly
   order:
   - aspa
   - avts

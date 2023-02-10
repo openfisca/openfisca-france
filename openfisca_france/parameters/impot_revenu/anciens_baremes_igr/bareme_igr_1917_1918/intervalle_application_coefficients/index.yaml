@@ -2,7 +2,7 @@ description: Intervalles d'application du coefficient de progression pour l'impo
   le revenu (IGR, 1917-1918)
 metadata:
   short_label: Intervalles d'application
-  description_en: Thresholds and marginal tax rates of the IGR tax (1917-1918)
+  label_en: Thresholds and marginal tax rates of the IGR tax (1917-1918)
   order:
   - tranche_1
   - tranche_2

@@ -30,7 +30,7 @@ brackets:
       value: null
 metadata:
   short_label: Barème employeur
-  description_en: Exceptional and temporary pension contribution (CET)
+  label_en: Exceptional and temporary pension contribution (CET)
   ipp_csv_id: cet_p_0_8
   reference:
     1997-01-01:

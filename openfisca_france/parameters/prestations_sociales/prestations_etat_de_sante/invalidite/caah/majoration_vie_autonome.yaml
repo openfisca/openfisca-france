@@ -12,7 +12,7 @@ values:
     value: 104.77
 metadata:
   short_label: Majoration
-  description_en: Additional adult disability allowance (CAAH)
+  label_en: Additional adult disability allowance (CAAH)
   unit: currency
   reference:
     2002-01-01:

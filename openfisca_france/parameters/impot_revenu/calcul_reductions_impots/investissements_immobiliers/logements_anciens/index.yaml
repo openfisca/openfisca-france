@@ -1,7 +1,7 @@
 description: Réduction d'impôt (pour logements anciens) des dispositifs d'encouragement à l'investissement locatif (1984 -)
 metadata:
   short_label: Logements anciens
-  description_en: Tax reductions for new real estate investments (1984 -) 
+  label_en: Tax reductions for new real estate investments (1984 -) 
   order:
   - dispositif_denormandie
   notes:

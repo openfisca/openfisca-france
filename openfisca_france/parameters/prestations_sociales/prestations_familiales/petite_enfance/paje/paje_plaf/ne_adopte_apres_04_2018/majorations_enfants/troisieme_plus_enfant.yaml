@@ -4,7 +4,7 @@ values:
     value: 0.3
 metadata:
   short_label: Majoration, par enfant, en % de la base du plafond de ressources, à partir du 3ème enfant
-  description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_paje_enf3pl_a_partir_20180401
   unit: /1
   reference:

@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Borne supérieure
-  description_en: "\"Décote\" computation"
+  label_en: "\"Décote\" computation"
   ipp_csv_id: sup_decote1
   unit: currency
   reference:

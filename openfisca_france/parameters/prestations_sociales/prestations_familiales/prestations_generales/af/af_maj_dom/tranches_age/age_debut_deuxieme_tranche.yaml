@@ -6,7 +6,7 @@ values:
     value: 16
 metadata:
   short_label: Âge seuil de la tranche 2
-  description_en: "Family allowances (AF): Extra allowances for oversea territories"
+  label_en: "Family allowances (AF): Extra allowances for oversea territories"
   unit: year
   reference:
     1991-08-06:

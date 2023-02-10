@@ -24,7 +24,7 @@ values:
     value: null
 metadata:
   short_label: BMAF E.T.I.
-  description_en: Monthly basis for the computation of family allowances (BMAF)
+  label_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: reg_spec_eti
   unit: currency
   reference:

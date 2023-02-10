@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Réduction maximale
-  description_en: General SSC reductions, so called Fillon reductions (2003-2016)
+  label_en: General SSC reductions, so called Fillon reductions (2003-2016)
   ipp_csv_id: tx_trans_39
   unit: /1
   reference:

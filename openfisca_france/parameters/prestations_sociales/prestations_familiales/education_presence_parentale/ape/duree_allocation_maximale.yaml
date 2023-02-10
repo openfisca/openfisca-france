@@ -6,7 +6,7 @@ values:
     value: 36
 metadata:
   short_label: Durée de l'allocation maximale
-  description_en: "Parental leave allowance (APE): Conditions and amounts"
+  label_en: "Parental leave allowance (APE): Conditions and amounts"
   ipp_csv_id: duree_max_alloc
   unit: month
   reference:

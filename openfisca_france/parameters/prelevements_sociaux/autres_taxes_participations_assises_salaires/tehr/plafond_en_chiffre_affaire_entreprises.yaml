@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Plafond
-  description_en: Exceptional solidarity tax on high wages ("75% tax")
+  label_en: Exceptional solidarity tax on high wages ("75% tax")
   ipp_csv_id: tehr_plaf
   unit: /1
   reference:

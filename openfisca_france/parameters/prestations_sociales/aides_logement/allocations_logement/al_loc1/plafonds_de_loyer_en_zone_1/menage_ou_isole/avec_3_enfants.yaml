@@ -14,7 +14,7 @@ values:
     value: null
 metadata:
   short_label: Avec 3 enfants
-  description_en: Parameters for the rental sector (before the 2001 reform)
+  label_en: Parameters for the rental sector (before the 2001 reform)
   ipp_csv_id: plaf_loy_enf3_z1_acc
   unit: currency
   reference:

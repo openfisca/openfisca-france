@@ -4,7 +4,7 @@ values:
     value: 0.005
 metadata:
   short_label: Taux global
-  description_en: CRDS
+  label_en: CRDS
   unit: /1
   reference:
     1996-02-01:

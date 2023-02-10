@@ -1,7 +1,7 @@
 description: Taxe exceptionnelle de solidarité sur les hautes rémunérations (TEHR) versées par les entreprises ("taxe à 75%") (2013-2015), parmi les autres taxes et participations assises sur les salaires
 metadata:
   short_label: Taxe exceptionnelle de solidarité sur les hautes rémunérations
-  description_en: Exceptional solidarity tax on high wages ("75% tax")
+  label_en: Exceptional solidarity tax on high wages ("75% tax")
   order:
   - tehr
   - plafond_en_chiffre_affaire_entreprises

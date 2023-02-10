@@ -14,7 +14,7 @@ values:
     value: 0.9795
 metadata:
   short_label: Montant pour la 3ème tranche d'âge
-  description_en: "Back-to-school allowance (ARS): Amounts"
+  label_en: "Back-to-school allowance (ARS): Amounts"
   ipp_csv_id: ars1517
   unit: BMAF
   reference:

@@ -4,7 +4,7 @@ values:
     value: 0.075
 metadata:
   short_label: Taux réduit du PFU
-  description_en: Flat tax on capital income (from 2018)
+  label_en: Flat tax on capital income (from 2018)
   unit: /1
   reference:
     2018-01-01:

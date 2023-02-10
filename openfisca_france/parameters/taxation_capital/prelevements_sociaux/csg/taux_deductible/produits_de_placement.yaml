@@ -10,7 +10,7 @@ values:
     value: 0.068
 metadata:
   short_label: Produits de placement
-  description_en: CSG on financial income
+  label_en: CSG on financial income
   ipp_csv_id: tx_csg_ded_rk_plac
   unit: /1
   reference:

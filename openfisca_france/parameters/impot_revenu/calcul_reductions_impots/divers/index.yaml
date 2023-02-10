@@ -1,7 +1,7 @@
 description: Autres réductions d'impôts (1979 -)
 metadata:
   short_label: Divers
-  description_en: Other tax reductions (1979 -)
+  label_en: Other tax reductions (1979 -)
   order:
   - formation_chefs_entreprises
   - assurances_vie

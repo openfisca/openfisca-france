@@ -12,7 +12,7 @@ values:
     value: 0.01
 metadata:
   short_label: Régimes complémentaires
-  description_en: Special SSC on pension benefits for sickness insurance
+  label_en: Special SSC on pension benefits for sickness insurance
   ipp_csv_id: mmid_ret_comp
   unit: /1
   reference:

@@ -10,7 +10,7 @@ values:
     value: null
 metadata:
   short_label: Plafond
-  description_en: Global reduction in SSCs (1993-2003)
+  label_en: Global reduction in SSCs (1993-2003)
   ipp_csv_id: plaf_juppe
   unit: SMIC
   reference:

@@ -138,7 +138,7 @@ values:
     value: null
 metadata:
   short_label: Seuil d'assujettissement
-  description_en: Contributions to the Solidarity Fund (FDS)
+  label_en: Contributions to the Solidarity Fund (FDS)
   ipp_csv_id: fds_seuil
   unit: currency
   reference:

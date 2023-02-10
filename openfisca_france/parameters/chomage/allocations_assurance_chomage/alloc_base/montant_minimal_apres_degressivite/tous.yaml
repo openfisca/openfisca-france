@@ -22,7 +22,7 @@ values:
     value: null
 metadata:
   short_label: Tous
-  description_en: "UI scheme: lump-sum and minimum"
+  label_en: "UI scheme: lump-sum and minimum"
   unit: currency
   reference:
     1968-07-22:

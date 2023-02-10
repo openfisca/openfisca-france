@@ -18,7 +18,7 @@ values:
     value: 14914
 metadata:
   short_label: Seuil d'exonération (RFR pour 1 part de QF en N-2)
-  description_en: "Additional SSC for autonomy (CASA: Additional solidarity Contribution for Autonomy)"
+  label_en: "Additional SSC for autonomy (CASA: Additional solidarity Contribution for Autonomy)"
   unit: currency
   reference:
     2013-04-01:

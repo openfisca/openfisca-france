@@ -1,7 +1,7 @@
 description: Cotisations employeur de sécurité sociale (SS) du régime général pour la branche assurance vieillesse (CNAV) (1967-2016)
 metadata:
   short_label: Cotisations employeur
-  description_en: SSCs for old-age benefits (1967-2016)
+  label_en: SSCs for old-age benefits (1967-2016)
   order:
   - vieillesse_plafonnee
   - vieillesse_deplafonnee

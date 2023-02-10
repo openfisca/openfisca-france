@@ -32,7 +32,7 @@ values:
     value: null
 metadata:
   short_label: Complément exceptionnel
-  description_en: "Extra allowance (AS): Amount"
+  label_en: "Extra allowance (AS): Amount"
   ipp_csv_id: complement
   unit: currency
   reference:

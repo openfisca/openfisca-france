@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: Taux réduit 1
   last_review: "2023-01-30"
-  description_en: Contribution levied on various earnings supplements ("Forfait social")
+  label_en: Contribution levied on various earnings supplements ("Forfait social")
   ipp_csv_id: forf_soc_tx2
   unit: /1
   reference:

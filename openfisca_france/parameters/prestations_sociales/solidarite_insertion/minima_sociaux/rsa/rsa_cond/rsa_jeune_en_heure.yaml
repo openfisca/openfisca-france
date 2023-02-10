@@ -6,7 +6,7 @@ values:
     value: 3214
 metadata:
   short_label: RSA jeune
-  description_en: "Active solidarity income (RSA): General conditions"
+  label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: rsa_jeune_activite
   unit: hour
   reference:

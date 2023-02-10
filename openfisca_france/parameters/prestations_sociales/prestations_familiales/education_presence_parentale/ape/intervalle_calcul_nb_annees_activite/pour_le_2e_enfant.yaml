@@ -4,7 +4,7 @@ values:
     value: 60
 metadata:
   short_label: Pour le 2e enfant
-  description_en: "Parental leave allowance (APE): Conditions and amounts"
+  label_en: "Parental leave allowance (APE): Conditions and amounts"
   ipp_csv_id: intervalle_2enf
   unit: month
   reference:

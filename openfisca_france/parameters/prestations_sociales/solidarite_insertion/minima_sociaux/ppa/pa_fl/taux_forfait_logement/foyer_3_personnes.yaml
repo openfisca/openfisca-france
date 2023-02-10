@@ -4,7 +4,7 @@ values:
     value: 0.165
 metadata:
   short_label: Foyer 3 pers.
-  description_en: "Activity prenium (PA) : accomodation allowance"
+  label_en: "Activity prenium (PA) : accomodation allowance"
   ipp_csv_id: pa_logt3
   unit: /1
   reference:

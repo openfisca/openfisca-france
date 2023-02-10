@@ -177,7 +177,7 @@ values:
   2022-07-01:
     value: 439.17
 metadata:
-  description_en: Monthly basis for the computation of family allowances (BMAF)
+  label_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: bmaf
   unit: currency
   reference:

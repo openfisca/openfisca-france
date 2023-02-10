@@ -1,7 +1,7 @@
 description: Majorations des Allocation de la mère au foyer (AMF, 1955-1977)
 metadata:
   short_label: Majorations
-  description_en: "Allowance for stay-at-home-mother (AMF): Extra allowances"
+  label_en: "Allowance for stay-at-home-mother (AMF): Extra allowances"
   order:
   - regime_general
   - regime_agricole

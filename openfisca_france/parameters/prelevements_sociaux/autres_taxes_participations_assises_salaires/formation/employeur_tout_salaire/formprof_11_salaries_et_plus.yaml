@@ -12,7 +12,7 @@ brackets:
       value: null
 metadata:
   short_label: 11 salariés et plus
-  description_en: Employer's participation to lifelong professional training
+  label_en: Employer's participation to lifelong professional training
   reference:
     1972-01-01:
       title: Loi 71-575 du 16/07/1971

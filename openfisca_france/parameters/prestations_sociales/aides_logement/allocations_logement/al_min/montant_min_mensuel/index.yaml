@@ -1,7 +1,7 @@
 description: Montant minimal mensuel versé des allocations logement
 metadata:
   short_label: Montant minimal mensuel
-  description_en: Minimal amount
+  label_en: Minimal amount
   order:
   - montant_min_apl_al
   - apl1_foyer

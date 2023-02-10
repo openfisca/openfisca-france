@@ -32,7 +32,7 @@ values:
     value: 686.4
 metadata:
   short_label: Allocation de base
-  description_en: Allowance for elderly workers (AVTS, 1941-1961)
+  label_en: Allowance for elderly workers (AVTS, 1941-1961)
   ipp_csv_id: allocbase_inf5000
   unit: currency
   reference:

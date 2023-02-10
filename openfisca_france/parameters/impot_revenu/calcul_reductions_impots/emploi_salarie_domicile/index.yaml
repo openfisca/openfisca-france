@@ -1,6 +1,6 @@
 description: Réduction d'impôt sur les sommes versées pour l'emploi d'un salarié à domicile (1992 - 2017)
 metadata:
-  description_en: Home-worker Employment (1992 - 2017)
+  label_en: Home-worker Employment (1992 - 2017)
   order:
     - taux
     - plafond

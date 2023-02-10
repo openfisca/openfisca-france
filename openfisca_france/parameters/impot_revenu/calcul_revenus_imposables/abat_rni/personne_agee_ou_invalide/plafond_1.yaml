@@ -88,7 +88,7 @@ values:
     value: 15560
 metadata:
   short_label: Plafond de la 1ère tranche
-  description_en: Tax allowance for net taxable income
+  label_en: Tax allowance for net taxable income
   ipp_csv_id: plaf_pers_age1
   unit: currency
   reference:

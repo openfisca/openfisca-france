@@ -38,7 +38,7 @@ values:
     value: 8.23
 metadata:
   short_label: Montant plein Mayotte
-  description_en: Special UI scheme
+  label_en: Special UI scheme
   unit: currency
   reference:
     2012-07-01:

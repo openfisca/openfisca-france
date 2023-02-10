@@ -4,7 +4,7 @@ values:
     value: 22
 metadata:
   short_label: Nombre max d'allocations journalières
-  description_en: "Daily parental presence allowance (AJPP): Amounts"
+  label_en: "Daily parental presence allowance (AJPP): Amounts"
   ipp_csv_id: ajpp_nbjours_max
   reference:
     2006-06-05:

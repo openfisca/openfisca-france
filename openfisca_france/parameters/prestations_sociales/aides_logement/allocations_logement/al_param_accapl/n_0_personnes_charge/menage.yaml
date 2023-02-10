@@ -4,7 +4,7 @@ values:
     value: 1.8
 metadata:
   short_label: Ménage
-  description_en: Parameters for new home-buyers (APL)
+  label_en: Parameters for new home-buyers (APL)
   ipp_csv_id: n_coup_apl
   unit: /1
   reference:

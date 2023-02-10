@@ -1,6 +1,6 @@
 description: Taxes sur les alcools et autres boissons
 metadata:
-  description_en: Excises on alcohol and other drinks
+  label_en: Excises on alcohol and other drinks
   order:
   - alcools_fermentes
   - bieres

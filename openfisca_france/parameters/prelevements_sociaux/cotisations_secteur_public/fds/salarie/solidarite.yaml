@@ -22,7 +22,7 @@ brackets:
       value: null
 metadata:
   short_label: Taux (Seuil variable)
-  description_en: Contributions to the Solidarity Fund (FDS)
+  label_en: Contributions to the Solidarity Fund (FDS)
   ipp_csv_id: fds_s_0_4
   reference:
     1989-09-01:

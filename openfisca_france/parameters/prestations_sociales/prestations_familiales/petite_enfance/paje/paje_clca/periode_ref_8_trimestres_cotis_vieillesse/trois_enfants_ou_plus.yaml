@@ -4,7 +4,7 @@ values:
     value: 5
 metadata:
   short_label: 3 enfants ou plus
-  description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
+  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
   ipp_csv_id: periode_ref_cotisations_vieillesse_clca_3plenf
   reference:
     2004-01-01:

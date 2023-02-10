@@ -40,7 +40,7 @@ values:
     value: 11441.5
 metadata:
   short_label: Personnes seules
-  description_en: Solidarity income for elderly (ASPA)
+  label_en: Solidarity income for elderly (ASPA)
   ipp_csv_id: aspa_seul
   unit: currency
   reference:

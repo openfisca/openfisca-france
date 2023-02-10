@@ -8,7 +8,7 @@ values:
     value: 0.075
 metadata:
   short_label: Produits de placement
-  description_en: Other social levies on financial income
+  label_en: Other social levies on financial income
   ipp_csv_id: tx_pds_plac
   unit: /1
   reference:

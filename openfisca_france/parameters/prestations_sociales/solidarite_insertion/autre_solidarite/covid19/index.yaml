@@ -1,6 +1,6 @@
 description: Aide exceptionnelle de solidarité COVID-19
 metadata:
   short_label: Aide COVID-19
-  description_en: Exceptional benefit - COVID-19 crisis
+  label_en: Exceptional benefit - COVID-19 crisis
   order:
   - aide_exceptionnelle_famille

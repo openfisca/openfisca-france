@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: 2 enfants
-  description_en: "Relocation allowance (PD): Rate and maximum amount"
+  label_en: "Relocation allowance (PD): Rate and maximum amount"
   ipp_csv_id: tx_2enf
   unit: BMAF
   reference:

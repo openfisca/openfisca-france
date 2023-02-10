@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Durée 4 à 6 ans
-  description_en: Levy in discharge on life insurance (1983 - 2017)
+  label_en: Levy in discharge on life insurance (1983 - 2017)
   ipp_csv_id: tx_pl_av_46
   unit: /1
   reference:

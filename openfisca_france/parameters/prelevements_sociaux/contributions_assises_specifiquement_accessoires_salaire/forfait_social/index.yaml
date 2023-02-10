@@ -1,7 +1,7 @@
 description: Forfait social des contributions assises spécifiquement sur les accessoires du salaire
 metadata:
   short_label: Forfait social
-  description_en: Contribution levied on various earnings supplements ("Forfait social")
+  label_en: Contribution levied on various earnings supplements ("Forfait social")
   order:
   - taux_plein
   - taux_reduit_1

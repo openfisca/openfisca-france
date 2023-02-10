@@ -12,7 +12,7 @@ values:
     value: 0.32
 metadata:
   short_label: Taux 2 enfants
-  description_en: "Family allowances (AF): General conditions and amount"
+  label_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_t1_2enf
   unit: BMAF
   reference:

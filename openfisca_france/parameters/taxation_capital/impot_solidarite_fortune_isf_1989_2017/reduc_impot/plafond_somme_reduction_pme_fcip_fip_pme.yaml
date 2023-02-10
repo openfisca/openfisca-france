@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Plafond pour la somme de la réduction pour PME et pour les FCIP et FIP des PME
-  description_en: Tax reductions for investment and donations
+  label_en: Tax reductions for investment and donations
   unit: currency
   reference:
     2008-01-01:

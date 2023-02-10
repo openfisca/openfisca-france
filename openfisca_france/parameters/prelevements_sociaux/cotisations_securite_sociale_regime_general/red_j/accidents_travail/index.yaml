@@ -1,6 +1,6 @@
 description: Cotisations de sécurité sociale (SS) des journalistes pigistes (1964-1974) pour les accidents du travail
 metadata:
   short_label: Branche accidents du travail
-  description_en: SSCs for freelance journalists (1964-1974)
+  label_en: SSCs for freelance journalists (1964-1974)
   order:
   - sous_pss

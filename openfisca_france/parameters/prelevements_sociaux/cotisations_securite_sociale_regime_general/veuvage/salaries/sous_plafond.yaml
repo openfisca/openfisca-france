@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Sous plafond
-  description_en: SSCs for widowhood insurance (1981-2004)
+  label_en: SSCs for widowhood insurance (1981-2004)
   ipp_csv_id: veuv_s_0_1
   unit: /1
   reference:

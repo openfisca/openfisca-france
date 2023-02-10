@@ -14,7 +14,7 @@ brackets:
       value: 0.0068
 metadata:
   short_label: Toutes entreprises
-  description_en: Apprenticeship tax (tax for the financing of apprenticeship)
+  label_en: Apprenticeship tax (tax for the financing of apprenticeship)
   ipp_csv_id: appren_p_0_
   reference:
     1972-07-01:

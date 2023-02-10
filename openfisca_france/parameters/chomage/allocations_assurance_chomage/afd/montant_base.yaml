@@ -36,7 +36,7 @@ values:
     value: 74.01
 metadata:
   short_label: Montant de base
-  description_en: UI for long term unemployment ("Allocation de fin de droits")
+  label_en: UI for long term unemployment ("Allocation de fin de droits")
   ipp_csv_id: afd_fixe
   unit: currency
   reference:

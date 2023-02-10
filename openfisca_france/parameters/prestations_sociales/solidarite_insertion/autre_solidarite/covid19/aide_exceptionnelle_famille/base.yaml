@@ -10,7 +10,7 @@ values:
     value: null
 metadata:
   short_label: Montant de base
-  description_en: Exceptional benefit - COVID-19 crisis
+  label_en: Exceptional benefit - COVID-19 crisis
   ipp_csv_id: aide_exceptionnelle_covid_base
   unit: currency
   reference:

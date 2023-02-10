@@ -102,7 +102,7 @@ values:
     value: null
 metadata:
   short_label: Traitement brut annuel
-  description_en: Contributions to the Solidarity Fund (FDS)
+  label_en: Contributions to the Solidarity Fund (FDS)
   unit: currency
   reference:
     1989-09-01:

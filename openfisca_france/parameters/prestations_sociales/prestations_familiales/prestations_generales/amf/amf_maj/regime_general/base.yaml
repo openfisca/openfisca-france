@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Base
-  description_en: "Allowance for stay-at-home-mother (AMF): Extra allowances"
+  label_en: "Allowance for stay-at-home-mother (AMF): Extra allowances"
   ipp_csv_id: maj_gene_base
   unit: currency
   reference:

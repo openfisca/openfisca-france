@@ -4,7 +4,7 @@ values:
     value: 2.21
 metadata:
   short_label: Seuil inférieur
-  description_en: Attendance allowance for individuals living in a nursing home (APA)
+  label_en: Attendance allowance for individuals living in a nursing home (APA)
   ipp_csv_id: seuil_inferieur
   unit: /1
   reference:

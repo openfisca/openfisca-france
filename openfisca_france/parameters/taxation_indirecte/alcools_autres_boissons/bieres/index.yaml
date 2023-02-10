@@ -1,6 +1,6 @@
 description: Bières
 metadata:
-  description_en: Biers
+  label_en: Biers
   order:
   - bieres_moins_28
   - bieres_plus_28

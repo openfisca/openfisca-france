@@ -40,7 +40,7 @@ values:
     value: 21.04
 metadata:
   short_label: Montant minimal ARE-formation
-  description_en: "UI scheme: lump-sum and minimum"
+  label_en: "UI scheme: lump-sum and minimum"
   unit: currency
   reference:
     1968-07-22:

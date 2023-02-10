@@ -1,7 +1,7 @@
 description: Allocations chômage pour les personnes en préretraite
 metadata:
   short_label: Préretraites
-  description_en: Early retirement benefits
+  label_en: Early retirement benefits
   order:
   - alloc_transitoire_securite
   - prime_transitoire_solidarite

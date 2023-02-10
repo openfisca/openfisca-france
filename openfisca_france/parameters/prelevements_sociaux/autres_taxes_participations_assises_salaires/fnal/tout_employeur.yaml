@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Tout employeur
-  description_en: Contributions to the National Fund for Housing (FNAL)
+  label_en: Contributions to the National Fund for Housing (FNAL)
   ipp_csv_id: fnal_p_0_1
   unit: /1
   reference:

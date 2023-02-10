@@ -1,7 +1,7 @@
 description: Rémunération dans la fonction publique
 metadata:
   short_label: Rémunération Fonction publique
-  description_en: Pays in the public sector
+  label_en: Pays in the public sector
   order:
   - sft
   - indemnite_residence

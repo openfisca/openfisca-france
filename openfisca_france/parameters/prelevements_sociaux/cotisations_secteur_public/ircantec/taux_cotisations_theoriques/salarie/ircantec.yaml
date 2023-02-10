@@ -54,7 +54,7 @@ brackets:
       value: 0
 metadata:
   short_label: Contribution salarié
-  description_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
+  label_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
   ipp_csv_id:
     rate: ircantec_s_0_1_theo, ircantec_s_1_4ou8_75_theo
   reference:

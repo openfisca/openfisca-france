@@ -8,7 +8,7 @@ values:
     value: 1.5
 metadata:
   short_label: Menage - 0 personnes à charge
-  description_en: Parameters for new home-buyers and students residences
+  label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: n_coup_al
   unit: /1
   reference:

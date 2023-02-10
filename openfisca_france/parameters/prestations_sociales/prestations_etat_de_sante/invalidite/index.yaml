@@ -1,7 +1,7 @@
 description: Prestations sociales liées à l'Invalidité
 metadata:
   short_label: Invalidité
-  description_en: Disability
+  label_en: Disability
   order:
   - aah
   - caah

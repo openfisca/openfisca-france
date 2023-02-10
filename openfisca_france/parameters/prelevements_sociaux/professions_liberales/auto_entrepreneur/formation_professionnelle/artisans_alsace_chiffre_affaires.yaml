@@ -8,7 +8,7 @@ values:
     value: 0.003
 metadata:
   short_label: Taux - Prestation de services (artisans) Alsace
-  description_en: Self-employed specific scheme (auto-entrepreneurs)
+  label_en: Self-employed specific scheme (auto-entrepreneurs)
   ipp_csv_id: auto_art_form_als_ca
   unit: /1
   reference:

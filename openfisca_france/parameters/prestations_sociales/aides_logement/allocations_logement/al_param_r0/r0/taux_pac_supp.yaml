@@ -12,7 +12,7 @@ values:
     value: 328
 metadata:
   short_label: Majoration par personne à charge supplémentaire
-  description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
+  label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   ipp_csv_id: r0_majoration_par_pac
   unit: currency
   reference:

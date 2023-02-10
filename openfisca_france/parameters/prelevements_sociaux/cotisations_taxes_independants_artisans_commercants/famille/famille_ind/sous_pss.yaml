@@ -14,7 +14,7 @@ values:
     value: null
 metadata:
   short_label: Taux de cotisation sous PSS
-  description_en: SSCs for family benefits (independent workers)
+  label_en: SSCs for family benefits (independent workers)
   ipp_csv_id: fam_inde_0_1
   unit: /1
   reference:

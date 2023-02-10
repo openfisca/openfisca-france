@@ -1,7 +1,7 @@
 description: Revenu de solidarité active
 metadata:
   short_label: RSA
-  description_en: Active solidarity income (RSA)
+  label_en: Active solidarity income (RSA)
   order:
   - rsa_cond
   - rsa_m

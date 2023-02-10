@@ -4,5 +4,5 @@ values:
     value: 24
 metadata:
   short_label: Âge des personnes à charge
-  description_en: "Minimum insertion income (RMI): General conditions"
+  label_en: "Minimum insertion income (RMI): General conditions"
   unit: year

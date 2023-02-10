@@ -28,7 +28,7 @@ brackets:
       value: null
 metadata:
   short_label: Non-cadre - Tranche 2 (après 97)
-  description_en: Pension contributions for non-executives (ARRCO)
+  label_en: Pension contributions for non-executives (ARRCO)
   ipp_csv_id:
     rate: arrco_ap97_p_1_3
   reference:

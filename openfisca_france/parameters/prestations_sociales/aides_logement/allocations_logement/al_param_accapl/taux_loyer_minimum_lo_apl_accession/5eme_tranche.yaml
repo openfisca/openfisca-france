@@ -4,7 +4,7 @@ values:
     value: 0.32
 metadata:
   short_label: 5ème tranche
-  description_en: Parameters for new home-buyers (APL)
+  label_en: Parameters for new home-buyers (APL)
   ipp_csv_id: lo_apl_tx5
   unit: /1
   reference:

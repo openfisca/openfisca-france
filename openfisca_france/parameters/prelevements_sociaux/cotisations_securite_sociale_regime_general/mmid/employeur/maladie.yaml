@@ -46,7 +46,7 @@ brackets:
       value: 0.13
 metadata:
   short_label: Barème employeur
-  description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+  label_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
   ipp_csv_id:
     rate: mmid_p_0_1, mmid_p_0_
   reference:

@@ -4,7 +4,7 @@ values:
     value: 45.57
 metadata:
   short_label: Majoration du loyer minimum (Lo)
-  description_en: Parameters for new home-buyers (APL)
+  label_en: Parameters for new home-buyers (APL)
   ipp_csv_id: maj_lo_apl
   unit: currency
   reference:

@@ -1,7 +1,7 @@
 description: Cotisations et taxes des indépendants artisans commerçants industriels
 metadata:
   short_label: Indépendants Artisans et commerçants
-  description_en: "Contributions and taxes on self-employed: sales retailers and craftsmen"
+  label_en: "Contributions and taxes on self-employed: sales retailers and craftsmen"
   order:
   - mmid
   - ret_ac

@@ -22,7 +22,7 @@ values:
     value: null
 metadata:
   short_label: Montant
-  description_en: "Back-to-school allowance (ARS): Exceptionnal extra allowance"
+  label_en: "Back-to-school allowance (ARS): Exceptionnal extra allowance"
   ipp_csv_id: maj_ars
   unit: currency
   reference:

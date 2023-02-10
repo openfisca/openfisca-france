@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Taux Réduit
-  description_en: Contribution levied on options and shares granted for free
+  label_en: Contribution levied on options and shares granted for free
   ipp_csv_id: cont_opt_s_tx2
   unit: /1
   reference:

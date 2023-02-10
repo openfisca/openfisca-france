@@ -40,7 +40,7 @@ brackets:
       value: 0.111
 metadata:
   short_label: Barème Hors NBI
-  description_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
+  label_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
   ipp_csv_id: cnracl_s_ti
   reference:
     1947-09-19:

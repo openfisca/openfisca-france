@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Seuil d'impôt sur le revenu
-  description_en: CSG - rates on retirement incomes
+  label_en: CSG - rates on retirement incomes
   ipp_csv_id: seuil_csg_pens_red_ir
   unit: currency
   reference:

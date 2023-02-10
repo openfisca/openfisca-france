@@ -4,7 +4,7 @@ values:
     value: 0.0588
 metadata:
   short_label: Un enfant à charge
-  description_en: "Family allowances (AF): Extra allowances for oversea territories"
+  label_en: "Family allowances (AF): Extra allowances for oversea territories"
   unit: BMAF
   reference:
     1991-08-06:

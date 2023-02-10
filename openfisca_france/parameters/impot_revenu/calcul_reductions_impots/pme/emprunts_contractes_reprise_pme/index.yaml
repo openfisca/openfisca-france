@@ -1,7 +1,7 @@
 description: Emprunts pour reprise des PME (1993 -)
 metadata:
   short_label: Emprunts pour reprise de PME
-  description_en: Small Firms Capital Subscription (PME) (1993 -)
+  label_en: Small Firms Capital Subscription (PME) (1993 -)
   order:
     - taux
     - plafond_1

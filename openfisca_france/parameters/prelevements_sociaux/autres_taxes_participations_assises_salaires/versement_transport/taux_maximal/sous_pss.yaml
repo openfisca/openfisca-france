@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Sous PSS
-  description_en: Transport tax (VT) (contribution to public transports)
+  label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_p_0_1
   unit: /1
   reference:

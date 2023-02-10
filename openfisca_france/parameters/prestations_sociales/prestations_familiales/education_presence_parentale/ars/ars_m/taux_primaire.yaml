@@ -14,7 +14,7 @@ values:
     value: 0.8972
 metadata:
   short_label: Montant pour la 1ère tranche d'âge
-  description_en: "Back-to-school allowance (ARS): Amounts"
+  label_en: "Back-to-school allowance (ARS): Amounts"
   ipp_csv_id: ars610
   unit: BMAF
   reference:

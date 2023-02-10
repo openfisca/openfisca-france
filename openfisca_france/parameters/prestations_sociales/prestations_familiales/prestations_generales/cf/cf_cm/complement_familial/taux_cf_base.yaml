@@ -6,7 +6,7 @@ values:
     value: 0.4165
 metadata:
   short_label: Taux de base
-  description_en: "Family complement (CF): General conditions and amounts"
+  label_en: "Family complement (CF): General conditions and amounts"
   ipp_csv_id: tx_cf
   unit: BMAF
   reference:

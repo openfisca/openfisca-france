@@ -100,7 +100,7 @@ brackets:
       value: null
 metadata:
   short_label: Barème (Tranches B et C)
-  description_en: Pension contributions for executives (AGIRC)
+  label_en: Pension contributions for executives (AGIRC)
   ipp_csv_id:
     rate: agirc_s_1_4, agirc_s_4_8
   reference:

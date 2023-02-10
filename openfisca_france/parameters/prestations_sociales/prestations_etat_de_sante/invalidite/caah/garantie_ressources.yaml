@@ -46,7 +46,7 @@ values:
     value: null
 metadata:
   short_label: Garanties de ressources
-  description_en: Additional adult disability allowance (CAAH)
+  label_en: Additional adult disability allowance (CAAH)
   unit: currency
   reference:
     2005-07-01:

@@ -4,7 +4,7 @@ values:
     value: 6.8
 metadata:
   short_label: Montant journalier
-  description_en: "Asylum-seeker allowance (ADA): Amounts"
+  label_en: "Asylum-seeker allowance (ADA): Amounts"
   unit: currency
   reference:
     2015-11-01:

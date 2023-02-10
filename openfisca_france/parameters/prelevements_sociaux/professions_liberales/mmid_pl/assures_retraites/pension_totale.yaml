@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Taux sur Pension totale
-  description_en: SSCs for sickness and maternity benefits (professionals)
+  label_en: SSCs for sickness and maternity benefits (professionals)
   ipp_csv_id: mmid_plib_pens_0_
   unit: /1
   reference:

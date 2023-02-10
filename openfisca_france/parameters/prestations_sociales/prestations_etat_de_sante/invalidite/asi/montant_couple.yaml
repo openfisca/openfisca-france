@@ -30,7 +30,7 @@ values:
     value: 8237.26
 metadata:
   short_label: Montant annuel maximal pour un couple
-  description_en: "Supplementary disability allowance (ASI): Amount"
+  label_en: "Supplementary disability allowance (ASI): Amount"
   ipp_csv_id: asi2
   unit: currency
   reference:

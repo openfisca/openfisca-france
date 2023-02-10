@@ -8,7 +8,7 @@ values:
     value: 0.1
 metadata:
   short_label: Taux Plein
-  description_en: Contribution levied on options and shares granted for free
+  label_en: Contribution levied on options and shares granted for free
   ipp_csv_id: cont_opt_s_tx1
   unit: /1
   reference:

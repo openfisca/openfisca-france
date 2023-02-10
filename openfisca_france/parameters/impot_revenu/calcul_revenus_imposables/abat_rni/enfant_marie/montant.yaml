@@ -95,7 +95,7 @@ values:
 metadata:
   short_label: Abattement
   last_review: "2023-01-05"
-  description_en: Tax allowance for net taxable income
+  label_en: Tax allowance for net taxable income
   ipp_csv_id: abt_enfmaries
   unit: currency
   reference:

@@ -4,7 +4,7 @@ values:
     value: 0.25
 metadata:
   short_label: Ressortissant de l'EEE
-  description_en: "Active solidarity income (RSA): General conditions"
+  label_en: "Active solidarity income (RSA): General conditions"
   unit: year
   reference:
     2009-06-01:

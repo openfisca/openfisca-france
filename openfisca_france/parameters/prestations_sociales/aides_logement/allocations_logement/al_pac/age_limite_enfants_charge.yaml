@@ -6,7 +6,7 @@ values:
     value: 21
 metadata:
   short_label: Âge limite pour les enfants à charge
-  description_en: Definition of dependants
+  label_en: Definition of dependants
   ipp_csv_id: ag_max_pac_alf
   unit: year
   reference:

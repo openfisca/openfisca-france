@@ -1,7 +1,7 @@
 description: Aides pour le logement
 metadata:
   short_label: Aides Logement
-  description_en: Housing allowances
+  label_en: Housing allowances
   order:
   - action_logement
   - allocations_logement

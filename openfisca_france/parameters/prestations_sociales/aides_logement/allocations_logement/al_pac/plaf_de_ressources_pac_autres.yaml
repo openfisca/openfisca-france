@@ -34,7 +34,7 @@ values:
     value: 13548
 metadata:
   short_label: Plafonds de ressources personnes à charge (autres que les enfants)
-  description_en: Definition of dependants
+  label_en: Definition of dependants
   unit: currency
   reference:
     1991-11-11:

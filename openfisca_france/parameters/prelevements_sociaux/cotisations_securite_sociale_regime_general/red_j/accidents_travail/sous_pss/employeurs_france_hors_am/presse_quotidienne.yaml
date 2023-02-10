@@ -14,7 +14,7 @@ values:
     value: 0.0248
 metadata:
   short_label: Presse quotidienne
-  description_en: SSCs for freelance journalists (1964-1974)
+  label_en: SSCs for freelance journalists (1964-1974)
   ipp_csv_id: acc_pq_p_0_1
   unit: /1
   reference:

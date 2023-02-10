@@ -10,7 +10,7 @@ values:
     value: 0.068
 metadata:
   short_label: Taux
-  description_en: CSG - rates on work incomes
+  label_en: CSG - rates on work incomes
   ipp_csv_id: csg_act_ded
   unit: /1
   reference:

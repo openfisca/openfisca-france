@@ -1,7 +1,7 @@
 description: Taux de participation personnel complémentaire (TL) (après la réforme de 2001) des Allocations Logement (AL)
 metadata:
   short_label: TL
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  label_en: Parameters for the rental sector (after the 2001 reform)
   order:
   - tl_1ere_tranche
   - tl_2eme_tranche

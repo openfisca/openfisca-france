@@ -4,7 +4,7 @@ values:
     value: 0.5
 metadata:
   short_label: Célibataire avec un enfant ou Couples
-  description_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
+  label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: rsa_rmi_coup
   unit: /1
   reference:

@@ -66,7 +66,7 @@ values:
     value: 609.8
 metadata:
   short_label: Montant
-  description_en: Additive allowance for spouse care (amount)
+  label_en: Additive allowance for spouse care (amount)
   ipp_csv_id: maj_avts_conj
   unit: currency
   reference:

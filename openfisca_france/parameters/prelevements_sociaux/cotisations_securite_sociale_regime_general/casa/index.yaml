@@ -1,7 +1,7 @@
 description: Contribution additionnelle solidarité autonomie (CASA) du régime général de la sécurité sociale (SS)
 metadata:
   short_label: Contribution additionnelle solidarité autonomie (CASA)
-  description_en: Social contributions
+  label_en: Social contributions
   order:
   - pensions_retraite_preretraite_invalidite
   - seuil_exoneration_irpp_paye_en_n_1

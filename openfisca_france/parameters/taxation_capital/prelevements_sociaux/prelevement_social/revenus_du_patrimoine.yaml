@@ -14,7 +14,7 @@ values:
     value: null
 metadata:
   short_label: Revenus du patrimoine
-  description_en: Other social levies on financial income
+  label_en: Other social levies on financial income
   ipp_csv_id: tx_ps_patr
   unit: /1
   reference:

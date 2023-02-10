@@ -10,7 +10,7 @@ values:
     value: 0.208
 metadata:
   short_label: 3ème tranche
-  description_en: Parameters for new home-buyers and students residences
+  label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: lo_tx3
   unit: /1
   reference:

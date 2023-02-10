@@ -4,6 +4,6 @@ values:
     value: 70
 metadata:
   short_label: Multiple personne seule
-  description_en: Special UI scheme
+  label_en: Special UI scheme
   unit: currency
 documentation: ""

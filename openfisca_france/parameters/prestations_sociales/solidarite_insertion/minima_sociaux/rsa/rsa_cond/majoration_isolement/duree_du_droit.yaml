@@ -4,7 +4,7 @@ values:
     value: 12
 metadata:
   short_label: Durée du droit
-  description_en: "Active solidarity income (RSA): General conditions"
+  label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: duree_droit_rsa
   unit: month
   reference:

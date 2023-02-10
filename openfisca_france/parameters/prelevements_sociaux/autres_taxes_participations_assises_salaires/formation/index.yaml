@@ -1,7 +1,7 @@
 description: Taxes pour la formation professionnelle, parmi les autres taxes et participations assises sur les salaires
 metadata:
   short_label: Formation professionnelle
-  description_en: Employer's participation to lifelong professional training
+  label_en: Employer's participation to lifelong professional training
   order:
   - employeur_tout_salaire
   - moins_10_salaries

@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Mois de grossesse pour ouverture droit
-  description_en: "Allowance for Young Children (APJE): General conditions and amount"
+  label_en: "Allowance for Young Children (APJE): General conditions and amount"
   ipp_csv_id: nb_mois
   unit: month
   reference:

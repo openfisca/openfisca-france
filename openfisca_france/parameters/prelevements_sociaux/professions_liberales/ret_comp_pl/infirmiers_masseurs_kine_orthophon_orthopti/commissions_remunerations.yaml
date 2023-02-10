@@ -4,7 +4,7 @@ values:
     value: 0.03
 metadata:
   short_label: Commissions et rémunérations brutes
-  description_en: Contribution for complementary pension scheme (professionals)
+  label_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: retc_aux_0_
   unit: /1
   reference:

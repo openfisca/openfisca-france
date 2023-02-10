@@ -10,7 +10,7 @@ values:
     value: 6179
 metadata:
   short_label: RFR3 - Demi-part suppl.
-  description_en: CSG - rates on retirement incomes
+  label_en: CSG - rates on retirement incomes
   ipp_csv_id: seuil_csg_pens_red3_demip
   unit: currency
   reference:

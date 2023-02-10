@@ -4,7 +4,7 @@ values:
     value: 0.453
 metadata:
   short_label: Majoration maximum répit
-  description_en: Attendance allowance for individuals living at home (APA)
+  label_en: Attendance allowance for individuals living at home (APA)
   unit: /1
 documentation: |-
   Notes :

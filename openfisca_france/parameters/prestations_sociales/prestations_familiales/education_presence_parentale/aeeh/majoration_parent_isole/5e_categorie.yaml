@@ -4,7 +4,7 @@ values:
     value: 0.73
 metadata:
   short_label: Montant majoration parent isolé, si complément de 5ème catégorie
-  description_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
+  label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   ipp_csv_id: aeeh_majo5
   unit: BMAF
   reference:

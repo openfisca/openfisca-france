@@ -10,7 +10,7 @@ values:
     value: 717
 metadata:
   short_label: IM Plafond
-  description_en: Maximal increased index
+  label_en: Maximal increased index
   ipp_csv_id: im_plafond
   reference:
     1985-11-01:

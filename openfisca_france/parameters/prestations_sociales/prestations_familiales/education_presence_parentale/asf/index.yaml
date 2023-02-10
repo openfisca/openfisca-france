@@ -1,7 +1,7 @@
 description: Allocation de soutien familial (ASF)
 metadata:
   short_label: Allocation de soutien familial
-  description_en: "Family support allowance (ASF): Amounts"
+  label_en: "Family support allowance (ASF): Amounts"
   order:
   - montant_asf
   - montant_asf_dans_calcul_rsa_ppa

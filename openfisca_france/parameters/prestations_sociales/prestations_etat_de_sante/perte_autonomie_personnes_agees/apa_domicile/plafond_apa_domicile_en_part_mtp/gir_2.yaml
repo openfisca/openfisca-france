@@ -6,7 +6,7 @@ values:
     value: 1.247
 metadata:
   short_label: GIR 2
-  description_en: Attendance allowance for individuals living at home (APA)
+  label_en: Attendance allowance for individuals living at home (APA)
   unit: /1
   reference:
     2002-01-01:

@@ -1,7 +1,7 @@
 description: Valeur du point d'indice de la Fonction Publique
 metadata:
   short_label: Point d'indice
-  description_en: Index point of public sector
+  label_en: Index point of public sector
   reference:
     1961-05-01:
       title: Arrété du 07/09/1961

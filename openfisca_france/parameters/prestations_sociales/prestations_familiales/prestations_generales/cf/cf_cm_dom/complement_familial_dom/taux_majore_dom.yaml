@@ -18,7 +18,7 @@ values:
     value: 0.6248
 metadata:
   short_label: Taux majoré
-  description_en: "Family complement (CF): Thresholds for means-testing in oversea territories"
+  label_en: "Family complement (CF): Thresholds for means-testing in oversea territories"
   unit: BMAF
   reference:
     2002-01-01:

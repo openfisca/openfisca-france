@@ -240,7 +240,7 @@ values:
     value: 11.27
 metadata:
   short_label: SMIC horaire brut
-  description_en: Minimum wage - SMIC
+  label_en: Minimum wage - SMIC
   ipp_csv_id: smic_h
   unit: currency
   reference:

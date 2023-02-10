@@ -16,7 +16,7 @@ brackets:
       value: 0.0044
 metadata:
   short_label: En Alsace-Moselle
-  description_en: Apprenticeship tax (tax for the financing of apprenticeship)
+  label_en: Apprenticeship tax (tax for the financing of apprenticeship)
   ipp_csv_id: appren_am_p_0_
   reference:
     1972-07-01:

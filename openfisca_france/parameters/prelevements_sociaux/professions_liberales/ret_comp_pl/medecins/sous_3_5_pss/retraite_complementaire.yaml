@@ -28,7 +28,7 @@ values:
     value: 0.098
 metadata:
   short_label: Taux
-  description_en: Contribution for complementary pension scheme (professionals)
+  label_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: retc_med_0_35
   unit: /1
   reference:

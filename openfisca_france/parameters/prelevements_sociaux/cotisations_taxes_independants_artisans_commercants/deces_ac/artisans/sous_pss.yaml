@@ -18,7 +18,7 @@ values:
     value: 0.013
 metadata:
   short_label: Taux Artisan
-  description_en: SSCs for disability and death benefits (sales retailers and craftsmen)
+  label_en: SSCs for disability and death benefits (sales retailers and craftsmen)
   ipp_csv_id: id_art_0_1
   unit: /1
   reference:

@@ -1,7 +1,7 @@
 description: Taux (en % de la BMAF) des Allocations Familiales (AF)
 metadata:
   short_label: Taux
-  description_en: "Family allowances (AF): General conditions and amount"
+  label_en: "Family allowances (AF): General conditions and amount"
   order:
   - enf2
   - enf3

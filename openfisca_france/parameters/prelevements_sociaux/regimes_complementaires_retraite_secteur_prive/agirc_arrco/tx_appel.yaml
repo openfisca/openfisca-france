@@ -4,7 +4,7 @@ values:
     value: 1.27
 metadata:
   short_label: Taux d'appel
-  description_en: Complementary pension contributions
+  label_en: Complementary pension contributions
   unit: /1
   reference:
     2019-01-01:

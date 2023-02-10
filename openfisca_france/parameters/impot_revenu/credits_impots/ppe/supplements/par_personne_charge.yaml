@@ -20,7 +20,7 @@ values:
     value: null
 metadata:
   short_label: Par personne à charge
-  description_en: Employment Allowance (2001 - 2015)
+  label_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: supp_ppe_enf
   unit: currency
   reference:

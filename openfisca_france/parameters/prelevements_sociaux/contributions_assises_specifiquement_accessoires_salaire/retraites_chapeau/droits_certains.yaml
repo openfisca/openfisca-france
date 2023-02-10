@@ -6,7 +6,7 @@ values:
     value: 0.297
 metadata:
   short_label: Taux Retraites à droits certains
-  description_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
+  label_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
   ipp_csv_id: etchap_droits_certains
   unit: /1
   reference:

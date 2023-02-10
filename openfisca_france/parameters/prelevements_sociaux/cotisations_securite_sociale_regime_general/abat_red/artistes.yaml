@@ -4,7 +4,7 @@ values:
     value: 0.3
 metadata:
   short_label: Artistes
-  description_en: SSCs rebate for artists, physicians and journalists (1975-2016)
+  label_en: SSCs rebate for artists, physicians and journalists (1975-2016)
   ipp_csv_id: abat_a
   unit: /1
   last_review: "2016-01-01"

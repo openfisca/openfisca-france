@@ -4,7 +4,7 @@ values:
     value: 0.9662
 metadata:
   short_label: Taux plein
-  description_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
+  label_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
   unit: BMAF
   reference:
     2015-01-01:

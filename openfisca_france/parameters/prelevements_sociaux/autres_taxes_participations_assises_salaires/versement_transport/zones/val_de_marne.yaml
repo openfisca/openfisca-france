@@ -28,7 +28,7 @@ values:
     value: 0.0295
 metadata:
   short_label: Val de Marne
-  description_en: Transport tax (VT) (contribution to public transports)
+  label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_94
   unit: /1
   reference:

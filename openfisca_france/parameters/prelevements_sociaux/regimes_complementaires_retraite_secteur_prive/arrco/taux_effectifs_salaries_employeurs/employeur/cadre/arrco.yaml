@@ -50,7 +50,7 @@ brackets:
       value: null
 metadata:
   short_label: Cadre - Tranche 1
-  description_en: Pension contributions for non-executives (ARRCO)
+  label_en: Pension contributions for non-executives (ARRCO)
   ipp_csv_id:
     rate: arrco_p_0_1
   reference:

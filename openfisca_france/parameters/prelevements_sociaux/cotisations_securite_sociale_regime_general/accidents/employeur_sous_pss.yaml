@@ -18,7 +18,7 @@ values:
     value: null
 metadata:
   short_label: Taux employeur sous PSS
-  description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
+  label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   ipp_csv_id: acc_p_0_1
   unit: /1
   reference:

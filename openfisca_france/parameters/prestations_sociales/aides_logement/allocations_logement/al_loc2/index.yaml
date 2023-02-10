@@ -1,7 +1,7 @@
 description: Plafonds de loyer (après la réforme de 2001) des Allocations Logement (AL)
 metadata:
   short_label: Plafonds de loyer (après 2001)
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  label_en: Parameters for the rental sector (after the 2001 reform)
   order:
   - par_zone
   - montant_forfaitaire_participation_minimale_po

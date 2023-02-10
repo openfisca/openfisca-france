@@ -60,7 +60,7 @@ values:
     value: 352
 metadata:
   short_label: Traitement minimal dans la FP
-  description_en: Minimum wage, civil servants
+  label_en: Minimum wage, civil servants
   unit: /1
   reference:
     1985-07-01:

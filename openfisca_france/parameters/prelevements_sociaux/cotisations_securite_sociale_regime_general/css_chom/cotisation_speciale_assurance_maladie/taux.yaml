@@ -12,7 +12,7 @@ values:
     value: null
 metadata:
   short_label: Taux
-  description_en: SSCs on unemployment benefits
+  label_en: SSCs on unemployment benefits
   ipp_csv_id: chom_mmid_tx
   unit: /1
   last_review: "1997-01-01"

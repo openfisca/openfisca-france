@@ -1,7 +1,7 @@
 description: Taux appliqués aux différentes tranches d'âge, de la majoration pour les enfants (en % de la BMAF) des Allocations Familiales (AF)
 metadata:
   short_label: Taux
-  description_en: "Family allowances (AF): Extra allowances"
+  label_en: "Family allowances (AF): Extra allowances"
   order:
   - taux_de_la_tranche_1
   - taux_de_la_tranche_2

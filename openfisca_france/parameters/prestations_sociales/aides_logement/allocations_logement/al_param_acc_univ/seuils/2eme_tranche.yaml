@@ -40,7 +40,7 @@ values:
     value: 2047.61
 metadata:
   short_label: 2ème tranche
-  description_en: Parameters for new home-buyers and students residences
+  label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: seuil_tr2_lo
   unit: currency
   reference:

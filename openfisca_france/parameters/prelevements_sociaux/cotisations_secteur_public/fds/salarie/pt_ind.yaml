@@ -84,7 +84,7 @@ values:
     value: null
 metadata:
   short_label: Valeur annuelle du point
-  description_en: Contributions to the Solidarity Fund (FDS)
+  label_en: Contributions to the Solidarity Fund (FDS)
   ipp_csv_id: pt_ind
   unit: currency
   reference:

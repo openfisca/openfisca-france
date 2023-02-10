@@ -12,7 +12,7 @@ values:
     value: 7.53
 metadata:
   short_label: Montant horaire minimum
-  description_en: Exceptional benefit - COVID-19 crisis
+  label_en: Exceptional benefit - COVID-19 crisis
   unit: currency
   reference:
     2020-03-01:

@@ -4,7 +4,7 @@ values:
     value: 0.5
 metadata:
   short_label: Taux
-  description_en: Tax reductions for investment and donations
+  label_en: Tax reductions for investment and donations
   unit: /1
   reference:
     2018-01-01:

@@ -6,7 +6,7 @@ values:
     value: 0.7129
 metadata:
   short_label: Activité 50% -80% durée légale
-  description_en: "Parental leave allowance (APE): Conditions and amounts"
+  label_en: "Parental leave allowance (APE): Conditions and amounts"
   ipp_csv_id: ape_taux_80
   unit: BMAF
   reference:

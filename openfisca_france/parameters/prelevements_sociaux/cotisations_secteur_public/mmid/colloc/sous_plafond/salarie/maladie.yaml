@@ -22,7 +22,7 @@ brackets:
       value: null
 metadata:
   short_label: Barème salarié
-  description_en: Health insurance contributions - local governments and hospital administration
+  label_en: Health insurance contributions - local governments and hospital administration
   ipp_csv_id: mmid_h_s_0_1
   reference:
     1967-10-01:

@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: 3ème enfant et plus
-  description_en: "Allowance for Young Children (APJE): Thresholds for means-testing"
+  label_en: "Allowance for Young Children (APJE): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_apje_adopt_enf3pl
   unit: /1
   reference:

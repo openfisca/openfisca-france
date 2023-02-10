@@ -1,7 +1,7 @@
 description: Allocation parent isolé (API)
 metadata:
   short_label: API
-  description_en: "Single parent allowance (API): General conditions"
+  label_en: "Single parent allowance (API): General conditions"
   order:
   - api_cond
   - api_m

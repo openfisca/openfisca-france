@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Durée maximale
-  description_en: "Parental presence allowance (AA): Amounts"
+  label_en: "Parental presence allowance (AA): Amounts"
   ipp_csv_id: app_duree_max
   unit: year
   reference:

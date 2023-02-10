@@ -4,7 +4,7 @@ values:
     value: 3
 metadata:
   short_label: Seuil de versement
-  description_en: Attendance allowance for individuals living at home (APA)
+  label_en: Attendance allowance for individuals living at home (APA)
   ipp_csv_id: seuil_versement_en_part_smic_brut_horaire
   unit: SMIC
   reference:

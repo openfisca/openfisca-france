@@ -14,7 +14,7 @@ values:
     value: 69933
 metadata:
   short_label: Plafond de ressources - Tranche 1
-  description_en: "Family allowances (AF): Thresholds for means-testing"
+  label_en: "Family allowances (AF): Thresholds for means-testing"
   ipp_csv_id: plaf_t1_2enf
   unit: currency
   reference:

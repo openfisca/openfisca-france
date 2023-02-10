@@ -4,7 +4,7 @@ values:
     value: 1
 metadata:
   short_label: Durée versement majoration
-  description_en: "Family allowances (AF): Extra allowances for oversea territories"
+  label_en: "Family allowances (AF): Extra allowances for oversea territories"
   ipp_csv_id: duree_maj_dom
   unit: year
   reference:

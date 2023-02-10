@@ -13,7 +13,7 @@ values:
 metadata:
   short_label: Pourcentage du SJR
   last_review: "2022-01-20"
-  description_en: "UI scheme: rates and maximum"
+  label_en: "UI scheme: rates and maximum"
   ipp_csv_id: base_prct
   unit: /1
   reference:

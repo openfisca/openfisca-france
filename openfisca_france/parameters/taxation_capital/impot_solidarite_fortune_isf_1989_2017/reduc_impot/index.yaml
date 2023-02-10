@@ -1,7 +1,7 @@
 description: Réductions pour dons ou investissement de l'impôt de solidarité sur la fortune
 metadata:
   short_label: Réductions pour dons ou investissement
-  description_en: Tax reductions for investment and donations
+  label_en: Tax reductions for investment and donations
   order:
   - reduction_investissements_capital_pme
   - reduction_investissements_dans_fcpi_ou_fip_dans_pme

@@ -12,7 +12,7 @@ values:
     value: 0.006
 metadata:
   short_label: Taux sur tout salaire
-  description_en: SSCs for old-age insurance (sales retailers and craftsmen)
+  label_en: SSCs for old-age insurance (sales retailers and craftsmen)
   unit: /1
   reference:
     1973-01-01:

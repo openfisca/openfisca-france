@@ -4,7 +4,7 @@ values:
     value: 3896.18
 metadata:
   short_label: 3ème tranche
-  description_en: Parameters for new home-buyers (APL)
+  label_en: Parameters for new home-buyers (APL)
   ipp_csv_id: seuil_tr3_lo_apl
   unit: currency
   reference:

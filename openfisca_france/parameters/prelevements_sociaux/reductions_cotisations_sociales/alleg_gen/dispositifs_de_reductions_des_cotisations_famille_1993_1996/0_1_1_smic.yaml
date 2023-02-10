@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: De 0 à 1,1 SMIC
-  description_en: Global reduction in SSCs (1993-2003)
+  label_en: Global reduction in SSCs (1993-2003)
   ipp_csv_id: tx_csp_exo_fam_1_1
   unit: /1
   reference:

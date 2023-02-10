@@ -24,7 +24,7 @@ values:
     value: null
 metadata:
   short_label: Taux d'appel
-  description_en: Pension contributions for non-executives (ARRCO)
+  label_en: Pension contributions for non-executives (ARRCO)
   unit: /1
   reference:
     1982-01-01:

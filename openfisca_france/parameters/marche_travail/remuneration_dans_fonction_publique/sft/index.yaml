@@ -1,7 +1,7 @@
 description: Montant du supplément familial de traitement (SFT)
 metadata:
   short_label: Supplément familial de traitement
-  description_en: Family income supplement
+  label_en: Family income supplement
   reference:
     1999-07-01:
       title: Décret 99-491 du 10/06/1999

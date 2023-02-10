@@ -6,7 +6,7 @@ values:
     value: 0.136
 metadata:
   short_label: En pourcentage du PSS
-  description_en: Definition of a biactive couple
+  label_en: Definition of a biactive couple
   ipp_csv_id: facteur_yamin_biact_pss
   unit: PSS
   reference:

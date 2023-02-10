@@ -6,7 +6,7 @@ values:
     value: 0.005
 metadata:
   short_label: Produits de placement
-  description_en: CRDS on financial income
+  label_en: CRDS on financial income
   ipp_csv_id: tx_crds_rk_plac
   unit: /1
   reference:

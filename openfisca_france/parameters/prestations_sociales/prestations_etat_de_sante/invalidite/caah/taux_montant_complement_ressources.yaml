@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Taux du montant mensuel
-  description_en: Additional adult disability allowance (CAAH)
+  label_en: Additional adult disability allowance (CAAH)
   unit: /1
   reference:
     1994-07-01:

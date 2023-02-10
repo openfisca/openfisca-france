@@ -4,7 +4,7 @@ values:
     value: 0.06
 metadata:
   short_label: Par enfant supplémentaire au delà de 3 enfants
-  description_en: Family income supplement (SFT)
+  label_en: Family income supplement (SFT)
   ipp_csv_id: txenf4
   unit: /1
   reference:

@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Taux sous 5 PSS
-  description_en: SSCs for old-age insurance (professionals)
+  label_en: SSCs for old-age insurance (professionals)
   ipp_csv_id: ret_plib_0_5
   unit: /1
   reference:

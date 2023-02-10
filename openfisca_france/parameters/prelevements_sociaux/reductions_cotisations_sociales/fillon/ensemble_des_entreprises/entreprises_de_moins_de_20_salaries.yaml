@@ -24,7 +24,7 @@ values:
     value: 0.3246
 metadata:
   short_label: Coefficient maximal pour les employeurs de moins de 20 salariés
-  description_en: General SSC reductions, so called Fillon reductions (2003-2016)
+  label_en: General SSC reductions, so called Fillon reductions (2003-2016)
   ipp_csv_id: tx_fillon_20
   unit: /1
   reference:

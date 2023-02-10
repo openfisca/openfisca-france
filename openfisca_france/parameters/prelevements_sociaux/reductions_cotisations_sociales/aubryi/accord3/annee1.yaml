@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Année 1
-  description_en: Incentives to the reduction of worked time ("RTT") (Aubry I)
+  label_en: Incentives to the reduction of worked time ("RTT") (Aubry I)
   unit: currency
   last_review: "2002-01-01"
 documentation: |-

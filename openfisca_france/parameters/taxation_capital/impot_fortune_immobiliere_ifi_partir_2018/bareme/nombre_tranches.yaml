@@ -4,7 +4,7 @@ values:
     value: 5
 metadata:
   short_label: Nombre de tranches
-  description_en: Wealth tax schedule
+  label_en: Wealth tax schedule
   ipp_csv_id: nbtranches_ifi
   reference:
     2018-01-01:

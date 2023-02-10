@@ -30,7 +30,7 @@ values:
     value: null
 metadata:
   short_label: Taux sous 5 PSS
-  description_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
   ipp_csv_id: mmid_ac_0_5
   unit: /1
   reference:

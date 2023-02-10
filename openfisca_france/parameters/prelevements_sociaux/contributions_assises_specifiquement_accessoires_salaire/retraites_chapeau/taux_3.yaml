@@ -8,7 +8,7 @@ values:
     value: 0.48
 metadata:
   short_label: Taux 3
-  description_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
+  label_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
   ipp_csv_id: retchap_tx3
   unit: /1
   reference:

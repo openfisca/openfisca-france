@@ -8,7 +8,7 @@ values:
     value: 1
 metadata:
   short_label: Affiliation 3-6 mois
-  description_en: SSCs on unemployment benefits
+  label_en: SSCs on unemployment benefits
   ipp_csv_id: chom_ret_ass_3_6
   unit: /1
   reference:

@@ -4,7 +4,7 @@ values:
     value: 0.9
 metadata:
   short_label: Valable tout le temps (en % SMIC)
-  description_en: Special UI scheme for economic layoffs (1979-1983)
+  label_en: Special UI scheme for economic layoffs (1979-1983)
   ipp_csv_id: journ_min
   unit: /1
   reference:

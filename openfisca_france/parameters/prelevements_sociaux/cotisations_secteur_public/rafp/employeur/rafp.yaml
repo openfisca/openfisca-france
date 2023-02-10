@@ -8,7 +8,7 @@ brackets:
       value: 0.05
 metadata:
   short_label: Barème
-  description_en: Contributions to the scheme of Additional pension of the public sector (RAFP)
+  label_en: Contributions to the scheme of Additional pension of the public sector (RAFP)
   ipp_csv_id: rafp_p
   reference:
     2005-01-01:

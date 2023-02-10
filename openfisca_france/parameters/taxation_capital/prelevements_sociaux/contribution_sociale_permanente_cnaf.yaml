@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Contribution sociale permanente (CNAF)
-  description_en: Other social levies on financial income
+  label_en: Other social levies on financial income
   ipp_csv_id: tx_contri_cnaf
   unit: /1
   reference:

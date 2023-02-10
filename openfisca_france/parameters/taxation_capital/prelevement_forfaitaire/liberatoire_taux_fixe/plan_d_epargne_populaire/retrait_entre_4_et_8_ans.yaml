@@ -14,7 +14,7 @@ values:
     value: null
 metadata:
   short_label: Retrait entre 4 et 8 ans
-  description_en: Levy in discharge on capital income (1965 - 2012)
+  label_en: Levy in discharge on capital income (1965 - 2012)
   ipp_csv_id: tx_epargne_48
   unit: /1
   reference:

@@ -6,7 +6,7 @@ values:
     value: 3.7
 metadata:
   short_label: 3 personnes à charge
-  description_en: Parameters for new home-buyers and students residences
+  label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: n_3enf
   unit: /1
   reference:

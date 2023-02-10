@@ -34,7 +34,7 @@ values:
     value: 4095.05
 metadata:
   short_label: 4ème tranche (et début 5ème tranche)
-  description_en: Parameters for new home-buyers and students residences
+  label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: seuil_tr4_lo
   unit: currency
   reference:

@@ -1,7 +1,7 @@
 description: Mesure du loyer autres, dont les étudiants en chambres réhabilitées de résidences universitaires, allocations logement (AL)
 metadata:
   short_label: Autres
-  description_en: Measure of rent for students living in university residences
+  label_en: Measure of rent for students living in university residences
   order:
   - personnes_isolees
   - menages

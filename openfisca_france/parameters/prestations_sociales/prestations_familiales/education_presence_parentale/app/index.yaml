@@ -1,7 +1,7 @@
 description: Allocation de présence parentale (APP, 2001-2005)
 metadata:
   short_label: APP
-  description_en: "Parental presence allowance (AA): Amounts"
+  label_en: "Parental presence allowance (AA): Amounts"
   order:
   - montant_taux_plein
   - montant_taux_partiel

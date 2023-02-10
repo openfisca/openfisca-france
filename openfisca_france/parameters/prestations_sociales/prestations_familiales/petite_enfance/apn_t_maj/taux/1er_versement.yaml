@@ -10,7 +10,7 @@ values:
     value: null
 metadata:
   short_label: 1er versement
-  description_en: "Postnatal allowance (APN): Rate and payment"
+  label_en: "Postnatal allowance (APN): Rate and payment"
   ipp_csv_id: tx_versement1
   unit: /1
   reference:

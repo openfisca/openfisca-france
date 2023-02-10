@@ -12,7 +12,7 @@ brackets:
       value: null
 metadata:
   short_label: Barème pour poly-exposés
-  description_en: SSCs for arduous working conditions
+  label_en: SSCs for arduous working conditions
   reference:
     2015-01-01:
     - title: Loi 2014-40 du 20/01/2014 (voir Notes)

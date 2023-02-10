@@ -36,7 +36,7 @@ values:
     value: 0.1775
 metadata:
   short_label: Taux
-  description_en: Elderly insurance for stay-at-home parents (AVPF )
+  label_en: Elderly insurance for stay-at-home parents (AVPF )
   ipp_csv_id: avpf_taux
   unit: /1
   reference:

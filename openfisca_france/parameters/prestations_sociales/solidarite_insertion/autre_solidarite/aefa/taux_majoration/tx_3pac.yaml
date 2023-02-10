@@ -4,7 +4,7 @@ values:
     value: 0.4
 metadata:
   short_label: Au-delà 3e personne à charge incluse
-  description_en: "Exceptional end-of-year benefit (AEFA): amount"
+  label_en: "Exceptional end-of-year benefit (AEFA): amount"
   unit: /1
   reference:
     2003-12-30:

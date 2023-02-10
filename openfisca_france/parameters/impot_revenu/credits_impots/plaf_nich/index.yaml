@@ -1,7 +1,7 @@
 description: Plafonnement des niches
 metadata:
   short_label: Plafond niches
-  description_en: Global ceiling for tax reductions (2009 - )
+  label_en: Global ceiling for tax reductions (2009 - )
   order:
   - taux
   - plafond

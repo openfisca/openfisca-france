@@ -23,7 +23,7 @@ brackets:
       value: null
 metadata:
   short_label: Barème
-  description_en: Health insurance contributions - central government
+  label_en: Health insurance contributions - central government
   ipp_csv_id: mmid_e_s_0_
   reference:
     1967-10-01:

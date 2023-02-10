@@ -85,7 +85,7 @@ values:
 metadata:
   short_label: Cas général
   last_review: "2023-01-05"
-  description_en: Family quotient ceiling and "decote" (1978 - )
+  label_en: Family quotient ceiling and "decote" (1978 - )
   ipp_csv_id: plaf_qf
   unit: currency
   reference:

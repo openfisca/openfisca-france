@@ -1,6 +1,6 @@
 description: Cotisation employeur au régime de l'assurance chômage-emploi
 metadata:
   short_label: Cotisation chômage
-  description_en: Unemployment insurance scheme employer contributions
+  label_en: Unemployment insurance scheme employer contributions
   order:
   - chomage

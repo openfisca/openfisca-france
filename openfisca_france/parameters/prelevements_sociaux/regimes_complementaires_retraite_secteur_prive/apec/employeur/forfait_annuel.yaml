@@ -72,7 +72,7 @@ values:
     value: 12.46
 metadata:
   short_label: Forfait annuel
-  description_en: Contributions for the Association for the employment of executives (APEC)
+  label_en: Contributions for the Association for the employment of executives (APEC)
   ipp_csv_id: apec_p_f
   unit: currency
   reference:

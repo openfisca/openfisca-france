@@ -182,7 +182,7 @@ values:
     value: 17079.77
 metadata:
   short_label: Plafond - Couple
-  description_en: Allowance for elderly workers (AVTS)
+  label_en: Allowance for elderly workers (AVTS)
   ipp_csv_id: plaf_mv_men_avts
   unit: currency
   reference:

@@ -4,7 +4,7 @@ values:
     value: 0.75
 metadata:
   short_label: Plafonnement
-  description_en: Wealth tax ceiling
+  label_en: Wealth tax ceiling
   ipp_csv_id: tx_plaf_ifi
   unit: /1
   reference:

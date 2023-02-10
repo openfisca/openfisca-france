@@ -64,7 +64,7 @@ values:
     value: null
 metadata:
   short_label: salaire charnière annuel
-  description_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
+  label_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
   ipp_csv_id: gmp_sal_char
   unit: currency
   reference:

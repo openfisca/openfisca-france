@@ -18,7 +18,7 @@ values:
     value: 25535
 metadata:
   short_label: Plafond de ressources - 0 enfant
-  description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
   ipp_csv_id: plaf_paje_0enf_abplein_entre_20140401_20180331
   unit: currency
   reference:

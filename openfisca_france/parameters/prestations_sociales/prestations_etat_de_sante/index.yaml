@@ -1,7 +1,7 @@
 description: Prestations sociales
 metadata:
   short_label: Prestations sociales
-  description_en: Health related allowances
+  label_en: Health related allowances
   order:
   - invalidite
   - perte_autonomie_personnes_agees

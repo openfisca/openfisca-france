@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Moins de 65 ans
-  description_en: SSCs for freelance journalists (1964-1974)
+  label_en: SSCs for freelance journalists (1964-1974)
   ipp_csv_id: css_j_am_i65_s_0_1
   unit: /1
   reference:

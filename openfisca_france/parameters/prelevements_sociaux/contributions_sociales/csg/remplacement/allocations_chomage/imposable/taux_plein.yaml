@@ -4,7 +4,7 @@ values:
     value: 0.024
 metadata:
   short_label: Taux plein
-  description_en: CSG - rates on unemployment incomes
+  label_en: CSG - rates on unemployment incomes
   unit: /1
   reference:
     1997-01-01:

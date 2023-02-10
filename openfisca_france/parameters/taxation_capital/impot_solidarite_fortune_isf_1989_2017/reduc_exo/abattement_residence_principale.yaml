@@ -10,7 +10,7 @@ values:
     value: null
 metadata:
   short_label: Abattement lié à la résidence principale
-  description_en: Discount and rebate
+  label_en: Discount and rebate
   ipp_csv_id: abt_residence
   unit: /1
   reference:

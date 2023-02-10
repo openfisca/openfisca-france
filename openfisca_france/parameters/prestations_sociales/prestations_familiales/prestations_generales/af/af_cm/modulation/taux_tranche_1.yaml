@@ -4,7 +4,7 @@ values:
     value: 1
 metadata:
   short_label: Taux Tranche 1
-  description_en: "Family allowances (AF): General conditions and amount"
+  label_en: "Family allowances (AF): General conditions and amount"
   unit: BMAF
   reference:
     2015-07-01:

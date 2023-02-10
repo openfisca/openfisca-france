@@ -2,7 +2,7 @@ description: Taux effectifs d'imposition au titre du barème de l'impôt génér
   le revenu (IGR, 1917-1918)
 metadata:
   short_label: Taux effectifs
-  description_en: Thresholds and marginal tax rates of the IGR tax (1917-1918)
+  label_en: Thresholds and marginal tax rates of the IGR tax (1917-1918)
   order:
   - taux_tranche_1
   - taux_tranche_2

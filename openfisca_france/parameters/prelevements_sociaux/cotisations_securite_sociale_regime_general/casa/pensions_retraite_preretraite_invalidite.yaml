@@ -8,7 +8,7 @@ brackets:
       value: 0.003
 metadata:
   short_label: Taux CASA
-  description_en: "Additional SSC for autonomy (CASA: Additional solidarity Contribution for Autonomy)"
+  label_en: "Additional SSC for autonomy (CASA: Additional solidarity Contribution for Autonomy)"
   ipp_csv_id:
     rate: casa_pens
   reference:

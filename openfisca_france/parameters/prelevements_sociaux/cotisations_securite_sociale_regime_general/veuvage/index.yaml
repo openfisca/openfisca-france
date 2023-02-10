@@ -1,6 +1,6 @@
 description: Cotisations de sécurité sociale (SS) assurance veuvage (1981-2004)
 metadata:
   short_label: Cotisations de sécurité sociale (1930-1966)
-  description_en: SSCs for widowhood insurance (1981-2004)
+  label_en: SSCs for widowhood insurance (1981-2004)
   order:
   - salaries

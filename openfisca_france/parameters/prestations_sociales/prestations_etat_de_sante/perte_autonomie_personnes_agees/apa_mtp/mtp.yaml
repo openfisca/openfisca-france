@@ -130,7 +130,7 @@ values:
     value: 1126.41
 metadata:
   short_label: Montant
-  description_en: Amount of markup for constant support to a third party (MTP)
+  label_en: Amount of markup for constant support to a third party (MTP)
   unit: currency
   reference:
     1976-01-01:

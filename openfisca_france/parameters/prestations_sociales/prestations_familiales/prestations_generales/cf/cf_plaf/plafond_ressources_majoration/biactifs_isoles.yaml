@@ -18,7 +18,7 @@ values:
     value: 4367
 metadata:
   short_label: Biactifs et parents isolés
-  description_en: "Family complement (CF): Extra allowances"
+  label_en: "Family complement (CF): Extra allowances"
   unit: currency
   reference:
     1986-01-01:

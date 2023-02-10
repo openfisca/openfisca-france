@@ -7,7 +7,7 @@ values:
     value: 7.4
 metadata:
   short_label: Supplément si non-hébergé
-  description_en: "Asylum-seeker allowance (ADA): Amounts"
+  label_en: "Asylum-seeker allowance (ADA): Amounts"
   unit: currency
   reference:
     title: Supplément si non-hébergé dans centres d'accueil ou hébergement d'urgence de l'Allocation pour demandeur d'asile (ADA)

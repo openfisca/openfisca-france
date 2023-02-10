@@ -1,7 +1,7 @@
 description: Barème salarié des cotisations pour l'association pour l'emploi des cades (APEC), régimes complémentaires de retraite (secteur privé)
 metadata:
   short_label: Barème salarié
-  description_en: Contributions for the Association for the employment of executives (APEC)
+  label_en: Contributions for the Association for the employment of executives (APEC)
   order:
   - apec
   - forfait_annuel

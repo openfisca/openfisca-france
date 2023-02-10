@@ -1,7 +1,7 @@
 description: Contribution à la formation professionnelle de la CUFPA - Autres taxes et participations assises sur les salaires
 metadata:
   short_label: Contribution formation professionnelle (CUFPA)
-  description_en: Unique employer's participation to lifelong professional training and apprenticeship
+  label_en: Unique employer's participation to lifelong professional training and apprenticeship
   order:
   - moins_11_salaries
   - onze_et_plus_salaries

@@ -1,7 +1,7 @@
 description: Plafond de la Sécurité sociale
 metadata:
   short_label: Plafond de la Sécurité sociale
-  description_en: Social security ceiling
+  label_en: Social security ceiling
   order:
   - plafond_securite_sociale_annuel
   - plafond_securite_sociale_mensuel

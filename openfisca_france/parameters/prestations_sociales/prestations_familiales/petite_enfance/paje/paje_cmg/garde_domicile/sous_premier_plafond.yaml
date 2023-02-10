@@ -4,7 +4,7 @@ values:
     value: 2.0853
 metadata:
   short_label: Taux sous 1er plafond
-  description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
+  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
   unit: BMAF
   reference:
     2004-01-01:

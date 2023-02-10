@@ -6,7 +6,7 @@ values:
     value: 50000
 metadata:
   short_label: Plafond
-  description_en: Tax reductions for investment and donations
+  label_en: Tax reductions for investment and donations
   ipp_csv_id: plaf_taux_imp_ifi
   unit: currency
   reference:

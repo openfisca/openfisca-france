@@ -1,7 +1,7 @@
 description: Contributions patronales sur options et actions attribuées gratuitement (Taxes sur les accessoires du salaire)
 metadata:
   short_label: Employeur
-  description_en: Contribution levied on options and shares granted for free
+  label_en: Contribution levied on options and shares granted for free
   order:
   - taux_plein
   - taux_reduit

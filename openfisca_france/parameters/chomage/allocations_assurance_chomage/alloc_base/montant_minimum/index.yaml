@@ -1,7 +1,7 @@
 description: Montant minimum de l'allocation de base d'assurance chômage - partie fixe et minimum
 metadata:
   short_label: Montant minimum
-  description_en: UI scheme - lump-sum and minimum
+  label_en: UI scheme - lump-sum and minimum
   order:
   - 3_premiers_mois
   - ensuite

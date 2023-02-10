@@ -4,7 +4,7 @@ values:
     value: 0.0187
 metadata:
   short_label: Taux entre 1 et 5 PSS
-  description_en: SSCs for old-age insurance (professionals)
+  label_en: SSCs for old-age insurance (professionals)
   ipp_csv_id: ret_plib_1_5
   unit: /1
   reference:

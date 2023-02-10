@@ -4,7 +4,7 @@ values:
     value: 3
 metadata:
   short_label: Nb d'enfants pour droit à maj.
-  description_en: "Family allowances (AF): Extra allowances for oversea territories"
+  label_en: "Family allowances (AF): Extra allowances for oversea territories"
   ipp_csv_id: nb_enf_maj_dom
   unit: /1
   reference:

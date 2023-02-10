@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: En nombre de fois de la BMAF
-  description_en: Definition of a biactive couple
+  label_en: Definition of a biactive couple
   ipp_csv_id: facteur_yamin_biact_bmaf
   unit: /1
   reference:

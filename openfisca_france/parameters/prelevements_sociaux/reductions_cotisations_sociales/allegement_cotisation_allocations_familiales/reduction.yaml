@@ -4,7 +4,7 @@ values:
     value: 0.018
 metadata:
   short_label: Taux d'allègement des cotisations famille
-  description_en: Reduction in SSCs for family benefits
+  label_en: Reduction in SSCs for family benefits
   ipp_csv_id: tx_red_fam
   unit: /1
   reference:

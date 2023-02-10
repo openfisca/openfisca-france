@@ -80,7 +80,7 @@ values:
     value: 15.99
 metadata:
   short_label: Progress mi temps
-  description_en: Minimum level of FNE-ARPE early retirement benefits
+  label_en: Minimum level of FNE-ARPE early retirement benefits
   ipp_csv_id: arpe_min_mi
   unit: currency
   reference:

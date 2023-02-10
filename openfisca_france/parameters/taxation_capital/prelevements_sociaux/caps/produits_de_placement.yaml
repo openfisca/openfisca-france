@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Produits de placement
-  description_en: Other social levies on financial income
+  label_en: Other social levies on financial income
   ipp_csv_id: tx_caps_plac
   unit: /1
   reference:

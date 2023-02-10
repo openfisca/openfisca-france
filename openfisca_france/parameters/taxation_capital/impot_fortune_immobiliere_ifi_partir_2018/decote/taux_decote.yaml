@@ -4,7 +4,7 @@ values:
     value: 0.0125
 metadata:
   short_label: Taux
-  description_en: Décote computation
+  label_en: Décote computation
   ipp_csv_id: tx_decote_ifi
   unit: /1
   reference:

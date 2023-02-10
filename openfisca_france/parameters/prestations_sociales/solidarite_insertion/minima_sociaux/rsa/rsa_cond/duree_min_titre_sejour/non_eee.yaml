@@ -4,7 +4,7 @@ values:
     value: 5
 metadata:
   short_label: Ressortissant hors EEE
-  description_en: "Active solidarity income (RSA): General conditions"
+  label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: duree_min_titre_sejour
   unit: year
   reference:

@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   short_label: Couple
-  description_en: "Parental presence allowance (AA): Amounts"
+  label_en: "Parental presence allowance (AA): Amounts"
   ipp_csv_id: app_tx_plein_couple
   unit: BMAF
   reference:

@@ -1,6 +1,6 @@
 description: Allocation de fin de droits
 metadata:
   short_label: Allocation de fin de droits
-  description_en: UI for long term unemployment ("Allocation de fin de droits")
+  label_en: UI for long term unemployment ("Allocation de fin de droits")
   order:
   - montant_base

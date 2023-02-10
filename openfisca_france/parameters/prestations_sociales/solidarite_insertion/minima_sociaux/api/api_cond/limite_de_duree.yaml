@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Limite de durée
-  description_en: "Single parent allowance (API): General conditions"
+  label_en: "Single parent allowance (API): General conditions"
   ipp_csv_id: limite_duree_api
   unit: month
   reference:

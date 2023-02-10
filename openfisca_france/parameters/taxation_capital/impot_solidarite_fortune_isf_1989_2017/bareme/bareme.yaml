@@ -266,7 +266,7 @@ brackets:
       value: null
 metadata:
   short_label: Barème ISF
-  description_en: Wealth tax schedule
+  label_en: Wealth tax schedule
   ipp_csv_id:
     threshold: seuil1_isf, seuil2_isf, seuil3_isf, seuil4_isf, seuil5_isf, seuil6_isf
     rate: tx1_isf, tx2_isf, tx3_isf, tx4_isf, tx5_isf, tx6_isf

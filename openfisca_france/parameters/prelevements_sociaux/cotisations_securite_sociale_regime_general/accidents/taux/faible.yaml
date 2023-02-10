@@ -16,7 +16,7 @@ values:
     value: 0.009
 metadata:
   short_label: Taux des employés de bureau
-  description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
+  label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   unit: /1
   reference:
     1976-01-01:
@@ -68,4 +68,4 @@ documentation: |-
   Changement 2020 : le taux bureaux est supprimé et remplacé, pour les entreprises en tarification collective, ainsi que pour celles en tarification mixte qui le demandent, par le taux "Fonctions support" (même taux). Pour les entreprises en tarification individuelle, le taux appliqué est la "fusion" (moyenne ?) du taux Fonctions support et du taux de l'activité principale de l'entreprise.
   official_journal_date:
   notes:
-  description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
+  label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates

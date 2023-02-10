@@ -4,7 +4,7 @@ values:
     value: 0.03
 metadata:
   short_label: Taux pour deux enfants
-  description_en: Family income supplement (SFT)
+  label_en: Family income supplement (SFT)
   ipp_csv_id: txenf2
   unit: /1
   reference:

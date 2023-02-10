@@ -42,7 +42,7 @@ values:
     value: 28.05
 metadata:
   short_label: Cas des colocataires ou des propriétaires
-  description_en: Lump sum extra allowance for charges
+  label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_col
   unit: currency
   reference:

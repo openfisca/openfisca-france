@@ -18,7 +18,7 @@ values:
     value: 0.0185
 metadata:
   short_label: Lyon
-  description_en: Transport tax (VT) (contribution to public transports)
+  label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_lyon
   unit: /1
   reference:

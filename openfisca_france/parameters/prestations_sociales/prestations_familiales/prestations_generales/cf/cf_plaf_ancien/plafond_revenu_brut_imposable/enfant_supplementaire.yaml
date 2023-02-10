@@ -10,7 +10,7 @@ values:
     value: 0.199994314305
 metadata:
   short_label: Enfant supplémentaire
-  description_en: "Family complement (CF): Thresholds for means-testing"
+  label_en: "Family complement (CF): Thresholds for means-testing"
   ipp_csv_id: plaf_suppenf_monoact
   unit: /1
   reference:

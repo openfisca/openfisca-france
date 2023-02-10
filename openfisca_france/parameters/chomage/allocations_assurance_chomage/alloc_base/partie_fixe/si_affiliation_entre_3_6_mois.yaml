@@ -98,7 +98,7 @@ values:
     value: 12.05
 metadata:
   short_label: Si affiliation entre 3-6 mois
-  description_en: "UI scheme: lump-sum and minimum"
+  label_en: "UI scheme: lump-sum and minimum"
   ipp_csv_id: base_fixe_3_6
   unit: currency
   reference:
