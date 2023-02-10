@@ -15,7 +15,7 @@ values:
   2023-01-01:
     value: 10625
 metadata:
-  ux_name: Majoration pour couple avec deux revenus ou parent isolé
+  short_label: Majoration pour couple avec deux revenus ou parent isolé
   description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_paje_bi_pn_pa_abpartiel_a_partir_20180401
   unit: currency

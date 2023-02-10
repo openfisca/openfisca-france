@@ -13,7 +13,7 @@ values:
   2018-01-01:
     value: 0.092
 metadata:
-  ux_name: Taux global
+  short_label: Taux global
   ipp_csv_id: csg_pre
   unit: /1
   reference:

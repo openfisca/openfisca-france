@@ -1,6 +1,6 @@
 description: Taux du Régime agricole (en % de la BMAF) de l'Allocation de la mère au foyer (AMF, 1955-1977)
 metadata:
-  ux_name: Régime agricole
+  short_label: Régime agricole
   description_en: "Allowance for stay-at-home-mother (AMF): Rates and monthly amounts"
   order:
   - au_plus_un_enfant_sans_moins_de_2_ans

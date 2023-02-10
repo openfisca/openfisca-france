@@ -151,7 +151,7 @@ brackets:
     1917-01-01:
       value: null
 metadata:
-  ux_name: Barème 1915-16
+  short_label: Barème 1915-16
   type: marginal_rate
   threshold_unit: currency
   rate_unit: /1

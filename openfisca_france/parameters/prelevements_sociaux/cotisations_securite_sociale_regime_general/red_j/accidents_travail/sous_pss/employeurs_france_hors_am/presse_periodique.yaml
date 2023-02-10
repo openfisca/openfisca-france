@@ -11,7 +11,7 @@ values:
   1974-01-01:
     value: 0.0176
 metadata:
-  ux_name: Presse périodique
+  short_label: Presse périodique
   description_en: SSCs for freelance journalists (1964-1974)
   ipp_csv_id: acc_pp_p_0_1
   unit: /1

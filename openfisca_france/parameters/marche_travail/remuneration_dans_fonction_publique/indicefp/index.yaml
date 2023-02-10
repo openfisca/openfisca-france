@@ -1,6 +1,6 @@
 description: Valeur du point d'indice de la Fonction Publique
 metadata:
-  ux_name: Point d'indice
+  short_label: Point d'indice
   description_en: Index point of public sector
   reference:
     1961-05-01:

@@ -19,7 +19,7 @@ brackets:
     2011-01-01:
       value: 0.04
 metadata:
-  ux_name: Barème contrib. hauts revenus
+  short_label: Barème contrib. hauts revenus
   rate_unit: /1
   threshold_unit: currency
   description_en: Exceptional tax on high incomes (2012-)

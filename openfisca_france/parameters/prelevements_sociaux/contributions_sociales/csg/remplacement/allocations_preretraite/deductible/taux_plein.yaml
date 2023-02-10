@@ -11,7 +11,7 @@ values:
   2018-01-01:
     value: 0.068
 metadata:
-  ux_name: Taux plein
+  short_label: Taux plein
   ipp_csv_id: csg_pre_ded
   unit: /1
   reference:

@@ -1,6 +1,6 @@
 description: Conditions de capacité ou d'incapacité pour bénéficier de l'Allocation pour adulte handicapé (AAH)
 metadata:
-  ux_name: Capacité/Incapacité
+  short_label: Capacité/Incapacité
   description_en: Disability
   order:
   - taux_capacite_travail

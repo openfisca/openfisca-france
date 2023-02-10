@@ -11,7 +11,7 @@ values:
   2026-01-01:
     value: 192.3
 metadata:
-  ux_name: Autres tabacs à chauffer
+  short_label: Autres tabacs à chauffer
   last_review: "2022-12-28"
   unit: currency
   reference:

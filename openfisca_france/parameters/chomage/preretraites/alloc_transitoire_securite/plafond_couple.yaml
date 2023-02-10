@@ -13,7 +13,7 @@ values:
   2015-03-01:
     value: null
 metadata:
-  ux_name: Plafond couple
+  short_label: Plafond couple
   description_en: Transitional solidarity allowance (ATS) (2011-2015)
   ipp_csv_id: solid_plaf_couple
   unit: currency

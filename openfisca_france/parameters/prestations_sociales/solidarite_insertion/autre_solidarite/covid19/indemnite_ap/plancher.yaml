@@ -11,7 +11,7 @@ values:
   2022-01-01:
     value: 7.53
 metadata:
-  ux_name: Montant horaire minimum
+  short_label: Montant horaire minimum
   description_en: Exceptional benefit - COVID-19 crisis
   unit: currency
   reference:

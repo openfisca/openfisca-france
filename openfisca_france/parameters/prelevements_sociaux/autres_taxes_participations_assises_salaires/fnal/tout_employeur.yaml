@@ -5,7 +5,7 @@ values:
   1986-01-01:
     value: null
 metadata:
-  ux_name: Tout employeur
+  short_label: Tout employeur
   description_en: Contributions to the National Fund for Housing (FNAL)
   ipp_csv_id: fnal_p_0_1
   unit: /1

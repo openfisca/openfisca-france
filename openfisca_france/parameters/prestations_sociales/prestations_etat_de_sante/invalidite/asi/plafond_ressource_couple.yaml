@@ -37,7 +37,7 @@ values:
   2022-07-01:
     value: 17786.49
 metadata:
-  ux_name: Plafond de ressource pour un couple
+  short_label: Plafond de ressource pour un couple
   description_en: "Supplementary disability allowance (ASI): Amount"
   ipp_csv_id: plaf_ressource_couple
   unit: currency

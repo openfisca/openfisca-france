@@ -13,7 +13,7 @@ brackets:
     2019-01-01:
       value: 0
 metadata:
-  ux_name: Barème salarié (sous 8 PSS)
+  short_label: Barème salarié (sous 8 PSS)
   description_en: Complementary pension contributions
   reference:
     2019-01-01:

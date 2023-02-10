@@ -1,6 +1,6 @@
 description: Taux de déduction de l'investissement les 2 années suivantes
 metadata:
-  ux_name: Taux 2 ans
+  short_label: Taux 2 ans
   ipp_csv_id: tx_deduction_2_ans_robien_recentre
   notes:
     1996-01-01:

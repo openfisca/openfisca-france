@@ -1,6 +1,6 @@
 description: Part proportionnelle au traitement brut
 metadata:
-  ux_name: Part proportionnelle
+  short_label: Part proportionnelle
   description_en: Proportional share
   order:
   - deux_enfants

@@ -7,7 +7,7 @@ values:
   2003-07-01:
     value: null
 metadata:
-  ux_name: Taux max (au SMIC)
+  short_label: Taux max (au SMIC)
   description_en: Global reduction in SSCs (1993-2003)
   ipp_csv_id: tx_juppe_1
   unit: /1

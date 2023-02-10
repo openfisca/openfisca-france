@@ -37,7 +37,7 @@ brackets:
     2023-01-01:
       value: null
 metadata:
-  ux_name: Aides exceptionnelles 2021-2022
+  short_label: Aides exceptionnelles 2021-2022
   reference:
     2021-12-01:
       title: Décret n°2021-1541 du 29/11/2021

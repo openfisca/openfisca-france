@@ -101,7 +101,7 @@ values:
   2021-01-01:
     value: 1715.35
 metadata:
-  ux_name: Métropole
+  short_label: Métropole
   description_en: Elderly insurance for stay-at-home parents (AVPF )
   ipp_csv_id: avpf_fr
   unit: currency

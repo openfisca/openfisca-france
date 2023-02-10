@@ -13,7 +13,7 @@ values:
   2018-04-01:
     value: 0.6248
 metadata:
-  ux_name: Taux majoré
+  short_label: Taux majoré
   description_en: "Family complement (CF): General conditions and amounts"
   ipp_csv_id: tx_cf_maj
   unit: BMAF

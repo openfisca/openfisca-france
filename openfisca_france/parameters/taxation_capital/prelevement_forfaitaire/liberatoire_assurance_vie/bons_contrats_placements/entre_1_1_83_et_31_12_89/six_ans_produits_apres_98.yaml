@@ -3,7 +3,7 @@ values:
   1998-01-01:
     value: 0.075
 metadata:
-  ux_name: Durée de 6+ ans et produits après 1998
+  short_label: Durée de 6+ ans et produits après 1998
   description_en: Levy in discharge on life insurance (1983 - 2017)
   ipp_csv_id: tx_pl_av_6b
   unit: /1

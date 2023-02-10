@@ -9,7 +9,7 @@ values:
   2002-01-01:
     value: null
 metadata:
-  ux_name: Année 2
+  short_label: Année 2
   description_en: Incentives to the reduction of worked time ("RTT") (Aubry I)
   unit: currency
   last_review: "2002-01-01"

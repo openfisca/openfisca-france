@@ -41,7 +41,7 @@ values:
   2022-07-01:
     value: 61.01
 metadata:
-  ux_name: Majoration par enfant supplémentaire
+  short_label: Majoration par enfant supplémentaire
   description_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: plaf_loy_enfsupp_z1
   unit: currency

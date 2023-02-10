@@ -5,7 +5,7 @@ values:
   1999-01-01:
     value: null
 metadata:
-  ux_name: Couples biactifs et parents isolés
+  short_label: Couples biactifs et parents isolés
   description_en: "Family allowances (AF): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_af_bi
   unit: currency

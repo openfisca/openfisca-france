@@ -3,7 +3,7 @@ values:
   2018-01-01:
     value: 0.0125
 metadata:
-  ux_name: Taux
+  short_label: Taux
   description_en: Décote computation
   ipp_csv_id: tx_decote_ifi
   unit: /1

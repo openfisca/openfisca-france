@@ -1,6 +1,6 @@
 description: Charges déductibles du revenu brut global (1975 -)
 metadata:
-  ux_name: Charges déductibles
+  short_label: Charges déductibles
   description_en: Deductible charges of global gross income (1975 -)
   order:
   - accueil_personne_agee

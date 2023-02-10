@@ -61,7 +61,7 @@ values:
   2019-01-01:
     value: null
 metadata:
-  ux_name: Part patronale
+  short_label: Part patronale
   description_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
   ipp_csv_id: gmp_cot_f_m_p
   unit: currency

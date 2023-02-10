@@ -47,7 +47,7 @@ values:
   2019-10-01:
     value: 314.19
 metadata:
-  ux_name: Ménage seul
+  short_label: Ménage seul
   description_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_coup_z3_al
   unit: currency

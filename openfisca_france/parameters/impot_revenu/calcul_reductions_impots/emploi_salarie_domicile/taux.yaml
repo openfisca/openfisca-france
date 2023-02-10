@@ -5,7 +5,7 @@ values:
   1991-01-01:
     value: 0.5
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: txsaldomicile
   unit: currency
   reference:

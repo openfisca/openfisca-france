@@ -21,7 +21,7 @@ brackets:
     2018-01-01:
       value: null
 metadata:
-  ux_name: Taux (Seuil variable)
+  short_label: Taux (Seuil variable)
   description_en: Contributions to the Solidarity Fund (FDS)
   ipp_csv_id: fds_s_0_4
   reference:

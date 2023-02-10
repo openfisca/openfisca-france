@@ -1,6 +1,6 @@
 description: Salaire plafond pour toucher la déduction supplémentaire de 20%
 metadata:
-  ux_name: Salaire plafond
+  short_label: Salaire plafond
   unit: currency
   ipp_csv_id: plaf_ab_dedsal
   notes:

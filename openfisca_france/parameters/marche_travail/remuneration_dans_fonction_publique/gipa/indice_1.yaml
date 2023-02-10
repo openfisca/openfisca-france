@@ -19,7 +19,7 @@ values:
   2016-01-01:
     value: 55.5635
 metadata:
-  ux_name: Indice 1
+  short_label: Indice 1
   description_en: Index 1
   unit: currency
   reference:

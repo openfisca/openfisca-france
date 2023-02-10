@@ -3,7 +3,7 @@ values:
   2011-01-01:
     value: 6250
 metadata:
-  ux_name: Plafond assurance
+  short_label: Plafond assurance
   last_review: "2023-01-09"
   unit: currency
   reference:

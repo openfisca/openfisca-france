@@ -3,7 +3,7 @@ values:
   2009-06-01:
     value: 3
 metadata:
-  ux_name: Âge limite de l'enfant
+  short_label: Âge limite de l'enfant
   description_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: rsa_maj_ageenf_max
   unit: year

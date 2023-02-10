@@ -55,7 +55,7 @@ values:
   2021-01-01:
     value: 400
 metadata:
-  ux_name: Minimum
+  short_label: Minimum
   unit: currency
   ipp_csv_id: min_abtpen
   reference:

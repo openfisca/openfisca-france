@@ -5,7 +5,7 @@ values:
   2004-10-26:
     value: 2.67
 metadata:
-  ux_name: Seuil supérieur
+  short_label: Seuil supérieur
   description_en: Attendance allowance for individuals living at home (APA)
   unit: /1
   reference:

@@ -13,7 +13,7 @@ values:
   2022-07-01:
     value: 87.08
 metadata:
-  ux_name: Seuls
+  short_label: Seuls
   unit: currency
   reference:
     2000-01-01:

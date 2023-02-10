@@ -7,7 +7,7 @@ values:
   1996-02-01:
     value: 0.005
 metadata:
-  ux_name: Taux CRDS capital revenus du patrimoine
+  short_label: Taux CRDS capital revenus du patrimoine
   description_en: CRDS on financial income
   ipp_csv_id: tx_crds_rk_patr
   unit: /1

@@ -3,7 +3,7 @@ values:
   2006-06-05:
     value: 0.1063
 metadata:
-  ux_name: Couple
+  short_label: Couple
   description_en: "Daily parental presence allowance (AJPP): Amounts"
   ipp_csv_id: ajpp_couple
   unit: BMAF

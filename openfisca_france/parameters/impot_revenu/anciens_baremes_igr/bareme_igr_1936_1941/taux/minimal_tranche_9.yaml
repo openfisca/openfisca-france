@@ -22,7 +22,7 @@ metadata:
       et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à
       à 4-4'
   unit: /1
-  ux_name: Minimal Tranche 9
+  short_label: Minimal Tranche 9
 values:
   1936-01-01:
     value: 0.36

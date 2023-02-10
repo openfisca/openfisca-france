@@ -3,7 +3,7 @@ values:
   2012-07-01:
     value: 10
 metadata:
-  ux_name: Minimum
+  short_label: Minimum
   unit: currency
   reference:
     2012-07-01:

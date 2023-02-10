@@ -3,7 +3,7 @@ values:
   2006-01-01:
     value: 0.6666
 metadata:
-  ux_name: Taux Min Invalidité
+  short_label: Taux Min Invalidité
   description_en: "Supplementary disability allowance (ASI): General conditions"
   ipp_csv_id: tx_min
   unit: /1

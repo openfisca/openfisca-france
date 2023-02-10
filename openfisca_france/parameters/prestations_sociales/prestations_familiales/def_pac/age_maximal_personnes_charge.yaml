@@ -9,7 +9,7 @@ values:
   1999-01-01:
     value: 20
 metadata:
-  ux_name: Âge maximal
+  short_label: Âge maximal
   description_en: Definition of dependants
   ipp_csv_id: age_max_pac
   unit: year

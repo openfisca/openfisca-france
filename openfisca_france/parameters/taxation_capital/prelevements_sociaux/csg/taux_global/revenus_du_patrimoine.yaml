@@ -15,7 +15,7 @@ values:
   2018-01-01:
     value: 0.092
 metadata:
-  ux_name: Revenus du patrimoine
+  short_label: Revenus du patrimoine
   description_en: CSG and CRDS on financial income
   ipp_csv_id: tx_csg_rk_patr
   unit: /1

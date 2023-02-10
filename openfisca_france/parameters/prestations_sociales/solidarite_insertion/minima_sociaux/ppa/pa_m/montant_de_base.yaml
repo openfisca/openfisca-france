@@ -19,7 +19,7 @@ values:
   2022-07-01:
     value: 586.23
 metadata:
-  ux_name: Montant base
+  short_label: Montant base
   description_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_montant_base
   unit: currency

@@ -5,7 +5,7 @@ values:
   1999-01-01:
     value: 16
 metadata:
-  ux_name: Âge seuil de la tranche 2
+  short_label: Âge seuil de la tranche 2
   description_en: "Family allowances (AF): Extra allowances for oversea territories"
   unit: year
   reference:

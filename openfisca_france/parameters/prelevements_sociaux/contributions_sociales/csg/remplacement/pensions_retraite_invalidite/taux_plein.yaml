@@ -13,7 +13,7 @@ values:
   2018-01-01:
     value: 0.083
 metadata:
-  ux_name: Taux plein global
+  short_label: Taux plein global
   description_en: CSG - rates on work incomes
   ipp_csv_id: csg_pens
   unit: /1

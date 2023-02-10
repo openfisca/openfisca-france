@@ -11,7 +11,7 @@ values:
   1997-12-31:
     value: null
 metadata:
-  ux_name: Taux
+  short_label: Taux
   description_en: SSCs on unemployment benefits
   ipp_csv_id: chom_mmid_tx
   unit: /1

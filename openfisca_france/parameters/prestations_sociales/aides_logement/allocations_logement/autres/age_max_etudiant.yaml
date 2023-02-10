@@ -3,5 +3,5 @@ values:
   2020-01-01:
     value: 28
 metadata:
-  ux_name: Âge max étudiant
+  short_label: Âge max étudiant
   unit: year

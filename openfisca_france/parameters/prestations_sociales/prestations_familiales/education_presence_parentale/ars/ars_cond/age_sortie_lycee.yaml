@@ -6,7 +6,7 @@ values:
     value: 18
 metadata:
   last_review: "2023-01-27"
-  ux_name: Plafond d'âge de l'enfant
+  short_label: Plafond d'âge de l'enfant
   description_en: "Back-to-school allowance (ARS): Age conditions of dependants"
   ipp_csv_id: ars_enf_agemax
   unit: year

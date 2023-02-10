@@ -5,7 +5,7 @@ values:
   2002-01-01:
     value: 15
 metadata:
-  ux_name: APL2 (foyer)
+  short_label: APL2 (foyer)
   description_en: Minimal amount
   unit: currency
   reference:

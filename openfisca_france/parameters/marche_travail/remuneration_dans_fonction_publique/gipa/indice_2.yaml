@@ -17,7 +17,7 @@ values:
   2019-01-01:
     value: 56.2323
 metadata:
-  ux_name: Indice 2
+  short_label: Indice 2
   description_en: Index 2
   unit: currency
   reference:

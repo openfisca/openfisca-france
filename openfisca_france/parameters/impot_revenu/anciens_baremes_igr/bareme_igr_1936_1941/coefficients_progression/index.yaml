@@ -14,4 +14,4 @@ metadata:
   - tranche_9
   - tranche_10
   - intervalle_application_tranches_3_9
-  ux_name: Coefficients et intervalles
+  short_label: Coefficients et intervalles

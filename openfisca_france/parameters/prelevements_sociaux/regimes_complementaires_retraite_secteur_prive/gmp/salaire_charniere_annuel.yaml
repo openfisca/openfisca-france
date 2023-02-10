@@ -63,7 +63,7 @@ values:
   2019-01-01:
     value: null
 metadata:
-  ux_name: salaire charnière annuel
+  short_label: salaire charnière annuel
   description_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
   ipp_csv_id: gmp_sal_char
   unit: currency

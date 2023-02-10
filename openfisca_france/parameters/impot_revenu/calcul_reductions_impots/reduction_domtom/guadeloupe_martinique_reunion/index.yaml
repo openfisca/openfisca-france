@@ -1,6 +1,6 @@
 description: Réduction d'impôt sur le revenu pour la Guadeloupe, la Martinique et la Réunion (1979-)
 metadata:
-  ux_name: Guadeloupe Martinique Réunion
+  short_label: Guadeloupe Martinique Réunion
   order:
   - taux
   - plafond

@@ -5,7 +5,7 @@ values:
   2015-01-01:
     value: null
 metadata:
-  ux_name: Majoration par enfant à charge
+  short_label: Majoration par enfant à charge
   ipp_csv_id: plaf_risques_techno_pre_majoration
   unit: currency
   reference:

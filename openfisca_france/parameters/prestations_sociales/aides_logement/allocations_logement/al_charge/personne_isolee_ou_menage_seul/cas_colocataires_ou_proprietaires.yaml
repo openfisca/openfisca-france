@@ -41,7 +41,7 @@ values:
   2022-07-01:
     value: 28.05
 metadata:
-  ux_name: Cas des colocataires ou des propriétaires
+  short_label: Cas des colocataires ou des propriétaires
   description_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_col
   unit: currency

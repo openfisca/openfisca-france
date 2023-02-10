@@ -5,7 +5,7 @@ values:
   2008-01-01:
     value: 0.038
 metadata:
-  ux_name: Taux réduit
+  short_label: Taux réduit
   ipp_csv_id: csg_pre_red
   unit: /1
   reference:

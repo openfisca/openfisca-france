@@ -5,7 +5,7 @@ values:
   1978-01-01:
     value: null
 metadata:
-  ux_name: Sans enfant
+  short_label: Sans enfant
   description_en: "Single earner allowance (ASU): Thresholds for means-testing"
   ipp_csv_id: plaf_asu_0enf
   unit: currency

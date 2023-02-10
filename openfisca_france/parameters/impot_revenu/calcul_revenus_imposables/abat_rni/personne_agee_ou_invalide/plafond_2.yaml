@@ -87,7 +87,7 @@ values:
   2021-01-01:
     value: 25040
 metadata:
-  ux_name: Plafond de la 2e tranche
+  short_label: Plafond de la 2e tranche
   description_en: Tax allowance for net taxable income
   ipp_csv_id: plaf_pers_age2
   unit: currency

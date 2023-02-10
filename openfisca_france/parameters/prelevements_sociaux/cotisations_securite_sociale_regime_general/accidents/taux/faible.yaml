@@ -15,7 +15,7 @@ values:
   2018-01-01:
     value: 0.009
 metadata:
-  ux_name: Taux des employés de bureau
+  short_label: Taux des employés de bureau
   description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   unit: /1
   reference:

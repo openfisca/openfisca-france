@@ -5,7 +5,7 @@ values:
   2019-01-01:
     value: 1102
 metadata:
-  ux_name: Couple
+  short_label: Couple
   ipp_csv_id: plafond_ressources_rls_z1_couple
   unit: currency
   reference:

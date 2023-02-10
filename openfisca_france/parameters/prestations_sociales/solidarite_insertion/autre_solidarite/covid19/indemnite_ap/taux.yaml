@@ -5,7 +5,7 @@ values:
   2021-02-01:
     value: 0.36
 metadata:
-  ux_name: Taux horaire
+  short_label: Taux horaire
   unit: /1
   reference:
     2020-03-01:

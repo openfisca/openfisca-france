@@ -5,7 +5,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Paramètre de calcul
+  short_label: Paramètre de calcul
   description_en: "\"Décote\" computation"
   ipp_csv_id: decote_isf1
   unit: currency

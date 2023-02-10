@@ -1,6 +1,6 @@
 description: Autres réductions d'impôts (1979 -)
 metadata:
-  ux_name: Divers
+  short_label: Divers
   description_en: Other tax reductions (1979 -)
   order:
   - formation_chefs_entreprises

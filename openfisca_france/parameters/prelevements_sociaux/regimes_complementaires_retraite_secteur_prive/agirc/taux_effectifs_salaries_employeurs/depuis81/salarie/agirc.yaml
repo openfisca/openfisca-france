@@ -79,7 +79,7 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  ux_name: Barème salarié
+  short_label: Barème salarié
   description_en: Pension contributions for executives (AGIRC)
   ipp_csv_id:
     rate: agirc81_s_1_4, agirc81_s_4_8

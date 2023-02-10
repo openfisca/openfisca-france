@@ -5,7 +5,7 @@ values:
   1993-08-01:
     value: 7
 metadata:
-  ux_name: 50 ans et plus
+  short_label: 50 ans et plus
   description_en: UI scheme - degressive schedule
   unit: month
   reference:

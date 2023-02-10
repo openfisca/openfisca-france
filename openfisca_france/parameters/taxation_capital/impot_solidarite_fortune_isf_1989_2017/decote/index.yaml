@@ -1,6 +1,6 @@
 description: Calcul de la décote de l'impôt de solidarité sur la fortune
 metadata:
-  ux_name: Calcul de la décote
+  short_label: Calcul de la décote
   description_en: "\"Décote\" computation"
   order:
   - parametre_calcul_decote

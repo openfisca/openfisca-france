@@ -7,7 +7,7 @@ values:
   2022-04-01:
     value: null
 metadata:
-  ux_name: Premier plafond d'exonération
+  short_label: Premier plafond d'exonération
   unit: currency
   reference:
     2018-12-24:

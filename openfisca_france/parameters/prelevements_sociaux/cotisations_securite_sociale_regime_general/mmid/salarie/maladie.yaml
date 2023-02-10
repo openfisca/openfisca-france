@@ -43,7 +43,7 @@ brackets:
     2018-01-01:
       value: null
 metadata:
-  ux_name: Barème salarié
+  short_label: Barème salarié
   description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
   ipp_csv_id:
     rate: mmid_s_0_1, mmid_s_0_

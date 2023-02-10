@@ -5,7 +5,7 @@ values:
   2004-10-26:
     value: 0.9
 metadata:
-  ux_name: Maximum
+  short_label: Maximum
   description_en: Attendance allowance for individuals living at home (APA)
   unit: /1
   reference:

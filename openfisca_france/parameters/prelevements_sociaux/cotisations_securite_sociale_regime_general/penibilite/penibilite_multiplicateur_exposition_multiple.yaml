@@ -5,7 +5,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Coefficient multiplicateur pour poly-exposés
+  short_label: Coefficient multiplicateur pour poly-exposés
   description_en: SSCs for arduous working conditions
   unit: /1
   reference:

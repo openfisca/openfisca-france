@@ -1,6 +1,6 @@
 description: Majoration pour le régime agricole des Allocation de la mère au foyer (AMF, 1955-1977)
 metadata:
-  ux_name: Régime agricole
+  short_label: Régime agricole
   description_en: "Allowance for stay-at-home-mother (AMF): Extra allowances"
   order:
   - base

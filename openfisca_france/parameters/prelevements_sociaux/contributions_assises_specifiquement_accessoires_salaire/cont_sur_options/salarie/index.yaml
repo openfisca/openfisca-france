@@ -1,6 +1,6 @@
 description: Contributions salariales sur options et actions attribuées gratuitement (Taxes sur les accessoires du salaire)
 metadata:
-  ux_name: Salarié
+  short_label: Salarié
   description_en: Contribution levied on options and shares granted for free
   order:
   - taux_plein

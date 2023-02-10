@@ -1,6 +1,6 @@
 description: Réduction pour investissements au capital de PME de l'Impôt sur la fortune immobilière
 metadata:
-  ux_name: Réduction pour investissements au capital de PME
+  short_label: Réduction pour investissements au capital de PME
   description_en: Tax reductions for investment and donations
   order:
   - plafond_investissement_dans_pme

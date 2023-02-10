@@ -27,7 +27,7 @@ values:
   2021-01-01:
     value: 0.0295
 metadata:
-  ux_name: Seine-Saint-Denis
+  short_label: Seine-Saint-Denis
   description_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_93
   unit: /1

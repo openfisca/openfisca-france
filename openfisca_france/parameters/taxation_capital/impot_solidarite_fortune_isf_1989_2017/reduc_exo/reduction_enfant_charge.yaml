@@ -9,7 +9,7 @@ values:
   2013-01-01:
     value: null
 metadata:
-  ux_name: Réduction enfant à charge
+  short_label: Réduction enfant à charge
   description_en: Discount and rebate
   ipp_csv_id: reduc_isf_enf
   unit: currency

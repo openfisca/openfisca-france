@@ -15,7 +15,7 @@ brackets:
     2011-01-01:
       value: null
 metadata:
-  ux_name: Barème (hors hospi)
+  short_label: Barème (hors hospi)
   description_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
   ipp_csv_id: fccpa_p
   reference:

@@ -1,6 +1,6 @@
 description: Base de calcul pour les bénéficiaires ayant des revenus professionnels dans le milieu ordinaire  - Allocation pour adulte handicapé (AAH)
 metadata:
-  ux_name: Base de calcul (revenus ordinaires)
+  short_label: Base de calcul (revenus ordinaires)
   description_en: Disability
   order:
   - plafond_ressources

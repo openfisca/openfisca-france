@@ -5,7 +5,7 @@ values:
   1967-10-01:
     value: 0.021
 metadata:
-  ux_name: Taux employé
+  short_label: Taux employé
   description_en: SSCs for artists (1960-1974)
   ipp_csv_id: ret_a_s_0_1
   unit: /1

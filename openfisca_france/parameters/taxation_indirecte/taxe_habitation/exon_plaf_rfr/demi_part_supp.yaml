@@ -15,7 +15,7 @@ values:
   2023-01-01:
     value: null
 metadata:
-  ux_name: Majoration demi-part supp.
+  short_label: Majoration demi-part supp.
   unit: currency
   reference:
     2022-01-01:

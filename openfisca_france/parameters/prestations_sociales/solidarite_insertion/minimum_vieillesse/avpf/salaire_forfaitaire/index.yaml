@@ -1,6 +1,6 @@
 description: Salaire forfaitaire de l'Assurance vieillesse des parents au foyer (AVPF)
 metadata:
-  ux_name: Salaire forfaitaire
+  short_label: Salaire forfaitaire
   description_en: Elderly insurance for stay-at-home parents (AVPF)
   order:
   - metropole

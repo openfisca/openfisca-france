@@ -65,7 +65,7 @@ values:
   2002-01-01:
     value: 609.8
 metadata:
-  ux_name: Montant
+  short_label: Montant
   description_en: Additive allowance for spouse care (amount)
   ipp_csv_id: maj_avts_conj
   unit: currency

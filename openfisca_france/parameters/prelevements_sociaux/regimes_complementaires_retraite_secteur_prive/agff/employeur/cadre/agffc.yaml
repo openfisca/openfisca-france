@@ -29,7 +29,7 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  ux_name: Barème Cadre
+  short_label: Barème Cadre
   description_en: Contributions to the financial structure AGFF (2001-2016)
   ipp_csv_id:
     rate: agff_p_0_1, agff_p_1_4

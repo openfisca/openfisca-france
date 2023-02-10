@@ -5,7 +5,7 @@ values:
   2003-07-01:
     value: 20
 metadata:
-  ux_name: Âge minimum
+  short_label: Âge minimum
   description_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: maj_forf_age
   unit: year

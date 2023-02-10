@@ -39,7 +39,7 @@ values:
   2022-07-01:
     value: 9571
 metadata:
-  ux_name: Plafond annuel
+  short_label: Plafond annuel
   unit: currency
   reference:
     2019-04-01:

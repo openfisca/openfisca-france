@@ -7,7 +7,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   description_en: Tax reductions for investment and donations
   ipp_csv_id: plaf_taux_imp_isf
   unit: currency

@@ -47,7 +47,7 @@ values:
   2019-10-01:
     value: 442.62
 metadata:
-  ux_name: Ménage ou isolé avec 4 enfants
+  short_label: Ménage ou isolé avec 4 enfants
   description_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_enf4_z1_al
   unit: currency

@@ -9,7 +9,7 @@ values:
   1985-01-01:
     value: null
 metadata:
-  ux_name: 1er versement
+  short_label: 1er versement
   description_en: "Postnatal allowance (APN): Rate and payment"
   ipp_csv_id: tx_versement1
   unit: /1

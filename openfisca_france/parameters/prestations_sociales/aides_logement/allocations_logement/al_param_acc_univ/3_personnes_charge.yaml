@@ -5,7 +5,7 @@ values:
   1988-07-01:
     value: 3.7
 metadata:
-  ux_name: 3 personnes à charge
+  short_label: 3 personnes à charge
   description_en: Parameters for new home-buyers and students residences
   ipp_csv_id: n_3enf
   unit: /1

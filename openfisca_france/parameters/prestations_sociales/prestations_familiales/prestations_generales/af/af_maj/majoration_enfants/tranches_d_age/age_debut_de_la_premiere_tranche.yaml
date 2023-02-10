@@ -7,7 +7,7 @@ values:
   2008-05-01:
     value: 14
 metadata:
-  ux_name: Âge seuil tranche 1
+  short_label: Âge seuil tranche 1
   description_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: maj_enf_age1
   unit: year

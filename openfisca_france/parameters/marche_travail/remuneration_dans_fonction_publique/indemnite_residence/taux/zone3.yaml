@@ -3,5 +3,5 @@ values:
   1999-07-01:
     value: 0
 metadata:
-  ux_name: Taux zone 3
+  short_label: Taux zone 3
   unit: /1

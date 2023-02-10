@@ -3,7 +3,7 @@ values:
   2006-01-01:
     value: 0.32
 metadata:
-  ux_name: Montant de base de l'AEEH
+  short_label: Montant de base de l'AEEH
   description_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   ipp_csv_id: aeeh_montant
   unit: BMAF

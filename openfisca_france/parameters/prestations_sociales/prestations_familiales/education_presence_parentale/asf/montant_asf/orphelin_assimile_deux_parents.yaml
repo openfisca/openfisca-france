@@ -15,7 +15,7 @@ values:
   2022-11-01:
     value: 0.5625
 metadata:
-  ux_name: Orphelin ou assimilé des deux parents
+  short_label: Orphelin ou assimilé des deux parents
   description_en: "Family support allowance (ASF): Amounts"
   ipp_csv_id: asf_2parents
   unit: BMAF

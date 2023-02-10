@@ -113,7 +113,7 @@ values:
   2000-01-01:
     value: null
 metadata:
-  ux_name: Revalorisation SJR
+  short_label: Revalorisation SJR
   description_en: Minimum income guarantee (1972-1999)
   ipp_csv_id: sr_gr
   unit: /1

@@ -3,7 +3,7 @@ values:
   2007-01-01:
     value: 3750
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   unit: currency
   reference:
     2007-01-01:

@@ -1,6 +1,6 @@
 description: Montant minimum de l'allocation de base d'assurance chômage (1958-1967)
 metadata:
-  ux_name: Montant minimum
+  short_label: Montant minimum
   description_en: UI scheme (1958-1967)
   order:
   - paris

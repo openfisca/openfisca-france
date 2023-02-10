@@ -3,7 +3,7 @@ values:
   2008-01-01:
     value: 0.003
 metadata:
-  ux_name: Biologistes médicaux conventionnés
+  short_label: Biologistes médicaux conventionnés
   description_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: asv_bio_0_5
   unit: /1

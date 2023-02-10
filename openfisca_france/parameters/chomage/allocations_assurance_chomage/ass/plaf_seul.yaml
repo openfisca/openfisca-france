@@ -3,7 +3,7 @@ values:
   2005-01-01:
     value: 70
 metadata:
-  ux_name: Multiple personne seule
+  short_label: Multiple personne seule
   description_en: Special UI scheme
   unit: currency
 documentation: ""

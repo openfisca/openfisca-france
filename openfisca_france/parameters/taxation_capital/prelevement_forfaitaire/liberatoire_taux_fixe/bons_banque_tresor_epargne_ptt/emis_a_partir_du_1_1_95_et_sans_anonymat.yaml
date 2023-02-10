@@ -11,7 +11,7 @@ values:
   2012-01-01:
     value: 0.24
 metadata:
-  ux_name: Émis à partir du 01/01/95 sans anonymat
+  short_label: Émis à partir du 01/01/95 sans anonymat
   description_en: Levy in discharge on capital income (1965 - 2012)
   ipp_csv_id: bons_ap95
   unit: /1

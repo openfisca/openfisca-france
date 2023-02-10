@@ -9,7 +9,7 @@ values:
   2003-07-01:
     value: null
 metadata:
-  ux_name: Taux
+  short_label: Taux
   description_en: Global reduction in SSCs (1993-2003)
   ipp_csv_id: tx_juppe_1_
   unit: /1

@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   unit: RSA
-  ux_name: Taux 3 personnes
+  short_label: Taux 3 personnes
   last_review: "2022-10-17"
   reference:
     2000-01-01:

@@ -15,7 +15,7 @@ values:
   2018-01-01:
     value: 0.128
 metadata:
-  ux_name: Taux - Vente
+  short_label: Taux - Vente
   description_en: Self-employed specific scheme (auto-entrepreneurs)
   ipp_csv_id: auto_av_ca
   unit: /1

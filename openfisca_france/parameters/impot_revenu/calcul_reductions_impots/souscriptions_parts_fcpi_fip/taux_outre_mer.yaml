@@ -9,7 +9,7 @@ values:
   2020-08-10:
     value: 0.30
 metadata:
-  ux_name: Taux Outre-mer
+  short_label: Taux Outre-mer
   last_review: "2022-10-11"
   unit: /1
   reference:

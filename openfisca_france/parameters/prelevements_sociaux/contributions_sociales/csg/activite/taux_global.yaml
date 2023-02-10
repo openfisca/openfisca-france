@@ -11,7 +11,7 @@ values:
   2018-01-01:
     value: 0.092
 metadata:
-  ux_name: Taux global
+  short_label: Taux global
   description_en: CSG - rates on work incomes
   ipp_csv_id: csg_act
   unit: /1

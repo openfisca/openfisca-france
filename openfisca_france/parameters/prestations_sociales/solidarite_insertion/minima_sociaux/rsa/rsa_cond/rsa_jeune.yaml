@@ -5,7 +5,7 @@ values:
   2010-01-01:
     value: 1
 metadata:
-  ux_name: Date début
+  short_label: Date début
   unit: currency
   reference:
     2010-01-01:

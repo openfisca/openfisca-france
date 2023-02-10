@@ -13,7 +13,7 @@ values:
   2021-01-01:
     value: 5827
 metadata:
-  ux_name: Majoration ressource par enfant supplémentaire
+  short_label: Majoration ressource par enfant supplémentaire
   description_en: "Family allowances (AF): Thresholds for means-testing"
   ipp_csv_id: plaf_enf_sup
   unit: currency

@@ -31,7 +31,7 @@ brackets:
     1984-04-01:
       value: 0
 metadata:
-  ux_name: Barème employeur
+  short_label: Barème employeur
   description_en: Contributions to the financial structure ASF (1984-2001)
   ipp_csv_id:
     rate: asf_p_0_1, asf_p_1_4

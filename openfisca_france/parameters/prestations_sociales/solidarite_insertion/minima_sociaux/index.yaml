@@ -1,6 +1,6 @@
 description: Prestations sociales - Minima sociaux
 metadata:
-  ux_name: Minima sociaux
+  short_label: Minima sociaux
   description_en: Minimum incomes
   order:
   - rmi

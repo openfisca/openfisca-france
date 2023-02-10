@@ -3,7 +3,7 @@ values:
   2018-01-01:
     value: 1400000
 metadata:
-  ux_name: Borne supérieure
+  short_label: Borne supérieure
   description_en: "\"Décote\" computation"
   ipp_csv_id: sup_decote1_ifi
   unit: currency

@@ -1,6 +1,6 @@
 description: Versement forfaitaire sur les salaires (1949-1967)
 metadata:
-  ux_name: Versement forfaitaire sur les salaires
+  short_label: Versement forfaitaire sur les salaires
   description_en: Lump sum payroll tax (1949-1967)
   order:
   - bareme_salaire

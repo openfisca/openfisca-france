@@ -1,6 +1,6 @@
 description: Assurance vieillesse des parents au foyer (AVPF)
 metadata:
-  ux_name: AVPF
+  short_label: AVPF
   description_en: Elderly insurance for stay-at-home parents (AVPF)
   order:
   - salaire_forfaitaire

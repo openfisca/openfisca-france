@@ -3,7 +3,7 @@ values:
   2007-07-01:
     value: 6331.29
 metadata:
-  ux_name: 5ème tranche (et début 6ème tranche)
+  short_label: 5ème tranche (et début 6ème tranche)
   description_en: Parameters for new home-buyers (APL)
   ipp_csv_id: seuil_tr5_lo_apl
   unit: currency

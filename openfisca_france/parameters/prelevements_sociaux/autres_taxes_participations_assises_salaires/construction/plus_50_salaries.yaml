@@ -7,7 +7,7 @@ brackets:
     2020-01-01:
       value: 0.0045
 metadata:
-  ux_name: Plus de 50 salariés
+  short_label: Plus de 50 salariés
   ipp_csv_id: cons_p50_0_
   reference:
     2020-01-01:

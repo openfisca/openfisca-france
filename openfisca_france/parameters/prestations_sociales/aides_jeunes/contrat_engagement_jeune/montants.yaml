@@ -13,7 +13,7 @@ brackets:
     2022-03-01:
       value: 500
 metadata:
-  ux_name: Montant
+  short_label: Montant
   reference:
     2022-03-01:
     - title: Article 1 du Décret n° 2022-199 du 18 février 2022

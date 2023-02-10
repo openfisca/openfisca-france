@@ -1,6 +1,6 @@
 description: Plafond des revenus éligibles à l'abattement
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_abattement_journalistes
   notes:
     2018-01-01:

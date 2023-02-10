@@ -1,6 +1,6 @@
 description: Montant (en % de la BMAF) de l'Allocation de soutien familial (ASF)
 metadata:
-  ux_name: Montant
+  short_label: Montant
   description_en: "Family support allowance (ASF): Amounts"
   order:
   - orphelin_assimile_seul_parent

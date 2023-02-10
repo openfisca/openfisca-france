@@ -13,7 +13,7 @@ values:
   2021-10-01:
     value: 9.04
 metadata:
-  ux_name: Majoration par personne à charge supplémentaire
+  short_label: Majoration par personne à charge supplémentaire
   ipp_csv_id: rls_z2_pac_supplementaire
   unit: currency
   reference:

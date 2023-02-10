@@ -103,7 +103,7 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  ux_name: Non-cadre - Tranches 1 et 2(avant 97)
+  short_label: Non-cadre - Tranches 1 et 2(avant 97)
   description_en: Pension contributions for non-executives (ARRCO)
   ipp_csv_id:
     rate: arrco_s_0_1, arrco_s_1_3

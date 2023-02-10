@@ -7,7 +7,7 @@ values:
   2009-06-01:
     value: null
 metadata:
-  ux_name: Personne isolée avec un enfant à charge
+  short_label: Personne isolée avec un enfant à charge
   description_en: "Single parent allowance (API): Amounts"
   ipp_csv_id: api_enf
   unit: BMAF

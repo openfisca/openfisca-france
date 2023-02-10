@@ -3,7 +3,7 @@ values:
   2004-01-01:
     value: 5
 metadata:
-  ux_name: Rémunération max assistante maternelle
+  short_label: Rémunération max assistante maternelle
   last_review: "2023-01-27"
   description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
   unit: SMIC

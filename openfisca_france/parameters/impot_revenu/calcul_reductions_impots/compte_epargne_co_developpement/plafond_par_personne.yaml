@@ -1,6 +1,6 @@
 description: Plafond maximum par personne de la réduction d'impôts pour les sommes versées sur un compte épargne codéveloppement (2010 - 2011)
 metadata:
-  ux_name: Plafond par personne 
+  short_label: Plafond par personne 
   ipp_csv_id: plaf_codev
   notes:
     2007-01-01:

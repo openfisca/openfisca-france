@@ -7,7 +7,7 @@ values:
   1974-07-05:
     value: 18
 metadata:
-  ux_name: Âge majorité
+  short_label: Âge majorité
   unit: year
   reference:
     1579-01-01:

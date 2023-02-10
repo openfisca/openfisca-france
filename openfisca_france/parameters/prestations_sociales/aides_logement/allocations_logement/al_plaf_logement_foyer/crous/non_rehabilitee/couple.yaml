@@ -13,7 +13,7 @@ values:
   2022-07-01:
     value: 135.59
 metadata:
-  ux_name: Couple
+  short_label: Couple
   unit: currency
   reference:
     2000-01-01:

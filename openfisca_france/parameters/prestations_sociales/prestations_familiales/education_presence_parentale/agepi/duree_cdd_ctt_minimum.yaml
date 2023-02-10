@@ -3,7 +3,7 @@ values:
   2014-01-20:
     value: 3
 metadata:
-  ux_name: Durée minimum de contrat CDD ou CTT
+  short_label: Durée minimum de contrat CDD ou CTT
   reference:
     2014-01-20:
       href: http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20

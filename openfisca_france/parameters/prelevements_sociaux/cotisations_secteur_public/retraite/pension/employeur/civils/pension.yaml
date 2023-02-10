@@ -29,7 +29,7 @@ brackets:
     2014-01-01:
       value: 0.7428
 metadata:
-  ux_name: Barème
+  short_label: Barème
   description_en: Contributions for pensions - central government (employer contribution)
   ipp_csv_id: txexp_civ_p
   reference:

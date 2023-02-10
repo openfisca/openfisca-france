@@ -1,6 +1,6 @@
 description: Seuil d'impôt 1 des minorations exceptionnelles d'impôt (1965-1992)
 metadata:
-  ux_name: Seuil 1
+  short_label: Seuil 1
   ipp_csv_id: seuil_min1
   notes:
     1966-01-01:

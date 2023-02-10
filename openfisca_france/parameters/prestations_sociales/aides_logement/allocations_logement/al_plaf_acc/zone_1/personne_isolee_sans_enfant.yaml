@@ -31,7 +31,7 @@ values:
   2019-10-01:
     value: 314.76
 metadata:
-  ux_name: Personne isolée sans enfant
+  short_label: Personne isolée sans enfant
   description_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_isol_z1_al
   unit: currency

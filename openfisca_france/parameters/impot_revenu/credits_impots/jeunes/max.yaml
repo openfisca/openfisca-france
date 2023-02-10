@@ -5,5 +5,5 @@ values:
   2009-01-01:
     value: null
 metadata:
-  ux_name: Plafond de revennus
+  short_label: Plafond de revennus
   unit: currency

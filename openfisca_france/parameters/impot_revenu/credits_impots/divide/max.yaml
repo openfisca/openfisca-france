@@ -5,5 +5,5 @@ values:
   2010-01-01:
     value: null
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   unit: currency

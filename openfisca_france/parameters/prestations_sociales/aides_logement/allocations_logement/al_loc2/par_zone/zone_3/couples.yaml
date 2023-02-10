@@ -41,7 +41,7 @@ values:
   2022-07-01:
     value: 305.48
 metadata:
-  ux_name: Couples
+  short_label: Couples
   description_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: plaf_loy_coup_z3
   unit: currency

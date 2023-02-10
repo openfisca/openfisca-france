@@ -9,7 +9,7 @@ values:
   1989-10-01:
     value: 0.404
 metadata:
-  ux_name: Si affiliation > 6 mois
+  short_label: Si affiliation > 6 mois
   description_en: "UI scheme: rates and maximum"
   ipp_csv_id: base_prct_6_
   unit: /1

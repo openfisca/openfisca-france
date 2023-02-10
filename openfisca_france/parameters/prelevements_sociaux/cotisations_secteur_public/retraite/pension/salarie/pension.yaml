@@ -39,7 +39,7 @@ brackets:
     2020-01-01:
       value: 0.111
 metadata:
-  ux_name: Pension
+  short_label: Pension
   description_en: Contributions for pensions - central government (employee contribution)
   ipp_csv_id: retpens_pu_s
   reference:

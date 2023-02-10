@@ -33,7 +33,7 @@ values:
   2020-01-01:
     value: 13548
 metadata:
-  ux_name: Plafonds de ressources personnes à charge (autres que les enfants)
+  short_label: Plafonds de ressources personnes à charge (autres que les enfants)
   description_en: Definition of dependants
   unit: currency
   reference:

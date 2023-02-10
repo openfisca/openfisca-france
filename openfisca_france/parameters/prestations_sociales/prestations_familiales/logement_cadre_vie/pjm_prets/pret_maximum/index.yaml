@@ -1,6 +1,6 @@
 description: Prêt maximum dans le cadre du Prêt aux jeunes ménages (PJM)
 metadata:
-  ux_name: Prêt maximum
+  short_label: Prêt maximum
   description_en: "Loans to young household (PJM): Amount of loans"
   order:
   - premiers_frais_location

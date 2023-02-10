@@ -1,6 +1,6 @@
 description: Durée d'indemnisation au taux plein (affiliation de 6 mois au cours des 12 derniers mois) de l'allocation unique dégressive des allocations chômage
 metadata:
-  ux_name: 6 mois au cours des 12 derniers mois
+  short_label: 6 mois au cours des 12 derniers mois
   description_en: UI scheme - degressive schedule
   order:
   - moins_50_ans

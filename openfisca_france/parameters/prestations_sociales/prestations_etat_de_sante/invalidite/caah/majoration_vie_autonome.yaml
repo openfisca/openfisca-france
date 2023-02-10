@@ -11,7 +11,7 @@ values:
   2008-01-01:
     value: 104.77
 metadata:
-  ux_name: Majoration
+  short_label: Majoration
   description_en: Additional adult disability allowance (CAAH)
   unit: currency
   reference:

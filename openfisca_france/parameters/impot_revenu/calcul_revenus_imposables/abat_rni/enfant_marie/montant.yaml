@@ -93,7 +93,7 @@ values:
   2022-01-01:
     value: 6368
 metadata:
-  ux_name: Abattement
+  short_label: Abattement
   last_review: "2023-01-05"
   description_en: Tax allowance for net taxable income
   ipp_csv_id: abt_enfmaries

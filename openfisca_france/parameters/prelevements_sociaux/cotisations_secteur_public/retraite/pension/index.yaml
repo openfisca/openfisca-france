@@ -1,6 +1,6 @@
 description: Pensions des cotisations retraite spécifiques à la fonction publique
 metadata:
-  ux_name: Cotisations retraite
+  short_label: Cotisations retraite
   description_en: Contributions for pensions - central government
   order:
   - employeur

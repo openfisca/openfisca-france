@@ -7,7 +7,7 @@ values:
   2018-01-01:
     value: 0
 metadata:
-  ux_name: Si revenu d'activité < 110 % PSS
+  short_label: Si revenu d'activité < 110 % PSS
   description_en: SSCs for family benefits (independent workers)
   unit: /1
   reference:

@@ -1,6 +1,6 @@
 description: Cotisation pour formation professionnelle - Régimes des auto-entrepreneurs
 metadata:
-  ux_name: Formation professionnelle
+  short_label: Formation professionnelle
   description_en: Self-employed specific scheme (auto-entrepreneurs)
   order:
   - ventecom_chiffre_affaires

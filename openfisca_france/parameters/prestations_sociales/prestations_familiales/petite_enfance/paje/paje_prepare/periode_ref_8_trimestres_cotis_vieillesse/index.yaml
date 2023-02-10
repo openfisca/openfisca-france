@@ -1,6 +1,6 @@
 description: Période de référence pour justifier les 8 trimestres de cotisation vieillesse pour la Prestation partagée d'éducation de l'enfant (PreParE) de la Prestation d'accueil du jeune enfant (PAJE)
 metadata:
-  ux_name: Période de référence pour justifier les 8 trimestres de cotisation vieillesse
+  short_label: Période de référence pour justifier les 8 trimestres de cotisation vieillesse
   description_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
   order:
   - un_enfant

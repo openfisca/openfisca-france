@@ -39,7 +39,7 @@ values:
   2007-07-01:
     value: 21420.91
 metadata:
-  ux_name: Multiplicateur de N dans la formule de K
+  short_label: Multiplicateur de N dans la formule de K
   description_en: Parameters for new home-buyers and students residences
   ipp_csv_id: mult_k_al
   reference:

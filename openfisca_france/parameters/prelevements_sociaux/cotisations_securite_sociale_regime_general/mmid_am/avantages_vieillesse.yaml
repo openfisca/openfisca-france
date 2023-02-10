@@ -21,7 +21,7 @@ values:
   2012-01-01:
     value: 0.015
 metadata:
-  ux_name: Cotis. Avantages vieillesse
+  short_label: Cotis. Avantages vieillesse
   description_en: SSCs of the local sickness scheme of Alsace-Moselle (1967-2016)
   ipp_csv_id: am_pens
   unit: /1

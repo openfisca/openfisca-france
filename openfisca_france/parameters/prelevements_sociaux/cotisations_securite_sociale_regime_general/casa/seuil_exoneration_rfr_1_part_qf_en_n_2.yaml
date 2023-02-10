@@ -17,7 +17,7 @@ values:
   2021-01-01:
     value: 14914
 metadata:
-  ux_name: Seuil d'exonération (RFR pour 1 part de QF en N-2)
+  short_label: Seuil d'exonération (RFR pour 1 part de QF en N-2)
   description_en: "Additional SSC for autonomy (CASA: Additional solidarity Contribution for Autonomy)"
   unit: currency
   reference:

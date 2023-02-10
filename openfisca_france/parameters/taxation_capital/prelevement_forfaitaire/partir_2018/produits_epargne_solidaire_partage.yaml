@@ -3,7 +3,7 @@ values:
   2018-01-01:
     value: 0.05
 metadata:
-  ux_name: Produits d'épargne solidaire de partage
+  short_label: Produits d'épargne solidaire de partage
   description_en: Flat tax on capital income (from 2018)
   unit: /1
   reference:

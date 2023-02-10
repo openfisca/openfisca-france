@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   unit: currency
-  ux_name: Seuil
+  short_label: Seuil
   ipp_csv_id: reduc_except_rfr_seuil
   reference:
     2013-01-01:

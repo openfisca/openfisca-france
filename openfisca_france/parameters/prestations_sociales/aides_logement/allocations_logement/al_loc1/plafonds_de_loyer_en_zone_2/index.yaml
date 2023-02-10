@@ -1,6 +1,6 @@
 description: Plafonds de loyer en zone 2 (avant la réforme de 2001) des Allocations logement (AL)
 metadata:
-  ux_name: Zone 2
+  short_label: Zone 2
   description_en: Parameters for the rental sector (before the 2001 reform)
   order:
   - menage_seul

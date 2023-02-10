@@ -37,7 +37,7 @@ values:
   2022-01-01:
     value: 1378
 metadata:
-  ux_name: Seuil Couple
+  short_label: Seuil Couple
   ipp_csv_id: param_decote_b
   unit: currency
   last_review: "2023-01-05"

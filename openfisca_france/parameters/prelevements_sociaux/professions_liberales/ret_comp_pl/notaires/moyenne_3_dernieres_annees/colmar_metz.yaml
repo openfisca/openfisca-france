@@ -7,7 +7,7 @@ values:
   2015-01-01:
     value: 0.036
 metadata:
-  ux_name: Colmar-Metz
+  short_label: Colmar-Metz
   description_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: retc_not_cm_0_
   unit: /1

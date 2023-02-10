@@ -7,7 +7,7 @@ values:
   1969-01-01:
     value: 0.0105
 metadata:
-  ux_name: Plus de 65 ans
+  short_label: Plus de 65 ans
   description_en: SSCs for artists (1960-1974)
   ipp_csv_id: mmid_a_am_s65_s_0_1
   unit: /1

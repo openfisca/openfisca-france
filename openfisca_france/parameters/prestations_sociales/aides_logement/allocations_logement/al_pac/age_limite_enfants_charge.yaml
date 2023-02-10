@@ -5,7 +5,7 @@ values:
   2000-01-01:
     value: 21
 metadata:
-  ux_name: Âge limite pour les enfants à charge
+  short_label: Âge limite pour les enfants à charge
   description_en: Definition of dependants
   ipp_csv_id: ag_max_pac_alf
   unit: year

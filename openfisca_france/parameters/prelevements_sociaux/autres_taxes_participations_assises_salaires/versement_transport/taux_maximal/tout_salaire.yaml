@@ -7,7 +7,7 @@ values:
   2003-01-01:
     value: 0.0175
 metadata:
-  ux_name: Tout salaire
+  short_label: Tout salaire
   description_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_p_0_
   unit: /1

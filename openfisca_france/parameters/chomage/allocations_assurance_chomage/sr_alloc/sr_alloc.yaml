@@ -111,7 +111,7 @@ values:
   2020-07-01:
     value: 0.004
 metadata:
-  ux_name: Revalorisation
+  short_label: Revalorisation
   description_en: Indexation of UI benefits
   ipp_csv_id: sr_alloc
   unit: /1

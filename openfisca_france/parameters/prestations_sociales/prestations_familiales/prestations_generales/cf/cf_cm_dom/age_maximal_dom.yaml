@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 5
 metadata:
-  ux_name: Âge maximal
+  short_label: Âge maximal
   description_en: "Family complement (CF): Thresholds for means-testing in oversea territories"
   unit: year
   reference:

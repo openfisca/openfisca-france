@@ -1,7 +1,7 @@
 description: Taux tranche inférieure de l'imposition des gains de levées d'options sur titre attribuées avant le
   28/09/2012 si cession durant le délai de portage de 2 ans (après le délai d'indisponibilité)
 metadata:
-  ux_name: Taux tranche inf.
+  short_label: Taux tranche inf.
   ipp_csv_id: tx_stockoptions2
   notes:
     1995-01-01:

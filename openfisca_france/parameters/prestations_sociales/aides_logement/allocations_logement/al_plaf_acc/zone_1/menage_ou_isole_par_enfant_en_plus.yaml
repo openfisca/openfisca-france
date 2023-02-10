@@ -45,7 +45,7 @@ values:
   2019-10-01:
     value: 39.36
 metadata:
-  ux_name: Ménage ou isolé - par enfant en plus
+  short_label: Ménage ou isolé - par enfant en plus
   description_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_enfsupp_z1_al
   unit: currency

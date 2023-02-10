@@ -5,7 +5,7 @@ values:
   2008-05-01:
     value: 1
 metadata:
-  ux_name: Abattement revenus interrompus et non substitués
+  short_label: Abattement revenus interrompus et non substitués
   description_en: Special UI scheme
   unit: /1
 documentation: Pas de pension de retraite, ni de chômage, etc.

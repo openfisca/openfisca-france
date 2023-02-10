@@ -3,7 +3,7 @@ values:
   2004-01-01:
     value: 0.25
 metadata:
-  ux_name: 1er et 2ème enfants
+  short_label: 1er et 2ème enfants
   description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_paje_enf1et2_avant_20140401
   unit: /1

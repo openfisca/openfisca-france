@@ -31,7 +31,7 @@ values:
   1981-01-01:
     value: null
 metadata:
-  ux_name: Complément exceptionnel
+  short_label: Complément exceptionnel
   description_en: "Extra allowance (AS): Amount"
   ipp_csv_id: complement
   unit: currency

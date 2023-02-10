@@ -3,7 +3,7 @@ values:
   2004-01-01:
     value: 3
 metadata:
-  ux_name: Limite d'âge
+  short_label: Limite d'âge
   description_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
   ipp_csv_id: paje_ab_age_min
   unit: year

@@ -1,6 +1,6 @@
 description: Cotisations spécifiques à la fonction publique
 metadata:
-  ux_name: Cotisations fonction publique
+  short_label: Cotisations fonction publique
   description_en: Contributions in the public sector
   order:
   - mmid

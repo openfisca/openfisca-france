@@ -7,7 +7,7 @@ brackets:
     2015-01-01:
       value: 0.00016
 metadata:
-  ux_name: Taux contribution dialogue social
+  short_label: Taux contribution dialogue social
   description_en: Employer's contributions to the funding of trade unions
   ipp_csv_id: taux
   reference:

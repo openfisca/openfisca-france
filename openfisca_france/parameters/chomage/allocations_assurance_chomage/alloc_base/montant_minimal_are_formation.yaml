@@ -39,7 +39,7 @@ values:
   2020-07-01:
     value: 21.04
 metadata:
-  ux_name: Montant minimal ARE-formation
+  short_label: Montant minimal ARE-formation
   description_en: "UI scheme: lump-sum and minimum"
   unit: currency
   reference:

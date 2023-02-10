@@ -1,6 +1,6 @@
 description: Cotisations maladie spécifiques à la fonction publique
 metadata:
-  ux_name: Cotisations maladie
+  short_label: Cotisations maladie
   description_en: Health insurance contributions
   order:
   - etat

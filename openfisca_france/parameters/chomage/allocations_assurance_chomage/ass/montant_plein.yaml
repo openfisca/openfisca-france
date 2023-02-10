@@ -75,7 +75,7 @@ values:
   2021-04-01:
     value: 16.91
 metadata:
-  ux_name: Montant journalier (Taux plein)
+  short_label: Montant journalier (Taux plein)
   description_en: Special UI scheme
   ipp_csv_id: ass_base
   unit: currency

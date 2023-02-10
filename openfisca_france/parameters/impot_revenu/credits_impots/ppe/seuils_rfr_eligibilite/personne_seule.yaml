@@ -21,7 +21,7 @@ values:
   2016-01-01:
     value: null
 metadata:
-  ux_name: Célibataire
+  short_label: Célibataire
   description_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: seuil_rfr_ppe
   unit: currency

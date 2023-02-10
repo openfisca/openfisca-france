@@ -11,7 +11,7 @@ values:
   1998-01-01:
     value: null
 metadata:
-  ux_name: Taux sur pensions sous 5 PSS
+  short_label: Taux sur pensions sous 5 PSS
   description_en: SSCs for sickness and maternity benefits (professionals)
   ipp_csv_id: mmid_plib_pens_0_5
   unit: /1

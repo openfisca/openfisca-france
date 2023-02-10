@@ -1,6 +1,6 @@
 description: Abattement maximal de la déduction supplémentaire de 20%
 metadata:
-  ux_name: Maximum
+  short_label: Maximum
   ipp_csv_id: max_abt_dedsal
   notes:
     1974-01-01:

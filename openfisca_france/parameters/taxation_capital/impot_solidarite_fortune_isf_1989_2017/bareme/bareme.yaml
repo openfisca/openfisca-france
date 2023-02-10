@@ -265,7 +265,7 @@ brackets:
     2013-01-01:
       value: null
 metadata:
-  ux_name: Barème ISF
+  short_label: Barème ISF
   description_en: Wealth tax schedule
   ipp_csv_id:
     threshold: seuil1_isf, seuil2_isf, seuil3_isf, seuil4_isf, seuil5_isf, seuil6_isf

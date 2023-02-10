@@ -9,7 +9,7 @@ values:
   1986-07-01:
     value: 0.151333715761
 metadata:
-  ux_name: Majoration du plafond de ressources -enfant supplémentaire
+  short_label: Majoration du plafond de ressources -enfant supplémentaire
   description_en: "Family complement (CF): Thresholds for means-testing"
   ipp_csv_id: plaf_suppenf_biact
   unit: /1

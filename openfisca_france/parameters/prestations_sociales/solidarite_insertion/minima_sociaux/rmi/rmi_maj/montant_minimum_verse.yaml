@@ -7,7 +7,7 @@ values:
   2009-06-01:
     value: null
 metadata:
-  ux_name: Montant minimum versé
+  short_label: Montant minimum versé
   description_en: "Minimum insertion income (RMI): Extra allowance and minimal amount"
   ipp_csv_id: min_rmi
   unit: currency

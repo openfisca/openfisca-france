@@ -11,7 +11,7 @@ values:
   2023-01-01:
     value: 9311
 metadata:
-  ux_name: Personne seule ou couple ayant 4 personnes à charge
+  short_label: Personne seule ou couple ayant 4 personnes à charge
   description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   ipp_csv_id: r0_4pac
   unit: currency

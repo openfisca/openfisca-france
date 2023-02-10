@@ -15,7 +15,7 @@ values:
   1982-07-01:
     value: null
 metadata:
-  ux_name: Premiers frais de location
+  short_label: Premiers frais de location
   description_en: "Loans to young household (PJM): Amount of loans"
   ipp_csv_id: pret_max_location
   unit: currency

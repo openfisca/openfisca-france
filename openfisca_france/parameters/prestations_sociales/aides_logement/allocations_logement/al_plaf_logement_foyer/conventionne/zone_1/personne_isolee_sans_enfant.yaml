@@ -11,7 +11,7 @@ values:
   2022-07-01:
     value: 461.92
 metadata:
-  ux_name: Personne isolée sans enfant
+  short_label: Personne isolée sans enfant
   ipp_csv_id: plaf_foy_z1_al_personne_isolee
   unit: currency
   reference:

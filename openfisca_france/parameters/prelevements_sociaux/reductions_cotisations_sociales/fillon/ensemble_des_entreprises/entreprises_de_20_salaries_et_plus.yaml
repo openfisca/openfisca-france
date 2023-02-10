@@ -21,7 +21,7 @@ values:
   2022-01-01:
     value: 0.3235
 metadata:
-  ux_name: Coefficient maximal pour les employeurs de 20 salariés et plus
+  short_label: Coefficient maximal pour les employeurs de 20 salariés et plus
   description_en: General SSC reductions, so called Fillon reductions (2003-2016)
   ipp_csv_id: tx_fillon_20_
   unit: /1

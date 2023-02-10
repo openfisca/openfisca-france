@@ -89,7 +89,7 @@ values:
   2021-01-01:
     value: 1715.35
 metadata:
-  ux_name: Réunion
+  short_label: Réunion
   description_en: Elderly insurance for stay-at-home parents (AVPF )
   ipp_csv_id: avpf_r
   unit: currency

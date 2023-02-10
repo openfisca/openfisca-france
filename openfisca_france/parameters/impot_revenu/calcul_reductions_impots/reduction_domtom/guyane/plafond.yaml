@@ -35,7 +35,7 @@ values:
   2018-01-01:
     value: 4050
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_reduction_ir_guyane
   unit: currency
   description_en: Reductions for French Overseas Territories taxpayers

@@ -1,6 +1,6 @@
 description: Cotisations du régime d'assurance maladie
 metadata:
-  ux_name: Cotisations Assurance Maladie
+  short_label: Cotisations Assurance Maladie
   description_en: SSCs of the sickness scheme
   order:
   - employeur

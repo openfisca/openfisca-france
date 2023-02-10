@@ -167,7 +167,7 @@ values:
   2022-01-01:
     value: 7435.01
 metadata:
-  ux_name: Personne seule
+  short_label: Personne seule
   description_en: "Extra allowance (AS): Amount"
   ipp_csv_id: alloc_sup_seul
   unit: currency

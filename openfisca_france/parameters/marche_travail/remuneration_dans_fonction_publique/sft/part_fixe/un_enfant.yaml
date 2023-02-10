@@ -5,7 +5,7 @@ values:
   2002-01-01:
     value: 2.29
 metadata:
-  ux_name: Part fixe pour un enfant
+  short_label: Part fixe pour un enfant
   description_en: Family income supplement (SFT)
   ipp_csv_id: enf1
   unit: currency

@@ -21,7 +21,7 @@ values:
   2001-08-10:
     value: null
 metadata:
-  ux_name: Montant
+  short_label: Montant
   description_en: "Back-to-school allowance (ARS): Exceptionnal extra allowance"
   ipp_csv_id: maj_ars
   unit: currency

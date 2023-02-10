@@ -1,6 +1,6 @@
 description: Taxe d'apprentissage de la Contribution unique à la formation professionnelle et à l'alternance (CUFPA) (depuis 2019) - Autres taxes et participations assises sur les salaires
 metadata:
-  ux_name: Taxe d'apprentissage (CUFPA)
+  short_label: Taxe d'apprentissage (CUFPA)
   description_en: Unique employer's participation to lifelong professional training and apprenticeship
   order:
   - general

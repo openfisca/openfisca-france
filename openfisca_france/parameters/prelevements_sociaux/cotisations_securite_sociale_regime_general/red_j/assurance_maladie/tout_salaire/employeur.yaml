@@ -3,7 +3,7 @@ values:
   1967-10-01:
     value: 0.016
 metadata:
-  ux_name: Taux employeur
+  short_label: Taux employeur
   description_en: SSCs for freelance journalists (1964-1974)
   ipp_csv_id: mmid_j_p_0_
   unit: /1

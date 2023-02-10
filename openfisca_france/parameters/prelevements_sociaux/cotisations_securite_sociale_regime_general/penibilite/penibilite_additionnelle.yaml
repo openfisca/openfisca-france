@@ -11,7 +11,7 @@ brackets:
     2018-01-01:
       value: null
 metadata:
-  ux_name: Barème pour mono-exposés
+  short_label: Barème pour mono-exposés
   description_en: SSCs for arduous working conditions
   reference:
     2015-01-01:

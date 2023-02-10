@@ -5,7 +5,7 @@ values:
   2006-01-01:
     value: null
 metadata:
-  ux_name: Montant
+  short_label: Montant
   description_en: "Special education allowance (AES): Conditions and amounts"
   ipp_csv_id: aes_montant
   unit: BMAF

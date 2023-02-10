@@ -3,7 +3,7 @@ values:
   1985-01-01:
     value: 2
 metadata:
-  ux_name: Années d'activité précédant la demande
+  short_label: Années d'activité précédant la demande
   description_en: "Parental leave allowance (APE): Conditions and amounts"
   ipp_csv_id: min_annee_act
   unit: year

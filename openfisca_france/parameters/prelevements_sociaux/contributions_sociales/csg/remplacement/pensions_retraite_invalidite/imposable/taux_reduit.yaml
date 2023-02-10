@@ -3,7 +3,7 @@ values:
   1997-01-01:
     value: 0
 metadata:
-  ux_name: Taux réduit
+  short_label: Taux réduit
   description_en: CSG - rates on work incomes
   unit: /1
   reference:

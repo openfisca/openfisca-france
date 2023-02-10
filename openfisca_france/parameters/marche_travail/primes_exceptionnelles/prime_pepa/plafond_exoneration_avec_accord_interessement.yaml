@@ -7,7 +7,7 @@ values:
   2022-04-01:
     value: null
 metadata:
-  ux_name: Deuxième plafond d'exonération sous conditions
+  short_label: Deuxième plafond d'exonération sous conditions
   unit: currency
   reference:
     2018-12-24:

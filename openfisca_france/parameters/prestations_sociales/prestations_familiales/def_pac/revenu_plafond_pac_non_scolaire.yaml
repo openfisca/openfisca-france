@@ -3,7 +3,7 @@ values:
   1985-12-22:
     value: 0.55
 metadata:
-  ux_name: Revenu plafond
+  short_label: Revenu plafond
   description_en: Definition of dependants
   ipp_csv_id: af_plaf_revenf
   unit: SMIC

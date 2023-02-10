@@ -7,7 +7,7 @@ values:
   2002-01-01:
     value: 151.67
 metadata:
-  ux_name: Nombre d'heures temps plein
+  short_label: Nombre d'heures temps plein
   description_en: Minimum wage - SMIC
   ipp_csv_id: htp
   unit: hour

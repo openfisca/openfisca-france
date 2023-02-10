@@ -11,7 +11,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Plafonnement du taux d'imposition
+  short_label: Plafonnement du taux d'imposition
   description_en: Wealth tax ceiling
   ipp_csv_id: tx_plaf
   unit: /1

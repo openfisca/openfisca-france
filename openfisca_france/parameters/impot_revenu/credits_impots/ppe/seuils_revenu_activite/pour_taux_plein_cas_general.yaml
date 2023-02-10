@@ -21,7 +21,7 @@ values:
   2016-01-01:
     value: null
 metadata:
-  ux_name: Pour taux plein (cas général)
+  short_label: Pour taux plein (cas général)
   description_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: seuil_ppe
   unit: currency

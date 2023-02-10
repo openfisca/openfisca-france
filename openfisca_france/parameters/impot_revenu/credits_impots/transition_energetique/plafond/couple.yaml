@@ -5,7 +5,7 @@ values:
   2020-01-01:
     value: 4800
 metadata:
-  ux_name: Couple à imposition commune
+  short_label: Couple à imposition commune
   ipp_csv_id: plafond_cite_couple
   unit: currency
   reference:

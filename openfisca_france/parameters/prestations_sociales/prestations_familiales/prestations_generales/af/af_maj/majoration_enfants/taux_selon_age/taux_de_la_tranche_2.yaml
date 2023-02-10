@@ -5,7 +5,7 @@ values:
   2008-05-01:
     value: null
 metadata:
-  ux_name: Taux de la tranche 2
+  short_label: Taux de la tranche 2
   description_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: maj_enf_tx2
   unit: BMAF

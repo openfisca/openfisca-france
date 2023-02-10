@@ -7,7 +7,7 @@ brackets:
     2020-01-01:
       value: 0.005
 metadata:
-  ux_name: Entreprises de plus de 50 salariés
+  short_label: Entreprises de plus de 50 salariés
   ipp_csv_id: fnal_p_p50_0_
   reference:
     2020-01-01:

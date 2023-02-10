@@ -3,7 +3,7 @@ values:
   2016-12-23:
     value: 0.8
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   unit: SMIC
   reference:
     2016-12-23:

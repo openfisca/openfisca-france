@@ -3,7 +3,7 @@ values:
   2006-01-01:
     value: 20
 metadata:
-  ux_name: Age maximum de l'enfant
+  short_label: Age maximum de l'enfant
   description_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   ipp_csv_id: aeeh_enf_agemax
   unit: year

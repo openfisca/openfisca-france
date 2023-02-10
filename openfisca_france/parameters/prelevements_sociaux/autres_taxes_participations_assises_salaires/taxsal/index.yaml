@@ -1,6 +1,6 @@
 description: Taxe sur les salaires (depuis 1968), parmi les autres taxes et participations assises sur les salaires
 metadata:
-  ux_name: Taxe sur les salaires (depuis 1968)
+  short_label: Taxe sur les salaires (depuis 1968)
   description_en: Other payroll and workforce taxes
   order:
   - taux_maj

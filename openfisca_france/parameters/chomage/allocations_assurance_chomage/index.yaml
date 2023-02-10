@@ -1,6 +1,6 @@
 description: Allocations d'assurance chômage
 metadata:
-  ux_name: Allocations chômage
+  short_label: Allocations chômage
   description_en: Unemployment insurance (earnings related benefits)
   order:
   - alloc_base

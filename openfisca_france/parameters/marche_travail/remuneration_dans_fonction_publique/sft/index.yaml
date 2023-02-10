@@ -1,6 +1,6 @@
 description: Montant du supplément familial de traitement (SFT)
 metadata:
-  ux_name: Supplément familial de traitement
+  short_label: Supplément familial de traitement
   description_en: Family income supplement
   reference:
     1999-07-01:

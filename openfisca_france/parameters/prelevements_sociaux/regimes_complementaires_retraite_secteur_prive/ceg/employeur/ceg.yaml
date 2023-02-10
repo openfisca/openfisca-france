@@ -19,7 +19,7 @@ brackets:
     2019-01-01:
       value: 0
 metadata:
-  ux_name: Barème employeur (Tranches 1 et 2)
+  short_label: Barème employeur (Tranches 1 et 2)
   description_en: Complementary pension contributions
   reference:
     2019-01-01:

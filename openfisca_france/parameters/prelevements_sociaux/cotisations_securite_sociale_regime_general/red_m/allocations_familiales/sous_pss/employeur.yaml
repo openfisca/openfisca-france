@@ -11,7 +11,7 @@ values:
   1974-01-01:
     value: 0.063
 metadata:
-  ux_name: Taux employeur
+  short_label: Taux employeur
   description_en: SSCs for physicians working part-time (1961-1974)
   ipp_csv_id: fam_m_p_0_1
   unit: /1

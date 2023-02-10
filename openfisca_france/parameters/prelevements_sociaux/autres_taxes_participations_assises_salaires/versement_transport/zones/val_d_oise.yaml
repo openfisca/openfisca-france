@@ -25,7 +25,7 @@ values:
   2017-01-01:
     value: 0.0201
 metadata:
-  ux_name: Val d'Oise
+  short_label: Val d'Oise
   description_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_95
   unit: /1

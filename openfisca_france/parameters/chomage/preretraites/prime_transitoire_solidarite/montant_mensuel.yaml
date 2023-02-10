@@ -5,7 +5,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Montant mensuel
+  short_label: Montant mensuel
   description_en: Transitional solidarity premium (PTS)
   unit: currency
   reference:

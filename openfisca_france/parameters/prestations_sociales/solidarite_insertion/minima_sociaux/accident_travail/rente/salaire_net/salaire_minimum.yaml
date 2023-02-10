@@ -39,7 +39,7 @@ values:
   2021-04-01:
     value: 18649.93
 metadata:
-  ux_name: Salaire net
+  short_label: Salaire net
   unit: currency
   reference:
     2015-12-23:

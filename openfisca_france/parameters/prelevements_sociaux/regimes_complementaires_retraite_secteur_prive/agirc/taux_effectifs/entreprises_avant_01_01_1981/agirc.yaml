@@ -89,7 +89,7 @@ brackets:
     1948-01-01:
       value: 0
 metadata:
-  ux_name: Barème (Tranches B et C)
+  short_label: Barème (Tranches B et C)
   description_en: Pension contributions for executives (AGIRC)
   reference:
     1948-01-01:

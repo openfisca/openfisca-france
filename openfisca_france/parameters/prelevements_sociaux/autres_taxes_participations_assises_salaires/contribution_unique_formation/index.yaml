@@ -1,6 +1,6 @@
 description: Contribution unique à la formation professionnelle et à l'alternance (CUFPA) (depuis 2019) - Autres taxes et participations assises sur les salaires
 metadata:
-  ux_name: CUFPA
+  short_label: CUFPA
   description_en: Unique employer's participation to lifelong professional training and apprenticeship
   order:
   - contrib_formation_pro

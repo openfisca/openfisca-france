@@ -1,6 +1,6 @@
 description: Aide exceptionnelle pour la famille de solidarité COVID-19
 metadata:
-  ux_name: Aide Famille
+  short_label: Aide Famille
   description_en: Exceptional benefit - COVID-19 crisis
   order:
   - base

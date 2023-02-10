@@ -17,7 +17,7 @@ brackets:
     2013-01-01:
       value: 0.0032
 metadata:
-  ux_name: Allocations temporaires d'invalidité (ATI)
+  short_label: Allocations temporaires d'invalidité (ATI)
   description_en: Contributions for pensions - central government (employer contribution)
   ipp_csv_id: txexp_ati_p
   reference:

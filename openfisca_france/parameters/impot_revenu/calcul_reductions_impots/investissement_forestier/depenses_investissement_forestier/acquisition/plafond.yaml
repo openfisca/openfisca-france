@@ -7,7 +7,7 @@ values:
   2022-01-01:
     value: 6250
 metadata:
-  ux_name: Plafond acquisition
+  short_label: Plafond acquisition
   ipp_csv_id: plaf_foret
   unit: currency
   reference:

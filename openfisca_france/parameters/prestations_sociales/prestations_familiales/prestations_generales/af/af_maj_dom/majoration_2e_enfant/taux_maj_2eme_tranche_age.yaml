@@ -11,7 +11,7 @@ values:
   1999-01-01:
     value: null
 metadata:
-  ux_name: 2ème tranche d'âge
+  short_label: 2ème tranche d'âge
   description_en: "Family allowances (AF): Extra allowances for oversea territories"
   unit: BMAF
   reference:

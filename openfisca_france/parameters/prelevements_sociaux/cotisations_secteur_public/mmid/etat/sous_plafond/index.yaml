@@ -1,6 +1,6 @@
 description: Cotisations maladie (sous plafond) spécifiques à la fonction publique
 metadata:
-  ux_name: Sous plafond
+  short_label: Sous plafond
   description_en: Health insurance contributions
   order:
   - employeur

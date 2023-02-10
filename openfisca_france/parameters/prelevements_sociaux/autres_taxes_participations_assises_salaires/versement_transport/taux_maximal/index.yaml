@@ -1,6 +1,6 @@
 description: Taux maximal (hors Ile-de-France) du Versement transport (VT), parmi les autres taxes et participations assises sur les salaires
 metadata:
-  ux_name: Taux maximal
+  short_label: Taux maximal
   description_en: Transportation payroll tax
   order:
   - sous_pss

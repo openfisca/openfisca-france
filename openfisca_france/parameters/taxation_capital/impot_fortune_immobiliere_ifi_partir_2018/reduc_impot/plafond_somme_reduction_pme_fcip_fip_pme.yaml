@@ -5,7 +5,7 @@ values:
   2019-01-01:
     value: 50000
 metadata:
-  ux_name: Plafond réduc. pour PME et FCIP et FIP des PME
+  short_label: Plafond réduc. pour PME et FCIP et FIP des PME
   description_en: Tax reductions for investment and donations
   unit: currency
   reference:

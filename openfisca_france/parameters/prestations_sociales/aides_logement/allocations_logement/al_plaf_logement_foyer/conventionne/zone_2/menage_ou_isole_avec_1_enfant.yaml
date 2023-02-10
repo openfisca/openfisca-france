@@ -11,7 +11,7 @@ values:
   2022-07-01:
     value: 525.65
 metadata:
-  ux_name: Ménage ou isolé avec 1 enfant
+  short_label: Ménage ou isolé avec 1 enfant
   ipp_csv_id: plaf_foy_z2_al_menage_1_enfant
   unit: currency
   reference:

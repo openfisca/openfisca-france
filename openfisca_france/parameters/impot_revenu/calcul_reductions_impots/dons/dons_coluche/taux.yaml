@@ -1,6 +1,6 @@
 description: Taux des Dons Coluche
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: txcoluche
   official_journal_date:
     2005-01-01: '2005-01-19'

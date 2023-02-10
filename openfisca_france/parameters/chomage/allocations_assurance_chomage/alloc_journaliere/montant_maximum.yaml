@@ -5,7 +5,7 @@ values:
   1983-01-01:
     value: 0.8
 metadata:
-  ux_name: Montant maximum
+  short_label: Montant maximum
   description_en: Special UI scheme for economic layoffs (1979-1983)
   ipp_csv_id: journ_max_prct
   unit: /1

@@ -11,7 +11,7 @@ values:
   1984-03-21:
     value: null
 metadata:
-  ux_name: Partie fixe
+  short_label: Partie fixe
   description_en: Special UI scheme for economic layoffs (1979-1983)
   ipp_csv_id: journ_fixe
   unit: currency

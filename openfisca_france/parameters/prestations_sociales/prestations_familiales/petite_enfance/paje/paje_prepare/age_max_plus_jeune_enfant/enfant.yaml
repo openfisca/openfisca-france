@@ -3,7 +3,7 @@ values:
   2015-01-01:
     value: 1
 metadata:
-  ux_name: Un enfant
+  short_label: Un enfant
   description_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
   unit: year
   reference:

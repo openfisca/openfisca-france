@@ -41,7 +41,7 @@ brackets:
     2019-01-01:
       value: 0
 metadata:
-  ux_name: Foyer fiscal comptant entre 1 et 2 UC
+  short_label: Foyer fiscal comptant entre 1 et 2 UC
   description_en: Help for energy expenses voucher
   ipp_csv_id:
     threshold: plaf_chq_energie

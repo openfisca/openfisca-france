@@ -11,7 +11,7 @@ brackets:
     2015-01-01:
       value: null
 metadata:
-  ux_name: Taux
+  short_label: Taux
   description_en: Exceptional solidarity tax on high wages ("75% tax")
   ipp_csv_id:
     threshold: tehr_seuil

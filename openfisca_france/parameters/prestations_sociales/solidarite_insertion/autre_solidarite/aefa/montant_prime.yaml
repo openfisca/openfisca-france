@@ -3,7 +3,7 @@ values:
   2003-12-30:
     value: 152.45
 metadata:
-  ux_name: Montant seul
+  short_label: Montant seul
   description_en: "Exceptional end-of-year benefit (AEFA): amount"
   unit: currency
   reference:

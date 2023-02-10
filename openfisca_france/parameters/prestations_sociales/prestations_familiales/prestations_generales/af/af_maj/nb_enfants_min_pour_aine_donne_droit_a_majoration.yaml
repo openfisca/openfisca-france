@@ -3,7 +3,7 @@ values:
   1984-01-01:
     value: 3
 metadata:
-  ux_name: Nb d'enfant pour que l'aîné donne droit à majoration
+  short_label: Nb d'enfant pour que l'aîné donne droit à majoration
   description_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: nb_enf_maj
   unit: year

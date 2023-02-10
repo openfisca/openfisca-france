@@ -11,7 +11,7 @@ values:
   2016-01-01:
     value: null
 metadata:
-  ux_name: Montant minimum
+  short_label: Montant minimum
   description_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: ppe_min
   unit: currency

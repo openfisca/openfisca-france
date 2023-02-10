@@ -1,6 +1,6 @@
 description: Prestations sociales
 metadata:
-  ux_name: Prestations sociales
+  short_label: Prestations sociales
   description_en: Health related allowances
   order:
   - invalidite

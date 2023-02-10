@@ -5,7 +5,7 @@ values:
   2018-01-01:
     value: 0.072
 metadata:
-  ux_name: Entre 1,1 et 5 PSS, dont IJ
+  short_label: Entre 1,1 et 5 PSS, dont IJ
   description_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
   unit: /1
   reference:

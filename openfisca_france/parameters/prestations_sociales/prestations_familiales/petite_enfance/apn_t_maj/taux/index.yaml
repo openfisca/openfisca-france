@@ -1,6 +1,6 @@
 description: Taux de l'Allocations postnatales (APN, 1975-1984)
 metadata:
-  ux_name: Taux
+  short_label: Taux
   description_en: "Postnatal allowance (APN): Rate and payment"
   order:
   - 1er_versement

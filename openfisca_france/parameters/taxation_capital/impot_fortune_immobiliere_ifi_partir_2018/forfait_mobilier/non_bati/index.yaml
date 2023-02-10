@@ -1,6 +1,6 @@
 description: Base de l'IFI sur l'immobilier non-bâti
 metadata:
-  ux_name: Base immobilier non-bâti
+  short_label: Base immobilier non-bâti
   description_en: Furniture tax base
   order:
   - seuil

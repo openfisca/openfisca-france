@@ -5,7 +5,7 @@ values:
   2016-01-01:
     value: 0.87
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: taux_micro_ba
   unit: /1
   reference:

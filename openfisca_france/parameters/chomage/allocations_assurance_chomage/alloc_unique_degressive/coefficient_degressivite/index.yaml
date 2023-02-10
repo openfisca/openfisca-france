@@ -1,6 +1,6 @@
 description: Coefficients de degressivité de l'allocation unique dégressive des allocations chômage
 metadata:
-  ux_name: Coefficients de degressivité
+  short_label: Coefficients de degressivité
   description_en: UI scheme - degressive schedule
   order:
   - affiliation_4_sur_8_derniers_mois

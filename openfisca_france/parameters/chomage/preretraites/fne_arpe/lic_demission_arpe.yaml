@@ -79,7 +79,7 @@ values:
   2017-10-01:
     value: 31.98
 metadata:
-  ux_name: Lic. Démission/ARPE
+  short_label: Lic. Démission/ARPE
   description_en: Minimum level of FNE-ARPE early retirement benefits
   ipp_csv_id: arpe_min
   unit: currency

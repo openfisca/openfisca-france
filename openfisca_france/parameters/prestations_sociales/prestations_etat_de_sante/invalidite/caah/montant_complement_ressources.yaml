@@ -7,7 +7,7 @@ values:
   2019-12-01:
     value: null
 metadata:
-  ux_name: Montant complément ressources
+  short_label: Montant complément ressources
   description_en: Additional adult disability allowance (CAAH)
   unit: currency
   reference:

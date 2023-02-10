@@ -1,6 +1,6 @@
 description: Allocation d'aide publique
 metadata:
-  ux_name: Aide publique
+  short_label: Aide publique
   description_en: Public aid allowance (1967-1979)
   order:
   - allocation_principale

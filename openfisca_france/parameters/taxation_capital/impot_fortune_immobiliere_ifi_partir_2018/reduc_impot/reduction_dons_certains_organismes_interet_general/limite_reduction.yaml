@@ -3,7 +3,7 @@ values:
   2018-01-01:
     value: 50000
 metadata:
-  ux_name: Limite de la réduction
+  short_label: Limite de la réduction
   description_en: Tax reductions for investment and donations
   unit: currency
   reference:

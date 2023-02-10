@@ -3,6 +3,6 @@ values:
   1998-01-01:
     value: 0.024
 metadata:
-  ux_name: Taux plein
+  short_label: Taux plein
   unit: /1
   last_review: "2021-07-22"

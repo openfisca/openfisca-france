@@ -39,7 +39,7 @@ brackets:
     1993-07-01:
       value: 0
 metadata:
-  ux_name: Taux sous plafond
+  short_label: Taux sous plafond
   description_en: SSCs for old-age benefits (1967-2016)
   ipp_csv_id:
     rate: cnav_s_0_1

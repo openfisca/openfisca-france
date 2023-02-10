@@ -3,7 +3,7 @@ values:
   2015-01-01:
     value: 1.5793
 metadata:
-  ux_name: Taux
+  short_label: Taux
   description_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
   unit: BMAF
   reference:

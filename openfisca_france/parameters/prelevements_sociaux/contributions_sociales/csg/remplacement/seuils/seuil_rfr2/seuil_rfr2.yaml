@@ -17,7 +17,7 @@ values:
   2021-01-01:
     value: 14914
 metadata:
-  ux_name: Seuil RFR2 - 1 part
+  short_label: Seuil RFR2 - 1 part
   description_en: CSG - rates on retirement incomes
   ipp_csv_id: seuil_csg_pens_red2
   unit: currency

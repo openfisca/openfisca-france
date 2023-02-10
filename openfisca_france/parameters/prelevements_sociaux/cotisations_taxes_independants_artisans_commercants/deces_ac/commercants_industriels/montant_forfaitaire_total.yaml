@@ -47,7 +47,7 @@ values:
   2004-08-24:
     value: null
 metadata:
-  ux_name: Montant forfaitaire total
+  short_label: Montant forfaitaire total
   description_en: SSCs for disability and death benefits (sales retailers and craftsmen)
   ipp_csv_id: id_ic_forfait
   unit: currency

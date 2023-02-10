@@ -1,6 +1,6 @@
 description: Réductions pour dons ou investissement de l'Impôt sur la fortune immobilière
 metadata:
-  ux_name: Réductions pour dons ou investissement
+  short_label: Réductions pour dons ou investissement
   description_en: Tax reductions for investment and donations
   order:
   - reduction_investissements_capital_pme

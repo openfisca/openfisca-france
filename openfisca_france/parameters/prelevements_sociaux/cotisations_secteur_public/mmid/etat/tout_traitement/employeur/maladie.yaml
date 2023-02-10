@@ -15,7 +15,7 @@ brackets:
     1984-01-01:
       value: 0.097
 metadata:
-  ux_name: Barème
+  short_label: Barème
   description_en: Health insurance contributions - central government
   ipp_csv_id: mmid_e_p_0_
   reference:

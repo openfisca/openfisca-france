@@ -3,7 +3,7 @@ values:
   2013-04-01:
     value: 61
 metadata:
-  ux_name: Seuil d'exonération (sur l'IRPP payé en N-1)
+  short_label: Seuil d'exonération (sur l'IRPP payé en N-1)
   description_en: "Additional SSC for autonomy (CASA: Additional solidarity Contribution for Autonomy)"
   ipp_csv_id: casa_seuil
   unit: currency

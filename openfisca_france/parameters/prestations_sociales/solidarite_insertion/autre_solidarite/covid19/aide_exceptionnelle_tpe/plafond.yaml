@@ -3,7 +3,7 @@ values:
   2020-03-01:
     value: 1500
 metadata:
-  ux_name: Montant plafond
+  short_label: Montant plafond
   unit: currency
   reference:
     2020-03-01:

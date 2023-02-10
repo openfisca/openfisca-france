@@ -1,6 +1,6 @@
 description: Bouclier fiscal de l'impôt de solidarité sur la fortune
 metadata:
-  ux_name: Bouclier fiscal
+  short_label: Bouclier fiscal
   description_en: Tax shield (2005-2010)
   order:
   - taux_bouclier_fiscal

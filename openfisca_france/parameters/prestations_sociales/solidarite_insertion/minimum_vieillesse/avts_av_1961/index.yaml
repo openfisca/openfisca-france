@@ -1,6 +1,6 @@
 description: Allocation aux vieux travailleurs salariés, AVTS (1941-1961)
 metadata:
-  ux_name: AVTS avant 1961
+  short_label: AVTS avant 1961
   description_en: Allowance for elderly workers (AVTS, 1941-1961)
   order:
   - villes_de_plus_de_5000_ha

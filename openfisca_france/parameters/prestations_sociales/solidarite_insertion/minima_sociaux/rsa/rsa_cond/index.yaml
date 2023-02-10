@@ -1,6 +1,6 @@
 description: Conditions générales du Revenu de solidarité active (RSA)
 metadata:
-  ux_name: Conditions générales
+  short_label: Conditions générales
   description_en: "Active solidarity income (RSA): General conditions"
   order:
   - age_minimum_allocataire

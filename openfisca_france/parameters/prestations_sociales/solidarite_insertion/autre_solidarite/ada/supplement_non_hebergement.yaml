@@ -6,7 +6,7 @@ values:
   2018-06-02:
     value: 7.4
 metadata:
-  ux_name: Supplément si non-hébergé
+  short_label: Supplément si non-hébergé
   description_en: "Asylum-seeker allowance (ADA): Amounts"
   unit: currency
   reference:

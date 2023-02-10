@@ -5,7 +5,7 @@ values:
   2020-06-08:
     value: 28
 metadata:
-  ux_name: Âge max
+  short_label: Âge max
   unit: year
   reference:
     2007-03-20:

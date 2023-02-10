@@ -5,7 +5,7 @@ values:
   2007-05-01:
     value: 0.5
 metadata:
-  ux_name: Facteur multiplicatif pour un enfant en cas de garde alternée
+  short_label: Facteur multiplicatif pour un enfant en cas de garde alternée
   unit: currency
   reference:
     2007-05-01:

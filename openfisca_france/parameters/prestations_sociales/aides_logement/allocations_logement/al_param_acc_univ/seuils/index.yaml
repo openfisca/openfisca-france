@@ -1,6 +1,6 @@
 description: Seuils, Paramètres de calcul pour les accédants et les étudiants logés en résidence universitaire, aides pour le logement (APL)
 metadata:
-  ux_name: Seuils
+  short_label: Seuils
   description_en: Parameters for new home-buyers and students residences
   order:
   - 1ere_tranche

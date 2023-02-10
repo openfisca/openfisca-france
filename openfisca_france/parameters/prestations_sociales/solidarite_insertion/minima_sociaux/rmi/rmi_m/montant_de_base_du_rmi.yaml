@@ -53,7 +53,7 @@ values:
   2009-06-01:
     value: null
 metadata:
-  ux_name: Montant de base
+  short_label: Montant de base
   description_en: "Minimum insertion income (RMI): Basic amount"
   ipp_csv_id: brmi
   unit: currency

@@ -5,7 +5,7 @@ values:
   1993-07-01:
     value: 0.024
 metadata:
-  ux_name: Taux
+  short_label: Taux
   description_en: CSG - rates on work incomes
   unit: /1
   reference:

@@ -59,7 +59,7 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  ux_name: Tranches 1 et 2
+  short_label: Tranches 1 et 2
   description_en: Pension contributions for non-executives (ARRCO)
   reference:
     1982-01-01:

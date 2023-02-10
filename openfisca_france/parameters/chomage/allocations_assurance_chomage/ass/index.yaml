@@ -1,6 +1,6 @@
 description: Allocation de solidarité spécifique (ASS)
 metadata:
-  ux_name: ASS
+  short_label: ASS
   description_en: Special UI scheme
   order:
   - montant_plein

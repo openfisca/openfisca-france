@@ -3,7 +3,7 @@ values:
   2011-07-28:
     value: 26
 metadata:
-  ux_name: Âge maximal
+  short_label: Âge maximal
   unit: year
   reference:
     2011-07-28:

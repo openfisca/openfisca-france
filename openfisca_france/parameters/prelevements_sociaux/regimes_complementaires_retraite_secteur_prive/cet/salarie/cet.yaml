@@ -29,7 +29,7 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  ux_name: Barème salarié
+  short_label: Barème salarié
   description_en: Exceptional and temporary pension contribution (CET)
   ipp_csv_id: cet_s_0_8
   reference:

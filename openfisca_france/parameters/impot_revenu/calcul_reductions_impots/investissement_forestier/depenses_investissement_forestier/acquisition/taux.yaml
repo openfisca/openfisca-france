@@ -11,7 +11,7 @@ values:
   2022-01-01:
     value: 0.25
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: tx_foret
   last_review: "2023-01-01"
   unit: /1

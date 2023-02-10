@@ -5,7 +5,7 @@ values:
   2013-01-01:
     value: 0.75
 metadata:
-  ux_name: Produits bénéficiant des personnes établies dans des Etats "non-coopératifs"
+  short_label: Produits bénéficiant des personnes établies dans des Etats "non-coopératifs"
   description_en: Levy in discharge on life insurance (1983 - 2017)
   unit: /1
   reference:

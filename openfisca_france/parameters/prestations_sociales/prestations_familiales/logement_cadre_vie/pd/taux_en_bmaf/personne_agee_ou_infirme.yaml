@@ -5,7 +5,7 @@ values:
   1995-01-01:
     value: null
 metadata:
-  ux_name: Personne âgée ou infirme
+  short_label: Personne âgée ou infirme
   description_en: "Relocation allowance (PD): Rate and maximum amount"
   ipp_csv_id: tx_vieux
   unit: BMAF

@@ -5,7 +5,7 @@ values:
   2021-02-16:
     value: 20000
 metadata:
-  ux_name: Montant maximum
+  short_label: Montant maximum
   unit: currency
   reference:
     2020-06-08:

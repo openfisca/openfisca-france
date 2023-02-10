@@ -5,7 +5,7 @@ values:
   2019-01-01:
     value: null
 metadata:
-  ux_name: Produits de placement
+  short_label: Produits de placement
   description_en: Other social levies on financial income
   ipp_csv_id: tx_caps_plac
   unit: /1

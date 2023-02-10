@@ -5,7 +5,7 @@ values:
   2015-01-01:
     value: null
 metadata:
-  ux_name: Couple
+  short_label: Couple
   ipp_csv_id: plaf_risques_techno_pre_couple
   unit: currency
   reference:

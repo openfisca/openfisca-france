@@ -7,7 +7,7 @@ values:
   2011-01-01:
     value: 2.5
 metadata:
-  ux_name: Franche-Compté
+  short_label: Franche-Compté
   ipp_csv_id: maj_ticpe_super_f_c
   unit: currency
 documentation: |-

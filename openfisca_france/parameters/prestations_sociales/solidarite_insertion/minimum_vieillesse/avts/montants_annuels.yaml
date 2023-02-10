@@ -169,7 +169,7 @@ values:
   2022-01-01:
     value: 3566.43
 metadata:
-  ux_name: Montants annuels
+  short_label: Montants annuels
   description_en: Allowance for elderly workers (AVTS)
   ipp_csv_id: avts
   unit: currency

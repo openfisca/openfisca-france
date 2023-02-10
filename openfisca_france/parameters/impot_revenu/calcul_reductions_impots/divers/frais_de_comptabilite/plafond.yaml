@@ -11,7 +11,7 @@ values:
   2001-01-01:
     value: 915
 metadata:
-  ux_name: Montant
+  short_label: Montant
   ipp_csv_id: frais_compta
   unit: currency
   notes:

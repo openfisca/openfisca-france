@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 60
 metadata:
-  ux_name: Âge minimum
+  short_label: Âge minimum
   description_en: Attendance allowance for individuals living at home (APA)
   unit: year
   reference:

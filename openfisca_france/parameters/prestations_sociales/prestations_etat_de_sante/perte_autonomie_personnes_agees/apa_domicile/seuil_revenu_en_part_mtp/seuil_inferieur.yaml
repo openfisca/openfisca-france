@@ -7,7 +7,7 @@ values:
   2016-04-01:
     value: 0.725
 metadata:
-  ux_name: Seuil inférieur
+  short_label: Seuil inférieur
   description_en: Attendance allowance for individuals living at home (APA)
   unit: /1
   reference:

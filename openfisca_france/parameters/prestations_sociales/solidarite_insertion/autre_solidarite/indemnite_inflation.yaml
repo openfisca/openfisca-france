@@ -5,7 +5,7 @@ values:
   2022-01-01:
     value: null
 metadata:
-  ux_name: Indemnité inflation
+  short_label: Indemnité inflation
   unit: currency
   reference:
     2021-12-01:

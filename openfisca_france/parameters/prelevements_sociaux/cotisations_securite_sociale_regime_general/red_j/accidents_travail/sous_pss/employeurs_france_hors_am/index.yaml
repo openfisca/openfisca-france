@@ -1,6 +1,6 @@
 description: Taux employeur (hors Alsace-Moselle) de cotisations de sécurité sociale (SS) des journalistes pigistes (1964-1974) pour les accidents du travail, sous le plafond de la sécurité sociale (PSS)
 metadata:
-  ux_name: Employeur hors AM
+  short_label: Employeur hors AM
   description_en: SSCs for freelance journalists (1964-1974)
   order:
   - presse_quotidienne

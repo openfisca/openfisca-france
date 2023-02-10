@@ -3,7 +3,7 @@ values:
   2019-01-01:
     value: 0.0044
 metadata:
-  ux_name: En Alsace-Moselle
+  short_label: En Alsace-Moselle
   description_en: Unique employer's participation to lifelong professional training and apprenticeship
   unit: /1
   reference:

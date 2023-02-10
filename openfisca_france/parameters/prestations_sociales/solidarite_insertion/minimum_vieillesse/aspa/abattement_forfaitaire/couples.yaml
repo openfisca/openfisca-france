@@ -5,5 +5,5 @@ values:
   2015-01-01:
     value: 1.5
 metadata:
-  ux_name: Taux Couple
+  short_label: Taux Couple
   unit: SMIC

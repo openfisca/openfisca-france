@@ -1,6 +1,6 @@
 description: Majoration naissance ou adoption de l'Allocations postnatales (APN, 1975-1984)
 metadata:
-  ux_name: Majoration naissance ou adoption
+  short_label: Majoration naissance ou adoption
   description_en: "Postnatal allowance (APN): Rate and payment"
   order:
   - a_partir_2e_enfant

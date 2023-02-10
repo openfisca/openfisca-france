@@ -3,7 +3,7 @@ values:
   2021-03-10:
     value: 6
 metadata:
-  ux_name: Nb max de séances
+  short_label: Nb max de séances
   reference:
     2021-03-10:
       href: https://www.service-public.fr/particuliers/actualites/A14726

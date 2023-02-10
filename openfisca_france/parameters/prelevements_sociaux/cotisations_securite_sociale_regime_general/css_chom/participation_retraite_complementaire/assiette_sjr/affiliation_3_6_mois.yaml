@@ -7,7 +7,7 @@ values:
   1990-01-01:
     value: 1
 metadata:
-  ux_name: Affiliation 3-6 mois
+  short_label: Affiliation 3-6 mois
   description_en: SSCs on unemployment benefits
   ipp_csv_id: chom_ret_ass_3_6
   unit: /1

@@ -5,7 +5,7 @@ values:
   2011-01-01:
     value: 0.002
 metadata:
-  ux_name: Taux - Professions libérales
+  short_label: Taux - Professions libérales
   description_en: Self-employed specific scheme (auto-entrepreneurs)
   ipp_csv_id: auto_plib_form_ca
   unit: /1

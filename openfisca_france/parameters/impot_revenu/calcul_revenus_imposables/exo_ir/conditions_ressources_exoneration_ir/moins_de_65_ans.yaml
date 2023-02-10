@@ -73,7 +73,7 @@ values:
   2014-01-01:
     value: null
 metadata:
-  ux_name: Moins de 65 ans
+  short_label: Moins de 65 ans
   ipp_csv_id: exo_irmoins65
   unit: currency
   reference:

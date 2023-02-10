@@ -1,6 +1,6 @@
 description: Majorations des Allocations Familiales (AF)
 metadata:
-  ux_name: Majorations
+  short_label: Majorations
   description_en: "Family allowances (AF): Extra allowances"
   order:
   - majoration_enfants

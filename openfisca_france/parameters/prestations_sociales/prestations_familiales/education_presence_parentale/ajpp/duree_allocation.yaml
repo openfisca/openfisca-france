@@ -3,7 +3,7 @@ values:
   2006-06-05:
     value: 3
 metadata:
-  ux_name: Durée allocation
+  short_label: Durée allocation
   description_en: "Daily parental presence allowance (AJPP): Amounts"
   ipp_csv_id: ajpp_duree_alloc
   unit: year

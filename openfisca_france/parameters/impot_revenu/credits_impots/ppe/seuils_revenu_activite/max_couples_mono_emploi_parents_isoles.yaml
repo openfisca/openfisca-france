@@ -19,7 +19,7 @@ values:
   2016-01-01:
     value: null
 metadata:
-  ux_name: Maximum (couples mono-emploi et parents isolés))
+  short_label: Maximum (couples mono-emploi et parents isolés))
   description_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: seuil_ppe_max_coup
   unit: currency

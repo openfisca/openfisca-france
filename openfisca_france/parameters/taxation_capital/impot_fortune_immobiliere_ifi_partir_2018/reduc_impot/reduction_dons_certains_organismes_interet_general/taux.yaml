@@ -3,7 +3,7 @@ values:
   2018-01-01:
     value: 0.75
 metadata:
-  ux_name: Taux
+  short_label: Taux
   description_en: Tax reductions for investment and donations
   unit: /1
   reference:

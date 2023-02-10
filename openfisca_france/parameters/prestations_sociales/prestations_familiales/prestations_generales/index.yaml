@@ -1,6 +1,6 @@
 description: Prestations familiales générales
 metadata:
-  ux_name: Prestations générales
+  short_label: Prestations générales
   description_en: General benefits
   order:
   - af

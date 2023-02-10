@@ -1,6 +1,6 @@
 description: Abattement sur les revenus du conjoint et les pensions et rentes viagères pour le calcul de l'Allocation pour adulte handicapé (AAH)
 metadata:
-  ux_name: Abattement forfaitaire
+  short_label: Abattement forfaitaire
   description_en: Disability
   order:
   - base

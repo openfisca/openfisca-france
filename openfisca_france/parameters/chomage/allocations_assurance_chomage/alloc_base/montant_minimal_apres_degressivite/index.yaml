@@ -1,6 +1,6 @@
 description: Montant minimal après dégressivité de la partie fixe de l'allocation de base d'assurance chômage
 metadata:
-  ux_name: Montant minimal après dégressivité
+  short_label: Montant minimal après dégressivité
   description_en: UI scheme - lump-sum and minimum
   order:
   - tous

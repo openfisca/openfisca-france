@@ -7,7 +7,7 @@ values:
   2004-01-01:
     value: null
 metadata:
-  ux_name: Mois de grossesse pour ouverture droit
+  short_label: Mois de grossesse pour ouverture droit
   description_en: "Allowance for Young Children (APJE): General conditions and amount"
   ipp_csv_id: nb_mois
   unit: month

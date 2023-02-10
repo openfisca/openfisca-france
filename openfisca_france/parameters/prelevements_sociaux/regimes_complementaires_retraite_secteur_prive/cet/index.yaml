@@ -1,6 +1,6 @@
 description: Cotisations retraites exceptionnelle et temporaire (CET) aux régimes complémentaires de retraite (secteur privé) (1997-2018)
 metadata:
-  ux_name: Cotisations retraites exceptionnelle et temporaire (CET) (1997-2018)
+  short_label: Cotisations retraites exceptionnelle et temporaire (CET) (1997-2018)
   description_en: Exceptional and temporary pension contribution (CET)
   order:
   - salarie

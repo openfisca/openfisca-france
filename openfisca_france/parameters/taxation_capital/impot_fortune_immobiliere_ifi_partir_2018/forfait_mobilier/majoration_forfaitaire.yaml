@@ -3,7 +3,7 @@ values:
   2018-01-01:
     value: 0.05
 metadata:
-  ux_name: Majoration forfaitaire
+  short_label: Majoration forfaitaire
   description_en: Furniture package
   ipp_csv_id: tx_majo_ifi
   unit: /1

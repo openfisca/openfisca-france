@@ -4,7 +4,7 @@ values:
     value: 0.05
   2015-01-01: expected
 metadata:
-  ux_name: Taux élevé
+  short_label: Taux élevé
   description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   unit: /1
   last_review: "2015-01-01"

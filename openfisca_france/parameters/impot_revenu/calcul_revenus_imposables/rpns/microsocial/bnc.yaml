@@ -3,7 +3,7 @@ values:
   2009-01-01:
     value: 0.022
 metadata:
-  ux_name: Taux (micro BNC)
+  short_label: Taux (micro BNC)
   ipp_csv_id: tx_bnc_vl
   unit: /1
   reference:

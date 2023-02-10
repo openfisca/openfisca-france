@@ -1,6 +1,6 @@
 description: Réductions pour dons ou investissement de l'impôt de solidarité sur la fortune
 metadata:
-  ux_name: Réductions pour dons ou investissement
+  short_label: Réductions pour dons ou investissement
   description_en: Tax reductions for investment and donations
   order:
   - reduction_investissements_capital_pme

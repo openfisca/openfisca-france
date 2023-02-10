@@ -19,7 +19,7 @@ brackets:
     2013-01-01:
       value: 0.004
 metadata:
-  ux_name: ATIACL (hors NBI)
+  short_label: ATIACL (hors NBI)
   description_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
   ipp_csv_id: atiacl_p
   reference:

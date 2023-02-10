@@ -1,6 +1,6 @@
 description: Paramètres des Personnes isolées pour le calcul du montant de la Prime Pour l'Activité (PA ou PPA)
 metadata:
-  ux_name: Personnes isolées
+  short_label: Personnes isolées
   description_en: "Activity prenium (PA) : accomodation allowance"
   order:
   - femmes_enceintes

@@ -3,7 +3,7 @@ values:
   2007-01-01:
     value: 7500
 metadata:
-  ux_name: Plafond handicap
+  short_label: Plafond handicap
   unit: currency
   reference:
     2007-01-01:

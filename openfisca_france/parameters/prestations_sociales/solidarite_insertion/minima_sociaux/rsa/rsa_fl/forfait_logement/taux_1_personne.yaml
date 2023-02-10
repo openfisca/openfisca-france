@@ -3,7 +3,7 @@ values:
   2009-06-01:
     value: 0.12
 metadata:
-  ux_name: 1 personne
+  short_label: 1 personne
   description_en: "Active solidarity income (RSA): accomodation allowance"
   ipp_csv_id: rsa_rmi_logt1
   unit: /1

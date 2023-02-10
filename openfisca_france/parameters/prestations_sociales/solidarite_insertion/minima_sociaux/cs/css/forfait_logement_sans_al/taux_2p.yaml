@@ -4,7 +4,7 @@ values:
     value: 0.14
 metadata:
   unit: RSA
-  ux_name: Taux 2 personnes
+  short_label: Taux 2 personnes
   last_review: "2022-10-17"
   reference:
     2019-11-01:

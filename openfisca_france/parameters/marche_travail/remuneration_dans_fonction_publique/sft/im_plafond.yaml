@@ -9,7 +9,7 @@ values:
   2006-11-01:
     value: 717
 metadata:
-  ux_name: IM Plafond
+  short_label: IM Plafond
   description_en: Maximal increased index
   ipp_csv_id: im_plafond
   reference:

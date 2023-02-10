@@ -7,7 +7,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Plafond pour la somme des trois réductions (PME, FCIP/FIP sur PME et dons)
+  short_label: Plafond pour la somme des trois réductions (PME, FCIP/FIP sur PME et dons)
   description_en: Tax reductions for investment and donations
   unit: currency
   reference:

@@ -21,7 +21,7 @@ brackets:
     2011-01-01:
       value: null
 metadata:
-  ux_name: Abattement
+  short_label: Abattement
   description_en: CSG - rates on work incomes
   ipp_csv_id: csg_abt
   reference:

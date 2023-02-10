@@ -41,7 +41,7 @@ values:
   2022-07-01:
     value: 370.32
 metadata:
-  ux_name: Personnes seules ou couples avec 1 enfant
+  short_label: Personnes seules ou couples avec 1 enfant
   description_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: plaf_loy_enf1_z2
   unit: currency

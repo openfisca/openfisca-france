@@ -9,7 +9,7 @@ values:
   2002-07-01:
     value: 100
 metadata:
-  ux_name: Intervalles de ressources considérés
+  short_label: Intervalles de ressources considérés
   description_en: Parameters for new home-buyers and students residences
   ipp_csv_id: interv_ress
   unit: currency

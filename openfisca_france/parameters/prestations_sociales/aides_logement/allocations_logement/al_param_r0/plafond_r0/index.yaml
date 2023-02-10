@@ -1,6 +1,6 @@
 description: Plafond de R0 pour le calcul du montant forfaitaire R0 (que l'on déduit des ressources) - secteur locatif (après 2001)
 metadata:
-  ux_name: Plafond de R0
+  short_label: Plafond de R0
   description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   order:
   - foyers_sans_personne_charge_en_r0

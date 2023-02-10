@@ -15,7 +15,7 @@ values:
   1973-01-01:
     value: null
 metadata:
-  ux_name: Seuil 2 faible nb de parts
+  short_label: Seuil 2 faible nb de parts
   ipp_csv_id: decote_y_qf
   unit: currency
   last_review: "2023-01-05"

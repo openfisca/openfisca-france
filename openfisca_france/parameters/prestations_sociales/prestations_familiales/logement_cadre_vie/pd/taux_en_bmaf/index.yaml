@@ -1,6 +1,6 @@
 description: Taux de montant maximum de la Prime de déménagement (PD), Logement et cadre de vie, prestations familiales
 metadata:
-  ux_name: Taux de montant maximum
+  short_label: Taux de montant maximum
   description_en: Relocation allowance (PD) - Rate and maximum amount
   order:
   - 1_enfant

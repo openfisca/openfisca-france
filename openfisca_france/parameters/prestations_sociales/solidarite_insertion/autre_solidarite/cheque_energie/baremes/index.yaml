@@ -1,6 +1,6 @@
 description: Barèmes des montants du chèque énergie, prestations sociales de solidarité insertion
 metadata:
-  ux_name: Barèmes
+  short_label: Barèmes
   description_en: Help for energy expenses voucher
   order:
   - une_uc

@@ -5,7 +5,7 @@ values:
   2019-01-01:
     value: null
 metadata:
-  ux_name: Taux
+  short_label: Taux
   description_en: Tax credit on the payroll tax (CITS)
   unit: /1
   reference:

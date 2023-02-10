@@ -1,6 +1,6 @@
 description: Allocation aux vieux travailleurs salariés (AVTS)
 metadata:
-  ux_name: AVTS
+  short_label: AVTS
   description_en: Allowance for elderly workers (AVTS)
   order:
   - montants_annuels

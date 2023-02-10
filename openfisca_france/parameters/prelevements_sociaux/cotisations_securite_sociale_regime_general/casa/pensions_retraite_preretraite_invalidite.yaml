@@ -7,7 +7,7 @@ brackets:
     2013-04-01:
       value: 0.003
 metadata:
-  ux_name: Taux CASA
+  short_label: Taux CASA
   description_en: "Additional SSC for autonomy (CASA: Additional solidarity Contribution for Autonomy)"
   ipp_csv_id:
     rate: casa_pens

@@ -33,7 +33,7 @@ values:
   2019-01-01:
     value: 31786
 metadata:
-  ux_name: Maximum
+  short_label: Maximum
   ipp_csv_id: max_deduc_perp
   unit: currency
   reference:

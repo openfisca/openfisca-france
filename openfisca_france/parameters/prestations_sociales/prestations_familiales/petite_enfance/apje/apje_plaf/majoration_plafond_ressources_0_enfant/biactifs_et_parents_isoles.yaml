@@ -23,7 +23,7 @@ values:
   2007-01-01:
     value: null
 metadata:
-  ux_name: Biactifs et parents isolés
+  short_label: Biactifs et parents isolés
   description_en: "Allowance for Young Children (APJE): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_apje_adopt_bi
   unit: currency

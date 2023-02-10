@@ -27,7 +27,7 @@ values:
   1960-01-01:
     value: 72.37
 metadata:
-  ux_name: Bonification pour enfants
+  short_label: Bonification pour enfants
   description_en: Allowance for elderly workers (AVTS, 1941-1961)
   ipp_csv_id: bonif_sup5000
   unit: currency

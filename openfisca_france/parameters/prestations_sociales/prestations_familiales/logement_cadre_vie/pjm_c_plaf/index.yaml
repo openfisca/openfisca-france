@@ -1,6 +1,6 @@
 description: Conditions et plafond de ressources du Prêt aux jeunes ménages (PJM)
 metadata:
-  ux_name: Conditions et plafond PJM
+  short_label: Conditions et plafond PJM
   description_en: "Loans to young household (PJM): Thresholds for means-testing"
   order:
   - age_moyen_maximum_conjoints

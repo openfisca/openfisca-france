@@ -5,7 +5,7 @@ values:
   2009-06-01:
     value: 3
 metadata:
-  ux_name: Âge limite du benjamin
+  short_label: Âge limite du benjamin
   unit: year
   reference:
     2009-06-01:

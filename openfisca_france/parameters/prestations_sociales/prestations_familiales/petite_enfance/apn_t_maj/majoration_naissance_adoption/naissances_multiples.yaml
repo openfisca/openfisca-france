@@ -5,7 +5,7 @@ values:
   1983-01-01:
     value: null
 metadata:
-  ux_name: Naissances multiples
+  short_label: Naissances multiples
   description_en: "Postnatal allowance (APN): Rate and payment"
   ipp_csv_id: majo_mult
   unit: /1

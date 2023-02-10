@@ -15,7 +15,7 @@ values:
   1998-01-01:
     value: null
 metadata:
-  ux_name: Pensions sous 5 PSS
+  short_label: Pensions sous 5 PSS
   description_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
   ipp_csv_id: mmid_ac_ret_0_5
   unit: /1

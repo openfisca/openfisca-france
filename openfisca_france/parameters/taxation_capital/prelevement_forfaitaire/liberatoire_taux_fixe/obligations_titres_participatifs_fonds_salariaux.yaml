@@ -13,7 +13,7 @@ values:
   2012-01-01:
     value: 0.24
 metadata:
-  ux_name: Obligations, titres participatifs, fonds salariaux
+  short_label: Obligations, titres participatifs, fonds salariaux
   description_en: Levy in discharge on capital income (1965 - 2012)
   ipp_csv_id: tx_pl_int
   unit: /1

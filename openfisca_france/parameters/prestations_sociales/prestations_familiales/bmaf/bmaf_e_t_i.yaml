@@ -23,7 +23,7 @@ values:
   1955-01-01:
     value: null
 metadata:
-  ux_name: BMAF E.T.I.
+  short_label: BMAF E.T.I.
   description_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: reg_spec_eti
   unit: currency

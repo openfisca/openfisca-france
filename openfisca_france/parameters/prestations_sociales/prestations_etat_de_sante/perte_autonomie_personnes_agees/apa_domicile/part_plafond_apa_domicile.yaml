@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 0.5
 metadata:
-  ux_name: Part du plafond
+  short_label: Part du plafond
   description_en: Attendance allowance for individuals living at home (APA)
   unit: /1
   reference:

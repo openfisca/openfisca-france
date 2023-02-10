@@ -35,7 +35,7 @@ values:
   2020-11-01:
     value: 0.55
 metadata:
-  ux_name: Cigarettes
+  short_label: Cigarettes
   ipp_csv_id: tx_cigarettes
   last_review: "2022-12-28"
   unit: /1

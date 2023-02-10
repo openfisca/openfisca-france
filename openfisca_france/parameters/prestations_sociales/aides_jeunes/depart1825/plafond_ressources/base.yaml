@@ -5,7 +5,7 @@ values:
   2021-01-01:
     value: 17280
 metadata:
-  ux_name: base
+  short_label: base
   unit: currency
   reference:
     2014-09-05:

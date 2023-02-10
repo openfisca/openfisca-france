@@ -1,6 +1,6 @@
 description: Aides pour le logement
 metadata:
-  ux_name: Aides Logement
+  short_label: Aides Logement
   description_en: Housing allowances
   order:
   - action_logement

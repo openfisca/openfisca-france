@@ -1,6 +1,6 @@
 description: Allocation temporaire d'attente (ATA)
 metadata:
-  ux_name: ATA
+  short_label: ATA
   description_en: Temporary waiting allowance (ATA)
   order:
   - montant_journalier

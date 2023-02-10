@@ -17,7 +17,7 @@ brackets:
     2017-01-01:
       value: 0.004
 metadata:
-  ux_name: Taux sur tout salaire
+  short_label: Taux sur tout salaire
   description_en: SSCs for old-age benefits (1967-2016)
   ipp_csv_id:
     rate: cnav_s_0_

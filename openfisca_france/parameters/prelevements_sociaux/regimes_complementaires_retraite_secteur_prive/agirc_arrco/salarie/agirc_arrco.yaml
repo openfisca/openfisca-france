@@ -19,7 +19,7 @@ brackets:
     2019-01-01:
       value: 0
 metadata:
-  ux_name: Barème salarié
+  short_label: Barème salarié
   description_en: Complementary pension contributions
   reference:
     2019-01-01:

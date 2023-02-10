@@ -1,6 +1,6 @@
 description: Cotisations salarié du régime d'assurance maladie
 metadata:
-  ux_name: Barème salarié
+  short_label: Barème salarié
   description_en: SSCs of the sickness scheme
   order:
   - maladie

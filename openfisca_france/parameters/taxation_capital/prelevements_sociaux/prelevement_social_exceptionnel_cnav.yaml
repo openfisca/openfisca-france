@@ -5,7 +5,7 @@ values:
   1997-01-01:
     value: null
 metadata:
-  ux_name: Prélèvement social exceptionnel (CNAV)
+  short_label: Prélèvement social exceptionnel (CNAV)
   description_en: Other social levies on financial income
   ipp_csv_id: tx_prel_cnav
   unit: /1

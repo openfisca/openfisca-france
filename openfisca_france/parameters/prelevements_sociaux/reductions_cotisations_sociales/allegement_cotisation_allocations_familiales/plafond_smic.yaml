@@ -5,7 +5,7 @@ values:
   2016-04-01:
     value: 3.5
 metadata:
-  ux_name: Plafond de rémunération des salariés
+  short_label: Plafond de rémunération des salariés
   description_en: Reduction in SSCs for family benefits
   ipp_csv_id: pss_red_fam
   unit: SMIC

@@ -11,7 +11,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Nombre de tranches
+  short_label: Nombre de tranches
   description_en: Wealth tax schedule
   ipp_csv_id: nbtranches_isf
   reference:

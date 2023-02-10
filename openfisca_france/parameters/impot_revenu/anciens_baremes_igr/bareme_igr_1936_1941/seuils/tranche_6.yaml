@@ -22,7 +22,7 @@ metadata:
       et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à
       à 4-4'
   unit: currency
-  ux_name: Tranche 6
+  short_label: Tranche 6
 values:
   1936-01-01:
     value: 280000.0

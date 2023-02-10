@@ -5,7 +5,7 @@ values:
   2015-01-01:
     value: null
 metadata:
-  ux_name: Majoration par enfant supplémentaire
+  short_label: Majoration par enfant supplémentaire
   description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   ipp_csv_id: r2_enfsupp
   unit: /1

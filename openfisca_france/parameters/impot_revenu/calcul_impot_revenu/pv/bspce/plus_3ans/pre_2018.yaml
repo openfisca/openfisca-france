@@ -1,7 +1,7 @@
 description: Taux d'imposition (bons attribués avant 2018) des gains de cession de titres souscrits en exercice de bons
   de souscription de parts de créateur d’entreprise (BSPCE) pour une activité exercée dans la société depuis plus de 3 ans
 metadata:
-  ux_name: Avant 2018
+  short_label: Avant 2018
   ipp_csv_id: tx_bspce_plus_avant_2018
   notes:
     2012-01-01:

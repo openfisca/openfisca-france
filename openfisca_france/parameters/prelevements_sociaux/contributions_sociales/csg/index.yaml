@@ -1,6 +1,6 @@
 description: Contribution Sociale Généralisée (CSG)
 metadata:
-  ux_name: CSG
+  short_label: CSG
   notes:
     0001-01-01:
     - title: Les taux de CSG du capital sont rangés dans parameters.taxation_capital.csg

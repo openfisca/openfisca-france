@@ -3,7 +3,7 @@ values:
   2018-01-01:
     value: 18000
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   description_en: Tax reductions for investment and donations
   unit: currency
   reference:

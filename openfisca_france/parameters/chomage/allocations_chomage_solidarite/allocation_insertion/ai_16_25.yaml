@@ -11,7 +11,7 @@ values:
   1992-01-01:
     value: null
 metadata:
-  ux_name: 16-25 ans
+  short_label: 16-25 ans
   description_en: Insertion allowance (AI)
   ipp_csv_id: ai_16_25
   unit: currency

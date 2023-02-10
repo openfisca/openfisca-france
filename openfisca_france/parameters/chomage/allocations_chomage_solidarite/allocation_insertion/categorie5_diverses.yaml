@@ -43,7 +43,7 @@ values:
   2006-11-16:
     value: null
 metadata:
-  ux_name: Catégorie 5/diverses
+  short_label: Catégorie 5/diverses
   description_en: Insertion allowance (AI)
   ipp_csv_id: ai_detenu
   unit: currency

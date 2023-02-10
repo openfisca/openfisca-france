@@ -3,7 +3,7 @@ values:
   1996-01-01:
     value: 0.03
 metadata:
-  ux_name: Commissions et rémunérations brutes
+  short_label: Commissions et rémunérations brutes
   description_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: retc_aux_0_
   unit: /1

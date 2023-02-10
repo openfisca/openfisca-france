@@ -17,7 +17,7 @@ values:
   2019-01-01:
     value: 0.0816
 metadata:
-  ux_name: Taux effectif
+  short_label: Taux effectif
   description_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: retc_not_cm_0_
   unit: /1

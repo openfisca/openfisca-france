@@ -41,7 +41,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Allocations chômage
+  short_label: Allocations chômage
   last_review: "2022-09-26"
   unit: currency
   ipp_csv_id: min_abtsal_chom

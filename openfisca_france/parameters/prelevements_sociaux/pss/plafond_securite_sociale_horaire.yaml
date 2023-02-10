@@ -15,7 +15,7 @@ values:
   2023-01-01:
     value: 27
 metadata:
-  ux_name: Plafond horaire
+  short_label: Plafond horaire
   description_en: Social security hourly ceiling
   unit: currency
   reference:

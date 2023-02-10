@@ -11,7 +11,7 @@ values:
   2022-07-01:
     value: 213.62
 metadata:
-  ux_name: Personne isolée
+  short_label: Personne isolée
   unit: currency
   reference:
     2017-10-01:

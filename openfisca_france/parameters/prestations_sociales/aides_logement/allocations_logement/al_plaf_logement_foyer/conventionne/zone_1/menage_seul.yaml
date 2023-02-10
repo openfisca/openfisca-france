@@ -11,7 +11,7 @@ values:
   2022-07-01:
     value: 541.52
 metadata:
-  ux_name: Ménage seul
+  short_label: Ménage seul
   ipp_csv_id: plaf_foy_z1_al_menage_seul
   unit: currency
   reference:

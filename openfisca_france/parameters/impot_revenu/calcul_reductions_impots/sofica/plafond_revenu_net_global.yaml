@@ -7,7 +7,7 @@ values:
 metadata:
   ipp_csv_id: base_sofica
   unit: /1
-  ux_name: Plafond (% RNG) 
+  short_label: Plafond (% RNG) 
   reference:
     1985-01-01:
       title: Loi 85-695 du 11/07/1985 - art. 40-IV

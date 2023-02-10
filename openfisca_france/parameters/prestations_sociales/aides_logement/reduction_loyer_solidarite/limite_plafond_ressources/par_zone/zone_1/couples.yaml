@@ -9,7 +9,7 @@ values:
   2021-01-01:
     value: 1615
 metadata:
-  ux_name: Couple
+  short_label: Couple
   unit: currency
   reference:
     2018-01-01:

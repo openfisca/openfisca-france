@@ -23,7 +23,7 @@ values:
   2013-01-01:
     value: null
 metadata:
-  ux_name: Taux sous PSS
+  short_label: Taux sous PSS
   description_en: SSCs for sickness and maternity benefits (professionals)
   ipp_csv_id: mmid_plib_0_1
   unit: /1

@@ -1,6 +1,6 @@
 description: Montants (en % de la BMAF) de l'Allocation parent isolé (API)
 metadata:
-  ux_name: Montants
+  short_label: Montants
   description_en: "Single parent allowance (API): General conditions"
   order:
   - femmes_enceintes_sans_enfant_a_charge

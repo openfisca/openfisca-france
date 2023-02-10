@@ -13,7 +13,7 @@ values:
   2011-07-01:
     value: 0.02
 metadata:
-  ux_name: Toulouse
+  short_label: Toulouse
   description_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_toulouse
   unit: /1

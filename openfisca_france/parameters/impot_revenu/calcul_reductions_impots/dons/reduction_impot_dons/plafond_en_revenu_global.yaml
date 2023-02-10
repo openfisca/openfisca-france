@@ -1,6 +1,6 @@
 description: Plafond (en % du revenu global) de la réduction d'impôt pour les dons
 metadata:
-  ux_name: Plafond (% revenu global)
+  short_label: Plafond (% revenu global)
   ipp_csv_id: plafdons
   official_journal_date:
     2002-01-01: '2003-08-02'

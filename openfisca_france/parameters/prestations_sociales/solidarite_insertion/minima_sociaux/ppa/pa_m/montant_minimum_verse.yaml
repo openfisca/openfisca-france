@@ -3,7 +3,7 @@ values:
   2015-10-01:
     value: 15
 metadata:
-  ux_name: Montant minimum
+  short_label: Montant minimum
   description_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_montant_min
   unit: currency

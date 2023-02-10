@@ -1,6 +1,6 @@
 description: Cotisation de sécurité sociale (SS) pour la retraite complémentaire des indépendants artisans-commerçants
 metadata:
-  ux_name: Retraite complémentaire
+  short_label: Retraite complémentaire
   description_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
   order:
   - artisans

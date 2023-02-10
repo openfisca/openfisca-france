@@ -7,7 +7,7 @@ values:
   1995-09-01:
     value: null
 metadata:
-  ux_name: Remise forfaitaire
+  short_label: Remise forfaitaire
   description_en: SSCs for old-age benefits (1967-2016)
   ipp_csv_id: cnav_remise_forf
   unit: currency

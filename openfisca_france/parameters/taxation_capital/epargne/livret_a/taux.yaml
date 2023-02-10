@@ -89,7 +89,7 @@ values:
   2022-08-01:
     value: 0.02
 metadata:
-  ux_name: Taux
+  short_label: Taux
   unit: /1
   reference:
     2020-02-01:

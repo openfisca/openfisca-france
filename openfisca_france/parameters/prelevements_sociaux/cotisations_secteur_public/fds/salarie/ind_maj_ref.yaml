@@ -37,7 +37,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Indice majoré de référence
+  short_label: Indice majoré de référence
   description_en: Contributions to the Solidarity Fund (FDS)
   ipp_csv_id: ind_maj_ref
   unit: currency

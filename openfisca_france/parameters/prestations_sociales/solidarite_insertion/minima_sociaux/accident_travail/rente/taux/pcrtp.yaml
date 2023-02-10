@@ -1,6 +1,6 @@
 description: Montant de la prestation complémentaire versé en fonction de besoins d'assistance
 metadata:
-  ux_name: Montant prestation complémentaire
+  short_label: Montant prestation complémentaire
   unit: currency
   reference:
     2013-03-01:

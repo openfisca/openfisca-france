@@ -1,6 +1,6 @@
 description: Autres taxes et participations assises sur les salaires
 metadata:
-  ux_name: Taxes et participations
+  short_label: Taxes et participations
   description_en: Other payroll and workforce taxes
   order:
   - vfs

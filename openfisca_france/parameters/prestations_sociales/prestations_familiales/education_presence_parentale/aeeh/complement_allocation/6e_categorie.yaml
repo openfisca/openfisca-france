@@ -35,7 +35,7 @@ values:
   2021-04-01:
     value: 1126.41
 metadata:
-  ux_name: Montant complémentaire 6ème catégorie
+  short_label: Montant complémentaire 6ème catégorie
   description_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   ipp_csv_id: aeeh_cplt6
   unit: currency

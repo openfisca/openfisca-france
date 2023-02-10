@@ -11,7 +11,7 @@ values:
   2003-07-01:
     value: null
 metadata:
-  ux_name: Paramètre 1
+  short_label: Paramètre 1
   description_en: Reduction in SSCs defined by the laws "Aubry II" (2000-2003)
   ipp_csv_id: aubry2_1
   unit: currency

@@ -13,7 +13,7 @@ values:
   1992-01-01:
     value: 1.25
 metadata:
-  ux_name: Taux d'appel
+  short_label: Taux d'appel
   description_en: Contributions to the complementary pension of non-permanent workers of the public sector and of local representatives (IRCANTEC scheme)
   ipp_csv_id: ircantec_assiette
   unit: /1

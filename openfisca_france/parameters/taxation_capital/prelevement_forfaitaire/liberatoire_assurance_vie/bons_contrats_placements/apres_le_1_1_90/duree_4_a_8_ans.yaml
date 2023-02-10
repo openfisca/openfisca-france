@@ -3,7 +3,7 @@ values:
   1990-01-01:
     value: 0.15
 metadata:
-  ux_name: Durée de 4 à 8 ans
+  short_label: Durée de 4 à 8 ans
   description_en: Levy in discharge on life insurance (1983 - 2017)
   ipp_csv_id: tx_pl_av_48
   unit: /1

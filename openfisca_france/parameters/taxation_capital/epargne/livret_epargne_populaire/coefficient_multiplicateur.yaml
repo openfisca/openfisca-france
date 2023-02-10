@@ -3,7 +3,7 @@ values:
   2014-01-01:
     value: 1.8
 metadata:
-  ux_name: Coefficient multiplicateur
+  short_label: Coefficient multiplicateur
   unit: /1
   reference:
     2014-01-01:

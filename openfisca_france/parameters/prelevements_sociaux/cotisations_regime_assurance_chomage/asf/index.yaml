@@ -1,6 +1,6 @@
 description: Cotisations pour l'Association pour la gestion de la structure financière, ou cotisation ASF (1984-2001)
 metadata:
-  ux_name: Structure financière ASF
+  short_label: Structure financière ASF
   description_en: Contributions to the association for the mangement of the financial structure ASF (1984-2001)
   order:
   - salarie

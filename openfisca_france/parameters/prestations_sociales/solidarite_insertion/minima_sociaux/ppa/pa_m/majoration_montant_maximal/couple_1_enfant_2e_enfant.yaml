@@ -3,7 +3,7 @@ values:
   2015-10-01:
     value: 0.3
 metadata:
-  ux_name: Majoration par personne supplémentaire (au-delà de la 1ère)
+  short_label: Majoration par personne supplémentaire (au-delà de la 1ère)
   description_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_maj3
   unit: /1

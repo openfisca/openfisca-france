@@ -5,7 +5,7 @@ values:
   2001-01-01:
     value: 153
 metadata:
-  ux_name: Lycée
+  short_label: Lycée
   ipp_csv_id: reduc_enfscol2
   unit: currency
   reference:

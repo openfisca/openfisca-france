@@ -5,7 +5,7 @@ values:
   2009-06-01:
     value: null
 metadata:
-  ux_name: Âge max enfants
+  short_label: Âge max enfants
   description_en: "Single parent allowance (API): General conditions"
   ipp_csv_id: api_ageenf_max
   unit: year

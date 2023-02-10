@@ -59,7 +59,7 @@ values:
   2022-05-01:
     value: 352
 metadata:
-  ux_name: Traitement minimal dans la FP
+  short_label: Traitement minimal dans la FP
   description_en: Minimum wage, civil servants
   unit: /1
   reference:

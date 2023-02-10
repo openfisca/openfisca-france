@@ -1,6 +1,6 @@
 description: Seuil 2 des majorations exceptionnelles d'impôt
 metadata:
-  ux_name: Seuil 2
+  short_label: Seuil 2
   ipp_csv_id: seuil2_majo
   notes:
     1967-01-01:

@@ -129,7 +129,7 @@ values:
   2021-04-01:
     value: 1126.41
 metadata:
-  ux_name: Montant
+  short_label: Montant
   description_en: Amount of markup for constant support to a third party (MTP)
   unit: currency
   reference:

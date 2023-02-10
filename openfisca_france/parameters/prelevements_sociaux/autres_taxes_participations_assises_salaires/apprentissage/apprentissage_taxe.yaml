@@ -13,7 +13,7 @@ brackets:
     2014-01-01:
       value: 0.0068
 metadata:
-  ux_name: Toutes entreprises
+  short_label: Toutes entreprises
   description_en: Apprenticeship tax (tax for the financing of apprenticeship)
   ipp_csv_id: appren_p_0_
   reference:

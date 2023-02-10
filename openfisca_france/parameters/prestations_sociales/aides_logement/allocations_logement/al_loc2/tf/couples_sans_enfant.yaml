@@ -7,7 +7,7 @@ values:
   2007-07-01:
     value: 0.0315
 metadata:
-  ux_name: Couples sans enfant
+  short_label: Couples sans enfant
   description_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tf_coup
   unit: /1

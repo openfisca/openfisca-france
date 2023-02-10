@@ -7,7 +7,7 @@ values:
   2007-07-01:
     value: 0.0283
 metadata:
-  ux_name: Personnes isolées
+  short_label: Personnes isolées
   description_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tf_isol
   unit: /1

@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 0
 metadata:
-  ux_name: 1er enfant
+  short_label: 1er enfant
   unit: BMAF
   reference:
     2002-01-01:

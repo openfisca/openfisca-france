@@ -73,7 +73,7 @@ values:
   2020-04-01:
     value: 1182.3
 metadata:
-  ux_name: Personne seule
+  short_label: Personne seule
   description_en: Special UI scheme
   ipp_csv_id: ass_plaf_seul
   unit: currency

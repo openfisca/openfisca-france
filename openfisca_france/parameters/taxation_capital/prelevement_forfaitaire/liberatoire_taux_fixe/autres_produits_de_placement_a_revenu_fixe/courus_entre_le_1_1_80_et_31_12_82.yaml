@@ -5,7 +5,7 @@ values:
   2013-01-01:
     value: 0.24
 metadata:
-  ux_name: Courus du 01/01/80 au 31/12/82
+  short_label: Courus du 01/01/80 au 31/12/82
   description_en: Levy in discharge on capital income (1965 - 2012)
   ipp_csv_id: tx_plac_8082
   unit: /1

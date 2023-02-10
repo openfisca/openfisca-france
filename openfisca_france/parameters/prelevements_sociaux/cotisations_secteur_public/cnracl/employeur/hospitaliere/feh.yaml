@@ -17,7 +17,7 @@ brackets:
     2017-01-01:
       value: 0.008
 metadata:
-  ux_name: Barème (hors CL)
+  short_label: Barème (hors CL)
   description_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
   ipp_csv_id: feh_p
   reference:

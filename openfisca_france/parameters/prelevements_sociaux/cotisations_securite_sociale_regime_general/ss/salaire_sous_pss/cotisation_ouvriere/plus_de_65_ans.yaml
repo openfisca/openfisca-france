@@ -13,7 +13,7 @@ values:
   1967-09-01:
     value: null
 metadata:
-  ux_name: Plus de 65 ans
+  short_label: Plus de 65 ans
   description_en: SSC (1930-1966)
   ipp_csv_id: css_s65_s_0_1
   unit: /1

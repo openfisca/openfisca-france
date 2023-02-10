@@ -9,7 +9,7 @@ values:
   2005-01-01:
     value: 0.66
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: tx_cotsynd
   unit: /1
   description_en: Union dues (1989 - 2016)

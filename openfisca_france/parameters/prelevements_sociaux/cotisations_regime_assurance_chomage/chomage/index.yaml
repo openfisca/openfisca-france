@@ -1,6 +1,6 @@
 description: Cotisations au régime de l'assurance chômage
 metadata:
-  ux_name: Cotisations assurance chômage
+  short_label: Cotisations assurance chômage
   description_en: Unemployment insurance scheme contribution
   order:
   - salarie

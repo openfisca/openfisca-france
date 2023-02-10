@@ -5,7 +5,7 @@ values:
   2019-01-01:
     value: 0.066
 metadata:
-  ux_name: Taux médian global
+  short_label: Taux médian global
   description_en: CSG - rates on replacement incomes
   ipp_csv_id: csg_pens_median_total
   unit: /1

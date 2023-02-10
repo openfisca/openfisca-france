@@ -101,7 +101,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Traitement brut annuel
+  short_label: Traitement brut annuel
   description_en: Contributions to the Solidarity Fund (FDS)
   unit: currency
   reference:

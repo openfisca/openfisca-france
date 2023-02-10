@@ -3,7 +3,7 @@ values:
   2022-07-01:
     value: 3000
 metadata:
-  ux_name: Premier plafond d'exonération
+  short_label: Premier plafond d'exonération
   unit: currency
   reference:
     2022-07-01:

@@ -3,7 +3,7 @@ values:
   2015-10-01:
     value: 59
 metadata:
-  ux_name: Seuil salaire min
+  short_label: Seuil salaire min
   description_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_seuil_min
   unit: currency

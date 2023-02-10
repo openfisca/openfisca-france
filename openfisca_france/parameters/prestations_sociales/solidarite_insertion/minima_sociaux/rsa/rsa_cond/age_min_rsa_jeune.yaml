@@ -5,7 +5,7 @@ values:
   2010-01-01:
     value: 18
 metadata:
-  ux_name: Âge minimal RSA Jeune
+  short_label: Âge minimal RSA Jeune
   unit: year
   reference:
     2010-01-01:

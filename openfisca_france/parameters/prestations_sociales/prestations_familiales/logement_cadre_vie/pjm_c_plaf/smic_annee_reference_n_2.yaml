@@ -15,7 +15,7 @@ values:
   1983-01-01:
     value: null
 metadata:
-  ux_name: Smic année (n-2)
+  short_label: Smic année (n-2)
   description_en: "Loans to young household (PJM): Thresholds for means-testing"
   ipp_csv_id: smic_ref
   unit: currency

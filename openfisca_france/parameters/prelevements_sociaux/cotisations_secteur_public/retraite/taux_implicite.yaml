@@ -23,7 +23,7 @@ values:
   2006-01-01:
     value: null
 metadata:
-  ux_name: Taux implicite
+  short_label: Taux implicite
   description_en: Contributions for pensions - central government (employer contribution)
   ipp_csv_id: tximp_pu_p
   unit: /1

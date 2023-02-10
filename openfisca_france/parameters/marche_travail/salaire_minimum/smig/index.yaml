@@ -1,6 +1,6 @@
 description: Salaire minimum garanti - SMIG (1950-1969)
 metadata:
-  ux_name: SMIG
+  short_label: SMIG
   description_en: Minimum wage - SMIG (1950-1969)
   order:
   - smig_brut_horaire

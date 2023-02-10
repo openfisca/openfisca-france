@@ -7,7 +7,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Taux partiel <50%
+  short_label: Taux partiel <50%
   description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
   ipp_csv_id: tx_clca_nonbase_partiel1
   unit: /1

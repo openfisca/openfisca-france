@@ -7,7 +7,7 @@ values:
   1978-01-01:
     value: null
 metadata:
-  ux_name: 3+ enfants (>2 ans)
+  short_label: 3+ enfants (>2 ans)
   description_en: "Single earner allowance (ASU): Monthly amount"
   ipp_csv_id: tx_asu_2_enf
   unit: /1

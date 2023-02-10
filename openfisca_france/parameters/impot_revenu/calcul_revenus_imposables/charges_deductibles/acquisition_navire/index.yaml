@@ -1,6 +1,6 @@
  description: Déduction pour acquisition de navire
  metadata:
-  ux_name: Acquisition navire
+  short_label: Acquisition navire
   order:
     - plafond
     - taux

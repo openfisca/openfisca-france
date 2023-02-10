@@ -3,7 +3,7 @@ values:
   2004-01-01:
     value: 3
 metadata:
-  ux_name: Durée versement enfants adoptés
+  short_label: Durée versement enfants adoptés
   description_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
   ipp_csv_id: duree_adopt
   unit: year

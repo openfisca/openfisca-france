@@ -5,7 +5,7 @@ values:
   2013-01-01:
     value: 0
 metadata:
-  ux_name: Minorant pour la 1e tranche
+  short_label: Minorant pour la 1e tranche
   description_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tl_min_tr0
   reference:

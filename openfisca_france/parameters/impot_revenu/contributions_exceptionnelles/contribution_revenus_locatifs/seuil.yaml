@@ -5,7 +5,7 @@ values:
   2002-04-01:
     value: 1830
 metadata:
-  ux_name: Seuil
+  short_label: Seuil
   unit: currency
   reference:
     2001-04-01:

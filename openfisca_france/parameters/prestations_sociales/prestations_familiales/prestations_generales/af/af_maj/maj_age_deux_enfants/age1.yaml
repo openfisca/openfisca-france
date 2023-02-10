@@ -5,7 +5,7 @@ values:
   2008-04-30:
     value: 14
 metadata:
-  ux_name: Âge seuil 1ère majoration
+  short_label: Âge seuil 1ère majoration
   unit: year
   reference:
     2008-04-30:

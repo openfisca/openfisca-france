@@ -9,7 +9,7 @@ values:
   2015-01-01:
     value: null
 metadata:
-  ux_name: Taux entre 0,85 et 5 PSS
+  short_label: Taux entre 0,85 et 5 PSS
   description_en: SSCs for old-age insurance (professionals)
   ipp_csv_id: ret_plib_85_5
   unit: /1

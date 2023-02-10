@@ -5,7 +5,7 @@ values:
   2003-07-01:
     value: 3
 metadata:
-  ux_name: Nb min d'enfants pour la maj. forfaitaire (>20 ans)
+  short_label: Nb min d'enfants pour la maj. forfaitaire (>20 ans)
   description_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: afmaj_nenf_min
   unit: year

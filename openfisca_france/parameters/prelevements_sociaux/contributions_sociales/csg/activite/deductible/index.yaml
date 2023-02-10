@@ -1,6 +1,6 @@
 description: Contribution Sociale Généralisée (CSG) déductible sur les revenus d'activité
 metadata:
-  ux_name: CSG déductible
+  short_label: CSG déductible
   description_en: Social contributions
   order:
   - taux

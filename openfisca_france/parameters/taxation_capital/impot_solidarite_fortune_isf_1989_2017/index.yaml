@@ -1,6 +1,6 @@
 description: Impôt de solidarité sur la fortune (ISF)
 metadata:
-  ux_name: ISF
+  short_label: ISF
   description_en: Wealth tax computation
   order:
   - bareme

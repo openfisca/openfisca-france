@@ -3,7 +3,7 @@ values:
   2018-01-01:
     value: 0.75
 metadata:
-  ux_name: Plafonnement
+  short_label: Plafonnement
   description_en: Wealth tax ceiling
   ipp_csv_id: tx_plaf_ifi
   unit: /1

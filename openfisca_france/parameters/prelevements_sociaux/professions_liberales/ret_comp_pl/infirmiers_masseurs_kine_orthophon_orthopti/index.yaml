@@ -1,6 +1,6 @@
 description: Cotisation de sécurité sociale (SS) retraite complémentaire des Infirmiers, masseurs-kiné, orthophonistes, orthoptistes, Professions libérales
 metadata:
-  ux_name: Infirmiers, masseurs-kiné, orthophonistes, orthoptistes
+  short_label: Infirmiers, masseurs-kiné, orthophonistes, orthoptistes
   description_en: Contribution for complementary pension scheme (professionals)
   order:
   - commissions_remunerations

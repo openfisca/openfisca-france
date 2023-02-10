@@ -19,7 +19,7 @@ values:
   1955-01-01:
     value: null
 metadata:
-  ux_name: Régimes agricoles
+  short_label: Régimes agricoles
   description_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: reg_spec_agri
   unit: currency

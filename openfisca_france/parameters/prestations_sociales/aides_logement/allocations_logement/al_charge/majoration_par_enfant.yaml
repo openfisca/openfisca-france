@@ -43,7 +43,7 @@ values:
   2022-07-01:
     value: 12.72
 metadata:
-  ux_name: Majoration par enfants
+  short_label: Majoration par enfants
   description_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_maj
   unit: currency

@@ -611,7 +611,7 @@ brackets:
     1936-01-01:
       value: null
 metadata:
-  ux_name: Barème 1919-35
+  short_label: Barème 1919-35
   threshold_unit: currency
   rate_unit: /1
   type: marginal_rate

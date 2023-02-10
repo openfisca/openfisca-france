@@ -61,7 +61,7 @@ values:
   2019-01-01:
     value: null
 metadata:
-  ux_name: Cotisation forfaitaire annuelle
+  short_label: Cotisation forfaitaire annuelle
   description_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
   ipp_csv_id: gmp_cot_f_a
   unit: currency

@@ -3,7 +3,7 @@ values:
   2020-03-25:
     value: 0.67
 metadata:
-  ux_name: Quote-part retenue
+  short_label: Quote-part retenue
   unit: /1
   reference:
     2020-03-25:

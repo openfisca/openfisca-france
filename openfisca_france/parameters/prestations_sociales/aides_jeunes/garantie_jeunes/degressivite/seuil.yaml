@@ -3,7 +3,7 @@ values:
   2016-12-23:
     value: 300
 metadata:
-  ux_name: Seuil
+  short_label: Seuil
   unit: currency
   reference:
     2016-12-23:

@@ -7,7 +7,7 @@ values:
   2015-09-01:
     value: 0.15
 metadata:
-  ux_name: Part du PSS
+  short_label: Part du PSS
   description_en: Minimum compensation for interns
   unit: /1
   reference:

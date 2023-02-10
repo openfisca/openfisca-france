@@ -1,6 +1,6 @@
 description: Contribution additionnelle solidarité autonomie (CASA) du régime général de la sécurité sociale (SS)
 metadata:
-  ux_name: Contribution additionnelle solidarité autonomie (CASA)
+  short_label: Contribution additionnelle solidarité autonomie (CASA)
   description_en: Social contributions
   order:
   - pensions_retraite_preretraite_invalidite

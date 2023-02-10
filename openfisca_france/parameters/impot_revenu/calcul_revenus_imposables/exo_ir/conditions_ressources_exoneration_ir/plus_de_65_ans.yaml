@@ -73,7 +73,7 @@ values:
   2014-01-01:
     value: null
 metadata:
-  ux_name: Plus de 65 ans
+  short_label: Plus de 65 ans
   ipp_csv_id: exo_irplus65
   unit: currency
   reference:

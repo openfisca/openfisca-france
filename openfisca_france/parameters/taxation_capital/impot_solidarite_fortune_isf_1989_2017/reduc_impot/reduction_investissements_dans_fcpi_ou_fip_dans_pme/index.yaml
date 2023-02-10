@@ -1,6 +1,6 @@
 description: Réduction pour investissements dans FCPI ou FIP dans les PME de l'impôt de solidarité sur la fortune
 metadata:
-  ux_name: Réduction pour investissements dans FCPI ou FIP des PME
+  short_label: Réduction pour investissements dans FCPI ou FIP des PME
   description_en: Tax reductions for investment and donations
   order:
   - plafond

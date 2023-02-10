@@ -99,7 +99,7 @@ values:
   2022-01-01:
     value: 833 
 metadata:
-  ux_name: Seuil Célibataire
+  short_label: Seuil Célibataire
   ipp_csv_id: param_decote
   unit: currency
   last_review: "2023-01-05"

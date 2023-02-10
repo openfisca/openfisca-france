@@ -43,7 +43,7 @@ values:
   2022-01-01:
     value: 1673
 metadata:
-  ux_name: Réduction supp. (invalides, etc.)
+  short_label: Réduction supp. (invalides, etc.)
   last_review: "2023-01-05"
   description_en: Family quotient ceiling and "decote" (1978 - )
   ipp_csv_id: plaf_qf_inv

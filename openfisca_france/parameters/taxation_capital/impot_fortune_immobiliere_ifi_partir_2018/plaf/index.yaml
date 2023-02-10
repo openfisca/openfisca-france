@@ -1,6 +1,6 @@
 description: Plafonnement de l'Impôt sur la fortune immobilière
 metadata:
-  ux_name: Plafonnement
+  short_label: Plafonnement
   description_en: Wealth tax ceiling
   order:
   - plafonnement_taux_imposition

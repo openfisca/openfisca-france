@@ -39,7 +39,7 @@ values:
   2022-07-01:
     value: 17762.96
 metadata:
-  ux_name: Couple
+  short_label: Couple
   description_en: Solidarity income for elderly (ASPA)
   ipp_csv_id: plaf_mv_men_aspa
   unit: currency

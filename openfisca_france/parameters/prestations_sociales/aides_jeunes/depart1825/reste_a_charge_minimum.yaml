@@ -3,7 +3,7 @@ values:
   2014-09-05:
     value: 50
 metadata:
-  ux_name: Reste à charge minimum
+  short_label: Reste à charge minimum
   unit: currency
   reference:
     href: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans

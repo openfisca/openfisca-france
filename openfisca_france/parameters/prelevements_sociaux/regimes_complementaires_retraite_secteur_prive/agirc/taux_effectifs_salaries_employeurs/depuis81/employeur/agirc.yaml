@@ -67,7 +67,7 @@ brackets:
     1948-01-01:
       value: 0
 metadata:
-  ux_name: Barème employeur
+  short_label: Barème employeur
   description_en: Pension contributions for executives (AGIRC)
   ipp_csv_id:
     rate: agirc81_p_1_4, agirc81_p_4_8

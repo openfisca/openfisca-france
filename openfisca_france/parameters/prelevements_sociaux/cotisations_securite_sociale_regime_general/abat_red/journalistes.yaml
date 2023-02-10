@@ -3,7 +3,7 @@ values:
   1975-01-01:
     value: 0.2
 metadata:
-  ux_name: Abattement
+  short_label: Abattement
   description_en: SSCs rebate for journalists (1975-2016)
   ipp_csv_id: abat_j
   unit: /1

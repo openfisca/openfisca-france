@@ -1,6 +1,6 @@
 description: Prestations familiales pour la petite enfance
 metadata:
-  ux_name: Petite enfance
+  short_label: Petite enfance
   description_en: Early childhood
   order:
   - apn_t_maj

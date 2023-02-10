@@ -1,6 +1,6 @@
 description: Plan d'épargne populaire, Prélèvements libératoires sur les revenus des valeurs mobilières (1965-2017)
 metadata:
-  ux_name: Plan d'épargne populaire
+  short_label: Plan d'épargne populaire
   description_en: Levy in discharge on capital income (1965 - 2012)
   order:
   - retrait_avant_4_ans

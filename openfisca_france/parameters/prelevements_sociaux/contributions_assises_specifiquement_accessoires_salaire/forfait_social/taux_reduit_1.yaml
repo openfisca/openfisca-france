@@ -3,7 +3,7 @@ values:
   2012-08-01:
     value: 0.08
 metadata:
-  ux_name: Taux réduit 1
+  short_label: Taux réduit 1
   last_review: "2023-01-30"
   description_en: Contribution levied on various earnings supplements ("Forfait social")
   ipp_csv_id: forf_soc_tx2

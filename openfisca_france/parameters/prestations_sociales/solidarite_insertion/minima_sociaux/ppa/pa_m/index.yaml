@@ -1,6 +1,6 @@
 description: Paramètres pour le calcul du montant de la Prime Pour l'Activité (PA ou PPA)
 metadata:
-  ux_name: Montant
+  short_label: Montant
   description_en: "Activity prenium (PA) : accomodation allowance"
   order:
   - montant_de_base

@@ -3,5 +3,5 @@ values:
   2004-01-01:
     value: 3
 metadata:
-  ux_name: Prestation pleine
+  short_label: Prestation pleine
   unit: year

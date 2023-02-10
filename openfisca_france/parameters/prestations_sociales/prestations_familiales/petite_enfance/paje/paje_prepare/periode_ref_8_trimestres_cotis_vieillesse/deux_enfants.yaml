@@ -3,7 +3,7 @@ values:
   2004-01-01:
     value: 4
 metadata:
-  ux_name: 2 enfants
+  short_label: 2 enfants
   description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
   ipp_csv_id: periode_ref_cotisations_vieillesse_prepare_2enf
   reference:

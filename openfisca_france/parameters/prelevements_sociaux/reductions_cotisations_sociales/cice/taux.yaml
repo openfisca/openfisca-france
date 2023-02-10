@@ -11,7 +11,7 @@ values:
   2019-01-01:
     value: null
 metadata:
-  ux_name: Taux
+  short_label: Taux
   description_en: Tax credit for competitivness and employment (CICE)
   ipp_csv_id: cice_tx
   unit: /1

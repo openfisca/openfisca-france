@@ -5,7 +5,7 @@ values:
   2007-01-01:
     value: 1.3
 metadata:
-  ux_name: Couple
+  short_label: Couple
   description_en: Adult disability allowance (AAH)
   ipp_csv_id: plaf_aah_esat_couple
   unit: /1

@@ -9,7 +9,7 @@ values:
   2017-01-01:
     value: null
 metadata:
-  ux_name: Taux autres
+  short_label: Taux autres
   ipp_csv_id: taux_autres_invest_outremer
   unit: /1
   description_en: Tax reduction for personal investment in Overseas department (2003-2021)

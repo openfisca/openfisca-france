@@ -1,6 +1,6 @@
 description: Taux régime normal de la réduction d'impôt sur 5 ans en cas de location nue (minimum 5 ans) pour les investissements réalisés en Outre-Mer (2003-2021)
 metadata:
-  ux_name: Taux normal
+  short_label: Taux normal
   ipp_csv_id: taux_normal_reduc_invest_locnue_outremer
   notes:
     2011-01-01:

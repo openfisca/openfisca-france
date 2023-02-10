@@ -29,7 +29,7 @@ brackets:
     2022-01-01:
       value: 300
 metadata:
-  ux_name: Montant
+  short_label: Montant
   reference:
     2019-02-01:
       title: Décret 2019-66 du 01/02/2019, art. 1

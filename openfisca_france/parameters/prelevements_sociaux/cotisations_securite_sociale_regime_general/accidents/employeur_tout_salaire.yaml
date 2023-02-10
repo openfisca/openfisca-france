@@ -15,7 +15,7 @@ values:
   2018-01-01:
     value: 0.009
 metadata:
-  ux_name: Taux employeur tout salaire
+  short_label: Taux employeur tout salaire
   description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   ipp_csv_id: acc_p_0_
   unit: /1

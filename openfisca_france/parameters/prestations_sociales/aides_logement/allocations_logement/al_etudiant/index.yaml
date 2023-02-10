@@ -1,6 +1,6 @@
 description: Mesure du loyer pour les étudiants logeant en résidence universitaire, allocations logement (AL)
 metadata:
-  ux_name: Étudiants en RU
+  short_label: Étudiants en RU
   description_en: Measure of rent for students living in university residences
   order:
   - loyer_considere_comme_paye_etudiants_logeant_en_ru

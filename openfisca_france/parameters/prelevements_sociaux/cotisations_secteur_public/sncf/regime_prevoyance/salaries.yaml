@@ -5,7 +5,7 @@ values:
   2020-01-01:
     value: null
 metadata:
-  ux_name: Taux salariés
+  short_label: Taux salariés
   description_en: Contributions to the SNCF scheme (public railway company)
   unit: /1
   reference:

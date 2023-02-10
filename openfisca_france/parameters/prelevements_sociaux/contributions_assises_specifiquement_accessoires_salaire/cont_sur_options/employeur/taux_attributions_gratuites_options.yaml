@@ -9,7 +9,7 @@ values:
   2018-01-01:
     value: 0.2
 metadata:
-  ux_name: Taux attributions gratuites d'options
+  short_label: Taux attributions gratuites d'options
   description_en: Contribution levied on options and shares granted for free
   unit: /1
   reference:

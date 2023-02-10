@@ -37,7 +37,7 @@ values:
   2022-07-01:
     value: 10163.71
 metadata:
-  ux_name: Plafond de ressources pour une personne seule
+  short_label: Plafond de ressources pour une personne seule
   description_en: "Supplementary disability allowance (ASI): Amount"
   ipp_csv_id: plaf_ressource_seul
   unit: currency

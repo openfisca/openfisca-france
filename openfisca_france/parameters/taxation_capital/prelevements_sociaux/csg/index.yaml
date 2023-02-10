@@ -1,6 +1,6 @@
 description: Contribution Sociale Généralisée (CSG) sur les revenus du capital
 metadata:
-  ux_name: CSG Revenus Capital
+  short_label: CSG Revenus Capital
   description_en: CSG on financial income
   order:
   - taux_global

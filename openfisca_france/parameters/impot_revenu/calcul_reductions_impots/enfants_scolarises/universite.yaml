@@ -5,7 +5,7 @@ values:
   2001-01-01:
     value: 183
 metadata:
-  ux_name: Université
+  short_label: Université
   ipp_csv_id: reduc_enfscol3
   unit: currency
   reference:

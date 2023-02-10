@@ -3,7 +3,7 @@ values:
   1985-01-01:
     value: 3
 metadata:
-  ux_name: Âge maximal de l'enfant
+  short_label: Âge maximal de l'enfant
   description_en: "Parental leave allowance (APE): Conditions and amounts"
   ipp_csv_id: ape_agemax
   unit: year

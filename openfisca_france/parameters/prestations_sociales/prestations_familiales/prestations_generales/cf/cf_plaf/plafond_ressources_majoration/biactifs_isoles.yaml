@@ -17,7 +17,7 @@ values:
   2021-01-01:
     value: 4367
 metadata:
-  ux_name: Biactifs et parents isolés
+  short_label: Biactifs et parents isolés
   description_en: "Family complement (CF): Extra allowances"
   unit: currency
   reference:

@@ -27,7 +27,7 @@ values:
   2020-01-01:
     value: 0.0377
 metadata:
-  ux_name: Inflation
+  short_label: Inflation
   description_en: Inflation
   unit: /1
   reference:

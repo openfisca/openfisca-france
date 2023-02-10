@@ -1,6 +1,6 @@
 description: Rémunération dans la fonction publique
 metadata:
-  ux_name: Rémunération Fonction publique
+  short_label: Rémunération Fonction publique
   description_en: Pays in the public sector
   order:
   - sft

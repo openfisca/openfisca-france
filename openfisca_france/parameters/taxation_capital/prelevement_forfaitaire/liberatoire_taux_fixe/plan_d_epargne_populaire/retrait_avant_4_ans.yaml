@@ -5,7 +5,7 @@ values:
   2008-01-01:
     value: null
 metadata:
-  ux_name: Retrait avant 4 ans
+  short_label: Retrait avant 4 ans
   description_en: Levy in discharge on capital income (1965 - 2012)
   ipp_csv_id: tx_epargne_av4
   unit: /1

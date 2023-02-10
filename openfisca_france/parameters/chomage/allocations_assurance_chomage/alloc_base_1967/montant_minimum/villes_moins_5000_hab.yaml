@@ -19,7 +19,7 @@ values:
   1968-01-01:
     value: null
 metadata:
-  ux_name: Moins de 5000 hab.
+  short_label: Moins de 5000 hab.
   description_en: UI scheme (1958-1967)
   ipp_csv_id: base_min_m5000
   unit: currency

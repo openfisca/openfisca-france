@@ -11,7 +11,7 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  ux_name: 11 salariés et plus
+  short_label: 11 salariés et plus
   description_en: Employer's participation to lifelong professional training
   reference:
     1972-01-01:

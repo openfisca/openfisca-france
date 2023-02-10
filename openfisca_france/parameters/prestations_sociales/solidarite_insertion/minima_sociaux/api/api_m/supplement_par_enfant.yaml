@@ -7,7 +7,7 @@ values:
   2009-06-01:
     value: null
 metadata:
-  ux_name: Supplément par enfant
+  short_label: Supplément par enfant
   description_en: "Single parent allowance (API): Amounts"
   ipp_csv_id: api_enf_sup
   unit: BMAF

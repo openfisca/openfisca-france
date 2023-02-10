@@ -1,6 +1,6 @@
 description: Réductions sur les cotisations de Sécurité sociale (SS)
 metadata:
-  ux_name: Réductions de cotisations de Sécurité sociale (SS)
+  short_label: Réductions de cotisations de Sécurité sociale (SS)
   description_en: Reduction in SSCs
   order:
   - alleg_gen

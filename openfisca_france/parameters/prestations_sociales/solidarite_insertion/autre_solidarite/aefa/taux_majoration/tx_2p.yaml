@@ -3,7 +3,7 @@ values:
   2003-12-30:
     value: 0.5
 metadata:
-  ux_name: Foyer de 2 personnes
+  short_label: Foyer de 2 personnes
   description_en: "Exceptional end-of-year benefit (AEFA): amount"
   unit: /1
   reference:

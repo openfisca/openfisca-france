@@ -7,7 +7,7 @@ values:
   2015-11-20:
     value: null
 metadata:
-  ux_name: Majoration
+  short_label: Majoration
   description_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
   ipp_csv_id: retchap_maj
   unit: /1

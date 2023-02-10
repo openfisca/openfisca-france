@@ -29,7 +29,7 @@ values:
   1960-01-01:
     value: 361.9
 metadata:
-  ux_name: Majoration pour conjoint
+  short_label: Majoration pour conjoint
   description_en: Allowance for elderly workers (AVTS, 1941-1961)
   ipp_csv_id: majconj
   unit: currency

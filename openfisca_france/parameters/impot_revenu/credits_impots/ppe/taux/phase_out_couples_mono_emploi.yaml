@@ -9,7 +9,7 @@ values:
   2016-01-01:
     value: null
 metadata:
-  ux_name: Phase-out (couples mono-emploi)
+  short_label: Phase-out (couples mono-emploi)
   description_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: tx_ret_ppe_coup
   unit: /1

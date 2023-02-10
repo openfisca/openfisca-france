@@ -1,6 +1,6 @@
 description: Indemnité compensatrice des avantages fiscaux (ICAF, 1948-1977)
 metadata:
-  ux_name: Montant ICAF
+  short_label: Montant ICAF
   description_en: "Compensatory payments of tax benefits (ICAF): Amount"
   order:
   - 2_enfants_a_charge

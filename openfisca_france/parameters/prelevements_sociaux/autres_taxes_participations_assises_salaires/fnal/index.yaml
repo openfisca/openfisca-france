@@ -1,6 +1,6 @@
 description: Cotisation et contribution pour le Fonds national d'aide au logement (FNAL), parmi les autres taxes et participations assises sur les salaires
 metadata:
-  ux_name: Fonds national d'aide au logement (FNAL)
+  short_label: Fonds national d'aide au logement (FNAL)
   description_en: Other payroll and workforce taxes
   order:
   - tout_employeur

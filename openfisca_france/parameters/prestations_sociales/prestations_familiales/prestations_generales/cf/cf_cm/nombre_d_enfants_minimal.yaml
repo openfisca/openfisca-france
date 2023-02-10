@@ -9,7 +9,7 @@ values:
   1997-01-01:
     value: 3
 metadata:
-  ux_name: Nombre minimal d'enfants à charge
+  short_label: Nombre minimal d'enfants à charge
   last_review: "2023-01-05"
   description_en: "Family complement (CF): General conditions and amounts"
   ipp_csv_id: nenf_cf_min

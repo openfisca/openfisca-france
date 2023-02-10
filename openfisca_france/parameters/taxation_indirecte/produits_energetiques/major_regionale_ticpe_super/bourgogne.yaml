@@ -7,7 +7,7 @@ values:
   2011-01-01:
     value: 2.5
 metadata:
-  ux_name: Bourgogne
+  short_label: Bourgogne
   ipp_csv_id: maj_ticpe_super_bourg
   unit: currency
 documentation: |-

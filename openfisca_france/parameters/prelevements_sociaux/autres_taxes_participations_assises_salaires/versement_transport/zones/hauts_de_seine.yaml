@@ -23,7 +23,7 @@ values:
   2017-01-01:
     value: 0.0295
 metadata:
-  ux_name: Hauts-de-Seine
+  short_label: Hauts-de-Seine
   description_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_92
   unit: /1

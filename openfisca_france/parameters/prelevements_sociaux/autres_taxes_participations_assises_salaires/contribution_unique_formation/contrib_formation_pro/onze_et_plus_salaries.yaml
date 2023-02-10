@@ -3,7 +3,7 @@ values:
   2019-01-01:
     value: 0.01
 metadata:
-  ux_name: Employeur de 11 salariés et plus
+  short_label: Employeur de 11 salariés et plus
   description_en: Unique employer's participation to lifelong professional training and apprenticeship
   unit: /1
   reference:

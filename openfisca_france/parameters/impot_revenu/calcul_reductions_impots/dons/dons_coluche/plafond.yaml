@@ -1,6 +1,6 @@
 description: Plafond des Dons Coluche
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plafcoluche
   notes:
     1989-01-01:

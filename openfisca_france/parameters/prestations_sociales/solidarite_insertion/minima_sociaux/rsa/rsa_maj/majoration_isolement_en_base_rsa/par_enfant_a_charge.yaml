@@ -7,7 +7,7 @@ values:
   2016-01-01:
     value: 0.42804
 metadata:
-  ux_name: Majoration par enfant à charge
+  short_label: Majoration par enfant à charge
   description_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: rsa_isole_enf
   unit: /1

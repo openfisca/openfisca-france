@@ -5,7 +5,7 @@ values:
   2013-01-01:
     value: null
 metadata:
-  ux_name: RSA
+  short_label: RSA
   description_en: Other social levies on financial income
   ipp_csv_id: tx_caps_rsa
   unit: /1

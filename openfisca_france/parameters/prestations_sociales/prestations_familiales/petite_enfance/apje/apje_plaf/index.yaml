@@ -1,6 +1,6 @@
 description: Plafonds de ressources de l'Allocation pour jeune enfant (APJE)
 metadata:
-  ux_name: Plafonds de ressources
+  short_label: Plafonds de ressources
   description_en: "Allowance for Young Children (APJE): Thresholds for means-testing"
   order:
   - plafond_de_ressources_0_enfant

@@ -41,7 +41,7 @@ values:
   2022-07-01:
     value: 308.5
 metadata:
-  ux_name: Personnes seules
+  short_label: Personnes seules
   description_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: plaf_loy_isol_z1
   unit: currency

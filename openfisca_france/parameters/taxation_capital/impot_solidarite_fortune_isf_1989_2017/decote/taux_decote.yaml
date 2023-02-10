@@ -5,7 +5,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Taux de la décote
+  short_label: Taux de la décote
   description_en: "\"Décote\" computation"
   ipp_csv_id: tx_decote_isf
   unit: /1

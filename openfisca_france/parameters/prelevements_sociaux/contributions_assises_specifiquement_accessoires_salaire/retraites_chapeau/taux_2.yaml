@@ -7,7 +7,7 @@ values:
   2013-01-01:
     value: 0.24
 metadata:
-  ux_name: Taux 2
+  short_label: Taux 2
   description_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
   ipp_csv_id: retchap_tx2
   unit: /1

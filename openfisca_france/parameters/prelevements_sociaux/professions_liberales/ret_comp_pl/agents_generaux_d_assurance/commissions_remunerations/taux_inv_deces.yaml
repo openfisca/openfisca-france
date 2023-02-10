@@ -5,7 +5,7 @@ values:
   2012-01-01:
     value: 0.007
 metadata:
-  ux_name: Taux invalidité-décès
+  short_label: Taux invalidité-décès
   description_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: invald_ass_0_
   unit: /1

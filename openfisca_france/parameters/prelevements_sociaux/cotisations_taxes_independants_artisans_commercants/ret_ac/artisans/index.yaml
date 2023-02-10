@@ -1,6 +1,6 @@
 description: Cotisation de sécurité sociale (SS) de la branche vieillesse des indépendants artisans
 metadata:
-  ux_name: Artisans
+  short_label: Artisans
   description_en: SSCs for old-age insurance (sales retailers and craftsmen)
   order:
   - sous_pss

@@ -85,7 +85,7 @@ values:
   2021-01-01:
     value: 2484
 metadata:
-  ux_name: Montant 1ère tranche
+  short_label: Montant 1ère tranche
   description_en: Tax allowance for net taxable income
   ipp_csv_id: abt_pers_age1
   unit: currency

@@ -9,7 +9,7 @@ values:
   2020-11-01:
     value: null
 metadata:
-  ux_name: Majoration par enfant à charge
+  short_label: Majoration par enfant à charge
   description_en: Exceptional benefit - COVID-19 crisis
   ipp_csv_id: aide_exceptionnelle_covid_par_enfant
   unit: currency

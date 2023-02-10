@@ -59,7 +59,7 @@ values:
   1970-01-01:
     value: null
 metadata:
-  ux_name: Zone sans abattement
+  short_label: Zone sans abattement
   description_en: Minimum wage
   ipp_csv_id: smig_h_sans_ab
   unit: currency

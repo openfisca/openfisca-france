@@ -83,7 +83,7 @@ values:
   2022-01-01:
     value: 1678
 metadata:
-  ux_name: Cas général
+  short_label: Cas général
   last_review: "2023-01-05"
   description_en: Family quotient ceiling and "decote" (1978 - )
   ipp_csv_id: plaf_qf

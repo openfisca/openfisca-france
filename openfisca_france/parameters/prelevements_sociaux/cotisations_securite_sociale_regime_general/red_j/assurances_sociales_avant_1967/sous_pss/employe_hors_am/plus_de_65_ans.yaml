@@ -5,7 +5,7 @@ values:
   1967-10-01:
     value: null
 metadata:
-  ux_name: Plus de 65 ans
+  short_label: Plus de 65 ans
   description_en: SSCs for freelance journalists (1964-1974)
   ipp_csv_id: css_j_s65_s_0_1
   unit: /1

@@ -5,7 +5,7 @@ values:
   2019-01-01:
     value: 1403
 metadata:
-  ux_name: Famille avec 1 personne à charge
+  short_label: Famille avec 1 personne à charge
   ipp_csv_id: plafond_ressources_rls_z1_famille_1pac
   unit: currency
   reference:

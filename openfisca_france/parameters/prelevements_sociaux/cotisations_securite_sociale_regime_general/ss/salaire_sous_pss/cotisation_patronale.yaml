@@ -21,7 +21,7 @@ values:
   1967-09-01:
     value: null
 metadata:
-  ux_name: Cotisation patronale
+  short_label: Cotisation patronale
   description_en: SSC (1930-1966)
   ipp_csv_id: css_p_0_1
   unit: /1

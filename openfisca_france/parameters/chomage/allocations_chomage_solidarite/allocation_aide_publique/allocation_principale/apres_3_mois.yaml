@@ -25,7 +25,7 @@ values:
   1979-04-02:
     value: 18
 metadata:
-  ux_name: Après 3 mois
+  short_label: Après 3 mois
   description_en: Public aid allowance (1967-1979)
   ipp_csv_id: aide_pu_3_
   unit: currency

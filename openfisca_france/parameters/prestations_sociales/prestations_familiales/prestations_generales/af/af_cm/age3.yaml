@@ -3,7 +3,7 @@ values:
   2003-07-01:
     value: 20
 metadata:
-  ux_name: Âge maximal de l'enfant (forfait de 2003 inclus)
+  short_label: Âge maximal de l'enfant (forfait de 2003 inclus)
   unit: year
   reference:
     2003-07-01:

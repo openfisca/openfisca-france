@@ -427,7 +427,7 @@ brackets:
     2002-04-01:
       value: 0
 metadata:
-  ux_name: Montant indemnité
+  short_label: Montant indemnité
   reference:
     2002-04-01:
     - title: Article D434-1 du Code de la sécurité sociale

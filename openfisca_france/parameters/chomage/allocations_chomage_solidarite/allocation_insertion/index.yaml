@@ -1,6 +1,6 @@
 description: Allocations d'insertion
 metadata:
-  ux_name: Insertion
+  short_label: Insertion
   description_en: Insertion allowance (AI)
   order:
   - ai_16_25

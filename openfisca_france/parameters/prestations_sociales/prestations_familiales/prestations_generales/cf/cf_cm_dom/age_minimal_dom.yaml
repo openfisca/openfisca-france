@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 3
 metadata:
-  ux_name: Âge minimal
+  short_label: Âge minimal
   description_en: "Family complement (CF): Thresholds for means-testing in oversea territories"
   unit: year
   reference:

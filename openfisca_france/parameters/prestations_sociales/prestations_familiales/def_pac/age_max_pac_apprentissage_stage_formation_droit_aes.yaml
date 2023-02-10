@@ -3,7 +3,7 @@ values:
   1985-12-22:
     value: 20
 metadata:
-  ux_name: Âge max (apprentissage, stage, formation)
+  short_label: Âge max (apprentissage, stage, formation)
   description_en: Definition of dependants
   ipp_csv_id: age_min_pac
   unit: year

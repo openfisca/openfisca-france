@@ -21,7 +21,7 @@ values:
   1978-02-20:
     value: 6.6
 metadata:
-  ux_name: Majoration
+  short_label: Majoration
   description_en: Public aid allowance (1967-1979)
   ipp_csv_id: aide_pu_maj
   unit: currency

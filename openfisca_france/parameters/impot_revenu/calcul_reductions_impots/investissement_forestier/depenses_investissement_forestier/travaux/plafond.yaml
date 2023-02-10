@@ -3,7 +3,7 @@ values:
   2009-01-01:
     value: 6250
 metadata:
-  ux_name: Plafond travaux
+  short_label: Plafond travaux
   last_review: "2023-01-09"
   unit: currency
   reference:

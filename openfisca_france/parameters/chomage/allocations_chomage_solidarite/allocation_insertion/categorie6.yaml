@@ -23,7 +23,7 @@ values:
   1992-01-01:
     value: null
 metadata:
-  ux_name: Catégorie 6
+  short_label: Catégorie 6
   description_en: Insertion allowance (AI)
   ipp_csv_id: ai_femme
   unit: currency

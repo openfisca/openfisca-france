@@ -1,6 +1,6 @@
 description: Allocations chômage de solidarité
 metadata:
-  ux_name: Allocations chômage solidarité
+  short_label: Allocations chômage solidarité
   description_en: Unemployment benefits (means-tested)
   order:
   - allocation_aide_publique

@@ -17,7 +17,7 @@ brackets:
     2011-01-01:
       value: 0
 metadata:
-  ux_name: Abattement frais professionnels
+  short_label: Abattement frais professionnels
   reference:
     1998-01-01:
       title: Article L136-2 I du Code de la sécurité sociale

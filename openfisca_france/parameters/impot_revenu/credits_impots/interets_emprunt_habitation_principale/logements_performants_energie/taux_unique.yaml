@@ -5,7 +5,7 @@ values:
   2008-01-01:
     value: 0.4
 metadata:
-  ux_name: Taux unique
+  short_label: Taux unique
   unit: /1
   reference:
     2007-01-01:

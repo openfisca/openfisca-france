@@ -19,7 +19,7 @@ brackets:
     2019-01-01:
       value: 0
 metadata:
-  ux_name: Taux de calcul de points
+  short_label: Taux de calcul de points
   description_en: Complementary pension contributions
   reference:
     2019-01-01:

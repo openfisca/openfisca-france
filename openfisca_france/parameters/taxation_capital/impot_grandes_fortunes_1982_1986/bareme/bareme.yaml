@@ -67,7 +67,7 @@ brackets:
     1987-01-01:
       value: null
 metadata:
-  ux_name: Barème IGF
+  short_label: Barème IGF
   description_en: Wealth tax schedule
   ipp_csv_id:
     threshold: seuil1_igf, seuil2_igf, seuil3_igf, seuil4_igf

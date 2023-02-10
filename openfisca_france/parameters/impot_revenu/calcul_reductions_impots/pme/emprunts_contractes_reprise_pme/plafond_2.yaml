@@ -11,7 +11,7 @@ values:
   2015-01-01:
     value: 50000
 metadata:
-  ux_name: Plafond 2
+  short_label: Plafond 2
   ipp_csv_id: plaf_pme2
   unit: currency
   reference:

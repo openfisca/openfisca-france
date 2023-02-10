@@ -241,7 +241,7 @@ brackets:
     1945-01-01:
       value: null
 metadata:
-  ux_name: Barème 1942-44
+  short_label: Barème 1942-44
   type: marginal_rate
   threshold_unit: currency
   rate_unit: /1

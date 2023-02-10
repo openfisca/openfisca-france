@@ -39,7 +39,7 @@ values:
   2020-04-01:
     value: 36.5
 metadata:
-  ux_name: Montant journalier
+  short_label: Montant journalier
   description_en: Early retirement allowance (AER)
   ipp_csv_id: aer_fixe
   unit: currency

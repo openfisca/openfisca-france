@@ -3,7 +3,7 @@ values:
   2022-03-01:
     value: 300
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   unit: currency
   reference:
     2022-03-01:

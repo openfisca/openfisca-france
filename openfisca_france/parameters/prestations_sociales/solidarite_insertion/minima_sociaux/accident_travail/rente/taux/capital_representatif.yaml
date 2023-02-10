@@ -1,6 +1,6 @@
 description: Barème servant à la détermination du capital représentatif des rentes d'accidents du travail
 metadata:
-  ux_name: Barème capital représentatif
+  short_label: Barème capital représentatif
   unit: currency
   reference:
     1954-12-17:

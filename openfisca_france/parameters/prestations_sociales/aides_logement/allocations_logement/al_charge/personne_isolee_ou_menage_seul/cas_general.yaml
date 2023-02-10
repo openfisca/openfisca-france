@@ -43,7 +43,7 @@ values:
   2022-07-01:
     value: 56.12
 metadata:
-  ux_name: Cas général
+  short_label: Cas général
   description_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_gen
   unit: currency

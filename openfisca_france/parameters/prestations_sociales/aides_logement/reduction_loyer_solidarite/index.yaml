@@ -1,6 +1,6 @@
 description: Réduction de loyer de solidarité (RLS)
 metadata:
-  ux_name: Réduction de loyer de solidarité
+  short_label: Réduction de loyer de solidarité
   order:
   - montant
   - plafond_ressources

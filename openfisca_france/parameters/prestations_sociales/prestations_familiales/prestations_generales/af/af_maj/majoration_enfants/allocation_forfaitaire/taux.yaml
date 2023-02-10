@@ -5,7 +5,7 @@ values:
   2003-07-01:
     value: 0.20234
 metadata:
-  ux_name: Taux
+  short_label: Taux
   description_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: maj_forf_tx
   unit: BMAF

@@ -11,7 +11,7 @@ values:
 metadata:
   unit: /1
   ipp_csv_id: tx_sofica_2
-  ux_name: Taux 2
+  short_label: Taux 2
   reference:
     1985-01-01:
       title: Loi 85-695 du 11/07/1985 - art. 40-IV

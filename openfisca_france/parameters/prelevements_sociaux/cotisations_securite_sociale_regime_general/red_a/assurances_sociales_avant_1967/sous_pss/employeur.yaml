@@ -11,7 +11,7 @@ values:
   1967-10-01:
     value: null
 metadata:
-  ux_name: Taux employeur
+  short_label: Taux employeur
   description_en: SSCs for artists (1960-1974)
   ipp_csv_id: css_a_p_0_1
   unit: /1

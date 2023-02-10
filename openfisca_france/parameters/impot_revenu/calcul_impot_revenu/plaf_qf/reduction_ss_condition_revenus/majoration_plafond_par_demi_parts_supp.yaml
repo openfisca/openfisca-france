@@ -13,7 +13,7 @@ values:
   2020-01-01:
     value: null
 metadata:
-  ux_name: Majoration par demi-parts supp.
+  short_label: Majoration par demi-parts supp.
   ipp_csv_id: reduc_bas_revenus_plaf_enf
   unit: currency
   reference:

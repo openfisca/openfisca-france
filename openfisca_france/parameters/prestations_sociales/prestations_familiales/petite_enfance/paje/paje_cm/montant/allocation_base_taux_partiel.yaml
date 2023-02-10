@@ -7,7 +7,7 @@ values:
   2018-04-01:
     value: 0.20825
 metadata:
-  ux_name: Montant à taux partiel
+  short_label: Montant à taux partiel
   description_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
   ipp_csv_id: tx_paje_base_partiel
   unit: BMAF

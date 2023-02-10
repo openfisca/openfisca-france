@@ -1,6 +1,6 @@
 description: Allocation pour frais de garde (AFG, 1976-1977)
 metadata:
-  ux_name: AFG
+  short_label: AFG
   description_en: "Child care costs allowance (AFG): General conditions and amounts"
   order:
   - afg_c

@@ -5,7 +5,7 @@ values:
   2016-01-01:
     value: null
 metadata:
-  ux_name: Majoration des ressources sur les revenus d'activité
+  short_label: Majoration des ressources sur les revenus d'activité
   description_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: tx_rsa
   unit: /1

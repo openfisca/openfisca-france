@@ -1,6 +1,6 @@
 description: Contribution Sociale Généralisée (CSG) imposable sur les revenus d'activité
 metadata:
-  ux_name: CSG imposable
+  short_label: CSG imposable
   description_en: Social contributions
   order:
     - taux

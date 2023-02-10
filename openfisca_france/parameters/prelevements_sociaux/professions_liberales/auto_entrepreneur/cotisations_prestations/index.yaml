@@ -1,6 +1,6 @@
 description: Cotisations pour les prestations sociales des auto-entrepreneurs
 metadata:
-  ux_name: Cotisations pour prestations sociales
+  short_label: Cotisations pour prestations sociales
   description_en: Self-employed specific scheme (auto-entrepreneurs)
   order:
   - vente

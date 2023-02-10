@@ -39,7 +39,7 @@ values:
   2020-04-01:
     value: 2518.5
 metadata:
-  ux_name: Plafond mensuel couple
+  short_label: Plafond mensuel couple
   description_en: Early retirement allowance (AER)
   ipp_csv_id: aer_plaf_couple
   unit: currency

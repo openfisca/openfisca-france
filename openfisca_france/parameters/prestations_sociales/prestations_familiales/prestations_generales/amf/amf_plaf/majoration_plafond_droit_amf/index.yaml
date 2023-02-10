@@ -1,6 +1,6 @@
 description: Majoration plafond pour le droit à l'Allocation de la mère au foyer (AMF, 1955-1977)
 metadata:
-  ux_name: Majoration droit AMF
+  short_label: Majoration droit AMF
   description_en: "Allowance for stay-at-home-mother (AMF): Thresholds for means-testing"
   order:
   - 4_enfants

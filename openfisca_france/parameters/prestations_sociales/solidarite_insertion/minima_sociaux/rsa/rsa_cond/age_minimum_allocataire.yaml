@@ -3,7 +3,7 @@ values:
   2009-06-01:
     value: 25
 metadata:
-  ux_name: Âge minimum pour l'allocataire
+  short_label: Âge minimum pour l'allocataire
   description_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: age_rsa_rmi
   unit: year

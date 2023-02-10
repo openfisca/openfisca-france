@@ -3,7 +3,7 @@ values:
   2006-06-05:
     value: 0.1263
 metadata:
-  ux_name: Personne seule
+  short_label: Personne seule
   description_en: "Daily parental presence allowance (AJPP): Amounts"
   ipp_csv_id: ajpp_seul
   unit: BMAF

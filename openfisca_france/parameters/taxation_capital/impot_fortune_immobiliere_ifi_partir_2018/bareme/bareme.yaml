@@ -31,7 +31,7 @@ brackets:
     2018-01-01:
       value: 0.015
 metadata:
-  ux_name: Barème IFI
+  short_label: Barème IFI
   description_en: Wealth tax schedule
   ipp_csv_id:
     threshold: seuil1_ifi, seuil2_ifi, seuil3_ifi, seuil4_ifi, seuil5_ifi

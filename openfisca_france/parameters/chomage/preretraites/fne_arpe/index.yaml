@@ -1,6 +1,6 @@
 description: Montant minimum des allocations de préretraites FNE-ARPE pour les personnes touchant des allocations chômage
 metadata:
-  ux_name: Montant minimum FNE-ARPE
+  short_label: Montant minimum FNE-ARPE
   description_en: Minimum level of FNE-ARPE early retirement benefits
   order:
   - lic_demission_arpe

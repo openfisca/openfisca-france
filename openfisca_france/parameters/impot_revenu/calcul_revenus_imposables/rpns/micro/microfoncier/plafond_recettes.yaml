@@ -7,7 +7,7 @@ values:
   2001-01-01:
     value: 15000
 metadata:
-  ux_name: Plafond de recettes
+  short_label: Plafond de recettes
   unit: currency
   ipp_csv_id: plaf_micro_foncier
   reference:

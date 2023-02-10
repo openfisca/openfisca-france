@@ -5,7 +5,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Plafond de la contrib. exceptionnelle de solidarité
+  short_label: Plafond de la contrib. exceptionnelle de solidarité
   description_en: Contributions to the Solidarity Fund (FDS)
   unit: currency
   reference:

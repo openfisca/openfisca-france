@@ -23,7 +23,7 @@ brackets:
     1984-01-01:
       value: null
 metadata:
-  ux_name: Barème Employeur
+  short_label: Barème Employeur
   description_en: Health insurance contributions - local governments and hospital administration
   ipp_csv_id: mmid_h_p_0_1
   reference:

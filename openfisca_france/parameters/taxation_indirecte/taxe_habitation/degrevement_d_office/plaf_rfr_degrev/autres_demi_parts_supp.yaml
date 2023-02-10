@@ -13,7 +13,7 @@ values:
   2023-01-01:
     value: null
 metadata:
-  ux_name: Autres demi-parts supplémentaires
+  short_label: Autres demi-parts supplémentaires
   unit: currency
   reference:
     2022-01-01:

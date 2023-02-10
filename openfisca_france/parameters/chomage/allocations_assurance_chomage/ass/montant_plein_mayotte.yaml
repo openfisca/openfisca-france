@@ -37,7 +37,7 @@ values:
   2018-04-01:
     value: 8.23
 metadata:
-  ux_name: Montant plein Mayotte
+  short_label: Montant plein Mayotte
   description_en: Special UI scheme
   unit: currency
   reference:

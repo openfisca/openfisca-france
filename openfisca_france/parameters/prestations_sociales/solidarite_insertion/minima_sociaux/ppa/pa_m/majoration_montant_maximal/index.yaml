@@ -1,6 +1,6 @@
 description: Majoration montant maximal (en % de la base RSA) de la Prime Pour l'Activité (PA ou PPA)
 metadata:
-  ux_name: Majoration montant maximal
+  short_label: Majoration montant maximal
   description_en: "Activity prenium (PA) : accomodation allowance"
   order:
   - couples_seul_avec_enfant

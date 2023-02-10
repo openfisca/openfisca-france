@@ -3,7 +3,7 @@ values:
   1991-08-06:
     value: 1
 metadata:
-  ux_name: Durée versement majoration
+  short_label: Durée versement majoration
   description_en: "Family allowances (AF): Extra allowances for oversea territories"
   ipp_csv_id: duree_maj_dom
   unit: year

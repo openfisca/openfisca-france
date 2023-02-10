@@ -7,7 +7,7 @@ values:
   1985-01-01:
     value: null
 metadata:
-  ux_name: 3e examen
+  short_label: 3e examen
   description_en: "Prenatal allowance (APrN): Rate and payment"
   ipp_csv_id: tx_3exam
   unit: /1

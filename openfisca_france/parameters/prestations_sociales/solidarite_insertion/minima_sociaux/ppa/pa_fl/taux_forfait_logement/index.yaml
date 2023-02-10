@@ -1,6 +1,6 @@
 description: Taux du forfait logement de la Prime Pour l'Activité (PA ou PPA)
 metadata:
-  ux_name: Taux
+  short_label: Taux
   description_en: "Activity prenium (PA) : accomodation allowance"
   order:
   - foyer_1_personne

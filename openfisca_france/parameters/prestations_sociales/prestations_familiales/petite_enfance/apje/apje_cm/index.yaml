@@ -1,6 +1,6 @@
 description: Conditions générales et montants de l'Allocation pour jeune enfant (APJE)
 metadata:
-  ux_name: Conditions générales et montants
+  short_label: Conditions générales et montants
   description_en: "Allowance for Young Children (APJE): General conditions and amount"
   order:
   - mois_grossesse_ouverture_droits

@@ -5,7 +5,7 @@ values:
   2005-01-01:
     value: 5000
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_intagri
   unit: currency
 documentation: |-

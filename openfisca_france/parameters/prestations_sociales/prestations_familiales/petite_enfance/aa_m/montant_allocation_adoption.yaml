@@ -7,7 +7,7 @@ values:
   2007-01-01:
     value: null
 metadata:
-  ux_name: Montant
+  short_label: Montant
   description_en: "Adoption allowance (AA): General conditions and amounts"
   ipp_csv_id: aa_montant
   unit: /1

@@ -129,7 +129,7 @@ values:
   2020-07-01:
     value: 29.38
 metadata:
-  ux_name: Après 3 mois
+  short_label: Après 3 mois
   description_en: "UI scheme: lump-sum and minimum"
   ipp_csv_id: base_min_3_
   unit: currency

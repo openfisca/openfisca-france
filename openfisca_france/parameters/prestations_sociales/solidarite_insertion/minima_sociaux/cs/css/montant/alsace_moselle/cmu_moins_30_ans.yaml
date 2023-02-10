@@ -3,7 +3,7 @@ values:
   2019-11-01:
     value: 2.8
 metadata:
-  ux_name: moins de 30 ans
+  short_label: moins de 30 ans
   unit: currency
 documentation: |-
   Description générale du dispositif - https://www.service-public.fr/particuliers/vosdroits/F10027

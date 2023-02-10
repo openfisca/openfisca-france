@@ -1,6 +1,6 @@
 description: Conditions générales et montants des Allocations Familiales (AF)
 metadata:
-  ux_name: Conditions générales
+  short_label: Conditions générales
   description_en: "Family allowances (AF): General conditions and amount"
   order:
   - nb_enfants_min_pour_allocation

@@ -11,7 +11,7 @@ values:
   2001-01-01:
     value: 10700
 metadata:
-  ux_name: Plafond déficit foncier
+  short_label: Plafond déficit foncier
   ipp_csv_id: plaf_deficits_fonciers
   unit: currency
   reference:

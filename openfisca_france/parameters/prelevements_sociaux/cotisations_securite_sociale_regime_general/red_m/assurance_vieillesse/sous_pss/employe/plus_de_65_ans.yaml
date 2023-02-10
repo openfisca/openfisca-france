@@ -3,7 +3,7 @@ values:
   1967-10-01:
     value: 0
 metadata:
-  ux_name: Plus de 65 ans
+  short_label: Plus de 65 ans
   description_en: SSCs for physicians working part-time (1961-1974)
   ipp_csv_id: ret_m_s_s65_0_1
   unit: /1

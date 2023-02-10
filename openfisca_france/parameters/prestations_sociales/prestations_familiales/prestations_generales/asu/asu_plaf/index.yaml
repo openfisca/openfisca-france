@@ -1,6 +1,6 @@
 description: Plafond de ressources de l'Allocation de salaire unique (ASU, 1941-1977)
 metadata:
-  ux_name: Plafond de ressources
+  short_label: Plafond de ressources
   description_en: "Single earner allowance (ASU): Thresholds for means-testing"
   order:
   - plafond_droit_au_salaire_unique

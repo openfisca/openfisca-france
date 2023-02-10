@@ -1,6 +1,6 @@
 description: Allocation supplémentaire - Minimum vieillesse
 metadata:
-  ux_name: Allocation supplémentaire
+  short_label: Allocation supplémentaire
   description_en: Extra allowance (AS)
   order:
   - allocation_supplementaire

@@ -3,7 +3,7 @@ values:
   1985-12-22:
     value: 0
 metadata:
-  ux_name: Âge minimal de l'enfant
+  short_label: Âge minimal de l'enfant
   unit: year
   reference:
     1985-12-22:

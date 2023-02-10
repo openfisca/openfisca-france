@@ -1,6 +1,6 @@
 description: Conditions et montants de l'allocation de base de la prestation d'accueil du jeune enfant (PAJE)
 metadata:
-  ux_name: Allocation de base
+  short_label: Allocation de base
   description_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
   order:
   - age_limite_enfant_adopte_non

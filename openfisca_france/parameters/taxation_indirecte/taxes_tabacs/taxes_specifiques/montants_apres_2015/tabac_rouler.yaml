@@ -21,7 +21,7 @@ values:
   2025-01-01:
     value: 104.2
 metadata:
-  ux_name: Tabacs à rouler
+  short_label: Tabacs à rouler
   ipp_csv_id: tx_spec_tabac_rouler
   last_review: "2022-12-28"
   unit: currency

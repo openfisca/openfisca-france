@@ -5,7 +5,7 @@ values:
   1969-01-01:
     value: 0.028
 metadata:
-  ux_name: Moins de 65 ans
+  short_label: Moins de 65 ans
   description_en: SSCs for physicians working part-time (1961-1974)
   ipp_csv_id: mmid_m_am_i65_s_0_1
   unit: /1

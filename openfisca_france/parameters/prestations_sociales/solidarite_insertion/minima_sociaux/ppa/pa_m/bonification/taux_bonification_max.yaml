@@ -5,7 +5,7 @@ values:
   2018-10-01:
     value: 0.29101
 metadata:
-  ux_name: Montant maximal de la bonification (en % de la base RSA)
+  short_label: Montant maximal de la bonification (en % de la base RSA)
   description_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_bonification
   unit: /1

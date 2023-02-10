@@ -1,6 +1,6 @@
 description: Cotisations invalidité-décès de sécurité sociale (SS) des indépendants artisans-commerçants
 metadata:
-  ux_name: Artisans
+  short_label: Artisans
   description_en: "Contributions and taxes on self-employed: craftsmen and sales retailers"
   order:
   - artisans

@@ -5,7 +5,7 @@ values:
   2016-04-01:
     value: 1.553
 metadata:
-  ux_name: GIR 1
+  short_label: GIR 1
   description_en: Attendance allowance for individuals living at home (APA)
   unit: /1
   reference:

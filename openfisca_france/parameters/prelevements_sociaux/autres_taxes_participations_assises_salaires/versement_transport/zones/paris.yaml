@@ -23,7 +23,7 @@ values:
   2017-01-01:
     value: 0.0295
 metadata:
-  ux_name: Paris
+  short_label: Paris
   description_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_75
   unit: /1

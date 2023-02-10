@@ -11,7 +11,7 @@ values:
   1986-01-01:
     value: 0.41
 metadata:
-  ux_name: 3 et enfants supplémentaires
+  short_label: 3 et enfants supplémentaires
   description_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_enf_sup
   unit: BMAF

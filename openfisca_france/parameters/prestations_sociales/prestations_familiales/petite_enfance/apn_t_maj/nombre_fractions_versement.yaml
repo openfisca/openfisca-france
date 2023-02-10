@@ -5,7 +5,7 @@ values:
   1985-01-01:
     value: null
 metadata:
-  ux_name: Nombre de fractions de versement
+  short_label: Nombre de fractions de versement
   description_en: "Postnatal allowance (APN): Rate and payment"
   ipp_csv_id: nb_frac
   reference:

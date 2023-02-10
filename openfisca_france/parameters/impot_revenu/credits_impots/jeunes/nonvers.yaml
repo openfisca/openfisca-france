@@ -5,5 +5,5 @@ values:
   2009-01-01:
     value: null
 metadata:
-  ux_name: Seuil de non-versement
+  short_label: Seuil de non-versement
   unit: /1

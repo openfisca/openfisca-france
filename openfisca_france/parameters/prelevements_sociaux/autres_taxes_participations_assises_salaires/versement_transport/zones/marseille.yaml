@@ -9,7 +9,7 @@ values:
   2011-01-01:
     value: 0.02
 metadata:
-  ux_name: Marseille
+  short_label: Marseille
   description_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_marseille
   unit: /1

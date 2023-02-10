@@ -3,7 +3,7 @@ values:
   1984-01-01:
     value: 789
 metadata:
-  ux_name: Age limite
+  short_label: Age limite
   description_en: Special UI scheme
   unit: month
   reference:

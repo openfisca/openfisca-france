@@ -23,7 +23,7 @@ brackets:
     1971-01-01:
       value: 0
 metadata:
-  ux_name: Barème employeur
+  short_label: Barème employeur
   description_en: Contributions for the Association for the employment of executives (APEC)
   ipp_csv_id:
     rate: apec_p_0_4, apec_p_1_4,

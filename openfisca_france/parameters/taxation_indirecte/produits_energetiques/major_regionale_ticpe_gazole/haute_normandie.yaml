@@ -5,7 +5,7 @@ values:
   2011-01-01:
     value: 2.5
 metadata:
-  ux_name: Haute-Normandie
+  short_label: Haute-Normandie
   ipp_csv_id: maj_ticpe_die_h_n
   unit: currency
 documentation: |-

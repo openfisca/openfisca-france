@@ -3,7 +3,7 @@ values:
   2000-01-01:
     value: 0.3
 metadata:
-  ux_name: Coeff. majoration 3e ou 4e pers.
+  short_label: Coeff. majoration 3e ou 4e pers.
   unit: /1
   reference:
     2000-01-01:

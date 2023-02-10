@@ -21,7 +21,7 @@ metadata:
       title: 'T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et
         redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à
         4-4'
-  ux_name: Tranche 1
+  short_label: Tranche 1
 values:
   1917-01-01:
     value: null

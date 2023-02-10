@@ -3,7 +3,7 @@ values:
   2015-10-01:
     value: 0.16
 metadata:
-  ux_name: Foyer 2 pers.
+  short_label: Foyer 2 pers.
   description_en: "Activity prenium (PA) : accomodation allowance"
   ipp_csv_id: pa_logt2
   unit: /1

@@ -1,6 +1,6 @@
 description: Salaire minimum de croissance (SMIC)
 metadata:
-  ux_name: SMIC
+  short_label: SMIC
   description_en: Minimum wage
   order:
   - smic

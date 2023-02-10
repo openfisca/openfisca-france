@@ -19,7 +19,7 @@ values:
   1968-01-01:
     value: null
 metadata:
-  ux_name: Paris
+  short_label: Paris
   description_en: UI scheme (1958-1967)
   ipp_csv_id: base_min_paris
   unit: currency

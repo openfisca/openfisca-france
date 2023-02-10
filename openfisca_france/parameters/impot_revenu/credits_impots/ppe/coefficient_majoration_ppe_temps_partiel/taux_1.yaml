@@ -11,7 +11,7 @@ values:
   2016-01-01:
     value: null
 metadata:
-  ux_name: Taux 1
+  short_label: Taux 1
   description_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: maj_ppe_tp
   unit: /1

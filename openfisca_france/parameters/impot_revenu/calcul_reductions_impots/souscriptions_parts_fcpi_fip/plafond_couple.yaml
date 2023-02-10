@@ -9,7 +9,7 @@ values:
   2002-01-01:
     value: 24000
 metadata:
-  ux_name: Plafond couple
+  short_label: Plafond couple
   ipp_csv_id: plaffcp_couple
   unit: currency
   reference:

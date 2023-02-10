@@ -1,6 +1,6 @@
 description: Seuil 3 (supérieur) des majorations exceptionnelles d'impôt
 metadata:
-  ux_name: Seuil 3
+  short_label: Seuil 3
   ipp_csv_id: seuil3_majo
   notes:
     1967-01-01:

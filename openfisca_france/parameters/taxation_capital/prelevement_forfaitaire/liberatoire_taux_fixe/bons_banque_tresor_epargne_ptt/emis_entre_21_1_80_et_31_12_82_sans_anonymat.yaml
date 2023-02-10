@@ -5,7 +5,7 @@ values:
   2013-01-01:
     value: 0.24
 metadata:
-  ux_name: Émis entre le 21/01/80 et e 31/12/82 sans anonymat
+  short_label: Émis entre le 21/01/80 et e 31/12/82 sans anonymat
   description_en: Levy in discharge on capital income (1965 - 2012)
   ipp_csv_id: bons_8082
   unit: /1

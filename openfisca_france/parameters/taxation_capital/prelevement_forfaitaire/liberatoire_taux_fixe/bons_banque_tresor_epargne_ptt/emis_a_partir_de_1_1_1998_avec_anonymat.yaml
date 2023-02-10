@@ -5,7 +5,7 @@ values:
   1999-04-01:
     value: 0.6
 metadata:
-  ux_name: Émis après le 01/01/98 avec anonymat
+  short_label: Émis après le 01/01/98 avec anonymat
   description_en: Levy in discharge on capital income (1965 - 2012)
   ipp_csv_id: tx_bons_ap98
   unit: /1

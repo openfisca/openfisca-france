@@ -5,7 +5,7 @@ values:
   2008-05-01:
     value: 14
 metadata:
-  ux_name: Âge seuil 2ème majoration
+  short_label: Âge seuil 2ème majoration
   unit: year
   reference:
     2008-05-01:

@@ -1,6 +1,6 @@
 description: Prime exceptionnelle de rentrée
 metadata:
-  ux_name: PER
+  short_label: PER
   description_en: Exceptional financial aid
   order:
   - per

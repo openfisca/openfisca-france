@@ -5,7 +5,7 @@ values:
   2018-10-01:
     value: 120
 metadata:
-  ux_name: Seuil salaire bonification max
+  short_label: Seuil salaire bonification max
   description_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_seuil_max
   reference:

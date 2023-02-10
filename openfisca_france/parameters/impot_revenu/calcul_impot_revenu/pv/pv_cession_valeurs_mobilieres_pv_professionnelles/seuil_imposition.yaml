@@ -1,7 +1,7 @@
 description: Seuil d'imposition des plus-values de cession de valeurs mobilières et des plus-values
   professionnelles
 metadata:
-  ux_name: Seuil
+  short_label: Seuil
   ipp_csv_id: seuil_pv
   notes:
     1995-01-01:

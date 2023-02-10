@@ -9,7 +9,7 @@ values:
   2021-01-01:
     value: 1339
 metadata:
-  ux_name: Personne isolée
+  short_label: Personne isolée
   unit: currency
   reference:
     2018-01-01:

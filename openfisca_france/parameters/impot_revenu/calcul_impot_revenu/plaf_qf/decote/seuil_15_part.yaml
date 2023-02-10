@@ -15,7 +15,7 @@ values:
   1986-01-01:
     value: null
 metadata:
-  ux_name: Seuil QF=1,5
+  short_label: Seuil QF=1,5
   ipp_csv_id: decote_np1_5
   unit: currency
   last_review: "2023-01-05"

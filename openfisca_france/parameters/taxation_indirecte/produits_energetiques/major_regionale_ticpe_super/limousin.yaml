@@ -7,7 +7,7 @@ values:
   2011-01-01:
     value: 2.5
 metadata:
-  ux_name: Limousin
+  short_label: Limousin
   ipp_csv_id: maj_ticpe_super_lim
   unit: currency
 documentation: |-

@@ -1,6 +1,6 @@
 description: Bonification de la Prime Pour l'Activité (PA ou PPA)
 metadata:
-  ux_name: Bonification
+  short_label: Bonification
   description_en: "Activity prenium (PA) : accomodation allowance"
   order:
   - seuil_bonification

@@ -1,6 +1,6 @@
 description: Revenu minimum d'insertion (RMI)
 metadata:
-  ux_name: RMI
+  short_label: RMI
   description_en: Minimum insertion income (RMI)
   order:
   - rmi_cond

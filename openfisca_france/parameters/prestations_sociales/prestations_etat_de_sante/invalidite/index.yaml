@@ -1,6 +1,6 @@
 description: Prestations sociales liées à l'Invalidité
 metadata:
-  ux_name: Invalidité
+  short_label: Invalidité
   description_en: Disability
   order:
   - aah

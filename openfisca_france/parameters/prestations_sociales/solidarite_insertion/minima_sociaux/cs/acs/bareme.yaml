@@ -59,7 +59,7 @@ brackets:
     2019-11-01:
       value: null
 metadata:
-  ux_name: Montant par âge
+  short_label: Montant par âge
   type: single_amount
   threshold_unit: year
   amount_unit: currency

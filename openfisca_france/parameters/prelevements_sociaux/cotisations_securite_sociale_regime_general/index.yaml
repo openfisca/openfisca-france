@@ -1,6 +1,6 @@
 description: Cotisations de Sécurité sociale (SS) du régime général
 metadata:
-  ux_name: Cotisations de Sécurité sociale du régime général
+  short_label: Cotisations de Sécurité sociale du régime général
   description_en: Social security contributions (SSCs)
   order:
   - ss

@@ -3,7 +3,7 @@ values:
   1979-07-01:
     value: 0.7
 metadata:
-  ux_name: 2eme trimestre
+  short_label: 2eme trimestre
   description_en: Special UI scheme for economic layoffs (1979-1983)
   ipp_csv_id: journ_min_2
   unit: /1

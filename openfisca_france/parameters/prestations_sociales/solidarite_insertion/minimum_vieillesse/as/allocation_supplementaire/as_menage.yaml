@@ -105,7 +105,7 @@ values:
   2022-01-01:
     value: 9946.91
 metadata:
-  ux_name: Couple marié
+  short_label: Couple marié
   description_en: "Extra allowance (AS): Amount"
   ipp_csv_id: alloc_sup_men
   unit: currency

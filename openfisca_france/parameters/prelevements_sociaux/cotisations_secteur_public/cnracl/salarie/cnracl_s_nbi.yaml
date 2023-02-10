@@ -39,7 +39,7 @@ brackets:
     2020-01-01:
       value: 0.111
 metadata:
-  ux_name: Barème NBI
+  short_label: Barème NBI
   description_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
   ipp_csv_id: cnracl_p
   reference:

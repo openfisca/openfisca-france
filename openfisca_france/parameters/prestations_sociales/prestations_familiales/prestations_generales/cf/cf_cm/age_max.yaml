@@ -10,7 +10,7 @@ values:
     value: 21
 metadata:
   last_review: "2023-01-27"
-  ux_name: Âge max enfants
+  short_label: Âge max enfants
   description_en: "Family complement (CF): General conditions and amounts"
   ipp_csv_id: cf_enf_agemax
   unit: year

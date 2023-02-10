@@ -3,7 +3,7 @@ values:
   2007-07-01:
     value: 0.104
 metadata:
-  ux_name: 2ème tranche
+  short_label: 2ème tranche
   description_en: Parameters for new home-buyers (APL)
   ipp_csv_id: lo_apl_tx2
   unit: /1

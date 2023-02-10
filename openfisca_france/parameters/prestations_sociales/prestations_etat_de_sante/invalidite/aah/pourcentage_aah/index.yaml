@@ -1,6 +1,6 @@
 description: Pourcentage perçu de l'Allocation pour adulte handicapé (AAH)
 metadata:
-  ux_name: Pourcentage perçu
+  short_label: Pourcentage perçu
   description_en: Disability
   order:
   - normal
