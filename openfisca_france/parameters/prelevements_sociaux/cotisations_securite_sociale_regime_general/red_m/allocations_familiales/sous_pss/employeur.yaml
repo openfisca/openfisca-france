@@ -35,7 +35,7 @@ metadata:
   notes:
     1967-10-01:
     - title: Il n'y a pas de distinctions d'âge pour les cotisations mmid.
-  last_review: "1974-01-01"
+  last_value_still_valid_on: "1974-01-01"
 documentation: |-
   Note générale :
   Les membres des professions médicales exerçant à temps partiel pour plusieurs employeurs bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1961 et 1974.

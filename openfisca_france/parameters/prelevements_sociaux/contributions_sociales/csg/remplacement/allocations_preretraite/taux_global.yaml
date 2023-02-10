@@ -55,7 +55,7 @@ metadata:
   notes:
     2008-01-01:
     - title: Nouveau taux pour les préretraites ayant pris effet à partir du 11/10/2007
-  last_review: "2018-01-01"
+  last_value_still_valid_on: "2018-01-01"
 documentation: |-
   Référence du Codes général des impôts :
   La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.

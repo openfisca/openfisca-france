@@ -24,7 +24,7 @@ metadata:
     - title: La cotisation veuvage est déplafonnée à compter du 1er janvier 1982.
     2004-07-01:
     - title: La cotisation veuvage est transférée à la Cnav.
-  last_review: "2004-01-01"
+  last_value_still_valid_on: "2004-01-01"
 documentation: |-
   Sources :
   www.legislation.cnav.fr, Journal Officiel via www.legifrance.gouv.fr

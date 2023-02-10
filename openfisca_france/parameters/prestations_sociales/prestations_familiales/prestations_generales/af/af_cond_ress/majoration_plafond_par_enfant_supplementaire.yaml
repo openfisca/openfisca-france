@@ -59,7 +59,7 @@ metadata:
     - title: Revalorisation des plafonds de 0,2%
     2019-01-01:
     - title: Revalorisation des plafonds de 1%
-  last_review: "2022-02-25"
+  last_value_still_valid_on: "2022-02-25"
 documentation: |-
   Notes :
   https://www.ipp.eu/baremes-ipp/prestations-sociales/0/3/prestations_generales/af_cond/

@@ -118,7 +118,7 @@ metadata:
     - title: Pour les revenus n'excédant pas 10 000 FF, taux réduit de 3,25%
     1989-01-01:
     - title: Loi DMOS du 13/01/89 (JO 14/01/89).
-  last_review: "2023-01-30"
+  last_value_still_valid_on: "2023-01-30"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

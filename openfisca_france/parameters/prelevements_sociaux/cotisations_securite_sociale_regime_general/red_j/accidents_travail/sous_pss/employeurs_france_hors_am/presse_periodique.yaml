@@ -32,7 +32,7 @@ metadata:
     1969-01-01: "1969-01-01"
     1969-06-01: "1969-06-07"
     1974-01-01: "1974-02-07"
-  last_review: "1974-01-01"
+  last_value_still_valid_on: "1974-01-01"
 documentation: |-
   Note générale :
   Les journalistes pigistes bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1964 et 1974.

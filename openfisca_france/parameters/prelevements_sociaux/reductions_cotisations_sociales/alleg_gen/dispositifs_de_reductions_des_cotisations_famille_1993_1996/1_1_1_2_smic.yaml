@@ -29,7 +29,7 @@ metadata:
   notes:
     1996-10-01:
     - title: "Ristourne Juppé II (plafond : 1,33 SMIC)"
-  last_review: "1996-10-01"
+  last_value_still_valid_on: "1996-10-01"
 documentation: |-
   Note :
   Pour les ristournes Juppé, un montant maximal de réduction est fixé par décret. Il correspond à la réduction dont bénéficie un employeur pour un salarié au SMIC à temps plein.

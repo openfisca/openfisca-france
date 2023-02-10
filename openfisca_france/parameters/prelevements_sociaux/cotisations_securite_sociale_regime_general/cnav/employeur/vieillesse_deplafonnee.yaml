@@ -104,7 +104,7 @@ metadata:
     - title: Voir note (i).
     2004-07-01:
     - title: La cotisation veuvage est transférée à la Cnav.
-  last_review: "2023-01-30"
+  last_value_still_valid_on: "2023-01-30"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

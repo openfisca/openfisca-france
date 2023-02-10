@@ -116,7 +116,7 @@ metadata:
     - title: Suppression des cotisations salariales MMID.
     2019-01-01:
     - title: Taux réduit pour salaire inférieur à 2,5 Smic constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
-  last_review: "2021-10-29"
+  last_value_still_valid_on: "2021-10-29"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

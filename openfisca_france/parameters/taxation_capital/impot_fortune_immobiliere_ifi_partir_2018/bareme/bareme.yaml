@@ -47,6 +47,6 @@ metadata:
   notes:
     2018-01-01:
     - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  last_review: "2022-04-28"
+  last_value_still_valid_on: "2022-04-28"
   rate_unit: /1
   threshold_unit: currency

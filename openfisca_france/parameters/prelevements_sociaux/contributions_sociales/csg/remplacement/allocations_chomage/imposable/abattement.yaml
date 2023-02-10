@@ -50,7 +50,7 @@ metadata:
   notes:
     1991-02-01:
     - title: Une circulaire ministérielle du 16/01/1991 relative à la mise en œuvre de la CSG fournit des indications sur les assiettes et les exonérations.
-  last_review: "2021-12-15"
+  last_value_still_valid_on: "2021-12-15"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

@@ -14,7 +14,7 @@ values:
     value: 62
 metadata:
   short_label: Âge légal de départ à la retraite
-  last_review: "2023-01-01"
+  last_value_still_valid_on: "2023-01-01"
   unit: year
   reference: 
     2017-01-01:

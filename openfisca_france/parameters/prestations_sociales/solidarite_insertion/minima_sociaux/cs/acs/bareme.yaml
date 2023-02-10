@@ -63,7 +63,7 @@ metadata:
   type: single_amount
   threshold_unit: year
   amount_unit: currency
-  last_review: "2022-12-13"
+  last_value_still_valid_on: "2022-12-13"
   reference:
     2005-01-01:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006745458/2005-01-01/

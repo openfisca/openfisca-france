@@ -13,7 +13,7 @@ values:
 metadata:
   short_label: Taux
   ipp_csv_id: tx_foret
-  last_review: "2023-01-01"
+  last_value_still_valid_on: "2023-01-01"
   unit: /1
   reference:
     2001-01-01:

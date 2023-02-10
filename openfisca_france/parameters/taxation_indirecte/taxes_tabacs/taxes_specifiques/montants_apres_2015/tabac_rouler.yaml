@@ -23,7 +23,7 @@ values:
 metadata:
   short_label: Tabacs à rouler
   ipp_csv_id: tx_spec_tabac_rouler
-  last_review: "2022-12-28"
+  last_value_still_valid_on: "2022-12-28"
   unit: currency
   reference:
     2015-01-01:

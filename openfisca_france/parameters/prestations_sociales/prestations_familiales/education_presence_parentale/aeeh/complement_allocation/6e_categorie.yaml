@@ -72,7 +72,7 @@ metadata:
   notes:
     2006-01-01:
     - title: Création de l'Allocation d'éducation de l'enfant handicapé
-  last_review: "2021-04-01"
+  last_value_still_valid_on: "2021-04-01"
 documentation: |-
   Notes :
   L'article R541-2 du Code la sécurité sociale (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750713) définit les différentes catégories de handicaps entraînant un complément différent.

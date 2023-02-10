@@ -75,7 +75,7 @@ metadata:
     2000-07-01:
     - title: Référence de l'avis absent sur légifrance mais disponible ici
       href: http://admi.net/jo/2000/09573.html
-  last_review: "1986-01-01"
+  last_value_still_valid_on: "1986-01-01"
 documentation: |-
   Sources :
   Historique des cotisations communiqué par le régime local; www.legifrance.gouv.fr.

@@ -7,5 +7,5 @@ metadata:
   label_en: SSCs rebate for physicians (1975-2016)
   ipp_csv_id: abat_m
   unit: /1
-  last_review: "2016-01-01"
+  last_value_still_valid_on: "2016-01-01"
 documentation: "Notes médecins à temps partiel :\nL'arrêté du 03/02/1975 (JO 13/02/1975) détermine un abattement de 30 % pour les membres des professions médicales exerçant à temps partiel pour plusieurs employeurs pour les cotisations de sécurité sociale,\nd'accident du travail, d'allocation familiales, du versement transport et du FNAL. Les dispositions s'appliquent au 01/01/1975.\nIl est modifié par\_l'arrêté du 09-06-1982 (JO 30/12/1982) qui limite l'abattement aux cotisations sous plafond (cotisations assurance vieillesse et aide au logement) au 01/07/1982."

@@ -3,7 +3,7 @@ values:
   1974-08-14:
     value: 6
 metadata:
-  last_review: "2023-01-27"
+  last_value_still_valid_on: "2023-01-27"
   short_label: Âge minimum de l'enfant
   label_en: "Back-to-school allowance (ARS): Age conditions of dependants"
   ipp_csv_id: ars_enf_agemin

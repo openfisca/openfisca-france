@@ -51,7 +51,7 @@ metadata:
     - title: Voir la note (ii) sur la date d'effet du nouveau taux.
     2018-01-01:
     - title: Suppression des cotisations salariales MMID.
-  last_review: "1977-01-01"
+  last_value_still_valid_on: "1977-01-01"
 documentation: |-
   Sources :
   Barème social périodique, Législation Cnav et Légifrance.

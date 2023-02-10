@@ -7,7 +7,7 @@ metadata:
   label_en: SSCs rebate for artists, physicians and journalists (1975-2016)
   ipp_csv_id: abat_a
   unit: /1
-  last_review: "2016-01-01"
+  last_value_still_valid_on: "2016-01-01"
 documentation: |-
   Notes artistes et musiciens du spectacle :
   L'arrêté du 24/01/1975 (JO 31/01/1975) détermine un abattement de 30 % pour les artistes sur le taux de cotisation du droit commun pour la maladie, les accidents du travail, allocations familiales, vieillesses, versement transport et FNAL.

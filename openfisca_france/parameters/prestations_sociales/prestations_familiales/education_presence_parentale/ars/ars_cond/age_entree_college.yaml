@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 11
 metadata:
-  last_review: "2023-01-27"
+  last_value_still_valid_on: "2023-01-27"
   short_label: Premier seuil d'âge
   unit: year
   reference:

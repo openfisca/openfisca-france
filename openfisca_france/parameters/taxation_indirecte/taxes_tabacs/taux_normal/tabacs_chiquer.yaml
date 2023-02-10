@@ -29,7 +29,7 @@ values:
 metadata:
   ipp_csv_id: tx_tabac_chiquer
   short_label: Tabacs à mâcher
-  last_review: "2022-12-28"
+  last_value_still_valid_on: "2022-12-28"
   unit: /1
   reference:
     1991-01-01:

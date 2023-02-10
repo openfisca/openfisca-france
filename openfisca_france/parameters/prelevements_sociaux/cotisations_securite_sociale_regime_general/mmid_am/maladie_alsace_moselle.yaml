@@ -114,7 +114,7 @@ metadata:
     2000-07-01:
     - title: Référence de l'avis absent sur légifrance mais disponible ici
       href: http://admi.net/jo/2000/09573.html
-  last_review: "2021-08-05"
+  last_value_still_valid_on: "2021-08-05"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

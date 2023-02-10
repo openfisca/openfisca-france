@@ -45,7 +45,7 @@ metadata:
     - title: Extension de la cotisation sur tranche B à la tranche C
     2019-01-01:
     - title: Suppression de l'AGFF avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et CET, voir barème AGIRC-ARRCO)
-  last_review: "2021-07-30"
+  last_value_still_valid_on: "2021-07-30"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

@@ -12,7 +12,7 @@ values:
     value: 0.2
 metadata:
   short_label: Taux plein
-  last_review: "2023-01-30"
+  last_value_still_valid_on: "2023-01-30"
   label_en: Contribution levied on various earnings supplements ("Forfait social")
   ipp_csv_id: forf_soc_tx1
   unit: /1

@@ -353,7 +353,7 @@ metadata:
     - title: Conversion en Euros
     2018-01-01:
     - title: Suppression de la contribution exceptionnelle de solidarité en compensation de la hausse de CSG. La suppression du Fonds de solidarité était prévue par l'art. 143 de la loi 2016-1918 du 29/12/2016 (LFR pour 2016)
-  last_review: "2021-08-24"
+  last_value_still_valid_on: "2021-08-24"
 documentation: |-
   Le Fonds de solidarité pour l'emploi et la contribution le finançant ont été instaurés par la Loi 82-939 du 04/11/1982, art. 4 (publiée au JO le 05/11/1982).
   Assiette :

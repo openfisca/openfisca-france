@@ -70,7 +70,7 @@ values:
     value: 3959
 metadata:
   short_label: Part pour le 1er enfant des parents isolés
-  last_review: "2023-01-05"
+  last_value_still_valid_on: "2023-01-05"
   label_en: Family quotient ceiling and "decote" (1978 - )
   ipp_csv_id: plaf_qf_parentisole
   unit: currency

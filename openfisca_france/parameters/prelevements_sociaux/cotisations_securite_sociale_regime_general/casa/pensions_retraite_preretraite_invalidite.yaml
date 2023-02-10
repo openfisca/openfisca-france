@@ -46,7 +46,7 @@ metadata:
   notes:
     2015-01-01:
     - title: Créé un seuil d'exonération de Casa assis sur les revenus N-2, identique au seuil d'assujettissement de CRDS et CSG taux 6,6 % (modifie L. 136-2, L. 136-8 du CGI, L14-10-4 du Code de l'action sociale et des familles)
-  last_review: "2021-12-07"
+  last_value_still_valid_on: "2021-12-07"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

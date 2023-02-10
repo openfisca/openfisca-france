@@ -49,7 +49,7 @@ metadata:
     - title: Cotisation déplafonnée avec réduction des taux.
     2020-01-01:
     - title: Suppression du taux bureau, remplacé par le taux "Fonctions support de nature administrative" pour les entreprises en tarification collective ou mixte. Voir Notes.
-  last_review: "2018-01-01"
+  last_value_still_valid_on: "2018-01-01"
 documentation: |-
   Notes sur la tarification AT-MP :
   La tarification des risques accidents du travail et maladies professionnelles (AT-MP) est complexe: il existe un taux propre à chaque entreprise, variant avec la taille et les risques d'AT-MP de l'entreprise.

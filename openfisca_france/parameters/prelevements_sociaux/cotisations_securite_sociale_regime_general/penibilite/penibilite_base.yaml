@@ -37,7 +37,7 @@ metadata:
   notes:
     2018-01-01:
     - title: Suppression des cotisations pénibilité (voir Notes pour les dates d'effet)
-  last_review: "2028-01-01"
+  last_value_still_valid_on: "2028-01-01"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

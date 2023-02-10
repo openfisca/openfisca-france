@@ -94,7 +94,7 @@ values:
     value: 6368
 metadata:
   short_label: Plafond
-  last_review: "2023-01-05"
+  last_value_still_valid_on: "2023-01-05"
   ipp_csv_id: plaf_penalim
   unit: currency
   reference:

@@ -46,7 +46,7 @@ values:
     value: 1002
 metadata:
   short_label: Personnes seules ayant eus des enfants
-  last_review: "2023-01-05"
+  last_value_still_valid_on: "2023-01-05"
   label_en: Family quotient ceiling and "decote" (1978 - )
   ipp_csv_id: plaf_qf_persseule
   unit: currency

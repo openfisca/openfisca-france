@@ -10,7 +10,7 @@ values:
     value: 0.4525
 metadata:
   unit: /1
-  last_review: "2023-01-05"
+  last_value_still_valid_on: "2023-01-05"
   reference:
     2001-01-01:
       href: http://bofip.impots.gouv.fr/bofip/2495-PGP

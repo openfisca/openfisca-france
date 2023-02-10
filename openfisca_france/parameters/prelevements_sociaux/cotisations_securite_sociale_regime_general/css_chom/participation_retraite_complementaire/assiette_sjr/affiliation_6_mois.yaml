@@ -19,7 +19,7 @@ metadata:
   official_journal_date:
     1988-03-01: "1988-02-02"
     1990-01-01: "1990-05-15"
-  last_review: "1990-01-01"
+  last_value_still_valid_on: "1990-01-01"
 documentation: |-
   Note :
   Pour la cotisation d'assurance maladie, l'assiette est égale à l'allocation de base brute. Disparait en décembre 1997.

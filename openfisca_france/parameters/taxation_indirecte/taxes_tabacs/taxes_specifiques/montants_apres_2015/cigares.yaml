@@ -18,7 +18,7 @@ values:
     value: 52.2
 metadata:
   ipp_csv_id: tx_spec_cigares
-  last_review: "2022-12-28"
+  last_value_still_valid_on: "2022-12-28"
   unit: currency
   reference:
     2015-01-01:

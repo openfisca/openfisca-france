@@ -28,7 +28,7 @@ metadata:
     - title: Création d'une condition de ressources transitoire (avant une réforme globale prévue des prestations familiales)
     1999-01-01:
     - title: Suppression de la condition de ressources
-  last_review: "2006-04-02"
+  last_value_still_valid_on: "2006-04-02"
 documentation: |-
   Notes
   Définition biactifs : cf. feuille "def_biactif"

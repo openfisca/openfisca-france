@@ -10,7 +10,7 @@ values:
     value: 0.30
 metadata:
   short_label: Taux Outre-mer
-  last_review: "2022-10-11"
+  last_value_still_valid_on: "2022-10-11"
   unit: /1
   reference:
     2011-01-01:

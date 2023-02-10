@@ -64,7 +64,7 @@ metadata:
     - title: 4% sont dues au titre de la contribution spéciale instaurée par l'ordonnance du 30/12/1944
     1967-09-01:
     - title: En 1967 la cotisation globale de Sécurité sociale est remplacée par des cotisations différenciées par branches
-  last_review: "1967-01-01"
+  last_value_still_valid_on: "1967-01-01"
 documentation: |-
   Sources :
   www.legislation.cnav.fr et Journal Officiel via www.legifrance.gouv.fr

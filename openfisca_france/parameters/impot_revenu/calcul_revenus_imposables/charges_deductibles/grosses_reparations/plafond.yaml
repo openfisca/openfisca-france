@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_grossedepense
-  last_review: "2022-08-11"
+  last_value_still_valid_on: "2022-08-11"
   unit: currency
   reference:
     2009-01-01:

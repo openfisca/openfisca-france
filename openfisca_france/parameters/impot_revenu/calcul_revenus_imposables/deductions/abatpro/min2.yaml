@@ -42,7 +42,7 @@ values:
     value: null
 metadata:
   short_label: Allocations chômage
-  last_review: "2022-09-26"
+  last_value_still_valid_on: "2022-09-26"
   unit: currency
   ipp_csv_id: min_abtsal_chom
   notes:

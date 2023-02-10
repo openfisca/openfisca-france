@@ -40,7 +40,7 @@ metadata:
   notes:
     2019-01-01:
     - title: Abrogation et remplacement par un allègement de cotisations employeur
-  last_review: "2018-01-01"
+  last_value_still_valid_on: "2018-01-01"
 documentation: |-
   Note :
   Formellement le CICE est une réduction de l'impôt sur les sociétés (IS) calculée en proportion des salaires versées par l'entreprise en dessous du plafond.

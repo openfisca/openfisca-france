@@ -44,7 +44,7 @@ values:
     value: 1673
 metadata:
   short_label: Réduction supp. (invalides, etc.)
-  last_review: "2023-01-05"
+  last_value_still_valid_on: "2023-01-05"
   label_en: Family quotient ceiling and "decote" (1978 - )
   ipp_csv_id: plaf_qf_inv
   unit: currency

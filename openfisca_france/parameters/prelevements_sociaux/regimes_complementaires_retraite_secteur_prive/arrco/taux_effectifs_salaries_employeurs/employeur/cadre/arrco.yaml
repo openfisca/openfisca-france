@@ -93,7 +93,7 @@ metadata:
     - title: "BSP : \"Le plus souvent, répartition employeur/salarié = 60/40 comme à l'UNIRS\""
     2019-01-01:
     - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
-  last_review: "2021-07-30"
+  last_value_still_valid_on: "2021-07-30"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

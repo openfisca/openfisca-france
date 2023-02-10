@@ -6,5 +6,5 @@ values:
 metadata:
   short_label: Taux minimum
   unit: /1
-  last_review: "2015-01-01"
+  last_value_still_valid_on: "2015-01-01"
 documentation: ""

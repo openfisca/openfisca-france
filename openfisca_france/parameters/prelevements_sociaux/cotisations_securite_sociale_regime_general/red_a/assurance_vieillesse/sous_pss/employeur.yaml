@@ -27,7 +27,7 @@ metadata:
     1967-10-01: "1967-10-01"
     1971-01-01: "1971-01-15"
     1974-01-01: "1974-02-07"
-  last_review: "1974-01-01"
+  last_value_still_valid_on: "1974-01-01"
 documentation: |-
   Note générale :
   Les artistes et musiciens du spectacle bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1960 et 1974. A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.

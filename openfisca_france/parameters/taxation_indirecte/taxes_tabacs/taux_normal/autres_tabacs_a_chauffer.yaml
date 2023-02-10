@@ -6,7 +6,7 @@ values:
     value: 51.4
 metadata:
   short_label: Autres tabacs à chauffer
-  last_review: "2022-12-28"
+  last_value_still_valid_on: "2022-12-28"
   unit: /1
   reference:
     2022-01-01:

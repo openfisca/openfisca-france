@@ -4,7 +4,7 @@ values:
     value: 0.25
 metadata:
   short_label: Majoration, par enfant, en % de la base du plafond de ressources, pour les deux premiers enfants
-  last_review: "2023-01-27"
+  last_value_still_valid_on: "2023-01-27"
   label_en: "Family complement (CF): Extra allowances"
   ipp_csv_id: maj_plaf_cf_apje_adopt_enf1et2
   unit: /1
