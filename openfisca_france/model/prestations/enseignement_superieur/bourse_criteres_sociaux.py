@@ -32,15 +32,15 @@ class bourse_criteres_sociaux_eligibilite_etude(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def formula(individu, period):
-        enseignement_superieur = individu('scolarite', period) == TypesScolarite.enseignement_superieur
+    def formula(individus, period):
+        enseignement_superieur = individus('scolarite', period) == TypesScolarite.enseignement_superieur
 
-        temps_plein = not_(individu('alternant', period))
+        temps_plein = not_(individus('alternant', period))
 
-        etablissement = individu('statuts_etablissement_scolaire', period)
+        etablissement = individus('statuts_etablissement_scolaire', period)
         etablissement_eligible = (etablissement == StatutsEtablissementScolaire.public) + (etablissement == StatutsEtablissementScolaire.prive_sous_contrat)
 
-        annee_etude = individu('annee_etude', period)
+        annee_etude = individus('annee_etude', period)
         annee_etude_doctorat = [TypesClasse.doctorat_1, TypesClasse.doctorat_2, TypesClasse.doctorat_3]
         doctorant = sum([annee_etude == annee for annee in annee_etude_doctorat])
 
