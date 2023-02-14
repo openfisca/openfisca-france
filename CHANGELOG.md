@@ -1,5 +1,17 @@
 # Changelog
 
+### 143.0.4 [#2026](https://github.com/openfisca/openfisca-france/pull/2026)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `tests/formulas/bourses_superieur/bourse_criteres_sociaux.yaml`.
+  - `openfisca_france/model/prestations/enseignement_superieur/bourse_criteres_sociaux.py`
+
+* Détails
+  - Refacto condition d'elligibilité à la bourse aux critères sociaux selon l'année d'étude
+  - Déplacement du code dans une variable plus appropriée
+
 ### 143.0.3 [#2035](https://github.com/openfisca/openfisca-france/pull/2035)
 
 * Changement mineur.
