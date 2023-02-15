@@ -1,6 +1,6 @@
 description: Alcools fermentés (vins, cidre, etc.)
 metadata:
-  description_en: Fermented alcohols (wine, cider, etc.)
+  label_en: Fermented alcohols (wine, cider, etc.)
   order:
   - vins_mousseux
   - vins_tranquilles

@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 0.0238
 metadata:
-  ux_name: Personnes seules et couples avec 1 enfant
+  short_label: Personnes seules et couples avec 1 enfant
   unit: /1
   reference:
     2002-01-01:

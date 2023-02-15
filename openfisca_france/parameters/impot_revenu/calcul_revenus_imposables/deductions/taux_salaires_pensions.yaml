@@ -5,7 +5,7 @@ values:
   1943-01-01:
     value: 0.1
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: tx_abt_sal
   unit: /1
   reference:

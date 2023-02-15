@@ -3,5 +3,5 @@ values:
   2016-07-01:
     value: 1.7791
 metadata:
-  ux_name: Montant
+  short_label: Montant
   unit: BMAF

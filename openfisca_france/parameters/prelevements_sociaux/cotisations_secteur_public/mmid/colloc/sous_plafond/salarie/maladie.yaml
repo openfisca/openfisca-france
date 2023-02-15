@@ -21,8 +21,8 @@ brackets:
     1984-01-01:
       value: null
 metadata:
-  ux_name: Barème salarié
-  description_en: Health insurance contributions - local governments and hospital administration
+  short_label: Barème salarié
+  label_en: Health insurance contributions - local governments and hospital administration
   ipp_csv_id: mmid_h_s_0_1
   reference:
     1967-10-01:
@@ -77,7 +77,7 @@ metadata:
   notes:
     1981-11-01:
     - title: "Date d'effet : voir Note"
-  last_review: "2021-08-24"
+  last_value_still_valid_on: "2021-08-24"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

@@ -3,7 +3,7 @@ values:
   2017-01-01:
     value: 15000
 metadata:
-  ux_name: Plafond 1ère année
+  short_label: Plafond 1ère année
   ipp_csv_id: plafond_credit_aide_base
   unit: currency
   reference:

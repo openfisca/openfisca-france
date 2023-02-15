@@ -27,7 +27,7 @@ brackets:
     2020-01-01:
       value: null
 metadata:
-  ux_name: Entreprises de plus de 20 salariés
+  short_label: Entreprises de plus de 20 salariés
   ipp_csv_id: fnal_p20_0_1
   reference:
     2007-01-01:

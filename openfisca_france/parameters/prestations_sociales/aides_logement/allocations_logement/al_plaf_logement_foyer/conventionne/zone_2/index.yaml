@@ -1,6 +1,6 @@
 description: Zone 2 - Plafonds d'équivalence de loyer et de charges locatives pour les personnes résidant dans un logement-foyer, Allocations logement (AL)
 metadata:
-  ux_name: Zone 2
+  short_label: Zone 2
   order:
   - personne_isolee_sans_enfant
   - menage_seul

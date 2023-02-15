@@ -1,6 +1,6 @@
 description: Réduction d'impôt sur les prestations compensatoires (2001 -)
 metadata:
-  description_en: Compensatory allowance (2001 -)
+  label_en: Compensatory allowance (2001 -)
   order:
     - taux
     - plafond

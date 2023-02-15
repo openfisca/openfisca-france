@@ -13,7 +13,7 @@ values:
   2021-10-01:
     value: 56.26
 metadata:
-  ux_name: Réduction du loyer de solidarité en zone 2
+  short_label: Réduction du loyer de solidarité en zone 2
   ipp_csv_id: rls_z2_couple
   unit: currency
   reference:

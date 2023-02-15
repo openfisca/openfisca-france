@@ -3,5 +3,5 @@ metadata:
   order:
     - taux
     - abattement
-  ux_name: Revenus d'activité
-  description_en: Social contributions
+  short_label: Revenus d'activité
+  label_en: Social contributions

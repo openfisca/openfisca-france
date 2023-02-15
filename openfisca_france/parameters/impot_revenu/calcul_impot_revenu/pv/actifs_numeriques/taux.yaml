@@ -1,6 +1,6 @@
 description: Taux d'imposition de la plus-value tirée d'une cession d’actifs numériques
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: tx_pv_actifs_numeriques
   notes:
     2019-01-01:

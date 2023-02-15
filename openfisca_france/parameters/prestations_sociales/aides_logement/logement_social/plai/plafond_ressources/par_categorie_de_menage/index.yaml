@@ -1,4 +1,4 @@
 description: prêt locatif aidé d'intégration pour les Logements très sociaux par catégorie de ménage, aides au logement
 metadata:
-  ux_name: Par catégorie de ménage
-  description_en: Housing allowances
+  short_label: Par catégorie de ménage
+  label_en: Housing allowances

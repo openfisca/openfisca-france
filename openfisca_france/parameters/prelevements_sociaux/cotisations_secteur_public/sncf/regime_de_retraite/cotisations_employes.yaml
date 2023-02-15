@@ -27,8 +27,8 @@ values:
   2026-01-01:
     value: 0.1095
 metadata:
-  ux_name: Cotisations salariés
-  description_en: Contributions to the SNCF scheme (public railway company)
+  short_label: Cotisations salariés
+  label_en: Contributions to the SNCF scheme (public railway company)
   unit: /1
   reference:
     2007-01-01:

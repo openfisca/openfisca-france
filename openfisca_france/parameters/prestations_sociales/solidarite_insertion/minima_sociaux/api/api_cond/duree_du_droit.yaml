@@ -5,8 +5,8 @@ values:
   2009-06-01:
     value: null
 metadata:
-  ux_name: Durée du droit
-  description_en: "Single parent allowance (API): General conditions"
+  short_label: Durée du droit
+  label_en: "Single parent allowance (API): General conditions"
   ipp_csv_id: duree_droit_api
   unit: month
   reference:
@@ -26,4 +26,4 @@ metadata:
     - title: API créée par la loi 76-617, en insérant un chapitre V-3 au CSS
     2009-06-01:
     - title: Abrogation de l'API
-  last_review: "2022-03-14"
+  last_value_still_valid_on: "2022-03-14"

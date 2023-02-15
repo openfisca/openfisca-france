@@ -9,8 +9,8 @@ values:
   2006-01-01:
     value: 0.5
 metadata:
-  ux_name: Plafond
-  description_en: Child care costs (1979 - )
+  short_label: Plafond
+  label_en: Child care costs (1979 - )
   ipp_csv_id: txgardenf
   unit: /1
   reference:

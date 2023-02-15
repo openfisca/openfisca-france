@@ -3,7 +3,7 @@ values:
   2018-01-01:
     value: 0.98
 metadata:
-  ux_name: Baisse de l'aide personnalisée au logement (en % de la RLS)
+  short_label: Baisse de l'aide personnalisée au logement (en % de la RLS)
   ipp_csv_id: baisse_apl_rsl
   unit: /1
   reference:

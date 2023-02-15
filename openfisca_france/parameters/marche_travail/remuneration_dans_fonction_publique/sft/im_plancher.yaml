@@ -21,8 +21,8 @@ values:
   2006-11-01:
     value: 449
 metadata:
-  ux_name: Indice majoré plancher
-  description_en: Lower increased index
+  short_label: Indice majoré plancher
+  label_en: Lower increased index
   ipp_csv_id: im_plancher
   reference:
     1985-11-01:

@@ -3,8 +3,8 @@ values:
   2007-07-01:
     value: 1.8
 metadata:
-  ux_name: Ménage
-  description_en: Parameters for new home-buyers (APL)
+  short_label: Ménage
+  label_en: Parameters for new home-buyers (APL)
   ipp_csv_id: n_coup_apl
   unit: /1
   reference:

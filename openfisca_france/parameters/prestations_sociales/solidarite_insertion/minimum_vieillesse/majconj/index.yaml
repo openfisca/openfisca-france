@@ -1,7 +1,7 @@
 description: Majoration pour conjoint à charge - droits non-contributifs de retraite
 metadata:
-  ux_name: Majoration pour conjoint à charge
-  description_en: Social minima for elderly
+  short_label: Majoration pour conjoint à charge
+  label_en: Social minima for elderly
   order:
   - montant_majoration_conjoint_charge
   - plafond_conjoint_pour_maj_pac

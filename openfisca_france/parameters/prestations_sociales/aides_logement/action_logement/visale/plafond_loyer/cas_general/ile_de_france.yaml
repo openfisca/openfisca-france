@@ -3,7 +3,7 @@ values:
   2018-06-19:
     value: 1500
 metadata:
-  ux_name: En Île-de-France
+  short_label: En Île-de-France
   unit: currency
   reference:
     2018-06-19:

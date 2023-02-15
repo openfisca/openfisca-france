@@ -7,7 +7,7 @@ values:
   2022-01-01:
     value: 6250
 metadata:
-  ux_name: Plafond acquisition
+  short_label: Plafond acquisition
   ipp_csv_id: plaf_foret
   unit: currency
   reference:
@@ -26,7 +26,7 @@ metadata:
   notes:
     2001-01-01:
     - title: Crée par loi d'orientation sur la forêt n°2001-602 du 9 juillet 2001 - JOFR 11/07/2001
-  last_review: "2023-01-09"
+  last_value_still_valid_on: "2023-01-09"
 documentation: |-
   Ce plafond est doublé pour un couple marié ou pour les partenaires liés par un PACS soumis à une imposition commune.
   Notes :

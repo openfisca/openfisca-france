@@ -11,7 +11,7 @@ values:
   2020-01-01:
     value: null
 metadata:
-  ux_name: Taux général
+  short_label: Taux général
   ipp_csv_id: taux_cite_general
   unit: /1
   reference:

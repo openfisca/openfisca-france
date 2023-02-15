@@ -13,7 +13,7 @@ values:
   2020-01-01:
     value: null
 metadata:
-  ux_name: Plafond RFR Célibataire
+  short_label: Plafond RFR Célibataire
   ipp_csv_id: reduc_bas_revenus_plaf1
   unit: currency
   reference:

@@ -1,6 +1,6 @@
 description: Abattement pour le Régime spécial micro BNC
 metadata:
-  ux_name: Micro BNC
+  short_label: Micro BNC
   order:
   - marchandises
   - services

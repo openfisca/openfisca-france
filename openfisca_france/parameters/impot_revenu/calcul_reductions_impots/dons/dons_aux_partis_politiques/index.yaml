@@ -1,7 +1,7 @@
 description: Dons aux partis politiques
 metadata:
-  ux_name: Partis politiques
-  description_en: Gifts (1977 -)
+  short_label: Partis politiques
+  label_en: Gifts (1977 -)
   order:
   - taux
   - plafond_en_revenu_net_global

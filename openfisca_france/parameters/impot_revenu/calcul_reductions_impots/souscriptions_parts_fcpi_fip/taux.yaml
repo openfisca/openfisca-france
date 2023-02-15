@@ -7,7 +7,7 @@ values:
   2012-01-01:
     value: 0.18
 metadata:
-  ux_name: 1er Taux
+  short_label: 1er Taux
   ipp_csv_id: txfcp_1
   unit: /1
   reference:

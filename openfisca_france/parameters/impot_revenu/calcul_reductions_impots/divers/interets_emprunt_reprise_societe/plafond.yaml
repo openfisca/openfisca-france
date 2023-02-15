@@ -7,7 +7,7 @@ values:
   2008-01-01:
     value: 20000
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_repsoc
   unit: currency
 documentation: |-

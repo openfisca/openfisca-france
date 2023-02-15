@@ -1,7 +1,7 @@
 description: Allocation journalière spéciale d'assurance chômage
 metadata:
-  ux_name: Allocation journalière spéciale
-  description_en: Special UI scheme for economic layoffs (1979-1983)
+  short_label: Allocation journalière spéciale
+  label_en: Special UI scheme for economic layoffs (1979-1983)
   order:
   - partie_fixe
   - partie_proportionnelle

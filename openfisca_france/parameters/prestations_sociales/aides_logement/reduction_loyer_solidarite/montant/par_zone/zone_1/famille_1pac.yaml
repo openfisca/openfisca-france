@@ -13,7 +13,7 @@ values:
   2021-10-01:
     value: 71.33
 metadata:
-  ux_name: Famille avec 1 personne à charge
+  short_label: Famille avec 1 personne à charge
   ipp_csv_id: rls_z1_famille_1pac
   unit: currency
   reference:

@@ -1,6 +1,6 @@
 description: Montant 2 de l'abattement exceptionnel en faveur des personnes âgées ou invalides pour le calcul du revenu imposable
 metadata:
-  ux_name: Montant 2
+  short_label: Montant 2
   ipp_csv_id: abat_contrib_ages_invalides_abat2
   notes:
     1978-01-01:

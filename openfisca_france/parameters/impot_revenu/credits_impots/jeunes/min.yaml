@@ -5,5 +5,5 @@ values:
   2009-01-01:
     value: null
 metadata:
-  ux_name: Plancher de revenus
+  short_label: Plancher de revenus
   unit: currency

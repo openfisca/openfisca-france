@@ -3,7 +3,7 @@ values:
   2021-02-05:
     value: 0.7
 metadata:
-  ux_name: Taux de bourse versé
+  short_label: Taux de bourse versé
   unit: /1
   reference:
     2021-02-05:

@@ -13,8 +13,8 @@ values:
   2017-01-01:
     value: 0.068
 metadata:
-  ux_name: Taux CSG déductible capital (patrimoine)
-  description_en: CSG on financial income
+  short_label: Taux CSG déductible capital (patrimoine)
+  label_en: CSG on financial income
   ipp_csv_id: tx_csg_ded_rk_patr
   unit: /1
   reference:
@@ -55,7 +55,7 @@ metadata:
     - title: Crée art. 154 quinquies du CGI
     2012-01-01:
     - title: Voir note (3).
-  last_review: "2017-01-01"
+  last_value_still_valid_on: "2017-01-01"
 documentation: |-
   Notes: ici (1) et (4)
   En ce qui concerne l'assiette CSG, l'abattement sur l'impôt sur le revenu est appliqué, jusqu'à sa suppression en 1997.

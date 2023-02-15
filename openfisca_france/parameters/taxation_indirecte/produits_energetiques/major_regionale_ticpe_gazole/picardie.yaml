@@ -5,7 +5,7 @@ values:
   2011-01-01:
     value: 2.5
 metadata:
-  ux_name: Picardie
+  short_label: Picardie
   ipp_csv_id: maj_ticpe_die_pic
   unit: currency
 documentation: |-

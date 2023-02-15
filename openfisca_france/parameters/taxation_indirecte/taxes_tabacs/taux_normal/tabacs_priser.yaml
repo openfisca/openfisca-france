@@ -27,9 +27,9 @@ values:
   2020-11-01:
     value: 0.581
 metadata:
-  ux_name: Tabacs à priser
+  short_label: Tabacs à priser
   ipp_csv_id: tx_tabac_priser
-  last_review: "2022-12-28"
+  last_value_still_valid_on: "2022-12-28"
   unit: /1
   reference:
     1991-01-01:

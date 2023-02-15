@@ -71,7 +71,7 @@ values:
   2020-01-01:
     value: 3542
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_frais
   unit: currency
   reference:

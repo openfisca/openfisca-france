@@ -1,7 +1,7 @@
 description: Taux tranche supérieure de l'Imposition des gains de levées d'options sur titre attribuées avant le
   28/09/2012 si cession après le délai de portage de 2 ans pour les options attribuées
 metadata:
-  ux_name: Taux tranche sup.
+  short_label: Taux tranche sup.
   ipp_csv_id: tx_stockoptions3
   reference:
     2006-01-01:

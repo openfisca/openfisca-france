@@ -21,8 +21,8 @@ values:
   2016-01-01:
     value: null
 metadata:
-  ux_name: Pour taux plein (couples mono-revenus)
-  description_en: Employment Allowance (2001 - 2015)
+  short_label: Pour taux plein (couples mono-revenus)
+  label_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: seuil_ppe_coup
   unit: currency
   reference:

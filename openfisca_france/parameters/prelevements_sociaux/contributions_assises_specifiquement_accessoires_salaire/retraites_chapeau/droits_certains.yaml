@@ -5,8 +5,8 @@ values:
   2020-01-01:
     value: 0.297
 metadata:
-  ux_name: Taux Retraites à droits certains
-  description_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
+  short_label: Taux Retraites à droits certains
+  label_en: Special contribution on employer's contribution to defined-benefits (DB) supplementary pension schemes
   ipp_csv_id: etchap_droits_certains
   unit: /1
   reference:

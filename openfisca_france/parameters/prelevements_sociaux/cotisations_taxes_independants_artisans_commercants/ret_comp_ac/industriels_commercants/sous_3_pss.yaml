@@ -9,8 +9,8 @@ values:
   2013-01-01:
     value: null
 metadata:
-  ux_name: Taux sous 3 PSS
-  description_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
+  short_label: Taux sous 3 PSS
+  label_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
   ipp_csv_id: retc_ic_0_3
   unit: /1
   reference:

@@ -1,7 +1,7 @@
 description: Autre solidarité des prestations sociales de solidarité insertion
 metadata:
-  ux_name: Autre solidarité
-  description_en: Other solidarity
+  short_label: Autre solidarité
+  label_en: Other solidarity
   order:
   - ata
   - ada

@@ -11,8 +11,8 @@ values:
   2017-10-01:
     value: 10
 metadata:
-  ux_name: non-APL
-  description_en: Minimal amount
+  short_label: non-APL
+  label_en: Minimal amount
   unit: currency
   reference:
     1989-11-12:

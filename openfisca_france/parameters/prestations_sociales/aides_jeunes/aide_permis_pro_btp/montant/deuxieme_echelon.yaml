@@ -3,7 +3,7 @@ values:
   2021-01-01:
     value: 500
 metadata:
-  ux_name: 2ème échelon
+  short_label: 2ème échelon
   unit: currency
   reference:
     2021-01-01:

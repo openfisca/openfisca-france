@@ -19,8 +19,8 @@ values:
   2016-01-01:
     value: null
 metadata:
-  ux_name: Couples mono-emploi
-  description_en: Employment Allowance (2001 - 2015)
+  short_label: Couples mono-emploi
+  label_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: supp_ppe_coup
   unit: currency
   reference:

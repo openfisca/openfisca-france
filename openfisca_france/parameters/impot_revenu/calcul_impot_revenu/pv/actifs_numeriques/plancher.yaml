@@ -1,6 +1,6 @@
 description: Montant plancher à partir duquel sont imposés les actifs cédés
 metadata:
-  ux_name: Plancher
+  short_label: Plancher
   ipp_csv_id: plancher_pv_actifs_numeriques
   notes:
     2019-01-01:

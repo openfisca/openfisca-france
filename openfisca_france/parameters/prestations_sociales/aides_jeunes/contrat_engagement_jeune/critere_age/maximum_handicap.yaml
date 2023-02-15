@@ -3,7 +3,7 @@ values:
   2022-03-01:
     value: 29
 metadata:
-  ux_name: Maximum
+  short_label: Maximum
   unit: year
   reference:
     2022-03-01:

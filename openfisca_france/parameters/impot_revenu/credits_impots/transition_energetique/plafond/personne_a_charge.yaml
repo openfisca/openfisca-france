@@ -5,7 +5,7 @@ values:
   2020-01-01:
     value: 120
 metadata:
-  ux_name: Majoration personne à charge
+  short_label: Majoration personne à charge
   ipp_csv_id: majoration_plafond_cite
   unit: currency
   reference:

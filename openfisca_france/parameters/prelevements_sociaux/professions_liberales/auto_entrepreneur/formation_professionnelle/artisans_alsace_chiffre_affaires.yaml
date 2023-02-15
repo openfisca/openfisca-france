@@ -7,8 +7,8 @@ values:
   2017-01-01:
     value: 0.003
 metadata:
-  ux_name: Taux - Prestation de services (artisans) Alsace
-  description_en: Self-employed specific scheme (auto-entrepreneurs)
+  short_label: Taux - Prestation de services (artisans) Alsace
+  label_en: Self-employed specific scheme (auto-entrepreneurs)
   ipp_csv_id: auto_art_form_als_ca
   unit: /1
   reference:
@@ -37,7 +37,7 @@ metadata:
   notes:
     2017-01-01:
     - title: Depuis le 1er janvier 2017, la CFP est unifiée pour tous les artisans (en et hors Alsace)
-  last_review: "2022-04-12"
+  last_value_still_valid_on: "2022-04-12"
 documentation: |-
   Notes :
   (i) L’auto-entrepreneur bénéficie d’un régime simplifié de calcul et de paiement des cotisations et contributions sociales obligatoires.

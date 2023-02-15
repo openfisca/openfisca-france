@@ -1,6 +1,6 @@
 description: Imputation sur le revenu global pour les régimes micro-entreprise et microfoncier
 metadata:
-  ux_name: Imputation sur le revenu global
+  short_label: Imputation sur le revenu global
   order:
   - plafond_deficits_agricoles
   - plafond_deficits_fonciers

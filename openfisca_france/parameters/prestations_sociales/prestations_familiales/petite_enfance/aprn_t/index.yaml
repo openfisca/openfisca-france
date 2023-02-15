@@ -1,6 +1,6 @@
 description: Allocations prénatales (APrN, 1976-1985)
 metadata:
-  ux_name: Allocations prénatales
-  description_en: "Prenatal allowance (APrN): Rate and payment"
+  short_label: Allocations prénatales
+  label_en: "Prenatal allowance (APrN): Rate and payment"
   order:
   - taux

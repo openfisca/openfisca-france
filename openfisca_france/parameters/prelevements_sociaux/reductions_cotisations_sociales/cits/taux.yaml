@@ -5,8 +5,8 @@ values:
   2019-01-01:
     value: null
 metadata:
-  ux_name: Taux
-  description_en: Tax credit on the payroll tax (CITS)
+  short_label: Taux
+  label_en: Tax credit on the payroll tax (CITS)
   unit: /1
   reference:
     2017-01-01:
@@ -21,7 +21,7 @@ metadata:
   notes:
     2019-01-01:
     - title: Abrogation et remplacement par un allègement de cotisations employeur
-  last_review: "2019-01-01"
+  last_value_still_valid_on: "2019-01-01"
 documentation: |-
   Note :
   Le CITS, crédit d'impôt sur la taxe sur les salaires, est calculé en proportion des salaires versées par l'entreprise en dessous du plafond.

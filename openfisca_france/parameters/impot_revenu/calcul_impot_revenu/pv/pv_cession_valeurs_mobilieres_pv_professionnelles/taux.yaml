@@ -1,6 +1,6 @@
 description: Taux d'imposition des plus-values de cession (RPNS) de valeurs mobilières et des plus-values professionnelles 
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: tx_pv
   notes:
     2008-01-01:

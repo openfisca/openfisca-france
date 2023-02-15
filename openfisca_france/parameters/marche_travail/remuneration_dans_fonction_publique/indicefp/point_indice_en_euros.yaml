@@ -287,8 +287,8 @@ values:
   2022-07-01:
     value: 58.2004
 metadata:
-  ux_name: Point d'indice (€)
-  description_en: Index point of public sector (1970-2017)
+  short_label: Point d'indice (€)
+  label_en: Index point of public sector (1970-2017)
   ipp_csv_id: pt_indice_euro
   unit: currency
   reference:

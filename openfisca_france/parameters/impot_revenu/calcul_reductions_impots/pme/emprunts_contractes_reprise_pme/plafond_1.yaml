@@ -7,7 +7,7 @@ values:
   1998-01-01:
     value: null
 metadata:
-  ux_name: Plafond 1
+  short_label: Plafond 1
   ipp_csv_id: plaf_pme1
   unit: currency
   reference:

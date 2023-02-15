@@ -5,7 +5,7 @@ values:
   2005-01-01:
     value: 15000
 metadata:
-  ux_name: Plafond maximum
+  short_label: Plafond maximum
   ipp_csv_id: superplafsaldom
   unit: currency
   reference:

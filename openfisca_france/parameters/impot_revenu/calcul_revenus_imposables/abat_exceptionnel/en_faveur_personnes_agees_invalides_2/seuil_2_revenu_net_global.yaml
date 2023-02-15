@@ -1,6 +1,6 @@
 description: Seuil 2 de revenu net global pour l'abattement exceptionnel en faveur des personnes âgées ou invalides pour le calcul du revenu imposable
 metadata:
-  ux_name: Seuil 2
+  short_label: Seuil 2
   ipp_csv_id: abat_contrib_ages_invalides_plaf2
   notes:
     1978-01-01:

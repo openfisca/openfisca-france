@@ -5,8 +5,8 @@ values:
   2011-01-01:
     value: 0.002
 metadata:
-  ux_name: Taux - Prestation de services (commerçants)
-  description_en: Self-employed specific scheme (auto-entrepreneurs)
+  short_label: Taux - Prestation de services (commerçants)
+  label_en: Self-employed specific scheme (auto-entrepreneurs)
   ipp_csv_id: auto_servcom_form_ca
   unit: /1
   reference:
@@ -26,7 +26,7 @@ metadata:
   official_journal_date:
     2009-01-01: "2008-12-19"
     2011-01-01: "2010-12-30"
-  last_review: "2022-04-07"
+  last_value_still_valid_on: "2022-04-07"
 documentation: |-
   Notes :
   (i) L’auto-entrepreneur bénéficie d’un régime simplifié de calcul et de paiement des cotisations et contributions sociales obligatoires.

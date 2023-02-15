@@ -239,8 +239,8 @@ values:
   2023-01-01:
     value: 1709.28
 metadata:
-  ux_name: SMIC brut mensuel
-  description_en: Minimum wage - SMIC (1970 -)
+  short_label: SMIC brut mensuel
+  label_en: Minimum wage - SMIC (1970 -)
   ipp_csv_id: smic_m
   unit: currency
   reference:
@@ -664,4 +664,4 @@ metadata:
     - title: Pour une durée hebdomadaire de 39h sur 52 semaines = 169 h/mois (autres durées possibles)
     2001-07-01:
     - title: Attention au passage aux 35 heures. Existence d'un régime transitoire et d'un régime définitif pour les entreprises de plus de 20 salariés. dans l'ancien système. Pour les entreprises de moins de 20 salariés, ancien système. Le Smic donné ici correspond au Smic mensuel pour 39 heures.
-  last_review: "2022-08-03"
+  last_value_still_valid_on: "2022-08-03"

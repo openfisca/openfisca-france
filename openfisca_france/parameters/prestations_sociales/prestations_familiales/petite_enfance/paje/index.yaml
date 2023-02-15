@@ -1,7 +1,7 @@
 description: Prestation d'accueil du jeune enfant (PAJE)
 metadata:
-  ux_name: Prestation d'accueil du jeune enfant
-  description_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
+  short_label: Prestation d'accueil du jeune enfant
+  label_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
   order:
   - paje_cm
   - paje_cm2

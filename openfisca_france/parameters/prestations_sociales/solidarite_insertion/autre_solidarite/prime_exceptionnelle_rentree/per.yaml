@@ -3,7 +3,7 @@ values:
   2022-01-01:
     value: 100
 metadata:
-  last_review: "2022-10-12"
+  last_value_still_valid_on: "2022-10-12"
   unit: currency
   reference:
     2022-01-01:

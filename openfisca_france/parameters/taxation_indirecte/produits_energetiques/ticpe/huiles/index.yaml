@@ -1,6 +1,6 @@
 description: TICPE - produits énergétiques, huiles
 metadata:
-  description_en: TICPE - Energy products
+  label_en: TICPE - Energy products
   order:
   - huiles_legeres
   - huiles_moyennes

@@ -3,7 +3,7 @@ values:
   2009-01-01:
     value: 9
 metadata:
-  ux_name: Durée
+  short_label: Durée
   ipp_csv_id: duree_locmeu
   reference:
     2009-01-01:

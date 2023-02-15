@@ -1,6 +1,6 @@
 description: Cotisations employeur du Fonds pour l'Emploi Hospitalier (FEH) pour la Caisse nationale de retraite des agents des collectivités locales (CNRACL)
 metadata:
-  ux_name: FEH
-  description_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
+  short_label: FEH
+  label_en: Contributions for pensions - local governments and hospitals (CNRACL scheme)
   order:
   - feh

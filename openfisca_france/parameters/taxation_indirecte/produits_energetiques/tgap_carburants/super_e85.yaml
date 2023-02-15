@@ -15,7 +15,7 @@ values:
   2019-01-01:
     value: 0.079
 metadata:
-  ux_name: Super E85
+  short_label: Super E85
   ipp_csv_id: tgap_e85
   unit: /1
   reference:

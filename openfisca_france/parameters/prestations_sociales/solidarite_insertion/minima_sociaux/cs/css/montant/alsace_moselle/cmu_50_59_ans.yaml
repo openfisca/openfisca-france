@@ -3,7 +3,7 @@ values:
   2019-11-01:
     value: 7.3
 metadata:
-  ux_name: 50-59 ans
+  short_label: 50-59 ans
   unit: currency
 documentation: |-
   Description générale du dispositif - https://www.service-public.fr/particuliers/vosdroits/F10027

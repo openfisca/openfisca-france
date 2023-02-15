@@ -5,8 +5,8 @@ values:
   2015-01-01:
     value: 0.0345
 metadata:
-  ux_name: Taux réduit
-  description_en: SSCs for family benefits
+  short_label: Taux réduit
+  label_en: SSCs for family benefits
   unit: /1
   reference:
     1946-10-01:

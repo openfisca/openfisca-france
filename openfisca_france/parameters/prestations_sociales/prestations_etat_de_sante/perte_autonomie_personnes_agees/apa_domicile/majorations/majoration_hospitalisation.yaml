@@ -3,8 +3,8 @@ values:
   2016-03-01:
     value: 0.9
 metadata:
-  ux_name: Majoration hospitalisation
-  description_en: Attendance allowance for individuals living at home (APA)
+  short_label: Majoration hospitalisation
+  label_en: Attendance allowance for individuals living at home (APA)
   unit: /1
 documentation: |-
   Notes :

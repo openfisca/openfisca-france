@@ -37,8 +37,8 @@ values:
   2022-07-01:
     value: 10163.71
 metadata:
-  ux_name: Plafond de ressources pour une personne seule
-  description_en: "Supplementary disability allowance (ASI): Amount"
+  short_label: Plafond de ressources pour une personne seule
+  label_en: "Supplementary disability allowance (ASI): Amount"
   ipp_csv_id: plaf_ressource_seul
   unit: currency
   reference:
@@ -121,7 +121,7 @@ metadata:
     - title: La circulaire Cnav 2009/9 du 03/02/2009 met en œuvre de l'article 73 de la loi 2008-1330 du 17/12/2008 concernant la déconnexion de la revalorisation des montants et des plafonds de ressources de l'ASI de ceux de l'ASPA.
     2020-04-01:
     - title: Depuis le 01/04/2020, l'ASI cesse d'être une allocation forfaitaire (2).
-  last_review: "2022-09-28"
+  last_value_still_valid_on: "2022-09-28"
 documentation: |-
   (1) Entre le 1er janvier 2006 et 31 mars 2020, le montant maximum "couple" s'applique uniquement dans le cadre des couples mariés. Le plafond "couple" s'applique aux couples mariés, pacsés ou en concubinage. Ainsi pour un couple non marié, ce sont les ressources du couple et le plafond "couple" qui sont pris en compte, mais c'est le montant maximal individuel qui est perçu. 
   (2) Modification du calcul de l'ASI en 2020: 

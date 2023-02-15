@@ -5,7 +5,7 @@ values:
   2005-01-01:
     value: 0.5
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: taux_intagri
   unit: /1
 documentation: |-

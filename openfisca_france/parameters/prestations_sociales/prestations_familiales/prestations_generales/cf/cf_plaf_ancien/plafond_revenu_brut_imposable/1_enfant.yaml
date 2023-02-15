@@ -9,8 +9,8 @@ values:
   1986-07-01:
     value: 105528
 metadata:
-  ux_name: 1 enfant
-  description_en: "Family complement (CF): Thresholds for means-testing"
+  short_label: 1 enfant
+  label_en: "Family complement (CF): Thresholds for means-testing"
   ipp_csv_id: plaf_1enf_monoact
   unit: currency
   reference:

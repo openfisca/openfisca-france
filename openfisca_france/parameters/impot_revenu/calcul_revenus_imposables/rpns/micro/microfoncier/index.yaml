@@ -1,6 +1,6 @@
 description: Abattement pour le régime microfoncier
 metadata:
-  ux_name: Microfoncier
+  short_label: Microfoncier
   order:
   - plafond_recettes
   - taux

@@ -91,7 +91,7 @@ values:
   2021-01-01:
     value: 12829
 metadata:
-  ux_name: Maximum
+  short_label: Maximum
   ipp_csv_id: max_abtsal
   notes:
     1952-01-01:

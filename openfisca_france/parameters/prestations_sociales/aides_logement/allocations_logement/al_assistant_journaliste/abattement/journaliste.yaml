@@ -3,5 +3,5 @@ values:
   2019-01-01:
     value: 637.5
 metadata:
-  ux_name: Journaliste
+  short_label: Journaliste
   unit: currency

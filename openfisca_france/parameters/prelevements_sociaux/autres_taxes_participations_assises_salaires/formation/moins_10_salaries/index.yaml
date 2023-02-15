@@ -1,6 +1,6 @@
 description: Participation des employeurs à la formation professionnelle continue (PEFPC), Moins de 10 salariés
 metadata:
-  ux_name: Moins de 10 salariés
-  description_en: Employer's participation to lifelong professional training
+  short_label: Moins de 10 salariés
+  label_en: Employer's participation to lifelong professional training
   order:
   - contribution_contrats_insertion_en_alternance

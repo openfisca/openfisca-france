@@ -9,8 +9,8 @@ values:
   1974-01-01:
     value: 0.072
 metadata:
-  ux_name: Taux employeur
-  description_en: SSCs for freelance journalists (1964-1974)
+  short_label: Taux employeur
+  label_en: SSCs for freelance journalists (1964-1974)
   ipp_csv_id: fam_j_p_0_1
   unit: /1
   reference:
@@ -27,7 +27,7 @@ metadata:
     1967-10-01: "1967-10-01"
     1971-01-01: "1971-01-15"
     1974-01-01: "1974-02-07"
-  last_review: "1974-01-01"
+  last_value_still_valid_on: "1974-01-01"
 documentation: |-
   Note générale :
   Les journalistes pigistes bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1964 et 1974.

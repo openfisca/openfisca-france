@@ -1,6 +1,6 @@
 description: Crédits d'impôt
 metadata:
-  description_en: Tax credits
+  label_en: Tax credits
   order:
   - gardenf
   - ppe

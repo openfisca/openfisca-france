@@ -7,8 +7,8 @@ values:
   2009-06-01:
     value: null
 metadata:
-  ux_name: Par enfant supplémentaire
-  description_en: "Minimum insertion income (RMI): Extra allowance and minimal amount"
+  short_label: Par enfant supplémentaire
+  label_en: "Minimum insertion income (RMI): Extra allowance and minimal amount"
   ipp_csv_id: rmi_enf3
   unit: /1
   reference:

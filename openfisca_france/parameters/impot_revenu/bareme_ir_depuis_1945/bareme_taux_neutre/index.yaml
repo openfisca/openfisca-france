@@ -1,7 +1,7 @@
 description: Seuils et taux d'imposition du barème d'impôt au taux neutre (2019 -)
 metadata:
-  ux_name: Barème d'impôt au taux neutre
-  description_en: Thresholds and marginal tax rates (1945-)
+  short_label: Barème d'impôt au taux neutre
+  label_en: Thresholds and marginal tax rates (1945-)
   order:
   - date_effet
   - bareme_metropole

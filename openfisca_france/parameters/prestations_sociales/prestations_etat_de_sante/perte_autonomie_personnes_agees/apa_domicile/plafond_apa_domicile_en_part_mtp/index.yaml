@@ -1,7 +1,7 @@
 description: Plafond (en part de la MTP mensuelle) de l'APA à domicile (Allocation personnalisée d'autonomie à domicile)
 metadata:
-  ux_name: Plafond (en part de la MTP)
-  description_en: Attendance allowance for individuals living at home (APA)
+  short_label: Plafond (en part de la MTP)
+  label_en: Attendance allowance for individuals living at home (APA)
   order:
   - gir_1
   - gir_2

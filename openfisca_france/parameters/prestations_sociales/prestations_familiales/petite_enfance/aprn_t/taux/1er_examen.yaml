@@ -7,8 +7,8 @@ values:
   1985-01-01:
     value: null
 metadata:
-  ux_name: 1er examen
-  description_en: "Prenatal allowance (APrN): Rate and payment"
+  short_label: 1er examen
+  label_en: "Prenatal allowance (APrN): Rate and payment"
   ipp_csv_id: tx_1exam
   unit: /1
   reference:

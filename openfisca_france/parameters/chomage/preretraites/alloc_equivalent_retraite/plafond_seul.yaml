@@ -39,8 +39,8 @@ values:
   2020-04-01:
     value: 1752
 metadata:
-  ux_name: Plafond mensuel seul
-  description_en: Early retirement allowance (AER)
+  short_label: Plafond mensuel seul
+  label_en: Early retirement allowance (AER)
   ipp_csv_id: aer_plaf_seul
   unit: currency
   reference:

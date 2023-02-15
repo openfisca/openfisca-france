@@ -3,7 +3,7 @@ values:
   2021-02-05:
     value: 30
 metadata:
-  ux_name: Âge maximal d'éligibilité
+  short_label: Âge maximal d'éligibilité
   unit: year
   reference:
     2021-02-05:

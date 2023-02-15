@@ -5,8 +5,8 @@ values:
   1999-01-01:
     value: null
 metadata:
-  ux_name: Par enfant supplémentaire
-  description_en: "Family allowances (AF): Thresholds for means-testing"
+  short_label: Par enfant supplémentaire
+  label_en: "Family allowances (AF): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_af_enf
   unit: currency
   reference:

@@ -9,8 +9,8 @@ values:
   2019-01-01:
     value: 0.00725
 metadata:
-  ux_name: Taux sous 5 PSS
-  description_en: Contribution for complementary pension scheme (professionals)
+  short_label: Taux sous 5 PSS
+  label_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: asv_chird_0_5
   unit: /1
   reference:

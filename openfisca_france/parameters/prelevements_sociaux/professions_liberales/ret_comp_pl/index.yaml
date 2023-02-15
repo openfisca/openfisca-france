@@ -1,7 +1,7 @@
 description: Cotisation de sécurité sociale (SS) retraite complémentaire, Professions libérales
 metadata:
-  ux_name: Retraite complémentaire
-  description_en: Contribution for complementary pension scheme (professionals)
+  short_label: Retraite complémentaire
+  label_en: Contribution for complementary pension scheme (professionals)
   order:
   - agents_generaux_d_assurance
   - infirmiers_masseurs_kine_orthophon_orthopti

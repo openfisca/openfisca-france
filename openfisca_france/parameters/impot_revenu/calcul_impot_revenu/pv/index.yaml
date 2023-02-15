@@ -29,7 +29,7 @@ documentation: 'Notes :
   ne bénéficiant pas de l''abattement fixe lorsque l''option au barème progressif
   est exercée.'
 metadata:
-  description_en: Taxation of capital gains (1979 -)
+  label_en: Taxation of capital gains (1979 -)
   order:
   - pv_cession_valeurs_mobilieres_pv_professionnelles
   - pv_mobilieres_levees_options_attribuees_2000_2012

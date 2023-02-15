@@ -3,8 +3,8 @@ values:
   2001-01-01:
     value: 0.45
 metadata:
-  ux_name: Début de la 2ème tranche
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  short_label: Début de la 2ème tranche
+  label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tl_tr1
   unit: /1
   reference:

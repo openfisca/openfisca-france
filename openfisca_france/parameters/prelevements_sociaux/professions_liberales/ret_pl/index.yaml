@@ -1,6 +1,6 @@
 description: Cotisation de sécurité sociale (SS) branche vieillesse, Professions libérales
 metadata:
-  ux_name: Branche vieillesse
-  description_en: SSCs for old-age insurance (professionals)
+  short_label: Branche vieillesse
+  label_en: SSCs for old-age insurance (professionals)
   order:
   - assurance_vieillesse

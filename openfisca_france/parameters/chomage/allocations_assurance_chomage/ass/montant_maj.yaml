@@ -65,8 +65,8 @@ values:
   2016-04-01:
     value: null
 metadata:
-  ux_name: Montant journalier majoré
-  description_en: Special UI scheme
+  short_label: Montant journalier majoré
+  label_en: Special UI scheme
   ipp_csv_id: ass_maj
   unit: currency
   reference:

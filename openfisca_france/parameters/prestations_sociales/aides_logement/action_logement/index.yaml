@@ -1,4 +1,4 @@
 description: Aides Action logement
 metadata:
-  ux_name: Action logement
-  description_en: Housing allowances
+  short_label: Action logement
+  label_en: Housing allowances

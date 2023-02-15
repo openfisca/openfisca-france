@@ -15,8 +15,8 @@ values:
   2018-01-01:
     value: 0.009
 metadata:
-  ux_name: Taux des employés de bureau
-  description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
+  short_label: Taux des employés de bureau
+  label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   unit: /1
   reference:
     1976-01-01:
@@ -49,7 +49,7 @@ metadata:
     - title: Cotisation déplafonnée avec réduction des taux.
     2020-01-01:
     - title: Suppression du taux bureau, remplacé par le taux "Fonctions support de nature administrative" pour les entreprises en tarification collective ou mixte. Voir Notes.
-  last_review: "2018-01-01"
+  last_value_still_valid_on: "2018-01-01"
 documentation: |-
   Notes sur la tarification AT-MP :
   La tarification des risques accidents du travail et maladies professionnelles (AT-MP) est complexe: il existe un taux propre à chaque entreprise, variant avec la taille et les risques d'AT-MP de l'entreprise.
@@ -68,4 +68,4 @@ documentation: |-
   Changement 2020 : le taux bureaux est supprimé et remplacé, pour les entreprises en tarification collective, ainsi que pour celles en tarification mixte qui le demandent, par le taux "Fonctions support" (même taux). Pour les entreprises en tarification individuelle, le taux appliqué est la "fusion" (moyenne ?) du taux Fonctions support et du taux de l'activité principale de l'entreprise.
   official_journal_date:
   notes:
-  description_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
+  label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates

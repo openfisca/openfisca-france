@@ -9,8 +9,8 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Revenus du patrimoine
-  description_en: Other social levies on financial income
+  short_label: Revenus du patrimoine
+  label_en: Other social levies on financial income
   ipp_csv_id: tx_caps_patr
   unit: /1
   reference:

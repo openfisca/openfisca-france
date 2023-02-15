@@ -15,8 +15,8 @@ values:
   2023-01-01:
     value: 26432
 metadata:
-  ux_name: Base du plafond de ressources
-  description_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  short_label: Base du plafond de ressources
+  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
   ipp_csv_id: plaf_paje_0enf_pn_pa_abpartiel_a_partir_20180401
   unit: currency
   reference:

@@ -1,7 +1,7 @@
 description: Taux logement dans un QP utilisant une énergie renouvelable de réduction sur 5 ans en cas de travaux de réhabilitation contre
   les séismes ou les cyclones pour les investissements réalisés en Outre-Mer (2003-2021)
 metadata:
-  ux_name: Taux quartier vert
+  short_label: Taux quartier vert
   ipp_csv_id: taux_quartiervert_reduc_rehabilitation_outremer
   notes:
     2011-01-01:

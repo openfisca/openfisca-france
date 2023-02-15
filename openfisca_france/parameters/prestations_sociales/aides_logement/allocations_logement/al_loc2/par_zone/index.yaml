@@ -1,7 +1,7 @@
 description: Plafonds de loyer par zone (après la réforme de 2001) des Allocations Logement (AL)
 metadata:
-  ux_name: Par zone
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  short_label: Par zone
+  label_en: Parameters for the rental sector (after the 2001 reform)
   order:
   - zone_1
   - zone_2

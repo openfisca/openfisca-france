@@ -7,7 +7,7 @@ values:
   2017-01-01:
     value: 4.39
 metadata:
-  ux_name: Ile-de-France
+  short_label: Ile-de-France
   ipp_csv_id: maj_ticpe_die_idf
   unit: currency
 documentation: |-

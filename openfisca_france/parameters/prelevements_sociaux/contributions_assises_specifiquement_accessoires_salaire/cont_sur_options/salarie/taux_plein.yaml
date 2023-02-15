@@ -7,8 +7,8 @@ values:
   2012-07-11:
     value: 0.1
 metadata:
-  ux_name: Taux Plein
-  description_en: Contribution levied on options and shares granted for free
+  short_label: Taux Plein
+  label_en: Contribution levied on options and shares granted for free
   ipp_csv_id: cont_opt_s_tx1
   unit: /1
   reference:

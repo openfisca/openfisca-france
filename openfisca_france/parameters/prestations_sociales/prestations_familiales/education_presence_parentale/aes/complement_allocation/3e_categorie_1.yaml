@@ -7,8 +7,8 @@ values:
   2002-04-01:
     value: null
 metadata:
-  ux_name: 3e catégorie
-  description_en: "Special education allowance (AES): Conditions and amounts"
+  short_label: 3e catégorie
+  label_en: "Special education allowance (AES): Conditions and amounts"
   ipp_csv_id: aes_cplt3
   unit: currency
   reference:

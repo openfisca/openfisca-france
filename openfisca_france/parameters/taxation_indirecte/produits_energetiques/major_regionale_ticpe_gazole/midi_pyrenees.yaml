@@ -7,7 +7,7 @@ values:
   2011-01-01:
     value: 2.5
 metadata:
-  ux_name: Midi-Pyrénées
+  short_label: Midi-Pyrénées
   ipp_csv_id: maj_ticpe_die_m_p
   unit: currency
 documentation: |-

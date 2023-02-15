@@ -41,8 +41,8 @@ brackets:
     2019-01-01:
       value: 0
 metadata:
-  ux_name: Foyer fiscal composé de plus de 2 UC
-  description_en: Help for energy expenses voucher
+  short_label: Foyer fiscal composé de plus de 2 UC
+  label_en: Help for energy expenses voucher
   ipp_csv_id:
     threshold: plaf_chq_energie
     amount: chq_energie_3UC_rfr5600, chq_energie_3UC_rfr6700, chq_energie_3UC_rfr7700, chq_energie_3UC_rfr10700

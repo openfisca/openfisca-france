@@ -3,7 +3,7 @@ values:
   1968-11-01:
     value: 0.0425
 metadata:
-  ux_name: France Métropolitaine
+  short_label: France Métropolitaine
   ipp_csv_id: taxsal1
   unit: /1
   reference:

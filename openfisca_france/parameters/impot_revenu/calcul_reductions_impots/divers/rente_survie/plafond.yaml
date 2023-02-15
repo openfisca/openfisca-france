@@ -13,6 +13,6 @@ values:
   2004-01-01:
     value: 1525
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_survie
   unit: currency

@@ -9,8 +9,8 @@ values:
   2013-01-01:
     value: 0.065
 metadata:
-  ux_name: Taux Toute rémunération
-  description_en: SSCs for sickness and maternity benefits (professionals)
+  short_label: Taux Toute rémunération
+  label_en: SSCs for sickness and maternity benefits (professionals)
   ipp_csv_id: mmid_plib_0_
   unit: /1
   reference:

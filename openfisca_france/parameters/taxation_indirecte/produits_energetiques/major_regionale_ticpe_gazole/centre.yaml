@@ -5,7 +5,7 @@ values:
   2011-01-01:
     value: 2.5
 metadata:
-  ux_name: Centre
+  short_label: Centre
   ipp_csv_id: maj_ticpe_die_cen
   unit: currency
 documentation: |-

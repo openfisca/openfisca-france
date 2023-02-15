@@ -5,8 +5,8 @@ values:
   2012-08-18:
     value: 0.0025
 metadata:
-  ux_name: Taux sous PSS
-  description_en: Contribution to lifelong professional training (sales retailers and craftsmen)
+  short_label: Taux sous PSS
+  label_en: Contribution to lifelong professional training (sales retailers and craftsmen)
   ipp_csv_id: form_ic_0_1
   unit: /1
   reference:

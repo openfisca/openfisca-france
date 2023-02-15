@@ -1,6 +1,6 @@
 description: Montant de l'abattement
 metadata:
-  ux_name: Montant
+  short_label: Montant
   ipp_csv_id: abattement_journalistes
   official_journal_date:
     1998-01-01: '1998-12-31'

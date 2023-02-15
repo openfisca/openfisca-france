@@ -1,6 +1,6 @@
 description: Montant maximum de l'Aide Mobili-Jeune à la mobilité pour les jeunes
 metadata:
-  ux_name: Maximum
+  short_label: Maximum
   unit: currency
   reference:
     2012-07-01:

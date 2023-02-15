@@ -17,8 +17,8 @@ values:
   2005-07-01:
     value: null
 metadata:
-  ux_name: RTT avant 30/06/01 (GMR3)
-  description_en: Minimal ressources guarantee (GMR)
+  short_label: RTT avant 30/06/01 (GMR3)
+  label_en: Minimal ressources guarantee (GMR)
   ipp_csv_id: GMR3
   unit: currency
   reference:

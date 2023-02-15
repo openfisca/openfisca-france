@@ -43,8 +43,8 @@ values:
   2022-07-01:
     value: 56.12
 metadata:
-  ux_name: Cas général
-  description_en: Lump sum extra allowance for charges
+  short_label: Cas général
+  label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_gen
   unit: currency
   reference:
@@ -117,7 +117,7 @@ metadata:
   notes:
     2015-10-01:
     - title: Idem en 2016
-  last_review: "2022-09-28"
+  last_value_still_valid_on: "2022-09-28"
 documentation: |-
   Notes :
   (1) Également applicable aux personnes âgées ou handicapées adultes hébergées à titre onéreux chez des particuliers.

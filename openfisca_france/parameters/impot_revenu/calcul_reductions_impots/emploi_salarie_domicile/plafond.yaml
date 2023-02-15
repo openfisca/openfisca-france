@@ -19,7 +19,7 @@ values:
   2005-01-01:
     value: 12000
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plafsaldomicile
   unit: currency
   reference:

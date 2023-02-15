@@ -3,7 +3,7 @@ values:
   2014-01-20:
     value: 10
 metadata:
-  ux_name: Âge maximal enfant
+  short_label: Âge maximal enfant
   unit: year
   reference:
     2014-01-20:

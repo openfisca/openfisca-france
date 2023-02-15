@@ -1,6 +1,6 @@
 description: Seuil d'impôt 3 des minorations exceptionnelles d'impôt (1965-1992)
 metadata:
-  ux_name: Seuil 3
+  short_label: Seuil 3
   ipp_csv_id: seuil_min3
   notes:
     1966-01-01:

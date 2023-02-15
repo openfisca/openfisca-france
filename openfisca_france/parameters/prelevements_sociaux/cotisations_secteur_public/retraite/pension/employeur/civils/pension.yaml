@@ -29,8 +29,8 @@ brackets:
     2014-01-01:
       value: 0.7428
 metadata:
-  ux_name: Barème
-  description_en: Contributions for pensions - central government (employer contribution)
+  short_label: Barème
+  label_en: Contributions for pensions - central government (employer contribution)
   ipp_csv_id: txexp_civ_p
   reference:
     2006-01-01:
@@ -85,7 +85,7 @@ metadata:
     - title: De manière dérogatoire le taux de cotisation est ramené à 44,28 % pour les salaires versés au cours du mois de décembre 2013.
     2014-01-01:
     - title: "Circulaire du 05/08/2013 précise le retour aux conditions du décret 2012-1507. Pour 2018 : circulaire du 11/12/2017. Pour 2019 : circulaire du 20/12/2018. Pour 2020 : circulaire du 23/12/2019. En 2020, le taux employeur explicite devient 30,65% pour les fonctionnaires civils détachés (cotisation à la charge des collectivités)."
-  last_review: "2021-08-24"
+  last_value_still_valid_on: "2021-08-24"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

@@ -3,7 +3,7 @@ values:
   2009-01-01:
     value: 0.017
 metadata:
-  ux_name:  Taux (micro BIC service)
+  short_label:  Taux (micro BIC service)
   ipp_csv_id: tx_bic_service_vl
   unit: /1
   reference:

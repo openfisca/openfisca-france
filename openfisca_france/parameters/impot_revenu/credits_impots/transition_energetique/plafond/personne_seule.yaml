@@ -5,7 +5,7 @@ values:
   2020-01-01:
     value: 2400
 metadata:
-  ux_name: Personne seule
+  short_label: Personne seule
   ipp_csv_id: plafond_cite_seul
   unit: currency
   reference:

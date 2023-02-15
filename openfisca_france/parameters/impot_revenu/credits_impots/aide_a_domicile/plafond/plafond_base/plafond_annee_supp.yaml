@@ -3,7 +3,7 @@ values:
   2017-01-01:
     value: 12000
 metadata:
-  ux_name: Plafond années supp.
+  short_label: Plafond années supp.
   ipp_csv_id: plafond_credit_aide_base_supp
   unit: currency
   reference:

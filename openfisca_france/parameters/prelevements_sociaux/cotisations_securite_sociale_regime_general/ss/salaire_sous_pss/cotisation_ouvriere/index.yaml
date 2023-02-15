@@ -1,7 +1,7 @@
 description: Taux ouvrier des cotisations de sécurité sociale (SS) de 1930-1966, sous le plafond de la sécurité sociale (PSS)
 metadata:
-  ux_name: Cotisation ouvrière
-  description_en: SSC (1930-1966)
+  short_label: Cotisation ouvrière
+  label_en: SSC (1930-1966)
   order:
   - moins_de_65_ans
   - plus_de_65_ans

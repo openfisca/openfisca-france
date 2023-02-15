@@ -3,8 +3,8 @@ values:
   2002-01-01:
     value: 15
 metadata:
-  last_review: "2023-01-27"
-  ux_name: Deuxième seuil d'âge
+  last_value_still_valid_on: "2023-01-27"
+  short_label: Deuxième seuil d'âge
   unit: year
   reference:
     2002-01-01:

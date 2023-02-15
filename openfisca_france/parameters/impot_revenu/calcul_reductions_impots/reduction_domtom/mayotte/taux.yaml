@@ -3,7 +3,7 @@ values:
   2013-01-01:
     value: 0.4
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: taux_reduction_ir_mayotte
   unit: /1
   reference:

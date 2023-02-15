@@ -9,8 +9,8 @@ values:
   2021-01-01:
     value: 6179
 metadata:
-  ux_name: RFR3 - Demi-part suppl.
-  description_en: CSG - rates on retirement incomes
+  short_label: RFR3 - Demi-part suppl.
+  label_en: CSG - rates on retirement incomes
   ipp_csv_id: seuil_csg_pens_red3_demip
   unit: currency
   reference:
@@ -38,7 +38,7 @@ metadata:
     - title: La hausse de CSG est annulée pour les retraités les plus modestes par la loi 2018-1213 portant mesures d'urgences économiques et sociales. Dans les faits, cela crée un taux intermédiaire de 6,6 % qui vient s'ajouter au taux zéro, au taux réduit et au taux normal.
     2020-01-01:
     - title: Art. L136-8 du CSS non encore modifié
-  last_review: "2021-07-23"
+  last_value_still_valid_on: "2021-07-23"
 documentation: |-
   Référence du Codes général des impôts :
   La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.

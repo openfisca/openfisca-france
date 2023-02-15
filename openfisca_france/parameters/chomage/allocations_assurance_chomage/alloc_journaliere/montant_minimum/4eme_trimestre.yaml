@@ -3,8 +3,8 @@ values:
   1979-07-01:
     value: 0.6
 metadata:
-  ux_name: 4eme trimestre
-  description_en: Special UI scheme for economic layoffs (1979-1983)
+  short_label: 4eme trimestre
+  label_en: Special UI scheme for economic layoffs (1979-1983)
   ipp_csv_id: journ_min_4
   unit: /1
   reference:

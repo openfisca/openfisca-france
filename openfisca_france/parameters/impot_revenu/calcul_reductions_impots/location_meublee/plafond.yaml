@@ -3,7 +3,7 @@ values:
   2009-01-01:
     value: 300000
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   unit: currency
   ipp_csv_id: plaf_locmeu
   reference:

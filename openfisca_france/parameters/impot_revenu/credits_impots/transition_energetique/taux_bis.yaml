@@ -13,7 +13,7 @@ values:
   2020-01-01:
     value: null
 metadata:
-  ux_name: Taux vitrage et fioul
+  short_label: Taux vitrage et fioul
   ipp_csv_id: taux_cite_particulier
   unit: /1
   reference:

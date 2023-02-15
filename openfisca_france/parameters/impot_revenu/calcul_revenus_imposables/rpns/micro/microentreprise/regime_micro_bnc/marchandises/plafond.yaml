@@ -25,7 +25,7 @@ values:
   2020-01-01:
     value: 176200
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: limit_micro
   unit: currency
   reference:

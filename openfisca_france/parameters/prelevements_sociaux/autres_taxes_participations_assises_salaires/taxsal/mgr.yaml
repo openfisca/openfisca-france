@@ -3,8 +3,8 @@ values:
   1968-11-01:
     value: 0.0295
 metadata:
-  ux_name: Martinique, Guadeloupe, Réunion
-  description_en: Payroll tax ("tax on wages") (1968-2016)
+  short_label: Martinique, Guadeloupe, Réunion
+  label_en: Payroll tax ("tax on wages") (1968-2016)
   ipp_csv_id: taxsal_mgr
   unit: /1
   reference:

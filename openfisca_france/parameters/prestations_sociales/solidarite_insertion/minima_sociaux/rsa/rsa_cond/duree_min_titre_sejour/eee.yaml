@@ -3,8 +3,8 @@ values:
   2009-06-01:
     value: 0.25
 metadata:
-  ux_name: Ressortissant de l'EEE
-  description_en: "Active solidarity income (RSA): General conditions"
+  short_label: Ressortissant de l'EEE
+  label_en: "Active solidarity income (RSA): General conditions"
   unit: year
   reference:
     2009-06-01:
@@ -19,5 +19,5 @@ metadata:
   notes:
     2009-06-01:
     - title: 3/12 (3 mois)
-  last_review: "2022-03-28"
+  last_value_still_valid_on: "2022-03-28"
 documentation: "Lien métier:  https://www.service-public.fr/particuliers/vosdroits/F19778"

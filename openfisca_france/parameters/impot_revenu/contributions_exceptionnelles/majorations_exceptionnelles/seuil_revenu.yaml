@@ -1,6 +1,6 @@
 description: Seuil de revenu des majorations exceptionnelles d'impôt
 metadata:
-  ux_name: Seuil de revenu
+  short_label: Seuil de revenu
   ipp_csv_id: seuil_rev_majo
   notes:
     1947-01-01:

@@ -3,8 +3,8 @@ values:
   2002-01-01:
     value: 3
 metadata:
-  ux_name: Seuil de versement
-  description_en: Attendance allowance for individuals living at home (APA)
+  short_label: Seuil de versement
+  label_en: Attendance allowance for individuals living at home (APA)
   unit: SMIC
   reference:
     2002-01-01:

@@ -7,8 +7,8 @@ values:
   2005-01-01:
     value: 0
 metadata:
-  ux_name: Section A (allocation variable)
-  description_en: Contribution for complementary pension scheme (professionals)
+  short_label: Section A (allocation variable)
+  label_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: retc_not_a_0_
   unit: /1
   reference:

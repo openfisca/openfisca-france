@@ -39,8 +39,8 @@ brackets:
     2020-01-01:
       value: 0.111
 metadata:
-  ux_name: Pension
-  description_en: Contributions for pensions - central government (employee contribution)
+  short_label: Pension
+  label_en: Contributions for pensions - central government (employee contribution)
   ipp_csv_id: retpens_pu_s
   reference:
     1925-01-01:
@@ -117,7 +117,7 @@ metadata:
     - title: Modifie le décret 2010-1749 du 30/12/2010
     2015-01-01:
     - title: Modifie le décret 2010-1749 du 30/12/2010
-  last_review: "2021-08-24"
+  last_value_still_valid_on: "2021-08-24"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

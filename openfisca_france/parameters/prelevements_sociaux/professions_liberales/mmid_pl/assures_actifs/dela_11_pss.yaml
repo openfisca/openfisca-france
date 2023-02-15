@@ -29,8 +29,8 @@ values:
   2018-01-01:
     value: 0.065
 metadata:
-  ux_name: Au-delà de 1,1 PSS
-  description_en: SSCs for sickness and maternity benefits (professionals)
+  short_label: Au-delà de 1,1 PSS
+  label_en: SSCs for sickness and maternity benefits (professionals)
   unit: /1
   reference:
     1970-04-01:

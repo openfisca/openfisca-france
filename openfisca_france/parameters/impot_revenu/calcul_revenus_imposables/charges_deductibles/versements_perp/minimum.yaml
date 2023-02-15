@@ -33,7 +33,7 @@ values:
   2019-01-01:
     value: 3973
 metadata:
-  ux_name: Minimum
+  short_label: Minimum
   ipp_csv_id: mindeduc_perp
   unit: currency
   reference:

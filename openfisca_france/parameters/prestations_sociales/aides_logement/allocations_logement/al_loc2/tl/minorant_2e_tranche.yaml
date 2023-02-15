@@ -5,8 +5,8 @@ values:
   2013-01-01:
     value: 20.25
 metadata:
-  ux_name: Minorant pour la 2e tranche
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  short_label: Minorant pour la 2e tranche
+  label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tl_min_tr1
   reference:
     2001-01-01:

@@ -1,7 +1,7 @@
 description: Contribution supplémentaire d'apprentissage sur les salaires, parmi les autres taxes et participations assises sur les salaires
 metadata:
-  ux_name: Contribution supplémentaire
-  description_en: Apprenticeship tax (tax for the financing of apprenticeship)
+  short_label: Contribution supplémentaire
+  label_en: Apprenticeship tax (tax for the financing of apprenticeship)
   order:
   - plus_de_250_moins_de_1pc
   - plus_de_250_entre_1_et_2pc

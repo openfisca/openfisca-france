@@ -41,7 +41,7 @@ values:
   2019-01-01:
     value: 111752
 metadata:
-  ux_name: Plafond (déficits agricoles)
+  short_label: Plafond (déficits agricoles)
   ipp_csv_id: plaf_defba
   unit: currency
   reference:

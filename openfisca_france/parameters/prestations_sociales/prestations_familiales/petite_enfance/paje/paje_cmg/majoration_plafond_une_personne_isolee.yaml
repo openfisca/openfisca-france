@@ -5,8 +5,8 @@ values:
   2008-05-01:
     value: 0.4
 metadata:
-  ux_name: Majoration plafond personne isolée
-  description_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
+  short_label: Majoration plafond personne isolée
+  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
   unit: /1
   reference:
     2004-01-01:

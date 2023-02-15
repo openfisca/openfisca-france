@@ -1,6 +1,6 @@
 description: Seuil 1 de revenu net global pour l'abattement exceptionnel en faveur des personnes âgées ou invalides pour le calcul du revenu imposable
 metadata:
-  ux_name: Seuil 1
+  short_label: Seuil 1
   ipp_csv_id: abat_contrib_ages_invalides_plaf1
   notes:
     1978-01-01:

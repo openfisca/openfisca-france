@@ -1,6 +1,6 @@
 description: Montant de l'abattement exceptionnel en faveur de certains contribuables seuls pour le calcul du revenu imposable
 metadata:
-  ux_name: Montant
+  short_label: Montant
   ipp_csv_id: abat_contrib_seuls
   notes:
     1978-01-01:

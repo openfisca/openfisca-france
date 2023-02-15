@@ -7,7 +7,7 @@ values:
   2020-01-01:
     value: null
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: reduc_bas_revenus_tx
   unit: /1
   reference:

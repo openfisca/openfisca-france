@@ -15,8 +15,8 @@ values:
   2021-06-14:
     value: 0.222
 metadata:
-  ux_name: Taux - CIPAV
-  description_en: Self-employed specific scheme (auto-entrepreneurs)
+  short_label: Taux - CIPAV
+  label_en: Self-employed specific scheme (auto-entrepreneurs)
   ipp_csv_id: auto_plib_ca
   unit: /1
   reference:
@@ -61,7 +61,7 @@ metadata:
     2017-04-01: "2017-03-10"
     2018-01-01: "2017-12-31"
     2021-06-14: "2021-06-13"
-  last_review: "2022-04-11"
+  last_value_still_valid_on: "2022-04-11"
 documentation: |-
   Notes :
   (i) L’auto-entrepreneur bénéficie d’un régime simplifié de calcul et de paiement des cotisations et contributions sociales obligatoires.

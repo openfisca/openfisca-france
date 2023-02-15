@@ -13,8 +13,8 @@ values:
   2002-01-01:
     value: null
 metadata:
-  ux_name: Personne en couple
-  description_en: Attendance allowance (PSD, 1997-2001))
+  short_label: Personne en couple
+  label_en: Attendance allowance (PSD, 1997-2001))
   unit: currency
   reference:
     1997-05-01:

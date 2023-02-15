@@ -13,7 +13,7 @@ values:
 metadata:
   ipp_csv_id: txabt_micro
   unit: /1
-  ux_name: Taux (ventes de marchandises)
+  short_label: Taux (ventes de marchandises)
   reference:
     1979-01-01:
       title: Loi 80-30 du 18/01/1980 (LF pour 1980)

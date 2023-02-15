@@ -3,8 +3,8 @@ values:
   2002-01-01:
     value: 1.7
 metadata:
-  ux_name: Divison des ressources des couples
-  description_en: Attendance allowance for individuals living at home (APA)
+  short_label: Divison des ressources des couples
+  label_en: Attendance allowance for individuals living at home (APA)
   unit: /1
   reference:
     2002-01-01:

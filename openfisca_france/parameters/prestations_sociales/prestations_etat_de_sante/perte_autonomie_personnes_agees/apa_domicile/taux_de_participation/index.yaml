@@ -1,7 +1,7 @@
 description: Taux de participation de l'Allocation personnalisée d'autonomie à domicile (APA)
 metadata:
-  ux_name: Taux de participation
-  description_en: Attendance allowance for individuals living at home (APA)
+  short_label: Taux de participation
+  label_en: Attendance allowance for individuals living at home (APA)
   order:
   - minimum
   - maximum

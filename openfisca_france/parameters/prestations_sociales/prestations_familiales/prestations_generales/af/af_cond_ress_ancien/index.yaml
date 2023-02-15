@@ -1,7 +1,7 @@
 description: Conditions de ressources (1998) des Allocations Familiales (AF)
 metadata:
-  ux_name: Conditions de ressources (1998)
-  description_en: "Family allowances (AF): Thresholds for means-testing"
+  short_label: Conditions de ressources (1998)
+  label_en: "Family allowances (AF): Thresholds for means-testing"
   order:
   - plafond_de_ressources
   - majoration_plafond

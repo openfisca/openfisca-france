@@ -23,7 +23,7 @@ values:
   2020-01-01:
     value: 72600
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: limit_micro_service
   unit: currency
   reference:

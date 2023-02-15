@@ -7,8 +7,8 @@ values:
   2016-01-01:
     value: 1.28412
 metadata:
-  ux_name: Parents isolés ou femmes enceintes
-  description_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
+  short_label: Parents isolés ou femmes enceintes
+  label_en: "Active solidarity income (RSA): Extra allowance and minimal amount"
   ipp_csv_id: rsa_isole_enceinte
   unit: /1
   reference:
@@ -26,5 +26,5 @@ metadata:
   notes:
     2016-01-01:
     - title: Remplacement du RSA activité par la Prime d'activité
-  last_review: "2022-03-29"
+  last_value_still_valid_on: "2022-03-29"
 documentation: Le terme de "parents isolés" est défini dans l'article L. 842-7.

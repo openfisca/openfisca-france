@@ -61,8 +61,8 @@ values:
   2019-01-01:
     value: null
 metadata:
-  ux_name: Part patronale
-  description_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
+  short_label: Part patronale
+  label_en: Contributions for the Guarantee of a minimum of retirement points (GMP) - cadres
   ipp_csv_id: gmp_cot_f_m_p
   unit: currency
   reference:
@@ -114,7 +114,7 @@ metadata:
     - title: Les valeurs des paramètres pour les années 2005 et antérieures sont tirées de barèmes communiqués par l'AGIRC-ARRCO.
     2019-01-01:
     - title: Suppression de la GMP avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et CET, voir barème AGIRC-ARRCO)
-  last_review: "2021-07-30"
+  last_value_still_valid_on: "2021-07-30"
 documentation: |-
   Notes :
   Certains montants n'ont pas été trouvés dans les textes officiels, mais ont été recalculés à partir de la formule de la GMP (voir note ci-dessous).

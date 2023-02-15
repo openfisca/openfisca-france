@@ -1,6 +1,6 @@
 description: Seuils de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
 metadata:
-  ux_name: Seuils
+  short_label: Seuils
   order:
   - seuil_ir
   - seuil_rfr1

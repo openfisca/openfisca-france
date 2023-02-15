@@ -1,6 +1,6 @@
 description: Taxation des produits énergétiques
 metadata:
-  description_en: Taxes and excises on energy products
+  label_en: Taxes and excises on energy products
   order:
   - ticpe
   - tgap_carburants

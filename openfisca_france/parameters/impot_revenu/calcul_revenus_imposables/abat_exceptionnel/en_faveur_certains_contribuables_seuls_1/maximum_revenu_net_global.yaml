@@ -1,6 +1,6 @@
 description: Maximum revenu net global de l'abattement exceptionnel en faveur de certains contribuables seuls pour le calcul du revenu imposable
 metadata:
-  ux_name: Plafond RNG
+  short_label: Plafond RNG
   ipp_csv_id: plaf_contrib_seuls
   notes:
     1978-01-01:

@@ -39,8 +39,8 @@ values:
   2022-01-01:
     value: 8752
 metadata:
-  ux_name: Majoration pour couple avec deux revenus ou parent isolé
-  description_en: "Family complement (CF): Extra allowances"
+  short_label: Majoration pour couple avec deux revenus ou parent isolé
+  label_en: "Family complement (CF): Extra allowances"
   ipp_csv_id: maj_plaf_cf_apje_adopt_bi
   unit: currency
   reference:

@@ -5,8 +5,8 @@ values:
   2023-01-01:
     value: 51.4
 metadata:
-  ux_name: Autres tabacs à chauffer
-  last_review: "2022-12-28"
+  short_label: Autres tabacs à chauffer
+  last_value_still_valid_on: "2022-12-28"
   unit: /1
   reference:
     2022-01-01:

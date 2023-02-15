@@ -7,7 +7,7 @@ values:
   2001-01-01:
     value: 18000
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   unit: currency
   ipp_csv_id: plaf_sofica
   reference:

@@ -3,7 +3,7 @@ values:
   2023-01-01:
     value: -0.0006
 metadata:
-  ux_name: Majoration personne à charge supplémentaire
+  short_label: Majoration personne à charge supplémentaire
   unit: /1
   reference:
     2023-01-01:

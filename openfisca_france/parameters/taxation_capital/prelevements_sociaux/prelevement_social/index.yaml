@@ -1,7 +1,7 @@
 description: Prélèvements sociaux sur les revenus du patrimoine et les produits de placement
 metadata:
-  ux_name: Prélèvements sociaux
-  description_en: Other social levies on financial income
+  short_label: Prélèvements sociaux
+  label_en: Other social levies on financial income
   order:
   - revenus_du_patrimoine
   - produits_de_placement

@@ -1,7 +1,7 @@
 description: Allocation personnalisée d'autonomie à domicile (APA)
 metadata:
-  ux_name: APA
-  description_en: Attendance allowance for individuals living at home (APA)
+  short_label: APA
+  label_en: Attendance allowance for individuals living at home (APA)
   order:
   - plafond_apa_domicile_en_part_mtp
   - seuil_revenu_en_part_mtp

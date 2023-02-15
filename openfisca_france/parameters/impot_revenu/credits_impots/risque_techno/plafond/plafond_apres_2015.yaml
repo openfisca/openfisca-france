@@ -5,7 +5,7 @@ values:
   2015-01-01:
     value: 20000
 metadata:
-  ux_name: Dépenses depuis 2015
+  short_label: Dépenses depuis 2015
   ipp_csv_id: plaf_risques_techno_post
   unit: currency
   reference:

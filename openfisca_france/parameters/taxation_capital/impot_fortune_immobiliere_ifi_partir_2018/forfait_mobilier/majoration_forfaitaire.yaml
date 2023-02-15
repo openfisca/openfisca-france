@@ -3,8 +3,8 @@ values:
   2018-01-01:
     value: 0.05
 metadata:
-  ux_name: Majoration forfaitaire
-  description_en: Furniture package
+  short_label: Majoration forfaitaire
+  label_en: Furniture package
   ipp_csv_id: tx_majo_ifi
   unit: /1
   reference:
@@ -20,7 +20,7 @@ metadata:
   notes:
     2018-01-01:
     - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  last_review: "2022-05-12"
+  last_value_still_valid_on: "2022-05-12"
 documentation: |-
   Note : le contribuable peut opter pour le forfait des 5% de l'actif brut déclaré à l'IFI afin d'évaluer la valeur de ses meubles meublants.
   Référence dans les codes législatifs : L'article 973 du CGI précise que "la valeur des biens est déterminée suivant les règles en vigueur en matière de droits de mutation par décès". Il faut donc se référer à l'article 764 I-3° du CGI qui codifie les règles d'évaluation des biens mobiliers dans le cadre des DMTG : "pour les meubles meublants, et sans que l'administration ait à en justifier l'existence, la valeur imposable ne peut être inférieure à 5 % de l'ensemble des autres valeurs mobilières et immobilières de la succession, la preuve contraire étant aussi réservée."

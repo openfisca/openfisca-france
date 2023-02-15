@@ -51,8 +51,8 @@ values:
   1966-10-01:
     value: null
 metadata:
-  ux_name: Zone abattement maximale
-  description_en: Minimum wage - SMIG
+  short_label: Zone abattement maximale
+  label_en: Minimum wage - SMIG
   ipp_csv_id: smig_h_ab_max
   unit: currency
   notes:

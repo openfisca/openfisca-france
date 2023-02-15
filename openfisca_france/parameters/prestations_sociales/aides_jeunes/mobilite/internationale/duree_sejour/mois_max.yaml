@@ -3,7 +3,7 @@ values:
   2020-06-18:
     value: 9
 metadata:
-  ux_name: Durée maximum
+  short_label: Durée maximum
   unit: month
   reference:
     2020-06-18:

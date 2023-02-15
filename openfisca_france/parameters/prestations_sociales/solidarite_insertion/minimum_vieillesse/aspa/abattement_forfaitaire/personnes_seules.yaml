@@ -5,5 +5,5 @@ values:
   2015-01-01:
     value: 0.9
 metadata:
-  ux_name: Taux Personne Seule
+  short_label: Taux Personne Seule
   unit: SMIC

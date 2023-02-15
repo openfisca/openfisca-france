@@ -3,8 +3,8 @@ values:
   2009-06-01:
     value: 0.12
 metadata:
-  ux_name: 1 personne
-  description_en: "Active solidarity income (RSA): accomodation allowance"
+  short_label: 1 personne
+  label_en: "Active solidarity income (RSA): accomodation allowance"
   ipp_csv_id: rsa_rmi_logt1
   unit: /1
   reference:
@@ -18,4 +18,4 @@ metadata:
   notes:
     2009-06-01:
     - title: "Art. R262-9 : pour les propriétaires sans AL et les logés à titre gratuit (on entend par AL les 3 types d'aides au logement).; Art. R262-10 : pour les bénéficiaires des AL."
-  last_review: "2022-03-29"
+  last_value_still_valid_on: "2022-03-29"

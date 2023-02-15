@@ -1,7 +1,7 @@
 description: Prestation spécifique dépendance (PSD, 1997-2001), Perte d'autonomie des personnes âgées
 metadata:
-  ux_name: PSD
-  description_en: Attendance allowance (PSD, 1997-2001))
+  short_label: PSD
+  label_en: Attendance allowance (PSD, 1997-2001))
   order:
   - seuil_ressources_en_fr_an
   - plafond_cumul_ressources

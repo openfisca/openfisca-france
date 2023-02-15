@@ -3,5 +3,5 @@ values:
   2002-01-01:
     value: 0.025
 metadata:
-  ux_name: Taux
+  short_label: Taux
   unit: /1

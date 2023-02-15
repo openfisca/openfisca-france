@@ -177,7 +177,7 @@ values:
   2022-07-01:
     value: 439.17
 metadata:
-  description_en: Monthly basis for the computation of family allowances (BMAF)
+  label_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: bmaf
   unit: currency
   reference:
@@ -574,7 +574,7 @@ metadata:
     - title: Revalorisation de 1,8%
     2022-07-01:
     - title: Revalorisation de 4%
-  last_review: "2022-09-27"
+  last_value_still_valid_on: "2022-09-27"
 documentation: |-
   Notes :
   Le régime des prestations familiales est fixé par la loi 46-1835 du 22 août 1946

@@ -3,8 +3,8 @@ values:
   1986-01-01:
     value: 20
 metadata:
-  ux_name: Âge minimal
-  description_en: Adult disability allowance (AAH)
+  short_label: Âge minimal
+  label_en: Adult disability allowance (AAH)
   ipp_csv_id: age_min_aah
   unit: year
   reference:

@@ -7,8 +7,8 @@ values:
   2007-07-01:
     value: 0.0238
 metadata:
-  ux_name: Personnes seules et couples avec 2 enfants
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  short_label: Personnes seules et couples avec 2 enfants
+  label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tf_enf2
   unit: /1
   reference:

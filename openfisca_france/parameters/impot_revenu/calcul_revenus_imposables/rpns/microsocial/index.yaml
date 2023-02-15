@@ -1,6 +1,6 @@
 description: Versement libératoire (régime auto-entrepreneur/micro-social)
 metadata:
-  ux_name: Versement libératoire
+  short_label: Versement libératoire
   order:
     - bnc
     - servi

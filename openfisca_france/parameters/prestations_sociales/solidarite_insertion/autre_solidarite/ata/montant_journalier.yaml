@@ -27,8 +27,8 @@ values:
   2017-04-01:
     value: 11.49
 metadata:
-  ux_name: Montant journalier
-  description_en: "Temporary waiting allowance (ATA): Amounts"
+  short_label: Montant journalier
+  label_en: "Temporary waiting allowance (ATA): Amounts"
   ipp_csv_id: ata_fixe
   unit: currency
   reference:

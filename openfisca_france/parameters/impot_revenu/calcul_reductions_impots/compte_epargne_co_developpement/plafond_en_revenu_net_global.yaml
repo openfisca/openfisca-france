@@ -1,6 +1,6 @@
 description: Plafond en % du revenu net global de la réduction d'impôts pour les sommes versées sur un compte épargne codéveloppement (2010 - 2011)
 metadata:
-  ux_name: Plafond (% revenu net global)
+  short_label: Plafond (% revenu net global)
   ipp_csv_id: base_codev
   notes:
     2007-01-01:

@@ -3,7 +3,7 @@ values:
   2009-01-01:
     value: 0.25
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: tx_locmeu
   unit: /1
   reference:

@@ -3,8 +3,8 @@ values:
   2002-01-01:
     value: 0
 metadata:
-  ux_name: Minimum
-  description_en: Attendance allowance for individuals living at home (APA)
+  short_label: Minimum
+  label_en: Attendance allowance for individuals living at home (APA)
   unit: /1
   reference:
     2002-01-01:

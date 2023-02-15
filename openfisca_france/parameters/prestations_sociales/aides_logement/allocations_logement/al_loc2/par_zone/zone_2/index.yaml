@@ -1,7 +1,7 @@
 description: Zone 2 -Plafonds de loyer (après la réforme de 2001) des Allocations Logement (AL)
 metadata:
-  ux_name: Zone 2
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  short_label: Zone 2
+  label_en: Parameters for the rental sector (after the 2001 reform)
   order:
   - personnes_seules
   - couples

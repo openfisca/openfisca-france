@@ -13,8 +13,8 @@ values:
   1974-01-01:
     value: 0.0248
 metadata:
-  ux_name: Presse quotidienne
-  description_en: SSCs for freelance journalists (1964-1974)
+  short_label: Presse quotidienne
+  label_en: SSCs for freelance journalists (1964-1974)
   ipp_csv_id: acc_pq_p_0_1
   unit: /1
   reference:
@@ -37,7 +37,7 @@ metadata:
     1970-01-01: "1970-01-01"
     1973-03-01: "1973-03-17"
     1974-01-01: "1974-02-07"
-  last_review: "1969-01-01"
+  last_value_still_valid_on: "1969-01-01"
 documentation: |-
   Note générale :
   Les journalistes pigistes bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1964 et 1974.

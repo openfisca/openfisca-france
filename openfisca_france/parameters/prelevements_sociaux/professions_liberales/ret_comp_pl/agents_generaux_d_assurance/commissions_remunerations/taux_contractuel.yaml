@@ -5,8 +5,8 @@ values:
   1971-01-01:
     value: 0.063
 metadata:
-  ux_name: Taux contractuel
-  description_en: Contribution for complementary pension scheme (professionals)
+  short_label: Taux contractuel
+  label_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: retc_ass_contr_0_
   unit: /1
   reference:

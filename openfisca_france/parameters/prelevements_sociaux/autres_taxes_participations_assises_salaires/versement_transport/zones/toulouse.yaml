@@ -13,8 +13,8 @@ values:
   2011-07-01:
     value: 0.02
 metadata:
-  ux_name: Toulouse
-  description_en: Transport tax (VT) (contribution to public transports)
+  short_label: Toulouse
+  label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_toulouse
   unit: /1
   reference:
@@ -44,7 +44,7 @@ metadata:
     - title: La loi 73-640 autorise les communes de plus de 300 000 habitants à instaurer un VT, dont le taux (au maximum de 1,5%) sera fixé par décret.
     1975-01-01:
     - title: Le décret 74-933 abaisse le seuil à 10 000 habitants.
-  last_review: "2021-12-07"
+  last_value_still_valid_on: "2021-12-07"
 documentation: |-
   Notes :
   (i) Le versement transport est recouvré par les URSSAF comme les cotisations de Sécurité sociale, et reversé aux collectivités locales.

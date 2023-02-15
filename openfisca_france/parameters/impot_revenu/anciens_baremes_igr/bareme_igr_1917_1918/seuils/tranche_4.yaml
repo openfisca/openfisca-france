@@ -21,7 +21,7 @@ metadata:
         redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à
         4-4'
   unit: currency
-  ux_name: Tranche 4
+  short_label: Tranche 4
 values:
   1917-01-01:
     value: 153000

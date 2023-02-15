@@ -7,5 +7,5 @@ values:
   2009-01-01:
     value: null
 metadata:
-  ux_name: Montant par personne
+  short_label: Montant par personne
   unit: currency

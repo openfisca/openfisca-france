@@ -7,7 +7,7 @@ values:
   2002-01-01:
     value: 12000
 metadata:
-  ux_name: Plafond célibataire
+  short_label: Plafond célibataire
   ipp_csv_id: plaffcp_celib
   unit: currency
   reference:

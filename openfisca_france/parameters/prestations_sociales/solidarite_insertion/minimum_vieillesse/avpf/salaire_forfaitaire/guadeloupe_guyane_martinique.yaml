@@ -89,8 +89,8 @@ values:
   2021-01-01:
     value: 1715.35
 metadata:
-  ux_name: Guadeloupe Guyane Martinique
-  description_en: Elderly insurance for stay-at-home parents (AVPF )
+  short_label: Guadeloupe Guyane Martinique
+  label_en: Elderly insurance for stay-at-home parents (AVPF )
   ipp_csv_id: avpf_ggm
   unit: currency
   reference:
@@ -123,4 +123,4 @@ metadata:
     - title: Convergence des trois montants
     2016-01-01:
     - title: "Le salaire forfaitaire est calculé sur la base du SMIC: SMIC horaire en vigueur au 1er juillet de l’année précédente * 169 (durée hebdomadaire légale du travail (39h) * 52 / 12); cf. article Article R381-3 du CSS"
-  last_review: "2021-01-01"
+  last_value_still_valid_on: "2021-01-01"

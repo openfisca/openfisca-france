@@ -35,10 +35,10 @@ values:
   2018-01-01:
     value: 4050
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_reduction_ir_guyane
   unit: currency
-  description_en: Reductions for French Overseas Territories taxpayers
+  label_en: Reductions for French Overseas Territories taxpayers
   reference:
     1978-01-01:
       title: Loi n° 77-1467 du 30 décembre 1977 (LF pour 1978), art. 2

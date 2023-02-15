@@ -1,5 +1,22 @@
 # Changelog
 
+# 143.0.0 [#2001](https://github.com/openfisca/openfisca-france/pull/2001)
+
+* Amélioration technique
+* Périodes concernées : toutes. 
+* Zones impactées : `openfisca_france/parameters`.
+* Détails :
+  - Prise en compte d'une partie du formatage validé par la communauté dans cette RFC: https://github.com/openfisca/openfisca-france/issues/1672
+  - Changements principaux:
+      - `description_en` devient `label_en`
+      - `ux_name` devient `short_label` 
+      - `last_review` devient `last_value_still_valid_on`
+  
+- Les formatages qui viendront dans une prochaine PR
+  - Changements principaux:
+      - `description` devient `label`
+      - modification du format du champ `reference`
+
 ### 142.0.4 [#2021](https://github.com/openfisca/openfisca-france/pull/2021)
 
 * Changement mineur.

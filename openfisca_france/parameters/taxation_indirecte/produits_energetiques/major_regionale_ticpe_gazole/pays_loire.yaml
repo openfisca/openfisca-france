@@ -7,7 +7,7 @@ values:
   2011-01-01:
     value: 2.5
 metadata:
-  ux_name: Pays de la Loire
+  short_label: Pays de la Loire
   ipp_csv_id: maj_ticpe_die_p_loi
   unit: currency
 documentation: |-

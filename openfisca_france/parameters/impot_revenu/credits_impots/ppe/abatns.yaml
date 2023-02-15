@@ -3,5 +3,5 @@ values:
   2002-01-01:
     value: 1.1111
 metadata:
-  ux_name: Abattement non salarié
+  short_label: Abattement non salarié
   unit: /1

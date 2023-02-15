@@ -5,8 +5,8 @@ values:
   2011-01-01:
     value: 0.004
 metadata:
-  ux_name: ASV Sous 5 PSS
-  description_en: Contribution for complementary pension scheme (professionals)
+  short_label: ASV Sous 5 PSS
+  label_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: asv_aux_0_5
   unit: /1
   reference:

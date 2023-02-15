@@ -13,8 +13,8 @@ values:
   2019-01-01:
     value: 0.04
 metadata:
-  ux_name: Section U, puis C (allocation uniforme)
-  description_en: Contribution for complementary pension scheme (professionals)
+  short_label: Section U, puis C (allocation uniforme)
+  label_en: Contribution for complementary pension scheme (professionals)
   ipp_csv_id: retc_not_u_0_
   unit: /1
   reference:

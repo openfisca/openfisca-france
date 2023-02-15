@@ -1,7 +1,7 @@
 description: Taux régime normal de réduction du prix d'investissement pendant 10 ans si habitation
   principale du contribuable pour les investissements réalisés en Outre-Mer (2003-2021)
 metadata:
-  ux_name: Taux normal
+  short_label: Taux normal
   ipp_csv_id: taux_normal_reduc_invest_outremer
   notes:
     2011-01-01:

@@ -1,6 +1,6 @@
 description: Crédit d'impôt à la transition énergétique (2014-2021) et Crédit d'impôt au développement durable (2005-2014)
 metadata:
-  ux_name: Transition énergétique
+  short_label: Transition énergétique
   order:
   - plafond
   - taux_general

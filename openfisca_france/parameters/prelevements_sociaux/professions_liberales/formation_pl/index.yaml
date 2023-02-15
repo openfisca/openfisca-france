@@ -1,6 +1,6 @@
 description: Participation à la formation professionnelle continue, taxes des professions libérales
 metadata:
-  ux_name: Formation professionnelle
-  description_en: Contribution to lifelong professional training (professionals)
+  short_label: Formation professionnelle
+  label_en: Contribution to lifelong professional training (professionals)
   order:
   - sous_pss

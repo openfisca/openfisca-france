@@ -5,7 +5,7 @@ values:
   2017-01-01:
     value: 22000
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_rehab_touristique
   unit: currency
   reference:

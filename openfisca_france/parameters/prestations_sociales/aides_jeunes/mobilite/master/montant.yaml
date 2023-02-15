@@ -3,7 +3,7 @@ values:
   2017-08-21:
     value: 1000
 metadata:
-  ux_name: Montant
+  short_label: Montant
   unit: currency
   reference:
     2017-08-21:

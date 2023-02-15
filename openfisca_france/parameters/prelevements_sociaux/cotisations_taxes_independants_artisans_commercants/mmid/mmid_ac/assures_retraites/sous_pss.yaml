@@ -19,8 +19,8 @@ values:
   1981-10-01:
     value: null
 metadata:
-  ux_name: Sous PSS
-  description_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  short_label: Sous PSS
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
   ipp_csv_id: mmid_ac_ret_0_1
   unit: /1
   reference:

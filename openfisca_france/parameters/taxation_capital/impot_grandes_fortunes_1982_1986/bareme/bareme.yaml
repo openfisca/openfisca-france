@@ -67,8 +67,8 @@ brackets:
     1987-01-01:
       value: null
 metadata:
-  ux_name: Barème IGF
-  description_en: Wealth tax schedule
+  short_label: Barème IGF
+  label_en: Wealth tax schedule
   ipp_csv_id:
     threshold: seuil1_igf, seuil2_igf, seuil3_igf, seuil4_igf
     rate: tx1_igf, tx2_igf, tx3_igf, tx4_igf
@@ -97,6 +97,6 @@ metadata:
     1985-01-01: "1984-12-30"
     1986-01-01: "1985-12-31"
     1987-01-01: "1986-07-12"
-  last_review: "2021-10-12"
+  last_value_still_valid_on: "2021-10-12"
   rate_unit: /1
   threshold_unit: currency

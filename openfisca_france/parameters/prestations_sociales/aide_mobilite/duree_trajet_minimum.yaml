@@ -1,7 +1,7 @@
 description: Temps (en minutes) du trajet aller‑retour entre le lieu de travail et
   le lieu de résidence pour être éligible à l'aide mobilité de Pôle Emploi.
 metadata:
-  ux_name: Durée trajet
+  short_label: Durée trajet
   reference:
     2021-06-09:
       - title: Délibération n°2021-42 du 8 juin 2021

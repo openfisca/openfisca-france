@@ -13,8 +13,8 @@ values:
   2017-01-01:
     value: 62
 metadata:
-  ux_name: Âge légal de départ à la retraite
-  last_review: "2023-01-01"
+  short_label: Âge légal de départ à la retraite
+  last_value_still_valid_on: "2023-01-01"
   unit: year
   reference: 
     2017-01-01:

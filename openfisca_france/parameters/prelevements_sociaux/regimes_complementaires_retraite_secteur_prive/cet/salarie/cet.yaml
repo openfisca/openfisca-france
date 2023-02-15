@@ -29,8 +29,8 @@ brackets:
     2019-01-01:
       value: null
 metadata:
-  ux_name: Barème salarié
-  description_en: Exceptional and temporary pension contribution (CET)
+  short_label: Barème salarié
+  label_en: Exceptional and temporary pension contribution (CET)
   ipp_csv_id: cet_s_0_8
   reference:
     1997-01-01:
@@ -53,7 +53,7 @@ metadata:
     - title: BSP pour 2001 non communicables à la BNF
     2019-01-01:
     - title: Suppression de la CET avec la fusion des régimes Agirc et Arrco (remplacée par la CEG et nouvelle CET, voir barème AGIRC-ARRCO)
-  last_review: "2021-07-30"
+  last_value_still_valid_on: "2021-07-30"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

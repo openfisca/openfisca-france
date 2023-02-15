@@ -1,6 +1,6 @@
 description: Seuil superieur (revenu imposable par part) des minorations exceptionnelles d'impôt (1965-1992)
 metadata:
-  ux_name: Seuil supérieur
+  short_label: Seuil supérieur
   ipp_csv_id: seuil_rimpmax
   notes:
     1992-01-01:

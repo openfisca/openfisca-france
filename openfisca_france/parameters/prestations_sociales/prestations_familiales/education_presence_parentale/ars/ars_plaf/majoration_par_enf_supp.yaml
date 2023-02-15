@@ -17,9 +17,9 @@ values:
   2014-01-01:
     value: 0.3
 metadata:
-  last_review: "2023-01-27"
-  ux_name: Majoration par enfant, en % de la base du plafond de ressources
-  description_en: "Back-to-school allowance (ARS): Thresholds for means-testing"
+  last_value_still_valid_on: "2023-01-27"
+  short_label: Majoration par enfant, en % de la base du plafond de ressources
+  label_en: "Back-to-school allowance (ARS): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_ars_enf
   unit: /1
   reference:

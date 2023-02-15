@@ -9,8 +9,8 @@ values:
   2020-04-01:
     value: 0.4165
 metadata:
-  ux_name: Taux de base
-  description_en: "Family complement (CF): Thresholds for means-testing in oversea territories"
+  short_label: Taux de base
+  label_en: "Family complement (CF): Thresholds for means-testing in oversea territories"
   unit: BMAF
   reference:
     2002-01-01:

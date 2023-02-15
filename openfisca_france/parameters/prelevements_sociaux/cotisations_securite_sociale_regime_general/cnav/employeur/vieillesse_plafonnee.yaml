@@ -33,8 +33,8 @@ brackets:
     2016-01-01:
       value: 0.0855
 metadata:
-  ux_name: Taux sous plafond
-  description_en: SSCs for old-age benefits (1967-2016)
+  short_label: Taux sous plafond
+  label_en: SSCs for old-age benefits (1967-2016)
   ipp_csv_id:
     rate: cnav_p_0_1
   reference:
@@ -115,7 +115,7 @@ metadata:
     - title: Voir note (i).
     2004-07-01:
     - title: La cotisation veuvage est transférée à la Cnav.
-  last_review: "2021-10-11"
+  last_value_still_valid_on: "2021-10-11"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

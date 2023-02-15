@@ -1,7 +1,7 @@
 description: Majoration plafond pour la majoration du plafond de ressources des Allocation de la mère au foyer (AMF, 1955-1977)
 metadata:
-  ux_name: Majoration plafond pour la majoration
-  description_en: "Allowance for stay-at-home-mother (AMF): Thresholds for means-testing"
+  short_label: Majoration plafond pour la majoration
+  label_en: "Allowance for stay-at-home-mother (AMF): Thresholds for means-testing"
   order:
   - 1_enfant
   - 2_enfants

@@ -1,7 +1,7 @@
 description: Majoration forfaitaire au titre des charges pour une personne isolée ou ménage seul, pour les allocations logement
 metadata:
-  ux_name: Personne isolée ou ménage seul
-  description_en: Lump sum extra allowance for charges
+  short_label: Personne isolée ou ménage seul
+  label_en: Lump sum extra allowance for charges
   order:
   - cas_general
   - cas_colocataires_ou_proprietaires

@@ -97,8 +97,8 @@ values:
   2020-07-01:
     value: 12.05
 metadata:
-  ux_name: Si affiliation entre 3-6 mois
-  description_en: "UI scheme: lump-sum and minimum"
+  short_label: Si affiliation entre 3-6 mois
+  label_en: "UI scheme: lump-sum and minimum"
   ipp_csv_id: base_fixe_3_6
   unit: currency
   reference:

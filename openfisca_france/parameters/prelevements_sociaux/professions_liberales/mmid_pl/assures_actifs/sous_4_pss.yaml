@@ -11,8 +11,8 @@ values:
   1981-10-01:
     value: null
 metadata:
-  ux_name: Taux sous 4 PSS
-  description_en: SSCs for sickness and maternity benefits (professionals)
+  short_label: Taux sous 4 PSS
+  label_en: SSCs for sickness and maternity benefits (professionals)
   ipp_csv_id: mmid_plib_0_4
   unit: /1
   reference:

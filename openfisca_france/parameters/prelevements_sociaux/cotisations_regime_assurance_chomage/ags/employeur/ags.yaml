@@ -65,8 +65,8 @@ brackets:
     1974-01-01:
       value: 0
 metadata:
-  ux_name: Taux employeur
-  description_en: Contributions to the scheme of wage guarantee (AGS)
+  short_label: Taux employeur
+  label_en: Contributions to the scheme of wage guarantee (AGS)
   ipp_csv_id: ags_p_0_4
   reference:
     1974-01-01:

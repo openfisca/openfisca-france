@@ -5,6 +5,6 @@ values:
   1997-01-01:
     value: null
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: tx_salarial
   unit: /1

@@ -3,7 +3,7 @@ values:
   2013-01-01:
     value: 8000
 metadata:
-  ux_name: Majoration
+  short_label: Majoration
   ipp_csv_id: majo_nich
   unit: currency
   reference:

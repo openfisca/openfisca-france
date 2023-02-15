@@ -89,7 +89,7 @@ values:
   2021-01-01:
     value: 18655
 metadata:
-  ux_name: Apprentis
+  short_label: Apprentis
   ipp_csv_id: exo_apprenti
   unit: currency
   reference:

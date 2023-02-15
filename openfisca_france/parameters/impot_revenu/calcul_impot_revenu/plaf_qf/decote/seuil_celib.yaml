@@ -99,10 +99,10 @@ values:
   2022-01-01:
     value: 833 
 metadata:
-  ux_name: Seuil Célibataire
+  short_label: Seuil Célibataire
   ipp_csv_id: param_decote
   unit: currency
-  last_review: "2023-01-05"
+  last_value_still_valid_on: "2023-01-05"
   reference:
     1986-01-01:
       title: Loi 86-1317 du 30/12/1986 (LF pour 1987)

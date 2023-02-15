@@ -1,6 +1,6 @@
 description: Réduction d'impôt pour la défense des forêts contre les incendies
 metadata:
-  ux_name: Défense forêt contre incendies
+  short_label: Défense forêt contre incendies
   order:
   - plafond
   - taux

@@ -1,6 +1,6 @@
 description: Seuil d'impôt 5 des minorations exceptionnelles d'impôt (1965-1992)
 metadata:
-  ux_name: Seuil 5
+  short_label: Seuil 5
   ipp_csv_id: seuil_min5
   notes:
     1992-01-01:

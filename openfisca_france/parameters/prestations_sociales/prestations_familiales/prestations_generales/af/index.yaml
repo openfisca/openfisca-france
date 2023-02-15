@@ -1,7 +1,7 @@
 description: Allocations Familiales (AF)
 metadata:
-  ux_name: Allocations Familiales
-  description_en: Family allowances (AF)
+  short_label: Allocations Familiales
+  label_en: Family allowances (AF)
   order:
   - af_cm
   - af_cond_ress
