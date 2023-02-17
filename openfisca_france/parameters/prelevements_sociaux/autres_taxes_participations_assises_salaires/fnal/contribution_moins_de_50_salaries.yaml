@@ -1,4 +1,4 @@
-description: Contribution pour le Fonds national d'aide au logement (FNAL), entreprises de moins de 50 salariés
+description: Contribution pour le fonds national d'aide au logement (FNAL), entreprises de moins de 50 salariés
 brackets:
 - threshold:
     2020-01-01:
@@ -13,7 +13,7 @@ brackets:
     2020-01-01:
       value: 0
 metadata:
-  ux_name: Entreprises de moins de 50 salariés
+  short_label: Entreprises de moins de 50 salariés
   ipp_csv_id: fnal_p_m50_0_1
   reference:
     2020-01-01:
@@ -23,6 +23,6 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038839912/2020-01-01
   official_journal_date:
     2020-01-01: "2019-05-23"
-  last_review: "2021-12-07"
+  last_value_still_valid_on: "2023-01-30"
   rate_unit: /1
   threshold_unit: PSS

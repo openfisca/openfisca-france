@@ -1,4 +1,4 @@
 description: Allocation d'activité partielle de l'Aide exceptionnelle Covid-19
 metadata:
-  ux_name: Allocation d'activité partielle
-  description_en: Exceptional benefit - COVID-19 crisis
+  short_label: Allocation d'activité partielle
+  label_en: Exceptional benefit - COVID-19 crisis

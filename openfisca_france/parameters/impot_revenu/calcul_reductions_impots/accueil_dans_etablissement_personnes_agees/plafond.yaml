@@ -13,7 +13,7 @@ values:
   2006-01-01:
     value: 10000
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_hebergante
   unit: currency
   reference:

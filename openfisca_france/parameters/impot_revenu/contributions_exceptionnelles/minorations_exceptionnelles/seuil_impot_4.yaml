@@ -1,6 +1,6 @@
 description: Seuil d'impôt 4 des minorations exceptionnelles d'impôt (1965-1992)
 metadata:
-  ux_name: Seuil 4
+  short_label: Seuil 4
   ipp_csv_id: seuil_min4
   notes:
     1966-01-01:

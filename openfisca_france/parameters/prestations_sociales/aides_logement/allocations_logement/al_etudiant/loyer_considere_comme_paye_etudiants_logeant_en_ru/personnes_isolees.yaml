@@ -47,8 +47,8 @@ values:
   2022-07-01:
     value: 87.08
 metadata:
-  ux_name: Personnes isolées
-  description_en: Measure of rent for students living in university residences
+  short_label: Personnes isolées
+  label_en: Measure of rent for students living in university residences
   ipp_csv_id: alf_etudiant_isole
   unit: currency
   reference:
@@ -147,4 +147,4 @@ metadata:
     - title: Montants toujours identiques en 2016
     2015-10-01:
     - title: Idem en 2016
-  last_review: "2022-09-28"
+  last_value_still_valid_on: "2022-09-28"

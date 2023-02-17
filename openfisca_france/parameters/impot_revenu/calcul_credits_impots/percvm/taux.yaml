@@ -1,9 +1,0 @@
-description: Taux du Crédit d’impôt pertes sur cessions de valeurs mobilières
-values:
-  2010-01-01:
-    value: 0.19
-  2011-01-01:
-    value: null
-metadata:
-  ux_name: Taux
-  unit: /1

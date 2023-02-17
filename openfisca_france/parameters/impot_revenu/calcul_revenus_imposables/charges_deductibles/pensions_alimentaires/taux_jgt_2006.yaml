@@ -5,7 +5,7 @@ values:
   2006-01-01:
     value: 0.25
 metadata:
-  ux_name: Majoration
+  short_label: Majoration
   unit: /1
   reference:
     2006-01-01:

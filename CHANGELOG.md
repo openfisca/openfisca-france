@@ -1,6 +1,297 @@
 # Changelog
 
-# 138.0.1 [#1976](https://github.com/openfisca/openfisca-france/pull/1976)
+# 143.0.0 [#2001](https://github.com/openfisca/openfisca-france/pull/2001)
+
+* Amélioration technique
+* Périodes concernées : toutes. 
+* Zones impactées : `openfisca_france/parameters`.
+* Détails :
+  - Prise en compte d'une partie du formatage validé par la communauté dans cette RFC: https://github.com/openfisca/openfisca-france/issues/1672
+  - Changements principaux:
+      - `description_en` devient `label_en`
+      - `ux_name` devient `short_label` 
+      - `last_review` devient `last_value_still_valid_on`
+  
+- Les formatages qui viendront dans une prochaine PR
+  - Changements principaux:
+      - `description` devient `label`
+      - modification du format du champ `reference`
+
+### 142.0.4 [#2021](https://github.com/openfisca/openfisca-france/pull/2021)
+
+* Changement mineur.
+* Périodes concernées : toutes. | jusqu'au JJ/MM/AAAA. | à partir du JJ/MM/AAAA.
+* Zones impactées : 
+     * `parameters/prelevements_sociaux/contributions_sociales/crds`.
+     *  `prelevements_sociaux/contributions_sociales/csg`
+     *  `prestations_sociales/prestations_familiales/education_presence_parentale/aeeh`
+     *  `prestations_sociales/prestations_familiales/petite_enfance/paje`
+     *  `prestations_sociales/prestations_familiales/prestations_generales/af`
+     *  `prestations_sociales/prestations_familiales/prestations_generales/cf/cf_cm/complement_familial`
+
+* Détails 
+    - Modifie les labels pour les rendre plus explicites
+    - Rectifie des erreurs de labels
+    - Ajoute des références, notamment les articles codifiés.
+
+### 142.0.3 [#2025](https://github.com/openfisca/openfisca-france/pull/2025)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/cotsoc`.
+* Détails :
+  - Suite de la suppression des valeurs superflues dans les `order` des cotsocs après passage dans le preprocessing.
+
+### 142.0.2 [#2023](https://github.com/openfisca/openfisca-france/pull/2023)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/cotsoc`.
+* Détails :
+  - Suppression des valeurs superflues dans les `order` des cotsocs après passage dans le preprocessing.
+
+### 142.0.1 [#2020](https://github.com/openfisca/openfisca-france/pull/2020)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/cotsoc`.
+* Détails :
+  - Ajout de champs `order` aux cotsocs après passage dans le preprocessing.
+
+# 142.0.0 [#2000](https://github.com/openfisca/openfisca-france/pull/2000)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/chomage`.
+* Détails - L'ajout du `complement_are` n'a pas été fait en respectant les bonnes pratiques de modélisation:
+  -  plusieurs paramètres dans un même yaml
+  - l'arborescence de rangement n'est pas respectée
+  - le formatage du paramètre est à revoir (ux_name, references)
+  - il y a un doublon avec un autre paramètre
+
+# 141.0.3 [#2012](https://github.com/openfisca/openfisca-france/pull/2012)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées :
+   - `impot_revenu/prelevements_forfaitaires/`
+   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage/apprentissage_taxe`
+   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage/csa`
+   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/construction`
+   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/fin_syndic`
+   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/contribution_unique_formation`
+   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/fnal`
+   - `prelevements_sociaux/contributions_assises_specifiquement_accessoires_salaire/forfait_social`
+   - `prelevements_sociaux/cotisations_secteur_public/mmid`
+   - `prelevements_sociaux/cotisations_securite_sociale_regime_general/cnav`
+   - `prelevements_sociaux/regimes_complementaires_retraite_secteur_prive`
+   - `prestations_sociales/aides_logement/reduction_loyer_solidarite`
+   - `prelevements_sociaux/contributions_sociales/crds`
+   - `prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid`
+   - `prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales`
+   - `prelevements_sociaux/reductions_cotisations_sociales/fillon`
+   - `prestations_sociales/prestations_etat_de_sante/invalidite/aah`
+   - `prestations_sociales/prestations_etat_de_sante/invalidite/asi`
+   - `prestations_sociales/prestations_familiales/bmaf`
+   - `prestations_sociales/prestations_familiales/education_presence_parentale/aeeh`
+   - `prestations_sociales/prestations_familiales/education_presence_parentale/ars`
+   - `prestations_sociales/prestations_familiales/petite_enfance/paje`
+   - `prestations_sociales/prestations_familiales/prestations_generales/af`
+   - `prestations_sociales/prestations_familiales/prestations_generales/cf`
+* Détails :
+  - Change des labels (ux_name et description) pour corriger des erreurs ou préciser le sens.
+  - Ajoute des références :
+    - Articles codifiés
+    - Change parfois les URL des décrets pour mener vers la version qui montre le paramètre
+
+### 141.0.2 [2011](https://github.com/openfisca/openfisca-france/pull/2011)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir de 2023
+* Zones impactées : `prelevements_obligatoires/taxe_habitation/taxe_habitation.py`
+* Détails :
+  - Code la suppression de la taxe d'habitation sur les résidences principales
+
+### 141.0.1 [1988](https://github.com/openfisca/openfisca-france/pull/1988)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes.
+* Zones impactées : model/prestations/minima_sociaux/aah.
+* Détails :
+  - Code la déconjugalisation à partir d'octobre 2023
+  - Exclut les pensions des abattements sur les revenus d'activité
+  - Améliore l'historique des abattements et de l'attribution de l'aah
+
+# 141.0.0 [2015](https://github.com/openfisca/openfisca-france/pull/2015)
+
+* Évolution du système socio-fiscal.  Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prelevements_sociaux/professions_liberales`.
+* Détails :
+  - Renomme  `parameters/prelevements_sociaux/cotisations_taxes_professions_liberales` en`parameters/prelevements_sociaux/professions_liberales`
+
+### 140.0.2 [2014](https://github.com/openfisca/openfisca-france/pull/2014)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/02/2023.
+* Détails :
+  - Prends en compte le taux d'inflation dans celui du Livret d'Épargne Populaire
+
+### 140.0.1 [#2013](https://github.com/openfisca/openfisca-france/pull/2013)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/parameters/geopolitique/regions/`
+  - `openfisca_france/parameters/impot_revenu/`
+  - `openfisca_france/parameters/prestations_sociales/prestations_familiales/education_presence_parentale/ars/`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/autre_solidarite/prime_exceptionnelle_rentree/`
+* Détails :
+  - Corrections de diverses erreurs dans les fichiers YAML des paramètres, dont une typo qui rendait le YAML invalide.
+
+# 140.0.0 [#2007](https://github.com/openfisca/openfisca-france/pull/2007)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : parameters/impot_revenu/calcul_credits_impots
+* Détails :
+  - Renome parameters/impot_revenu/calcul_credits_impots en parameters/impot_revenu/credits_impots
+  - Renome impot_revenu/credits_impots/habitat_princ_credit en impot_revenu/credits_impots/interets_emprunt_habitation_principale
+
+## 139.1.0 [#1994](https://github.com/openfisca/openfisca-france/pull/1994)
+
+* Évolution du système socio-fiscal. Corrections.
+* Périodes concernées : à partir du 01/01/2021.
+* Zones impactées:
+  - model/prestations/prestations_familiales/paje.py
+  - model/prestations/prestations_familiales/ars.py
+  - model/prestations/aides_logement.py
+* Détails :
+  - PAJE et ARS : actualisation des plafonds 2022 et 2023 et des majorations par enfant
+  - Aides au logement:
+    - corrige un plafond
+    - Met fin en 2021 à certains paramètres de l’évaluation forfaitaire
+    - Actualise des revalorisations passées de montants forfaitaires de ressources pour les moins de 25 ans.
+    - Documente certains montants permettant leur calcul
+    - Corrige le mode de calcul de r0 au-delà de 6 enfants (erreur dans le cas normal)
+    - Actualise la formule de calcul de cf en outre-mer
+
+### 139.0.1 [#2005](https://github.com/openfisca/openfisca-france/pull/2005)
+
+* Évolution du système socio-fiscal. Changement mineur.
+* Périodes concernées : à partir du 01/01/2015.
+* Zones impactées : prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.
+* Détails :
+  - Mise à jour du plafond mensuel 2023
+  - Mise à jour calculée des montants annuels et horaires les plus récents, qui ne sont plus explicites depuis 2015
+  - Documentation de ce calcul et d'anciennes valeurs
+
+# 139.0.0 [#1969]https://github.com/openfisca/openfisca-france/pull/1969
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 16/01/2015.
+* Zones impactées :
+  - `model/caracteristiques_socio_demographiques/logement.py`
+  - `parameters/geopolitique/departements_idf.yaml`
+  - `parameters/geopolitique/regions/*/departements.yaml`
+
+* Détails :
+  - Déplace le paramètre `geopolitique.departements_idf` vers `geopolitique.regions.ile_de_france.departements`.
+  - Ajoute un fichier de paramètres contenant la liste des départements pour chaque région de France
+  - Ajoute l'Enum `TypesCodeInseeRegion` contenant la liste des code INSEE de chaque région de France
+  - Ajoute la variable `region` qui indique dans quel région un ménage réside.
+
+## 138.2.0 [#1942](https://github.com/openfisca/openfisca-france/pull/1942)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2022
+* Zones impactées :
+   - `openfisca-france\openfisca_france\model\prestations\minima_sociaux\per.py`.
+   - `openfisca_france\parameters\prestations_sociales\solidarite_insertion\minima_sociaux\per`
+* Détails :
+  - Ajout de la prime exceptionnelle de rentrée versée en 2022
+### 138.1.5 [#1995](https://github.com/openfisca/openfisca-france/pull/1995)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `CHANGELOG.md`.
+* Détails :
+  - Retire un résidu de gestion de conflit du CHANGELOG.
+
+### 138.1.4 [#1993](https://github.com/openfisca/openfisca-france/pull/1993)
+
+* Changement mineur
+* Périodes concernées : du 01/02/2022 jusqu'au 01/08/2022
+* Zones impactées : `parameters/taxation_capital/epargne/livret_a/taux.yaml`.
+* Détails :
+  - Mise à jour du taux du livret A au date du 1 février 2022 et au 1 août 2022
+
+### 138.1.3 [#1981](https://github.com/openfisca/openfisca-france/pull/1981)
+
+* Changement mineur.
+* Périodes concernées : jusqu'au 08/2022.
+* Zones impactées : `parameters/taxation_capital/epargne/taux_inflation.yaml`.
+* Détails :
+  - Ajoute un taux d'inflation par défaut à zéro pour permettre les calculs avant août 2022
+
+### 138.1.2 [#1864](https://github.com/openfisca/openfisca-france/pull/1864)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées :
+  - `parameters/impot_revenu/calcul_impot_revenu/pv/pv_immo/taux.yaml`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/majoration_plafond/majoration_plafond_couple.yaml`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/montant.yaml`
+  - `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/ppa/pa_m/montant_de_base.yaml`
+* Détails :
+  - Ajoute des références législatives aux plus-values immobilières et à l'AAH.
+  - Ajoute les dates de `last_review` pour ces paramètres et la PPA.
+
+### 138.1.1 [#1984](https://github.com/openfisca/openfisca-france/pull/1984)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2023.
+* Zones impactées :
+  - `parameters/marche_travail/salaire_minimum/smic/smic_b_horaire`
+  - `parameters/marche_travail/salaire_minimum/smic/smic_b_mensuel`
+* Détails :
+  - Met à jour le SMIC suite à sa revalorisation mécanique au 1er janvier 2023.
+
+## 138.1.0 [#1899](https://github.com/openfisca/openfisca-france/pull/1899)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2023.
+* Zones impactées :
+    * `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/asf/montant_asf/`
+    * `parameters/taxation_indirecte/taxes_tabacs/`
+ * Détails :
+    - Mise à jour des paramètres à la suite du vote du PLFSS 2023.
+      * Améliore les références de l'Allocation de soutien familial (ASF)
+      * Met à jour l'augmentation des taxes sur le tabac et ses produits dérivés.
+      * Introduit `autres_tabacs_a_chauffer`, `autres_tabacs_a_fumer_apres_chauffer` et `tabacs_batonnets` pour `taux_normal` et `taxes_specifiques` après 2015.
+
+### 138.0.3 [#1987](https://github.com/openfisca/openfisca-france/pull/1987)
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `parameters/impot_revenu/`
+  - `parameters/prelevements_sociaux/contributions_sociales/`
+  - `prestations_sociales/prestations_familiales/education_presence_parentale/ars/`
+* Détails :
+  - Ajout de metadata aux paramètres.
+
+### 138.0.2 [#1905](https://github.com/openfisca/openfisca-france/pull/1905)
+
+* Changement mineur.
+* Toutes périodes concernées
+* Zones impactées :
+  - openfisca_france/model/revenus/activite/salarie.py
+  - openfisca_france/model/base.py
+  - openfisca_france/model/caracteristiques_socio_demographiques/demographie.py
+* Détails :
+  - Ajoute les labels de certains enum de variables
+  - Modifie le nom de certaines variables
+
+### 138.0.1 [#1976](https://github.com/openfisca/openfisca-france/pull/1976)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -17,7 +308,7 @@
 * Détails :
   - Dans `taxation_capital/impot_solidarite_fortune_isf_1989_2017`, renomme `droits_soc` en `droits_sociaux`
 
-# 137.1.1 [#1983](https://github.com/openfisca/openfisca-france/pull/1983)
+## 137.1.1 [#1983](https://github.com/openfisca/openfisca-france/pull/1983)
 
 * Amélioration technique.
 * Périodes concernées : toutes.

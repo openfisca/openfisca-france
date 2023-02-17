@@ -3,8 +3,8 @@ values:
   2013-01-01:
     value: 0.07
 metadata:
-  ux_name: Taux sous plafond RCI
-  description_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
+  short_label: Taux sous plafond RCI
+  label_en: Contribution for complementary pension scheme (sales retailers and craftsmen)
   ipp_csv_id: retc_rci_0_1plaf
   unit: /1
   reference:

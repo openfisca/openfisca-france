@@ -9,7 +9,7 @@ values:
   2019-08-10:
     value: 0.25
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: tx_pme
   unit: /1
   reference:

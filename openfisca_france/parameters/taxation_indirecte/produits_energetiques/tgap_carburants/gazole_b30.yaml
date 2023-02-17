@@ -17,7 +17,7 @@ values:
   2019-01-01:
     value: 0.079
 metadata:
-  ux_name: Gazole B30
+  short_label: Gazole B30
   ipp_csv_id: tgap_b30
   unit: /1
   reference:

@@ -3,7 +3,7 @@ values:
   2006-01-01:
     value: 1000
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   unit: currency
   reference:
     2006-01-01:

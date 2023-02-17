@@ -3,8 +3,8 @@ values:
   2019-01-01:
     value: 0.0068
 metadata:
-  ux_name: Hors Alsace-Moselle
-  description_en: Unique employer's participation to lifelong professional training and apprenticeship
+  short_label: Hors Alsace-Moselle
+  label_en: Unique employer's participation to lifelong professional training and apprenticeship
   unit: /1
   reference:
     2019-01-01:

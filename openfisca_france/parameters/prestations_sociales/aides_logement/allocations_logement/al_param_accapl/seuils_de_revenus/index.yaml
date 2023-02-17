@@ -1,7 +1,7 @@
 description: Seuils de revenus, Paramètres de calcul dans le secteur en accession, aides pour le logement (APL)
 metadata:
-  ux_name: Seuils de revenus
-  description_en: Parameters for new home-buyers (APL)
+  short_label: Seuils de revenus
+  label_en: Parameters for new home-buyers (APL)
   order:
   - 1ere_tranche
   - 2eme_tranche

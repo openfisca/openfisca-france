@@ -5,8 +5,8 @@ values:
   2019-01-01:
     value: 50000
 metadata:
-  ux_name: Plafond
-  description_en: Tax reductions for investment and donations
+  short_label: Plafond
+  label_en: Tax reductions for investment and donations
   ipp_csv_id: plaf_taux_imp_ifi
   unit: currency
   reference:
@@ -23,5 +23,5 @@ metadata:
   notes:
     2018-01-01:
     - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  last_review: "2022-05-16"
+  last_value_still_valid_on: "2022-05-16"
 documentation: "Note : Les réductions d'impôt pour investissement dans les PME, les FCPI et les FIP sont supprimées avec le passage à l'IFI. Néanmoins, à titre dérogatoire et exceptionnel, ces dépenses d'investissement réalisées avant le 31/12/2017 peuvent donner lieu à ces mêmes réductions pour l'IFI 2018 : cf. art. 31 de la loi 2017-1837, fin de l'article : \"Par dérogation au B du présent IX, le 34° du B du I est applicable à compter du 1er janvier 2018. Par exception, les dons et versements ouvrant droit aux avantages fiscaux prévus aux articles 885-0 V bis, 885-0 V bis A et 885-0 V bis B du code général des impôts, dans leur rédaction en vigueur au 31 décembre 2017, effectués entre la date limite de dépôt des déclarations mentionnées à l'article 885 W du même code, dans sa rédaction en vigueur au 31 décembre 2017, au titre de l'impôt de solidarité sur la fortune dû au titre de l'année 2017, et le 31 décembre 2017, sont imputables, dans les conditions prévues aux articles 885-0 V bis, 885-0 V bis A et 885-0 V bis B précités dans leur rédaction en vigueur au 31 décembre 2017, sur l'impôt sur la fortune immobilière dû au titre de l'année 2018.\""

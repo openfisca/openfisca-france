@@ -7,8 +7,8 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Au-delà de 70 % du PSS
-  description_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
+  short_label: Au-delà de 70 % du PSS
+  label_en: SSCs for sickness and maternity benefits (sales retailers and craftsmen)
   ipp_csv_id: ij_ac_0_5
   unit: /1
   reference:

@@ -5,8 +5,8 @@ values:
   1978-01-01:
     value: null
 metadata:
-  ux_name: Base
-  description_en: "Allowance for stay-at-home-mother (AMF): Extra allowances"
+  short_label: Base
+  label_en: "Allowance for stay-at-home-mother (AMF): Extra allowances"
   ipp_csv_id: maj_agri_base
   unit: currency
   reference:

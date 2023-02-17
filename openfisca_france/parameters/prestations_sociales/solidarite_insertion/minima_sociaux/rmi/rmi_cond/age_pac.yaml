@@ -3,6 +3,6 @@ values:
   1977-10-01:
     value: 24
 metadata:
-  ux_name: Âge des personnes à charge
-  description_en: "Minimum insertion income (RMI): General conditions"
+  short_label: Âge des personnes à charge
+  label_en: "Minimum insertion income (RMI): General conditions"
   unit: year

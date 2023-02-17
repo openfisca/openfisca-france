@@ -3,8 +3,8 @@ values:
   2018-01-01:
     value: 5
 metadata:
-  ux_name: Nombre de tranches
-  description_en: Wealth tax schedule
+  short_label: Nombre de tranches
+  label_en: Wealth tax schedule
   ipp_csv_id: nbtranches_ifi
   reference:
     2018-01-01:
@@ -17,4 +17,4 @@ metadata:
   notes:
     2018-01-01:
     - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  last_review: "2022-04-28"
+  last_value_still_valid_on: "2022-04-28"

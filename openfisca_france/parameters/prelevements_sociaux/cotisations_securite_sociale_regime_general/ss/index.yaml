@@ -1,6 +1,6 @@
 description: Cotisations de sécurité sociale (SS) de 1930-1966
 metadata:
-  ux_name: Cotisations de sécurité sociale (1930-1966)
-  description_en: SSC (1930-1966)
+  short_label: Cotisations de sécurité sociale (1930-1966)
+  label_en: SSC (1930-1966)
   order:
   - salaire_sous_pss

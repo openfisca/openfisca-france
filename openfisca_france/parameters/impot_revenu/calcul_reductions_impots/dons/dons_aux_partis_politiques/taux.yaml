@@ -1,6 +1,6 @@
 description: Taux des dons aux partis politiques
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: tx_partipol
   official_journal_date:
     2002-01-01: '2003-08-02'

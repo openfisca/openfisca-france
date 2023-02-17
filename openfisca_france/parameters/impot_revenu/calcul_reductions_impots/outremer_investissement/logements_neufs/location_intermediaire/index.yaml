@@ -1,6 +1,6 @@
 description: Taux de la réduction d'impôt sur 5 ans en cas de location nue dans le secteur intermédiaire pour les investissements réalisés en Outre-Mer (2003-2021)
 metadata:
-  ux_name: Taux location intermédiaire
+  short_label: Taux location intermédiaire
   order:
   - taux_normal
   - taux_vert

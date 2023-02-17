@@ -1,13 +1,14 @@
-description: Âge de début de la 1ere majoration
+description: Âge seuil de la 1ère majoration
 values:
   2002-01-01:
     value: 11
   2008-04-30:
     value: 14
 metadata:
+  short_label: Âge seuil 1ère majoration
   unit: year
   reference:
     2008-04-30:
       title: Article R521-1 du Code de la sécurité sociale Allocations familiales
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018735853
-  last_review: "2022-03-10"
+  last_value_still_valid_on: "2022-03-10"

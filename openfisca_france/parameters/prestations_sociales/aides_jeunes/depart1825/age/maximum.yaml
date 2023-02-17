@@ -3,7 +3,7 @@ values:
   2014-09-05:
     value: 25
 metadata:
-  ux_name: Maximum
+  short_label: Maximum
   unit: year
   reference:
     2014-09-05:

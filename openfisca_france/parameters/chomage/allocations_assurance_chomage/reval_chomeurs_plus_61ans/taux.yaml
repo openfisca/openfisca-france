@@ -29,8 +29,8 @@ values:
   1974-01-01:
     value: null
 metadata:
-  ux_name: Taux
-  description_en: Indexation of UI reference wage for older unemployed - above age 61 (1965-1973)
+  short_label: Taux
+  label_en: Indexation of UI reference wage for older unemployed - above age 61 (1965-1973)
   ipp_csv_id: sr_61
   unit: /1
   reference:

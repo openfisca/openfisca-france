@@ -1,0 +1,24 @@
+description: Majoration du plafonnement des niches
+values:
+  2013-01-01:
+    value: 8000
+metadata:
+  short_label: Majoration
+  ipp_csv_id: majo_nich
+  unit: currency
+  reference:
+    2013-01-01:
+    - title: Loi 2012-1509 du 29/12/2012 - art. 73 (VD)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026872821&cidTexte=JORFTEXT000026856853
+    - title: BOI-IR-LIQ-20-20-10-20130704
+  official_journal_date:
+    2013-01-01: "2012-12-30"
+  notes:
+    2013-01-01:
+    - title: Le plafond est majoré de 8 000 € pour les réductions d'impôt en faveur des investissements outre-mer et celles accordées au titre des souscriptions au capital de SOFICA
+documentation: |-
+  Plafonnement total des niches = plafonnement des niches + taux de plafonnement * revenu net imposable
+  Exemple de calculs :
+  BOI-IR-LIQ-20-20-10-30-20130704
+  Liste des avantages fiscaux :
+  BOI-IR-LIQ-20-20-10-10-20130704

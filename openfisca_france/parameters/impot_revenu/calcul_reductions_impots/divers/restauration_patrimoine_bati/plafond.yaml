@@ -7,7 +7,7 @@ values:
   2016-01-01:
     value: 400000
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_restauimmo
   unit: currency
 documentation: |

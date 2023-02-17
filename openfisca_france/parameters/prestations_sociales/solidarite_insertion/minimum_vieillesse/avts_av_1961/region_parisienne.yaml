@@ -11,8 +11,8 @@ values:
   1960-01-01:
     value: 34
 metadata:
-  ux_name: Région parisienne
-  description_en: Allowance for elderly workers (AVTS, 1941-1961)
+  short_label: Région parisienne
+  label_en: Allowance for elderly workers (AVTS, 1941-1961)
   ipp_csv_id: ildf
   unit: currency
   reference:

@@ -11,7 +11,7 @@ values:
   2019-10-01:
     value: 0.35
 metadata:
-  ux_name: Majoration du plafond
+  short_label: Majoration du plafond
   unit: /1
   reference:
     2005-01-01:

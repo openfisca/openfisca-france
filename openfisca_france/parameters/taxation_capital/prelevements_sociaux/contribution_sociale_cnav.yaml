@@ -5,8 +5,8 @@ values:
   1991-01-01:
     value: null
 metadata:
-  ux_name: Contribution sociale (CNAV)
-  description_en: Other social levies on financial income
+  short_label: Contribution sociale (CNAV)
+  label_en: Other social levies on financial income
   ipp_csv_id: tx_contr_cnav
   unit: /1
   reference:

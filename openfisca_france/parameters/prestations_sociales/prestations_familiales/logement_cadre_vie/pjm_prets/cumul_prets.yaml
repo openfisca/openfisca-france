@@ -15,8 +15,8 @@ values:
   1982-07-01:
     value: null
 metadata:
-  ux_name: Cumul de prêts
-  description_en: "Loans to young household (PJM): Amount of loans"
+  short_label: Cumul de prêts
+  label_en: "Loans to young household (PJM): Amount of loans"
   ipp_csv_id: cumul_pret
   unit: currency
   reference:

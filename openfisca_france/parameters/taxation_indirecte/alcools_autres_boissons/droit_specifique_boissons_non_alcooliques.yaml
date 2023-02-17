@@ -5,7 +5,7 @@ values:
   2002-03-31:
     value: 0.54
 metadata:
-  description_en: Non alcoholic beverages
+  label_en: Non alcoholic beverages
   ipp_csv_id: droit_boiss_non_alcool
   unit: currency
   reference:

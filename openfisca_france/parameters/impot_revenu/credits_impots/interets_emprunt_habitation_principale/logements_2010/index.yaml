@@ -1,0 +1,5 @@
+description: Taux appliqués pour les logements neufs construits ou acquis en 2010 au titre du crédit d'impôt sur les intérêts d'emprunt pour l'habitation principale
+metadata:
+  order:
+  - taux_2
+  - taux_applique_premiere_annuite_remboursement

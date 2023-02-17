@@ -1,0 +1,41 @@
+description: Régime supplémentaire pour les biologistes médicaux conventionnés uniquement (ASV) de la Cotisation de sécurité sociale (SS) sous 5 PSS des Pharmaciens pour la retraite complémentaire, Professions libérales
+values:
+  2008-01-01:
+    value: 0.003
+metadata:
+  short_label: Biologistes médicaux conventionnés
+  label_en: Contribution for complementary pension scheme (professionals)
+  ipp_csv_id: asv_bio_0_5
+  unit: /1
+  reference:
+    2008-01-01:
+    - title: Décret 2007-597 du 24/04/2007
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000649843
+    - title: Décret 2007-458 du 25/03/2007
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000824512
+  official_journal_date:
+    2008-01-01: 2007-04-25; 2007-03-28
+documentation: |-
+  Notes :
+  (1) La Caisse nationale d'assurance vieillesse des professions libérales (CNAVPL) comprend 10 sections professionnelles gérant différents régimes:
+  Agents généraux d'assurance (CAVAMAC) : Assiette limitée par une valeur plancher (fixée chaque année) et une valeur plafond (égale à 10*plancher de janvier 1998 à décembre 2001, puis 12*plancher de janvier 2002 à 2012, puis fixée annuellement. Exemple: égale à 437634€ en 2013.)
+  Infirmiers, masseurs-kiné, orthophonistes, orthoptistes (=auxiliaires médicaux, CARPIMKO) : "seuils fixés chaque année (en 2013 = 25 246 € - 144 046 €), et l'Assurance maladie prend en charge 60 % de la cotisation due au titre du régime supplémentaire (0,24 %). S'ajoute à cette cotisation une cotisation forfaitaire, ainsi qu'une cotisation forfaitaire pour le régime invalidité-décès.""
+  Notaires: "L'assiette a varié au cours du temps (initialement, moyenne sur 5 ans des produits demi-nets des études en cours (la première tranche de 100 000 FRF est comptée pour moitié de sa valeur), puis moyenne sur 3 ans des produits de base de l'office -- la date du changement de réglementation est inconnue). Jusqu'en 2004, existence de 3 sections, A, U et B, la B étant financée par une cotisation forfaitaire dépendant de la classe du notaire ; dès 2005, 2 sections, la B (cotisation forfaitaire, qui dépend de la classe choisie, qui correspond à un certain nombre de points retraite) et la C (correspond à la fusion des anciennes sections A et U). Régime spécial à Colmar et Metz institué par Décret 51-310 du 03/03/1951. Le taux indiqué correspond au maximum du taux supplémentaire décidé chaque année par conseil d'administration de la section professionnelle d'allocation vieillesse des notaires. Source législative principale : Décret 49-578 du 22/04/1949 (JO 24/04/1949)."
+  Architectes, agréés en architecture, ingénieurs, techniciens, géomètres, experts et conseils paient une cotisation uniquement forfaitaire au titre de leur retraite complémentaire, qui dépend du revenu (plusieurs tranches).
+  Officiers ministériels, officiers publics et des compagnies judiciaires : cotisation forfaitaire au titre de la retraite complémentaire et de l'invalidité décès.
+  Experts comptables paient une cotisation uniquement forfaitaire au titre de leur retraite complémentaire, qui dépend du revenu (plusieurs tranches).
+  Vétérinaires : cotisation forfaitaire au titre de la retraite complémentaire et au titre de l'invalidité-décès
+  Chirurgiens dentistes et sages-femmes (CARCDSF) : une cotisation forfaitaire supplémentaire est due, ainsi qu'une cotisation forfaitaire pour le régime invalidité-décès (différente pour les sages-femmes). Rattachement des sages-femmes aux chirurgiens dentistes depuis le 01/01/2009. Avant 2009, les sages-femmes ne cotisaient pas à un régime de retraite complémentaire, mais à un régime de retraite supplémentaire géré par la CARSAF.
+  Pharmaciens : cotisation forfaitaire pour le régime complémentaire et pour le régime invalidité-décès, et cotisation forfaitaire supplémentaire pour le régime supplémentaire ASV (concernant la cotisation proportionnelle, la motié des 0,30 % est versée par l'Assurance maladie).
+  Médecins : cotisation invalidité-décès forfaitaire, et pour le régime supplémentaire, cotisation forfaitaire supplémentaire, et 2/3 du taux est pris en charge par l'assurance maladie pour les médecins de secteur 1. Avant le 01/01/2011, le plafond utilisé n'était pas 3,5 PSS mais une somme fixée annuellement.
+  (2) L'ASV (allocations supplémentaires vieillesse) devient obligatoire pour les médecins conventionnés en juillet 1972 (décret 72-968 du 27/10/1972). Créée à la base pour compenser la fixation des honoraires de médecins par l'Etat, et les encourager à être conventionnés.
+  L'affiliation à un régime supplémentaire d'ASV est également obligatoire pour les sages-femmes conventionnés, depuis 1984.
+  Le taux de la cotisation dépend du forfait accouchement simple en vigueur.
+  (3) Loi 2005-1579 du 19/12/2005: introduit principe de la cotisation d'ajustement proportionnel pour financer l'ASV, ensuite appliquée par décret dans les différentes sections professionnelles
+  Cotisation minimale :
+  (i) Retraite complémentaire
+  Pour les affiliés percevant un revenu professionnel inférieur à 5,25 % du PSS par an, une cotisation minimale annuelle est due.
+  Cotisation minimale = 0,0525*PSS annuel*taux de cotisation (effectif)
+  (ii) Invalidité-décès
+  Pour les affiliés percevant un revenu professionnel inférieur à 20 % du PSS par an, une cotisation minimale annuelle est due.
+  Cotisation minimale = 0,2*PSS annuel*taux de cotisation

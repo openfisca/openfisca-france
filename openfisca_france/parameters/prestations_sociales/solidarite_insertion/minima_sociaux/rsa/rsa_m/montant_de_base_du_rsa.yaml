@@ -41,8 +41,8 @@ values:
   2022-07-01:
     value: 598.54
 metadata:
-  ux_name: RSA socle
-  description_en: "Active solidarity income (RSA): Basic amount"
+  short_label: RSA socle
+  label_en: "Active solidarity income (RSA): Basic amount"
   ipp_csv_id: brsa
   unit: currency
   reference:
@@ -130,4 +130,4 @@ metadata:
   notes:
     2022-07-01:
     - title: Revalorisation de 4%
-  last_review: "2022-09-27"
+  last_value_still_valid_on: "2022-09-27"

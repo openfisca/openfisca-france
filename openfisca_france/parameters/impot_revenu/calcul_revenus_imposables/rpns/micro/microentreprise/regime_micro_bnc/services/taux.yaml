@@ -11,7 +11,7 @@ values:
 metadata:
   ipp_csv_id: txabt_micro_service
   unit: /1
-  ux_name: Taux (Prestations de services)
+  short_label: Taux (Prestations de services)
   reference:
     1979-01-01:
       title: Loi 80-30 du 18/01/1980 (LF pour 1980)

@@ -1,6 +1,6 @@
 description: Déduction pour versements sur un Plan Epargne Retraite Populaire (PERP)
 metadata:
-  ux_name: Versements PERP
+  short_label: Versements PERP
   order:
   - minimum
   - maximum

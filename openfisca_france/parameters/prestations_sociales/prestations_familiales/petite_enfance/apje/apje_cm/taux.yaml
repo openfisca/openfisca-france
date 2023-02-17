@@ -5,8 +5,8 @@ values:
   2004-01-01:
     value: null
 metadata:
-  ux_name: Taux
-  description_en: "Allowance for Young Children (APJE): General conditions and amount"
+  short_label: Taux
+  label_en: "Allowance for Young Children (APJE): General conditions and amount"
   ipp_csv_id: tx_apje
   unit: BMAF
   reference:

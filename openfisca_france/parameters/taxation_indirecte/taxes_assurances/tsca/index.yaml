@@ -1,6 +1,6 @@
 description: Taxe spéciale sur les conventions d'assurance (TSCA)
 metadata:
-  description_en: Taxes on insurance contracts
+  label_en: Taxes on insurance contracts
   order:
   - assurances_incendie_particuliers
   - assurances_incendie_risques_agricoles_non_exoneres

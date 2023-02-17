@@ -13,8 +13,8 @@ values:
   2015-03-01:
     value: null
 metadata:
-  ux_name: Montant journalier
-  description_en: Transitional solidarity allowance (ATS) (2011-2015)
+  short_label: Montant journalier
+  label_en: Transitional solidarity allowance (ATS) (2011-2015)
   ipp_csv_id: solid_fixe
   unit: currency
   reference:

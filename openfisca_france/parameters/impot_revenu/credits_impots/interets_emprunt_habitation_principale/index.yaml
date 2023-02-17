@@ -1,0 +1,12 @@
+description: Crédit d'impôt sur les intérêts d'emprunt pour l'habitation principale (réforme Sarkozy)
+metadata:
+  order:
+  - annee_ir
+  - cas_base
+  - logements_performants_energie
+  - logements_2010
+  - logements_2011
+  - logements_2012
+  - plafond_base
+  - plafond_handicap
+  - majoration_plafond_par_enfant_charge

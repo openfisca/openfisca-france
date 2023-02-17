@@ -241,11 +241,11 @@ brackets:
     1945-01-01:
       value: null
 metadata:
-  ux_name: Barème 1942-44
+  short_label: Barème 1942-44
   type: marginal_rate
   threshold_unit: currency
   rate_unit: /1
-  description_en: Thresholds and marginal tax rates of the IGR tax (1942 - 1944)
+  label_en: Thresholds and marginal tax rates of the IGR tax (1942 - 1944)
   reference:
     1942-01-01:
       title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"

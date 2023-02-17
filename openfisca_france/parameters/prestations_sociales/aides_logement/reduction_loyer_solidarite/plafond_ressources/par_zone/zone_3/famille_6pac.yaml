@@ -5,7 +5,7 @@ values:
   2019-01-01:
     value: 2671
 metadata:
-  ux_name: Famille avec 6 personnes à charge
+  short_label: Famille avec 6 personnes à charge
   ipp_csv_id: plafond_ressources_rls_z3_famille_6pac
   unit: currency
   reference:

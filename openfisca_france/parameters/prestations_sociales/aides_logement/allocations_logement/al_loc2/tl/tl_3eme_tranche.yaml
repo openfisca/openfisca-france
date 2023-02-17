@@ -5,8 +5,8 @@ values:
   2007-07-01:
     value: 0.0068
 metadata:
-  ux_name: TL pour la 3ème tranche
-  description_en: Parameters for the rental sector (after the 2001 reform)
+  short_label: TL pour la 3ème tranche
+  label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tl_2
   unit: /1
   reference:

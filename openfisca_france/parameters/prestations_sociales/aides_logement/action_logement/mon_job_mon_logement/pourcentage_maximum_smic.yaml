@@ -3,7 +3,7 @@ values:
   2021-02-18:
     value: 1.5
 metadata:
-  ux_name: Revenu max
+  short_label: Revenu max
   unit: /1
   reference:
     2021-02-18:

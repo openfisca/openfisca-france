@@ -5,8 +5,8 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Borne supérieure
-  description_en: "\"Décote\" computation"
+  short_label: Borne supérieure
+  label_en: "\"Décote\" computation"
   ipp_csv_id: sup_decote1
   unit: currency
   reference:

@@ -9,6 +9,6 @@ values:
   2020-01-01:
     value: null
 metadata:
-  ux_name: Majoration demi-parts 5 et plus
+  short_label: Majoration demi-parts 5 et plus
   unit: currency
 documentation: Voir I. de l'art. 1414 A du CGI

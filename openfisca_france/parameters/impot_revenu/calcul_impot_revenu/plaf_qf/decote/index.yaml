@@ -1,7 +1,7 @@
-description: Seuils de la décote de l'impôt sur le revenu (1951 - )
+description: Décote de l'impôt sur le revenu (1951 - )
 metadata:
-  ux_name: Seuils décote
-  description_en: Family quotient ceiling and "decote" (1978 - )
+  short_label: Décote
+  label_en: Family quotient ceiling and "decote" (1978 - )
   reference:
     1980-01-01:
       title: Loi 80-1094 du 30/12/1980 (LF pour 1981)
@@ -31,6 +31,7 @@ metadata:
     2016-01-01:
     - title: Introduction d'une réduction d'impôt sous conditon de revenus qui s'impute après la décote mais avant les réductions d'impôt classiques (art. 197-I-4 (b) du CGI)
   order:
+  - taux
   - seuil_celib
   - seuil_couple
   - seuil_1_part

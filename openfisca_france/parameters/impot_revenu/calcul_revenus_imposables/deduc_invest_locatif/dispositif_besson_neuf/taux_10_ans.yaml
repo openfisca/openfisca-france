@@ -1,6 +1,6 @@
 description: Taux de déduction de l'investissement les 10 années suivantes
 metadata:
-  ux_name: Taux 10 ans
+  short_label: Taux 10 ans
   ipp_csv_id: tx_deduction_10_ans_besson_neuf
   notes:
     1996-01-01:

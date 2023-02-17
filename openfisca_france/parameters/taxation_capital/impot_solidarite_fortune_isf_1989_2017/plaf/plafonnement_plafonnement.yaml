@@ -9,8 +9,8 @@ values:
   2013-01-01:
     value: 0.5
 metadata:
-  ux_name: Plafonnement du plafonnement
-  description_en: Wealth tax ceiling
+  short_label: Plafonnement du plafonnement
+  label_en: Wealth tax ceiling
   ipp_csv_id: tx_plaf_plaf
   unit: /1
   reference:

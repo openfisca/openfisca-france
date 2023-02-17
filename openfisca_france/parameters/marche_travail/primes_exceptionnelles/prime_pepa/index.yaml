@@ -1,6 +1,6 @@
 description: Prime exceptionnelle de pouvoir d'achat (PEPA)
 metadata:
-  ux_name: PEPA
+  short_label: PEPA
   order:
   - plafond_salaire
   - plafond_exoneration

@@ -5,8 +5,8 @@ values:
   2015-01-01:
     value: null
 metadata:
-  ux_name: Plafond
-  description_en: Exceptional solidarity tax on high wages ("75% tax")
+  short_label: Plafond
+  label_en: Exceptional solidarity tax on high wages ("75% tax")
   ipp_csv_id: tehr_plaf
   unit: /1
   reference:
@@ -19,7 +19,7 @@ metadata:
   official_journal_date:
     2013-01-01: "2013-12-30"
     2015-01-01: "2013-12-30"
-  last_review: "2021-12-27"
+  last_value_still_valid_on: "2021-12-27"
 documentation: |-
   Note :
   Cette taxe correspond à la nouvelle version de la "taxe à 75%" proposée par F. Hollande durant la campagne présidentielle.

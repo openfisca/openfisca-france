@@ -599,3 +599,126 @@
       2022-05: [920, 0, 0]
     aah:
       2022-05: [920, 0, 0]
+
+
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2004-04
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+      parent2:
+        age: 40
+        salaire_imposable:
+          2002: 1128.70 * 12
+  output:
+    aah_base_ressources:
+      2004-04:
+        - 812.66 # 1128.70 avec les abattements pour conjoint
+        - 1128.7
+
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2006-04
+  absolute_error_margin: 0.005
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        taux_incapacite: 0.9
+      parent2:
+        age: 40
+        salaire_imposable:
+          2006: 1128.70 * 12
+          2005: 1128.70 * 12
+          2004: 1128.70 * 12
+  output:
+    aah_base_ressources:
+      2006-04:
+        - 812.66 # 1128.70 avec les abattements pour conjoint
+        - 887.8 # 1128.70 avec les abattements pour bénéficiaire
+
+- name: AAH retraité, retraite 400
+  period: 2015-11
+  absolute_error_margin: 1
+  input:
+    age: 65
+    taux_incapacite: 0.9
+    retraite_imposable:
+      2013-11: 400
+      2013-10: 400
+      2013-09: 400
+      2013-08: 400
+  output:
+    aah_base_ressources_hors_activite_eval_annuelle:
+      2015-11: 1600
+    aah_base_ressources: 1600/12
+    aah: 674.32 # 807.65-1600/12
+
+- name: AAH demandeur sans ressource et autre
+  period: month:2007-01
+  absolute_error_margin: 0.005
+  input:
+    familles:
+      famille0:
+        parents: [albert, estelle]
+      famille1:
+        parents: [autre1, autre2]
+    menage:
+      personne_de_reference: [albert]
+      conjoint: [estelle]
+      autres: [autre1, autre2]
+    individus:
+      albert:
+        age: 25
+        salaire_imposable:
+          2005: 1200
+      estelle:
+        age: 25
+        salaire_imposable:
+          2005: 0
+      autre1:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2005: 200.70 * 12
+      autre2:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2005: 200.70 * 12
+  output:
+    caah:
+      2007-04:
+        - 0
+        - 0
+        - 0
+        - 0
+
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2007-01
+  absolute_error_margin: 0.005
+  input:
+    menage:
+      personne_de_reference: [personne_de_reference]
+      conjoint: [conjoint]
+    individus:
+      personne_de_reference:
+        age: 25
+        salaire_imposable:
+          2005: 1200
+      conjoint:
+        age: 40
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2005: 200.70 * 12
+  output:
+    caah:
+      2007-04:
+        - 0
+        - 0

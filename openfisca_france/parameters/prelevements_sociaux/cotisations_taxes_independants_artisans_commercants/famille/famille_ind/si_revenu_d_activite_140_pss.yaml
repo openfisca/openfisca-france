@@ -7,8 +7,8 @@ values:
   2018-01-01:
     value: 0.031
 metadata:
-  ux_name: Si revenu d'activité > 140 % PSS
-  description_en: SSCs for family benefits (independent workers)
+  short_label: Si revenu d'activité > 140 % PSS
+  label_en: SSCs for family benefits (independent workers)
   unit: /1
   reference:
     1974-04-01:

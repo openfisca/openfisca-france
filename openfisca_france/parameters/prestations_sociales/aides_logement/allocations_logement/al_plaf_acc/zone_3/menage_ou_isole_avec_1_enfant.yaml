@@ -47,8 +47,8 @@ values:
   2019-10-01:
     value: 342.55
 metadata:
-  ux_name: Ménage ou isolé avec 1 enfant
-  description_en: Annual ceiling of reimbursement for new homebuyers
+  short_label: Ménage ou isolé avec 1 enfant
+  label_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_enf1_z3_al
   unit: currency
   reference:
@@ -130,7 +130,7 @@ metadata:
   notes:
     2015-10-01:
     - title: Idem en 2016
-  last_review: "2022-01-05"
+  last_value_still_valid_on: "2022-01-05"
 documentation: |-
   Notes :
   Il s'agit du montant des mensualités plafonds en AL pour des contrats de prêts signés à compter du 1e janvier 2013.

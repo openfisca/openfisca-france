@@ -1,7 +1,7 @@
 description: Définition des personnes à charge pour les Allocations logement (AL)
 metadata:
-  ux_name: Définition des personnes à charge
-  description_en: Definition of dependants
+  short_label: Définition des personnes à charge
+  label_en: Definition of dependants
   order:
   - age_limite_enfants_charge
   - age_minimal

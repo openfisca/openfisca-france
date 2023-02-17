@@ -1,10 +1,10 @@
-description: Mayotte, Taux couple (sans personne à charge) du montant forfaitaire R0 (Article 2 ter de l'arrêté du 3 juillet 1978) - secteur locatif (après 2001)
+description: Mayotte, valeur couple (sans personne à charge) du montant forfaitaire R0 (Article 2 ter de l'arrêté du 3 juillet 1978) - secteur locatif (après 2001)
 values:
   2021-01-01:
     value: 6122
 metadata:
-  ux_name: Taux couple
-  description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
+  short_label: Montant couple
+  label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   unit: currency
   reference:
     2021-01-01:

@@ -1,7 +1,7 @@
 description: Majoration forfaitaire au titre des charges, pour les allocations logement
 metadata:
-  ux_name: Charges
-  description_en: Lump sum extra allowance for charges
+  short_label: Charges
+  label_en: Lump sum extra allowance for charges
   order:
   - personne_isolee_ou_menage_seul
   - majoration_par_enfant

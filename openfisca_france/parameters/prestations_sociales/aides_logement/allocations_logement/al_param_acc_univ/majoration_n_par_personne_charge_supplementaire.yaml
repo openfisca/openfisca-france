@@ -7,8 +7,8 @@ values:
   1988-07-01:
     value: 0.5
 metadata:
-  ux_name: Majoration N par personne à charge supplémentaire
-  description_en: Parameters for new home-buyers and students residences
+  short_label: Majoration N par personne à charge supplémentaire
+  label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: n_enfsupp
   reference:
     1972-07-01:

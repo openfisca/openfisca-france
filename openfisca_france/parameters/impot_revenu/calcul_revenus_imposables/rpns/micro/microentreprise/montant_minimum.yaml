@@ -7,7 +7,7 @@ values:
   2001-01-01:
     value: 305
 metadata:
-  ux_name: Montant minimum
+  short_label: Montant minimum
   ipp_csv_id: abtmin_micro
   unit: currency
   reference:

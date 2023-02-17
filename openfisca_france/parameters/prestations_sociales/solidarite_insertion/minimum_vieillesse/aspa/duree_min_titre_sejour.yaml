@@ -3,5 +3,5 @@ values:
   2002-01-01:
     value: 10
 metadata:
-  ux_name: Durée min. séjour
+  short_label: Durée min. séjour
   unit: year

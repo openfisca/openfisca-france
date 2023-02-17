@@ -49,8 +49,8 @@ brackets:
     2008-08-06:
       value: 0.026
 metadata:
-  ux_name: Barème ICAA
-  last_review: '2022-12-22'
+  short_label: Barème ICAA
+  last_value_still_valid_on: '2022-12-22'
   reference:
     1989-10-01:
       - title: Code général des impôts, art. 719

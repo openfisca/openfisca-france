@@ -3,8 +3,8 @@ values:
   2007-07-01:
     value: 5357.44
 metadata:
-  ux_name: 4ème (et début 5ème) tranche
-  description_en: Parameters for new home-buyers (APL)
+  short_label: 4ème (et début 5ème) tranche
+  label_en: Parameters for new home-buyers (APL)
   ipp_csv_id: seuil_tr4_lo_apl
   unit: currency
   reference:

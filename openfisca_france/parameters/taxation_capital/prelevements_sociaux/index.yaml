@@ -1,7 +1,7 @@
 description: Prélèvement social et contributions additionnelles sur les revenus du capital
 metadata:
-  ux_name: Prélèvements et contributions
-  description_en: Social levies on financial income
+  short_label: Prélèvements et contributions
+  label_en: Social levies on financial income
   order:
   - csg
   - crds

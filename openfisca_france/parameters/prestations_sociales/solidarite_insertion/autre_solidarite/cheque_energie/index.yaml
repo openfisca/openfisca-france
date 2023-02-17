@@ -1,7 +1,7 @@
 description: Chèque énergie, prestations sociales de solidarité insertion
 metadata:
-  ux_name: Chèque énergie
-  description_en: Help for energy expenses voucher
+  short_label: Chèque énergie
+  label_en: Help for energy expenses voucher
   order:
   - baremes
   - montant_social

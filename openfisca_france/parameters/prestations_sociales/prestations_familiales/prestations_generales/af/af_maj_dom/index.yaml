@@ -1,7 +1,7 @@
-description: Majorations pour les DOM des Allocations Familiales (AF)
+description: Conditions spécifiques pour les DOM des allocations familiales (AF)
 metadata:
-  ux_name: Majorations DOM
-  description_en: Family allowances (AF)
+  short_label: Conditions spécifiques DOM
+  label_en: Family allowances (AF)
   order:
   - allocations_familiales_un_enfant
   - tranches_age

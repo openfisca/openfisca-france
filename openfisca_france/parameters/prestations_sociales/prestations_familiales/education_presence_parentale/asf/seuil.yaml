@@ -5,8 +5,9 @@ values:
   2018-07-01:
     value: 15
 metadata:
+  last_value_still_valid_on: "2023-01-27"
   unit: currency
   reference:
     2018-07-01:
-      title: Article D523-3 du Code de la sécurité sociale, version du 1er juillet 2018
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037249831/
+      title: Article D523-3 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037249831/2018-07-01/

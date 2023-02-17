@@ -11,8 +11,8 @@ values:
   2012-01-01:
     value: 0.24
 metadata:
-  ux_name: Courus au 01/01/95 et après
-  description_en: Levy in discharge on capital income (1965 - 2012)
+  short_label: Courus au 01/01/95 et après
+  label_en: Levy in discharge on capital income (1965 - 2012)
   ipp_csv_id: tx_plac_ap95
   unit: /1
   reference:

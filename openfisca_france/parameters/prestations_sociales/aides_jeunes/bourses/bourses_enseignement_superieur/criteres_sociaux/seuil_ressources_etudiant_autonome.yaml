@@ -3,7 +3,7 @@ values:
   2006-03-31:
     value: 0.9
 metadata:
-  ux_name: Seuil de ressources
+  short_label: Seuil de ressources
   unit: SMIC
   reference:
     2006-03-31:

@@ -1,7 +1,7 @@
 description: Perte d'autonomie des personnes âgées
 metadata:
-  ux_name: Perte d'autonomie
-  description_en: Long term care for the elderly
+  short_label: Perte d'autonomie
+  label_en: Long term care for the elderly
   order:
   - psd
   - apa_mtp

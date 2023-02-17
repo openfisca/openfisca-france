@@ -3,10 +3,10 @@ values:
   1978-01-01:
     value: 0.4
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: taux_reduction_ir_guyane
   unit: /1
-  description_en: Reductions for French Overseas Territories taxpayers
+  label_en: Reductions for French Overseas Territories taxpayers
   reference:
     1978-01-01:
       title: Loi n° 77-1467 du 30 décembre 1977 (LF pour 1978), art. 2

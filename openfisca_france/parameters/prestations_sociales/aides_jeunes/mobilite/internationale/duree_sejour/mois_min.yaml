@@ -3,7 +3,7 @@ values:
   2020-06-18:
     value: 2
 metadata:
-  ux_name: Durée minimum
+  short_label: Durée minimum
   unit: month
   reference:
     2020-06-18:

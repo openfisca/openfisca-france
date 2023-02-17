@@ -18,4 +18,4 @@ values:
     value: 313
   2014-07-01: expected
 metadata:
-  ux_name: Montant plancher
+  short_label: Montant plancher

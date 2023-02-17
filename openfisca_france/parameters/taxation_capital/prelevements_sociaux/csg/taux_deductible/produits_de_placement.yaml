@@ -9,8 +9,8 @@ values:
   2018-01-01:
     value: 0.068
 metadata:
-  ux_name: Produits de placement
-  description_en: CSG on financial income
+  short_label: Produits de placement
+  label_en: CSG on financial income
   ipp_csv_id: tx_csg_ded_rk_plac
   unit: /1
   reference:
@@ -36,7 +36,7 @@ metadata:
   notes:
     2012-01-01:
     - title: Voir note (3).
-  last_review: "2018-01-01"
+  last_value_still_valid_on: "2018-01-01"
 documentation: |-
   Notes: ici (2) et (4)
   En ce qui concerne l'assiette CSG, l'abattement sur l'impôt sur le revenu est appliqué, jusqu'à sa suppression en 1997.

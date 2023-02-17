@@ -1,6 +1,6 @@
 description: Déduction pour pensions alimentaires
 metadata:
-  ux_name: Pensions alimentaires
+  short_label: Pensions alimentaires
   order:
     - plafond
     - taux_jgt_2006

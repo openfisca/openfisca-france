@@ -1,6 +1,6 @@
 description: Taux pour logement situé dans un quartier prioritaire (QP) pour la réduction d'impôt sur 5 ans en cas de location nue dans le secteur intermédiaire pour les investissements réalisés en Outre-Mer (2003-2021)
 metadata:
-  ux_name: Taux quartier prioritaire
+  short_label: Taux quartier prioritaire
   ipp_csv_id: taux_quartier_reduc_invest_locinter_outremer
   notes:
     2011-01-01:

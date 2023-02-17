@@ -1,10 +1,10 @@
-description: Plafond de rémunération (en nombre de SMIC) soumise à l'allègement des cotisations du régime d'assurance maladie (à partir de 2019)
+description: Plafond de rémunération (en nombre de SMIC) des salariés concernés par l'allègement des cotisations du régime d'assurance maladie (à partir de 2019)
 values:
   2019-01-01:
     value: 2.5
 metadata:
-  ux_name: Plafond d'allègement maladie
-  description_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
+  short_label: Plafond de rémunération des salariés
+  label_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
   unit: SMIC
   reference:
     2019-01-01:
@@ -17,7 +17,7 @@ metadata:
   notes:
     2019-01-01:
     - title: Plafond de rémunération en nombre de SMIC en-dessous de laquelle l'allègement pour salaire est appliqué et constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
-  last_review: "2019-01-01"
+  last_value_still_valid_on: "2019-01-01"
 documentation: |-
   A partir de 2019, un allègement sur le taux normal de cotisation MMID est appliqué 
   contrairement à précédemment où des taux d'imposition par tranche étaient en vigueur.

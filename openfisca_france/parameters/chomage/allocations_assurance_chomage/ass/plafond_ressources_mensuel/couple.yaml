@@ -73,8 +73,8 @@ values:
   2020-04-01:
     value: 1857.9
 metadata:
-  ux_name: Couple
-  description_en: Special UI scheme
+  short_label: Couple
+  label_en: Special UI scheme
   ipp_csv_id: ass_plaf_couple
   unit: currency
   reference:

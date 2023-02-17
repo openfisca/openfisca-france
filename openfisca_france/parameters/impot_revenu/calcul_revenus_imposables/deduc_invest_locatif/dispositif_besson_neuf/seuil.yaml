@@ -1,6 +1,6 @@
 description: Seuil minimum d'imposition pour être éligible
 metadata:
-  ux_name: Seuil minimum
+  short_label: Seuil minimum
   ipp_csv_id: seuil_eligibilite_besson_neuf
   notes:
     1996-01-01:

@@ -13,8 +13,8 @@ values:
   2001-01-01:
     value: null
 metadata:
-  ux_name: Par enfant en plus
-  description_en: Parameters for the rental sector (before the 2001 reform)
+  short_label: Par enfant en plus
+  label_en: Parameters for the rental sector (before the 2001 reform)
   ipp_csv_id: plaf_loy_enfsupp_z2_acc
   unit: currency
   reference:

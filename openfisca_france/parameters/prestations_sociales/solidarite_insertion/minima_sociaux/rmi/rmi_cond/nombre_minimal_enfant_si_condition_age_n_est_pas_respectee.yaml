@@ -5,8 +5,8 @@ values:
   2009-06-01:
     value: null
 metadata:
-  ux_name: Nb minimal d'enfants
-  description_en: "Minimum insertion income (RMI): General conditions"
+  short_label: Nb minimal d'enfants
+  label_en: "Minimum insertion income (RMI): General conditions"
   ipp_csv_id: min_npac_rmi_rsa
   unit: year
   reference:
@@ -26,4 +26,4 @@ metadata:
     - title: Création du RMI
     2009-06-01:
     - title: Création du RSA qui remplace le RMI
-  last_review: "2022-03-24"
+  last_value_still_valid_on: "2022-03-24"

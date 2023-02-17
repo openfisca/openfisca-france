@@ -11,6 +11,6 @@ values:
   2004-01-01:
     value: 300
 metadata:
-  ux_name: Incrément
+  short_label: Incrément
   ipp_csv_id: increment_survie
   unit: currency

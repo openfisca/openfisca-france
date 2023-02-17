@@ -5,8 +5,8 @@ values:
   2014-04-01:
     value: 0.4595
 metadata:
-  ux_name: Montant à taux plein
-  description_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
+  short_label: Montant à taux plein
+  label_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
   ipp_csv_id: tx_paje_base_plein
   unit: BMAF
   reference:

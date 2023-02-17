@@ -13,7 +13,7 @@ values:
   2012-01-01:
     value: null
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_sofipeche
   notes:
     1998-01-01:

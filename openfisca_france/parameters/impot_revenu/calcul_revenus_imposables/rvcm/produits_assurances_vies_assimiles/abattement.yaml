@@ -1,6 +1,6 @@
 description: Abattement sur les produits des contrats d'assurance vie et assimilés
 metadata:
-  ux_name: Montant
+  short_label: Montant
   ipp_csv_id: abt_av
   notes:
     1997-01-01:

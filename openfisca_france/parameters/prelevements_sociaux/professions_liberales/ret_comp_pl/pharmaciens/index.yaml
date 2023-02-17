@@ -1,0 +1,6 @@
+description: Cotisation de sécurité sociale (SS) sous 5 PSS des Pharmaciens pour la retraite complémentaire, Professions libérales
+metadata:
+  short_label: Pharmaciens
+  label_en: Contribution for complementary pension scheme (professionals)
+  order:
+  - sous_5_pss

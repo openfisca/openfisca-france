@@ -21,7 +21,7 @@ brackets:
     2020-01-01:
       value: null
 metadata:
-  ux_name: Plus de 20 salariés
+  short_label: Plus de 20 salariés
   ipp_csv_id: cons_p20_0_
   reference:
     1953-09-01:

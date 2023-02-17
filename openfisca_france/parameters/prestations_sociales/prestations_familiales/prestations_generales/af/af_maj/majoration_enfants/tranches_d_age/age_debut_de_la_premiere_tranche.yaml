@@ -1,4 +1,4 @@
-description: Âge de début de la 1ère tranche pour la majoration pour les enfants (en % de la BMAF) des Allocations Familiales (AF)
+description: Âge seuil de la 1ère tranche pour la majoration pour les enfants (en % de la BMAF) des allocations familiales (AF)
 values:
   1984-01-01:
     value: 10
@@ -7,8 +7,8 @@ values:
   2008-05-01:
     value: 14
 metadata:
-  ux_name: Âge début 1ère tranche
-  description_en: "Family allowances (AF): Extra allowances"
+  short_label: Âge seuil tranche 1
+  label_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: maj_enf_age1
   unit: year
   reference:
@@ -30,7 +30,7 @@ metadata:
     - title: Modification des conditions d'âge pour les majorations
     2008-05-01:
     - title: Mise en place d'une majoration unique à partir de 14 ans. Mais, la transition est progressive (chaque année, la majoration dépendra à la fois de l'âge et de la date de naissance des enfants ; cf. plus bas)
-  last_review: "2022-02-23"
+  last_value_still_valid_on: "2023-02-02"
 documentation: |-
   Notes :
   (1) La deuxième tranche de la majoration est créée pour début 1999 (la majoration est augmentée à partir de 16 ans). Cette mesure est supprimée en 2008, mais seulement pour les nouveaux bénéficiaires: le premier taux de 9% s'applique donc jusqu'aux 16 ans des anciens bénéficiaires (jusqu'au 31 avril 2013 inclus)

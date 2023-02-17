@@ -15,14 +15,14 @@ documentation: 'Notes :
   Le taux moyen était de 16% à 20% entre 153000 et 553000 francs, avec une progression
   de 0,01% par tranche de 1000 francs, etc.'
 metadata:
-  description_en: Thresholds and marginal tax rates of the IGR tax (1917-1918)
+  label_en: Thresholds and marginal tax rates of the IGR tax (1917-1918)
   reference:
     1917-01-01:
       title: 'T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et
         redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à
         4-4'
   unit: currency
-  ux_name: Tranche 4
+  short_label: Tranche 4
 values:
   1917-01-01:
     value: 1000

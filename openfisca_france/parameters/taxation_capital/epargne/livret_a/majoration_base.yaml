@@ -3,7 +3,7 @@ values:
   2008-07-28:
     value: 0.005
 metadata:
-  ux_name: Majoration
+  short_label: Majoration
   unit: /1
   reference:
     2008-07-28:

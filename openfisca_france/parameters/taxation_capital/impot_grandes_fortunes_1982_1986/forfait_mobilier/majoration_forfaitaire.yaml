@@ -5,8 +5,8 @@ values:
   1987-01-01:
     value: null
 metadata:
-  ux_name: Majoration forfaitaire
-  description_en: Furniture package
+  short_label: Majoration forfaitaire
+  label_en: Furniture package
   ipp_csv_id: tx_majo_igf
   unit: /1
   reference:

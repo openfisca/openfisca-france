@@ -19,10 +19,10 @@ brackets:
     2011-01-01:
       value: 0.04
 metadata:
-  ux_name: Barème contrib. hauts revenus
+  short_label: Barème contrib. hauts revenus
   rate_unit: /1
   threshold_unit: currency
-  description_en: Exceptional tax on high incomes (2012-)
+  label_en: Exceptional tax on high incomes (2012-)
   reference:
     2011-01-01:
       title: Loi 2011-1977 du 28/12/2011 (LF pour 2012) - art. 2

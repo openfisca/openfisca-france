@@ -427,7 +427,7 @@ brackets:
     2002-04-01:
       value: 0
 metadata:
-  ux_name: Montant indemnité
+  short_label: Montant indemnité
   reference:
     2002-04-01:
     - title: Article D434-1 du Code de la sécurité sociale
@@ -486,6 +486,6 @@ metadata:
     2022-04-01:
     - title: Revalorisation de 1,8%
   amount_unit: currency
-  last_review: "2022-04-13"
+  last_value_still_valid_on: "2022-04-13"
   type: single_amount
 documentation: https://www.unsaaerien.com/wp-content/uploads/2021/04/20210419_Accidents-du-travail_Revalorisations-rentes-AT-MP.pdf circulaire CNAM numéro 10/2021 du 24 mars 2021 - Barème des indemnités en capital 1/04/2021 Pour le calcul j'ai utilisé les taux d'inflation utilisé par le gouvernement qu'on trouve dans le paramètre BMAF qui est aussi revalorisé en fonction de l'inflation valeurs pour 1986 - https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006736994/1986-10-30/ revalorisation entre 1986 et 1998 - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743073/1985-12-21/

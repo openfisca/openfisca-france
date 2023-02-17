@@ -1,6 +1,6 @@
 description: Taux pour logement dans un QP utilisant une énergie renouvelable de la réduction d'impôt sur 5 ans en cas de location nue (minimum 5 ans) pour les investissements réalisés en Outre-Mer (2003-2021)
 metadata:
-  ux_name: Taux quartier vert
+  short_label: Taux quartier vert
   ipp_csv_id: taux_quartiervert_reduc_invest_locnue_outremer
   notes:
     2011-01-01:

@@ -1,12 +1,12 @@
-description: Nombre minimal d'enfants pour avoir droit à la majoration forfaitaire pour les plus de 20 ans, Allocations Familiales (AF)
+description: Nombre minimal d'enfants pour avoir droit à la majoration forfaitaire pour les plus de 20 ans, allocations familiales (AF)
 values:
   1986-01-01:
     value: null
   2003-07-01:
     value: 3
 metadata:
-  ux_name: Nb min d'enfants pour la maj. forfaitaire (>20 ans)
-  description_en: "Family allowances (AF): Extra allowances"
+  short_label: Nb min d'enfants pour la maj. forfaitaire (>20 ans)
+  label_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: afmaj_nenf_min
   unit: year
   reference:
@@ -29,7 +29,7 @@ metadata:
     - title: Création de la majoration pour âge des allocations familiales (articles L521-3 et R521-1 du CSS)
     2003-07-01:
     - title: Création majoration pour les enfants de plus de 20 ans
-  last_review: "2022-02-24"
+  last_value_still_valid_on: "2022-02-24"
 documentation: |-
   Notes :
   (1) La deuxième tranche de la majoration est créée pour début 1999 (la majoration est augmentée à partir de 16 ans). Cette mesure est supprimée en 2008, mais seulement pour les nouveaux bénéficiaires: le premier taux de 9% s'applique donc jusqu'aux 16 ans des anciens bénéficiaires (jusqu'au 31 avril 2013 inclus)

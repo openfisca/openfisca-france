@@ -9,7 +9,7 @@ values:
   2017-01-01:
     value: 0.77
 metadata:
-  ux_name: Corse
+  short_label: Corse
   ipp_csv_id: maj_ticpe_super_cor
   unit: currency
 documentation: |-

@@ -1,7 +1,7 @@
-description: Majoration des plafonds de ressources du Complément familial (CF)
+description: Majoration de la base du plafond de ressources du complément familial (CF)
 metadata:
-  ux_name: Majoration
-  description_en: "Family complement (CF): Extra allowances"
+  short_label: Majoration de la base du plafond de ressources
+  label_en: "Family complement (CF): Extra allowances"
   order:
   - biactifs_isoles
   - deux_premiers_enf

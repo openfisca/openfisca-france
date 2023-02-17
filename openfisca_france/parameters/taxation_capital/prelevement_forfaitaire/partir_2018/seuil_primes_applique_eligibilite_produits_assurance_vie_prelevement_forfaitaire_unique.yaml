@@ -3,8 +3,8 @@ values:
   2018-01-01:
     value: 150000
 metadata:
-  ux_name: Seuil d'éligibilité au PFU des produits d'assurance-vie
-  description_en: Flat tax on capital income (from 2018)
+  short_label: Seuil d'éligibilité au PFU des produits d'assurance-vie
+  label_en: Flat tax on capital income (from 2018)
   unit: currency
   reference:
     2018-01-01:

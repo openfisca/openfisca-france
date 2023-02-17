@@ -1,4 +1,4 @@
-description: Montant mensuel de la majoration pour la vie autonome (MVA), Complément de l'allocation pour adulte handicapé (CAAH)
+description: Montant mensuel de la majoration pour la vie autonome (MVA)
 values:
   2002-01-01:
     value: null
@@ -11,8 +11,8 @@ values:
   2008-01-01:
     value: 104.77
 metadata:
-  ux_name: Majoration
-  description_en: Additional adult disability allowance (CAAH)
+  short_label: Majoration
+  label_en: Additional adult disability allowance (CAAH)
   unit: currency
   reference:
     2002-01-01:
@@ -38,7 +38,7 @@ metadata:
     2006-01-01: "2006-05-12"
     2007-01-01: "2006-12-31"
     2008-01-01: "2007-12-30"
-  last_review: "2022-01-03"
+  last_value_still_valid_on: "2022-01-03"
 documentation: |-
   Notes :
   Dispositif créé par la loi 75-534 du 30 Juin 1975

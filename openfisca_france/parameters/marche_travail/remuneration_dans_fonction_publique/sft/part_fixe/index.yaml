@@ -1,7 +1,7 @@
 description: Part fixe du supplément familial de traitement
 metadata:
-  ux_name: Part fixe
-  description_en: Fixed share
+  short_label: Part fixe
+  label_en: Fixed share
   order:
   - un_enfant
   - deux_enfants

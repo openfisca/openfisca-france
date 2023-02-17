@@ -7,7 +7,7 @@ values:
   2009-01-01:
     value: 0
 metadata:
-  ux_name: Montant Prime de Noël 2008
+  short_label: Montant Prime de Noël 2008
   unit: currency
   reference:
     2008-01-01:

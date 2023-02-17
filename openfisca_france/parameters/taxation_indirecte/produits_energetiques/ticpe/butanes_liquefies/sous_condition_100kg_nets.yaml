@@ -17,7 +17,7 @@ values:
   2018-01-01:
     value: 15.9
 metadata:
-  ux_name: Sous condition (100kg nets)
+  short_label: Sous condition (100kg nets)
   ipp_csv_id: ticpe_butane_cond
   unit: currency
   reference:

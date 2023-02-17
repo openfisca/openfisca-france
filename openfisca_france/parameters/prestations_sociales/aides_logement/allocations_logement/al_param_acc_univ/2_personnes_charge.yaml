@@ -5,8 +5,8 @@ values:
   1988-07-01:
     value: 3
 metadata:
-  ux_name: 2 personnes à charge
-  description_en: Parameters for new home-buyers and students residences
+  short_label: 2 personnes à charge
+  label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: n_2enf
   unit: /1
   reference:

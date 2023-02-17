@@ -11,8 +11,9 @@ values:
   2014-07-01:
     value: 0.57
 metadata:
-  ux_name: Pourcentage du SJR
-  description_en: "UI scheme: rates and maximum"
+  short_label: Pourcentage du SJR
+  last_value_still_valid_on: "2022-01-20"
+  label_en: "UI scheme: rates and maximum"
   ipp_csv_id: base_prct
   unit: /1
   reference:
@@ -24,7 +25,9 @@ metadata:
     1989-10-01:
       title: Arrêté du 14/05/1990 portant agrément de la convention du 01/01/1990
     2014-07-01:
-      title: Arrêté du 25/06/2014 portant agrément de la convention, art. 14 du titre 1er
+    - title: Arrêté du 25/06/2014 portant agrément de la convention, art. 14 du titre 1er
+    - title: Décret n° 2019-797 du 26/07/2019 relatif au régime d'assurance chômage, art. 14
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038869220
   official_journal_date:
     1968-07-22: "1967-07-19"
     1984-04-01: "1984-04-04"

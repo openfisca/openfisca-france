@@ -291,10 +291,10 @@
       2023: [0, 0, 0, 0, 0, 0, 0]
     salaire_net:
       2022-09: [4415.30, 4415.30, 4415.30, 4415.30, 4415.30, 4415.30, 4415.30]
-      2023-09: [4415.30, 4415.30, 4415.30, 4415.30, 4415.30, 4415.30, 4415.30]
+      2023-09: [4412.47, 4412.47, 4412.47, 4412.47, 4412.47, 4412.47, 4412.47] #  4412.47 avec l'augmentation du plafond secu (sinon=2022) via le montant csg-crds
     irpp:
       2022: [-8413, -8413, -8413, -8413, -8413, -8413, -8413]
-      2023: [-8413, -8413, -8413, -8413, -8413, -8413, -8413]
+      2023: [-8404, -8404, -8404, -8404, -8404, -8404, -8404]
 
 
 - name: Prime pérenne de partage de la valeur pour salaire >= 3 SMIC
@@ -336,13 +336,13 @@
       2022-09: [-0, -50, -70, -50, -50, -100, -120]
       2023-09: [-0, -50, -70, -50, -50, -100, -120]
     salaire_net:
-      2023-09: [4415.30, 4641.4814, 4721.692, 4641.4814, 4641.4814, 4867.656, 4947.8657]
+      2023-09: [4412.47, 4638.64, 4718.85, 4638.64, 4638.64, 4864.82, 4945.03]
     rfr:
       # La totalité de la prime est dans le RFR
-      2023: [49396.887, 51916.477, 52814.19, 51916.477, 51916.477, 54436.043, 55333.754]
+      2023: [49367.01, 51886.58, 52783.31, 51886.58, 51886.58, 54406.16, 55302.87]
     irpp:
       # La totalité de la prime est soumise à l'IR
-      2023: [-8413, -9169, -9438, -9169, -9169, -9925, -10194]
+      2023: [-8404, -9160, -9429, -9160, -9160, -9916, -10185]
 
 
 - name: Prime pérenne de partage de la valeur vs primes_salaires
@@ -365,15 +365,15 @@
       2023-09: [5083.3335, 5083.3335]
     salaire_net:
       # L'exonération de charge sociale fait monter le salaire_net
-      2023-09: [4036.5398, 4045.0896]
+      2023-09: [4033.70, 4042.25]
     rfr:
       # La totalité de la prime est dans le RFR
-      2023: [45161.223, 45253.82]
+      2023: [45130.34, 45222.94]
     irpp:
       # La totalité de la prime est soumise à l'IR
-      2023: [-7142, -7170]
+      2023: [-7133, -7161]
     revenu_disponible:
-      2023: [42050.17, 42124.773]
+      2023: [42025.29, 42099.90]
 
 - name: Prime exceptionnelle de partage de la valeur pour un salarié à temps partiel < 3*SMIC mais dont l'équivalent temps plein est > 3*SMIC
   period: 2023
@@ -385,24 +385,24 @@
       2022: [12, 11.9, 12.1]
       2023: [12, 11.9, 12.1]
     salaire_de_base:
-      # SMIC 2022-08-01: 1678.95 * 3 * 12 = 60_442,2
-      2022: [60_442, 60_442, 60_442]
-      # SMIC 2023-01-01: 1_709 * 3 * 12 = 61_524
-      # A changer quand la valeur du SMIC sera à jour 2023: [61_524, 61_524, 61_524]
-      2023: [60_442, 60_442, 60_442]
-
+      # Attention : Salaire strictement inférieur à 3 * dernier SMIC annuel en vigueur en 2023
+      # SMIC 2023-01-01 : 1_709.28 * 12 = 20_511.36, 20_511.36 * 3 = 61_534.08
+      # Même salaire en 2022 car l'éligibilité est évaluée sur une année glissante
+      2022: [61_534, 61_534, 61_534]
+      2023: [61_534, 61_534, 61_534]
     prime_partage_valeur_exceptionnelle: [1200, 1200, 1200]
   output:
     quotite_de_travail:
       2023-01: [1, 0.99, 1.008]
-    # Le deuxième n'a pas le droit de toucher la prime exceptionnelle car son salaire équivalent temps plein est > 3 SMIC
+    # Le deuxième n'a pas le droit de toucher la prime exceptionnelle
+    # car son salaire équivalent temps plein est > 3 SMIC
     ppv_eligibilite_exceptionnelle: [1, 0, 1]
     prime_partage_valeur_exoneree_exceptionnelle: [1_200, 0, 1_200]
     prime_partage_valeur_non_exoneree_exceptionnelle: [0, 0, 0]
     salaire_de_base:
-      2023-01: [5_036, 5_036, 5_036]
+      2023-01: [5_127, 5_127, 5_127]
     salaire_net:
-      2023-01: [4_099, 3_999, 4_098]
+      2023-01: [4_172, 4_072, 4_172]
 
 - name: PEPA + PPV la même année, il ne faut pas dépasser le plafond PPV, en intégrant PEPA+PPV
   period: 2022
@@ -415,7 +415,7 @@
     accord_interessement: [true, true]
   output:
     # TODO: KO, OpenFisca ne sait pas calculer la PPV pour 2022, on ne peut pas faire ce test !!!
-    #prime_partage_valeur_exoneree: [0, 6_000]
-    #prime_partage_valeur_non_exoneree: [1_000, 0]
+    # prime_partage_valeur_exoneree: [0, 6_000]
+    # prime_partage_valeur_non_exoneree: [1_000, 0]
     prime_exceptionnelle_pouvoir_achat_exoneree: [2_000, 2_000]
     prime_exceptionnelle_pouvoir_achat_non_exoneree: [1_000, 0]

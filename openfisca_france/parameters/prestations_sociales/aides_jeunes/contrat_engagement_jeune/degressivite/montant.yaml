@@ -3,7 +3,7 @@ values:
   2022-03-01:
     value: 200
 metadata:
-  ux_name: Montant
+  short_label: Montant
   unit: currency
   reference:
     2022-03-01:

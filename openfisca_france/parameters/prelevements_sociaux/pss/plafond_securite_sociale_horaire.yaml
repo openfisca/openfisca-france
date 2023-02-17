@@ -8,9 +8,15 @@ values:
     value: 23
   2015-01-01:
     value: 24
+  2018-01-01:
+    value: 25
+  2020-01-01:
+    value: 26
+  2023-01-01:
+    value: 27
 metadata:
-  ux_name: Plafond horaire
-  description_en: Social security hourly ceiling
+  short_label: Plafond horaire
+  label_en: Social security hourly ceiling
   unit: currency
   reference:
     2009-01-01:
@@ -18,19 +24,40 @@ metadata:
       href: https://www.legifrance.gouv.fr/eli/decret/2008/12/19/2008-1394/jo/texte
     2010-01-01:
       title: Arrêté du 18/11/2009
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000021334833/
     2012-01-01:
       title: Arrêté du 30/12/2011
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000025060932
     2015-01-01:
-      title: Arrêté du 26/12/2014
+    - title: Arrêté du 26/12/2014
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000029862934
+    - title: Article D242-19 du Code de la Sécurité Sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025103320/2012-01-01/
+    2018-01-01:
+      title: Arrêté du 05/12/2017
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000036171734
+    2020-01-01:
+      title: Arrêté du 02/12/2019
+      href: https://www.legifrance.gouv.fr/eli/arrete/2019/12/2/SSAS1934384A/jo/texte
+    2023-01-01:
+      title: Arrêté du 09/12/2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046745084
   official_journal_date:
     2009-01-01: "2008-12-24"
     2010-01-01: "2009-11-26"
     2012-01-01: "2011-12-31"
     2015-01-01: "2014-12-09"
-  last_review: "2015-01-01"
+    2018-01-01: "2017-12-09"
+    2020-01-01: "2019-12-03"
+    2023-01-01: "2022-12-16"
+  notes:
+    2015-01-01:
+    - title: à partir de cette date, les montants ne sont plus explicitement dans la loi,  mais sont calculés à partir de https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025103320/2012-01-01/ (montant_mensuel*12/nb_h_travaillee_de_ref, ce dernier valant 1607)
+  last_value_still_valid_on: "2015-01-01"
 documentation: |-
   Sources de la législation :
   Légifrance.gouv.fr depuis 2001; Barème social périodique entre 1976 et 2000; Législation.cnav.fr et Légifrance avant 1976.
   Notes :
   La référence législative est le plafond mensuel, par quinzaine, par semaine, par jour ou par heure. C'est la périodicité de la paie qui détermine le montant des cotisations et du plafond applicable.
   Pour autant, la régularisation de la paie est effectuée en fin d'année, en fonction d'un plafond annuel, calculé comme la somme des plafonds applicables sur l'ensemble des périodicités de la paie.
+  A partir de 2015, la valeur n'est plus donnée explicitement mais est calculée à partir du plafond mensuel https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025103320/2012-01-01/.

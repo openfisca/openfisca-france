@@ -7,7 +7,7 @@ values:
   2005-01-01:
     value: 20000
 metadata:
-  ux_name: Plafond si invalide
+  short_label: Plafond si invalide
   ipp_csv_id: plafsaldominvalide
   unit: currency
   reference:

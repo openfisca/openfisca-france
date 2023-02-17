@@ -7,7 +7,7 @@ values:
   2001-01-01:
     value: 10700
 metadata:
-  ux_name: Plafond (déficits fonciers)
+  short_label: Plafond (déficits fonciers)
   ipp_csv_id: plaf_def_fonc
   unit: currency
   reference:

@@ -17,7 +17,7 @@ brackets:
     2020-01-01:
       value: 0
 metadata:
-  ux_name: Entreprises de moins de 20 salariés
+  short_label: Entreprises de moins de 20 salariés
   ipp_csv_id: fnal_p_m20_0_1
   reference:
     2015-01-01:

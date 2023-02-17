@@ -1,0 +1,5 @@
+description: Liste des départements membre de la région Mayotte
+unit: codes départements
+values:
+  2015-01-16:
+    value: ["976"]

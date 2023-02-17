@@ -1,6 +1,6 @@
 description: Plafond (en % du rev net global) de la réduction d'impôt pour souscriptions de parts au capital de SOFIPECHE (1999 - 2012)
 metadata:
-  ux_name: Plafond (% revenu net global)
+  short_label: Plafond (% revenu net global)
   ipp_csv_id: base_sofipeche
   notes:
     1998-01-01:

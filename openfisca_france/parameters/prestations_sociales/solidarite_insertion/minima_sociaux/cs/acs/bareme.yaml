@@ -59,11 +59,11 @@ brackets:
     2019-11-01:
       value: null
 metadata:
-  ux_name: Montant par âge
+  short_label: Montant par âge
   type: single_amount
   threshold_unit: year
   amount_unit: currency
-  last_review: "2022-12-13"
+  last_value_still_valid_on: "2022-12-13"
   reference:
     2005-01-01:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006745458/2005-01-01/

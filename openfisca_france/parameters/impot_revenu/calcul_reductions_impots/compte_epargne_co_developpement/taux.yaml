@@ -1,6 +1,6 @@
 description: Taux de la réduction d'impôts pour les sommes versées sur un compte épargne codéveloppement (2010 - 2011)
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: tx_codev
   notes:
     2009-01-01:

@@ -5,8 +5,8 @@ values:
   2017-10-01:
     value: 5
 metadata:
-  ux_name: Montant forfaitaire Mf0
-  description_en: Parameters for new home-buyers and students residences
+  short_label: Montant forfaitaire Mf0
+  label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: mf0
   unit: currency
   reference:

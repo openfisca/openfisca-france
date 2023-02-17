@@ -1,6 +1,6 @@
 description: Abattement sur recettes des microentreprises
 metadata:
-  ux_name: Microentreprises
+  short_label: Microentreprises
   order:
     - regime_micro_ba
     - regime_micro_bnc

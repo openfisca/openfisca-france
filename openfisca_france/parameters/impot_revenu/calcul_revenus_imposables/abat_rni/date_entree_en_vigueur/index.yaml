@@ -1,6 +1,6 @@
 description: Date d'entrée en vigueur
 metadata:
-  description_en: Tax allowance for net taxable income ( 1978 - )
+  label_en: Tax allowance for net taxable income ( 1978 - )
   order:
   - annee_ir
 documentation: |-

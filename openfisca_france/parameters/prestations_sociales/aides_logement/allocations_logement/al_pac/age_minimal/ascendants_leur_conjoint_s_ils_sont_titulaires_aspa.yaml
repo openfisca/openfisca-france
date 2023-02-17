@@ -5,8 +5,8 @@ values:
   2016-07-01:
     value: 65
 metadata:
-  ux_name: Ascendants et leur conjoint, si titulaires de l'ASPA
-  description_en: Definition of dependants
+  short_label: Ascendants et leur conjoint, si titulaires de l'ASPA
+  label_en: Definition of dependants
   unit: year
   reference:
     1991-11-11:

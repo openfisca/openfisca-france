@@ -370,11 +370,13 @@ class rev_microsocial(Variable):
         assiette_service = foyer_fiscal('assiette_service', period)
         assiette_vente = foyer_fiscal('assiette_vente', period)
         assiette_proflib = foyer_fiscal('assiette_proflib', period)
-        _P = parameters(period)
-
-        P = _P.cotsoc.sal.microsocial.cotisations_prestations
+        cotisations_prestations = parameters(period).cotsoc.sal.microsocial.cotisations_prestations
         total = assiette_service + assiette_vente + assiette_proflib
-        prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.servi
+        prelsoc_ms = (
+            assiette_service * cotisations_prestations.service
+            + assiette_vente * cotisations_prestations.vente
+            + assiette_proflib * cotisations_prestations.service
+            )
         # TODO Activités libérales relevant de la CIPAV - quelle assiette ? * P.cipav
         return total - prelsoc_ms
 

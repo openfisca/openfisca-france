@@ -135,7 +135,7 @@ brackets:
     2018-10-01:
       value: null
 metadata:
-  ux_name: Taux salarié
+  short_label: Taux salarié
   ipp_csv_id:
     rate: chom_s_0_1, chom_s_1_4
   reference:

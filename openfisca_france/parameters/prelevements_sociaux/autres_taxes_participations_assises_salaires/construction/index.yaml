@@ -1,7 +1,7 @@
 description: Participation des employeurs à l'effort de construction (PEEC), parmi les autres taxes et participations assises sur les salaires
 metadata:
-  ux_name: Participation employeur à l'effort de construction
-  description_en: Contributions for housing construction
+  short_label: Participation employeur à l'effort de construction
+  label_en: Contributions for housing construction
   order:
   - 10_19_salaries
   - plus_20_salaries

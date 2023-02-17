@@ -3,15 +3,15 @@ values:
   1997-01-01:
     value: 0
 metadata:
-  ux_name: Taux réduit
-  description_en: CSG - rates on work incomes
+  short_label: Taux réduit
+  label_en: CSG - rates on work incomes
   unit: /1
   reference:
     1997-01-01:
       title: Loi 96-1160 du 27/12/1996, art. 9 à 17 (LFSS pour 1997)
   official_journal_date:
     1997-01-01: "1996-12-29"
-  last_review: "2021-07-22"
+  last_value_still_valid_on: "2021-07-22"
 documentation: |-
   Notes :
   L'art. 2.III de la loi 93-1352 publiée au JO le 30/12/1993 (LF pour 1994) a annulé la déductibilité prévue et a donc empêché l'application de la déductibilité de la CSG pour les revenus 1993.

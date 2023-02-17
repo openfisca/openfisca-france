@@ -6,6 +6,8 @@ values:
     value: 0.65
   2020-01-01:
     value: 1
+  2023-01-01:
+    value: null
 metadata:
   unit: /1
   reference:

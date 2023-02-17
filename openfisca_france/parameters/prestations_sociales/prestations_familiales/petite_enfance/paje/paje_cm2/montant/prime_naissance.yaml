@@ -1,18 +1,23 @@
-description: Montant (en % de la BMAF) de la Prime à la naissance de la Prestation d'accueil du jeune enfant (PAJE)
+description: Montant (en % de la BMAF) de la prime à la naissance de la prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
     value: 2.2975
 metadata:
-  ux_name: Montant prime naissance
-  description_en: "Early childhood benefit (PAJE) -- Birth and adoption premium : conditions and amounts"
+  short_label: Montant prime naissance
+  last_value_still_valid_on: "2023-01-27"
+  label_en: "Early childhood benefit (PAJE) -- Birth and adoption premium : conditions and amounts"
   ipp_csv_id: tx_paje_naiss
   unit: BMAF
   reference:
     2004-01-01:
+    - title: Article L531-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042685543
+    - title: Article D531-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030061628
     - title: Loi 2003-1199 du 18/12/2003, art. 60 II (modif art. L531-2 du CSS)
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006758906
     - title: Décret 2003-1394 du 31/12/2003, art. 1 (crée art. D531-2 du CSS)
-      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002256835
   official_journal_date:
     2004-01-01: 2003-12-19; 2004-01-01
   notes:

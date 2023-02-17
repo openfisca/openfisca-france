@@ -3,5 +3,5 @@ values:
   2015-10-01:
     value: 29
 metadata:
-  ux_name: Seuil AAH activité
+  short_label: Seuil AAH activité
   unit: SMIC

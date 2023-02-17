@@ -1,6 +1,6 @@
 description: Cotisations décès cadres aux régimes complémentaires de retraite (secteur privé)
 metadata:
-  ux_name: Cotisations décès cadres
-  description_en: Death contribution - executives
+  short_label: Cotisations décès cadres
+  label_en: Death contribution - executives
   order:
   - employeur_sous_plafond

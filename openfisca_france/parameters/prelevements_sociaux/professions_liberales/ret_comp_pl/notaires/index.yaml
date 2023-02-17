@@ -1,0 +1,6 @@
+description: Cotisation de sécurité sociale (SS) des notaires pour la retraite complémentaire, Professions libérales
+metadata:
+  short_label: Notaires
+  label_en: Contribution for complementary pension scheme (professionals)
+  order:
+  - moyenne_3_dernieres_annees

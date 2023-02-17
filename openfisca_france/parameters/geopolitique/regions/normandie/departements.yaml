@@ -1,0 +1,5 @@
+description: Liste des départements membre de la région Normandie
+unit: codes départements
+values:
+  2015-01-16:
+    value: ["14","27","50","61","76"]

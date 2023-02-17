@@ -1,6 +1,6 @@
 description: Taxe sur les fonds de garantie des assurances obligatoires (FGAO)
 metadata:
-  description_en: Tax on guarantee fund for compulsory insurance
+  label_en: Tax on guarantee fund for compulsory insurance
   order:
   - contribution_assures_en_pourcentage_primes
   - cotisation_responsables_accidents_non_assures_taux_normal

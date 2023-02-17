@@ -3,7 +3,7 @@ values:
   2018-07-19:
     value: 400
 metadata:
-  ux_name: Montant
+  short_label: Montant
   unit: currency
   reference:
     2018-07-19:

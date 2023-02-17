@@ -1,7 +1,7 @@
-description: Plafonds de l'Allocation de rentrée scolaire (ARS)
+description: Plafond de ressources de l'allocation de rentrée scolaire (ARS)
 metadata:
-  ux_name: Plafonds
-  description_en: Back-to-school allowance (ARS)
+  short_label: Plafond de ressources
+  label_en: Back-to-school allowance (ARS)
   order:
   - plafond_ressources
   - majoration_par_enf_supp

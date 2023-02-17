@@ -25,8 +25,8 @@ values:
   1955-01-01:
     value: null
 metadata:
-  ux_name: Salaire mensuel dans la Seine
-  description_en: Monthly basis for the computation of family allowances (BMAF)
+  short_label: Salaire mensuel dans la Seine
+  label_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: bmaf_seine
   unit: currency
   reference:

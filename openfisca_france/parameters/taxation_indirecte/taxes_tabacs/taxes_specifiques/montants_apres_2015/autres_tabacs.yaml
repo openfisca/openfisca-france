@@ -12,8 +12,13 @@ values:
     value: 29.1
   2020-11-01:
     value: 31
+  2022-01-01:
+    value: 31.4
+  2023-03-01:
+    value: null
 metadata:
   ipp_csv_id: tx_spec_autres_tabac
+  last_value_still_valid_on: "2022-12-28"
   unit: currency
   reference:
     2015-01-01:
@@ -34,6 +39,12 @@ metadata:
     2020-11-01:
       title: Loi 2019-1479 du 28/12/2019 - art. 195 (V)
       href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000042778781/2020-12-31/
+    2022-01-01:
+      title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044603389
+    2023-03-01:
+      title: Article L314-24 du Code des impositions sur les biens et services
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046805433/2023-03-01/
   official_journal_date:
     2015-01-01: "2014-12-30"
     2018-03-01: "2017-12-31"
@@ -41,4 +52,9 @@ metadata:
     2019-11-01: "2017-12-31"
     2020-03-01: "2020-12-30"
     2020-11-01: "2020-12-30"
-documentation: A partir de 2015 la part spécifique est en euro et non plus en pourcentage
+documentation: |
+  À partir de 2015 la part spécifique est en euro et non plus en pourcentage.
+  À partir de 2023 la catégorie 'autres tabacs' se divise en 3 types:
+  - Tabacs à chauffer commercialisés en bâtonnets
+  - Autres tabacs à chauffer
+  - Autres tabacs à fumer ou à inhaler après avoir été chauffés

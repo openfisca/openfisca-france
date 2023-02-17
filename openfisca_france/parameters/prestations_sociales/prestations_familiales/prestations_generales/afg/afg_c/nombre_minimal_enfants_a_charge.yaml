@@ -5,8 +5,8 @@ values:
   1978-01-01:
     value: null
 metadata:
-  ux_name: Nb minimal enfants à charge
-  description_en: "Child care costs allowance (AFG): General conditions and amounts"
+  short_label: Nb minimal enfants à charge
+  label_en: "Child care costs allowance (AFG): General conditions and amounts"
   reference:
     1976-07-01:
     - title: Décret 74-568 du 17/05/1974

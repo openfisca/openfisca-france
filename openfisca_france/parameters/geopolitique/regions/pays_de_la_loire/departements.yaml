@@ -1,0 +1,5 @@
+description: Liste des départements membre de la région Pays de la Loire
+unit: codes départements
+values:
+  2015-01-16:
+    value: ["44","49","53","72","85"]

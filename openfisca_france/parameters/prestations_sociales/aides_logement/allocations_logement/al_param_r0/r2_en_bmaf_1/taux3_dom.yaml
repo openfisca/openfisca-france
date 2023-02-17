@@ -5,5 +5,5 @@ values:
   2015-01-01:
     value: null
 metadata:
-  ux_name: DOM - Taux 1 enfant
+  short_label: DOM - Taux 1 enfant
   unit: /1

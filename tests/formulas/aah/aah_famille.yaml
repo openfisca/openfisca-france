@@ -201,3 +201,57 @@
         - enfant2
   output:
     aah_base: [0, 0, 287, 0] # xxxxx.xx (conucub + 2enf à charge, grille montants pre-Sept.2014) - 25000 / 12  = 3446.48 / 12
+
+- name: AAH niveau ménage - sans logement indépendant pour un autre, ressources inférieures au plafond
+  description: Montant AAH au niveau de la famille
+  period: 2014-01
+  absolute_error_margin: 100
+  input:
+    familles:
+      famille0:
+        parents: [parent1, parent2]
+        enfants: [enfant1, enfant2]
+        en_couple: true
+        af_nbenf: 2
+      famille2:
+        parents: [antonin]
+    individus:
+      parent1:
+        aah_eligible: false
+      parent2:
+        aah_eligible: false
+      enfant1:
+        aah_eligible: true
+        aah_base_ressources: 25000 / 12
+      enfant2:
+        aah_eligible: false
+      antonin:
+        aah_eligible: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+      foyer_fiscal_4:
+        declarants: [antonin]
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+        conjoint:
+        - parent2
+        autres:
+        - antonin
+      menage_2:
+        personne_de_reference:
+        - enfant1
+      menage_3:
+        personne_de_reference:
+        - enfant2
+  output:
+    aah_base: [0, 0, 287, 0, 790] # xxxxx.xx (conucub + 2enf à charge, grille montants pre-Sept.2014) - 25000 / 12  = 3446.48 / 12
+    caah: [0, 0, 0, 0, 0]

@@ -1,10 +1,10 @@
-description: Mayotte, Taux pour une personne seule ou couple ayant trois personnes à charge du montant forfaitaire R0 (Article 2 ter de l'arrêté du 3 juillet 1978) - secteur locatif (après 2001)
+description: Mayotte, valeur pour une personne seule ou couple ayant trois personnes à charge du montant forfaitaire R0 (Article 2 ter de l'arrêté du 3 juillet 1978) - secteur locatif (après 2001)
 values:
   2021-01-01:
     value: 8283
 metadata:
-  ux_name: Personne seule ou couple ayant 4 personnes à charge
-  description_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
+  short_label: Personne seule ou couple ayant 4 personnes à charge
+  label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   unit: currency
   reference:
     2021-01-01:

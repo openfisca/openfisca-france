@@ -5,8 +5,8 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Limite de la réduction
-  description_en: Tax reductions for investment and donations
+  short_label: Limite de la réduction
+  label_en: Tax reductions for investment and donations
   unit: currency
   reference:
     2008-01-01:

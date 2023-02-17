@@ -8,7 +8,7 @@ values:
     value: null
 metadata:
   unit: currency
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_navire
   reference:
     1974-01-01:

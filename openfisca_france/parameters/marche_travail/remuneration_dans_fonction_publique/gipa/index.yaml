@@ -1,7 +1,7 @@
 description: Garantie Individuelle du Pouvoir d'Achat (GIPA)
 metadata:
-  ux_name: Garantie Individuelle du Pouvoir d'Achat
-  description_en: Guarantee of purchasing power (GIPA)
+  short_label: Garantie Individuelle du Pouvoir d'Achat
+  label_en: Guarantee of purchasing power (GIPA)
   order:
   - indice_1
   - indice_2

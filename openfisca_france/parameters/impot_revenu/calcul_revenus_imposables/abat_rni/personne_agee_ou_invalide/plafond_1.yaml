@@ -87,8 +87,8 @@ values:
   2021-01-01:
     value: 15560
 metadata:
-  ux_name: Plafond de la 1ère tranche
-  description_en: Tax allowance for net taxable income
+  short_label: Plafond de la 1ère tranche
+  label_en: Tax allowance for net taxable income
   ipp_csv_id: plaf_pers_age1
   unit: currency
   reference:
@@ -241,7 +241,7 @@ metadata:
     - title: Gel des barèmes d'imposition lors de l'imposition des revenus 2012.
     2013-01-01:
     - title: Voir documentation
-  last_review: "2022-12-26"
+  last_value_still_valid_on: "2022-12-26"
 documentation: |-
   Notes :
   Ref - https://bofip.impots.gouv.fr/bofip/2036-PGP.html/identifiant=BOI-IR-BASE-40-20220516

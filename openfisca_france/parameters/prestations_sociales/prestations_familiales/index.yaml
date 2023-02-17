@@ -1,7 +1,7 @@
 description: Prestations familiales
 metadata:
-  ux_name: Familiales
-  description_en: Family allowances
+  short_label: Familiales
+  label_en: Family allowances
   order:
   - def_pac
   - def_biactif

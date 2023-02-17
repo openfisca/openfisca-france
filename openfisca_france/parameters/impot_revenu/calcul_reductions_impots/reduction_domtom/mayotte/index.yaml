@@ -1,6 +1,6 @@
 description: Réduction d'impôt sur le revenu pour la Mayotte (1979-)
 metadata:
-  ux_name: Mayotte
+  short_label: Mayotte
   order:
   - taux
   - plafond

@@ -1,7 +1,7 @@
 description: Allocation de salaire unique (ASU, 1941-1977)
 metadata:
-  ux_name: ASU
-  description_en: Single earner allowance (ASU)
+  short_label: ASU
+  label_en: Single earner allowance (ASU)
   order:
   - asu_plaf
   - asu_m

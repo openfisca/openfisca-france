@@ -5,7 +5,7 @@ values:
   2015-01-01:
     value: 5.66
 metadata:
-  ux_name: Seuil
+  short_label: Seuil
   unit: currency
-  last_review: "2015-01-01"
+  last_value_still_valid_on: "2015-01-01"
 documentation: ""

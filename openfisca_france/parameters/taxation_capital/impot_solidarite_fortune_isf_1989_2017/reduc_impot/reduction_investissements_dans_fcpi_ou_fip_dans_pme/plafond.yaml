@@ -7,8 +7,8 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Plafond
-  description_en: Tax reductions for investment and donations
+  short_label: Plafond
+  label_en: Tax reductions for investment and donations
   unit: currency
   reference:
     2008-01-01:

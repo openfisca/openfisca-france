@@ -7,7 +7,7 @@ values:
   2014-01-01:
     value: 2.5
 metadata:
-  ux_name: Rhône-Alpes
+  short_label: Rhône-Alpes
   ipp_csv_id: maj_ticpe_die_r_a
   unit: currency
 documentation: |-

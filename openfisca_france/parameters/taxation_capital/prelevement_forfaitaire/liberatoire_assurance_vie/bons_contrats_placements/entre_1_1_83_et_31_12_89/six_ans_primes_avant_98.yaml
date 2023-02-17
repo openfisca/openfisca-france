@@ -5,8 +5,8 @@ values:
   2018-01-01:
     value: null
 metadata:
-  ux_name: Durée de 6+ ans et primes avant 1998
-  description_en: Levy in discharge on life insurance (1983 - 2017)
+  short_label: Durée de 6+ ans et primes avant 1998
+  label_en: Levy in discharge on life insurance (1983 - 2017)
   ipp_csv_id: tx_pl_av_6a
   unit: /1
   reference:

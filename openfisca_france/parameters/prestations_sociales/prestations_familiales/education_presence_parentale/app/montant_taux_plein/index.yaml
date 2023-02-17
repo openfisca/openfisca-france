@@ -1,7 +1,7 @@
 description: Montant à taux plein (en % de la BMAF) de l'Allocation de présence parentale (APP, 2001-2005)
 metadata:
-  ux_name: Montant à taux plein
-  description_en: "Parental presence allowance (AA): Amounts"
+  short_label: Montant à taux plein
+  label_en: "Parental presence allowance (AA): Amounts"
   order:
   - couple
   - seul

@@ -3,7 +3,7 @@ values:
   2014-09-05:
     value: 18
 metadata:
-  ux_name: Minimum
+  short_label: Minimum
   unit: year
   reference:
     2014-09-05:

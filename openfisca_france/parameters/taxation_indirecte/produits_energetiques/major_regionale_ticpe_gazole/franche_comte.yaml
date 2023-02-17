@@ -7,7 +7,7 @@ values:
   2011-01-01:
     value: 2.5
 metadata:
-  ux_name: Franche-Comté
+  short_label: Franche-Comté
   ipp_csv_id: maj_ticpe_die_f_c
   unit: currency
 documentation: |-

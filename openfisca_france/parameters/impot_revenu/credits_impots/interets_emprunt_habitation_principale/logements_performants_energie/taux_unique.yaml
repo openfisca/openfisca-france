@@ -1,0 +1,21 @@
+description: Taux unique pour les logements à performance énergétique globale élevée au titre du crédit d'impôt sur les intérêts d'emprunt pour l'habitation principale
+values:
+  2007-01-01:
+    value: null
+  2008-01-01:
+    value: 0.4
+metadata:
+  short_label: Taux unique
+  unit: /1
+  reference:
+    2007-01-01:
+    - title: Loi 2007-1223, art. 5 du 21/08/2007
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006267445&cidTexte=JORFTEXT000000278649
+    - title: Loi 2007-1822, art. 13 du 24/12/2007 (LF pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017856263&cidTexte=JORFTEXT000017853368
+    2008-01-01:
+      title: Loi 2008-1425, art. 103 du 27/12/2008 (LF pour 2009)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020000256&cidTexte=JORFTEXT000019995721
+  official_journal_date:
+    2007-01-01: "2007-12-27"
+    2008-01-01: "2008-12-28"

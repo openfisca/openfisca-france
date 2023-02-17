@@ -1,6 +1,6 @@
 description: Abattements spéciaux de l'impôt sur le revenu
 metadata:
-  description_en: Tax allowance for net taxable income
+  label_en: Tax allowance for net taxable income
   order:
   - date_entree_en_vigueur
   - personne_agee_ou_invalide

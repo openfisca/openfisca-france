@@ -43,8 +43,8 @@ values:
   2022-07-01:
     value: 12.72
 metadata:
-  ux_name: Majoration par enfants
-  description_en: Lump sum extra allowance for charges
+  short_label: Majoration par enfants
+  label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_maj
   unit: currency
   reference:
@@ -117,7 +117,7 @@ metadata:
   notes:
     2015-10-01:
     - title: Idem en 2016
-  last_review: "2022-01-04"
+  last_value_still_valid_on: "2022-01-04"
 documentation: |-
   Notes :
   (1) Également applicable aux personnes âgées ou handicapées adultes hébergées à titre onéreux chez des particuliers.

@@ -7,8 +7,8 @@ values:
   1996-10-01:
     value: null
 metadata:
-  ux_name: De 1,1 à 1,2 SMIC
-  description_en: Global reduction in SSCs (1993-2003)
+  short_label: De 1,1 à 1,2 SMIC
+  label_en: Global reduction in SSCs (1993-2003)
   ipp_csv_id: tx_csp_exo_fam_1_2
   unit: /1
   reference:
@@ -29,7 +29,7 @@ metadata:
   notes:
     1996-10-01:
     - title: "Ristourne Juppé II (plafond : 1,33 SMIC)"
-  last_review: "1996-10-01"
+  last_value_still_valid_on: "1996-10-01"
 documentation: |-
   Note :
   Pour les ristournes Juppé, un montant maximal de réduction est fixé par décret. Il correspond à la réduction dont bénéficie un employeur pour un salarié au SMIC à temps plein.

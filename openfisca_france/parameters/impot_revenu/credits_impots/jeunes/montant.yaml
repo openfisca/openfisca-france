@@ -1,0 +1,9 @@
+description: Montant du Crédit jeunes actifs
+values:
+  2005-01-01:
+    value: 1500
+  2009-01-01:
+    value: null
+metadata:
+  short_label: Montant
+  unit: currency

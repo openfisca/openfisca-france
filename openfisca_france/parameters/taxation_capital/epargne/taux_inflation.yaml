@@ -1,7 +1,11 @@
 description: Taux d'inflation
 values:
+  0001-01-01:
+    value: 0
   2022-08-01:
     value: 0.046
+  2023-02-01:
+    value: 0.061
 metadata:
   reference:
     0001-01-01:
@@ -10,3 +14,6 @@ metadata:
     2022-08-01:
     - title: Avis relatif aux taux d'intérêt des produits d'épargne réglementée
     - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046082158
+    2023-02-01:
+    - title: Arrêté du 27 janvier 2023 relatif aux taux d'intérêt des produits d'épargne réglementée
+    - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047069197

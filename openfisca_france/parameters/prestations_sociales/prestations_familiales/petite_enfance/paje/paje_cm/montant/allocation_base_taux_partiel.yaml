@@ -1,4 +1,4 @@
-description: Montant à taux partiel (en % de la BMAF) de l'Allocation de base de la Prestation d'accueil du jeune enfant (PAJE)
+description: Montant de l'allocation de base à taux partiel (en % de la BMAF) pour les enfants nés après 2018 - Prestation d'accueil du jeune enfant (PAJE)
 values:
   2004-01-01:
     value: null
@@ -7,8 +7,8 @@ values:
   2018-04-01:
     value: 0.20825
 metadata:
-  ux_name: Montant à taux partiel
-  description_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
+  short_label: Montant à taux partiel
+  label_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
   ipp_csv_id: tx_paje_base_partiel
   unit: BMAF
   reference:
@@ -21,8 +21,10 @@ metadata:
       title: Décret n° 2014-422 du 24 avril 2014, art. 2 (modifie art. D531-3 du CSS)
       href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000028880083/2014-04-27/
     2018-04-01:
-      title: Décret n° 2018-312 du 26 avril 2018, art. 1 (modifie art. D531-3 du CSS)
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036847857&dateTexte=20200307
+    - title: Article D531-3 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036852559/2018-04-01/
+    - title: Décret n° 2018-312 du 26 avril 2018, art. 1 (modifie art. D531-3 du CSS)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036847857
   official_journal_date:
     2004-01-01: 2003-12-19; 2004-01-01
     2014-04-01: "2014-04-26"
@@ -32,7 +34,7 @@ metadata:
     - title: "art. D531-1 : fixe l'âge limite; art. D531-3 : fixe le montant de l'aide (en % de la BMAF); La PAJE entre en vigueur de manière progressive jusqu'à fin 2006 (cf. art. 60, VIII de la loi)."
     2018-04-01:
     - title: Taux appliqués pour les enfants nés ou adoptés à partir du 1er avril 2018.
+  last_value_still_valid_on: "2023-02-06"
 documentation: |-
   Notes :
-  (1) S'applique pour les enfants nés à partir du 1er avril 2014
-  NB : A partir du 1er avril 2014, et pour les enfants nés ou adoptés avant le 1er avril 2018, les montants de l'allocation de base à taux plein et taux partiel sont gelés à leur montant calculé à partir de la BMAF en vigueur au 1er avril 2013. Cf. III. de l'art. 74 de la loi 2013-1203 du 23 décembre 2013 de financement de la sécurité sociale pour 2014. Ce paragraphe III. est abrogé par la loi 2017-1836 du 30/12/2017 avec application de l'abrogation à compter du 1er avril 2018.
+  (1) Conformément à l'article 4, I du décret n° 2018-312 du 26 avril 2018 ces dispositions entrent en vigueur à compter du 1er avril 2018 pour les enfants nés ou adoptés à compter de cette date et à compter du 1er avril 2021 pour l'ensemble des autres enfants, dans les conditions prévues à l'article 37 de la loi du 30 décembre 2017.

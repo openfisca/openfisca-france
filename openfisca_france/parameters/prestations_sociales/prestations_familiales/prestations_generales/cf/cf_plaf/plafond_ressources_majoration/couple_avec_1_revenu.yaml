@@ -17,8 +17,8 @@ values:
   2021-01-01:
     value: 10868
 metadata:
-  ux_name: Couple avec 1 revenu
-  description_en: "Family complement (CF): Extra allowances"
+  short_label: Couple avec 1 revenu
+  label_en: "Family complement (CF): Extra allowances"
   unit: currency
   reference:
     1986-01-01:

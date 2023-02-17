@@ -21,7 +21,7 @@ brackets:
     2005-01-01:
       value: null
 metadata:
-  ux_name: De 10 à 19 salariés
+  short_label: De 10 à 19 salariés
   ipp_csv_id: cons_p10_0_
   reference:
     1953-09-01:

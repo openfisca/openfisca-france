@@ -21,8 +21,8 @@ values:
   2000-07-01:
     value: null
 metadata:
-  ux_name: Tous
-  description_en: "UI scheme: lump-sum and minimum"
+  short_label: Tous
+  label_en: "UI scheme: lump-sum and minimum"
   unit: currency
   reference:
     1968-07-22:

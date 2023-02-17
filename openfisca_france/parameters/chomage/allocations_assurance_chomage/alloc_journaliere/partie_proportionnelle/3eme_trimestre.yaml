@@ -5,8 +5,8 @@ values:
   1983-01-01:
     value: null
 metadata:
-  ux_name: 3e Trimestre
-  description_en: Special UI scheme for economic layoffs (1979-1983)
+  short_label: 3e Trimestre
+  label_en: Special UI scheme for economic layoffs (1979-1983)
   ipp_csv_id: journ_3
   unit: /1
   reference:

@@ -9,7 +9,7 @@ values:
   2006-01-01:
     value: 0.34
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: txabt_microbnc
   unit: /1
   reference:

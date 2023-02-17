@@ -13,8 +13,8 @@ values:
   1998-01-01:
     value: null
 metadata:
-  ux_name: Taux de cotisation sous PSS
-  description_en: SSCs for family benefits (independent workers)
+  short_label: Taux de cotisation sous PSS
+  label_en: SSCs for family benefits (independent workers)
   ipp_csv_id: fam_inde_0_1
   unit: /1
   reference:

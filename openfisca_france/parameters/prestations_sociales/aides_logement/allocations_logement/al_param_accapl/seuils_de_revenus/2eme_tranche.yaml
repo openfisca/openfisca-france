@@ -3,8 +3,8 @@ values:
   2007-07-01:
     value: 2678.71
 metadata:
-  ux_name: 2ème tranche
-  description_en: Parameters for new home-buyers (APL)
+  short_label: 2ème tranche
+  label_en: Parameters for new home-buyers (APL)
   ipp_csv_id: seuil_tr2_lo_apl
   unit: currency
   reference:

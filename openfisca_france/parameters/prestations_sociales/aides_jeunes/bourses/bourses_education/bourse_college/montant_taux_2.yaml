@@ -5,7 +5,7 @@ values:
   2017-05-07:
     value: 0.7091
 metadata:
-  ux_name: Montant échelon 2
+  short_label: Montant échelon 2
   unit: currency
   reference:
     2017-05-07:

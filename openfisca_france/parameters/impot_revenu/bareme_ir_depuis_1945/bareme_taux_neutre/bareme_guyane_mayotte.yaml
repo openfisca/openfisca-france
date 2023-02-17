@@ -221,7 +221,7 @@ brackets:
     2019-01-01:
       value: 0.43
 metadata:
-  ux_name: Barème Guyane ou Mayotte
+  short_label: Barème Guyane ou Mayotte
   reference:
     2019-01-01:
       title: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)

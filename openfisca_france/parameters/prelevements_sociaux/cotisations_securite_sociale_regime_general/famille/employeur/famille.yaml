@@ -51,8 +51,8 @@ brackets:
     2014-01-01:
       value: 0.0525
 metadata:
-  ux_name: Barème employeur
-  description_en: SSCs for family benefits
+  short_label: Barème employeur
+  label_en: SSCs for family benefits
   ipp_csv_id:
     rate: fam_p_0_1, fam_p_0_
   reference:
@@ -88,9 +88,9 @@ metadata:
     2014-01-01:
     - title: Article D241-3-1 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036475197/2018-01-01/
-    - title: Article D242-7 du Code de la sécurité sociale (abrogé)
+    - title: Article D242-7 du Code de la sécurité sociale (abrogé en 2015)
       href: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000028435883/2014-01-01/
-    - title: Décret 2013-1290 du 27/12/2013
+    - title: Décret 2013-1290 du 27/12/2013, article 1.4° 
       href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1290/jo/texte
   official_journal_date:
     1946-10-01: "1946-09-14"
@@ -118,7 +118,7 @@ metadata:
     - title: Pour les revenus n'excédant pas 10 000 FF, taux réduit de 3,25%
     1989-01-01:
     - title: Loi DMOS du 13/01/89 (JO 14/01/89).
-  last_review: "2021-12-07"
+  last_value_still_valid_on: "2023-01-30"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

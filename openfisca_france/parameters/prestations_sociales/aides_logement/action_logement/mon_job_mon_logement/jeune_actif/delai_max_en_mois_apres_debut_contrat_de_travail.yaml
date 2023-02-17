@@ -3,7 +3,7 @@ values:
   2021-02-18:
     value: 6
 metadata:
-  ux_name: Délai Max
+  short_label: Délai Max
   unit: month
   reference:
     2021-02-18:

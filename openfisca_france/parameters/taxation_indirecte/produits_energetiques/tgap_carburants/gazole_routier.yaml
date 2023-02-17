@@ -17,7 +17,7 @@ values:
   2019-01-01:
     value: 0.079
 metadata:
-  ux_name: Gazole routier
+  short_label: Gazole routier
   ipp_csv_id: tgap_gazole
   unit: /1
   reference:

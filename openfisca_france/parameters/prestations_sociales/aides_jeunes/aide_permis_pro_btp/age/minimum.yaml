@@ -3,7 +3,7 @@ values:
   2021-01-01:
     value: 15
 metadata:
-  ux_name: Minimum
+  short_label: Minimum
   unit: year
   reference:
     2021-01-01:

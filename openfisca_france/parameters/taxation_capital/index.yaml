@@ -1,7 +1,7 @@
 description: Taxation du capital 
 metadata:
-  ux_name: Taxation du capital
-  description_en: Taxes on financial income and wealth
+  short_label: Taxation du capital
+  label_en: Taxes on financial income and wealth
   order:
   - prelevement_forfaitaire
   - prelevements_sociaux

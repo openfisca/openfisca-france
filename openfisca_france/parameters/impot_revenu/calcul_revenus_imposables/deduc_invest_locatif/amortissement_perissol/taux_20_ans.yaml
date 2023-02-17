@@ -1,6 +1,6 @@
 description: Taux de déduction de l'investissment les 20 années suivantes
 metadata:
-  ux_name: Taux 20 ans
+  short_label: Taux 20 ans
   ipp_csv_id: tx_deduction_20_ans_perissol
   notes:
     1996-01-01:

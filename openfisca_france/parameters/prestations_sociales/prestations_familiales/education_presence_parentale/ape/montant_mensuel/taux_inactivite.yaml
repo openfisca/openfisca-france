@@ -7,8 +7,8 @@ values:
   1987-04-01:
     value: 1.4257
 metadata:
-  ux_name: Taux plein - Inactif
-  description_en: "Parental leave allowance (APE): Conditions and amounts"
+  short_label: Taux plein - Inactif
+  label_en: "Parental leave allowance (APE): Conditions and amounts"
   ipp_csv_id: ape_taux_base
   unit: BMAF
   reference:

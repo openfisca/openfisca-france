@@ -5,8 +5,8 @@ values:
   2003-07-01:
     value: 20
 metadata:
-  ux_name: Âge minimum
-  description_en: "Family allowances (AF): Extra allowances"
+  short_label: Âge minimum
+  label_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: maj_forf_age
   unit: year
   reference:
@@ -31,7 +31,7 @@ metadata:
     - title: Création de la majoration pour âge des allocations familiales (articles L521-3 et R521-1 du CSS)
     2003-07-01:
     - title: Création majoration pour les enfants de plus de 20 ans
-  last_review: "2022-02-22"
+  last_value_still_valid_on: "2022-02-22"
 documentation: |-
   Notes :
   (1) La deuxième tranche de la majoration est créée pour début 1999 (la majoration est augmentée à partir de 16 ans). Cette mesure est supprimée en 2008, mais seulement pour les nouveaux bénéficiaires: le premier taux de 9% s'applique donc jusqu'aux 16 ans des anciens bénéficiaires (jusqu'au 31 avril 2013 inclus)

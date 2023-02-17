@@ -7,7 +7,7 @@ values:
   2001-01-01:
     value: 30500
 metadata:
-  ux_name: Plafond
+  short_label: Plafond
   ipp_csv_id: plaf_prestcomp
   unit: currency
   reference:

@@ -27,8 +27,8 @@ values:
   2016-01-01:
     value: 3874
 metadata:
-  ux_name: Majoration enfant supp.
-  description_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
+  short_label: Majoration enfant supp.
+  label_en: "Early childhood benefit (PAJE): CMG thresholds for means-testing"
   ipp_csv_id: clcmg_03ans_rev3_avant_2014
   unit: currency
   reference:

@@ -29,8 +29,8 @@ values:
   2003-07-01:
     value: 76.32
 metadata:
-  ux_name: Majoration du loyer minimum (Lo)
-  description_en: Parameters for new home-buyers and students residences
+  short_label: Majoration du loyer minimum (Lo)
+  label_en: Parameters for new home-buyers and students residences
   ipp_csv_id: maj_lo
   unit: currency
   reference:

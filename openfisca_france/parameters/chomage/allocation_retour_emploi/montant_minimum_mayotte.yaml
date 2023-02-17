@@ -5,7 +5,7 @@ values:
   2021-07-01:
     value: 14.77
 metadata:
-  ux_name: Montant minimum journalier
+  short_label: Montant minimum journalier
   unit: currency
   reference:
     2021-07-01:

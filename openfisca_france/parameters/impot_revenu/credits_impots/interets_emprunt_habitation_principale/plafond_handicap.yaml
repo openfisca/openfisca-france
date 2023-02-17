@@ -1,0 +1,16 @@
+description: Plafond pour les personnes handicapées du crédit d'impôt sur les intérêts d'emprunt pour l'habitation principale
+values:
+  2007-01-01:
+    value: 7500
+metadata:
+  short_label: Plafond handicap
+  unit: currency
+  reference:
+    2007-01-01:
+    - title: Loi 2007-1223, art. 5 du 21/08/2007
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006267445&cidTexte=JORFTEXT000000278649
+    - title: Loi 2007-1822, art. 13 du 24/12/2007 (LF pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000017856263&cidTexte=JORFTEXT000017853368
+  official_journal_date:
+    2007-01-01: "2007-12-27"
+documentation: Les plafonds (plafonds de base et handicap) sont ceux appliqués aux célibataires, aux veufs ou aux divorcés. Ils sont multipliés par deux pour les couples.

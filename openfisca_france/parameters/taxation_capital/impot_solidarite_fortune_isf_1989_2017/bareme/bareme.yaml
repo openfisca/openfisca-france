@@ -265,8 +265,8 @@ brackets:
     2013-01-01:
       value: null
 metadata:
-  ux_name: Barème ISF
-  description_en: Wealth tax schedule
+  short_label: Barème ISF
+  label_en: Wealth tax schedule
   ipp_csv_id:
     threshold: seuil1_isf, seuil2_isf, seuil3_isf, seuil4_isf, seuil5_isf, seuil6_isf
     rate: tx1_isf, tx2_isf, tx3_isf, tx4_isf, tx5_isf, tx6_isf
@@ -376,6 +376,6 @@ metadata:
     - title: "La réforme instaurée par la loi de finances rectifictative pour 2012 ne sera jamais appliquée à cause de l'alternance gouvernementale : le barème pour l'ISF 2012 correspond de fait à un retour au barème de 2011 (via la contribution exceptionnelle prévue par la loi de finances rectificative du 16/08/2012) avec suppression temporaire du plafonnement. De plus, la contribution exceptionnellene bénéficie d’aucune des réductions fiscales en vigueur pour l’ISF."
     2018-01-01:
     - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  last_review: "2021-10-12"
+  last_value_still_valid_on: "2021-10-12"
   rate_unit: /1
   threshold_unit: currency

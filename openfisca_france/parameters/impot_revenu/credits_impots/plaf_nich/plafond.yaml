@@ -1,0 +1,35 @@
+description: Plafond des niches
+values:
+  2008-01-01:
+    value: 25000
+  2010-01-01:
+    value: 20000
+  2011-01-01:
+    value: 18000
+  2013-01-01:
+    value: 10000
+metadata:
+  short_label: Plafond
+  ipp_csv_id: plaf_nich
+  unit: currency
+  reference:
+    2010-01-01:
+      title: Loi 2009-1673 du 30/12/2009 - art. 81 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000021575871&cidTexte=JORFTEXT000021557902
+    2011-01-01:
+      title: Loi 2010-1657 du 29/12/2010 - art. 106 (V)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023347063&cidTexte=JORFTEXT000023314376
+    2013-01-01:
+    - title: Loi 2012-1509 du 29/12/2012 - art. 73 (VD)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026872821&cidTexte=JORFTEXT000026856853
+    - title: BOI-IR-LIQ-20-20-10-20130704
+  official_journal_date:
+    2010-01-01: "2009-12-31"
+    2011-01-01: "2010-12-30"
+documentation: |-
+  Art. 200-0 A du CGI
+  Plafonnement total des niches = plafonnement des niches + taux de plafonnement * revenu net imposable
+  Exemple de calculs :
+  BOI-IR-LIQ-20-20-10-30-20130704
+  Liste des avantages fiscaux :
+  BOI-IR-LIQ-20-20-10-10-20130704

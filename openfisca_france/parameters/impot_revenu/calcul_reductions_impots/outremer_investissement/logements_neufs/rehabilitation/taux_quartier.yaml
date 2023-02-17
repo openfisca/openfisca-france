@@ -1,7 +1,7 @@
 description: Taux logement situé dans un quartier prioritaire (QP) de réduction sur 5 ans en cas de travaux de réhabilitation contre
   les séismes ou les cyclones pour les investissements réalisés en Outre-Mer (2003-2021)
 metadata:
-  ux_name: Taux quartier prioritaire
+  short_label: Taux quartier prioritaire
   ipp_csv_id: taux_quartier_reduc_rehabilitation_outremer
   notes:
     2011-01-01:

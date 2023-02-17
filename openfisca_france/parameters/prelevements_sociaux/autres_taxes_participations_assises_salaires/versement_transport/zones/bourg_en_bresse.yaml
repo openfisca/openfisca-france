@@ -9,8 +9,8 @@ values:
   2017-07-01:
     value: 0.008
 metadata:
-  ux_name: Bourg-en-Bresse
-  description_en: Transport tax (VT) (contribution to public transports)
+  short_label: Bourg-en-Bresse
+  label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_beb
   unit: /1
   reference:
@@ -26,7 +26,7 @@ metadata:
       title: Lettre circulaire ACOSS 2011-0000075
     2017-07-01:
       title: Lettre circulaire ACOSS 2016­0000014 du 24/05/2016
-  last_review: "2021-12-07"
+  last_value_still_valid_on: "2021-12-07"
 documentation: |-
   Notes :
   (i) Le versement transport est recouvré par les URSSAF comme les cotisations de Sécurité sociale, et reversé aux collectivités locales.

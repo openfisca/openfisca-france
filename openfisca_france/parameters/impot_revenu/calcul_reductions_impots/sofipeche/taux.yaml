@@ -1,6 +1,6 @@
 description: Taux de la réduction d'impôt pour souscriptions de parts au capital de SOFIPECHE (1999 - 2012)
 metadata:
-  ux_name: Taux
+  short_label: Taux
   ipp_csv_id: txsofipeche
   notes:
     2011-01-01:

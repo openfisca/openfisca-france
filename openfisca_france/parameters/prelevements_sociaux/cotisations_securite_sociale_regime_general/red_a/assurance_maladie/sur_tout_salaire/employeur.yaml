@@ -5,8 +5,8 @@ values:
   1967-10-01:
     value: 0.014
 metadata:
-  ux_name: Taux employeur
-  description_en: SSCs for artists (1960-1974)
+  short_label: Taux employeur
+  label_en: SSCs for artists (1960-1974)
   ipp_csv_id: mmid_a_p_0_
   unit: /1
   reference:
@@ -17,7 +17,7 @@ metadata:
   official_journal_date:
     1960-01-01: "1960-02-09"
     1967-10-01: "1967-10-01"
-  last_review: "1967-01-01"
+  last_value_still_valid_on: "1967-01-01"
 documentation: |-
   Note générale :
   Les artistes et musiciens du spectacle bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1960 et 1974. A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.

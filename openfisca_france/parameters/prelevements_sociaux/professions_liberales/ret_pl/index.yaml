@@ -1,0 +1,6 @@
+description: Cotisation de sécurité sociale (SS) branche vieillesse, Professions libérales
+metadata:
+  short_label: Branche vieillesse
+  label_en: SSCs for old-age insurance (professionals)
+  order:
+  - assurance_vieillesse

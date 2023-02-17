@@ -17,7 +17,7 @@ values:
   2019-01-01:
     value: 0.079
 metadata:
-  ux_name: Super 95
+  short_label: Super 95
   ipp_csv_id: tgap_super95
   unit: /1
   reference:

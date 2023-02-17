@@ -7,8 +7,8 @@ values:
   1969-01-01:
     value: 0.0105
 metadata:
-  ux_name: Plus de 65 ans
-  description_en: SSCs for artists (1960-1974)
+  short_label: Plus de 65 ans
+  label_en: SSCs for artists (1960-1974)
   ipp_csv_id: mmid_a_am_s65_s_0_1
   unit: /1
   reference:
@@ -22,7 +22,7 @@ metadata:
     1960-01-01: "1960-02-09"
     1967-10-01: "1967-10-01"
     1969-01-01: "1969-01-01"
-  last_review: "1969-01-01"
+  last_value_still_valid_on: "1969-01-01"
 documentation: |-
   Note générale :
   Les artistes et musiciens du spectacle bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1960 et 1974. A partir de 1975, ces taux réduits apparaissent sous la forme d'un abattement généralisé sur les taux de droit commun de 30%.

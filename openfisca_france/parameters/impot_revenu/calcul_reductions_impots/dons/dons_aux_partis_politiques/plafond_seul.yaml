@@ -1,6 +1,6 @@
 description: Plafond pour une personne seule des dons aux partis politiques
 metadata:
-  ux_name: Plafond seul
+  short_label: Plafond seul
   reference:
     2013-01-01:
       title: Code Général des Impôts, Art. 200, 3.

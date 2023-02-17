@@ -7,7 +7,7 @@ values:
   2022-04-01:
     value: null
 metadata:
-  ux_name: Salaire maximal d'exonération, en nombre de SMIC annuels
+  short_label: Salaire maximal d'exonération, en nombre de SMIC annuels
   unit: SMIC
   reference:
     2018-12-24:

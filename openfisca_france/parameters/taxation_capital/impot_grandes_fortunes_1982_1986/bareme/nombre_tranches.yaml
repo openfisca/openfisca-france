@@ -7,8 +7,8 @@ values:
   1987-01-01:
     value: null
 metadata:
-  ux_name: Nombre de tranches du barème
-  description_en: Wealth tax schedule
+  short_label: Nombre de tranches du barème
+  label_en: Wealth tax schedule
   ipp_csv_id: nbtranches_igf
   reference:
     1982-01-01:

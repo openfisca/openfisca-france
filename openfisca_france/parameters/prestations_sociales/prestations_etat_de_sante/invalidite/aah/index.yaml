@@ -1,10 +1,10 @@
 description: Prestations sociales liées à l'Invalidité - Allocation pour adulte handicapé (AAH)
 metadata:
-  ux_name: AAH
-  description_en: Disability
+  short_label: AAH
+  label_en: Disability
   order:
   - age_minimal
-  - age_maximal
+  - age_fin_educ
   - montant
   - pourcentage_aah
   - abattement_special

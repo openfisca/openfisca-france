@@ -39,20 +39,70 @@ class aah_base_ressources(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
+    def formula(individu, period, parameters):  # formule pour les cas les plus anciens, moins vérifiée (sans abattement à part celui de 20% sur les revenus du conjoint)
         law = parameters(period)
         aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
-        en_activite = individu('salaire_imposable', period) > 0
+        def assiette_conjoint(revenus_conjoint):
+            return (1 - law.impot_revenu.calcul_revenus_imposables.deductions.taux_salaires_pensions) * (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
+
+        def base_ressource_eval_annuelle():
+            base_ressource = individu('aah_base_ressources_activite_eval_annuelle', period) + individu('aah_base_ressources_hors_activite_eval_annuelle', period)
+
+            base_ressource_demandeur_conjoint = individu.famille.demandeur('aah_base_ressources_activite_eval_annuelle', period) + individu.famille.demandeur('aah_base_ressources_hors_activite_eval_annuelle', period)
+            base_ressource_conjoint_conjoint = individu.famille.conjoint('aah_base_ressources_activite_eval_annuelle', period) + individu.famille.conjoint('aah_base_ressources_hors_activite_eval_annuelle', period)
+            base_ressource_conjoint = base_ressource_conjoint_conjoint * individu.has_role(Famille.DEMANDEUR) + base_ressource_demandeur_conjoint * individu.has_role(Famille.CONJOINT)
+
+            return base_ressource + assiette_conjoint(base_ressource_conjoint)
+
+        return base_ressource_eval_annuelle() / 12
+
+    def formula_2005_07_01(individu, period, parameters):
+        law = parameters(period)
+        aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
+
+        def assiette_conjoint(revenus_conjoint):
+            return (1 - law.impot_revenu.calcul_revenus_imposables.deductions.taux_salaires_pensions) * (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
+
+        def assiette_revenu_activite_demandeur(revenus_demandeur):
+            smic_brut_horaire = law.marche_travail.salaire_minimum.smic.smic_b_horaire
+            seuil1 = aah.travail_ordinaire.tranche_smic_horaire1 * smic_brut_horaire
+            seuil2 = aah.travail_ordinaire.tranche_smic_horaire2 * smic_brut_horaire
+            seuil3 = aah.travail_ordinaire.tranche_smic_horaire3 * smic_brut_horaire
+            seuil4 = aah.travail_ordinaire.tranche_smic_horaire4 * smic_brut_horaire
+            total_tranche1 = min_(seuil1, revenus_demandeur) * (1 - aah.travail_ordinaire.abattement_300)
+            total_tranche2 = max_(0, min_(revenus_demandeur - seuil1, seuil2 - seuil1)) * (1 - aah.travail_ordinaire.abattement_700)
+            total_tranche3 = max_(0, min_(revenus_demandeur - seuil2, seuil3 - seuil2)) * (1 - aah.travail_ordinaire.abattement_1100)
+            total_tranche4 = max_(0, min_(revenus_demandeur - seuil3, seuil4 - seuil3)) * (1 - aah.travail_ordinaire.abattement_1500)
+            total_tranche5 = max_(0, revenus_demandeur - seuil4)
+            return total_tranche1 + total_tranche2 + total_tranche3 + total_tranche4 + total_tranche5
+
+        def base_ressource_eval_annuelle():
+            base_ressource_activite = assiette_revenu_activite_demandeur(individu('aah_base_ressources_activite_eval_annuelle', period))
+            base_ressource = base_ressource_activite + individu('aah_base_ressources_hors_activite_eval_annuelle', period)
+
+            base_ressource_demandeur_conjoint = individu.famille.demandeur('aah_base_ressources_activite_eval_annuelle', period) + individu.famille.demandeur('aah_base_ressources_hors_activite_eval_annuelle', period)
+            base_ressource_conjoint_conjoint = individu.famille.conjoint('aah_base_ressources_activite_eval_annuelle', period) + individu.famille.conjoint('aah_base_ressources_hors_activite_eval_annuelle', period)
+            base_ressource_conjoint = base_ressource_conjoint_conjoint * individu.has_role(Famille.DEMANDEUR) + base_ressource_demandeur_conjoint * individu.has_role(Famille.CONJOINT)
+
+            return base_ressource + assiette_conjoint(base_ressource_conjoint)
+
+        return base_ressource_eval_annuelle() / 12
+
+    def formula_2011(individu, period, parameters):
+        law = parameters(period)
+        aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
+
+        en_activite = (individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year) > 0)
 
         def assiette_conjoint(revenus_conjoint):
             return (1 - law.impot_revenu.calcul_revenus_imposables.deductions.taux_salaires_pensions) * (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
-            tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
-            tranche2 = revenus_demandeur - tranche1
-            return (1 - aah.travail_ordinaire.abattement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
+            total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
+            total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
+            return (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
 
         def base_ressource_eval_trim():
             three_previous_months = period.first_month.start.period('month', 3).offset(-3)
@@ -68,13 +118,14 @@ class aah_base_ressources(Variable):
             return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
 
         def base_ressource_eval_annuelle():
-            base_ressource = individu('aah_base_ressources_eval_annuelle', period)
+            base_ressource_activite = assiette_revenu_activite_demandeur(individu('aah_base_ressources_activite_eval_annuelle', period))
+            base_ressource = base_ressource_activite + individu('aah_base_ressources_hors_activite_eval_annuelle', period)
 
-            base_ressource_demandeur_conjoint = individu.famille.demandeur('aah_base_ressources_eval_annuelle', period)
-            base_ressource_conjoint_conjoint = individu.famille.conjoint('aah_base_ressources_eval_annuelle', period)
+            base_ressource_demandeur_conjoint = individu.famille.demandeur('aah_base_ressources_activite_eval_annuelle', period) + individu.famille.demandeur('aah_base_ressources_hors_activite_eval_annuelle', period)
+            base_ressource_conjoint_conjoint = individu.famille.conjoint('aah_base_ressources_activite_eval_annuelle', period) + individu.famille.conjoint('aah_base_ressources_hors_activite_eval_annuelle', period)
             base_ressource_conjoint = base_ressource_conjoint_conjoint * individu.has_role(Famille.DEMANDEUR) + base_ressource_demandeur_conjoint * individu.has_role(Famille.CONJOINT)
 
-            return assiette_revenu_activite_demandeur(base_ressource) + assiette_conjoint(base_ressource_conjoint)
+            return base_ressource + assiette_conjoint(base_ressource_conjoint)
 
         return where(
             en_activite,
@@ -86,7 +137,7 @@ class aah_base_ressources(Variable):
         law = parameters(period)
         aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
-        en_activite = individu('salaire_imposable', period) > 0
+        en_activite = ((individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year) > 0))
 
         def assiette_conjoint(revenus_conjoint):
             af_nbenf = individu.famille('af_nbenf', period)
@@ -95,9 +146,9 @@ class aah_base_ressources(Variable):
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
-            tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
-            tranche2 = revenus_demandeur - tranche1
-            return (1 - aah.travail_ordinaire.abattement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
+            total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
+            total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
+            return (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
 
         def base_ressource_eval_trim():
             three_previous_months = period.first_month.start.period('month', 3).offset(-3)
@@ -113,24 +164,56 @@ class aah_base_ressources(Variable):
             return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
 
         def base_ressource_eval_annuelle():
-            base_ressource = individu('aah_base_ressources_eval_annuelle', period)
+            base_ressource_activite = assiette_revenu_activite_demandeur(individu('aah_base_ressources_activite_eval_annuelle', period))
+            base_ressource = base_ressource_activite + individu('aah_base_ressources_hors_activite_eval_annuelle', period)
 
-            base_ressource_demandeur_conjoint = individu.famille.demandeur('aah_base_ressources_eval_annuelle', period)
-            base_ressource_conjoint_conjoint = individu.famille.conjoint('aah_base_ressources_eval_annuelle', period)
+            base_ressource_demandeur_conjoint = individu.famille.demandeur('aah_base_ressources_activite_eval_annuelle', period) + individu.famille.demandeur('aah_base_ressources_hors_activite_eval_annuelle', period)
+            base_ressource_conjoint_conjoint = individu.famille.conjoint('aah_base_ressources_activite_eval_annuelle', period) + individu.famille.conjoint('aah_base_ressources_hors_activite_eval_annuelle', period)
             base_ressource_conjoint = base_ressource_conjoint_conjoint * individu.has_role(Famille.DEMANDEUR) + base_ressource_demandeur_conjoint * individu.has_role(Famille.CONJOINT)
 
-            return assiette_revenu_activite_demandeur(base_ressource) + assiette_conjoint(base_ressource_conjoint)
+            return base_ressource + assiette_conjoint(base_ressource_conjoint)
 
         return where(
             en_activite,
             base_ressource_eval_trim() / 12,
             base_ressource_eval_annuelle() / 12
             )
-        # TODO: - Prendre en compte les abattements temporaires sur les ressources en cas de changement de situation
+
+    def formula_2023_10_01(individu, period, parameters):
+        law = parameters(period)
+        aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
+
+        en_activite = ((individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year)) > 0)
+
+        def assiette_revenu_activite_demandeur(revenus_demandeur):
+            smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
+            total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
+            total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
+            return (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
+
+        def base_ressource_eval_trim():
+            three_previous_months = period.first_month.start.period('month', 3).offset(-3)
+            base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+
+            base_ressource_demandeur = assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite
+
+            return base_ressource_demandeur
+
+        def base_ressource_eval_annuelle():
+            base_ressource_activite = assiette_revenu_activite_demandeur(individu('aah_base_ressources_activite_eval_annuelle', period))
+            base_ressource = base_ressource_activite + individu('aah_base_ressources_hors_activite_eval_annuelle', period)
+
+            return base_ressource
+
+        return where(
+            en_activite,
+            base_ressource_eval_trim() / 12,
+            base_ressource_eval_annuelle() / 12
+            )
+        # TODO: - Prendre en compte les abattements temporaires sur les ressources en cas de changement de situation (6 mois pour retour à l'emploi, un an pour inactivité)
         #       - La formule du calcul de la base de ressource est celle en vigueur à partir de 2011, avant 2011:
-        #           - les abattements sur les revenus d'activité de l'allocataire diffèrent (art. D821-9 du CSS)
         #           - l'abattement pour les personnes invalides (défini dans l'art. 157 du CGI) sur le revenu net global est pris en compte (art. R821-4 du CSS)
-        #           - l'évaluation de tous les revenus est annuelle (pas d'évaluation trimestrielle avant 2011)
 
 
 class aah_base_ressources_activite_eval_trimestrielle(Variable):
@@ -238,19 +321,42 @@ class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
         return ressources * 4
 
 
-class aah_base_ressources_eval_annuelle(Variable):
+class aah_base_ressources_activite_eval_annuelle(Variable):
     value_type = float
     label = "Base de ressources de l'AAH pour un individu, évaluation annuelle"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = [
+        'Article R532-5 du Code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750910'
+        ]
+    # TODO prendre en compte l'abattement sur les revenus de l'année précédente entre 2005 et 2010 lorsqu'une période d'inactivité
+    # sans revenu de remplacement survient (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006739692/2005-07-01/)
+    # et les autres abattements sur reprise d'activité https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000023086051/#JORFARTI000023086056 (notamment Art.D. 821-9 1°)
 
     def formula(individu, period, parameters):
         return (
             individu('salaire_imposable', period.n_2, options = [ADD])
             + individu('rpns_imposables', period.n_2)
-            + individu('revenu_assimile_pension', period.n_2)
-            )
+            + individu('chomage_imposable', period.n_2, options = [ADD]))
+
+
+class aah_base_ressources_hors_activite_eval_annuelle(Variable):
+    value_type = float
+    label = "Base de ressources de l'AAH pour un individu, évaluation annuelle"
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    reference = [
+        'Article R532-5 du Code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750910'
+        ]
+    # TODO prendre en compte l'abattement sur les revenus de l'année précédente entre 2005 et 2010 lorsqu'une période d'inactivité
+    # sans revenu de remplacement survient (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006739692/2005-07-01/)
+
+    def formula(individu, period, parameters):
+        return (individu('revenu_assimile_pension', period.n_2))
 
 
 class aah_restriction_substantielle_durable_acces_emploi(Variable):
@@ -272,6 +378,7 @@ class aah_eligible(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+    reference = ['Article 821-1 du Code de la sécurité sociale', 'https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006739685/']
 
     '''
         Allocation adulte handicapé
@@ -300,24 +407,59 @@ class aah_eligible(Variable):
         En cas d'incapacité d'au moins 80 %, une AAH différentielle (c'est-à-dire une allocation mensuelle réduite)
         peut être versée au-delà de l'âge minimum légal de départ à la retraite en complément d'une retraite inférieure
         au minimum vieillesse.
+
+        Avant 2011, l'allocation était perçue uniquement pour les personnes sans activité les douze mois précédents
+        (ref https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006739685/2005-06-30/),
+        mais ce n'était pas le cas avant 2005 ref https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002101708
     '''
 
-    def formula(individu, period, parameters):
+    def formula_2011_01_01(individu, period, parameters):
         law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         taux_incapacite = individu('taux_incapacite', period)
+        taux_incapacite_max = (taux_incapacite >= law.taux_capacite.taux_incapacite)
+        taux_incapacite_rsdae = (taux_incapacite >= law.taux_capacite.taux_incapacite_rsdae)
         rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
 
         age = individu('age', period)
-        autonomie_financiere = individu('autonomie_financiere', period)
+        prestations_familiales_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
         eligible_aah = (
-            ((taux_incapacite >= law.taux_capacite.taux_incapacite) + (taux_incapacite >= law.taux_capacite.taux_incapacite_rsdae) * rsdae)
-            * (age <= law.age_legal_retraite)
-            * ((age >= law.age_minimal) + ((age >= 16) * (autonomie_financiere)))
+            (taux_incapacite_max + (taux_incapacite_rsdae * rsdae * (age <= law.age_legal_retraite)))
+            * ((age >= law.age_minimal) + ((age >= law.age_fin_educ) * not_(prestations_familiales_enfant_a_charge)))
             )
 
         return eligible_aah
 
-        # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
+    def formula_2005_07_01(individu, period, parameters):
+        law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        taux_incapacite = individu('taux_incapacite', period)
+        taux_incapacite_max = (taux_incapacite >= law.taux_capacite.taux_incapacite)
+        taux_incapacite_rsdae = (taux_incapacite >= law.taux_capacite.taux_incapacite_rsdae)
+        rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
+
+        age = individu('age', period)
+        prestations_familiales_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
+        eligible_aah = (
+            (taux_incapacite_max + (taux_incapacite_rsdae * rsdae * (age <= law.age_legal_retraite))
+            * (individu('salaire_imposable', period.last_year, options=[ADD]) <= 0))
+            * ((age >= law.age_minimal) + ((age >= law.age_fin_educ) * not_(prestations_familiales_enfant_a_charge)))
+            )
+        return eligible_aah
+
+    def formula(individu, period, parameters):
+        law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        taux_incapacite = individu('taux_incapacite', period)
+        taux_incapacite_max = (taux_incapacite >= law.taux_capacite.taux_incapacite)
+        taux_incapacite_rsdae = (taux_incapacite >= law.taux_capacite.taux_incapacite_rsdae)
+        rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
+
+        age = individu('age', period)
+        prestations_familiales_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
+        eligible_aah = (
+            (taux_incapacite_max + (taux_incapacite_rsdae * rsdae
+            * (age <= law.age_legal_retraite)))
+            * ((age >= law.age_minimal) + ((age >= law.age_fin_educ) * not_(prestations_familiales_enfant_a_charge)))
+            )
+        return eligible_aah
 
 
 class aah_base_non_cumulable(Variable):
@@ -366,7 +508,7 @@ class aah_base(Variable):
     reference = [
         'Article L821-1 du Code de la sécurité sociale',
         'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=53AFF5AA4010B01F0539052A33180B39.tplgfr35s_1?idArticle=LEGIARTI000033813790&cidTexte=LEGITEXT000006073189&dateTexte=20180412'
-        ]
+        " D'après service-public : 'Si vous touchez une pension ou une rente, vous recevez la différence entre le montant de votre pension ou rente et le montant maximal de l'AAH', le montant évoqué est donc le maximal"]
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -382,7 +524,7 @@ class aah_base(Variable):
 
         aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
 
-        return aah_eligible * min_(montant_aah, max_(0, montant_max - aah_base_non_cumulable))
+        return aah_eligible * min_(max_(0, montant_aah), max_(0, montant_max - aah_base_non_cumulable))
 
 
 class aah(Variable):
@@ -401,15 +543,23 @@ class aah(Variable):
 
         aah_date_debut_hospitalisation = individu('aah_date_debut_hospitalisation', period)
         aah_date_debut_incarceration = individu('aah_date_debut_incarceration', period)
-        aah_reduction = (aah_date_debut_hospitalisation <= m_2) + (aah_date_debut_incarceration <= m_2)
+        pers_charge = (individu.foyer_fiscal('nb_pac', period.last_year) > 0)
+        aah_reduction = ((aah_date_debut_hospitalisation <= m_2) + (aah_date_debut_incarceration <= m_2)) * not_(pers_charge)
 
         return where(aah_reduction, aah_base * aah_parameters.pourcentage_aah.prison_hospitalisation, aah_base)
+        # montant_max_aah = law.prestations_etat_de_sante.invalidite.aah.montant
+        # est-ce cela, ou plutôt where(aah_reduction, min_(aah_base, aah_parameters.pourcentage_aah.prison_hospitalisation * montant_max_aah), aah_base)
+        # ce qui expliquerait la phrase : L'intéressé ne peut recevoir une allocation plus élevée que celle qu'il percevrait s'il n'était pas hospitalisé, placé dans une maison d'accueil spécialisée ou incarcéré.
+        # TODO: exemption de baisse également si paiement d'un forfait journalier (lors de l'hospitalisation), et si le conjoint ne travaille pas pour une raison reconnue valable
+        # jusqu'en 2005, un taux différent selon si marié ou pas (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031828843/2016-01-01/)
 
 
 class eligibilite_caah(Variable):
     entity = Individu
     value_type = float
     label = "Eligibilité aux compléments à l'aah"
+    reference = ['https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039802699']
+
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -422,15 +572,16 @@ class eligibilite_caah(Variable):
         asi = individu('asi', period)  # montant asi de la famille
         benef_asi = (asi_eligibilite * (asi > 0))
         taux_incapacite = individu('taux_incapacite', period)
-
         locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
-        salaire_net = individu('salaire_net', annee_precedente, options = [ADD])
+        logement_independant = (individu.has_role(Menage.PERSONNE_DE_REFERENCE) + individu.has_role(Menage.CONJOINT)) * not_(locataire_foyer)
+
+        activite_12_mois = individu('salaire_imposable', annee_precedente, options = [ADD]) + individu('rpns_imposables', annee_precedente)  # substitution à vérifier
 
         return (
             (taux_incapacite >= taux_incapacite_min)
             * ((aah > 0) | (benef_asi > 0))
-            * not_(locataire_foyer)
-            * (salaire_net == 0)
+            * logement_independant
+            * (activite_12_mois == 0)
             )
 
 
@@ -454,10 +605,12 @@ class caah(Variable):
         return max_(complement_ressources_aah, mva) * eligibilite_caah
 
     def formula_2005_07_01(individu, period, parameters):
-        law = parameters(period).prestations_sociales
+        law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite
+        annee_precedente = period.start.period('year').offset(-1)
+        activite_12_mois = individu('salaire_imposable', annee_precedente, options = [ADD]) + individu('rpns_imposables', annee_precedente)
 
-        garantie_ressources = law.prestations_etat_de_sante.invalidite.caah.garantie_ressources
-        aah_montant = law.prestations_etat_de_sante.invalidite.aah.montant
+        garantie_ressources = law.caah.garantie_ressources
+        aah_montant = law.aah.montant
 
         aah = individu('aah', period)
         asi_eligibilite = individu('asi_eligibilite', period)
@@ -467,22 +620,24 @@ class caah(Variable):
         # montant allocs logement de la famille
         al = individu.famille('aide_logement_montant', period)
         taux_incapacite = individu('taux_incapacite', period)
+        # taux_capacite = individu('taux_capacite_travail', period) dans la législation, mais moins usité que le taux d'incapacité
 
-        elig_cpl = ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite)
-        # TODO: & logement indépendant & inactif 12 derniers mois
-        # & capa de travail < 5%
+        locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
+        logement_independant = (individu.has_role(Menage.PERSONNE_DE_REFERENCE) + individu.has_role(Menage.CONJOINT)) * not_(locataire_foyer)
+        incapacite = (taux_incapacite >= law.aah.taux_capacite.taux_incapacite)
+        # non_capacite = (taux_capacite < law.aah.taux_capacite.taux_capacite_travail)
+
+        elig_cpl = ((aah > 0) | (benef_asi > 0)) * incapacite * (activite_12_mois == 0) * logement_independant  # * non_capacite
+        # TODO: revenus professionnels ?
         compl_ress = elig_cpl * max_(garantie_ressources - aah_montant, 0)
 
-        elig_mva = (al > 0) * ((aah > 0) | (benef_asi > 0))
-        # TODO: & logement indépendant & pas de revenus professionnels
-        # propres & capa de travail < 5% & taux d'incapacité >= 80%
-        # TODO: rentrer mva dans paramètres. mva (mensuelle) = 104,77 en 2015, était de 101,80 en 2006, et de 119,72 en 2007
-        mva = 0.0 * elig_mva
+        elig_mva = (al > 0) * ((aah > 0) | (benef_asi > 0)) * incapacite * (activite_12_mois == 0) * logement_independant  # * non_capacite
+
+        mva = law.caah.majoration_vie_autonome * elig_mva
 
         return max_(compl_ress, mva)
 
-    # TODO FIXME start date
-    def formula_2002_01_01(individu, period, parameters):
+    def formula_1994_07_01(individu, period, parameters):
         law = parameters(period).prestations_sociales
 
         cpltx = law.prestations_etat_de_sante.invalidite.caah.taux_montant_complement_ressources
@@ -495,12 +650,12 @@ class caah(Variable):
         # montant allocs logement de la famille
         al = individu.famille('aide_logement_montant', period)
         taux_incapacite = individu('taux_incapacite', period)
+        locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
 
-        # TODO: & logement indépendant
-        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite)
+        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite) * not_(locataire_foyer)
 
         ancien_caah = cpltx * aah_montant * elig_ancien_caah
-        # En fait le taux cpltx perdure jusqu'en 2008
+        # En fait le taux cpltx perdure jusqu'en 2008 officiellement, la différence garantie-ressource et aah restant cependant constante égale à la valeur du complément d'allocation, 179,31
 
         return ancien_caah
 
@@ -540,7 +695,7 @@ class mva(Variable):
         return mva_montant * (al > 0)
 
 
-class pch(Variable):
+class pch(Variable):  # inutilisée pour l'instant
     entity = Individu
     value_type = float
     label = 'Prestation de compensation du handicap'

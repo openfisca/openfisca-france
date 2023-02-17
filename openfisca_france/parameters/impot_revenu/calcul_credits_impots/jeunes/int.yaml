@@ -1,9 +1,0 @@
-description: Seuil intermédiaire de revenus pour bénéficier du Crédit jeunes actifs
-values:
-  2005-01-01:
-    value: 10060
-  2009-01-01:
-    value: null
-metadata:
-  ux_name: Seuil intermédiaire
-  unit: currency

@@ -23,9 +23,9 @@ values:
   2022-01-01:
     value: 1868
 metadata:
-  ux_name: Réduction supp. veuf avec enfants à charge
-  last_review: "2023-01-05"
-  description_en: Family quotient ceiling and "decote" (1978 - )
+  short_label: Réduction supp. veuf avec enfants à charge
+  last_value_still_valid_on: "2023-01-05"
+  label_en: Family quotient ceiling and "decote" (1978 - )
   ipp_csv_id: plaf_qf_persseule
   unit: currency
   reference:

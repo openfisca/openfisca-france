@@ -7,8 +7,8 @@ values:
   1985-01-01:
     value: null
 metadata:
-  ux_name: Taux de la base de calcul versé
-  description_en: "Postnatal allowance (APN): Rate and payment"
+  short_label: Taux de la base de calcul versé
+  label_en: "Postnatal allowance (APN): Rate and payment"
   ipp_csv_id: tx_base
   unit: /1
   reference:

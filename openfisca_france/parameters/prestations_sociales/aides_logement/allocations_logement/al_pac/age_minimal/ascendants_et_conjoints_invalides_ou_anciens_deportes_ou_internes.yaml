@@ -5,8 +5,8 @@ values:
   2016-07-01:
     value: 62
 metadata:
-  ux_name: Ascendants et leurs conjoints, si invalides, anciens déportés ou internés
-  description_en: Definition of dependants
+  short_label: Ascendants et leurs conjoints, si invalides, anciens déportés ou internés
+  label_en: Definition of dependants
   ipp_csv_id: ag_min_ascendants2
   unit: year
   reference:

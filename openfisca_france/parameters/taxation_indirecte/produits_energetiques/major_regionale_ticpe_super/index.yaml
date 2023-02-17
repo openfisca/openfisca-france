@@ -1,6 +1,6 @@
 description: Majoration régionale TICPE super
 metadata:
-  description_en: Regional surcharge - gasoline
+  label_en: Regional surcharge - gasoline
   order:
   - alsace
   - aquitaine

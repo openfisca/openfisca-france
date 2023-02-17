@@ -3,8 +3,8 @@ values:
   1993-01-01:
     value: 0.83
 metadata:
-  ux_name: Entre 25 et 50 ans
-  description_en: UI scheme - degressive schedule
+  short_label: Entre 25 et 50 ans
+  label_en: UI scheme - degressive schedule
   unit: /1
   reference:
     1993-01-01:

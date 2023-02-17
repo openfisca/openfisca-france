@@ -1,4 +1,4 @@
-description: Taux pour les écoliers (6-10 ans, en % de la BMAF) de l'Allocation de rentrée scolaire (ARS)
+description: Montant pour la 1ère tranche d'âge (écoliers 6-10 ans), en % de la BMAF, de l'allocation de rentrée scolaire (ARS)
 values:
   1986-08-01:
     value: 0.2
@@ -13,8 +13,8 @@ values:
   2012-09-03:
     value: 0.8972
 metadata:
-  ux_name: Taux primaire (6-10 ans)
-  description_en: "Back-to-school allowance (ARS): Amounts"
+  short_label: Montant pour la 1ère tranche d'âge
+  label_en: "Back-to-school allowance (ARS): Amounts"
   ipp_csv_id: ars610
   unit: BMAF
   reference:
@@ -57,7 +57,7 @@ metadata:
     - title: Changement de taux. Au regard de la date, ce changement s'applique à la rentrée 2001
     2008-08-03:
     - title: "La loi : Le montant varie avec l'âge; Le décret : Changement de taux. Au regard de la date du JO, ce nouveau taux devrait s'appliquer pour la rentrée 2008. Or, ce n'est pas la cas : cf. dico permanent"
-  last_review: "2022-02-09"
+  last_value_still_valid_on: "2023-02-02"
 documentation: |-
   Notes :
   L'ARS a un plafond variable selon le nombre d'enfants dès 1974 (Loi 74-644 du 16/07/1974)

@@ -1,6 +1,6 @@
 description: Cotisation sécurité sociale sur les boissons alcooliques
 metadata:
-  description_en: Alcoholic beverage contribution on Social Security
+  label_en: Alcoholic beverage contribution on Social Security
   order:
   - taux_en_eur_par_dL
   - alcools_taux_plein

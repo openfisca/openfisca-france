@@ -5,7 +5,7 @@ values:
   2018-01-01:
     value: 6.63
 metadata:
-  ux_name: Autres que comme carburant (100kg nets)
+  short_label: Autres que comme carburant (100kg nets)
   unit: currency
   reference:
     1993-01-01:

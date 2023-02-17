@@ -3,5 +3,5 @@ values:
   2004-01-01:
     value: 6
 metadata:
-  ux_name: Prestation réduite
+  short_label: Prestation réduite
   unit: year

@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 0.0281
 metadata:
-  ux_name: Personnes isolées
+  short_label: Personnes isolées
   unit: /1
   reference:
     2002-01-01:

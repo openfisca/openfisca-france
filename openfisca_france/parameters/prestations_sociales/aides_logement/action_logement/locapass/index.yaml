@@ -1,4 +1,4 @@
 description: Aide locapass des allocations logement (AL)
 metadata:
-  ux_name: Locapass
-  description_en: Housing allowances
+  short_label: Locapass
+  label_en: Housing allowances

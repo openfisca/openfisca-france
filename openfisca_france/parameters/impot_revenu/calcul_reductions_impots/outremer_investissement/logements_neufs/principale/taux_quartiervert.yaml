@@ -1,7 +1,7 @@
 description: Taux pour logement dans un QP utilisant une énergie renouvelable de réduction du prix d'investissement pendant 10 ans si habitation
   principale du contribuable pour les investissements réalisés en Outre-Mer (2003-2021)
 metadata:
-  ux_name: Taux quartier vert
+  short_label: Taux quartier vert
   ipp_csv_id: taux_quartiervert_reduc_invest_outremer
   notes:
     2011-01-01:

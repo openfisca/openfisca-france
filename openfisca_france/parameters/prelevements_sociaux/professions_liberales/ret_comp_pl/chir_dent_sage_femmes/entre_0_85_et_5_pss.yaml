@@ -1,0 +1,149 @@
+description: Taux entre 0,85 et 5 PSS de la cotisation des Chirurgiens-dentistes (+ sages femmes depuis janvier 2009) pour la retraite complémentaire, Professions libérales
+values:
+  1949-01-01:
+    value: null
+  1997-01-01:
+    value: 0.08
+  2001-01-01:
+    value: 0.083
+  2002-01-01:
+    value: 0.09
+  2004-01-01:
+    value: 0.095
+  2009-01-01:
+    value: 0.099
+  2010-01-01:
+    value: 0.0995
+  2011-01-01:
+    value: 0.1
+  2012-01-01:
+    value: 0.1005
+  2013-01-01:
+    value: 0.102
+  2014-01-01:
+    value: 0.103
+  2015-01-01:
+    value: 0.104
+  2016-01-01:
+    value: 0.105
+  2017-01-01:
+    value: 0.106
+  2018-01-01:
+    value: 0.1065
+metadata:
+  short_label: Taux entre 0,85 et 5 PSS
+  label_en: Contribution for complementary pension scheme (professionals)
+  ipp_csv_id: retc_chird_85_5
+  unit: /1
+  reference:
+    1949-01-01:
+      title: Arrêté du 24/05/1949
+    1997-01-01:
+    - title: Décret 97-830 du 4/09/1997
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000182574
+    - title: Décret 96-1164 du 26/12/1996
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000747883
+    2001-01-01:
+      title: Décret 2001-1182 du 11/12/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000222790&categorieLien=id
+    2002-01-01:
+    - title: Décret 2001-864 du 17/09/2001
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000762798
+    - title: Décret 2002-1525 du 23/12/2002
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000599475
+    2004-01-01:
+    - title: Décret 2004-1095 du 15/10/2004
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000445440
+    - title: Décret 2003-1273 du 26/12/2003
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000431947
+    2009-01-01:
+      title: Décret 2009-1635 du 23/12/2009
+      href: https://www.legifrance.gouv.fr/eli/decret/2009/12/23/2009-1635/jo/texte
+    2010-01-01:
+    - title: Décret 2010-1253 du 21/10/2010
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000022941442
+    - title: Décret 2008-1044 du 10/10/2008
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000019599997
+    2011-01-01:
+      title: Décret 2011-674 du 15/06/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/6/15/2011-674/jo/texte
+    2012-01-01:
+    - title: Décret 2011-1419 du 31/10/2011
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000024742187
+    - title: Décret 2012-478 du 12/04/2012
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025687484
+    - title: Décret 2011-1644 du 25/11/2011
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000024851756
+    2013-01-01:
+      title: Décret 2011-1644 du 25/11/2011
+      href: https://www.legifrance.gouv.fr/eli/decret/2011/11/25/2011-1644/jo/texte
+    2014-01-01:
+      title: Décret 2013-1081 du 29/11/2013
+      href: https://www.legifrance.gouv.fr/eli/decret/2013/11/29/2013-1081/jo/texte
+    2015-01-01:
+      title: Décret 2015-1802 du 29/12/2015
+      href: https://www.legifrance.gouv.fr/eli/decret/2015/12/29/2015-1802/jo/texte
+    2016-01-01:
+    - title: Décret 2015-1802 du 29/12/2015
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000031733604
+    - title: Décret 2007-597 du 24/04/2007
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000649843
+    2017-01-01:
+      title: Décret 2017-730 du 3/05/2017
+      href: https://www.legifrance.gouv.fr/eli/decret/2017/5/3/2017-730/jo/texte
+    2018-01-01:
+    - title: Décret 2017-730 du 3/05/2017
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034579602
+    - title: Décret 2017-993 du 10/05/2017
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034676865
+  official_journal_date:
+    1949-01-01: "1949-06-01"
+    1997-01-01: 1997-09-11; 1996-12-29
+    2001-01-01: "2001-12-13"
+    2002-01-01: 2001-09-22; 2002-12-28
+    2004-01-01: "2004-10-17"
+    2009-01-01: "2009-12-26"
+    2010-01-01: 2010-10-23; 2008-10-11
+    2011-01-01: "2011-06-17"
+    2012-01-01: 2011-11-03; 2012-04-14; 2011-11-26
+    2013-01-01: "2011-11-26"
+    2014-01-01: "2013-12-01"
+    2015-01-01: "2015-12-30"
+    2016-01-01: 2015-12-30; 2007-04-26
+    2017-01-01: "2017-05-11"
+    2018-01-01: 2017-05-05; 2017-05-11
+  notes:
+    1997-01-01:
+    - title: Institution d'une cotisation proportionnelle en plus de la cotisation forfaitaire qui existait déjà pour les chirurgiens dentistes
+    2004-01-01:
+    - title: Créationd'un régime d'assurance invalidité-décès pour les agents généraux d'assurance
+    2010-01-01:
+    - title: Création d'une cotisation proportionnelle pour financer l'ASV pour les auxiliaires médicaux (infirmiers, masseurs-kiné, etc.)
+    2012-01-01:
+    - title: Création d'une cotisation proportionnelle pour financer l'ASV pour les médecins conventionnés
+    2018-01-01:
+    - title: "Référence législative manquante pour taux notaires section C. Source : rapport d'activité 2018 de la CPRN"
+documentation: |-
+  Notes :
+  (1) La Caisse nationale d'assurance vieillesse des professions libérales (CNAVPL) comprend 10 sections professionnelles gérant différents régimes:
+  Agents généraux d'assurance (CAVAMAC) : Assiette limitée par une valeur plancher (fixée chaque année) et une valeur plafond (égale à 10*plancher de janvier 1998 à décembre 2001, puis 12*plancher de janvier 2002 à 2012, puis fixée annuellement. Exemple: égale à 437634€ en 2013.)
+  Infirmiers, masseurs-kiné, orthophonistes, orthoptistes (=auxiliaires médicaux, CARPIMKO) : "seuils fixés chaque année (en 2013 = 25 246 € - 144 046 €), et l'Assurance maladie prend en charge 60 % de la cotisation due au titre du régime supplémentaire (0,24 %). S'ajoute à cette cotisation une cotisation forfaitaire, ainsi qu'une cotisation forfaitaire pour le régime invalidité-décès.""
+  Notaires: "L'assiette a varié au cours du temps (initialement, moyenne sur 5 ans des produits demi-nets des études en cours (la première tranche de 100 000 FRF est comptée pour moitié de sa valeur), puis moyenne sur 3 ans des produits de base de l'office -- la date du changement de réglementation est inconnue). Jusqu'en 2004, existence de 3 sections, A, U et B, la B étant financée par une cotisation forfaitaire dépendant de la classe du notaire ; dès 2005, 2 sections, la B (cotisation forfaitaire, qui dépend de la classe choisie, qui correspond à un certain nombre de points retraite) et la C (correspond à la fusion des anciennes sections A et U). Régime spécial à Colmar et Metz institué par Décret 51-310 du 03/03/1951. Le taux indiqué correspond au maximum du taux supplémentaire décidé chaque année par conseil d'administration de la section professionnelle d'allocation vieillesse des notaires. Source législative principale : Décret 49-578 du 22/04/1949 (JO 24/04/1949)."
+  Architectes, agréés en architecture, ingénieurs, techniciens, géomètres, experts et conseils paient une cotisation uniquement forfaitaire au titre de leur retraite complémentaire, qui dépend du revenu (plusieurs tranches).
+  Officiers ministériels, officiers publics et des compagnies judiciaires : cotisation forfaitaire au titre de la retraite complémentaire et de l'invalidité décès.
+  Experts comptables paient une cotisation uniquement forfaitaire au titre de leur retraite complémentaire, qui dépend du revenu (plusieurs tranches).
+  Vétérinaires : cotisation forfaitaire au titre de la retraite complémentaire et au titre de l'invalidité-décès
+  Chirurgiens dentistes et sages-femmes (CARCDSF) : une cotisation forfaitaire supplémentaire est due, ainsi qu'une cotisation forfaitaire pour le régime invalidité-décès (différente pour les sages-femmes). Rattachement des sages-femmes aux chirurgiens dentistes depuis le 01/01/2009. Avant 2009, les sages-femmes ne cotisaient pas à un régime de retraite complémentaire, mais à un régime de retraite supplémentaire géré par la CARSAF.
+  Pharmaciens : cotisation forfaitaire pour le régime complémentaire et pour le régime invalidité-décès, et cotisation forfaitaire supplémentaire pour le régime supplémentaire ASV (concernant la cotisation proportionnelle, la motié des 0,30 % est versée par l'Assurance maladie).
+  Médecins : cotisation invalidité-décès forfaitaire, et pour le régime supplémentaire, cotisation forfaitaire supplémentaire, et 2/3 du taux est pris en charge par l'assurance maladie pour les médecins de secteur 1. Avant le 01/01/2011, le plafond utilisé n'était pas 3,5 PSS mais une somme fixée annuellement.
+  (2) L'ASV (allocations supplémentaires vieillesse) devient obligatoire pour les médecins conventionnés en juillet 1972 (décret 72-968 du 27/10/1972). Créée à la base pour compenser la fixation des honoraires de médecins par l'Etat, et les encourager à être conventionnés.
+  L'affiliation à un régime supplémentaire d'ASV est également obligatoire pour les sages-femmes conventionnés, depuis 1984.
+  Le taux de la cotisation dépend du forfait accouchement simple en vigueur.
+  (3) Loi 2005-1579 du 19/12/2005: introduit principe de la cotisation d'ajustement proportionnel pour financer l'ASV, ensuite appliquée par décret dans les différentes sections professionnelles
+  Cotisation minimale :
+  (i) Retraite complémentaire
+  Pour les affiliés percevant un revenu professionnel inférieur à 5,25 % du PSS par an, une cotisation minimale annuelle est due.
+  Cotisation minimale = 0,0525*PSS annuel*taux de cotisation (effectif)
+  (ii) Invalidité-décès
+  Pour les affiliés percevant un revenu professionnel inférieur à 20 % du PSS par an, une cotisation minimale annuelle est due.
+  Cotisation minimale = 0,2*PSS annuel*taux de cotisation

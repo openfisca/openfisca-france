@@ -163,10 +163,11 @@ class exposition_penibilite(Variable):
 
 
 class TypesAllegementModeRecouvrement(Enum):
+    # Informations sur la régularisation de la réduction appliquée sur le site des URSSAF : https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-2--le-calcul-de-la-reducti/la-regularisation.html
     __order__ = 'fin_d_annee anticipe progressif'  # Needed to preserve the enum order in Python 2
-    fin_d_annee = 'fin_d_annee'
-    anticipe = 'anticipe_regularisation_fin_de_periode'
-    progressif = 'progressif'
+    fin_d_annee = "Paiement en fin d'année des cotisations avec l'allègement exact"
+    anticipe = "Paiement anticipé des cotisations et régularisation de l'allègement en fin de période"
+    progressif = "Paiement anticipé des cotisations et régularisation progressive de l'allègement"  # La régularisation est faite à chaque paiement anticipé, «en faisant masse des éléments nécessaires au calcul de la réduction»
 
 
 class allegement_fillon_mode_recouvrement(Variable):
@@ -257,13 +258,13 @@ class indemnite_fin_contrat_due(Variable):
 
 class TypesContratDeTravail(Enum):
     __order__ = 'temps_plein temps_partiel forfait_heures_semaines forfait_heures_mois forfait_heures_annee forfait_jours_annee sans_objet'  # Needed to preserve the enum order in Python 2
-    temps_plein = 'temps_plein'
-    temps_partiel = 'temps_partiel'
-    forfait_heures_semaines = 'forfait_heures_semaines'
-    forfait_heures_mois = 'forfait_heures_mois'
-    forfait_heures_annee = 'forfait_heures_annee'
-    forfait_jours_annee = 'forfait_jours_annee'
-    sans_objet = 'sans_objet'
+    temps_plein = 'Temps plein'
+    temps_partiel = 'Temps partiel'
+    forfait_heures_semaines = 'Convention de forfait heures sur la semaine'
+    forfait_heures_mois = 'Convention de forfait heures sur le mois'
+    forfait_heures_annee = 'Convention de forfait heures sur l’année'
+    forfait_jours_annee = 'Convention de forfait hours sur l’année'
+    sans_objet = 'Non renseigné'
 
 
 class contrat_de_travail(Variable):
@@ -271,7 +272,7 @@ class contrat_de_travail(Variable):
     possible_values = TypesContratDeTravail
     default_value = TypesContratDeTravail.temps_plein
     entity = Individu
-    label = 'Type contrat de travail'
+    label = 'Type de contrat de travail'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -924,11 +925,12 @@ class indemnites_forfaitaires(Variable):
 
 
 class salaire_de_base(Variable):
+    # Salaire brut sans les primes et les heures supplémentaires - généralement la première ligne du bulletin de paye.
     value_type = float
     entity = Individu
-    label = 'Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie'
+    label = 'Salaire de base'
     set_input = set_input_divide_by_period
-    reference = 'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm'
+    reference = 'https://www.insee.fr/fr/metadonnees/definition/c1937'
     definition_period = MONTH
     unit = 'currency'
 
@@ -993,9 +995,10 @@ class heures_non_remunerees_volume(Variable):
 
 
 class heures_remunerees_volume(Variable):
+    # N'est pas pris en compte lorsque type_contrat_travail = temps_plein
     value_type = float
     entity = Individu
-    label = 'Volume des heures rémunérées contractuellement (heures/mois, temps partiel)'
+    label = 'Volume des heures rémunérées contractuellement'
     set_input = set_input_divide_by_period
     definition_period = MONTH
 

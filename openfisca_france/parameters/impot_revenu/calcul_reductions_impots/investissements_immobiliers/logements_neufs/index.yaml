@@ -1,7 +1,7 @@
 description: Réduction d'impôt (pour logements neufs) des dispositifs d'encouragement à l'investissement locatif (1984 -)
 metadata:
-  ux_name: Logements neufs
-  description_en: Tax reductions for new real estate investments (1984 -) 
+  short_label: Logements neufs
+  label_en: Tax reductions for new real estate investments (1984 -) 
   order:
     - dispositif_mehaignerie
     - dispositif_scellier

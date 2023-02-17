@@ -13,8 +13,8 @@ values:
   2018-03-01:
     value: 0
 metadata:
-  ux_name: APL
-  description_en: Minimal amount
+  short_label: APL
+  label_en: Minimal amount
   unit: currency
   reference:
     1989-11-12:

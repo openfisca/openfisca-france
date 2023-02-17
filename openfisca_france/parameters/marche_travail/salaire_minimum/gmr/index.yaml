@@ -1,7 +1,7 @@
 description: Garanties minimales de ressources (GMR)
 metadata:
-  ux_name: Garanties minimales de ressources
-  description_en: Minimal ressources guarantee - GMR (2000-2004)
+  short_label: Garanties minimales de ressources
+  label_en: Minimal ressources guarantee - GMR (2000-2004)
   order:
   - rtt_avant_30_06_99_gmr1
   - rtt_avant_30_06_00_gmr2

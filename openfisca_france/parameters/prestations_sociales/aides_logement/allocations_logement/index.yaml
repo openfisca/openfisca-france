@@ -1,6 +1,6 @@
 description: Prestations sociales
 metadata:
-  description_en: Allowances
+  label_en: Allowances
   order:
   - al_pac
   - al_param_acc_univ

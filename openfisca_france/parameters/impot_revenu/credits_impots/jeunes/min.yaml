@@ -1,0 +1,9 @@
+description: Plancher de revenus pour bénéficier du Crédit jeunes actifs
+values:
+  2005-01-01:
+    value: 2970
+  2009-01-01:
+    value: null
+metadata:
+  short_label: Plancher de revenus
+  unit: currency

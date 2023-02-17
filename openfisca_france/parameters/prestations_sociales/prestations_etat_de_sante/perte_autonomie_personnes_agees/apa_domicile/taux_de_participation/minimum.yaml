@@ -3,8 +3,8 @@ values:
   2002-01-01:
     value: 0
 metadata:
-  ux_name: Minimum
-  description_en: Attendance allowance for individuals living at home (APA)
+  short_label: Minimum
+  label_en: Attendance allowance for individuals living at home (APA)
   unit: /1
   reference:
     2002-01-01:
@@ -19,4 +19,4 @@ documentation: |-
   MTP : majoration pour aide constante d'une tierce personne
   (2) L'APA peut être attribuée dans le cadre d'une procédure d'urgence, le montant forfaitaire est une fraction du montant maximum pour le GIR 1.
   (3) L'APA n'est pas versée lorsque son montant après retranchement de la participation du bénéficiaire est inférieur à ce seuil de non-versement.
-  (4) Deux majorations dépendent de la situation du proche aidant: le plafond peut être majoré lorsque le proche aidant a besoin de répit (évalué par une équipe médico-sociale), ou en cas d'hospitalisation du proche aidant. Dans le premier cas le montant maximum de la majoratoin est fixé de manière annuelle, dans le second cas il est fixé par hospitalisation.
+  (4) Deux majorations dépendent de la situation du proche aidant: le plafond peut être majoré lorsque le proche aidant a besoin de répit (évalué par une équipe médico-sociale), ou en cas d'hospitalisation du proche aidant. Dans le premier cas le montant maximum de la majoration est fixé de manière annuelle, dans le second cas il est fixé par hospitalisation.

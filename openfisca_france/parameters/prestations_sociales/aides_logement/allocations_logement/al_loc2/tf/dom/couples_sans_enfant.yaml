@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 0.0299
 metadata:
-  ux_name: Couples sans enfant
+  short_label: Couples sans enfant
   unit: /1
   reference:
     2002-01-01:

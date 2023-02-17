@@ -5,8 +5,8 @@ values:
   1978-01-01:
     value: null
 metadata:
-  ux_name: 6 enfants
-  description_en: "Allowance for stay-at-home-mother (AMF): Thresholds for means-testing"
+  short_label: 6 enfants
+  label_en: "Allowance for stay-at-home-mother (AMF): Thresholds for means-testing"
   ipp_csv_id: majplaf_6_enf
   unit: currency
   reference:

@@ -5,7 +5,7 @@ values:
   2019-01-01:
     value: 247
 metadata:
-  ux_name: Majoration par personne à charge supplémentaire
+  short_label: Majoration par personne à charge supplémentaire
   ipp_csv_id: plafond_ressources_rls_z3_pac_supplementaire
   unit: currency
   reference:

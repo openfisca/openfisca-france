@@ -1,0 +1,57 @@
+description: Taux pour les dépenses en vitrage ou chauffage performant au fioul du crédit d'impôt à la transition énergétique (2014-2021) et Crédit d'impôt au développement durable (2005-2014)
+values:
+  2005-01-01:
+    value: 0.15
+  2011-01-01:
+    value: 0.13
+  2012-01-01:
+    value: 0.1
+  2014-01-01:
+    value: 0.3
+  2018-01-01:
+    value: 0.15
+  2020-01-01:
+    value: null
+metadata:
+  short_label: Taux vitrage et fioul
+  ipp_csv_id: taux_cite_particulier
+  unit: /1
+  reference:
+    2005-01-01:
+      title: Loi n° 2004-1484 du 30 décembre 2004 (LF 2005), art. 90
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000000789373&idArticle=LEGIARTI000006322191&dateTexte=20051230&categorieLien=id#LEGIARTI000006322191
+    2011-01-01:
+      title: Loi n° 2010-1657 du 29 décembre 2010 (LF2011), art. 36
+      href: https://www.legifrance.gouv.fr/eli/loi/2010/12/29/BCRX1023155L/jo/article_36
+    2012-01-01:
+      title: Loi n° 2011-1977 du 28 décembre 2011 (LF2012), art. 83
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025048571&cidTexte=LEGITEXT000025048241&dateTexte=20200730
+    2014-01-01:
+      title: Loi n° 2014-1654 du 29 décembre 2014 (LF 2015), art. 3
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000029988857&idArticle=LEGIARTI000029994817&dateTexte=20151231&categorieLien=id#LEGIARTI000029994817
+    2018-01-01:
+      title: Loi n° 2017-1837 du 30 décembre 2017 (LF 2018), art.79
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000036339287
+    2020-01-01:
+      title: Loi n° 2019-1479 du 28 décembre 2019 (LF 2020), art. 15
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000039683923&idArticle=LEGIARTI000039793071&dateTexte=20200623&categorieLien=id#LEGIARTI000039793071
+  official_journal_date:
+    2005-01-01: "2004-12-31"
+    2011-01-01: "2010-12-30"
+    2012-01-01: "2011-12-29"
+    2014-01-01: "2014-12-30"
+    2018-01-01: "2017-12-31"
+    2020-01-01: "2019-12-29"
+  notes:
+    2005-01-01:
+    - title: Pour l'année IR 2005, le plafond du crédit d'impôt est rehaussé de 400 euros pour la première personne à charge, 500 euros pour la seconde et 600 euros à partir de la 3ème.
+    2020-01-01:
+    - title: Le CITE est étendu pour les dépenses engagées jusqu'au 31-12-2020. Cependant le calcul du montant restitué n'est plus basé sur un pourcentage de ces dépenses mais sur une prime forfaitaire pour chaque travail réalisé, de manière similaire à MaPrimeRénov'.
+documentation: |-
+  Notes:
+  (1) A partir de 2021, les foyers éligibles au successeur du CITE, maPrimeRenov', doivent satisfaire un minimum et un maximum de revenu fiscal de référence. Par exemple, une personne seule vivant en Ile de France doit avoir en 2019 un revenu fiscal de référence compris entre 25 068 euros et 27 706 euros pour bénéficier du crédit d'impôt. Les seuils et plafonds sont disponibles au 1° et 2° du 4.bis de l'article 200 quater du Code Général des Impôts (CGI). Pour cette prime, les montants de crédit d'impôt sont définis forfaitairement selon la nature des travaux et ne peuvent dépasser 75% de la dépense totale engagée.
+  (2) Les travaux doivent avoir lieu pour un logement occupé à titre de résidence principale, indépendamment du statut de l'occupant (locataire, propriétaire...).
+  (3) La liste des équipements, matériaux et appareils éligibles ainsi que les critères de performance exigés pour le bénéfice du crédit d’impôt est disponible à l'article 18 bis I de l'annexe IV du CGI.
+  (4) Le crédit d’impôt est calculé sur le prix d’achat TTC de l'équipement ou des matériaux qui figure sur la facture, excluant la main d'oeuvre de la base, sauf pour la pose de l'isolation.
+  (5) Le dispositif de CIDD comporte beaucoup de taux possibles selon la nature des travaux. Le taux général de 15% passe par exemple à 25% si un second travail distinct mais éligible est engagé la même année ou l'année suivant le premier. Les taux appliqués par année et par nature de travaux sont disponibles au 5. de l'article 200 quater du CGI.
+  (6) Les mécanismes du CITE et CIDD sont ouvert à tous les contribuables, y compris ceux non-imposables sur le revenu qui reçoivent une chèque du Trésor. Les contribuables imposables sur le revenu voient leur impôt décroître et le résidu leur être remis par chèque si la crédit d'impôt dépasse l'impôt à payer.

@@ -5,7 +5,7 @@ values:
   2005-01-01:
     value: 1500
 metadata:
-  ux_name: Incrément du plafond
+  short_label: Incrément du plafond
   ipp_csv_id: increment_plafsaldomicile
   unit: currency
   reference:

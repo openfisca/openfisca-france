@@ -39,7 +39,7 @@ values:
   2021-04-01:
     value: 18649.93
 metadata:
-  ux_name: Salaire net
+  short_label: Salaire net
   unit: currency
   reference:
     2015-12-23:
@@ -59,5 +59,5 @@ metadata:
     - title: revalorisation de 0,1%
     2029-04-01:
     - title: revalorisation de 0,3%
-  last_review: "2021-04-01"
+  last_value_still_valid_on: "2021-04-01"
 documentation: Modalités du calcul de la rente précisées dans l'article L434-16 - https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031688385/ Depuis 2016, le salaire est revalorisé au niveau de l'inflation.

@@ -1,7 +1,7 @@
 description: Complément familial dans les DOM (CF)
 metadata:
-  ux_name: CF DOM
-  description_en: "Family complement (CF): Thresholds for means-testing in oversea territories"
+  short_label: Complément familial DOM
+  label_en: "Family complement (CF): Thresholds for means-testing in oversea territories"
   order:
   - age_minimal_dom
   - age_maximal_dom

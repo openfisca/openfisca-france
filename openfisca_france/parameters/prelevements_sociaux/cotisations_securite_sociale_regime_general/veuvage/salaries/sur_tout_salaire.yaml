@@ -5,8 +5,8 @@ values:
   2004-07-01:
     value: null
 metadata:
-  ux_name: Sur tout salaire
-  description_en: SSCs for widowhood insurance (1981-2004)
+  short_label: Sur tout salaire
+  label_en: SSCs for widowhood insurance (1981-2004)
   ipp_csv_id: veuv_s_0_
   unit: /1
   reference:
@@ -24,7 +24,7 @@ metadata:
     - title: La cotisation veuvage est déplafonnée à compter du 1er janvier 1982.
     2004-07-01:
     - title: La cotisation veuvage est transférée à la Cnav.
-  last_review: "2004-01-01"
+  last_value_still_valid_on: "2004-01-01"
 documentation: |-
   Sources :
   www.legislation.cnav.fr, Journal Officiel via www.legifrance.gouv.fr

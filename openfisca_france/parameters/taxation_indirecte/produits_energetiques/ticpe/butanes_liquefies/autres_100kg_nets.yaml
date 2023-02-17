@@ -17,7 +17,7 @@ values:
   2018-01-01:
     value: 20.71
 metadata:
-  ux_name: Autres (100kg nets)
+  short_label: Autres (100kg nets)
   ipp_csv_id: ticpe_butane_autres
   unit: currency
   reference:

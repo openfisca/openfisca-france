@@ -1,6 +1,6 @@
 description: Formule de calcul - taux (en % de l'impôt) des minorations exceptionnelles d'impôt (1965-1992)
 metadata:
-  ux_name: Taux (% impôt)
+  short_label: Taux (% impôt)
   ipp_csv_id: param_mintx
   notes:
     1985-01-01:

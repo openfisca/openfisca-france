@@ -1,6 +1,6 @@
 description: Formule de calcul - Seuil 4 des minorations exceptionnelles d'impôt (1965-1992)
 metadata:
-  ux_name: Seuil 4
+  short_label: Seuil 4
   ipp_csv_id: param_mins4
   notes:
     1992-01-01:

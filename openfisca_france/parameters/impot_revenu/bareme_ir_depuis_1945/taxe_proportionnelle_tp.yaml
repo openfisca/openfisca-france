@@ -9,7 +9,7 @@ values:
   1959-01-01:
     value: null
 metadata:
-  ux_name: Taxe proportionnelle
+  short_label: Taxe proportionnelle
   ipp_csv_id: taxe_prop
   unit: /1
   reference:

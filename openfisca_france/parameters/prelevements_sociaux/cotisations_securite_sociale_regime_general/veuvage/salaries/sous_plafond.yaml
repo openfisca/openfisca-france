@@ -5,8 +5,8 @@ values:
   1982-01-01:
     value: null
 metadata:
-  ux_name: Sous plafond
-  description_en: SSCs for widowhood insurance (1981-2004)
+  short_label: Sous plafond
+  label_en: SSCs for widowhood insurance (1981-2004)
   ipp_csv_id: veuv_s_0_1
   unit: /1
   reference:
@@ -24,7 +24,7 @@ metadata:
     - title: En 1981, la cotisation veuvage nouvellemement créée de 0,1% ne s'applique que sous la partie du salaire sous-plafond.
     1982-01-01:
     - title: La cotisation veuvage est déplafonnée à compter du 1er janvier 1982.
-  last_review: "2004-01-01"
+  last_value_still_valid_on: "2004-01-01"
 documentation: |-
   Sources :
   www.legislation.cnav.fr, Journal Officiel via www.legifrance.gouv.fr

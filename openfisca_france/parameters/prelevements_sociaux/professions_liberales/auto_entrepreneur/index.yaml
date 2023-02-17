@@ -1,0 +1,7 @@
+description: Cotisations du régime des auto-entrepreneurs
+metadata:
+  short_label: Régimes des auto-entrepreneurs
+  label_en: Self-employed specific scheme (auto-entrepreneurs)
+  order:
+  - cotisations_prestations
+  - formation_professionnelle

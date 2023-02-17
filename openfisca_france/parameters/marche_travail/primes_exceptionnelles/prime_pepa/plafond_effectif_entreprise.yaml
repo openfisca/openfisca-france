@@ -7,7 +7,7 @@ values:
   2022-04-01:
     value: null
 metadata:
-  ux_name: Seuil d'effectif de l'entreprise sans accord d'intéressement
+  short_label: Seuil d'effectif de l'entreprise sans accord d'intéressement
   unit: people
   reference:
     2018-12-24:
