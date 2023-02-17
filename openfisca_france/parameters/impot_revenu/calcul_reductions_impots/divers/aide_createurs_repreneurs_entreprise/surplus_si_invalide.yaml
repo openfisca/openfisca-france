@@ -5,6 +5,6 @@ values:
   2006-01-01:
     value: 400
 metadata:
-  ipp_csv_id: crea_entr2
   short_label: Surplus si invalide
+  ipp_csv_id: crea_entr2
   unit: currency

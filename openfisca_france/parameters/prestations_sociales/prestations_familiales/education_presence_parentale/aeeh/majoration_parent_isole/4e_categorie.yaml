@@ -4,6 +4,7 @@ values:
     value: 0.57
 metadata:
   short_label: Montant majoration parent isolé, si complément de 4ème catégorie
+  last_value_still_valid_on: "2023-02-06"
   label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   ipp_csv_id: aeeh_majo4
   unit: BMAF
@@ -20,6 +21,4 @@ metadata:
   notes:
     2006-01-01:
     - title: Création de l'Allocation d'éducation de l'enfant handicapé
-  last_value_still_valid_on: "2023-02-06"
-documentation: |-
-  Notes :
+documentation: "Notes :"

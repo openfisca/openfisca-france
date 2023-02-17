@@ -4,6 +4,7 @@ values:
     value: 1400000
 metadata:
   short_label: Borne supérieure
+  last_value_still_valid_on: "2022-04-28"
   label_en: "\"Décote\" computation"
   ipp_csv_id: sup_decote1_ifi
   unit: currency
@@ -18,4 +19,3 @@ metadata:
   notes:
     2018-01-01:
     - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  last_value_still_valid_on: "2022-04-28"

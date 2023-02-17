@@ -4,6 +4,7 @@ values:
     value: 0.32
 metadata:
   short_label: Montant de base de l'AEEH
+  last_value_still_valid_on: "2023-02-06"
   label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   ipp_csv_id: aeeh_montant
   unit: BMAF
@@ -20,7 +21,6 @@ metadata:
   notes:
     2006-01-01:
     - title: Création de l'Allocation d'éducation de l'enfant handicapé
-  last_value_still_valid_on: "2023-02-06"
 documentation: |-
   Notes :
   (1) Le montant du complément de la sixième catégorie de l'allocation d'éducation de l'enfant handicapé est égal au montant de la majoration pour tierce personne accordée aux invalides de la 3e catégorie définis à l'article L 341-4 du CSS.

@@ -3,13 +3,13 @@ values:
   2012-01-01:
     value: null
   2013-01-01:
-    value: 13795 # IPP : 14145
+    value: 13795
   2014-01-01:
     value: null
 metadata:
-  unit: currency
   short_label: Seuil
   ipp_csv_id: reduc_except_rfr_seuil
+  unit: currency
   reference:
     2013-01-01:
       title: Loi 2014-891 du 08/08/2014 (LFR pour 2014), art. 1

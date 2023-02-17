@@ -16,7 +16,7 @@ metadata:
   short_label: Âge légal de départ à la retraite
   last_value_still_valid_on: "2023-01-01"
   unit: year
-  reference: 
+  reference:
     2017-01-01:
-    - title: Article L161-17-2 du Code de la sécurité sociale
+      title: Article L161-17-2 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025014605

@@ -12,6 +12,7 @@ values:
     value: 104.77
 metadata:
   short_label: Majoration
+  last_value_still_valid_on: "2022-01-03"
   label_en: Additional adult disability allowance (CAAH)
   unit: currency
   reference:
@@ -38,7 +39,6 @@ metadata:
     2006-01-01: "2006-05-12"
     2007-01-01: "2006-12-31"
     2008-01-01: "2007-12-30"
-  last_value_still_valid_on: "2022-01-03"
 documentation: |-
   Notes :
   Dispositif créé par la loi 75-534 du 30 Juin 1975

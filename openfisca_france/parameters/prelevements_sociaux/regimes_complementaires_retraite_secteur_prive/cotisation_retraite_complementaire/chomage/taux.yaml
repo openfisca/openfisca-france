@@ -4,6 +4,7 @@ values:
     value: 0.03
 metadata:
   short_label: Taux de cotisation à la retraite complémentaire
+  last_value_still_valid_on: "2022-08-31"
   reference:
     2001-07-01:
     - title: Arrêté du 4 décembre 2000 portant agrément de la convention du 1er janvier 2001 relative à l'aide au retour à l'emploi et à l'indemnisation du chômage et du règlement annexé à cette convention
@@ -33,4 +34,3 @@ metadata:
     2021-10-01:
       title: Circulaire Unédic n°2021-13 du 19 octobre 2021
       href: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n_2021-13_du_19_octobre_2021.pdf
-  last_value_still_valid_on: "2022-08-31"

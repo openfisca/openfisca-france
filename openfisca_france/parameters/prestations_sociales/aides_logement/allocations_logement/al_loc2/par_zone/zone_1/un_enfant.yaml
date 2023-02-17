@@ -42,6 +42,7 @@ values:
     value: 420.52
 metadata:
   short_label: Personnes seules ou couples avec 1 enfant
+  last_value_still_valid_on: "2022-09-28"
   label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: plaf_loy_enf1_z1
   unit: currency
@@ -154,5 +155,4 @@ metadata:
     - title: Idem en 2017
     2017-10-01:
     - title: Actualisation paramètres + baisse de 5 euros des aides au logement
-  last_value_still_valid_on: "2022-09-28"
 documentation: "Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2"

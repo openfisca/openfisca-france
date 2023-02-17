@@ -126,6 +126,7 @@ brackets:
       value: 0
 metadata:
   short_label: Barème employeur
+  last_value_still_valid_on: "2021-12-07"
   ipp_csv_id:
     rate: chom_p_0_1, chom_p_1_4
   reference:
@@ -210,6 +211,5 @@ metadata:
     2002-01-01: "2000-12-06"
     2006-01-01: "2006-03-02"
     2017-10-01: "2017-05-06"
-  last_value_still_valid_on: "2021-12-07"
   rate_unit: /1
   threshold_unit: PSS

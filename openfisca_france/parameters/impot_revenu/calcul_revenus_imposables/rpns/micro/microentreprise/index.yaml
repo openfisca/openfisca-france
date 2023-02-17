@@ -2,6 +2,6 @@ description: Abattement sur recettes des microentreprises
 metadata:
   short_label: Microentreprises
   order:
-    - regime_micro_ba
-    - regime_micro_bnc
-    - montant_minimum
+  - regime_micro_ba
+  - regime_micro_bnc
+  - montant_minimum

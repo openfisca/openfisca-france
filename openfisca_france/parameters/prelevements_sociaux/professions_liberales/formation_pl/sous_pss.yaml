@@ -6,6 +6,7 @@ values:
     value: 0.0025
 metadata:
   short_label: Taux (sous PSS)
+  last_value_still_valid_on: "2022-04-06"
   label_en: Contribution to lifelong professional training (professionals)
   ipp_csv_id: form_plib_0_1
   unit: /1
@@ -23,7 +24,6 @@ metadata:
   official_journal_date:
     1992-01-01: "1992-01-04"
     2012-08-18: "2012-08-17"
-  last_value_still_valid_on: "2022-04-06"
 documentation: |-
   Note :
   Depuis 2005, supplément de 0,9 % si leur conjoint a le statut de conjoint collaborateur.

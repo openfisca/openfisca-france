@@ -12,10 +12,10 @@ values:
     value: null
 metadata:
   short_label: Taux
+  last_value_still_valid_on: "1997-01-01"
   label_en: SSCs on unemployment benefits
   ipp_csv_id: chom_mmid_tx
   unit: /1
-  last_value_still_valid_on: "1997-01-01"
 documentation: |-
   Note :
   Pour la cotisation d'assurance maladie, l'assiette est égale à l'allocation de base brute. Disparait en décembre 1997.

@@ -4,6 +4,7 @@ values:
     value: 12
 metadata:
   short_label: Limite de durée du droit
+  last_value_still_valid_on: "2022-03-28"
   label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: limite_dureet_rsa
   unit: month
@@ -20,5 +21,4 @@ metadata:
   notes:
     2009-06-01:
     - title: RSA créé par Loi 2008-1249 du 01/12/2008
-  last_value_still_valid_on: "2022-03-28"
 documentation: Limite de durée du droit par rapport au moment où le droit aurait pu être ouvert.

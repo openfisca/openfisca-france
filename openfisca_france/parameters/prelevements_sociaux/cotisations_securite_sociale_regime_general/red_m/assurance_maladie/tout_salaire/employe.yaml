@@ -4,6 +4,7 @@ values:
     value: 0.007
 metadata:
   short_label: Taux employé
+  last_value_still_valid_on: "1967-01-01"
   label_en: SSCs for physicians working part-time (1961-1974)
   ipp_csv_id: mmid_m_s_0_
   unit: /1
@@ -15,7 +16,6 @@ metadata:
   notes:
     1967-10-01:
     - title: Il n'y a pas de distinctions d'âge pour les cotisations mmid.
-  last_value_still_valid_on: "1967-01-01"
 documentation: |-
   Note générale :
   Les membres des professions médicales exerçant à temps partiel pour plusieurs employeurs bénéficient de taux réduits de cotisations sociales qui sont précisés par arrêté entre 1961 et 1974.

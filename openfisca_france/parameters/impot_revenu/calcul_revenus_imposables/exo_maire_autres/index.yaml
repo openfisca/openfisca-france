@@ -1,5 +1,9 @@
 description: Abattement des revenus pour certaines professions
-documentation: |
+metadata:
+  order:
+  - abattement_elus_locaux
+  - abattement_journalistes
+documentation: |-
   (1) L'abattement pour les élus locaux s’applique à toutes
   les indemnités de fonction perçues par les élus communaux et intercommunaux (maires,
   adjoints, conseillers municipaux, présidents et vice-présidents d’EPCI et conseillers
@@ -12,7 +16,3 @@ documentation: |
   photographes, directeurs de journaux et critiques dramatiques et musicaux dont
   les revenus sont en dessous du plafond, avant l'abattement de 10% dont tous les
   salariés bénéficient au titre des frais professionnels. CGI art.81 1°
-metadata:
-  order:
-  - abattement_elus_locaux
-  - abattement_journalistes

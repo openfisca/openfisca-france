@@ -16,6 +16,7 @@ values:
     value: 0.092
 metadata:
   short_label: Revenus du patrimoine
+  last_value_still_valid_on: "2019-01-01"
   label_en: CSG and CRDS on financial income
   ipp_csv_id: tx_csg_rk_patr
   unit: /1
@@ -58,7 +59,6 @@ metadata:
   notes:
     1996-01-01:
     - title: Crée art. 154 quinquies du CGI
-  last_value_still_valid_on: "2019-01-01"
 documentation: |-
   Notes: Ici (4) et (5)
   En ce qui concerne l'assiette CSG, l'abattement sur l'impôt sur le revenu est appliqué, jusqu'à sa suppression en 1997.

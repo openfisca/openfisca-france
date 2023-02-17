@@ -38,6 +38,7 @@ values:
     value: 21732
 metadata:
   short_label: Base du plafond de ressources
+  last_value_still_valid_on: "2023-02-02"
   label_en: "Family complement (CF): Extra allowances"
   ipp_csv_id: plaf_cf_apje_adopt_0enf
   unit: currency
@@ -119,7 +120,6 @@ metadata:
     - title: Pas de modification en 2017 cf. circulaire DSS/SD2B/2016/396 du 21/12/2016
     2018-01-01:
     - title: Arrêté du 21/12/2018, Revalorisation des plafonds de 0,2%
-  last_value_still_valid_on: "2023-02-02"
 documentation: |-
   Notes :
   Les articles L522-1 et R522-1 du CSS prévoient la revalorisation des plafonds par Arrêté Ministériel, au rythme de l'évolution des prix hors tabac

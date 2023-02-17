@@ -24,6 +24,7 @@ values:
     value: null
 metadata:
   short_label: BMAF E.T.I.
+  last_value_still_valid_on: "1955-01-01"
   label_en: Monthly basis for the computation of family allowances (BMAF)
   ipp_csv_id: reg_spec_eti
   unit: currency
@@ -79,7 +80,6 @@ metadata:
     - title: La sécurité sociale, son histoire à partir des textes indique p.223 qu'il s'agit d'un arrêté (en contradiction avec le Journal Officiel)
     2012-04-01:
     - title: La BMAF est à partir de décembre 2011 revalorisée au 1er avril de chaque année suivant l'évolution de l'indice des prix (sauf pour 2012 où par dérogation, la revalorisation reste au 1er janvier) Cf. LFSS 2012 (loi 2011-1906 du 21/12/2011) &Article L 551-1 du CSS en vigueur à partir du 23/12/2011
-  last_value_still_valid_on: "1955-01-01"
 documentation: |-
   Notes :
   Le régime des prestations familiales est fixé par la loi 46-1835 du 22 août 1946

@@ -4,10 +4,10 @@ values:
     value: 0.2
 metadata:
   short_label: Abattement
+  last_value_still_valid_on: "2016-01-01"
   label_en: SSCs rebate for journalists (1975-2016)
   ipp_csv_id: abat_j
   unit: /1
-  last_value_still_valid_on: "2016-01-01"
 documentation: |-
   Taux réduit à la fois pour les parts salariés et employeurs et pour les cotisations déplafonnées et plafonnées, mais il ne s'applique pas à la CSA.
   Notes journalistes professionnels pigistes :

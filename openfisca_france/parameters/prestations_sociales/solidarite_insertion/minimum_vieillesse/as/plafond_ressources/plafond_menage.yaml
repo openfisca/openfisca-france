@@ -184,6 +184,7 @@ values:
     value: 17079.77
 metadata:
   short_label: Couple marié
+  last_value_still_valid_on: "2021-01-01"
   label_en: "Extra allowance (AS): Amount"
   ipp_csv_id: plaf_mv_men_as
   unit: currency
@@ -506,4 +507,3 @@ metadata:
     - title: Complément de 100 aux allocataires âgés de plus de 75 ans.
     2016-04-01:
     - title: L'AVTS est remplacée par l'ASPA en 2007 par le décret 2007-57. Cependant, comme le mentionne l'ordonnance 2004-605, les personnes qui bénéficiaient au moment de l'entrée en vigueur de l'ASPA des anciens dispositifs de mimimum vieillesse continuent à percevoir ces anciennes prestations selon les règles applicables avant cette entrée en vigueur. D'où le fait qu'on garde les barèmes de l'AVTS après 2007.
-  last_value_still_valid_on: "2021-01-01"

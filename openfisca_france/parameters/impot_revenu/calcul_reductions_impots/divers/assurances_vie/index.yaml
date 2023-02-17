@@ -3,6 +3,6 @@ metadata:
   short_label: Assurances vie
   label_en: Tax reduction on life insurances
   order:
-    - taux
-    - plafond
-    - increment
+  - taux
+  - plafond
+  - increment

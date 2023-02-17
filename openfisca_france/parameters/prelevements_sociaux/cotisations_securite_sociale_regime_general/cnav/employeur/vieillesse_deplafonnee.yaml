@@ -18,6 +18,7 @@ brackets:
       value: 0.019
 metadata:
   short_label: Taux sur tout le salaire
+  last_value_still_valid_on: "2023-01-30"
   label_en: SSCs for old-age benefits (1967-2016)
   ipp_csv_id:
     rate: cnav_p_0_
@@ -104,7 +105,6 @@ metadata:
     - title: Voir note (i).
     2004-07-01:
     - title: La cotisation veuvage est transférée à la Cnav.
-  last_value_still_valid_on: "2023-01-30"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

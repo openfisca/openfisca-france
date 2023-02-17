@@ -10,6 +10,7 @@ values:
     value: 20
 metadata:
   short_label: Âge maximal
+  last_value_still_valid_on: "2022-03-11"
   label_en: Definition of dependants
   ipp_csv_id: age_max_pac
   unit: year
@@ -34,7 +35,6 @@ metadata:
   notes:
     1999-01-01:
     - title: Pour les enfants nés à partir du 01/01/1980
-  last_value_still_valid_on: "2022-03-11"
 documentation: |-
   Notes :
   Les âges maxima sont différents pour le complément familial et les aides au logement.Cf. les feuilles de barème associées à ces dispositifs.

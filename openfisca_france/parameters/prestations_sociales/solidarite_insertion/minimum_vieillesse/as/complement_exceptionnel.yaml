@@ -32,6 +32,7 @@ values:
     value: null
 metadata:
   short_label: Complément exceptionnel
+  last_value_still_valid_on: "2021-01-01"
   label_en: "Extra allowance (AS): Amount"
   ipp_csv_id: complement
   unit: currency
@@ -93,4 +94,3 @@ metadata:
     - title: Complément de 308 pour les plus de 75 ans.
     1975-09-01:
     - title: Le décret n'a pas de numéro
-  last_value_still_valid_on: "2021-01-01"

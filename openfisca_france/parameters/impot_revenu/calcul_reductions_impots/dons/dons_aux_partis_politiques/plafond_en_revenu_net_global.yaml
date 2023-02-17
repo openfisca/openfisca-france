@@ -1,13 +1,4 @@
 description: Plafond en % du revenu net global des dons aux partis politiques
-metadata:
-  short_label: Plafond (% revenu net global)
-  ipp_csv_id: plaf_partipol
-  official_journal_date:
-    2002-01-01: '2003-08-02'
-  reference:
-    2002-01-01:
-      title: Loi 2003-709 du 01/08/2003 - art. 1 (V)
-  unit: /1
 values:
   1975-01-01:
     value: null
@@ -19,6 +10,15 @@ values:
     value: 0.1
   2002-01-01:
     value: 0.2
+metadata:
+  short_label: Plafond (% revenu net global)
+  ipp_csv_id: plaf_partipol
+  unit: /1
+  reference:
+    2002-01-01:
+      title: Loi 2003-709 du 01/08/2003 - art. 1 (V)
+  official_journal_date:
+    2002-01-01: "2003-08-02"
 documentation: |-
   Notes :
   Dons aux partis politiques : 3. de l'art. 200 du CGI

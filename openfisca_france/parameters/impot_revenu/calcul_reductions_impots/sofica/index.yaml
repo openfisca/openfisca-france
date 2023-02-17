@@ -3,8 +3,8 @@ metadata:
   short_label: SOFICA
   label_en: Capital Subscription in SOFICA society (cinema) (1986 -)
   order:
-    - taux_1
-    - taux_2
-    - taux_3
-    - plafond
-    - plafond_revenu_net_global
+  - taux_1
+  - taux_2
+  - taux_3
+  - plafond
+  - plafond_revenu_net_global

@@ -4,6 +4,7 @@ values:
     value: 6.8
 metadata:
   short_label: Montant journalier
+  last_value_still_valid_on: "2022-01-10"
   label_en: "Asylum-seeker allowance (ADA): Amounts"
   unit: currency
   reference:
@@ -12,7 +13,6 @@ metadata:
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031355378/2022-01-10/
   official_journal_date:
     2015-11-01: "2015-10-23"
-  last_value_still_valid_on: "2022-01-10"
 documentation: |-
   Loi du 29/07/2015, art. 23
   2015-07-30

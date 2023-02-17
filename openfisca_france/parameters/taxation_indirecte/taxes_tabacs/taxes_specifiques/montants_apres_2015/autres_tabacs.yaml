@@ -17,8 +17,8 @@ values:
   2023-03-01:
     value: null
 metadata:
-  ipp_csv_id: tx_spec_autres_tabac
   last_value_still_valid_on: "2022-12-28"
+  ipp_csv_id: tx_spec_autres_tabac
   unit: currency
   reference:
     2015-01-01:
@@ -52,7 +52,7 @@ metadata:
     2019-11-01: "2017-12-31"
     2020-03-01: "2020-12-30"
     2020-11-01: "2020-12-30"
-documentation: |
+documentation: |-
   À partir de 2015 la part spécifique est en euro et non plus en pourcentage.
   À partir de 2023 la catégorie 'autres tabacs' se divise en 3 types:
   - Tabacs à chauffer commercialisés en bâtonnets

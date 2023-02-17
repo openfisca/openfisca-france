@@ -4,6 +4,7 @@ values:
     value: 1300000
 metadata:
   short_label: Borne inférieure
+  last_value_still_valid_on: "2022-04-28"
   label_en: "\"Décote\" computation"
   ipp_csv_id: inf_decote1_ifi
   unit: currency
@@ -17,4 +18,3 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036384999
   official_journal_date:
     2018-01-01: "2017-12-31"
-  last_value_still_valid_on: "2022-04-28"

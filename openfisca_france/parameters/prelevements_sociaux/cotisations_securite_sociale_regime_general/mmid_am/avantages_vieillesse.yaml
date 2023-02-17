@@ -22,6 +22,7 @@ values:
     value: 0.015
 metadata:
   short_label: Cotis. Avantages vieillesse
+  last_value_still_valid_on: "1986-01-01"
   label_en: SSCs of the local sickness scheme of Alsace-Moselle (1967-2016)
   ipp_csv_id: am_pens
   unit: /1
@@ -75,7 +76,6 @@ metadata:
     2000-07-01:
     - title: Référence de l'avis absent sur légifrance mais disponible ici
       href: http://admi.net/jo/2000/09573.html
-  last_value_still_valid_on: "1986-01-01"
 documentation: |-
   Sources :
   Historique des cotisations communiqué par le régime local; www.legifrance.gouv.fr.

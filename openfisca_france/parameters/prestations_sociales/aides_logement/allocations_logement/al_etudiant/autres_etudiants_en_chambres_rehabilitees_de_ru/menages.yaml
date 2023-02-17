@@ -32,6 +32,7 @@ values:
     value: 273.65
 metadata:
   short_label: Ménages
+  last_value_still_valid_on: "2022-01-04"
   label_en: Measure of rent for students living in university residences
   ipp_csv_id: alf_autre_menage
   unit: currency
@@ -99,4 +100,3 @@ metadata:
     - title: Montants toujours identiques en 2016
     2015-10-01:
     - title: Idem en 2016
-  last_value_still_valid_on: "2022-01-04"

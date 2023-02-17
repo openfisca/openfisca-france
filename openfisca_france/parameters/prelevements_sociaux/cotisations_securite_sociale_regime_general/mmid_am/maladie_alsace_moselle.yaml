@@ -42,6 +42,7 @@ brackets:
       value: 0.015
 metadata:
   short_label: Barème salarié
+  last_value_still_valid_on: "2021-08-05"
   label_en: SSCs of the local sickness scheme of Alsace-Moselle (1967-2016)
   ipp_csv_id:
     rate: am_s_0_1, am_s_0_
@@ -114,7 +115,6 @@ metadata:
     2000-07-01:
     - title: Référence de l'avis absent sur légifrance mais disponible ici
       href: http://admi.net/jo/2000/09573.html
-  last_value_still_valid_on: "2021-08-05"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

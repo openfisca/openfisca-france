@@ -21,5 +21,4 @@ metadata:
     2020-01-01: "2019-05-23"
   rate_unit: /1
   threshold_unit: PSS
-  documentation: |-
-    Le participation des employeurs à l'effort de construction date de la loi du 18 décembre 1998, la loi de 2019 instaure que cet effort intervient pour les employeurs de plus de 50 salariés
+documentation: Le participation des employeurs à l'effort de construction date de la loi du 18 décembre 1998, la loi de 2019 instaure que cet effort intervient pour les employeurs de plus de 50 salariés

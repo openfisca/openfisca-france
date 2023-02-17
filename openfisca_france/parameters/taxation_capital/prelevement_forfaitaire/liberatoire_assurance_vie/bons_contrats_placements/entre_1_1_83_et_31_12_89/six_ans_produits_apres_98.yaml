@@ -4,6 +4,7 @@ values:
     value: 0.075
 metadata:
   short_label: Durée de 6+ ans et produits après 1998
+  last_value_still_valid_on: "2022-02-16"
   label_en: Levy in discharge on life insurance (1983 - 2017)
   ipp_csv_id: tx_pl_av_6b
   unit: /1
@@ -18,7 +19,6 @@ metadata:
   notes:
     1998-01-01:
     - title: Les bons ou contrats principalement investis en actions sont exonérés d'IR après huit ans.
-  last_value_still_valid_on: "2022-02-16"
 documentation: |-
   Notes :
   (1) Cas des primes versées avant le 01/01/1998.

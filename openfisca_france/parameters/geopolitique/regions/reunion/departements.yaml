@@ -1,5 +1,7 @@
 description: Liste des départements membre de la région Réunion
-unit: codes départements
 values:
   2015-01-16:
-    value: ["974"]
+    value:
+    - "974"
+metadata:
+  unit: codes départements

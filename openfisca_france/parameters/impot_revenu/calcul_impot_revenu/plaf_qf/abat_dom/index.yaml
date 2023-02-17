@@ -1,9 +1,9 @@
 description: Abattements spécifiques aux départements d'outre-mer (DOM)
 metadata:
-  order:
-    - taux_GuadMarReu
-    - plaf_GuadMarReu
-    - taux_GuyMay
-    - plaf_GuyMay
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
+  order:
+  - taux_GuadMarReu
+  - plaf_GuadMarReu
+  - taux_GuyMay
+  - plaf_GuyMay

@@ -36,6 +36,7 @@ values:
     value: 0.1775
 metadata:
   short_label: Taux
+  last_value_still_valid_on: "2021-01-01"
   label_en: Elderly insurance for stay-at-home parents (AVPF )
   ipp_csv_id: avpf_taux
   unit: /1
@@ -55,4 +56,3 @@ metadata:
   notes:
     2016-01-01:
     - title: "Le salaire forfaitaire est calculé sur la base du SMIC: SMIC horaire en vigueur au 1er juillet de l’année précédente * 169 (durée hebdomadaire légale du travail (39h) * 52 / 12); cf. article Article R381-3 du CSS"
-  last_value_still_valid_on: "2021-01-01"

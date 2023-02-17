@@ -48,6 +48,7 @@ values:
     value: 338.53
 metadata:
   short_label: Ménage seul
+  last_value_still_valid_on: "2022-01-05"
   label_en: Annual ceiling of reimbursement for new homebuyers
   ipp_csv_id: plaf_remb_coup_z2_al
   unit: currency
@@ -130,7 +131,6 @@ metadata:
   notes:
     2015-10-01:
     - title: Idem en 2016
-  last_value_still_valid_on: "2022-01-05"
 documentation: |-
   Notes :
   Il s'agit du montant des mensualités plafonds en AL pour des contrats de prêts signés à compter du 1e janvier 2013.

@@ -4,6 +4,7 @@ values:
     value: 0.06
 metadata:
   short_label: Taux d'allègement des cotisations d'assurance maladie
+  last_value_still_valid_on: "2023-01-30"
   label_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
   unit: /1
   reference:
@@ -17,7 +18,6 @@ metadata:
   notes:
     2019-01-01:
     - title: Taux d'allègement pour salaire inférieur à 2,5 Smic constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
-  last_value_still_valid_on: "2023-01-30"
 documentation: |-
   A partir de 2019, un allègement sur le taux normal est appliqué 
   contrairement à précédemment où des taux d'imposition par tranche étaient en vigueur.

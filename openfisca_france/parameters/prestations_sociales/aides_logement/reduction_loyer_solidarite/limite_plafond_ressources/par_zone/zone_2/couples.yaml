@@ -10,6 +10,7 @@ values:
     value: 1526
 metadata:
   short_label: Couple
+  last_value_still_valid_on: "2022-01-06"
   unit: currency
   reference:
     2018-01-01:
@@ -32,4 +33,3 @@ metadata:
   notes:
     2018-01-01:
     - title: Création de la réduction de loyer de solidarité par la loi de finances pour 2018. Elle entre en vigueur le 01/02/2018.
-  last_value_still_valid_on: "2022-01-06"

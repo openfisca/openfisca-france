@@ -2,6 +2,6 @@ description: Versement libératoire (régime auto-entrepreneur/micro-social)
 metadata:
   short_label: Versement libératoire
   order:
-    - bnc
-    - servi
-    - vente
+  - bnc
+  - servi
+  - vente

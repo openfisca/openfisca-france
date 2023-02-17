@@ -60,6 +60,7 @@ values:
     value: 352
 metadata:
   short_label: Traitement minimal dans la FP
+  last_value_still_valid_on: "2022-12-23"
   label_en: Minimum wage, civil servants
   unit: /1
   reference:
@@ -183,4 +184,3 @@ metadata:
     2021-10-01: "2021-09-30"
     2022-01-01: "2021-12-23"
     2022-05-01: "2022-04-21"
-  last_value_still_valid_on: "2022-12-23"
