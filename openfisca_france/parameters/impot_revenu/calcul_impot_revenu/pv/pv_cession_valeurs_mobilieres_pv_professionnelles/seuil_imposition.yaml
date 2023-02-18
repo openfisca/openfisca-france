@@ -1,29 +1,4 @@
-description: Seuil d'imposition des plus-values de cession de valeurs mobilières et des plus-values
-  professionnelles
-metadata:
-  short_label: Seuil
-  ipp_csv_id: seuil_pv
-  notes:
-    1995-01-01:
-    - title: Pour les options attribuées à compter du 20/09/95, création de la variable
-        tx_pv2
-    2001-01-01:
-    - title: 'Avant 2001 : art 92 B du CGI'
-    2008-01-01:
-    - title: À compter du 1er janvier 2009, le seuil de cession est actualisé chaque
-        année dans la même proportion que la limite supérieure de la première tranche
-        du barème de l’impôt sur le revenu de l’année précédant celle de la cession.
-    2011-01-01:
-    - title: 'Seuil d''imposition des plus-values : art 150-0 A du CGI supprimé par
-        LF 2011'
-  reference:
-    2002-01-01:
-      title: BOI 5 C-1-03; n°51 du 18/03/2003
-    2007-01-01:
-      title: BOI 5 C-2-08; n°50 du 14/05/2008
-    2008-01-01:
-      title: BOI 5 C-1-09 n°9 du 23/01/2009
-  unit: currency
+description: Seuil d'imposition des plus-values de cession de valeurs mobilières et des plus-values professionnelles
 values:
   1977-01-01:
     value: null
@@ -75,3 +50,23 @@ values:
     value: 25830
   2011-01-01:
     value: null
+metadata:
+  short_label: Seuil
+  ipp_csv_id: seuil_pv
+  unit: currency
+  reference:
+    2002-01-01:
+      title: BOI 5 C-1-03; n°51 du 18/03/2003
+    2007-01-01:
+      title: BOI 5 C-2-08; n°50 du 14/05/2008
+    2008-01-01:
+      title: BOI 5 C-1-09 n°9 du 23/01/2009
+  notes:
+    1995-01-01:
+    - title: Pour les options attribuées à compter du 20/09/95, création de la variable tx_pv2
+    2001-01-01:
+    - title: "Avant 2001 : art 92 B du CGI"
+    2008-01-01:
+    - title: À compter du 1er janvier 2009, le seuil de cession est actualisé chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l’impôt sur le revenu de l’année précédant celle de la cession.
+    2011-01-01:
+    - title: "Seuil d'imposition des plus-values : art 150-0 A du CGI supprimé par LF 2011"

@@ -6,6 +6,7 @@ values:
     value: null
 metadata:
   short_label: Âge minimum
+  last_value_still_valid_on: "2022-03-28"
   label_en: "Minimum insertion income (RMI): General conditions"
   ipp_csv_id: age_rmi
   unit: year
@@ -26,4 +27,3 @@ metadata:
     - title: Création du RMI
     2009-06-01:
     - title: Création du RSA qui remplace le RMI
-  last_value_still_valid_on: "2022-03-28"

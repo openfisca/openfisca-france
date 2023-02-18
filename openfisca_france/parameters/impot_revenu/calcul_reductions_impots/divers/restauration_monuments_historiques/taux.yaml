@@ -1,4 +1,4 @@
-description: Taux de la réduction d'impôt sur les dépenses de restauration des monuments historiques 
+description: Taux de la réduction d'impôt sur les dépenses de restauration des monuments historiques
 values:
   1977-01-01:
     value: null
@@ -12,5 +12,4 @@ metadata:
   short_label: Taux
   ipp_csv_id: tx_monhist
   unit: /1
-documentation: |-
-  Travaux de conservation et de restauration d'objets classés monuments historiques : art. 199 duovicies du CGI
+documentation: "Travaux de conservation et de restauration d'objets classés monuments historiques : art. 199 duovicies du CGI"

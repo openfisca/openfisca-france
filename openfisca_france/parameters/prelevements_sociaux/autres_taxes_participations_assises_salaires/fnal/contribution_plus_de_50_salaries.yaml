@@ -8,6 +8,7 @@ brackets:
       value: 0.005
 metadata:
   short_label: Entreprises de plus de 50 salariés
+  last_value_still_valid_on: "2023-01-30"
   ipp_csv_id: fnal_p_p50_0_
   reference:
     2020-01-01:
@@ -17,6 +18,5 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038839912/2020-01-01
   official_journal_date:
     2020-01-01: "2019-05-23"
-  last_value_still_valid_on: "2023-01-30"
   rate_unit: /1
   threshold_unit: PSS

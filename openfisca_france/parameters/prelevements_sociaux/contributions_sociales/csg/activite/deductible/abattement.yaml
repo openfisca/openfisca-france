@@ -22,6 +22,7 @@ brackets:
       value: null
 metadata:
   short_label: Abattement
+  last_value_still_valid_on: "2021-12-15"
   label_en: CSG - rates on work incomes
   ipp_csv_id: csg_abt
   reference:
@@ -55,7 +56,6 @@ metadata:
   notes:
     1991-02-01:
     - title: Une circulaire ministérielle du 16/01/1991 relative à la mise en œuvre de la CSG fournit des indications sur les assiettes et les exonérations.
-  last_value_still_valid_on: "2021-12-15"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

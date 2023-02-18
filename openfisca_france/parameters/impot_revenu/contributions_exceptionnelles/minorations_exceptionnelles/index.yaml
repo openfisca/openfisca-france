@@ -1,6 +1,4 @@
-description:  Minorations exceptionnelles d'impôt (1965-1992)
-documentation: |
-  Sources : Tableau C-4, p.650, dans Thomas Piketty, 'Les hauts revenus en France au XXe siècle (Grasset, 2001)''
+description: Minorations exceptionnelles d'impôt (1965-1992)
 metadata:
   label_en: Exceptional tax cuts (1965-1992)
   order:
@@ -16,3 +14,4 @@ metadata:
   - seuil_impot_4
   - seuil_impot_5
   - seuil_superieur_revenu_imposable_par_part
+documentation: "Sources : Tableau C-4, p.650, dans Thomas Piketty, 'Les hauts revenus en France au XXe siècle (Grasset, 2001)''"

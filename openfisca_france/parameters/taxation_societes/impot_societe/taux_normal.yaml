@@ -23,8 +23,8 @@ values:
   2022-01-01:
     value: 0.25
 metadata:
-  unit: /1
   last_value_still_valid_on: "2023-01-05"
+  unit: /1
   reference:
     1977-12-31:
       title: Article 219 CGI modifié par Loi 77-1467 du 30/12/1977 - art. 70

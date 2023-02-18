@@ -7,9 +7,9 @@ values:
   2014-01-01:
     value: null
 metadata:
-  unit: currency
-  ipp_csv_id: reduc_except_montant
   short_label: Montant plafond
+  ipp_csv_id: reduc_except_montant
+  unit: currency
   reference:
     2013-01-01:
       title: Loi 2014-891 du 08/08/2014 (LFR pour 2014), art. 1

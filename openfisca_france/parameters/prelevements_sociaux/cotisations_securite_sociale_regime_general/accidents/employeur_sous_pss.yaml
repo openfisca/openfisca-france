@@ -18,6 +18,7 @@ values:
     value: null
 metadata:
   short_label: Taux employeur sous PSS
+  last_value_still_valid_on: "2021-12-07"
   label_en: SSCs for work accidents and professional diseases benefits (AT-MP), office contribution rates
   ipp_csv_id: acc_p_0_1
   unit: /1
@@ -54,7 +55,6 @@ metadata:
     - title: Cotisation déplafonnée avec réduction des taux.
     2020-01-01:
     - title: Suppression du taux bureau, remplacé par le taux "Fonctions support de nature administrative" pour les entreprises en tarification collective ou mixte. Voir Notes.
-  last_value_still_valid_on: "2021-12-07"
 documentation: |-
   Notes sur la tarification AT-MP :
   La tarification des risques accidents du travail et maladies professionnelles (AT-MP) est complexe: il existe un taux propre à chaque entreprise, variant avec la taille et les risques d'AT-MP de l'entreprise.

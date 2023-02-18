@@ -6,6 +6,7 @@ values:
     value: null
 metadata:
   short_label: Durée 4 à 6 ans
+  last_value_still_valid_on: "2022-02-16"
   label_en: Levy in discharge on life insurance (1983 - 2017)
   ipp_csv_id: tx_pl_av_46
   unit: /1
@@ -20,7 +21,6 @@ metadata:
   notes:
     1983-01-01:
     - title: Création de l'art. 125-0 A du CGI
-  last_value_still_valid_on: "2022-02-16"
 documentation: |-
   Notes :
   (1) Cas des primes versées avant le 01/01/1998.

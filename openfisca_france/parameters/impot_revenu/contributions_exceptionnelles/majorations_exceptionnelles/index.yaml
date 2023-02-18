@@ -68,13 +68,13 @@ metadata:
     1984-01-01:
     - title: Suppression des majorations exceptionnelles par la Loi 85-1404 du 30/12/1985 (LFR pour 1985)
   order:
-    - taux_1
-    - taux_2
-    - taux_3_superieur
-    - seuil_revenu
-    - seuil_1
-    - seuil_2
-    - seuil_3_superieur
+  - taux_1
+  - taux_2
+  - taux_3_superieur
+  - seuil_revenu
+  - seuil_1
+  - seuil_2
+  - seuil_3_superieur
 documentation: |-
   Notes :
   > Voir tableau 4-6 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001)

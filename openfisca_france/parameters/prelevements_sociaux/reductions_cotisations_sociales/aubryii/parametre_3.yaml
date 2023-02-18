@@ -12,6 +12,7 @@ values:
     value: null
 metadata:
   short_label: Paramètre 3
+  last_value_still_valid_on: "2003-07-01"
   label_en: Reduction in SSCs defined by the laws "Aubry II" (2000-2003)
   ipp_csv_id: aubry2_3
   unit: currency
@@ -41,7 +42,6 @@ metadata:
     - title: Incertitude sur la date d'entrée en vigueur de l'allégement (1er janvier 2000 ?)
     2003-07-01:
     - title: La Loi 2003-47 remplace l'allégement Aubry II par un nouveau dispositif de réduction des cotisations patronales.
-  last_value_still_valid_on: "2003-07-01"
 documentation: |-
   Paramètres et formule :
   Allégement = (Paramètre 1 * Paramètre 2 / Rémunération brute du salarié - Paramètre 3)/12

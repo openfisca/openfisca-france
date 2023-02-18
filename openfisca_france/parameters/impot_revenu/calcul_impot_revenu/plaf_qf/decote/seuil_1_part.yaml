@@ -16,9 +16,9 @@ values:
     value: null
 metadata:
   short_label: Seuil QF=1
+  last_value_still_valid_on: "2023-01-05"
   ipp_csv_id: decote_np1
   unit: currency
-  last_value_still_valid_on: "2023-01-05"
   reference:
     1981-01-01:
       title: Loi 81-1160 du 30/12/1981 (LF pour 1982)

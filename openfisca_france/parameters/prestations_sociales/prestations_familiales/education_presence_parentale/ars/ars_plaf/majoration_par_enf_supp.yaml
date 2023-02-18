@@ -17,8 +17,8 @@ values:
   2014-01-01:
     value: 0.3
 metadata:
-  last_value_still_valid_on: "2023-01-27"
   short_label: Majoration par enfant, en % de la base du plafond de ressources
+  last_value_still_valid_on: "2023-01-27"
   label_en: "Back-to-school allowance (ARS): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_ars_enf
   unit: /1
@@ -39,12 +39,12 @@ metadata:
     2012-01-01:
       title: Arrêté du 28/12/2011, art. 3
     2014-01-01:
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750743
-      title: Article R543-5 du Code de la sécurité sociale
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951022
-      title: Article L543-1 du Code de la sécurité sociale
-    - href: https://www-valid.social-sante.gouv.fr/fichiers/bo/2015/15-01/ste_20150001_0000_0062.pdf
-      title: Circulaire DSS/SD2B/2013/417
+    - title: Article R543-5 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750743
+    - title: Article L543-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951022
+    - title: Circulaire DSS/SD2B/2013/417
+      href: https://www-valid.social-sante.gouv.fr/fichiers/bo/2015/15-01/ste_20150001_0000_0062.pdf
     2017-01-01:
       title: Circulaire DSS/SD2B/2016/396 du 21/12/2016
     2019-01-01:
@@ -68,11 +68,9 @@ metadata:
     2008-10-10: 2008-10-09; 2008-08-02
     2009-01-01: "2009-01-01"
     2011-01-01: "2010-01-01"
-    2022-01-01: "2021-12-28"
-    2023-01-01: "2022-12-24"
   notes:
     1978-07-13:
     - title: "Plafond: 2,130 fois le salaire minimum de croissance prévu à l'article L 141-4 du code du travail en vigueur au 01/07 de l'année de référence, majoré de 30% à partir du premier enfant, par enfant à charge"
     2008-10-10:
-    - title: "Depuis 2008, les montants dans les arrêtés sont données en valeur, mais celles-ci correspondent bien à une multiplication par 0.3 (à l'arrondi près), au moins jusqu'à 2023"
+    - title: Depuis 2008, les montants dans les arrêtés sont données en valeur, mais celles-ci correspondent bien à une multiplication par 0.3 (à l'arrondi près), au moins jusqu'à 2023
 documentation: "Notes : L'ARS a un plafond (dependant du nombre d'enfants) dès sa création en 1976."

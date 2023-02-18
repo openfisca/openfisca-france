@@ -6,6 +6,7 @@ values:
     value: null
 metadata:
   short_label: De 0 à 1,1 SMIC
+  last_value_still_valid_on: "1996-10-01"
   label_en: Global reduction in SSCs (1993-2003)
   ipp_csv_id: tx_csp_exo_fam_1_1
   unit: /1
@@ -20,7 +21,6 @@ metadata:
   official_journal_date:
     1993-07-01: "1993-07-28"
     1996-10-01: "1996-09-22"
-  last_value_still_valid_on: "1996-10-01"
 documentation: |-
   Note :
   Pour les ristournes Juppé, un montant maximal de réduction est fixé par décret. Il correspond à la réduction dont bénéficie un employeur pour un salarié au SMIC à temps plein.

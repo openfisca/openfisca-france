@@ -42,6 +42,7 @@ values:
     value: 28.05
 metadata:
   short_label: Cas des colocataires ou des propriétaires
+  last_value_still_valid_on: "2022-09-28"
   label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_col
   unit: currency
@@ -109,7 +110,6 @@ metadata:
     2014-10-01: "2014-10-28"
     2017-10-01: "2017-09-29"
     2019-10-01: "2019-10-01"
-  last_value_still_valid_on: "2022-09-28"
 documentation: |-
   Notes :
   (1) Également applicable aux personnes âgées ou handicapées adultes hébergées à titre onéreux chez des particuliers.

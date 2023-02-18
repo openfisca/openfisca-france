@@ -20,6 +20,7 @@ values:
     value: 586.23
 metadata:
   short_label: Montant base
+  last_value_still_valid_on: "2022-09-27"
   label_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_montant_base
   unit: currency
@@ -70,4 +71,3 @@ metadata:
     - title: Revalorisation de la Prime pour l'Activité suite à la loi 2018-1213 du 24/12/2018 portant mesures d'urgence économique et sociale. La Prime pour l'Activité augmente de 90 euros au niveau du Smic, via une augmentation de la bonification individuelle.
     2022-07-01:
     - title: Revalorisation de 4%
-  last_value_still_valid_on: "2022-09-27"

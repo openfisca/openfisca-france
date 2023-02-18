@@ -11,19 +11,10 @@ metadata:
   ipp_csv_id: plafsaldominvalide
   unit: currency
   reference:
-    1991-01-01:
-      title: Loi 91-1322 du 30/12/1991 (LF pour 1992)
-    1993-01-01:
-      title: Loi 93-1352 du 30/12/1993 (LF pour 1994)
-    1995-01-01:
-      title: Loi 95-1346 du 30/12/1995 (LF pour 1996)
     1997-01-01:
       title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
     2001-01-01:
       title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
-    2003-01-01:
-    - title: Loi 2002-1575 du 30/12/2002 (LF pour 2003) - art. 8
-    - title: BOI 5 B-8-03; n°34 du 21/02/2003
     2004-01-01:
       title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)
     2005-01-01:
@@ -32,8 +23,6 @@ metadata:
     2007-01-01:
     - title: Loi n° 2006-1771 du 30 décembre 2006 (LFR pour 2006) - art. 70
     - title: BOI 5 B-1-08; n°6 du 14/01/2008
-    2008-01-01:
-      title: Loi 2008-1425 du 27/12/2008 (LF pour 2009)
     2009-01-01:
     - title: Loi 2009-1673 du 30/12/2009 (LF pour 2010)
     - title: BOI 5 B-6-10; n°9 du 19/01/2010
@@ -42,22 +31,10 @@ metadata:
     2011-01-01:
       title: Loi 2011-1977 du 28/12/2011 (LF pour 2012)
   official_journal_date:
-    1991-01-01: "1991-12-31"
-    1993-01-01: "1993-12-31"
-    1995-01-01: "1995-12-31"
     1997-01-01: "1997-12-31"
     2001-01-01: "2001-12-29"
-    2003-01-01: "2003-12-31"
-    2004-01-01: "2004-12-31"
     2005-01-01: "2005-12-31"
-    2007-01-01: "2006-12-31"
-    2008-01-01: "2008-12-28"
-    2009-01-01: "2009-12-31"
-    2010-01-01: "2010-12-30"
-    2011-01-01: "2011-12-28"
   notes:
-    1991-01-01:
-    - title: Création du dispositif pour l'imposition des revenus de 1991. ; Le contribuable doit choisir entre la réduction d'impôt pour l'emploi d'un salarié travaillant à la résidence d'un ascendant et le bénéfice des dispositions relatives aux pensions alimentaires, pour la pension versée à ce même ascendant. Le choix effectué en faveur de la réduction d'impôt entraîne renonciation à la déduction de l'ensemble des sommes versées à titre de pension alimentaire pour un même ascendant et non pas seulement à la fraction relative aux frais d'emploi du salarié à domicile.
     1997-01-01:
     - title: Création d'un plafond supérieur pour les invalides
     2007-01-01:

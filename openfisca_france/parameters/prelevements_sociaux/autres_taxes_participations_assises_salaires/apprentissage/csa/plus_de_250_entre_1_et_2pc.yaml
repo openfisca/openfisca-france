@@ -9,6 +9,7 @@ values:
   2015-01-01:
     value: 0.002
 metadata:
+  last_value_still_valid_on: "2023-01-30"
   ipp_csv_id: apprencsa_p_0_
   unit: /1
   reference:
@@ -37,4 +38,3 @@ metadata:
     2011-01-01: "2011-07-30"
     2012-01-01: "2012-03-15"
     2015-01-01: "2012-03-15"
-  last_value_still_valid_on: "2023-01-30"

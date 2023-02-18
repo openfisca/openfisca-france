@@ -3,6 +3,7 @@ values:
     value: 0.42804
 metadata:
   short_label: Majoration par enfant à charge
+  last_value_still_valid_on: "2022-08-03"
   label_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_maj6
   unit: /1
@@ -15,4 +16,3 @@ metadata:
     - title: Création de la Prime pour l'Activité.
     2019-01-01:
     - title: Revalorisation de la Prime pour l'Activité suite à la loi 2018-1213 du 24/12/2018 portant mesures d'urgence économique et sociale. La Prime pour l'Activité augmente de 90 euros au niveau du Smic, via une augmentation de la bonification individuelle.
-  last_value_still_valid_on: "2022-08-03"

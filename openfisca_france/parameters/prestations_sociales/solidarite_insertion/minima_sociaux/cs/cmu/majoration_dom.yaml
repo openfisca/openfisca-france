@@ -4,9 +4,9 @@ values:
     value: 0.113
 metadata:
   short_label: Coefficient DOM
+  last_value_still_valid_on: "2019-09-19"
   unit: /1
   reference:
     2001-01-01:
-      href: https://circulaires.ameli.fr/circulaire/cir-332019
       title: Circulaire 33-2019 3.
-  last_value_still_valid_on: "2019-09-19"
+      href: https://circulaires.ameli.fr/circulaire/cir-332019

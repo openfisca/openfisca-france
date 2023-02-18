@@ -4,6 +4,7 @@ values:
     value: 0.75
 metadata:
   short_label: Taux
+  last_value_still_valid_on: "2022-05-12"
   label_en: Tax reductions for investment and donations
   unit: /1
   reference:
@@ -17,7 +18,6 @@ metadata:
   notes:
     2018-01-01:
     - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  last_value_still_valid_on: "2022-05-12"
 documentation: |-
   (1) Fonds commun de placement dans l'innovation
   (2) Fonds d'investissement de proximité

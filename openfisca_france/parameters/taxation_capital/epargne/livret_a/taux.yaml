@@ -1,4 +1,4 @@
-description : Taux d'intérêt annuel du livret A
+description: Taux d'intérêt annuel du livret A
 values:
   1818-05-22:
     value: 0.05
@@ -90,6 +90,7 @@ values:
     value: 0.02
 metadata:
   short_label: Taux
+  last_value_still_valid_on: "2023-01-05"
   unit: /1
   reference:
     2020-02-01:
@@ -99,7 +100,6 @@ metadata:
       title: JORF n°0036 du 11 février 2021
       href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000043114027/
     2022-02-01:
-      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045084355
       title: JORF n° 0025 du 30 janvier 2022, Arrêté du 27 janvier 2022 relatif aux taux d'intérêt des produits d'épargne réglementée
-  last_value_still_valid_on: "2023-01-05"
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045084355
 documentation: "Notes : Informations Service Public https://www.service-public.fr/particuliers/vosdroits/F2365"

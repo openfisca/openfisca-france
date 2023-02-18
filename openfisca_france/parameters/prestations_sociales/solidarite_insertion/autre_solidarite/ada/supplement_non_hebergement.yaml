@@ -7,6 +7,7 @@ values:
     value: 7.4
 metadata:
   short_label: Supplément si non-hébergé
+  last_value_still_valid_on: "2022-01-10"
   label_en: "Asylum-seeker allowance (ADA): Amounts"
   unit: currency
   reference:
@@ -20,7 +21,6 @@ metadata:
     - title: Décision du Conseil d'Etat du 23/12/2016 d'annuler partiellement le montant de l'ADA (concernant le supplément si non-hébergé qui est insuffisant) et enjoint au Premier Ministre de fixer un nouveau montant
     2018-06-02:
     - title: Décision du Conseil d'Etat du 23/12/2016 d'annuler partiellement le montant de l'ADA (concernant le supplément si non-hébergé qui est insuffisant) et enjoint au Premier Ministre de fixer un nouveau montant
-  last_value_still_valid_on: "2022-01-10"
 documentation: |-
   Loi du 29/07/2015, art. 23
   2015-07-30

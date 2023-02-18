@@ -3,5 +3,5 @@ metadata:
   short_label: CSG imposable
   label_en: Social contributions
   order:
-    - taux
-    - abattement
+  - taux
+  - abattement

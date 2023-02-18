@@ -4,6 +4,7 @@ values:
     value: 3
 metadata:
   short_label: Nb min d'enfants pour la maj. forfaitaire (>20 ans)
+  last_value_still_valid_on: "2022-02-21"
   label_en: "Family allowances (AF): Extra allowances for oversea territories"
   ipp_csv_id: afmaj_nenf_min_dom
   unit: /1
@@ -13,7 +14,6 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006775833&cidTexte=JORFTEXT000000571496
   official_journal_date:
     1991-08-06: "1991-08-06"
-  last_value_still_valid_on: "2022-02-21"
 documentation: |-
   Notes :
   A partir du 01/01/1993, les taux et majorations à partir du 2ème enfant sont les mêmes qu'en métropôle (cf article D. 521-1)

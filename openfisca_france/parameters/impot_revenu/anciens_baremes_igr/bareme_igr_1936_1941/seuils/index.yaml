@@ -1,6 +1,6 @@
-description: Seuils des tranches d'imposition au titre du barème de l'Impôt général
-  sur le revenu (IGR, 1936-1941)
+description: Seuils des tranches d'imposition au titre du barème de l'Impôt général sur le revenu (IGR, 1936-1941)
 metadata:
+  short_label: Seuils
   label_en: Thresholds and marginal tax rates of the IGR tax (1936-1941)
   order:
   - tranche_1
@@ -13,4 +13,3 @@ metadata:
   - tranche_8
   - tranche_9
   - tranche_10
-  short_label: Seuils

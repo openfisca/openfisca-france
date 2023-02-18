@@ -23,8 +23,8 @@ values:
   2013-01-01:
     value: 1016
 metadata:
-  unit: currency
   last_value_still_valid_on: "2023-01-05"
+  unit: currency
   reference:
   - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029988857
   - href: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_impot_revenu/plaf_qf/

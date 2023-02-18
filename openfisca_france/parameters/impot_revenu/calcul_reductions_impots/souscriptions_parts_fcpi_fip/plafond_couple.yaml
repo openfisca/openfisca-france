@@ -13,8 +13,6 @@ metadata:
   ipp_csv_id: plaffcp_couple
   unit: currency
   reference:
-    2012-01-01:
-      title: BOI-IR-RICI-110
     2020-08-10:
     - title: Loi 2021-953 du 19/07/2021
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043805899

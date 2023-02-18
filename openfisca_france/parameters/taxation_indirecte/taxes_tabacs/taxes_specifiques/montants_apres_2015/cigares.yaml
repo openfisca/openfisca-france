@@ -17,8 +17,8 @@ values:
   2023-03-01:
     value: 52.2
 metadata:
-  ipp_csv_id: tx_spec_cigares
   last_value_still_valid_on: "2022-12-28"
+  ipp_csv_id: tx_spec_cigares
   unit: currency
   reference:
     2015-01-01:

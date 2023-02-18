@@ -1,5 +1,14 @@
 # Changelog
 
+### 143.0.1 [#2034](https://github.com/openfisca/openfisca-france/pull/2034)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters`.
+* Détails :
+  -  Nettoie les paramètres YAML afin que leur structure et l'ordre de leurs champs soit uniformes
+  - Corrige le champ order de `parameters/geopolitique/index.yaml`
+
 # 143.0.0 [#2001](https://github.com/openfisca/openfisca-france/pull/2001)
 
 * Amélioration technique

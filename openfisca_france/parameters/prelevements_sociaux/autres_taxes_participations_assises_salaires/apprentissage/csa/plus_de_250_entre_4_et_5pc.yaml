@@ -3,6 +3,7 @@ values:
   2015-01-01:
     value: 0.0005
 metadata:
+  last_value_still_valid_on: "2023-01-30"
   unit: /1
   reference:
     2015-01-01:
@@ -14,4 +15,3 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000025509790
   official_journal_date:
     2015-01-01: "2012-03-15"
-  last_value_still_valid_on: "2023-01-30"

@@ -1,5 +1,7 @@
 description: Liste des départements membre de la région Guyane
-unit: codes départements
 values:
   2015-01-16:
-    value: ["973"]
+    value:
+    - "973"
+metadata:
+  unit: codes départements

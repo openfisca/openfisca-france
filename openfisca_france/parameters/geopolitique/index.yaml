@@ -1,5 +1,7 @@
 description: Nationalités, rattachements administratifs et organisations internationales
+metadata:
+  order:
   - age_majorite
-  - departements_idf
+  - regions
   - eee
   - ue

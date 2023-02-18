@@ -8,6 +8,7 @@ values:
     value: 0.0175
 metadata:
   short_label: Tout salaire
+  last_value_still_valid_on: "2021-12-07"
   label_en: Transport tax (VT) (contribution to public transports)
   ipp_csv_id: vt_p_0_
   unit: /1
@@ -23,7 +24,6 @@ metadata:
   notes:
     1993-04-01:
     - title: Déplafonnement du versement transport
-  last_value_still_valid_on: "2021-12-07"
 documentation: |-
   Notes :
   (i) Le versement transport est recouvré par les URSSAF comme les cotisations de Sécurité sociale, et reversé aux collectivités locales.

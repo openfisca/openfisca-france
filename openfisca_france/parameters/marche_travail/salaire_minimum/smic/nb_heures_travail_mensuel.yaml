@@ -8,6 +8,7 @@ values:
     value: 151.67
 metadata:
   short_label: Nombre d'heures temps plein
+  last_value_still_valid_on: "2022-08-03"
   label_en: Minimum wage - SMIC
   ipp_csv_id: htp
   unit: hour
@@ -23,4 +24,3 @@ metadata:
   notes:
     2001-07-01:
     - title: Attention au passage aux 35 heures. Existence d'un régime transitoire et d'un régime définitif pour les entreprises de plus de 20 salariés. dans l'ancien système. Pour les entreprises de moins de 20 salariés, ancien système. Le Smic donné ici correspond au Smic mensuel pour 39 heures
-  last_value_still_valid_on: "2022-08-03"

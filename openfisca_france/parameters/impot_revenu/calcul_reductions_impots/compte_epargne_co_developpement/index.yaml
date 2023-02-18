@@ -5,5 +5,4 @@ metadata:
   - taux
   - plafond_par_personne
   - plafond_en_revenu_net_global
-documentation: |
-  Avant 2009, ce dispositif consistait en un montant déductible, et depuis 2009 c'est une réduction d'impôt.
+documentation: Avant 2009, ce dispositif consistait en un montant déductible, et depuis 2009 c'est une réduction d'impôt.

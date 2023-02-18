@@ -4,6 +4,7 @@ values:
     value: 0.3
 metadata:
   short_label: Majoration, par enfant, en % de la base du plafond de ressources, à partir du 3ème enfant
+  last_value_still_valid_on: "2023-02-06"
   label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_paje_enf3pl_a_partir_20180401
   unit: /1
@@ -22,6 +23,4 @@ metadata:
     - title: "Création de la PAJE. Mais entrée en vigueur progressive : de janvier 2004 à décembre 2006 inclus (cf. art. 60, VIII de la loi 2003-1199)"
     2021-04-01:
     - title: Les dispositions de la PAJE pour les enfants nés ou adoptés avant le 01/04/2018 ne s'appliquent plus (naissance ou adoption depuis plus de 3 ans).
-  last_value_still_valid_on: "2023-02-06"
-  documentation: |-
-    L'article R531-1 modifié par le décrêt 2003-1393 renvoie désormais vers l'Article R522-2 qui indique les montants de la majoration.
+documentation: L'article R531-1 modifié par le décrêt 2003-1393 renvoie désormais vers l'Article R522-2 qui indique les montants de la majoration.

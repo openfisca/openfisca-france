@@ -1,4 +1,4 @@
-description: Taux de la cotisation pour la formation professionnelle du régime des des auto-entrepreneurs pour la prestation de services (artisans) d'Alsace 
+description: Taux de la cotisation pour la formation professionnelle du régime des des auto-entrepreneurs pour la prestation de services (artisans) d'Alsace
 values:
   2009-01-01:
     value: null
@@ -8,6 +8,7 @@ values:
     value: 0.003
 metadata:
   short_label: Taux - Prestation de services (artisans) Alsace
+  last_value_still_valid_on: "2022-04-12"
   label_en: Self-employed specific scheme (auto-entrepreneurs)
   ipp_csv_id: auto_art_form_als_ca
   unit: /1
@@ -37,7 +38,6 @@ metadata:
   notes:
     2017-01-01:
     - title: Depuis le 1er janvier 2017, la CFP est unifiée pour tous les artisans (en et hors Alsace)
-  last_value_still_valid_on: "2022-04-12"
 documentation: |-
   Notes :
   (i) L’auto-entrepreneur bénéficie d’un régime simplifié de calcul et de paiement des cotisations et contributions sociales obligatoires.

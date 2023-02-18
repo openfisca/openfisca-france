@@ -1,6 +1,6 @@
- description: Déduction pour acquisition de navire
- metadata:
+description: Déduction pour acquisition de navire
+metadata:
   short_label: Acquisition navire
   order:
-    - plafond
-    - taux
+  - plafond
+  - taux
