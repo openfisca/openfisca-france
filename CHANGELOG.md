@@ -1,5 +1,13 @@
 # Changelog
 
+### 143.0.3 [#2035](https://github.com/openfisca/openfisca-france/pull/2035)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`.
+* Détails :
+  - Corrige un CERFA field qui a malencontreusement sauté.
+
 ### 143.0.2 [#2027](https://github.com/openfisca/openfisca-france/pull/2027)
 
 * Évolution du système socio-fiscal..
@@ -10,12 +18,6 @@
   - `openfisca_france/parameters/prestations_sociales/aides_jeunes/bourses/bourses_enseignement_superieur/criteres_sociaux/plafond_ressources/echelon_*.yaml`
 * Détails :
   - Revalorisation du 18 juillet 2022 fixant les plafonds et montants de ressources relatifs aux bourses d'enseignement supérieur du ministère de l'enseignement supérieur et de la recherche pour les années universitaire 2021-2022 et 2022-2023
-
-- - - -
-
-Ces changements:
-
-- Corrigent ou améliorent un calcul déjà existant.
 
 ### 143.0.1 [#2034](https://github.com/openfisca/openfisca-france/pull/2034)
 

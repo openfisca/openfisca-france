@@ -10475,6 +10475,7 @@ class f7ob(Variable):
 
 
 class f7oc(Variable):
+    cerfa_field = '7OC'
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
