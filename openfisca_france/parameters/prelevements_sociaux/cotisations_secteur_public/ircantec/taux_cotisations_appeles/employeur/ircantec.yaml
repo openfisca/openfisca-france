@@ -3,9 +3,6 @@ brackets:
 - threshold:
     1971-01-01:
       value: 0
-  base:
-    1971-01-01:
-      value: 1.25
   rate:
     1971-01-01:
       value: 0.0126
@@ -36,9 +33,6 @@ brackets:
 - threshold:
     1971-01-01:
       value: 1
-  base:
-    1971-01-01:
-      value: 1.25
   rate:
     1971-01-01:
       value: null
