@@ -1,4 +1,4 @@
-description: Plancher de ressources (avant 2021) puis forfait de ressources (depuis 2021) pour les étudiants (avant oct 2019, R.351-7-2 du CCH et art. 1 quater de l'arrêté du 3 juillet 1978 ; oct 2019 - dec 2020, art. 6 de l'arrêté du 27 sept 2019 et art. R822-21 du CCH ; depuis janv 2021, même arrêté et art. R822-20 du CCH
+description: Plancher des ressources (avant 2021) puis forfait des ressources (depuis 2021) prises en compte dans le calcul des aides, pour les étudiants en location
 values:
   2002-01-01:
     value: 5411.62
@@ -23,6 +23,8 @@ values:
   2022-08-01:
     value: 8100
 metadata:
+  short_label: Forfait de ressources pour les étudiants en location
+  last_value_still_valid_on: "2023-02-20"
   unit: currency
   reference:
     2002-07-01:
@@ -34,6 +36,15 @@ metadata:
     2018-01-01:
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036341227
     2022-01-01:
+    - title: Arrêté du 20 décembre 2021, article 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044572817/#JORFARTI000044572819
+    - title: Article R822-20 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041419188
     2022-08-01:
+    - title : Arrêté du 29 juillet 2022, article 1, 1°a
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046114992/#JORFARTI000046114998
+    - title: Article R822-20 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041419188
+    - title: Arrêté du 27 septembre 2019, article 6
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000039160737/2019-10-02/#LEGIARTI000039160737
+  documentation: "Plancher de ressources (avant 2021) puis forfait de ressources (depuis 2021) pour les étudiants (avant oct 2019, R.351-7-2 du CCH et art. 1 quater de l'arrêté du 3 juillet 1978 ; oct 2019 - dec 2020, art. 6 de l'arrêté du 27 sept 2019 et art. R822-21 du CCH ; depuis janv 2021, même arrêté et art. R822-20 du CCH"
