@@ -1,4 +1,4 @@
-description: Taux de participation personnel familial (TF) Couples sans enfant, (après la réforme de 2001) des Allocations Logement (AL)
+description: Taux « TF » pour les couples sans personne à charge, pris en compte dans le taux de participation personnel du ménage « Tp » pour le calcul des allocations logement
 values:
   2001-01-01:
     value: 0.0331
@@ -7,8 +7,9 @@ values:
   2007-07-01:
     value: 0.0315
 metadata:
-  short_label: Couples sans enfant
+  short_label: Taux « TF » des couples sans personne à charge
   label_en: Parameters for the rental sector (after the 2001 reform)
+  last_value_still_valid_on: "2023-02-22"
   ipp_csv_id: tf_coup
   unit: /1
   reference:
@@ -21,7 +22,9 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006780031&cidTexte=JORFTEXT000000393997
     - title: Arrêté du 31/07/2001
     2007-07-01:
-      title: Arrêté du 10/07/2007
+    - title: Arrêté du 27/09/2019, article 14, 1°
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206208/2022-07-01/#LEGIARTI000046206208
+    - title: Arrêté du 10/07/2007
   official_journal_date:
     2001-01-01: "2000-12-28"
     2002-01-01: "2001-08-02"
