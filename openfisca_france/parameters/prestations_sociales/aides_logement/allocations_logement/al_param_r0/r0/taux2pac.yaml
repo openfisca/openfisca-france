@@ -1,4 +1,4 @@
-description: Valeur pour une personne seule ou couple ayant deux personnes à charge du montant forfaitaire R0 (Article 2 ter de l'arrêté du 3 juillet 1978) - secteur locatif (après 2001)
+description: Abattement forfaitaire « R0 » pour pour une personne seule ou couple ayant une personne seule ou couple ayant deux personnes à charge, intervenant sur la participation personnelle du ménage « Pp » prise en compte dans le calcul de l'aide mensuelle au logement
 values:
   2015-01-01:
     value: 7938
@@ -11,7 +11,8 @@ values:
   2023-01-01:
     value: 8646
 metadata:
-  short_label: Personne seule ou couple ayant deux personnes à charge
+  short_label: Forfait « R0 » pour une personne seule ou couple ayant deux personnes à charge
+  last_value_still_valid_on: "2023-02-22"
   label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   ipp_csv_id: r0_2pac
   unit: currency
@@ -29,8 +30,10 @@ metadata:
     - title: Arrêté du 03/01/2020, art. 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039772259
     2023-01-01:
-      title: Arrêté du 26/12/2022, art. 1
+    - title: Arrêté du 26/12/2022, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046829580
+    - title: Article D823-17 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041419255
   official_journal_date:
     2015-01-01: "2014-12-31"
     2016-01-01: "2016-01-22"
