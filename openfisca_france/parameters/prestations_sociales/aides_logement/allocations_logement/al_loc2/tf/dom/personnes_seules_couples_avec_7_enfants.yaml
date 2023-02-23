@@ -5,7 +5,7 @@ values:
   2023-01-01:
     value: 0.0167
 metadata:
-  short_label: Taux « TF » des personnes seules ou couple ayant sept personnes à charge
+  short_label: Personnes seules ou couple ayant sept personnes à charge
   last_value_still_valid_on: "2023-02-22"
   unit: /1
   reference:

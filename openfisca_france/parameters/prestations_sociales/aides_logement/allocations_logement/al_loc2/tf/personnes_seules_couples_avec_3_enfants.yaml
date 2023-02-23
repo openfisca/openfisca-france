@@ -7,7 +7,7 @@ values:
   2007-07-01:
     value: 0.0201
 metadata:
-  short_label: Taux « TF » des personnes seules ou couple ayant trois personnes à charge
+  short_label: Personnes seules ou couple ayant trois personnes à charge
   last_value_still_valid_on: "2023-02-22"
   label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: tf_enf3
@@ -34,4 +34,3 @@ metadata:
     - title: Article qui décrit le mode de calcul de la nouvelle ALF pour les locataires. On y trouve aussi les paramètres relatifs à Po (la participation minimale)
     2002-01-01:
     - title: Changement de la participation minimale forfaitaire (composante de Po)
-documentation: "Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2"

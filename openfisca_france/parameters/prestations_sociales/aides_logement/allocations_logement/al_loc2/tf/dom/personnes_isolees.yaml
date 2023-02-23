@@ -3,7 +3,7 @@ values:
   2002-01-01:
     value: 0.0281
 metadata:
-  short_label: Taux « TF » des personnes seules sans personne à charge
+  short_label: Personnes seules sans personne à charge
   last_value_still_valid_on: "2023-02-22"
   unit: /1
   reference:
