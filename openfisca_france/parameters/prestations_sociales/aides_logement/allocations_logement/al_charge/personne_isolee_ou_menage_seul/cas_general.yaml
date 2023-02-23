@@ -1,4 +1,4 @@
-description: Majoration forfaitaire au titre des charges du logement, pour un couple sans personne à charge (cas général)
+description: Majoration forfaitaire au titre des charges du logement pour un couple sans personne à charge ou un bénéficiaire seul hors collocation et copropriété
 values:
   1994-07-01:
     value: 282
@@ -43,7 +43,7 @@ values:
   2022-07-01:
     value: 56.12
 metadata:
-  short_label: Majoration pour un couple sans personne à charge (cas général)
+  short_label: Majoration pour couple sans personne à charge ou bénéficiaire seul hors collocation/copropriété
   last_value_still_valid_on: "2022-09-28"
   label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_gen
