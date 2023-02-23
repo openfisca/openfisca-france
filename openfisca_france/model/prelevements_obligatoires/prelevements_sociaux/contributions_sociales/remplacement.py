@@ -104,8 +104,8 @@ class csg_deductible_chomage(Variable):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
-        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
+        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * 2 * seuils.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * 2 * seuils.seuil_rfr2.demi_part_suppl_rfr2
 
         taux_csg_remplacement = where(
             rfr <= seuil_exoneration,
@@ -165,8 +165,8 @@ class csg_imposable_chomage(Variable):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
-        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
+        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * 2 * seuils.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * 2 * seuils.seuil_rfr2.demi_part_suppl_rfr2
 
         taux_csg_remplacement = where(
             rfr <= seuil_exoneration,
@@ -216,8 +216,8 @@ class crds_chomage(Variable):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
-        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
+        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * 2 * seuils.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * 2 * seuils.seuil_rfr2.demi_part_suppl_rfr2
 
         taux_csg_remplacement = where(
             rfr <= seuil_exoneration,
@@ -312,9 +312,9 @@ class csg_deductible_retraite(Variable):
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
         seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
-        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
-        seuil_taux_intermediaire = seuils.seuil_rfr3.seuil_rfr3 + (nbptr - 1) * seuils.seuil_rfr3.demi_part_suppl_rfr3
+        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * 2 * seuils.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * 2 * seuils.seuil_rfr2.demi_part_suppl_rfr2
+        seuil_taux_intermediaire = seuils.seuil_rfr3.seuil_rfr3 + (nbptr - 1) * 2 * seuils.seuil_rfr3.demi_part_suppl_rfr3
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr <= seuil_taux_intermediaire, rfr > seuil_taux_intermediaire],
@@ -337,8 +337,8 @@ class csg_deductible_retraite(Variable):
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
         seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
-        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
+        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * 2 * seuils.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * 2 * seuils.seuil_rfr2.demi_part_suppl_rfr2
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
@@ -378,9 +378,9 @@ class csg_imposable_retraite(Variable):
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
         seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
-        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
-        seuil_taux_intermediaire = seuils.seuil_rfr3.seuil_rfr3 + (nbptr - 1) * seuils.seuil_rfr3.demi_part_suppl_rfr3
+        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * 2 * seuils.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * 2 * seuils.seuil_rfr2.demi_part_suppl_rfr2
+        seuil_taux_intermediaire = seuils.seuil_rfr3.seuil_rfr3 + (nbptr - 1) * 2 * seuils.seuil_rfr3.demi_part_suppl_rfr3
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr <= seuil_taux_intermediaire, rfr > seuil_taux_intermediaire],
@@ -403,8 +403,8 @@ class csg_imposable_retraite(Variable):
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
         seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
-        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
+        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * 2 * seuils.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * 2 * seuils.seuil_rfr2.demi_part_suppl_rfr2
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
@@ -444,9 +444,9 @@ class crds_retraite(Variable):
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
         seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
-        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
-        seuil_taux_intermediaire = seuils.seuil_rfr3.seuil_rfr3 + (nbptr - 1) * seuils.seuil_rfr3.demi_part_suppl_rfr3
+        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * 2 * seuils.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * 2 * seuils.seuil_rfr2.demi_part_suppl_rfr2
+        seuil_taux_intermediaire = seuils.seuil_rfr3.seuil_rfr3 + (nbptr - 1) * 2 * seuils.seuil_rfr3.demi_part_suppl_rfr3
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr <= seuil_taux_intermediaire, rfr > seuil_taux_intermediaire],
@@ -467,8 +467,8 @@ class crds_retraite(Variable):
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
         seuils = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils.seuil_rfr1.demi_part_suppl_rfr1
-        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils.seuil_rfr2.demi_part_suppl_rfr2
+        seuil_exoneration = seuils.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * 2 * seuils.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * 2 * seuils.seuil_rfr2.demi_part_suppl_rfr2
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],
@@ -504,9 +504,9 @@ class casa(Variable):
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
         seuils_csg = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils_csg.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils_csg.seuil_rfr1.demi_part_suppl_rfr1
-        seuil_reduction = seuils_csg.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils_csg.seuil_rfr2.demi_part_suppl_rfr2
-        seuil_taux_intermediaire = seuils_csg.seuil_rfr3.seuil_rfr3 + (nbptr - 1) * seuils_csg.seuil_rfr3.demi_part_suppl_rfr3
+        seuil_exoneration = seuils_csg.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * 2 * seuils_csg.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils_csg.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * 2 * seuils_csg.seuil_rfr2.demi_part_suppl_rfr2
+        seuil_taux_intermediaire = seuils_csg.seuil_rfr3.seuil_rfr3 + (nbptr - 1) * 2 * seuils_csg.seuil_rfr3.demi_part_suppl_rfr3
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr <= seuil_taux_intermediaire, rfr > seuil_taux_intermediaire],
@@ -525,8 +525,8 @@ class casa(Variable):
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         parameters = parameters(period)
         seuils_csg = parameters.prelevements_sociaux.contributions_sociales.csg.remplacement.seuils
-        seuil_exoneration = seuils_csg.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * seuils_csg.seuil_rfr1.demi_part_suppl_rfr1
-        seuil_reduction = seuils_csg.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * seuils_csg.seuil_rfr2.demi_part_suppl_rfr2
+        seuil_exoneration = seuils_csg.seuil_rfr1.seuil_rfr1 + (nbptr - 1) * 2 * seuils_csg.seuil_rfr1.demi_part_suppl_rfr1
+        seuil_reduction = seuils_csg.seuil_rfr2.seuil_rfr2 + (nbptr - 1) * 2 * seuils_csg.seuil_rfr2.demi_part_suppl_rfr2
 
         taux_csg_retraite = select(
             [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr > seuil_reduction],

@@ -1,5 +1,13 @@
 # Changelog
 
+### 143.1.0 [#2030](https://github.com/openfisca/openfisca-france/pull/2030)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
+* Détails :
+  - Correction d'une erreur dans la prise en compte de l'incrément par demi part supplémentaire pour la détermination des taux plein ou réduit ou intermédiaire de CSG sur revenus de remplacement
+
 ### 143.0.4 [#2026](https://github.com/openfisca/openfisca-france/pull/2026)
 
 * Changement mineur.
