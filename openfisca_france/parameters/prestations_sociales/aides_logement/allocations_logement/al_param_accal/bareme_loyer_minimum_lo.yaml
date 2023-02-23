@@ -1,4 +1,4 @@
-description: Pourcentages appliqués à des tranches de ressources pour calculer l'équivalence de loyer et charges locatives minimales (paramètre « E0 ») entrant en compte dans le montant de l'aide au logement des ménages résidant en logement-foyer
+description: Pourcentages appliqués à des tranches de ressources pour calculer l'équivalence de loyer et charges locatives minimales (paramètre « E0 ») dans le cas général entrant en compte dans le calcul de l'aide au logement
 brackets:
 - threshold:
     2007-07-01:

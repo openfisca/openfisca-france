@@ -1,10 +1,16 @@
+
+description: Majoration de l'équivalence de loyer et charges locatives minimales (paramètre « E0 ») pour les logements-foyers de jeunes travailleurs et les résidences sociales, ce paramètre « E0 » entrant en compte dans le calcul de l'aide au logement
 values:
   2007-11-01:
     value: 45.57
 metadata:
+  short_label: Majoration des logements-foyers de jeunes travailleurs et des résidences sociales
   unit: currency
   reference:
-    0001-01-01:
-      title: ipp
-    2007-11-01:
-      href: https://www.legifrance.gouv.fr/eli/arrete/2007/11/8/MLVU0759263A/jo/article_2
+    2007-07-01: 
+    - title: Arrêté du 08/11/2007, article 2
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002479892
+    - title: Article D832-26 du Code de la construction et de l'habitation
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878708
+    - title: Article R351-62 du Code de la construction et de l'habitation (abrogé)
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006899017/2006-01-01/
