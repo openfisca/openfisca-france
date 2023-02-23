@@ -1,10 +1,10 @@
 
-description: Majoration de l'équivalence de loyer et charges locatives minimales (paramètre « E0 ») pour les logements-foyers de jeunes travailleurs et les résidences sociales, ce paramètre « E0 » entrant en compte dans le calcul de l'aide au logement
+description: Majoration de l'équivalence de loyer et charges locatives minimales (paramètre « E0 »)
 values:
   2007-11-01:
     value: 45.57
 metadata:
-  short_label: Majoration des logements-foyers de jeunes travailleurs et des résidences sociales
+  short_label: Majoration
   unit: currency
   reference:
     2007-07-01: 

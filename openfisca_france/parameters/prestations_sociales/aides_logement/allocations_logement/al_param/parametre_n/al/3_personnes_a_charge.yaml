@@ -1,4 +1,4 @@
-description: Paramètre « N » pour un bénéficiaire isolé ou un ménage ayant trois personnes à charge, en cas de logements-foyers de jeunes travailleurs conventionnés après le 30 septembre 1990 ou de résidences sociales conventionnées après le 31 décembre 1994, mentionnés au 1° de l'article R. 832-21 du même code
+description: Paramètre « N » pour un bénéficiaire isolé ou un ménage ayant trois personnes à charge, pour le calcul de l'AL du secteur accession, l'AL du secteur foyer et l'APL des foyers de jeunes travailleurs conventionnés après le 30 septembre 1990 et pour les résidences sociales conventionnées après le 31 décembre 1994
 values:
   1988-07-01:
     value: 3.7

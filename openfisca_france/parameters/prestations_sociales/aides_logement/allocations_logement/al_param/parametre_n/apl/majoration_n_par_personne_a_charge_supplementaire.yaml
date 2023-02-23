@@ -1,4 +1,4 @@
-description: Majoration par personne à charge supplémentaire du paramètre « N » pour le cas général
+description: Majoration par personne à charge supplémentaire du paramètre « N »  pour le calcul de l'APL du secteur accession et l'APL des logements-foyers cas général
 values:
   1986-01-01:
     value: 0.4

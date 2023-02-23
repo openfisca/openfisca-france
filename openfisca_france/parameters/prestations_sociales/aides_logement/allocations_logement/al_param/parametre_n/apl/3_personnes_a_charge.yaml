@@ -1,4 +1,4 @@
-description: Paramètre « N » pour un bénéficiaire isolé ou un ménage ayant trois personnes à charge pour le cas général
+description: Paramètre « N » pour un bénéficiaire isolé ou un ménage ayant trois personnes à charge pour le calcul de l'APL du secteur accession et l'APL des logements-foyers cas général
 values:
   1988-07-01:
     value: 3.7

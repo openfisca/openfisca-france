@@ -1,9 +1,9 @@
-description: Majoration de l'équivalence de loyer et charges locatives minimales (paramètre « E0 ») pour le cas général
+description: Majoration de l'équivalence de loyer et charges locatives minimales (paramètre « E0 »)
 values:
   2007-07-01:
     value: 76.32
 metadata:
-  short_label: Majoration cas général
+  short_label: Majoration
   unit: currency
   reference:
     2007-07-01: 
