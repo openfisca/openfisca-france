@@ -89,7 +89,14 @@
 
 - period: 2021-03
   input:
-    bourse_criteres_sociaux_echelon: [-1, 0, 8, 8, 5, 0]
-    annee_etude: [licence_1, licence_2, master_2, doctorat_1, doctorat_2, doctorat_3]
+    bourse_criteres_sociaux_echelon: [-1, 0, 8]
   output:
-    bourse_criteres_sociaux: [0, 103.2, 567.9, 0, 0, 0]
+    bourse_criteres_sociaux: [0, 103.2, 567.9]
+
+- period: 2021-03
+  input:
+    scolarite: [enseignement_superieur, enseignement_superieur, enseignement_superieur, enseignement_superieur, enseignement_superieur, enseignement_superieur]
+    annee_etude: [licence_1, licence_2, master_2, doctorat_1, doctorat_2, doctorat_3]
+    statuts_etablissement_scolaire: [public, public, public, public, public, public]
+  output:
+    bourse_criteres_sociaux_eligibilite_etude: [true, true, true, false, false, false]
