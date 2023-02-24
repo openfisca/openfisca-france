@@ -1,5 +1,14 @@
 # Changelog
 
+### 143.0.1 [#2030](https://github.com/openfisca/openfisca-france/pull/2029)
+
+* Changement mineur.
+* toutes.
+* Zones impactées : parameters/prestations_sociales/aides_logement.
+* Détails :
+   - Clarifie une partie des paramètres des aides personnalisées au logement
+   - Ajoute des références (car il y en avait très peu)
+
 ### 143.0.1 [#2034](https://github.com/openfisca/openfisca-france/pull/2034)
 
 * Amélioration technique.
