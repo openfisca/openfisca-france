@@ -1,4 +1,4 @@
-description: Montant forfaitaire (colocataires ou des propriétaires) au titre des charges, pour les allocations logement
+description: Majoration forfaitaire au titre des charges du logement, pour un colocataire seul ou un copropriétaire seul (copropriétaire d'un même logement) pour le calcul des aides au logement
 values:
   1994-07-01:
     value: 142
@@ -41,7 +41,7 @@ values:
   2022-07-01:
     value: 28.05
 metadata:
-  short_label: Cas des colocataires ou des propriétaires
+  short_label: Majoration colocataire ou copropriétaire seuls
   last_value_still_valid_on: "2022-09-28"
   label_en: Lump sum extra allowance for charges
   ipp_csv_id: plaf_char_col

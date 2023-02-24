@@ -1,4 +1,4 @@
-description: Montant (une personne seule) du plafond de loyer en zone 1 (après la réforme de 2001) des Allocations Logement (AL)
+description: Plafond de loyer pris en compte dans le calcul du montant des aides au logement pour une personne seule en zone 1 (après la réforme de 2001)
 values:
   2001-01-01:
     value: 1577
@@ -41,8 +41,8 @@ values:
   2022-07-01:
     value: 308.5
 metadata:
-  short_label: Personnes seules
-  last_value_still_valid_on: "2022-09-28"
+  short_label: Personne seule
+  last_value_still_valid_on: "2023-02-20"
   label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: plaf_loy_isol_z1
   unit: currency
@@ -155,4 +155,3 @@ metadata:
     - title: Idem en 2017
     2017-10-01:
     - title: Actualisation paramètres + baisse de 5 euros des aides au logement
-documentation: "Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2"

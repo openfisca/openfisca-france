@@ -1,6 +1,6 @@
-description: Taux de participation personnel familial (TF) (après la réforme de 2001) des Allocations Logement (AL)
+description: Taux fonction de la taille de la famille « TF » pris en compte dans le taux de participation personnel du ménage « Tp » pour le calcul des allocations logement
 metadata:
-  short_label: TF
+  short_label: Taux « TF » pris en compte dans le calcul des aides
   label_en: Parameters for the rental sector (after the 2001 reform)
   order:
   - personnes_isolees
