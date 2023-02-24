@@ -1,4 +1,4 @@
-description: Abattement forfaitaire sur les ressources prises en compte dans le calcul, si les deux conjoints exercent une activité professionnelle rémunératrice au delà d'un certain seuil
+description: Abattement forfaitaire sur les ressources prises en compte dans le calcul des aides au logement, si les deux conjoints exercent une activité professionnelle rémunératrice au delà d'un certain seuil
 values:
   2002-07-01:
     value: 76

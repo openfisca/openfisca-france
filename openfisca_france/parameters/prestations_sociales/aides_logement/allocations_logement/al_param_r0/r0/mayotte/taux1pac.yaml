@@ -3,7 +3,7 @@ values:
   2021-01-01:
     value: 6990
 metadata:
-  short_label: Forfait « R0 » pour une personne seule ou couple ayant une personne à charge
+  short_label: Personne seule ou couple ayant une personne à charge
   label_en: Parameters for R0 (the amount deducted from revenues) - rental sector (after the 2001 reform)
   unit: currency
   reference:

@@ -1,4 +1,4 @@
-description: Seuil de non versement pour les non-APL (allocations logement)
+description: Montant minimal mensuel versé de l'ALF et l'ALS
 values:
   1989-11-12:
     value: 100
@@ -11,7 +11,7 @@ values:
   2017-10-01:
     value: 10
 metadata:
-  short_label: Montant minimal de l'ALF et de l'ALS
+  short_label: ALF et ALS
   last_value_still_valid_on: "2023-02-20"
   label_en: Minimal amount
   unit: currency
