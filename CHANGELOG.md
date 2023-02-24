@@ -1,6 +1,6 @@
 # Changelog
 
-### 143.0.1 [#2030](https://github.com/openfisca/openfisca-france/pull/2029)
+### 143.0.2 [#2030](https://github.com/openfisca/openfisca-france/pull/2029)
 
 * Changement mineur.
 * toutes.
