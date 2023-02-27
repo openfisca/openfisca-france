@@ -20,6 +20,7 @@ brackets:
       value: 0
 metadata:
   short_label: Barème salarié
+  last_value_still_valid_on: "2021-08-02"
   label_en: Complementary pension contributions
   reference:
     2019-01-01:
@@ -30,7 +31,6 @@ metadata:
   notes:
     2019-01-01:
     - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
-  last_value_still_valid_on: "2021-08-02"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

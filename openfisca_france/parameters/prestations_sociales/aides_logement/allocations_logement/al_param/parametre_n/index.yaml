@@ -1,0 +1,12 @@
+description: Paramètre « N » représentant le nombre de parts et intervenant dans le calcul du coefficient « K » pris lui-même en compte dans le calcul des aides au logement pour le secteur foyer et le secteur accession
+metadata:
+  short_label: Paramètre « N » du secteur foyer et du secteur accession
+  order:
+  - apl
+  - al
+  reference:
+  - title: Article D832-25 du Code de la construction et de l'habitation
+    href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038878710/2019-09-01/
+  - title: Document du Ministère chargé du logement "Les aides personnelles au logement - Eléments de calcul", p.4
+    href: https://www.ecologie.gouv.fr/sites/default/files/les_aides_personnelles_au_logement_element_de_calcul_septembre_2021.pdf#4
+

@@ -1,5 +1,6 @@
-description: Prestations sociales
+description: Allocations logement
 metadata:
+  short_label: Allocations logement
   label_en: Allowances
   order:
   - al_pac

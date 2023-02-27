@@ -15,7 +15,7 @@ brackets:
     2014-01-20:
       value: 460
     2022-12-01:
-      value: 478.40
+      value: 478.4
 - threshold:
     2014-01-20:
       value: 3
@@ -23,7 +23,7 @@ brackets:
     2014-01-20:
       value: 520
     2022-12-01:
-      value: 540.80
+      value: 540.8
 metadata:
   reference:
     2014-01-20:

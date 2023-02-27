@@ -1,17 +1,82 @@
 # Changelog
 
+### 143.1.2 [#2042](https://github.com/openfisca/openfisca-france/pull/2042)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/aides_logement/allocations_logement/al_param/parametre_n/apl/menage_0_personnes_a_charge.yaml`.
+* Détails :
+  - Correction d'une typo dans les références d'un fichier YAML
+
+### 143.1.1 [#2030](https://github.com/openfisca/openfisca-france/pull/2029)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : parameters/prestations_sociales/aides_logement.
+* Détails :
+   - Clarifie une partie des paramètres des aides personnalisées au logement
+   - Ajoute des références (car il y en avait très peu)
+
+## 143.1.0 [#2030](https://github.com/openfisca/openfisca-france/pull/2030)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
+* Détails :
+  - Correction d'une erreur dans la prise en compte de l'incrément par demi part supplémentaire pour la détermination des taux plein ou réduit ou intermédiaire de CSG sur revenus de remplacement
+
+### 143.0.4 [#2026](https://github.com/openfisca/openfisca-france/pull/2026)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `tests/formulas/bourses_superieur/bourse_criteres_sociaux.yaml`.
+  - `openfisca_france/model/prestations/enseignement_superieur/bourse_criteres_sociaux.py`
+
+* Détails
+  - Refacto condition d'elligibilité à la bourse aux critères sociaux selon l'année d'étude
+  - Déplacement du code dans une variable plus appropriée
+
+### 143.0.3 [#2035](https://github.com/openfisca/openfisca-france/pull/2035)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`.
+* Détails :
+  - Corrige un CERFA field qui a malencontreusement sauté.
+
+### 143.0.2 [#2027](https://github.com/openfisca/openfisca-france/pull/2027)
+
+* Évolution du système socio-fiscal..
+* Périodes concernées : à partir du 27/07/2021
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_jeunes/bourses/bourses_enseignement_superieur/criteres_sociaux/
+  montants.yaml`
+  - `openfisca_france/parameters/prestations_sociales/aides_jeunes/bourses/bourses_enseignement_superieur/criteres_sociaux/plafond_ressources/echelon_*.yaml`
+* Détails :
+  - Revalorisation du 18 juillet 2022 fixant les plafonds et montants de ressources relatifs aux bourses d'enseignement supérieur du ministère de l'enseignement supérieur et de la recherche pour les années universitaire 2021-2022 et 2022-2023
+
+### 143.0.1 [#2034](https://github.com/openfisca/openfisca-france/pull/2034)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters`.
+* Détails :
+  -  Nettoie les paramètres YAML afin que leur structure et l'ordre de leurs champs soit uniformes
+  - Corrige le champ order de `parameters/geopolitique/index.yaml`
+
 # 143.0.0 [#2001](https://github.com/openfisca/openfisca-france/pull/2001)
 
 * Amélioration technique
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées : `openfisca_france/parameters`.
 * Détails :
   - Prise en compte d'une partie du formatage validé par la communauté dans cette RFC: https://github.com/openfisca/openfisca-france/issues/1672
   - Changements principaux:
       - `description_en` devient `label_en`
-      - `ux_name` devient `short_label` 
+      - `ux_name` devient `short_label`
       - `last_review` devient `last_value_still_valid_on`
-  
+
 - Les formatages qui viendront dans une prochaine PR
   - Changements principaux:
       - `description` devient `label`
@@ -21,7 +86,7 @@
 
 * Changement mineur.
 * Périodes concernées : toutes. | jusqu'au JJ/MM/AAAA. | à partir du JJ/MM/AAAA.
-* Zones impactées : 
+* Zones impactées :
      * `parameters/prelevements_sociaux/contributions_sociales/crds`.
      *  `prelevements_sociaux/contributions_sociales/csg`
      *  `prestations_sociales/prestations_familiales/education_presence_parentale/aeeh`
@@ -29,7 +94,7 @@
      *  `prestations_sociales/prestations_familiales/prestations_generales/af`
      *  `prestations_sociales/prestations_familiales/prestations_generales/cf/cf_cm/complement_familial`
 
-* Détails 
+* Détails
     - Modifie les labels pour les rendre plus explicites
     - Rectifie des erreurs de labels
     - Ajoute des références, notamment les articles codifiés.

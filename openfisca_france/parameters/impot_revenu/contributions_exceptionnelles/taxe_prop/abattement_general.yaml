@@ -1,6 +1,4 @@
 description: Abattement général
-metadata:
-  ipp_csv_id: tp_abat
 values:
   1947-01-01:
     value: null
@@ -8,3 +6,5 @@ values:
     value: 30000
   1970-01-01:
     value: null
+metadata:
+  ipp_csv_id: tp_abat

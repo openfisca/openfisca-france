@@ -242,13 +242,12 @@ brackets:
       value: null
 metadata:
   short_label: Barème 1942-44
-  type: marginal_rate
-  threshold_unit: currency
-  rate_unit: /1
   label_en: Thresholds and marginal tax rates of the IGR tax (1942 - 1944)
   reference:
     1942-01-01:
       title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+  rate_unit: /1
+  threshold_unit: currency
 documentation: |-
   Notes :
   Les revenus des années 1942-1944 étaient soumis à des barèmes exprimés en taux marginal. Voir note de la feuille "Barème IGR 1917-1918".

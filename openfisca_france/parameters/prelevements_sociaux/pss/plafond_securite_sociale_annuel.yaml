@@ -170,6 +170,7 @@ values:
     value: 43992
 metadata:
   short_label: Annuel
+  last_value_still_valid_on: "2021-01-01"
   label_en: Social security yearly ceiling
   ipp_csv_id: pss_a
   unit: currency
@@ -475,7 +476,6 @@ metadata:
     - title: Depuis 1997, revalorisation chaque début d'année.
     2015-01-01:
     - title: depuis 2015, le plafond annuel n'est plus donné explicitement mais est calculé en multipliant le montant mensuel par 12
-  last_value_still_valid_on: "2021-01-01"
 documentation: |-
   Sources de la législation :
   Légifrance.gouv.fr depuis 2001; Barème social périodique entre 1976 et 2000; Législation.cnav.fr et Légifrance avant 1976.

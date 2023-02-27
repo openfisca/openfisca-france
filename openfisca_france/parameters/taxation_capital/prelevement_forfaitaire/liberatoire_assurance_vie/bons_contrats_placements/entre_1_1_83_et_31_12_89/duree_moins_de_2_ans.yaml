@@ -6,6 +6,7 @@ values:
     value: null
 metadata:
   short_label: Durée < 2 ans
+  last_value_still_valid_on: "2022-02-16"
   label_en: Levy in discharge on life insurance (1983 - 2017)
   ipp_csv_id: tx_pl_av_2
   unit: /1
@@ -24,7 +25,6 @@ metadata:
     - title: Création de l'art. 125-0 A du CGI
     1998-01-01:
     - title: Les bons ou contrats principalement investis en actions sont exonérés d'IR après huit ans.
-  last_value_still_valid_on: "2022-02-16"
 documentation: |-
   Notes :
   (1) Cas des primes versées avant le 01/01/1998.

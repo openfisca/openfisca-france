@@ -6,6 +6,7 @@ values:
     value: 0.024
 metadata:
   short_label: Taux
+  last_value_still_valid_on: "2023-02-02"
   label_en: CSG - rates on work incomes
   unit: /1
   reference:
@@ -28,7 +29,6 @@ metadata:
   notes:
     1991-02-01:
     - title: Une circulaire ministérielle du 16/01/1991 relative à la mise en œuvre de la CSG fournit des indications sur les assiettes et les exonérations.
-  last_value_still_valid_on: "2023-02-02"
 documentation: |-
   Notes :
   L'art. 2.III de la loi 93-1352 publiée au JO le 30/12/1993 (LF pour 1994) a annulé la déductibilité prévue et a donc empêché l'application de la déductibilité de la CSG pour les revenus 1993.

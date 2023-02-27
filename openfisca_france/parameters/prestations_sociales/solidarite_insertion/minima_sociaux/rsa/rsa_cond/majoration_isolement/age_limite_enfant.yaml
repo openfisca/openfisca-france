@@ -4,6 +4,7 @@ values:
     value: 3
 metadata:
   short_label: Âge limite de l'enfant
+  last_value_still_valid_on: "2022-03-28"
   label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: rsa_maj_ageenf_max
   unit: year
@@ -20,5 +21,4 @@ metadata:
   notes:
     2009-06-01:
     - title: RSA créé par Loi 2008-1249 du 01/12/2008
-  last_value_still_valid_on: "2022-03-28"
 documentation: Âge limite de l'enfant pour prolongation du droit à la majoration pour isolement.

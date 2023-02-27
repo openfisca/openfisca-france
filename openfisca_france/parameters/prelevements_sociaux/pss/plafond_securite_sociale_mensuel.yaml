@@ -186,6 +186,7 @@ values:
     value: 3666
 metadata:
   short_label: Plafond mensuel
+  last_value_still_valid_on: "2023-01-01"
   label_en: Social security monthly ceiling
   ipp_csv_id: pss_m
   unit: currency
@@ -531,7 +532,6 @@ metadata:
     - title: Les plafonds annuels sont inexacts sur legislation.cnav.fr (12*montant mensuel) au lieu de la somme des plafonds mensuels sur l'année.
     1997-01-01:
     - title: Depuis 1997, revalorisation chaque début d'année.
-  last_value_still_valid_on: "2023-01-01"
 documentation: |-
   Sources de la législation :
   Légifrance.gouv.fr depuis 2001; Barème social périodique entre 1976 et 2000; Législation.cnav.fr et Légifrance avant 1976.

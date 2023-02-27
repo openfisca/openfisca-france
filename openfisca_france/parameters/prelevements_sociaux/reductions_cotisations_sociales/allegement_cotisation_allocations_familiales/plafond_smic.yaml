@@ -6,6 +6,7 @@ values:
     value: 3.5
 metadata:
   short_label: Plafond de rémunération des salariés
+  last_value_still_valid_on: "2023-01-30"
   label_en: Reduction in SSCs for family benefits
   ipp_csv_id: pss_red_fam
   unit: SMIC
@@ -21,4 +22,3 @@ metadata:
   official_journal_date:
     2015-01-01: "2014-08-09"
     2016-04-01: "2015-12-22"
-  last_value_still_valid_on: "2023-01-30"

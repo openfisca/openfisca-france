@@ -6,6 +6,6 @@ values:
     value: 5.66
 metadata:
   short_label: Seuil
-  unit: currency
   last_value_still_valid_on: "2015-01-01"
+  unit: currency
 documentation: ""

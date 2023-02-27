@@ -62,6 +62,7 @@ values:
     value: 956.65
 metadata:
   short_label: Montant maximal (mensuel)
+  last_value_still_valid_on: "2022-09-27"
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: montant_80_aah
   unit: currency
@@ -168,7 +169,6 @@ metadata:
     2020-04-01: "2020-04-30"
     2021-04-01: "2021-04-30"
     2022-04-01: "2022-04-27"
-  last_value_still_valid_on: "2022-09-27"
 documentation: |-
   Notes :
   Dispositif créé par la loi 75-534 du 30 juin 1975

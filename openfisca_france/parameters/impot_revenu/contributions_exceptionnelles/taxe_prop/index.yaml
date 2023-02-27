@@ -1,8 +1,18 @@
 description: Taxes proportionnelles et taxes complémentaires (1948-1969)
-documentation: |
+metadata:
+  label_en: Flat taxes and other taxes (1948-1969)
+  order:
+  - taux_reduit
+  - abattement_general
+  - autres_revenus_non_salariaux
+  - bnc_autres_produits_charges_offices_bic_artisans_assimiles
+  - bnc_produits_charges_offices_bic_autres_que_artisans_assimiles_ba
+  - reduction_impot_charge_famille
+  - plafond_maximum_reduction_par_pac
+documentation: |-
   "Source: Tableau C-9: Les règles de calcul de la taxe proportionnelle
   (imposition des revenus des années 1948-1958) et de la taxe complémentaire (imposition
-  des revenus des années 1959-1969) 
+  des revenus des années 1959-1969)
   (i) En principe, le taux de la taxe
   proportionnelle est de 18% pour l'imposition des revenus des années 1948-1957
   et de 22% pour l'imposition des revenus de 1958.  En pratique, ce système "
@@ -47,13 +57,3 @@ documentation: |
   la taxe complémentaire fut définitivement supprimée en 1970 (elle fut prélevée
   pour la dernière fois au titre de l'imposition des revenus de 1969)
   (vi) Décote : voir S&EF n°122 (février 1959), pp.190-193)"
-metadata:
-  label_en: Flat taxes and other taxes (1948-1969)
-  order:
-  - taux_reduit
-  - abattement_general
-  - autres_revenus_non_salariaux
-  - bnc_autres_produits_charges_offices_bic_artisans_assimiles
-  - bnc_produits_charges_offices_bic_autres_que_artisans_assimiles_ba
-  - reduction_impot_charge_famille
-  - plafond_maximum_reduction_par_pac

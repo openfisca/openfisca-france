@@ -1,19 +1,16 @@
-description: Coefficient de progression tranche 3 au titre du barème de l'impôt général
-  sur le revenu (IGR, 1917-1918)
-metadata:
-  label_en: Thresholds and marginal tax rates of the IGR tax (1917-1918)
-  reference:
-    1917-01-01:
-      title: 'T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et
-        redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à
-        4-4'
-  unit: /1
+description: Coefficient de progression tranche 3 au titre du barème de l'impôt général sur le revenu (IGR, 1917-1918)
 values:
   1917-01-01:
     value: 0.0001
   1919-01-01:
     value: null
-documentation: |
+metadata:
+  label_en: Thresholds and marginal tax rates of the IGR tax (1917-1918)
+  unit: /1
+  reference:
+    1917-01-01:
+      title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+documentation: |-
   Les revenus de 1917 et 1918 étaient soumis à un barème exprimé en taux effectif (ou
   moyen, c'est-à-dire comme une proportion donnée du revenu imposable net de l'abattement
   général de 3 000 francs);

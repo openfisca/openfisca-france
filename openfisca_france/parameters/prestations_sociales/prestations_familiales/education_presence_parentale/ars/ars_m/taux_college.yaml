@@ -14,6 +14,7 @@ values:
     value: 0.9467
 metadata:
   short_label: Montant pour la 2ème tranche d'âge
+  last_value_still_valid_on: "2023-02-02"
   label_en: "Back-to-school allowance (ARS): Amounts"
   ipp_csv_id: ars1114
   unit: BMAF
@@ -62,7 +63,6 @@ metadata:
     - title: Changement de taux. Au regard de la date, ce changement s'applique à la rentrée 2001
     2008-08-03:
     - title: "La loi : Le montant varie avec l'âge; Le décret : Changement de taux. Au regard de la date du JO, ce nouveau taux devrait s'appliquer pour la rentrée 2008. Or, ce n'est pas la cas : cf. dico permanent"
-  last_value_still_valid_on: "2023-02-02"
 documentation: |-
   Notes :
   L'ARS a un plafond variable selon le nombre d'enfants dès 1974 (Loi 74-644 du 16/07/1974)

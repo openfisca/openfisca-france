@@ -18,13 +18,7 @@ class bourse_criteres_sociaux(Variable):
     def formula(individu, period, parameters):
         montants = parameters(period).prestations_sociales.aides_jeunes.bourses.bourses_enseignement_superieur.criteres_sociaux.montants
         echelon = individu('bourse_criteres_sociaux_echelon', period)
-        annee_etude = individu('annee_etude', period)
-        en_doctorat_1 = annee_etude == TypesClasse.doctorat_1
-        en_doctorat_2 = annee_etude == TypesClasse.doctorat_2
-        en_doctorat_3 = annee_etude == TypesClasse.doctorat_3
-        doctorant = en_doctorat_1 + en_doctorat_2 + en_doctorat_3
-        # Si l'étudiant est en doctorat, il ne perçoit pas la bourse sur critères sociaux
-        return montants.calc(echelon) * not_(doctorant)
+        return montants.calc(echelon)
 
 
 class bourse_criteres_sociaux_eligibilite_etude(Variable):
@@ -46,7 +40,11 @@ class bourse_criteres_sociaux_eligibilite_etude(Variable):
         etablissement = individu('statuts_etablissement_scolaire', period)
         etablissement_eligible = (etablissement == StatutsEtablissementScolaire.public) + (etablissement == StatutsEtablissementScolaire.prive_sous_contrat)
 
-        return enseignement_superieur * temps_plein * etablissement_eligible
+        annee_etude_individus = individu('annee_etude', period)
+        annees_etude_doctorat = [TypesClasse.doctorat_1, TypesClasse.doctorat_2, TypesClasse.doctorat_3]
+        doctorant = sum([annee_etude_individus == annee_doctorat for annee_doctorat in annees_etude_doctorat])
+
+        return enseignement_superieur * temps_plein * etablissement_eligible * not_(doctorant)
 
 
 class bourse_criteres_sociaux_eligibilite_nationalite(Variable):

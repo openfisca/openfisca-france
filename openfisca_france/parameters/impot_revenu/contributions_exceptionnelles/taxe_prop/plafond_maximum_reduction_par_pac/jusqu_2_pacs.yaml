@@ -1,7 +1,4 @@
 description: Jusqu'à 2 pacs
-metadata:
-  ipp_csv_id: tp_plaf_2
-  unit: currency
 values:
   1947-01-01:
     value: null
@@ -9,3 +6,6 @@ values:
     value: 5000
   1959-01-01:
     value: null
+metadata:
+  ipp_csv_id: tp_plaf_2
+  unit: currency

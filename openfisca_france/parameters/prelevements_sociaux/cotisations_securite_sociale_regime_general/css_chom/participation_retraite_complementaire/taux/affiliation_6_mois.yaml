@@ -12,6 +12,7 @@ values:
     value: 0.03
 metadata:
   short_label: Affiliation > 6 mois
+  last_value_still_valid_on: "2003-01-01"
   label_en: SSCs on unemployment benefits
   ipp_csv_id: chom_ret_tx_6_
   unit: /1
@@ -26,7 +27,6 @@ metadata:
     1988-03-01: "1988-02-02"
     1990-01-01: "1990-05-15"
     1993-01-01: "1993-01-04"
-  last_value_still_valid_on: "2003-01-01"
 documentation: |-
   Note :
   Pour la cotisation d'assurance maladie, l'assiette est égale à l'allocation de base brute. Disparait en décembre 1997.

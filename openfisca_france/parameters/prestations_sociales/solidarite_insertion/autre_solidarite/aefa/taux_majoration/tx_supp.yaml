@@ -4,6 +4,7 @@ values:
     value: 0.3
 metadata:
   short_label: Par personne supp.
+  last_value_still_valid_on: "2021-09-28"
   label_en: "Exceptional end-of-year benefit (AEFA): amount"
   unit: /1
   reference:
@@ -15,7 +16,6 @@ metadata:
   notes:
     2003-01-01:
     - title: Idem en 2017
-  last_value_still_valid_on: "2021-09-28"
 documentation: |-
   Notes :
   (1) Le montant de l'aide mentionnée à l'article 3 est égal à 152,45 euros pour une personne seule, majoré de 50 % lorsque le foyer se compose de deux personnes et de 30 % pour chaque personne supplémentaire présente au foyer, à condition que ces personnes soient le conjoint, le partenaire lié par un pacte civil de solidarité ou le concubin de l'intéressé ou soient à sa charge.

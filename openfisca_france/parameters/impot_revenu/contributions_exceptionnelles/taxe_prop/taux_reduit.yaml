@@ -1,7 +1,4 @@
 description: Taux réduit
-metadata:
-  ipp_csv_id: tp_taux_reduit
-  unit: /1
 values:
   1947-01-01:
     value: null
@@ -13,3 +10,6 @@ values:
     value: 0.03
   1970-01-01:
     value: null
+metadata:
+  ipp_csv_id: tp_taux_reduit
+  unit: /1

@@ -6,6 +6,7 @@ values:
     value: 0.16
 metadata:
   short_label: Taux de la tranche 1
+  last_value_still_valid_on: "2022-03-09"
   label_en: "Family allowances (AF): Extra allowances"
   ipp_csv_id: maj_enf_tx1
   unit: BMAF
@@ -22,7 +23,6 @@ metadata:
   notes:
     2008-05-01:
     - title: Mise en place d'une majoration unique à partir de 14 ans. Mais, la transition est progressive (chaque année, la majoration dépendra à la fois de l'âge et de la date de naissance des enfants ; cf. plus bas)
-  last_value_still_valid_on: "2022-03-09"
 documentation: |-
   Notes :
   (1) La deuxième tranche de la majoration est créée pour début 1999 (la majoration est augmentée à partir de 16 ans). Cette mesure est supprimée en 2008, mais seulement pour les nouveaux bénéficiaires: le premier taux de 9% s'applique donc jusqu'aux 16 ans des anciens bénéficiaires (jusqu'au 31 avril 2013 inclus)

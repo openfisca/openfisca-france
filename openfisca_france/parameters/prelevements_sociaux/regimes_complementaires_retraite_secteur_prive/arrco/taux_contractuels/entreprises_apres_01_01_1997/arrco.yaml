@@ -42,6 +42,7 @@ brackets:
       value: null
 metadata:
   short_label: Tranches 1 et 2
+  last_value_still_valid_on: "2021-07-30"
   label_en: Pension contributions for non-executives (ARRCO)
   reference:
     1982-01-01:
@@ -83,7 +84,6 @@ metadata:
     - title: "BSP : \"Le plus souvent, répartition employeur/salarié = 60/40 comme à l'UNIRS\""
     2019-01-01:
     - title: Fusion des régimes Agirc et Arrco (voir barème AGIRC-ARRCO)
-  last_value_still_valid_on: "2021-07-30"
   rate_unit: /1
   threshold_unit: PSS
 documentation: |-

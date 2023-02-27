@@ -18,10 +18,10 @@ metadata:
     2009-01-01:
       title: Arrêté du 31/12/2008
     2010-01-01:
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046499019
-      title: Article R522-2 du Code de la sécurité sociale
-    - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036393166
-      title: Article L522-2 du Code de la sécurité sociale  
+    - title: Article R522-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046499019
+    - title: Article L522-2 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036393166
     - title: Arrêté du 29/12/2009
   official_journal_date:
     1986-01-01: "1985-12-21"

@@ -8,6 +8,7 @@ values:
     value: null
 metadata:
   short_label: Couples, 2 enfants ou plus
+  last_value_still_valid_on: "2022-03-14"
   label_en: "Single parent allowance (API): Accomodation allowance"
   ipp_csv_id: api_logt3
   unit: /1
@@ -39,7 +40,6 @@ metadata:
     - title: API créée par la loi 76-617, en insérant un chapitre V-3 au CSS; Même évaluation de l'avantage en nature que pour les cotisations sociales
     2007-02-01:
     - title: "Loi : Calcul du forfait passe en % du RMI; Décret : dit que le forfait logement de l'API suit maintenant la même règle que le RMI; Même forfait logement que le RMI : cf. feuille \"RMI_FL\" à partir du 01/02/2007"
-  last_value_still_valid_on: "2022-03-14"
 documentation: |-
   Notes :
   (1) A partir de février 2007 : en % du RMI pour 1 personne. Jusqu'en janvier 2007 inclus : en % de la BMAF.

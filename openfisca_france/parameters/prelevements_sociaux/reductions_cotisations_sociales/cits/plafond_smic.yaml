@@ -6,6 +6,7 @@ values:
     value: null
 metadata:
   short_label: Plafond
+  last_value_still_valid_on: "2019-01-01"
   label_en: Tax credit on the payroll tax (CITS)
   unit: SMIC
   reference:
@@ -21,7 +22,6 @@ metadata:
   notes:
     2019-01-01:
     - title: Abrogation et remplacement par un allègement de cotisations employeur
-  last_value_still_valid_on: "2019-01-01"
 documentation: |-
   Note :
   Le CITS, crédit d'impôt sur la taxe sur les salaires, est calculé en proportion des salaires versées par l'entreprise en dessous du plafond.

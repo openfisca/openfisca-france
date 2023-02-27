@@ -10,5 +10,4 @@ metadata:
   short_label: Taux 1
   ipp_csv_id: tx_restauimmo1
   unit: /1
-documentation: |
-  Travaux de restauration complète d’un immeuble bâti (réduction d'impôt « Malraux ») : art. 199 tervicies du CGI. Loi 2016-1918, art. 40 du 29/12/2016 sur le plafond.
+documentation: "Travaux de restauration complète d’un immeuble bâti (réduction d'impôt « Malraux ») : art. 199 tervicies du CGI. Loi 2016-1918, art. 40 du 29/12/2016 sur le plafond."

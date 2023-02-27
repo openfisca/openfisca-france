@@ -86,6 +86,7 @@ values:
     value: 2484
 metadata:
   short_label: Montant 1ère tranche
+  last_value_still_valid_on: "2022-12-26"
   label_en: Tax allowance for net taxable income
   ipp_csv_id: abt_pers_age1
   unit: currency
@@ -233,7 +234,6 @@ metadata:
     - title: Gel des barèmes d'imposition lors de l'imposition des revenus 2011.
     2013-01-01:
     - title: Voir documentation
-  last_value_still_valid_on: "2022-12-26"
 documentation: |-
   Notes :
   Ref - https://bofip.impots.gouv.fr/bofip/2036-PGP.html/identifiant=BOI-IR-BASE-40-20220516

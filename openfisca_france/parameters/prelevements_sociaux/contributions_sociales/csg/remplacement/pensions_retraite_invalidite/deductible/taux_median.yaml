@@ -6,6 +6,7 @@ values:
     value: 0.042
 metadata:
   short_label: Taux médian
+  last_value_still_valid_on: "2021-12-15"
   ipp_csv_id: csg_pens_median_deductible
   unit: /1
   reference:
@@ -19,7 +20,6 @@ metadata:
   notes:
     2019-01-01:
     - title: La hausse de CSG est annulée pour les retraités les plus modestes par la loi 2018-1213 portant mesures d'urgences économiques et sociales. Dans les faits, cela crée un taux intermédiaire de 6,6 % qui vient s'ajouter au taux zéro, au taux réduit et au taux normal.
-  last_value_still_valid_on: "2021-12-15"
 documentation: |-
   Référence du Codes général des impôts :
   La loi 96-1181 du 30/12/1996 (LF pour 1997) a créé l'art. 154 quinquies (M) du Code général des impôts (CGI) qui régit les dispositions relatives à la CSG depuis 1997.

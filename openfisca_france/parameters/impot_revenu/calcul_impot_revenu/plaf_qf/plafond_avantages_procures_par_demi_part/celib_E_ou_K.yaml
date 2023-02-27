@@ -5,5 +5,5 @@ values:
   2013-01-01:
     value: null
 metadata:
-  unit: currency
   last_value_still_valid_on: "2023-01-05"
+  unit: currency

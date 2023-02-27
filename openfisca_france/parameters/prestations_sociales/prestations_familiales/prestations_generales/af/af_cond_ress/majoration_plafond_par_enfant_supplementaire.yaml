@@ -14,6 +14,7 @@ values:
     value: 5827
 metadata:
   short_label: Majoration ressource par enfant supplémentaire
+  last_value_still_valid_on: "2022-02-25"
   label_en: "Family allowances (AF): Thresholds for means-testing"
   ipp_csv_id: plaf_enf_sup
   unit: currency
@@ -59,7 +60,6 @@ metadata:
     - title: Revalorisation des plafonds de 0,2%
     2019-01-01:
     - title: Revalorisation des plafonds de 1%
-  last_value_still_valid_on: "2022-02-25"
 documentation: |-
   Notes :
   https://www.ipp.eu/baremes-ipp/prestations-sociales/0/3/prestations_generales/af_cond/

@@ -152,15 +152,14 @@ brackets:
       value: null
 metadata:
   short_label: Barème 1915-16
-  type: marginal_rate
-  threshold_unit: currency
-  rate_unit: /1
   label_en: Thresholds and marginal tax rates of the IGR tax (1915 - 1916)
   reference:
     1915-01-01:
       title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
     1916-01-01:
       title: "T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001) : voir notamment tableaux 4-1 à à 4-4"
+  rate_unit: /1
+  threshold_unit: currency
 documentation: |-
   Notes :
   Les revenus de 1915 et 1916 étaient soumis à des barèmes exprimés en taux marginal:

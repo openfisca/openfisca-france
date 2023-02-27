@@ -40,6 +40,7 @@ values:
     value: 17762.96
 metadata:
   short_label: Couple
+  last_value_still_valid_on: "2021-01-01"
   label_en: Solidarity income for elderly (ASPA)
   ipp_csv_id: plaf_mv_men_aspa
   unit: currency
@@ -121,4 +122,3 @@ metadata:
     - title: "Revalorisation de 10% sur 3 ans : (+3,8%, +4,2% et +4,0%)"
     2022-07-01:
     - title: Revalorisation de 1.04 pour protéger le pouvoir d'achat des français
-  last_value_still_valid_on: "2021-01-01"

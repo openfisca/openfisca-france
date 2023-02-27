@@ -4,6 +4,7 @@ values:
     value: 2.5
 metadata:
   short_label: Plafond de rémunération des salariés
+  last_value_still_valid_on: "2019-01-01"
   label_en: SSCs for sickness, maternity, disability and death benefits (1967-2016)
   unit: SMIC
   reference:
@@ -17,7 +18,6 @@ metadata:
   notes:
     2019-01-01:
     - title: Plafond de rémunération en nombre de SMIC en-dessous de laquelle l'allègement pour salaire est appliqué et constitue la transformation du CICE et CITS en baisse pérenne de cotisations employeur.
-  last_value_still_valid_on: "2019-01-01"
 documentation: |-
-  A partir de 2019, un allègement sur le taux normal de cotisation MMID est appliqué 
+  A partir de 2019, un allègement sur le taux normal de cotisation MMID est appliqué
   contrairement à précédemment où des taux d'imposition par tranche étaient en vigueur.

@@ -4,6 +4,7 @@ values:
     value: 0.75
 metadata:
   short_label: Plafonnement
+  last_value_still_valid_on: "2022-04-28"
   label_en: Wealth tax ceiling
   ipp_csv_id: tx_plaf_ifi
   unit: /1
@@ -18,4 +19,3 @@ metadata:
   notes:
     2018-01-01:
     - title: L'IFI remplace l'ISF. Les barèmes sont les mêmes, mais la base taxable est réduite aux seuls biens immobiliers.
-  last_value_still_valid_on: "2022-04-28"

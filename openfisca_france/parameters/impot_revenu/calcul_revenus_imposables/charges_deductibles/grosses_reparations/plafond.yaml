@@ -8,15 +8,15 @@ values:
     value: null
 metadata:
   short_label: Plafond
-  ipp_csv_id: plaf_grossedepense
   last_value_still_valid_on: "2022-08-11"
+  ipp_csv_id: plaf_grossedepense
   unit: currency
   reference:
     2009-01-01:
-      - href: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
-      - href: http://bofip.impots.gouv.fr/bofip/1852-PGP
+    - href: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
+    - href: http://bofip.impots.gouv.fr/bofip/1852-PGP
     2018-01-01:
-      - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000033760848/
-        title: II-B de la loi n° 2016-1917 du 29 décembre 2016 de finances pour 2017 (1)
-      - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045765665/
-        title: 2° quater du II de l'article 156 CGI
+    - title: II-B de la loi n° 2016-1917 du 29 décembre 2016 de finances pour 2017 (1)
+      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000033760848/
+    - title: 2° quater du II de l'article 156 CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045765665/

@@ -1,4 +1,4 @@
-description: Montant (2 adultes, sans personne à charge) du plafond de loyer en zone 3 (après la réforme de 2001) des Allocations Logement (AL)
+description: Plafond de loyer pris en compte dans le calcul du montant des aides au logement pour un couple sans personne à charge en zone 3 (après la réforme de 2001)
 values:
   2001-01-01:
     value: 1574
@@ -41,7 +41,8 @@ values:
   2022-07-01:
     value: 305.48
 metadata:
-  short_label: Couples
+  short_label: Couple sans personne à charge
+  last_value_still_valid_on: "2023-02-20"
   label_en: Parameters for the rental sector (after the 2001 reform)
   ipp_csv_id: plaf_loy_coup_z3
   unit: currency
@@ -154,5 +155,3 @@ metadata:
     - title: Idem en 2017
     2017-10-01:
     - title: Actualisation paramètres + baisse de 5 euros des aides au logement
-  last_value_still_valid_on: "2022-09-28"
-documentation: "Note : Les loyers de référence sont les mêmes que les plafonds pour la zone 2"

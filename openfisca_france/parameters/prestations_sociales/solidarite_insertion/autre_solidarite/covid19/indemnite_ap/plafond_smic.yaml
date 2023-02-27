@@ -4,6 +4,7 @@ values:
     value: 4.5
 metadata:
   short_label: Plafond versement
+  last_value_still_valid_on: "2022-01-10"
   label_en: Exceptional benefit - COVID-19 crisis
   unit: SMIC
   reference:
@@ -14,4 +15,3 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044877405/
   official_journal_date:
     2020-03-01: "2020-06-30"
-  last_value_still_valid_on: "2022-01-10"
