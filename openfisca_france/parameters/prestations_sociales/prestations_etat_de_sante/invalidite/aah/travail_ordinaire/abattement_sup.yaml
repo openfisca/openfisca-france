@@ -1,9 +1,9 @@
-description: Taux d'abattement des revenus d'activité du bénéficiaire pour la tranche de revenus supérieure à 30% du SMIC  pour bénéficier de l'allocation aux adultes handicapés (AAH)
+description: Taux d'abattement des revenus d'activité du bénéficiaire de l'allocation aux adultes handicapés (AAH) pour la tranche de revenus supérieure à 30% du Smic
 values:
   2011-01-01:
     value: 0.4
 metadata:
-  short_label: Taux d'abattement (revenus > 0,3 SMIC)
+  short_label: Taux d'abattement (revenus > 0,3 Smic)
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: abattement_ordinaire_sup
   unit: /1

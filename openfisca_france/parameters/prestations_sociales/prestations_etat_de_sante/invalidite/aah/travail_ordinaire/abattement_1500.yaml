@@ -1,4 +1,4 @@
-description: Taux d'abattement des revenus d'activité du bénéficiaire pour la tranche de revenus entre 1100 et 1500 fois le SMIC horaire brut
+description: Taux d'abattement des revenus d'activité du bénéficiaire pour la tranche de revenus entre 1100 et 1500 fois le Smic horaire brut
 values:
   2005-07-01:
     value: 0.1

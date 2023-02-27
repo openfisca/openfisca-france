@@ -1,11 +1,11 @@
-description: Taux d'abattement des revenus d'activité du bénéficiaire pour la tranche de revenus entre 300 et 700 fois le SMIC horaire brut
+description: Taux d'abattement des revenus d'activité du bénéficiaire pour la tranche de revenus entre 300 et 700 fois le Smic horaire brut
 values:
   2005-07-01:
     value: 0.3
   2011-01-01:
     value: null
 metadata:
-  short_label: Abattement (entre 300 et 700 SMIC horaires)
+  short_label: Abattement (entre 300 et 700 Smic horaires)
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: abattement_ordinaire_700
   unit: /1
