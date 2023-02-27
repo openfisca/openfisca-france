@@ -6,3 +6,4 @@ updates:
     interval: monthly
   labels:
   - kind:dependencies
+  open-pull-requests-limit: 0
