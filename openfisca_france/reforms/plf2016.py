@@ -187,10 +187,15 @@ class plf2016_counterfactual_2014(Reform):
 
         def formula_2015_01_01(foyer_fiscal, period, parameters):
             ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
-            inflator = 1 + .001 + .005
-            decote = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote
-            assert decote.seuil == 1016
-            return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
+            nb_adult = foyer_fiscal('nb_adult', period)
+            taux_decote = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.taux
+            decote_seuil_celib = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_celib
+            decote_seuil_couple = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_couple
+            decote_celib = max_(0, decote_seuil_celib - taux_decote * ir_plaf_qf)
+            decote_couple = max_(0, decote_seuil_couple - taux_decote * ir_plaf_qf)
+            assert taux_decote.seuil_celib == 1135
+            assert taux_decote.seuil_couple == 1870
+            return around((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple)
 
     class reduction_impot_exceptionnelle(Variable):
         end = ''
