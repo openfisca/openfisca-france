@@ -3217,12 +3217,10 @@ class nbptr(Variable):
         celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
         veuf = foyer_fiscal('veuf', period)
         jeune_veuf = foyer_fiscal('jeune_veuf', period)
-        nbF = foyer_fiscal('nbF', period)
         nbG = foyer_fiscal('nbG', period)
         nbH = foyer_fiscal('nbH', period)
         nbI = foyer_fiscal('nbI', period)
         nbR = foyer_fiscal('nbR', period)
-        nbJ = foyer_fiscal('nbJ', period)
         nbN = foyer_fiscal('nbN', period)  # noqa F841
         caseP = foyer_fiscal('caseP', period)
         caseW = foyer_fiscal('caseW', period)
@@ -3382,10 +3380,14 @@ class nbptr(Variable):
         # # Régime des mariés ou pacsés
         nb_parts_famille = 1 + quotient_familial.conj + enf + n2 + n4
 
+        # # veufs  hors jeune_veuf
+        nb_parts_veuf = 1 + enf + n2 + n3 + n5 + n6
+
         # # celib div
         nb_parts_celib = 1 + enf + n2 + n3 + n6 + n7
 
-        return (maries_ou_pacses | jeune_veuf) * nb_parts_famille + celibataire_ou_divorce * nb_parts_celib
+        return (maries_ou_pacses | jeune_veuf) * nb_parts_famille + (veuf & not_(jeune_veuf)) * nb_parts_veuf + celibataire_ou_divorce * nb_parts_celib
+
 
 
 ###############################################################################
