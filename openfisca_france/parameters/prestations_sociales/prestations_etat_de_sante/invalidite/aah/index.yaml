@@ -5,7 +5,6 @@ metadata:
   order:
   - age_minimal
   - age_fin_educ
-  - age_maximal
   - montant
   - pourcentage_aah
   - abattement_special

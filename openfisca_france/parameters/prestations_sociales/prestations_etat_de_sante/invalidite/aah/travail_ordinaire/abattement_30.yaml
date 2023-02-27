@@ -1,4 +1,4 @@
-description: Taux d'abattement des revenus d'activité du bénéficiaire pour la tranche de revenus inférieure à 30% du SMIC pour bénéficier de l'Allocation pour adulte handicapé (AAH)
+description: Taux d'abattement des revenus d'activité du bénéficiaire pour la tranche de revenus inférieure à 30% du SMIC pour bénéficier de l'allocation aux adultes handicapés (AAH)
 values:
   2011-01-01:
     value: 0.8

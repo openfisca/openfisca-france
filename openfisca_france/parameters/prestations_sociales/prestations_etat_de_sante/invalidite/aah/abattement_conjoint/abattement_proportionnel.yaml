@@ -1,4 +1,4 @@
-description: Taux d'abattement proportionnel sur les revenus du conjoint pour le calcul de l'Allocation pour adulte handicapé (AAH)
+description: Taux d'abattement proportionnel sur les revenus du conjoint pour le calcul de l'allocation aux adultes handicapés (AAH)
 values:
   2000-01-01:
     value: 0.2
