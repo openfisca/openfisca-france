@@ -34,6 +34,13 @@
 - name: ISO 3166-1 alpha-2
 - name: month
   label: mois
+- name: part_qf
+  label:
+    one: part de quotient familial
+    other: parts de quotient familial
+  short_label:
+    one: part
+    other: parts
 - name: people
   label:
     one: personne

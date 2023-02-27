@@ -1,8 +1,10 @@
-description: Parent isolé
+description: Part supplémentaire de quotient familial pour une personne seule ayant au moins un enfant à charge dîte "parent isolé" - Impôt sur le revenu
 values:
   2000-01-01:
     value: 0.5
 metadata:
+  short_label: Personne seule avec au moins un enfant à charge (parent isolé)
+  unit: part_qf
   last_value_still_valid_on: "2022-08-08"
   reference:
     2000-01-01:
