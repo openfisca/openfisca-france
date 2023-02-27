@@ -2,7 +2,7 @@
 
 ### 143.1.2 [#2042](https://github.com/openfisca/openfisca-france/pull/2042)
 
-* Correction d'un crash.
+* Changement mineur.
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations_sociales/aides_logement/allocations_logement/al_param/parametre_n/apl/menage_0_personnes_a_charge.yaml`.
 * Détails :
