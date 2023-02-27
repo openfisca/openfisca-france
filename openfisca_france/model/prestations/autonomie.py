@@ -34,7 +34,7 @@ class apa_domicile_participation(Variable):
         autonomie = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
         seuil_inf = autonomie.apa_domicile.seuil_revenu_en_part_mtp.seuil_inferieur
         seuil_sup = autonomie.apa_domicile.seuil_revenu_en_part_mtp.seuil_superieur
-        majoration_tierce_personne = autonomie.apa_mtp.mtp
+        majoration_tierce_personne = autonomie.mtp
         taux_min_participation = autonomie.apa_domicile.taux_de_participation.minimum
         taux_max_participation = autonomie.apa_domicile.taux_de_participation.maximum
 
@@ -68,7 +68,7 @@ class apa_domicile_participation(Variable):
         en_couple = individu.famille('en_couple', period)
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
         parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
-        majoration_tierce_personne = parameters.apa_mtp.mtp
+        majoration_tierce_personne = parameters.mtp
 
         proratisation_couple = (
             1
@@ -212,7 +212,7 @@ class apa_etablissement(Variable):
         dependance_tarif_etablissement_gir_dependant = individu('dependance_tarif_etablissement_gir_dependant', period)
         seuil_inf_inst = parameters.apa_institution.seuil_inferieur
         seuil_sup_inst = parameters.apa_institution.seuil_superieur
-        majoration_tierce_personne = parameters.apa_mtp.mtp
+        majoration_tierce_personne = parameters.mtp
 
         conditions_ressources = [
             base_ressources_apa_etablissement <= seuil_inf_inst * majoration_tierce_personne,
@@ -335,7 +335,7 @@ class apa_urgence_domicile(Variable):
     def formula_2002(individu, period, parameters):
         period = period.first_month
         autonomie = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
-        majoration_tierce_personne = autonomie.apa_mtp.mtp
+        majoration_tierce_personne = autonomie.mtp
         plafond_gir1 = autonomie.apa_domicile.plafond_apa_domicile_en_part_mtp.gir_1
         part_urgence_domicile = autonomie.apa_domicile.part_plafond_apa_domicile
         return part_urgence_domicile * plafond_gir1 * majoration_tierce_personne
@@ -376,7 +376,7 @@ class dependance_plan_aide_domicile_accepte(Variable):
         plafond_gir2 = parameters_autonomie.apa_domicile.plafond_apa_domicile_en_part_mtp.gir_2
         plafond_gir3 = parameters_autonomie.apa_domicile.plafond_apa_domicile_en_part_mtp.gir_3
         plafond_gir4 = parameters_autonomie.apa_domicile.plafond_apa_domicile_en_part_mtp.gir_4
-        majoration_tierce_personne = parameters_autonomie.apa_mtp.mtp
+        majoration_tierce_personne = parameters_autonomie.mtp
 
         condition_plafond_par_gir = [
             gir == TypesGir.gir_1,

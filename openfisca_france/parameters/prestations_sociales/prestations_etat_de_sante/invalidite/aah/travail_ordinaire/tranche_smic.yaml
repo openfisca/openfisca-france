@@ -1,4 +1,4 @@
-description: Taux du SMIC qui délimite la tranche supérieure et inférieure pour les taux d'abattement des revenus ordinaires pour l'AAH
+description: Taux du Smic qui délimite la tranche supérieure et inférieure pour les taux d'abattement des revenus ordinaires pour l'AAH
 values:
   2011-01-01:
     value: 0.3

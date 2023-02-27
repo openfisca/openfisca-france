@@ -1,11 +1,11 @@
-description: Abattement sur la rémunération garantie nette (entre 20 et 25% SMIC) perçue pour les bénéficiaires travaillant dans un établissement et service d'aide par le travail (Esat) pour l'Allocation pour adulte handicapé (AAH)
+description: Abattement sur la rémunération garantie nette (entre 20 et 25% Smic) perçue pour les bénéficiaires travaillant dans un établissement et service d'aide par le travail (Esat) pour l'Allocation pour adulte handicapé (AAH)
 values:
   2006-06-17:
     value: 0.04
   2007-01-01:
     value: null
 metadata:
-  short_label: Rémunération garantie Esat entre 20 et 25 % SMIC
+  short_label: Rémunération garantie Esat entre 20 et 25 % Smic
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: abattement_esat_20_25
   unit: /1

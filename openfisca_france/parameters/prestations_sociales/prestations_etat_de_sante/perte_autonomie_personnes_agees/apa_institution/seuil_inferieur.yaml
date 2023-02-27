@@ -1,4 +1,4 @@
-description: Seuil inférieur (en part de la MTP) de l'Allocation personnalisée d'autonomie en institution (APA)
+description: Seuil inférieur (en part de la MTP) de l'allocation personnalisée d'autonomie (APA) en institution
 values:
   2002-01-01:
     value: 2.21
@@ -17,8 +17,6 @@ metadata:
     2002-01-01: "2001-11-21"
 documentation: |-
   Notes :
-  L'APA aide son bénéficiaire à s'acquitter de la partie relative à la prise en charge de la dépendance dans la structure d'accueil. Dans chaque établissement, il existe trois tarifs dépendance (selon le degré d'autonomie : GIR 1 et 2, GIR 3 et 4 et GIR 5 et 6). Le classement en GIR 5 et 6 n'ouvre pas de droit à l'APA.
-  (1) Les seuils déterminent le calcul de la participation du bénéficiaire et de la part prise en charge par l'APA. Lorsque les revenus mensuels du bénéficiaire sont en dessous du seuil inférieur, sa participation est égale au montant mensuel du tarif dépendance de l'établissement pour les GIR 5 et 6, le reste est pris charge par l'APA. Lorsque les revenus mensuels sont entre le seuil inférieur et le seuil supérieur, la participation du bénéficiaire est égale à la somme du tarif dépendance de l'établissement pour les GIR 5 et 6 et d'une part du tarif dépendance correspondant au GIR du bénéficiaire (entre 0% et 80% selon le niveau de revenus). Lorsque les revenus mensuels du bénéficaire sont au dessus du seuil supérieur, sa participation est égale à la somme du montant du tarif dépendance pour les GIR 5 et 6 et 80% du tarif dépendance de l'établissement correspondant au GIR du bénéficiaire.
+  Les seuils déterminent le calcul de la participation du bénéficiaire et de la part prise en charge par l'APA. Lorsque les revenus mensuels du bénéficiaire sont en dessous du seuil inférieur, sa participation est égale au montant mensuel du tarif dépendance de l'établissement pour les GIR 5 et 6, le reste est pris charge par l'APA. Lorsque les revenus mensuels sont entre le seuil inférieur et le seuil supérieur, la participation du bénéficiaire est égale à la somme du tarif dépendance de l'établissement pour les GIR 5 et 6 et d'une part du tarif dépendance correspondant au GIR du bénéficiaire (entre 0% et 80% selon le niveau de revenus). Lorsque les revenus mensuels du bénéficaire sont au dessus du seuil supérieur, sa participation est égale à la somme du montant du tarif dépendance pour les GIR 5 et 6 et 80% du tarif dépendance de l'établissement correspondant au GIR du bénéficiaire.
   MTP : majoration pour aide constante d'une tierce personne
-  (2) Attribution de l'APA à titre provisoire en cas d'urgence, le montant correspond à une fraction du tarif dépendance de l'établissement pour les GIR 1 et 2.
-  (3) L'APA n'est pas versée lorsque son montant après retranchement de la participation du bénéficiaire est inférieur à ce seuil de non-versement.
+

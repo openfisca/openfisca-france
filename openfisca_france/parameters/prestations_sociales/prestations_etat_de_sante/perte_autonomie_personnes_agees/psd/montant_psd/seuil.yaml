@@ -1,20 +1,20 @@
-description: Seuil de ressources (pour une personne en couple) de la prestation spécifique dépendance (PSD)
+description: Montant versé pour un contribuable au seuil de ressources pour la prestation spécifique dépendance (PSD)
 values:
   1997-05-01:
-    value: 120000
+    value: 4477
   1998-01-01:
-    value: 121320
+    value: 4526
   1999-01-01:
-    value: 123746
+    value: 4581
   2000-01-01:
-    value: 124983
+    value: 4604
   2001-01-01:
-    value: 127733
+    value: 4705
   2002-01-01:
     value: null
 metadata:
-  short_label: Personne en couple
-  label_en: Attendance allowance (PSD, 1997-2001))
+  short_label: Montant au seuil
+  label_en: Attendance allowance (PSD)
   unit: currency
   reference:
     1997-05-01:
