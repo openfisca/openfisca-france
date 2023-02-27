@@ -1,7 +1,5 @@
 description: Part supplémentaire de quotient familial pour une personne veuve ayant des personnes à charge - Impôt sur le revenu
 values:
-  2000-01-01:
-    value: 0
   2008-01-01:
     value: 1
 metadata: 
