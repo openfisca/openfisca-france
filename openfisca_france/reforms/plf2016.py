@@ -1,7 +1,7 @@
 import os
 
 from ..model.base import *
-
+from numpy import around
 
 dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
@@ -96,8 +96,7 @@ class plf2016_counterfactual(Reform):
             decote_seuil_couple = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_couple
             decote_celib = max_(0, decote_seuil_celib - taux_decote * ir_plaf_qf)
             decote_couple = max_(0, decote_seuil_couple - taux_decote * ir_plaf_qf)
-            assert taux_decote.seuil_celib == 1135
-            assert taux_decote.seuil_couple == 1870
+
             return around((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple)
 
     class reduction_impot_exceptionnelle(Variable):
@@ -198,8 +197,7 @@ class plf2016_counterfactual_2014(Reform):
             decote_seuil_couple = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_couple
             decote_celib = max_(0, decote_seuil_celib - taux_decote * ir_plaf_qf)
             decote_couple = max_(0, decote_seuil_couple - taux_decote * ir_plaf_qf)
-            assert taux_decote.seuil_celib == 1135
-            assert taux_decote.seuil_couple == 1870
+
             return around((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple)
 
     class reduction_impot_exceptionnelle(Variable):
