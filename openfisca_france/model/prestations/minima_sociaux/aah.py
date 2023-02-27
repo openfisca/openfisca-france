@@ -151,7 +151,8 @@ class aah_base_ressources(Variable):
             total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
             total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
             return (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
-
+       
+        
         def base_ressource_eval_trim():
             three_previous_months = Period(('month', period.first_month.start, 3)).offset(-3)
             base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
@@ -186,12 +187,27 @@ class aah_base_ressources(Variable):
         aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
         en_activite = ((individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year)) > 0)
+        ressource_interrompue = not_((individu('activite', period) == TypesActivite.actif) + (individu('activite', period) == TypesActivite.etudiant))
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
             total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
             total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
-            return (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
+            revenus_abattus_smic = (1 - aah.travail_ordinaire.abbatement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
+            
+            previous_year = period.start.period('year').offset(-1)
+            last_month = period.start.period('month').offset(-1)
+            ressource_year = individu('aah_base_ressources_eval_annuelle', previous_year, options=[ADD])
+            ressource_last_month = individu('aah_base_ressources_eval_annuelle', last_month)
+            has_ressources_substitution = (
+                individu('chomage_net', last_month)
+                + individu('retraite_nette', last_month)
+                + individu('rente_accident_travail', last_month) 
+                + individu('pensions_invalidite', last_month)
+                ) > 0
+            abattement_cessation_activite = (1 - aah.abbatement_cessation_activite * (ressource_interrompue + has_ressources_substitution))
+
+            return abattement_cessation_activite * (revenus_abattus_smic)
 
         def base_ressource_eval_trim():
             three_previous_months = Period(('month', period.first_month.start, 3)).offset(-3)
