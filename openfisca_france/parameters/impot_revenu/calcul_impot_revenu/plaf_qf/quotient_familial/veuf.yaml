@@ -5,7 +5,7 @@ values:
   2008-01-01:
     value: 1
 metadata: 
-  unit: part_qf
+  unit: part_quotient_familial
   last_value_still_valid_on: "2023-02-27"
   short_label: "Personne veuve ayant des personnes à charge"
   reference:

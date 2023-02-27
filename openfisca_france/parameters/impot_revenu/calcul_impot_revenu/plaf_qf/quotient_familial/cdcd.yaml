@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Enfant du conjoint décédé, à charge pour la personne veuve
-  unit: part_qf
+  unit: part_quotient_familial
   reference:
     2000-01-01:
       title: Article 194 du Code général des impôts

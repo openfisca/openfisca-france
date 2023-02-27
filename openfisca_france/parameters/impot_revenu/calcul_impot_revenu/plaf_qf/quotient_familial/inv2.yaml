@@ -4,7 +4,7 @@ values:
     value: 0.5
 metadata:
   short_label: Personne à charge titulaire de la carte invalidité ou CMI-invalidité
-  unit: part_qf
+  unit: part_quotient_familial
   last_value_still_valid_on: "2022-08-08"
   reference:
     2000-01-01:

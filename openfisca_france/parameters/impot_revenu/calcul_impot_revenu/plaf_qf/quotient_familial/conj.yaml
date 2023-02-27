@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: "Conjoint d'un couple marié ou pacsé"
   last_value_still_valid_on: "2023-02-27"
-  unit: part_qf
+  unit: part_quotient_familial
   reference:
     2000-01-01:
       title: Article 194, I. du Code général des impôts
