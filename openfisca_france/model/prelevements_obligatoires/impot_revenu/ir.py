@@ -3389,7 +3389,6 @@ class nbptr(Variable):
         return (maries_ou_pacses | jeune_veuf) * nb_parts_famille + (veuf & not_(jeune_veuf)) * nb_parts_veuf + celibataire_ou_divorce * nb_parts_celib
 
 
-
 ###############################################################################
 # # Calcul de la prime pour l'emploi
 ###############################################################################
