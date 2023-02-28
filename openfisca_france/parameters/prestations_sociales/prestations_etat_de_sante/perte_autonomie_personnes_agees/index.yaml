@@ -3,10 +3,10 @@ metadata:
   short_label: Perte d'autonomie
   label_en: Long term care for the elderly
   order:
-  - psd
-  - apa_mtp
   - apa_domicile
   - apa_institution
+  - apa_mtp
+  - psd
 documentation: |-
   Notes :
   L'APA correspond au montant dont bénéficie effectivement le bénéficiaire moins la participation laissée à la charge du bénéficiaire.

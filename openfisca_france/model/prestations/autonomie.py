@@ -175,7 +175,8 @@ class apa_domicile(Variable):
         period = period.start.offset('first-of', 'month').period('month')
         parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
         apa_eligibilite = individu('apa_eligibilite', period)
-        seuil_non_versement = parameters.seuil_de_versement_de_l_apa.seuil
+        smic_brut_horaire = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
+        seuil_non_versement = parameters.apa_domicile.seuil_versement_en_part_smic_brut_horaire * smic_brut_horaire
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
 
         apa_domicile_participation = individu('apa_domicile_participation', period)
@@ -194,8 +195,8 @@ class apa_etablissement(Variable):
     def formula_2002(individu, period, parameters):
         period = period.start.offset('first-of', 'month').period('month')
         parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
-        seuil_non_versement = parameters.seuil_de_versement_de_l_apa.seuil
-
+        smic_brut_horaire = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
+        seuil_non_versement = parameters.apa_etablissement.seuil_versement_en_part_smic_brut_horaire * smic_brut_horaire
         en_couple = individu.famille('en_couple', period)
         apa_eligibilite = individu('apa_eligibilite', period)
         gir = individu('gir', period)  # noqa F841
