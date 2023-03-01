@@ -136,6 +136,7 @@ class csg_deductible_chomage(Variable):
             * parameters.marche_travail.salaire_minimum.smic.smic_b_horaire
             )
 
+        # Approximation annuelle
         salaire_net = individu('salaire_net', period)
         rpns_imposables = individu('rpns_imposables', period, options = [DIVIDE])
         csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period, options = [DIVIDE])
@@ -202,6 +203,7 @@ class csg_imposable_chomage(Variable):
             )
 
         salaire_net = individu('salaire_net', period)
+        # Approximation annuelle
         rpns_imposables = individu('rpns_imposables', period, options = [DIVIDE])
         csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period, options = [DIVIDE])
         crds_non_salarie = individu('crds_non_salarie', period, options = [DIVIDE])
@@ -261,6 +263,7 @@ class crds_chomage(Variable):
             ) * eligible
 
         salaire_net = individu('salaire_net', period)
+        # Approximation annuelle
         rpns_imposables = individu('rpns_imposables', period, options = [DIVIDE])
         csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period, options = [DIVIDE])
         crds_non_salarie = individu('crds_non_salarie', period, options = [DIVIDE])
