@@ -136,12 +136,17 @@ class csg_deductible_chomage(Variable):
             * parameters.marche_travail.salaire_minimum.smic.smic_b_horaire
             )
 
+        salaire_net = individu('salaire_net', period)
+        rpns_imposables = individu('rpns_imposables', period, options = [DIVIDE])
+        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period, options = [DIVIDE])
+        crds_non_salarie = individu('crds_non_salarie', period, options = [DIVIDE])
+        remuneration_activite_nette = salaire_net + (rpns_imposables + csg_imposable_non_salarie + crds_non_salarie)
+
         csg_deductible_chomage = max_(
             - montant_csg
             - max_(cho_seuil_exo - (
-                chomage_brut
-                + csg_imposable_chomage
-                + montant_csg
+                remuneration_activite_nette +
+                chomage_brut + csg_imposable_chomage + montant_csg
                 ), 0),
             0,
             )
@@ -195,7 +200,14 @@ class csg_imposable_chomage(Variable):
             * nbh_travail
             * parameters.marche_travail.salaire_minimum.smic.smic_b_horaire
             )
-        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chomage_brut + montant_csg), 0), 0)
+
+        salaire_net = individu('salaire_net', period)
+        rpns_imposables = individu('rpns_imposables', period, options = [DIVIDE])
+        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period, options = [DIVIDE])
+        crds_non_salarie = individu('crds_non_salarie', period, options = [DIVIDE])
+        remuneration_activite_nette = salaire_net + (rpns_imposables + csg_imposable_non_salarie + crds_non_salarie)
+
+        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (remuneration_activite_nette + chomage_brut + montant_csg), 0), 0)
         return - csg_imposable_chomage
 
 
@@ -247,9 +259,16 @@ class crds_chomage(Variable):
             law_node = parameters.prelevements_sociaux.contributions_sociales.crds.activite,
             plafond_securite_sociale = parameters.prelevements_sociaux.pss.plafond_securite_sociale_mensuel,
             ) * eligible
+
+        salaire_net = individu('salaire_net', period)
+        rpns_imposables = individu('rpns_imposables', period, options = [DIVIDE])
+        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period, options = [DIVIDE])
+        crds_non_salarie = individu('crds_non_salarie', period, options = [DIVIDE])
+        remuneration_activite_nette = salaire_net + (rpns_imposables + csg_imposable_non_salarie + crds_non_salarie)
+
         crds_chomage = max_(
             -montant_crds - max_(
-                cho_seuil_exo - (assiette_crds_chomage + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
+                cho_seuil_exo - (remuneration_activite_nette + assiette_crds_chomage + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
                 ), 0
             )
         return -crds_chomage
