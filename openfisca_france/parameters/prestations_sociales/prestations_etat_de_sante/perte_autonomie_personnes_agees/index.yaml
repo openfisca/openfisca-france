@@ -5,7 +5,7 @@ metadata:
   order:
   - apa_domicile
   - apa_institution
-  - apa_mtp
+  - mtp
   - psd
 documentation: |-
   Notes :

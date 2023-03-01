@@ -1,4 +1,4 @@
-description: Part du tarif dépendance GIR 1-2 de l'allocation personnalisée d'autonomie (APA) provisoire en institution 
+description: Part du tarif dépendance GIR 1-2 de l'allocation personnalisée d'autonomie (APA) provisoire en institution
 values:
   2002-01-01:
     value: 0.5
@@ -15,6 +15,4 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000588742
   official_journal_date:
     2002-01-01: "2001-11-21"
-documentation: |-
-  Attribution de l'APA à titre provisoire en cas d'urgence, le montant correspond à une fraction du tarif dépendance de l'établissement pour les GIR 1 et 2.
-
+documentation: Attribution de l'APA à titre provisoire en cas d'urgence, le montant correspond à une fraction du tarif dépendance de l'établissement pour les GIR 1 et 2.

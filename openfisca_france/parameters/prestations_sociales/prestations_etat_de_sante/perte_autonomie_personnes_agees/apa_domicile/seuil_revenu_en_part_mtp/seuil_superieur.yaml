@@ -1,4 +1,4 @@
-description: Seuil supérieur de revenu (en part de la MTP mensuelle) de l'allocation personnalisée d'autonomie (APA) à domicile 
+description: Seuil supérieur de revenu (en part de la MTP mensuelle) de l'allocation personnalisée d'autonomie (APA) à domicile
 values:
   2002-01-01:
     value: 3.4

@@ -1,4 +1,4 @@
-description: Seuil inférieur de revenu (en part de la MTP mensuelle) de l'allocation personnalisée d'autonomie (APA) à domicile 
+description: Seuil inférieur de revenu (en part de la MTP mensuelle) de l'allocation personnalisée d'autonomie (APA) à domicile
 values:
   2002-01-01:
     value: 1.02
@@ -24,4 +24,3 @@ metadata:
     2002-01-01: "2001-11-21"
     2004-10-26: "2004-10-26"
     2016-03-01: "2016-02-28"
-
