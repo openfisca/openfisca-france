@@ -8,6 +8,7 @@ metadata:
   - part_tarif_dependance
   - condition_age
   - division_ressources_menage_couples
+  - taux_reste_a_vivre
   - seuil_versement_en_part_smic_brut_horaire
 documentation: |-
   Notes :
