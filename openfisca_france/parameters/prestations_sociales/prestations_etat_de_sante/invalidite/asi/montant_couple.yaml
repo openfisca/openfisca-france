@@ -28,8 +28,8 @@ values:
     value: 8107.54
   2019-04-01:
     value: 8237.26
-  2020-04-01:
-    value: null
+  # 2020-04-01:
+  #   value: null
 metadata:
   short_label: Montant annuel maximal pour un couple
   label_en: "Supplementary disability allowance (ASI): Amount"

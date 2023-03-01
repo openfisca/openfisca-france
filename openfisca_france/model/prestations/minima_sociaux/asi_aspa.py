@@ -310,12 +310,10 @@ class aspa_couple(Variable):
 
     def formula_2002_01_01(famille, period):
         maries = famille('maries', period)
-
         return maries
 
     def formula_2007_01_01(famille, period):
         en_couple = famille('en_couple', period)
-
         return en_couple
 
 
