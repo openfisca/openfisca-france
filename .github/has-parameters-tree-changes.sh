@@ -132,12 +132,14 @@ check_change(){
 }
 
 added=`git diff-index --name-only --diff-filter=A --exit-code ${last_tagged_commit}  -- ${BRANCH_PATHS_ROOT}`
-# echo "🤖 "$added
 added_checked=()
 if [[ ${added[@]} ]]; then
     for item_path in $added; do
         result=`check_change $item_path`
-        added_checked+=($result)
+        result_already_listed=`echo ${added_checked[@]} | tr ' ' '\n' | grep "$result"`
+        if [[ -z $result_already_listed ]]; then
+            added_checked+=($result)
+        fi
     done
 fi
 if [[ ${added_checked[@]} ]]; then
@@ -147,17 +149,22 @@ if [[ ${added_checked[@]} ]]; then
 fi
 
 lost=`git diff-index --name-only --diff-filter=D --exit-code ${last_tagged_commit}  -- ${BRANCH_PATHS_ROOT}`
-# echo "💀 "$lost
+# for every deleted file, check if the parent directory was removed and if is was removed, check if it was an expected directory
 lost_checked=()
+lost_checked_unique=()
 if [[ ${lost[@]} ]]; then
     for item_path in $lost; do
-        result=`check_change $item_path`
-        lost_checked+=($result)
+        # item_path should be a file
+        parent_directory=`dirname $item_path`
+        if [ ! -d $parent_directory ]; then
+            lost_checked+=($parent_directory)
+        fi
     done
+    lost_checked_unique=`echo ${lost_checked[@]} | tr ' ' '\n' | sort -u`
 fi
-if [[ ${lost_checked[@]} ]]; then
+if [[ ${lost_checked_unique[@]} ]]; then
     echo "${BLUE}INFO Ces répertoires de paramètres ont été supprimés :${COLOR_RESET}"
-    printf '%s\n' ${lost_checked[@]}
+    printf '%s\n' ${lost_checked_unique[@]}
     error_status=2
 fi
 
