@@ -146,7 +146,7 @@ class csg_deductible_chomage(Variable):
         csg_deductible_chomage = max_(
             - montant_csg
             - max_(
-                cho_seuil_exo - (remuneration_activite_nette + chomage_brut + csg_imposable_chomage + montant_csg), 0
+                cho_seuil_exo - (remuneration_activite_nette + assiette_csg_chomage + csg_imposable_chomage + montant_csg), 0
                 ), 0
             )
 
@@ -207,7 +207,7 @@ class csg_imposable_chomage(Variable):
         crds_non_salarie = individu('crds_non_salarie', period, options = [DIVIDE])
         remuneration_activite_nette = salaire_net + rpns_imposables + csg_imposable_non_salarie + crds_non_salarie
 
-        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (remuneration_activite_nette + chomage_brut + montant_csg), 0), 0)
+        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (remuneration_activite_nette + assiette_csg_chomage + montant_csg), 0), 0)
         return - csg_imposable_chomage
 
 
