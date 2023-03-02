@@ -39,12 +39,43 @@ class aah_base_ressources(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    def formula_2023_09_01(individu, period, parameters):
+        law = parameters(period)
+        aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
+
+        en_activite = ((individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year)) > 0)
+
+        def assiette_revenu_activite_demandeur(revenus_demandeur):
+            smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
+            total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
+            total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
+            return (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
+
+        def base_ressource_eval_trim():
+            three_previous_months = period.first_month.start.period('month', 3).offset(-3)
+            base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+
+            base_ressource_demandeur = assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite
+
+            return base_ressource_demandeur
+
+        def base_ressource_eval_annuelle():
+            base_ressource = assiette_revenu_activite_demandeur(individu('aah_base_ressources_eval_annuelle', period))
+
+            return base_ressource
+
+        return where(
+            en_activite,
+            base_ressource_eval_trim() / 12,
+            base_ressource_eval_annuelle() / 12
+            )
+
     def formula_2022_01_01(individu, period, parameters):
         law = parameters(period)
         aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
-        en_activite = individu('activite', period) == TypesActivite.actif
-        ressource_interrompue = not_(en_activite + (individu('activite', period) == TypesActivite.etudiant))
+        en_activite = individu('salaire_imposable', period) > 0
 
         def assiette_conjoint(revenus_conjoint):
             af_nbenf = individu.famille('af_nbenf', period)
@@ -55,18 +86,8 @@ class aah_base_ressources(Variable):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
             tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
             tranche2 = revenus_demandeur - tranche1
-            revenus_abattus_smic = (1 - aah.travail_ordinaire.abattement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
-            
-            last_month = period.start.period('month').offset(-1)
-            has_ressources_substitution = (
-                individu('chomage_net', last_month)
-                + individu('retraite_nette', last_month)
-                + individu('rente_accident_travail', last_month) 
-                + individu('pensions_invalidite', last_month)
-                ) > 0
-            abat_cessation_activite = (1 - aah.abattement_cessation_activite * (ressource_interrompue + has_ressources_substitution))
-            return abat_cessation_activite * (revenus_abattus_smic)
-            
+            return (1 - aah.travail_ordinaire.abattement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
+
         def base_ressource_eval_trim():
             three_previous_months = period.first_month.start.period('month', 3).offset(-3)
             base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
@@ -90,14 +111,13 @@ class aah_base_ressources(Variable):
             return assiette_revenu_activite_demandeur(base_ressource) + assiette_conjoint(base_ressource_conjoint)
 
         return where(
-            (en_activite + ressource_interrompue),
+            en_activite,
             base_ressource_eval_trim() / 12,
             base_ressource_eval_annuelle() / 12
             )
-        # TODO: - La formule du calcul de la base de ressource est celle en vigueur à partir de 2011, avant 2011:
-        #           - les abattements sur les revenus d'activité de l'allocataire diffèrent (art. D821-9 du CSS)
+        # TODO: - Prendre en compte les abattements temporaires sur les ressources en cas de changement de situation (6 mois pour retour à l'emploi, un an pour inactivité)
+        #       - La formule du calcul de la base de ressource est celle en vigueur à partir de 2011, avant 2011:
         #           - l'abattement pour les personnes invalides (défini dans l'art. 157 du CGI) sur le revenu net global est pris en compte (art. R821-4 du CSS)
-        #           - l'évaluation de tous les revenus est annuelle (pas d'évaluation trimestrielle avant 2011)
 
     def formula(individu, period, parameters):
         law = parameters(period)
@@ -112,22 +132,7 @@ class aah_base_ressources(Variable):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
             tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
             tranche2 = revenus_demandeur - tranche1
-            revenus_abattus_smic = (1 - aah.travail_ordinaire.abattement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
-            
-            previous_year = period.start.period('year').offset(-1)
-            last_month = period.start.period('month').offset(-1)
-            ressource_year = individu('aah_base_ressources_eval_annuelle', previous_year, options=[ADD])
-            ressource_last_month = individu('aah_base_ressources_eval_annuelle', last_month)
-            ressource_interrompue = (ressource_year > 0) * (ressource_last_month == 0)
-            has_ressources_substitution = (
-                individu('chomage_net', last_month)
-                + individu('retraite_nette', last_month)
-                + individu('rente_accident_travail', last_month) 
-                + individu('pensions_invalidite', last_month)
-                ) > 0
-            abat_cessation_activite = (1 - aah.abattement_cessation_activite * (ressource_interrompue + has_ressources_substitution))
-
-            return abat_cessation_activite * (revenus_abattus_smic)
+            return (1 - aah.travail_ordinaire.abattement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
 
         def base_ressource_eval_trim():
             three_previous_months = period.first_month.start.period('month', 3).offset(-3)
@@ -157,6 +162,60 @@ class aah_base_ressources(Variable):
             base_ressource_eval_annuelle() / 12
             )
 
+
+class aah_base_ressources_conjugalisee(Variable):
+    value_type = float
+    label = "Base ressources de l'allocation adulte handicapé"
+    entity = Individu
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    end = '2023-09-30'
+
+    def formula_2023_09_01(individu, period, parameters):
+        
+        law = parameters(period)
+        aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
+
+        en_activite = individu('salaire_imposable', period) > 0
+
+        def assiette_conjoint(revenus_conjoint):
+            af_nbenf = individu.famille('af_nbenf', period)
+            revenus = (1 - law.impot_revenu.calcul_revenus_imposables.tspr.abatpro.taux) * revenus_conjoint
+            return max_(revenus - (aah.abattement_conjoint.abattement_forfaitaire.base + aah.abattement_conjoint.abattement_forfaitaire.majoration_pac * af_nbenf), 0)
+
+        def assiette_revenu_activite_demandeur(revenus_demandeur):
+            smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
+            tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
+            tranche2 = revenus_demandeur - tranche1
+            return (1 - aah.travail_ordinaire.abattement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
+
+        def base_ressource_eval_trim():
+            three_previous_months = period.first_month.start.period('month', 3).offset(-3)
+            base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+
+            base_ressource_demandeur = assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite
+
+            base_ressource_demandeur_conjoint = individu.famille.demandeur('aah_base_ressources_activite_eval_trimestrielle', period) + individu.famille.demandeur('aah_base_ressources_hors_activite_eval_trimestrielle', period)
+            base_ressource_conjoint_conjoint = individu.famille.conjoint('aah_base_ressources_activite_eval_trimestrielle', period) + individu.famille.conjoint('aah_base_ressources_hors_activite_eval_trimestrielle', period)
+            base_ressource_conjoint = base_ressource_conjoint_conjoint * individu.has_role(Famille.DEMANDEUR) + base_ressource_demandeur_conjoint * individu.has_role(Famille.CONJOINT)
+
+            return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
+
+        def base_ressource_eval_annuelle():
+            base_ressource = individu('aah_base_ressources_eval_annuelle', period)
+
+            base_ressource_demandeur_conjoint = individu.famille.demandeur('aah_base_ressources_eval_annuelle', period)
+            base_ressource_conjoint_conjoint = individu.famille.conjoint('aah_base_ressources_eval_annuelle', period)
+            base_ressource_conjoint = base_ressource_conjoint_conjoint * individu.has_role(Famille.DEMANDEUR) + base_ressource_demandeur_conjoint * individu.has_role(Famille.CONJOINT)
+
+            return assiette_revenu_activite_demandeur(base_ressource) + assiette_conjoint(base_ressource_conjoint)
+
+        return where(
+            en_activite,
+            base_ressource_eval_trim() / 12,
+            base_ressource_eval_annuelle() / 12
+            )
 
 class aah_base_ressources_activite_eval_trimestrielle(Variable):
     value_type = float
@@ -410,6 +469,34 @@ class aah_base(Variable):
         return aah_eligible * min_(montant_aah, max_(0, montant_max - aah_base_non_cumulable))
 
 
+class aah_base_conjugalisee(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    label = "Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
+    entity = Individu
+    reference = [
+        'Article L821-1 du Code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=53AFF5AA4010B01F0539052A33180B39.tplgfr35s_1?idArticle=LEGIARTI000033813790&cidTexte=LEGITEXT000006073189&dateTexte=20180412'
+        ]
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    end = '2023-09-30'
+
+    def formula_2023_09_01(individu, period, parameters):
+        law = parameters(period).prestations_sociales
+
+        aah_eligible = individu('aah_eligible', period)
+        aah_base_ressources = individu('aah_base_ressources_conjugalisee', period)
+        plaf_ress_aah = individu('aah_plafond_ressources', period)
+        # Le montant de l'AAH est plafonné au montant de base.
+        montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
+        montant_aah = min_(montant_max, max_(0, plaf_ress_aah - aah_base_ressources))
+
+        aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
+
+        return aah_eligible * min_(montant_aah, max_(0, montant_max - aah_base_non_cumulable))
+
+
 class aah(Variable):
     calculate_output = calculate_output_add
     value_type = float
@@ -418,6 +505,28 @@ class aah(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
+
+    def formula_2023_10_01(individu, period, parameters):
+        aah_base = individu('aah_base', period)
+        aah_parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        m_2 = datetime64(period.offset(-60, 'day').start)
+
+        aah_date_debut_hospitalisation = individu('aah_date_debut_hospitalisation', period)
+        aah_date_debut_incarceration = individu('aah_date_debut_incarceration', period)
+        aah_reduction = (aah_date_debut_hospitalisation <= m_2) + (aah_date_debut_incarceration <= m_2)
+
+        return where(aah_reduction, aah_base * aah_parameters.pourcentage_aah.prison_hospitalisation, aah_base)
+
+    def formula_2023_09_01(individu, period, parameters):
+        aah_base = max_(individu('aah_base', period), individu('aah_base_conjugalise', period))
+        aah_parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        m_2 = datetime64(period.offset(-60, 'day').start)
+
+        aah_date_debut_hospitalisation = individu('aah_date_debut_hospitalisation', period)
+        aah_date_debut_incarceration = individu('aah_date_debut_incarceration', period)
+        aah_reduction = (aah_date_debut_hospitalisation <= m_2) + (aah_date_debut_incarceration <= m_2)
+
+        return where(aah_reduction, aah_base * aah_parameters.pourcentage_aah.prison_hospitalisation, aah_base)
 
     def formula(individu, period, parameters):
         aah_base = individu('aah_base', period)
