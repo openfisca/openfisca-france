@@ -1,5 +1,15 @@
 # Changelog
 
+### 143.1.3 [#2024](https://github.com/openfisca/openfisca-france/pull/2024)
+
+* Amélioration technique.
+* Périodes concernées : 1994-2022
+* Zones impactées : `parameters/impot_revenu/calcul_reductions_impots/pme`.
+* Détails :
+  - Recherche et ajout des références législatives
+  - Ajout de références pour `seuil` et `seuil_tpe`
+  - Certains paramètres sont en doublons (`souscription_capital.taux` et souscription_capital.taux18, 22 et 25`) mais cela reflète de la modélisation et d'une complexité législative: les taux changent au cours du temps mais selon la date de souscription, ce n'est pas toujours le taux en vigueur qui s'applique)
+  
 ### 143.1.2 [#2042](https://github.com/openfisca/openfisca-france/pull/2042)
 
 * Changement mineur.
