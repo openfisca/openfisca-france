@@ -367,7 +367,7 @@ class aspa(Variable):
             elig1
             * (P.aspa.plafond_ressources.personnes_seules * not_(en_couple) + P.aspa.plafond_ressources.couples * en_couple)
             + (elig2 | elig3 | elig4)
-            * P.plafond_ressources.couples
+            * P.aspa.plafond_ressources.couples
             ) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
