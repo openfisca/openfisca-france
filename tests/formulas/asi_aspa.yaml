@@ -8,3 +8,116 @@
       2016: 12000
   output:
     asi_aspa_base_ressources: 2000
+
+- name: Cas test Célibataire ASPA après la réforme de 2020
+  period: 2021-11
+  absolute_error_margin: 1
+  input:
+    age: 62
+    asi_aspa_base_ressources_individu: 8000/12
+    aspa_eligibilite: true
+  output:
+    aspa: (10881.75 - 8000)/12
+# Source :  https://www.info-retraite.fr/portail-info/sites/PortailInformationnel/home/mes-droits-a-la-retraite/age-et-montant-de-ma-retraite/montants-minimums/allocations-de-solidarite-aspa-a.html
+
+- name: Cas test Couple ASPA 2 éligibles après la réforme de 2020
+  period: 2021-10
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      maries: true
+    individus:
+      parent1:
+        age: 56
+        asi_aspa_base_ressources_individu: 13000/12
+        aspa_eligibilite: true
+      parent2:
+        age: 56
+        asi_aspa_base_ressources_individu: 0
+        aspa_eligibilite: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
+    aspa: [324.5, 324.5] # (16893.94-13000)/12
+# Source :  https://www.info-retraite.fr/portail-info/sites/PortailInformationnel/home/mes-droits-a-la-retraite/age-et-montant-de-ma-retraite/montants-minimums/allocations-de-solidarite-aspa-a.html
+
+
+- name: Cas test Couple ASPA 1 éligible après la réforme de 2020
+  period: 2021-10
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      maries: true
+    individus:
+      parent1:
+        age: 56
+        asi_aspa_base_ressources_individu: 13000/12
+        aspa_eligibilite: true
+      parent2:
+        age: 56
+        asi_aspa_base_ressources_individu: 0
+        aspa_eligibilite: false
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
+    aspa: [324.5]
+
+- name: Cas test Couple ASPA 1 éligible après la réforme de 2020, plafond MAX
+  period: 2021-10
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+      maries: true
+    individus:
+      parent1:
+        age: 56
+        asi_aspa_base_ressources_individu: 0
+        aspa_eligibilite: true
+      parent2:
+        age: 56
+        asi_aspa_base_ressources_individu: 0
+        aspa_eligibilite: false
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
+    aspa: [906.81]
+# Source :  https://www.info-retraite.fr/portail-info/sites/PortailInformationnel/home/mes-droits-a-la-retraite/age-et-montant-de-ma-retraite/montants-minimums/allocations-de-solidarite-aspa-a.html

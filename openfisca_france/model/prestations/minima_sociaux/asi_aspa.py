@@ -207,6 +207,44 @@ class asi(Variable):
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
+    def formula_2020_04_01(individu, period, parameters):
+        maries = individu.famille('maries', period)
+        en_couple = individu.famille('en_couple', period)
+        asi_aspa_nb_alloc = individu.famille('asi_aspa_nb_alloc', period)
+        base_ressources = individu.famille('asi_aspa_base_ressources', period)
+        P_asi = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.asi
+        P_aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa
+
+        demandeur_eligible_asi = individu.famille.demandeur('asi_eligibilite', period)
+        demandeur_eligible_aspa = individu.famille.demandeur('aspa_eligibilite', period)
+        conjoint_eligible_asi = individu.famille.conjoint('asi_eligibilite', period)
+        conjoint_eligible_aspa = individu.famille.conjoint('aspa_eligibilite', period)
+
+        # Un seul éligible
+        elig1 = ((asi_aspa_nb_alloc == 1) & (demandeur_eligible_asi | conjoint_eligible_asi))
+        # Couple d'éligibles mariés
+        elig2 = demandeur_eligible_asi & conjoint_eligible_asi & maries
+        # Couple d'éligibles non mariés
+        elig3 = demandeur_eligible_asi & conjoint_eligible_asi & not_(maries)
+        # Un seul éligible et époux éligible ASPA
+        elig4 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & maries
+        # Un seul éligible et conjoint non marié éligible ASPA
+        elig5 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & not_(maries)
+
+        plafond_ressources = (
+            elig1 * (P_asi.plafond_ressource_seul * not_(en_couple) + P_asi.plafond_ressource_couple * en_couple)
+            + elig2 * P_asi.plafond_ressource_couple
+            + elig3 * P_asi.plafond_ressource_couple
+            + elig4 * P_aspa.plafond_ressources.couples
+            + elig5 * P_aspa.plafond_ressources.couples) / 12
+
+        montant_servi_asi = max_(plafond_ressources - base_ressources, 0)
+
+        return montant_servi_asi * (
+            + individu.has_role(Famille.DEMANDEUR) * demandeur_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
+            + individu.has_role(Famille.CONJOINT) * conjoint_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
+            )
+
     def formula_2007(individu, period, parameters):
         maries = individu.famille('maries', period)
         en_couple = individu.famille('en_couple', period)
@@ -289,6 +327,63 @@ class aspa(Variable):
     reference = 'http://vosdroits.service-public.fr/particuliers/F16871.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+
+    def formula_2020_04_01(famille, period, parameters):
+        maries = famille('maries', period)
+        en_couple = famille('en_couple', period)
+        asi_aspa_nb_alloc = famille('asi_aspa_nb_alloc', period)
+        base_ressources = famille('asi_aspa_base_ressources', period)
+        P = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse
+
+        demandeur_eligible_asi = famille.demandeur('asi_eligibilite', period)
+        demandeur_eligible_aspa = famille.demandeur('aspa_eligibilite', period)
+        conjoint_eligible_asi = famille.conjoint('asi_eligibilite', period)
+        conjoint_eligible_aspa = famille.conjoint('aspa_eligibilite', period)
+
+        # Un seul éligible
+        elig1 = ((asi_aspa_nb_alloc == 1) & (demandeur_eligible_aspa | conjoint_eligible_aspa))
+        # Couple d'éligibles
+        elig2 = (demandeur_eligible_aspa & conjoint_eligible_aspa)
+        # Un seul éligible et époux éligible ASI
+        elig3 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & maries
+        # Un seul éligible et conjoint non marié éligible ASI
+        elig4 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & not_(maries)
+
+        elig = elig1 | elig2 | elig3 | elig4
+
+        montant_asi_demandeur = famille.demandeur('asi', period)
+        montant_asi_conjoint = famille.conjoint('asi', period)
+
+        montant_max = (
+            elig1 * P.aspa.montant_maximum_annuel.personnes_seules
+            + elig2 * P.aspa.montant_maximum_annuel.couples
+            + elig3 * (montant_asi_demandeur + P.aspa.montant_maximum_annuel.couples / 2)
+            + elig4 * (montant_asi_conjoint + P.aspa.montant_maximum_annuel.couples / 2)
+            ) / 12
+
+        ressources = base_ressources + montant_max
+
+        plafond_ressources = (
+            elig1
+            * (P.aspa.plafond_ressources.personnes_seules * not_(en_couple) + P.aspa.plafond_ressources.couples * en_couple)
+            + (elig2 | elig3 | elig4)
+            * P.aspa.plafond_ressources.couples
+            ) / 12
+
+        depassement = max_(ressources - plafond_ressources, 0)
+
+        diff = (
+            (elig1 | elig2) * (montant_max - depassement)
+            + (elig3 | elig4) * (P.aspa.montant_maximum_annuel.couples / 12 / 2 - depassement / 2)
+            )
+
+        # Montant mensuel servi (sous réserve d'éligibilité)
+        montant_servi_aspa = max_(diff, 0)
+
+        # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
+        # aspa[CHEF] = demandeur_eligible_aspa*montant_servi_aspa*(elig1 + elig2/2)
+        # aspa[PART] = conjoint_eligible_aspa*montant_servi_aspa*(elig1 + elig2/2)
+        return elig * montant_servi_aspa
 
     def formula_2006_01_01(famille, period, parameters):
         maries = famille('maries', period)

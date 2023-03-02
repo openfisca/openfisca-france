@@ -1,5 +1,13 @@
 # Changelog
 
+# 144.0.0 [#1717](https://github.com/openfisca/openfisca-france/pull/1717)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2020.
+* Zones impactées : `model/prestations/minima_sociaux/asi_aspa.py`.
+* Détails :
+  - Intègre la nouvelle réforme de calcul de l'ASI à partir du 01 avril 2020.
+
 ### 143.1.3 [#2024](https://github.com/openfisca/openfisca-france/pull/2024)
 
 * Amélioration technique.
