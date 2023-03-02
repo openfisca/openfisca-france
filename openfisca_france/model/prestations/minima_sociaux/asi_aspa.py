@@ -235,8 +235,8 @@ class asi(Variable):
             elig1 * (P_asi.plafond_ressource_seul * not_(en_couple) + P_asi.plafond_ressource_couple * en_couple)
             + elig2 * P_asi.plafond_ressource_couple
             + elig3 * P_asi.plafond_ressource_couple
-            + elig4 * P_plafond_ressources.couples
-            + elig5 * P_plafond_ressources.couples) / 12
+            + elig4 * P_aspa.plafond_ressources.couples
+            + elig5 * P_aspa.plafond_ressources.couples) / 12
 
         montant_servi_asi = max_(plafond_ressources - base_ressources, 0)
 
@@ -333,7 +333,7 @@ class aspa(Variable):
         en_couple = famille('en_couple', period)
         asi_aspa_nb_alloc = famille('asi_aspa_nb_alloc', period)
         base_ressources = famille('asi_aspa_base_ressources', period)
-        P = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux
+        P = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse
 
         demandeur_eligible_asi = famille.demandeur('asi_eligibilite', period)
         demandeur_eligible_aspa = famille.demandeur('aspa_eligibilite', period)
@@ -365,7 +365,7 @@ class aspa(Variable):
 
         plafond_ressources = (
             elig1
-            * (P.plafond_ressources.personnes_seules * not_(en_couple) + P.plafond_ressources.couples * en_couple)
+            * (P.aspa.plafond_ressources.personnes_seules * not_(en_couple) + P.aspa.plafond_ressources.couples * en_couple)
             + (elig2 | elig3 | elig4)
             * P.plafond_ressources.couples
             ) / 12
