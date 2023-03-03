@@ -238,7 +238,7 @@ class apa_etablissement(Variable):
             ]
 
         participation_beneficiaire = select(conditions_ressources, participations)
-        taux_reste_a_vivre = parameters.apa_institution.taux_reste_a_vivre
+        taux_reste_a_vivre = perte_autonomie_personnes_agees.apa_institution.taux_reste_a_vivre
         participation_beneficiaire = min_(
             participation_beneficiaire,
             max_(base_ressources_apa_etablissement * (1 - taux_reste_a_vivre), 0)
