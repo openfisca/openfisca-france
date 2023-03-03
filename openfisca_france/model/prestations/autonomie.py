@@ -173,7 +173,7 @@ class apa_domicile(Variable):
 
     def formula_2002(individu, period, parameters):
         period = period.start.offset('first-of', 'month').period('month')
-        perte_autonomie_personnes_agees = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees.apa_domicile
+        apa_domicile = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees.apa_domicile
         apa_eligibilite = individu('apa_eligibilite', period)
         smic_brut_horaire = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
         seuil_non_versement = apa_domicile.seuil_versement_en_part_smic_brut_horaire * smic_brut_horaire
