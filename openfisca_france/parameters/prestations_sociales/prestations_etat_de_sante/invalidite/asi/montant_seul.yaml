@@ -28,8 +28,8 @@ values:
     value: 4913.2
   2019-04-01:
     value: 4991.81
-  # 2020-04-01:
-  #   value: null
+  2020-04-01:
+    value: null
 metadata:
   short_label: Montant annuel maximal pour une personne seule
   label_en: "Supplementary disability allowance (ASI): Amount"
