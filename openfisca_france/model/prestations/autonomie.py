@@ -173,10 +173,10 @@ class apa_domicile(Variable):
 
     def formula_2002(individu, period, parameters):
         period = period.start.offset('first-of', 'month').period('month')
-        parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
+        perte_autonomie_personnes_agees = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees.apa_domicile
         apa_eligibilite = individu('apa_eligibilite', period)
         smic_brut_horaire = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
-        seuil_non_versement = parameters.apa_domicile.seuil_versement_en_part_smic_brut_horaire * smic_brut_horaire
+        seuil_non_versement = apa_domicile.seuil_versement_en_part_smic_brut_horaire * smic_brut_horaire
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
 
         apa_domicile_participation = individu('apa_domicile_participation', period)
@@ -194,9 +194,9 @@ class apa_etablissement(Variable):
 
     def formula_2002(individu, period, parameters):
         period = period.start.offset('first-of', 'month').period('month')
-        parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
+        perte_autonomie_personnes_agees = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
         smic_brut_horaire = parameters(period).marche_travail.salaire_minimum.smic.smic_b_horaire
-        seuil_non_versement = parameters.apa_etablissement.seuil_versement_en_part_smic_brut_horaire * smic_brut_horaire
+        seuil_non_versement = perte_autonomie_personnes_agees.apa_etablissement.seuil_versement_en_part_smic_brut_horaire * smic_brut_horaire
         en_couple = individu.famille('en_couple', period)
         apa_eligibilite = individu('apa_eligibilite', period)
         gir = individu('gir', period)  # noqa F841
@@ -205,15 +205,15 @@ class apa_etablissement(Variable):
         proratisation_couple_etablissement = (
             1
             + en_couple
-            * (parameters.apa_institution.division_ressources_menage_couples - 1)
+            * (perte_autonomie_personnes_agees.apa_institution.division_ressources_menage_couples - 1)
             )
 
         base_ressources_apa_etablissement = base_ressources_apa / proratisation_couple_etablissement
         dependance_tarif_etablissement_gir_5_6 = individu('dependance_tarif_etablissement_gir_5_6', period)
         dependance_tarif_etablissement_gir_dependant = individu('dependance_tarif_etablissement_gir_dependant', period)
-        seuil_inf_inst = parameters.apa_institution.seuil_inferieur
-        seuil_sup_inst = parameters.apa_institution.seuil_superieur
-        majoration_tierce_personne = parameters.mtp
+        seuil_inf_inst = perte_autonomie_personnes_agees.apa_institution.seuil_inferieur
+        seuil_sup_inst = perte_autonomie_personnes_agees.apa_institution.seuil_superieur
+        majoration_tierce_personne = perte_autonomie_personnes_agees.mtp
 
         conditions_ressources = [
             base_ressources_apa_etablissement <= seuil_inf_inst * majoration_tierce_personne,
