@@ -1,4 +1,4 @@
-description: Part supplémentaire de quotient familial pour une personne seule ayant au moins un enfant à charge dîte "parent isolé" - Impôt sur le revenu
+description: Part supplémentaire de quotient familial (IR) pour une personne seule ayant au moins un enfant à charge dîte "parent isolé" - Impôt sur le revenu
 values:
   2000-01-01:
     value: 0.5

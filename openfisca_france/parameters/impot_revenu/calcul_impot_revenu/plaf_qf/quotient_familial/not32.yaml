@@ -1,11 +1,11 @@
-description: "Part supplémentaire de quotient familial pour une personne seule sans personne à charge, ayant eu à charge pendant au moins 5 années, au cours desquelles elle vivait seule, un ou des enfants désormais majeurs ou en imposition distincte - Impôt sur le revenu"
+description: Part supplémentaire de quotient familial (IR) pour une personne seule sans personne à charge, ayant eu à charge pendant au moins 5 années, au cours desquelles elle vivait seule, un ou des enfants désormais majeurs ou en imposition distincte
 values:
   2000-01-01:
     value: 0.5
 metadata: 
   unit: part_quotient_familial
   last_value_still_valid_on: "2023-02-27"
-  short_label: "Personne sans personne à charge, ayant auparavant élevé seule un ou des enfants pendant 5 ans"
+  short_label: Personne sans personne à charge, ayant auparavant élevé seule un ou des enfants pendant 5 ans
   reference:
     2000-01-01:
     - title: Article 195, 1.a. du Code général des impôts

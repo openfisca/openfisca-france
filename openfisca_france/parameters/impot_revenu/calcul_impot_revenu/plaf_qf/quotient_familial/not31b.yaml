@@ -1,4 +1,4 @@
-description: "Part supplémentaire de quotient familial pour une personne seule, âgée de plus de 74 ans et titulaire ou veuve d'une personne titulaire de la carte du combattant, ou d'une pension militaire d'invalidité, ou de victime de guerre (Cadre A - cases W ou G) - Impôt sur le revenu"
+description: Part supplémentaire de quotient familial (IR) pour une personne seule, âgée de plus de 74 ans et titulaire ou veuve d'une personne titulaire de la carte du combattant, ou d'une pension militaire d'invalidité, ou de victime de guerre (Cadre A - cases W ou G)
 values:
   2000-01-01:
     value: 0.5

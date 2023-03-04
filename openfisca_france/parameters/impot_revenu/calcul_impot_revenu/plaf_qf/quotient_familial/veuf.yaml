@@ -1,11 +1,11 @@
-description: Part supplémentaire de quotient familial pour une personne veuve ayant des personnes à charge - Impôt sur le revenu
+description: Part supplémentaire de quotient familial (IR) pour une personne veuve ayant des personnes à charge
 values:
   2008-01-01:
     value: 1
 metadata: 
   unit: part_quotient_familial
   last_value_still_valid_on: "2023-02-27"
-  short_label: "Personne veuve ayant des personnes à charge"
+  short_label: Personne veuve ayant des personnes à charge
   reference:
     2008-01-01:
     - title: Article 194, I. du Code général des impôts
