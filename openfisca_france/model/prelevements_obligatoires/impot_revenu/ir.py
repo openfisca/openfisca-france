@@ -3212,6 +3212,9 @@ class nbptr(Variable):
     definition_period = YEAR
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
+        '''
+        Modification de la prise en compte des enfants à charge du conjoint décédé et du veuf.
+        '''
         nb_pac = foyer_fiscal('nb_pac', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
