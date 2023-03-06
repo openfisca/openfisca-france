@@ -140,6 +140,10 @@ class aah_base_ressources(Variable):
             base_ressource_eval_trim() / 12,
             base_ressource_eval_annuelle() / 12
             )
+        # TODO: - La formule du calcul de la base de ressource est celle en vigueur à partir de 2011, avant 2011:
+        #           - les abattements sur les revenus d'activité de l'allocataire diffèrent (art. D821-9 du CSS)
+        #           - l'abattement pour les personnes invalides (défini dans l'art. 157 du CGI) sur le revenu net global est pris en compte (art. R821-4 du CSS)
+        #           - l'évaluation de tous les revenus est annuelle (pas d'évaluation trimestrielle avant 2011)
 
     def formula(individu, period, parameters):
         law = parameters(period)
@@ -154,7 +158,7 @@ class aah_base_ressources(Variable):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
             tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
             tranche2 = revenus_demandeur - tranche1
-            revenus_abattus_smic = (1 - aah.travail_ordinaire.abbatement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
+            revenus_abattus_smic = (1 - aah.travail_ordinaire.abattement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
             
             previous_year = period.start.period('year').offset(-1)
             last_month = period.start.period('month').offset(-1)
@@ -167,10 +171,10 @@ class aah_base_ressources(Variable):
                 + individu('rente_accident_travail', last_month) 
                 + individu('pensions_invalidite', last_month)
                 ) > 0
-            abattement_cessation_activite = (1 - aah.abbatement_cessation_activite * (ressource_interrompue + has_ressources_substitution))
+            abat_cessation_activite = (1 - aah.abattement_cessation_activite * (ressource_interrompue + has_ressources_substitution))
 
-            return abattement_cessation_activite * (revenus_abattus_smic)
-        
+            return abat_cessation_activite * (revenus_abattus_smic)
+
         def base_ressource_eval_trim():
             three_previous_months = Period(('month', period.first_month.start, 3)).offset(-3)
             base_ressources_activite_milieu_protege = individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
@@ -199,11 +203,6 @@ class aah_base_ressources(Variable):
             base_ressource_eval_trim() / 12,
             base_ressource_eval_annuelle() / 12
             )
-        # TODO: - Prendre en compte les abattements temporaires sur les ressources en cas de changement de situation
-        #       - La formule du calcul de la base de ressource est celle en vigueur à partir de 2011, avant 2011:
-        #           - les abattements sur les revenus d'activité de l'allocataire diffèrent (art. D821-9 du CSS)
-        #           - l'abattement pour les personnes invalides (défini dans l'art. 157 du CGI) sur le revenu net global est pris en compte (art. R821-4 du CSS)
-        #           - l'évaluation de tous les revenus est annuelle (pas d'évaluation trimestrielle avant 2011)
 
 
 class aah_base_ressources_conjugalisee(Variable):
