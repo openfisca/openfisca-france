@@ -10,23 +10,33 @@
     individus:
       parent1:
         aah_eligible: true
+        activite:
+          2018-11: 0
+          2018-10: 0
+          2018-09: 0
+          2018-08: 0
         aah_base_ressources: 16790.72 / 12
       parent2:
         aah_eligible: false
+        activite:
+          2018-11: 4
+          2018-10: 4
+          2018-09: 4
+          2018-08: 4
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
+          - parent1
       foyer_fiscal_1:
         declarants:
-        - parent2
+          - parent2
     menages:
       menage_0:
         personne_de_reference:
-        - parent1
+          - parent1
       menage_1:
         personne_de_reference:
-        - parent2
+          - parent2
   output:
     individus:
       parent1:
@@ -46,23 +56,33 @@
     individus:
       parent1:
         aah_eligible: true
+        activite:
+          2018-11: 0
+          2018-10: 0
+          2018-09: 0
+          2018-08: 0
         aah_base_ressources: 8777.70 / 12
       parent2:
         aah_eligible: false
+        activite:
+          2018-11: 4
+          2018-10: 4
+          2018-09: 4
+          2018-08: 4
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
+          - parent1
       foyer_fiscal_1:
         declarants:
-        - parent2
+          - parent2
     menages:
       menage_0:
         personne_de_reference:
-        - parent1
+          - parent1
       menage_1:
         personne_de_reference:
-        - parent2
+          - parent2
   output:
     individus:
       parent1:
@@ -82,23 +102,33 @@
     individus:
       parent1:
         aah_eligible: false
+        activite:
+          2018-11: 4
+          2018-10: 4
+          2018-09: 4
+          2018-08: 4
       parent2:
         aah_eligible: true
+        activite:
+          2018-11: 0
+          2018-10: 0
+          2018-09: 0
+          2018-08: 0
         aah_base_ressources: 12585.68 / 12
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
+          - parent1
       foyer_fiscal_1:
         declarants:
-        - parent2
+          - parent2
     menages:
       menage_0:
         personne_de_reference:
-        - parent1
+          - parent1
       menage_1:
         personne_de_reference:
-        - parent2
+          - parent2
   output:
     individus:
       parent1:
@@ -116,21 +146,31 @@
       parent1:
         salaire_imposable:
           2019: 12000
-      parent2: {}
+        activite:
+          2021-06: 4
+          2021-05: 4
+          2021-04: 4
+          2021-03: 4
+      parent2:
+        activite:
+          2021-06: 4
+          2021-05: 4
+          2021-04: 4
+          2021-03: 4
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
+          - parent1
       foyer_fiscal_1:
         declarants:
-        - parent2
+          - parent2
     menages:
       menage_0:
         personne_de_reference:
-        - parent1
+          - parent1
       menage_1:
         personne_de_reference:
-        - parent2
+          - parent2
   output:
     aah_base_ressources: [413.42, 720]
 # L'aah base_ressource change avec le smic (et le montant d'AAH peut changer), l'output réel est donc encore inconnu (05/2023) : test utile uniquement pour le développement, en utilisant la dernière valeur du SMIC et d'AAH(qui risque de changer encore d'ici octobre)

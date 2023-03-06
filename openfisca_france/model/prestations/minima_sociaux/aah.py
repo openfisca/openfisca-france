@@ -195,10 +195,7 @@ class aah_base_ressources(Variable):
             total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
             revenus_abattus_smic = (1 - aah.travail_ordinaire.abbatement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
             
-            previous_year = period.start.period('year').offset(-1)
             last_month = period.start.period('month').offset(-1)
-            ressource_year = individu('aah_base_ressources_eval_annuelle', previous_year, options=[ADD])
-            ressource_last_month = individu('aah_base_ressources_eval_annuelle', last_month)
             has_ressources_substitution = (
                 individu('chomage_net', last_month)
                 + individu('retraite_nette', last_month)
