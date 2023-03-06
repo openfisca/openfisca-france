@@ -1,5 +1,22 @@
 # Changelog
 
+# 144.0.0 [#2041](https://github.com/openfisca/openfisca-france/pull/2041)
+
+* Amélioration technique.
+* Périodes concernées : à partir du 01/01/2008.
+* Zones impactées :
+  - `/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/decote/seuil.yaml`
+  - `/openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial/`
+* Détails :
+  - Ajout d'une valeur nulle pour un paramètre de la décote qui est remplacé par d'autres paramètres à partir des revenus 2014
+  - Modification de la variable nbptr suite à des changements de paramètres en 2008 :
+      - Suppression de la part supplémentaire de quotient familial par enfant issu du conjoint décédé
+      - Création d'une part supplémentaire de quotient familial d'un veuf avec personne à charge
+      - Cette modification était déjà prise en compte dans le calcul car les paramètres étaient à 0 pour les périodes ou ils n'éxistaient pas. Cette PR remplace les 0 par des null ce qui nécéssite de faire un changement de formule en 2008.
+  - Ajout de métadonnées pour certains paramètres du calcul du quotient familial de l'IR
+
+
 # 144.0.0 [#1717](https://github.com/openfisca/openfisca-france/pull/1717)
 
 * Évolution du système socio-fiscal.

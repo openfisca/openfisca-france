@@ -1,8 +1,10 @@
-description: Enfant invalides (cases G ou I)
+description: Part supplémentaire de quotient familial (IR) par enfant invalide titulaire de la carte d'invalidité ou de la carte mobilité inclusion (CMI) mention “invalidité“ (cadre C - Case G ou I)
 values:
   2000-01-01:
     value: 0.5
 metadata:
+  short_label: Enfant titulaire de la carte invalidité ou CMI-invalidité
+  unit: part_quotient_familial
   last_value_still_valid_on: "2022-08-08"
   reference:
     2000-01-01:

@@ -3211,6 +3211,86 @@ class nbptr(Variable):
     reference = 'http://vosdroits.service-public.fr/particuliers/F2705.xhtml'
     definition_period = YEAR
 
+    def formula_2008_01_01(foyer_fiscal, period, parameters):
+        '''
+        Modification de la prise en compte des enfants à charge du conjoint décédé et du veuf.
+        '''
+        nb_pac = foyer_fiscal('nb_pac', period)
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        veuf = foyer_fiscal('veuf', period)
+        jeune_veuf = foyer_fiscal('jeune_veuf', period)
+        nbG = foyer_fiscal('nbG', period)
+        nbH = foyer_fiscal('nbH', period)
+        nbI = foyer_fiscal('nbI', period)
+        nbR = foyer_fiscal('nbR', period)
+        nbN = foyer_fiscal('nbN', period)  # noqa F841
+        caseP = foyer_fiscal('caseP', period)
+        caseW = foyer_fiscal('caseW', period)
+        caseG = foyer_fiscal('caseG', period)
+        caseE = foyer_fiscal('caseE', period)
+        caseK = foyer_fiscal('caseK', period)
+        caseN = foyer_fiscal('caseN', period)
+        caseF = foyer_fiscal('caseF', period)
+        caseS = foyer_fiscal('caseS', period)
+        caseL = foyer_fiscal('caseL', period)
+        caseT = foyer_fiscal('caseT', period.first_month)
+        quotient_familial = parameters(period).impot_revenu.calcul_impot_revenu.plaf_qf.quotient_familial
+
+        no_pac = nb_pac == 0  # Aucune personne à charge en garde exclusive
+        has_pac = not_(no_pac)
+        no_alt = nbH == 0  # Aucun enfant à charge en garde alternée
+        has_alt = not_(no_alt)
+
+        # # nombre de parts liées aux enfants à charge
+        # que des enfants en résidence alternée
+        enf1 = (no_pac & has_alt) * (quotient_familial.enf1 * min_(nbH, 2) * 0.5
+                                     + quotient_familial.enf2 * max_(nbH - 2, 0) * 0.5)
+        # pas que des enfants en résidence alternée
+        enf2 = (has_pac & has_alt) * ((nb_pac == 1) * (quotient_familial.enf1 * min_(nbH, 1) * 0.5
+            + quotient_familial.enf2 * max_(nbH - 1, 0) * 0.5) + (nb_pac > 1) * (quotient_familial.enf2 * nbH * 0.5))
+        # pas d'enfant en résidence alternée
+        enf3 = quotient_familial.enf1 * min_(nb_pac, 2) + quotient_familial.enf2 * max_((nb_pac - 2), 0)
+
+        enf = enf1 + enf2 + enf3
+        # # note 2 : nombre de parts liées aux invalides (enfant + adulte)
+        n2 = quotient_familial.inv1 * (nbG + nbI / 2) + quotient_familial.inv2 * nbR
+
+        # # note 3 : Pas de personne à charge
+        # - invalide
+
+        n31a = quotient_familial.not31a * (no_pac & no_alt & caseP)
+        # - ancien combatant
+        n31b = quotient_familial.not31b * (no_pac & no_alt & (caseW | caseG))
+        n31 = max_(n31a, n31b)
+        # - personne seule ayant élevé des enfants
+        n32 = quotient_familial.not32 * (no_pac & no_alt & ((caseE | caseK | caseL) & not_(caseN)))
+        n3 = max_(n31, n32)
+        # # note 4 Invalidité de la personne ou du conjoint pour les mariés ou
+        # # jeunes veuf(ve)s
+        n4 = max_(quotient_familial.not41 * (1 * caseP + 1 * caseF), quotient_familial.not42 * (caseW | caseS))
+
+        # # note 5
+        #  - enfant autre et parent isolé
+        n5 = quotient_familial.isol * caseT * (((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2))) + 1 * has_pac)
+
+        # # note 6 invalide avec personne à charge
+        n6 = quotient_familial.not6 * (caseP & (has_pac | has_alt))
+
+        # # note 7 Parent isolé
+        n7 = quotient_familial.isol * caseT * ((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2)) + 1 * has_pac)
+
+        # # Régime des mariés ou pacsés
+        nb_parts_famille = 1 + quotient_familial.conj + enf + n2 + n4
+
+        # # veufs  hors jeune_veuf
+        nb_parts_veuf = 1 + quotient_familial.veuf * (has_pac | has_alt) + enf + n2 + n3 + n5 + n6
+
+        # # celib div
+        nb_parts_celib = 1 + enf + n2 + n3 + n6 + n7
+
+        return (maries_ou_pacses | jeune_veuf) * nb_parts_famille + (veuf & not_(jeune_veuf)) * nb_parts_veuf + celibataire_ou_divorce * nb_parts_celib
+
     def formula(foyer_fiscal, period, parameters):
         '''
         Nombre de parts du foyer fiscal
@@ -3304,7 +3384,7 @@ class nbptr(Variable):
         nb_parts_famille = 1 + quotient_familial.conj + enf + n2 + n4
 
         # # veufs  hors jeune_veuf
-        nb_parts_veuf = 1 + quotient_familial.veuf * (has_pac | has_alt) + enf + n2 + n3 + n5 + n6
+        nb_parts_veuf = 1 + enf + n2 + n3 + n5 + n6
 
         # # celib div
         nb_parts_celib = 1 + enf + n2 + n3 + n6 + n7
