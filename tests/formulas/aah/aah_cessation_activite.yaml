@@ -1,0 +1,61 @@
+- name: AAH niveau Individu - Eligible car cessation d'activité, célibataire, sans enfants
+  description: Montant AAH au niveau de l individu
+  period: 2023-03
+  absolute_error_margin: 1
+  input:
+    taux_incapacite: 0.8
+    age: 50  # eligible aah
+    salaire_imposable: 
+      2023-03: 2000 
+      2023-02: 2000 
+      2023-01: 2000
+      2022-12: 2000
+      2022-11: 2000
+      2022-10: 2000
+      2022-9: 2000
+      2022-8: 2000
+      2022-7: 2000
+      2022-6: 2000
+      2022-5: 2000
+      2022-4: 2000
+      2022-3: 2000
+    en_couple: 0
+    af_nbenf: 0
+    activite: 
+      2023-03: 1
+      2023-02: 0 
+      2023-01: 0 
+      2022-12: 0 
+  output:
+    aah: 260 
+
+- name: AAH niveau Individu - Eligible, célibataire, sans enfants
+  description: Montant AAH au niveau de l individu
+  period: 2023-03
+  absolute_error_margin: 1
+  input:
+    taux_incapacite: 0.8
+    age: 50  # eligible aah
+    salaire_imposable: 
+      2023-03: 1502 
+      2023-02: 1502 
+      2023-01: 1502
+      2022-12: 1502
+      2022-11: 1502
+      2022-10: 1502
+      2022-9: 1502
+      2022-8: 1502
+      2022-7: 1502
+      2022-6: 1502
+      2022-5: 1502
+      2022-4: 1502
+      2022-3: 1502
+    en_couple: 0
+    af_nbenf: 0
+    activite: 
+      2023-03: 0
+      2023-02: 0 
+      2023-01: 0 
+      2022-12: 0 
+  output:
+    aah: 260
