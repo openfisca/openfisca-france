@@ -129,6 +129,7 @@ values:
   2021-04-01:
     value: 1126.41
 metadata:
+  documentation_start: true
   short_label: MTP
   label_en: Amount of markup for constant support to a third party (MTP)
   unit: currency

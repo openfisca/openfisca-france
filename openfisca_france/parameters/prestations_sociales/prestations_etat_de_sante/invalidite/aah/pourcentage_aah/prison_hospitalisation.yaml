@@ -3,19 +3,14 @@ values:
   2000-01-01:
     value: 0.3
 metadata:
-  short_label: Prison ou Hospitalisation
+  short_label: A partir du 60ème jour d'hospitalisation ou d'incarcération
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: pourcentage_aah_prison_hopital
   unit: /1
   reference:
-    2005-07-01:
+    2001-01-01:
       title: Article R821-8 du Code de la Sécurité Sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031828843/
   official_journal_date:
-    2006-07-01: "2006-08-04"
-documentation: |-
-  Notes :
-  Dispositif créé par la loi 75-534 du 30 juin 1975
-  Les dispositions générales relatives à la revalorisation du montant d'AAH sont précisées à l'art. L821-3-1 du CSS.
-  Les droits à l'AAH sont réduits à partir du 61ème jour consécutif en incarcération, hospitalisation ou hébergement en maison d'accueil spécialisé (MAS). Durant les 60 premiers jours, les droits sont conservés dans leur intégralité.
-  Jusqu'au 31 décembre 2010, les titulaires d'une carte d'invalidité bénéficiaient de l'abattement pour invalides mentionné à l'article 157 bis du CGI dans la prise en compte de leurs ressources.
+    2000-01-01: "2006-08-04"
+documentation: Les droits à l'AAH sont réduits à partir du 61ème jour consécutif en incarcération, hospitalisation ou hébergement en maison d'accueil spécialisé (MAS). Durant les 60 premiers jours, les droits sont conservés dans leur intégralité.

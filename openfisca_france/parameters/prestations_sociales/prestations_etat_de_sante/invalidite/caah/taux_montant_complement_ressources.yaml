@@ -21,7 +21,4 @@ metadata:
   notes:
     2008-09-01:
     - title: Depuis 2008, on ajoute 179,31 euros au montant de base de l'AAH
-documentation: |-
-  Notes :
-  Dispositif créé par la loi 75-534 du 30 Juin 1975
-  A multiplier au montant de l'AAH, supprimé en 2008.
+documentation: A multiplier au montant de l'AAH, supprimé en 2008.

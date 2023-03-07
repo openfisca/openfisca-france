@@ -7,8 +7,3 @@ metadata:
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: maj_enf_aah
   unit: /1
-documentation: |-
-  Notes :
-  Dispositif créé par la loi 75-534 du 30 juin 1975
-  Les dispositions générales relatives à la revalorisation du montant d'AAH sont précisées à l'art. L821-3-1 du CSS.
-  Jusqu'au 31 décembre 2010, les titulaires d'une carte d'invalidité bénéficiaient de l'abattement pour invalides mentionné à l'article 157 bis du CGI dans la prise en compte de leurs ressources.
