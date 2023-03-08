@@ -323,6 +323,45 @@ class contrat_de_travail_type(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class TypesContratTravailDureeDeterminee(Enum):
+    '''
+    Tous types contrats : https://travail-emploi.gouv.fr/droit-du-travail/les-contrats-de-travail/
+    CDD, types et durées : https://www.service-public.fr/particuliers/vosdroits/F36
+
+    Contrat vendanges : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006585176/
+    CDD d'insertion : https://www.service-public.fr/particuliers/vosdroits/F14100
+
+    Contrat unique d'insertion (CUI), types : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019869576
+    PEC en CDD ou CDI : https://travail-emploi.gouv.fr/emploi-et-insertion/parcours-emploi-competences/pec
+
+    Articulation CUI/PEC et secteur : https://www.service-public.fr/particuliers/vosdroits/F21006
+    CUI-CIE = Parcours emploi compétence (PEC) - secteur marchand
+    CUI-CAE = Parcours emploi compétence (PEC) - secteur non marchand
+    '''
+    __order__ = 'non_renseigne contrat_general contrat_saisonnier contrat_vendanges contrat_usage contrat_insertion contrat_initiative_emploi contrat_accompagnement_emploi'  # Needed to preserve the enum order in Python 2
+
+    non_renseigne = 'Non renseigné'
+    contrat_general = 'Cas général du contrat de travail à durée déterminée (CDD)'
+
+    contrat_saisonnier = 'CDD à caractère saisonnier'
+    contrat_vendanges = 'CDD à caractère saisonnier pour travaux de vendanges'
+    contrat_usage = "CDD d'usage (CDDU)"  # exemple : CDD d'extra
+    contrat_insertion = "CDD d'insertion (CDDI)"
+
+    contrat_initiative_emploi = "Contrat unique d'insertion - Contrat initiative emploi (CUI-CIE)"
+    contrat_accompagnement_emploi = "Contrat unique d'insertion - Contrat d'accompagnement dans l'emploi (CUI-CAE)"
+
+
+class contrat_duree_determinee_type(Variable):
+    value_type = Enum
+    possible_values = TypesContratTravailDureeDeterminee
+    default_value = TypesContratTravailDureeDeterminee.non_renseigne
+    entity = Individu
+    label = 'Type du contrat de travail à durée déterminée (CDD)'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
 class contrat_aide(Variable):
     value_type = bool
     entity = Individu
@@ -1487,6 +1526,8 @@ class exonerations_et_allegements(Variable):
             'exoneration_cotisations_employeur_apprenti', period, options = [ADD])
         exoneration_cotisations_employeur_geographiques = individu(
             'exoneration_cotisations_employeur_geographiques', period)
+        exoneration_cotisations_employeur_tode = individu(
+            'exoneration_cotisations_employeur_tode', period)
         exoneration_cotisations_employeur_jei = individu(
             'exoneration_cotisations_employeur_jei', period, options = [ADD])
         exoneration_cotisations_employeur_stagiaire = individu(
@@ -1500,6 +1541,7 @@ class exonerations_et_allegements(Variable):
             allegement_fillon
             + allegement_cotisation_maladie
             + allegement_cotisation_allocations_familiales
+            + exoneration_cotisations_employeur_tode
             + exoneration_cotisations_employeur_geographiques
             + exoneration_cotisations_employeur_jei
             + exoneration_cotisations_employeur_apprenti
@@ -1556,3 +1598,60 @@ class type_conges(Variable):
     label = 'Type de congés en cours'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
+
+class TypesTaches(Enum):
+    # https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels (bénéficiaires)
+    non_renseigne = 'Non renseigné'
+    production_animale_vegetale = 'Tâches dans les activités liées au cycle de la production animale et végétale'
+    prolongement_production = "Tâches dans les activités constituant le prolongement direct de l'acte de production"
+    travaux_forestiers = 'Tâches dans les activités liées aux travaux forestiers'
+
+
+class taches_salarie_type(Variable):
+    value_type = Enum
+    possible_values = TypesTaches
+    default_value = TypesTaches.non_renseigne
+    entity = Individu
+    label = 'Type des tâches affectées au salarié'
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
+class travailleur_occasionnel_agricole(Variable):
+    value_type = bool
+    entity = Individu
+    label = 'Le salarié est travailleur occasionnel agricole'
+    definition_period = MONTH
+    reference = 'https://www.msa.fr/lfp/employeur/exonerations-travailleurs-occasionnels'
+    set_input = set_input_dispatch_by_period
+    documentation = '''
+    Sont considérés comme "travailleurs occasionnels agricoles", les salariés qui remplissent deux conditions
+    se rapportant à la nature de leur contrat de travail et à la nature des tâches affectées.
+
+    Cas non modélisé (2022): CDI conclu avec un demandeur d'emploi (inscrit à Pôle emploi depuis au moins 4 mois ou 1 mois
+    si cette inscription fait suite à un licenciement) par un groupement d'employeurs composés exclusivement de membres
+    exerçant les activités éligibles (cycle de la production animale et végétale, travaux forestiers,
+    activités constituant le prolongement direct de l'acte de production).
+    '''
+
+    def formula(individu, period):
+        secteur_agricole = individu('secteur_activite_employeur', period) == TypesSecteurActivite.agricole
+        cdd = individu('contrat_de_travail_type', period) == TypesContrat.cdd
+        contrat_duree_determinee_type = individu('contrat_duree_determinee_type', period)
+
+        cdd_occasionnel_agricole = (
+            (contrat_duree_determinee_type == TypesContratTravailDureeDeterminee.contrat_saisonnier)
+            + (contrat_duree_determinee_type == TypesContratTravailDureeDeterminee.contrat_usage)
+            + (contrat_duree_determinee_type == TypesContratTravailDureeDeterminee.contrat_vendanges)
+            + (contrat_duree_determinee_type == TypesContratTravailDureeDeterminee.contrat_insertion)
+            + (contrat_duree_determinee_type == TypesContratTravailDureeDeterminee.contrat_initiative_emploi)
+            )
+
+        taches_salarie_type = individu('taches_salarie_type', period)
+        taches_eligibles = (
+            (taches_salarie_type == TypesTaches.production_animale_vegetale)
+            + (taches_salarie_type == TypesTaches.prolongement_production)
+            + (taches_salarie_type == TypesTaches.travaux_forestiers)
+            )
+        return secteur_agricole * cdd * cdd_occasionnel_agricole * taches_eligibles
