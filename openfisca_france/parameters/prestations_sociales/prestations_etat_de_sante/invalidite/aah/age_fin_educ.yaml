@@ -1,9 +1,9 @@
-description: Âge minimal pour bénéficier de l'allocation pour adulte handicapé (AAH) si l'individu n'est plus éligible aux allocations familiales
+description: Âge minimal si l'individu n'est plus éligible aux allocations familiales pour bénéficier de l'allocation aux adultes handicapés (AAH)
 values:
   1986-01-01:
     value: 16
 metadata:
-  short_label: Âge minimal sans AF
+  short_label: Âge minimal pour individu sans allocations familiales
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: age_fin_educ_aah
   unit: year

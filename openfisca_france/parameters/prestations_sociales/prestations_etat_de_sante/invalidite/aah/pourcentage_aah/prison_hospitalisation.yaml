@@ -1,9 +1,9 @@
-description: Pourcentage perçu à partir du 60ème jour d'hospitalisation ou d'incarcération de l'allocation pour adulte handicapé (AAH)
+description: Pourcentage perçu, pour une personne hospitalisée ou incarcérée depuis 60 jours, d'allocation aux adultes handicapés (AAH)
 values:
   2000-01-01:
     value: 0.3
 metadata:
-  short_label: A partir du 60ème jour d'hospitalisation ou d'incarcération
+  short_label: Personne hospitalisée ou incarcérée depuis 60 jours
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: pourcentage_aah_prison_hopital
   unit: /1
