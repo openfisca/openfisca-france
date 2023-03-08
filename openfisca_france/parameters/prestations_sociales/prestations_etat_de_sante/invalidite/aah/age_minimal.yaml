@@ -1,4 +1,4 @@
-description: Âge minimal pour bénéficier de l'allocation pour adulte handicapé (AAH)
+description: Âge minimal pour bénéficier de l'allocation aux adultes handicapés (AAH)
 values:
   1986-01-01:
     value: 20
@@ -16,6 +16,6 @@ metadata:
   official_journal_date:
     1986-01-01: "1985-12-21"
 documentation: |-
-  L'âge de 20 ans n'est pas explicitement mentionné. 
-  Mais il l'est implicitement car à partir de 20 ans, un individu ne peut plus donner droit aux allocations familiales. 
+  L'âge de 20 ans n'est pas explicitement mentionné.
+  Mais il l'est implicitement car à partir de 20 ans, un individu ne peut plus donner droit aux allocations familiales.
   Or, c'est la condition mentionnée dans l'article en question.
