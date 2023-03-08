@@ -24,7 +24,7 @@ class exoneration_cotisations_employeur_tode_eligibilite(Variable):
         ]
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    end = '2022-12-31'
+    end = '2025-12-31'
     documentation = '''
         Non modélisé (2022), tout employeur MSA sauf ces employeurs :
         Coopératives d'utilisation de matériel agricole (CUMA).
@@ -58,7 +58,7 @@ class exoneration_cotisations_employeur_tode(Variable):
         ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    end = '2022-12-31'
+    end = '2025-12-31'
     documentation = '''
         Exonération de cotisations et contributions employeur sur les bas salaires.
 
