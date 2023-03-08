@@ -1,6 +1,6 @@
 # Changelog
 
-##
+## 144.2.0 [#1861](https://github.com/openfisca/openfisca-france/pull/1861)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -13,14 +13,14 @@
   - Ajoute des caractéristiques du salarié : `contrat_duree_determinee_type`, `taches_salarie_type` et `travailleur_occasionnel_agricole`
   - Adapte `allegement_cotisation_allocations_familiales` et ajoute `allegement_cotisation_allocations_familiales_base` pour le non cumul avec `allegement_fillon`
 
-# 144.0.0 [#2041](https://github.com/openfisca/openfisca-france/pull/2041)
+## 144.1.0 [#2041](https://github.com/openfisca/openfisca-france/pull/2041)
 
 * Amélioration technique.
 * Périodes concernées : à partir du 01/01/2008.
 * Zones impactées :
-  - `/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/decote/seuil.yaml`
-  - `/openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
-  - `/parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial/`
+  - `parameters/impot_revenu/calcul_impot_revenu/plaf_qf/decote/seuil.yaml`
+  - `model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `parameters/impot_revenu/calcul_impot_revenu/plaf_qf/quotient_familial/`
 * Détails :
   - Ajout d'une valeur nulle pour un paramètre de la décote qui est remplacé par d'autres paramètres à partir des revenus 2014
   - Modification de la variable nbptr suite à des changements de paramètres en 2008 :
@@ -109,7 +109,7 @@
 * Périodes concernées : toutes.
 * Zones impactées : `parameters`.
 * Détails :
-  -  Nettoie les paramètres YAML afin que leur structure et l'ordre de leurs champs soit uniformes
+  - Nettoie les paramètres YAML afin que leur structure et l'ordre de leurs champs soit uniformes
   - Corrige le champ order de `parameters/geopolitique/index.yaml`
 
 # 143.0.0 [#2001](https://github.com/openfisca/openfisca-france/pull/2001)
@@ -134,17 +134,17 @@
 * Changement mineur.
 * Périodes concernées : toutes. | jusqu'au JJ/MM/AAAA. | à partir du JJ/MM/AAAA.
 * Zones impactées :
-     * `parameters/prelevements_sociaux/contributions_sociales/crds`.
-     *  `prelevements_sociaux/contributions_sociales/csg`
-     *  `prestations_sociales/prestations_familiales/education_presence_parentale/aeeh`
-     *  `prestations_sociales/prestations_familiales/petite_enfance/paje`
-     *  `prestations_sociales/prestations_familiales/prestations_generales/af`
-     *  `prestations_sociales/prestations_familiales/prestations_generales/cf/cf_cm/complement_familial`
+  - `parameters/prelevements_sociaux/contributions_sociales/crds`.
+  -  `prelevements_sociaux/contributions_sociales/csg`
+  -  `prestations_sociales/prestations_familiales/education_presence_parentale/aeeh`
+  -  `prestations_sociales/prestations_familiales/petite_enfance/paje`
+  -  `prestations_sociales/prestations_familiales/prestations_generales/af`
+  -  `prestations_sociales/prestations_familiales/prestations_generales/cf/cf_cm/complement_familial`
 
 * Détails
-    - Modifie les labels pour les rendre plus explicites
-    - Rectifie des erreurs de labels
-    - Ajoute des références, notamment les articles codifiés.
+  - Modifie les labels pour les rendre plus explicites
+  - Rectifie des erreurs de labels
+  - Ajoute des références, notamment les articles codifiés.
 
 ### 142.0.3 [#2025](https://github.com/openfisca/openfisca-france/pull/2025)
 
@@ -186,30 +186,30 @@
 * Changement mineur.
 * Périodes concernées : toutes
 * Zones impactées :
-   - `impot_revenu/prelevements_forfaitaires/`
-   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage/apprentissage_taxe`
-   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage/csa`
-   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/construction`
-   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/fin_syndic`
-   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/contribution_unique_formation`
-   - `prelevements_sociaux/autres_taxes_participations_assises_salaires/fnal`
-   - `prelevements_sociaux/contributions_assises_specifiquement_accessoires_salaire/forfait_social`
-   - `prelevements_sociaux/cotisations_secteur_public/mmid`
-   - `prelevements_sociaux/cotisations_securite_sociale_regime_general/cnav`
-   - `prelevements_sociaux/regimes_complementaires_retraite_secteur_prive`
-   - `prestations_sociales/aides_logement/reduction_loyer_solidarite`
-   - `prelevements_sociaux/contributions_sociales/crds`
-   - `prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid`
-   - `prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales`
-   - `prelevements_sociaux/reductions_cotisations_sociales/fillon`
-   - `prestations_sociales/prestations_etat_de_sante/invalidite/aah`
-   - `prestations_sociales/prestations_etat_de_sante/invalidite/asi`
-   - `prestations_sociales/prestations_familiales/bmaf`
-   - `prestations_sociales/prestations_familiales/education_presence_parentale/aeeh`
-   - `prestations_sociales/prestations_familiales/education_presence_parentale/ars`
-   - `prestations_sociales/prestations_familiales/petite_enfance/paje`
-   - `prestations_sociales/prestations_familiales/prestations_generales/af`
-   - `prestations_sociales/prestations_familiales/prestations_generales/cf`
+  - `parameters/impot_revenu/prelevements_forfaitaires/`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage/apprentissage_taxe`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/apprentissage/csa`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/construction`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/fin_syndic`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/contribution_unique_formation`
+  - `parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/fnal`
+  - `parameters/prelevements_sociaux/contributions_assises_specifiquement_accessoires_salaire/forfait_social`
+  - `parameters/prelevements_sociaux/cotisations_secteur_public/mmid`
+  - `parameters/prelevements_sociaux/cotisations_securite_sociale_regime_general/cnav`
+  - `parameters/prelevements_sociaux/regimes_complementaires_retraite_secteur_prive`
+  - `parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite`
+  - `parameters/prelevements_sociaux/contributions_sociales/crds`
+  - `parameters/prelevements_sociaux/reductions_cotisations_sociales/alleg_gen/mmid`
+  - `parameters/prelevements_sociaux/reductions_cotisations_sociales/allegement_cotisation_allocations_familiales`
+  - `parameters/prelevements_sociaux/reductions_cotisations_sociales/fillon`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/asi`
+  - `parameters/prestations_sociales/prestations_familiales/bmaf`
+  - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/aeeh`
+  - `parameters/prestations_sociales/prestations_familiales/education_presence_parentale/ars`
+  - `parameters/prestations_sociales/prestations_familiales/petite_enfance/paje`
+  - `parameters/prestations_sociales/prestations_familiales/prestations_generales/af`
+  - `parameters/prestations_sociales/prestations_familiales/prestations_generales/cf`
 * Détails :
   - Change des labels (ux_name et description) pour corriger des erreurs ou préciser le sens.
   - Ajoute des références :
@@ -317,10 +317,11 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2022
 * Zones impactées :
-   - `openfisca-france\openfisca_france\model\prestations\minima_sociaux\per.py`.
-   - `openfisca_france\parameters\prestations_sociales\solidarite_insertion\minima_sociaux\per`
+  - `openfisca-france\openfisca_france\model\prestations\minima_sociaux\per.py`.
+  - `openfisca_france\parameters\prestations_sociales\solidarite_insertion\minima_sociaux\per`
 * Détails :
   - Ajout de la prime exceptionnelle de rentrée versée en 2022
+
 ### 138.1.5 [#1995](https://github.com/openfisca/openfisca-france/pull/1995)
 
 * Changement mineur.
