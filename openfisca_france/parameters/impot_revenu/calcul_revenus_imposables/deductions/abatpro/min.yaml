@@ -62,6 +62,8 @@ values:
     value: 442
   2021-01-01:
     value: 448
+  2022-01-01:
+    value: 472
 metadata:
   short_label: Minimum (cas général)
   ipp_csv_id: min_abtsal
@@ -142,6 +144,9 @@ metadata:
       href: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000042753580/2021-01-22/
     2021-01-01:
       title: Revalorisation comme prevue dans l'article 83 de la Loi 2020-1721 du 29/12/2020 (LF pour 2021)
+    2022-01-01:
+      title: Impôt sur le revenu - Frais professionnels - forfait ou frais réels (déduction)
+      href: https://www.service-public.fr/particuliers/vosdroits/F1989
   official_journal_date:
     1990-01-01: "1990-12-30"
     1991-01-01: "1991-12-31"

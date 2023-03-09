@@ -54,6 +54,8 @@ values:
     value: 394
   2021-01-01:
     value: 400
+  2022-01-01:
+    value: 422
 metadata:
   short_label: Minimum
   ipp_csv_id: min_abtpen
@@ -133,6 +135,10 @@ metadata:
     - title: Revalorisation comme prevue dans l'article 83 de la Loi 2020-1721 du 29/12/2020 (LF pour 2021)
     - title: Art. 2 de la loi no 2021-1900 du 30 décembre 2021 de finances pour 2022
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044637653
+    2022-01-01:
+      title: Impôt sur le revenu - Pension alimentaire perçue par un ex-conjoint
+      href: https://www.demarches.interieur.gouv.fr/particuliers/impot-revenu-pension-alimentaire-percue-ex-conjoint
+      
   official_journal_date:
     1978-01-01: "1978-12-30"
     1992-01-01: "1992-12-31"
