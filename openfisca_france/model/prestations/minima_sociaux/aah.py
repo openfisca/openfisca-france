@@ -44,7 +44,7 @@ class aah_base_ressources(Variable):
         aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
         en_activite = individu('activite', period) == TypesActivite.actif
-        ressource_interrompue = not_((individu('activite', period) == TypesActivite.actif) + (individu('activite', period) == TypesActivite.etudiant))
+        ressource_interrompue = not_(en_activite + (individu('activite', period) == TypesActivite.etudiant))
 
         def assiette_conjoint(revenus_conjoint):
             af_nbenf = individu.famille('af_nbenf', period)
