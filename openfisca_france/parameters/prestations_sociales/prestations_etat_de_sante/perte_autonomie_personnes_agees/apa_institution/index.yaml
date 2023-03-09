@@ -1,7 +1,7 @@
 description: Allocation personnalisée d'autonomie en institution (APA)
 metadata:
   documentation_start: true
-  short_label: APA en institution
+  short_label: Allocation personnalisée d'autonomie en institution (APA)
   label_en: Attendance allowance for individuals living in a nursing home (APA)
   order:
   - seuil_inferieur

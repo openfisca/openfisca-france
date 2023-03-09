@@ -1,6 +1,6 @@
 description: Prestation spécifique dépendance (PSD)
 metadata:
-  short_label: PSD
+  short_label: Prestation spécifique dépendance (PSD)
   label_en: Attendance allowance (PSD)
   order:
   - seuil_ressources_en_fr_an

@@ -130,7 +130,7 @@ values:
     value: 1126.41
 metadata:
   documentation_start: true
-  short_label: MTP
+  short_label: Majoration tierce personne (MTP)
   label_en: Amount of markup for constant support to a third party (MTP)
   unit: currency
   reference:

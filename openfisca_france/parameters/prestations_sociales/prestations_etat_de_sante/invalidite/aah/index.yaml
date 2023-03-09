@@ -1,7 +1,7 @@
 description: Allocation aux adultes handicapés (AAH)
 metadata:
   documentation_start: true
-  short_label: AAH
+  short_label: Allocation aux adultes handicapés (AAH)
   label_en: Adult disability allowance (AAH)
   order:
   - age_minimal
