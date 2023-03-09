@@ -186,8 +186,8 @@ class aah_base_ressources(Variable):
         law = parameters(period)
         aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
-        en_activite = ((individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year)) > 0)
-        ressource_interrompue = not_((individu('activite', period) == TypesActivite.actif) + (individu('activite', period) == TypesActivite.etudiant))
+        en_activite = individu('activite', period) == TypesActivite.actif
+        ressource_interrompue = not_(en_activite + (individu('activite', period) == TypesActivite.etudiant))
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
