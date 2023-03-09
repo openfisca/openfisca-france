@@ -1,4 +1,4 @@
-description: Majoration du plafond de l'AAH pour un couple (en pourcentage du plafond de base)
+description: Majoration du plafond de ressources pour un couple (en pourcentage du plafond de base) de l'allocation aux adultes handicapées (AAH)
 values:
   2000-07-01:
     value: 1
@@ -7,7 +7,7 @@ values:
   2019-11-01:
     value: 0.81
 metadata:
-  short_label: Couple
+  short_label: Pour un demandeur en couple
   last_value_still_valid_on: "2023-01-16"
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: maj_couple_aah
@@ -24,8 +24,3 @@ metadata:
   official_journal_date:
     2018-11-01: "2018-11-03"
     2019-11-01: "2019-11-13"
-documentation: |-
-  Notes :
-  Dispositif créé par la loi 75-534 du 30 juin 1975
-  Les dispositions générales relatives à la revalorisation du montant d'AAH sont précisées à l'art. L821-3-1 du CSS.
-  Jusqu'au 31 décembre 2010, les titulaires d'une carte d'invalidité bénéficiaient de l'abattement pour invalides mentionné à l'article 157 bis du CGI dans la prise en compte de leurs ressources.

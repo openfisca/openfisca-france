@@ -24,9 +24,9 @@ class cesthra(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         salaire_imposable_i = foyer_fiscal.members('salaire_imposable', period, options = [ADD])
-        law_cesthra = parameters(period).cesthra
+        _cesthra = parameters(period).cesthra
 
-        cesthra_i = max_(salaire_imposable_i - law_cesthra.seuil, 0) * law_cesthra.taux
+        cesthra_i = max_(salaire_imposable_i - _cesthra.seuil, 0) * _cesthra.taux
 
         return foyer_fiscal.sum(cesthra_i)
 
@@ -44,15 +44,15 @@ class irpp(Variable):
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
         contribution_exceptionnelle_hauts_revenus = foyer_fiscal('contribution_exceptionnelle_hauts_revenus', period)
         cesthra = foyer_fiscal('cesthra', period = period)
-        P = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
+        recouvrement = parameters(period).impot_revenu.calcul_impot_revenu.recouvrement
 
         pre_result = iai - credits_impot - acomptes_ir + contribution_exceptionnelle_hauts_revenus + cesthra
 
         return (
-            (iai > P.seuil)
-            * ((pre_result < P.min) * (pre_result > 0) * iai * 0
-            + ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result))
-            + (iai <= P.seuil) * ((pre_result < 0) * (-pre_result)
+            (iai > recouvrement.seuil)
+            * ((pre_result < recouvrement.min) * (pre_result > 0) * iai * 0
+            + ((pre_result <= 0) + (pre_result >= recouvrement.min)) * (- pre_result))
+            + (iai <= recouvrement.seuil) * ((pre_result < 0) * (-pre_result)
             + (pre_result >= 0) * 0 * iai)
             )
 

@@ -1,4 +1,4 @@
-description: Plafond GIR 2 (en part de la MTP mensuelle) de l'APA à domicile (Allocation personnalisée d'autonomie à domicile)
+description: Plafond GIR 2 (en part de la MTP mensuelle) de l'allocation personnalisée d'autonomie (APA) à domicile
 values:
   2002-01-01:
     value: 1.02
@@ -18,11 +18,3 @@ metadata:
   official_journal_date:
     2002-01-01: "2001-11-21"
     2016-03-01: "2016-02-28"
-documentation: |-
-  Notes :
-  L'APA correspond au montant dont bénéficie effectivement le bénéficiaire moins la participation laissée à la charge du bénéficiaire.
-  (1) Les seuils déterminent le calcul de la participation du bénéficiaire et de la part prise en charge par l'APA. Les bénéficiaires dont les revenus mensuels sont en dessous du seuil inférieur participent au taux de participation minimum. Les bénéficiaires qui ont des revenus mensuels entre le seuil inférieur et le seuil supérieur ont un taux de participation compris entre le taux minimum et le taux maximum selon leurs ressources. Les bénéficiaires qui ont des revenus au-dessus du seuil supérieur participent au taux de participation maximum.
-  MTP : majoration pour aide constante d'une tierce personne
-  (2) L'APA peut être attribuée dans le cadre d'une procédure d'urgence, le montant forfaitaire est une fraction du montant maximum pour le GIR 1.
-  (3) L'APA n'est pas versée lorsque son montant après retranchement de la participation du bénéficiaire est inférieur à ce seuil de non-versement.
-  (4) Deux majorations dépendent de la situation du proche aidant: le plafond peut être majoré lorsque le proche aidant a besoin de répit (évalué par une équipe médico-sociale), ou en cas d'hospitalisation du proche aidant. Dans le premier cas le montant maximum de la majoration est fixé de manière annuelle, dans le second cas il est fixé par hospitalisation.

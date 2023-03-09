@@ -212,8 +212,8 @@ class asi(Variable):
         en_couple = individu.famille('en_couple', period)
         asi_aspa_nb_alloc = individu.famille('asi_aspa_nb_alloc', period)
         base_ressources = individu.famille('asi_aspa_base_ressources', period)
-        P_asi = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.asi
-        P_aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa
+        asi = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.asi
+        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa
 
         demandeur_eligible_asi = individu.famille.demandeur('asi_eligibilite', period)
         demandeur_eligible_aspa = individu.famille.demandeur('aspa_eligibilite', period)
@@ -232,11 +232,11 @@ class asi(Variable):
         elig5 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & not_(maries)
 
         plafond_ressources = (
-            elig1 * (P_asi.plafond_ressource_seul * not_(en_couple) + P_asi.plafond_ressource_couple * en_couple)
-            + elig2 * P_asi.plafond_ressource_couple
-            + elig3 * P_asi.plafond_ressource_couple
-            + elig4 * P_aspa.plafond_ressources.couples
-            + elig5 * P_aspa.plafond_ressources.couples) / 12
+            elig1 * (asi.plafond_ressource_seul * not_(en_couple) + asi.plafond_ressource_couple * en_couple)
+            + elig2 * asi.plafond_ressource_couple
+            + elig3 * asi.plafond_ressource_couple
+            + elig4 * aspa.plafond_ressources.couples
+            + elig5 * aspa.plafond_ressources.couples) / 12
 
         montant_servi_asi = max_(plafond_ressources - base_ressources, 0)
 
@@ -310,12 +310,10 @@ class aspa_couple(Variable):
 
     def formula_2002_01_01(famille, period):
         maries = famille('maries', period)
-
         return maries
 
     def formula_2007_01_01(famille, period):
         en_couple = famille('en_couple', period)
-
         return en_couple
 
 

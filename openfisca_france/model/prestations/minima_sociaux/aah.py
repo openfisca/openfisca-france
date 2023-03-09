@@ -40,11 +40,11 @@ class aah_base_ressources(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):  # formule pour les cas les plus anciens, moins vérifiée (sans abattement à part celui de 20% sur les revenus du conjoint)
-        law = parameters(period)
-        aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
+        _parameters = parameters(period)
+        aah = _parameters.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
         def assiette_conjoint(revenus_conjoint):
-            return (1 - law.impot_revenu.calcul_revenus_imposables.deductions.taux_salaires_pensions) * (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
+            return (1 - _parameters.impot_revenu.calcul_revenus_imposables.deductions.taux_salaires_pensions) * (1 - aah.abattement_conjoint.abattement_proportionnel) * revenus_conjoint
 
         def base_ressource_eval_annuelle():
             base_ressource = individu('aah_base_ressources_activite_eval_annuelle', period) + individu('aah_base_ressources_hors_activite_eval_annuelle', period)
@@ -605,12 +605,12 @@ class caah(Variable):
         return max_(complement_ressources_aah, mva) * eligibilite_caah
 
     def formula_2005_07_01(individu, period, parameters):
-        law = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite
+        invalidite = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite
         annee_precedente = period.start.period('year').offset(-1)
         activite_12_mois = individu('salaire_imposable', annee_precedente, options = [ADD]) + individu('rpns_imposables', annee_precedente)
 
-        garantie_ressources = law.caah.garantie_ressources
-        aah_montant = law.aah.montant
+        garantie_ressources = invalidite.caah.garantie_ressources
+        aah_montant = invalidite.aah.montant
 
         aah = individu('aah', period)
         asi_eligibilite = individu('asi_eligibilite', period)
@@ -624,8 +624,7 @@ class caah(Variable):
 
         locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
         logement_independant = (individu.has_role(Menage.PERSONNE_DE_REFERENCE) + individu.has_role(Menage.CONJOINT)) * not_(locataire_foyer)
-        incapacite = (taux_incapacite >= law.aah.taux_capacite.taux_incapacite)
-        # non_capacite = (taux_capacite < law.aah.taux_capacite.taux_capacite_travail)
+        incapacite = (taux_incapacite >= invalidite.aah.taux_capacite.taux_incapacite)
 
         elig_cpl = ((aah > 0) | (benef_asi > 0)) * incapacite * (activite_12_mois == 0) * logement_independant  # * non_capacite
         # TODO: revenus professionnels ?
@@ -633,30 +632,24 @@ class caah(Variable):
 
         elig_mva = (al > 0) * ((aah > 0) | (benef_asi > 0)) * incapacite * (activite_12_mois == 0) * logement_independant  # * non_capacite
 
-        mva = law.caah.majoration_vie_autonome * elig_mva
+        mva = invalidite.caah.majoration_vie_autonome * elig_mva
 
         return max_(compl_ress, mva)
 
     def formula_1994_07_01(individu, period, parameters):
-        law = parameters(period).prestations_sociales
-
-        cpltx = law.prestations_etat_de_sante.invalidite.caah.taux_montant_complement_ressources
-        aah_montant = law.prestations_etat_de_sante.invalidite.aah.montant
-
+        prestations_etat_de_sante = parameters(period).prestations_sociales.prestations_etat_de_sante
+        cpltx = prestations_etat_de_sante.invalidite.caah.taux_montant_complement_ressources
+        aah_montant = prestations_etat_de_sante.invalidite.aah.montant
         aah = individu('aah', period)
         asi_eligibilite = individu('asi_eligibilite', period)
         asi = individu('asi', period)
         benef_asi = (asi_eligibilite * (asi > 0))
-        # montant allocs logement de la famille
         al = individu.famille('aide_logement_montant', period)
         taux_incapacite = individu('taux_incapacite', period)
         locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
-
-        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite) * not_(locataire_foyer)
-
+        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= prestations_etat_de_sante.invalidite.aah.taux_capacite.taux_incapacite) * not_(locataire_foyer)
         ancien_caah = cpltx * aah_montant * elig_ancien_caah
         # En fait le taux cpltx perdure jusqu'en 2008 officiellement, la différence garantie-ressource et aah restant cependant constante égale à la valeur du complément d'allocation, 179,31
-
         return ancien_caah
 
 

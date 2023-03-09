@@ -1,4 +1,4 @@
-description: Montant mensuel du complément de ressources aux adultes handicapés (à partir de 2007), CAAH
+description: Montant mensuel du complément de ressources aux adultes handicapés (CAAH)
 values:
   2002-01-01:
     value: null
@@ -29,7 +29,4 @@ metadata:
   notes:
     2019-12-01:
     - title: Suppression du complément de ressources au 1er Décembre 2019
-documentation: |-
-  Notes :
-  Dispositif créé par la loi 75-534 du 30 Juin 1975
-  Montant à ajouter à l'AAH pour obtenir le montant mensuel de la garantie de ressources pour les personnes handicapées. Supprimé au 1er décembre 2019, le complément est toutefois versé pour 10 ans supplémentaires, soit jusqu'au 30 novembre 2029, pour les ayants droit actuels. Non cumulable avec la MVA, il était accordé pour des bénéficiaires qui devaient avoir un taux d'incapacité d'au moins 80 %, une capacité de travail inférieure à 5 % du fait du handicap (appréciée par la CDAPH), percevoir l'AAH à taux plein ou un complément d'un avantage vieillesse ou d'invalidité ou d'une rente d'accident du travail, ne pas avoir perçu de revenu à caractère professionnel depuis un an à la date du dépôt de la demande de complément et vivre dans un logement indépendant.
+documentation: Montant à ajouter à l'AAH pour obtenir le montant mensuel de la garantie de ressources pour les personnes handicapées. Supprimé au 1er décembre 2019, le complément est toutefois versé pour 10 ans supplémentaires, soit jusqu'au 30 novembre 2029, pour les ayants droit actuels. Non cumulable avec la MVA, il était accordé pour des bénéficiaires qui devaient avoir un taux d'incapacité d'au moins 80 %, une capacité de travail inférieure à 5 % du fait du handicap (appréciée par la CDAPH), percevoir l'AAH à taux plein ou un complément d'un avantage vieillesse ou d'invalidité ou d'une rente d'accident du travail, ne pas avoir perçu de revenu à caractère professionnel depuis un an à la date du dépôt de la demande de complément et vivre dans un logement indépendant.

@@ -1,4 +1,4 @@
-description: Seuil minimal de versement de la PSD (en part du salaire horaire brut minimum de croissance) de la Prestation spécifique dépendance (PSD, 1997-2001), Perte d'autonomie des personnes âgées
+description: Seuil minimal de versement (en part du salaire horaire brut minimum de croissance) de la prestation spécifique dépendance (PSD)
 values:
   1997-05-01:
     value: 3
@@ -6,14 +6,10 @@ values:
     value: null
 metadata:
   short_label: Seuil minimal
-  label_en: Attendance allowance (PSD, 1997-2001))
+  label_en: Attendance allowance (PSD)
   unit: SMIC
   reference:
     1997-05-01:
       title: Arrêté du 28/04/1997
   official_journal_date:
     1997-05-01: "1997-04-30"
-documentation: |-
-  Notes:
-  (1) Les personnes éligibles à la PSD doivent être âgées d'au moins 60 ans et faire partie des groupes iso-ressources 1, 2 ou 3.
-  (2) La PSD attribuable comprend les dépenses d'aide à la personne engagées par le contribuable, dans la limite de la majoration pour aide constante d'une tierce personne (qui équivaut au montant maximal de PSD pouvant être versé). Le montant effectivement versé dépend des ressources du bénéficiaire. Le bénéfice pour un contribuable au seuil de ressources est de 80% du MTP. Le plafond de l'allocation est réduit d'un franc pour tout franc de revenu au-delà de ce seuil. Dans l'autre sens (les contribuables en-deça du seuil de ressources), le plafond de PSD versée est augmenté de un euro pour chaque euro de différence entre les ressources du bénéficiaire et le seuil de ressources, dans la limite de 100% du MTP. On parle d'allocation différentielle.

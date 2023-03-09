@@ -1,5 +1,16 @@
 # Changelog
 
+# 145.0.0 [#2039](https://github.com/openfisca/openfisca-france/pull/2039)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees`.
+* Détails :
+  - Nettoie les `description` et `short_label`
+  -  Dans `prestations_sociales/prestations_etat_de_sante/perte_autonomie_personnes_agees`:
+    - Renome `apa_mtp.mtp` en `mtp`
+    - Renome `psd.montant_psd.seuils` en `psd.montant_psd.seuil`
+
 ## 144.2.0 [#1861](https://github.com/openfisca/openfisca-france/pull/1861)
 
 * Évolution du système socio-fiscal.
@@ -46,7 +57,7 @@
   - Recherche et ajout des références législatives
   - Ajout de références pour `seuil` et `seuil_tpe`
   - Certains paramètres sont en doublons (`souscription_capital.taux` et souscription_capital.taux18, 22 et 25`) mais cela reflète de la modélisation et d'une complexité législative: les taux changent au cours du temps mais selon la date de souscription, ce n'est pas toujours le taux en vigueur qui s'applique)
-  
+
 ### 143.1.2 [#2042](https://github.com/openfisca/openfisca-france/pull/2042)
 
 * Changement mineur.
