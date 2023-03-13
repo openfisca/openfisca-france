@@ -13,6 +13,7 @@ jobs:
       matrix:
         os: ["ubuntu-20.04"]  # On peut ajouter "macos-latest" si besoin
         python-version: ["3.9.9", "3.10.6"]
+        openfisca-dependencies: [minimal, maximal]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,21 +26,28 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
           restore-keys: |  # in case of a cache miss (systematically unless the same commit is built repeatedly), the keys below will be used to restore dependencies from previous builds, and the cache will be stored at the end of the job, making up-to-date dependencies available for all jobs of the workflow; see more at https://docs.github.com/en/actions/advanced-guides/caching-dependencies-to-speed-up-workflows#example-using-the-cache-action
             build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ matrix.os }}
             build-${{ env.pythonLocation }}-${{ matrix.os }}
       - name: Build package
         run: make build
+      - name: Minimal version
+        if: matrix.openfisca-dependencies == 'minimal'
+        run: | # Installs the OpenFisca dependencies minimal version from setup.py
+            pip install $(python ${GITHUB_WORKSPACE}/.github/get_minimal_version.py)
       - name: Cache release
         id: restore-release
         uses: actions/cache@v3
         with:
           path: dist
-          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}
+          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
 
   lint-files:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        dependencies-version: [maximal]
     needs: [ build ]
     steps:
       - uses: actions/checkout@v3
@@ -54,7 +62,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04-${{ matrix.dependencies-version }}
       - run: make check-syntax-errors
       - run: make check-style
       - name: Lint Python files
@@ -69,6 +77,7 @@ jobs:
       matrix:
         os: [ "ubuntu-20.04" ]  # On peut ajouter "macos-latest" si besoin
         python-version: ["3.9.9", "3.10.6"]
+        openfisca-dependencies: [minimal, maximal]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
@@ -80,7 +89,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}-${{ matrix.openfisca-dependencies }}
       - run: |
           shopt -s globstar
           openfisca test tests/**/*.py
@@ -106,6 +115,7 @@ jobs:
         # Remember to update ci_node_index below to 0..N-1
         ci_node_total: [ 10 ]
         ci_node_index: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+        openfisca-dependencies: [minimal, maximal]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -118,7 +128,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04-${{ matrix.openfisca-dependencies }}
       - name: Split YAML tests
         id: yaml-test
         env:
@@ -132,6 +142,9 @@ jobs:
 
   test-api:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        dependencies-version: [maximal]
     needs: [ build ]
     steps:
       - uses: actions/checkout@v3
@@ -144,7 +157,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04-${{ matrix.dependencies-version }}
       - name: Test the Web API
         run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
 
@@ -184,6 +197,9 @@ jobs:
 
   deploy:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        dependencies-version: [maximal]
     needs: [ check-for-functional-changes ]
     if: needs.check-for-functional-changes.outputs.status == 'success'
     env:
@@ -202,13 +218,13 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04-${{ matrix.dependencies-version }}
       - name: Cache release
         id: restore-release
         uses: actions/cache@v3
         with:
           path: dist
-          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
+          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04-${{ matrix.dependencies-version }}
       - name: Upload a Python package to PyPi
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
