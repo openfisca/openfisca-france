@@ -3,6 +3,8 @@ brackets:
 - threshold:
     1998-01-01:
       value: 0
+    2012-01-01:
+      value: 0
   rate:
     1991-02-01:
       value: 0.05
@@ -13,13 +15,19 @@ brackets:
 - threshold:
     2011-01-01:
       value: 4
+    2012-01-01:
+      value: 4
   rate:
-    1991-02-01:
-      value: 0.05
-    2005-01-01:
-      value: 0.03
     2011-01-01:
       value: null
+    2012-01-01:
+      value: 0.023
+- threshold:
+    2012-01-01:
+      value: 7
+  rate:
+    2012-01-01:
+      value: 0.045
 metadata:
   short_label: Abattement
   last_value_still_valid_on: "2021-12-15"
