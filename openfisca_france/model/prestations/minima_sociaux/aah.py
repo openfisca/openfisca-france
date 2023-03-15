@@ -66,8 +66,9 @@ class aah_base_ressources(Variable):
 
         def base_ressource_eval_trim():
             three_previous_months = Period(('month', period.first_month.start, 3)).offset(-3)
-            base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
-            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressources_activite_milieu_protege = individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - base_ressources_activite_milieu_protege
+            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + base_ressources_activite_milieu_protege
 
             base_ressource_demandeur = assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite
 
@@ -156,8 +157,9 @@ class aah_base_ressources(Variable):
 
         def base_ressource_eval_trim():
             three_previous_months = Period(('month', period.first_month.start, 3)).offset(-3)
-            base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
-            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressources_activite_milieu_protege = individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - base_ressources_activite_milieu_protege
+            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + base_ressources_activite_milieu_protege
 
             base_ressource_demandeur = assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite
 
@@ -188,7 +190,7 @@ class aah_base_ressources(Variable):
 
 class aah_base_ressources_conjugalisee(Variable):
     value_type = float
-    label = "Base ressources de l'allocation adulte handicapé"
+    label = 'Base ressources de l\'allocation adulte handicapé'
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -225,8 +227,9 @@ class aah_base_ressources_conjugalisee(Variable):
 
         def base_ressource_eval_trim():
             three_previous_months = Period(('month', period.first_month.start, 3)).offset(-3)
-            base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
-            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressources_activite_milieu_protege = individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - base_ressources_activite_milieu_protege
+            base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + base_ressources_activite_milieu_protege
 
             base_ressource_demandeur = assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite
 
@@ -562,7 +565,7 @@ class aah_base(Variable):
 class aah_base_conjugalisee(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = "Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
+    label = 'Montant de l\'Allocation adulte handicapé (hors complément) pour un individu, mensualisée'
     entity = Individu
     reference = [
         'Article L821-1 du Code de la sécurité sociale',
