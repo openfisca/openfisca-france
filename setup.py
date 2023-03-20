@@ -67,7 +67,8 @@ setup(
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        'OpenFisca-Core >=35.8.0,<36.0',
+        # 'OpenFisca-Core >=35.8.0,<36.0',
+        'OpenFisca-Core @ git+https://github.com/openfisca/openfisca-core.git@test-python-3-matrix',
         ],
     packages = find_packages(exclude = [
         'openfisca_france.tests*',
