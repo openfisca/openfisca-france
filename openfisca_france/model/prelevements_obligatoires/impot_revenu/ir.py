@@ -2566,7 +2566,7 @@ class defncn(Variable):
         return min_(
             f5ht + f5it + f5jt + f5kt + f5lt + f5mt,
             abat_rpns(mncn_impo, specialbnc.services) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene
-            )  #  TODO check !
+            )  # TODO check !
 
 
 class defmeu(Variable):

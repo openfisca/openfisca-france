@@ -271,7 +271,7 @@ def apply_bareme_for_relevant_type_sal(
                 # FIXME: dirty fix since public_titulaire_militaire does not exist
                 if categorie_salarie_type.name == 'public_titulaire_militaire':
                     continue
-                raise(e)
+                raise e
 
             if bareme_name in cotisations_by_categorie_salarie[categorie_salarie_type.name]:
                 bareme = categorie_salarie_baremes[bareme_name]
