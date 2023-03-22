@@ -139,8 +139,9 @@ class aah_base_ressources(Variable):
         law = parameters(period)
         aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
-        en_activite = ((individu('salaire_imposable', period, options = [ADD]) + individu('rpns_imposables', period.last_year) > 0))
-
+        en_activite = individu('activite', period) == TypesActivite.actif
+        ressource_interrompue = not_(en_activite + (individu('activite', period) == TypesActivite.etudiant))
+        
         def assiette_conjoint(revenus_conjoint):
             af_nbenf = individu.famille('af_nbenf', period)
             revenus = (1 - law.impot_revenu.calcul_revenus_imposables.deductions.taux_salaires_pensions) * revenus_conjoint
@@ -150,7 +151,18 @@ class aah_base_ressources(Variable):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
             total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
             total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
-            return (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
+            revenus_abattus_smic = (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
+            
+            last_month = period.start.period('month').offset(-1)
+            has_ressources_substitution = (
+                individu('chomage_net', last_month)
+                + individu('retraite_nette', last_month)
+                + individu('rente_accident_travail', last_month) 
+                + individu('pensions_invalidite', last_month)
+                ) > 0
+            abattement_cessation_activite = (1 - aah.abattement_cessation_activite * (ressource_interrompue + has_ressources_substitution))
+
+            return abattement_cessation_activite * (revenus_abattus_smic)
        
         
         def base_ressource_eval_trim():
@@ -177,7 +189,7 @@ class aah_base_ressources(Variable):
             return base_ressource + assiette_conjoint(base_ressource_conjoint)
 
         return where(
-            en_activite,
+            (en_activite + ressource_interrompue),
             base_ressource_eval_trim() / 12,
             base_ressource_eval_annuelle() / 12
             )
@@ -193,7 +205,7 @@ class aah_base_ressources(Variable):
             smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
             total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
             total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
-            revenus_abattus_smic = (1 - aah.travail_ordinaire.abbatement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
+            revenus_abattus_smic = (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
             
             last_month = period.start.period('month').offset(-1)
             has_ressources_substitution = (
@@ -202,8 +214,9 @@ class aah_base_ressources(Variable):
                 + individu('rente_accident_travail', last_month) 
                 + individu('pensions_invalidite', last_month)
                 ) > 0
-            abattement_cessation_activite = (1 - aah.abbatement_cessation_activite * (ressource_interrompue + has_ressources_substitution))
-
+            abattement_cessation_activite = (1 - aah.abattement_cessation_activite * (ressource_interrompue + has_ressources_substitution))
+            print(revenus_abattus_smic)
+            print(abattement_cessation_activite)
             return abattement_cessation_activite * (revenus_abattus_smic)
 
         def base_ressource_eval_trim():
@@ -221,8 +234,9 @@ class aah_base_ressources(Variable):
 
             return base_ressource
 
+        print(en_activite + ressource_interrompue)
         return where(
-            en_activite,
+            (en_activite + ressource_interrompue),
             base_ressource_eval_trim() / 12,
             base_ressource_eval_annuelle() / 12
             )
