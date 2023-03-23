@@ -183,7 +183,7 @@
           2022-06: 0
         aah:
           2022-06: 0
-        bourse_enseignement_sup:
+        bourse_criteres_sociaux:
           2022-06: 100
   output:
     prime_exceptionnelle_rentree_non_etudiant:
@@ -229,7 +229,7 @@
           2022-06: 0
       enfant1:
         age: 18
-        bourse_enseignement_sup:
+        bourse_criteres_sociaux:
           2022-06: 100
   output:
     prime_exceptionnelle_rentree_etudiant:

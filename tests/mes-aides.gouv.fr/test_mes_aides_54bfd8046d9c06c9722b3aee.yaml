@@ -13,7 +13,7 @@ input:
       age: 35
       age_en_mois: 420
       date_naissance: '1980-01-01'
-      bourse_enseignement_sup:
+      bourse_criteres_sociaux:
         2013: 24000
         2014-01: 2000
         2014-02: 2000

@@ -63,7 +63,7 @@ class css_cmu_base_ressources_individu(Variable):
             ]
 
         boursier = individu('boursier', period)
-        bourse = not_(boursier) * individu('bourse_enseignement_sup', period)
+        bourse = not_(boursier) * individu('bourse_criteres_sociaux', period)
 
         ressources = sum([
             individu(ressource, previous_year, options = [ADD])

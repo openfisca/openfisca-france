@@ -112,7 +112,7 @@
       2021-02: [ 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
     rpns_auto_entrepreneur_benefice:
       2021-02: [ 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0, 0 ]
-    bourse_enseignement_sup:
+    bourse_criteres_sociaux:
       2021-02: [ 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0 ]
     chomage_net:
       2021-02: [ 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0 ]

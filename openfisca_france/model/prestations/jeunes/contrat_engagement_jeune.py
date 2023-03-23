@@ -70,7 +70,7 @@ class contrat_engagement_jeune_eligibilite_ressources(Variable):
             'asi',
             'pensions_alimentaires_percues',
             'stage_gratification',
-            'bourse_enseignement_sup',
+            'bourse_criteres_sociaux',
             'salaire_net',
             'indemnites_journalieres',
             'prestation_compensatoire',

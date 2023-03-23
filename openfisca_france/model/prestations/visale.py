@@ -145,7 +145,7 @@ class visale_base_ressources_individuelle(Variable):
             'revenus_stage_formation_pro',
             'remuneration_apprenti',
             'garantie_jeunes',
-            'bourse_enseignement_sup',
+            'bourse_criteres_sociaux',
             'bourse_recherche',
             'rpns_auto_entrepreneur_benefice',
             'chomage_net',

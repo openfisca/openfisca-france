@@ -322,8 +322,7 @@ class boursier(Variable):
         college = individu.famille('bourse_college', period)
         lycee = individu.famille('bourse_lycee', period)
         bcs = individu('bourse_criteres_sociaux', period)
-        bes = individu('bourse_enseignement_sup', period)
-        return (college > 0) + (lycee > 0) + (bcs > 0) + (bes > 0)
+        return (college > 0) + (lycee > 0) + (bcs > 0)
 
 
 class StatutsEtablissementScolaire(Enum):

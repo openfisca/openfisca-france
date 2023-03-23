@@ -99,14 +99,6 @@ class pensions_invalidite(Variable):
     set_input = set_input_divide_by_period
 
 
-class bourse_enseignement_sup(Variable):
-    value_type = float
-    entity = Individu
-    label = "Toute bourse de l'enseignement supérieur"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-
 # Avoir fiscaux et crédits d'impôt
 # f2ab déjà disponible
 class f8ta(Variable):
