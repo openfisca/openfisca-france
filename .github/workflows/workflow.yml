@@ -15,14 +15,14 @@ jobs:
         python-version: ["3.7.9", "3.8.9", "3.9.9"]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}
@@ -33,7 +33,7 @@ jobs:
         run: make build
       - name: Cache release
         id: restore-release
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}
@@ -42,16 +42,16 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [ build ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.7.9
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
@@ -70,14 +70,14 @@ jobs:
         os: [ "ubuntu-20.04" ]  # On peut ajouter "macos-latest" si besoin
         python-version: ["3.7.9", "3.8.9", "3.9.9"]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.os }}
@@ -108,14 +108,14 @@ jobs:
         ci_node_index: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.7.9
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
@@ -134,14 +134,14 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [ build ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.7.9
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
@@ -152,11 +152,11 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [ lint-files, test-python, test-yaml, test-api ] # Last job to run
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.7.9
       - name: Check version number has been properly updated
@@ -172,11 +172,11 @@ jobs:
     outputs:
       status: ${{ steps.stop-early.outputs.status }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.7.9
       - id: stop-early
@@ -190,22 +190,22 @@ jobs:
       PYPI_USERNAME: openfisca-bot
       PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.7.9
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
       - name: Cache release
         id: restore-release
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-ubuntu-20.04
