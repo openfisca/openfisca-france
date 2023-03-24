@@ -1,5 +1,15 @@
 # Changelog
 
+#  [#2066](https://github.com/openfisca/openfisca-france/pull/2066)
+
+* Évolution du système socio-fiscal. *non rétro-compatible*
+* Périodes concernées : à partir du 01/01/2022.
+* Zones impactées : `openfisca_france\model\prestations\minima_sociaux\aah.py`.
+* Détails :
+  - Ajout de l'abattement sur les ressources prévu pour les individus en cessation d'activité pour l'allocation aux adultes handicapés
+  - Change la manière de prendre en compte l'activité de l'individu
+ 
+
 ### 149.4.2 [#2128](https://github.com/openfisca/openfisca-france/pull/2128)
 
 * Correction d'une erreur de calcul
