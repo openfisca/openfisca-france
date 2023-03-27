@@ -152,7 +152,7 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
 
 class af_age_aine(Variable):
     value_type = int
-    default_value = -9999
+    default_value = AGE_INT_MINIMUM
     entity = Famille
     label = "Allocations familiales - Âge de l'aîné des enfants éligibles"
     definition_period = MONTH
@@ -161,14 +161,11 @@ class af_age_aine(Variable):
 
     def formula(famille, period, parameters):
         af = parameters(period).prestations_sociales.prestations_familiales.prestations_generales.af
-
         age = famille.members('age', period)
         pfam_enfant_a_charge = famille.members('prestations_familiales_enfant_a_charge', period)
-
         condition_eligibilite = pfam_enfant_a_charge * (age <= af.af_cm.age2)
         age_enfants_eligiles = age * condition_eligibilite
-
-        return famille.max(age_enfants_eligiles, role = Famille.ENFANT)
+        return max_(famille.max(age_enfants_eligiles, role = Famille.ENFANT), AGE_INT_MINIMUM)  # max_ may return -inf, so negative caping by AGE_INT_MINIMUM is needed
 
 
 class af_majoration_enfant(Variable):

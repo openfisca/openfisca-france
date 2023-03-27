@@ -42,7 +42,7 @@ class jour_xyz(Variable):
 class age(Variable):
     unit = 'years'
     value_type = int
-    default_value = -9999
+    default_value = AGE_INT_MINIMUM
     entity = Individu
     label = 'Âge (en années) au premier jour du mois'
     definition_period = MONTH
@@ -81,7 +81,7 @@ class age(Variable):
 
 class age_en_mois(Variable):
     value_type = int
-    default_value = -9999
+    default_value = AGE_INT_MINIMUM
     unit = 'months'
     entity = Individu
     label = 'Âge (en mois)'
