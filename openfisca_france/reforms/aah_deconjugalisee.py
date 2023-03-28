@@ -103,7 +103,7 @@ class aah_deconjugalisee(Reform):
             def assiette_revenu_activite_demandeur(revenus_demandeur):
                 smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
                 total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
-                total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
+                total_tranche2 = revenus_demandeur - total_tranche1
                 revenus_abattus_smic = (1 - aah.travail_ordinaire.abattement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
                 
                 last_month = Period(('month', period.start, 1)).offset(-1)
