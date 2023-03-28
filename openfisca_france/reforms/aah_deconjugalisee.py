@@ -1,14 +1,18 @@
+from openfisca_core.periods import Period
+
 from openfisca_france.model.base import (
     ADD, 
     calculate_output_add, 
     Famille,
     Individu,
     max_, 
+    not_, 
     min_, 
     MONTH,
     Reform, 
     set_input_divide_by_period, 
     Variable, 
+    TypesActivite, 
     where
     )
 
@@ -104,7 +108,7 @@ class aah_deconjugalisee(Reform):
                 smic_brut_annuel = 12 * law.marche_travail.salaire_minimum.smic.smic_b_horaire * law.marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
                 total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
                 total_tranche2 = revenus_demandeur - total_tranche1
-                revenus_abattus_smic = (1 - aah.travail_ordinaire.abattement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
+                revenus_abattus_smic = (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
                 
                 last_month = Period(('month', period.start, 1)).offset(-1)
                 has_ressources_substitution = (
