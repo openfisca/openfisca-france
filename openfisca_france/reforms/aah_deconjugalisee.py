@@ -24,7 +24,7 @@ class aah_deconjugalisee(Reform):
 
     class aah_base_ressources(Variable):
         value_type = float
-        label = "Base ressources de l'allocation adulte handicapé"
+        label = 'Base ressources de l\'allocation adulte handicapé'
         entity = Individu
         definition_period = MONTH
         set_input = set_input_divide_by_period
@@ -81,7 +81,7 @@ class aah_deconjugalisee(Reform):
                 return assiette_revenu_activite_demandeur(base_ressource) + assiette_conjoint(base_ressource_conjoint)
 
             return where(
-                en_activite + ressource_interrompue,
+                en_activite,
                 base_ressource_eval_trim() / 12,
                 base_ressource_eval_annuelle() / 12
                 )
@@ -91,7 +91,7 @@ class aah_deconjugalisee(Reform):
 
     class aah_base_ressources_deconjugalisee(Variable):
         value_type = float
-        label = "Base ressources de l'allocation adulte handicapé"
+        label = 'Base ressources de l\'allocation adulte handicapé'
         entity = Individu
         definition_period = MONTH
         set_input = set_input_divide_by_period
@@ -134,7 +134,7 @@ class aah_deconjugalisee(Reform):
                 return base_ressource
 
             return where(
-                en_activite + ressource_interrompue,
+                en_activite,
                 base_ressource_eval_trim() / 12,
                 base_ressource_eval_annuelle() / 12
                 )
@@ -145,7 +145,7 @@ class aah_deconjugalisee(Reform):
     class aah_base(Variable):
         calculate_output = calculate_output_add
         value_type = float
-        label = "Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
+        label = 'Montant de l\'Allocation adulte handicapé (hors complément) pour un individu, mensualisée'
         entity = Individu
         reference = [
             'Article L821-1 du Code de la sécurité sociale',
@@ -174,7 +174,7 @@ class aah_deconjugalisee(Reform):
     class aah_base_deconjugalisee(Variable):
         calculate_output = calculate_output_add
         value_type = float
-        label = "Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
+        label = 'Montant de l\'Allocation adulte handicapé (hors complément) pour un individu, mensualisée'
         entity = Individu
         reference = [
             'Article L821-1 du Code de la sécurité sociale',
