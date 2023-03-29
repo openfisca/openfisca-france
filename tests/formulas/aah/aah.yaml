@@ -854,3 +854,23 @@
           2023-03: 200
   output:
     aah_base_ressources: [310, 0] # ((0.2 * 6290 + 0.6 * 8110) - (200 * 12))/12 ~= 310
+
+- name: AAH niveau Individu avec cessation d'activite - Eligible car cessation d'activité, célibataire, sans enfants
+  description: Montant AAH au niveau de l individu
+  period: 2023-03
+  absolute_error_margin: 1
+  input:
+    taux_incapacite: 0.8
+    age: 50  # eligible aah
+    salaire_imposable: 
+      2021: 24000
+    en_couple: 0
+    af_nbenf: 0
+    activite: 
+      2023-03: inactif
+      2023-02: actif 
+      2023-01: actif
+      2022-12: actif
+  output:
+    aah_base_ressources: 696.41
+    aah: 260
