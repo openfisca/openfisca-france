@@ -187,6 +187,8 @@ Pour y revenir : `conda activate openfisca`
 
 A noter que OpenFisca-France est présent sur [conda-forge](https://anaconda.org/conda-forge/openfisca-france) et sur un _channel_ dédié [openfisca](https://anaconda.org/openfisca/openfisca-france). C'est conda-forge qui est mis en avant dans cette documentation, car accessible par défaut dans les installations Anaconda.
 
+A noter que l'installation d'Openfisca-France peut lever une erreur sur certaines machines Windows à cause de la longueur des chemins de certains fichiers de paramètres et des restrictions de longueur de chemin sous Windows. Une option possible pour résoudre ce problème est de lever cette limite (voir cette documentation pour [Windows >=10](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry#enable-long-paths-in-windows-10-version-1607-and-later))
+
 #### Prochaines étapes
 
 - Pour enrichir ou faire évoluer la législation d'OpenFisca-France, lisez _[Coding the Legislation](https://openfisca.org/doc/coding-the-legislation/index.html)_ (en anglais).
