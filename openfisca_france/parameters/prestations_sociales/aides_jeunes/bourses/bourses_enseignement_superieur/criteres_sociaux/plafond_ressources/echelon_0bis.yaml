@@ -10,7 +10,7 @@ brackets:
       value: 33100
     2022-07-18:
       value: 33100
-    2023-09-01:
+    2023-03-15:
       value: 35086
 - threshold:
     2020-07-22:
@@ -22,7 +22,7 @@ brackets:
       value: 36760
     2022-07-18:
       value: 36760
-    2023-09-01:
+    2023-03-15:
       value: 38966
 - threshold:
     2020-07-22:
@@ -34,7 +34,7 @@ brackets:
       value: 40450
     2022-07-18:
       value: 40450
-    2023-09-01:
+    2023-03-15:
       value: 42877
 - threshold:
     2020-07-22:
@@ -46,7 +46,7 @@ brackets:
       value: 44120
     2022-07-18:
       value: 44120
-    2023-09-01:
+    2023-03-15:
       value: 46767
 - threshold:
     2020-07-22:
@@ -58,7 +58,7 @@ brackets:
       value: 47800
     2022-07-18:
       value: 47800
-    2023-09-01:
+    2023-03-15:
       value: 50668
 - threshold:
     2020-07-22:
@@ -70,7 +70,7 @@ brackets:
       value: 51480
     2022-07-18:
       value: 51480
-    2023-09-01:
+    2023-03-15:
       value: 54569
 - threshold:
     2020-07-22:
@@ -82,7 +82,7 @@ brackets:
       value: 55150
     2022-07-18:
       value: 55150
-    2023-09-01:
+    2023-03-15:
       value: 58459
 - threshold:
     2020-07-22:
@@ -94,7 +94,7 @@ brackets:
       value: 58830
     2022-07-18:
       value: 58830
-    2023-09-01:
+    2023-03-15:
       value: 62360
 - threshold:
     2020-07-22:
@@ -106,7 +106,7 @@ brackets:
       value: 62510
     2022-07-18:
       value: 62510
-    2023-09-01:
+    2023-03-15:
       value: 66261
 - threshold:
     2020-07-22:
@@ -118,7 +118,7 @@ brackets:
       value: 66180
     2022-07-18:
       value: 66180
-    2023-09-01:
+    2023-03-15:
       value: 70151
 - threshold:
     2020-07-22:
@@ -130,7 +130,7 @@ brackets:
       value: 69860
     2022-07-18:
       value: 69860
-    2023-09-01:
+    2023-03-15:
       value: 74052
 - threshold:
     2020-07-22:
@@ -142,7 +142,7 @@ brackets:
       value: 73540
     2022-07-18:
       value: 73540
-    2023-09-01:
+    2023-03-15:
       value: 77952
 - threshold:
     2020-07-22:
@@ -154,7 +154,7 @@ brackets:
       value: 77210
     2022-07-18:
       value: 77210
-    2023-09-01:
+    2023-03-15:
       value: 81843
 - threshold:
     2020-07-22:
@@ -166,7 +166,7 @@ brackets:
       value: 80890
     2022-07-18:
       value: 80890
-    2023-09-01:
+    2023-03-15:
       value: 85743
 - threshold:
     2020-07-22:
@@ -178,7 +178,7 @@ brackets:
       value: 84560
     2022-07-18:
       value: 84560
-    2023-09-01:
+    2023-03-15:
       value: 89634
 - threshold:
     2020-07-22:
@@ -190,7 +190,7 @@ brackets:
       value: 88250
     2022-07-18:
       value: 88250
-    2023-09-01:
+    2023-03-15:
       value: 93545
 - threshold:
     2020-07-22:
@@ -202,7 +202,7 @@ brackets:
       value: 91920
     2022-07-18:
       value: 91920
-    2023-09-01:
+    2023-03-15:
       value: 97435
 - threshold:
     2020-07-22:
@@ -214,7 +214,7 @@ brackets:
       value: 95610
     2022-07-18:
       value: 95610
-    2023-09-01:
+    2023-03-15:
       value: 101347
 metadata:
   reference:
@@ -227,7 +227,7 @@ metadata:
     2022-07-18:
     - title: Arrêté du 18 juillet 2022 fixant les plafonds de ressources relatifs aux bourses d'enseignement supérieur du ministère de l'enseignement supérieur et de la recherche pour l'année universitaire 2022-2023
     - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046096036
-    2023-09-01:
+    2023-03-15:
     - title: Aucun document officiel encore, à mettre à jour lors de la publication!
     - href: A mettre à jour!
   type: single_amount
