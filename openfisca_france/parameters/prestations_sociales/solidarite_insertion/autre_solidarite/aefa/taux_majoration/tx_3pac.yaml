@@ -1,9 +1,9 @@
-description: Taux au delà de la troisième personne à charge incluse de l'Aide exceptionnelle de fin d'année (AEFA)
+description: Taux de majoration du montant de l'aide au delà de la troisième personne à charge ou enfant inclus - Aide exceptionnelle de fin d'année (AEFA)
 values:
   2003-12-30:
     value: 0.4
 metadata:
-  short_label: Au-delà 3e personne à charge incluse
+  short_label: Majoration à partir de la troisième personne à charge
   last_value_still_valid_on: "2021-09-28"
   label_en: "Exceptional end-of-year benefit (AEFA): amount"
   unit: /1
