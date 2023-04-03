@@ -1,5 +1,16 @@
 # Changelog
 
+# 145.1.0 [#2068](https://github.com/openfisca/openfisca-france/pull/2068)
+
+* Évolution du système socio-fiscal : Changement mineur.
+* Périodes concernées : à partir du 15/03/2023 (En attente de publication legifrance)
+* Zones impactées :
+- `openfisca_france/parameters/prestations_sociales/aides_jeunes/bourses/bourses_enseignement_superieur/criteres_sociaux/plafond_ressources/*`.
+- `openfisca_france/parameters/prestations_sociales/aides_jeunes/bourses/bourses_enseignement_superieur/criteres_sociaux/montants.yaml`.
+* Détails :
+  - Revalorisation des plafonds et montants de la Bourse aux Critères Sociaux pour tous les échelons pour la periode 2023-2024.
+  - Les données nous viennent d'une correspondance avec le CNOUS, les dates et le sources seront éditées dès publication sur Legifrance.
+
 # 145.0.0 [#2039](https://github.com/openfisca/openfisca-france/pull/2039)
 
 * Amélioration technique.

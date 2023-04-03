@@ -12,6 +12,8 @@ brackets:
       value: 104.2
     2022-07-18:
       value: 108.4
+    2023-03-15:
+      value: 145.4
 - threshold:
     2020-07-22:
       value: 1
@@ -24,6 +26,8 @@ brackets:
       value: 172.4
     2022-07-18:
       value: 179.3
+    2023-03-15:
+      value: 216.3
 - threshold:
     2020-07-22:
       value: 2
@@ -36,6 +40,8 @@ brackets:
       value: 259.7
     2022-07-18:
       value: 270.1
+    2023-03-15:
+      value: 307.1
 - threshold:
     2020-07-22:
       value: 3
@@ -48,6 +54,8 @@ brackets:
       value: 332.5
     2022-07-18:
       value: 345.8
+    2023-03-15:
+      value: 382.8
 - threshold:
     2020-07-22:
       value: 4
@@ -60,6 +68,8 @@ brackets:
       value: 405.5
     2022-07-18:
       value: 421.7
+    2023-03-15:
+      value: 458.7
 - threshold:
     2020-07-22:
       value: 5
@@ -72,6 +82,8 @@ brackets:
       value: 465.6
     2022-07-18:
       value: 484.2
+    2023-03-15:
+      value: 521.2
 - threshold:
     2020-07-22:
       value: 6
@@ -84,6 +96,8 @@ brackets:
       value: 493.8
     2022-07-18:
       value: 513.6
+    2023-03-15:
+      value: 550.6
 - threshold:
     2020-07-22:
       value: 7
@@ -96,6 +110,8 @@ brackets:
       value: 573.6
     2022-07-18:
       value: 596.5
+    2023-03-15:
+      value: 633.5
 metadata:
   short_label: Montants
   reference:
@@ -110,4 +126,6 @@ metadata:
     2022-07-18:
     - title: Arrêté du 18 juillet 2022 relatif aux taux des bourses d'enseignement supérieur du ministère de l'enseignement supérieur et de la recherche pour l'année universitaire 2022-2023
     - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046096018
+    2023-03-15:
+    - title : À renseigner dès que la publication officielle est disponible.
   type: single_amount
