@@ -1049,7 +1049,10 @@ class vieillesse_deplafonnee_salarie(Variable):
     value_type = float
     entity = Individu
     label = 'Cotisation vieillesse déplafonnée (salarié)'
-    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043870904'
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale'
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -1069,7 +1072,10 @@ class vieillesse_plafonnee_salarie(Variable):
     value_type = float
     entity = Individu
     label = 'Cotisation vieillesse plafonnée (salarié)'
-    reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043870904'
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale'
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -1091,6 +1097,10 @@ class vieillesse_deplafonnee_employeur(Variable):
     label = 'Cotisation vieillesse déplafonnée'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale'
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
@@ -1110,6 +1120,10 @@ class vieillesse_plafonnee_employeur(Variable):
     label = 'Cotisation vieillesse plafonnée (employeur)'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    reference = [
+        'Article L. 242-1 du code de la sécurité sociale'
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
+        ]
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
