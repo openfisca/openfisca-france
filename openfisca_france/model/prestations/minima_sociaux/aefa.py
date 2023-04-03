@@ -42,17 +42,18 @@ class aefa(Variable):
         af_nbenf = famille('af_nbenf', janvier)
         nb_parents = famille('nb_parents', janvier)
         if hasattr(af, 'age3'):
-            nbPAC = nb_enf(famille, janvier, af.af_cm.age1, af.af_cm.age3)
+            nombre_enfants = nb_enf(famille, janvier, af.af_cm.age1, af.af_cm.age3)
         else:
-            nbPAC = af_nbenf
+            nombre_enfants = af_nbenf
 
         aefa = parameters(period).prestations_sociales.solidarite_insertion.autre_solidarite.aefa
 
-        # TODO check nombre de PAC pour une famille
+        nombre_de_personnes_supplementaires_eligibles = (nb_parents >= 2) + nombre_enfants
         majoration = 1 + (condition_majoration * (
-            (nb_parents == 2) * aefa.taux_majoration.tx_2p
-            + nbPAC * aefa.taux_majoration.tx_supp * (nb_parents <= 2)
-            + nbPAC * aefa.taux_majoration.tx_3pac * max_(nbPAC - 2, 0)
+            (nombre_de_personnes_supplementaires_eligibles >= 1) * aefa.taux_majoration.tx_2p
+            + min_(nombre_enfants, 2) * aefa.taux_majoration.tx_supp * (nb_parents == 2)
+            + aefa.taux_majoration.tx_supp * (nb_parents == 1) * (nombre_enfants >= 2)
+            + aefa.taux_majoration.tx_3pac * max_(nombre_enfants - 2, 0)
             ))
 
         montant_aefa = aefa.montant_prime * majoration
