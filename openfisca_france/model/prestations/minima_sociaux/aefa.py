@@ -21,7 +21,10 @@ class aefa(Variable):
     value_type = float
     entity = Famille
     label = "Aide exceptionelle de fin d'année (prime de Noël)"
-    reference = 'https://www.service-public.fr/particuliers/vosdroits/F1325'
+    reference = [
+        'Décret n° 2022-1568 du 14 décembre 2022',
+        'https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046738342'
+        ]
     definition_period = YEAR
 
     def formula_2002_01_01(famille, period, parameters):
