@@ -494,6 +494,18 @@ class aah_plafond_ressources(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    def formula_2023_09_01(individu, period, parameters):
+        law = parameters(period).prestations_sociales
+
+        af_nbenf = individu.famille('af_nbenf', period)
+        montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
+
+        return montant_max * (
+            + 1
+            + law.prestations_etat_de_sante.invalidite.aah.majoration_plafond.majoration_par_enfant_supplementaire
+            * af_nbenf
+            )
+        
     def formula(individu, period, parameters):
         law = parameters(period).prestations_sociales
 
@@ -586,7 +598,7 @@ class aah(Variable):
         return where(aah_reduction, aah_base * aah_parameters.pourcentage_aah.prison_hospitalisation, aah_base)
 
     def formula_2023_09_01(individu, period, parameters):
-        aah_base = max_(individu('aah_base', period), individu('aah_base_conjugalise', period))
+        aah_base = max_(individu('aah_base', period), individu('aah_base_conjugalisee', period))
         aah_parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         m_2 = datetime64(period.offset(-60, 'day').start)
 

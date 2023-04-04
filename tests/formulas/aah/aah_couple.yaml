@@ -133,3 +133,65 @@
         - parent2
   output:
     aah_base_ressources: [413.42, 720]
+
+- name: Couple de personnes en situation de handicap, déconjugalisation
+  period: 2023-11
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        activite: actif
+        salaire_imposable:
+          2023: 12000
+        aah_eligible: true
+      parent2:
+        activite: actif
+        salaire_imposable:
+          2023: 13000
+        aah_eligible: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+  output:
+    aah_plafond_ressources: [956.65, 956.65]
+    aah_base_ressources: [394.88, 444.88]
+    aah: [561.77, 511.77]  # 956.65 maximum en attendant l'actualisation du montant min((956.65 * 1.81 - 998.53), 965.65)
+
+- name: Couple de personnes en situation de handicap, juste avant déconjugalisation
+  period: 2023-08
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: [parent1, parent2]
+    individus:
+      parent1:
+        activite: actif
+        salaire_imposable:
+          2023: 12000
+        aah_eligible: true
+      parent2:
+        activite: actif
+        salaire_imposable:
+          2023: 13000
+        aah_eligible: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+  output:
+    aah_plafond_ressources: [1731.54, 1731.54]
+    aah_base_ressources: [953.21, 928.21]
+    aah: [778.32, 803.32]  # 956.65 maximum en attendant l'actualisation du montant min((956.65 * 1.81 - 998.53), 965.65)
