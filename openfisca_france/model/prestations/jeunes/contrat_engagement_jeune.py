@@ -30,33 +30,37 @@ class contrat_engagement_jeune_montant_forfaitaire(Variable):
         return montant_forfaitaire
 
 
-class contrat_engagement_jeune_eligbilite_statut(Variable):
+class contrat_engagement_jeune_eligibilite(Variable):
     value_type = bool
     entity = Individu
     definition_period = MONTH
-    label = "Éligibilité en fonction du statut au Contrat d'Engagement Jeune"
-    set_input = set_input_dispatch_by_period
-    reference = ['https://travail-emploi.gouv.fr/emploi-et-insertion/mesures-jeunes/contrat-engagement-jeune/', 'https://www.service-public.fr/particuliers/vosdroits/F32700']
-
-    def formula_2022_03_01(individu, period):
-        activite = individu('activite', period)
-        not_in_education = activite != TypesActivite.etudiant
-        return not_in_education
-
-
-class contrat_engagement_jeune_eligibilite_age(Variable):
-    value_type = bool
-    entity = Individu
-    definition_period = MONTH
-    label = "Éligibilité en fonction de l'âge au Contrat d'Engagement Jeune"
+    label = "Éligibilité au Contrat d'Engagement Jeune"
     set_input = set_input_dispatch_by_period
 
     def formula_2022_03_01(individu, period, parameters):
+        # En fonction de l'âge
         params_age = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.critere_age
         age = individu('age', period)
         handicap = individu('handicap', period)
+        eligibilite_age = (params_age.minimum <= age) * ((age <= params_age.maximum) + (age <= (params_age.maximum_handicap) * handicap))
 
-        return (params_age.minimum <= age) * ((age <= params_age.maximum) + (age <= (params_age.maximum_handicap) * handicap))
+        # En fonction du statut
+        activite = individu('activite', period)
+        eligibilite_statut = activite != TypesActivite.etudiant
+
+        # En fonction de l'imposition du foyer fiscal
+        previous_year = period.start.period('year').offset(-1)
+        tranche = individu.foyer_fiscal('ir_tranche', previous_year)
+        eligibilite_ir = (tranche <= 1)
+
+        # En fonction d'autres prestations et dispositifs
+        three_previous_months = period.last_3_months
+        sans_indemnites_volontariat = individu('indemnites_volontariat', period) == 0
+        sans_rsa = individu.famille('rsa', three_previous_months, options = [ADD]) <= 0
+        sans_ppa = individu.famille('ppa', three_previous_months, options = [ADD]) <= 0
+        eligibilite_autres_dispositifs = sans_rsa * sans_ppa * sans_indemnites_volontariat
+
+        return eligibilite_age * eligibilite_statut * eligibilite_ir * eligibilite_autres_dispositifs
 
 
 class contrat_engagement_jeune(Variable):
@@ -103,14 +107,7 @@ class contrat_engagement_jeune(Variable):
             montant_apres_deduction_totale
             - max_(ressources_mensuelles_individuelles_partiellement_deductibles_3_mois - parameters_degressivite.abattement_deductibilite_partielle, 0) * montant_forfaitaire / (parameters_degressivite.part_smic_deductibilite_partielle * smic_brut_mensuel - parameters_degressivite.abattement_deductibilite_partielle)
             )
+        
+        contrat_engagement_jeune_eligibilite = individu('contrat_engagement_jeune_eligibilite', period)
 
-        sans_indemnites_volontariat = individu('indemnites_volontariat', period) == 0
-        sans_rsa = individu.famille('rsa', three_previous_months, options = [ADD]) <= 0
-        sans_ppa = individu.famille('ppa', three_previous_months, options = [ADD]) <= 0
-
-        statut = individu('contrat_engagement_jeune_eligbilite_statut', period)
-        eligibilite_age = individu('contrat_engagement_jeune_eligibilite_age', period)
-
-        previous_year = period.start.period('year').offset(-1)
-        tranche = individu.foyer_fiscal('ir_tranche', previous_year) <= 1
-        return montant * sans_rsa * sans_ppa * sans_indemnites_volontariat * tranche * statut * eligibilite_age
+        return montant * contrat_engagement_jeune_eligibilite
