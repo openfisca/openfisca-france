@@ -4,6 +4,7 @@ from numpy import (
     maximum as max_,
     )
 
+
 class contrat_engagement_jeune_montant_forfaitaire(Variable):
     value_type = float
     entity = Individu
@@ -26,7 +27,7 @@ class contrat_engagement_jeune_montant_forfaitaire(Variable):
             + parameters_montants.montant_majeurs_non_imposables * majeur * (tranche == 0)
             + parameters_montants.montant_majeurs_1ere_tranche_ir * majeur * (tranche == 1)
             )
-        
+
         return montant_forfaitaire
 
 
@@ -75,39 +76,47 @@ class contrat_engagement_jeune(Variable):
         three_previous_months = period.last_3_months
         parameters_degressivite = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.degressivite
 
-        ressources_individuelles_totalement_deductibles = [
+        ressources_totalement_deductibles = [
             'revenus_stage_formation_pro',
             'chomage_net',
             ]
-        
-        ressources_individuelles_partiellement_deductibles = [
+
+        ressources_partiellement_deductibles_month = [
             'indemnites_chomage_partiel',
             'salaire_net',
-            'rpns_imposables',
-            'csg_imposable_non_salarie',
-            'crds_non_salarie',
             'indemnites_journalieres',
             'remuneration_apprenti',
             ]
-        
-        parameters_smic = parameters.marche_travail.salaire_minimum.smic
+        ressources_partiellement_deductibles_year = [
+            'rpns_imposables',
+            'csg_imposable_non_salarie',
+            'crds_non_salarie',
+            ]
+
+        parameters_smic = parameters(period).marche_travail.salaire_minimum.smic
         smic_brut_mensuel = parameters_smic.nb_heures_travail_mensuel * parameters_smic.smic_b_horaire
 
         # Calcul sur les trois derniers mois (normalement c'est le niveau de ressources moyen le plus faible entre les 3 derniers mois et les 6 derniers mois)
         ressources_mensuelles_individuelles_totalement_deductibles_3_mois = sum(
-            individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_individuelles_totalement_deductibles
+            individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_totalement_deductibles
             ) / 3
-        ressources_mensuelles_individuelles_partiellement_deductibles_3_mois = sum(
-            individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_individuelles_partiellement_deductibles
+        ressources_mensuelles_individuelles_partiellement_deductibles_3_mois = (
+            sum(
+            individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_partiellement_deductibles_month
             ) / 3
-        
+            + sum(
+            individu(ressources_incluses, period.this_year) for ressources_incluses in ressources_partiellement_deductibles_year
+            ) / 12
+            )
+
         montant_forfaitaire = individu('contrat_engagement_jeune_montant_forfaitaire', period)
         montant_apres_deduction_totale = max_(montant_forfaitaire - ressources_mensuelles_individuelles_totalement_deductibles_3_mois, 0)
-        montant = (
+        montant_apres_toutes_deductions = (
             montant_apres_deduction_totale
             - max_(ressources_mensuelles_individuelles_partiellement_deductibles_3_mois - parameters_degressivite.abattement_deductibilite_partielle, 0) * montant_forfaitaire / (parameters_degressivite.part_smic_deductibilite_partielle * smic_brut_mensuel - parameters_degressivite.abattement_deductibilite_partielle)
             )
-        
+        montant = max_(montant_apres_toutes_deductions, 0)
+
         contrat_engagement_jeune_eligibilite = individu('contrat_engagement_jeune_eligibilite', period)
 
         return montant * contrat_engagement_jeune_eligibilite
