@@ -1,6 +1,21 @@
 # Changelog
 
-# 145.1.0 [#2068](https://github.com/openfisca/openfisca-france/pull/2068)
+# 146.0.0 [#2077](https://github.com/openfisca/openfisca-france/pull/2077)
+
+* Corrections d'erreurs
+* Périodes concernées : à partir du 01/03/2022.
+* Zones impactées : `prestations/jeunes/contrat_engagement_jeune.py`.
+* Détails :
+  - Prise en compte de la dégressivité en fonction des ressources et correction des bases ressources
+  - Corrections de références législatives
+  - Réagencement des paramètres
+  - Réagencement des formules d'éligibilité
+  - Intègre la revalorisation de juillet 2022
+  - Changements de nom ou suppressions de variables:
+     - Renommage de `contrat_engagement_jeune_montant` par `contrat_engagement_jeune_montant_forfaitaire`
+     - Suppression de `contrat_engagement_jeune_eligbilite_statut`, `contrat_engagement_jeune_eligibilite_age` et `contrat_engagement_jeune_eligibilite_ressources`. Remplacement par `contrat_engagement_jeune_eligibilite`.
+
+## 145.1.0 [#2068](https://github.com/openfisca/openfisca-france/pull/2068)
 
 * Évolution du système socio-fiscal : Changement mineur.
 * Périodes concernées : à partir du 15/03/2023 (En attente de publication legifrance)
