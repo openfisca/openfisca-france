@@ -102,11 +102,11 @@ class contrat_engagement_jeune(Variable):
             ) / 3
         ressources_mensuelles_individuelles_partiellement_deductibles_3_mois = (
             sum(
-            individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_partiellement_deductibles_month
-            ) / 3
+                individu(ressources_incluses, three_previous_months, options = [ADD]) for ressources_incluses in ressources_partiellement_deductibles_month
+                ) / 3
             + sum(
-            individu(ressources_incluses, period.this_year) for ressources_incluses in ressources_partiellement_deductibles_year
-            ) / 12
+                individu(ressources_incluses, period.this_year) for ressources_incluses in ressources_partiellement_deductibles_year
+                ) / 12
             )
 
         montant_forfaitaire = individu('contrat_engagement_jeune_montant_forfaitaire', period)
