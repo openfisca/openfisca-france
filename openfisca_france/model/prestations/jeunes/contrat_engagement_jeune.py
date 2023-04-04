@@ -1,5 +1,8 @@
 from openfisca_france.model.base import *  # noqa analysis:ignore
-
+from numpy import (
+    logical_not as not_,
+    maximum as max_,
+    )
 
 class contrat_engagement_jeune_montant_forfaitaire(Variable):
     value_type = float
@@ -13,15 +16,18 @@ class contrat_engagement_jeune_montant_forfaitaire(Variable):
         ]
 
     def formula_2022_03_01(individu, period, parameters):
-        montant = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.montants
-        montant_degressivite = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.degressivite.montant
-        age = individu('age', period)
+        parameters_montants = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.montants
         majeur = individu('majeur', period)
         previous_year = period.start.period('year').offset(-1)
         tranche = individu.foyer_fiscal('ir_tranche', previous_year)
 
-        degressivite = majeur * (tranche == 1) * montant_degressivite
-        return montant.calc(age) - degressivite
+        montant_forfaitaire = (
+            parameters_montants.montant_mineurs * not_(majeur) * (tranche <= 1)
+            + parameters_montants.montant_majeurs_non_imposables * majeur * (tranche == 0)
+            + parameters_montants.montant_majeurs_1ere_tranche_ir * majeur * (tranche == 1)
+            )
+        
+        return montant_forfaitaire
 
 
 class contrat_engagement_jeune_eligbilite_statut(Variable):
