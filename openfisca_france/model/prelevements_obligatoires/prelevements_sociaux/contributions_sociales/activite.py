@@ -457,3 +457,16 @@ class crds_non_salarie(Variable):
         assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
         taux = parameters(period).prelevements_sociaux.contributions_sociales.crds.activite.taux
         return - taux * assiette_csg_crds_non_salarie
+
+
+class revenus_non_salarie_nets(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Revenus du travail non salariaux nets'
+    definition_period = YEAR
+
+    def formula(individu, period):
+        revenus_non_salarie = individu('rpns_imposables', period)
+        csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period)
+        crds_non_salarie = individu('crds_non_salarie', period)
+        return revenus_non_salarie + csg_imposable_non_salarie + crds_non_salarie
