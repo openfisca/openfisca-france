@@ -88,9 +88,7 @@ class contrat_engagement_jeune(Variable):
             'remuneration_apprenti',
             ]
         ressources_partiellement_deductibles_year = [
-            'rpns_imposables',
-            'csg_imposable_non_salarie',
-            'crds_non_salarie',
+            'revenus_non_salarie_nets',
             ]
 
         parameters_smic = parameters(period).marche_travail.salaire_minimum.smic
