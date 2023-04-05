@@ -169,7 +169,7 @@ class aah_deconjugalisee(Reform):
 
             aah_eligible = individu('aah_eligible', period)
             aah_base_ressources = individu('aah_base_ressources_deconjugalisee', period)
-            plaf_ress_aah = individu('aah_plafond_ressources', period)
+            plaf_ress_aah = individu('aah_plafond_ressources_deconjugalisee', period)
             # Le montant de l'AAH est plafonné au montant de base.
             montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
             montant_aah = min_(montant_max, max_(0, plaf_ress_aah - aah_base_ressources))
@@ -180,6 +180,27 @@ class aah_deconjugalisee(Reform):
         
         def formula(individu, period, parameters):
             return
+
+class aah_plafond_ressources(Variable):
+    value_type = float
+    label = 'Montant plafond des ressources déconjugalisées pour bénéficier de l\'Allocation adulte handicapé (hors complément)'
+    entity = Individu
+    reference = [
+        'Article D821-2 du Code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=4B54EC7065520E4812F84677B918A48E.tplgfr28s_2?idArticle=LEGIARTI000019077584&cidTexte=LEGITEXT000006073189&dateTexte=20081218'
+        ]
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(individu, period, parameters):
+        law = parameters(period).prestations_sociales
+
+        af_nbenf = individu.famille('af_nbenf', period)
+        montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
+
+        return montant_max * (
+            1 + (law.prestations_etat_de_sante.invalidite.aah.majoration_plafond.majoration_par_enfant_supplementaire * af_nbenf)
+            )
 
     class aah(Variable):
         calculate_output = calculate_output_add
