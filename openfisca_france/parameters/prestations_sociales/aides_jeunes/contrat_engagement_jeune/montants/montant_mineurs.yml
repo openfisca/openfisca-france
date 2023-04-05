@@ -4,6 +4,8 @@ values:
     value: 200
   2022-07-01:
     value: 208
+  2023-04-01:
+    value: 211.2
 metadata:
   unit: currency
   reference:
@@ -15,6 +17,9 @@ metadata:
     2022-07-01:
     - title: Loi n°2022-1158 du 16 août 2022, art. 9
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046186749
+    2023-04-01:
+    - title: Instruction interministérielle N° DSS/2B/2023/41 du 24 mars 2023
+      href: https://sante.gouv.fr/fichiers/bo/2023/2023.6.sante.pdf#page=119
 documentation: |-
   Notes:
-  Pour la revalorisation de juillet 2022, la référence législative mentionnée fait référence aux dispositifs faisant l'objet d'une revalorisation annuelle en application de l'article L. 161-25 du code de la sécurité sociale. Or, une revalorisation au titre de cet article est bien mentionnée pour la CEJ (cf. IV. de l'art. D5131-19 du Code du travail).
+  Pour les revalorisations de montant, les références législatives mentionnées font référence aux dispositifs faisant l'objet d'une revalorisation annuelle en application de l'article L. 161-25 du code de la sécurité sociale. Or, une revalorisation au titre de cet article est bien mentionnée pour le CEJ (cf. IV. de l'art. D5131-19 du Code du travail).
