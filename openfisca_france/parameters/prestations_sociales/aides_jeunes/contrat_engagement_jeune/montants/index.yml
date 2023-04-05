@@ -1,0 +1,7 @@
+description: Montants forfaitaires - Contrat d'engagement jeune
+metadata:
+  short_label: Montants
+  order:
+  - montant_majeurs_1ere_tranche_ir
+  - montant_majeurs_non_imposables
+  - montant_mineurs
