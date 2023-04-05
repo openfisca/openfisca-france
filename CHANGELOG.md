@@ -1,5 +1,17 @@
 # Changelog
 
+### 146.0.2 [#2080](https://github.com/openfisca/openfisca-france/pull/2080)
+
+* Crée une nouvelle variable intermédiaire
+* Périodes concernées : toutes.
+* Zones impactées: 
+   - `mesures.py`
+   - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
+   - `prestations/jeunes/cotrat_engagement_jeune.py`
+   - `prestations/visale.py`
+* Détails :
+  - Crée une variable `revenus_non_salarie_nets`, plutôt que de copier-coller sa définition dans plusieurs formules.
+
 ### 146.0.1 [#2079](https://github.com/openfisca/openfisca-france/pull/2079)
 
 * Actualisation de paramètres.
