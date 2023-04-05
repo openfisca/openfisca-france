@@ -1,5 +1,13 @@
 # Changelog
 
+### 146.0.1 [#2079](https://github.com/openfisca/openfisca-france/pull/2079)
+
+* Actualisation de paramètres.
+* Périodes concernées : à partir du 01/04/2023.
+* Zones impactées : `prestations/jeunes/contrat_engagement_jeune.py`.
+* Détails :
+  - Introduit la revalorisation de l'allocation du CEJ du 1er avril 2023.
+
 # 146.0.0 [#2077](https://github.com/openfisca/openfisca-france/pull/2077)
 
 * Corrections d'erreurs
