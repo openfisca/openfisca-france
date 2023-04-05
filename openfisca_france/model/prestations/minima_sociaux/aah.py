@@ -496,25 +496,27 @@ class aah_plafond_ressources(Variable):
 
     def formula_2023_09_01(individu, period, parameters):
         law = parameters(period).prestations_sociales
+        aah_law = law.prestations_etat_de_sante.invalidite.aah
 
         af_nbenf = individu.famille('af_nbenf', period)
-        montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
+        montant_max = aah_law.montant
 
         return montant_max * (
-            1 + (law.prestations_etat_de_sante.invalidite.aah.majoration_plafond.majoration_par_enfant_supplementaire * af_nbenf)
+            1 + (aah_law.majoration_plafond.majoration_par_enfant_supplementaire * af_nbenf)
             )
         
     def formula(individu, period, parameters):
         law = parameters(period).prestations_sociales
-
+        aah_law = law.prestations_etat_de_sante.invalidite.aah
+        
         en_couple = individu.famille('en_couple', period)
         af_nbenf = individu.famille('af_nbenf', period)
-        montant_max = law.prestations_etat_de_sante.invalidite.aah.montant
+        montant_max = aah_law.montant
 
         return montant_max * (
             1
-            + (en_couple * law.prestations_etat_de_sante.invalidite.aah.majoration_plafond.majoration_plafond_couple)
-            + (law.prestations_etat_de_sante.invalidite.aah.majoration_plafond.majoration_par_enfant_supplementaire * af_nbenf)
+            + (en_couple * aah_law.majoration_plafond.majoration_plafond_couple)
+            + (aah_law.majoration_plafond.majoration_par_enfant_supplementaire * af_nbenf)
             )
 
 
