@@ -44,7 +44,7 @@ class crds(Variable):
     label = 'Contributions au remboursement de la dette sociale'
     reference = [
         "Ordonnance n° 96-50 du 24 janvier 1996 relative au remboursement de la dette sociale, art. 14",
-        'https://www.legifrance.gouv.fr/loda/id/LEGISCTA000006106400'
+        "https://www.legifrance.gouv.fr/loda/id/LEGISCTA000006106400"
         ]
     definition_period = YEAR
 
