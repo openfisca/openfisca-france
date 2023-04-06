@@ -1,5 +1,13 @@
 # Changelog
 
+### 146.0.3 [#2081](https://github.com/openfisca/openfisca-france/pull/2081)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/jeunes/contra_engagement_jeune.py`.
+* Détails :
+  - Les nouveaux paramètres créées dans la PR #2077 sont en format .yml et non .yaml. On corrige de cela.
+
 ### 146.0.2 [#2080](https://github.com/openfisca/openfisca-france/pull/2080)
 
 * Crée une nouvelle variable intermédiaire
