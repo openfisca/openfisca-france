@@ -73,6 +73,11 @@ class apa_domicile_participation(Variable):
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
         parameters = parameters(period).prestations_sociales.prestations_etat_de_sante.perte_autonomie_personnes_agees
         majoration_tierce_personne = parameters.mtp
+        premiere_fraction = parameters.apa_domicile.lissage_participation_en_part_mtp.fraction_premier_seuil
+        seconde_fraction = parameters.apa_domicile.lissage_participation_en_part_mtp.fraction_second_seuil
+        seuil_inf = parameters.apa_domicile.seuil_revenu_en_part_mtp.seuil_inferieur
+        seuil_sup = parameters.apa_domicile.seuil_revenu_en_part_mtp.seuil_superieur
+        taux_part_max = parameters.apa_domicile.taux_de_participation.maximum
 
         proratisation_couple = (
             1
@@ -82,8 +87,8 @@ class apa_domicile_participation(Variable):
 
         base_ressources_apa_domicile = base_ressources_apa / proratisation_couple
 
-        premier_seuil = 0.317 * majoration_tierce_personne
-        second_seuil = 0.498 * majoration_tierce_personne
+        premier_seuil = premiere_fraction * majoration_tierce_personne
+        second_seuil = seconde_fraction * majoration_tierce_personne
         condlist = [
             dependance_plan_aide_domicile_accepte <= premier_seuil,
             (premier_seuil <= dependance_plan_aide_domicile_accepte) * (dependance_plan_aide_domicile_accepte <= second_seuil),
@@ -109,19 +114,19 @@ class apa_domicile_participation(Variable):
         A_3 = select(condlist, choicelist_3)
 
         apa_domicile_participation = min_(
-            0.9 * dependance_plan_aide_domicile_accepte,
-            0.9
+            taux_part_max * dependance_plan_aide_domicile_accepte,
+            taux_part_max
             * max_(0, base_ressources_apa_domicile - 0.725 * majoration_tierce_personne)
-            / (1.945 * majoration_tierce_personne)
+            / ((seuil_sup-seuil_inf) * majoration_tierce_personne)
             * (
                 A_1
                 + A_2 * (
-                    (1 - 0.4) * base_ressources_apa_domicile / (1.945 * majoration_tierce_personne)
-                    + (0.4 * 2.67 * majoration_tierce_personne - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
+                    (1 - 0.4) * base_ressources_apa_domicile / ((seuil_sup-seuil_inf) * majoration_tierce_personne)
+                    + (0.4 * seuil_sup * majoration_tierce_personne - seuil_inf * majoration_tierce_personne) / ((seuil_sup-seuil_inf) * majoration_tierce_personne)
                     )
                 + A_3 * (
-                    (1 - 0.2) * base_ressources_apa_domicile / (1.945 * majoration_tierce_personne)
-                    + (0.2 * 2.67 * majoration_tierce_personne - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
+                    (1 - 0.2) * base_ressources_apa_domicile / ((seuil_sup-seuil_inf)* majoration_tierce_personne)
+                    + (0.2 * seuil_sup * majoration_tierce_personne - seuil_inf * majoration_tierce_personne) / ((seuil_sup-seuil_inf) * majoration_tierce_personne)
                     )
                 )
             )
