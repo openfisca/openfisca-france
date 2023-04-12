@@ -10,6 +10,8 @@ brackets:
       value: 0.01
     1967-10-01:
       value: 0.015
+    2022-04-01:
+      value: 0.013
 - threshold:
     1989-09-01:
       value: 1
@@ -40,9 +42,11 @@ brackets:
       value: 0.016
     2012-01-01:
       value: 0.015
+    2022-04-01:
+      value: 0.013
 metadata:
   short_label: Barème salarié
-  last_value_still_valid_on: "2021-08-05"
+  last_value_still_valid_on: "2023-04-12"
   label_en: SSCs of the local sickness scheme of Alsace-Moselle (1967-2016)
   ipp_csv_id:
     rate: am_s_0_1, am_s_0_
@@ -95,6 +99,9 @@ metadata:
       title: Décision du régime local du 16/04/2007 (Avis publié au JO)
     2012-01-01:
       title: Décision du régime local du 28/11/2011 (Avis publié au JO)
+    2022-04-01:
+    - title: Décision du régime local du 21/12/2021
+      href: https://regime-local.fr/2021/12/21/baisse-du-taux-de-cotisation/
   official_journal_date:
     1946-07-01: "1946-06-14"
     1986-01-11: "1986-01-04"
