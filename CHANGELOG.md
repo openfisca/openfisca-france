@@ -1,5 +1,12 @@
 # Changelog
 
+### 146.0.4 [#2085](https://github.com/openfisca/openfisca-france/pull/2085)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : /prelevements_sociaux/cotisations_securite_sociale_regime_general/mmid_am/maladie_alsace_moselle.yaml.
+* Détail : Met à jour le taux de cotisation maladie du régime ALsace-Moselle.
+
 ### 146.0.3 [#2081](https://github.com/openfisca/openfisca-france/pull/2081)
 
 * Changement mineur.
