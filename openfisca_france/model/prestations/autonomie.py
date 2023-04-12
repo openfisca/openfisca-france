@@ -121,11 +121,11 @@ class apa_domicile_participation(Variable):
             * (
                 A_1
                 + A_2 * (
-                    (1 - 0.4) * base_ressources_apa_domicile / ((seuil_sup-seuil_inf) * majoration_tierce_personne)
+                    (1 - 0.4) * base_ressources_apa_domicile / ((seuil_sup - seuil_inf) * majoration_tierce_personne)
                     + (0.4 * seuil_sup * majoration_tierce_personne - seuil_inf * majoration_tierce_personne) / ((seuil_sup - seuil_inf) * majoration_tierce_personne)
                     )
                 + A_3 * (
-                    (1 - 0.2) * base_ressources_apa_domicile / ((seuil_sup-seuil_inf)* majoration_tierce_personne)
+                    (1 - 0.2) * base_ressources_apa_domicile / ((seuil_sup - seuil_inf) * majoration_tierce_personne)
                     + (0.2 * seuil_sup * majoration_tierce_personne - seuil_inf * majoration_tierce_personne) / ((seuil_sup - seuil_inf) * majoration_tierce_personne)
                     )
                 )
