@@ -1,5 +1,14 @@
 # Changelog
 
+# 146.0.5 [#2075](https://github.com/openfisca/openfisca-france/pull/2075)
+
+* Périodes concernées : toutes
+* Zones impactées : 
+* `prestations_sociales/solidarite_insertion/autre_solidarite/aefa`.
+* `prestations_sociales/prestations_familiales/prestations_generales/af/crds`
+* Détails : clarifie les labels des paramètres de la prime de Noël
+
+
 # 146.0.4 [#2076](https://github.com/openfisca/openfisca-france/pull/2076)
 
 * Périodes concernées : toutes
