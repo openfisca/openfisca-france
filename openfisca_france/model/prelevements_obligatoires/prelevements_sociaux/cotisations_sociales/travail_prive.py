@@ -1050,8 +1050,8 @@ class vieillesse_deplafonnee_salarie(Variable):
     entity = Individu
     label = 'Cotisation vieillesse déplafonnée (salarié)'
     reference = [
-        "Article L. 242-1 du code de la sécurité sociale",
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664"
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
         ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -1073,8 +1073,8 @@ class vieillesse_plafonnee_salarie(Variable):
     entity = Individu
     label = 'Cotisation vieillesse plafonnée (salarié)'
     reference = [
-        "Article L. 242-1 du code de la sécurité sociale",
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664"
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
         ]
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -1098,8 +1098,8 @@ class vieillesse_deplafonnee_employeur(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
-        "Article L. 242-1 du code de la sécurité sociale",
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664"
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
         ]
 
     def formula(individu, period, parameters):
@@ -1121,8 +1121,8 @@ class vieillesse_plafonnee_employeur(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = [
-        "Article L. 242-1 du code de la sécurité sociale",
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664"
+        'Article L. 242-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044626664'
         ]
 
     def formula(individu, period, parameters):
