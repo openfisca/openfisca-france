@@ -1,5 +1,16 @@
 # Changelog
 
+### 146.0.6 [#2073](https://github.com/openfisca/openfisca-france/pull/2073)
+
+*Toutes les périodes* 
+* Zones impactées : 
+    * `prelevements_sociaux/contributions_sociales/csg/remplacement`
+    * `prelevements_sociaux/cotisations_securite_sociale_regime_general`
+    * `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`
+* Détails :
+  - Description de la fonctionnalité ajoutée ou du nouveau comportement adopté.
+  - Cas dans lesquels une erreur était constatée.
+
 # 146.0.5 [#2075](https://github.com/openfisca/openfisca-france/pull/2075)
 
 * Périodes concernées : toutes
@@ -7,7 +18,6 @@
 * `prestations_sociales/solidarite_insertion/autre_solidarite/aefa`.
 * `prestations_sociales/prestations_familiales/prestations_generales/af/crds`
 * Détails : clarifie les labels des paramètres de la prime de Noël
-
 
 # 146.0.4 [#2076](https://github.com/openfisca/openfisca-france/pull/2076)
 
