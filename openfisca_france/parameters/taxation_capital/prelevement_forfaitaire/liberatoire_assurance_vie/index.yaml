@@ -1,6 +1,6 @@
-description: Prélèvement libératoire sur les revenus d'assurance vie (1983 - 2017)
+description: Prélèvement forfaitaire libératoire sur les revenus d'assurance vie (1983 - 2017)
 metadata:
-  short_label: Prélèvement libératoire sur les revenus d'assurance vie
+  short_label: Prélèvements sur les revenus d'assurance vie
   label_en: Levy in discharge on life insurance (1983 - 2017)
   order:
   - bons_contrats_placements

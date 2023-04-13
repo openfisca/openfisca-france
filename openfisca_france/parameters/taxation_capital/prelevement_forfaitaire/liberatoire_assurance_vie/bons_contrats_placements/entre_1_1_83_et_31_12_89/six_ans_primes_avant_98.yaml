@@ -1,4 +1,4 @@
-description: Prélèvement libératoire sur les Bons ou contrats de capitalisation et placements de même nature (assurance-vie), souscrits entre le 1/1/83 et le 31/12/89, durée de 6 ans et plus, primes versées avant le 01/01/1998 et produits afférents acquis après cette date, lors du dénouement du contrat (1983-2017)
+description: Prélèvement libératoire sur les bons ou contrats de capitalisation et placements de même nature (assurance-vie), souscrits entre le 1/1/83 et le 31/12/89, durée de 6 ans et plus, primes versées avant le 01/01/1998 et produits afférents acquis après cette date, lors du dénouement du contrat (1983-2017)
 values:
   1983-01-01:
     value: 0
