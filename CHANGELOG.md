@@ -1,6 +1,6 @@
 # Changelog
 
-### 146.0.6 [#2073](https://github.com/openfisca/openfisca-france/pull/2073)
+### 146.0.7 [#2073](https://github.com/openfisca/openfisca-france/pull/2073)
 
 *Toutes les périodes* 
 * Zones impactées : 
@@ -10,6 +10,14 @@
 * Détails :
   - Description de la fonctionnalité ajoutée ou du nouveau comportement adopté.
   - Cas dans lesquels une erreur était constatée.
+
+### 146.0.6 [#2086](https://github.com/openfisca/openfisca-france/pull/2086)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations_sociales/aides_jeunes/bourses/bourses_enseignement_superieur/criteres_sociaux/plafond_ressources`.
+* Détails :
+  - Nettoyage des références pour passage de la validation des paramètres.
 
 # 146.0.5 [#2075](https://github.com/openfisca/openfisca-france/pull/2075)
 
