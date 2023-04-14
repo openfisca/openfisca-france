@@ -95,39 +95,7 @@ values:
   2001-07-01:
     value: 156.61
   2002-07-01:
-    value: 24.24
-  2003-07-01:
-    value: 24.76
-  2004-07-01:
-    value: 25.01
-  2006-07-01:
-    value: 25.51
-  2007-07-01:
-    value: 26.01
-  2008-07-01:
-    value: 26.66
-  2009-07-01:
-    value: 26.93
-  2010-07-01:
-    value: 27.25
-  2011-07-01:
-    value: 27.66
-  2012-07-01:
-    value: 28.21
-  2013-07-01:
-    value: 28.38
-  2014-07-01:
-    value: 28.58
-  2015-07-01:
-    value: 28.67
-  2017-07-01:
-    value: 28.86
-  2018-07-01:
-    value: 29.06
-  2019-07-01:
-    value: 29.26
-  2020-07-01:
-    value: 29.38
+    value: Null
 metadata:
   short_label: 3 premiers mois
   label_en: "UI scheme: lump-sum and minimum"
@@ -248,41 +216,6 @@ metadata:
     2002-07-01:
     - title: Protocole du 27/12/2002
     - title: Circulaire 02-15 - décision du 03/07/2002
-    2003-07-01:
-    - title: Arrêté du 17/12/2003 portant agrément de l'avenant 3 à la convention du 01/01/2004
-    - title: Circulaire 03-09 - décision du 02/07/2003
-    2004-07-01:
-    - title: Arrêté du 28/05/2004 portant agrément de la convention du 01/01/2004
-    - title: Circulaire 04-13 - décision du 25/06/2004
-    2006-07-01:
-      title: Circulaire 2006-13 du 21/07/2006
-    2007-07-01:
-      title: Circulaire 2007-09 du 26/06/2007
-    2008-07-01:
-      title: Circulaire 2008-04 du 01/07/2008
-    2009-07-01:
-    - title: Circulaire 2009-17 du 10/07/2009
-    - title: Circulaire 2009-16 du 09/07/2009
-    2010-07-01:
-      title: Circulaire 2010-10 du 02/07/2010
-    2011-07-01:
-      title: Circulaire 2011-28 du 01/08/2011
-    2012-07-01:
-      title: Circulaire 2012-18 du 11/07/2012
-    2013-07-01:
-      title: Circulaire 2013-11 du 01/07/2013
-    2014-07-01:
-      title: Circulaire 2014-20 du 04/07/2014
-    2015-07-01:
-      title: Circulaire 2015-14 du 01/07/2015
-    2017-07-01:
-      title: Circulaire 2017-14 du 29/06/2017
-    2018-07-01:
-      title: Circulaire 2018-14 du 16/07/2018
-    2019-07-01:
-      title: Circulaire 2019-08 du 27/06/2019
-    2020-07-01:
-      title: Circulaire 2020-09 du 01/07/2020
   official_journal_date:
     1979-07-01: 1979-01-17; 1979-05-20
     1986-04-01: "1986-01-24"
@@ -307,5 +240,5 @@ metadata:
     - title: Protocole d'accord du 18/07/1992 et Convention du 01/01/1993 créent l'allocation unique dégressive
     2001-07-01:
     - title: "Nouvelle convention: création de l'Allocation de retour à l'emploi qui remplace AUD"
-    2004-07-01:
-    - title: Valeur inconnue de l'allocation journalière versée pendant une période de formation.
+    2002-07-01:
+    - title: La separation de temps n'existe plus, voir parameters.chomage.allocation_retour_emploi.montant_minimum_hors_mayotte
