@@ -1,5 +1,16 @@
 # Changelog
 
+### 146.0.7 [#2073](https://github.com/openfisca/openfisca-france/pull/2073)
+
+*Toutes les périodes* 
+* Zones impactées : 
+    * `prelevements_sociaux/contributions_sociales/csg/remplacement`
+    * `prelevements_sociaux/cotisations_securite_sociale_regime_general`
+    * `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`
+* Détails :
+  - Description de la fonctionnalité ajoutée ou du nouveau comportement adopté.
+  - Cas dans lesquels une erreur était constatée.
+
 ### 146.0.6 [#2086](https://github.com/openfisca/openfisca-france/pull/2086)
 
 * Changement mineur.
@@ -7,8 +18,7 @@
 * Zones impactées : `prestations_sociales/aides_jeunes/bourses/bourses_enseignement_superieur/criteres_sociaux/plafond_ressources`.
 * Détails :
   - Nettoyage des références pour passage de la validation des paramètres.
-
-
+  
 # 146.0.5 [#2075](https://github.com/openfisca/openfisca-france/pull/2075)
 
 * Périodes concernées : toutes
