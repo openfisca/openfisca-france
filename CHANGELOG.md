@@ -18,11 +18,11 @@
 * Zones impactées : `prestations_sociales/aides_jeunes/bourses/bourses_enseignement_superieur/criteres_sociaux/plafond_ressources`.
 * Détails :
   - Nettoyage des références pour passage de la validation des paramètres.
-
+  
 # 146.0.5 [#2075](https://github.com/openfisca/openfisca-france/pull/2075)
 
 * Périodes concernées : toutes
-* Zones impactées : 
+* Zones impactées :
 * `prestations_sociales/solidarite_insertion/autre_solidarite/aefa`.
 * `prestations_sociales/prestations_familiales/prestations_generales/af/crds`
 * Détails : clarifie les labels des paramètres de la prime de Noël
@@ -45,7 +45,7 @@
 
 * Crée une nouvelle variable intermédiaire
 * Périodes concernées : toutes.
-* Zones impactées: 
+* Zones impactées:
    - `mesures.py`
    - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py`
    - `prestations/jeunes/cotrat_engagement_jeune.py`
