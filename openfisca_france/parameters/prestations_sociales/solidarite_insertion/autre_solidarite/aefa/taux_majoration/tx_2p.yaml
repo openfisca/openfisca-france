@@ -1,9 +1,9 @@
-description: Taux de majoration pour 2 personnes de l'Aide exceptionnelle de fin d'année (AEFA)
+description: Taux de majoration pour un foyer composé de deux personnes en couple - Aide exceptionnelle de fin d'année (AEFA)
 values:
   2003-12-30:
     value: 0.5
 metadata:
-  short_label: Foyer de 2 personnes
+  short_label: Majoration pour un couple
   last_value_still_valid_on: "2021-10-04"
   label_en: "Exceptional end-of-year benefit (AEFA): amount"
   unit: /1

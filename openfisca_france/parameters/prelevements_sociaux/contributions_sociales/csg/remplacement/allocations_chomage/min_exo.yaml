@@ -1,4 +1,4 @@
-description: Revenu minimum imposable (en multiple du smic annuel brut) pour la de la Contribution Sociale Généralisée (CSG) sur les allocations chômage
+description: Revenu minimum imposable (en multiple du smic annuel brut) de la contribution sociale généralisée (CSG) sur les allocations chômage
 values:
   2002-01-01:
     value: 1

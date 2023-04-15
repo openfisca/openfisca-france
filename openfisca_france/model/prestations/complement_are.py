@@ -225,7 +225,7 @@ class complement_are_cotisation_retraite_complementaire(Variable):
 class complement_are_csg_journaliere(Variable):
     value_type = float
     entity = Individu
-    label = 'Contribution Sociale Généralisée (CSG) journalière sur le Complément ARE'
+    label = 'Contribution sociale généralisée (CSG) journalière sur le Complément ARE'
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     reference = [
@@ -275,7 +275,7 @@ class complement_are_csg_journaliere(Variable):
 class complement_are_csg(Variable):
     value_type = float
     entity = Individu
-    label = 'Contribution Sociale Généralisée (CSG) mensuelle sur Complément ARE'
+    label = 'Contribution sociale généralisée (CSG) mensuelle sur Complément ARE'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     reference = 'https://www.unedic.org/indemnisation/fiches-thematiques/retenues-sociales-sur-les-allocations'

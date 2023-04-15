@@ -1,4 +1,4 @@
-description: Seuil de RFR3 - Demi-part supplémentaire de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
+description: Majoration du seuil du revenu fiscal de référence de l'année N-2, par demi-part supplémentaire de quotient familial, impliquant l'assujettissement au taux plein de contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité
 values:
   2018-01-01:
     value: null
@@ -9,7 +9,7 @@ values:
   2021-01-01:
     value: 6179
 metadata:
-  short_label: RFR3 - Demi-part suppl.
+  short_label: Majoration du seuil par demi-part de quotient familial supplémentaire
   last_value_still_valid_on: "2021-07-23"
   label_en: CSG - rates on retirement incomes
   ipp_csv_id: seuil_csg_pens_red3_demip

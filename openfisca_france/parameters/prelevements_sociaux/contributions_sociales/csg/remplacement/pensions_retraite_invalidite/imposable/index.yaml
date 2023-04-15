@@ -1,3 +1,7 @@
-description: Contribution Sociale Généralisée (CSG) imposable sur les pensions de retraite et d'invalidité
+description: Contribution sociale généralisée (CSG) imposable sur les pensions de retraite et d'invalidité
 metadata:
   short_label: CSG imposable
+  order:
+  - taux_plein
+  - taux_median
+  - taux_reduit

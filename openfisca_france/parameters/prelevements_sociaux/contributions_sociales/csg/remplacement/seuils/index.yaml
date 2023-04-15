@@ -1,6 +1,6 @@
-description: Seuils de la Contribution Sociale Généralisée (CSG) sur les pensions de retraite et d'invalidité
+description: Seuils des revenus N-2 déterminant le taux de la contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité
 metadata:
-  short_label: Seuils
+  short_label: Seuils de revenu fiscal de référence de l'année N-2 déterminant le taux de CSG
   order:
   - seuil_ir
   - seuil_rfr1
