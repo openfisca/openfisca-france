@@ -1,6 +1,7 @@
 import re
 
-
+# This script fetches and prints the minimal versions of Openfisca-Core and Openfisca-France
+# dependencies in order to ensure their compatibility during CI testing
 with open('./setup.py') as file:
     for line in file:
         version = re.search(r'(Core|France)\s*>=\s*([\d\.]*)', line)
