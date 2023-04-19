@@ -99,7 +99,7 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000035665910
     2019-10-01:
       title: Arrêté du 27/09/2019, art. 33
-      href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000039160689/2019-10-02/#LEGIARTI000039160689
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039160329&categorieLien=id
   official_journal_date:
     1990-07-01: "1990-10-26"
     1991-07-01: "1991-11-10"
@@ -126,8 +126,4 @@ metadata:
   notes:
     2015-10-01:
     - title: Idem en 2016
-documentation: |-
-  Notes :
-  Il s'agit du montant des mensualités plafonds en AL pour des contrats de prêts signés à compter du 1e janvier 2013.
-  Les ALF, APL et ALS ne sont plus révisées au 1 janvier de chaque année N mais au 1 octobre de l'année N.
-  APL accession créée en 1977.
+

@@ -4,7 +4,7 @@ values:
     value: 3
 metadata:
   short_label: Nombre min d'enfants à charge
-  label_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
+  label_en: Minimum number of dependent children
   reference:
     2015-01-01:
     - title: Décret 2014-1708 du 30/12/2014 - art. 1

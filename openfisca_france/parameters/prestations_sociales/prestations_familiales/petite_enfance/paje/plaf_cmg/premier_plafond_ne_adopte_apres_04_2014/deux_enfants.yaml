@@ -1,5 +1,7 @@
 description: Premier plafond (pour deux enfants, si né ou adopté après le 1er avril 2014) du Complément de libre choix de mode de garde (CMG) de la Prestation d'accueil du jeune enfant (PAJE)
 values:
+  2004-01-01:
+    value: null
   2015-01-01:
     value: 23326
   2016-01-01:

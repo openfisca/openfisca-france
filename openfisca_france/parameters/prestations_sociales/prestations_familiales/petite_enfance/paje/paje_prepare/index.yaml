@@ -1,6 +1,7 @@
 description: Prestation partagée d'éducation de l'enfant (PreParE) de la Prestation d'accueil du jeune enfant (PAJE)
 metadata:
-  short_label: PreParE
+  documentation_start: true
+  short_label: Prestation partagée d'éducation de l'enfant (PreParE)
   label_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
   order:
   - age_max_plus_jeune_enfant

@@ -1,7 +1,7 @@
 description: Plafonds de ressources d'Allocation de base à taux plein, pour enfants nés ou adoptés entre le 01/04/2014 et le 31/03/2018 de la Prestation d'accueil du jeune enfant (PAJE)
 metadata:
   short_label: Taux plein
-  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  label_en: Full rate
   order:
   - plafond_ressources_0_enfant
   - biactifs_parents_isoles

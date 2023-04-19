@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: 1 enfant (>5 ans)
-  label_en: "Single earner allowance (ASU): Monthly amount"
+  label_en: 1 chil (>5 ans)
   ipp_csv_id: tx_asu_1_enf_6ans_sup
   unit: /1
   reference:
@@ -19,9 +19,4 @@ metadata:
   notes:
     1976-07-01:
     - title: Réservé aux ménages avec un seul revenu, sauf si l'autre conjoint a un revenu ne dépassant pas la moitié de la base de calcul des AF soit 347,25
-documentation: |-
-  Notes :
-  L'Allocation de salaire unique est instituée en 1941 par la loi du 29 mars 1941 parue au JO du 11 avril 1941 page 1555
-  l'ASU ne peut se cumuler avec l'allocation de la mère au foyer.
-  L'ASU est versée tant que l'âge du plus jeune enfant est inférieur à
-  Allocation supprimée en 1949 pour les ménages ayant un enfant unique de plus de 10 ans
+documentation: Allocation supprimée en 1949 pour les ménages ayant un enfant unique de plus de 10 ans

@@ -1,4 +1,4 @@
-description: Plafond de ressources (1998) des Allocations Familiales (AF)
+description: Plafond de ressources (1998) des allocations familiales (AF)
 values:
   1998-03-01:
     value: 129600
@@ -28,6 +28,3 @@ metadata:
     - title: Création d'une condition de ressources transitoire (avant une réforme globale prévue des prestations familiales)
     1999-01-01:
     - title: Suppression de la condition de ressources
-documentation: |-
-  Notes
-  Définition biactifs : cf. feuille "def_biactif"

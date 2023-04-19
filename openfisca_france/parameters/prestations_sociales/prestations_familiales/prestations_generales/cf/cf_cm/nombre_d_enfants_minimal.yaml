@@ -11,7 +11,7 @@ values:
 metadata:
   short_label: Nombre minimal d'enfants à charge
   last_value_still_valid_on: "2023-01-05"
-  label_en: "Family complement (CF): General conditions and amounts"
+  label_en: Minimum number of dependent children
   ipp_csv_id: nenf_cf_min
   reference:
     1978-01-01:
@@ -32,7 +32,7 @@ metadata:
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750615
     - title: Ordonnance 96-51 du 24/01/1996, art. 4
     2003-12-19:
-      title: Loi 2003-1199 du 18/12/2003, art. 60 (modif L522-1 du CSS)
+    - title: Loi 2003-1199 du 18/12/2003, art. 60 (modif L522-1 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
   official_journal_date:
     1978-01-01: 1977-07-13; 1977-11-17; 1978-09-06

@@ -8,6 +8,8 @@ values:
     value: 8912
   2020-01-01:
     value: 8938
+  2022-01-01:
+    value: 9124
   2023-01-01:
     value: 9642
 metadata:
@@ -27,8 +29,11 @@ metadata:
     2020-01-01:
     - title: Décret n° 2020-6 du 3 janvier 2020, art. 1
       href: https://www.legifrance.gouv.fr/eli/decret/2020/1/3/LOGL1934005D/jo/texte
-    - title: Arrêté du 03/01/2020, art. 1
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039772259
+    - title: Arrêté du 3 janvier 2020, art. 1
+      href: https://www.legifrance.gouv.fr/eli/arrete/2020/1/3/LOGL1934006A/jo/texte
+    2022-01-01:
+      title: Arrêté du 20/12/2021, Art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044572817
     2023-01-01:
     - title: Arrêté du 26/12/2022, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046829580
@@ -39,6 +44,7 @@ metadata:
     2016-01-01: "2016-01-22"
     2019-01-01: "2018-12-29"
     2020-01-01: "2020-01-04"
+    2022-01-01: "2021-12-28"
     2023-01-01: "2022-12-29"
 documentation: |-
   Notes :

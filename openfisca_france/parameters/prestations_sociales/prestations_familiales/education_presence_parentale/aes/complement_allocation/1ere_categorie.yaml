@@ -1,4 +1,4 @@
-description: Complément d'allocation (1ère catégorie) de l'Allocation d'éducation spéciale (AES, 1976-2005)
+description: Complément d'allocation (1ère catégorie) de l'Allocation d'éducation spéciale (AES)
 values:
   1976-08-01:
     value: 0.48
@@ -40,7 +40,3 @@ metadata:
     - title: "Complément 3e catégorie: 6058 au 01/01/1992"
     2006-01-01:
     - title: La loi du 11 février 2005 pour l'égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées transforme l'AES en l'AEEH
-documentation: |-
-  Notes :
-  (1) 50% du salaire moyen (cotisations versées au cours des 10 années civiles d'assurance dont la prise en considération est la plus avantageuse pour l'assuré. Ces années sont comprises entre 31/12/1947 et la date d'interruption de travail suivie d'invalidité, ou entre 47 et la constataion médicale d'invalidité. Si l'assuré ne compte pas 10 années d'assurance, on prend les années d'assurances accomplies depuis l'immatriculation) majoré de 40%, cette majoration doit être supérieur à un minimum annuel fixé par décret
-  (2) Le montant du complément de la sixième catégorie de l'allocation d'éducation de l'enfant handicapé est égal au montant de la majoration pour tierce personne accordée aux invalides de la 3e catégorie définis à l'article L. 341-4.(24/09/1991)

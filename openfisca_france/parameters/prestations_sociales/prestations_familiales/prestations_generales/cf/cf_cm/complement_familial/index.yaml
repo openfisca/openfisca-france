@@ -1,7 +1,7 @@
 description: Montants (en % de la BMAF) du complément familial (CF)
 metadata:
   short_label: Montants
-  label_en: "Family complement (CF): General conditions and amounts"
+  label_en: Amounts
   order:
   - taux_cf_base
   - taux_cf_majore

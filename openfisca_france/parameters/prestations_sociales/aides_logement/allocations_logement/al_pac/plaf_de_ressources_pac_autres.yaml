@@ -32,6 +32,8 @@ values:
     value: 13023
   2020-01-01:
     value: 13548
+  2021-01-01:
+    value: 13602.19
 metadata:
   short_label: Plafond individuel de ressources pour les ascendants
   last_value_still_valid_on: "2023-02-09"
@@ -101,6 +103,7 @@ metadata:
     - title: La valeur est calculée comme 10418.4*1.25
     2020-01-01:
     - title: La valeur est calculée comme 10838.40 *1.25
-documentation: |-
-  Notes :
-  "Plafonds indiqués à l'art. L815-9 du CSS (législation sur les allocations aux personnes âgées)". Ces plafonds seront multipliés par 1,25 à partir de 2007
+
+    2021-01-01:
+    - title: Révalorisation des plafonds selon la révalorisation du montant de l'ASPA. (1)
+documentation: Le plafond de ressources est défini dans l'article R823-4-3° du Code de la construction et de l'habitation. Il s'agit du montant maximal de l'ASPA pour une personne seule, multiplié par 1,25 à partir de 2007 (article L815-9 CSS; fixé par l'article D815-1 CSS jusqu'ai 1er janvier 2020; après révalorisé par l'instruction interministérielle n° DSS/SD3A/2020/230 du 23/12/2020 au 1er janvier 2021).

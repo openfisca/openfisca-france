@@ -16,12 +16,12 @@ values:
     value: 10625
 metadata:
   short_label: Majoration pour couple avec deux revenus ou parent isolé
-  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  label_en: Increase for couple with two incomes or single parent
   ipp_csv_id: maj_plaf_paje_bi_pn_pa_abpartiel_a_partir_20180401
   unit: currency
   reference:
     2004-01-01:
-      title: Décret 2003-1393 du 31/12/2003, art. 2 (modif art. R531-1 du CSS)
+    - title: Décret 2003-1393 du 31/12/2003, art. 2 (modif art. R531-1 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227363&cidTexte=JORFTEXT000000248223
     2018-04-01:
     - title: Décret 2018-312 du 26 avril 2018, art. 2
@@ -31,19 +31,21 @@ metadata:
     - title: Loi 2017-1836 du 30/12/2017, art. 37 (modifie art. L531-3 du CSS)
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000036339090
     2019-01-01:
-      title: Arrêté du 21/12/2018, art. 3
+    - title: Arrêté du 21/12/2018, art. 3
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037864986?r=NZKwYXtfpm
     2020-01-01:
-      title: Arrêté du 20/12/2019, art. 3
+    - title: Arrêté du 20/12/2019, art. 3
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039663220
     2021-01-01:
-      title: Arrêté du 14/12/2020, art. 3
+    - title: Arrêté du 14/12/2020, art. 3
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042694981
     2022-01-01:
-      title: Arrêté du 16/12/2021, art. 2
+    - title: Instruction no DSS/2B/2021/247 du 14/12/2021
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2021/2021.24.sant%C3%A9.pdf
+    - title: Arrêté du 16/12/2021
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044572366
     2023-01-01:
-      title: Arrêté du 2112/2022, art. 1
+    - title: Arrêté du 2112/2022, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046794210
   official_journal_date:
     2004-01-01: "2004-01-01"

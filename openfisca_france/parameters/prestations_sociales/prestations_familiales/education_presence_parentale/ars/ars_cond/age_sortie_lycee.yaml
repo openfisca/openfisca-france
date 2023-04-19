@@ -11,7 +11,7 @@ metadata:
   ipp_csv_id: ars_enf_agemax
   unit: year
   reference:
-    1976-08-18:
+    1974-08-18:
     - title: Article R543-2 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019281627/1985-12-21/
     - title: Décret 74-706 du 13/08/1974, art. 2
@@ -29,6 +29,4 @@ metadata:
     - title: L'article 14 de la LFR 74-644 du 16/07/1974 (JO 17/07/1974)crée l'Allocation de rentrée scolaire (ARS)
     1990-09-05:
     - title: Extension de l'ARS par la loi 90-590 du06/07/1990
-documentation: |-
-  Notes :
-  (2) Age de l'enfant à charge au 15 septembre de l'année de la rentrée scolaire.
+documentation: Âge de l'enfant à charge au 15 septembre de l'année de la rentrée scolaire.

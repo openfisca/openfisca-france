@@ -10,5 +10,5 @@ metadata:
   unit: year
   reference:
     2008-04-30:
-      title: Article R521-1 du Code de la sécurité sociale Allocations familiales
+    - title: Article R521-1 du Code de la sécurité sociale Allocations familiales
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018735853

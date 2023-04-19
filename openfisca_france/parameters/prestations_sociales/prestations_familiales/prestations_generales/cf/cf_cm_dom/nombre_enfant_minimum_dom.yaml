@@ -4,7 +4,7 @@ values:
     value: 1
 metadata:
   short_label: Nombre d'enfant minimum
-  label_en: "Family complement (CF): Thresholds for means-testing in oversea territories"
+  label_en: Minimum number of children
   reference:
     2002-01-01:
       title: Section 3 Complément familial. (Article D755-6)

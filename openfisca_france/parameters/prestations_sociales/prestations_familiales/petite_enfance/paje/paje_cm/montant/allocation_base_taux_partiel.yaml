@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Montant à taux partiel
   last_value_still_valid_on: "2023-02-06"
-  label_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
+  label_en: Partial rate amount
   ipp_csv_id: tx_paje_base_partiel
   unit: BMAF
   reference:
@@ -36,5 +36,5 @@ metadata:
     2018-04-01:
     - title: Taux appliqués pour les enfants nés ou adoptés à partir du 1er avril 2018.
 documentation: |-
-  Notes :
-  (1) Conformément à l'article 4, I du décret n° 2018-312 du 26 avril 2018 ces dispositions entrent en vigueur à compter du 1er avril 2018 pour les enfants nés ou adoptés à compter de cette date et à compter du 1er avril 2021 pour l'ensemble des autres enfants, dans les conditions prévues à l'article 37 de la loi du 30 décembre 2017.
+  S'applique pour les enfants nés à partir du 1er avril 2014
+  NB : A partir du 1er avril 2014, et pour les enfants nés ou adoptés avant le 1er avril 2018, les montants de l'allocation de base à taux plein et taux partiel sont gelés à leur montant calculé à partir de la BMAF en vigueur au 1er avril 2013. Cf. III. de l'art. 74 de la loi 2013-1203 du 23 décembre 2013 de financement de la sécurité sociale pour 2014. Ce paragraphe III. est abrogé par la loi 2017-1836 du 30/12/2017 avec application de l'abrogation à compter du 1er avril 2018.

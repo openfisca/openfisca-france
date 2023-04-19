@@ -3,5 +3,5 @@ metadata:
   short_label: Tranches d'âge
   label_en: "Family allowances (AF): Extra allowances"
   order:
-  - age_debut_de_la_deuxieme_tranche
   - age_debut_de_la_premiere_tranche
+  - age_debut_de_la_deuxieme_tranche

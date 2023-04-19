@@ -1,7 +1,23 @@
 description: Conditions et montant de l'Allocation parentale d'éducation (APE, 1985-2004)
 metadata:
-  short_label: APE
+  documentation_start: true
+  short_label: Allocation parentale d'éducation (APE)
   label_en: "Parental leave allowance (APE): Conditions and amounts"
+  reference:
+    1996-07-01:
+      title: Loi 96-604 du 05/07/1996, art. 47 (modif art. L532-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006284502&cidTexte=JORFTEXT000000193679
+    2004-01-01:
+      title: Loi 2003-1199 du 18/12/2003, art. 60 (modif art. L511-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006758905&cidTexte=JORFTEXT000000249276
+  official_journal_date:
+    1996-07-01: "1996-07-06"
+    2004-01-01: "2003-12-19"
+  notes:
+    1996-07-01:
+    - title: APE pendant 1 an en cas d'adoption d'un enfant entre 2 et 16 ans. APE pendant 3 ans si adoption simultanée d'au moins 3 enfants
+    2004-01-01:
+    - title: Remplacée par PAJE. Toujours pas de cumul avec CF
   order:
   - nombre_min_enfants_pris_en_charge
   - age_max_enfant
@@ -9,3 +25,4 @@ metadata:
   - intervalle_calcul_nb_annees_activite
   - duree_allocation_maximale
   - montant_mensuel
+documentation: L'activité professionnelle et les situations assimilées sont prises en comptes, au titre des vingt-quatre mois, si elles ont assuré un revenu moyen annuel d'au moins 40 p. 100 d'une somme égale à 2.028 fois le montant horaire du salaire minimum de croissance en vigueur au 1er janvier de l'année de la demande d'allocation parentale d'éducation.

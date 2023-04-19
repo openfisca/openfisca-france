@@ -30,13 +30,13 @@ metadata:
       title: Loi 90-590 du 06/07/1990, art. 1 (modif art. L543-1 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757396&cidTexte=JORFTEXT000000715282
     1995-08-01:
-      title: Décret 95-909 du 11/08/1995, art. 1
+    - title: Décret 95-909 du 11/08/1995, art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006770873&cidTexte=JORFTEXT000000370245
     1997-08-01:
-      title: Décret 97-794 du 22/08/1997, art. 1
+    - title: Décret 97-794 du 22/08/1997, art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006771797&cidTexte=JORFTEXT000000566910
     2001-08-01:
-      title: Décret 2001-719 du 31/07/2001, art. 1 (modif art. D543-1 du CSS)
+    - title: Décret 2001-719 du 31/07/2001, art. 1 (modif art. D543-1 du CSS)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006780020&cidTexte=JORFTEXT000000224565
     2008-08-03:
     - title: Loi 2007-1786 du 19/12/2007, art. 93 (modif art. L543-1 du CSS)
@@ -64,12 +64,5 @@ metadata:
     2008-08-03:
     - title: "La loi : Le montant varie avec l'âge; Le décret : Changement de taux. Au regard de la date du JO, ce nouveau taux devrait s'appliquer pour la rentrée 2008. Or, ce n'est pas la cas : cf. dico permanent"
 documentation: |-
-  Notes :
-  L'ARS a un plafond variable selon le nombre d'enfants dès 1974 (Loi 74-644 du 16/07/1974)
-  Décret 2002-1059, art 1 du 07/08/2002 (JORF 08/08/2002): L'allocation différentielle de rentrée scolaire est égale, pour chaque enfant, à la différence entre, d'une part, le plafond défini au deuxième alinéa de l'article R. 543-5, majoré du montant de l'allocation de rentrée scolaire en vigueur au 1er juillet de l'année en cours multiplié par le nombre d'enfants y ouvrant droit au titre de la rentrée scolaire en cours et, d'autre part, le montant des ressources, cette différence étant divisée par le nombre d'enfants à charge ouvrant droit à cette allocation.
-  (1) Entrée à 6 ans : Chaque enfant "qui atteindra son sixième anniversaire avant le 1er février de l'année suivant celle de la rentrée scolaire" (art. R543-2 du CSS)
-  Limite de 11 ans : l'enfant sort de cette catégorie s'il atteint ses 11 ans "au cours de l'année civile de la rentrée scolaire" (art. R543-2 du CSS)
-  (2) Limite de 11 ans : l'enfant entre dans cette catégorie s'il atteint ses 11 ans "au cours de l'année civile de la rentrée scolaire" (art. R543-2 du CSS)
+  Limite de 11 ans : l'enfant entre dans cette catégorie s'il atteint ses 11 ans "au cours de l'année civile de la rentrée scolaire" (art. R543-2 du CSS)
   Limite de 15 ans : l'enfant sort de cette catégorie s'il atteint ses 15 ans "au cours de l'année civile de la rentrée scolaire" (art. R543-2 du CSS)
-  (3)Limite de 15 ans : l'enfant entre dans cette catégorie s'il atteint ses 15 ans "au cours de l'année civile de la rentrée scolaire" (art. R543-2 du CSS)
-  Limite de 18 ans : "tout enfant qui n'a pas atteint l'âge de dix-huit ans révolus au 15 septembre de l'année considérée"(art. R543-2 du CSS)

@@ -4,5 +4,7 @@ metadata:
   label_en: "Family allowances (AF): General conditions and amount"
   order:
   - plafond_tranche_1
+  - plafond_tranche_1_base
   - plafond_tranche_2
+  - plafond_tranche_2_base
   - majoration_plafond_par_enfant_supplementaire

@@ -1,6 +1,13 @@
-description: Allocations prénatales (APrN, 1976-1985)
+description: "Allocations prénatales (APrN) : taux et versement"
 metadata:
-  short_label: Allocations prénatales
+  short_label: Allocations prénatales (APrN)
   label_en: "Prenatal allowance (APrN): Rate and payment"
+  reference:
+    1978-01-01:
+      title: Décret 78-728 du 11/07/1978
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000516812&categorieLien=id
+  official_journal_date:
+    1978-01-01: "1978-07-12"
   order:
   - taux
+documentation: Les allocations prénatales sont instituées par la loi 46-1835 fixant le régime des prestations familiales (articles 14 à 16)
