@@ -26,6 +26,16 @@ values:
     value: 11.46
   2017-04-01:
     value: 11.49
+  2018-04-01:
+    value: 11.60
+  2019-04-01:
+    value: 11.79
+  2020-04-01:
+    value: 11.90
+  2021-04-01:
+    value: 11.91
+  2022-04-01:
+    value: 12.12
 metadata:
   short_label: Montant journalier
   label_en: "Temporary waiting allowance (ATA): Amounts"
@@ -60,10 +70,30 @@ metadata:
       title: Décret 2013-1274 du 27/12/2013
       href: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1274/jo/texte
     2015-01-01:
-      title: Décret 2014-1719 du 31/12/2014
-      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030005607
-    2015-11-01:
-      title: Loi du 29/07/2015, art. 23
+      - title: Décret 2014-1719 du 31/12/2014
+      - href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030005607
+      - title: Loi du 29/07/2015, art. 23
+    2016-04-01:
+      title: Décret 2016-540 du 03/05/2016
+      href: https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte
+    2017-04-01:
+      title: Décret 2017-1022 du 10/05/2017
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034678225
+    2018-04-01:
+      title: Décret 2018-446 du 05/06/2018
+      href: https://www.legifrance.gouv.fr/eli/decret/2018/6/5/2018-446/jo/texte
+    2019-04-01:
+      title: Décret 2019-466 du 16/05/2019
+      href: https://www.legifrance.gouv.fr/eli/decret/2019/5/16/2019-466/jo/texte
+    2020-04-01:
+      title: Décret 2020-669 du 02/06/2020
+      href: https://www.legifrance.gouv.fr/eli/decret/2020/6/2/2020-669/jo/texte
+    2021-04-01:
+      title: Décret n° 2021-523 du 29/04/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459270
+    2022-04-01:
+      title: Décret n° 2022-493 du 6 avril 2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045522919
   official_journal_date:
     2006-11-16: "2006-11-15"
     2007-01-01: "2007-01-09"
@@ -76,6 +106,13 @@ metadata:
     2014-01-01: "2013-12-29"
     2015-01-01: "2014-12-31"
     2015-11-01: "2015-07-30"
+    2016-04-01: "2016-05-04"
+    2017-04-01: "2017-05-11"
+    2018-04-01: "2018-06-06"
+    2019-04-01: "2019-05-18"
+    2020-04-01: "2020-06-04"
+    2021-04-01: "2021-04-30"
+    2022-04-01: "2022-04-07"
   notes:
     2015-11-01:
-    - title: Remplacée par l'allocation pour demandeur d'asile (ADA)
+    - title: Remplacée par l'allocation pour demandeur d'asile (ADA). Les autres allocataires continuent de la percevoir, mais il n'y en a plus de nouveaux depuis septembre 2017. https://drees.solidarites-sante.gouv.fr/sites/default/files/2021-01/Fiche%2026%20-%20L%E2%80%99allocation%20temporaire%20d%E2%80%99attente%20%28ATA%29.pdf#:~:text=L%E2%80%99allocation%20temporaire%20d%E2%80%99attente%20%28ATA%29%20est%20une%20allo-%20cation,encore%20en%20b%C3%A9n%C3%A9ficier%20jusqu%E2%80%99%C3%A0%20expiration%20de%20leurs%20droits%08

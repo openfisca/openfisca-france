@@ -38,6 +38,10 @@ values:
     value: 36.17
   2020-04-01:
     value: 36.5
+  2021-04-01:
+    value: 36.54
+  2022-04-01:
+    value: 37.20
 metadata:
   short_label: Montant journalier
   label_en: Early retirement allowance (AER)
@@ -101,6 +105,12 @@ metadata:
     2020-04-01:
       title: Décret 2020-669 du 02/06/2020
       href: https://www.legifrance.gouv.fr/eli/decret/2020/6/2/2020-669/jo/texte
+    2021-04-01:
+      title: Décret n° 2021-523 du 29/04/2021
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459270
+    2022-04-01:
+      title: Décret n° 2022-493 du 6 avril 2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045522919
   official_journal_date:
     2002-04-06: "2002-04-06"
     2003-01-01: "2003-01-01"
@@ -121,3 +131,8 @@ metadata:
     2018-04-01: "2018-06-06"
     2019-04-01: "2019-05-18"
     2020-04-01: "2020-06-04"
+    2021-04-01: "2021-04-30"
+    2022-04-01: "2022-04-07"
+  notes:
+    2011-01-01:
+    - title: L'AER est supprimé au 01/01/2011. Seules les personnes dont les droits à l'AER ont été ouverts avant le 1er janvier 2011 continuent à la percevoir jusqu'à l'expiration de leurs droits.
