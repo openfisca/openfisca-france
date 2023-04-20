@@ -217,9 +217,11 @@ class bourse_criteres_sociaux_etudiant_autonome(Variable):
         propre_declaration_fiscale = not_(individu('enfant_a_charge', period.this_year))
         avec_des_enfants = individu.famille('bourse_criteres_sociaux_nombre_enfants_parent_etudiant', period) > 0
 
-        eligible_etudiant_parent_isole = is_parent * propre_declaration_fiscale * avec_des_enfants
+        eligible_etudiant_parent = is_parent * propre_declaration_fiscale * avec_des_enfants
 
-        return eligible_couple + eligible_etudiant_parent_isole
+        orphelin = individu('orphelin', period)
+
+        return eligible_couple + eligible_etudiant_parent + orphelin
 
 
 class bourse_criteres_sociaux_points_de_charge(Variable):

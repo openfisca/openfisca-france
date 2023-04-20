@@ -1,5 +1,16 @@
 # Changelog
 
+### 146.1.0 [#2091](https://github.com/openfisca/openfisca-france/pull/2091)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+    - `caracteristiques_socio_demographiques/demographie.py`
+    - `prestations/enseignement_superieur/bourse_criteres_sociaux.py`
+* Détails :
+  - Ajoute une variable orphelin
+  - Améliore le calcul de la bourse sur critères sociaux pour les personnes orphelines.
+
 ### 146.0.7 [#2073](https://github.com/openfisca/openfisca-france/pull/2073)
 
 *Toutes les périodes* 

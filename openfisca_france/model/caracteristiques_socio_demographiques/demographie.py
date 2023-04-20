@@ -35,6 +35,15 @@ class mineur_emancipe(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class orphelin(Variable):
+    value_type = bool
+    default_value = False
+    entity = Individu
+    label = "L'individu est orphelin de ses deux parents"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
 class adoption(Variable):
     value_type = bool
     entity = Individu
