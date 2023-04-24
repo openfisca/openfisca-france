@@ -77,29 +77,32 @@ EXPECTED_PATHS=(
     )
 
 
-# get last published git tag
+# indexed parameters tree is compared with last published git tag
 # --first-parent ensures we don't follow tags not published in master through an unlikely intermediary merge commit 
 last_tagged_commit=`git describe --tags --abbrev=0 --first-parent`
 
 # compare indexed parameters diff tree with EXPECTED_PATHS
 BRANCH_PATHS_ROOT="openfisca_france/parameters/"
 
-# MEMO list indexed files: git ls-files openfisca_france/parameters/
+# MEMO list all indexed files: git ls-files openfisca_france/parameters/
 error_status=0
 
+
+# arguments: item_path is a change in the GIT indexed items; it's a file because GIT doesn't index empty directories
+# result: if item_path is in a new directroy, returns the added directory path, else return nothing
 check_change(){
     local item_path="$1"
-    # item_path is a change in the GIT indexed items; it's a file because GIT doesn't index empty directories
     
-    # we compare item_path parent directory with EXPECTED_PATHS list
+    # we compare item_path directory with EXPECTED_PATHS list
     local item_parent=`dirname $item_path`
     local item_parent_depth=`echo $item_parent | grep -o / | wc -l`
 
-    # does EXPECTED_PATHS contain the parent directory?
+    # checking if it's a new directory; do EXPECTED_PATHS string patterns contain the directory?
     local matching_expected_paths=`echo ${EXPECTED_PATHS[@]} | tr ' ' '\n' | grep ${item_parent}`
     local matching_expected_paths_array=($matching_expected_paths)
 
     if [[ ${matching_expected_paths_array[@]} ]]; then  # -> (path analysis direction)
+        # the directory is contained in expected directories
         local list_length=`echo "$matching_expected_paths"  | wc -l`
         local j=0
 
@@ -108,7 +111,13 @@ check_change(){
         while [ $j -lt $list_length ]; do
             local expected_item_depth=`echo ${matching_expected_paths_array[$j]} | grep -o / | wc -l`
             if [ $expected_item_depth -eq $item_parent_depth ]; then
-                break
+                if [ ${matching_expected_paths_array[$j]} = $item_parent ]; then
+                    # the directory itself is expected
+                    break
+                else
+                    # same depth but the directory is renamed; we expected ${matching_expected_paths_array[$j]}
+                    echo $item_parent
+                fi
             elif [ $expected_item_depth -gt $item_parent_depth ]; then
                 # EXPECTED_PATHS contains a directory longer than current item directory's path
                 # list current item directory as a change in the tree hierarchy
@@ -175,5 +184,7 @@ if [[ ${error_status} -gt 0 ]]; then
     echo "Corriger les écarts constatés ci-dessus ou proposer la modification de cette arborescence commune"
     echo "dans une nouvelle issue : https://github.com/openfisca/openfisca-france/issues/new"
     echo "Pour en savoir plus : https://github.com/openfisca/openfisca-france/issues/1811"
+else
+    echo "Merci. La validité de l'arborescence des paramètres est maintenue."
 fi
 exit ${error_status}
