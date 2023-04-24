@@ -307,3 +307,40 @@
   output:
     csg_imposable_chomage: -0.024*(0.9825*2000)
     csg_deductible_chomage: -0.038*(0.9825*2000)
+
+- name: Chomage déductible et imposable Abattement Exoneration seuil SMIC - activite partielle
+  period: 2020-01
+  input:
+    chomage_brut: 500.0
+    salaire_net: 500.0
+    rfr:
+      2018:
+        15000.0
+  output:
+    csg_imposable_chomage: 0
+    csg_deductible_chomage: 0
+
+- name: Chomage déductible et imposable Abattement - activite partielle
+  period: 2020-01
+  input:
+    chomage_brut: 1000.0
+    salaire_net: 1500.0
+    rfr:
+      2018:
+        15000.0
+  output:
+    csg_imposable_chomage: -0.024*(0.9825*1000)
+    csg_deductible_chomage: -0.038*(0.9825*1000)
+
+- name: Chomage déductible et imposable Abattement Exoneration partielle seuil SMIC - activite partielle
+  period: 2020-01
+  absolute_error_margin: 0.1
+  input:
+    chomage_brut: 1000.0
+    salaire_net: 570.0
+    rfr:
+      2018:
+        15000.0
+  output:
+    csg_imposable_chomage: -0.024*(0.9825*1000)
+    csg_deductible_chomage: -7
