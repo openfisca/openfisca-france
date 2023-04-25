@@ -1,5 +1,15 @@
 # Changelog
 
+### 146.2.0 [#2044](https://github.com/openfisca/openfisca-france/pull/2044)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2015.
+* Zones impactées :
+    - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement.py`
+    - `tests/formulas/csg/csg_remplacement.py`
+* Détails :
+  - Correction de la condition d'exonération de contributions sociales sur le chômage en cas de revenus inférieurs auSMIC mensuel brut : ajoute le cas du cumul d'allocations chômage et de revenus d'activité.
+
 ### 146.1.0 [#2091](https://github.com/openfisca/openfisca-france/pull/2091)
 
 * Évolution du système socio-fiscal.
