@@ -2,7 +2,7 @@ from openfisca_core.periods import Period
 
 from openfisca_france.model.base import *
 
-from numpy import datetime64
+from numpy import datetime64, abs as abs_
 
 # Références juridiques - Code de la sécurité sociale
 #
@@ -309,7 +309,6 @@ class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
             'bourse_recherche',
             'gains_exceptionnels',
             'pensions_alimentaires_percues',
-            'pensions_alimentaires_versees_individu',
             'pensions_invalidite',
             'prestation_compensatoire',
             'retraite_nette',
@@ -319,8 +318,13 @@ class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
         ressources = sum(
             [individu(ressource, three_previous_months, options = [ADD]) for ressource in ressources_a_inclure]
             )
+        
+        # On récupère le montant absolu des pensions alimentaires versées au cas où la valeur reçue est négative
+        pensions_alimentaires_versees = abs_(individu(
+            'pensions_alimentaires_versees_individu', three_previous_months, options = [ADD]))
 
-        return ressources * 4
+        # On soustrait le montant des pensions alimentaires versées à la base des ressources
+        return (ressources - pensions_alimentaires_versees) * 4
 
 
 class aah_base_ressources_activite_eval_annuelle(Variable):
