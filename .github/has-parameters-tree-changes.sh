@@ -76,6 +76,30 @@ EXPECTED_PATHS=(
     "openfisca_france/parameters/taxation_societes"  # premier niveau bloqué seulement ; à harmoniser avec les barèmes IPP
     )
 
+get_path_depth(){
+    # trim last slash in path string and count remaining slashes
+    # usage: get_path_depth "openfisca_france/parameters/taxation_indirecte/taxes_tabacs/"
+    local path_string="$1"
+    echo ${path_string%/} | grep -o / | wc -l
+}
+
+
+get_max_paths_depth(){
+    # get longer path depth in an array of string paths
+    # usage: get_max_paths_depth "${array_of_string_paths[@]}"
+    # where array_of_string_paths is expanded to get the right and full sequence of items
+    local paths_strings_array=("$@")
+    local max_path_depth=-1
+    for p in "${paths_strings_array[@]}"; do
+        # echo $p
+        depth=`get_path_depth $p`
+        if [ $depth -gt $max_path_depth ]; then
+            max_path_depth=$depth
+        fi
+    done
+    echo $max_path_depth
+}
+expected_paths_max_depth=`get_max_paths_depth "${EXPECTED_PATHS[@]}"`
 
 # indexed parameters tree is compared with last published git tag
 # --first-parent ensures we don't follow tags not published in master through an unlikely intermediary merge commit 
