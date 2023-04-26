@@ -128,6 +128,7 @@ check_change(){
     fi 
 }
 
+
 added=`echo ${EXPECTED_PATHS[@]} ${EXPECTED_PATHS[@]} ${local_parameters[@]} | tr ' ' '\n' | sort | uniq -u`
 added_checked=()
 if [[ ${added[@]} ]]; then
@@ -137,14 +138,14 @@ if [[ ${added[@]} ]]; then
 fi
 if [[ ${added_checked[@]} ]]; then
     echo "${BLUE}INFO Ces répertoires de paramètres ont été ajoutés :${COLOR_RESET}"
-    printf '%s\n' ${added_checked[@]}
+    echo ${added_checked[@]} | tr ' ' '\n'
     error_status=1
 fi
 
 lost=`echo ${local_parameters[@]} ${local_parameters[@]} ${EXPECTED_PATHS[@]} | tr ' ' '\n' | sort | uniq -u`
 if [[ ${lost[@]} ]]; then
     echo "${BLUE}INFO Ces répertoires de paramètres ont été supprimés :${COLOR_RESET}"
-    printf '%s\n' ${lost[@]}
+    echo ${lost[@]} | tr ' ' '\n'
     error_status=2
 fi
 
