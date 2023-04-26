@@ -5,9 +5,8 @@ BLUE='\033[0;34m'
 COLOR_RESET='\033[0m'
 
 
-# openfisca-france array of expected _directories_ paths for parameters (without trailing slash and no duplicates)
+# openfisca-france array of expected _directories_ paths for parameters (no duplicates)
 EXPECTED_PATHS=(
-    "openfisca_france"
     "openfisca_france/parameters"    
     "openfisca_france/parameters/chomage"
     "openfisca_france/parameters/chomage/allocation_retour_emploi"
@@ -99,80 +98,41 @@ get_max_paths_depth(){
     done
     echo $max_path_depth
 }
-expected_paths_max_depth=`get_max_paths_depth "${EXPECTED_PATHS[@]}"`
 
-# indexed parameters tree is compared with last published git tag
-# --first-parent ensures we don't follow tags not published in master through an unlikely intermediary merge commit 
-last_tagged_commit=`git describe --tags --abbrev=0 --first-parent`
 
-# compare indexed parameters diff tree with EXPECTED_PATHS
-BRANCH_PATHS_ROOT="openfisca_france/parameters/"
-
-# MEMO list all indexed files: git ls-files openfisca_france/parameters/
+# compare local parameters tree with EXPECTED_PATHS
 error_status=0
+PARAMETERS_PATHS_ROOT="openfisca_france/parameters"
+expected_paths_max_depth=`get_max_paths_depth "${EXPECTED_PATHS[@]}"`
+local_parameters=`find $PARAMETERS_PATHS_ROOT -type d -maxdepth $expected_paths_max_depth | sort` 
 
 
-# arguments: item_path is a change in the GIT indexed items; it's a file because GIT doesn't index empty directories
-# result: if item_path is in a new directroy, returns the added directory path, else return nothing
 check_change(){
-    local item_path="$1"
-    
-    # we compare item_path directory with EXPECTED_PATHS list
-    local item_parent=`dirname $item_path`
-    local item_parent_depth=`echo $item_parent | grep -o / | wc -l`
+    local dirpath="$1"
+    local parent=`dirname $dirpath`
+    local matching_expected_paths=( `echo ${EXPECTED_PATHS[@]} | tr ' ' '\n' | grep ${parent}` )
 
-    # checking if it's a new directory; do EXPECTED_PATHS string patterns contain the directory?
-    local matching_expected_paths=`echo ${EXPECTED_PATHS[@]} | tr ' ' '\n' | grep ${item_parent}`
-    local matching_expected_paths_array=($matching_expected_paths)
-
-    if [[ ${matching_expected_paths_array[@]} ]]; then  # -> (path analysis direction)
-        # the directory is contained in expected directories
-        local list_length=`echo "$matching_expected_paths"  | wc -l`
-        local j=0
-
-        # look into each EXPECTED_PATHS containing item_parent
-        # its path is as long or longer than item_parent path length 
-        while [ $j -lt $list_length ]; do
-            local expected_item_depth=`echo ${matching_expected_paths_array[$j]} | grep -o / | wc -l`
-            if [ $expected_item_depth -eq $item_parent_depth ]; then
-                if [ ${matching_expected_paths_array[$j]} = $item_parent ]; then
-                    # the directory itself is expected
-                    break
-                else
-                    # same depth but the directory is renamed; we expected ${matching_expected_paths_array[$j]}
-                    echo $item_parent
-                fi
-            elif [ $expected_item_depth -gt $item_parent_depth ]; then
-                # EXPECTED_PATHS contains a directory longer than current item directory's path
-                # list current item directory as a change in the tree hierarchy
-                echo $item_parent
-            fi
-            ((j++))
-        done
-    else
-        # <- (path analysis direction)
-        # the parent directory is new! does it have siblings? 
-        # = are there any expectations in EXPECTED_PATHS for this path depth?
-        local item_grand_parent=`dirname $item_parent`
-        local grand_parent_matching_expected_paths=`echo ${EXPECTED_PATHS[@]} | tr ' ' '\n' | grep ${item_grand_parent}`
-        local grand_parent_matching_expected_paths_array=($grand_parent_matching_expected_paths)
-        local siblings_number=`expr ${#grand_parent_matching_expected_paths_array[@]} - 1` 
+    if [[ ${matching_expected_paths[@]} ]]; then
+        local matching_count="${#matching_expected_paths[@]}"
         
-        if [[ $siblings_number -gt 0 ]]; then
-            echo $item_parent
-        fi         
+        local i=0
+        local expected_path=""
+        while [ $i -lt $matching_count ]; do
+            expected_path="${matching_expected_paths[$i]}"
+            if [ $expected_path != $parent ]; then
+                echo $dirpath
+                break
+            fi
+            ((i++))
+        done         
     fi 
 }
 
-added=`git diff-index --name-only --diff-filter=A --exit-code ${last_tagged_commit}  -- ${BRANCH_PATHS_ROOT}`
+added=`echo ${EXPECTED_PATHS[@]} ${EXPECTED_PATHS[@]} ${local_parameters[@]} | tr ' ' '\n' | sort | uniq -u`
 added_checked=()
 if [[ ${added[@]} ]]; then
-    for item_path in $added; do
-        result=`check_change $item_path`
-        result_already_listed=`echo ${added_checked[@]} | tr ' ' '\n' | grep "$result"`
-        if [[ -z $result_already_listed ]]; then
-            added_checked+=($result)
-        fi
+    for path in $added; do
+        added_checked+=(`check_change $path`)
     done
 fi
 if [[ ${added_checked[@]} ]]; then
@@ -181,23 +141,10 @@ if [[ ${added_checked[@]} ]]; then
     error_status=1
 fi
 
-lost=`git diff-index --name-only --diff-filter=D --exit-code ${last_tagged_commit}  -- ${BRANCH_PATHS_ROOT}`
-# for every deleted file, check if the parent directory was removed and if is was removed, check if it was an expected directory
-lost_checked=()
-lost_checked_unique=()
+lost=`echo ${local_parameters[@]} ${local_parameters[@]} ${EXPECTED_PATHS[@]} | tr ' ' '\n' | sort | uniq -u`
 if [[ ${lost[@]} ]]; then
-    for item_path in $lost; do
-        # item_path should be a file
-        parent_directory=`dirname $item_path`
-        if [ ! -d $parent_directory ]; then
-            lost_checked+=($parent_directory)
-        fi
-    done
-    lost_checked_unique=`echo ${lost_checked[@]} | tr ' ' '\n' | sort -u`
-fi
-if [[ ${lost_checked_unique[@]} ]]; then
     echo "${BLUE}INFO Ces répertoires de paramètres ont été supprimés :${COLOR_RESET}"
-    printf '%s\n' ${lost_checked_unique[@]}
+    printf '%s\n' ${lost[@]}
     error_status=2
 fi
 
