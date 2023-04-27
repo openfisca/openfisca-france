@@ -108,6 +108,10 @@ local_parameters=`find $PARAMETERS_PATHS_ROOT -type d -maxdepth $expected_paths_
 
 
 check_change(){
+    # check if given directory path is a change according to EXPECTED_PATHS
+    # if the directory name is new and has siblings of at the same depth or more in EXPECTED_PATHS, 
+    # then it's a change
+    # else it's ignored
     local dirpath="$1"
     local parent=`dirname $dirpath`
     local matching_expected_paths=( `echo ${EXPECTED_PATHS[@]} | tr ' ' '\n' | grep ${parent}` )
