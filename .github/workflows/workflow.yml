@@ -148,9 +148,21 @@ jobs:
       - name: Test the Web API
         run: "${GITHUB_WORKSPACE}/.github/test-api.sh"
 
+  check-for-parameters-changes:
+    runs-on: ubuntu-20.04
+    needs: [ build ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7.9
+      - name: Check parameters paths constraints
+        run: if "${GITHUB_WORKSPACE}/.github/has-parameters-tree-changes.sh" ; then echo "::set-output name=status::success" ; fi
+
   check-version-and-changelog:
     runs-on: ubuntu-20.04
-    needs: [ lint-files, test-python, test-yaml, test-api ] # Last job to run
+    needs: [ lint-files, test-python, test-yaml, test-api, check-for-parameters-changes ] # Last job to run
     steps:
       - uses: actions/checkout@v2
         with:
