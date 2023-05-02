@@ -295,7 +295,7 @@ class aah_base_ressources_conjugalisee(Variable):
             return abat_cessation_activite * (revenus_abattus_smic)
 
         def base_ressource_eval_trim():
-            three_previous_months = period.first_month.start.period('month', 3).offset(-3)
+            three_previous_months = Period(('month', period.start, 3)).offset(-3)
             base_ressources_activite_milieu_protege = individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
             base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - base_ressources_activite_milieu_protege
             base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + base_ressources_activite_milieu_protege
