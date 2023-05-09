@@ -569,15 +569,6 @@ class nouvelle_bonification_indiciaire(Variable):
     set_input = set_input_divide_by_period
 
 
-class prevoyance_obligatoire_cadre_taux_employe(Variable):
-    value_type = float
-    default_value = 0.015  # 1.5% est le minimum en 2014
-    entity = Individu
-    label = 'Taux de cotisation employeur pour la prévoyance obligatoire des cadres'
-    definition_period = MONTH
-    set_input = set_input_dispatch_by_period
-
-
 class prevoyance_obligatoire_cadre_taux_employeur(Variable):
     value_type = float
     default_value = 0.015  # 1.5% est le minimum en 2014
@@ -1263,7 +1254,7 @@ class indice_majore(Variable):
 class primes_fonction_publique(Variable):
     value_type = float
     entity = Individu
-    label = 'Calcul des primes pour les fonctionnaries'
+    label = 'Calcul des primes pour les fonctionnaires'
     reference = 'http://vosdroits.service-public.fr/particuliers/F465.xhtml'
     definition_period = MONTH
     set_input = set_input_divide_by_period
