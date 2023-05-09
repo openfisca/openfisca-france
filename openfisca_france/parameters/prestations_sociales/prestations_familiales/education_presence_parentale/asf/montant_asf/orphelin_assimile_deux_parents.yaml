@@ -17,6 +17,7 @@ values:
 metadata:
   short_label: Orphelin ou assimilé des deux parents
   label_en: "Family support allowance (ASF): Amounts"
+  last_value_still_valid_on: "2023-05-09"
   ipp_csv_id: asf_2parents
   unit: BMAF
   reference:
