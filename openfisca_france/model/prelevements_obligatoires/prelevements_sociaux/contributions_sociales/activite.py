@@ -65,14 +65,13 @@ class assiette_csg_non_abattue(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period)
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
         prise_en_charge_employeur_prevoyance_complementaire = individu(
             'prise_en_charge_employeur_prevoyance_complementaire', period, options = [ADD])
 
         # TODO + indemnites_journalieres_maladie,
         return (
-            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+            prise_en_charge_employeur_prevoyance_complementaire
             - complementaire_sante_employeur
             )
 
