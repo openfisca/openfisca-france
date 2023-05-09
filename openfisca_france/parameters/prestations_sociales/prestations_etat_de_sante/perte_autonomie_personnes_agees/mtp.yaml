@@ -128,10 +128,13 @@ values:
     value: 1125.29
   2021-04-01:
     value: 1126.41
+  2023-04-01: 
+    value: 1210.9
 metadata:
   documentation_start: true
   short_label: Majoration tierce personne (MTP)
   label_en: Amount of markup for constant support to a third party (MTP)
+  last_value_still_valid_on: "2023-05-09"
   unit: currency
   reference:
     1976-01-01:
@@ -330,6 +333,9 @@ metadata:
     2021-04-01:
       title: Circulaire Cnav 2021/14 du 01/04/2021
       href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_14_01042021.pdf
+    2023-04-01:
+      title: Circulaire Cnav 2023/8 du 11/04/2023
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2023_08_11042023.pdf
   official_journal_date:
     2002-01-01: 2001-07-21; 2001-11-21; 2002-01-29
     2003-01-01: "2003-01-11"
