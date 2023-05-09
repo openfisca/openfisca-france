@@ -4,7 +4,7 @@ values:
     value: 20
 metadata:
   short_label: Age maximum de l'enfant
-  last_value_still_valid_on: "2022-03-11"
+  last_value_still_valid_on: "2023-05-09"
   label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   ipp_csv_id: aeeh_enf_agemax
   unit: year

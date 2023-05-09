@@ -4,7 +4,7 @@ values:
     value: 0.24
 metadata:
   short_label: Montant complémentaire 1ère catégorie
-  last_value_still_valid_on: "2023-02-06"
+  last_value_still_valid_on: "2023-05-09"
   label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   ipp_csv_id: aeeh_cplt1
   unit: BMAF
