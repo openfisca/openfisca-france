@@ -571,7 +571,6 @@ class nouvelle_bonification_indiciaire(Variable):
 
 class prevoyance_obligatoire_cadre_taux_employeur(Variable):
     value_type = float
-    default_value = 0.015  # 1.5% est le minimum en 2014
     entity = Individu
     label = 'Taux de cotisation employeur pour la prévoyance obligatoire des cadres'
     definition_period = MONTH
