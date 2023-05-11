@@ -34,6 +34,10 @@ values:
     value: 1125.29
   2021-04-01:
     value: 1126.41
+  2022-04-01:
+    value: 1146.69
+  2022-07-01:
+    value: 1192.55
   2023-04-01:
     value: 1210.9
 metadata:
@@ -70,6 +74,12 @@ metadata:
     2021-04-01:
       title: Circulaire Cnav 2021/14 du 01/04/2020
       href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_14_01042021.pdf
+    2022-04-01:
+      title: ​Circulaire Cnav 2022/9 du 05/04/2022
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_09_05042022.pdf
+    2022-07-01:
+      title: ​Circulaire Cnav 2022/20 du 19/08/2022
+      href: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_20_19082022.pdf
     2023-04-01:
       - title: Article D541-2 du Code de la sécurité sociale
         href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006737170
