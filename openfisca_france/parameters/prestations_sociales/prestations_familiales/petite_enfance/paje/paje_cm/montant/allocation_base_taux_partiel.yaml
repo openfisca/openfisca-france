@@ -8,7 +8,7 @@ values:
     value: 0.20825
 metadata:
   short_label: Montant à taux partiel
-  last_value_still_valid_on: "2023-02-06"
+  last_value_still_valid_on: "2023-05-04"
   label_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
   ipp_csv_id: tx_paje_base_partiel
   unit: BMAF
