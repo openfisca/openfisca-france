@@ -58,6 +58,10 @@ values:
     value: 343
   2022-05-01:
     value: 352
+  2023-01-01:
+    value: 353
+  2023-05-01:
+    value: 361
 metadata:
   short_label: Traitement minimal dans la FP
   last_value_still_valid_on: "2022-12-23"
@@ -154,6 +158,12 @@ metadata:
     2022-05-01:
       title: Décret n° 2022-586 du 20 avril 2022 portant relèvement du minimum de traitement dans la fonction publique
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045614970
+    2023-01-01:
+      title: Décret n° 2022-1615 du 22 décembre 2022 portant relèvement du minimum de traitement dans la fonction publique
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046780634/
+    2023-05-01:
+      title: Décret n° 2023-312 du 26 avril 2023 portant relèvement du minimum de traitement dans la fonction publique
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047496213/
   official_journal_date:
     1985-07-01: "1986-02-07"
     1985-11-01: "1985-11-05"
@@ -184,3 +194,5 @@ metadata:
     2021-10-01: "2021-09-30"
     2022-01-01: "2021-12-23"
     2022-05-01: "2022-04-21"
+    2023-01-01: "2022-12-23"
+    2023-05-01: "2023-04-27"
