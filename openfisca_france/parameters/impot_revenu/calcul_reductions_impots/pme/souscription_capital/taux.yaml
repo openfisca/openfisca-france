@@ -8,7 +8,7 @@ values:
     value: 0.18
 metadata:
   unit: /1
-  last_review: "2023-02-03"
+  last_value_still_valid_on: "2023-02-03"
   reference:
     1994-01-01:
       title: Article 199 terdecies-0 A, I du Code général des impôts
