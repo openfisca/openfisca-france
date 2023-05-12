@@ -1,6 +1,17 @@
 # Changelog
 
-### 146.2.0 [#2044](https://github.com/openfisca/openfisca-france/pull/2044)
+### 146.2.1 [#2100](https://github.com/openfisca/openfisca-france/pull/2100)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `parameters/impot_revenu/calcul_reductions_impots/pme/souscription_capital/taux.yaml`
+  * `parameters/prestations_sociales/aides_jeunes/bourses/bourses_enseignement_superieur/criteres_sociaux/plafond_ressources`
+* Détails :
+  - Renommage d'un last_review en last_value_still_valid_on
+  - Suppression de href invalides dans des références
+
+## 146.2.0 [#2044](https://github.com/openfisca/openfisca-france/pull/2044)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2015.
@@ -10,7 +21,7 @@
 * Détails :
   - Correction de la condition d'exonération de contributions sociales sur le chômage en cas de revenus inférieurs auSMIC mensuel brut : ajoute le cas du cumul d'allocations chômage et de revenus d'activité.
 
-### 146.1.0 [#2091](https://github.com/openfisca/openfisca-france/pull/2091)
+## 146.1.0 [#2091](https://github.com/openfisca/openfisca-france/pull/2091)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -40,7 +51,7 @@
 * Détails :
   - Nettoyage des références pour passage de la validation des paramètres.
   
-# 146.0.5 [#2075](https://github.com/openfisca/openfisca-france/pull/2075)
+### 146.0.5 [#2075](https://github.com/openfisca/openfisca-france/pull/2075)
 
 * Périodes concernées : toutes
 * Zones impactées :
@@ -48,7 +59,7 @@
 * `prestations_sociales/prestations_familiales/prestations_generales/af/crds`
 * Détails : clarifie les labels des paramètres de la prime de Noël
 
-# 146.0.4 [#2076](https://github.com/openfisca/openfisca-france/pull/2076)
+### 146.0.4 [#2076](https://github.com/openfisca/openfisca-france/pull/2076)
 
 * Périodes concernées : toutes
 * Zones impactées : `prestations_sociales/prestations_familiales/prestations_generales/af/af_cm/age2` et `prestations_sociales/prestations_familiales/prestations_generales/af/af_cm/age3`
