@@ -988,7 +988,7 @@ class complementaire_sante_employeur(Variable):
 
         return cotisation
 
-    def formula(individus, period):
+    def formula(individu, period):
         part_emp = individu('complementaire_sante_part_employeur', period)
         complementaire_sante_montant = individu('complementaire_sante_montant', period)
         cotisation = - part_emp * complementaire_sante_montant
@@ -1013,7 +1013,7 @@ class complementaire_sante_salarie(Variable):
 
         return cotisation
 
-    def formula(individus, period):
+    def formula(individu, period):
         part_emp = individu('complementaire_sante_part_employeur', period)
         complementaire_sante_montant = individu('complementaire_sante_montant', period)
         cotisation = - (1 - part_emp) * complementaire_sante_montant
