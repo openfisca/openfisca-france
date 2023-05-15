@@ -937,7 +937,7 @@ class prevoyance_obligatoire_cadre(Variable):
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         prevoyance_obligatoire_cadre_taux_employeur = individu(
             'prevoyance_obligatoire_cadre_taux_employeur', period)
-        minimum = parameters(period).prelevements_sociaux.prevoyance.prevoyance_obligatoire
+        minimum = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.prevoyance.prevoyance_obligatoire
         taux = max_(minimum, prevoyance_obligatoire_cadre_taux_employeur)
 
         cotisation = - (
