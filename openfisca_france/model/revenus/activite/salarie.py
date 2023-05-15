@@ -905,7 +905,7 @@ class complementaire_sante_part_employeur(Variable):
 class prevoyance_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Part des cotisations de prévoyance prise en charge par l'employeur"
+    label = "Contributions de prévoyance prises en charge par l'employeur"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 

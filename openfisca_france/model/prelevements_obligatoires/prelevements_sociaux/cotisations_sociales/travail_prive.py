@@ -927,6 +927,9 @@ class prevoyance_obligatoire_cadre(Variable):
     label = 'Contribution de prévoyance obligatoire pour les cadres et assimilés'
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    '''
+    La prévoyance obligatoire des cadres n'est pas soumise à CSG/CRDS ni à cotisations sociales.
+    '''
     # TODO: gérer le mode de recouvrement et l'aspect mensuel/annuel
 
     def formula(individu, period, parameters):
@@ -951,7 +954,10 @@ class prevoyance_complementaire_employeur(Variable):
     label = 'Contributions de prévoyance complémentaire'
     definition_period = MONTH
     set_input = set_input_divide_by_period
-    # TODO: gérer le mode de recouvrement et l'aspect mensuel/annuel
+    '''
+    On définit la prévoyance complémentaire par référence à la prévoyance obligatoire : c'est la partie non obligatoire des contributions de prévoyance totales versées par l'employeur.
+    La prévoyance complémentaire est assujettie à CSG et au forfait social, ce qui n'est pas le cas de la prévoyance obligatoire.
+    '''
 
     def formula(individu, period):
         prevoyance_totale = individu('prevoyance_employeur', period)
