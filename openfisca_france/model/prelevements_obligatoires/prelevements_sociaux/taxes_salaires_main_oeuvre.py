@@ -181,6 +181,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
         fnal = individu('fnal', period)
         participation_effort_construction = individu('participation_effort_construction', period, options = [ADD])
         prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
         versement_transport = individu('versement_transport', period, options = [ADD])
 
@@ -194,6 +195,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
             + fnal
             + participation_effort_construction
             + prevoyance_obligatoire_cadre
+            + prevoyance_complementaire_employeur
             + complementaire_sante_employeur
             + versement_transport
             + contribution_unique_formation_professionnelle_alternance
@@ -212,6 +214,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
         formation_professionnelle = individu('formation_professionnelle', period)
         participation_effort_construction = individu('participation_effort_construction', period, options = [ADD])
         prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
 
         taxe_apprentissage = individu('taxe_apprentissage', period, options = [ADD])
@@ -226,6 +229,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
             + formation_professionnelle
             + participation_effort_construction
             + prevoyance_obligatoire_cadre
+            + prevoyance_complementaire_employeur
             + complementaire_sante_employeur
             + taxe_apprentissage
             + versement_transport
