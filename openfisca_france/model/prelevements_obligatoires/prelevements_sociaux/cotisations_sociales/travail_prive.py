@@ -1,5 +1,4 @@
 import logging
-from sqlite3 import paramstyle
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import (
@@ -948,6 +947,7 @@ class prevoyance_obligatoire_cadre(Variable):
             )
         return cotisation
 
+
 class prevoyance_complementaire_employeur(Variable):
     value_type = float
     entity = Individu
@@ -989,6 +989,7 @@ class complementaire_sante_employeur(Variable):
 
         return cotisation
 
+
 class complementaire_sante_salarie(Variable):
     value_type = float
     entity = Individu
@@ -1006,6 +1007,7 @@ class complementaire_sante_salarie(Variable):
         cotisation = - (1 - taux_emp) * complementaire_sante_montant
 
         return cotisation
+
 
 class TypesTailleEntreprise(Enum):
     __order__ = 'non_pertinent moins_de_10 de_10_a_19 de_20_a_249 plus_de_250'  # Needed to preserve the enum order in Python 2

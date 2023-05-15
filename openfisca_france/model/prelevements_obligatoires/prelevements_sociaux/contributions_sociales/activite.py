@@ -2,7 +2,6 @@ import logging
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds
-from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.travail_prive import prevoyance_complementaire_employeur
 
 
 log = logging.getLogger(__name__)
@@ -67,8 +66,7 @@ class assiette_csg_non_abattue(Variable):
 
     def formula(individu, period, parameters):
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
-        prevoyance_complementaire_employeur = individu(
-            'prevoyance_complementaire_employeur', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
 
         # TODO + indemnites_journalieres_maladie,
         return (
