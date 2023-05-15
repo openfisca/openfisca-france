@@ -3,7 +3,7 @@
   relative_error_margin: 0.001
   input:
     salaire_de_base: 1467
-    complementaire_sante_taux_employeur: 0.625
+    complementaire_sante_part_employeur: 0.625
     complementaire_sante_montant: 40
     categorie_salarie: prive_cadre
   output:
@@ -20,7 +20,7 @@
   relative_error_margin: 0.001
   input:
     salaire_de_base: 1500
-    complementaire_sante_taux_employeur: 0.625
+    complementaire_sante_part_employeur: 0.625
     complementaire_sante_montant: 40
     categorie_salarie: prive_cadre # cadre
   output:
