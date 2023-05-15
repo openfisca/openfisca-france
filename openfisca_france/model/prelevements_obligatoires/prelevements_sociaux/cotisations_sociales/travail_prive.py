@@ -924,7 +924,7 @@ class plafond_securite_sociale(Variable):
 class prevoyance_obligatoire_cadre(Variable):
     value_type = float
     entity = Individu
-    label = 'Cotisation de prévoyance pour les cadres et assimilés'
+    label = 'Contribution de prévoyance obligatoire pour les cadres et assimilés'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     # TODO: gérer le mode de recouvrement et l'aspect mensuel/annuel
@@ -945,6 +945,25 @@ class prevoyance_obligatoire_cadre(Variable):
             )
         return cotisation
 
+class prevoyance_complementaire_employeur(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Contributions de prévoyance complémentaire'
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    # TODO: gérer le mode de recouvrement et l'aspect mensuel/annuel
+
+    def formula(individu, period):
+        prevoyance_totale = individu('prevoyance_employeur', period)
+        prevoyance_obligatoire = individu('prevoyance_obligatoire_cadre', period)
+        cotisation = - max_(
+            0,
+            prevoyance_totale
+            - prevoyance_obligatoire
+            )
+
+        return cotisation
+
 
 class complementaire_sante_employeur(Variable):
     value_type = float
@@ -956,7 +975,7 @@ class complementaire_sante_employeur(Variable):
 
     def formula(individu, period, parameters):
         complementaire_sante_taux_employeur = individu(
-            'complementaire_sante_taux_employeur', period)
+            'complementaire_sante_part_employeur', period)
         minimum = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.complementaire_sante.part_employeur
         taux_emp = max_(complementaire_sante_taux_employeur, minimum)
         complementaire_sante_montant = individu('complementaire_sante_montant', period)
@@ -974,7 +993,7 @@ class complementaire_sante_salarie(Variable):
 
     def formula(individu, period, parameters):
         complementaire_sante_taux_employeur = individu(
-            'complementaire_sante_taux_employeur', period)
+            'complementaire_sante_partx_employeur', period)
         minimum = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.complementaire_sante.part_employeur
         taux_emp = max_(complementaire_sante_taux_employeur, minimum)
         complementaire_sante_montant = individu('complementaire_sante_montant', period)
