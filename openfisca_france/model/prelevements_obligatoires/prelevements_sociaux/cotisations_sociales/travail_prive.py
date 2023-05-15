@@ -979,10 +979,17 @@ class complementaire_sante_employeur(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
+    def formula_2016_01_01(individu, period, parameters):
         complementaire_sante_part_employeur = individu('complementaire_sante_part_employeur', period)
         minimum = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.complementaire_sante.part_employeur
         part_emp = max_(complementaire_sante_part_employeur, minimum)
+        complementaire_sante_montant = individu('complementaire_sante_montant', period)
+        cotisation = - part_emp * complementaire_sante_montant
+
+        return cotisation
+
+    def formula(individus, period):
+        part_emp = individu('complementaire_sante_part_employeur', period)
         complementaire_sante_montant = individu('complementaire_sante_montant', period)
         cotisation = - part_emp * complementaire_sante_montant
 
@@ -997,10 +1004,17 @@ class complementaire_sante_salarie(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
+    def formula_2016_01_01(individu, period, parameters):
         complementaire_sante_part_employeur = individu('complementaire_sante_part_employeur', period)
         minimum = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.complementaire_sante.part_employeur
         part_emp = max_(complementaire_sante_part_employeur, minimum)
+        complementaire_sante_montant = individu('complementaire_sante_montant', period)
+        cotisation = - (1 - part_emp) * complementaire_sante_montant
+
+        return cotisation
+
+    def formula(individus, period):
+        part_emp = individu('complementaire_sante_part_employeur', period)
         complementaire_sante_montant = individu('complementaire_sante_montant', period)
         cotisation = - (1 - part_emp) * complementaire_sante_montant
 
