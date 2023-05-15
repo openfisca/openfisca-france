@@ -578,10 +578,8 @@ class taxe_salaires(Variable):
     def formula(individu, period, parameters):
         assujettie_taxe_salaires = individu('assujettie_taxe_salaires', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period)
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period)
-        prise_en_charge_employeur_prevoyance_complementaire = individu(
-            'prise_en_charge_employeur_prevoyance_complementaire', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
 
         entreprise_est_association_non_lucrative = individu('entreprise_est_association_non_lucrative', period)
         effectif_entreprise = individu('effectif_entreprise', period)
@@ -593,7 +591,7 @@ class taxe_salaires(Variable):
         taxe_salaires = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.taxsal
         bareme = taxe_salaires.taux_maj
         base = assiette_cotisations_sociales + (
-            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+            prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             )
 
