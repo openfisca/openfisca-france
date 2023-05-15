@@ -2,6 +2,7 @@ import logging
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.travail_prive import prevoyance_complementaire_employeur
 
 
 log = logging.getLogger(__name__)
@@ -66,12 +67,12 @@ class assiette_csg_non_abattue(Variable):
 
     def formula(individu, period, parameters):
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
-        prise_en_charge_employeur_prevoyance_complementaire = individu(
-            'prise_en_charge_employeur_prevoyance_complementaire', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu(
+            'prevoyance_complementaire_employeur', period, options = [ADD])
 
         # TODO + indemnites_journalieres_maladie,
         return (
-            prise_en_charge_employeur_prevoyance_complementaire
+            prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             )
 
@@ -179,13 +180,12 @@ class forfait_social(Variable):
         # ne concernent que les entreprises de 10 ou 11 employés et plus
         # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
         seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
-        prise_en_charge_employeur_prevoyance_complementaire = individu('prise_en_charge_employeur_prevoyance_complementaire', period, options = [ADD])
-        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
         effectif_entreprise = individu('effectif_entreprise', period)
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
         taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
         assiette_taux_reduit = (
-            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+            prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
 
@@ -214,15 +214,13 @@ class forfait_social(Variable):
         # ne concernent que les entreprises de 10 ou 11 employés et plus
         # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
         seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
-        prise_en_charge_employeur_prevoyance_complementaire = individu('prise_en_charge_employeur_prevoyance_complementaire', period, options=[ADD])
-        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options=[ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options=[ADD])
 
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options=[ADD])
         taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
 
         assiette_taux_reduit = (
-            -prevoyance_obligatoire_cadre
-            + prise_en_charge_employeur_prevoyance_complementaire
+            prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
 
