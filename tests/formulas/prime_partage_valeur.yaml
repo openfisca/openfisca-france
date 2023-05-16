@@ -62,6 +62,7 @@
 
 
 - name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 (réservée aux < 3 SMIC)
+# ! Limite du test : test sensible aux revalorisations du SMIC et des prestations sociales (PPA) sur 2023.
 # On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
 # 1 : Sans accord, Pas de prime
 # 2 : Sans accord, Prime au plafond
@@ -157,16 +158,17 @@
     ppa:
       # Le premier cas-type touche la PPA toute l'année, les autres partiellement.
       2023-01: [139.38394, 139.38394, 139.38394, 139.38394, 139.38394, 139.38394, 139.38394]
-      2023-12: [139.38394, 41.88394, 0, 41.88394, 41.88394, 0, 0]
+      2023-12: [151.02396, 53.523956, 22.651642, 53.523956, 53.523956, 0, 0]
     prestations_sociales:
-      2023: [1664.244, 694.11914, 288.33063, 694.11914, 694.11914, 277.37405, 277.37405]
+      2023: [1745.3168, 775.19183, 442.2387, 775.19183, 775.19183, 277.37405, 277.37405]
     revenu_disponible:
       # revenu_disponible = (salaire_net*12) - irpp + prestations_sociales
       # Pour le 2e individu : 1833.1951*12-275+694.1191 = 22417.46 => C'est bon !
-      2023: [20387.586, 22417.46, 22820.588, 22417.46, 22417.46, 25000.717, 25809.635]
+      2023: [20468.658, 22498.533, 22974.496, 22498.533, 22498.533, 25000.717, 25809.635]
 
 
 - name: Prime pérenne de partage de la valeur pour salaire < 3 SMIC
+# ! Limite du test : test sensible aux revalorisations du SMIC et des prestations sociales (PPA) sur 2023.
 # On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
 # 1 : Sans accord, Pas de prime
 # 2 : avec le montant de la prime dans le salaire
@@ -257,11 +259,11 @@
       # (20_233.734 - 10_777)*0.11 - (833 - ((20_233.734 - 10_777)*0.11)*0.4525 ) = 677.94
       2023: [-275, -630, -678, -820, -678, -678, -1080, -1222]
     prestations_sociales:
-      2023: [1664.244, 742.7274, 786.57324, 479.39383, 786.57324, 786.57324, 277.37405, 277.37405]
+      2023:  [1745.3168, 823.8001, 867.64594, 560.46655, 867.64594, 867.64594, 277.37405, 277.37405]
     revenu_disponible:
       # revenu_disponible = salaire_net*12 - irpp + prestations_sociales
-      # 1_781 * 12 - 630 + 742 = 21_484 ~= 21485.803 OK
-      2023: [20387.586, 21485.803, 21821.012, 22321.748, 21821.012, 21821.012, 23623.898, 24431.814]
+      # 1_781 * 12 - 630 + 823.8001 = 21_565.8001 ~= 21566.877 OK
+      2023:  [20468.658, 21566.877, 21902.084, 22402.82, 21902.084, 21902.084, 23623.898, 24431.814]
 
 
 - name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 pour salaire >= 3 SMIC
