@@ -62,6 +62,7 @@
 
 
 - name: Prime exceptionnelle de partage de la valeur avant le 1er janvier 2024 (réservée aux < 3 SMIC)
+# ! Limite du test : test sensible aux revalorisations du SMIC et des prestations sociales (PPA) sur 2023.
 # On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
 # 1 : Sans accord, Pas de prime
 # 2 : Sans accord, Prime au plafond
@@ -167,6 +168,7 @@
 
 
 - name: Prime pérenne de partage de la valeur pour salaire < 3 SMIC
+# ! Limite du test : test sensible aux revalorisations du SMIC et des prestations sociales (PPA) sur 2023.
 # On fait varier le fait d'avoir un accord d'intéressement ou non et le montant de la prime
 # 1 : Sans accord, Pas de prime
 # 2 : avec le montant de la prime dans le salaire
