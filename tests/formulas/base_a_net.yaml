@@ -84,7 +84,7 @@
     categorie_salarie: 2
   output:
     primes_fonction_publique: 645.64496
-    indemnite_residence: 33.11
+    indemnite_residence: 33.11 # zone APL par défaut : 2
     supplement_familial_traitement: 0
     indemnite_compensatrice_csg: 25.1636
     assiette_cotisations_sociales: 3311
@@ -114,7 +114,7 @@
     crds_salaire: -19.723291 # 
     salaire_imposable: 3363.9302
     salaire_net: 3249.535 # * 12 = 38994.42
-    # soit net = (1-  %) brut
+    # soit net = (1 -  %) brut
 
 ################## 4 PSS 
 
@@ -232,7 +232,7 @@
     crds_salaire: -79.13952 # 
     salaire_imposable: 13455.721
     salaire_net: 12997.894 # * 12 = 38994.42
-    # soit net = (1-  %) brut
+    # soit net = (1 -  1.85%) brut
 
 ################## 8 PSS 
 
@@ -246,19 +246,19 @@
     categorie_salarie: 0
   output:
     assiette_cotisations_sociales: 26488
-    cotisations_salariales: -402.28003
-    cotisations_salariales_contributives: -402.28003
-    agff_salarie: -26.49 # 
+    cotisations_salariales: -1185.33
+    cotisations_salariales_contributives: -1185.33
+    agff_salarie: -86.09 # 3311 (1 PSS) * 0.008  + 6622 (3 - 1 PSS) *0.009 =  26.49 +  59.598
     agirc_arrco_salarie: 0 # 
     agirc_salarie: 0 #  car non-cadre
     agirc_gmp_salarie: 0
     apec_salarie: 0 # car non-cadre
-    arrco_salarie: -102.64 # 
-    chomage_salarie: -31.45 # 
+    arrco_salarie: -639.02 # 0.031 * 3311 (1 PSS) + 0.081 * 6622 (3 - 1 PSS) = 102.64 + 536.382 
+    chomage_salarie: -125.81 # 13244 * 0.0095
     contribution_equilibre_general_salarie: 0 
     contribution_equilibre_technique_salarie: 0 
     cotisation_exceptionnelle_temporaire_salarie: 0 # car non-cadre
-    vieillesse_deplafonnee_salarie: -13.24 # OK 
+    vieillesse_deplafonnee_salarie: -105.95 # 26488 * 0.004
     vieillesse_plafonnee_salarie: -228.46 # OK 
     ircantec_salarie: 0 # OK (public)
     pension_salarie: 0 # OK (public)
@@ -266,12 +266,12 @@
     cotisations_salariales_non_contributives: 0 # OK mmid_salarie et contribution_exceptionnelle_solidarite : l'un est nul et l'autre ne s'applique pas
     assiette_csg_abattue: 26488
     assiette_csg_non_abattue: 0
-    csg_deductible_salaire: -221.20808 # OK  * (1 - 0.0175) * 0.068
-    csg_imposable_salaire: -78.07344 # OK  * (1 - 0.0175) * 0.024
-    crds_salaire: -16.2653 # OK  * (1 - 0.0175) * 0.005 
-    salaire_imposable: 2687.512
-    salaire_net: 2593.173 # * 12 = 32563.236
-    # soit net = (1-  %) brut
+    csg_deductible_salaire: -1769.6633 # OK  * (1 - 0.0175) * 0.068
+    csg_imposable_salaire: -624.58704 # OK  * (1 - 0.0175) * 0.024
+    crds_salaire: -131.28114 # OK  26488 - 4 PSS * 0.0175 [abatt plaf] * 0.005
+    salaire_imposable: 23533.006
+    salaire_net: 22777.137 # * 12 = 273 325.644
+    # soit net = (1 - 14%) brut
 
 - name: 8PSS_2018_privecadre
   period: 2018-01
@@ -280,72 +280,76 @@
     heures_remunerees_volume:
       2018: 1820.04
     contrat_de_travail: 0
-    categorie_salarie: 0
+    categorie_salarie: 1
   output:
-    assiette_cotisations_sociales: 3311
-    cotisations_salariales: -402.28003
-    cotisations_salariales_contributives: -402.28003
-    agff_salarie: -26.49 # 3311 * 0.008
+    assiette_cotisations_sociales: 26488
+    cotisations_salariales: -2633.41
+    cotisations_salariales_contributives: -2633.41
+    agff_salarie: -225.15  # 13244 (4 PSS) * 0.008  + 13244 (8 - 4 PSS) *0.009 =105.952 + 119.196
     agirc_arrco_salarie: 0 # 
-    agirc_salarie: 0 #  car non-cadre
+    agirc_salarie: -1807.8 # 23177 (8 - 1 PSS) * 0.078 
     agirc_gmp_salarie: 0
-    apec_salarie: 0 # car non-cadre
-    arrco_salarie: -102.64 # 3311 * 0.031
-    chomage_salarie: -31.45 # 3311 * 0.0095
+    apec_salarie: -3.17 # 13244*0.00024
+    arrco_salarie: -102.64 # 0.031 * 3311 (1 PSS)
+    chomage_salarie: -125.81 # 13244 * 0.0095
     contribution_equilibre_general_salarie: 0 
     contribution_equilibre_technique_salarie: 0 
-    cotisation_exceptionnelle_temporaire_salarie: 0 # car non-cadre
-    vieillesse_deplafonnee_salarie: -13.24 # OK 3311 * 0.004
+    cotisation_exceptionnelle_temporaire_salarie: -34.43 # 26488 * 0.0013
+    vieillesse_deplafonnee_salarie: -105.95 # 26488 * 0.004
     vieillesse_plafonnee_salarie: -228.46 # OK 3311 * 0.069
     ircantec_salarie: 0 # OK (public)
     pension_salarie: 0 # OK (public)
     rafp_salarie: 0 # OK (public)
     cotisations_salariales_non_contributives: 0 # OK mmid_salarie et contribution_exceptionnelle_solidarite : l'un est nul et l'autre ne s'applique pas
-    assiette_csg_abattue: 3311
+    assiette_csg_abattue: 26488
     assiette_csg_non_abattue: 0
-    csg_deductible_salaire: -221.20808 # OK 3311 * (1 - 0.0175) * 0.068
-    csg_imposable_salaire: -78.07344 # OK 3311 * (1 - 0.0175) * 0.024
-    crds_salaire: -16.2653 # OK 3311 * (1 - 0.0175) * 0.005 
-    salaire_imposable: 2687.512
-    salaire_net: 2593.173 # * 12 = 32563.236
-    # soit net = (1-  %) brut
+    csg_deductible_salaire: -1769.6633 # OK 26488 * (1 - 0.0175) * 0.068
+    csg_imposable_salaire: -624.58704 # OK 26488 * (1 - 0.0175) * 0.024
+    crds_salaire: -131.28114 # OK  26488 - 4 PSS * 0.0175 [abatt plaf] * 0.005
+    salaire_imposable: 22084.926
+    salaire_net: 21329.057 # * 12 = 255 948.684
+    # soit net = (1-  19.5%) brut
 
 - name: 8PSS_2018_public
   period: 2018-01
   input:
-    salaire_de_base: 3311*8
+    traitement_indiciaire_brut: 3311*8
     heures_remunerees_volume:
       2018: 1820.04
     contrat_de_travail: 0
-    categorie_salarie: 0
+    categorie_salarie: 2
   output:
-    assiette_cotisations_sociales: 3311
-    cotisations_salariales: -402.28003
-    cotisations_salariales_contributives: -402.28003
-    agff_salarie: -26.49 # 3311 * 0.008
+    primes_fonction_publique: 5165.1597
+    indemnite_residence: 264.88 #1% de 26 488
+    supplement_familial_traitement: 0
+    indemnite_compensatrice_csg: 201.3088 # 26488 * 00076
+    assiette_cotisations_sociales: 26488
+    cotisations_salariales: -3062.0127
+    cotisations_salariales_contributives: -3062.0127
+    agff_salarie: 0 # car public
     agirc_arrco_salarie: 0 # 
-    agirc_salarie: 0 #  car non-cadre
+    agirc_salarie: 0 #  car public
     agirc_gmp_salarie: 0
-    apec_salarie: 0 # car non-cadre
-    arrco_salarie: -102.64 # 3311 * 0.031
-    chomage_salarie: -31.45 # 3311 * 0.0095
+    apec_salarie: 0 # car public
+    arrco_salarie: 0 # car public
+    chomage_salarie: 0 # car public
     contribution_equilibre_general_salarie: 0 
     contribution_equilibre_technique_salarie: 0 
-    cotisation_exceptionnelle_temporaire_salarie: 0 # car non-cadre
-    vieillesse_deplafonnee_salarie: -13.24 # OK 3311 * 0.004
-    vieillesse_plafonnee_salarie: -228.46 # OK 3311 * 0.069
-    ircantec_salarie: 0 # OK (public)
-    pension_salarie: 0 # OK (public)
-    rafp_salarie: 0 # OK (public)
+    cotisation_exceptionnelle_temporaire_salarie: 0 # car public
+    vieillesse_deplafonnee_salarie: 0 # car public
+    vieillesse_plafonnee_salarie: 0 # car public
+    ircantec_salarie: 0 # 
+    pension_salarie: -2797.1328 # 26488* 0.1056
+    rafp_salarie: -264.88 # 0.05 * min(5165.1597 + 264.88, 0.2 * 26488)
     cotisations_salariales_non_contributives: 0 # OK mmid_salarie et contribution_exceptionnelle_solidarite : l'un est nul et l'autre ne s'applique pas
-    assiette_csg_abattue: 3311
+    assiette_csg_abattue: 32119.348
     assiette_csg_non_abattue: 0
-    csg_deductible_salaire: -221.20808 # OK 3311 * (1 - 0.0175) * 0.068
-    csg_imposable_salaire: -78.07344 # OK 3311 * (1 - 0.0175) * 0.024
-    crds_salaire: -16.2653 # OK 3311 * (1 - 0.0175) * 0.005 
-    salaire_imposable: 2687.512
-    salaire_net: 2593.173 # * 12 = 32563.236
-    # soit net = (1-  %) brut
+    csg_deductible_salaire: -2145.8936 # OK 3311 * (1 - 0.0175) * 0.068
+    csg_imposable_salaire: -757.3742 # OK 3311 * (1 - 0.0175) * 0.024
+    crds_salaire: -159.43788 # OK 3311 * (1 - 0.0175) * 0.005 
+    salaire_imposable: 26911.445
+    salaire_net: 25994.633 # * 12 = 311 935.596
+    # soit net = (1- 1.9%) brut
 
 - name: 1PSS_2018_privenoncadre_hsup
   period: 2018-01
@@ -355,7 +359,7 @@
       2018: 1820.04
     contrat_de_travail: 0
     categorie_salarie: 0
-    hsup:
+    hsup: 1000 # on vérifie bien que hsup est silencieux pour 2018
   output:
     assiette_cotisations_sociales: 3311
     cotisations_salariales: -402.28003
@@ -391,8 +395,8 @@
   input:
     salaire_de_base: 3311
     heures_remunerees_volume:
-      2018: 1820.04
-    contrat_de_travail: 0
+      2018: 910.02
+    contrat_de_travail: 1
     categorie_salarie: 0
   output:
     assiette_cotisations_sociales: 3311
