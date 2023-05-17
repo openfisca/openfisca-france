@@ -27,6 +27,6 @@
     complementaire_sante_employeur: -40 * 0.625
     complementaire_sante_salarie: -40 * (1 - 0.625)
     prevoyance_obligatoire_cadre: -1500 * 1.5 / 100
-    crds_salaire: -(1500 * 0.9825 + 40 * 0.625 + 1500 * 1.5 / 100) * 0.5 / 100
-    csg_imposable_salaire: -(1500 * 0.9825 + 40 * 0.625 + 1500 * 1.5 / 100) * 2.4 / 100
-    csg_deductible_salaire: -(1500 * 0.9825 + 40 * 0.625 + 1500 * 1.5 / 100) * 6.8 / 100
+    crds_salaire: -(1500 * 0.9825 + 40 * 0.625) * 0.5 / 100
+    csg_imposable_salaire: -(1500 * 0.9825 + 40 * 0.625) * 2.4 / 100
+    csg_deductible_salaire: -(1500 * 0.9825 + 40 * 0.625) * 6.8 / 100
