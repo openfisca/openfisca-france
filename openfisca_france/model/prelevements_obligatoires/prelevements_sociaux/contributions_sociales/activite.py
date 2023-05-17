@@ -64,13 +64,34 @@ class assiette_csg_non_abattue(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    '''
+    L'exclusion des contributions employeur aux contrats de prévoyance obligatoire n'est pas facile à dater, car elle a fait l'objet de différentes
+    jurisprudences de la Cour de cassation, dans un sens comme dans l'autre, et de façon assez ancienne. 
+    voir par exemple Cour de Cassation, Chambre civile 2, du 23 novembre 2006, 05-11.364 : normalement, à cette date et par cette jurisprudence, les primes d'assurances
+    prévoyance versées dans le cadre d'une obligation légale et n'acquérant pas de droits complémentaires au salarié sont exonérés de CSG.
+    Cependant on retient la date de 2018, car la lecture de l'article L136-2 du CSS, ainsi que celle du cinquième alinéa de l'article L242-1 du CSS, ne font plus 
+    explicitement mention des contrats de prévoyance à cette date.
+    Auparavant, et pour rester cohérent avec certains fichiers de test (notamment tests "fiches de paie"), on continue à inclure la prévoyance obligatoire 
+    (en particulier celle des cadres, qui est une obligation légale générale au-delà des conventions collectives) dans l'assiette de CSG.
+    '''
+
+    def formula_2018_01_01(individu, period, parameters):
+        complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
+        return (
+            prevoyance_complementaire_employeur
+            - complementaire_sante_employeur
+            )
+
     def formula(individu, period, parameters):
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
         prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
 
         # TODO + indemnites_journalieres_maladie,
         return (
-            prevoyance_complementaire_employeur
+            - prevoyance_obligatoire_cadre
+            + prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             )
 
@@ -179,11 +200,12 @@ class forfait_social(Variable):
         # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
         seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
         prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
         effectif_entreprise = individu('effectif_entreprise', period)
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
         taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
         assiette_taux_reduit = (
-            prevoyance_complementaire_employeur
+            - prevoyance_obligatoire_cadre + prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
 
@@ -213,12 +235,13 @@ class forfait_social(Variable):
         # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
         seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
         prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options=[ADD])
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
 
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options=[ADD])
         taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
 
         assiette_taux_reduit = (
-            prevoyance_complementaire_employeur
+            - prevoyance_obligatoire_cadre + prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
 
