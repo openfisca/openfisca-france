@@ -66,12 +66,12 @@ class assiette_csg_non_abattue(Variable):
 
     '''
     L'exclusion des contributions employeur aux contrats de prévoyance obligatoire n'est pas facile à dater, car elle a fait l'objet de différentes
-    jurisprudences de la Cour de cassation, dans un sens comme dans l'autre, et de façon assez ancienne. 
+    jurisprudences de la Cour de cassation, dans un sens comme dans l'autre, et de façon assez ancienne.
     voir par exemple Cour de Cassation, Chambre civile 2, du 23 novembre 2006, 05-11.364 : normalement, à cette date et par cette jurisprudence, les primes d'assurances
     prévoyance versées dans le cadre d'une obligation légale et n'acquérant pas de droits complémentaires au salarié sont exonérés de CSG.
-    Cependant on retient la date de 2018, car la lecture de l'article L136-2 du CSS, ainsi que celle du cinquième alinéa de l'article L242-1 du CSS, ne font plus 
+    Cependant on retient la date de 2018, car la lecture de l'article L136-2 du CSS, ainsi que celle du cinquième alinéa de l'article L242-1 du CSS, ne font plus
     explicitement mention des contrats de prévoyance à cette date.
-    Auparavant, et pour rester cohérent avec certains fichiers de test (notamment tests "fiches de paie"), on continue à inclure la prévoyance obligatoire 
+    Auparavant, et pour rester cohérent avec certains fichiers de test (notamment tests "fiches de paie"), on continue à inclure la prévoyance obligatoire
     (en particulier celle des cadres, qui est une obligation légale générale au-delà des conventions collectives) dans l'assiette de CSG.
     '''
 
