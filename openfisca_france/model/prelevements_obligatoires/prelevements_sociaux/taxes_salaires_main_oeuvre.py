@@ -579,7 +579,7 @@ class taxe_salaires(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(individu, period, parameters):
+    def formula_2018_01_01(individu, period, parameters):
         assujettie_taxe_salaires = individu('assujettie_taxe_salaires', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period)
@@ -596,6 +596,70 @@ class taxe_salaires(Variable):
         bareme = taxe_salaires.taux_maj
         base = assiette_cotisations_sociales + (
             prevoyance_complementaire_employeur
+            - complementaire_sante_employeur
+            )
+
+        # TODO: exonérations apprentis
+        # TODO: modify if DOM
+
+        cotisation_individuelle = (
+            bareme.calc(
+                base,
+                factor = 1 / 12,
+                round_base_decimals = 2
+                )
+            + round_(taxe_salaires.metro * base, 2)
+            )
+
+        # Une franchise et une décôte s'appliquent à cette taxe
+        # Etant donné que nous n'avons pas la distribution de salaires de l'entreprise,
+        # elles sont estimées en prenant l'effectif de l'entreprise et
+        # considérant que l'unique salarié de la individu est la moyenne.
+        # http://www.impots.gouv.fr/portal/dgi/public/popup?typePage=cpr02&espId=2&docOid=documentstandard_1845
+        estimation = cotisation_individuelle * effectif_entreprise * 12
+        conditions = [estimation < taxe_salaires.franchise, estimation <= taxe_salaires.decote_montant, estimation > taxe_salaires.decote_montant]
+        results = [0, estimation - (taxe_salaires.decote_montant - estimation) * taxe_salaires.decote_taux, estimation]
+
+        estimation_reduite = np.select(conditions, results)
+
+        # Abattement spécial de taxe sur les salaires
+        # Les associations à but non lucratif bénéficient d'un abattement important
+        estimation_abattue_negative = estimation_reduite - taxe_salaires.abattement_special
+        estimation_abattue = switch(
+            entreprise_est_association_non_lucrative,
+            {
+                0: estimation_reduite,
+                1: (estimation_abattue_negative >= 0) * estimation_abattue_negative,
+                }
+            )
+
+        with np.errstate(invalid='ignore'):
+            cotisation = switch(effectif_entreprise == 0, {
+                True: individu.filled_array(0),
+                False: estimation_abattue / effectif_entreprise / 12
+                })
+
+        return - cotisation * assujettissement
+
+    def formula(individu, period, parameters):
+        assujettie_taxe_salaires = individu('assujettie_taxe_salaires', period)
+        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        complementaire_sante_employeur = individu('complementaire_sante_employeur', period)
+        prevoyance_complementaire_employeur = individu('prevoyance_complementaire_employeur', period, options = [ADD])
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
+
+        entreprise_est_association_non_lucrative = individu('entreprise_est_association_non_lucrative', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+
+        # impots.gouv.fr
+        # La taxe est due notamment par les : [...] organismes sans but lucratif
+        assujettissement = assujettie_taxe_salaires + entreprise_est_association_non_lucrative
+
+        taxe_salaires = parameters(period).prelevements_sociaux.autres_taxes_participations_assises_salaires.taxsal
+        bareme = taxe_salaires.taux_maj
+        base = assiette_cotisations_sociales + (
+            - prevoyance_obligatoire_cadre
+            + prevoyance_complementaire_employeur
             - complementaire_sante_employeur
             )
 
