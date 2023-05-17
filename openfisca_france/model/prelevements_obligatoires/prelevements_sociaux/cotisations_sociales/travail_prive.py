@@ -965,7 +965,7 @@ class prevoyance_complementaire_employeur(Variable):
         cotisation = - max_(
             0,
             prevoyance_totale
-            - prevoyance_obligatoire
+            - (-prevoyance_obligatoire)
             )
 
         return cotisation
