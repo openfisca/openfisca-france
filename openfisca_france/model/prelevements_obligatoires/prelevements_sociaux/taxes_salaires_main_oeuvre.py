@@ -625,17 +625,16 @@ class taxe_salaires(Variable):
         # Abattement spécial de taxe sur les salaires
         # Les associations à but non lucratif bénéficient d'un abattement important
         estimation_abattue_negative = estimation_reduite - taxe_salaires.abattement_special
-        estimation_abattue = np.where(
-            entreprise_est_association_non_lucrative,
-            (estimation_abattue_negative >= 0) * estimation_abattue_negative,
-            estimation_reduite
-        )
+        estimation_abattue = np.where(entreprise_est_association_non_lucrative,
+                                      (estimation_abattue_negative >= 0) * estimation_abattue_negative,
+                                      estimation_reduite
+                                      )
 
         with np.errstate(invalid='ignore'):
             cotisation = np.where(effectif_entreprise == 0,
                                individu.filled_array(0),
                                estimation_abattue / effectif_entreprise / 12
-            )
+                               )
 
         return - cotisation * assujettissement
 
@@ -687,11 +686,10 @@ class taxe_salaires(Variable):
         # Abattement spécial de taxe sur les salaires
         # Les associations à but non lucratif bénéficient d'un abattement important
         estimation_abattue_negative = estimation_reduite - taxe_salaires.abattement_special
-        estimation_abattue = np.where(
-            entreprise_est_association_non_lucrative,
-            (estimation_abattue_negative >= 0) * estimation_abattue_negative,
-            estimation_reduite
-        )
+        estimation_abattue = np.where(entreprise_est_association_non_lucrative,
+                                      (estimation_abattue_negative >= 0) * estimation_abattue_negative,
+                                      estimation_reduite
+                                      )
 
         with np.errstate(invalid='ignore'):
             cotisation = np.where(effectif_entreprise == 0,

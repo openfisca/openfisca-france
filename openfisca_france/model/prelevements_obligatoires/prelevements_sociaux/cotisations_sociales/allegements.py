@@ -81,7 +81,7 @@ class coefficient_proratisation(Variable):
         heures_temps_plein = where(heures_duree_collective_entreprise,
                                    heures_duree_collective_entreprise,
                                    duree_legale_mensuelle
-        )
+                                   )
 
         jours_absence = heures_non_remunerees_volume / 7
 
