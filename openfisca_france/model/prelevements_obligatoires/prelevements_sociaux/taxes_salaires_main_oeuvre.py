@@ -620,7 +620,7 @@ class taxe_salaires(Variable):
         conditions = [estimation < taxe_salaires.franchise, estimation <= taxe_salaires.decote_montant, estimation > taxe_salaires.decote_montant]
         results = [0, estimation - (taxe_salaires.decote_montant - estimation) * taxe_salaires.decote_taux, estimation]
 
-        estimation_reduite = np.select(conditions, results)
+        estimation_reduite = select(conditions, results)
 
         # Abattement spécial de taxe sur les salaires
         # Les associations à but non lucratif bénéficient d'un abattement important
@@ -682,7 +682,7 @@ class taxe_salaires(Variable):
         conditions = [estimation < taxe_salaires.franchise, estimation <= taxe_salaires.decote_montant, estimation > taxe_salaires.decote_montant]
         results = [0, estimation - (taxe_salaires.decote_montant - estimation) * taxe_salaires.decote_taux, estimation]
 
-        estimation_reduite = np.select(conditions, results)
+        estimation_reduite = select(conditions, results)
 
         # Abattement spécial de taxe sur les salaires
         # Les associations à but non lucratif bénéficient d'un abattement important
