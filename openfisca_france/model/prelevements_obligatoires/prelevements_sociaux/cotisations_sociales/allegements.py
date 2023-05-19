@@ -78,8 +78,10 @@ class coefficient_proratisation(Variable):
 
         duree_legale_mensuelle = parameters(period).marche_travail.salaire_minimum.smic.nb_heures_travail_mensuel
 
-        heures_temps_plein = switch(heures_duree_collective_entreprise,
-                                    {0: duree_legale_mensuelle, 1: heures_duree_collective_entreprise})
+        heures_temps_plein = where(heures_duree_collective_entreprise,
+                                   heures_duree_collective_entreprise,
+                                   duree_legale_mensuelle
+        )
 
         jours_absence = heures_non_remunerees_volume / 7
 
