@@ -543,7 +543,7 @@ class taxe_apprentissage(Variable):
             variable_name = 'taxe_apprentissage',
             )
 
-        cotisation = np.where(
+        cotisation = where(
             salarie_regime_alsace_moselle,
             cotisation_regime_alsace_moselle,
             cotisation_regime_general,
@@ -625,12 +625,12 @@ class taxe_salaires(Variable):
         # Abattement spécial de taxe sur les salaires
         # Les associations à but non lucratif bénéficient d'un abattement important
         estimation_abattue_negative = estimation_reduite - taxe_salaires.abattement_special
-        estimation_abattue = np.where(entreprise_est_association_non_lucrative,
+        estimation_abattue = where(entreprise_est_association_non_lucrative,
                                       (estimation_abattue_negative >= 0) * estimation_abattue_negative,
                                       estimation_reduite
                                       )
 
-        cotisation = np.where(effectif_entreprise == 0,
+        cotisation = where(effectif_entreprise == 0,
                            individu.filled_array(0),
                            estimation_abattue / effectif_entreprise / 12
                            )
@@ -685,12 +685,12 @@ class taxe_salaires(Variable):
         # Abattement spécial de taxe sur les salaires
         # Les associations à but non lucratif bénéficient d'un abattement important
         estimation_abattue_negative = estimation_reduite - taxe_salaires.abattement_special
-        estimation_abattue = np.where(entreprise_est_association_non_lucrative,
+        estimation_abattue = where(entreprise_est_association_non_lucrative,
                                       (estimation_abattue_negative >= 0) * estimation_abattue_negative,
                                       estimation_reduite
                                       )
 
-        cotisation = np.where(effectif_entreprise == 0,
+        cotisation = where(effectif_entreprise == 0,
                               individu.filled_array(0),
                               estimation_abattue / effectif_entreprise / 12
                               )
