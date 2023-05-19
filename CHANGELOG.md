@@ -1,5 +1,15 @@
 # Changelog
 
+## 147.0.0 [#2101](https://github.com/openfisca/openfisca-france/pull/2101)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `model/revenus/activite/salarie.py`.
+* Détails :
+  - Déplace les paramètres par défaut de taux de participation de l'employeur à la complémentaire santé et à la prévoyance obligatoire dans le dossier paramètres
+  - Introduit la contribution minimum à la prévoyance des cadres en bonne et due forme (minimum explicite plutôt que valeur par défaut)
+  - Recode la participation employeur obligatoire à la prévoyance de telle sorte à être exclue de l'assiette de CSG non abattue.
+
 ## 146.3.0 [#2099](https://github.com/openfisca/openfisca-france/pull/2099)
 
 * Évolution du système socio-fiscal.
@@ -14,7 +24,7 @@
 * Détails :
   - Revalorise à partir du 1er avril 2023 les montants de base de RSA et PPA ainsi que la BMAF et, à partir de 2022, la MTP.
   - La BMAF impacte le RSA, l'API, les prestations familiales (allocations familiales, CF, ARS, AEEH, PAJE, ASF), l'AES, l'API, les bourses de collège et lycée, les aides au logement et via sa base de ressources, la PPA.
-  - La MTP impacte l'APA à domicile (et via son complément de 6e catégorie, l'AEEH). 
+  - La MTP impacte l'APA à domicile (et via son complément de 6e catégorie, l'AEEH).
   - Confirme la validité de taux et plafonds inchangés de ces prestations.
 
 ### 146.2.1 [#2100](https://github.com/openfisca/openfisca-france/pull/2100)
@@ -51,8 +61,8 @@
 
 ### 146.0.7 [#2073](https://github.com/openfisca/openfisca-france/pull/2073)
 
-*Toutes les périodes* 
-* Zones impactées : 
+*Toutes les périodes*
+* Zones impactées :
     * `prelevements_sociaux/contributions_sociales/csg/remplacement`
     * `prelevements_sociaux/cotisations_securite_sociale_regime_general`
     * `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`
@@ -67,7 +77,7 @@
 * Zones impactées : `prestations_sociales/aides_jeunes/bourses/bourses_enseignement_superieur/criteres_sociaux/plafond_ressources`.
 * Détails :
   - Nettoyage des références pour passage de la validation des paramètres.
-  
+
 ### 146.0.5 [#2075](https://github.com/openfisca/openfisca-france/pull/2075)
 
 * Périodes concernées : toutes
