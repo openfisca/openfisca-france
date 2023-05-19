@@ -1,0 +1,7 @@
+description: Complémentaire santé obligatoire
+metadata:
+  short_label: Complémentaire santé obligatoire
+  label_en: "Mandatory complementary health insurance scheme"
+  order:
+  - prevoyance_obligatoire
+  

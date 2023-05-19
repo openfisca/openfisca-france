@@ -85,4 +85,7 @@ metadata:
   amount_unit: currency
   threshold_unit: year
   type: single_amount
-documentation: https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/CIR-30-2019_reforme_complementaire_sante.pdf https://www.service-public.fr/particuliers/vosdroits/F13375 https://drees.solidarites-sante.gouv.fr/sites/default/files/2021-03/fiche19.pdf
+documentation: 
+  https://www.complementaire-sante-solidaire.gouv.fr/fichier-utilisateur/fichiers/CIR-30-2019_reforme_complementaire_sante.pdf 
+  https://www.service-public.fr/particuliers/vosdroits/F13375 
+  https://drees.solidarites-sante.gouv.fr/sites/default/files/2021-03/fiche19.pdf
