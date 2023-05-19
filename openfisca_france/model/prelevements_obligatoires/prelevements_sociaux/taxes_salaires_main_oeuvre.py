@@ -630,11 +630,10 @@ class taxe_salaires(Variable):
                                       estimation_reduite
                                       )
 
-        with np.errstate(invalid='ignore'):
-            cotisation = np.where(effectif_entreprise == 0,
-                               individu.filled_array(0),
-                               estimation_abattue / effectif_entreprise / 12
-                               )
+        cotisation = np.where(effectif_entreprise == 0,
+                           individu.filled_array(0),
+                           estimation_abattue / effectif_entreprise / 12
+                           )
 
         return - cotisation * assujettissement
 
@@ -691,10 +690,9 @@ class taxe_salaires(Variable):
                                       estimation_reduite
                                       )
 
-        with np.errstate(invalid='ignore'):
-            cotisation = np.where(effectif_entreprise == 0,
-                                  individu.filled_array(0),
-                                  estimation_abattue / effectif_entreprise / 12
-                                  )
+        cotisation = np.where(effectif_entreprise == 0,
+                              individu.filled_array(0),
+                              estimation_abattue / effectif_entreprise / 12
+                              )
 
         return - cotisation * assujettissement
