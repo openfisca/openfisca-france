@@ -2463,20 +2463,43 @@ class defrag(Variable):
         mrag_impo_i = foyer_fiscal.members('mrag_impo', period)
         nrag_impg_i = foyer_fiscal.members('nrag_impg', period)
         frag_fore_i = foyer_fiscal.members('frag_fore', period)
-        coupe_bois_i = foyer_fiscal.members('coupe_bois', period)
         frag_pvct_i = foyer_fiscal.members('frag_pvct', period)
         arag_impg_i = foyer_fiscal.members('arag_impg', period)
         cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
 
         frag_fore = foyer_fiscal.sum(frag_fore_i)
-        coupe_bois = foyer_fiscal.sum(coupe_bois_i)
         frag_impo = foyer_fiscal.sum(frag_impo_i)
         mrag_impo = foyer_fiscal.sum(mrag_impo_i)
         arag_impg = foyer_fiscal.sum(arag_impg_i)
         nrag_impg = foyer_fiscal.sum(nrag_impg_i)
         frag_pvct = foyer_fiscal.sum(frag_pvct_i)
         return min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (frag_impo + nrag_impg + frag_pvct)
-                    + arag_impg + frag_fore + coupe_bois + mrag_impo)
+                    + arag_impg + frag_fore + mrag_impo)
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        #frag_fore est remplacé par coupe_bois, frag_pvct par mrag_pvct
+        f5qf = foyer_fiscal('f5qf', period)
+        f5qg = foyer_fiscal('f5qg', period)
+        f5qn = foyer_fiscal('f5qn', period)
+        f5qo = foyer_fiscal('f5qo', period)
+        f5qp = foyer_fiscal('f5qp', period)
+        f5qq = foyer_fiscal('f5qq', period)
+        frag_impo_i = foyer_fiscal.members('frag_impo', period)
+        mrag_impo_i = foyer_fiscal.members('mrag_impo', period)
+        nrag_impg_i = foyer_fiscal.members('nrag_impg', period)
+        coupe_bois_i = foyer_fiscal.members('coupe_bois', period)
+        mrag_pvct_i = foyer_fiscal.members('mrag_pvct', period)
+        arag_impg_i = foyer_fiscal.members('arag_impg', period)
+        cga = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
+
+        coupe_bois = foyer_fiscal.sum(coupe_bois_i)
+        frag_impo = foyer_fiscal.sum(frag_impo_i)
+        mrag_impo = foyer_fiscal.sum(mrag_impo_i)
+        arag_impg = foyer_fiscal.sum(arag_impg_i)
+        nrag_impg = foyer_fiscal.sum(nrag_impg_i)
+        mrag_pvct = foyer_fiscal.sum(mrag_pvct_i)
+        return min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (frag_impo + nrag_impg + mrag_pvct)
+                    + arag_impg + coupe_bois + mrag_impo)
 
 
 class defacc(Variable):
@@ -2752,6 +2775,17 @@ class rpns_pvct(Variable):
         Plus values de court terme
         '''
         frag_pvct = individu('frag_pvct', period)
+        mbic_pvct = individu('mbic_pvct', period)
+        macc_pvct = individu('macc_pvct', period)
+        mbnc_pvct = individu('mbnc_pvct', period)
+        mncn_pvct = individu('mncn_pvct', period)
+
+        return frag_pvct + mrag_pvct + macc_pvct + mbic_pvct + mbnc_pvct + mncn_pvct
+
+    def formula_2016_01_01(individu, period, parameters):
+        '''
+        Plus values de court terme
+        '''
         mrag_pvct = individu('mrag_pvct', period)
         mbic_pvct = individu('mbic_pvct', period)
         macc_pvct = individu('macc_pvct', period)
