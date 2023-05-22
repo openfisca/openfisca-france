@@ -1,5 +1,13 @@
 # Changelog
 
+## 147.0.1 [#2102](https://github.com/openfisca/openfisca-france/pull/2102)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `tests/`.
+* Détails :
+  - Ajout d'un fichier de tests "complets" du salaire de base au salaire net, de telle sorte à avoir des exemples complets et détaillés à utiliser dans openfisca-france-data pour tester l'inversion du salaire net.
+
 ## 147.0.0 [#2101](https://github.com/openfisca/openfisca-france/pull/2101)
 
 * Évolution du système socio-fiscal.
