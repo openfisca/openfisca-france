@@ -201,7 +201,6 @@ class aah_base_ressources_conjugalisee(Variable):
         aah = law.prestations_sociales.prestations_etat_de_sante.invalidite.aah
 
         en_activite = individu('activite', period) == TypesActivite.actif
-        ressource_interrompue = not_(en_activite + (individu('activite', period) == TypesActivite.etudiant))
 
         def assiette_conjoint(revenus_conjoint):
             af_nbenf = individu.famille('af_nbenf', period)
@@ -215,6 +214,7 @@ class aah_base_ressources_conjugalisee(Variable):
             revenus_abattus_smic = (1 - aah.travail_ordinaire.abattement_30) * tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * tranche2
             
             last_month = Period(('month', period.start, 1)).offset(-1)
+            ressource_interrompue = not_(en_activite + (individu('activite', period) == TypesActivite.etudiant))
             has_ressources_substitution = (
                 individu('chomage_net', last_month)
                 + individu('retraite_nette', last_month)
