@@ -1,7 +1,7 @@
 import logging
 
 from openfisca_france.model.base import *
-from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds, condition_csg_crds_non_residents
 
 
 log = logging.getLogger(__name__)
@@ -106,6 +106,8 @@ class csg_deductible_salaire(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
+        csg_condition = condition_csg_crds_non_residents(individu, period.this_year)
+
         assiette_csg_abattue = individu('assiette_csg_abattue', period)
         assiette_csg_non_abattue = individu('assiette_csg_non_abattue', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
@@ -117,7 +119,7 @@ class csg_deductible_salaire(Variable):
             law_node = csg.activite.deductible,
             plafond_securite_sociale = plafond_securite_sociale,
             )
-        return montant_csg
+        return csg_condition * montant_csg
 
 
 class csg_imposable_salaire(Variable):
@@ -129,6 +131,8 @@ class csg_imposable_salaire(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
+        csg_condition = condition_csg_crds_non_residents(individu, period.this_year)
+
         assiette_csg_abattue = individu('assiette_csg_abattue', period)
         assiette_csg_non_abattue = individu('assiette_csg_non_abattue', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
@@ -141,7 +145,7 @@ class csg_imposable_salaire(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
-        return montant_csg
+        return csg_condition * montant_csg
 
 
 class crds_salaire(Variable):
@@ -153,6 +157,8 @@ class crds_salaire(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
+        crds_condition = condition_csg_crds_non_residents(individu, period.this_year)
+
         assiette_csg_abattue = individu('assiette_csg_abattue', period)
         assiette_csg_non_abattue = individu('assiette_csg_non_abattue', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
@@ -166,7 +172,7 @@ class crds_salaire(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
-        return montant_crds
+        return crds_condition * montant_crds
 
 
 class forfait_social(Variable):

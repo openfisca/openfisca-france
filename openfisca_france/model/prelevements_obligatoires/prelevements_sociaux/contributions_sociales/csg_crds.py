@@ -1,5 +1,6 @@
 import logging
 from openfisca_france.model.base import *
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import condition_csg_crds_non_residents
 
 log = logging.getLogger(__name__)
 
@@ -11,6 +12,7 @@ class csg(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
+        csg_condition = condition_csg_crds_non_residents(individu, period)
         csg_imposable_salaire = individu('csg_imposable_salaire', period, options = [ADD])
         csg_deductible_salaire = individu('csg_deductible_salaire', period, options = [ADD])
         csg_imposable_chomage = individu('csg_imposable_chomage', period, options = [ADD])
@@ -24,15 +26,17 @@ class csg(Variable):
         csg_revenus_capital_projetee = csg_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
-            csg_imposable_salaire
-            + csg_deductible_salaire
-            + csg_imposable_chomage
-            + csg_deductible_chomage
-            + csg_imposable_retraite
-            + csg_deductible_retraite
-            + csg_imposable_non_salarie
-            + csg_deductible_non_salarie
-            + csg_revenus_capital_projetee
+            csg_condition * (
+                csg_imposable_salaire
+                + csg_deductible_salaire
+                + csg_imposable_chomage
+                + csg_deductible_chomage
+                + csg_imposable_retraite
+                + csg_deductible_retraite
+                + csg_imposable_non_salarie
+                + csg_deductible_non_salarie
+                + csg_revenus_capital_projetee
+                )
             )
 
     # TODO: manque CSG sur IJ et pré-retraites
@@ -49,6 +53,8 @@ class crds(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
+        crds_condition = condition_csg_crds_non_residents(individu, period)
+
         # CRDS sur revenus individuels
         crds_salaire = individu('crds_salaire', period, options = [ADD])
         crds_retraite = individu('crds_retraite', period, options = [ADD])
@@ -65,7 +71,7 @@ class crds(Variable):
         crds_revenus_capital = individu.foyer_fiscal('crds_revenus_capital', period)
         crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return crds_individu + crds_famille_projetes + crds_revenus_capital_projetee
+        return crds_condition * (crds_individu + crds_famille_projetes + crds_revenus_capital_projetee)
 
 
 class crds_hors_prestations(Variable):
@@ -75,6 +81,8 @@ class crds_hors_prestations(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
+        crds_condition = condition_csg_crds_non_residents(individu, period)
+
         # CRDS sur revenus individuels
         crds_salaire = individu('crds_salaire', period, options = [ADD])
         crds_retraite = individu('crds_retraite', period, options = [ADD])
@@ -85,4 +93,4 @@ class crds_hors_prestations(Variable):
         crds_revenus_capital = individu.foyer_fiscal('crds_revenus_capital', period)
         crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return crds_individu + crds_revenus_capital_projetee
+        return crds_condition * (crds_individu + crds_revenus_capital_projetee)

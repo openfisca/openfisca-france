@@ -1,5 +1,19 @@
 # Changelog
 
+## 147.3.2 [#2106](https://github.com/openfisca/openfisca-france/pull/2106)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 2019-01-01
+* Zones impactées :
+  * `openfisca_france/model/caracteristiques_socio_demographiques/demographie.py`
+  * `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/`
+  * `openfisca_france/model/prestations/minima_sociaux/rsa.py`
+  * `tests/`
+* Détails :
+  * Création de la variable `resident_eee_hors_france` pour gérer le cas des personnes résidentes en Europe mais hors de France.
+  * Après le 2019-01-01, les non résidents sont exonérés de la CSG et de la CRDS.
+  * Les non résidents ne sont pas éligibles au RSA.
+
 ### 147.2.2 [#2111](https://github.com/openfisca/openfisca-france/pull/2111)
 
 * Changement mineur.
