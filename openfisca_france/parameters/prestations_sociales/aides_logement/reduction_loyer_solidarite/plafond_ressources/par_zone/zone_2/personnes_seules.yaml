@@ -6,6 +6,7 @@ values:
     value: 854
 metadata:
   short_label: Personne isolée
+  last_value_still_valid_on: "2023-05-24"
   ipp_csv_id: plafond_ressources_rls_z2_personne_isolee
   unit: currency
   reference:

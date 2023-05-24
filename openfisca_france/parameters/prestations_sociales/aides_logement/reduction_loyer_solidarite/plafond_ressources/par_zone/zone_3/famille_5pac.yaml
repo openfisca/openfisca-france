@@ -6,6 +6,7 @@ values:
     value: 2411
 metadata:
   short_label: Famille avec 5 personnes à charge
+  last_value_still_valid_on: "2023-05-24"
   ipp_csv_id: plafond_ressources_rls_z3_famille_5pac
   unit: currency
   reference:
