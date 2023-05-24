@@ -1,5 +1,16 @@
 # Changelog
 
+## 147.2.0 [#2108](https://github.com/openfisca/openfisca-france/pull/2108)
+* Amélioration technique. 
+* à partir du 01/01/2016.
+* Zones impactées : 
+   - `openfisca_france/model/prestations/minima_sociaux/rsa.py`.
+   - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_m/pente.yaml`.
+* Détails :
+  - Description de la fonctionnalité ajoutée ou du nouveau comportement adopté.
+  - Cas dans lesquels une erreur était constatée.
+)
+
 ## 147.1.0 [#2107](https://github.com/openfisca/openfisca-france/pull/2107)
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 01/10/2022
