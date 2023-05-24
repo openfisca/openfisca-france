@@ -1,4 +1,4 @@
-description: Personne isolée, Réduction du loyer de solidarité en zone 3
+description: Bénéficiaire isolé, Réduction du loyer de solidarité en zone 3
 values:
   2018-01-01:
     value: 26
@@ -15,7 +15,7 @@ values:
   2022-10-01:
     value: 39.98
 metadata:
-  short_label: Personne isolée
+  short_label: Bénéficiaire isolé
   last_value_still_valid_on: "2023-05-24"
   ipp_csv_id: rls_z3_personne_isolee
   unit: currency

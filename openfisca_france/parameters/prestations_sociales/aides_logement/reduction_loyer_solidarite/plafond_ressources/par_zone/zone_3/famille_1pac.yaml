@@ -1,11 +1,11 @@
-description: Famille avec 1 personne à charge - Plafond de ressources (zone 3) de la Réduction de loyer de solidarité (RLS)
+description: Bénéficiaire isolé ou couple ayant 1 personne à charge - Plafond de ressources (zone 3) de la Réduction de loyer de solidarité (RLS)
 values:
   2018-01-01:
     value: 1276
   2019-01-01:
     value: 1289
 metadata:
-  short_label: Famille avec 1 personne à charge
+  short_label: Bénéficiaire isolé ou couple ayant 1 personne à charge
   last_value_still_valid_on: "2023-05-24"
   ipp_csv_id: plafond_ressources_rls_z3_famille_1pac
   unit: currency

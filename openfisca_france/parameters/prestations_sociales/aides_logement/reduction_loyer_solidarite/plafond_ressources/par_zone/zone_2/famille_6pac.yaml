@@ -1,11 +1,11 @@
-description: Famille avec 6 personnes à charge - Plafond de ressources (zone 2) de la Réduction de loyer de solidarité (RLS)
+description: Bénéficiaire isolé ou couple ayant 6 personnes à charge - Plafond de ressources (zone 2) de la Réduction de loyer de solidarité (RLS)
 values:
   2018-01-01:
     value: 2737
   2019-01-01:
     value: 2764
 metadata:
-  short_label: Famille avec 6 personnes à charge
+  short_label: Bénéficiaire isolé ou couple ayant 6 personnes à charge
   last_value_still_valid_on: "2023-05-24"
   ipp_csv_id: plafond_ressources_rls_z2_famille_6pac
   unit: currency

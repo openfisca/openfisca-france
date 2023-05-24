@@ -1,4 +1,4 @@
-description: Famille avec 1 personne à charge, Réduction du loyer de solidarité en zone 3
+description: Bénéficiaire isolé ou couple ayant 1 personne à charge, Réduction du loyer de solidarité en zone 3
 values:
   2018-01-01:
     value: 35.34
@@ -15,7 +15,7 @@ values:
   2022-10-01:
     value: 54.22
 metadata:
-  short_label: Famille avec 1 personne à charge
+  short_label: Bénéficiaire isolé ou couple ayant 1 personne à charge
   last_value_still_valid_on: "2023-05-24"
   ipp_csv_id: rls_z3_famille_1pac
   unit: currency

@@ -1,11 +1,11 @@
-description: Couple - Plafonds de ressources pour la réduction du loyer de solidarité en zone 3
+description: Couple sans personne à charge - Plafonds de ressources pour la réduction du loyer de solidarité en zone 3
 values:
   2018-01-01:
     value: 998
   2019-01-01:
     value: 1008
 metadata:
-  short_label: Couple
+  short_label: Couple sans personne à charge
   last_value_still_valid_on: "2023-05-24"
   ipp_csv_id: plafond_ressources_rls_z3_couple
   unit: currency

@@ -1,4 +1,4 @@
-description: Couple, Réduction du loyer de solidarité en zone 1
+description: Couple sans personne à charge, Réduction du loyer de solidarité en zone 1
 values:
   2018-01-01:
     value: 38.39
@@ -15,7 +15,7 @@ values:
   2022-10-01:
     value: 58.9
 metadata:
-  short_label: Couple
+  short_label: Couple sans personne à charge
   last_value_still_valid_on: "2023-05-24"
   ipp_csv_id: rls_z1_couple
   unit: currency
