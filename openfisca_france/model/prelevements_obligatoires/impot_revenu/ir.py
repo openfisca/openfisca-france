@@ -3122,7 +3122,7 @@ class atimp(Variable):
 class nbnc_timp(Variable):
     value_type = float
     entity = Individu
-    label = 'Revenus des professions non salariées individuels sans abattement'
+    label = 'Revenus des professions non salariées individuels sans abattement association'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -3136,7 +3136,7 @@ class nbnc_timp(Variable):
 class nacc_timp(Variable):
     value_type = float
     entity = Individu
-    label = 'Revenus des professions non salariées individuels sans abattement'
+    label = 'Revenus des professions non salariées individuels sans abattement CGA'
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -3154,9 +3154,6 @@ class ntimp(Variable):
     definition_period = YEAR
 
     def formula(individu, period, parameters):
-        '''
-        Revenus des professions non salariées individuels
-        '''
         nbic_impn = individu('nbic_impn', period)
         nbic_imps = individu('nbic_imps', period)
         nbic_defn = individu('nbic_defn', period)
@@ -3169,9 +3166,6 @@ class ntimp(Variable):
         return(ntimp)
 
     def formula_2006_01_01(individu, period, parameters):
-        '''
-        Revenus des professions non salariées individuels
-        '''
         nbic_impn = individu('nbic_impn', period)
         nbic_imps = individu('nbic_imps', period)
         nbic_defn = individu('nbic_defn', period)
@@ -3187,9 +3181,6 @@ class ntimp(Variable):
         return(ntimp)
 
     def formula_2007_01_01(individu, period, parameters):
-        '''
-        Revenus des professions non salariées individuels
-        '''
         # Moyenne triennale
         nrag_impg = individu('nrag_impg', period)
         nbic_impn = individu('nbic_impn', period)
@@ -3207,9 +3198,6 @@ class ntimp(Variable):
         return(ntimp)
 
     def formula_2010_01_01(individu, period, parameters):
-        '''
-        Revenus des professions non salariées individuels
-        '''
         nrag_impg = individu('nrag_impg', period)
         nbic_impn = individu('nbic_impn', period)
         nbic_defn = individu('nbic_defn', period)
