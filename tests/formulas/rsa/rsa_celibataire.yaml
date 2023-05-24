@@ -47,7 +47,7 @@
     rsa_base_ressources:
       2014-01: 416.67
     rsa_revenu_activite:
-      2014-01: 416.67
+      2014-01: 416.67 * 0.62
     rsa_forfait_logement:
       2014-01: 59.92
     rsa_socle:
@@ -78,7 +78,7 @@
     rsa_base_ressources:
       2014-01: 833.33
     rsa_revenu_activite:
-      2014-01: 833.33
+      2014-01: 833.33 * 0.62
     rsa_forfait_logement:
       2014-01: 59.92
     rsa_socle:
@@ -109,7 +109,7 @@
     rsa_base_ressources:
       2014-01: 1000
     rsa_revenu_activite:
-      2014-01: 1000
+      2014-01: 1000 * 0.62
     rsa_forfait_logement:
       2014-01: 59.92
     rsa_socle:
@@ -140,7 +140,7 @@
     rsa_base_ressources:
       2014-01: 1083.33
     rsa_revenu_activite:
-      2014-01: 1083.33
+      2014-01: 1083.33 * 0.62
     rsa_forfait_logement:
       2014-01: 59.92
     rsa_socle:
@@ -171,7 +171,7 @@
     rsa_base_ressources:
       2014-01: 1166.67
     rsa_revenu_activite:
-      2014-01: 1166.67
+      2014-01: 1166.67 * 0.62
     rsa_forfait_logement:
       2014-01: 59.92
     rsa_socle:
@@ -202,7 +202,7 @@
     rsa_base_ressources:
       2014-01: 1250
     rsa_revenu_activite:
-      2014-01: 1250
+      2014-01: 1250 * 0.62
     rsa_forfait_logement:
       2014-01: 59.92
     rsa_socle:
@@ -233,7 +233,7 @@
     rsa_base_ressources:
       2014-01: 1666.67
     rsa_revenu_activite:
-      2014-01: 1666.67
+      2014-01: 1666.67 * 0.62
     rsa_forfait_logement:
       2014-01: 59.92
     rsa_socle:
