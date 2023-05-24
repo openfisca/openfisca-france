@@ -3240,7 +3240,7 @@ class revenu_non_salarie(Variable):
         atimp = individu('atimp', period)
         ntimp = individu('ntimp', period)
         cga_taux2 = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.cga_taux2
-        majo_cga = max_(0, cga_taux2 * (ntimp + rpns_frag))  # Pour ne pas avoir à majorer les déficits
+        majo_cga = max_(0, cga_taux2 * ntimp)  # Pour ne pas avoir à majorer les déficits
         def_agri = f5sq + arag_defi + (1 + cga_taux2) * nrag_defi
         revenus_non_salaries = rpns_mrag + coupe_bois + atimp + ntimp + majo_cga - def_agri
 
@@ -3277,9 +3277,11 @@ class rpns_imposables(Variable):
         macc_imps = individu('macc_imps', period)
         mbnc_impo = individu('mbnc_impo', period)
         mncn_impo = individu('mncn_impo', period)
+        cncn_aimp = individu('cncn_aimp', period)
         rpns_mvct_pro = individu('moins_values_court_terme_pro', period)
         rpns_mvct_agr = individu('moins_values_court_terme_agr', period)
         rpns_mvct_nonpro = individu('moins_values_court_terme_nonpro', period)  # noqa F841
+        locations_pro = individu('locations_pro', period)
         micro = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.micro
 
         def abat_rpns(rev, P):
