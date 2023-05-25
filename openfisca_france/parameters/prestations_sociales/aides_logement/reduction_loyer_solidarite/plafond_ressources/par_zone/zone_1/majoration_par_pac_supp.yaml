@@ -6,6 +6,7 @@ values:
     value: 283
 metadata:
   short_label: Majoration par personne à charge supplémentaire
+  last_value_still_valid_on: "2023-05-24"
   ipp_csv_id: plafond_ressources_rls_z1_pac_supplementaire
   unit: currency
   reference:

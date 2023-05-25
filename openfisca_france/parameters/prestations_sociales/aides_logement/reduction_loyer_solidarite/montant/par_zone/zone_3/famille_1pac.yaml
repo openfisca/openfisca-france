@@ -1,4 +1,4 @@
-description: Famille avec 1 personne à charge, Réduction du loyer de solidarité en zone 3
+description: Bénéficiaire isolé ou couple ayant 1 personne à charge, Réduction du loyer de solidarité en zone 3
 values:
   2018-01-01:
     value: 35.34
@@ -12,8 +12,11 @@ values:
     value: 51.59
   2021-10-01:
     value: 58.27
+  2022-10-01:
+    value: 54.22
 metadata:
-  short_label: Famille avec 1 personne à charge
+  short_label: Bénéficiaire isolé ou couple ayant 1 personne à charge
+  last_value_still_valid_on: "2023-05-24"
   ipp_csv_id: rls_z3_famille_1pac
   unit: currency
   reference:
@@ -33,11 +36,19 @@ metadata:
       title: Arrêté du 17/12/2020, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042709416
     2021-10-01:
-      title: Arrêté du 17/12/2020, art. 1
+      title: Arrêté du 17/09/2021, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044138120
+    2022-10-01:
+      title: Arrêté du 27/09/2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046349828
   official_journal_date:
     2018-01-01: "2018-02-28"
     2019-01-01: "2018-12-29"
+    2020-01-01: "2020-01-01"
+    2020-10-01: "2020-10-01"
+    2021-01-01: "2020-12-22"
+    2021-10-01: "2021-10-01"
+    2022-10-01: "2022-10-01"
   notes:
     2018-01-01:
     - title: Création de la réduction de loyer de solidarité par la loi de finances pour 2018. Elle entre en vigueur le 01/02/2018.

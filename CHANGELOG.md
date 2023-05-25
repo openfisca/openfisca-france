@@ -1,5 +1,14 @@
 # Changelog
 
+## 147.1.0 [#2107](https://github.com/openfisca/openfisca-france/pull/2107)
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/10/2022
+* Zones impactées : `parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/`
+* Détails :
+  - Met à jour les montants de la réduction de loyer de solidarité
+  - Documente le gel des plafonds de ressources de la réduction de loyer de solidarité
+  - Renomme certains paramètres dans leur description/short_name
+
 ## 147.0.1 [#2102](https://github.com/openfisca/openfisca-france/pull/2102)
 
 * Amélioration technique.
