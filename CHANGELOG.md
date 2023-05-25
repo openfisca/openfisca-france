@@ -1,15 +1,27 @@
 # Changelog
 
+## 147.2.1 [#2097](https://github.com/openfisca/openfisca-france/pull/2097)
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2023.
+* Zones impactées :
+  - `parameters/marche_travail/salaire_minimum/smic`
+  - `parameters/marche_travail/remuneration_fonction_publique/indice_majore_minimal`
+  - `parameters/prestations_sociales/prestations_etat_de_sante/invalidite/aah/montant`
+* Détails :
+  - Revalorisation du smic horaire au premier mai
+  - Revalorisation de l'indice minimum de traitement dans la fonction publique du premier janvier et du premier mai
+  - Revalorisation de l'AAH au premier avril
+
 ## 147.2.0 [#2108](https://github.com/openfisca/openfisca-france/pull/2108)
-* Amélioration technique. 
+* Amélioration technique.
 * à partir du 01/01/2016.
-* Zones impactées : 
+* Zones impactées :
    - `openfisca_france/model/prestations/minima_sociaux/rsa.py`.
    - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_m/pente.yaml`.
 * Détails :
   - Description de la fonctionnalité ajoutée ou du nouveau comportement adopté.
   - Cas dans lesquels une erreur était constatée.
-)
+
 
 ## 147.1.0 [#2107](https://github.com/openfisca/openfisca-france/pull/2107)
 * Évolution du système socio-fiscal
