@@ -334,7 +334,7 @@ class enceinte_fam(Variable):
 
 
 class rsa_revenus_determination_enfant_a_charge(Variable):
-    value_type = bool
+    value_type = float
     entity = Individu
     label = "Calcul des revenus des personnes à charge pour déterminer s'ils sont considérés à charge dans le calcul du RSA"
     definition_period = MONTH
