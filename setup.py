@@ -48,7 +48,7 @@ setup(
             'pandas >= 0.13',
             ],
         'dev': [
-            'autopep8 ==1.5.7',
+            'autopep8 ==2.0.2',
             'flake8 >= 4.0.0, < 5.0.0',
             'flake8-print >= 5.0.0, < 6.0.0',
             'flake8-quotes >= 3.3.1, < 6.0.0',
