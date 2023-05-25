@@ -333,6 +333,30 @@ class enceinte_fam(Variable):
         return parent_enceinte + enceinte_compat
 
 
+class rsa_revenus_determination_enfant_a_charge(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Calcul des revenus des personnes à charge pour déterminer s'ils sont considérés à charge dans le calcul du RSA"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula_2016_01_01(individu, period):
+        ressources = (
+            individu('rsa_base_ressources_individu', period)
+            + individu('rsa_revenu_activite_individu', period)
+            )
+        return ressources
+
+    def formula(individu, period, parameters):
+        P_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
+        ressources = (
+            individu('rsa_base_ressources_individu', period)
+            + (1 - P_rsa.rsa_m.pente)
+            * individu('rsa_revenu_activite_individu', period)
+            )
+        return ressources
+
+
 class rsa_enfant_a_charge(Variable):
     value_type = bool
     entity = Individu
@@ -348,16 +372,7 @@ class rsa_enfant_a_charge(Variable):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
 
-        if period.start.date < date(2016, 1, 1):
-            pente = P_rsa.rsa_m.pente
-        else:
-            pente = 0
-
-        ressources = (
-            individu('rsa_base_ressources_individu', period)
-            + (1 - pente)
-            * individu('rsa_revenu_activite_individu', period)
-            )
+        ressources = individu('rsa_revenus_determination_enfant_a_charge', period)
 
         # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
         if period.start.date >= date(2009, 6, 1):
