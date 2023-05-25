@@ -64,7 +64,7 @@ values:
     value: 971.37
 metadata:
   short_label: Montant maximal (mensuel)
-  last_value_still_valid_on: "2022-09-27"
+  last_value_still_valid_on: "2023-05-25"
   label_en: Adult disability allowance (AAH)
   ipp_csv_id: montant_80_aah
   unit: currency

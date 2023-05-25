@@ -242,7 +242,7 @@ values:
     value: 11.52
 metadata:
   short_label: SMIC horaire brut
-  last_value_still_valid_on: "2022-08-03"
+  last_value_still_valid_on: "2023-05-25"
   label_en: Minimum wage - SMIC
   ipp_csv_id: smic_h
   unit: currency
