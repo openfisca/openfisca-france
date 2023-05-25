@@ -333,6 +333,30 @@ class enceinte_fam(Variable):
         return parent_enceinte + enceinte_compat
 
 
+class rsa_revenus_determination_enfant_a_charge(Variable):
+    value_type = float
+    entity = Individu
+    label = "Calcul des revenus des personnes à charge pour déterminer s'ils sont considérés à charge dans le calcul du RSA"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula_2016_01_01(individu, period):
+        ressources = (
+            individu('rsa_base_ressources_individu', period)
+            + individu('rsa_revenu_activite_individu', period)
+            )
+        return ressources
+
+    def formula(individu, period, parameters):
+        P_rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
+        ressources = (
+            individu('rsa_base_ressources_individu', period)
+            + (1 - P_rsa.rsa_m.pente)
+            * individu('rsa_revenu_activite_individu', period)
+            )
+        return ressources
+
+
 class rsa_enfant_a_charge(Variable):
     value_type = bool
     entity = Individu
@@ -348,11 +372,7 @@ class rsa_enfant_a_charge(Variable):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
 
-        ressources = (
-            individu('rsa_base_ressources_individu', period)
-            + (1 - P_rsa.rsa_m.pente)
-            * individu('rsa_revenu_activite_individu', period)
-            )
+        ressources = individu('rsa_revenus_determination_enfant_a_charge', period)
 
         # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
         if period.start.date >= date(2009, 6, 1):
@@ -426,17 +446,19 @@ class participation_frais(Variable):
 
 class rsa_revenu_activite(Variable):
     value_type = float
-    label = "Revenus d'activité du RSA"
+    label = "Revenus d'activité du RSA, pris en compte dans le montant du RSA jusque 2016"
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    end = '2015-12-31'
 
-    def formula_2009_06_01(famille, period):
+    def formula_2009_06_01(famille, period, parameters):
+        pente = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_m.pente
         rsa_revenu_activite_i = famille.members('rsa_revenu_activite_individu', period)
         rsa_enfant_a_charge_i = famille.members('rsa_enfant_a_charge', period)
         enfant_i = famille.members('est_enfant_dans_famille', period)
 
-        return famille.sum(or_(not_(enfant_i), rsa_enfant_a_charge_i) * rsa_revenu_activite_i)
+        return pente * famille.sum(or_(not_(enfant_i), rsa_enfant_a_charge_i) * rsa_revenu_activite_i)
 
 
 class rsa_indemnites_journalieres_activite(Variable):
@@ -562,10 +584,9 @@ class rsa_montant(Variable):
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
         rsa_base_ressources = famille('rsa_base_ressources', period)
 
-        rsa = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa
-        seuil_non_versement = rsa.rsa_maj.montant_minimum_verse
+        seuil_non_versement = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_maj.montant_minimum_verse
 
-        montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + rsa.rsa_m.pente * rsa_revenu_activite
+        montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + rsa_revenu_activite
 
         montant = max_(montant, 0)
         montant = montant * (montant >= seuil_non_versement)
