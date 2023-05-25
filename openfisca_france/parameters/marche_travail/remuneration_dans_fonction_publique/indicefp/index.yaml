@@ -26,7 +26,6 @@ metadata:
   - point_indice_en_euros
   - point_indice_en_nominal
 documentation: |-
-  Notes :
   Le point d'indice (ou la valeur de l'indice majoré 100) permet de déterminer la rémunération fixe des fonctionnaires
   La valeur du traitement mensuel brut correspondant à l'indice majoré détenu par un
   agent est égale à :
