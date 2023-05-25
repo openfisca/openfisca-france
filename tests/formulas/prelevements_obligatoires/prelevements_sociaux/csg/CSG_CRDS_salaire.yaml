@@ -1,0 +1,32 @@
+- period: 2016-06
+  name: CSG
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 1467
+    complementaire_sante_part_employeur: 0.625
+    complementaire_sante_montant: 40
+    categorie_salarie: prive_cadre
+  output:
+    complementaire_sante_employeur: -40 * 0.625
+    complementaire_sante_salarie: -40 * (1 - 0.625)
+    prevoyance_obligatoire_cadre: -1467 * 1.5 / 100
+    crds_salaire: -(1467 * 0.9825 + 40 * 0.625 + 1467 * 1.5 / 100) * 0.5 / 100
+    csg_imposable_salaire: -(1467 * 0.9825 + 40 * 0.625 + 1467 * 1.5 / 100) * 2.4 / 100
+    csg_deductible_salaire: -(1467 * 0.9825 + 40 * 0.625 + 1467 * 1.5 / 100) * 5.1 / 100
+
+
+- period: 2018-01
+  name: CSG et CRDS
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 1500
+    complementaire_sante_part_employeur: 0.625
+    complementaire_sante_montant: 40
+    categorie_salarie: prive_cadre # cadre
+  output:
+    complementaire_sante_employeur: -40 * 0.625
+    complementaire_sante_salarie: -40 * (1 - 0.625)
+    prevoyance_obligatoire_cadre: -1500 * 1.5 / 100
+    crds_salaire: -(1500 * 0.9825 + 40 * 0.625) * 0.5 / 100
+    csg_imposable_salaire: -(1500 * 0.9825 + 40 * 0.625) * 2.4 / 100
+    csg_deductible_salaire: -(1500 * 0.9825 + 40 * 0.625) * 6.8 / 100
