@@ -151,20 +151,19 @@ class aah_base_ressources(Variable):
             total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
             total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
             revenus_abattus_smic = (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
-            
+
             last_month = period.start.period('month').offset(-1)
             ressource_interrompue = not_(en_activite + (individu('activite', period) == TypesActivite.etudiant))
             has_ressources_substitution = (
                 individu('chomage_net', last_month)
                 + individu('retraite_nette', last_month)
-                + individu('rente_accident_travail', last_month) 
+                + individu('rente_accident_travail', last_month)
                 + individu('pensions_invalidite', last_month)
                 ) > 0
             abattement_cessation_activite = (1 - aah.abattement_cessation_activite * (ressource_interrompue + has_ressources_substitution))
 
             return abattement_cessation_activite * (revenus_abattus_smic)
-       
-        
+
         def base_ressource_eval_trim():
             three_previous_months = Period(('month', period.first_month.start, 3)).offset(-3)
             base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
@@ -205,13 +204,13 @@ class aah_base_ressources(Variable):
             total_tranche1 = min_(aah.travail_ordinaire.tranche_smic * smic_brut_annuel, revenus_demandeur)
             total_tranche2 = max_(0, revenus_demandeur - total_tranche1)
             revenus_abattus_smic = (1 - aah.travail_ordinaire.abattement_30) * total_tranche1 + (1 - aah.travail_ordinaire.abattement_sup) * total_tranche2
-            
+
             last_month = period.start.period('month').offset(-1)
             ressource_interrompue = not_(en_activite + (individu('activite', period) == TypesActivite.etudiant))
             has_ressources_substitution = (
                 individu('chomage_net', last_month)
                 + individu('retraite_nette', last_month)
-                + individu('rente_accident_travail', last_month) 
+                + individu('rente_accident_travail', last_month)
                 + individu('pensions_invalidite', last_month)
                 ) > 0
             abattement_cessation_activite = (1 - aah.abattement_cessation_activite * (ressource_interrompue + has_ressources_substitution))
