@@ -284,9 +284,6 @@ class salaire_imposable(Variable):
         hsup = individu('hsup', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         complementaire_sante_salarie = individu('complementaire_sante_salarie', period)
-        # Revenu du foyer fiscal projeté sur le demandeur
-        rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options=[DIVIDE])
-        rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
             salaire_de_base
@@ -299,7 +296,6 @@ class salaire_imposable(Variable):
             + csg_deductible_salaire
             + cotisations_salariales
             - hsup
-            + rev_microsocial_declarant1
             + indemnite_fin_contrat
             + complementaire_sante_salarie
             + indemnite_compensatrice_csg

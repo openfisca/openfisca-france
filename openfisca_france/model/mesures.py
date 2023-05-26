@@ -637,6 +637,9 @@ class impots_directs(Variable):
         isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period)
         isf_ifi = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
+        prelevement_liberatoire_autoentrepreneur_i = menage.members.foyer_fiscal('microsocial', period)
+        prelevement_liberatoire_autoentrepreneur = menage.sum(prelevement_liberatoire_autoentrepreneur_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
         return (
             taxe_habitation
             + irpp_economique
@@ -644,4 +647,5 @@ class impots_directs(Variable):
             + prelevement_forfaitaire_unique_ir
             + ir_pv_immo
             + isf_ifi
+            + prelevement_liberatoire_autoentrepreneur
             )
