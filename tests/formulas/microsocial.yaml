@@ -16,7 +16,7 @@
   input:
     ebic_imps: 20000
   output:
-    rev_microsocial: 20000 - 4920
+    rev_microsocial: 20000 - 4920 - 40 # Cotisations forfaitaires + cotisations formations
     microsocial: 340
 
 - name: Célibataire auto-entrepreneur non salarié - ebnc_impo
@@ -27,7 +27,7 @@
   input:
     ebnc_impo: 20000
   output:
-    rev_microsocial: 20000 - 4920
+    rev_microsocial: 20000 - 4920 - 40 # Cotisations forfaitaires + cotisations formations
     microsocial: 440
 
 - name: Couple d'auto-entrepreneurs non salariés, 2 enfants - ebnc_impo
