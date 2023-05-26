@@ -391,7 +391,6 @@ class rev_microsocial(Variable):
             + assiette_vente * cotisations_prestation.cotisations_prestations.vente
             + assiette_proflib * cotisations_prestation.cotisations_prestations.cipav
             )
-        # TODO Activités libérales relevant de la CIPAV - quelle assiette ? * P.cipav
         return total - prelsoc_ms
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
@@ -405,7 +404,6 @@ class rev_microsocial(Variable):
             + assiette_vente * (cotisations_prestation.cotisations_prestations.vente + cotisations_prestation.formation_professionnelle.ventecom_chiffre_affaires)
             + assiette_proflib * (cotisations_prestation.cotisations_prestations.cipav + cotisations_prestation.formation_professionnelle.professions_liberales_chiffre_affaires)
             )
-        # TODO Activités libérales relevant de la CIPAV - quelle assiette ? * P.cipav
         return total - prelsoc_ms
 
 
@@ -497,4 +495,5 @@ class revenus_non_salarie_nets(Variable):
         revenus_non_salarie = individu('rpns_imposables', period)
         csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period)
         crds_non_salarie = individu('crds_non_salarie', period)
-        return revenus_non_salarie + csg_imposable_non_salarie + crds_non_salarie
+        microentreprise = individu('microentreprise', period)
+        return revenus_non_salarie + csg_imposable_non_salarie + crds_non_salarie + microentreprise

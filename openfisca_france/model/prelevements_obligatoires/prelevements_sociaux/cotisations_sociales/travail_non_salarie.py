@@ -67,7 +67,18 @@ class cotisations_non_salarie(Variable):
                 + retraite_complementaire_profession_liberale
                 )
             )
-        return cotisations_non_salarie
+        # cotisations auto-entrepreneur
+        assiette_service = foyer_fiscal('assiette_service', period)
+        assiette_vente = foyer_fiscal('assiette_vente', period)
+        assiette_proflib = foyer_fiscal('assiette_proflib', period)
+        cotisations_prestation = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
+        cotisations_non_salarie_autoentrepreneur = (
+            assiette_service * (cotisations_prestation.cotisations_prestations.service + cotisations_prestation.formation_professionnelle.servicecom_chiffre_affaires)
+            + assiette_vente * (cotisations_prestation.cotisations_prestations.vente + cotisations_prestation.formation_professionnelle.ventecom_chiffre_affaires)
+            + assiette_proflib * (cotisations_prestation.cotisations_prestations.cipav + cotisations_prestation.formation_professionnelle.professions_liberales_chiffre_affaires)
+            )
+
+        return cotisations_non_salarie + cotisations_non_salarie_autoentrepreneur
 
 
 class deces_artisan_commercant(Variable):
