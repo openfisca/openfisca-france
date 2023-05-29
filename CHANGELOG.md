@@ -1,5 +1,13 @@
 # Changelog
 
+### 147.2.2 [#2111](https://github.com/openfisca/openfisca-france/pull/2111)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parametres/marche_travail`.
+* Détails :
+  - Nettoyage et harmonisation avec les barèmes IPP
+
 ## 147.2.1 [#2097](https://github.com/openfisca/openfisca-france/pull/2097)
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2023.
