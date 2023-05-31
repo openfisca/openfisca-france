@@ -1,5 +1,13 @@
 # Changelog
 
+### 147.2.3 [#2113](https://github.com/openfisca/openfisca-france/pull/2113)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parametres/geopolitique/ue`.
+* Détails :
+  - Corrige la liste des pays de l'Union Europeenne
+
 ### 147.2.2 [#2111](https://github.com/openfisca/openfisca-france/pull/2111)
 
 * Changement mineur.
