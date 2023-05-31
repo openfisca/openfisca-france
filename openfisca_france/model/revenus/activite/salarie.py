@@ -1,7 +1,7 @@
 from functools import partial
 from numpy import busday_count as original_busday_count, datetime64, timedelta64, where
 from openfisca_france.model.base import *
-
+from openfisca_core.periods import Period
 
 class indemnites_stage(Variable):
     value_type = float
@@ -1285,7 +1285,7 @@ class af_nbenf_fonc(Variable):
             D'où l'introduction de cette variable alternative.
         '''
 
-        salaire_de_base_mensualise = famille.members('salaire_de_base', period.start.period('month', 6).offset(-6), options = [ADD])
+        salaire_de_base_mensualise = famille.members('salaire_de_base', Period(('month', period.start, 6 )).offset(-6), options = [ADD])
         law = parameters(period)
         nbh_travaillees = 169
         smic_mensuel_brut = law.marche_travail.salaire_minimum.smic.smic_b_horaire * nbh_travaillees
