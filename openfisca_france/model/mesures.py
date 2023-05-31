@@ -339,7 +339,7 @@ class revenus_travail_super_bruts_menage(Variable):
         '''
         salaire_net_i = menage.members('salaire_net', period, options = [ADD])
         rpns_i = menage.members('rpns_imposables', period)
-        benefices_imputes_microsocial_i = menage.members('microentreprise', period, options = [ADD])
+        benefices_imputes_microsocial_i = menage.members.foyer_fiscal('microentreprise', period, options = [ADD]) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         csg_imposable_salaire_i = menage.members('csg_imposable_salaire', period, options = [ADD])
         csg_deductible_salaire_i = menage.members('csg_deductible_salaire', period, options = [ADD])
         csg_deductible_non_salarie_i = menage.members('csg_deductible_non_salarie', period, options = [ADD])

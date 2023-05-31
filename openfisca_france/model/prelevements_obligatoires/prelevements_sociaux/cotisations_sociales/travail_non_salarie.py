@@ -68,9 +68,9 @@ class cotisations_non_salarie(Variable):
                 )
             )
         # cotisations micro_social
-        assiette_service = foyer_fiscal('assiette_service', period)
-        assiette_vente = foyer_fiscal('assiette_vente', period)
-        assiette_proflib = foyer_fiscal('assiette_proflib', period)
+        assiette_service = individu.foyer_fiscal('assiette_service', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        assiette_vente = individu.foyer_fiscal('assiette_vente', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        assiette_proflib = individu.foyer_fiscal('assiette_proflib', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         cotisations_prestation = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
         cotisations_non_salarie_micro_social = (
             assiette_service * (cotisations_prestation.cotisations_prestations.service + cotisations_prestation.formation_professionnelle.servicecom_chiffre_affaires)
