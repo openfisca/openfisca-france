@@ -263,7 +263,6 @@ class salaire_imposable(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683657'
     set_input = set_input_divide_by_period
     definition_period = MONTH
-    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         '''
@@ -495,5 +494,6 @@ class revenus_non_salarie_nets(Variable):
         revenus_non_salarie = individu('rpns_imposables', period)
         csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period)
         crds_non_salarie = individu('crds_non_salarie', period)
-        microentreprise = individu('microentreprise', period)
+        microentreprise_i = individu.foyer_fiscal('microentreprise', period)  * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        microentreprise = sum(microentreprise_i)
         return revenus_non_salarie + csg_imposable_non_salarie + crds_non_salarie + microentreprise
