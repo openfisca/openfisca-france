@@ -3188,7 +3188,7 @@ class ntimp(Variable):
         # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
         nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
         cncn_timp = max_(0, cncn_bene - cncn_defi)
-        ntimp = nrag_impg + nbic_timp + nacc_timp + cncn_timp + nbic_timp + nbnc_timp
+        ntimp = nrag_impg + nbic_timp + nacc_timp + cncn_timp + nbnc_timp
         return(ntimp)
 
     def formula_2010_01_01(individu, period, parameters):
@@ -3202,7 +3202,7 @@ class ntimp(Variable):
         # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
         nbic_timp = nbic_impn - nbic_defn
         cncn_timp = max_(0, cncn_bene - cncn_defi)
-        ntimp = nrag_impg + nbic_timp + nacc_timp + cncn_timp + nbic_timp + nbnc_timp
+        ntimp = nrag_impg + nbic_timp + nacc_timp + cncn_timp + nbnc_timp
         return(ntimp)
 
 

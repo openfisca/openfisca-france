@@ -494,6 +494,6 @@ class revenus_non_salarie_nets(Variable):
         revenus_non_salarie = individu('rpns_imposables', period)
         csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period)
         crds_non_salarie = individu('crds_non_salarie', period)
-        microentreprise_i = individu.foyer_fiscal('microentreprise', period)  * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        microentreprise_i = individu.foyer_fiscal('microentreprise', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         microentreprise = sum(microentreprise_i)
         return revenus_non_salarie + csg_imposable_non_salarie + crds_non_salarie + microentreprise
