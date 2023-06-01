@@ -2301,9 +2301,9 @@ class glo(Variable):
         f1tx = individu('f1tx', period)
         f3vf = individu('f3vf', period)
         f3vi = individu('f3vi', period)
-        f3vj = individu('f3vj', period)
+        f3vd = individu('f3vd', period)
 
-        return f1tv + f1tw + f1tx + f3vf + f3vi + f3vj
+        return f1tv + f1tw + f1tx + f3vf + f3vi + f3vd
 
     def formula_2016_01_01(individu, period, parameters):
         '''
@@ -2312,9 +2312,9 @@ class glo(Variable):
         f1tx = individu('f1tx', period)
         f3vf = individu('f3vf', period)
         f3vi = individu('f3vi', period)
-        f3vj = individu('f3vj', period)
+        f3vd = individu('f3vd', period)
 
-        return f1tx + f3vf + f3vi + f3vj
+        return f1tx + f3vf + f3vi + f3vd
 
     def formula_2017_01_01(individu, period, parameters):
         '''
@@ -2322,9 +2322,9 @@ class glo(Variable):
         '''
         f3vf = individu('f3vf', period)
         f3vi = individu('f3vi', period)
-        f3vj = individu('f3vj', period)
+        f3vd = individu('f3vd', period)
 
-        return f3vf + f3vi + f3vj
+        return f3vf + f3vi + f3vd
 
 
 class credits_impot_sur_valeurs_etrangeres(Variable):
