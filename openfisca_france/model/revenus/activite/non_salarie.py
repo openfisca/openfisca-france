@@ -1383,7 +1383,7 @@ class nlnp_defs(Variable):
     entity = Individu
     label = 'Déficits de locations meublées non professionnelles imposables sans CGA (régime du bénéfice réel)'
     # start_date = date(2009, 1, 1)
-    end = '2010-12-31'
+    end = '2010-12-31'# TODO: Toujours present dans brochure 2019 par ex.
     definition_period = YEAR
 
 

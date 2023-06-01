@@ -1,6 +1,6 @@
 description: Revenus taxés à 16% (logiciels originaux)
 values:
   2002-01-01:
-    value: 0.16
+    value: 0.16 # TO-DO : 0.128 à partir de 2017 (ou d'un autre moment àpartir de 2014 en tout cas), cf brochure IR
 metadata:
   unit: /1
