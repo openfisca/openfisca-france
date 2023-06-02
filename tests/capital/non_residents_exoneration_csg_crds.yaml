@@ -1,0 +1,57 @@
+# Before 2019, everybody pay
+
+- name: pre_2019_residents_non_exoneres
+  description: Avant 2019, les résidents ne sont pas exonérés
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f4ba: 1000
+    # resident_eee_hors_france: False
+  output:
+    csg_revenus_capital: -99
+    crds_revenus_capital: -5
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -68
+    revenus_nets_du_capital: 828
+
+- name: pre_2019_non_residents_non_exoneres
+  description: Avant 2019, les non résidents ne sont pas exonérés
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f4ba: 1000
+    resident_eee_hors_france: true
+  output:
+    csg_revenus_capital: -99
+    crds_revenus_capital: -5
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -68
+    revenus_nets_du_capital: 828
+
+# After 2019, only residents in France pay
+
+- name: post_2019_residents_non_exoneres
+  description: A partir de 2019, les résidents ne sont pas exonérés
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    f4ba: 1000
+    # resident_eee_hors_france: False
+  output:
+    csg_revenus_capital: -92
+    crds_revenus_capital: -5
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -75
+    revenus_nets_du_capital: 828
+    revenu_disponible: 6837  # due to RSA
+
+- name: post_2019_non_residents_exoneres
+  description: A partir de 2019, les non résidents sont exonérés
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    f4ba: 1000
+    resident_eee_hors_france: true
+  output:
+    csg_revenus_capital: 0
+    crds_revenus_capital: 0
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -75
+    revenus_nets_du_capital: 925
+    revenu_disponible: 925

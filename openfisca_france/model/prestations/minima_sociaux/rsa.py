@@ -697,6 +697,9 @@ class rsa_eligibilite(Variable):
 
         etudiant_i = famille.members('etudiant', period)
 
+        # les non residents ne sont pas eligibles au RSA
+        rsa_eligibilite_non_residents = not_(famille.any(famille.members('resident_eee_hors_france', period.this_year)))
+
         if period.start < periods.period('2009-06').start:
             # Les jeunes de moins de 25 ans ne sont pas éligibles au RMI
             rsa_jeune_condition_i = False
@@ -717,6 +720,7 @@ class rsa_eligibilite(Variable):
             famille.any((condition_age_i | rsa_jeune_condition_i) * not_(etudiant_i), role = Famille.PARENT)
             * condition_nationalite
             * rsa_eligibilite_tns
+            * rsa_eligibilite_non_residents
             )
 
 

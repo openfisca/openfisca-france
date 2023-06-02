@@ -1,5 +1,6 @@
 import logging
 from openfisca_france.model.base import *
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import condition_csg_crds_non_residents
 
 log = logging.getLogger(__name__)
 
@@ -330,13 +331,15 @@ class csg_revenus_capital(Variable):
         Attention : Pour les années avant 2013, cette formule n'est pas entièrement correcte car le taux de la CSG n'était pas unique (distinction revenus du patrimoine et revenus de placement)
         et il y a aussi un problème pour les années postérieures à 2017/2018
         '''
+        csg_condition = condition_csg_crds_non_residents(foyer_fiscal, period)
+
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         csg = parameters(period).taxation_capital.prelevements_sociaux.csg
 
         # Pour les revenus du patrimoine, le changement de CSG se fait à partir des revenus de 2017,
         # mais le taux de CSG déductible se fait à partir des revenus 2018. Pour les revenus de placement le timing est différent,
         # et reste à être pris en compte ici : cf. II.B de l'art. 67 de loi 2017-1837 et 3° et 4° du V.A de l'art. 8 de loi 2017-1836
-        return -assiette_csg_revenus_capital * csg.taux_global.produits_de_placement
+        return csg_condition * (-assiette_csg_revenus_capital * csg.taux_global.produits_de_placement)
 
 
 class crds_revenus_capital(Variable):
@@ -346,10 +349,12 @@ class crds_revenus_capital(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
+        crds_condition = condition_csg_crds_non_residents(foyer_fiscal, period)
+
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         P = parameters(period).taxation_capital.prelevements_sociaux
 
-        return -assiette_csg_revenus_capital * P.crds.produits_de_placement
+        return crds_condition * (-assiette_csg_revenus_capital * P.crds.produits_de_placement)
 
 
 class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):

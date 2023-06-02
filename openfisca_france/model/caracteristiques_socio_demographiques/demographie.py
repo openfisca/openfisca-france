@@ -364,11 +364,20 @@ class ressortissant_eee(Variable):
         return sum([nationalite == str.encode(etat_membre) for etat_membre in parameters(period).geopolitique.eee])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
 
+class resident_eee_hors_france(Variable):
+    value_type = bool
+    default_value = False
+    entity = Individu
+    label = "Individu résident dans un pays membre de l'Espace Économique Européen (EEE), hors France. Case 8SH. Voir aussi 'resident_ue'."
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+
+
 class resident_ue(Variable):
     value_type = bool
     default_value = True
     entity = Individu
-    label = "Individu résidant dans pays membre de l'Union européenne (UE)."
+    label = "Individu résidant dans pays membre de l'Union européenne (UE). Voir aussi 'resident_eee_hors_france'."
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
