@@ -2,11 +2,11 @@
 
 ### 147.2.3 [#2113](https://github.com/openfisca/openfisca-france/pull/2113)
 
-* Changement mineur.
-* Périodes concernées : toutes.
+* Correction du système socio-fiscal.
+* Périodes concernées : à partir de 2004.
 * Zones impactées : `parametres/geopolitique/ue`.
 * Détails :
-  - Corrige la liste des pays de l'Union Europeenne
+  - Corrige le code pays de la Slovénie dans l'Union Européenne
 
 ### 147.2.2 [#2111](https://github.com/openfisca/openfisca-france/pull/2111)
 
