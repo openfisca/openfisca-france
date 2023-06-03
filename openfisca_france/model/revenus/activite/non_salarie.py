@@ -1,3 +1,5 @@
+
+from openfisca_core.periods import Period
 from openfisca_france.model.base import *
 
 
@@ -2085,7 +2087,10 @@ class travailleur_non_salarie(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
+        # Modified by Emanuele on 02/06/2023
+        #this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
+        this_year_and_last_year = Period(('year', period.start.offset('first-of', 'year').offset(-1, 'year'), 2))        
+        
         rpns_auto_entrepreneur_chiffre_affaires = individu('rpns_auto_entrepreneur_chiffre_affaires', period) != 0
         rpns_micro_entreprise_chiffre_affaires = individu('rpns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
         rpns_autres_revenus = individu('rpns_autres_revenus', this_year_and_last_year, options = [ADD]) != 0

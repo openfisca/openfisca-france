@@ -1,3 +1,5 @@
+
+from openfisca_core.periods import Period
 from openfisca_france.model.base import *
 
 
@@ -371,8 +373,13 @@ def compute_cotisation_anticipee(individu, period, parameters, cotisation_type =
             bareme_name = bareme_name,
             )
     if period.start.month == 12:
-        cumul = individu(variable_name, period.start.offset('first-of', 'month').offset(
-            -11, 'month').period('month', 11), options = [ADD])
+        # Modified by Emanuele on 02/06/2023
+        _period = Period(('month', period.start.offset('first-of', 'month').offset(-11, 'month'), 11))
+        ##cumul = individu(variable_name, period.start.offset('first-of', 'month').offset(-11, 'month').period('month', 11), options = [ADD])
+        cumul = individu(variable_name, _period, options = [ADD])
+        
+        
+        
         # December variable_name depends on variable_name in the past 11 months.
         # We need to explicitely allow this recursion.
 
