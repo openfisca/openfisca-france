@@ -13,7 +13,8 @@ values:
   2012-01-01:
     value: 306
   2012-07-07:
-    value: 312
+    unit: ISO 3166-1 alpha-2
+    value: 3212
   2013-01-01:
     value: 313
   2014-07-01: expected
