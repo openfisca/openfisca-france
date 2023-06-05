@@ -1,5 +1,7 @@
 from functools import partial
 from numpy import busday_count as original_busday_count, datetime64, timedelta64, where
+
+from openfisca_core.periods import Period
 from openfisca_france.model.base import *
 
 
@@ -1234,7 +1236,7 @@ class indice_majore(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        period = period.start.period('month').offset('first-of')
+        period = Period(('month', period.start.offset('first-of'), 1))
         categorie_salarie = individu('categorie_salarie', period)
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         traitement_annuel_brut = parameters(period).prestations_sociales.fonc.IM_100
@@ -1285,7 +1287,12 @@ class af_nbenf_fonc(Variable):
             D'où l'introduction de cette variable alternative.
         '''
 
-        salaire_de_base_mensualise = famille.members('salaire_de_base', period.start.period('month', 6).offset(-6), options = [ADD])
+        
+        # Modified by Emanuele on 02/06/2023
+        _period = Period(('month', period.start.offset(-6, 'month'), 6))
+        ##salaire_de_base_mensualise = famille.members('salaire_de_base', period.start.period('month', 6), options = [ADD])
+        salaire_de_base_mensualise = famille.members('salaire_de_base', _period, options = [ADD])
+        
         law = parameters(period)
         nbh_travaillees = 169
         smic_mensuel_brut = law.marche_travail.salaire_minimum.smic.smic_b_horaire * nbh_travaillees

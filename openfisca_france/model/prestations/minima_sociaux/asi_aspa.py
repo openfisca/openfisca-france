@@ -1,5 +1,6 @@
 from numpy import abs as abs_, logical_or as or_
 
+from openfisca_core.periods import Period
 from openfisca_france.model.base import *
 
 
@@ -147,7 +148,9 @@ class asi_eligibilite(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
-        last_month = period.start.period('month').offset(-1)
+        # Modified by Emanuele on 02/06/2023
+        #last_month = period.start.period('month').offset(-1)
+        last_month = Period(('month', period.start.offset(-1, 'month'), 1))
 
         non_eligible_aspa = not_(individu('aspa_eligibilite', period))
         touche_pension_invalidite = individu('pensions_invalidite', period) > 0

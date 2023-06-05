@@ -326,8 +326,10 @@ class aide_mobilite(Variable):
         eligibilite_amob = individu('aide_mobilite_eligible', period)
         parametres_amob = parameters(period).prestations_sociales.aide_mobilite
 
-        annee_glissante = period.start.period('year').offset(-1)
-
+        # Modified by Emanuele on 02/06/2023
+        #annee_glissante = period.start.period('year').offset(-1)
+        annee_glissante = Period(('year', period.start.offset(-1, 'year'), 1))
+        
         aide_mobilite_12_derniers_mois = individu('aide_mobilite', annee_glissante, options=[ADD])
 
         montant_max = parametres_amob.montants.maximum

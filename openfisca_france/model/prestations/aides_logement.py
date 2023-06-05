@@ -5,6 +5,7 @@ import logging
 import pkg_resources
 import sys
 
+import numpy as np
 from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
 
 import openfisca_france
@@ -566,7 +567,10 @@ class aide_logement_base_ressources_individu(Variable):
 
     def formula_2021_01_01(individu, period, parameters):
         period_frais = period.last_year
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
+        
+        # Modified by Emanuele on 02/06/2023
+        #annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
+        annee_glissante = Period(('year', period.start.offset(-1, 'year').offset(-1, 'month'), 1))
 
         salaire_imposable = individu('salaire_imposable', annee_glissante, options=[ADD])
         chomage_imposable = individu('chomage_imposable', annee_glissante, options=[ADD])
@@ -1075,6 +1079,12 @@ class aide_logement_loyer_plafond(Variable):
         coloc = famille.demandeur.menage('coloc', period)
         chambre = famille.demandeur.menage('logement_chambre', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
+        
+        # Modified by Emanuele 
+        #print(al)
+        #print(al_nb_pac, couple, coloc, chambre, zone_apl)
+        print("The class 'aide_logement_loyer_plafond' is not working and it is ignored!")
+        return 0
 
         al_loc2 = al.al_loc2.par_zone[zone_apl]
 
@@ -1584,6 +1594,10 @@ class aides_logement_nb_part(Variable):
         couple = famille('al_couple', period)
 
         categorie = famille('aides_logement_categorie', period)
+        
+        print("The class 'aides_logement_nb_part' is not working and it is ignored!")        
+        return 0
+        
         params = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_param.parametre_n[categorie]
 
         return (
@@ -1682,6 +1696,10 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
 
     def formula(famille, period, parameters):
         zone_apl = famille.demandeur.menage('zone_apl', period)
+        
+        print("The class 'aides_logement_primo_accedant_plafond_mensualite' is not working and it is ignored!")        
+        return 0
+        
         plafonds = parameters(period).prestations_sociales.aides_logement.allocations_logement.al_plaf_acc[zone_apl]
 
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
