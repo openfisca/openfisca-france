@@ -1546,12 +1546,12 @@ class indemnite_compensatrice_agents_assurance(Variable):  # f5rm
 class assiette_vente(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'Assiette régime microsociale pour les ventes'
+    label = 'Assiette régime microsocial avec versement libératoire pour les ventes'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
-        Assiette régime microsociale pour les ventes
+        Assiette régime microsocial avec versement libératoire pour les ventes
         '''
         ebic_impv_i = foyer_fiscal.members('ebic_impv', period)
 
@@ -1561,12 +1561,12 @@ class assiette_vente(Variable):
 class assiette_service(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'Assiette régime microsociale pour les prestations et services'
+    label = 'Assiette régime microsocial avec versement libératoire pour les prestations et services'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
-        Assiette régime microsociale pour les prestations et services
+        Assiette régime microsocial avec versement libératoire pour les prestations et services
         '''
         ebic_imps_i = foyer_fiscal.members('ebic_imps', period)
 
@@ -1579,12 +1579,12 @@ class assiette_service(Variable):
 class assiette_proflib(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'Assiette régime microsociale pour les professions libérales'
+    label = 'Assiette régime microsocial avec versement libératoire pour les professions libérales'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
-        Assiette régime microsocial pour les professions libérales
+        Assiette régime microsocial avec versement libératoire pour les professions libérales
         '''
         ebnc_impo_i = foyer_fiscal.members('ebnc_impo', period)
 
@@ -1618,7 +1618,7 @@ class microsocial(Variable):
 class microentreprise(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = 'microentreprise assiette recettes'
+    label = 'microentreprise bénéfices versement libératoire'
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):

@@ -372,10 +372,10 @@ class tehr(Variable):
 # Non salariés
 
 class rev_microsocial(Variable):
-    '''Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)'''
+    '''Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur optant pour versement libératoire)'''
     value_type = float
     entity = FoyerFiscal
-    label = 'Revenu net des cotisations sociales pour le régime microsocial'
+    label = 'Revenu net des cotisations sociales pour le régime microsocial avec versement libératoire'
     reference = 'http://www.apce.com/pid6137/regime-micro-social.html'
     definition_period = YEAR
 
