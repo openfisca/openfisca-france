@@ -2153,6 +2153,10 @@ class rpns_micro_entreprise_benefice(Variable):
 # the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'.
 # Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore
 # we are not using the following formulas for calculating prestations_sociales.
+# This seemingly unfair method is however explained by the fact that the rate allowing to go from 'CA' to 'base_ressources' already takes into account
+# the 'cotisations sociales', as both are directly computed from the same 'CA'. The main point of 'versement liberatoire' ans 'micro-social' is to avoid to compute a true 'benefice',
+# and so doing it in two steps would not be more accurate (it would be indeed unfair if the computed 'benefices' were actual 'benefices' before 'cotisations sociales' :
+# in this case, one could however take a real 'benefice' taxation scheme).
 
 
 class rpns_auto_entrepreneur_revenus_net(Variable):

@@ -25,17 +25,19 @@ class eligibilite_indemnite_inflation_non_salarie(Variable):
         annee_2020 = periods.period('2020')
         jan_sep_2021 = periods.period('month:2021-01:9')
 
-        # chiffre d'affaires
+        # chiffre d'affaires. Uniquement pour les régimes microsociaux, on ne tient pas compte de ceux qui y auraient droit (et à l'indemnite inflation) mais préféreraient le régime des bénéfices réels.
         rev_net_auto = individu('rpns_auto_entrepreneur_revenus_net', annee_2020, options = [ADD])
         rev_net_micro = individu('rpns_micro_entreprise_revenus_net', annee_2020, options = [ADD])
 
         rev_net = (rev_net_auto + rev_net_micro) / 12
 
         chiffre_d_affaires_micro = individu('rpns_micro_entreprise_chiffre_affaires', jan_sep_2021.this_year) * 9 / 12
+        chiffre_d_affaires_liberatoire = individu('rpns_auto_entrepreneur_chiffre_affaires', jan_sep_2021.this_year) * 9 / 12
+        chiffre_d_affaires = chiffre_d_affaires_micro + chiffre_d_affaires_liberatoire
 
-        eligibilite_micro_artisan = and_(chiffre_d_affaires_micro >= 900, chiffre_d_affaires_micro <= 4000)
-        eligibilite_micro_commercant = and_(chiffre_d_affaires_micro >= 900, chiffre_d_affaires_micro <= 6897)
-        eligibilite_micro_prof_lib = and_(chiffre_d_affaires_micro >= 900, chiffre_d_affaires_micro <= 3030)
+        eligibilite_micro_artisan = and_(and_(chiffre_d_affaires >= 900, chiffre_d_affaires <= 4000), individu('categorie_non_salarie', oct_2021.this_year) == TypesCategorieNonSalarie.artisan)
+        eligibilite_micro_commercant = and_(and_(chiffre_d_affaires >= 900, chiffre_d_affaires <= 6897), individu('categorie_non_salarie', oct_2021.this_year) == TypesCategorieNonSalarie.commercant)
+        eligibilite_micro_prof_lib = and_(and_(chiffre_d_affaires >= 900, chiffre_d_affaires <= 3030), individu('categorie_non_salarie', oct_2021.this_year) == TypesCategorieNonSalarie.profession_liberale)
 
         eligibilite_micro = (eligibilite_micro_artisan + eligibilite_micro_commercant + eligibilite_micro_prof_lib) > 0
 
