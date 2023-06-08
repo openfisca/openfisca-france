@@ -1,6 +1,21 @@
 # Changelog
 
-### 148.0.0 [#2105](https://github.com/openfisca/openfisca-france/pull/2105)
+# 149.0.0 [#2065](https://github.com/openfisca/openfisca-france/pull/2065)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : toutes.
+* Détails :
+  - Passe à la version 40 d'openfisca-core
+  - Met à jour toutes les dépendances afin d'utiliser leurs dernières versions
+
+- - - -
+
+Ces changements :
+- nécessitent une mise à jour de Python vers une version >= 3.9
+- entraînent une modification de syntaxe pour la création de périodes à partir d'un instant
+
+# 148.0.0 [#2105](https://github.com/openfisca/openfisca-france/pull/2105)
 
 * Amélioration technique.
 * Périodes concernées : Toutes.
