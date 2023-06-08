@@ -8,11 +8,13 @@
 [![Gitpod](https://camo.githubusercontent.com/1eb1ddfea6092593649f0117f7262ffa8fbd3017/68747470733a2f2f676974706f642e696f2f627574746f6e2f6f70656e2d696e2d676974706f642e737667)](https://gitpod-referer.now.sh/api/gitpod-referer-redirect)
 
 ## [EN] Introduction
+
 OpenFisca is a versatile microsimulation free software. This repository contains the OpenFisca model of the French tax and benefit system. Therefore, the working language here is French. You can however check the [general OpenFisca documentation](https://openfisca.org/doc/) in English!
 > We host a public instance of of the [OpenFisca-France Web API](https://api.fr.openfisca.org/latest/). Learn more about its endpoint in the [Swagger documentation](https://legislation.fr.openfisca.org/swagger).
 > If you need to run large amount of calculations, or add extensions, you should [host your own instance](#servez-openfisca-france-avec-lapi-web-openfisca).
 
 ## [FR] Introduction
+
 [OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation du système social et fiscal français. Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](https://openfisca.org/doc/).
 > Nous mettons à disposition une instance publique de [l'API Web OpenFisca-France](https://api.fr.openfisca.org/latest/). Découvrez ses capacité sur sa [documentation Swagger](https://legislation.fr.openfisca.org/swagger).
 > Si vous avez besoin de réaliser un grand nombre de calculs ou d'ajouter des extensions, vous pouvez [servir votre propre instance](#servez-openfisca-france-avec-lapi-web-openfisca).
@@ -31,7 +33,7 @@ L'ensembles des endpoints sont décrits dans la [documentation Swagger](https://
 
 ## Installation
 
-Ce paquet requiert [Python 3.7](https://www.python.org/downloads/release/python-370/) et [pip](https://pip.pypa.io/en/stable/installing/) ou [conda](https://www.anaconda.com/products/individual).
+Ce paquet requiert [Python 3.9](https://www.python.org/downloads/release/python-390/) et [pip](https://pip.pypa.io/en/stable/installing/) ou [conda](https://www.anaconda.com/products/individual).
 
 Plateformes supportées :
 - distributions GNU/Linux (en particulier Debian and Ubuntu) ;
@@ -50,7 +52,7 @@ Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.
 Pour installer Pew, lancez une fenêtre de terminal et suivez ces instructions :
 
 ```sh
-python --version # Python 3.7.0 ou plus récent devrait être installé sur votre ordinateur.
+python --version # Python 3.9.0 ou plus récent devrait être installé sur votre ordinateur.
 # Si non, téléchargez-le sur http://www.python.org et téléchargez pip.
 ```
 
@@ -58,10 +60,10 @@ python --version # Python 3.7.0 ou plus récent devrait être installé sur votr
 pip install --upgrade pip
 pip install pew
 ```
-Créez un nouveau _virtualenv_ nommé **openfisca** et configurez-le avec python 3.7 :
+Créez un nouveau _virtualenv_ nommé **openfisca** et configurez-le avec python 3.9 :
 
 ```sh
-pew new openfisca --python=python3.7
+pew new openfisca --python=python3.9
 # Si demandé, répondez "Y" à la question sur la modification du fichier de configuration de votre shell
 ```
 Le  _virtualenv_  **openfisca** sera alors activé, c'est-à-dire que les commandes suivantes s'exécuteront directement dans l'environnement virtuel. Vous verrez dans votre terminal :
@@ -94,8 +96,8 @@ Pour pouvoir modifier OpenFisca-France, consultez l'[Installation avancée](#b-i
 Dans votre _virtualenv_, vérifiez les pré-requis :
 
 ```sh
-python --version  # Devrait afficher "Python 3.7.xx".
-#Si non, vérifiez que vous passez --python=python3.7 lors de la création de votre environnement virtuel.
+python --version  # Devrait afficher "Python 3.9.xx".
+#Si non, vérifiez que vous passez --python=python3.9 lors de la création de votre environnement virtuel.
 ```
 
 ```sh
@@ -136,8 +138,8 @@ Dans votre _virtualenv_, assurez-vous que vous êtes dans le répertoire où vou
 Vérifiez les pré-requis :
 
 ```sh
-python --version  # Devrait afficher "Python 3.7.xx".
-#Si non, vérifiez que vous passez --python=python3.7 lors de la création de votre environnement virtuel.
+python --version  # Devrait afficher "Python 3.9.xx".
+#Si non, vérifiez que vous passez --python=python3.9 lors de la création de votre environnement virtuel.
 ```
 
 ```sh
@@ -175,7 +177,7 @@ Voici les étapes à suivre :
 - Depuis le menu démarrer, exécuter `Anaconda Powershell Prompt`. Ou utiliser votre shell préféré avec Miniconda, il vous faudra peut-être utiliser la commande `conda init`, mais conda vous le dira.
 - Exécuter les commandes suivantes dans le shell:
   - Ajouter `conda-forge` comme channel par défaut : `conda config --add channels conda-forge && conda config --set channel_priority strict `
-  - Créer un environnement virtuel dédié : `conda create --name openfisca python=3.7`
+  - Créer un environnement virtuel dédié : `conda create --name openfisca python=3.9`
   - Activer l'environnement : `conda activate openfisca`
   - Installer OpenFisca : `conda install openfisca-france`
 
