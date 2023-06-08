@@ -6,8 +6,10 @@
 * Périodes concernées : toutes.
 * Zones impactées : toutes.
 * Détails :
-  - Passe à la version 40 d'openfisca-core
-  - Met à jour toutes les dépendances afin d'utiliser leurs dernières versions
+  - Met à jour toutes les dépendances afin d'utiliser leurs dernières versions :
+    * Migre la version minimal de Python de `3.7` à `3.9`
+    * Met à jour openfisca-core de la version `35` à la version `40`
+    * En particulier, migre la syntaxe des périodes introduite par [openfisca-core v37.0.0](https://github.com/openfisca/openfisca-core/blob/master/CHANGELOG.md#3700-1142). Les appels à la méthode `period()` sont remplacés par des instanciations de la classe `Period`.
 
 - - - -
 
@@ -49,6 +51,7 @@ Ces changements :
   - Nettoyage et harmonisation avec les barèmes IPP
 
 ## 147.2.1 [#2097](https://github.com/openfisca/openfisca-france/pull/2097)
+
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2023.
 * Zones impactées :
