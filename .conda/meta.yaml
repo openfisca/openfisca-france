@@ -46,7 +46,7 @@ outputs:
       host:
         - python
       run:
-        - scipy >= 1.10.1, < 2.0
+        - scipy >=1.10.1,<2.0
         - {{ pin_subpackage('openfisca-france', exact=True) }}
 
   - name: openfisca-france-dev
@@ -56,11 +56,11 @@ outputs:
       host:
         - python
       run:
-        - autopep8 >= 2.0.2, < 3.0
-        - flake8 >= 6.0.0, < 7.0.0
-        - flake8-print >= 5.0.0, < 6.0.0
-        - flake8-quotes >= 3.3.2
-        - pytest >= 7.2.2, < 8.0
+        - autopep8 >=2.0.2,<3.0
+        - flake8 >=6.0.0,<7.0.0
+        - flake8-print >=5.0.0,<6.0.0
+        - flake8-quotes >=3.3.2
+        - pytest >=7.2.2,<8.0
         - requests >=2.8
         - yamllint >=1.11.1,<1.27
         - {{ pin_subpackage('openfisca-france-scipy', exact=True) }}
