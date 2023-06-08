@@ -143,7 +143,7 @@ python --version  # Devrait afficher "Python 3.9.xx".
 ```
 
 ```sh
-pip --version  # Devrait afficher au moins 9.0.
+pip --version  # Devrait afficher au moins 23.0.
 #Si non, exécutez "pip install --upgrade pip".
 ```
 
