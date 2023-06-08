@@ -52,7 +52,7 @@ class contrat_engagement_jeune_eligibilite(Variable):
         eligibilite_statut = activite != TypesActivite.etudiant
 
         # En fonction de l'imposition du foyer fiscal
-        previous_year = period.start.period('year').offset(-1)
+        previous_year = Period(('year', period.start, 1)).offset(-1)
         tranche = individu.foyer_fiscal('ir_tranche', previous_year)
         eligibilite_ir = (tranche <= 1)
 
