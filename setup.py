@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 from pathlib import Path
 
 # Read the contents of our README file for PyPi
@@ -69,7 +69,7 @@ setup(
         # 'OpenFisca-Core >=35.8.0,<36.0',
         'OpenFisca-Core @ git+https://github.com/openfisca/openfisca-core.git@version_leap',
         ],
-    packages = find_packages(exclude = [
+    packages = find_namespace_packages(exclude = [
         'openfisca_france.tests*',
         'openfisca_france.assets.taxe_habitation.source*',
         ]),
