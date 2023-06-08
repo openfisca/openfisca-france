@@ -25,7 +25,7 @@ requirements:
     - pip
   run:
     - python >=3.6,<4.0
-    - OpenFisca-Core >=35.8.0,<36.0
+    - OpenFisca-Core >=40,<41
 
 
 test:
