@@ -11,12 +11,6 @@
     * Met à jour openfisca-core de la version `35` à la version `40`
     * En particulier, migre la syntaxe des périodes introduite par [openfisca-core v37.0.0](https://github.com/openfisca/openfisca-core/blob/master/CHANGELOG.md#3700-1142). Les appels à la méthode `period()` sont remplacés par des instanciations de la classe `Period`.
 
-- - - -
-
-Ces changements :
-- nécessitent une mise à jour de Python vers une version >= 3.9
-- entraînent une modification de syntaxe pour la création de périodes à partir d'un instant
-
 # 148.0.0 [#2105](https://github.com/openfisca/openfisca-france/pull/2105)
 
 * Amélioration technique.
@@ -791,6 +785,7 @@ Ces changements :
   - `exo_maire_autres`
   - `foncier_deduc`
   - `deduc_invest_locatif`
+
 # 134.0.0 [#1958](https://github.com/openfisca/openfisca-france/pull/1958)
 
 * Évolution du système socio-fiscal. | Amélioration technique.
