@@ -371,40 +371,6 @@ class tehr(Variable):
 
 # Non salariés
 
-class rev_microsocial(Variable):
-    '''Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur optant pour versement libératoire)'''
-    value_type = float
-    entity = FoyerFiscal
-    label = 'Revenu net des cotisations sociales pour le régime microsocial avec versement libératoire'
-    reference = 'http://www.apce.com/pid6137/regime-micro-social.html'
-    definition_period = YEAR
-
-    def formula_2009_01_01(foyer_fiscal, period, parameters):
-        assiette_service = foyer_fiscal('assiette_service', period)
-        assiette_vente = foyer_fiscal('assiette_vente', period)
-        assiette_proflib = foyer_fiscal('assiette_proflib', period)
-        cotisations_prestation = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
-        total = assiette_service + assiette_vente + assiette_proflib
-        prelsoc_ms = (
-            assiette_service * cotisations_prestation.cotisations_prestations.service
-            + assiette_vente * cotisations_prestation.cotisations_prestations.vente
-            + assiette_proflib * cotisations_prestation.cotisations_prestations.cipav
-            )
-        return total - prelsoc_ms
-
-    def formula_2011_01_01(foyer_fiscal, period, parameters):
-        assiette_service = foyer_fiscal('assiette_service', period)
-        assiette_vente = foyer_fiscal('assiette_vente', period)
-        assiette_proflib = foyer_fiscal('assiette_proflib', period)
-        cotisations_prestation = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
-        total = assiette_service + assiette_vente + assiette_proflib
-        prelsoc_ms = (
-            assiette_service * (cotisations_prestation.cotisations_prestations.service + cotisations_prestation.formation_professionnelle.servicecom_chiffre_affaires)
-            + assiette_vente * (cotisations_prestation.cotisations_prestations.vente + cotisations_prestation.formation_professionnelle.ventecom_chiffre_affaires)
-            + assiette_proflib * (cotisations_prestation.cotisations_prestations.cipav + cotisations_prestation.formation_professionnelle.professions_liberales_chiffre_affaires)
-            )
-        return total - prelsoc_ms
-
 
 class assiette_csg_crds_non_salarie(Variable):
     '''Assiette CSG des personnes non salariées'''

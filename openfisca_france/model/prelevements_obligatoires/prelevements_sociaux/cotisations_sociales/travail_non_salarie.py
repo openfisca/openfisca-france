@@ -26,6 +26,36 @@ class categorie_non_salarie(Variable):
     label = 'Type du travailleur salarié (artisan, commercant, profession libérale, etc)'
     definition_period = YEAR
 
+class cotisations_non_salarie_micro_social(Variable):
+    value_type = float
+    entity = Individu
+    label = 'Cotisations sociales des travailleurs non salaries'
+    definition_period = YEAR
+
+    def formula_2009_01_01(individu, period, parameters):
+        assiette_service = individu.foyer_fiscal('assiette_service', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        assiette_vente = individu.foyer_fiscal('assiette_vente', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        assiette_proflib = individu.foyer_fiscal('assiette_proflib', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        cotisations_prestation = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
+        cotisations_non_salarie_micro_social = (
+            assiette_service * cotisations_prestation.cotisations_prestations.service
+            + assiette_vente * cotisations_prestation.cotisations_prestations.vente
+            + assiette_proflib * cotisations_prestation.cotisations_prestations.cipav
+            )
+        return cotisations_non_salarie_micro_social
+
+    def formula_2011_01_01(individu, period, parameters):
+        assiette_service = individu.foyer_fiscal('assiette_service', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        assiette_vente = individu.foyer_fiscal('assiette_vente', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        assiette_proflib = individu.foyer_fiscal('assiette_proflib', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        cotisations_prestation = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
+        cotisations_non_salarie_micro_social = (
+            assiette_service * (cotisations_prestation.cotisations_prestations.service + cotisations_prestation.formation_professionnelle.servicecom_chiffre_affaires)
+            + assiette_vente * (cotisations_prestation.cotisations_prestations.vente + cotisations_prestation.formation_professionnelle.ventecom_chiffre_affaires)
+            + assiette_proflib * (cotisations_prestation.cotisations_prestations.cipav + cotisations_prestation.formation_professionnelle.professions_liberales_chiffre_affaires)
+            )
+        return cotisations_non_salarie_micro_social
+
 
 class cotisations_non_salarie(Variable):
     value_type = float
@@ -67,16 +97,7 @@ class cotisations_non_salarie(Variable):
                 + retraite_complementaire_profession_liberale
                 )
             )
-        # cotisations micro_social
-        assiette_service = individu.foyer_fiscal('assiette_service', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        assiette_vente = individu.foyer_fiscal('assiette_vente', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        assiette_proflib = individu.foyer_fiscal('assiette_proflib', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        cotisations_prestation = parameters(period).prelevements_sociaux.professions_liberales.auto_entrepreneur
-        cotisations_non_salarie_micro_social = (
-            assiette_service * (cotisations_prestation.cotisations_prestations.service + cotisations_prestation.formation_professionnelle.servicecom_chiffre_affaires)
-            + assiette_vente * (cotisations_prestation.cotisations_prestations.vente + cotisations_prestation.formation_professionnelle.ventecom_chiffre_affaires)
-            + assiette_proflib * (cotisations_prestation.cotisations_prestations.cipav + cotisations_prestation.formation_professionnelle.professions_liberales_chiffre_affaires)
-            )
+        cotisations_non_salarie_micro_social = individu('cotisations_non_salarie_micro_social', period)
 
         return cotisations_non_salarie + cotisations_non_salarie_micro_social
 
