@@ -815,11 +815,11 @@ class rsa_forfait_asf(Variable):
     set_input = set_input_divide_by_period
 
     reference = [
-        "Article R844-4 du code de la sécurité sociale, pour la PA",
-        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038929265",
+        'Article R844-4 du code de la sécurité sociale, pour la PA',
+        'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038929265',
         "Article R262-10-1 du code de l'action sociale et des familles, pour le RSA",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000029006452&cidTexte=LEGITEXT000006074069&dateTexte=20190204",
-       ]
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000029006452&cidTexte=LEGITEXT000006074069&dateTexte=20190204',
+        ]
 
     def formula_2014_04_01(famille, period, parameters):
         # Si un ASF est versé, on ne prend pas en compte le montant réel mais un forfait.
@@ -828,7 +828,7 @@ class rsa_forfait_asf(Variable):
 
         asf_verse = famille('asf', period)
         taux_max_par_enfant = bmaf * minima_sociaux.rsa.rsa_maj.forfait_asf.taux1
-        
+
         montant_max_retenu_rsa_par_enfant = (
             famille.members('asf_elig_enfant', period)
             * bmaf
