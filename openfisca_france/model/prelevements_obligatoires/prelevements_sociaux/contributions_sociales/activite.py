@@ -263,7 +263,6 @@ class salaire_imposable(Variable):
     reference = 'https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683657'
     set_input = set_input_divide_by_period
     definition_period = MONTH
-    set_input = set_input_divide_by_period
 
     def formula(individu, period):
         '''
@@ -284,9 +283,6 @@ class salaire_imposable(Variable):
         hsup = individu('hsup', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         complementaire_sante_salarie = individu('complementaire_sante_salarie', period)
-        # Revenu du foyer fiscal projeté sur le demandeur
-        rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options=[DIVIDE])
-        rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
             salaire_de_base
@@ -299,7 +295,6 @@ class salaire_imposable(Variable):
             + csg_deductible_salaire
             + cotisations_salariales
             - hsup
-            + rev_microsocial_declarant1
             + indemnite_fin_contrat
             + complementaire_sante_salarie
             + indemnite_compensatrice_csg
@@ -375,28 +370,6 @@ class tehr(Variable):
 
 
 # Non salariés
-
-class rev_microsocial(Variable):
-    '''Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)'''
-    value_type = float
-    entity = FoyerFiscal
-    label = 'Revenu net des cotisations sociales pour le régime microsocial'
-    reference = 'http://www.apce.com/pid6137/regime-micro-social.html'
-    definition_period = YEAR
-
-    def formula_2009_01_01(foyer_fiscal, period, parameters):
-        assiette_service = foyer_fiscal('assiette_service', period)
-        assiette_vente = foyer_fiscal('assiette_vente', period)
-        assiette_proflib = foyer_fiscal('assiette_proflib', period)
-        cotisations_prestations = parameters(period).cotsoc.sal.microsocial.cotisations_prestations
-        total = assiette_service + assiette_vente + assiette_proflib
-        prelsoc_ms = (
-            assiette_service * cotisations_prestations.service
-            + assiette_vente * cotisations_prestations.vente
-            + assiette_proflib * cotisations_prestations.service
-            )
-        # TODO Activités libérales relevant de la CIPAV - quelle assiette ? * P.cipav
-        return total - prelsoc_ms
 
 
 class assiette_csg_crds_non_salarie(Variable):
@@ -484,7 +457,9 @@ class revenus_non_salarie_nets(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
-        revenus_non_salarie = individu('rpns_imposables', period)
+        rpns_imposables = individu('rpns_imposables', period)
         csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period)
         crds_non_salarie = individu('crds_non_salarie', period)
-        return revenus_non_salarie + csg_imposable_non_salarie + crds_non_salarie
+        microentreprise_i = individu.foyer_fiscal('microentreprise', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        microentreprise = sum(microentreprise_i)
+        return rpns_imposables + csg_imposable_non_salarie + crds_non_salarie + microentreprise

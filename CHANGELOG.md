@@ -1,5 +1,22 @@
 # Changelog
 
+### 148.0.0 [#2105](https://github.com/openfisca/openfisca-france/pull/2105)
+
+* Amélioration technique.
+* Périodes concernées : Toutes.
+* Zones impactées :
+  - model/revenus/activité/non_salariés.py
+  - model/prelevements_obligatoires/impot_revenu/ir.py
+  - model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite.py
+  - parameters/prelevements_sociaux/professions_liberales/auto_entrepreneur/cotisations_prestations
+* Détails :
+  - Décompose la variable rpns_imposables pour éviter des doubles comptes en séparant les périodes de prise en compte des cases fiscales. Agit de même pour quelques formules plus petites.
+  - Met à jour les taux de cotisation des auto-entrepreneurs et le taux de taxation des logiciels
+  - Enlève les recettes des auto-entrepreneurs soumis au prélèvement libératoire de salaire_imposable. Les rajoute (une fois abattues) dans revenu_non_salarie_net et dans les cotisations.
+  - Supprime rev_microsocial (les cotisations sont comptabilisées dans cotisations_non_salaries)
+  - Supprime taux16, qui correspond à pvce. Le documente et corrige pvce.
+
+
 ### 147.2.3 [#2113](https://github.com/openfisca/openfisca-france/pull/2113)
 
 * Correction du système socio-fiscal.

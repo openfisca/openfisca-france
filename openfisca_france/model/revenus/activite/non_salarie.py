@@ -316,7 +316,7 @@ class ebic_impv(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = 'Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)'
+    label = 'Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur ayant opté pour le versement libératoire)'
     # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
@@ -329,7 +329,7 @@ class ebic_imps(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = 'Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)'
+    label = 'Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur ayant opté pour le versement libératoire)'
     # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
@@ -1384,6 +1384,7 @@ class nlnp_defs(Variable):
     label = 'Déficits de locations meublées non professionnelles imposables sans CGA (régime du bénéfice réel)'
     # start_date = date(2009, 1, 1)
     end = '2010-12-31'
+    # TODO: Toujours present dans brochure 2019 par ex.
     definition_period = YEAR
 
 
@@ -1849,7 +1850,7 @@ class rpns_auto_entrepreneur_CA_achat_revente(Variable):
     value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
-    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine ventes et assimilées "
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur avec versement libératoire domaine ventes et assimilées "
     definition_period = MONTH
 
     def formula(individu, period):
@@ -1862,7 +1863,7 @@ class rpns_auto_entrepreneur_CA_bic(Variable):
     value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
-    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine prestations de service et locations meublées "
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur avec versement libératoire domaine prestations de service et locations meublées "
     definition_period = MONTH
 
     def formula(individu, period):
@@ -1875,7 +1876,7 @@ class rpns_auto_entrepreneur_CA_bnc(Variable):
     value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
-    label = "Chiffre d'affaires en tant qu'auto-entrepreneur domaine non commercial"
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur avec versement libératoire domaine non commercial"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -1888,7 +1889,7 @@ class rpns_auto_entrepreneur_chiffre_affaires(Variable):
     value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
-    label = "Chiffre d'affaires en tant qu'auto-entrepreneur"
+    label = "Chiffre d'affaires en tant qu'auto-entrepreneur avec versement libératoire"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -1973,7 +1974,7 @@ class rpns_micro_entreprise_bic_exon(Variable):
 class rpns_micro_entreprise_chiffre_affaires(Variable):
     value_type = float
     entity = Individu
-    label = "Chiffre d'affaires en de micro-entreprise"
+    label = "Chiffre d'affaires en micro-entreprise"
     definition_period = YEAR
 
     def formula(individu, period):
@@ -2105,7 +2106,7 @@ class travailleur_non_salarie(Variable):
 
 class rpns_auto_entrepreneur_benefice(Variable):
     value_type = float
-    label = "Bénéfice en tant qu'auto-entrepreneur"
+    label = "Bénéfice en tant qu'auto-entrepreneur avec versement libératoire"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -2153,11 +2154,15 @@ class rpns_micro_entreprise_benefice(Variable):
 # the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'.
 # Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore
 # we are not using the following formulas for calculating prestations_sociales.
+# This seemingly unfair method is however explained by the fact that the rate allowing to go from 'CA' to 'base_ressources' already takes into account
+# the 'cotisations sociales', as both are directly computed from the same 'CA'. The main point of 'versement liberatoire' and 'micro-social' is to avoid to compute a true 'benefice',
+# and so doing it in two steps would not be more accurate (it would be indeed unfair if the computed 'benefices' were actual 'benefices' before 'cotisations sociales' :
+# in this case, one could however take a real 'benefice' taxation scheme).
 
 
 class rpns_auto_entrepreneur_revenus_net(Variable):
     value_type = float
-    label = "Revenu d'un auto-entrepreneur"
+    label = "Revenu d'un auto-entrepreneur avec versement libératoire"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period

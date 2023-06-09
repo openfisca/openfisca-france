@@ -165,8 +165,8 @@
     menage:
       personne_de_reference: ind0
   output:
-    iai: 2007.0
-    irpp: -2007.0
+    iai: 1975.0
+    irpp: -1975.0
     nbptr: 1.0
     protection_patrimoine_naturel: 0.0
     rbg: 23000.0
