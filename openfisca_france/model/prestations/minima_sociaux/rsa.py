@@ -829,10 +829,10 @@ class rsa_forfait_asf(Variable):
         asf_verse = famille('asf', period)
         taux_max_par_enfant = minima_sociaux.rsa.rsa_maj.forfait_asf.taux1
 
-        montant_max_retenu_rsa_par_enfant = (
-            famille.members('asf_elig_enfant', period)
-            * bmaf
-            * taux_max_par_enfant
+        montant_max_retenu_rsa_par_enfant = where(
+            famille.members('asf_elig_enfant', period),
+            bmaf * taux_max_par_enfant,
+            0
             )
 
         montant_max_retenu = famille.sum(montant_max_retenu_rsa_par_enfant, role = Famille.ENFANT)
