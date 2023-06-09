@@ -42,7 +42,7 @@ class cotisations_non_salarie_micro_social(Variable):
             + assiette_vente * cotisations_prestation.cotisations_prestations.vente
             + assiette_proflib * cotisations_prestation.cotisations_prestations.cipav
             )
-        return cotisations_non_salarie_micro_social
+        return - cotisations_non_salarie_micro_social
 
     def formula_2011_01_01(individu, period, parameters):
         assiette_service = individu.foyer_fiscal('assiette_service', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -54,7 +54,7 @@ class cotisations_non_salarie_micro_social(Variable):
             + assiette_vente * (cotisations_prestation.cotisations_prestations.vente + cotisations_prestation.formation_professionnelle.ventecom_chiffre_affaires)
             + assiette_proflib * (cotisations_prestation.cotisations_prestations.cipav + cotisations_prestation.formation_professionnelle.professions_liberales_chiffre_affaires)
             )
-        return cotisations_non_salarie_micro_social
+        return - cotisations_non_salarie_micro_social
 
 
 class cotisations_non_salarie(Variable):
