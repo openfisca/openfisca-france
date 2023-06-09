@@ -815,24 +815,29 @@ class rsa_forfait_asf(Variable):
     set_input = set_input_divide_by_period
 
     reference = [
-        "Pour le revenu de solidarité active, article R262-10-1 du code de l'action sociale et des familles",
-        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000029006452&cidTexte=LEGITEXT000006074069&dateTexte=20190204',
-        "Pour la Prime pour l'Activité, article R844-4 du code de la sécurité sociale",
-        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000031676000&cidTexte=LEGITEXT000006073189&dateTexte=20190204'
-        ]
+        "Article R844-4 du code de la sécurité sociale, pour la PA",
+        "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038929265",
+        "Article R262-10-1 du code de l'action sociale et des familles, pour le RSA",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000029006452&cidTexte=LEGITEXT000006074069&dateTexte=20190204",
+       ]
 
     def formula_2014_04_01(famille, period, parameters):
         # Si un ASF est versé, on ne prend pas en compte le montant réel mais un forfait.
-        prestations_familiales = parameters(period).prestations_sociales.prestations_familiales
         minima_sociaux = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux
+        bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
         asf_verse = famille('asf', period)
-        montant_verse_par_enfant = prestations_familiales.bmaf.bmaf * prestations_familiales.education_presence_parentale.asf.montant_asf.orphelin_assimile_seul_parent
-        montant_retenu_rsa_par_enfant = prestations_familiales.bmaf.bmaf * minima_sociaux.rsa.rsa_maj.forfait_asf.taux1
+        taux_max_par_enfant = bmaf * minima_sociaux.rsa.rsa_maj.forfait_asf.taux1
+        
+        montant_max_retenu_rsa_par_enfant = (
+            famille.members('asf_elig_enfant', period)
+            * bmaf
+            * taux_max_par_enfant
+            )
 
-        asf_retenue = asf_verse * (montant_retenu_rsa_par_enfant / montant_verse_par_enfant)
+        montant_max_retenu = famille.sum(montant_max_retenu_rsa_par_enfant, role = Famille.ENFANT)
 
-        return asf_retenue
+        return min_(asf_verse, montant_max_retenu)
 
 
 class rsa_forfait_logement(Variable):
