@@ -1486,7 +1486,7 @@ class ip_net(Variable):
         cncn_info_i = foyer_fiscal.members('cncn_info', period)
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
-        taux = parameters(period).impot_revenu.calcul_revenus_imposables.rpns.taux16
+        taux = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values.pvce
         # N'est pas véritablement une 'réduction', cf. la définition de cette variable
         reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period)
 

@@ -362,7 +362,7 @@ class revenus_travail_super_bruts_menage(Variable):
         return (
             salaire_net
             + rpns
-            + benefices_imputes_microsocial  # le montant imputés comme bénéfice étant forfaitaire, on met la même valeur que pour les revenus nets
+            + benefices_imputes_microsocial  # le montant imputé comme bénéfice étant forfaitaire, on met la même valeur que pour les revenus nets (les cotisations sont compdans cotisations_non_salaries)
             - cotisations_employeur  # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
             - cotisations_salariales  # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
             - cotisations_non_salarie
