@@ -1,5 +1,7 @@
-from openfisca_france.model.base import *
 from openfisca_core import periods
+
+from openfisca_france.model.base import *
+
 from numpy import logical_or as or_, logical_and as and_
 
 # Les éligibilités séparées de l'indemnité inflation

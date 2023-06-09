@@ -42,7 +42,7 @@ class jour_xyz(Variable):
 class age(Variable):
     unit = 'years'
     value_type = int
-    default_value = -9999
+    default_value = AGE_INT_MINIMUM
     entity = Individu
     label = 'Âge (en années) au premier jour du mois'
     definition_period = MONTH
@@ -81,7 +81,7 @@ class age(Variable):
 
 class age_en_mois(Variable):
     value_type = int
-    default_value = -9999
+    default_value = AGE_INT_MINIMUM
     unit = 'months'
     entity = Individu
     label = 'Âge (en mois)'
@@ -2566,7 +2566,7 @@ class defncn(Variable):
         return min_(
             f5ht + f5it + f5jt + f5kt + f5lt + f5mt,
             abat_rpns(mncn_impo, specialbnc.services) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene
-            )  #  TODO check !
+            )  # TODO check !
 
 
 class defmeu(Variable):
@@ -2968,7 +2968,7 @@ class aacc_timp(Variable):
         aacc_defn = individu('aacc_defn', period)
         aacc_defs = individu('aacc_defs', period)
         aacc_timp = max_(0, aacc_impn - aacc_defn - aacc_defs)
-        return(aacc_timp)
+        return aacc_timp
 
     def formula_2009_01_01(individu, period, parameters):
         aacc_impn = individu('aacc_impn', period)
@@ -2976,14 +2976,14 @@ class aacc_timp(Variable):
         aacc_defn = individu('aacc_defn', period)
         aacc_defs = individu('aacc_defs', period)
         aacc_timp = max_(0, aacc_impn + max_(0, - alnp_defs) - aacc_defn - aacc_defs)
-        return(aacc_timp)
+        return aacc_timp
 
     def formula_2010_01_01(individu, period, parameters):
         aacc_impn = individu('aacc_impn', period)
         alnp_defs = individu('alnp_defs', period)
         aacc_defn = individu('aacc_defn', period)
         aacc_timp = max_(0, aacc_impn + max_(0, - alnp_defs) - aacc_defn)
-        return(aacc_timp)
+        return aacc_timp
 
     def formula_2011_01_01(individu, period, parameters):
         aacc_impn = individu('aacc_impn', period)
@@ -3006,7 +3006,7 @@ class aacc_timp(Variable):
                 + max_(0, - alnp_defs) - aacc_defn
                 )
             )
-        return(aacc_timp)
+        return aacc_timp
 
     def formula_2012_01_01(individu, period, parameters):
         aacc_impn = individu('aacc_impn', period)
@@ -3035,7 +3035,7 @@ class aacc_timp(Variable):
                 + max_(0, nacc_defs - alnp_defs) - aacc_defn
                 )
             )
-        return(aacc_timp)
+        return aacc_timp
 
     def formula_2017_01_01(individu, period, parameters):
         aacc_impn = individu('aacc_impn', period)
@@ -3069,7 +3069,7 @@ class aacc_timp(Variable):
                 + max_(0, nacc_defs - alnp_defs) - aacc_defn
                 )
             )
-        return(aacc_timp)
+        return aacc_timp
 
 
 class atimp(Variable):
@@ -3094,7 +3094,7 @@ class atimp(Variable):
         abnc_timp = abnc_impo - abnc_defi
         # Total
         atimp = arag_impg + abic_timp + aacc_timp + abnc_timp
-        return(atimp)
+        return atimp
 
     def formula_2010_01_01(individu, period, parameters):
         abic_impn = individu('abic_impn', period)
@@ -3110,7 +3110,7 @@ class atimp(Variable):
         abnc_timp = abnc_impo - abnc_defi
         # Total
         atimp = arag_impg + abic_timp + aacc_timp + abnc_timp
-        return(atimp)
+        return atimp
 
 
 class nbnc_timp(Variable):
@@ -3124,7 +3124,7 @@ class nbnc_timp(Variable):
         nbnc_defi = individu('nbnc_defi', period)
         # regime de la déclaration contrôlée ne bénéficiant pas de l'abattement association agréée
         nbnc_timp = nbnc_impo - nbnc_defi
-        return(nbnc_timp)
+        return nbnc_timp
 
 
 class nacc_timp(Variable):
@@ -3138,7 +3138,7 @@ class nacc_timp(Variable):
         nacc_defn = individu('nacc_defn', period)
         # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
         nacc_timp = max_(0, nacc_impn - nacc_defn)
-        return(nacc_timp)
+        return nacc_timp
 
 
 class ntimp(Variable):
@@ -3157,7 +3157,7 @@ class ntimp(Variable):
         # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
         nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
         ntimp = nacc_timp + nbnc_timp + nbic_timp
-        return(ntimp)
+        return ntimp
 
     def formula_2006_01_01(individu, period, parameters):
         nbic_impn = individu('nbic_impn', period)
@@ -3172,7 +3172,7 @@ class ntimp(Variable):
         nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
         cncn_timp = max_(0, cncn_bene - cncn_defi)
         ntimp = nbic_timp + nacc_timp + nbnc_timp + cncn_timp
-        return(ntimp)
+        return ntimp
 
     def formula_2007_01_01(individu, period, parameters):
         # Moyenne triennale
@@ -3189,7 +3189,7 @@ class ntimp(Variable):
         nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
         cncn_timp = max_(0, cncn_bene - cncn_defi)
         ntimp = nrag_impg + nbic_timp + nacc_timp + cncn_timp + nbnc_timp
-        return(ntimp)
+        return ntimp
 
     def formula_2010_01_01(individu, period, parameters):
         nrag_impg = individu('nrag_impg', period)
@@ -3203,7 +3203,7 @@ class ntimp(Variable):
         nbic_timp = nbic_impn - nbic_defn
         cncn_timp = max_(0, cncn_bene - cncn_defi)
         ntimp = nrag_impg + nbic_timp + nacc_timp + cncn_timp + nbnc_timp
-        return(ntimp)
+        return ntimp
 
 
 class revenu_non_salarie(Variable):
@@ -3224,7 +3224,7 @@ class revenu_non_salarie(Variable):
         majo_cga = max_(0, cga_taux2 * (ntimp + rpns_frag))  # Pour ne pas avoir à majorer les déficits
         def_agri = f5sq + arag_defi + (1 + cga_taux2) * nrag_defi
         revenus_non_salaries = rpns_frag + frag_fore + atimp + ntimp + majo_cga - def_agri
-        return(revenus_non_salaries)
+        return revenus_non_salaries
 
     def formula_2016_01_01(individu, period, parameters):
         rpns_mrag = individu('rpns_revenus_microBA_agricole', period)
@@ -3238,7 +3238,7 @@ class revenu_non_salarie(Variable):
         majo_cga = max_(0, cga_taux2 * ntimp)  # Pour ne pas avoir à majorer les déficits
         def_agri = f5sq + arag_defi + (1 + cga_taux2) * nrag_defi
         revenus_non_salaries = rpns_mrag + coupe_bois + atimp + ntimp + majo_cga - def_agri
-        return(revenus_non_salaries)
+        return revenus_non_salaries
 
 
 class locations_pro(Variable):
@@ -3251,11 +3251,11 @@ class locations_pro(Variable):
         abic_impm = individu('abic_impm', period)
         abic_defm = individu('abic_defm', period)
         alnp_imps = individu('alnp_imps', period)
-        return(abic_impm - abic_defm + alnp_imps)
+        return abic_impm - abic_defm + alnp_imps
 
     def formula_2016_01_01(individu, period, parameters):
         alnp_imps = individu('alnp_imps', period)
-        return(alnp_imps)
+        return alnp_imps
 
 
 class rpns_imposables(Variable):
