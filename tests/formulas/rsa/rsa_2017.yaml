@@ -185,9 +185,6 @@
     foyer_fiscal:
         declarants: [1]
         personnes_a_charge: [3, 4]
-    menage:
-        personne_de_reference: [1]
-        enfants: [3, 4]
   output:
     af_base: 130.12
     asf: 210.54
