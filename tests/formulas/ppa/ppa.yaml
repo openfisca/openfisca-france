@@ -567,7 +567,7 @@
     paje_colca:
       2016-01: 100
     rsa_forfait_asf:
-      2016-01: 91.40
+      2016-01: 91.40 # 0.225 * 406.21
     chomage_net:
       2016-01: 100
     retraite_nette:

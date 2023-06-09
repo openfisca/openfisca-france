@@ -286,7 +286,7 @@
         personne_de_reference:
         - enfant2
   output:
-    rsa_forfait_asf: 100
+    rsa_forfait_asf: 91.40 # 0.225 * 406.21
 
 - name: Revalorisation septembre 2016
   period: 2016-10
