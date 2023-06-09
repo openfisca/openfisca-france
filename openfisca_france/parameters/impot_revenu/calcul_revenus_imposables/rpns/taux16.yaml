@@ -1,6 +1,20 @@
 description: Revenus taxés à 16% (logiciels originaux)
 values:
   2002-01-01:
-    value: 0.16 # TO-DO : 0.128 à partir de 2017 (ou d'un autre moment àpartir de 2014 en tout cas), cf brochure IR
+    value: 0.16
+  2017-01-01:
+    value: 0.128
+  2019-01-01:
+    value: Null
 metadata:
   unit: /1
+  reference:
+    2017-01-01:
+      - title: Article 93 quater du CGI, I mettant les revenus de cession de logiciels au régime des plus-values de long terme
+      - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036428314/2018-01-01/
+      - title: Article 39 quindecies du CGI donnant le taux des plus-values de long-terme
+      - href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023378020/2011-01-01/
+  notes:
+    2019-01-01:
+      - title:
+        "remplacé par un taux à 10 % avec changement de case fiscale."

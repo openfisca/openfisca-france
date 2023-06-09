@@ -457,9 +457,9 @@ class revenus_non_salarie_nets(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
-        revenus_non_salarie = individu('rpns_imposables', period)
+        rpns_imposables = individu('rpns_imposables', period)
         csg_imposable_non_salarie = individu('csg_imposable_non_salarie', period)
         crds_non_salarie = individu('crds_non_salarie', period)
         microentreprise_i = individu.foyer_fiscal('microentreprise', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         microentreprise = sum(microentreprise_i)
-        return revenus_non_salarie + csg_imposable_non_salarie + crds_non_salarie + microentreprise
+        return rpns_imposables + csg_imposable_non_salarie + crds_non_salarie + microentreprise
