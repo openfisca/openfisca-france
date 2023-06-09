@@ -26,6 +26,7 @@ class categorie_non_salarie(Variable):
     label = 'Type du travailleur salarié (artisan, commercant, profession libérale, etc)'
     definition_period = YEAR
 
+
 class cotisations_non_salarie_micro_social(Variable):
     value_type = float
     entity = Individu
