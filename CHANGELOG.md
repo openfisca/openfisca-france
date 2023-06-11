@@ -1,5 +1,16 @@
 # Changelog
 
+### 149.0.1 [#2120](https://github.com/openfisca/openfisca-france/pull/2120)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_m/pente.yaml`
+  - `openfisca_france/parameters/prelevements_sociaux/autres_taxes_participations_assises_salaires/complementaire_sante/index.yaml`
+* Détails :
+  - Correction de la metadata `order` d'un paramètre
+  - Correction d'une typo dans une metadata `reference`
+
 # 149.0.0 [#2065](https://github.com/openfisca/openfisca-france/pull/2065)
 
 * Amélioration technique.

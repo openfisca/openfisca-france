@@ -10,7 +10,7 @@ metadata:
   short_label: Part des revenus d'activité
   last_value_still_valid_on: "2023-03-22"
   unit: /1
-  references:
+  reference:
     2009-06-01:
       title: Décret 2009-404 du 15/04/2009 - art. 2
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000020521930
