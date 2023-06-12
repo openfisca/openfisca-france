@@ -1483,14 +1483,12 @@ class ip_net(Variable):
         '''
         Impôt net avant réductions
         '''
-        cncn_info_i = foyer_fiscal.members('cncn_info', period)
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
-        taux = parameters(period).impot_revenu.calcul_impot_revenu.pv.plus_values.pvce
         # N'est pas véritablement une 'réduction', cf. la définition de cette variable
         reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period)
 
-        return around(max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus))
+        return around(max_(0, ir_plaf_qf - decote - reduction_ss_condition_revenus))
 
 
 class iaidrdi(Variable):
