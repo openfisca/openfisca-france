@@ -182,21 +182,15 @@
         2016-12: 400
         2016-11: 400
         2016-10: 400
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - 1
-      foyer_fiscal_1:
-        declarants:
-        - 3
-      foyer_fiscal_2:
-        declarants:
-        - 4
+    foyer_fiscal:
+        declarants: [1]
+        personnes_a_charge: [3, 4]
   output:
     af_base: 130.12
     asf: 210.54
     # RSA - AF - Forfait ASF
-    rsa: 645.7575
+    rsa_forfait_asf: 182.8 #406.62 * 0.225 * 2
+    rsa: 673.33
 
 - name: Le RSA est calculé sur les revenus d'activité moyens des trois derniers mois
   period: 2017-01

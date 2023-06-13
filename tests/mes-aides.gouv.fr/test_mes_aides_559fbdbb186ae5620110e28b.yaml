@@ -272,4 +272,5 @@ input:
     statut_occupation_logement: locataire_vide
 output:
   rsa_majore_eligibilite: false
-  rsa: 49.155457
+  rsa_forfait_asf: 91.4
+  rsa: 57.76

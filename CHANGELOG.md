@@ -1,4 +1,16 @@
-# Changelog
+ # Changelog
+
+### 149.1.0 [#2118](https://github.com/openfisca/openfisca-france/pull/2118)
+
+* Amélioration technique.
+* Périodes concernées : à partir du 01/04/2014
+* Zones impactées : 
+    - `/openfisca_france/model/prestations/minima_sociaux/rsa.py`.
+    - `/openfisca_france/model/prestations/minima_sociaux/ppa.py`.
+    - `/openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/forfait_asf/taux1.yaml`
+    - `/openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/forfait_asf/taux2.yaml`
+* Détails :
+  - Correction de la prise en compte de l'asf dans la base ressource du RSA et de la prime d'activité. Pour le calcul de ces dispositifs le montant d'asf est pris en compte est plafonné et ce montant plafonné était mal calculé.
 
 ### 149.0.1 [#2120](https://github.com/openfisca/openfisca-france/pull/2120)
 
