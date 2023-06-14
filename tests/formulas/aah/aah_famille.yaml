@@ -11,13 +11,15 @@
       parent1:
         taux_incapacite: 0.9
         age: 50
+        activite:
+          2015: actif
         aah_base_ressources: 9700 / 12
     foyer_fiscal:
       declarants:
-      - parent1
+        - parent1
     menage:
       personne_de_reference:
-      - parent1
+        - parent1
   output:
     aah_base: 0
 
@@ -33,16 +35,18 @@
     individus:
       parent1:
         taux_incapacite: 0.9
+        activite:
+          2015: inactif
         age: 27
         aah_base_ressources: 0
     foyer_fiscal:
       declarants:
-      - parent1
+        - parent1
     menage:
       personne_de_reference:
-      - parent1
+        - parent1
   output:
-    aah_base: 800.45  # l'aah taux plein
+    aah_base: 800.45 # l'aah taux plein
 
 - name: AAH niveau Famille - concubinage, sans enfants, un éligible (chef), ressources inférieures au plafond
   description: Montant AAH au niveau de la famille
@@ -56,23 +60,27 @@
     individus:
       parent1:
         aah_eligible: true
+        activite:
+          2013: actif
         aah_base_ressources: 15000 / 12
       parent2:
         aah_eligible: false
+        activite:
+          2013: inactif
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
+          - parent1
       foyer_fiscal_1:
         declarants:
-        - parent2
+          - parent2
     menages:
       menage_0:
         personne_de_reference:
-        - parent1
+          - parent1
       menage_1:
         personne_de_reference:
-        - parent2
+          - parent2
   output:
     individus:
       parent1:
@@ -92,30 +100,34 @@
     individus:
       parent1:
         aah_eligible: true
+        activite:
+          2013: actif
         aah_base_ressources: 15000 / 12
       parent2:
         aah_eligible: true
+        activite:
+          2013: actif
         aah_base_ressources: 15000 / 12
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
+          - parent1
       foyer_fiscal_1:
         declarants:
-        - parent2
+          - parent2
     menages:
       menage_0:
         personne_de_reference:
-        - parent1
+          - parent1
       menage_1:
         personne_de_reference:
-        - parent2
+          - parent2
   output:
     individus:
       parent1:
         aah_base: 3638.16 / 12
       parent2:
-        aah_base: 3638.16 / 12  # (18638,16 - 15000) / 12   # il faut que ce soit ça, ou le double ??
+        aah_base: 3638.16 / 12 # (18638,16 - 15000) / 12   # il faut que ce soit ça, ou le double ??
 
 - name: AAH niveau Famille - concubinage, avec enfants, un seul éligible, ressources inférieures au plafond
   description: Montant AAH au niveau de la famille
@@ -129,23 +141,27 @@
     individus:
       parent1:
         aah_eligible: false
+        activite:
+          2013: inactif
       parent2:
         aah_eligible: true
+        activite:
+          2013: actif
         aah_base_ressources: 20000 / 12
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
+          - parent1
       foyer_fiscal_1:
         declarants:
-        - parent2
+          - parent2
     menages:
       menage_0:
         personne_de_reference:
-        - parent1
+          - parent1
       menage_1:
         personne_de_reference:
-        - parent2
+          - parent2
   output:
     individus:
       parent1:
@@ -166,41 +182,49 @@
     individus:
       parent1:
         aah_eligible: false
+        activite:
+          2014: inactif
       parent2:
         aah_eligible: false
+        activite:
+          2014: inactif
       enfant1:
         aah_eligible: true
+        activite:
+          2014: actif
         aah_base_ressources: 25000 / 12
       enfant2:
         aah_eligible: false
+        activite:
+          2014: inactif
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
-        - parent1
+          - parent1
       foyer_fiscal_1:
         declarants:
-        - parent2
+          - parent2
       foyer_fiscal_2:
         declarants:
-        - enfant1
+          - enfant1
       foyer_fiscal_3:
         declarants:
-        - enfant2
+          - enfant2
     menages:
       menage_0:
         personne_de_reference:
-        - parent1
+          - parent1
       menage_1:
         personne_de_reference:
-        - parent2
+          - parent2
       menage_2:
         personne_de_reference:
-        - enfant1
+          - enfant1
       menage_3:
         personne_de_reference:
-        - enfant2
+          - enfant2
   output:
-    aah_base: [0, 0, 287, 0] # xxxxx.xx (conucub + 2enf à charge, grille montants pre-Sept.2014) - 25000 / 12  = 3446.48 / 12
+    aah_base: [0, 0, 287, 0] # xxxxx.xx (concub + 2enf à charge, grille montants pre-Sept.2014) - 25000 / 12  = 3446.48 / 12
 
 - name: AAH niveau ménage - sans logement indépendant pour un autre, ressources inférieures au plafond
   description: Montant AAH au niveau de la famille
