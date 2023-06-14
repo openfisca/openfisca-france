@@ -4,6 +4,8 @@
   input:
     handicap: true
     taux_incapacite: 0.9
+    activite:
+      2015: inactif
     age: 50
   output:
     aah_eligible: true
@@ -14,6 +16,8 @@
   input:
     age: 28
     handicap: true
+    activite:
+      2015: inactif
     taux_incapacite: 0.9
   output:
     aah_eligible: true
@@ -26,6 +30,9 @@
     handicap: true
     taux_incapacite: 0.9
     prestations_familiales_enfant_a_charge: true
+    activite:
+      2012: inactif
+    autonomie_financiere: false
   output:
     aah_eligible: false
 
@@ -37,6 +44,9 @@
     handicap: true
     taux_incapacite: 0.9
     prestations_familiales_enfant_a_charge: false
+    activite:
+      2013: inactif
+    autonomie_financiere: true
   output:
     aah_eligible: true
 
@@ -46,6 +56,8 @@
   input:
     age: 50
     handicap: true
+    activite:
+      2013: inactif
     taux_incapacite: 0.4
   output:
     aah_eligible: false
@@ -55,9 +67,11 @@
   period: 2013-07
   input:
     age: 50
-    aah_restriction_substantielle_durable_acces_emploi: true
     handicap: true
     taux_incapacite: 0.6
+    activite:
+      2013: inactif
+    aah_restriction_substantielle_durable_acces_emploi: true
   output:
     aah_eligible: true
 
