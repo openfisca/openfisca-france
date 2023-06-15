@@ -1,4 +1,4 @@
-description: Plafond (en nombre de SMIC) du crédit d'impot sur la compétitivité et l'emploi (CICE, 2013-2018) des cotisations de Sécurité sociale (SS)
+description: Plafond (en nombre de Smic) du crédit d'impôt sur la compétitivité et l'emploi (CICE, 2013-2018) des cotisations de sécurité sociale (SS)
 values:
   2013-01-01:
     value: 2.5
@@ -9,7 +9,7 @@ metadata:
   last_value_still_valid_on: "2018-01-01"
   label_en: Tax credit for competitivness and employment (CICE)
   ipp_csv_id: cice_plaf
-  unit: SMIC
+  unit: smic
   reference:
     2013-01-01:
       title: Loi 2012-1510 du 29/12/2012 (LFR pour 2012), art. 66

@@ -1,10 +1,10 @@
-description: Plafond (en % du SMIC brut) de la garantie jeunes
+description: Plafond (en % du Smic brut) de la garantie jeunes
 values:
   2016-12-23:
     value: 0.8
 metadata:
   short_label: Plafond
-  unit: SMIC
+  unit: smic
   reference:
     2016-12-23:
     - title: Article 1 du décret n° 2016-1855 du 23/12/2016 relatif au parcours contractualisé d'accompagnement vers l'emploi et l'autonomie et à la garantie jeunes
