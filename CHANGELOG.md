@@ -1,5 +1,13 @@
  # Changelog
 
+### 149.1.0 [#2123](https://github.com/openfisca/openfisca-france/pull/2123)
+
+* Changement mineur : Ces changements modifient des éléments non fonctionnels de ce dépôt.
+* Périodes concernées : toutes.
+* Zones impactées : paramètres dont l'unité est le smic
+* Détails : Implémente des unités plus précises du SMIC tirées de ce fichier : https://git.leximpact.dev/leximpact/leximpact-socio-fiscal-openfisca-json/-/blob/master/units.yaml?ref_type=heads
+
+
 ### 149.1.0 [#2118](https://github.com/openfisca/openfisca-france/pull/2118)
 
 * Amélioration technique.
