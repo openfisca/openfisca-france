@@ -9,7 +9,7 @@ long_description = (this_directory / 'README.md').read_text()
 
 setup(
     name = 'OpenFisca-France',
-    version = '149.1.0',
+    version = '149.1.1',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -66,7 +66,7 @@ setup(
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        'OpenFisca-Core >=40, <41',
+        'OpenFisca-Core >=40.0.1, <41',
         ],
     packages = find_namespace_packages(exclude = [
         'openfisca_france.tests*',

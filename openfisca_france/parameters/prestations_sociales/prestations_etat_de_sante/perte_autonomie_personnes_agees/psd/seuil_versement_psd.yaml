@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Seuil minimal
   label_en: Attendance allowance (PSD)
-  unit: SMIC
+  unit: smic_horaire_brut
   reference:
     1997-05-01:
       title: Arrêté du 28/04/1997

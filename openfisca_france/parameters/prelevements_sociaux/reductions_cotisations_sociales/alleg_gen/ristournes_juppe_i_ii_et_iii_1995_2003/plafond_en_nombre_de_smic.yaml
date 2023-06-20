@@ -1,4 +1,4 @@
-description: Plafond (en nombre de SMIC) des ristournes Juppé (I, II et III) (1995-2003) des allègements généraux de cotisations de Sécurité sociale (SS)
+description: Plafond (en nombre de Smic) des ristournes Juppé (I, II et III) (1995-2003) des allègements généraux de cotisations de Sécurité sociale (SS)
 values:
   1995-09-01:
     value: 1.2
@@ -13,7 +13,7 @@ metadata:
   last_value_still_valid_on: "2003-07-01"
   label_en: Global reduction in SSCs (1993-2003)
   ipp_csv_id: plaf_juppe
-  unit: SMIC
+  unit: smic
   reference:
     1995-09-01:
     - title: Loi 95-882 du 04/08/1995

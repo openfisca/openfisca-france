@@ -1,4 +1,4 @@
-description: Plafond de rémunération (en nombre de smic) des salariés concernés par l'allègement Fillon ou allègement bas salaires (toutes entreprises, depuis 2003) de cotisations de sécurité sociale (SS)
+description: Plafond de rémunération (en nombre de Smic) des salariés concernés par l'allègement Fillon ou allègement bas salaires (toutes entreprises, depuis 2003) de cotisations de sécurité sociale (SS)
 values:
   2005-07-01:
     value: 1.6
@@ -7,7 +7,7 @@ metadata:
   last_value_still_valid_on: "2023-01-30"
   label_en: General SSC reductions, so called Fillon reductions (2003-2016)
   ipp_csv_id: plaf_fillon
-  unit: SMIC
+  unit: smic_annuel
   reference:
     2005-07-01:
     - title: Article D241-7 du Code de la Sécurité Sociale

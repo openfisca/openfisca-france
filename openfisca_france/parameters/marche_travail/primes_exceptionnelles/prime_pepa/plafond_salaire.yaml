@@ -1,4 +1,4 @@
-description: Plafond salaire en SMIC pour être éligible à l'exonération
+description: Plafond de salaire en Smic pour être éligible à l'exonération
 values:
   2018-12-24:
     value: 3
@@ -7,8 +7,8 @@ values:
   2022-04-01:
     value: null
 metadata:
-  short_label: Salaire maximal d'exonération, en nombre de SMIC annuels
-  unit: SMIC
+  short_label: Salaire maximal d'exonération
+  unit: smic_annuel
   reference:
     2018-12-24:
       title: Loi 2018-1213 du 24/12/2018

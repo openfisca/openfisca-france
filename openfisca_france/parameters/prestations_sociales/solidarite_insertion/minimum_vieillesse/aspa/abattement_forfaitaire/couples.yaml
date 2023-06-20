@@ -6,4 +6,4 @@ values:
     value: 1.5
 metadata:
   short_label: Taux Couple
-  unit: SMIC
+  unit: smic

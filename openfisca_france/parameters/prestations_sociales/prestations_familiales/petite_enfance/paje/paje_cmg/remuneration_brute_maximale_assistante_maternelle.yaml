@@ -6,7 +6,7 @@ metadata:
   short_label: Rémunération max assistante maternelle
   last_value_still_valid_on: "2023-01-27"
   label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
-  unit: SMIC
+  unit: smic_horaire_brut
   reference:
     2004-01-01:
     - title: Décret 2003-1394 du 31/12/2003 - art. 1
