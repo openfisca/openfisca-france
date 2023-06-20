@@ -40,7 +40,7 @@ class cheque_energie_eligibilite_logement(Variable):
 
         return (
             not_(residence_saint_martin) * (
-                + (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+                (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)

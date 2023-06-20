@@ -243,7 +243,7 @@ class asi(Variable):
         montant_servi_asi = max_(plafond_ressources - base_ressources, 0)
 
         return montant_servi_asi * (
-            + individu.has_role(Famille.DEMANDEUR) * demandeur_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
+            individu.has_role(Famille.DEMANDEUR) * demandeur_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
             + individu.has_role(Famille.CONJOINT) * conjoint_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
             )
 

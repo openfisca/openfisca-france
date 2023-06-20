@@ -362,7 +362,7 @@ class financement_organisations_syndicales(Variable):
             variable_name = 'financement_organisations_syndicales',
             )
         contrat_de_droit_prive = (
-            + (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
             + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             )

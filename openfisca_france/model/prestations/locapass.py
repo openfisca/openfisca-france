@@ -27,7 +27,7 @@ class locapass_eligibilite_logement(Variable):
     def formula(menage, period):
         statut_occupation = menage('statut_occupation_logement', period)
         return (
-            + (statut_occupation == TypesStatutOccupationLogement.locataire_hlm)
+            (statut_occupation == TypesStatutOccupationLogement.locataire_hlm)
             + (statut_occupation == TypesStatutOccupationLogement.locataire_vide)
             + (statut_occupation == TypesStatutOccupationLogement.locataire_meuble)
             + (statut_occupation == TypesStatutOccupationLogement.locataire_foyer)

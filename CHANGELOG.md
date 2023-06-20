@@ -1,4 +1,16 @@
- # Changelog
+# Changelog
+
+### 149.1.2 [#2124](https://github.com/openfisca/openfisca-france/pull/2124)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/taxes_salaires_main_oeuvre.py`
+  - `openfisca_france/model/prestations/minima_sociaux/asi_aspa.py`
+  - `openfisca_france/model/prestations/cheque_energie.py`
+  - `openfisca_france/model/prestations/locapass.py`
+* Détails :
+  - Enlève l'opérateur unaire "+" devant un booléen, car ce n'est plus supporté par Numpy 1.25
 
 ### 149.1.1 [#2123](https://github.com/openfisca/openfisca-france/pull/2123)
 
@@ -8,7 +20,7 @@
 * Détails : Implémente des unités plus précises du SMIC
 
 
-### 149.1.0 [#2118](https://github.com/openfisca/openfisca-france/pull/2118)
+## 149.1.0 [#2118](https://github.com/openfisca/openfisca-france/pull/2118)
 
 * Amélioration technique.
 * Périodes concernées : à partir du 01/04/2014
