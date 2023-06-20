@@ -1,18 +1,18 @@
  # Changelog
 
-### 149.1.0 [#2123](https://github.com/openfisca/openfisca-france/pull/2123)
+### 149.1.1 [#2123](https://github.com/openfisca/openfisca-france/pull/2123)
 
 * Changement mineur : Ces changements modifient des éléments non fonctionnels de ce dépôt.
 * Périodes concernées : toutes.
 * Zones impactées : paramètres dont l'unité est le smic
-* Détails : Implémente des unités plus précises du SMIC tirées de ce fichier : https://git.leximpact.dev/leximpact/leximpact-socio-fiscal-openfisca-json/-/blob/master/units.yaml?ref_type=heads
+* Détails : Implémente des unités plus précises du SMIC
 
 
 ### 149.1.0 [#2118](https://github.com/openfisca/openfisca-france/pull/2118)
 
 * Amélioration technique.
 * Périodes concernées : à partir du 01/04/2014
-* Zones impactées : 
+* Zones impactées :
     - `/openfisca_france/model/prestations/minima_sociaux/rsa.py`.
     - `/openfisca_france/model/prestations/minima_sociaux/ppa.py`.
     - `/openfisca_france/parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa/rsa_maj/forfait_asf/taux1.yaml`
