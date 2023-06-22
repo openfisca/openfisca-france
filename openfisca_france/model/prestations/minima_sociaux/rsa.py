@@ -586,7 +586,7 @@ class rsa_montant(Variable):
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
         rsa_base_ressources = famille('rsa_base_ressources', period)
 
-        seuil_non_versement = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_maj.montant_minimum_verse
+        seuil_non_versement = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_m.montant_minimum_verse
 
         montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + rsa_revenu_activite
 
@@ -597,10 +597,14 @@ class rsa_montant(Variable):
 
 
 class rsa(Variable):
+    # Explication du dispositif : https://www.service-public.fr/particuliers/vosdroits/N19775
     calculate_output = calculate_output_add
     value_type = float
     label = 'Revenu de solidarité active'
-    reference = 'https://www.service-public.fr/particuliers/vosdroits/N19775'
+    reference = [
+        "Articles L262-1 à L266-2 du Code de l'action sociale et des familles",
+        'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074069/LEGISCTA000006157612/#LEGISCTA000019869136'
+        ]
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -704,11 +708,11 @@ class rsa_eligibilite(Variable):
             rsa_jeune_condition_i = False
         else:
             # Les jeunes de moins de 25 ans sont éligibles sous condition d'activité suffisante
-            # à partir de 2010 rendue ici par rsa.rsa_cond.rsa_jeune == 1
+            # à partir de 2010 rendue ici par rsa.rsa_cond.rsa_jeune.date_debut_rsa_jeune == 1
             rsa_jeune_condition_i = (
-                (rsa.rsa_cond.rsa_jeune == 1)
-                * (age_i > rsa.rsa_cond.age_min_rsa_jeune)
-                * (age_i < rsa.rsa_cond.age_max_rsa_jeune)
+                (rsa.rsa_cond.rsa_jeune.date_debut_rsa_jeune == 1)
+                * (age_i > rsa.rsa_cond.rsa_jeune.age_min_rsa_jeune)
+                * (age_i < rsa.rsa_cond.rsa_jeune.age_max_rsa_jeune)
                 * rsa_jeune_condition_heures_travail_remplie_i
                 )
 
@@ -827,7 +831,7 @@ class rsa_forfait_asf(Variable):
         bmaf = parameters(period).prestations_sociales.prestations_familiales.bmaf.bmaf
 
         asf_verse = famille('asf', period)
-        taux_max_par_enfant = minima_sociaux.rsa.rsa_maj.forfait_asf.taux1
+        taux_max_par_enfant = minima_sociaux.rsa.rsa_cond.forfait_asf.taux1
 
         montant_max_retenu_rsa_par_enfant = where(
             famille.members('asf_elig_enfant', period),
@@ -870,9 +874,9 @@ class rsa_forfait_logement(Variable):
             montant_base = params.rsa_m.montant_de_base_du_rsa
             taux_2p = 1 + params.rsa_maj.maj_montant_max.couples_celibataire_avec_enfant
             taux_3p = taux_2p + params.rsa_maj.maj_montant_max.couple_1_enfant_ou_2e_enfant
-            forf_logement_taux_1p = params.rsa_fl.forfait_logement.taux_1_personne
-            forf_logement_taux_2p = params.rsa_fl.forfait_logement.taux_2_personnes * taux_2p
-            forf_logement_taux_3p = params.rsa_fl.forfait_logement.taux_3_personnes_ou_plus * taux_3p
+            forf_logement_taux_1p = params.rsa_fl.taux_1_personne
+            forf_logement_taux_2p = params.rsa_fl.taux_2_personnes * taux_2p
+            forf_logement_taux_3p = params.rsa_fl.taux_3_personnes_ou_plus * taux_3p
         else:
             params = parameters(period).prestations_sociales.solidarite_insertion.minima_sociaux.rmi
             montant_base = params.rmi_m.montant_de_base_du_rmi

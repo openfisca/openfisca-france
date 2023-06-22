@@ -3,7 +3,7 @@ values:
   2009-06-01:
     value: 0.12
 metadata:
-  short_label: 1 personne
+  short_label: Taux du forfait logement pour 1 personne
   last_value_still_valid_on: "2022-03-29"
   label_en: "Active solidarity income (RSA): accomodation allowance"
   ipp_csv_id: rsa_rmi_logt1

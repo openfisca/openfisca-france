@@ -1,12 +1,12 @@
-description: Âge maximal pour bénéficier du revenu de solidarité active (RSA) Jeune
+description: Âge minimal pour bénéficier du revenu de solidarité active (RSA) Jeune
 values:
   2009-06-01:
     value: 0
   2010-01-01:
-    value: 25
+    value: 18
 metadata:
-  short_label: Âge maximal RSA Jeune
-  last_value_still_valid_on: "2022-03-28"
+  short_label: Âge minimal RSA Jeune
+  last_value_still_valid_on: "2023-06-05"
   unit: year
   reference:
     2010-01-01:

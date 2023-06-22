@@ -1,13 +1,13 @@
-description: Nombre minimal d'enfants, Conditions générales du Revenu de solidarité active (RSA)
+description: Nombre minimal d'enfants à charge nés ou à naître pour bénéficier, avant d'avoir 25 ans, du revenu de solidarité active (RSA) 
 values:
   2009-06-01:
     value: 1
 metadata:
-  short_label: Nombre minimal d'enfants
-  last_value_still_valid_on: "2022-03-28"
+  short_label: Nombre minimal d'enfants pour être allocataire du RSA sans remplir les conditions d'âge minimal ou d'heures d'acitivité préalables
+  last_value_still_valid_on: "2023-06-05"
   label_en: "Active solidarity income (RSA): General conditions"
   ipp_csv_id: min_npac_rmi
-  unit: /1
+  unit: child
   reference:
     2009-06-01:
     - title: Loi 2008-1249 du 01/12/2008, art. 3 (modif art. L262-4 du CASF)

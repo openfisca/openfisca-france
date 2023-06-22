@@ -59,6 +59,34 @@
   - Supprime taux16, qui correspond à pvce. Le documente et corrige pvce.
 
 
+### 148.0.0 [#2117](https://github.com/openfisca/openfisca-france/pull/2117)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes. 
+* Zones impactées : 
+  - `prestations/minima_sociaux/rsa.py`
+  - `parameters/prestations_sociales/solidarite_insertion/minima_sociaux/rsa`
+  - `prestations/minima_sociaux/cs/cmu.py`
+  - `prestations/jeunes/garantie_jeunes.py`.
+* Détails :
+  - Renomme certains labels et short_labels
+  - Suppression du dossier `forfait_logement` qui était le seul dossier à l'intérieur de `rsa_fl`(redondance)
+  - Le paramètre `montant_minimum_verse` est retiré du dossier `rsa_maj`, car ce n'est pas une majoration mais un seuil de versement du RSA : il est ajouté dans le dossier `rsa_m`.
+  - Renomme le paramètre `rsa_jeune` en `date_debut_rsa_jeune`=> Ce paramètre devra d'ailleurs être supprimé car il a un rôle de booléen pour activer la réforme du rsa mais n'a aucune légitimité législative.
+  - Ajoute un dossier `rsa_jeune` dans le dossier `rsa_cond` qui englobe les paramètres liés au RSA jeune pour plus clarté.
+  - Déplace `forfait_asf` dans `rsa_cond` à la place de `rsa_maj`, en effet le forfait de soutien familial semble plus être un élément pris en compte dans la base de ressources qu'une majoration.
+  - Ajoute un index dans le dossier `forfait_asf`.
+  - Suppression du paramètre `age_limite_enfant` du dossier `majoration_isolement_en_base_rsa` car il est en doublon de celui qui est dans le dossier `majoration_isolement`
+  - Suppression du paramètre `psa` situé dans rsa, inutilisé et en double du paramètre `rmi.psa`
+
+- - - -
+
+Ces changements (effacez les lignes ne correspondant pas à votre cas) :
+- Modifient l'API publique d'OpenFisca France (par exemple renommage ou suppression de variables).
+- Ajoutent une fonctionnalité (par exemple ajout d'une variable).
+- Corrigent ou améliorent un calcul déjà existant.
+
+
 ### 147.2.3 [#2113](https://github.com/openfisca/openfisca-france/pull/2113)
 
 * Correction du système socio-fiscal.

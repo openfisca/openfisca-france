@@ -6,7 +6,7 @@ values:
     value: 1
 metadata:
   short_label: Date début
-  last_value_still_valid_on: "2022-03-29"
+  last_value_still_valid_on: "2023-06-05"
   unit: currency
   reference:
     2010-01-01:
