@@ -1,13 +1,13 @@
-description: Taux de la majoration du montant maximal (en % de la base RSA) par personne supplémentaire (au-delà de la 1ère), Prime pour l'Activité (PPA)
+description: Taux (en % du montant de base) de la majoration du montant de base de la prime d'activité (PPA) pour par personne supplémentaire (au-delà de la 1ère)
 values:
   2015-10-01:
     value: 0.3
 metadata:
   short_label: Majoration par personne supplémentaire (au-delà de la 1ère)
-  last_value_still_valid_on: "2022-08-03"
+  last_value_still_valid_on: "2023-06-14"
   label_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_maj3
-  unit: /1
+  unit: pourcentage_montant_de_base
   reference:
     2015-10-01:
     - title: Article D843-1 du Code de la sécurité sociale

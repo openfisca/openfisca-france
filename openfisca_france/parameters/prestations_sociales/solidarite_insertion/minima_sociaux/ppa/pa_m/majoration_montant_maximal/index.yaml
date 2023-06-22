@@ -1,6 +1,6 @@
-description: Majoration montant maximal (en % de la base RSA) de la Prime Pour l'Activité (PA ou PPA)
+description: Majoration du montant de base de la prime d'activité (PPA) selon la composition familiale
 metadata:
-  short_label: Majoration montant maximal
+  short_label: Taux (en % du montant de base) de la majoration du montant de base selon la composition familiale
   label_en: "Activity prenium (PA) : accomodation allowance"
   order:
   - couples_seul_avec_enfant

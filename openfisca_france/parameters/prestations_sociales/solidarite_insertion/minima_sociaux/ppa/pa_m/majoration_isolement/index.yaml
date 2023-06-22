@@ -1,6 +1,6 @@
-description: Paramètres des Personnes isolées pour le calcul du montant de la Prime Pour l'Activité (PA ou PPA)
+description: Majoration de la prime d'activité (PPA) pour un parent isolé ou une femme enceinte isolée
 metadata:
-  short_label: Personnes isolées
+  short_label: Majoration pour parent isolé ou femme enceinte isolée
   label_en: "Activity prenium (PA) : accomodation allowance"
   order:
   - femmes_enceintes

@@ -1,4 +1,4 @@
-description: Montant forfaitaire de base de la Prime pour l'Activité (PPA)
+description: Montant forfaitaire de base de la prime d'activité (PPA)
 values:
   2015-10-01:
     value: 524.16
@@ -22,7 +22,7 @@ values:
     value: 595.25
 metadata:
   short_label: Montant base
-  last_value_still_valid_on: "2023-05-09"
+  last_value_still_valid_on: "2023-06-14"
   label_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_montant_base
   unit: currency
@@ -71,7 +71,7 @@ metadata:
     2022-04-01: "2022-04-27"
   notes:
     2016-01-01:
-    - title: Création de la Prime pour l'Activité.
+    - title: Création de la prime d'activité.
     2019-01-01:
     - title: Revalorisation de la Prime pour l'Activité suite à la loi 2018-1213 du 24/12/2018 portant mesures d'urgence économique et sociale. La Prime pour l'Activité augmente de 90 euros au niveau du Smic, via une augmentation de la bonification individuelle.
     2022-07-01:

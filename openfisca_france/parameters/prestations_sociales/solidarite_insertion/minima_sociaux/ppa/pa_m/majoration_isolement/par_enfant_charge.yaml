@@ -1,14 +1,17 @@
+description: Majoration supplémentaire pour parent isolé par enfant à charge (en % de la base) de la prime d'activité (PPA)
 values:
   2015-10-01:
     value: 0.42804
 metadata:
-  short_label: Majoration par enfant à charge
+  short_label: Supplément par enfant
   last_value_still_valid_on: "2022-08-03"
   label_en: "Active solidarity income - Activity premium (PA) : Amounts"
   ipp_csv_id: pa_maj6
-  unit: /1
+  unit: pourcentage_montant_de_base
   reference:
-    title: Majoration par enfant à charge (en % de la base RSA) de la Prime pour l'Activité (PA)
+    2015-10-01:
+    - title: Article D843-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673885/
   official_journal_date:
     2019-01-01: "2018-12-22"
   notes:

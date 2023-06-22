@@ -1,6 +1,6 @@
-description: Bonification de la Prime Pour l'Activité (PA ou PPA)
+description: Bonification majorant le montant de base pris en compte dans le calcul de la prime d'activité (PA ou PPA)
 metadata:
-  short_label: Bonification
+  short_label: Bonification majorant le montant de base pris en compte dans le calcul de la PPA
   label_en: "Activity prenium (PA) : accomodation allowance"
   order:
   - seuil_bonification

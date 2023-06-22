@@ -1,4 +1,4 @@
-description: Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut
+description: Revenu d'activité minimal perçu pour que l'allocation adulte handicapé (AAH) d'un individu soit considérée comme un revenu d'activité, en multiple du smic horaire brut
 values:
   2015-10-01:
     value: 29

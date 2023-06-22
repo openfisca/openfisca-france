@@ -1,6 +1,6 @@
-description: Paramètres pour le calcul du montant de la Prime Pour l'Activité (PA ou PPA)
+description: Paramètres pour le calcul du montant de la prime d'activité (PA ou PPA)
 metadata:
-  short_label: Montant
+  short_label: Calcul du montant de la PPA
   label_en: "Activity prenium (PA) : accomodation allowance"
   order:
   - montant_de_base

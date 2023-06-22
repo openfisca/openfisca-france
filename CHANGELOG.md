@@ -1,5 +1,16 @@
  # Changelog
 
+### 149.1.2 [#2122](https://github.com/openfisca/openfisca-france/pull/2122)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : `prestations_sociales/solidarite_insertion/minima_sociaux/ppa`
+* Détails :
+  - Mise à jour des références de la PPA (qui n'étaient souvent pas les bonnes car renvoyaient vers les textes du RSA)
+  - Mise à jour des labels pour essayer de lever des ambiguites.
+
+Ces changements modifient des éléments non fonctionnels de ce dépôt.
+
 ### 149.1.1 [#2123](https://github.com/openfisca/openfisca-france/pull/2123)
 
 * Changement mineur : Ces changements modifient des éléments non fonctionnels de ce dépôt.
