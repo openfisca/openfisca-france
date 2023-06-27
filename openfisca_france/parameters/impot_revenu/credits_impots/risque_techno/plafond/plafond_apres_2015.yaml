@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Dépenses depuis 2015
   ipp_csv_id: plaf_risques_techno_post
-  unit: currency
+  unit: currency_next_year
   reference:
     2005-01-01:
       title: Loi n° 2004-1484 du 30 décembre 2004 (LF 2005), art. 91

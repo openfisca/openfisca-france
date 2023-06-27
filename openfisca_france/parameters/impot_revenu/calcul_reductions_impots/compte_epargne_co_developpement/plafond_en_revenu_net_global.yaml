@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Plafond (% revenu net global)
   ipp_csv_id: base_codev
-  unit: currency
+  unit: currency_next_year
   reference:
     2007-01-01:
     - title: Loi 2007-1822 du 24/12/2007 (LF pour 2008)

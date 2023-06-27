@@ -8,7 +8,7 @@ values:
     value: 10700
 metadata:
   ipp_csv_id: plaf_deficits_fonciers_amortissement
-  unit: currency
+  unit: currency_next_year
   reference:
     1996-01-01:
       title: Loi n° 96-314 du 12 avril 1996 (DDOEF), art. 29

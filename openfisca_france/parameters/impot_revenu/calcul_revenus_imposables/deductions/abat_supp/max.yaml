@@ -63,7 +63,7 @@ values:
 metadata:
   short_label: Maximum
   ipp_csv_id: max_abt_dedsal
-  unit: currency
+  unit: currency_next_year
   reference:
     1977-01-01:
       title: LF pour 1978

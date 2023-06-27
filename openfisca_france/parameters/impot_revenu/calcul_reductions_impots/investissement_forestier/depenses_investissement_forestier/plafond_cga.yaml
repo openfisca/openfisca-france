@@ -3,7 +3,7 @@ values:
   2009-01-01:
     value: 2000
 metadata:
-  unit: currency
+  unit: currency_next_year
 documentation: |-
   Notes :
   (1) En 2007, investissements forestiers renommés en investissements et travaux forestiers

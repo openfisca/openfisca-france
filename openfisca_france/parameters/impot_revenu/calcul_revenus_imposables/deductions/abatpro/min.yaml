@@ -65,7 +65,7 @@ values:
 metadata:
   short_label: Minimum (cas général)
   ipp_csv_id: min_abtsal
-  unit: currency
+  unit: currency_next_year
   reference:
     1990-01-01:
       title: LF pour 1991

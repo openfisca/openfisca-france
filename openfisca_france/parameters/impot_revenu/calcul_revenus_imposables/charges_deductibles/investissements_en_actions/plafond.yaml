@@ -11,7 +11,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_action
-  unit: currency
+  unit: currency_next_year
   reference:
     1978-01-01:
       title: Loi 78-1239 du 29/12/1978 (LF pour 1979)

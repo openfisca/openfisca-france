@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: Plafond assurance
   last_value_still_valid_on: "2023-01-09"
-  unit: currency
+  unit: currency_next_year
   reference:
     2011-01-01:
     - title: Loi 2010-874 du 27/07/2010 - art. 68 (V) (modifie art. 199 decies H du CGI)

@@ -43,7 +43,7 @@ values:
 metadata:
   short_label: Plafond (déficits agricoles)
   ipp_csv_id: plaf_defba
-  unit: currency
+  unit: currency_next_year
   reference:
     1979-01-01:
       title: Loi 80-30 du 18/01/1980 (LF pour 1980)

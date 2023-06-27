@@ -19,7 +19,7 @@ values:
 metadata:
   short_label: Seuil supérieur
   ipp_csv_id: seuil_rimpmax
-  unit: currency
+  unit: currency_next_year
   reference:
     1993-01-01:
       title: Loi 93-1352 du 30/12/1993 (LF pour 1994)

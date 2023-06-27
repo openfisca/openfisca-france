@@ -11,7 +11,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_nich
-  unit: currency
+  unit: currency_next_year
   reference:
     2010-01-01:
       title: Loi 2009-1673 du 30/12/2009 - art. 81 (V)

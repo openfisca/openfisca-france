@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Plafond si invalide
   ipp_csv_id: plafsaldominvalide
-  unit: currency
+  unit: currency_next_year
   reference:
     1997-01-01:
       title: Loi 97-1269 du 30/12/1997 (LF pour 1998)

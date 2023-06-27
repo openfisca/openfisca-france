@@ -44,7 +44,7 @@ metadata:
   short_label: Allocations chômage
   last_value_still_valid_on: "2022-09-26"
   ipp_csv_id: min_abtsal_chom
-  unit: currency
+  unit: currency_next_year
   reference:
     1997-01-01:
       title: LF pour 1998

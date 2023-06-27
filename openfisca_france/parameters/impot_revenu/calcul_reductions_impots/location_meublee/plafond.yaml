@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_locmeu
-  unit: currency
+  unit: currency_next_year
   reference:
     2009-01-01:
       title: Loi n° 2008-1425 du 27 décembre 2008 (LF pour 2009), art.90

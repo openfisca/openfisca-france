@@ -3,4 +3,4 @@ values:
   2002-01-01:
     value: 12
 metadata:
-  unit: currency
+  unit: currency_next_year

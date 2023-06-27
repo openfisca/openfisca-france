@@ -9,4 +9,4 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_salarial
-  unit: currency
+  unit: currency_next_year

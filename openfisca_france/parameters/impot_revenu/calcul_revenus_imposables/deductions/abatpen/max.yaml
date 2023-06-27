@@ -91,7 +91,7 @@ values:
 metadata:
   short_label: Maximum
   ipp_csv_id: max_abtpen
-  unit: currency
+  unit: currency_next_year
   reference:
     1978-01-01:
       title: LF pour 1979

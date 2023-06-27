@@ -6,7 +6,7 @@ values:
     value: 15000
 metadata:
   short_label: Plafond foyer
-  unit: currency
+  unit: currency_next_year
   reference:
     2011-01-01:
     - title: Loi 2010-1657 du 29/12/2010 (LF pour 2011)

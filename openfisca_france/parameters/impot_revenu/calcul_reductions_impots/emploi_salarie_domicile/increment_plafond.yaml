@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Incrément du plafond
   ipp_csv_id: increment_plafsaldomicile
-  unit: currency
+  unit: currency_next_year
   reference:
     2004-01-01:
       title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)

@@ -3,7 +3,7 @@ values:
   2009-01-01:
     value: 50000
 metadata:
-  unit: currency
+  unit: currency_next_year
   reference:
     2009-01-01:
       title: Article 199 terdecies-0 A, II bis, du Code général des impôts

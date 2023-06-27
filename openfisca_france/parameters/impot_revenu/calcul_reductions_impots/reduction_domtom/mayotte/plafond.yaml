@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_reduction_ir_mayotte
-  unit: currency
+  unit: currency_next_year
   reference:
     2013-01-01:
       title: Ordonnance n° 2013-837 du 19 septembre 2013 (adaptation du CGI à Mayotte), art. 3

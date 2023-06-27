@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_abattement_journalistes
-  unit: currency
+  unit: currency_next_year
   reference:
     1998-01-01:
       title: Loi n° 98-1267 du 30 décembre 1998 (LF pour 2019), art. 23

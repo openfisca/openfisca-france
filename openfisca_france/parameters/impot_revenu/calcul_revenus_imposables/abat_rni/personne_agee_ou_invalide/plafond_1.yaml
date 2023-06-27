@@ -91,7 +91,7 @@ metadata:
   last_value_still_valid_on: "2022-12-26"
   label_en: Tax allowance for net taxable income
   ipp_csv_id: plaf_pers_age1
-  unit: currency
+  unit: currency_next_year
   reference:
     1984-01-01:
       title: LF pour 1983

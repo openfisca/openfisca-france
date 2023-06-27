@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_sofica
-  unit: currency
+  unit: currency_next_year
   reference:
     2001-01-01:
       title: Décret n°2002-923 du 6 juin 2002, art. 4

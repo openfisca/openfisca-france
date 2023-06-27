@@ -5,7 +5,7 @@ values:
 metadata:
   label_en: Tax credits for personal care assistant employment (2017-)
   ipp_csv_id: plafond_credit_aide_invalide
-  unit: currency
+  unit: currency_next_year
   reference:
     2017-01-01:
       title: Loi n° 2016-1917 du 29 décembre 2016 (LF 2017), art. 82

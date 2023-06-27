@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_prestcomp
-  unit: currency
+  unit: currency_next_year
   reference:
     2000-01-01:
       title: "Loi 2000-596 du 30 juin\_2000"

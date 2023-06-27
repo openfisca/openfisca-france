@@ -4,7 +4,7 @@ values:
     value: 3750
 metadata:
   short_label: Plafond
-  unit: currency
+  unit: currency_next_year
   reference:
     2007-01-01:
     - title: Loi 2007-1223, art. 5 du 21/08/2007

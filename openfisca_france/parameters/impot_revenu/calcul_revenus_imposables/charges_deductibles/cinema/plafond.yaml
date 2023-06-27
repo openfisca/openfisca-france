@@ -4,7 +4,7 @@ values:
     value: 18000
 metadata:
   short_label: Plafond
-  unit: currency
+  unit: currency_next_year
   reference:
     2001-01-01:
     - href: http://bofip.impots.gouv.fr/bofip/1371-PGP.html

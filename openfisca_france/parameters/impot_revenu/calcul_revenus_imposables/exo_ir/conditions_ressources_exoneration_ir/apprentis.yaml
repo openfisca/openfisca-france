@@ -91,7 +91,7 @@ values:
 metadata:
   short_label: Apprentis
   ipp_csv_id: exo_apprenti
-  unit: currency
+  unit: currency_next_year
   reference:
     1998-01-01:
       title: BOI 5 B-9-01 n°44 du 02/03/2001

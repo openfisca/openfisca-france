@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Plafond maximum
   ipp_csv_id: superplafsaldom
-  unit: currency
+  unit: currency_next_year
   reference:
     2004-01-01:
       title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)

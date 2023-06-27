@@ -13,4 +13,4 @@ values:
 metadata:
   short_label: Incrément
   ipp_csv_id: increment_survie
-  unit: currency
+  unit: currency_next_year

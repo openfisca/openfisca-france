@@ -5,7 +5,7 @@ values:
   2002-01-01:
     value: 20000
 metadata:
-  unit: currency
+  unit: currency_next_year
   reference:
     2001-01-01:
       title: Article 199 terdecies-0 A, II, du Code général des impôts

@@ -96,7 +96,7 @@ metadata:
   short_label: Plafond
   last_value_still_valid_on: "2023-01-05"
   ipp_csv_id: plaf_penalim
-  unit: currency
+  unit: currency_next_year
   reference:
     1974-01-01:
       title: Loi 74-1129 du 30/12/1974 (LF pour 1975)

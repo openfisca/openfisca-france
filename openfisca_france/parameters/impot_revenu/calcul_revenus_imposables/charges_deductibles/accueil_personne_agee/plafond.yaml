@@ -73,7 +73,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_frais
-  unit: currency
+  unit: currency_next_year
   reference:
     1984-01-01:
       title: Loi 84-1208 du 29/12/1984 (LF pour 1985)

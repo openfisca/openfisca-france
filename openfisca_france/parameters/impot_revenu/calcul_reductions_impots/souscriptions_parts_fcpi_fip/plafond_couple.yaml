@@ -11,7 +11,7 @@ values:
 metadata:
   short_label: Plafond couple
   ipp_csv_id: plaffcp_couple
-  unit: currency
+  unit: currency_next_year
   reference:
     2020-08-10:
     - title: Loi 2021-953 du 19/07/2021

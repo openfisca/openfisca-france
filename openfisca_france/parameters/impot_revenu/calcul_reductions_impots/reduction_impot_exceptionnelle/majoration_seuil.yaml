@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Majoration du seuil
   ipp_csv_id: reduc_except_rfr_seuil_majo
-  unit: currency
+  unit: currency_next_year
   reference:
     2013-01-01:
       title: Loi 2014-891 du 08/08/2014 (LFR pour 2014), art. 1

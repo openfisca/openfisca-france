@@ -6,7 +6,7 @@ values:
     value: 2450
 metadata:
   last_value_still_valid_on: "2022-08-08"
-  unit: currency
+  unit: currency_next_year
   reference:
     0001-01-01:
     - href: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/

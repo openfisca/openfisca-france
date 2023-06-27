@@ -23,7 +23,7 @@ metadata:
   last_value_still_valid_on: "2023-01-05"
   label_en: Child care costs (1979 - )
   ipp_csv_id: plafgardenf
-  unit: currency
+  unit: currency_next_year
   reference:
     1988-01-01:
       title: Loi 88-1149 du 23/12/1988 (LF pour 1989) - art. 4 (I)

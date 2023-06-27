@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Taux
   ipp_csv_id: txsaldomicile
-  unit: currency
+  unit: currency_next_year
   reference:
     1991-01-01:
       title: Loi 91-1322 du 30/12/1991 (LF pour 1992)

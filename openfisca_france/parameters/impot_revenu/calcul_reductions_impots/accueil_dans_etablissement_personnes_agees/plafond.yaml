@@ -15,7 +15,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_hebergante
-  unit: currency
+  unit: currency_next_year
   reference:
     1990-01-01:
       title: Décret 91-883 du 09/09/1991 - art. 1 / JORF 10/09/1991

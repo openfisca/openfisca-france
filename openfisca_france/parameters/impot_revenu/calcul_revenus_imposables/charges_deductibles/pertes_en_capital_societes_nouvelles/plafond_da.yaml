@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Plafond 2
   ipp_csv_id: plaf_capital_soc2
-  unit: currency
+  unit: currency_next_year
   reference:
     2003-01-01:
     - title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)

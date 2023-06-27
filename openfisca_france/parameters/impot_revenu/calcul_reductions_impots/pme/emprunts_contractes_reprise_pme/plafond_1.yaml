@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Plafond 1
   ipp_csv_id: plaf_pme1
-  unit: currency
+  unit: currency_next_year
   reference:
     2006-01-01:
       title: Loi 2006-1771 du 30/12/2006 - art. 56

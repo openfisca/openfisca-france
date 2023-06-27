@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Couple à imposition commune
   ipp_csv_id: plafond_cite_couple
-  unit: currency
+  unit: currency_next_year
   reference:
     2005-01-01:
       title: Loi n° 2004-1484 du 30 décembre 2004 (LF 2005), art. 90

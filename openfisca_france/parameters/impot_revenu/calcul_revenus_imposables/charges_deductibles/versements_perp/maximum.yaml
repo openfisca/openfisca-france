@@ -35,7 +35,7 @@ values:
 metadata:
   short_label: Maximum
   ipp_csv_id: max_deduc_perp
-  unit: currency
+  unit: currency_next_year
   reference:
     2004-01-01:
     - title: Loi 2004-1484 du 30/12/2004 (LF pour 2005)

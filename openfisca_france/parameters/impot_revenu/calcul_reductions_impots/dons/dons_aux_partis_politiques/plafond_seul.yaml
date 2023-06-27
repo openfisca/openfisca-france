@@ -4,7 +4,7 @@ values:
     value: 7500
 metadata:
   short_label: Plafond seul
-  unit: currency
+  unit: currency_next_year
   reference:
     2013-01-01:
       title: Code Général des Impôts, Art. 200, 3.

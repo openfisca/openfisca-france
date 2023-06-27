@@ -8,4 +8,4 @@ values:
     value: null
 metadata:
   short_label: Montant par personne
-  unit: currency
+  unit: currency_next_year

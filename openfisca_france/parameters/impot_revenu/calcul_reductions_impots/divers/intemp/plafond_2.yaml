@@ -4,6 +4,6 @@ values:
   1997-01-01:
     value: null
 metadata:
-  unit: currency
+  unit: currency_next_year
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/

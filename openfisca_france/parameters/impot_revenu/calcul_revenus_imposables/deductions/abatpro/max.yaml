@@ -93,7 +93,7 @@ values:
 metadata:
   short_label: Maximum
   ipp_csv_id: max_abtsal
-  unit: currency
+  unit: currency_next_year
   reference:
     1979-01-01:
       title: LF pour 1980

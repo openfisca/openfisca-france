@@ -5,7 +5,7 @@ values:
 metadata:
   short_label: Plafond travaux
   last_value_still_valid_on: "2023-01-09"
-  unit: currency
+  unit: currency_next_year
   reference:
     2009-01-01:
       title: Article 200 quindecies, IV. B. du Code général des impôts

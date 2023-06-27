@@ -16,7 +16,7 @@ values:
     value: 0
 metadata:
   ipp_csv_id: abt_rcm
-  unit: currency
+  unit: currency_next_year
   reference:
     1979-01-01:
       title: Loi 80-30 du 18/01/1980 (LF pour 1980)

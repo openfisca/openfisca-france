@@ -63,7 +63,7 @@ values:
 metadata:
   short_label: Salaire plafond
   ipp_csv_id: plaf_ab_dedsal
-  unit: currency
+  unit: currency_next_year
   reference:
     1977-01-01:
       title: LF pour 1978

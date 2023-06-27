@@ -6,7 +6,7 @@ values:
     value: 18000
 metadata:
   short_label: Plafond 1ère année (invalide)
-  unit: currency
+  unit: currency_next_year
   reference:
     2004-01-01:
       title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)

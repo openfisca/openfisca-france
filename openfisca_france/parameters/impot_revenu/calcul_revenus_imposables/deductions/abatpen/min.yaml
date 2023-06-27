@@ -57,7 +57,7 @@ values:
 metadata:
   short_label: Minimum
   ipp_csv_id: min_abtpen
-  unit: currency
+  unit: currency_next_year
   reference:
     1978-01-01:
       title: LF pour 1979

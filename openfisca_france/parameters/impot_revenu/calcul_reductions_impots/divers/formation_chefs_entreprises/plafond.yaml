@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_formachef
-  unit: currency
+  unit: currency_next_year
   notes:
     1992-01-01:
     - title: "plaf_formachef: il existe un plafonement trienal de 10 000 FRF pour les conjoints collaborateurs du chef d'entreprise"

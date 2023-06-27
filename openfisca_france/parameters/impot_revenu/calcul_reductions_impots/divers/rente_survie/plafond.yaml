@@ -15,4 +15,4 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_survie
-  unit: currency
+  unit: currency_next_year
