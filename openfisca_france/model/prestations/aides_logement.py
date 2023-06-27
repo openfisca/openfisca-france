@@ -605,7 +605,6 @@ class aide_logement_base_ressources_individu(Variable):
 
         abattement_frais_pro = where(frais_reels > abattement_forfaitaire, frais_reels, abattement_forfaitaire)
 
-        #rpns = individu('rpns_imposables', period.n_2)
         rpns_pvce = individu('rpns_pvce', period.n_2)
         rpns_pvct = individu('rpns_pvct', period.n_2)
         rpns_mvct = individu('moins_values_court_terme_non_salaries', period.n_2)
