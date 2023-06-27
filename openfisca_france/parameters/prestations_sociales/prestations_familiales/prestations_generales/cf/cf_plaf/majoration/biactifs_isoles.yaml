@@ -32,7 +32,7 @@ values:
     value: 8437
   2019-01-01:
     value: 8521
-  2020-04-01:
+  2020-01-01:
     value: 8657
   2021-01-01:
     value: 8735
@@ -41,8 +41,8 @@ values:
   2023-01-01:
     value: 8892
 metadata:
-  short_label: Majoration pour couple avec deux revenus ou parent isolé
-  label_en: "Family complement (CF): Extra allowances"
+  short_label: Pour couple avec deux revenus ou parent isolé
+  label_en: Increase for couple with two incomes or single parent
   ipp_csv_id: maj_plaf_cf_apje_adopt_bi
   unit: currency
   reference:
@@ -84,6 +84,9 @@ metadata:
     - title: Circulaire DSS/SD2B/2018/279 du 17/12/2018
     - title: Arrêté du 21/12/2018, art. 2
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037864993
+    2020-01-01:
+      title: Circulaire DSS/SD2B/2019/261 du 18/12/2019
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2019/19-12/ste_20190012_0000_0064.pdf
     2021-01-01:
     - title: Arrêté du 14/12/2020, art. 3
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694990
@@ -115,6 +118,7 @@ metadata:
     2016-01-01: "2015-12-18"
     2018-01-01: "2017-12-29"
     2019-01-01: "2017-12-23"
+    2022-01-01: "2021-12-28"
   notes:
     1986-01-01:
     - title: "art. R222-2 : la réglementation des plafonds est la même que pour l'APJE"
@@ -126,10 +130,5 @@ metadata:
     - title: Pas de modification en 2017 cf. circulaire DSS/SD2B/2016/396 du 21/12/2016
     2018-01-01:
     - title: Arrêté du 21/12/2018, Revalorisation des plafonds de 0,2%
-documentation: |-
-  Cette majoration s'applique pour les couples percevant deux revenus (13,6% du plafond annuel de la sécurité social au minimum en 2022) ou les parents isolés.
-
-  Les articles L522-1 et R522-1 du CSS prévoient la revalorisation des plafonds par Arrêté Ministériel, au rythme de l'évolution des prix hors tabac
-  (1) Dans les DOM, les plafonds de ressources applicables pour l’APJE, l’allocation d’adoption, le complément familial et l’allocation de rentrée scolaire sont ceux fixés pour l’allocation de rentrée scolaire en métropole
-
-  https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006173063&cidTexte=LEGITEXT000006073189&dateTexte=20160719
+    2022-01-01:
+    - title: Revalorisation des plafonds de 0,2%

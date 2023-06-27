@@ -1,4 +1,4 @@
-description: Taux de la base de calcul versé de l'Allocations postnatales (APN, 1975-1984)
+description: Taux de la base de calcul versé de l'Allocations postnatales (APN)
 values:
   1975-04-25:
     value: 2.6
@@ -24,6 +24,3 @@ metadata:
     - title: La loi 75-6 du 3 janvier 1975 crée l'APN
     1985-01-01:
     - title: "Allocation remplacée par Allocation au jeune enfant le 01/01/1985 : majoration pour 3e naissance ou plus supprimée pour les enfants conçus après le 31/12/84."
-documentation: |-
-  Notes :
-  (1) Le versement s'effectue en trois fois. Le taux de la base de calcul versé est égal au taux du premier versement plus 2 fois le taux du dernier versement.

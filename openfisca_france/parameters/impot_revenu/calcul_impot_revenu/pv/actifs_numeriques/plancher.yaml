@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Plancher
   ipp_csv_id: plancher_pv_actifs_numeriques
-  unit: currency
+  unit: currency_next_year
   reference:
     2019-01-01:
       title: Loi n° 2018-1317 du 28/12/2018 (LF 2019) - art.44

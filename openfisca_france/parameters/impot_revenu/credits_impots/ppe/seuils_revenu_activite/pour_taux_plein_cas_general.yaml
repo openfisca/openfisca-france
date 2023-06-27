@@ -24,7 +24,7 @@ metadata:
   short_label: Pour taux plein (cas général)
   label_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: seuil_ppe
-  unit: currency
+  unit: currency_next_year
   reference:
     2000-01-01:
     - title: Loi 2001-458 du 30/05/2001

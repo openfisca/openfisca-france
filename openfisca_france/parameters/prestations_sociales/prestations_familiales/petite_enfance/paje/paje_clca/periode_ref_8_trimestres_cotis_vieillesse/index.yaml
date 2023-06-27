@@ -1,8 +1,9 @@
 description: Période de référence pour justifier les 8 trimestres de cotisation vieillesse, pour le Complément de libre choix d'activité (CLCA) de la Prestation d'accueil du jeune enfant (PAJE)
 metadata:
   short_label: Période de référence pour justifier les 8 trimestres de cotisation vieillesse
-  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
+  label_en: Reference period to justify the 8 quarters of old age contributions
   order:
   - un_enfant
   - deux_enfants
   - trois_enfants_ou_plus
+documentation: Pour bénéficier du CLCA, on doit justifier d'au moins 8 trimestres de cotisation sur une période de référence précédant la naissance, l'adoption ou l'accueil de l'enfant concerné.

@@ -60,8 +60,8 @@ metadata:
       title: Arrêté du 16/12/2021
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044572366
     2023-01-01:
-      title: Arrêté du 21/12/2022, article 3
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046794219
+      title: Arrêté du 21/12/2022
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046794210
   official_journal_date:
     1978-07-13: "1985-12-21"
     1997-07-01: "1997-05-27"
@@ -74,6 +74,5 @@ metadata:
     2008-10-10:
     - title: Depuis 2008, les montants dans les arrêtés sont données en valeur, mais celles-ci correspondent bien à une multiplication par 0.3 (à l'arrondi près), au moins jusqu'à 2023.
 documentation: |-
-  Notes : 
-  - L'ARS a un plafond (dependant du nombre d'enfants) dès sa création en 1976.
-  - La majoration à la base du plafond de ressources s'applique dès le premier enfant.
+  L'ARS a un plafond (dependant du nombre d'enfants) dès sa création en 1976.
+  La majoration à la base du plafond de ressources s'applique dès le premier enfant.

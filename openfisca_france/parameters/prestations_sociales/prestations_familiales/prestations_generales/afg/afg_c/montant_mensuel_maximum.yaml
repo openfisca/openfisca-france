@@ -1,4 +1,4 @@
-description: Montant mensuel maximum de l'Allocation pour frais de garde (AFG, 1976-1977)
+description: Montant mensuel maximum de l'Allocation pour frais de garde (AFG)
 values:
   1976-07-01:
     value: 291.35
@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Montant mensuel max
-  label_en: "Child care costs allowance (AFG): General conditions and amounts"
+  label_en: Maximum monthly amount
   unit: currency
   reference:
     1976-07-01:
@@ -21,8 +21,5 @@ metadata:
   notes:
     1978-01-01:
     - title: Remplacé par "complément familial" depuis 01/01/1978
-documentation: |-
-  Notes :
-  (1) L'allocation couvre le montant des frais réellement exposés pour un ou plusieurs enfants dans la limite du plafond mentionné dans cette colonne.
-  (2) L'allocation pour frais de garde est instituée par la loi 72-8 du 3 janvier 1972 art 7 à 9
-  (3) L'application des dispositions qui lui sont relatives sont, quant à elles, mises en place par le décret 72-532 du 29 juin 1972
+documentation:
+  L'allocation couvre le montant des frais réellement exposés pour un ou plusieurs enfants dans la limite du plafond mentionné dans cette colonne.

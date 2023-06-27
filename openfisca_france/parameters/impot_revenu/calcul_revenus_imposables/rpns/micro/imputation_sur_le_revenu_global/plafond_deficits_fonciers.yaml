@@ -1,5 +1,7 @@
 description: Plafond (déficits fonciers) de l'Imputation sur le revenu global pour les régimes micro-entreprise et microfoncier
 values:
+  1979-01-01:
+    value: null
   1992-01-01:
     value: 50000
   1995-01-01:
@@ -9,8 +11,11 @@ values:
 metadata:
   short_label: Plafond (déficits fonciers)
   ipp_csv_id: plaf_def_fonc
-  unit: currency
+  unit: currency_next_year
   reference:
+    1979-01-01:
+      title: Loi 80-30 du 18/01/1980 (LF pour 1980)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000705191
     1992-01-01:
       title: Loi 92-1376 du 30/12/1992 (LF pour 1993)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000178406
@@ -21,12 +26,8 @@ metadata:
       title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
   official_journal_date:
+    1979-01-01: "1980-01-19"
     1992-01-01: "1992-12-31"
     1995-01-01: "1995-12-31"
     2001-01-01: "2001-12-29"
-  notes:
-    1998-01-01:
-    - title: Création du régime microfoncier
-documentation: |-
-  Notes :
-  Plafond déficits fonciers : art. 156-I-3° du CGI
+documentation: "Plafond déficits fonciers : art. 156-I-3° du CGI"

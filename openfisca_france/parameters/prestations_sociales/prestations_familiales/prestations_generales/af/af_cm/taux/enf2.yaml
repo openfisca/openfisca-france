@@ -11,7 +11,7 @@ values:
   1982-02-01:
     value: 0.32
 metadata:
-  short_label: Taux 2 enfants
+  short_label: 2 enfants
   last_value_still_valid_on: "2023-05-04"
   label_en: "Family allowances (AF): General conditions and amount"
   ipp_csv_id: af_t1_2enf
@@ -48,7 +48,5 @@ metadata:
     - title: Majoration 46% pour le 3e enfant, 41% pour le 4e
     1982-02-01:
     - title: Baisse de 46% à 40% pour le 3e enfant
-documentation: |-
-  Notes :
-  L'allocation familiale est créée en 1932 par la loi Landry du 11/03/1932, art. 1 et 2 (modif titres III et V du code du travail). Parution au JO 12/03/1932
+documentation:
   Le nombre minimal de deux enfants pour obtenir l'allocation et les majorations par enfant supplémentaire sont instituées dès 1946 (Loi 46-1835 du 22 août 1946 fixant le régime des prestations familiales)

@@ -10,7 +10,7 @@ values:
     value: 0.4165
 metadata:
   short_label: Taux de base
-  label_en: "Family complement (CF): Thresholds for means-testing in oversea territories"
+  label_en: Prime rate
   unit: BMAF
   reference:
     2002-01-01:

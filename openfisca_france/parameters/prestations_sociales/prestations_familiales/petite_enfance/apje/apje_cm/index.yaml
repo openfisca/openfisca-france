@@ -1,8 +1,10 @@
 description: Conditions générales et montants de l'Allocation pour jeune enfant (APJE)
 metadata:
+  documentation_start: true
   short_label: Conditions générales et montants
   label_en: "Allowance for Young Children (APJE): General conditions and amount"
   order:
   - mois_grossesse_ouverture_droits
   - age_limite_enfants_ouvrant_droit_apje
   - taux
+documentation: Création de l'AJE en 1985 (décret 85-475 du 26/04/1985) qui devient par la suite l'APJE (décret 87-206 du 27/03/1987)

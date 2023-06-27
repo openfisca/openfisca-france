@@ -6,7 +6,8 @@ values:
     value: 562
 metadata:
   last_value_still_valid_on: "2023-07-05"
-  unit: currency
+  short_label: Plafond réduction d'impôt
+  unit: currency_next_year
   reference:
     2021-01-01:
       title: Loi  2021-953 du 19/07/2021 de finances rectificative pour 2021 - art.18 (modifie Art. 200 du CGI)
@@ -20,4 +21,3 @@ documentation: |-
   Notes :
   Ref : Article 200, 1 ter du CGI.
   La limite de versements est relevée chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu de l'année précédant celle des versements. Le montant obtenu est arrondi, s'il y a lieu, à l'euro supérieur.
-

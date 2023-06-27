@@ -1,8 +1,11 @@
 description: Plafonds de ressources pour un revenu (brut imposable) entre 1978 et 1986 du Complément familial (CF)
 metadata:
+  documentation_start: true
   short_label: Pour un revenu (brut imposable)
-  label_en: "Family complement (CF): Thresholds for means-testing"
+  label_en: For an income (gross taxable)
   order:
   - 1_enfant
   - enfant_supplementaire
   - 1_enfant_biactifs_isoles
+documentation:
+  Le brut imposable est calculé à partir du net imposable dans le cas de salariés n'ayant d'autres sources de revenus que leurs salaires et ne bénéficiant pas d'un abattement supplémentaire pour frais professionnels, ie abattements de 10% puis de 20% uniquement

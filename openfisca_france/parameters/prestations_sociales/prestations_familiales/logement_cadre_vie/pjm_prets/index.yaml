@@ -1,7 +1,10 @@
-description: Montant des prêts susceptibles d'être accordés dans le cadre du Prêt aux jeunes ménages (PJM)
+description: "Prêt aux jeunes ménages (PJM) : montant des prêts susceptibles d'être accordés"
 metadata:
-  short_label: Montant PJM
+  documentation_start: true
+  short_label: Montant des prêts susceptibles d'être accordés
   label_en: "Loans to young household (PJM): Amount of loans"
   order:
   - pret_maximum
   - cumul_prets
+documentation:
+  La loi 75-6 du 03/01/1975 crée le Prêt aux Jeunes ménages (codifié par l'art. L543 du CSS), il est ensuite mis en application par le décrêt 76-117 du 03/02/1976 qui est applicble à compter du 1er avril 1975

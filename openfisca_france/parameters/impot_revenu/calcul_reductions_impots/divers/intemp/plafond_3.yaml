@@ -1,4 +1,7 @@
+description: Plafond 3
 values:
+  1978-01-01:
+    value: null
   1991-01-01:
     value: 20000
   2001-01-01:
@@ -6,6 +9,10 @@ values:
   2003-01-01:
     value: null
 metadata:
-  unit: currency
+  ipp_csv_id: plaf_habitat3
+  unit: currency_next_year
   reference:
     href: https://www.ipp.eu/outils/baremes-ipp/
+  notes:
+    2001-01-01:
+    - title: "Majoration sur les revenus 2001 : 381 euros pour le 2° enfant et 457 à partir du 3°"

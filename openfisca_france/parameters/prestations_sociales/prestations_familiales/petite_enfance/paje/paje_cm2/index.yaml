@@ -1,6 +1,8 @@
 description: Conditions et montants de la Prime à la naissance et à l'adoption de la Prestation d'accueil du jeune enfant (PAJE)
 metadata:
-  short_label: Prime à la naissance et à l'adoption
+  documentation_start: true
+  short_label: "Prime à la naissance et à l'adoption"
   label_en: "Early childhood benefit (PAJE) -- Birth and adoption premium : conditions and amounts"
   order:
   - montant
+documentation: A partir du 1er avril 2014, les montants de prime à la naissance et de prime à l'adoption sont gelés à leur montant calculé à partir de la BMAF en vigueur au 1er avril 2013. Cf. III. de l'art. 74 de la loi 2013-1203 du 23 décembre 2013 de financement de la sécurité sociale pour 2014. Ce paragraphe III. est abrogé par la loi 2017-1836 du 30/12/2017 avec application de l'abrogation à compter du 1er avril 2018.

@@ -1,7 +1,7 @@
-description: Plafond de ressources pour le droit au salaire unique, pour l'Allocation de salaire unique (ASU, 1941-1977)
+description: Plafond de ressources pour le droit au salaire unique, pour l'Allocation de salaire unique (ASU)
 metadata:
   short_label: Droit au salaire unique
-  label_en: "Single earner allowance (ASU): Thresholds for means-testing"
+  label_en: Right to a single salary
   order:
   - sans_enfant
   - 1_enfant

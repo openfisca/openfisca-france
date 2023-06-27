@@ -1519,7 +1519,7 @@ metadata:
     2020-01-01:
     - title: La modification du taux est codifiée par la LF 2019 (le A. du IV. de l'art. 2 précise que l'application se fait au titre des revenus perçus ou réalisés en 2020). Les seuils d'entrée des troisièmes et quatrièmes tranches sont abaissés en compensation de la baisse du taux d'imposition dans la deuxième tranche, afin que la baisse d'impôt profite en priorité aux contribuables des deux premières tranches.
   rate_unit: /1
-  threshold_unit: currency
+  threshold_unit: currency_next_year
 documentation: |-
   Référence générale :
   T. Piketty, Les hauts revenus en France au XXe siècle. Inégalités et redistribution 1901-1998, Grasset (2001).

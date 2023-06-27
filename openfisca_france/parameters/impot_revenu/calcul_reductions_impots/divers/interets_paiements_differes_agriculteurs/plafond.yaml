@@ -7,8 +7,6 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_intagri
-  unit: currency
+  unit: currency_next_year
 documentation: |-
   Intérêts pour paiement différé accordé aux agriculteurs : plafond à doubler pour couple
-  Art. 199 vicies A du CGI. Loi 2006-11 du 5 janvier 2006 - art. 16 (V) JORF 6 janvier 2006
-  Art. 200 octies du CGI. Loi 2008-1249 du 1er décembre 2008 - art. 12

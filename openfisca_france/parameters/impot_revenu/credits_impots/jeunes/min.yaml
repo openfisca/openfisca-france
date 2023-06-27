@@ -6,4 +6,4 @@ values:
     value: null
 metadata:
   short_label: Plancher de revenus
-  unit: currency
+  unit: currency_next_year

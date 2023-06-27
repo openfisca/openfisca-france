@@ -1,3 +1,5 @@
+description: Intérêts d'emprunts
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  order:
+  - plafond
+  - increment

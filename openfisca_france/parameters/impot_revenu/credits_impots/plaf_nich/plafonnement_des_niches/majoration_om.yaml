@@ -1,11 +1,18 @@
-description: Majoration du plafond global des avantages fiscaux pour les investissements d'outre-mer
+description: Majoration du plafonnement des niches
 values:
   2013-01-01:
     value: 8000
 metadata:
-  last_value_still_valid_on: "2022-10-11"
-  unit: currency
+  short_label: Majoration
+  ipp_csv_id: majo_nich
+  unit: currency_next_year
   reference:
     2013-01-01:
-      title: LOI 2012-1509 du 29/12/2012 de finances pour 2013 art. 73 (modifie l'art. 200-0 A du CGI)
-      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000026857557
+    - title: Loi 2012-1509 du 29/12/2012 - art. 73 (VD)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026872821&cidTexte=JORFTEXT000026856853
+    - title: BOI-IR-LIQ-20-20-10-20130704
+  official_journal_date:
+    2013-01-01: "2012-12-30"
+  notes:
+    2013-01-01:
+    - title: Le plafond est majoré de 8 000 € pour les réductions d'impôt en faveur des investissements outre-mer et celles accordées au titre des souscriptions au capital de SOFICA

@@ -6,7 +6,7 @@ values:
     value: 1000
 metadata:
   ipp_csv_id: plaf_ND
-  unit: currency
+  unit: currency_next_year
   reference:
     2019-01-01:
     - title: Loi n° 2019-803 du 29 juillet 2019 pour la conservation et la restauration de la cathédrale Notre-Dame de Paris et instituant une souscription nationale à cet effet - art. 5

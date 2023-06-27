@@ -6,10 +6,10 @@ values:
     value: 2450
 metadata:
   last_value_still_valid_on: "2023-07-05"
-  unit: currency
+  short_label: Plafond max (Guadeloupe, Martinique, Réunion)
+  unit: currency_next_year
   reference:
-    0001-01-01:
-    - href: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/
+    2001-01-01:
     - href: http://bofip.impots.gouv.fr/bofip/4618-PGP
     2018-01-01:
       title: Article 197, I.3. du Code général des impôts

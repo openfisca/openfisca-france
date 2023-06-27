@@ -1,7 +1,5 @@
 description: Majoration pour biactifs et isolés, pour plafonds de ressources d'Allocation de base à taux partiel, primes à la naissance et à l'adoption, pour enfants nés ou adoptés entre le 01/04/2014 et le 31/03/2018 de la Prestation d'accueil du jeune enfant (PAJE)
 values:
-  2004-01-01:
-    value: 0
   2014-04-01:
     value: 9597
   2015-01-01:
@@ -16,9 +14,11 @@ values:
     value: 9976
   2021-01-01:
     value: 10066
+  2021-04-01:
+    value: null
 metadata:
   short_label: Biactifs et parents isolés
-  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  label_en: Biactive and single parents
   ipp_csv_id: maj_plaf_paje_bi_pn_pa_abpartiel_entre_20140401_20180331
   unit: currency
   reference:

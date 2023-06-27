@@ -7,6 +7,7 @@ values:
   2014-01-01:
     value: 0.5
 metadata:
+  short_label: 4 à 6 ans
   ipp_csv_id: abat_pv_4ans
   unit: /1
   notes:

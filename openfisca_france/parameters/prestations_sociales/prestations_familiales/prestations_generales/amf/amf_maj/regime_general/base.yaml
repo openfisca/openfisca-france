@@ -1,4 +1,4 @@
-description: Base de la majoration pour le régime général des Allocation de la mère au foyer (AMF, 1955-1977)
+description: Base de la majoration pour le régime général des Allocation de la mère au foyer (AMF)
 values:
   1976-07-01:
     value: 388.2
@@ -6,7 +6,7 @@ values:
     value: null
 metadata:
   short_label: Base
-  label_en: "Allowance for stay-at-home-mother (AMF): Extra allowances"
+  label_en: Base
   ipp_csv_id: maj_gene_base
   unit: currency
   reference:
@@ -21,6 +21,3 @@ metadata:
   notes:
     1976-07-01:
     - title: Remplacé par le "complément familial" depuis 01/01/1978
-documentation: |-
-  Notes :
-   La majoration est instituée par la loi 72-8 du 3 janvier 1972, art 2

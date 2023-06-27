@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Montant
   ipp_csv_id: abt_av
-  unit: currency
+  unit: currency_next_year
   reference:
     1997-01-01:
       title: Loi 97-1269 du 30/12/1997 (LF pour 1998)
@@ -24,7 +24,5 @@ metadata:
     1997-01-01:
     - title: "Abattement forfaitaire sur dividendes: art. 158-5 du CGI (à doubler pour les couples)"
 documentation: |-
-  Notes :
   Abattement sur assurance-vie : l'abattement est multiplié par deux pour les couples.
-  Cet abattement concerne les contrats d'une durée d'au moins six ans, pour les contratssouscrits entre le 01/01/1983
-  et le 31/12/1989, et d'au moins huits ans pour les contrats souscrits depuis le 01/01/1990. voir l'art. 125-0 A du CGI.
+  Cet abattement concerne les contrats d'une durée d'au moins six ans, pour les contratssouscrits entre le 01/01/1983 et le 31/12/1989, et d'au moins huits ans pour les contrats souscrits depuis le 01/01/1990. voir l'art. 125-0 A du CGI.

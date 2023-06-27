@@ -5,3 +5,5 @@ metadata:
   order:
   - en_pourcentage_pss
   - en_nombre_fois_bmaf
+documentation:
+  Les revenus professionnels pris en compte sont ceux de l'année N-2 jusqu'au 01/01/2012, puis ceux de l'année N à partir de cette date.
