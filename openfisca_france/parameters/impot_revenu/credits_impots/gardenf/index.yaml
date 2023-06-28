@@ -3,7 +3,6 @@ metadata:
   documentation_start: true
   short_label: Frais de garde des enfants
   order:
-  - date_entree_en_vigueur
   - taux
   - plafond
 documentation: |-
