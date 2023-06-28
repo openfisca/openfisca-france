@@ -1,6 +1,6 @@
 description: Plafond des niches
 values:
-  2008-01-01:
+  2009-01-01:
     value: 25000
   2010-01-01:
     value: 20000
@@ -13,6 +13,9 @@ metadata:
   ipp_csv_id: plaf_nich
   unit: currency_next_year
   reference:
+    2009-01-01:
+      title: Loi 2009-594 du 27/05/2009 - art. 40
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020672153&cidTexte=JORFTEXT000020671201
     2010-01-01:
       title: Loi 2009-1673 du 30/12/2009 - art. 81 (V)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000021575871&cidTexte=JORFTEXT000021557902
@@ -24,12 +27,15 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000026872821&cidTexte=JORFTEXT000026856853
     - title: BOI-IR-LIQ-20-20-10-20130704
   official_journal_date:
+    2009-01-01: "2008-12-28"
     2010-01-01: "2009-12-31"
     2011-01-01: "2010-12-30"
+    2013-01-01: "2012-12-30"
+  notes:
+    2013-01-01:
+    - title: Le plafond est majoré de 8 000 € pour les réductions d'impôt en faveur des investissements outre-mer et celles accordées au titre des souscriptions au capital de SOFICA
 documentation: |-
   Art. 200-0 A du CGI
   Plafonnement total des niches = plafonnement des niches + taux de plafonnement * revenu net imposable
-  Exemple de calculs :
-  BOI-IR-LIQ-20-20-10-30-20130704
-  Liste des avantages fiscaux :
-  BOI-IR-LIQ-20-20-10-10-20130704
+  Exemple de calculs : BOI-IR-LIQ-20-20-10-30-20130704
+  Liste des avantages fiscaux : BOI-IR-LIQ-20-20-10-10-20130704

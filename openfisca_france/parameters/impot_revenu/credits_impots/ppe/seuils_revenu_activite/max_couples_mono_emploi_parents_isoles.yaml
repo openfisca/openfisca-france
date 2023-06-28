@@ -1,5 +1,7 @@
 description: Revenu d'activité individuel maximum (point de sortie) pour les couples monoactifs et parents isolés pour la Prime pour l'emploi (PPE, 2000 - 2015)
 values:
+  1999-01-01:
+    value: null
   2000-01-01:
     value: 146257
   2001-01-01:

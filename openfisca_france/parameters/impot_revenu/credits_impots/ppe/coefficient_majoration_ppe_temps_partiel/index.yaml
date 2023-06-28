@@ -1,6 +1,6 @@
 description: Coefficient de majoration pour temps partiel de la Prime pour l'emploi (PPE, 2000 - 2015)
 metadata:
-  short_label: Majoration tps partiel
+  short_label: Majoration temps partiel
   label_en: Employment Allowance (2001 - 2015)
   order:
   - taux_1

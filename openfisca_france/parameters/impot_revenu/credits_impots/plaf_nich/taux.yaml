@@ -1,6 +1,6 @@
 description: Taux du plafonnement des niches
 values:
-  2008-01-01:
+  2009-01-01:
     value: 0.1
   2010-01-01:
     value: 0.08
@@ -40,11 +40,3 @@ metadata:
   notes:
     2013-01-01:
     - title: Le plafond est majoré de 8 000 € pour les réductions d'impôt en faveur des investissements outre-mer et celles accordées au titre des souscriptions au capital de SOFICA
-documentation: |-
-  Notes :
-  Art. 200-0 A du CGI
-  Plafonnement total des niches = plafonnement des niches + taux de plafonnement * revenu net imposable
-  Exemple de calculs :
-  BOI-IR-LIQ-20-20-10-30-20130704
-  Liste des avantages fiscaux :
-  BOI-IR-LIQ-20-20-10-10-20130704

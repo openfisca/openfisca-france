@@ -1,5 +1,7 @@
 description: Plafond du crédit d'impôt pour frais de garde d'enfants
 values:
+  1977-01-01:
+    value: null
   1978-01-01:
     value: 3000
   1983-01-01:
@@ -48,10 +50,5 @@ metadata:
     2005-01-01:
     - title: À partir de l'imposition des revenus de 2005, la réduction d'impot devient un crédit d'impot.
 documentation: |-
-  Notes :
-  (1) Frais de garde des enfants à l'extérieur du domicile.
   Le plafond est exprimé par enfant : art. 200 quater B du CGI
-  (2) Les enfants ouvrant droit à réduction d'impôt sont ceux âgés de moins de 6 ans au 1er janvier de l'année d'imposition.
-  (3) La réduction d'impôt est accordée aux contribuables célibataires, veufs, divorcés ou séparés, domiciliés en France et qui exercent une activité professionnelle.
-  (4) La même possibilité est accordée aux foyers fiscaux dans lesquels chacun des conjoints, soit occupe un emploi au moins à mi-temps, soit ne peut exercer cette activité du fait d'une longue maladie ou d'une infirmité ou poursuit des études dans l'enseignement supérieur.
-  (5) Le plafond est divisé par deux dans le cas d'un enfant en résidence alternée
+  Le plafond est divisé par deux dans le cas d'un enfant en résidence alternée
