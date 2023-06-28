@@ -1,5 +1,14 @@
  # Changelog
+### 149.1.2 [#2135](https://github.com/openfisca/openfisca-france/pull/2135)
 
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prestations/enseignement_superieur/aide_merite.py`.
+* Détails :
+  - En lançant les tests avec la version `40.1.0` d'`openfisca-core`, openfisca **crash** sur la syntaxe :
+  ```python
+  Instant((period.this_year.offset(-1), 9, 1))
+  ```
 ### 149.1.1 [#2123](https://github.com/openfisca/openfisca-france/pull/2123)
 
 * Changement mineur : Ces changements modifient des éléments non fonctionnels de ce dépôt.
