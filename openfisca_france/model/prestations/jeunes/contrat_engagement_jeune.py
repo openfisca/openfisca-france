@@ -1,5 +1,3 @@
-from openfisca_core.periods import Period
-
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from numpy import (
     logical_not as not_,
@@ -21,8 +19,8 @@ class contrat_engagement_jeune_montant_forfaitaire(Variable):
     def formula_2022_03_01(individu, period, parameters):
         parameters_montants = parameters(period).prestations_sociales.aides_jeunes.contrat_engagement_jeune.montants
         majeur = individu('majeur', period)
-        previous_year = Period(('year', period.start, 1)).offset(-1)
-        tranche = individu.foyer_fiscal('ir_tranche', previous_year)
+
+        tranche = individu.foyer_fiscal('ir_tranche', period.n_2)
 
         montant_forfaitaire = (
             parameters_montants.montant_mineurs * not_(majeur) * (tranche <= 1)
@@ -52,8 +50,7 @@ class contrat_engagement_jeune_eligibilite(Variable):
         eligibilite_statut = activite != TypesActivite.etudiant
 
         # En fonction de l'imposition du foyer fiscal
-        previous_year = Period(('year', period.start, 1)).offset(-1)
-        tranche = individu.foyer_fiscal('ir_tranche', previous_year)
+        tranche = individu.foyer_fiscal('ir_tranche', period.n_2)
         eligibilite_ir = (tranche <= 1)
 
         # En fonction d'autres prestations et dispositifs
