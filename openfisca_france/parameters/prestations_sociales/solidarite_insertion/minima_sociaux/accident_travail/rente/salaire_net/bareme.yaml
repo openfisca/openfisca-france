@@ -26,5 +26,5 @@ metadata:
       title: Article R434-28 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750376/
   rate_unit: /1
-  threshold_unit: SMIC
+  threshold_unit: smic
 documentation: Barème utilisé pour la détermination de rente_accident_travail_salaire_utile (cf. formule)
