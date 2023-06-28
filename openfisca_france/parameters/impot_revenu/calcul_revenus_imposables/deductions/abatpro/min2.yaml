@@ -1,5 +1,7 @@
 description: Abattement minimum (Demandeur d'emploi) de la déduction forfaitaire pour frais professionnels
 values:
+  1942-01-01:
+    value: null
   1997-01-01:
     value: 5000
   1998-01-01:
@@ -41,7 +43,7 @@ values:
   2018-01-01:
     value: null
 metadata:
-  short_label: Allocations chômage
+  short_label: Minimum pour les allocations chômage
   last_value_still_valid_on: "2022-09-26"
   ipp_csv_id: min_abtsal_chom
   unit: currency_next_year
@@ -139,10 +141,3 @@ metadata:
     - title: Intégration de l'abattement de 20% au barème de l'impôt sur le revenu
     2018-01-01:
     - title: Suppression de la déduction minimale majorée pour les demandeurs d'emploi depuis plus d'un an.
-documentation: |-
-  Notes :
-  (1) Entre 1915 et 1944, des déductions du revenu imposable pour charges des familles étaient appliquées pour le calcul de l'impôt général sur le revenu (et de l'impôt cédulaire sur les salaires) sous forme d'abattement général dépendant du statut marital et du nombre d'enfant.
-  > Voir Annexe C-1 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001) ; voir aussi note (3) de l'onglet sur le quotient familial concernant les réductions d'impôt pour charges de famille entre 1915 et 1947.
-  (2) La déduction forfaitaire de 10 % prévue par l'article 83 -3°, 2e alinéa du CGI pour la prise en compte des frais professionnels des salariés est plafonnée.
-  (3) Il n'y a pas de plafond à la déduction entre 1952 et 1978.Entre 1934 et 1942, la déduction de 10 % est aussi plafonnée à 20 000 FRF (colonne J).
-  > Voir Annexe C-3 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001)

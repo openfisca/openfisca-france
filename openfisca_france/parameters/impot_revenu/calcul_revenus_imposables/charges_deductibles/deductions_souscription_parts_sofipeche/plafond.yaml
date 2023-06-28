@@ -1,0 +1,31 @@
+description: Plafond
+values:
+  1973-01-01:
+    value: null
+  1998-01-01:
+    value: 125000
+  2001-01-01:
+    value: 19000
+  2007-01-01:
+    value: null
+metadata:
+  ipp_csv_id: plaf_sofipeche_charge
+  unit: currency_next_year
+  reference:
+    1998-01-01:
+    - title: Loi 98-1266 du 30/12/1998 (LF pour 1999)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000209044
+    - title: BOI 5 B-9-01 n°44 du 02/03/2001
+    2001-01-01:
+    - title: Loi 2001-1275 du 28/12/2001 (LF pour 2002)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000592233
+    - title: BOI 5 B-3-02 n°18 du 25/01/2002
+    2007-01-01:
+    - title: Loi 2007-1822 du 24/12/2007 (LF pour 2008)
+      href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000017853368
+    - title: BOI 5 B-11-08 n°28 du 04/03/2008
+  official_journal_date:
+    1998-01-01: "1998-12-31"
+    2001-01-01: "2001-12-29"
+    2007-01-01: "2007-12-27"
+documentation: SOFICA et SOFIPECHE deviennent des crédits d'impôt à partir de la déclaration des revenus de 2006 (aller aux onglets SOFICA et SOFIPECHE)

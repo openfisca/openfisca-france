@@ -3,6 +3,6 @@ metadata:
   short_label: Régimes micro
   label_en: Micro-firms and micro-landed schemes (1980 -)
   order:
+  - imputation_sur_le_revenu_global
   - microentreprise
   - microfoncier
-  - imputation_sur_le_revenu_global
