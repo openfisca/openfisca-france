@@ -6,5 +6,5 @@ metadata:
   order:
   - taux
   - plafond
-  - majoration
+  - plafonnement_des_niches
 documentation: Art. 200-0 A du CGI
