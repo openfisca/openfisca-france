@@ -1,4 +1,16 @@
- # Changelog
+# Changelog
+
+### 149.1.3 [#2137](https://github.com/openfisca/openfisca-france/pull/2137)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters`.
+* Détails :
+  - Renommage de l'unité SMIC en smic.
+  - Correction des noms à l'intérieur d'un champ "order"
+  - Renommage d'un fichier .yml en .yaml
+  - Nettoyage automatique de l'ensemble des paramètres
+
 ### 149.1.2 [#2135](https://github.com/openfisca/openfisca-france/pull/2135)
 
 * Correction d'un crash.
@@ -17,7 +29,7 @@
 * Détails : Implémente des unités plus précises du SMIC
 
 
-### 149.1.0 [#2118](https://github.com/openfisca/openfisca-france/pull/2118)
+## 149.1.0 [#2118](https://github.com/openfisca/openfisca-france/pull/2118)
 
 * Amélioration technique.
 * Périodes concernées : à partir du 01/04/2014
