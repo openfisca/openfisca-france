@@ -1,4 +1,4 @@
-description: Montant minimum de la participation minimale « P0 » intervenant sur la participation personnelle du ménage « Pp » prise en compte dans le calcul de l'aide mensuelle au logement 
+description: Montant minimum de la participation minimale « P0 » intervenant sur la participation personnelle du ménage « Pp » prise en compte dans le calcul de l'aide mensuelle au logement
 values:
   2001-01-01:
     value: 175

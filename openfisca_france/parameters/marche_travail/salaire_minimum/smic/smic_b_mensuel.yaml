@@ -239,7 +239,7 @@ values:
   2023-01-01:
     value: 1709.28
   2023-05-01:
-    value: 1747.20
+    value: 1747.2
 metadata:
   short_label: SMIC brut mensuel
   last_value_still_valid_on: "2023-05-25"
