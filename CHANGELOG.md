@@ -28,7 +28,6 @@
 * Zones impactées : paramètres dont l'unité est le smic
 * Détails : Implémente des unités plus précises du SMIC
 
-
 ## 149.1.0 [#2118](https://github.com/openfisca/openfisca-france/pull/2118)
 
 * Amélioration technique.
