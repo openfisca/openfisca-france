@@ -132,13 +132,13 @@ values:
     value: 1146.69
   2022-07-01:
     value: 1192.55
-  2023-04-01: 
+  2023-04-01:
     value: 1210.9
 metadata:
   documentation_start: true
   short_label: Majoration tierce personne (MTP)
-  label_en: Amount of markup for constant support to a third party (MTP)
   last_value_still_valid_on: "2023-05-09"
+  label_en: Amount of markup for constant support to a third party (MTP)
   unit: currency
   reference:
     1976-01-01:

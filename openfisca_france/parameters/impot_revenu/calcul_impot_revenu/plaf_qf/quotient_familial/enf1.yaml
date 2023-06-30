@@ -4,8 +4,8 @@ values:
     value: 0.5
 metadata:
   short_label: Premier ou deuxième enfant
-  unit: part_quotient_familial
   last_value_still_valid_on: "2022-08-08"
+  unit: part_quotient_familial
   reference:
     2000-01-01:
       title: Article 194, I. du Code général des impôts

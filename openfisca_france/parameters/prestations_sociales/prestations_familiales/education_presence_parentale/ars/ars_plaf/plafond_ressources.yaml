@@ -58,8 +58,8 @@ values:
     value: 19827
 metadata:
   short_label: Base du plafond de ressources
-  label_en: "Back-to-school allowance (ARS): Thresholds for means-testing"
   last_value_still_valid_on: "2023-05-11"
+  label_en: "Back-to-school allowance (ARS): Thresholds for means-testing"
   ipp_csv_id: plaf_ars_0enf
   unit: currency
   reference:

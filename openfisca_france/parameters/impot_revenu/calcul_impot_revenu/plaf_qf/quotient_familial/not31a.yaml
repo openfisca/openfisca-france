@@ -4,8 +4,8 @@ values:
     value: 0.5
 metadata:
   short_label: Personne sans personne à charge, titulaire d'une pension pour invalidité ou de la CMI-invalidité
-  unit: part_quotient_familial
   last_value_still_valid_on: "2023-02-27"
+  unit: part_quotient_familial
   reference:
     2000-01-01:
       title: Article 195, 1.d-dbis. du Code général des impôts

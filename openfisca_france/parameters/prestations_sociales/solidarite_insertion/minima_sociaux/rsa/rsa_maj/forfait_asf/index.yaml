@@ -2,6 +2,5 @@ description: Forfait de l'allocation de soutien familial (ASF) pris en compte da
 metadata:
   short_label: Forfait allocation de soutien familial (ASF)
   order:
-  - taux_1
-  - taux_2
-
+  - taux1
+  - taux2

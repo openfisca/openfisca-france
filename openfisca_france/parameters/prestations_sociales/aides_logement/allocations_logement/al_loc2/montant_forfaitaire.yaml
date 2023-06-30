@@ -6,8 +6,8 @@ values:
     value: 5
 metadata:
   short_label: Abattement forfaitaire du montant de l'aide
-  label_en: Parameters for the rental sector (after the 2001 reform)
   last_value_still_valid_on: "2023-02-20"
+  label_en: Parameters for the rental sector (after the 2001 reform)
   unit: currency
   reference:
     2017-10-01:
@@ -22,4 +22,4 @@ metadata:
   notes:
     2017-10-01:
     - title: Actualisation paramètres + baisse de 5 euros des aides au logement
-documentation: "L'arrêté est mentionné dans l'article D823-16 du code de la construction et de l'habitation par la phrase « Le résultat ainsi obtenu est minoré d'un montant fixé forfaitairement par arrêté.» "
+documentation: L'arrêté est mentionné dans l'article D823-16 du code de la construction et de l'habitation par la phrase « Le résultat ainsi obtenu est minoré d'un montant fixé forfaitairement par arrêté.»
