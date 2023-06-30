@@ -722,3 +722,34 @@
       2007-04:
         - 0
         - 0
+
+- name: AAH individu payant une pension
+  period: 2023-06
+  absolute_error_margin: 1
+  input:
+    menage:
+      personne_de_reference: [albert]
+      autres: [albertjr]
+    individus:
+      albert:
+        age: 45
+        taux_incapacite: 0.9
+        salaire_imposable:
+          2023-06: 1200
+          2023-05: 1200
+          2023-04: 1200
+          2023-03: 1200
+        pensions_alimentaires_versees_individu:
+          2023-06: 200
+          2023-05: 200
+          2023-04: 200
+          2023-03: 200
+      albertjr:
+        age: 10
+        pensions_alimentaires_percues:
+          2023-06: 200
+          2023-05: 200
+          2023-04: 200
+          2023-03: 200
+  output:
+    aah_base_ressources: [310, 0] # ((0.2 * 6290 + 0.6 * 8110) - (200 * 12))/12 ~= 310

@@ -2,7 +2,7 @@ from openfisca_core.periods import Period
 
 from openfisca_france.model.base import *
 
-from numpy import datetime64, abs as abs_
+from numpy import datetime64, absolute as abs_
 
 # Références juridiques - Code de la sécurité sociale
 #
@@ -111,10 +111,10 @@ class aah_base_ressources(Variable):
             base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
             base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
 
-            base_ressource_demandeur = assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite
+            base_ressource_demandeur = max_(0, assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite)
 
-            base_ressource_demandeur_conjoint = individu.famille.demandeur('aah_base_ressources_activite_eval_trimestrielle', period) + individu.famille.demandeur('aah_base_ressources_hors_activite_eval_trimestrielle', period)
-            base_ressource_conjoint_conjoint = individu.famille.conjoint('aah_base_ressources_activite_eval_trimestrielle', period) + individu.famille.conjoint('aah_base_ressources_hors_activite_eval_trimestrielle', period)
+            base_ressource_demandeur_conjoint = max_(0, individu.famille.demandeur('aah_base_ressources_activite_eval_trimestrielle', period) + individu.famille.demandeur('aah_base_ressources_hors_activite_eval_trimestrielle', period))
+            base_ressource_conjoint_conjoint = max_(0, individu.famille.conjoint('aah_base_ressources_activite_eval_trimestrielle', period) + individu.famille.conjoint('aah_base_ressources_hors_activite_eval_trimestrielle', period))
             base_ressource_conjoint = base_ressource_conjoint_conjoint * individu.has_role(Famille.DEMANDEUR) + base_ressource_demandeur_conjoint * individu.has_role(Famille.CONJOINT)
 
             return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
@@ -157,10 +157,10 @@ class aah_base_ressources(Variable):
             base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
             base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
 
-            base_ressource_demandeur = assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite
+            base_ressource_demandeur = max_(0, assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite)
 
             base_ressource_demandeur_conjoint = individu.famille.demandeur('aah_base_ressources_activite_eval_trimestrielle', period) + individu.famille.demandeur('aah_base_ressources_hors_activite_eval_trimestrielle', period)
-            base_ressource_conjoint_conjoint = individu.famille.conjoint('aah_base_ressources_activite_eval_trimestrielle', period) + individu.famille.conjoint('aah_base_ressources_hors_activite_eval_trimestrielle', period)
+            base_ressource_conjoint_conjoint = max_(0, individu.famille.conjoint('aah_base_ressources_activite_eval_trimestrielle', period) + individu.famille.conjoint('aah_base_ressources_hors_activite_eval_trimestrielle', period))
             base_ressource_conjoint = base_ressource_conjoint_conjoint * individu.has_role(Famille.DEMANDEUR) + base_ressource_demandeur_conjoint * individu.has_role(Famille.CONJOINT)
 
             return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
@@ -198,7 +198,7 @@ class aah_base_ressources(Variable):
             base_ressource_activite = individu('aah_base_ressources_activite_eval_trimestrielle', period) - individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
             base_ressource_hors_activite = individu('aah_base_ressources_hors_activite_eval_trimestrielle', period) + individu('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
 
-            base_ressource_demandeur = assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite
+            base_ressource_demandeur = max_(0, assiette_revenu_activite_demandeur(base_ressource_activite) + base_ressource_hors_activite)
 
             return base_ressource_demandeur
 
@@ -318,7 +318,6 @@ class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
         ressources = sum(
             [individu(ressource, three_previous_months, options = [ADD]) for ressource in ressources_a_inclure]
             )
-        
         # On récupère le montant absolu des pensions alimentaires versées au cas où la valeur reçue est négative
         pensions_alimentaires_versees = abs_(individu(
             'pensions_alimentaires_versees_individu', three_previous_months, options = [ADD]))
