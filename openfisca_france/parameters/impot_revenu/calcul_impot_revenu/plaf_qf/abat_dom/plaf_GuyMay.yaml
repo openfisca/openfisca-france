@@ -5,10 +5,11 @@ values:
   2018-01-01:
     value: 4050
 metadata:
+  short_label: Plafond max (Guy, May)
   last_value_still_valid_on: "2022-08-08"
   unit: currency_next_year
   reference:
-    0001-01-01:
+    2001-01-01:
       href: https://www.ipp.eu/outils/baremes-ipp/
     2018-01-01:
       title: Article 197, I.3. du Code général des impôts

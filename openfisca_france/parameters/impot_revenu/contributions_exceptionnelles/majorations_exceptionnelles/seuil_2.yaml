@@ -17,7 +17,7 @@ values:
   1984-01-01:
     value: null
 metadata:
-  short_label: Seuil 2
+  short_label: "2"
   ipp_csv_id: seuil2_majo
   unit: currency_next_year
   reference:

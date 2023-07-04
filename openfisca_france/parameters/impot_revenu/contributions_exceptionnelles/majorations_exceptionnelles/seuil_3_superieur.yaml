@@ -11,7 +11,7 @@ values:
   1971-01-01:
     value: null
 metadata:
-  short_label: Seuil 3
+  short_label: 3 (supérieur)
   ipp_csv_id: seuil3_majo
   unit: currency_next_year
   reference:

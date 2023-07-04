@@ -21,7 +21,7 @@ values:
   1966-01-01:
     value: null
 metadata:
-  short_label: Seuil de revenu
+  short_label: Revenu
   ipp_csv_id: seuil_rev_majo
   unit: currency_next_year
   reference:

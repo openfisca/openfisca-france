@@ -17,8 +17,3 @@ metadata:
   notes:
     1994-01-01:
     - title: "plaf_formachef: il existe un plafonement trienal de 10 000 FRF pour les conjoints collaborateurs du chef d'entreprise"
-    1996-01-01:
-    - title: tx_formachef n'est à appliquer que sur l'excédent des frais de formation par rapport à ceux de l'année précédente
-documentation: |-
-  Frais de comptabilité et d'adhésion à un CGA ou AA : recettes ne doivent pas excéder la limite du forfait ou de l'évaluation administrativce. Montant par exploitation
-  Art. 199 quater B du CGI. Loi 2001-1275 du 28/12/2001 - art. 84

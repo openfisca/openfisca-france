@@ -1,4 +1,18 @@
-description: Intérêts d'emprunts (WG)
+description: Dépenses de gros travaux et intérêts d'emprunt et ravalement
 metadata:
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
+  documentation_start: true
+  short_label: Intérêts d'emprunts
+  label_en: Expenditures for big works and loan interests
+  order:
+  - date_entree_en_vigueur
+  - reduction_d_impot_pour_gros_travaux
+  - interets_d_emprunts
+  - deduction_des_charges
+  - taux1
+  - pac
+  - plafond_2
+  - plafond_3
+  - max
+documentation: |-
+  Les plafonds de 1 (max), 2 et 3 ne se cumulent pas.
+  Le plafond 3 pour les intérêts d'emprunt est à doubler pour couple (mais pas les plafonds 1 (max) et 2)

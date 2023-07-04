@@ -16,7 +16,5 @@ metadata:
   official_journal_date:
     2013-01-01: "2014-08-09"
 documentation: |-
-  Notes: Réduction d'impôt exceptionnelle forfaitaire sous condition que le revenu fiscal de référence soit inférieur à un certain seuil.
   Montant maximum: 350 pour les célibataires, veufs ou divorcés, 700 si imposition commune
   Plafond: 14145 * min(nombre de parts, 2)
-  Majoration du plafond: 3536 * max(nombre de parts - 2, 0)

@@ -13,7 +13,7 @@ values:
   1971-01-01:
     value: null
 metadata:
-  short_label: Taux 3
+  short_label: 3 (supérieur)
   ipp_csv_id: taux3_majo
   unit: /1
   reference:

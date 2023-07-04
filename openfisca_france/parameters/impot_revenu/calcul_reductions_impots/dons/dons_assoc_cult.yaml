@@ -3,6 +3,7 @@ values:
   2021-01-01:
     value: 554
 metadata:
+  short_label: Plafond éduction impôt 75%
   last_value_still_valid_on: "2021-12-31"
   unit: currency_next_year
   reference:
