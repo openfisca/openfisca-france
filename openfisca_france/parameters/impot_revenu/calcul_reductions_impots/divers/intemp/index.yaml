@@ -4,7 +4,6 @@ metadata:
   short_label: Intérêts d'emprunts
   label_en: Expenditures for big works and loan interests
   order:
-  - date_entree_en_vigueur
   - reduction_d_impot_pour_gros_travaux
   - interets_d_emprunts
   - deduction_des_charges

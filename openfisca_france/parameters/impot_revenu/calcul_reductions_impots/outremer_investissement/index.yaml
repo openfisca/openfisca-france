@@ -4,7 +4,6 @@ metadata:
   short_label: Investissements d'Outre-mer
   label_en: Tax reduction for personal investment in Overseas department
   order:
-  - date_entree_en_vigueur
   - plafond
   - plaf_bis
   - logements_neufs
