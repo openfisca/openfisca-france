@@ -3,7 +3,6 @@ metadata:
   documentation_start: true
   short_label: Personnes dépendantes
   label_en: Expenditures in a host Establishment for Dependent Persons
-  label_en: Expenditures in a host Establishment for Dependent Persons (1990 -)
   order:
   - taux
   - plafond
