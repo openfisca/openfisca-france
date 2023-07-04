@@ -3,6 +3,5 @@ metadata:
   documentation_start: true
   label_en: Tax allowance for net taxable income
   order:
-  - date_entree_en_vigueur
   - personne_agee_ou_invalide
   - enfant_marie
