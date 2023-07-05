@@ -88,8 +88,11 @@ values:
     value: 3858
   2021-01-01:
     value: 3912
+  2022-01-01:
+    value: 4123
 metadata:
   short_label: Maximum
+  last_value_still_valid_on: "2023-07-05"
   ipp_csv_id: max_abtpen
   unit: currency
   reference:
@@ -167,6 +170,9 @@ metadata:
     - title: Revalorisation comme prevue dans l'article 83 de la Loi 2020-1721 du 29/12/2020 (LF pour 2021)
     - title: Art. 2 de la loi no 2021-1900 du 30 décembre 2021 de finances pour 2022
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044637653
+    2022-01-01:
+      title: Décret n° 2023-422 du 31/05/2023, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047618675
   official_journal_date:
     1978-01-01: "1978-12-30"
     1992-01-01: "1992-12-31"
@@ -193,6 +199,7 @@ metadata:
     2018-01-01: "2018-12-30"
     2019-01-01: "2019-12-29"
     2020-01-01: "2020-12-30"
+    2022-01-01: "2023-06-02"
   notes:
     1978-01-01:
     - title: Le maximum sur les pensions est pris en compte par foyer fiscal pour l'imposition des revenus de 1977 et 1978.
@@ -213,9 +220,5 @@ metadata:
     2021-01-01:
     - title: Les limites sont révisées chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu. En 2021, l'augmentation était de 1,4 %.
 documentation: |-
-  Notes :
-  (1) Entre 1915 et 1944, des déductions du revenu imposable pour charges des familles étaient appliquées pour le calcul de l'impôt général sur le revenu (et de l'impôt cédulaire sur les salaires) sous forme d'abattement général dépendant du statut marital et du nombre d'enfant.
-  > Voir Annexe C-1 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001) ; voir aussi note (3) de l'onglet sur le quotient familial concernant les réductions d'impôt pour charges de famille entre 1915 et 1947.
-  (2) La déduction forfaitaire de 10 % prévue par l'article 83 -3°, 2e alinéa du CGI pour la prise en compte des frais professionnels des salariés est plafonnée.
-  (3) Il n'y a pas de plafond à la déduction entre 1952 et 1978.Entre 1934 et 1942, la déduction de 10 % est aussi plafonnée à 20 000 FRF (colonne J).
-  > Voir Annexe C-3 dans Thomas Piketty, Les hauts revenus en France au XXe siècle (Grasset, 2001)
+  Notes : Chaque année, il est révisé selon les mêmes modalités que la limite supérieure de la première tranche du barème de l'impôt sur le revenu.
+  Ref : Article 158-5-a. du CGI https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622551
