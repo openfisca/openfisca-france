@@ -62,6 +62,7 @@ values:
     value: 1000
 metadata:
   short_label: Plafond
+  last_value_still_valid_on: "2023-07-05"
   ipp_csv_id: plafcoluche
   unit: currency
   reference:
@@ -143,3 +144,4 @@ metadata:
 documentation: |-
   Notes :
   Dons Coluche (organismes d'aide aux personnes en difficulté): art. 200-1 ter du CGI
+  La limite de versements mentionnée au premier alinéa est relevée chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu de l'année précédant celle des versements. Le montant obtenu est arrondi, s'il y a lieu, à l'euro supérieur.
