@@ -16,9 +16,13 @@ values:
     value: 11306
   2021-01-01:
     value: 11408
+  2022-01-01:
+    value: 11431
+  2023-01-01:
+    value: 11614
 metadata:
   short_label: Seuil de RFR pour la première part de quotient familial
-  last_value_still_valid_on: "2021-07-23"
+  last_value_still_valid_on: "2023-07-05"
   label_en: CSG - rates on retirement incomes
   ipp_csv_id: seuil_csg_pens_red1
   unit: currency
@@ -56,6 +60,16 @@ metadata:
     2021-01-01:
       title: Lettre ministérielle D-20-021991 du 04/12/2020
       href: https://www.legislation.cnav.fr/Documents/lettre_ministerielle_04122020.pdf
+    2022-01-01:
+    - title: Barème sur le site de l'assurance retraite
+      href: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=csg%2Fprelevement_sur_retraite_seuil_revenu_assujettissement_taux_csg_2022_bar.aspx 
+    - title: Circulaire Cnav 2021/35 du 21/12/2021
+      href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2021_35_21122021.pdf
+    2023-01-01:
+    - title: Barème sur le site de l'assurance retraite
+      href: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=csg%2Fprelevement_sur_retraite_seuil_revenu_assujettissement_taux_csg_2023_bar.aspx
+    - title: Circulaire Cnav 2022/36 du 19/12/2022
+      href: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2022_36_19122022.pdf
   official_journal_date:
     1991-02-01: "1990-12-30"
     2015-01-01: "2014-12-30"
