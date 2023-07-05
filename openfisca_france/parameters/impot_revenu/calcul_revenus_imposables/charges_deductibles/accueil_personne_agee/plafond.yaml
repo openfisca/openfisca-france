@@ -199,8 +199,10 @@ metadata:
       title: Décret n°2022-782 du 4/05/2022, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045757184
     2022-01-01:
-      title: Décret n° 2023-422 du 31/05/2023, art. 1
+    - title: Décret n° 2023-422 du 31/05/2023, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047618675
+    - title: Article 156-II-2° ter du CGI
+      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046673952
   official_journal_date:
     1984-01-01: "1984-12-30"
     1985-01-01: "1985-12-31"
@@ -243,3 +245,4 @@ documentation: |-
   https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
   http://bofip.impots.gouv.fr/bofip/1860-PGP.html#1860-PGP_80_027
   https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037671023&cidTexte=LEGITEXT000006069577
+  Le montant de la déduction est relevé chaque année dans la même proportion que la limite supérieure de la première tranche du barème de l'impôt sur le revenu
