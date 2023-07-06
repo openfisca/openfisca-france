@@ -116,6 +116,8 @@ values:
     value: 0.029
   2023-04-01:
     value: 0.019
+  2023-07-01:
+    value: 0.019
 metadata:
   short_label: Revalorisation
   label_en: Indexation of UI benefits
@@ -255,6 +257,9 @@ metadata:
         href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047377781
       - title: Circulaire 2022-09 du 1er juillet 2022
         href: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-Circulaire_n_2022-09_du_1er_juillet_2022.pdf
+    2023-07-01:
+      title: Circulaire Unedic 2023-06 du 3 juillet 2023
+      href: https://www.unedic.org/sites/default/files/circulaires/PRE-CIRC-circulaire_2023-06_du_3_juillet_2023.pdf
 documentation: |-
   Sources:
   Légifrance, Site internet Assedic.fr unijuridis depuis 1994
