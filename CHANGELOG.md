@@ -1,5 +1,16 @@
 # Changelog
 
+### 149.2.0 [#2138](https://github.com/openfisca/openfisca-france/pull/2138)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2022
+* Zones impactées : `openfisca_france/parameters/impot_revenu/`
+* Détails :
+  - Mets à jour certains paramètres de l'IR qui ont été revalorisés par le Décret n° 2023-422 du 31/05/2023
+  - Mets à jour certains paramètres qui n'avaient pas été mis à jour pour les revenus 2021
+  - Ajoute de la documentation sur la règle de revalorisation automatique des paramètres lorsqu'elle existe
+
+
 ### 149.1.3 [#2137](https://github.com/openfisca/openfisca-france/pull/2137)
 
 * Changement mineur.
