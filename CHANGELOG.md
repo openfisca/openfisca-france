@@ -1,5 +1,17 @@
 # Changelog
 
+### 149.2.1 [#2033](https://github.com/openfisca/openfisca-france/pull/2033)
+
+* Évolution du système socio-fiscal. Changement mineur.
+* Périodes concernées : à partir du 01/01/2021.
+* Zones impactées :
+  -`parameters/impot_revenu/calcul_revenus_imposables/deductions.`
+  -`parameters/impot_revenu/calcul_reductions_impots/dons/dons_coluche.`
+* Détails :
+  - Mets à jour l'abattement maximal sur le déficit agricole
+  - Met en forme les dons coluche
+
+
 ### 149.2.0 [#2138](https://github.com/openfisca/openfisca-france/pull/2138)
 
 * Évolution du système socio-fiscal.
