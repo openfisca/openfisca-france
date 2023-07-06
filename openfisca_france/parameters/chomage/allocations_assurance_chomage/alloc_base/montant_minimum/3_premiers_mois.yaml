@@ -95,7 +95,7 @@ values:
   2001-07-01:
     value: 156.61
   2002-07-01:
-    value: Null
+    value: null
 metadata:
   short_label: 3 premiers mois
   label_en: "UI scheme: lump-sum and minimum"
@@ -242,3 +242,4 @@ metadata:
     - title: "Nouvelle convention: création de l'Allocation de retour à l'emploi qui remplace AUD"
     2002-07-01:
     - title: La separation de temps n'existe plus, voir parameters.chomage.allocation_retour_emploi.montant_minimum_hors_mayotte
+)
