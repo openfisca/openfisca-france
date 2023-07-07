@@ -1,5 +1,18 @@
 # Changelog
 
+### 149.4.0 [#2141](https://github.com/openfisca/openfisca-france/pull/2141)
+
+* Évolution du système socio-fiscal. 
+* Périodes concernées : à partir du 01/01/2023.
+* Zones impactées : 
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse/aspa/montant_maximum_annuel`
+  - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse/aspa/plafond_ressources`
+  - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/asi`
+  - `openfisca_france/parameters/prestations_sociales/aides_logement/allocations_logement/al_param_r0/r0/taux_seul.yaml`
+* Détails :
+  - Met à jour les montant de l'aspa et de l'asi pour 2023
+  - Corrige une typo sur l'année d'entrée en vigueur d'un paramètre des aides au logement
+
 ### 149.3.0 [#2139](https://github.com/openfisca/openfisca-france/pull/2139)
 
 * Évolution du système socio-fiscal.
