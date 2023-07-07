@@ -1,4 +1,4 @@
-description: Taux médian de la contribution sociale généralisée (CSG) imposable sur les pensions de retraite et d'invalidité
+description: Taux médian de la contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité
 values:
   1991-02-01:
     value: null
@@ -6,7 +6,7 @@ values:
     value: 0.066
 metadata:
   short_label: Taux médian global
-  last_value_still_valid_on: "2023-04-03"
+  last_value_still_valid_on: "2023-07-05"
   label_en: CSG - rates on replacement incomes
   ipp_csv_id: csg_pens_median_total
   unit: /1

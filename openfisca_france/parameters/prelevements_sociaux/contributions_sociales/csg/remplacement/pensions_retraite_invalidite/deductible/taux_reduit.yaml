@@ -8,7 +8,7 @@ values:
     value: 0.038
 metadata:
   short_label: Taux réduit
-  last_value_still_valid_on: "2023-04-03"
+  last_value_still_valid_on: "2023-07-05"
   ipp_csv_id: csg_pens_red_deductible
   unit: /1
   reference:

@@ -16,9 +16,13 @@ values:
     value: 3019
   2021-01-01:
     value: 3046
+  2022-01-01:
+    value: 3052
+  2023-01-01:
+    value: 3101
 metadata:
   short_label: Majoration du seuil par demi-part de quotient familial supplémentaire
-  last_value_still_valid_on: "2021-07-23"
+  last_value_still_valid_on: "2023-07-05"
   label_en: CSG - rates on retirement incomes
   ipp_csv_id: seuil_csg_pens_red1_demip
   unit: currency
@@ -56,6 +60,12 @@ metadata:
     2021-01-01:
       title: Lettre ministérielle D-20-021991 du 04/12/2020
       href: https://www.legislation.cnav.fr/Documents/lettre_ministerielle_04122020.pdf
+    2022-01-01:
+      title: Lettre ministérielle D-21-028198 du 20/12/2021
+      href: https://legislation.lassuranceretraite.fr/Pdf/lettre_ministerielle_2021_028198_20122021.pdf
+    2023-01-01:
+      title: Lettre ministérielle D-22-024221 du 12/12/2022
+      href: https://legislation.lassuranceretraite.fr/Pdf/lettre_ministerielle_12122022.pdf
   official_journal_date:
     1991-02-01: "1990-12-30"
     2015-01-01: "2014-12-30"

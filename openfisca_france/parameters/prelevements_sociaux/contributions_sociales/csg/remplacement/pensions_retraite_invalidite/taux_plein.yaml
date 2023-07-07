@@ -1,4 +1,4 @@
-description: Taux plein global de la contribution sociale généralisée (CSG) imposable sur les pensions de retraite et d'invalidité
+description: Taux plein global de la contribution sociale généralisée (CSG) sur les pensions de retraite et d'invalidité
 values:
   1991-02-01:
     value: 0.011
@@ -14,7 +14,7 @@ values:
     value: 0.083
 metadata:
   short_label: Taux plein global
-  last_value_still_valid_on: "2023-04-03"
+  last_value_still_valid_on: "2023-07-05"
   label_en: CSG - rates on work incomes
   ipp_csv_id: csg_pens
   unit: /1

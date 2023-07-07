@@ -6,7 +6,7 @@ values:
     value: 0.038
 metadata:
   short_label: Taux réduit
-  last_value_still_valid_on: "2008-01-01"
+  last_value_still_valid_on: "2021-07-22"
   ipp_csv_id: csg_pre_red
   unit: /1
   reference:

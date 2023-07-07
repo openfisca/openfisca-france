@@ -6,7 +6,7 @@ values:
     value: 0.024
 metadata:
   short_label: Taux
-  last_value_still_valid_on: "2023-02-02"
+  last_value_still_valid_on: "2023-07-05"
   label_en: CSG - rates on work incomes
   unit: /1
   reference:
