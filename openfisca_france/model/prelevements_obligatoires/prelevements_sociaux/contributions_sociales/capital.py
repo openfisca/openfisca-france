@@ -151,7 +151,11 @@ class assiette_csg_plus_values(Variable):
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3sg + f3sl + f3va_2014 + f3vz + f3we + f3vt + rpns_pvce
+        # plus-values vente d'entreprise retraite
+        pveximpres_i = foyer_fiscal.members('pveximpres', period)
+        pveximpres = foyer_fiscal.sum(pveximpres_i)
+
+        return f3vg + f3sg + f3sl + f3va_2014 + f3vz + f3we + f3vt + rpns_pvce + pveximpres
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -172,7 +176,11 @@ class assiette_csg_plus_values(Variable):
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3sg + f3sl + f3va_2016 + f3vz + f3we + f3vt + rpns_pvce
+        # plus-values vente d'entreprise retraite
+        pveximpres_i = foyer_fiscal.members('pveximpres', period)
+        pveximpres = foyer_fiscal.sum(pveximpres_i)
+
+        return f3vg + f3sg + f3sl + f3va_2016 + f3vz + f3we + f3vt + rpns_pvce + pveximpres
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -194,7 +202,11 @@ class assiette_csg_plus_values(Variable):
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3sg + f3sl + f3va + f3ua + f3vz + f3we + f3vt + f3pi + rpns_pvce
+        # plus-values vente d'entreprise retraite
+        pveximpres_i = foyer_fiscal.members('pveximpres', period)
+        pveximpres = foyer_fiscal.sum(pveximpres_i)
+
+        return f3vg + f3sg + f3sl + f3va + f3ua + f3vz + f3we + f3vt + f3pi + rpns_pvce + pveximpres
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
 
@@ -223,7 +235,11 @@ class assiette_csg_plus_values(Variable):
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + f3vd + f3vi + f3vf
+        # plus-values vente d'entreprise retraite
+        pveximpres_i = foyer_fiscal.members('pveximpres', period)
+        pveximpres = foyer_fiscal.sum(pveximpres_i)
+
+        return f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + f3vd + f3vi + f3vf + pveximpres
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
 
@@ -253,7 +269,11 @@ class assiette_csg_plus_values(Variable):
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + f3an + f3vd + f3vi + f3vf
+        # plus-values vente d'entreprise retraite
+        pveximpres_i = foyer_fiscal.members('pveximpres', period)
+        pveximpres = foyer_fiscal.sum(pveximpres_i)
+
+        return f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + f3an + f3vd + f3vi + f3vf + pveximpres
 
 
 class assiette_csg_revenus_capital(Variable):

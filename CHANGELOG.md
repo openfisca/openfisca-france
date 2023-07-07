@@ -1,10 +1,22 @@
 # Changelog
 
+### 149.4.1 [#2126](https://github.com/openfisca/openfisca-france/pull/2126)
+
+* Changement mineur.
+* Périodes concernées : jusqu'au 01/01/2018.
+* Zones impactées :
+  - `model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
+  - `model/prelevements_obligatoires/impot_revenu/ir.py.`
+* Détails :
+  - Corrige double positionnement de cncn_info dans le calcul de l'impôt
+  - Rajoute les plus-values de vente d'entreprise liée à un départ à la retraite dans cotisations
+
+
 ### 149.4.0 [#2141](https://github.com/openfisca/openfisca-france/pull/2141)
 
-* Évolution du système socio-fiscal. 
+* Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2023.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse/aspa/montant_maximum_annuel`
   - `openfisca_france/parameters/prestations_sociales/solidarite_insertion/minimum_vieillesse/aspa/plafond_ressources`
   - `openfisca_france/parameters/prestations_sociales/prestations_etat_de_sante/invalidite/asi`
