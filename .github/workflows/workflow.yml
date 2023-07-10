@@ -93,6 +93,7 @@ jobs:
       - run: |
           shopt -s globstar
           openfisca test tests/**/*.py
+        if: matrix.openfisca-dependencies != 'minimal' || matrix.python-version != '3.9.9'
 
   test-path-length:
     runs-on: ubuntu-20.04
