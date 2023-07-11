@@ -1,5 +1,17 @@
 # Changelog
 
+### 149.4.2 [#2128](https://github.com/openfisca/openfisca-france/pull/2128)
+
+* Correction d'une erreur de calcul
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `openfisca_france/model/prestations/minima_sociaux/aah.py`
+  - `tests/formulas/aah/aah.yaml`
+* Détails :
+  - Correction du calcul  de `base_ressources_aah` : pensions alimentaires versées soustraites au lieu d'être ajoutées
+  - Lorsque que quelqu'un paie une pension alimentaire elle est considérée comme une ressource entrante
+
+
 ### 149.4.1 [#2126](https://github.com/openfisca/openfisca-france/pull/2126)
 
 * Changement mineur.
