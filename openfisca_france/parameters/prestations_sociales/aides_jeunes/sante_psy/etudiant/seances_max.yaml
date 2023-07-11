@@ -1,5 +1,7 @@
 description: Nombre maximum de séances prises en charge par le chèque santé psy étudiants
 values:
+  2021-03-10:
+    value: 6
   2023-01-06:
     value: 8
 metadata:
