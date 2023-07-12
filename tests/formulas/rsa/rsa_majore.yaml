@@ -85,3 +85,26 @@
         enceinte: true
   output:
     rsa_majore_eligibilite: true
+
+- name: Pas de RSA majoré si demandeur à charge des parents
+  description: RSA majoré
+  period: 2015-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1]
+      enfants: []
+    foyer_fiscal:
+      declarants: [parent1]
+      personnes_a_charge: []
+    menage:
+      personne_de_reference: parent1
+      enfants: []
+    individus:
+      parent1:
+        age: 17
+        enceinte: true
+        enfant_a_charge:
+          2015: true
+  output:
+    rsa_majore_eligibilite: false
