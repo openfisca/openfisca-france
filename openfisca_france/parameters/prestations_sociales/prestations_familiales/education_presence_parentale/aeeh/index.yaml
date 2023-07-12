@@ -1,6 +1,7 @@
 description: Conditions et montants de l'Allocation d'éducation de l'enfant handicapé (AEEH)
 metadata:
-  short_label: AEEH
+  documentation_start: true
+  short_label: Allocation d'éducation de l'enfant handicapé (AEEH)
   label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   order:
   - age_maximum_enfant
