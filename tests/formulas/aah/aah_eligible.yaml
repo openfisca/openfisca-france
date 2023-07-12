@@ -60,9 +60,9 @@
     age: 50
     aah_restriction_substantielle_durable_acces_emploi: true
     handicap: true
-    taux_incapacite: 0.6
+    taux_incapacite: 0.45
   output:
-    aah_eligible: true
+    aah_eligible: false
 
 - name: "Eligibilité à l'AAH: Retraité avec taux d'incapacité supérieur à 80%"
   description: Eligible à AAH
