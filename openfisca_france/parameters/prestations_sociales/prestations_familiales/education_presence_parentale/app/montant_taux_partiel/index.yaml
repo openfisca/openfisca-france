@@ -1,5 +1,6 @@
-description: Montant à taux partiel (en % de la BMAF) de l'Allocation de présence parentale (APP, 2001-2005)
+description: Montant à taux partiel (en % de la BMAF) de l'Allocation de présence parentale (APP)
 metadata:
+  documentation_start: true
   short_label: Montant à taux partiel
   label_en: "Parental presence allowance (AA): Amounts"
   order:
