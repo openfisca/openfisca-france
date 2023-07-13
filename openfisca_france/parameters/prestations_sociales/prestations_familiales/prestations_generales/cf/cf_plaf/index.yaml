@@ -1,8 +1,14 @@
 description: Plafonds de ressources du Complément familial (CF)
 metadata:
+  documentation_start: true
   short_label: Plafonds de ressources
   label_en: "Family complement (CF): Extra allowances"
   order:
   - plafond_ressources_0_enfant
   - majoration
   - plafond_ressources_majoration
+  - plafond_cf_majore
+documentation: |-
+  Les articles L522-1 et R522-1 du CSS prévoient la revalorisation des plafonds par Arrêté Ministériel, au rythme de l'évolution des prix hors tabac
+  Dans les DOM, les plafonds de ressources applicables pour l’APJE, l’allocation d’adoption, le complément familial et l’allocation de rentrée scolaire sont ceux fixés pour l’allocation de rentrée scolaire en métropole
+  https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006173063&cidTexte=LEGITEXT000006073189&dateTexte=20160719
