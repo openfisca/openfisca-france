@@ -1,5 +1,15 @@
 # Changelog
 
+### 149.4.3 [#2146](https://github.com/openfisca/openfisca-france/pull/2146)
+
+* Changement mineur
+* Périodes concernées : à partir du 06/01/2023.
+* Zones impactées :
+  - `openfisca_france/parameters/prestations_sociales/aides_jeunes/sante_psy/etudiant/seances_max.yaml`
+* Détails :
+  - Le dispositif santé psy étudiants passe de 6 à 8 séances.
+
+
 ### 149.4.2 [#2128](https://github.com/openfisca/openfisca-france/pull/2128)
 
 * Correction d'une erreur de calcul
