@@ -1,7 +1,7 @@
 description: Taux de la Prestation partagée d'éducation de l'enfant (PreParE) de la Prestation d'accueil du jeune enfant (PAJE)
 metadata:
   short_label: Taux
-  label_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
+  label_en: Rate
   order:
   - taux_plein
   - taux_partiel_50

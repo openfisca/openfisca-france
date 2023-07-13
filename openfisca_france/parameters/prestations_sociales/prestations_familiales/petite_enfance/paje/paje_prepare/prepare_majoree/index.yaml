@@ -1,6 +1,6 @@
 description: Majoration (en % de la BMAF) Prestation partagée d'éducation de l'enfant (PreParE) de la Prestation d'accueil du jeune enfant (PAJE)
 metadata:
   short_label: PreParE majorée
-  label_en: "Early childhood benefit (PAJE): Shared benefit for the child's custody (PreParE)"
+  label_en: Increased PreParE
   order:
   - taux

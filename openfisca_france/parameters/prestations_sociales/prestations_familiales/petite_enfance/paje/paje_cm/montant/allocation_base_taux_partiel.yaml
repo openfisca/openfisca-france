@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Montant à taux partiel
   last_value_still_valid_on: "2023-05-04"
-  label_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
+  label_en: Partial rate amount
   ipp_csv_id: tx_paje_base_partiel
   unit: BMAF
   reference:
@@ -35,6 +35,3 @@ metadata:
     - title: "art. D531-1 : fixe l'âge limite; art. D531-3 : fixe le montant de l'aide (en % de la BMAF); La PAJE entre en vigueur de manière progressive jusqu'à fin 2006 (cf. art. 60, VIII de la loi)."
     2018-04-01:
     - title: Taux appliqués pour les enfants nés ou adoptés à partir du 1er avril 2018.
-documentation: |-
-  Notes :
-  (1) Conformément à l'article 4, I du décret n° 2018-312 du 26 avril 2018 ces dispositions entrent en vigueur à compter du 1er avril 2018 pour les enfants nés ou adoptés à compter de cette date et à compter du 1er avril 2021 pour l'ensemble des autres enfants, dans les conditions prévues à l'article 37 de la loi du 30 décembre 2017.

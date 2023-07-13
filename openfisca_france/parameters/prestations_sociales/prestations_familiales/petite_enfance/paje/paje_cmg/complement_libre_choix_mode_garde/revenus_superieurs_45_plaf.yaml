@@ -4,20 +4,12 @@ values:
     value: 0.7191
 metadata:
   short_label: Revenus >45% du plafond
-  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of the type of care (CMG)"
+  label_en: Income >45% of the ceiling
   ipp_csv_id: clcmg_03ans_rev2
   unit: BMAF
   reference:
     2004-01-01:
     - title: Décret 2003-1394 du 31/12/2003 - art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
-    - title: Article D531-17 (multiplicateur du smic horaire)
   official_journal_date:
     2004-01-01: "2004-01-01"
-documentation: |-
-  Notes :
-  Depuis le 01/06/2012 (cf. Décret 2012-666 du 4 mai 2012 - art. 2), la prise en charge partielle de la rémunération par l'organisme débiteur des prestations familiales est fixée au maximum à 85 % du salaire net servi et des indemnités mentionnées à l'article L. 423-4 du code de l'action sociale et des familles.
-  (1) Pour les enfants de 3 à 6 ans, le taux du CLCMG est égal à la moitié de celui pour un enfant de moins de 3 ans.
-  En 2012 :
-  - 57,02 % si < 45 % * plafond
-  - 35,96 % si < plafond & > 45 % * plafond

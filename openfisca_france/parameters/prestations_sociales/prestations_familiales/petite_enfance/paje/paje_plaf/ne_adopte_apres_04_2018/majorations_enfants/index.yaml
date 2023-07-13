@@ -1,7 +1,9 @@
 description: Majorations de la base du plafond de ressources (plafond taux plein ou plafond taux partiel selon le cas de figure) par enfant né ou adopté à partir du 01/04/2018 - Prestation d'accueil du jeune enfant (PAJE)
 metadata:
   short_label: Majorations par enfant du plafond de ressources
-  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
+  label_en: Increases per child in the resource ceiling
   order:
   - premier_2eme_enfant
   - troisieme_plus_enfant
+documentation:
+  L'article R531-1 modifié par le décrêt 2003-1393 renvoie désormais vers l'Article R522-2 qui indique les montants de la majoration.
