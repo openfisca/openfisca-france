@@ -1,9 +1,11 @@
 description: Complément de libre choix d'activité (CLCA) de la Prestation d'accueil du jeune enfant (PAJE)
 metadata:
-  short_label: CLCA
+  documentation_start: true
+  short_label: Complément de libre choix d'activité (CLCA)
   label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
   order:
   - periode_ref_8_trimestres_cotis_vieillesse
   - beneficiaires_enfant_ne_adopte_apres_04_2014
   - non_beneficiaires_enfant_ne_adopte_avant_04_2014
   - colca
+  - duree1
