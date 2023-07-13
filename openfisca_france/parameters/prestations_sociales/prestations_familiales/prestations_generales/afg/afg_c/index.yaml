@@ -1,7 +1,11 @@
-description: Conditions générales et montants de l'Allocation pour frais de garde (AFG, 1976-1977)
+description: Conditions générales et montants de l'Allocation pour frais de garde (AFG)
 metadata:
+  documentation_start: true
   short_label: Conditions générales et montants
   label_en: "Child care costs allowance (AFG): General conditions and amounts"
   order:
   - nombre_minimal_enfants_a_charge
   - montant_mensuel_maximum
+documentation: |-
+  L'allocation pour frais de garde est instituée par la loi 72-8 du 3 janvier 1972 art 7 à 9
+  L'application des dispositions qui lui sont relatives sont, quant à elles, mises en place par le décret 72-532 du 29 juin 1972
