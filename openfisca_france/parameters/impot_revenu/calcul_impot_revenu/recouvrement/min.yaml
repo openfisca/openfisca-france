@@ -1,6 +1,7 @@
-description: Seuil de recouvrement après imputations
+description: Seuil de recouvrement de l'impôt après l'imputation des crédits d'impôt
 values:
   2002-01-01:
     value: 12
 metadata:
+  short_label: Seuil de recouvrement après imputations
   unit: currency_next_year

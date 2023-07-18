@@ -4,3 +4,6 @@ metadata:
   order:
   - plaf_qf
   - pv
+  - bouclier_fiscal
+  - recouvrement
+  - non_imposable

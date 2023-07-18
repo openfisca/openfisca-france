@@ -1,4 +1,7 @@
 description: Nombre d'années pleines de détentions minimale (1er seuil)
+metadata:
+  short_label: Seuil 1
+  unit: year
 values:
   2011-01-01:
     value: 5

@@ -25,6 +25,7 @@ values:
   2014-01-01:
     value: null
 metadata:
+  short_label: Seuil
   last_value_still_valid_on: "2023-02-24"
   unit: currency_next_year
   reference:

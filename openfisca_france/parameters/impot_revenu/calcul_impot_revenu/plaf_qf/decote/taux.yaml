@@ -9,6 +9,7 @@ values:
   2020-01-01:
     value: 0.4525
 metadata:
+  short_label: Taux
   last_value_still_valid_on: "2023-01-05"
   unit: /1
   reference:

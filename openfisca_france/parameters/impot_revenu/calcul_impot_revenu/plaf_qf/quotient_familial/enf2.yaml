@@ -3,9 +3,9 @@ values:
   2000-01-01:
     value: 1
 metadata:
-  short_label: À partir du troisième enfant
-  unit: part_quotient_familial
+  short_label: À partir du 3ème enfant
   last_value_still_valid_on: "2022-08-08"
+  unit: part_quotient_familial
   reference:
     2000-01-01:
       title: Article 194, I. du Code général des impôts
