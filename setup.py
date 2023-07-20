@@ -66,7 +66,7 @@ setup(
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        'OpenFisca-Core >=40.0.1, <41',
+        'OpenFisca-Core >=40.0.1, <=41.0.0',
         ],
     packages = find_namespace_packages(exclude = [
         'openfisca_france.tests*',
