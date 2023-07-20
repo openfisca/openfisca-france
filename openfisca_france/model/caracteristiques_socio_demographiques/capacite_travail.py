@@ -20,4 +20,4 @@ class taux_incapacite(Variable):
     documentation = "Taux d'incapacité pris en compte pour l'allocation adulte handicapé (AAH)."
     is_period_size_independent = True
     set_input = set_input_dispatch_by_period
-    unit == '/1'
+    unit = '/1'
