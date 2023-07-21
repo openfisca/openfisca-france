@@ -1,5 +1,15 @@
 # Changelog
 
+### 149.4.4 [#2149](https://github.com/openfisca/openfisca-france/pull/2149)
+
+* Changement mineur
+* Périodes concernées : toutes
+* Zones impactées :
+  - `/model/caracteristiques_socio_demographiques/capacite_travail.py`
+* Détails :
+  - Ajoute unité ratio à cette variable taux d'incapacité prise en compte dans l'AAH, permet d'éviter d'entrer une valeur telle que 80 alors que la valeur doit être entre 0 et 1.
+
+
 ### 149.4.3 [#2146](https://github.com/openfisca/openfisca-france/pull/2146)
 
 * Changement mineur
