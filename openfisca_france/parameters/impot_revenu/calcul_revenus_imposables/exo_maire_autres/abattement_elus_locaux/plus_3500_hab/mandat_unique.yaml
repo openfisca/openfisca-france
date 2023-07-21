@@ -6,6 +6,8 @@ values:
     value: 7896.14
   2019-01-01:
     value: 7934
+  2022-07-01:
+    value: 8212.08
 metadata:
   ipp_csv_id: abattement_elu_3500_unique
   unit: currency
@@ -18,16 +20,28 @@ metadata:
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037882341&dateTexte=20190523
     2019-01-01:
       title: Loi n° 2019-1479 du 28 décembre 2019 (LF 2020), art. 3
-      href: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/article_3
+    2022-07-01:
+    - title: Décret du 7 juillet 2022 fixant la valeur du point d'indice
+    - href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046026221
+    - title: Décret du 8 avril 2021 fixant l'indice majoré terminal
+    - href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043339489
   official_journal_date:
-    1998-01-01: "1998-12-31"
-    2018-01-01: "2018-12-30"
-    2019-01-01: "2019-12-29"
+    1998-01-01: '1998-12-31'
+    2018-01-01: '2018-12-30'
+    2019-01-01: '2019-12-29'
+    2022-07-01: ['2022-07-08', '2021-04-09']
   notes:
     2018-01-01:
-    - title: Introduction d'un plafond de revenu pour les journalistes rédacteurs, photographes, directeurs de journaux et critiques dramatiques et musicaux bénéficiant de l'abattement spécifique à leurs professions.
+    - title: Introduction d'un plafond de revenu pour les journalistes rédacteurs,
+        photographes, directeurs de journaux et critiques dramatiques et musicaux
+        bénéficiant de l'abattement spécifique à leurs professions.
     2019-01-01:
-    - title: Amendement "AMF" qui vient modifier les dispositions d'abattement de la fraction représentative des frais d'emploi pour les élus locaux.
+    - title: Amendement "AMF" qui vient modifier les dispositions d'abattement de
+        la fraction représentative des frais d'emploi pour les élus locaux.
+        Le montant est donné en pourcentage du montant du traitement correspondant
+        à l'indice brut terminal de l'échelle indiciaire de la fonction publique.
+    2022-07-01:
+    - title: (17% * 830 * 5 820,04 / 100)
 documentation: |-
   L'abattement pour les élus locaux s’applique à toutes
   les indemnités de fonction perçues par les élus communaux et intercommunaux (maires,

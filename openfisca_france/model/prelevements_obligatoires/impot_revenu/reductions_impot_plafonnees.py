@@ -590,6 +590,7 @@ class duflot_pinel_denormandie_metropole(Variable):
             + around(min_(P.plafond - f7ry, f7rx) * P.taux_prolong1_6ans / 3))
 
         return reduction_cumulee + report + f7fi + f7fk + f7fr + f7fv + f7fw + f7fx + prorogation + f7sx
+    # TODO : prendre en compte la baisse du taux pour les investissements 2023 et 2024 (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044991962, VI) et poursuivre les reports
 
 
 class duflot_pinel_denormandie_om(Variable):

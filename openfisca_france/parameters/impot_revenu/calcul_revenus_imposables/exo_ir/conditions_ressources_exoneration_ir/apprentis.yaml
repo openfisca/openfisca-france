@@ -88,6 +88,16 @@ values:
     value: 18473
   2021-01-01:
     value: 18655
+  2021-10-01:
+    value: 19073.6
+  2022-01-01:
+    value: 19237.4
+  2022-05-01:
+    value: 19747
+  2022-08-01:
+    value: 20147.4
+  2023-01-01:
+    value: 20511.4
 metadata:
   short_label: Apprentis
   ipp_csv_id: exo_apprenti
@@ -152,6 +162,11 @@ metadata:
       title: Cf note (1)
     2021-01-01:
       title: Cf note (1)
+    2022-01-01:
+      title: Cf note (1)
+    2023-01-01:
+      title: Cf note (1)
+
   official_journal_date:
     2001-01-01: "2001-12-29"
     2007-01-01: "2008-04-02"
@@ -164,6 +179,32 @@ metadata:
     - title: "Exonération apprentis : fraction du salaire des apprentis exonérée d'IR jusqu'en 2005 inclus : art. 5-2° bis du CGI, à compter de 2006, ce montant est égal au montant annuel du SMIC"
     2007-01-01:
     - title: Voir note (1)
+    2014-01-01:
+    - title: 9.53*1820
+    2015-01-01:
+      value: 9.61*1820
+    2016-01-01:
+      value: 9.67*1820
+    2017-01-01:
+      value: 9.76*1820
+    2018-01-01:
+      value: 9.88*1820
+    2019-01-01:
+      value: 10.03*1820
+    2020-01-01:
+      value: 10.15*1820
+    2021-01-01:
+      value: 10.25*1820
+    2021-10-01:
+      value: 10.48*1820
+    2022-01-01:
+      value: 10.57*1820
+    2022-05-01:
+      value: 10.85*1820
+    2022-08-01:
+      value: 11.07*1820
+    2023-01-01:
+      value: 11.27*1820
 documentation: |-
   Notes :
   (1) Exonération des apprentis : cf. art. 81 bis du CGI. Le montant annuel de référence pour l’exonération des salaires des apprentis est obtenu en multipliant le montant moyen du SMIC horaire brut sur l’année d’imposition par 1 820 heures (35 h x 52)

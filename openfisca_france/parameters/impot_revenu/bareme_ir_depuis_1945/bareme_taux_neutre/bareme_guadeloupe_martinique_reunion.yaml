@@ -13,6 +13,10 @@ brackets:
       value: 1626
     2021-01-01:
       value: 1629
+    2022-01-01:
+      value: 1652
+    2023-01-01:
+      value: 1741
   rate:
     2019-01-01:
       value: 0.005
@@ -23,6 +27,10 @@ brackets:
       value: 1724
     2021-01-01:
       value: 1728
+    2022-01-01:
+      value: 1752
+    2023-01-01:
+      value: 1847
   rate:
     2019-01-01:
       value: 0.015
@@ -35,6 +43,10 @@ brackets:
       value: 1900
     2021-01-01:
       value: 1904
+    2022-01-01:
+      value: 1931
+    2023-01-01:
+      value: 2035
   rate:
     2019-01-01:
       value: 0.025
@@ -47,6 +59,10 @@ brackets:
       value: 2075
     2021-01-01:
       value: 2079
+    2022-01-01:
+      value: 2108
+    2023-01-01:
+      value: 2222
   rate:
     2019-01-01:
       value: 0.035
@@ -59,6 +75,10 @@ brackets:
       value: 2292
     2021-01-01:
       value: 2296
+    2022-01-01:
+      value: 2328
+    2023-01-01:
+      value: 2454
   rate:
     2019-01-01:
       value: 0.045
@@ -71,6 +91,10 @@ brackets:
       value: 2417
     2021-01-01:
       value: 2421
+    2022-01-01:
+      value: 2455
+    2023-01-01:
+      value: 2588
   rate:
     2019-01-01:
       value: 0.06
@@ -83,6 +107,10 @@ brackets:
       value: 2500
     2021-01-01:
       value: 2505
+    2022-01-01:
+      value: 2540
+    2023-01-01:
+      value: 2677
   rate:
     2019-01-01:
       value: 0.075
@@ -95,6 +123,10 @@ brackets:
       value: 2750
     2021-01-01:
       value: 2755
+    2022-01-01:
+      value: 2794
+    2023-01-01:
+      value: 2945
   rate:
     2019-01-01:
       value: 0.09
@@ -107,6 +139,10 @@ brackets:
       value: 3400
     2021-01-01:
       value: 3406
+    2022-01-01:
+      value: 3454
+    2023-01-01:
+      value: 3641
   rate:
     2019-01-01:
       value: 0.105
@@ -119,6 +155,10 @@ brackets:
       value: 4350
     2021-01-01:
       value: 4359
+    2022-01-01:
+      value: 4420
+    2023-01-01:
+      value: 4659
   rate:
     2019-01-01:
       value: 0.12
@@ -131,6 +171,10 @@ brackets:
       value: 4942
     2021-01-01:
       value: 4959
+    2022-01-01:
+      value: 5021
+    2023-01-01:
+      value: 5292
   rate:
     2019-01-01:
       value: 0.14
@@ -143,6 +187,10 @@ brackets:
       value: 5725
     2021-01-01:
       value: 5736
+    2022-01-01:
+      value: 5816
+    2023-01-01:
+      value: 6130
   rate:
     2019-01-01:
       value: 0.16
@@ -155,6 +203,10 @@ brackets:
       value: 6858
     2021-01-01:
       value: 6872
+    2022-01-01:
+      value: 6968
+    2023-01-01:
+      value: 7344
   rate:
     2019-01-01:
       value: 0.18
@@ -167,6 +219,10 @@ brackets:
       value: 7625
     2021-01-01:
       value: 7640
+    2022-01-01:
+      value: 7747
+    2023-01-01:
+      value: 8165
   rate:
     2019-01-01:
       value: 0.2
@@ -177,6 +233,10 @@ brackets:
       value: 8667
     2021-01-01:
       value: 8684
+    2022-01-01:
+      value: 8805
+    2023-01-01:
+      value: 9280
   rate:
     2019-01-01:
       value: 0.24
@@ -187,6 +247,10 @@ brackets:
       value: 11917
     2021-01-01:
       value: 11940
+    2022-01-01:
+      value: 12107
+    2023-01-01:
+      value: 12761
   rate:
     2019-01-01:
       value: 0.28
@@ -197,6 +261,10 @@ brackets:
       value: 15833
     2021-01-01:
       value: 15865
+    2022-01-01:
+      value: 16087
+    2023-01-01:
+      value: 16956
   rate:
     2019-01-01:
       value: 0.33
@@ -207,6 +275,10 @@ brackets:
       value: 24167
     2021-01-01:
       value: 24215
+    2022-01-01:
+      value: 24554
+    2023-01-01:
+      value: 25880
   rate:
     2019-01-01:
       value: 0.38
@@ -217,6 +289,10 @@ brackets:
       value: 52825
     2021-01-01:
       value: 52930
+    2022-01-01:
+      value: 53870
+    2023-01-01:
+      value: 56568
   rate:
     2019-01-01:
       value: 0.43
@@ -232,9 +308,19 @@ metadata:
     2021-01-01:
       title: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
       href: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593
+    2022-01-01:
+      title: Loi 2020-1900, art. 2 du 30/12/2021 (LF pour 2022)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
+    2023-01-01:
+      title: Loi 2020-1721, art. 2 du 30/12/2022 (LF pour 2023)
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046845631
   official_journal_date:
     2019-01-01: "2018-12-30"
     2020-01-01: "2019-12-29"
     2021-01-01: "2020-12-30"
+    2022-01-01: "2021-12-31"
+    2023-01-01: "2022-12-31"
   rate_unit: /1
   threshold_unit: currency
+  documentation: "Attention, contrairement au taux d'IRPP principal, le taux neutre est appliqué sur les revenus de l'année en cours. La LF pour 2022 prévoit donc un taux qui sera appliqué en 2022
+  sur les revenus 2022, avant d'être corrigé en 2023 en appliquant le taux principal. "

@@ -7,3 +7,6 @@ values:
 metadata:
   short_label: Seuil
   unit: /1
+  reference:
+    title: Code général des impôts, Article 199 quater C
+    href: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069577/LEGISCTA000006191827/2012-01-01/
