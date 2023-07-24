@@ -1,5 +1,14 @@
 # Changelog
 
+# 150.0.0 [#2148](https://github.com/openfisca/openfisca-france/pull/2148)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : toutes.
+* Détails :
+  - Met à jour toutes les dépendances afin d'utiliser leurs dernières versions :
+    * Met à jour openfisca-core de la version `40` à la version `41`
+
 ### 149.4.4 [#2149](https://github.com/openfisca/openfisca-france/pull/2149)
 
 * Changement mineur
@@ -8,7 +17,6 @@
   - `/model/caracteristiques_socio_demographiques/capacite_travail.py`
 * Détails :
   - Ajoute unité ratio à cette variable taux d'incapacité prise en compte dans l'AAH, permet d'éviter d'entrer une valeur telle que 80 alors que la valeur doit être entre 0 et 1.
-
 
 ### 149.4.3 [#2146](https://github.com/openfisca/openfisca-france/pull/2146)
 
@@ -24,7 +32,7 @@
 
 * Correction d'une erreur de calcul
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prestations/minima_sociaux/aah.py`
   - `tests/formulas/aah/aah.yaml`
 * Détails :
