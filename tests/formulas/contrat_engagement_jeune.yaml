@@ -23,3 +23,16 @@
       2022-02: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
   output:
     contrat_engagement_jeune: [0, 200, 200, 500, 0, 0, 0, 0, 500, 347.3, 0, 0] # Calcul du 347.3: 500-(600-300)*500/(0.8*1603-300)
+
+- name: Calcul de l'égibilité et du montant du Contrat d'Engagement Jeune avec un RNI en entré
+  period: 2023-04
+  input:
+    age: ['18', '18']
+    handicap: [false, false]
+    activite: [inactif, inactif]
+    rni:
+      2021: ['500000', '0']
+    nbptr:
+      2021: ['1', '1']
+  output:
+    contrat_engagement_jeune: [0, 528]
