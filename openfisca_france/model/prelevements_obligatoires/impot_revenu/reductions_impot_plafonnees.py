@@ -4867,7 +4867,7 @@ class sofica(Variable):
         f7gn = foyer_fiscal('f7gn', period)
         f7fn = foyer_fiscal('f7fn', period)
         rng = foyer_fiscal('rng', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.sofica
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.sofica
 
         max0 = min_(P.plafond_revenu_net_global * max_(rng, 0), P.plafond)
         max1 = max_(0, max0 - f7gn)
@@ -4883,7 +4883,7 @@ class sofica(Variable):
         f7fn = foyer_fiscal('f7fn', period)
         f7en = foyer_fiscal('f7en', period)
         rng = foyer_fiscal('rng', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.sofica
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.sofica
 
         max0 = min_(P.plafond_revenu_net_global * max_(rng, 0), P.plafond)
         max1 = max_(0, max0 - f7en)
