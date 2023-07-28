@@ -4911,7 +4911,7 @@ class sofipe(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         rbg_int = foyer_fiscal('rbg_int', period)
         f7gs = foyer_fiscal('f7gs_2009', period)
-        P = parameters(period).impot_revenu.calcul_reductions_impots.sofipeche
+        P = parameters(period).impot_revenu.calcul_reductions_impots.souscriptions.sofipeche
 
         max1 = min_(P.plafond * (maries_ou_pacses + 1), P.plafond_revenu_net_global * rbg_int)  # page3 ligne 18
         return P.taux * min_(f7gs, max1)
