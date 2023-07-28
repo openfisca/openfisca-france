@@ -3489,12 +3489,12 @@ class nbptr(Variable):
         # # note 3 : Pas de personne à charge
         # - invalide
 
-        n31a = quotient_familial.not31a * (no_pac & no_alt & caseP)
+        n31a = quotient_familial.sans_pers_a_charge.not31a * (no_pac & no_alt & caseP)
         # - ancien combatant
-        n31b = quotient_familial.not31b * (no_pac & no_alt & (caseW | caseG))
+        n31b = quotient_familial.sans_pers_a_charge.not31b * (no_pac & no_alt & (caseW | caseG))
         n31 = max_(n31a, n31b)
         # - personne seule ayant élevé des enfants
-        n32 = quotient_familial.not32 * (no_pac & no_alt & ((caseE | caseK | caseL) & not_(caseN)))
+        n32 = quotient_familial.sans_pers_a_charge.not32 * (no_pac & no_alt & ((caseE | caseK | caseL) & not_(caseN)))
         n3 = max_(n31, n32)
         # # note 4 Invalidité de la personne ou du conjoint pour les mariés ou
         # # jeunes veuf(ve)s
@@ -3532,8 +3532,8 @@ class nbptr(Variable):
         quotient_familial.enf2 : nb part enfants de rang 3 ou plus
         quotient_familial.inv1 : nb part supp enfants invalides (I, G)
         quotient_familial.inv2 : nb part supp adultes invalides (R)
-        quotient_familial.not31 : nb part supp note 3 : cases W ou G pour veuf, celib ou div
-        quotient_familial.not32 : nb part supp note 3 : personne seule ayant élevé des enfants
+        quotient_familial.sans_pers_a_charge.not31 : nb part supp note 3 : cases W ou G pour veuf, celib ou div
+        quotient_familial.sans_pers_a_charge.not32 : nb part supp note 3 : personne seule ayant élevé des enfants
         quotient_familial.not41 : nb part supp adultes invalides (vous et/ou conjoint) note 4
         quotient_familial.not42 : nb part supp adultes anciens combattants (vous et/ou conjoint) note 4
         quotient_familial.not6 : nb part supp note 6
@@ -3586,12 +3586,12 @@ class nbptr(Variable):
         # # note 3 : Pas de personne à charge
         # - invalide
 
-        n31a = quotient_familial.not31a * (no_pac & no_alt & caseP)
+        n31a = quotient_familial.sans_pers_a_charge.not31a * (no_pac & no_alt & caseP)
         # - ancien combatant
-        n31b = quotient_familial.not31b * (no_pac & no_alt & (caseW | caseG))
+        n31b = quotient_familial.sans_pers_a_charge.not31b * (no_pac & no_alt & (caseW | caseG))
         n31 = max_(n31a, n31b)
         # - personne seule ayant élevé des enfants
-        n32 = quotient_familial.not32 * (no_pac & no_alt & ((caseE | caseK | caseL) & not_(caseN)))
+        n32 = quotient_familial.sans_pers_a_charge.not32 * (no_pac & no_alt & ((caseE | caseK | caseL) & not_(caseN)))
         n3 = max_(n31, n32)
         # # note 4 Invalidité de la personne ou du conjoint pour les mariés ou
         # # jeunes veuf(ve)s
