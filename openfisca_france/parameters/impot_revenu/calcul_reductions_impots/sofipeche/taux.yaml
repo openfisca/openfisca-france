@@ -1,0 +1,27 @@
+description: Taux de la réduction d'impôt pour souscriptions de parts au capital de SOFIPECHE (1999 - 2012)
+values:
+  1997-01-01:
+    value: null
+  2009-01-01:
+    value: 0.4
+  2011-01-01:
+    value: 0.36
+  2012-01-01:
+    value: null
+metadata:
+  short_label: Taux
+  ipp_csv_id: txsofipeche
+  unit: /1
+  reference:
+    2009-01-01:
+      title: Loi de finances pour 2011 2010-1657 du 29/12/2010 art. 105
+    2011-01-01:
+      title: BOI-IR-DOMIC-40
+  official_journal_date:
+    2009-01-01: "2010-12-30"
+  notes:
+    2011-01-01:
+    - title: Le taux de la réduction d'impôt était fixé, pour les investissements réalisés jusqu'au 31 décembre 2010, à 40 % des sommes versées. Le taux de la réduction d'impôt a été diminué les investissements réalisés à compter du 1er janvier 2011
+documentation: |-
+  Notes :
+  (1) Souscription au capital d'une SOFIPECHE : plafonnement à doubler pour couple

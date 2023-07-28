@@ -1,0 +1,14 @@
+description: Souscription de parts de fonds communs de placement dans l'innovation (FCPI) ou de fonds d'investissement de proximité (FIP)
+metadata:
+  short_label: FCPI et FIP
+  label_en: Innovation Mutual Funds Shares Subscription (1997 -)
+  order:
+  - taux
+  - taux_corse
+  - plafond_celibataire
+  - plafond_couple
+documentation: |-
+  Notes :
+  (1) Souscriptions de parts de fonds communs de placement dans l'innovation (FCPI) ou de fonds d'investissements de proximité (FIP)
+  (2) Art. 199 terdecies-0-A CGI. Pour les FIP en Corse voir BOI-IR-RICI-120
+  (3) Plafond à doubler pour couples mariés ou pacsés pour fonds d'investissement de proximité (FIP)
