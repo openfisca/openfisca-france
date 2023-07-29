@@ -13,6 +13,8 @@ values:
   2006-01-01:
     value: 1525
   2012-01-01:
+    value: 0
+  2013-01-01:
     value: null
 metadata:
   short_label: Abattement forfaitaire maximal
