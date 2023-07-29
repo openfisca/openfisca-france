@@ -1,7 +1,5 @@
 description: Plafonds de ressources de base à taux partiel pour enfants nés ou adoptés entre le 01/04/2014 et le 31/03/2018 de la Prestation d'accueil du jeune enfant (PAJE)
 values:
-  2004-01-01:
-    value: null
   2014-04-01:
     value: 29082
   2015-01-01:
