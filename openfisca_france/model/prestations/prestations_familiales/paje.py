@@ -138,20 +138,18 @@ class paje_base(Variable):
         # A partir de la réforme de 2014 et jusqu'à la réforme de 2018 (enfants nés entre le 1er avril 2014 et le 1er avril 2018)
         def plafond_taux_plein_2014_2018():
             if period.start < Instant((2014, 4, 1)):
-                return 0, 0, 0
+                return plafond_apres_ajustement_2014_2018(0, 0, 0)
             plafond_de_base = paje.paje_plaf.ne_adopte_04_2014_et_03_2018.taux_plein.plafond_ressources_0_enfant
             maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_04_2014_et_03_2018.taux_plein.biactifs_parents_isoles
             maj_plafond_par_enfant = plafond_de_base * paje.paje_plaf.ne_adopte_04_2014_et_03_2018.majorations_enfants.majoration_enfant_supp
-
             return plafond_apres_ajustement_2014_2018(plafond_de_base, maj_plafond_par_enfant, maj_plafond_seul_biactif)
 
         def plafond_taux_partiel_2014_2018():
             if period.start < Instant((2014, 4, 1)):
-                return 0, 0, 0
+                return plafond_apres_ajustement_2014_2018(0, 0, 0)
             plafond_de_base = paje.paje_plaf.ne_adopte_04_2014_et_03_2018.taux_partiel.plafond_ressources_0_enfant
             maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_04_2014_et_03_2018.taux_partiel.biactifs_parents_isoles
             maj_plafond_par_enfant = plafond_de_base * paje.paje_plaf.ne_adopte_04_2014_et_03_2018.majorations_enfants.majoration_enfant_supp
-
             return plafond_apres_ajustement_2014_2018(plafond_de_base, maj_plafond_par_enfant, maj_plafond_seul_biactif)
 
         def plafond_apres_ajustement_2014_2018(plafond_de_base, maj_plafond_par_enfant, maj_plafond_seul_biactif):
