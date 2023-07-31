@@ -44,14 +44,14 @@
     menage:
       personne_de_reference: ind0
   output:
-    iai: 40296.0
-    irpp: -40296.0
-    nbptr: 1.0
-    ppe: 0.0
-    rbg: 137843.0
     reductions: 2688.0
+    rbg: 137843.0
     rfr: 137843.0
     rni: 137843.0
+    nbptr: 1.0
+    ppe: 0.0
+    iai: 40296.0
+    irpp: -40296.0
 - name: reduc_location_meublee
   period: 2015
   absolute_error_margin: 2
