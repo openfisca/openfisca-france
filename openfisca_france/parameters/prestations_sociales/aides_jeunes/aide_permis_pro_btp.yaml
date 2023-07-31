@@ -1,0 +1,88 @@
+description: Aide au financement du permis B pro BTP
+metadata:
+  short_label: Permis B pro BTP
+reference:
+  2021-01-01:
+  href: https://www.probtp.com/part/apprenti/aide-permis.html
+
+age:
+  description: Conditions d'âge pour bénéficier de l'Aide au financement du permis B pro BTP
+  maximum:
+    description: Conditions d'âge maximum pour bénéficier de l'Aide au financement du permis B pro BTP
+    values:
+      2021-01-01:
+        value: 30
+    metadata:
+      short_label: Maximum
+  minimum:
+    description: Conditions d'âge minimum pour bénéficier de l'Aide au financement du permis B pro BTP
+    values:
+      2021-01-01:
+        value: 15
+    metadata:
+      short_label: Minimum
+  unit: year
+  metadata:
+    short_label: Conditions d'âge
+
+montant:
+  montant_unique:
+    description: Montant unique de l'Aide au financement du permis B pro BTP (depuis 2023)
+    values:
+      2023-01-01:
+        value: 600
+    metadata:
+      short_label: Montant unique
+  premier_echelon:
+    description: Montant au 1er échelon de l'Aide au financement du permis B pro BTP
+    values:
+      2021-01-01:
+        value: 700
+    metadata:
+      short_label: 1er échelon
+      unit: currency
+  deuxieme_echelon:
+    description: Montant au 2ème échelon de l'Aide au financement du permis B pro BTP
+    values:
+      2021-01-01:
+        value: 500
+    metadata:
+      short_label: 2ème échelon
+      unit: currency
+  troisieme_echelon:
+    description: Montant au 3ème échelon de l'Aide au financement du permis B pro BTP
+    values:
+      2021-01-01:
+        value: 300
+    metadata:
+      short_label: 3ème échelon
+      unit: currency
+
+plafonds:
+  description: Plafonds de l'Aide au financement du permis B pro BTP
+  metadata:
+    short_label: Plafonds
+  premier_echelon:
+    description: Plafonds annuels du 1er échelon pour bénéficier de l'Aide au financement du permis B pro BTP
+    values:
+      2021-01-01:
+        value: 15000
+    metadata:
+      short_label: 1er échelon
+      unit: currency
+  deuxieme_echelon:
+    description: Plafonds annuels du 1er échelon pour bénéficier de l'Aide au financement du permis B pro BTP
+    values:
+      2021-01-01:
+        value: 21000
+    metadata:
+      short_label: 1er échelon
+      unit: currency
+  troisieme_echelon:
+    description: Plafonds annuels du 1er échelon pour bénéficier de l'Aide au financement du permis B pro BTP
+    values:
+      2021-01-01:
+        value: 25000
+    metadata:
+      short_label: 1er échelon
+      unit: currency
