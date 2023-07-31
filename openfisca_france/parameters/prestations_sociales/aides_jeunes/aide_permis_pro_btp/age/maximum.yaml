@@ -1,0 +1,10 @@
+description: Conditions d'âge maximum pour bénéficier de l'Aide au financement du permis B pro BTP
+values:
+  2021-01-01:
+    value: 30
+metadata:
+  short_label: Maximum
+  unit: year
+  reference:
+    2021-01-01:
+      href: https://www.probtp.com/part/apprenti/aide-permis.html
