@@ -18,7 +18,7 @@ class aide_permis_pro_btp(Variable):
         rfr = individu.foyer_fiscal('rfr', period.this_year)
         eligibilite_ressource = rfr <= smic_annuel
 
-        montant = 600
+        montant = params.montant.montant_unique
 
         age = individu('age', period)
         eligibilite_age = (params.age.minimum <= age) * (age < params.age.maximum)
