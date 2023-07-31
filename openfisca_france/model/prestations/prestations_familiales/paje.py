@@ -147,7 +147,7 @@ class paje_base(Variable):
             return plafond_apres_ajustement_2014_2018(plafond_de_base, maj_plafond_par_enfant, maj_plafond_seul_biactif)
 
         def plafond_taux_partiel_2014_2018():
-            if period.start < Instant((2014, 4, 1))  or period.start >= Instant((2021, 4, 1)):
+            if period.start < Instant((2014, 4, 1)) or period.start >= Instant((2021, 4, 1)):
                 return plafond_apres_ajustement_2014_2018(0, 0, 0)
             plafond_de_base = paje.paje_plaf.ne_adopte_04_2014_et_03_2018.taux_partiel.plafond_ressources_0_enfant
             maj_plafond_seul_biactif = paje.paje_plaf.ne_adopte_04_2014_et_03_2018.taux_partiel.biactifs_parents_isoles
