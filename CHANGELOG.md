@@ -1,10 +1,22 @@
 # Changelog
 
-###  150.2.0 [#2129](https://github.com/openfisca/openfisca-france/pull/2129)
+### 150.2.1 [#2157](https://github.com/openfisca/openfisca-france/pull/2157)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+    - `openfisca_france/model/prestations/agepi.py`
+    - `openfisca_france/model/prestations/aide_mobilite.py`
+    - `tests/test_basics.py`
+
+* Détails :
+  - La release de la version 6.1.0 ajoute de nouvelles règles de lint qui mettent en erreur notre CI.
+
+##  150.2.0 [#2129](https://github.com/openfisca/openfisca-france/pull/2129)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir de 01/01/2023 et 01/01/2022.
-* Zones impactées : 
+* Zones impactées :
 - `parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant/par_zone/zone_1/`
 - `parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant/par_zone/zone_2/`
 - `parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant/par_zone/zone_3/`
@@ -19,7 +31,7 @@
   - Revalorisation du plafonds et majorations de plafonds du CF pour 01/01/2023 et 01/01/2022
   - Corrige la date dans le titre de l'arrêté pour 01/01/2023
 
-### 150.1.0 [#2130](https://github.com/openfisca/openfisca-france/pull/2130)
+## 150.1.0 [#2130](https://github.com/openfisca/openfisca-france/pull/2130)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2022 et 01/07/2022.
