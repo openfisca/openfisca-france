@@ -14,6 +14,8 @@ values:
     value: 9.04
   2022-10-01:
     value: 8.5
+  2023-01-01:
+    value: 9.09
 metadata:
   short_label: Majoration par personne à charge supplémentaire
   last_value_still_valid_on: "2023-05-24"
@@ -41,6 +43,9 @@ metadata:
     2022-10-01:
       title: Arrêté du 27/09/2022, art. 1
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046349828
+    2023-01-01:
+      title: Arrêté du 30/12/2022, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046848188
   official_journal_date:
     2018-01-01: "2018-02-28"
     2019-01-01: "2018-12-29"

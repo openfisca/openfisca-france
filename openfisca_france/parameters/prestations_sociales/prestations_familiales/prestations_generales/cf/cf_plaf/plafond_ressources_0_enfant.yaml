@@ -36,6 +36,10 @@ values:
     value: 21538
   2021-01-01:
     value: 21732
+  2022-01-01:
+    value: 21776
+  2023-01-01:
+    value: 22123
 metadata:
   short_label: Base du plafond de ressources
   last_value_still_valid_on: "2023-02-02"
@@ -93,6 +97,12 @@ metadata:
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694990
     - title: Circulaire DSS/2B/2020/226 du 14/12/2020, p.210
       href: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-12/ste_20200012_0000_0050.pdf
+    2022-01-01:
+      title: Arrêté du 16/12/2021, art. 1
+      href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044572370
+    2023-01-01:
+      title: Arrêté du 21 décembre 2022 relatif aux plafonds de ressources de certaines prestations familiales
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046794210
   official_journal_date:
     1986-01-01: "1985-12-21"
     2003-07-01: 2004-01-01; 2003-06-28
