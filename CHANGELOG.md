@@ -1,12 +1,21 @@
 # Changelog
 
+### 150.1.0 [#2130](https://github.com/openfisca/openfisca-france/pull/2130)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2022 et 01/07/2022.
+* Zones impactées : `parameters/chomage/allocations_assurance_chomage/ass/`.
+
+* Détails :
+  - Revalorisation de l'ASS pour 01/04/2022 et 01/07/2022
+
 ### 150.0.1 [#2132](https://github.com/openfisca/openfisca-france/pull/2132)
 
 * Changement mineur.
 * Périodes concernées : toutes.
 * Zones impactées :
     - `model/prestations/jeunes/contrat_engagement_jeune.py`.
-    - 'tests/formulas/contrat_engagement_jeune.yaml`
+    - `tests/formulas/contrat_engagement_jeune.yaml`
 * Détails :
   - Dans le cas de données d'entrée exprimant les revenus avec un RNI sur une période annuelle, le RNI était équivalent à 0 peut importe le montant.
 Le calcul se fait sur une période annuelle mais là formule actuelle effectue le calcule avec une période mensuelle (un offset de 12 mois).
