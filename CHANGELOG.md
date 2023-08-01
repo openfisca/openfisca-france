@@ -1,5 +1,24 @@
 # Changelog
 
+###  150.2.0 [#2129](https://github.com/openfisca/openfisca-france/pull/2129)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir de 01/01/2023 et 01/01/2022.
+* Zones impactées : 
+- `parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant/par_zone/zone_1/`
+- `parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant/par_zone/zone_2/`
+- `parameters/prestations_sociales/aides_logement/reduction_loyer_solidarite/montant/par_zone/zone_3/`
+- `parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_cond_ress/`
+- `parameters/prestations_sociales/prestations_familiales/prestations_generales/cf/cf_plaf/`
+- `parameters/prestations_sociales/prestations_familiales/petite_enfance/paje/paje_plaf/ne_adopte_apres_04_2018/taux_partiel/`
+- `parameters/prestations_sociales/prestations_familiales/petite_enfance/paje/paje_plaf/ne_adopte_apres_04_2018/taux_plein/`
+
+* Détails :
+  - Revalorisation du montant de RLS pour les trois zones pour 01/01/2023
+  - Revalorisation des plafonds et majorations de plafonds de l'AF pour 01/01/2023 et 01/01/2022
+  - Revalorisation du plafonds et majorations de plafonds du CF pour 01/01/2023 et 01/01/2022
+  - Corrige la date dans le titre de l'arrêté pour 01/01/2023
+
 ### 150.1.0 [#2130](https://github.com/openfisca/openfisca-france/pull/2130)
 
 * Évolution du système socio-fiscal.
