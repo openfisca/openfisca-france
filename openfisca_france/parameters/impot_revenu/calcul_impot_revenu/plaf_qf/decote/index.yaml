@@ -32,6 +32,7 @@ metadata:
     - title: Introduction d'une réduction d'impôt sous conditon de revenus qui s'impute après la décote mais avant les réductions d'impôt classiques (art. 197-I-4 (b) du CGI)
   order:
   - taux
+  - seuil
   - seuil_celib
   - seuil_couple
   - seuil_1_part

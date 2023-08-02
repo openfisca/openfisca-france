@@ -134,5 +134,9 @@
     prelevement_forfaitaire_unique_ir: 0
     nbptr: 1.0
     rfr: 60000.0
-    irpp: -3786.0
+    nb_adult: 1
+    ir_plaf_qf: 1391
+    decote: 0
+    ip_net: 1391
+    irpp: -3951
     prelevements_sociaux_revenus_capital: -3440.0
