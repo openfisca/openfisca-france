@@ -6,6 +6,9 @@ metadata:
   order:
   - plafond
   - taux
+  - taux20
+  - taux18
+  - taux11
   - duree
 documentation: |-
   Réduction codifiée à l'article 199 sexvicies du Code général des impôts
