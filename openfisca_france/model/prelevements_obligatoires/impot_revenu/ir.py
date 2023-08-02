@@ -1396,7 +1396,12 @@ class decote(Variable):
         decote_celib = max_(0, decote_seuil_celib - taux_decote * ir_plaf_qf)
         decote_couple = max_(0, decote_seuil_couple - taux_decote * ir_plaf_qf)
 
-        return around((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple)
+        return around(
+            where(
+                nb_adult == 1,
+                decote_celib,
+                decote_couple,
+                ))
 
 
 class decote_gain_fiscal(Variable):
