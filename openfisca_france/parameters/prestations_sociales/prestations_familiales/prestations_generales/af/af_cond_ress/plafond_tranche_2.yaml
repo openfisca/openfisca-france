@@ -18,7 +18,7 @@ values:
     value: 94893
 metadata:
   short_label: Plafond de ressources - Tranche 2
-  last_value_still_valid_on: "2021-12-31"
+  last_value_still_valid_on: "2023-01-31"
   label_en: "Family allowances (AF): Thresholds for means-testing"
   ipp_csv_id: plaf_t2_2enf
   unit: currency
@@ -70,7 +70,6 @@ metadata:
     - title: Revalorisation des plafonds de 0,2%
     2019-01-01:
     - title: Revalorisation des plafonds de 1%
-  last_review: "2023-01-31"
 documentation: |-
   Précalcul du plafond annuel de ressources pour la deuxième tranche
   applicable pour l'attribution du montant modulé des allocations familiales.
