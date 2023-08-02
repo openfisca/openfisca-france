@@ -1,5 +1,13 @@
 # Changelog
 
+### 150.2.2 [#2159](https://github.com/openfisca/openfisca-france/pull/2159)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations_sociales/prestations_familiales/prestations_generales/af/af_cond_ress/`.
+* Détails :
+  - Fusionne des last_review qui étaient en doublon avec des last_value_still_valid_on
+
 ### 150.2.1 [#2157](https://github.com/openfisca/openfisca-france/pull/2157)
 
 * Changement mineur.
