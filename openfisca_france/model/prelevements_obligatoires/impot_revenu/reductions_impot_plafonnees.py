@@ -1625,7 +1625,7 @@ class codev(Variable):
         rbg_int = foyer_fiscal('rbg_int', period)
         P = parameters(period).impot_revenu.calcul_reductions_impots.compte_epargne_co_developpement
 
-        return min_(f7uh * P.taux, min_(P.plafond_en_revenu_net_global * rbg_int, P.plafond_par_personne))  # page3 ligne 18
+        return min_(f7uh * P.taux, min_(P.plafond.plafond_en_revenu_net_global * rbg_int, P.plafond.plafond_par_personne))  # page3 ligne 18
 
 
 class gardenf(Variable):
