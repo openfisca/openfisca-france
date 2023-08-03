@@ -9,7 +9,7 @@ values:
   1993-01-01:
     value: null
 metadata:
-  short_label: "2"
+  short_label: Taux 3
   ipp_csv_id: tx_min3
   unit: /1
   reference:

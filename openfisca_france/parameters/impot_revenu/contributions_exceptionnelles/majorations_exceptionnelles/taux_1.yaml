@@ -33,7 +33,7 @@ values:
   1985-01-01:
     value: null
 metadata:
-  short_label: "1"
+  short_label: Taux 1
   ipp_csv_id: taux1_majo
   unit: /1
   reference:
