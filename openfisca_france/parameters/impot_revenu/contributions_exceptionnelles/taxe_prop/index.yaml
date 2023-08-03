@@ -2,6 +2,7 @@ description: Taxes proportionnelles et taxes complémentaires (1948-1969)
 metadata:
   label_en: Flat taxes and other taxes (1948-1969)
   order:
+  - taux
   - taux_reduit
   - abattement_general
   - autres_revenus_non_salariaux
