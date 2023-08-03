@@ -3,7 +3,7 @@ values:
   2006-01-01:
     value: 1.8221
 metadata:
-  short_label: Montant complémentaire 5ème catégorie
+  short_label: 5ème catégorie
   last_value_still_valid_on: "2023-05-09"
   label_en: "Disabled-child education allowance (AEEH): Conditions and amounts"
   ipp_csv_id: aeeh_cplt5
@@ -21,6 +21,3 @@ metadata:
   notes:
     2006-01-01:
     - title: Création de l'Allocation d'éducation de l'enfant handicapé
-documentation: |-
-  Notes :
-  L'article R541-2 du Code la sécurité sociale (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750713) définit les différentes catégories de handicaps entraînant un complément différent.

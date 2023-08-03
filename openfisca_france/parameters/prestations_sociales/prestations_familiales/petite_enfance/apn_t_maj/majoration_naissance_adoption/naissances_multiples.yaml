@@ -1,5 +1,7 @@
-description: Majoration naissances multiples de l'Allocations postnatales (APN, 1975-1984)
+description: Majoration naissances multiples de l'Allocations postnatales (APN)
 values:
+  1975-04-25:
+    value: null
   1979-09-01:
     value: 1.98
   1983-01-01:
@@ -10,14 +12,17 @@ metadata:
   ipp_csv_id: majo_mult
   unit: /1
   reference:
+    1975-04-25:
+      title: Loi 75-6 du 03/01/1975Décret 75-244 du 24/04/1975
     1979-09-01:
       title: Décret 79-724 du 27/08/1979
       href: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000880148
     1983-01-01:
       title: Décret 82-1138 du 29/12/1982, art. 3(modif art. L516 du CSS)
   official_journal_date:
+    1975-04-25: 1975-01-04; 1975-04-15
     1979-09-01: "1979-08-29"
     1983-01-01: "1982-12-30"
-documentation: |-
-  Notes :
-  (1) Le versement s'effectue en trois fois. Le taux de la base de calcul versé est égal au taux du premier versement plus 2 fois le taux du dernier versement.
+  notes:
+    1975-04-25:
+    - title: La loi 75-6 du 3 janvier 1975 crée l'APN

@@ -17,7 +17,7 @@ values:
   2023-01-01:
     value: 94893
 metadata:
-  short_label: Plafond de ressources - Tranche 2
+  short_label: Tranche 2
   last_value_still_valid_on: "2023-01-31"
   label_en: "Family allowances (AF): Thresholds for means-testing"
   ipp_csv_id: plaf_t2_2enf
@@ -27,17 +27,12 @@ metadata:
       title: Décret 2015-611 du 03/06/2015
       href: https://www.legifrance.gouv.fr/eli/decret/2015/6/3/2015-611/jo/texte
     2016-01-01:
-    - title: Circulaire DSS/SD2B/2015/371 du 18/12/2015
     - title: Arrêté du 08/12/2015, art. 1
       href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031634884/#LEGIARTI000031634884
     2018-01-01:
-    - title: Circulaire DSS/SD2B/2017/352 du 22/12/2017
-    - title: Arrêté du 27/12/2017
     - title: Arrêté du 27/12/2017, art. 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036299563
     2019-01-01:
-    - title: Circulaire DSS/SD2B/2018/279 du 17/12/2018
-    - title: Arrêté du 21/12/2018
     - title: Arrêté du 21/12/2018, art. 1
       href: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037864990
     2020-01-01:
@@ -51,7 +46,9 @@ metadata:
     - title: Instruction no DSS/2B/2020/226 du 14 décembre 2020
       href: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-12/ste_20200012_0000_0050.pdf
     2022-01-01:
-      title: Arrêté du 16 décembre 2021 relatif aux plafonds de ressources de certaines prestations familiales
+    - title: Instruction no DSS/2B/2021/247 du 14/12/2021
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2021/2021.24.sant%C3%A9.pdf
+    - title: Arrêté du 16/12/2021
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044572366
     2023-01-01:
       title: Arrêté du 21 décembre 2022 relatif aux plafonds de ressources de certaines prestations familiales
@@ -61,6 +58,7 @@ metadata:
     2016-01-01: "2015-12-12"
     2018-01-01: "2017-12-29"
     2019-01-01: "2018-12-28"
+    2022-01-01: "2021-12-28"
   notes:
     2015-07-01:
     - title: Création des plafonds de ressources des allocations familiales
@@ -70,18 +68,13 @@ metadata:
     - title: Revalorisation des plafonds de 0,2%
     2019-01-01:
     - title: Revalorisation des plafonds de 1%
+    2022-01-01:
+    - title: Revalorisation des plafonds de 0,2%
 documentation: |-
-  Précalcul du plafond annuel de ressources pour la deuxième tranche
-  applicable pour l'attribution du montant modulé des allocations familiales.
-
-  La deuxième tranche est celle dont les revenus sont supérieurs à un plafond de base
-  de la 1ère tranche majoré d'un montant par enfant à charge mais inférieurs ou égaux
-  au plafond de base de cette 2ème tranche majoré d'un montant par enfant à charge.
-
+  Précalcul du plafond annuel de ressources pour la deuxième tranche applicable pour l'attribution du montant modulé des allocations familiales.
+  La deuxième tranche est celle dont les revenus sont supérieurs à un plafond de base de la 1ère tranche majoré d'un montant par enfant à charge mais inférieurs ou égaux au plafond de base de cette 2ème tranche majoré d'un montant par enfant à charge.
   2018 : 90026 = 78770 + 5628 * 2
   2019 : 90926 = 79558 + 5684 * 2
   2020 : 92381 = 80831 + 5775 * 2
   2021 : 93212 = 81558 + 5827 * 2
-  2022-01-01:
-    - href: https://www.service-public.fr/particuliers/actualites/A15418
-      title: Plafonds de ressources applicables en 2022
+  2022-01-01:Plafonds de ressources applicables en 2022 (https://www.service-public.fr/particuliers/actualites/A15418)

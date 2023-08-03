@@ -5,3 +5,5 @@ metadata:
   order:
   - taux_de_la_tranche_1
   - taux_de_la_tranche_2
+documentation: |-
+  Il faut appliquer à ces taux la modulation liée à la tranche de revenu à laquelle appartient le demandeur de l'AF (à savoir, 100% pour la 1ère tranche, 50% pour la 2ème et 25% pour la 3e. cfAF_cond)

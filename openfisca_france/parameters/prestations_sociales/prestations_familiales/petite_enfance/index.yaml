@@ -1,5 +1,6 @@
 description: Prestations familiales pour la petite enfance
 metadata:
+  documentation_start: true
   short_label: Petite enfance
   label_en: Early childhood
   order:

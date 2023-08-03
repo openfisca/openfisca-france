@@ -1,7 +1,7 @@
-description: Majoration plafond pour la majoration du plafond de ressources des Allocation de la mère au foyer (AMF, 1955-1977)
+description: Majoration plafond pour la majoration du plafond de ressources des Allocation de la mère au foyer (AMF)
 metadata:
   short_label: Majoration plafond pour la majoration
-  label_en: "Allowance for stay-at-home-mother (AMF): Thresholds for means-testing"
+  label_en: Ceiling markup for the markup
   order:
   - 1_enfant
   - 2_enfants

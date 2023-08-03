@@ -1,4 +1,4 @@
-description: Majoration du plafond de ressources (1998), pour Couples biactifs et parents isolés, des Allocations Familiales (AF)
+description: Majoration du plafond de ressources, pour Couples biactifs et parents isolés, des Allocations Familiales (AF)
 values:
   1998-03-01:
     value: 60480
@@ -13,14 +13,14 @@ metadata:
   reference:
     1998-03-01:
     - title: LFSS 97-1164 du 19/12/1997, art. 23 (modif art. L521-1 du CSS)
+      href: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000006757377/1997-12-23#LEGIARTI000006757377
     - title: Décret 98-108 du 26/02/1998, art. 1 (crée art. R521-2 du CSS qui fixe les plafonds)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006772271&cidTexte=JORFTEXT000000570810
     - title: Article L521-1 du Code de la sécurité sociale
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743286/1997-12-23/
-    - href: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006772271
     1999-01-01:
-      title: Article L521-1 du Code de la sécurité sociale
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006743287/1999-01-01/
+    - title: Article L521-1 du Code de la sécurité sociale
+      href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000392993
   official_journal_date:
     1998-03-01: 1997-12-23; 1998-02-27
     1999-01-01: "1998-12-27"
@@ -29,6 +29,3 @@ metadata:
     - title: Création d'une condition de ressources transitoire (avant une réforme globale prévue des prestations familiales)
     1999-01-01:
     - title: Suppression de la condition de ressources
-documentation: |-
-  Notes
-  Définition biactifs : cf. feuille "def_biactif"

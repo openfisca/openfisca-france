@@ -1,4 +1,4 @@
-description: Montant à taux partiel (80% durée légale, personne seule, en % de la BMAF) de l'Allocation de présence parentale (APP, 2001-2005)
+description: Montant à taux partiel (80% durée légale, personne seule, en % de la BMAF) de l'Allocation de présence parentale (APP)
 values:
   2001-01-01:
     value: 0.9427

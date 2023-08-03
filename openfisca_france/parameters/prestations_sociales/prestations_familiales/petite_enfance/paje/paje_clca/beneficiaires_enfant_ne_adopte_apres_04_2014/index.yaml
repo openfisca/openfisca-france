@@ -1,7 +1,7 @@
 description: Complément de libre choix d'activité (CLCA) pour les bénéficiaires de l'allocation de base (enfant né ou adopté après avril 2014) de la Prestation d'accueil du jeune enfant (PAJE)
 metadata:
   short_label: Bénéficiaire, né ou adopté après 04/2014
-  label_en: "Early childhood benefit (PAJE): Extra allowance for the choice of pursuing an activity (CLCA)"
+  label_en: Beneficiary, born or adopted after 04/2014
   order:
   - taux_plein
   - taux_partiel_50

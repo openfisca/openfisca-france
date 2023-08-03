@@ -1,7 +1,7 @@
-description: Plafonds de ressources (pour 2 revenus) de l'Allocation pour frais de garde (AFG, 1976-1977)
+description: Plafonds de ressources (pour 2 revenus) de l'Allocation pour frais de garde (AFG)
 metadata:
   short_label: Pour 2 revenus
-  label_en: "Child care costs allowance (AFG): Thresholds for means-testing"
+  label_en: For 2 incomes
   order:
   - 1_enfant
   - 2_enfants

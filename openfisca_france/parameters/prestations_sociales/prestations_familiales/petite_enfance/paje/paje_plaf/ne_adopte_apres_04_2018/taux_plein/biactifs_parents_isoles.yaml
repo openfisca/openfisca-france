@@ -16,8 +16,8 @@ values:
     value: 8892
 metadata:
   short_label: Majoration pour couple avec deux revenus ou parent isolé
+  label_en: Increase for couple with two incomes or single parent
   last_value_still_valid_on: "2023-05-09"
-  label_en: "Early childhood benefit (PAJE): Thresholds for means-testing"
   ipp_csv_id: maj_plaf_paje_bi_abplein_a_partir_20180401
   unit: currency
   reference:
@@ -41,7 +41,9 @@ metadata:
       title: Arrêté du 14/12/2020, art. 3
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042694981
     2022-01-01:
-      title: Arrêté du 16/12/2021, art. 2
+    - title: Instruction no DSS/2B/2021/247 du 14/12/2021
+      href: https://solidarites-sante.gouv.fr/fichiers/bo/2021/2021.24.sant%C3%A9.pdf
+    - title: Arrêté du 16/12/2021
       href: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044572366
     2023-01-01:
       title: Arrêté du 21/12/2022, art. 1
