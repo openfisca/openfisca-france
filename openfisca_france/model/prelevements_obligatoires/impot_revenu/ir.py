@@ -3707,8 +3707,8 @@ class ppe_coef_tp(Variable):
 
         frac_sa = ppe_du_sa / ppe.TP_nbh
         frac_ns = ppe_du_ns / ppe.TP_nbj
-        tp = ppe_tp_sa | ppe_tp_ns | (frac_sa + frac_ns >= 1)
-        return tp + not_(tp) * (frac_sa + frac_ns)
+        tp = ppe_tp_sa | ppe_tp_ns | ((frac_sa + frac_ns) >= 1)
+        return where(tp, 1.00, frac_sa + frac_ns)
 
 
 class ppe_base(Variable):

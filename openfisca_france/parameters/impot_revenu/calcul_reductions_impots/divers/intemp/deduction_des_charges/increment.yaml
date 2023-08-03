@@ -9,5 +9,3 @@ values:
 metadata:
   ipp_csv_id: inc_deduc
   unit: currency_next_year
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/

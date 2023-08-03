@@ -1,4 +1,4 @@
-description: Barème de la Contribution exceptionnelle sur les hauts revenus
+description: Barème de la contribution exceptionnelle sur les hauts revenus
 brackets:
 - threshold:
     2011-01-01:
@@ -20,7 +20,7 @@ brackets:
       value: 0.04
 metadata:
   short_label: Barème contrib. hauts revenus
-  label_en: Exceptional tax on high incomes (2012-)
+  label_en: Exceptional tax on high incomes
   reference:
     2011-01-01:
       title: Loi 2011-1977 du 28/12/2011 (LF pour 2012) - art. 2
@@ -33,7 +33,6 @@ metadata:
   rate_unit: /1
   threshold_unit: currency_next_year
 documentation: |-
-  Notes :
-  (1) Les seuils du barème exprimés ici sont pour les célibataires. Il faut donc les doubler pour les couples mariés ou pacsés .
-   Assiette = revenu fiscal de référence.
-  (2) Art. 223 sexies du CGI
+  Les seuils du barème exprimés ici sont pour les célibataires. Il faut donc les doubler pour les couples mariés ou pacsés.
+  L'assiette est égale revenu fiscal de référence.
+  Voir Art. 223 sexies du CGI

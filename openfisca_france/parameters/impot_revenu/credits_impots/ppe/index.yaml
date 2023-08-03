@@ -1,12 +1,15 @@
-description: Prime pour l'emploi (PPE, 2000 - 2015)
+description: Prime pour l'emploi (PPE)
 metadata:
   documentation_start: true
   short_label: PPE
-  label_en: Employment Allowance (2001 - 2015)
+  label_en: Employment Allowance
   order:
   - seuils_rfr_eligibilite
   - taux
   - coefficient_majoration_ppe_temps_partiel
   - supplements
   - montant_minimum
+  - TP_nbh
+  - TP_nbj
+  - abatns
 documentation: Art. 200 sexies du CGI
