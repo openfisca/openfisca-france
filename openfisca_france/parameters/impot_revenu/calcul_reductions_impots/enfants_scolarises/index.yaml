@@ -1,6 +1,7 @@
 description: Enfants à charge poursuivant leurs études secondaires ou supérieures
 metadata:
-  label_en: Reduction for educated children (1993 -)
+  short_label: Pour les enfants scolarisés
+  label_en: Reduction for educated children
   order:
   - college
   - lycee

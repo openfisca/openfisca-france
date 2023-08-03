@@ -7,7 +7,7 @@ values:
 metadata:
   short_label: Couple
   ipp_csv_id: plaf_risques_techno_pre_couple
-  unit: currency
+  unit: currency_next_year
   reference:
     2005-01-01:
       title: Loi n° 2004-1484 du 30 décembre 2004 (LF 2005), art. 91
@@ -20,13 +20,3 @@ metadata:
     - title: Création du crédit d'impôt par la LF pour 2005.
     2015-01-01:
     - title: Le double plafond est supprimé et remplacé par un plafond unique indépendant de la composition du foyer fiscal de 20000 euros. De plus, le crédit d'impôt est ouvert aux logements loués pendant une durée de cinq ans, à titre d'habitation principale.
-documentation: |-
-  (1) Article 200 quater A
-
-  (2) Le logement doit être situé en France, affecté à l'habitation principale, situé
-  dans un périmètre couvert par un plan de prévention des risques technologiques et
-  achevé avant l'approbation du plan de prévention des risques technologiques (PPRT).
-
-  (3) Le crédit d'impôt s'applique aux travaux prescrits par le PPRT. Les dépenses
-  de diagnostics préalables sont aussi concernées. Les travaux doivent être réalisés
-  par la même entreprise qui fournit les équipements.

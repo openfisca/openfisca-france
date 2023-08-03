@@ -11,7 +11,7 @@ values:
 metadata:
   short_label: Plafond 1
   ipp_csv_id: plaf_capital_soc1
-  unit: currency
+  unit: currency_next_year
   reference:
     1994-01-01:
       title: Loi 94-1162 du 29/12/1994 (LF pour 1995)
@@ -28,6 +28,3 @@ metadata:
     1994-01-01: "1994-12-31"
     2001-01-01: "2001-12-29"
     2007-01-01: "2007-12-27"
-documentation: |-
-  Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté :
-  plafonnement à doublerpour les couples mariés ou pacsés

@@ -1,4 +1,4 @@
-description: Montant minimum de versement de la Prime pour l'emploi (PPE, 2000 - 2015)
+description: Montant minimum de versement de la Prime pour l'emploi (PPE)
 values:
   1999-01-01:
     value: null
@@ -14,7 +14,7 @@ metadata:
   short_label: Montant minimum
   label_en: Employment Allowance (2001 - 2015)
   ipp_csv_id: ppe_min
-  unit: currency
+  unit: currency_next_year
   reference:
     2000-01-01:
     - title: Loi 2001-458 du 30/05/2001
@@ -36,6 +36,3 @@ metadata:
     - title: Doublement de la prime versée théoriquement en 2001 avec l'instauration d'un complément égal au montant inital de PPE calculé pour l'année 2001.
     2016-01-01:
     - title: A compter du 1e janvier 2016, la PPE est remplacée par la prime d'activité .
-documentation: |-
-  Notes :
-  (1) Art. 200 sexies du CGI

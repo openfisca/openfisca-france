@@ -75,7 +75,7 @@ values:
 metadata:
   short_label: Plus de 65 ans
   ipp_csv_id: exo_irplus65
-  unit: currency
+  unit: currency_next_year
   reference:
     1998-01-01:
       title: BOI 5 B-9-01 n°44 du 02/03/2001
@@ -132,13 +132,3 @@ metadata:
     - title: "Exonération apprentis : fraction du salaire des apprentis exonérée d'IR jusqu'en 2005 inclus : art. 5-2° bis du CGI, à compter de 2006, ce montant est égal au montant annuel du SMIC"
     2007-01-01:
     - title: Voir note (1)
-documentation: |-
-  Notes :
-  Les plafonds font référence aux revenus nets de frais professionnels.
-  Conditions de ressources pour exonération IR : art. 5-2° bis du CGI
-  En application du troisième alinéa du 2° bis de l'article 5 du CGI,
-  ces montants sont relevés chaque année dans la même proportion que la limite
-  supérieure de la première tranche du barème de l'impôt sur le revenus.
-  Les montants obtenus sont arrondis, s'il y a lieu, à la dizaine d'euros supérieure
-  http://bofip.impots.gouv.fr/bofip/5893-PGP#5893-PGP_Portee_de_lexoneration_210
-  https://www.insee.fr/fr/statistiques/1375188

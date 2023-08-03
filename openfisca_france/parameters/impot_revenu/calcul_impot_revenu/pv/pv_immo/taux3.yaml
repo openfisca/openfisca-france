@@ -3,4 +3,5 @@ values:
   2012-02-01:
     value: 0.08
 metadata:
+  short_label: Taux (Seuil 3)
   unit: /1

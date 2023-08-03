@@ -60,12 +60,12 @@ metadata:
   short_label: Minimum
   last_value_still_valid_on: "2023-07-05"
   ipp_csv_id: min_abtpen
-  unit: currency
+  unit: currency_next_year
   reference:
     1978-01-01:
       title: LF pour 1979
     1992-01-01:
-      title: "LF pour 1993\_- \_art. 2-V"
+      title: LF pour 1993 - art. 2-V
     1993-01-01:
       title: LF pour 1994
     1994-01-01:

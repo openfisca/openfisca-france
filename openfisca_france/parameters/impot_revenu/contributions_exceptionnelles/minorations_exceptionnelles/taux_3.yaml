@@ -1,4 +1,4 @@
-description: Taux 3 des minorations exceptionnelles d'impôt (1965-1992)
+description: Taux 3 des minorations exceptionnelles d'impôt
 values:
   1965-01-01:
     value: null
@@ -9,7 +9,7 @@ values:
   1993-01-01:
     value: null
 metadata:
-  short_label: Taux 3
+  short_label: "2"
   ipp_csv_id: tx_min3
   unit: /1
   reference:
