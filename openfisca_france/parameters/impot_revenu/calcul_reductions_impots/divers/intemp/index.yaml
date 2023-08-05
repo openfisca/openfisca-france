@@ -1,7 +1,7 @@
-description: Dépenses de gros travaux et intérêts d'emprunt et ravalement
+description: Réduction d'impôt pour les dépenses de gros travaux, les intérêts d'emprunt et les ravalements
 metadata:
   documentation_start: true
-  short_label: Intérêts d'emprunts
+  short_label: Gros travaux, intérêts d'emprunt et ravalement
   label_en: Expenditures for big works and loan interests
   order:
   - reduction_d_impot_pour_gros_travaux

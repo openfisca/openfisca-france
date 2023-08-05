@@ -1,4 +1,4 @@
-description: Plafond
+description: Plafond de la réducition d'impôt pour gros travaux
 values:
   1978-01-01:
     value: null
@@ -11,10 +11,9 @@ values:
   2000-01-01:
     value: null
 metadata:
+  short_label: Plafond
   ipp_csv_id: plaf_grostravaux
   unit: currency_next_year
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
   notes:
     1997-01-01:
     - title: Dépenses de gros travaux avec même incrément que habitat et majoration comme dans 2 et 3

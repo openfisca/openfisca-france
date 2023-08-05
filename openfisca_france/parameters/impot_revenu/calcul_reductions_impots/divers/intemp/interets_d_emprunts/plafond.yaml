@@ -1,4 +1,4 @@
-description: Plafond
+description: Plafond de la réduction d'impôt liées aux intérêts d'emprunts
 values:
   1978-01-01:
     value: null
@@ -9,8 +9,4 @@ values:
 metadata:
   ipp_csv_id: plaf_int_emp
   unit: currency_next_year
-  reference:
-    href: https://www.ipp.eu/outils/baremes-ipp/
-  notes:
-    2001-01-01:
-    - title: "Majoration sur les revenus 2001 : 381 euros pour le 2° enfant et 457 à partir du 3°"
+  short_label: Plafond
