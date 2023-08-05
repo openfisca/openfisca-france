@@ -5,6 +5,8 @@ metadata:
   order:
   - taux
   - taux_corse
+  - taux_outre_mer
+  - taux_special
   - plafond_celibataire
   - plafond_couple
 documentation: 
