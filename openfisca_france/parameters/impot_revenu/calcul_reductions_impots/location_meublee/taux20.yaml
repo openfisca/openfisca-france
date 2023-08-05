@@ -3,7 +3,7 @@ values:
   2011-01-01:
     value: 0.2
 metadata:
-  short_label: Logements acquis en 2011 avec promesse d'achat en 2010
+  short_label: Taux pour les logements acquis en 2011 avec promesse d'achat en 2010
   unit: /1
   reference:
     2011-01-01:

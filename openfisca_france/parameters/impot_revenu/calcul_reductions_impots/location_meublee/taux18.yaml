@@ -3,7 +3,7 @@ values:
   2011-01-01:
     value: 0.18
 metadata:
-  short_label: Logements acquis en 2011
+  short_label: Taux pour les logements acquis en 2011
   unit: /1
   reference:
     2011-01-01:
@@ -12,4 +12,3 @@ metadata:
   notes:
     2011-01-01:
     - title: Initialement le taux de réduction d'impôt devait passer de 25% à 20% mais l'article 105 de la loi n° 2010-1657 du 29 décembre 2010 de finances pour 2011 a mis en place une réduction homothétique de 10 % des avantages fiscaux à l’impôt sur le revenu, le faisant passer à 18%.
-
