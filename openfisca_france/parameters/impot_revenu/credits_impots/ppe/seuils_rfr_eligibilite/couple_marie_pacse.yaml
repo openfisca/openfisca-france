@@ -1,4 +1,4 @@
-description: Seuils de RFR d'un Couple marié ou pacsé pour être éligible à la Prime pour l'emploi (PPE, 2000 - 2015)
+description: Seuils de RFR d'un Couple marié ou pacsé pour être éligible à la prime pour l'emploi (PPE)
 values:
   1999-01-01:
     value: null
@@ -22,7 +22,7 @@ values:
     value: null
 metadata:
   short_label: Couple
-  label_en: Employment Allowance (2001 - 2015)
+  label_en: Employment Allowance
   ipp_csv_id: seuil_rfr_ppe_coup
   unit: currency_next_year
   reference:

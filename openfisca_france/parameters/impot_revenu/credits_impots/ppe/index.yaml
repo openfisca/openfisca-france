@@ -4,6 +4,7 @@ metadata:
   short_label: PPE
   label_en: Employment Allowance
   order:
+  - seuils_revenu_activite
   - seuils_rfr_eligibilite
   - taux
   - coefficient_majoration_ppe_temps_partiel

@@ -1,4 +1,4 @@
-description: Plancher du revenu d'activité individuel pour le calcul de la Prime pour l'emploi (PPE, 2000 - 2015)
+description: Plancher du revenu d'activité individuel pour le calcul de la prime pour l'emploi (PPE)
 values:
   1999-01-01:
     value: null
@@ -22,7 +22,7 @@ values:
     value: null
 metadata:
   short_label: Minimum
-  label_en: Employment Allowance (2001 - 2015)
+  label_en: Employment Allowance
   ipp_csv_id: seuil_ppe_min
   unit: currency_next_year
   reference:
