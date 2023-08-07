@@ -1,9 +1,9 @@
-description: Part supplémentaire de quotient familial (IR) pour le deuxième enfant
+description: Part supplémentaire de quotient familial (IR) pour le premier enfant à charge
 values:
   2000-01-01:
     value: 0.5
 metadata:
-  short_label: Deuxième enfant
+  short_label: Premier enfant
   last_value_still_valid_on: "2023-08-07"
   unit: part_quotient_familial
   reference:
