@@ -4,5 +4,5 @@ metadata:
   order:
   - plafond_recettes
   - taux
-  - montant_minimum
+  - maj_frag
 documentation: "Micro-BA : art. 64 bis du CGI. Définition des plafonds de ressources à l'art. 69 du CGI."
