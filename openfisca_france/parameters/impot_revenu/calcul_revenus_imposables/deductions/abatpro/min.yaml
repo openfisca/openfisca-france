@@ -65,8 +65,8 @@ values:
   2022-01-01:
     value: 472
 metadata:
-  last_value_still_valid_on: "2023-07-05"
   short_label: Minimum pour les salaires
+  last_value_still_valid_on: "2023-07-05"
   ipp_csv_id: min_abtsal
   unit: currency_next_year
   reference:

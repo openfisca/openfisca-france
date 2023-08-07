@@ -3,8 +3,8 @@ values:
   2001-01-01:
     value: 0.4
 metadata:
-  last_value_still_valid_on: "2023-07-05"
   short_label: Taux max (Guyane, Mayotte)
+  last_value_still_valid_on: "2023-07-05"
   unit: /1
   reference:
     2001-01-01:

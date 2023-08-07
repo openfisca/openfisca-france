@@ -7,6 +7,6 @@ values:
   2001-01-01:
     value: null
 metadata:
+  short_label: Plafond
   ipp_csv_id: plaf_int_emp
   unit: currency_next_year
-  short_label: Plafond

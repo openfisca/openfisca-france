@@ -9,8 +9,8 @@ values:
   2003-01-01:
     value: null
 metadata:
-  ipp_csv_id: plaf_habitat3
   short_label: Plafond 3
+  ipp_csv_id: plaf_habitat3
   unit: currency_next_year
   notes:
     2001-01-01:

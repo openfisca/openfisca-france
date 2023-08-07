@@ -18,8 +18,8 @@ values:
     value: 71194
 metadata:
   short_label: Plafond de ressources - Tranche 1
-  label_en: "Family allowances (AF): Thresholds for means-testing"
   last_value_still_valid_on: "2023-01-31"
+  label_en: "Family allowances (AF): Thresholds for means-testing"
   ipp_csv_id: plaf_t1_2enf
   unit: currency
   reference:

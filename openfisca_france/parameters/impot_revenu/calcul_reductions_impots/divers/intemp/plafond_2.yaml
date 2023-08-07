@@ -7,9 +7,9 @@ values:
   1997-01-01:
     value: null
 metadata:
+  short_label: Plafond 2
   ipp_csv_id: plaf_habitat2
   unit: currency_next_year
-  short_label: Plafond 2
   notes:
     1997-01-01:
     - title: Dépenses de gros travaux avec même incrément que habitat et majoration comme dans 2 et 3

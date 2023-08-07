@@ -14,5 +14,4 @@ metadata:
   - formule_calcul_taux_en_impot
   - formule_calcul_seuil_2
   - formule_calcul_seuil_4
-documentation: |-
-  Sources : Tableau C-4, p.650, dans Thomas Piketty, 'Les hauts revenus en France au XXe siècle (Grasset, 2001)
+documentation: "Sources : Tableau C-4, p.650, dans Thomas Piketty, 'Les hauts revenus en France au XXe siècle (Grasset, 2001)"

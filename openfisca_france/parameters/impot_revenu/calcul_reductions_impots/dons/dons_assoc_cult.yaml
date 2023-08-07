@@ -5,8 +5,8 @@ values:
   2022-01-01:
     value: 562
 metadata:
-  last_value_still_valid_on: "2023-07-05"
   short_label: Plafond réduction d'impôt
+  last_value_still_valid_on: "2023-07-05"
   unit: currency_next_year
   reference:
     2021-01-01:
