@@ -1,10 +1,10 @@
-description: Part supplémentaire de quotient familial (IR) pour le cinquième enfant à charge
+description: Part supplémentaire de quotient familial (IR) à partir du troisième enfant à charge inclus
 values:
   2000-01-01:
     value: 1
 metadata:
-  short_label: Cinquième enfant
-  last_value_still_valid_on: "2023-08-07"
+  short_label: À partir du troisième enfant inclus
+  last_value_still_valid_on: "2022-08-08"
   unit: part_quotient_familial
   reference:
     2000-01-01:

@@ -3476,20 +3476,12 @@ class nbptr(Variable):
         # pour les personnes à charge en garde complète
         qf_pac = (quotient_familial.enf1 * (nb_pac >= 1)
             + quotient_familial.enf2 * (nb_pac >= 2)
-            + quotient_familial.enf3 * (nb_pac >= 3)
-            + quotient_familial.enf4 * (nb_pac >= 4)
-            + quotient_familial.enf5 * (nb_pac >= 5)
-            + quotient_familial.enf6 * (nb_pac >= 6)
-            + quotient_familial.enfsup6 * max_(nb_pac - 6, 0))
+            + quotient_familial.enf3_et_sup * max_(nb_pac - 2, 0))
 
         # Pour les personnes à charge en résidence alternée 
         qf_alt = 0.5 * (quotient_familial.enf1 * (nbH - nb_pac >= 1)
             + quotient_familial.enf2 * (nbH - nb_pac >= 2)
-            + quotient_familial.enf3 * (nbH - nb_pac >= 3)
-            + quotient_familial.enf4 * (nbH - nb_pac >= 4)
-            + quotient_familial.enf5 * (nbH - nb_pac >= 5)
-            + quotient_familial.enf6 * (nbH - nb_pac >= 6)
-            + quotient_familial.enfsup6 * max_(nbH - nb_pac - 6, 0))
+            + quotient_familial.enf3_et_sup * max_(nbH - nb_pac - 2, 0))
 
         enf = qf_pac + qf_alt
 
@@ -3585,20 +3577,12 @@ class nbptr(Variable):
         # pour les personnes à charge en garde complète
         qf_pac = (quotient_familial.enf1 * (nb_pac >= 1)
             + quotient_familial.enf2 * (nb_pac >= 2)
-            + quotient_familial.enf3 * (nb_pac >= 3)
-            + quotient_familial.enf4 * (nb_pac >= 4)
-            + quotient_familial.enf5 * (nb_pac >= 5)
-            + quotient_familial.enf6 * (nb_pac >= 6)
-            + quotient_familial.enfsup6 * max_(nb_pac - 6, 0))
+            + quotient_familial.enf3_et_sup * max_(nb_pac - 2, 0))
 
         # Pour les personnes à charge en résidence alternée 
         qf_alt = 0.5 * (quotient_familial.enf1 * (nbH - nb_pac >= 1)
             + quotient_familial.enf2 * (nbH - nb_pac >= 2)
-            + quotient_familial.enf3 * (nbH - nb_pac >= 3)
-            + quotient_familial.enf4 * (nbH - nb_pac >= 4)
-            + quotient_familial.enf5 * (nbH - nb_pac >= 5)
-            + quotient_familial.enf6 * (nbH - nb_pac >= 6)
-            + quotient_familial.enfsup6 * max_(nbH - nb_pac - 6, 0))
+            + quotient_familial.enf3_et_sup * max_(nbH - nb_pac - 2, 0))
 
         enf = qf_pac + qf_alt
         # # note 2 : nombre de parts liées aux invalides (enfant + adulte)
