@@ -1,5 +1,14 @@
 # Changelog
 
+### 150.3.30 [#2121](https://github.com/openfisca/openfisca-france/pull/212)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/impot_revenu`.
+* Détails :
+  - Homogénéisation de nombreux dispositifs de l'IR avec [les barèmes IPP](https://gitlab.com/ipp/partage-public-ipp/baremes-ipp/baremes-ipp-yaml).
+  - Arrivées possibles de nouveaux paramètres
+
 ### 150.2.2 [#2159](https://github.com/openfisca/openfisca-france/pull/2159)
 
 * Changement mineur.
