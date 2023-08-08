@@ -4,6 +4,7 @@ metadata:
   label_en: Family quotient ceiling and "decote"
   order:
   - taux
+  - seuil
   - seuil_celib
   - seuil_couple
   - seuil_1_part
