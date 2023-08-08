@@ -3530,8 +3530,9 @@ class nbptr(Variable):
         note 1 enfants et résidence alternée (formulaire 2041 GV page 10)
 
         quotient_familial.conj : nb part associées au conjoint d'un couple marié ou pacsé
-        quotient_familial.enf1 à quotient_familial.enf6 : nb part premier enfant .. jusqu'à 6ème enfant
-        quotient_familial.enfsup6 : nb part enfants de rang 7 ou plus
+        quotient_familial.enf1 : nb part premier enfant
+        quotient_familial.enf2 : nb part deuxième enfant
+        quotient_familial.enf3_et_sup : nb part enfants de rang 3 ou plus
         quotient_familial.inv1 : nb part supp enfants invalides (I, G)
         quotient_familial.inv2 : nb part supp adultes invalides (R)
         quotient_familial.not31 : nb part supp note 3 : cases W ou G pour veuf, celib ou div
