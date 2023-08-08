@@ -35,7 +35,7 @@ values:
 metadata:
   short_label: Minimum
   ipp_csv_id: mindeduc_perp
-  unit: currency
+  unit: currency_next_year
   reference:
     2004-01-01:
     - title: Loi 2004-1484 du 30/12/2004 (LF pour 2005)
@@ -105,6 +105,3 @@ metadata:
     2017-01-01: "2017-12-31"
     2018-01-01: "2018-12-30"
     2019-01-01: "2019-12-29"
-documentation: |-
-  Déductions pour plan épargne populaire (PERP) : art. 163 quatervicies du CGI
-  https://www.service-public.fr/particuliers/vosdroits/F10259

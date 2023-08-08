@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Seuil 2
   ipp_csv_id: abat_contrib_ages_invalides_plaf2
-  unit: currency
+  unit: currency_next_year
   reference:
     1978-01-01:
       title: Loi 78-1239 du 29/12/1978 (LF pour 1979), art. 2, III.

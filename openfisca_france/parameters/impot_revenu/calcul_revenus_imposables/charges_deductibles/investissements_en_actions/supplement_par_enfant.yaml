@@ -9,7 +9,7 @@ values:
 metadata:
   short_label: Supplément par enfant
   ipp_csv_id: increment_action
-  unit: currency
+  unit: currency_next_year
   reference:
     1978-01-01:
       title: Loi 78-1239 du 29/12/1978 (LF pour 1979)
@@ -20,4 +20,3 @@ metadata:
   official_journal_date:
     1978-01-01: "1978-12-30"
     1997-01-01: "1997-12-31"
-documentation: "Détaxation du revenu investi en actions : détaxation limitée à plaf_action + increment_action par enfant jusqu'au deuxième + 2*increment_action par enfant à charge à partir du 3ème enfant"

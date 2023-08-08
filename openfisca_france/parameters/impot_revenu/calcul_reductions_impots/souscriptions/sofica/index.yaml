@@ -1,0 +1,12 @@
+description: Réduction d'impôt sur la souscription de parts au capital de SOFICA
+metadata:
+  documentation_start: true
+  short_label: Au capital de SOFICA
+  label_en: Capital Subscription in SOFICA society (cinema)
+  order:
+  - taux_1
+  - taux_2
+  - taux_3
+  - plafond
+  - plafond_revenu_net_global
+documentation: Sociétés pour le financement de l’industrie cinématographique ou audiovisuelle (SOFICA)

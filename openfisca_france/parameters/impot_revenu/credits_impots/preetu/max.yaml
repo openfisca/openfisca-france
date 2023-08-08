@@ -4,4 +4,4 @@ values:
     value: 1000
 metadata:
   short_label: Plafond
-  unit: currency
+  unit: currency_next_year

@@ -6,4 +6,4 @@ values:
     value: null
 metadata:
   short_label: Plafond de revennus
-  unit: currency
+  unit: currency_next_year

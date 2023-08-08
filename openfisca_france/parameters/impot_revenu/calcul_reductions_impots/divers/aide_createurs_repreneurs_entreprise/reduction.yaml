@@ -7,4 +7,4 @@ values:
 metadata:
   short_label: Réduction
   ipp_csv_id: crea_entr
-  unit: currency
+  unit: currency_next_year

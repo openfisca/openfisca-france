@@ -7,5 +7,4 @@ values:
 metadata:
   short_label: Plafond
   ipp_csv_id: plaf_monhist
-  unit: currency
-documentation: "Travaux de conservation et de restauration d'objets classés monuments historiques : art. 199 duovicies du CGI"
+  unit: currency_next_year

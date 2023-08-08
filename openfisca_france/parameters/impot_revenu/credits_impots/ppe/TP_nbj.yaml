@@ -1,4 +1,4 @@
-description: Nombre de jours pour un temps plein
+description: Nombre de jours valant temps plein pour un non-salarié dans le calcul de la PPE
 values:
   2002-01-01:
     value: 360

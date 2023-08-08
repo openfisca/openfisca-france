@@ -1,7 +1,8 @@
-description: Suppléments de la Prime pour l'emploi (PPE, 2000 - 2015)
+description: Suppléments de la prime pour l'emploi (PPE)
 metadata:
   short_label: Suppléments
   label_en: Employment Allowance (2001 - 2015)
   order:
   - couples_mono_emploi
+  - mono_pac
   - par_personne_charge
