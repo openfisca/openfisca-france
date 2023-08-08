@@ -133,7 +133,7 @@ class rev_coll(Variable):
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
-        plus_values = foyer_fiscal('assiette_csg_plus_values', period) # Cette variable ne correspond probablement pas exactement à la législation exacte (revenus nets catégoriels retenus pour l'IR, à taux propostionnel ou libératoire : cf. art. R532-3 du CSS), que ce soit en termes de champ des plus-values (PV) et de leur mesure (abattements ou pas, etc.). Néanmoins, cette variable constitue une bonne approximation. Les autres contiennent d'autres limites (les PV au barème, via revenu_categoriel_plus_values ou au PFU, via plus_values_prelevement_forfaitaire_unique_ir, ne regroupent pas toutes les plus-values ; les variables rfr_plus_values_hors_rni et revenu_categoriel_plus_values non-plus (ex : gains de levée d'option assimilés salaires).
+        plus_values = foyer_fiscal('assiette_csg_plus_values', period)  # Cette variable ne correspond probablement pas exactement à la législation exacte (revenus nets catégoriels retenus pour l'IR, à taux propostionnel ou libératoire : cf. art. R532-3 du CSS), que ce soit en termes de champ des plus-values (PV) et de leur mesure (abattements ou pas, etc.). Néanmoins, cette variable constitue une bonne approximation. Les autres contiennent d'autres limites (les PV au barème, via revenu_categoriel_plus_values ou au PFU, via plus_values_prelevement_forfaitaire_unique_ir, ne regroupent pas toutes les plus-values ; les variables rfr_plus_values_hors_rni et revenu_categoriel_plus_values non-plus (ex : gains de levée d'option assimilés salaires).
 
         # TODO: ajouter les revenus de l'étranger etr*0.9
         return (
