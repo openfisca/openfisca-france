@@ -9,20 +9,8 @@ metadata:
   ipp_csv_id: increment_plafsaldomicile
   unit: currency_next_year
   reference:
-    2004-01-01:
-      title: Loi 2003-1311 du 30/12/2003 (LF pour 2004)
     2005-01-01:
     - title: Loi 2004-1484 du 30/12/2004 (LF pour 2005) - art. 87
     - title: BOI 5 B-20-05; n°121 du 15/07/2005
-    2007-01-01:
-    - title: Loi n° 2006-1771 du 30 décembre 2006 (LFR pour 2006) - art. 70
-    - title: BOI 5 B-1-08; n°6 du 14/01/2008
-    2009-01-01:
-    - title: Loi 2009-1673 du 30/12/2009 (LF pour 2010)
-    - title: BOI 5 B-6-10; n°9 du 19/01/2010
-    2010-01-01:
-      title: Loi 2010-1657 du 29/12/2010 (LF pour 2011)
-    2011-01-01:
-      title: Loi 2011-1977 du 28/12/2011 (LF pour 2012)
   official_journal_date:
     2005-01-01: "2005-12-31"
