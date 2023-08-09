@@ -3579,25 +3579,30 @@ class nbptr(Variable):
         no_alt = nbH == 0  # Aucun enfant à charge en garde alternée
         has_alt = not_(no_alt)
 
-        # # nombre de parts liées aux enfants à charge
-        # Cette formule considère que les enfants en garde complète sont forcément les premiers enfants, ce qui est une approximation.
+        # nombre de parts liées aux enfants à charge
 
-        # que des enfants en résidence alternée
-        enf1 = (no_pac & has_alt) * (quotient_familial.enf1 * min_(nbH >= 1, 1) * 0.5
-            + quotient_familial.enf2 * min_(nbH >= 2, 1) * 0.5
-            + quotient_familial.enf3_et_sup * max_(nbH - 2, 0) * 0.5)
-        # pas que des enfants en résidence alternée
-        enf2 = (has_pac & has_alt) * ((nb_pac == 1) * (quotient_familial.enf1 * min_(nbH >= 1, 1) * 0.5
-            + quotient_familial.enf2 * min_(nbH >= 2, 1) * 0.5
-            + quotient_familial.enf3_et_sup * max_(nbH - 2, 0) * 0.5)
-            + (nb_pac > 1) * (quotient_familial.enf3_et_sup * nbH * 0.5))
+        # parts des enfants en résidence alternée quand il n'y a que des enfants en résidence alternée
+        enf_a = (no_pac & has_alt) * (
+            quotient_familial.enf1 * min_(nbH, 1)
+            + quotient_familial.enf2 * min_(nbH - 1, 1)
+            + quotient_familial.enf3_et_sup * max_(nbH - 2, 0)
+            ) * 0.5
+        # parts des enfants en résidence alternée quand il y a aussi des enfants entièrement à charge
+        enf_b = (has_pac & has_alt) * (
+            (nb_pac == 1) * (
+                quotient_familial.enf2 * min_(nbH, 1)
+                + quotient_familial.enf3_et_sup * max_(nbH - 1, 0)
+                ) * 0.5
+            + (nb_pac > 1) * (quotient_familial.enf3_et_sup * nbH * 0.5)
+            )
+        # parts des enfants entièrement à charge
+        enf_c = (
+            quotient_familial.enf1 * min_(nb_pac, 1)
+            + quotient_familial.enf2 * min_(nb_pac - 1, 1)
+            + quotient_familial.enf3_et_sup * max_(nb_pac - 2, 0)
+            )
 
-        # pas d'enfant en résidence alternée
-        enf3 = (quotient_familial.enf1 * min_(nb_pac >= 1, 1)
-            + quotient_familial.enf2 * min_(nb_pac >= 2, 1)
-            + quotient_familial.enf3_et_sup * max_(nb_pac - 2, 0))
-
-        enf = enf1 + enf2 + enf3_et_sup
+        enf = enf_a + enf_b + enf_c
 
         # # note 2 : nombre de parts liées aux invalides (enfant + adulte)
         n2 = quotient_familial.inv1 * (nbG + nbI / 2) + quotient_familial.inv2 * nbR
