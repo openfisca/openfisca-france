@@ -5,4 +5,4 @@ metadata:
   order:
   - condition_age_allocataire
   - nombre_minimal_enfant_si_condition_age_n_est_pas_respectee
-  - duree_min_titre_de_sejour
+  - duree_min_titre_sejour

@@ -2,8 +2,6 @@ description: Montant minimum versé pour le revenu de solidarité active (RSA)
 values:
   2009-06-01:
     value: 6
-  2016-01-01:
-    value: null
 metadata:
   short_label: Montant mimimum
   last_value_still_valid_on: "2022-03-31"
@@ -24,4 +22,4 @@ metadata:
     2016-01-01: "2015-12-22"
   notes:
     2016-01-01:
-    - title: Remplacement du RSA activité par la Prime d'activité
+    - title: Remplacement du RSA activité par la prime d'activité
