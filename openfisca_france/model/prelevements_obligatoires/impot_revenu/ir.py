@@ -3472,7 +3472,7 @@ class nbptr(Variable):
         # parts des enfants en résidence alternée quand il n'y a que des enfants en résidence alternée
         enf_a = (no_pac & has_alt) * (
             quotient_familial.enf1 * min_(nbH, 1)
-            + quotient_familial.enf2 * min_(nbH - 1, 1)
+            + quotient_familial.enf2 * max_(min_(nbH - 1, 1), 0)
             + quotient_familial.enf3_et_sup * max_(nbH - 2, 0)
             ) * 0.5
         # parts des enfants en résidence alternée quand il y a aussi des enfants entièrement à charge
@@ -3486,7 +3486,7 @@ class nbptr(Variable):
         # parts des enfants entièrement à charge
         enf_c = (
             quotient_familial.enf1 * min_(nb_pac, 1)
-            + quotient_familial.enf2 * min_(nb_pac - 1, 1)
+            + quotient_familial.enf2 * max_(min_(nb_pac - 1, 1), 0)
             + quotient_familial.enf3_et_sup * max_(nb_pac - 2, 0)
             )
 
@@ -3584,7 +3584,7 @@ class nbptr(Variable):
         # parts des enfants en résidence alternée quand il n'y a que des enfants en résidence alternée
         enf_a = (no_pac & has_alt) * (
             quotient_familial.enf1 * min_(nbH, 1)
-            + quotient_familial.enf2 * min_(nbH - 1, 1)
+            + quotient_familial.enf2 * max_(min_(nbH - 1, 1), 0)
             + quotient_familial.enf3_et_sup * max_(nbH - 2, 0)
             ) * 0.5
         # parts des enfants en résidence alternée quand il y a aussi des enfants entièrement à charge
@@ -3598,7 +3598,7 @@ class nbptr(Variable):
         # parts des enfants entièrement à charge
         enf_c = (
             quotient_familial.enf1 * min_(nb_pac, 1)
-            + quotient_familial.enf2 * min_(nb_pac - 1, 1)
+            + quotient_familial.enf2 * max_(min_(nb_pac - 1, 1), 0)
             + quotient_familial.enf3_et_sup * max_(nb_pac - 2, 0)
             )
 
