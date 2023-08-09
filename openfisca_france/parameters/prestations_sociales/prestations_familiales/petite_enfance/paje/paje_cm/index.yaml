@@ -1,7 +1,7 @@
 description: Conditions et montants de l'allocation de base de la prestation d'accueil du jeune enfant (PAJE)
 metadata:
   documentation_start: true
-  short_label: "Allocation de base"
+  short_label: Allocation de base
   label_en: "Early childhood benefit (PAJE) -- Basic allowance: conditions and amounts"
   order:
   - age_limite_enfant_adopte_non

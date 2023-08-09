@@ -1,7 +1,7 @@
 description: Conditions et montants de la Prime à la naissance et à l'adoption de la Prestation d'accueil du jeune enfant (PAJE)
 metadata:
   documentation_start: true
-  short_label: "Prime à la naissance et à l'adoption"
+  short_label: Prime à la naissance et à l'adoption
   label_en: "Early childhood benefit (PAJE) -- Birth and adoption premium : conditions and amounts"
   order:
   - montant
