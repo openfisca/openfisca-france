@@ -1,4 +1,4 @@
-description: Montant journalier de l'Allocation temporaire d'attente (ATA)
+description: Montant journalier de l'allocation temporaire d'attente (ATA)
 values:
   2006-11-16:
     value: 10.04
@@ -79,7 +79,3 @@ metadata:
   notes:
     2015-11-01:
     - title: Remplacée par l'allocation pour demandeur d'asile (ADA)
-documentation: |-
-  Loi 2005-1719 du 30/12/2005, art. 154
-  2005-12-31
-  Création de l'allocation temporaire d'attente: remplace l'allocation d'insertion (AI).

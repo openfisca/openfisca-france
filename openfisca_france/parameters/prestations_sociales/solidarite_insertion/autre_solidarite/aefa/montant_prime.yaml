@@ -1,4 +1,4 @@
-description: Montant de base l'aide pour une personne seule - Aide exceptionnelle de fin d'année (AEFA)
+description: Montant de base l'aide exceptionnelle de fin d'année (AEFA) pour une personne seule
 values:
   2003-12-30:
     value: 152.45
@@ -16,12 +16,3 @@ metadata:
   notes:
     2003-01-01:
     - title: Idem en 2017
-documentation: |-
-  Notes :
-  La prime existe depuis 1988 mais nous n'avons pu remonter que jusqu'à 2003
-  https://www.service-public.fr/particuliers/vosdroits/F1325
-  Décret 2015-1870 du 30/12/2015
-  Décret 2014-1709 du 30/12/2014
-  Décret 2013-1294 du 30/12/2013
-  Décret 2010-1677 du 29/12/2010
-  Décret 2003-1283 du 26/12/2003

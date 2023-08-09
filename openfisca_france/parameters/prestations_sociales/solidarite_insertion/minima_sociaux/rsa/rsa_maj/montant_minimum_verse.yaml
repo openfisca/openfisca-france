@@ -1,7 +1,9 @@
-description: Montant minimum versé pour le Revenu de solidarité active (RSA)
+description: Montant minimum versé pour le revenu de solidarité active (RSA)
 values:
   2009-06-01:
     value: 6
+  2016-01-01:
+    value: null
 metadata:
   short_label: Montant mimimum
   last_value_still_valid_on: "2022-03-31"
@@ -10,12 +12,16 @@ metadata:
   unit: currency
   reference:
     2009-06-01:
-    - title: Article R262-39
-      href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020526072
     - title: Décret 2009-404 du 15/04/2009, art. 2 (modif art. R262-1 du CASF)
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020522717&cidTexte=JORFTEXT000020521930
     - title: Article R262-39 du Code de l'action sociale et des familles
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020526072/2009-06-01
+    2016-01-01:
+      title: Décret 2015-1710 du 21/12/2015, art. 2 (crée art. D843-1 du CSS)
+      href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000031673709&cidTexte=JORFTEXT000031665094
   official_journal_date:
     2009-06-01: "2009-04-16"
-documentation: ""
+    2016-01-01: "2015-12-22"
+  notes:
+    2016-01-01:
+    - title: Remplacement du RSA activité par la Prime d'activité

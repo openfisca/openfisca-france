@@ -138,7 +138,8 @@ metadata:
       title: Décret 75-1341 du 31/12/1975
     1976-07-01:
     - title: Décret 85-1353, art. 1 du 17/12/1985 (crée art. L811-10 du CSS)
-    - title: Décret 85-1354, art. 1 du 17/12/1985 (crée art D811-10 et D811-12 du CSS)Décret 76-559 du 25/06/1976
+    - title: Décret 85-1354, art. 1 du 17/12/1985 (crée art D811-10 et D811-12 du CSS) 
+    - Décret 76-559 du 25/06/1976
     2011-01-01:
       title: Loi 2010-1330 du 09/11/2010, art. 51
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000023024002&cidTexte=JORFTEXT000023022127
@@ -174,7 +175,6 @@ metadata:
     1975-04-01: "1975-04-02"
     1976-01-01: "1976-01-03"
     1976-07-01: 1985-12-21; 1976-06-27
-    2011-01-01: "2010-11-10"
   notes:
     2002-01-01:
     - title: Passage à l'euro

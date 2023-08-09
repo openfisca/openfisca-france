@@ -5,6 +5,10 @@ metadata:
   label_en: "Family allowances (AF): General conditions and amount"
   order:
   - nb_enfants_min_pour_allocation
+  - age1
+  - age2
+  - age3
+  - facteur_garde_alternee
   - taux
   - modulation
 documentation: L'allocation familiale est créée en 1932 par la loi Landry du 11/03/1932, art. 1 et 2 (modif titres III et V du code du travail). Parution au JO 12/03/1932
