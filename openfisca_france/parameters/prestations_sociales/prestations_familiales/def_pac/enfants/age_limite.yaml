@@ -5,5 +5,4 @@ values:
 metadata:
   short_label: Âge limite
   unit: year
-documentation:
-  À partir de 2000, une seule limite d'âge pour tous les enfants. (https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000568187)
+documentation: À partir de 2000, une seule limite d'âge pour tous les enfants. (https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000568187)

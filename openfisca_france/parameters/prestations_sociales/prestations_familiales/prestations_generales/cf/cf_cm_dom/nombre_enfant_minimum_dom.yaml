@@ -4,8 +4,8 @@ values:
     value: 1
 metadata:
   short_label: Nombre d'enfant minimum
-  label_en: Minimum number of children
   last_value_still_valid_on: "2023-05-11"
+  label_en: Minimum number of children
   reference:
     2002-01-01:
       title: Section 3 Complément familial. (Article D755-6)

@@ -16,8 +16,8 @@ values:
     value: 26432
 metadata:
   short_label: Base du plafond de ressources
-  label_en: Resource ceiling base
   last_value_still_valid_on: "2023-05-09"
+  label_en: Resource ceiling base
   ipp_csv_id: plaf_paje_0enf_pn_pa_abpartiel_a_partir_20180401
   unit: currency
   reference:
@@ -61,5 +61,3 @@ metadata:
     - title: "Création de la PAJE. Mais entrée en vigueur progressive : de janvier 2004 à décembre 2006 inclus (cf. art. 60, VIII de la loi 2003-1199)"
     2018-04-01:
     - title: Le Décret 2018-331 spécifie que les plafonds sont majorés dans les conditions définies aux deuxième et troisième alinéas de l'article R. 522-2. C'est dans ces alinéas que figurent les pourcentages de majoration pour enfant à charge. De plus, à compter des enfants nés à partir du 1er avril 2018, les plafonds de ressources de l'allocation de base à taux plein sont identiques aux plafonds de ressources du complément familial (voir art. L531-3 du CSS, après modification de cet article par l'art. 37 de la loi 2017-1836 du 30/12/2017).
-    2021-04-01:
-    - title: Les dispositions de la PAJE pour les enfants nés ou adoptés avant le 01/04/2018 ne s'appliquent plus (naissance ou adoption depuis plus de 3 ans).

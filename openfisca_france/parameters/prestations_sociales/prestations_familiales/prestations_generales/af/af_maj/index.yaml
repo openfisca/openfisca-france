@@ -9,5 +9,4 @@ metadata:
   - duree_majoration_plus_de_20_ans
   - nb_enfants_min_pour_aine_donne_droit_a_majoration
   - maj_age_deux_enfants
-documentation: |-
-  Création de cette majoration au 1er mai 2008 et concerne les nouveaux bénéficiaires potentiels de l'ancien système, soit les enfants nés après le 31 avril 1997. Ne s'appliquera qu'à partir du 1er mai 2011. Pour les familles avec 3+ enfants, la majoration est valable pour tout enfant de plus de 14 ans (pas le cas si 2 enfants)
+documentation: Création de cette majoration au 1er mai 2008 et concerne les nouveaux bénéficiaires potentiels de l'ancien système, soit les enfants nés après le 31 avril 1997. Ne s'appliquera qu'à partir du 1er mai 2011. Pour les familles avec 3+ enfants, la majoration est valable pour tout enfant de plus de 14 ans (pas le cas si 2 enfants)

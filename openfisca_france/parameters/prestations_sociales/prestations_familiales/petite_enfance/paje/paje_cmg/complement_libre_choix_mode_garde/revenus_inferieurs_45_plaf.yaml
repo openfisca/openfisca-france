@@ -13,7 +13,7 @@ metadata:
   unit: BMAF
   reference:
     2004-01-01:
-    - title: Décret 2003-1394 du 31/12/2003 - art. 1
+      title: Décret 2003-1394 du 31/12/2003 - art. 1
       href: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006227364&cidTexte=JORFTEXT000000797514
     2008-05-01:
       title: Décret 2008-331 du 9/04/2008 - art. 1

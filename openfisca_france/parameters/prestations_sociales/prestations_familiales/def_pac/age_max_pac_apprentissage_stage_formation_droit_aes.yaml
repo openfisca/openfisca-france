@@ -10,7 +10,7 @@ metadata:
   unit: year
   reference:
     1985-12-22:
-    - title: Décret 85-1353 du 17/12/1985, art. 1 (crée art. R 512-2 du CSS)
+      title: Décret 85-1353 du 17/12/1985, art. 1 (crée art. R 512-2 du CSS)
       href: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006750602/2000-01-29
   official_journal_date:
     1985-12-22: "1985-12-21"
