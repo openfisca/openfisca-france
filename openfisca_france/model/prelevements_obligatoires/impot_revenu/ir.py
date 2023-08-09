@@ -3427,10 +3427,7 @@ class taux_moyen_imposition(Variable):
             ) * (rni > 0)
 
 
-###############################################################################
-# # Calcul du nombre de parts
-###############################################################################
-
+# Calcul du nombre de parts
 
 class nbptr(Variable):
     value_type = float
@@ -3646,10 +3643,7 @@ class nbptr(Variable):
         return (maries_ou_pacses | jeune_veuf) * nb_parts_famille + (veuf & not_(jeune_veuf)) * nb_parts_veuf + celibataire_ou_divorce * nb_parts_celib
 
 
-###############################################################################
-# # Calcul de la prime pour l'emploi
-###############################################################################
-
+# Calcul de la prime pour l'emploi
 
 class ppe_coef(Variable):
     value_type = float
