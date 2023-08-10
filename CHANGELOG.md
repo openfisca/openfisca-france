@@ -1,6 +1,14 @@
 # Changelog
 
-### 150.3.30 [#2121](https://github.com/openfisca/openfisca-france/pull/212)
+## 150.4.0 [#2166](hhttps://github.com/openfisca/openfisca-france/pull/2166)
+
+* Correction d'une erreur de formule
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/prestations_familiales/base_ressource`.
+* Détails :
+  - La variable `prestations_familiales_base_ressources_individu` contenait les variables `glo` et `assiette_csg_plus_values`, alors que la variable `rev_coll`, utilisée dans `prestations_familiales_base_ressources_communes`, contenait `plus_values_prelevement_forfaitaire_unique_ir` et `revenu_categoriel_plus_values`. On corrige de ceci, et on met un commentaire pour expliquer le choix fait en termes de variable de plus-values.
+
+## 150.3.0 [#2121](https://github.com/openfisca/openfisca-france/pull/2121)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
