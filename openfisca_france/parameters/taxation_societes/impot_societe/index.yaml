@@ -1,6 +1,6 @@
-description: Seuils et taux d'imposition au titre de l'impôt sur les sociétés (1977-2022)
+description: Seuils et taux d'imposition au titre de l'impôt sur les sociétés
 metadata:
-  label_en: Thresholds and tax rates for corporate income tax (1977 - 2022)
+  label_en: Thresholds and tax rates for corporate income tax
   order:
   - taux_normal
   - taux_reduit
